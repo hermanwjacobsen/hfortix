@@ -59,10 +59,11 @@ class FortiOS:
         # Initialize API helpers
         from .api.v2.cmdb import CMDB
         from .api.v2.service import Service
+        from .api.v2.log import Log
         self.cmdb = CMDB(self)
         self.service = Service(self)
+        self.log = Log(self)
         self.monitor = None  # TODO
-        self.log = None      # TODO
     
     def request(self, method, api_type, path, data=None, params=None, vdom=None):
         """
@@ -141,6 +142,53 @@ class FortiOS:
             get('monitor', 'system/status', vdom=False)
         """
         return self.request('GET', api_type, path, params=params, vdom=vdom)
+    
+    def get_binary(self, api_type, path, params=None, vdom=None):
+        """
+        GET request returning binary data (for file downloads)
+        
+        Args:
+            api_type: cmdb, monitor, log, service
+            path: Endpoint path
+            params: Query parameters
+            vdom: Virtual domain
+        
+        Returns:
+            bytes: Raw binary response data
+        
+        Examples:
+            # Download packet capture
+            pcap_data = get_binary('service', 'sniffer/download', params={'mkey': 'any_root'})
+            
+            # Download archived file
+            archive = get_binary('log', 'disk/ips/archive-download', params={'mkey': 123})
+        """
+        # Build URL
+        url = f"{self.url}/api/v2/{api_type}/{path}"
+        params = params or {}
+        
+        # Add vdom if applicable
+        if vdom is not None:
+            params['vdom'] = vdom
+        elif self.vdom is not None and 'vdom' not in params:
+            params['vdom'] = self.vdom
+        
+        # Make request
+        res = self.session.get(url, params=params if params else None)
+        
+        # Check for errors
+        if not res.ok:
+            try:
+                error_detail = res.json()
+                from FortiOS.exceptions import APIError
+                raise APIError(
+                    f"HTTP {res.status_code}: {error_detail}"
+                )
+            except ValueError:
+                res.raise_for_status()
+        
+        # Return raw binary content
+        return res.content
     
     def post(self, api_type, path, data, params=None, vdom=None):
         """
