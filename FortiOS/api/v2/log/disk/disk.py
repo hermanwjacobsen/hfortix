@@ -26,7 +26,7 @@ class Disk:
         Args:
             client: FortiOS client instance
         """
-        self.client = client
+        self._client = client
 
     def virus_archive(self, mkey=None, **kwargs):
         """
@@ -65,7 +65,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def archive(self, log_type, mkey=None, **kwargs):
         """
@@ -105,7 +105,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def archive_download(self, log_type, mkey=None, **kwargs):
         """
@@ -139,7 +139,7 @@ class Disk:
         params.update(kwargs)
         
         # This returns binary data, similar to sniffer download
-        return self.client.log.get_binary(endpoint, params=params if params else None)
+        return self._client.get_binary('log', endpoint, params=params if params else None)
 
     def raw(self, log_type, rows=None, session_id=None, serial_no=None, 
             is_ha_member=None, filter=None, keep_session_alive=None, **kwargs):
@@ -203,7 +203,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic_raw(self, subtype, rows=None, session_id=None, serial_no=None,
                     is_ha_member=None, filter=None, keep_session_alive=None, **kwargs):
@@ -255,7 +255,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event_raw(self, subtype, rows=None, session_id=None, serial_no=None,
                   is_ha_member=None, filter=None, keep_session_alive=None, **kwargs):
@@ -308,7 +308,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def get(self, log_type, rows=None, start=None, end=None, filter=None, **kwargs):
         """
@@ -359,7 +359,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def traffic(self, subtype, rows=None, start=None, end=None, filter=None, **kwargs):
         """
@@ -407,7 +407,7 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)
 
     def event(self, subtype, rows=None, start=None, end=None, filter=None, **kwargs):
         """
@@ -457,4 +457,4 @@ class Disk:
         
         params.update(kwargs)
         
-        return self.client.log.get(endpoint, params=params if params else None)
+        return self._client.get('log', endpoint, params=params if params else None)

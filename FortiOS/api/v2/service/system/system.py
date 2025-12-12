@@ -20,7 +20,7 @@ class System:
         Args:
             client: FortiOS client instance
         """
-        self.client = client
+        self._client = client
 
     def psirt_vulnerabilities(self, severity=None, scope=None, vdom=None, **kwargs):
         """
@@ -70,7 +70,7 @@ class System:
         
         params.update(kwargs)
         
-        return self.client.service.get(endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)
 
     def fabric_time_in_sync(self, utc=None, vdom=None, **kwargs):
         """
@@ -118,7 +118,7 @@ class System:
         
         params.update(kwargs)
         
-        return self.client.service.get(endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)
 
     def fabric_admin_lockout_exists(self, vdom=None, **kwargs):
         """
@@ -158,4 +158,4 @@ class System:
         
         params.update(kwargs)
         
-        return self.client.service.get(endpoint, params=params)
+        return self._client.get('service', endpoint, params=params)
