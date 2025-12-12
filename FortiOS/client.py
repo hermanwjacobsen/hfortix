@@ -58,9 +58,10 @@ class FortiOS:
         
         # Initialize API helpers
         from .api.v2.cmdb import CMDB
+        from .api.v2.service import Service
         self.cmdb = CMDB(self)
+        self.service = Service(self)
         self.monitor = None  # TODO
-        self.service = None  # TODO
         self.log = None      # TODO
     
     def request(self, method, api_type, path, data=None, params=None, vdom=None):
