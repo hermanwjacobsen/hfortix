@@ -21,5 +21,7 @@ class Service:
         
         # Initialize endpoint classes
         from .sniffer.sniffer import Sniffer
+        from .security_rating.security_rating import SecurityRating
         
         self.sniffer = Sniffer(client)
+        self.security_rating = SecurityRating(client)
