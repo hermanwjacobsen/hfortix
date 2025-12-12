@@ -22,9 +22,11 @@ class Log:
         # Initialize endpoint classes
         from .disk.disk import Disk
         from .fortianalyzer.fortianalyzer import FortiAnalyzer
+        from .memory.memory import Memory
         
         self.disk = Disk(client)
         self.fortianalyzer = FortiAnalyzer(client)
+        self.memory = Memory(client)
     
     def get(self, endpoint, params=None):
         """
