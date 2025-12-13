@@ -26,6 +26,7 @@ class CMDB:
         from .authentication import Authentication
         from .automation import Automation
         from .casb import Casb
+        from .certificate import Certificate
         
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
@@ -33,6 +34,7 @@ class CMDB:
         self.authentication = Authentication(client)
         self.automation = Automation(client)
         self.casb = Casb(client)
+        self.certificate = Certificate(client)
     
     def get(self, path, params=None, vdom=None):
         """
