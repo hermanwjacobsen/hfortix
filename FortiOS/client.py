@@ -66,6 +66,28 @@ class FortiOS:
         self.log = Log(self)
         self.monitor = Monitor(self)
     
+    def _handle_response_errors(self, response):
+        """
+        Handle HTTP response errors consistently
+        
+        Args:
+            response: requests.Response object
+            
+        Raises:
+            APIError: If response contains JSON error details
+            HTTPError: If response is not JSON (via raise_for_status)
+        """
+        if not response.ok:
+            try:
+                error_detail = response.json()
+                from .exceptions import APIError
+                raise APIError(
+                    f"HTTP {response.status_code}: {error_detail}"
+                )
+            except ValueError:
+                # If response is not JSON, raise standard HTTP error
+                response.raise_for_status()
+    
     def request(self, method, api_type, path, data=None, params=None, vdom=None):
         """
         Generic request method for all API calls
@@ -102,17 +124,8 @@ class FortiOS:
             params=params if params else None
         )
         
-        # If error, try to get detailed error message from response
-        if not res.ok:
-            try:
-                error_detail = res.json()
-                from .exceptions import APIError
-                raise APIError(
-                    f"HTTP {res.status_code}: {error_detail}"
-                )
-            except ValueError:
-                # If response is not JSON, just raise the standard error
-                res.raise_for_status()
+        # Handle errors
+        self._handle_response_errors(res)
         
         return res.json()
     
@@ -177,16 +190,8 @@ class FortiOS:
         # Make request
         res = self.session.get(url, params=params if params else None)
         
-        # Check for errors
-        if not res.ok:
-            try:
-                error_detail = res.json()
-                from .exceptions import APIError
-                raise APIError(
-                    f"HTTP {res.status_code}: {error_detail}"
-                )
-            except ValueError:
-                res.raise_for_status()
+        # Handle errors
+        self._handle_response_errors(res)
         
         # Return raw binary content
         return res.content
