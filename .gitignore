@@ -45,11 +45,8 @@ ENV/
 htmlcov/
 .tox/
 *.log
-Tests/
 
-# Documentation
-docs/_build/
-docs/
+
 
 # Jupyter Notebook
 .ipynb_checkpoints
