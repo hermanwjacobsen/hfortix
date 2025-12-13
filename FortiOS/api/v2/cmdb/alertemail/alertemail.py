@@ -75,7 +75,7 @@ class AlertEmail:
         Update alert email settings
         
         Args:
-            username: Name in From field (max 63 chars)
+            username: Sender name displayed in "From" field (max 63 chars) - NOT for authentication
             mailto1: Primary email address (max 63 chars)
             mailto2: Second email address (max 63 chars)
             mailto3: Third email address (max 63 chars)

@@ -164,7 +164,7 @@ class Sniffer:
         if not res.ok:
             try:
                 error_detail = res.json()
-                from FortiOS.exceptions import APIError
+                from ....exceptions import APIError
                 raise APIError(f"HTTP {res.status_code}: {error_detail}")
             except ValueError:
                 res.raise_for_status()

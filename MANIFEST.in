@@ -1,0 +1,24 @@
+# Include documentation and license files
+include README.md
+include LICENSE
+include QUICKSTART.md
+include CONTRIBUTING.md
+include CHANGELOG.md
+include API_COVERAGE.md
+include DEVELOPMENT.md
+include requirements.txt
+
+# Include all package data
+recursive-include fortinet *.py
+
+# Exclude test and development files
+exclude .gitignore
+recursive-exclude X *
+recursive-exclude Tests *
+recursive-exclude __pycache__ *
+recursive-exclude *.pyc
+recursive-exclude *.pyo
+recursive-exclude *.pyd
+recursive-exclude .pytest_cache *
+recursive-exclude .vscode *
+recursive-exclude .idea *

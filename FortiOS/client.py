@@ -60,10 +60,11 @@ class FortiOS:
         from .api.v2.cmdb import CMDB
         from .api.v2.service import Service
         from .api.v2.log import Log
+        from .api.v2.monitor import Monitor
         self.cmdb = CMDB(self)
         self.service = Service(self)
         self.log = Log(self)
-        self.monitor = None  # TODO
+        self.monitor = Monitor(self)
     
     def request(self, method, api_type, path, data=None, params=None, vdom=None):
         """
@@ -105,7 +106,7 @@ class FortiOS:
         if not res.ok:
             try:
                 error_detail = res.json()
-                from FortiOS.exceptions import APIError
+                from .exceptions import APIError
                 raise APIError(
                     f"HTTP {res.status_code}: {error_detail}"
                 )
@@ -180,7 +181,7 @@ class FortiOS:
         if not res.ok:
             try:
                 error_detail = res.json()
-                from FortiOS.exceptions import APIError
+                from .exceptions import APIError
                 raise APIError(
                     f"HTTP {res.status_code}: {error_detail}"
                 )
