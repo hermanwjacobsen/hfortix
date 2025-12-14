@@ -14,10 +14,10 @@ if TYPE_CHECKING:
 
 class Quarantine:
     """Antivirus Quarantine endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         vdom: Optional[Union[str, bool]] = None,
@@ -31,30 +31,30 @@ class Quarantine:
         """
         GET /antivirus/quarantine
         Get quarantine settings
-        
+
         Args:
             vdom: Virtual domain (optional)
-            
+
             Query parameters (all optional):
             datasource: Include datasource information for each linked object
             with_meta: Include meta information about each object
             skip: Enable CLI skip operator to hide skipped properties
             action: Special actions (default, schema, revision)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Quarantine configuration
-        
+
         Examples:
             >>> # Get quarantine settings
             >>> settings = fgt.cmdb.antivirus.quarantine.get()
-            
+
             >>> # Get with meta information
             >>> settings = fgt.cmdb.antivirus.quarantine.get(with_meta=True)
         """
         # Build params dict from provided parameters
         params = {}
-        
+
         # Map parameters
         param_map = {
             'datasource': datasource,
@@ -62,17 +62,17 @@ class Quarantine:
             'skip': skip,
             'action': action,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         return self._client.get('cmdb', 'antivirus/quarantine', params=params if params else None, vdom=vdom)
-    
+
     def update(
         self,
         agelimit: Optional[int] = None,
@@ -94,7 +94,7 @@ class Quarantine:
         """
         PUT /antivirus/quarantine
         Update quarantine settings
-        
+
         Args:
             agelimit: Age limit for quarantined files (0 = unlimited, 1-479 days)
             maxfilesize: Maximum file size to quarantine (0 = unlimited, 1-500 MB)
@@ -111,10 +111,10 @@ class Quarantine:
             destination: Quarantine destination - 'NULL', 'disk', 'FortiAnalyzer'
             vdom: Virtual domain (optional)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Set age limit and max file size
             >>> fgt.cmdb.antivirus.quarantine.update(
@@ -122,14 +122,14 @@ class Quarantine:
             ...     maxfilesize=50,
             ...     quarantine_quota=1024
             ... )
-            
+
             >>> # Configure storage options
             >>> fgt.cmdb.antivirus.quarantine.update(
             ...     store_infected='imap smtp pop3 http',
             ...     drop_blocked='ftp',
             ...     lowspace='ovrw-old'
             ... )
-            
+
             >>> # Set destination
             >>> fgt.cmdb.antivirus.quarantine.update(
             ...     destination='disk',
@@ -138,7 +138,7 @@ class Quarantine:
         """
         # Build data dict from provided parameters
         data = {}
-        
+
         # Map Python parameter names to API field names
         param_map = {
             'agelimit': agelimit,
@@ -155,7 +155,7 @@ class Quarantine:
             'lowspace': lowspace,
             'destination': destination,
         }
-        
+
         # API field name mapping
         api_field_map = {
             'agelimit': 'agelimit',
@@ -172,14 +172,14 @@ class Quarantine:
             'lowspace': 'lowspace',
             'destination': 'destination',
         }
-        
+
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra kwargs
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', 'antivirus/quarantine', data, vdom=vdom)

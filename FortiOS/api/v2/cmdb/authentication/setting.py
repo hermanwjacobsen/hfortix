@@ -15,24 +15,24 @@ if TYPE_CHECKING:
 
 class Setting:
     """Authentication setting endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     @staticmethod
     def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
-        
+
         Args:
             items: List of strings or dicts or None
-            
+
         Returns:
             List of dicts with 'name' key, or None if input is None
         """
         if items is None:
             return None
-        
+
         formatted = []
         for item in items:
             if isinstance(item, str):
@@ -41,9 +41,9 @@ class Setting:
                 formatted.append(item)
             else:
                 formatted.append({'name': str(item)})
-        
+
         return formatted
-    
+
     def get(
         self,
         datasource: Optional[bool] = False,
@@ -55,9 +55,9 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Get authentication settings
-        
+
         Retrieve global authentication settings.
-        
+
         Args:
             datasource (bool, optional): Include datasource information
             with_meta (bool, optional): Include meta information
@@ -65,14 +65,14 @@ class Setting:
             action (str, optional): Action type - 'default' or 'schema'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response with authentication settings
-        
+
         Examples:
             >>> # Get authentication settings
             >>> settings = fgt.cmdb.authentication.setting.get()
-            
+
             >>> # Get with meta information
             >>> settings = fgt.cmdb.authentication.setting.get(with_meta=True)
         """
@@ -83,16 +83,16 @@ class Setting:
             'skip': skip,
             'action': action
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', 'authentication/setting', 
+
+        return self._client.get('cmdb', 'authentication/setting',
                                params=params if params else None, vdom=vdom)
-    
+
     def update(
         self,
         active_auth_scheme: Optional[str] = None,
@@ -121,59 +121,59 @@ class Setting:
     ) -> dict[str, Any]:
         """
         Update authentication settings
-        
+
         Update global authentication configuration settings.
-        
+
         Args:
             active_auth_scheme (str, optional): Active authentication method (scheme name, max 35 chars)
             sso_auth_scheme (str, optional): Single-Sign-On authentication method (scheme name, max 35 chars)
             update_time (str, optional): Time of the last update
-            persistent_cookie (str, optional): Enable/disable persistent cookie on web portal auth - 
+            persistent_cookie (str, optional): Enable/disable persistent cookie on web portal auth -
                 'enable' or 'disable' (default: enable)
-            ip_auth_cookie (str, optional): Enable/disable persistent cookie on IP based web portal auth - 
+            ip_auth_cookie (str, optional): Enable/disable persistent cookie on IP based web portal auth -
                 'enable' or 'disable' (default: disable)
-            cookie_max_age (int, optional): Persistent web portal cookie max age in minutes 
+            cookie_max_age (int, optional): Persistent web portal cookie max age in minutes
                 (30-10080, default: 480)
-            cookie_refresh_div (int, optional): Refresh rate divider of persistent cookie 
+            cookie_refresh_div (int, optional): Refresh rate divider of persistent cookie
                 (2-4, default: 2)
             captive_portal_type (str, optional): Captive portal type - 'fqdn' or 'ip'
             captive_portal_ip (str, optional): Captive portal IPv4 address
             captive_portal_ip6 (str, optional): Captive portal IPv6 address
             captive_portal (str, optional): Captive portal host name (max 255 chars)
             captive_portal6 (str, optional): IPv6 captive portal host name (max 255 chars)
-            cert_auth (str, optional): Enable/disable redirecting cert auth to HTTPS portal - 
+            cert_auth (str, optional): Enable/disable redirecting cert auth to HTTPS portal -
                 'enable' or 'disable'
             cert_captive_portal (str, optional): Certificate captive portal host name (max 255 chars)
             cert_captive_portal_ip (str, optional): Certificate captive portal IP address
             cert_captive_portal_port (int, optional): Certificate captive portal port (1-65535, default: 7832)
             captive_portal_port (int, optional): Captive portal port number (1-65535, default: 7830)
-            auth_https (str, optional): Enable/disable redirecting HTTP auth to HTTPS - 
+            auth_https (str, optional): Enable/disable redirecting HTTP auth to HTTPS -
                 'enable' or 'disable'
             captive_portal_ssl_port (int, optional): Captive portal SSL port (1-65535, default: 7831)
-            user_cert_ca (list, optional): CA certificates for client cert verification 
+            user_cert_ca (list, optional): CA certificates for client cert verification
                 (list of strings or dicts with 'name' key)
-            dev_range (list, optional): Address range for IP based device query 
+            dev_range (list, optional): Address range for IP based device query
                 (list of strings or dicts with 'name' key)
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Enable persistent cookie
             >>> result = fgt.cmdb.authentication.setting.update(
             ...     persistent_cookie='enable',
             ...     cookie_max_age=1440
             ... )
-            
+
             >>> # Configure captive portal
             >>> result = fgt.cmdb.authentication.setting.update(
             ...     captive_portal_type='fqdn',
             ...     captive_portal='portal.example.com',
             ...     captive_portal_port=8080
             ... )
-            
+
             >>> # Set authentication schemes
             >>> result = fgt.cmdb.authentication.setting.update(
             ...     active_auth_scheme='form-auth',
@@ -183,7 +183,7 @@ class Setting:
         # Convert simple lists to FortiOS format
         user_cert_ca = self._format_name_list(user_cert_ca)
         dev_range = self._format_name_list(dev_range)
-        
+
         param_map = {
             'active_auth_scheme': active_auth_scheme,
             'sso_auth_scheme': sso_auth_scheme,
@@ -207,7 +207,7 @@ class Setting:
             'user_cert_ca': user_cert_ca,
             'dev_range': dev_range
         }
-        
+
         api_field_map = {
             'active_auth_scheme': 'active-auth-scheme',
             'sso_auth_scheme': 'sso-auth-scheme',
@@ -231,13 +231,13 @@ class Setting:
             'user_cert_ca': 'user-cert-ca',
             'dev_range': 'dev-range'
         }
-        
+
         data = {}
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', 'authentication/setting', data, vdom=vdom)

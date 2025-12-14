@@ -14,10 +14,10 @@ if TYPE_CHECKING:
 
 class Settings:
     """Antivirus Settings endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         vdom: Optional[Union[str, bool]] = None,
@@ -31,30 +31,30 @@ class Settings:
         """
         GET /antivirus/settings
         Get antivirus settings
-        
+
         Args:
             vdom: Virtual domain (optional)
-            
+
             Query parameters (all optional):
             datasource: Include datasource information for each linked object
             with_meta: Include meta information about each object
             skip: Enable CLI skip operator to hide skipped properties
             action: Special actions (default, schema, revision)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Antivirus settings configuration
-        
+
         Examples:
             >>> # Get antivirus settings
             >>> settings = fgt.cmdb.antivirus.settings.get()
-            
+
             >>> # Get with meta information
             >>> settings = fgt.cmdb.antivirus.settings.get(with_meta=True)
         """
         # Build params dict from provided parameters
         params = {}
-        
+
         # Map parameters
         param_map = {
             'datasource': datasource,
@@ -62,17 +62,17 @@ class Settings:
             'skip': skip,
             'action': action,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         return self._client.get('cmdb', 'antivirus/settings', params=params if params else None, vdom=vdom)
-    
+
     def update(
         self,
         default_db: Optional[str] = None,
@@ -88,7 +88,7 @@ class Settings:
         """
         PUT /antivirus/settings
         Update antivirus settings
-        
+
         Args:
             default_db: Default antivirus database - 'normal', 'extended', 'extreme'
             grayware: Enable/disable grayware detection - 'enable' or 'disable'
@@ -99,24 +99,24 @@ class Settings:
             use_extreme_db: Enable/disable extreme database - 'enable' or 'disable'
             vdom: Virtual domain (optional)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Enable grayware detection
             >>> fgt.cmdb.antivirus.settings.update(
             ...     grayware='enable',
             ...     default_db='extended'
             ... )
-            
+
             >>> # Configure caching
             >>> fgt.cmdb.antivirus.settings.update(
             ...     cache_infected_result='enable',
             ...     cache_clean_result='enable',
             ...     override_timeout=300
             ... )
-            
+
             >>> # Enable machine learning
             >>> fgt.cmdb.antivirus.settings.update(
             ...     machine_learning_detection='enable',
@@ -125,7 +125,7 @@ class Settings:
         """
         # Build data dict from provided parameters
         data = {}
-        
+
         # Map Python parameter names to API field names
         param_map = {
             'default_db': default_db,
@@ -136,7 +136,7 @@ class Settings:
             'machine_learning_detection': machine_learning_detection,
             'use_extreme_db': use_extreme_db,
         }
-        
+
         # API field name mapping
         api_field_map = {
             'default_db': 'default-db',
@@ -147,14 +147,14 @@ class Settings:
             'machine_learning_detection': 'machine-learning-detection',
             'use_extreme_db': 'use-extreme-db',
         }
-        
+
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra kwargs
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', 'antivirus/settings', data, vdom=vdom)

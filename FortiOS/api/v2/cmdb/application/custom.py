@@ -18,16 +18,16 @@ if TYPE_CHECKING:
 
 class Custom:
     """Application custom signatures endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Custom endpoint.
-        
+
         Args:
             client: FortiOS API client instance
         """
         self._client = client
-    
+
     def get(
         self,
         tag: Optional[str] = None,
@@ -48,10 +48,10 @@ class Custom:
     ) -> dict[str, Any]:
         """
         Get custom application signature(s).
-        
+
         Retrieves either a specific custom application signature by tag, or lists
         all custom application signatures with optional filtering.
-        
+
         Args:
             tag (str, optional): Signature tag to retrieve. If None, retrieves all signatures
             attr (str, optional): Attribute name that references other table
@@ -67,20 +67,20 @@ class Custom:
             action (str, optional): Special action - 'default', 'schema', 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response containing custom application signature data
-        
+
         Examples:
             >>> # List all custom signatures
             >>> signatures = fgt.cmdb.application.custom.list()
             >>> for sig in signatures['results']:
             ...     print(sig['tag'], sig.get('comment', ''))
-            
+
             >>> # Get a specific signature
             >>> sig = fgt.cmdb.application.custom.get('MyCustomApp')
             >>> print(sig['results']['signature'])
-            
+
             >>> # Get with filtering
             >>> signatures = fgt.cmdb.application.custom.get(
             ...     format='tag|comment|protocol',
@@ -102,20 +102,20 @@ class Custom:
             'format': format,
             'action': action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'application/custom'
         if tag:
             path = f'{path}/{tag}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def list(
         self,
         attr: Optional[str] = None,
@@ -134,9 +134,9 @@ class Custom:
     ) -> dict[str, Any]:
         """
         List all custom application signatures.
-        
+
         Convenience method that calls get() without a specific tag.
-        
+
         Args:
             attr (str, optional): Attribute name that references other table
             count (int, optional): Maximum number of entries to return
@@ -151,15 +151,15 @@ class Custom:
             action (str, optional): Special action - 'default', 'schema', 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response containing list of custom application signatures
-        
+
         Examples:
             >>> # List all signatures
             >>> signatures = fgt.cmdb.application.custom.list()
             >>> print(f"Total signatures: {len(signatures['results'])}")
-            
+
             >>> # List with count limit
             >>> signatures = fgt.cmdb.application.custom.list(count=5)
         """
@@ -179,7 +179,7 @@ class Custom:
             vdom=vdom,
             **kwargs
         )
-    
+
     def create(
         self,
         tag: str,
@@ -197,7 +197,7 @@ class Custom:
     ) -> dict[str, Any]:
         """
         Create a new custom application signature.
-        
+
         Args:
             tag (str, required): Signature tag (max 63 chars)
             id (int, optional): Custom application category ID (0-4294967295)
@@ -210,10 +210,10 @@ class Custom:
             vendor (str, optional): Custom application signature vendor
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters to pass to the API
-        
+
         Returns:
             dict: API response containing creation status
-        
+
         Examples:
             >>> # Create a simple custom signature (category is required!)
             >>> result = fgt.cmdb.application.custom.create(
@@ -223,7 +223,7 @@ class Custom:
             ...     category=15,  # Required!
             ...     protocol='HTTP'
             ... )
-            
+
             >>> # Create with full details
             >>> result = fgt.cmdb.application.custom.create(
             ...     tag='CustomDatabase',
@@ -248,16 +248,16 @@ class Custom:
             'behavior': behavior,
             'vendor': vendor,
         }
-        
+
         # No special field mapping needed - all fields use same name
         for param_name, value in param_map.items():
             if value is not None:
                 data[param_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'application/custom', data, vdom=vdom)
-    
+
     def update(
         self,
         tag: str,
@@ -280,7 +280,7 @@ class Custom:
     ) -> dict[str, Any]:
         """
         Update an existing custom application signature.
-        
+
         Args:
             tag (str, required): Signature tag to update
             id (int, optional): Custom application category ID (0-4294967295)
@@ -297,24 +297,24 @@ class Custom:
             scope (str, optional): Scope level - 'vdom'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters to pass to the API
-        
+
         Returns:
             dict: API response containing update status
-        
+
         Examples:
             >>> # Update signature text
             >>> result = fgt.cmdb.application.custom.update(
             ...     tag='MyCustomApp',
             ...     signature='F-SBID( --protocol tcp; --service HTTPS; --pattern "newpattern"; )'
             ... )
-            
+
             >>> # Update comment and protocol
             >>> result = fgt.cmdb.application.custom.update(
             ...     tag='CustomDatabase',
             ...     comment='Updated database protocol',
             ...     protocol='TCP/UDP'
             ... )
-            
+
             >>> # Move signature in list
             >>> result = fgt.cmdb.application.custom.update(
             ...     tag='MyCustomApp',
@@ -335,14 +335,14 @@ class Custom:
             'behavior': behavior,
             'vendor': vendor,
         }
-        
+
         # No special field mapping needed
         for param_name, value in param_map.items():
             if value is not None:
                 data[param_name] = value
-        
+
         data.update(kwargs)
-        
+
         # Build query parameters for action/move
         params = {}
         query_param_map = {
@@ -351,11 +351,11 @@ class Custom:
             'after': after,
             'scope': scope,
         }
-        
+
         for key, value in query_param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         return self._client.put(
             'cmdb',
             f'application/custom/{tag}',
@@ -363,7 +363,7 @@ class Custom:
             params=params if params else None,
             vdom=vdom
         )
-    
+
     def delete(
         self,
         tag: str,
@@ -372,20 +372,20 @@ class Custom:
     ) -> dict[str, Any]:
         """
         Delete a custom application signature.
-        
+
         Args:
             tag (str, required): Signature tag to delete
             scope (str, optional): Scope level - 'vdom'
             vdom (str, optional): Virtual Domain name
-        
+
         Returns:
             dict: API response containing deletion status
-        
+
         Examples:
             >>> # Delete a custom signature
             >>> result = fgt.cmdb.application.custom.delete('MyCustomApp')
             >>> print(result['status'])
-            
+
             >>> # Delete with specific scope
             >>> result = fgt.cmdb.application.custom.delete(
             ...     tag='CustomDatabase',
@@ -395,7 +395,7 @@ class Custom:
         params = {}
         if scope is not None:
             params['scope'] = scope
-        
+
         return self._client.delete(
             'cmdb',
             f'application/custom/{tag}',

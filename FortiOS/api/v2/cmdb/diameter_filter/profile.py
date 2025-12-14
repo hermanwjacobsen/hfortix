@@ -12,46 +12,46 @@ class Profile:
     """
     Diameter Filter Profile API endpoint
     """
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Profile endpoint
-        
+
         Args:
             client: FortiOS client instance
         """
         self._client = client
         self._base_path = "diameter-filter/profile"
-    
+
     def list(self, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         List all diameter filter profiles
-        
+
         Args:
             params: Optional query parameters
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             List of diameter filter profiles
         """
         return self._client.get('cmdb', self._base_path, params=params, vdom=vdom)
-    
+
     def get(self, name: Optional[str] = None, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Get diameter filter profile details
-        
+
         Args:
             name: Profile name (None=get all with query parameters)
             params: Optional query parameters
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             Profile details or list of profiles
         """
         if name:
             return self._client.get('cmdb', f"{self._base_path}/{name}", params=params, vdom=vdom)
         return self.list(params=params, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -70,7 +70,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Create a new diameter filter profile
-        
+
         Args:
             name: Profile name (max 47 chars)
             comment: Comment (max 255 chars)
@@ -95,14 +95,14 @@ class Profile:
             command_code_range: Valid range for command codes (0-16777215)
             **kwargs: Additional parameters
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             Creation response
         """
         vdom = kwargs.pop('vdom', None)
-        
+
         data = {"name": name}
-        
+
         if comment is not None:
             data["comment"] = comment
         if monitor_all_messages is not None:
@@ -125,12 +125,12 @@ class Profile:
             data["command-code-invalid"] = command_code_invalid
         if command_code_range is not None:
             data["command-code-range"] = command_code_range
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', self._base_path, data=data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -149,7 +149,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Update an existing diameter filter profile
-        
+
         Args:
             name: Profile name
             comment: Comment (max 255 chars)
@@ -174,14 +174,14 @@ class Profile:
             command_code_range: Valid range for command codes (0-16777215)
             **kwargs: Additional parameters
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             Update response
         """
         vdom = kwargs.pop('vdom', None)
-        
+
         data = {}
-        
+
         if comment is not None:
             data["comment"] = comment
         if monitor_all_messages is not None:
@@ -204,33 +204,33 @@ class Profile:
             data["command-code-invalid"] = command_code_invalid
         if command_code_range is not None:
             data["command-code-range"] = command_code_range
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
-    
+
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete a diameter filter profile
-        
+
         Args:
             name: Profile name
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             Deletion response
         """
         return self._client.delete('cmdb', f"{self._base_path}/{name}", vdom=vdom)
-    
+
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a diameter filter profile exists
-        
+
         Args:
             name: Profile name
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-        
+
         Returns:
             True if profile exists, False otherwise
         """

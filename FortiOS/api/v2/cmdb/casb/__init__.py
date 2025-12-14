@@ -15,16 +15,16 @@ from .user_activity import UserActivity
 
 class Casb:
     """CASB category class"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB category
-        
+
         Args:
             client: FortiOS client instance
         """
         self._client = client
-        
+
         # Initialize endpoints
         self.attribute_match = AttributeMatch(client)
         self.profile = Profile(client)

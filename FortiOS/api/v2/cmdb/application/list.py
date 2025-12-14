@@ -18,10 +18,10 @@ if TYPE_CHECKING:
 
 class List:
     """Application control list endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -41,9 +41,9 @@ class List:
     ) -> dict[str, Any]:
         """
         Get application control list(s)
-        
+
         Retrieve application control lists with filtering and query options.
-        
+
         Args:
             name (str, optional): List name. If provided, get specific list.
             attr (str, optional): Attribute name that references other table
@@ -59,17 +59,17 @@ class List:
             action (str, optional): Action type - 'default', 'schema', or 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response with list data
-        
+
         Examples:
             >>> # Get all application control lists
             >>> lists = fgt.cmdb.application.list.list()
-            
+
             >>> # Get specific list by name
             >>> app_list = fgt.cmdb.application.list.get('default')
-            
+
             >>> # Get with filtering and meta information
             >>> filtered = fgt.cmdb.application.list.get(
             ...     format='name|comment|default-network-services',
@@ -91,36 +91,36 @@ class List:
             'format': format,
             'action': action
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'application/list'
         if name:
             path = f'{path}/{name}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all application control lists (convenience method)
-        
+
         Args:
             **kwargs: All parameters from get() method
-        
+
         Returns:
             dict: API response with all lists
-        
+
         Examples:
             >>> # Get all lists
             >>> all_lists = fgt.cmdb.application.list.list()
         """
         return self.get(**kwargs)
-    
+
     def create(
         self,
         name: str,
@@ -146,9 +146,9 @@ class List:
     ) -> dict[str, Any]:
         """
         Create application control list
-        
+
         Create a new application control list with specified settings.
-        
+
         Args:
             name (str, required): Application list name (max 35 chars)
             comment (str, optional): Comment (max 1023 chars)
@@ -170,10 +170,10 @@ class List:
             entries (list, optional): Application list entries (list of dicts with id, action, log, etc.)
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Create simple application list
             >>> result = fgt.cmdb.application.list.create(
@@ -182,7 +182,7 @@ class List:
             ...     unknown_application_action='block',
             ...     unknown_application_log='enable'
             ... )
-            
+
             >>> # Create list with P2P blocking
             >>> result = fgt.cmdb.application.list.create(
             ...     name='security-policy',
@@ -191,7 +191,7 @@ class List:
             ...     deep_app_inspection='enable',
             ...     extended_log='enable'
             ... )
-            
+
             >>> # Create list with entries
             >>> result = fgt.cmdb.application.list.create(
             ...     name='business-apps',
@@ -222,7 +222,7 @@ class List:
             'unknown_application_log': unknown_application_log,
             'entries': entries
         }
-        
+
         api_field_map = {
             'name': 'name',
             'comment': 'comment',
@@ -243,16 +243,16 @@ class List:
             'unknown_application_log': 'unknown-application-log',
             'entries': 'entries'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'application/list', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -278,9 +278,9 @@ class List:
     ) -> dict[str, Any]:
         """
         Update application control list
-        
+
         Update an existing application control list.
-        
+
         Args:
             name (str, required): Application list name
             comment (str, optional): Comment (max 1023 chars)
@@ -302,10 +302,10 @@ class List:
             entries (list, optional): Application list entries (list of dicts)
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Enable deep inspection
             >>> result = fgt.cmdb.application.list.update(
@@ -313,7 +313,7 @@ class List:
             ...     deep_app_inspection='enable',
             ...     extended_log='enable'
             ... )
-            
+
             >>> # Update P2P block list
             >>> result = fgt.cmdb.application.list.update(
             ...     name='security-policy',
@@ -340,7 +340,7 @@ class List:
             'unknown_application_log': unknown_application_log,
             'entries': entries
         }
-        
+
         api_field_map = {
             'comment': 'comment',
             'app_replacemsg': 'app-replacemsg',
@@ -360,16 +360,16 @@ class List:
             'unknown_application_log': 'unknown-application-log',
             'entries': 'entries'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', f'application/list/{name}', data, vdom=vdom)
-    
+
     def delete(
         self,
         name: str,
@@ -377,14 +377,14 @@ class List:
     ) -> dict[str, Any]:
         """
         Delete application control list
-        
+
         Args:
             name (str, required): Application list name
             vdom (str, optional): Virtual Domain name
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Delete application list
             >>> result = fgt.cmdb.application.list.delete('web-filter')

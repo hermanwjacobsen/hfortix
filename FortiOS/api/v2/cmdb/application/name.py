@@ -4,7 +4,7 @@ FortiOS CMDB - Application Signatures
 Query Fortinet-provided application signatures (application names).
 
 This endpoint is READ-ONLY. It contains application signatures provided by Fortinet
-and cannot be modified. For custom user-defined applications, use the 
+and cannot be modified. For custom user-defined applications, use the
 application/custom endpoint instead.
 
 API Endpoints:
@@ -21,10 +21,10 @@ if TYPE_CHECKING:
 
 class Name:
     """Application signature endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -44,9 +44,9 @@ class Name:
     ) -> dict[str, Any]:
         """
         Get application signature(s)
-        
+
         Retrieve application signatures with filtering and query options.
-        
+
         Args:
             name (str, optional): Application name. If provided, get specific signature.
             attr (str, optional): Attribute name that references other table
@@ -62,17 +62,17 @@ class Name:
             action (str, optional): Action type - 'default', 'schema', or 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response with signature data
-        
+
         Examples:
             >>> # Get all application signatures
             >>> signatures = fgt.cmdb.application.name.list()
-            
+
             >>> # Get specific signature by name
             >>> app_sig = fgt.cmdb.application.name.get('custom-app')
-            
+
             >>> # Get with filtering
             >>> filtered = fgt.cmdb.application.name.get(
             ...     format='name|category|sub-category',
@@ -93,30 +93,30 @@ class Name:
             'format': format,
             'action': action
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'application/name'
         if name:
             path = f'{path}/{name}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all application signatures (convenience method)
-        
+
         Args:
             **kwargs: All parameters from get() method
-        
+
         Returns:
             dict: API response with all signatures
-        
+
         Examples:
             >>> # Get all signatures
             >>> all_sigs = fgt.cmdb.application.name.list()

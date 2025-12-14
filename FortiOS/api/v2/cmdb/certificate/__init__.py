@@ -24,11 +24,11 @@ if TYPE_CHECKING:
 
 class Certificate:
     """Certificate management category"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Certificate category
-        
+
         Args:
             client: FortiOS client instance
         """

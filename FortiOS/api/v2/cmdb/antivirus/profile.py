@@ -17,10 +17,10 @@ if TYPE_CHECKING:
 
 class Profile:
     """Antivirus Profile endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -42,11 +42,11 @@ class Profile:
         """
         GET /antivirus/profile or /antivirus/profile/{name}
         Get antivirus profiles
-        
+
         Args:
             name: Profile name (if None, returns all profiles)
             vdom: Virtual domain (optional)
-            
+
             Query parameters (all optional):
             attr: Attribute name that references other table
             count: Maximum number of entries to return
@@ -60,20 +60,20 @@ class Profile:
             format: List of property names to include (e.g., 'name|comment|scan-mode')
             action: Special actions (default, schema, revision)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Antivirus profile or list of profiles
-        
+
         Examples:
             >>> # Get all profiles
             >>> profiles = fgt.cmdb.antivirus.profile.get()
-            
+
             >>> # Get specific profile
             >>> profile = fgt.cmdb.antivirus.profile.get('default')
-            
+
             >>> # Get with meta information
             >>> profiles = fgt.cmdb.antivirus.profile.get(with_meta=True)
-            
+
             >>> # Get with filters and format
             >>> profiles = fgt.cmdb.antivirus.profile.get(
             ...     format='name|comment|scan-mode',
@@ -83,7 +83,7 @@ class Profile:
         """
         # Build params dict from provided parameters
         params = {}
-        
+
         # Map parameters
         param_map = {
             'attr': attr,
@@ -98,18 +98,18 @@ class Profile:
             'format': format,
             'action': action,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         path = f'antivirus/profile/{name}' if name else 'antivirus/profile'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -141,7 +141,7 @@ class Profile:
         """
         POST /antivirus/profile
         Create new antivirus profile
-        
+
         Args:
             name: Profile name (required, max 35 chars)
             comment: Comment (max 255 chars)
@@ -168,10 +168,10 @@ class Profile:
             ems_threat_feed: Enable/disable EMS threat feed - 'disable' or 'enable'
             vdom: Virtual domain (optional)
             **kwargs: Any additional parameters (http, ftp, imap, pop3, smtp, mapi, nntp, cifs, ssh)
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Create basic profile
             >>> fgt.cmdb.antivirus.profile.create(
@@ -180,7 +180,7 @@ class Profile:
             ...     scan_mode='full',
             ...     analytics_db='enable'
             ... )
-            
+
             >>> # Create with FortiSandbox
             >>> fgt.cmdb.antivirus.profile.create(
             ...     name='strict_av',
@@ -192,7 +192,7 @@ class Profile:
         """
         # Build data dict from provided parameters
         data = {'name': name}
-        
+
         # Map Python parameter names to API field names
         param_map = {
             'comment': comment,
@@ -218,7 +218,7 @@ class Profile:
             'external_blocklist_archive_scan': external_blocklist_archive_scan,
             'ems_threat_feed': ems_threat_feed,
         }
-        
+
         # API field name mapping
         api_field_map = {
             'comment': 'comment',
@@ -244,18 +244,18 @@ class Profile:
             'external_blocklist_archive_scan': 'external-blocklist-archive-scan',
             'ems_threat_feed': 'ems-threat-feed',
         }
-        
+
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra kwargs (protocol settings like http, ftp, etc.)
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'antivirus/profile', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -292,7 +292,7 @@ class Profile:
         """
         PUT /antivirus/profile/{name}
         Update antivirus profile
-        
+
         Args:
             name: Profile name (required)
             comment: Comment (max 255 chars)
@@ -318,24 +318,24 @@ class Profile:
             external_blocklist_archive_scan: External blocklist archive scan - 'disable' or 'enable'
             ems_threat_feed: Enable/disable EMS threat feed - 'disable' or 'enable'
             vdom: Virtual domain (optional)
-            
+
             Action parameters (optional):
             action: Action to perform - 'move' to reorder entries
             before: If action=move, move before this entry ID
             after: If action=move, move after this entry ID
             scope: Scope (vdom)
             **kwargs: Any additional parameters (http, ftp, imap, pop3, smtp, mapi, nntp, cifs, ssh)
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Update scan mode
             >>> fgt.cmdb.antivirus.profile.update(
             ...     name='default',
             ...     scan_mode='full'
             ... )
-            
+
             >>> # Update FortiSandbox settings
             >>> fgt.cmdb.antivirus.profile.update(
             ...     name='corporate_av',
@@ -343,7 +343,7 @@ class Profile:
             ...     fortisandbox_error_action='block',
             ...     comment='Updated FortiSandbox settings'
             ... )
-            
+
             >>> # Enable outbreak prevention
             >>> fgt.cmdb.antivirus.profile.update(
             ...     name='strict_av',
@@ -353,7 +353,7 @@ class Profile:
         """
         # Build data dict from provided parameters
         data = {}
-        
+
         # Map data parameters
         data_param_map = {
             'comment': comment,
@@ -379,7 +379,7 @@ class Profile:
             'external_blocklist_archive_scan': external_blocklist_archive_scan,
             'ems_threat_feed': ems_threat_feed,
         }
-        
+
         # API field name mapping for data
         api_field_map = {
             'comment': 'comment',
@@ -405,21 +405,21 @@ class Profile:
             'external_blocklist_archive_scan': 'external-blocklist-archive-scan',
             'ems_threat_feed': 'ems-threat-feed',
         }
-        
+
         # Add non-None data parameters
         for param_name, value in data_param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra data kwargs
         for key, value in kwargs.items():
             if key not in ['action', 'before', 'after', 'scope']:
                 data[key] = value
-        
+
         # Build query params dict
         params = {}
-        
+
         # Map query parameters
         query_param_map = {
             'action': action,
@@ -427,14 +427,14 @@ class Profile:
             'after': after,
             'scope': scope,
         }
-        
+
         # Add non-None query parameters
         for param_name, value in query_param_map.items():
             if value is not None:
                 params[param_name] = value
-        
+
         return self._client.put('cmdb', f'antivirus/profile/{name}', data, params=params if params else None, vdom=vdom)
-    
+
     def delete(
         self,
         name: str,
@@ -447,23 +447,23 @@ class Profile:
         """
         DELETE /antivirus/profile/{name}
         Delete antivirus profile
-        
+
         Args:
             name: Profile name (required) - the MKEY identifier
             vdom: Virtual domain (optional)
-            
+
             Action parameters (optional):
             mkey: Filter matching mkey attribute value (if different from name)
             scope: Scope (vdom)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Simple delete
             >>> fgt.cmdb.antivirus.profile.delete('old_profile')
-            
+
             >>> # Delete with specific vdom
             >>> fgt.cmdb.antivirus.profile.delete(
             ...     name='old_profile',
@@ -472,23 +472,23 @@ class Profile:
         """
         # Build params dict
         params = {}
-        
+
         # Map parameters
         param_map = {
             'mkey': mkey,
             'scope': scope,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         return self._client.delete('cmdb', f'antivirus/profile/{name}', params=params if params else None, vdom=vdom)
-    
+
     def list(
         self,
         vdom: Optional[Union[str, bool]] = None,
@@ -496,7 +496,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Alias for get() without name parameter - more intuitive for getting all profiles
-        
+
         Example:
             >>> all_profiles = fgt.cmdb.antivirus.profile.list()
         """

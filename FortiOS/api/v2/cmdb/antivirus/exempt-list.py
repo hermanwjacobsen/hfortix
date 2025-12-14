@@ -17,10 +17,10 @@ if TYPE_CHECKING:
 
 class ExemptList:
     """Antivirus Exempt List endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -42,11 +42,11 @@ class ExemptList:
         """
         GET /antivirus/exempt-list or /antivirus/exempt-list/{name}
         Get exempt list entries
-        
+
         Args:
             name: Entry name (if None, returns all entries)
             vdom: Virtual domain (optional)
-            
+
             Query parameters (all optional):
             attr: Attribute name that references other table
             count: Maximum number of entries to return
@@ -60,27 +60,27 @@ class ExemptList:
             format: List of property names to include (e.g., 'name|hash|status')
             action: Special actions (default, schema, revision)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Exempt list entry or list of entries
-        
+
         Examples:
             >>> # Get all entries
             >>> entries = fgt.cmdb.antivirus.exempt_list.get()
-            
+
             >>> # Get specific entry
             >>> entry = fgt.cmdb.antivirus.exempt_list.get('my_exempt')
-            
+
             >>> # Get with meta information
             >>> entries = fgt.cmdb.antivirus.exempt_list.get(with_meta=True)
-            
+
             >>> # Get with filters and format
             >>> entries = fgt.cmdb.antivirus.exempt_list.get(
             ...     format='name|hash|status',
             ...     search='trusted',
             ...     count=10
             ... )
-            
+
             >>> # Get with datasource info
             >>> entries = fgt.cmdb.antivirus.exempt_list.get(
             ...     datasource=True,
@@ -89,7 +89,7 @@ class ExemptList:
         """
         # Build params dict from provided parameters
         params = {}
-        
+
         # Map parameters
         param_map = {
             'attr': attr,
@@ -104,18 +104,18 @@ class ExemptList:
             'format': format,
             'action': action,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         path = f'antivirus/exempt-list/{name}' if name else 'antivirus/exempt-list'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -129,7 +129,7 @@ class ExemptList:
         """
         POST /antivirus/exempt-list
         Create new exempt list entry
-        
+
         Args:
             name: Table entry name (required, max 35 chars)
             comment: Comment (max 255 chars)
@@ -138,10 +138,10 @@ class ExemptList:
             status: Enable/disable table entry - 'enable' or 'disable'
             vdom: Virtual domain (optional)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Create with SHA256 hash
             >>> fgt.cmdb.antivirus.exempt_list.create(
@@ -151,7 +151,7 @@ class ExemptList:
             ...     status='enable',
             ...     comment='Trusted application'
             ... )
-            
+
             >>> # Create with MD5 hash
             >>> fgt.cmdb.antivirus.exempt_list.create(
             ...     name='safe_file',
@@ -161,7 +161,7 @@ class ExemptList:
         """
         # Build data dict from provided parameters
         data = {'name': name}
-        
+
         # Map Python parameter names to API field names
         param_map = {
             'comment': comment,
@@ -169,7 +169,7 @@ class ExemptList:
             'hash': hash,
             'status': status,
         }
-        
+
         # API field name mapping
         api_field_map = {
             'comment': 'comment',
@@ -177,18 +177,18 @@ class ExemptList:
             'hash': 'hash',
             'status': 'status',
         }
-        
+
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra kwargs
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'antivirus/exempt-list', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -207,7 +207,7 @@ class ExemptList:
         """
         PUT /antivirus/exempt-list/{name}
         Update exempt list entry
-        
+
         Args:
             name: Table entry name (required)
             comment: Comment (max 255 chars)
@@ -215,31 +215,31 @@ class ExemptList:
             hash: Hash value to be matched (max 64 chars)
             status: Enable/disable table entry - 'enable' or 'disable'
             vdom: Virtual domain (optional)
-            
+
             Action parameters (optional):
             action: Action to perform - 'move' to reorder entries
             before: If action=move, move before this entry ID
             after: If action=move, move after this entry ID
             scope: Scope (vdom)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Update status
             >>> fgt.cmdb.antivirus.exempt_list.update(
             ...     name='trusted_file',
             ...     status='disable'
             ... )
-            
+
             >>> # Update hash and comment
             >>> fgt.cmdb.antivirus.exempt_list.update(
             ...     name='trusted_file',
             ...     hash='new_hash_value',
             ...     comment='Updated hash for new version'
             ... )
-            
+
             >>> # Move entry (reorder)
             >>> fgt.cmdb.antivirus.exempt_list.update(
             ...     name='entry1',
@@ -249,7 +249,7 @@ class ExemptList:
         """
         # Build data dict from provided parameters
         data = {}
-        
+
         # Map data parameters
         data_param_map = {
             'comment': comment,
@@ -257,7 +257,7 @@ class ExemptList:
             'hash': hash,
             'status': status,
         }
-        
+
         # API field name mapping for data
         api_field_map = {
             'comment': 'comment',
@@ -265,21 +265,21 @@ class ExemptList:
             'hash': 'hash',
             'status': 'status',
         }
-        
+
         # Add non-None data parameters
         for param_name, value in data_param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any extra data kwargs
         for key, value in kwargs.items():
             if key not in ['action', 'before', 'after', 'scope']:
                 data[key] = value
-        
+
         # Build query params dict
         params = {}
-        
+
         # Map query parameters
         query_param_map = {
             'action': action,
@@ -287,14 +287,14 @@ class ExemptList:
             'after': after,
             'scope': scope,
         }
-        
+
         # Add non-None query parameters
         for param_name, value in query_param_map.items():
             if value is not None:
                 params[param_name] = value
-        
+
         return self._client.put('cmdb', f'antivirus/exempt-list/{name}', data, params=params if params else None, vdom=vdom)
-    
+
     def delete(
         self,
         name: str,
@@ -307,29 +307,29 @@ class ExemptList:
         """
         DELETE /antivirus/exempt-list/{name}
         Delete exempt list entry
-        
+
         Args:
             name: Table entry name (required) - the MKEY identifier
             vdom: Virtual domain (optional)
-            
+
             Action parameters (optional):
             mkey: Filter matching mkey attribute value (if different from name)
             scope: Scope (vdom)
             **kwargs: Any additional parameters
-        
+
         Returns:
             Response dict with status
-        
+
         Examples:
             >>> # Simple delete
             >>> fgt.cmdb.antivirus.exempt_list.delete('untrusted_file')
-            
+
             >>> # Delete with specific vdom
             >>> fgt.cmdb.antivirus.exempt_list.delete(
             ...     name='untrusted_file',
             ...     vdom='root'
             ... )
-            
+
             >>> # Delete with mkey filter
             >>> fgt.cmdb.antivirus.exempt_list.delete(
             ...     name='entry1',
@@ -339,23 +339,23 @@ class ExemptList:
         """
         # Build params dict
         params = {}
-        
+
         # Map parameters
         param_map = {
             'mkey': mkey,
             'scope': scope,
         }
-        
+
         # Add non-None parameters
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any extra kwargs
         params.update(kwargs)
-        
+
         return self._client.delete('cmdb', f'antivirus/exempt-list/{name}', params=params if params else None, vdom=vdom)
-    
+
     def list(
         self,
         vdom: Optional[Union[str, bool]] = None,
@@ -363,7 +363,7 @@ class ExemptList:
     ) -> dict[str, Any]:
         """
         Alias for get() without name parameter - more intuitive for getting all entries
-        
+
         Example:
             >>> all_entries = fgt.cmdb.antivirus.exempt_list.list()
         """

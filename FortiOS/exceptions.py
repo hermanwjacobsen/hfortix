@@ -41,7 +41,7 @@ __all__ = [
     'LoginError',
     'AuthorizationError',
     'APIError',
-    
+
     # Specific exceptions
     'ResourceNotFoundError',
     'BadRequestError',
@@ -52,12 +52,12 @@ __all__ = [
     'EntryInUseError',
     'InvalidValueError',
     'PermissionDeniedError',
-    
+
     # Helper functions
     'get_error_description',
     'get_http_status_description',
     'raise_for_status',
-    
+
     # Data
     'HTTP_STATUS_CODES',
     'FORTIOS_ERROR_CODES',

@@ -18,24 +18,24 @@ if TYPE_CHECKING:
 
 class Scheme:
     """Authentication scheme endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         self._client = client
-    
+
     @staticmethod
     def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
-        
+
         Args:
             items: List of strings or dicts or None
-            
+
         Returns:
             List of dicts with 'name' key, or None if input is None
         """
         if items is None:
             return None
-        
+
         formatted = []
         for item in items:
             if isinstance(item, str):
@@ -44,9 +44,9 @@ class Scheme:
                 formatted.append(item)
             else:
                 formatted.append({'name': str(item)})
-        
+
         return formatted
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -66,9 +66,9 @@ class Scheme:
     ) -> dict[str, Any]:
         """
         Get authentication scheme(s)
-        
+
         Retrieve authentication schemes with filtering and query options.
-        
+
         Args:
             name (str, optional): Scheme name. If provided, get specific scheme.
             attr (str, optional): Attribute name that references other table
@@ -84,17 +84,17 @@ class Scheme:
             action (str, optional): Action type - 'default', 'schema', or 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response with scheme data
-        
+
         Examples:
             >>> # Get all authentication schemes
             >>> schemes = fgt.cmdb.authentication.scheme.list()
-            
+
             >>> # Get specific scheme by name
             >>> scheme = fgt.cmdb.authentication.scheme.get('basic-auth')
-            
+
             >>> # Get with filtering
             >>> filtered = fgt.cmdb.authentication.scheme.get(
             ...     format='name|method',
@@ -115,36 +115,36 @@ class Scheme:
             'format': format,
             'action': action
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'authentication/scheme'
         if name is not None:
             path = f'{path}/{name}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
         Get all authentication schemes (convenience method)
-        
+
         Args:
             **kwargs: All parameters from get() method
-        
+
         Returns:
             dict: API response with all schemes
-        
+
         Examples:
             >>> # Get all authentication schemes
             >>> all_schemes = fgt.cmdb.authentication.scheme.list()
         """
         return self.get(**kwargs)
-    
+
     def create(
         self,
         name: str,
@@ -170,15 +170,15 @@ class Scheme:
     ) -> dict[str, Any]:
         """
         Create authentication scheme
-        
+
         Create a new authentication scheme to define authentication methods.
-        
+
         Args:
             name (str, required): Authentication scheme name (max 35 chars)
-            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest', 
-                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml', 
+            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest',
+                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml',
                 'entra-sso' (default: 'basic')
-            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM - 
+            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM -
                 'enable' or 'disable'
             kerberos_keytab (str, optional): Kerberos keytab setting (max 35 chars)
             domain_controller (str, optional): Domain controller setting (max 35 chars)
@@ -188,22 +188,22 @@ class Scheme:
             require_tfa (str, optional): Enable/disable two-factor auth - 'enable' or 'disable'
             fsso_guest (str, optional): Enable/disable fsso-guest auth - 'enable' or 'disable'
             user_cert (str, optional): Enable/disable user certificate auth - 'enable' or 'disable'
-            cert_http_header (str, optional): Enable/disable cert auth with HTTP header - 
+            cert_http_header (str, optional): Enable/disable cert auth with HTTP header -
                 'enable' or 'disable'
-            user_database (list, optional): List of authentication server names (strings or 
+            user_database (list, optional): List of authentication server names (strings or
                 dicts with 'name' key)
             ssh_ca (str, optional): SSH CA name (max 35 chars)
             external_idp (str, optional): External identity provider configuration (max 35 chars)
             group_attr_type (str, optional): Group attribute type - 'display-name' or 'external-id'
             digest_algo (str, optional): Digest auth algorithm - 'md5' or 'sha-256'
-            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client - 
+            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client -
                 'enable' or 'disable'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Create basic HTTP authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
@@ -211,7 +211,7 @@ class Scheme:
             ...     method='basic',
             ...     user_database=['local-user-db']
             ... )
-            
+
             >>> # Create LDAP authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
             ...     name='ldap-auth',
@@ -219,7 +219,7 @@ class Scheme:
             ...     user_database=['LDAP-Server'],
             ...     require_tfa='enable'
             ... )
-            
+
             >>> # Create SAML authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
             ...     name='saml-sso',
@@ -230,7 +230,7 @@ class Scheme:
         """
         # Convert simple lists to FortiOS format
         user_database = self._format_name_list(user_database)
-        
+
         param_map = {
             'name': name,
             'method': method,
@@ -251,7 +251,7 @@ class Scheme:
             'digest_algo': digest_algo,
             'digest_rfc2069': digest_rfc2069
         }
-        
+
         api_field_map = {
             'name': 'name',
             'method': 'method',
@@ -272,17 +272,17 @@ class Scheme:
             'digest_algo': 'digest-algo',
             'digest_rfc2069': 'digest-rfc2069'
         }
-        
+
         data = {}
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'authentication/scheme', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -308,15 +308,15 @@ class Scheme:
     ) -> dict[str, Any]:
         """
         Update authentication scheme
-        
+
         Update an existing authentication scheme configuration.
-        
+
         Args:
             name (str, required): Authentication scheme name
-            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest', 
-                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml', 
+            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest',
+                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml',
                 'entra-sso'
-            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM - 
+            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM -
                 'enable' or 'disable'
             kerberos_keytab (str, optional): Kerberos keytab setting
             domain_controller (str, optional): Domain controller setting
@@ -326,28 +326,28 @@ class Scheme:
             require_tfa (str, optional): Enable/disable two-factor auth - 'enable' or 'disable'
             fsso_guest (str, optional): Enable/disable fsso-guest auth - 'enable' or 'disable'
             user_cert (str, optional): Enable/disable user certificate auth - 'enable' or 'disable'
-            cert_http_header (str, optional): Enable/disable cert auth with HTTP header - 
+            cert_http_header (str, optional): Enable/disable cert auth with HTTP header -
                 'enable' or 'disable'
             user_database (list, optional): List of authentication server names
             ssh_ca (str, optional): SSH CA name
             external_idp (str, optional): External identity provider configuration
             group_attr_type (str, optional): Group attribute type - 'display-name' or 'external-id'
             digest_algo (str, optional): Digest auth algorithm - 'md5' or 'sha-256'
-            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client - 
+            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client -
                 'enable' or 'disable'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Update scheme to require two-factor authentication
             >>> result = fgt.cmdb.authentication.scheme.update(
             ...     name='basic-http-auth',
             ...     require_tfa='enable'
             ... )
-            
+
             >>> # Update authentication method
             >>> result = fgt.cmdb.authentication.scheme.update(
             ...     name='web-auth',
@@ -357,7 +357,7 @@ class Scheme:
         """
         # Convert simple lists to FortiOS format
         user_database = self._format_name_list(user_database)
-        
+
         param_map = {
             'method': method,
             'negotiate_ntlm': negotiate_ntlm,
@@ -377,7 +377,7 @@ class Scheme:
             'digest_algo': digest_algo,
             'digest_rfc2069': digest_rfc2069
         }
-        
+
         api_field_map = {
             'method': 'method',
             'negotiate_ntlm': 'negotiate-ntlm',
@@ -397,17 +397,17 @@ class Scheme:
             'digest_algo': 'digest-algo',
             'digest_rfc2069': 'digest-rfc2069'
         }
-        
+
         data = {}
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', f'authentication/scheme/{name}', data, vdom=vdom)
-    
+
     def delete(
         self,
         name: str,
@@ -415,14 +415,14 @@ class Scheme:
     ) -> dict[str, Any]:
         """
         Delete authentication scheme
-        
+
         Args:
             name (str, required): Authentication scheme name
             vdom (str, optional): Virtual Domain name
-        
+
         Returns:
             dict: API response
-        
+
         Examples:
             >>> # Delete authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.delete('basic-http-auth')

@@ -18,16 +18,16 @@ if TYPE_CHECKING:
 
 class Group:
     """Application groups endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize Group endpoint.
-        
+
         Args:
             client: FortiOS API client instance
         """
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -48,10 +48,10 @@ class Group:
     ) -> dict[str, Any]:
         """
         Get application group(s).
-        
+
         Retrieves either a specific application group by name, or lists
         all application groups with optional filtering.
-        
+
         Args:
             name (str, optional): Group name to retrieve. If None, retrieves all groups
             attr (str, optional): Attribute name that references other table
@@ -67,20 +67,20 @@ class Group:
             action (str, optional): Special action - 'default', 'schema', 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response containing application group data
-        
+
         Examples:
             >>> # List all application groups
             >>> groups = fgt.cmdb.application.group.list()
             >>> for grp in groups['results']:
             ...     print(grp['name'], grp.get('comment', ''))
-            
+
             >>> # Get a specific group
             >>> grp = fgt.cmdb.application.group.get('WebApps')
             >>> print(grp['results']['type'])
-            
+
             >>> # Get with filtering
             >>> groups = fgt.cmdb.application.group.get(
             ...     format='name|comment|type',
@@ -102,20 +102,20 @@ class Group:
             'format': format,
             'action': action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'application/group'
         if name:
             path = f'{path}/{name}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def list(
         self,
         attr: Optional[str] = None,
@@ -134,9 +134,9 @@ class Group:
     ) -> dict[str, Any]:
         """
         List all application groups.
-        
+
         Convenience method that calls get() without a specific name.
-        
+
         Args:
             attr (str, optional): Attribute name that references other table
             count (int, optional): Maximum number of entries to return
@@ -151,15 +151,15 @@ class Group:
             action (str, optional): Special action - 'default', 'schema', 'revision'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional query parameters
-        
+
         Returns:
             dict: API response containing list of application groups
-        
+
         Examples:
             >>> # List all groups
             >>> groups = fgt.cmdb.application.group.list()
             >>> print(f"Total groups: {len(groups['results'])}")
-            
+
             >>> # List with count limit
             >>> groups = fgt.cmdb.application.group.list(count=5)
         """
@@ -179,7 +179,7 @@ class Group:
             vdom=vdom,
             **kwargs
         )
-    
+
     def create(
         self,
         name: str,
@@ -199,7 +199,7 @@ class Group:
     ) -> dict[str, Any]:
         """
         Create a new application group.
-        
+
         Args:
             name (str, required): Application group name (max 63 chars)
             comment (str, optional): Comments (max 255 chars)
@@ -214,10 +214,10 @@ class Group:
             popularity (str, optional): Popularity filter - '1', '2', '3', '4', or '5'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters to pass to the API
-        
+
         Returns:
             dict: API response containing creation status
-        
+
         Examples:
             >>> # Create a group with specific applications
             >>> result = fgt.cmdb.application.group.create(
@@ -229,7 +229,7 @@ class Group:
             ...         {'id': 16073}   # HTTPS
             ...     ]
             ... )
-            
+
             >>> # Create a filter-based group
             >>> result = fgt.cmdb.application.group.create(
             ...     name='HighRiskApps',
@@ -238,7 +238,7 @@ class Group:
             ...     risk=[{'level': 4}, {'level': 5}],
             ...     popularity='5'
             ... )
-            
+
             >>> # Create with category filter
             >>> result = fgt.cmdb.application.group.create(
             ...     name='SocialMedia',
@@ -262,16 +262,16 @@ class Group:
             'behavior': behavior,
             'popularity': popularity,
         }
-        
+
         # No special field mapping needed - all fields use same name
         for param_name, value in param_map.items():
             if value is not None:
                 data[param_name] = value
-        
+
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'application/group', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -296,7 +296,7 @@ class Group:
     ) -> dict[str, Any]:
         """
         Update an existing application group.
-        
+
         Args:
             name (str, required): Application group name to update
             comment (str, optional): Comments (max 255 chars)
@@ -315,10 +315,10 @@ class Group:
             scope (str, optional): Scope level - 'vdom'
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters to pass to the API
-        
+
         Returns:
             dict: API response containing update status
-        
+
         Examples:
             >>> # Update comment and add applications
             >>> result = fgt.cmdb.application.group.update(
@@ -330,14 +330,14 @@ class Group:
             ...         {'id': 16074}
             ...     ]
             ... )
-            
+
             >>> # Update filter criteria
             >>> result = fgt.cmdb.application.group.update(
             ...     name='HighRiskApps',
             ...     risk=[{'level': 5}],  # Only critical
             ...     popularity='4'
             ... )
-            
+
             >>> # Move group in list
             >>> result = fgt.cmdb.application.group.update(
             ...     name='WebApps',
@@ -360,14 +360,14 @@ class Group:
             'behavior': behavior,
             'popularity': popularity,
         }
-        
+
         # No special field mapping needed
         for param_name, value in param_map.items():
             if value is not None:
                 data[param_name] = value
-        
+
         data.update(kwargs)
-        
+
         # Build query parameters for action/move
         params = {}
         query_param_map = {
@@ -376,11 +376,11 @@ class Group:
             'after': after,
             'scope': scope,
         }
-        
+
         for key, value in query_param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         return self._client.put(
             'cmdb',
             f'application/group/{name}',
@@ -388,7 +388,7 @@ class Group:
             params=params if params else None,
             vdom=vdom
         )
-    
+
     def delete(
         self,
         name: str,
@@ -397,20 +397,20 @@ class Group:
     ) -> dict[str, Any]:
         """
         Delete an application group.
-        
+
         Args:
             name (str, required): Application group name to delete
             scope (str, optional): Scope level - 'vdom'
             vdom (str, optional): Virtual Domain name
-        
+
         Returns:
             dict: API response containing deletion status
-        
+
         Examples:
             >>> # Delete a group
             >>> result = fgt.cmdb.application.group.delete('WebApps')
             >>> print(result['status'])
-            
+
             >>> # Delete with specific scope
             >>> result = fgt.cmdb.application.group.delete(
             ...     name='HighRiskApps',
@@ -420,7 +420,7 @@ class Group:
         params = {}
         if scope is not None:
             params['scope'] = scope
-        
+
         return self._client.delete(
             'cmdb',
             f'application/group/{name}',

@@ -18,27 +18,27 @@ if TYPE_CHECKING:
 
 class SaasApplication:
     """CASB SaaS application endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB SaaS Application endpoint
-        
+
         Args:
             client: FortiOS client instance
         """
         self._client = client
-    
+
     def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB SaaS applications
-        
+
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with list of SaaS applications
-            
+
         Examples:
             >>> # List all SaaS applications
             >>> apps = fgt.cmdb.casb.saas_application.list()
@@ -46,7 +46,7 @@ class SaasApplication:
             ...     print(f"{app['name']}: {app.get('type', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -66,7 +66,7 @@ class SaasApplication:
     ) -> dict[str, Any]:
         """
         Get CASB SaaS application(s)
-        
+
         Args:
             name (str, optional): Application name (get specific application)
             datasource (bool, optional): Include datasource information
@@ -82,19 +82,19 @@ class SaasApplication:
             scope (str, optional): Scope [global|vdom|both]
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with SaaS application(s)
-            
+
         Examples:
             >>> # Get all SaaS applications
             >>> apps = fgt.cmdb.casb.saas_application.get()
             >>> print(f"Total apps: {len(apps['results'])}")
-            
+
             >>> # Get specific application
             >>> app = fgt.cmdb.casb.saas_application.get('office365')
             >>> print(f"Type: {app['results']['type']}")
-            
+
             >>> # Get with filters
             >>> apps = fgt.cmdb.casb.saas_application.get(
             ...     format='name|type',
@@ -103,7 +103,7 @@ class SaasApplication:
         """
         # Build query parameters
         params = {}
-        
+
         param_map = {
             'datasource': datasource,
             'with_meta': with_meta,
@@ -117,19 +117,19 @@ class SaasApplication:
             'search': search,
             'scope': scope
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any additional parameters
         params.update(kwargs)
-        
+
         # Build path
         path = f'casb/saas-application/{name}' if name else 'casb/saas-application'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -149,7 +149,7 @@ class SaasApplication:
     ) -> dict[str, Any]:
         """
         Create CASB SaaS application
-        
+
         Args:
             name (str): Application name (required)
             type (str, optional): Application type - 'built-in' or 'customized'
@@ -165,10 +165,10 @@ class SaasApplication:
             tenant_control_tenants (list, optional): List of tenants to control
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Create custom SaaS application
             >>> result = fgt.cmdb.casb.saas_application.create(
@@ -176,7 +176,7 @@ class SaasApplication:
             ...     type='customized',
             ...     status='enable'
             ... )
-            
+
             >>> # Create with domain control
             >>> result = fgt.cmdb.casb.saas_application.create(
             ...     name='secure-app',
@@ -187,7 +187,7 @@ class SaasApplication:
         """
         # Build data dictionary
         data = {'name': name}
-        
+
         # Map parameters (Python snake_case to API hyphenated-case)
         param_map = {
             'type': type,
@@ -202,7 +202,7 @@ class SaasApplication:
             'tenant_control': tenant_control,
             'tenant_control_tenants': tenant_control_tenants
         }
-        
+
         api_field_map = {
             'type': 'type',
             'casb_name': 'casb-name',
@@ -216,17 +216,17 @@ class SaasApplication:
             'tenant_control': 'tenant-control',
             'tenant_control_tenants': 'tenant-control-tenants'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'casb/saas-application', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -246,7 +246,7 @@ class SaasApplication:
     ) -> dict[str, Any]:
         """
         Update CASB SaaS application
-        
+
         Args:
             name (str): Application name (required)
             type (str, optional): Application type - 'built-in' or 'customized'
@@ -262,17 +262,17 @@ class SaasApplication:
             tenant_control_tenants (list, optional): List of tenants to control
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Update application status
             >>> result = fgt.cmdb.casb.saas_application.update(
             ...     name='my-custom-app',
             ...     status='disable'
             ... )
-            
+
             >>> # Enable domain control
             >>> result = fgt.cmdb.casb.saas_application.update(
             ...     name='my-custom-app',
@@ -282,7 +282,7 @@ class SaasApplication:
         """
         # Build data dictionary
         data = {}
-        
+
         # Map parameters (Python snake_case to API hyphenated-case)
         param_map = {
             'type': type,
@@ -297,7 +297,7 @@ class SaasApplication:
             'tenant_control': tenant_control,
             'tenant_control_tenants': tenant_control_tenants
         }
-        
+
         api_field_map = {
             'type': 'type',
             'casb_name': 'casb-name',
@@ -311,28 +311,28 @@ class SaasApplication:
             'tenant_control': 'tenant-control',
             'tenant_control_tenants': 'tenant-control-tenants'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
-    
+
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete CASB SaaS application
-        
+
         Args:
             name (str): Application name
             vdom (str/bool, optional): Virtual domain, False to skip
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Delete SaaS application
             >>> result = fgt.cmdb.casb.saas_application.delete('my-custom-app')

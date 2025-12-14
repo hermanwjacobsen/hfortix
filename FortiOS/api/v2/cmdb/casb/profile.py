@@ -25,27 +25,27 @@ if TYPE_CHECKING:
 
 class Profile:
     """CASB profile endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize CASB Profile endpoint
-        
+
         Args:
             client: FortiOS client instance
         """
         self._client = client
-    
+
     def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB profiles
-        
+
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with list of CASB profiles
-            
+
         Examples:
             >>> # List all CASB profiles
             >>> profiles = fgt.cmdb.casb.profile.list()
@@ -53,7 +53,7 @@ class Profile:
             ...     print(f"{profile['name']}: {profile.get('comment', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -73,7 +73,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Get CASB profile(s)
-        
+
         Args:
             name (str, optional): Profile name (get specific profile)
             datasource (bool, optional): Include datasource information
@@ -89,19 +89,19 @@ class Profile:
             scope (str, optional): Scope [global|vdom|both]
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with CASB profile(s)
-            
+
         Examples:
             >>> # Get all CASB profiles
             >>> profiles = fgt.cmdb.casb.profile.get()
             >>> print(f"Total profiles: {len(profiles['results'])}")
-            
+
             >>> # Get specific profile
             >>> profile = fgt.cmdb.casb.profile.get('security-profile')
             >>> print(f"Comment: {profile['results']['comment']}")
-            
+
             >>> # Get with filters
             >>> profiles = fgt.cmdb.casb.profile.get(
             ...     format='name|comment',
@@ -110,7 +110,7 @@ class Profile:
         """
         # Build query parameters
         params = {}
-        
+
         param_map = {
             'datasource': datasource,
             'with_meta': with_meta,
@@ -124,20 +124,20 @@ class Profile:
             'search': search,
             'scope': scope
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
+
         # Build path
         path = 'casb/profile'
         if name:
             path = f'{path}/{name}'
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -148,7 +148,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Create a new CASB profile
-        
+
         Args:
             name (str): Profile name (required)
             comment (str, optional): Profile comment/description
@@ -164,17 +164,17 @@ class Profile:
                 - custom_control (list): Custom controls
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters for the profile
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Create basic profile
             >>> result = fgt.cmdb.casb.profile.create(
             ...     name='office365-security',
             ...     comment='Office 365 security profile'
             ... )
-            
+
             >>> # Create profile with SaaS application
             >>> result = fgt.cmdb.casb.profile.create(
             ...     name='salesforce-profile',
@@ -188,10 +188,10 @@ class Profile:
             ... )
         """
         data = {'name': name}
-        
+
         if comment is not None:
             data['comment'] = comment
-        
+
         if saas_application is not None:
             # Convert Python naming to FortiOS API naming
             converted_apps = []
@@ -203,16 +203,16 @@ class Profile:
                     converted_app[api_key] = value
                 converted_apps.append(converted_app)
             data['saas-application'] = converted_apps
-        
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
                 # Convert Python naming to API naming
                 api_key = key.replace('_', '-')
                 data[api_key] = value
-        
+
         return self._client.post('cmdb', 'casb/profile', data=data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -223,24 +223,24 @@ class Profile:
     ) -> dict[str, Any]:
         """
         Update an existing CASB profile
-        
+
         Args:
             name (str): Profile name (required)
             comment (str, optional): Profile comment/description
             saas_application (list, optional): List of SaaS application configurations
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters to update
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Update profile comment
             >>> result = fgt.cmdb.casb.profile.update(
             ...     name='office365-security',
             ...     comment='Updated Office 365 security profile'
             ... )
-            
+
             >>> # Add SaaS application to profile
             >>> result = fgt.cmdb.casb.profile.update(
             ...     name='office365-security',
@@ -253,10 +253,10 @@ class Profile:
             ... )
         """
         data = {}
-        
+
         if comment is not None:
             data['comment'] = comment
-        
+
         if saas_application is not None:
             # Convert Python naming to FortiOS API naming
             converted_apps = []
@@ -268,27 +268,27 @@ class Profile:
                     converted_app[api_key] = value
                 converted_apps.append(converted_app)
             data['saas-application'] = converted_apps
-        
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
                 # Convert Python naming to API naming
                 api_key = key.replace('_', '-')
                 data[api_key] = value
-        
+
         return self._client.put('cmdb', f'casb/profile/{name}', data=data, vdom=vdom)
-    
+
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete a CASB profile
-        
+
         Args:
             name (str): Profile name to delete
             vdom (str/bool, optional): Virtual domain, False to skip
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Delete profile
             >>> result = fgt.cmdb.casb.profile.delete('old-profile')
@@ -296,18 +296,18 @@ class Profile:
             ...     print("Profile deleted successfully")
         """
         return self._client.delete('cmdb', f'casb/profile/{name}', vdom=vdom)
-    
+
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a CASB profile exists
-        
+
         Args:
             name (str): Profile name to check
             vdom (str/bool, optional): Virtual domain, False to skip
-            
+
         Returns:
             bool: True if profile exists, False otherwise
-            
+
         Examples:
             >>> if fgt.cmdb.casb.profile.exists('security-profile'):
             ...     print("Profile exists")

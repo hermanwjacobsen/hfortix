@@ -18,37 +18,37 @@ if TYPE_CHECKING:
 
 class AttributeMatch:
     """CASB attribute match endpoint"""
-    
+
     def __init__(self, client: 'FortiOS') -> None:
         """
         Initialize AttributeMatch endpoint
-        
+
         Args:
             client: FortiOS client instance
         """
         self._client = client
-    
+
     def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all CASB attribute match rules
-        
+
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with list of attribute match rules
-            
+
         Examples:
             >>> # List all attribute match rules
             >>> rules = fgt.cmdb.casb.attribute_match.list()
             >>> print(f"Total rules: {len(rules['results'])}")
-            
+
             >>> # List with specific VDOM
             >>> rules = fgt.cmdb.casb.attribute_match.list(vdom='root')
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def get(
         self,
         name: Optional[str] = None,
@@ -68,7 +68,7 @@ class AttributeMatch:
     ) -> dict[str, Any]:
         """
         Get CASB attribute match rule(s)
-        
+
         Args:
             name (str, optional): Attribute match rule name (for specific rule)
             attr (str, optional): Attribute name that references other table
@@ -84,26 +84,26 @@ class AttributeMatch:
             action (str, optional): Special actions (default, schema, revision)
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional query parameters
-            
+
         Returns:
             dict: API response with attribute match rule(s)
-            
+
         Examples:
             >>> # Get all attribute match rules
             >>> rules = fgt.cmdb.casb.attribute_match.get()
             >>> for rule in rules['results']:
             ...     print(f"Rule: {rule['name']}")
-            
+
             >>> # Get specific rule
             >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule')
             >>> print(f"Application: {rule['results']['application']}")
-            
+
             >>> # Get with metadata
             >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule', with_meta=True)
         """
         # Build path
         path = f'casb/attribute-match/{name}' if name else 'casb/attribute-match'
-        
+
         # Build query parameters
         params = {}
         param_map = {
@@ -119,16 +119,16 @@ class AttributeMatch:
             'format': format,
             'action': action
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         # Add any additional parameters
         params.update(kwargs)
-        
+
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
     def create(
         self,
         name: str,
@@ -140,7 +140,7 @@ class AttributeMatch:
     ) -> dict[str, Any]:
         """
         Create CASB attribute match rule
-        
+
         Args:
             name (str): Attribute match rule name (max 79 chars)
             application (str, optional): CASB attribute application name (max 79 chars)
@@ -154,10 +154,10 @@ class AttributeMatch:
                 - rule (list): List of attribute rules (each with id, attribute, match_pattern, match_value, case_sensitive, negate)
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Create simple attribute match rule
             >>> result = fgt.cmdb.casb.attribute_match.create(
@@ -165,7 +165,7 @@ class AttributeMatch:
             ...     application='office365',
             ...     match_strategy='or'
             ... )
-            
+
             >>> # Create rule with match conditions
             >>> result = fgt.cmdb.casb.attribute_match.create(
             ...     name='advanced-rule',
@@ -187,22 +187,22 @@ class AttributeMatch:
         """
         # Build data dictionary
         data = {'name': name}
-        
+
         # Map parameters
         param_map = {
             'application': application,
             'match_strategy': match_strategy,
             'match': match
         }
-        
+
         api_field_map = {
             'match_strategy': 'match-strategy'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map.get(param_name, param_name)
-                
+
                 # Handle nested match rules
                 if param_name == 'match' and isinstance(value, list):
                     # Convert snake_case to hyphen-case in nested structures
@@ -234,12 +234,12 @@ class AttributeMatch:
                     data[api_name] = converted_match
                 else:
                     data[api_name] = value
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.post('cmdb', 'casb/attribute-match', data, vdom=vdom)
-    
+
     def update(
         self,
         name: str,
@@ -251,7 +251,7 @@ class AttributeMatch:
     ) -> dict[str, Any]:
         """
         Update CASB attribute match rule
-        
+
         Args:
             name (str): Attribute match rule name
             application (str, optional): CASB attribute application name (max 79 chars)
@@ -259,17 +259,17 @@ class AttributeMatch:
             match (list, optional): List of tenant match rules
             vdom (str/bool, optional): Virtual domain, False to skip
             **kwargs: Additional parameters
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Update match strategy
             >>> result = fgt.cmdb.casb.attribute_match.update(
             ...     name='my-rule',
             ...     match_strategy='and'
             ... )
-            
+
             >>> # Update application
             >>> result = fgt.cmdb.casb.attribute_match.update(
             ...     name='my-rule',
@@ -278,22 +278,22 @@ class AttributeMatch:
         """
         # Build data dictionary
         data = {}
-        
+
         # Map parameters
         param_map = {
             'application': application,
             'match_strategy': match_strategy,
             'match': match
         }
-        
+
         api_field_map = {
             'match_strategy': 'match-strategy'
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map.get(param_name, param_name)
-                
+
                 # Handle nested match rules (same as create)
                 if param_name == 'match' and isinstance(value, list):
                     converted_match = []
@@ -324,23 +324,23 @@ class AttributeMatch:
                     data[api_name] = converted_match
                 else:
                     data[api_name] = value
-        
+
         # Add any additional parameters
         data.update(kwargs)
-        
+
         return self._client.put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
-    
+
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete CASB attribute match rule
-        
+
         Args:
             name (str): Attribute match rule name
             vdom (str/bool, optional): Virtual domain, False to skip
-            
+
         Returns:
             dict: API response
-            
+
         Examples:
             >>> # Delete attribute match rule
             >>> result = fgt.cmdb.casb.attribute_match.delete('my-rule')
