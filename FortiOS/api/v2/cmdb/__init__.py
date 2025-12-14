@@ -41,6 +41,7 @@ class CMDB:
         from .ethernet_oam import EthernetOAM
         from .extension_controller import ExtensionController
         from .file_filter import FileFilter
+        from .firewall import Firewall
 
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
@@ -57,6 +58,7 @@ class CMDB:
         self.ethernet_oam = EthernetOAM(client)
         self.extension_controller = ExtensionController(client)
         self.file_filter = FileFilter(client)
+        self.firewall = Firewall(client)
 
     def get(
         self,

@@ -1,0 +1,312 @@
+"""
+FortiOS CMDB - Firewall Schedule Recurring
+
+Recurring schedule configuration.
+
+API Endpoints:
+    GET    /api/v2/cmdb/firewall.schedule/recurring        - List all recurring schedules
+    GET    /api/v2/cmdb/firewall.schedule/recurring/{name} - Get specific recurring schedule
+    POST   /api/v2/cmdb/firewall.schedule/recurring        - Create new recurring schedule
+    PUT    /api/v2/cmdb/firewall.schedule/recurring/{name} - Update recurring schedule
+    DELETE /api/v2/cmdb/firewall.schedule/recurring/{name} - Delete recurring schedule
+"""
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
+
+
+class ScheduleRecurring:
+    """Firewall recurring schedule endpoint"""
+
+    def __init__(self, client: 'FortiOS') -> None:
+        """
+        Initialize ScheduleRecurring endpoint
+
+        Args:
+            client: FortiOS client instance
+        """
+        self._client = client
+
+    def list(
+        self,
+        filter: Optional[str] = None,
+        start: Optional[int] = None,
+        count: Optional[int] = None,
+        with_meta: Optional[bool] = None,
+        datasource: Optional[bool] = None,
+        format: Optional[list] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        List all recurring schedules.
+
+        Args:
+            filter: Filter results
+            start: Starting entry index
+            count: Maximum number of entries to return
+            with_meta: Include metadata
+            datasource: Include datasource information
+            format: List of property names to include
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+            **kwargs: Additional query parameters
+
+        Returns:
+            API response dict
+
+        Examples:
+            >>> # List all recurring schedules
+            >>> result = fgt.cmdb.firewall.schedule.recurring.list()
+            >>> for schedule in result['results']:
+            ...     print(f"{schedule['name']}: {schedule.get('day', [])} {schedule['start']} to {schedule['end']}")
+        """
+        params = {}
+        param_map = {
+            'filter': filter,
+            'start': start,
+            'count': count,
+            'with_meta': with_meta,
+            'datasource': datasource,
+            'format': format,
+        }
+        
+        for key, value in param_map.items():
+            if value is not None:
+                params[key] = value
+        
+        params.update(kwargs)
+        
+        path = 'firewall.schedule/recurring'
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+    def get(
+        self,
+        name: str,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        action: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Get a specific recurring schedule by name.
+
+        Args:
+            name: Schedule name
+            datasource: Include datasource information
+            with_meta: Include metadata
+            action: Special actions (default, schema)
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+            **kwargs: Additional query parameters
+
+        Returns:
+            API response dict
+
+        Examples:
+            >>> # Get recurring schedule
+            >>> result = fgt.cmdb.firewall.schedule.recurring.get('weekday-business-hours')
+            >>> print(f"Days: {result['results']['day']}")
+        """
+        params = {}
+        param_map = {
+            'datasource': datasource,
+            'with_meta': with_meta,
+            'action': action,
+        }
+        
+        for key, value in param_map.items():
+            if value is not None:
+                params[key] = value
+        
+        params.update(kwargs)
+        
+        path = f'firewall.schedule/recurring/{name}'
+        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+    def create(
+        self,
+        name: str,
+        start: str,
+        end: str,
+        day: Optional[list[str]] = None,
+        color: Optional[int] = None,
+        fabric_object: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Create a new recurring schedule.
+
+        Args:
+            name: Schedule name
+            start: Start time (format: hh:mm, e.g., '08:00')
+            end: End time (format: hh:mm, e.g., '18:00')
+            day: Days of week (list of: 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday')
+            color: Color (0-32, default=0)
+            fabric_object: Security Fabric global object setting ('enable' or 'disable')
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+            **kwargs: Additional parameters
+
+        Returns:
+            API response dict
+
+        Examples:
+            >>> # Create weekday business hours
+            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
+            ...     name='weekday-business-hours',
+            ...     start='08:00',
+            ...     end='18:00',
+            ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
+            ... )
+            
+            >>> # Create weekend schedule
+            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
+            ...     name='weekend-morning',
+            ...     start='08:00',
+            ...     end='12:00',
+            ...     day=['saturday', 'sunday']
+            ... )
+            
+            >>> # Create 24/7 schedule
+            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
+            ...     name='always',
+            ...     start='00:00',
+            ...     end='23:59',
+            ...     day=['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+            ... )
+        """
+        data = {
+            'name': name,
+            'start': start,
+            'end': end,
+        }
+        
+        param_map = {
+            'day': day,
+            'color': color,
+            'fabric-object': fabric_object,
+        }
+        
+        for key, value in param_map.items():
+            if value is not None:
+                data[key] = value
+        
+        # Add any additional kwargs
+        for key, value in kwargs.items():
+            if value is not None:
+                data[key] = value
+        
+        path = 'firewall.schedule/recurring'
+        return self._client.post('cmdb', path, data=data, vdom=vdom)
+
+    def update(
+        self,
+        name: str,
+        start: Optional[str] = None,
+        end: Optional[str] = None,
+        day: Optional[list[str]] = None,
+        color: Optional[int] = None,
+        fabric_object: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Update an existing recurring schedule.
+
+        Args:
+            name: Schedule name
+            start: Start time (format: hh:mm)
+            end: End time (format: hh:mm)
+            day: Days of week (list of: 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday')
+            color: Color (0-32, default=0)
+            fabric_object: Security Fabric global object setting ('enable' or 'disable')
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+            **kwargs: Additional parameters
+
+        Returns:
+            API response dict
+
+        Examples:
+            >>> # Extend business hours
+            >>> result = fgt.cmdb.firewall.schedule.recurring.update(
+            ...     name='weekday-business-hours',
+            ...     end='20:00'
+            ... )
+            
+            >>> # Add Saturday to workdays
+            >>> result = fgt.cmdb.firewall.schedule.recurring.update(
+            ...     name='weekday-business-hours',
+            ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+            ... )
+        """
+        data = {}
+        
+        param_map = {
+            'start': start,
+            'end': end,
+            'day': day,
+            'color': color,
+            'fabric-object': fabric_object,
+        }
+        
+        for key, value in param_map.items():
+            if value is not None:
+                data[key] = value
+        
+        # Add any additional kwargs
+        for key, value in kwargs.items():
+            if value is not None:
+                data[key] = value
+        
+        path = f'firewall.schedule/recurring/{name}'
+        return self._client.put('cmdb', path, data=data, vdom=vdom)
+
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> dict[str, Any]:
+        """
+        Delete a recurring schedule.
+
+        Args:
+            name: Schedule name
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+
+        Returns:
+            API response dict
+
+        Examples:
+            >>> # Delete schedule
+            >>> result = fgt.cmdb.firewall.schedule.recurring.delete('old-schedule')
+        """
+        path = f'firewall.schedule/recurring/{name}'
+        return self._client.delete('cmdb', path, vdom=vdom)
+
+    def exists(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None
+    ) -> bool:
+        """
+        Check if a recurring schedule exists.
+
+        Args:
+            name: Schedule name
+            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+
+        Returns:
+            True if schedule exists, False otherwise
+
+        Examples:
+            >>> if fgt.cmdb.firewall.schedule.recurring.exists('weekday-business-hours'):
+            ...     print("Schedule exists")
+        """
+        try:
+            result = self.get(name, vdom=vdom)
+            return result.get('status') == 'success'
+        except Exception:
+            return False
