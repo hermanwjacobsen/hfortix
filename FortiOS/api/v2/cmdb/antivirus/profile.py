@@ -9,30 +9,36 @@ API Endpoints:
     PUT    /antivirus/profile/{name} - Update antivirus profile
     DELETE /antivirus/profile/{name} - Delete antivirus profile
 """
+from typing import Optional, Dict, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ....client import FortiOS
 
 
 class Profile:
     """Antivirus Profile endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'FortiOS') -> None:
         self._client = client
     
-    def get(self, 
-            name=None, 
-            vdom=None,
-            # Query parameters
-            attr=None,
-            count=None,
-            skip_to_datasource=None,
-            acs=None,
-            search=None,
-            scope=None,
-            datasource=None,
-            with_meta=None,
-            skip=None,
-            format=None,
-            action=None,
-            **kwargs):
+    def get(
+        self,
+        name: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        # Query parameters
+        attr: Optional[str] = None,
+        count: Optional[int] = None,
+        skip_to_datasource: Optional[int] = None,
+        acs: Optional[bool] = None,
+        search: Optional[str] = None,
+        scope: Optional[str] = None,
+        datasource: Optional[bool] = None,
+        with_meta: Optional[bool] = None,
+        skip: Optional[bool] = None,
+        format: Optional[str] = None,
+        action: Optional[str] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         GET /antivirus/profile or /antivirus/profile/{name}
         Get antivirus profiles
@@ -104,32 +110,34 @@ class Profile:
         path = f'antivirus/profile/{name}' if name else 'antivirus/profile'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
     
-    def create(self, 
-               name,
-               comment=None,
-               replacemsg_group=None,
-               scan_mode=None,
-               mobile_malware_db=None,
-               analytics_max_upload=None,
-               analytics_ignore_filetype=None,
-               analytics_accept_filetype=None,
-               analytics_wl_filetype=None,
-               analytics_bl_filetype=None,
-               analytics_db=None,
-               feature_set=None,
-               fortindr_error_action=None,
-               fortindr_timeout_action=None,
-               fortisandbox_mode=None,
-               fortisandbox_max_upload=None,
-               fortisandbox_error_action=None,
-               fortisandbox_timeout_action=None,
-               outbreak_prevention_mode=None,
-               outbreak_prevention_archive_scan=None,
-               external_blocklist_enable_all=None,
-               external_blocklist_archive_scan=None,
-               ems_threat_feed=None,
-               vdom=None,
-               **kwargs):
+    def create(
+        self,
+        name: str,
+        comment: Optional[str] = None,
+        replacemsg_group: Optional[str] = None,
+        scan_mode: Optional[str] = None,
+        mobile_malware_db: Optional[str] = None,
+        analytics_max_upload: Optional[int] = None,
+        analytics_ignore_filetype: Optional[int] = None,
+        analytics_accept_filetype: Optional[int] = None,
+        analytics_wl_filetype: Optional[int] = None,
+        analytics_bl_filetype: Optional[int] = None,
+        analytics_db: Optional[str] = None,
+        feature_set: Optional[str] = None,
+        fortindr_error_action: Optional[str] = None,
+        fortindr_timeout_action: Optional[str] = None,
+        fortisandbox_mode: Optional[str] = None,
+        fortisandbox_max_upload: Optional[int] = None,
+        fortisandbox_error_action: Optional[str] = None,
+        fortisandbox_timeout_action: Optional[str] = None,
+        outbreak_prevention_mode: Optional[str] = None,
+        outbreak_prevention_archive_scan: Optional[str] = None,
+        external_blocklist_enable_all: Optional[str] = None,
+        external_blocklist_archive_scan: Optional[str] = None,
+        ems_threat_feed: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any
+    ) -> Dict[str, Any]:
         """
         POST /antivirus/profile
         Create new antivirus profile
