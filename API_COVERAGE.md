@@ -16,10 +16,10 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 | **Service** | ✅ Complete | 3 of 3 categories | 100% |
 
 **CMDB Detailed Progress:**
-- **Total Endpoints Implemented:** 68 endpoints across 15 categories
+- **Total Endpoints Implemented:** 74 endpoints across 15 categories
 - **Total Endpoints Available:** 150+ endpoints across 38 categories
-- **Coverage:** ~45% of all CMDB endpoints
-- **New:** Firewall category with 17 endpoints across 7 sub-categories
+- **Coverage:** ~49% of all CMDB endpoints
+- **New:** Firewall category with 23 endpoints across 7 sub-categories
 
 **Legend:**
 - ✅ **Complete** - Full CRUD support, tested, documented
@@ -177,6 +177,12 @@ File filtering profiles
 #### 8. Firewall (firewall/)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
+| **DoS-policy** | ✅ Complete | GET, POST, PUT, DELETE | IPv4 DoS protection policies |
+| **DoS-policy6** | ✅ Complete | GET, POST, PUT, DELETE | IPv6 DoS protection policies |
+| **access-proxy** | ✅ Complete | GET, POST, PUT, DELETE | IPv4 reverse proxy/WAF |
+| **access-proxy6** | ✅ Complete | GET, POST, PUT, DELETE | IPv6 reverse proxy/WAF |
+| **access-proxy-ssh-client-cert** | ✅ Complete | GET, POST, PUT, DELETE | SSH client certificates |
+| **access-proxy-virtual-host** | ✅ Complete | GET, POST, PUT, DELETE | Virtual host configuration |
 | **ipmacbinding/setting** | ✅ Complete | GET, PUT | IP/MAC binding settings |
 | **ipmacbinding/table** | ✅ Complete | GET, POST, PUT, DELETE | IP/MAC binding table |
 | **schedule/group** | ✅ Complete | GET, POST, PUT, DELETE | Schedule groups |
@@ -196,16 +202,24 @@ File filtering profiles
 | **wildcard-fqdn/group** | ✅ Complete | GET, POST, PUT, DELETE | Wildcard FQDN groups |
 
 **Sub-categories Implemented:** 7 (ipmacbinding, schedule, service, shaper, ssh, ssl, wildcard-fqdn)  
-**Test Coverage:** 138 tests (100% pass rate)  
-**Pattern:** Nested structure with lazy-loading: `fgt.cmdb.firewall.[subcategory].[endpoint]`
+**Flat Endpoints Implemented:** 6 (DoS-policy, DoS-policy6, access-proxy, access-proxy6, access-proxy-ssh-client-cert, access-proxy-virtual-host)  
+**Test Coverage:** 186 tests (100% pass rate)  
+**Pattern:** 
+- Nested: `fgt.cmdb.firewall.[subcategory].[endpoint]`
+- Flat: `fgt.cmdb.firewall.[endpoint]`
 
-**Remaining Firewall Endpoints (89):**
+**Key Features:**
+- Simplified API with automatic type conversion
+- DoS policies include comprehensive anomaly detection (18 types)
+- Access-proxy supports reverse proxy/WAF with VIP integration
+- All endpoints lazy-loaded via @property pattern
+
+**Remaining Firewall Endpoints (83):**
 - address, address6, addrgrp, addrgrp6 - Address management
 - policy, security-policy - Policy configuration
 - vip, vip6, vipgrp, vipgrp6 - Virtual IP configuration
 - ippool, ippool6 - IP pool configuration
 - proxy-address, proxy-addrgrp, proxy-policy - Proxy configuration
-- DoS-policy, DoS-policy6 - DoS policies
 - interface-policy, interface-policy6 - Interface policies
 - local-in-policy, local-in-policy6 - Local-in policies
 - multicast-address, multicast-policy - Multicast configuration

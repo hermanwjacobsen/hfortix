@@ -4,20 +4,26 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-- **CMDB API**: 68 endpoints across 15 categories (45% coverage) ✅
-  - **NEW:** Firewall category with 17 endpoints across 7 sub-categories
+- **CMDB API**: 74 endpoints across 15 categories (49% coverage) ✅
+  - **NEW:** Firewall category with 23 endpoints (6 flat + 17 nested)
 - **Service API**: 21 methods across 3 modules ✅
 - **Log API**: 42 methods across 5 modules (100% complete) ✅
 - **Monitor API**: Not yet implemented ⏸️
 
 **Latest Addition (v0.3.0):**
-- ✅ firewall.ipmacbinding (setting, table)
-- ✅ firewall.schedule (group, onetime, recurring)
-- ✅ firewall.service (category, custom, group)
-- ✅ firewall.shaper (per-ip-shaper, traffic-shaper)
-- ✅ firewall.ssh (host-key, local-ca, local-key, setting)
-- ✅ firewall.ssl (setting)
-- ✅ firewall.wildcard-fqdn (custom, group)
+- ✅ **Flat Firewall Endpoints (NEW):**
+  - firewall/DoS-policy, DoS-policy6 (DoS protection)
+  - firewall/access-proxy, access-proxy6 (Reverse proxy/WAF)
+  - firewall/access-proxy-ssh-client-cert (SSH certificates)
+  - firewall/access-proxy-virtual-host (Virtual hosts)
+- ✅ **Firewall Sub-categories:**
+  - firewall.ipmacbinding (setting, table)
+  - firewall.schedule (group, onetime, recurring)
+  - firewall.service (category, custom, group)
+  - firewall.shaper (per-ip-shaper, traffic-shaper)
+  - firewall.ssh (host-key, local-ca, local-key, setting)
+  - firewall.ssl (setting)
+  - firewall.wildcard-fqdn (custom, group)
 
 ## 🎯 Features
 
@@ -180,6 +186,87 @@ result = fgt.cmdb.firewall.address.update(
 
 # Delete address
 result = fgt.cmdb.firewall.address.delete(name='web-server')
+```
+
+### FortiOS - DoS Protection (NEW!)
+```python
+# Create IPv4 DoS policy with simplified API
+result = fgt.cmdb.firewall.dos_policy.create(
+    policyid=1,
+    name='protect-web-servers',
+    interface='port3',              # Simple string format
+    srcaddr=['all'],                # Simple list format
+    dstaddr=['web-servers'],
+    service=['HTTP', 'HTTPS'],
+    status='enable',
+    comments='Protect web farm from DoS attacks'
+)
+
+# API automatically converts to FortiGate format:
+# interface='port3' → {'q_origin_key': 'port3'}
+# service=['HTTP'] → [{'name': 'HTTP'}]
+
+# Custom anomaly detection thresholds
+result = fgt.cmdb.firewall.dos_policy.create(
+    policyid=2,
+    name='strict-dos-policy',
+    interface='wan1',
+    srcaddr=['all'],
+    dstaddr=['all'],
+    service=['ALL'],
+    anomaly=[
+        {'name': 'tcp_syn_flood', 'threshold': 500, 'action': 'block'},
+        {'name': 'udp_flood', 'threshold': 1000, 'action': 'block'}
+    ]
+)
+```
+
+### FortiOS - Reverse Proxy/WAF (NEW!)
+```python
+# Create access proxy (requires VIP with type='access-proxy')
+result = fgt.cmdb.firewall.access_proxy.create(
+    name='web-proxy',
+    vip='web-vip',                    # VIP must be type='access-proxy'
+    auth_portal='enable',
+    log_blocked_traffic='enable',
+    http_supported_max_version='2.0',
+    svr_pool_multiplex='enable'
+)
+
+# Create virtual host with simplified API
+result = fgt.cmdb.firewall.access_proxy_virtual_host.create(
+    name='api-vhost',
+    host='*.api.example.com',
+    host_type='wildcard',
+    ssl_certificate='Fortinet_Factory'  # String auto-converts to list
+)
+
+# API automatically converts:
+# ssl_certificate='cert' → [{'name': 'cert'}]
+```
+
+### FortiOS - Schedule Management
+```python
+# Create recurring schedule
+result = fgt.cmdb.firewall.schedule.recurring.create(
+    name='business-hours',
+    day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
+    start='08:00',
+    end='18:00'
+)
+
+# Create one-time schedule
+from datetime import datetime, timedelta
+tomorrow = datetime.now() + timedelta(days=1)
+start = f"09:00 {tomorrow.strftime('%Y/%m/%d')}"
+end = f"17:00 {tomorrow.strftime('%Y/%m/%d')}"
+
+result = fgt.cmdb.firewall.schedule.onetime.create(
+    name='maintenance-window',
+    start=start,
+    end=end,
+    color=5
+)
 ```
 
 ### Exception Hierarchy

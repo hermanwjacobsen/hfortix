@@ -8,11 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### In Progress
-- Firewall category expansion (89 remaining endpoints)
+- Firewall category expansion (83 remaining endpoints)
 - Monitor API implementation
 
 ### Planned
-- Complete CMDB endpoint coverage (68/150+ endpoints complete)
+- Complete CMDB endpoint coverage (74/150+ endpoints complete)
 - Monitor endpoints implementation
 - FortiManager module
 - FortiAnalyzer module
@@ -21,9 +21,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.3.0] - 2025-12-14
 
-### Added - Firewall Sub-categories! 🎉
+### Added - Firewall Flat Endpoints + Sub-categories! 🎉
 
-#### New CMDB Category: Firewall (17 endpoints, 7 sub-categories)
+#### New Flat Firewall Endpoints (6 endpoints)
+Implemented DoS protection and access proxy endpoints with simplified API:
+
+- **firewall/DoS-policy** - IPv4 DoS protection policies
+  - Full CRUD operations with automatic type conversion
+  - Comprehensive anomaly detection (18 types with default thresholds)
+  - Simplified API: `interface='port3'` → `{'q_origin_key': 'port3'}`
+  - Test coverage: 8/8 tests passing (100%)
+
+- **firewall/DoS-policy6** - IPv6 DoS protection policies
+  - Same features as DoS-policy for IPv6
+  - Test coverage: 8/8 tests passing (100%)
+
+- **firewall/access-proxy** - IPv4 reverse proxy/WAF
+  - Full CRUD with 16+ configuration parameters
+  - VIP integration (requires type="access-proxy")
+  - Server pool multiplexing support
+  - Test coverage: 8/8 tests passing (100%)
+
+- **firewall/access-proxy6** - IPv6 reverse proxy/WAF
+  - Same features as access-proxy for IPv6
+  - Test coverage: 8/8 tests passing (100%)
+
+- **firewall/access-proxy-ssh-client-cert** - SSH client certificates
+  - Certificate-based SSH authentication
+  - Permit controls (agent forwarding, port forwarding, PTY, X11, user RC)
+  - Test coverage: 8/8 tests passing (100%)
+
+- **firewall/access-proxy-virtual-host** - Virtual host configuration
+  - Domain/wildcard/regex host matching
+  - SSL certificate management with automatic list conversion
+  - Test coverage: 8/8 tests passing (100%)
+
+**Total Test Coverage:** 48/48 tests (100% pass rate)
+
+**Key Features:**
+- **Simplified API** - Automatic type conversion for better UX
+  - String → dict: `'port3'` → `{'q_origin_key': 'port3'}`
+  - String list → dict list: `['HTTP']` → `[{'name': 'HTTP'}]`
+  - Certificate string → list: `'cert'` → `[{'name': 'cert'}]`
+- **Comprehensive Documentation** - Anomaly detection types with thresholds
+- **Prerequisites Documented** - VIP types, certificates, CAs
+- **Lazy Loading** - @property pattern for optimal performance
+
+#### CMDB Category: Firewall Sub-categories (17 endpoints, 7 sub-categories)
 Implemented nested/hierarchical structure for firewall endpoints with lazy-loading pattern:
 
 - **firewall.ipmacbinding** (2 endpoints)
