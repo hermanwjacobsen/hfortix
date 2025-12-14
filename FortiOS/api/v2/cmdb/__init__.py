@@ -37,6 +37,7 @@ class CMDB:
         from .dlp import DLP
         from .dnsfilter import DNSFilter
         from .emailfilter import EmailFilter
+        from .endpoint_control import EndpointControl
 
         self.alertemail = AlertEmail(client)
         self.antivirus = Antivirus(client)
@@ -49,6 +50,7 @@ class CMDB:
         self.dlp = DLP(client)
         self.dnsfilter = DNSFilter(client)
         self.emailfilter = EmailFilter(client)
+        self.endpoint_control = EndpointControl(client)
 
     def get(
         self,
