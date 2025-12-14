@@ -3,22 +3,23 @@
 This document tracks the implementation status of FortiOS API endpoints in the Fortinet Python SDK.
 
 **Last Updated:** 2025-12-14  
-**SDK Version:** 0.2.0  
+**SDK Version:** 0.3.0  
 **FortiOS Version:** 7.6.x
 
 ## 📊 Overall Progress
 
 | Category | Status | Endpoints | Coverage |
 |----------|--------|-----------|----------|
-| **CMDB** | 🔷 Beta | 14 of 38 categories | ~37% |
+| **CMDB** | 🔷 Beta | 15 of 38 categories | ~39% |
 | **Monitor** | ⏸️ Not Started | 0 of 29 categories | 0% |
 | **Log** | ✅ Complete | 5 of 5 categories | 100% |
 | **Service** | ✅ Complete | 3 of 3 categories | 100% |
 
 **CMDB Detailed Progress:**
-- **Total Endpoints Implemented:** 51 endpoints across 14 categories
+- **Total Endpoints Implemented:** 68 endpoints across 15 categories
 - **Total Endpoints Available:** 150+ endpoints across 38 categories
-- **Coverage:** ~34% of all CMDB endpoints
+- **Coverage:** ~45% of all CMDB endpoints
+- **New:** Firewall category with 17 endpoints across 7 sub-categories
 
 **Legend:**
 - ✅ **Complete** - Full CRUD support, tested, documented
@@ -32,7 +33,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ## 🔧 CMDB (Configuration Management Database)
 
-### Implemented Categories (14 categories, 51 endpoints)
+### Implemented Categories (15 categories, 68 endpoints)
 
 #### 1. Alert Email (alertemail/)
 | Endpoint | Status | Methods | Notes |
@@ -173,8 +174,43 @@ FortiExtender management
 #### 7. File Filter (file-filter/) - ⏸️ Not Started
 File filtering profiles
 
-#### 8. Firewall (firewall/) - ⏸️ Not Started
-**HIGH PRIORITY** - Firewall policies, addresses, services, schedules, etc.
+#### 8. Firewall (firewall/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| **ipmacbinding/setting** | ✅ Complete | GET, PUT | IP/MAC binding settings |
+| **ipmacbinding/table** | ✅ Complete | GET, POST, PUT, DELETE | IP/MAC binding table |
+| **schedule/group** | ✅ Complete | GET, POST, PUT, DELETE | Schedule groups |
+| **schedule/onetime** | ✅ Complete | GET, POST, PUT, DELETE | One-time schedules |
+| **schedule/recurring** | ✅ Complete | GET, POST, PUT, DELETE | Recurring schedules |
+| **service/category** | ✅ Complete | GET, POST, PUT, DELETE | Service categories |
+| **service/custom** | ✅ Complete | GET, POST, PUT, DELETE | Custom services |
+| **service/group** | ✅ Complete | GET, POST, PUT, DELETE | Service groups |
+| **shaper/per-ip-shaper** | ✅ Complete | GET, POST, PUT, DELETE | Per-IP traffic shaper |
+| **shaper/traffic-shaper** | ✅ Complete | GET, POST, PUT, DELETE | Shared traffic shaper |
+| **ssh/host-key** | ✅ Complete | GET, POST, PUT, DELETE | SSH proxy host keys |
+| **ssh/local-ca** | ✅ Complete | GET, POST, PUT, DELETE | SSH proxy local CA |
+| **ssh/local-key** | ✅ Complete | GET, POST, PUT, DELETE | SSH proxy local keys |
+| **ssh/setting** | ✅ Complete | GET, PUT | SSH proxy settings |
+| **ssl/setting** | ✅ Complete | GET, PUT | SSL proxy settings |
+| **wildcard-fqdn/custom** | ✅ Complete | GET, POST, PUT, DELETE | Wildcard FQDN addresses |
+| **wildcard-fqdn/group** | ✅ Complete | GET, POST, PUT, DELETE | Wildcard FQDN groups |
+
+**Sub-categories Implemented:** 7 (ipmacbinding, schedule, service, shaper, ssh, ssl, wildcard-fqdn)  
+**Test Coverage:** 138 tests (100% pass rate)  
+**Pattern:** Nested structure with lazy-loading: `fgt.cmdb.firewall.[subcategory].[endpoint]`
+
+**Remaining Firewall Endpoints (89):**
+- address, address6, addrgrp, addrgrp6 - Address management
+- policy, security-policy - Policy configuration
+- vip, vip6, vipgrp, vipgrp6 - Virtual IP configuration
+- ippool, ippool6 - IP pool configuration
+- proxy-address, proxy-addrgrp, proxy-policy - Proxy configuration
+- DoS-policy, DoS-policy6 - DoS policies
+- interface-policy, interface-policy6 - Interface policies
+- local-in-policy, local-in-policy6 - Local-in policies
+- multicast-address, multicast-policy - Multicast configuration
+- ssl-server, ssl-ssh-profile - SSL/SSH profiles
+- And 60+ more endpoints...
 
 #### 9. FTP Proxy (ftp-proxy/) - ⏸️ Not Started
 FTP proxy configuration

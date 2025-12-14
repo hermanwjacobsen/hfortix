@@ -7,13 +7,71 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### In Progress
+- Firewall category expansion (89 remaining endpoints)
+- Monitor API implementation
+
 ### Planned
-- Complete CMDB endpoint coverage (51/150+ endpoints complete)
+- Complete CMDB endpoint coverage (68/150+ endpoints complete)
 - Monitor endpoints implementation
 - FortiManager module
 - FortiAnalyzer module
 - Async support
 - CLI tool
+
+## [0.3.0] - 2025-12-14
+
+### Added - Firewall Sub-categories! 🎉
+
+#### New CMDB Category: Firewall (17 endpoints, 7 sub-categories)
+Implemented nested/hierarchical structure for firewall endpoints with lazy-loading pattern:
+
+- **firewall.ipmacbinding** (2 endpoints)
+  - `setting` - IP/MAC binding global settings
+  - `table` - IP/MAC binding table entries
+
+- **firewall.schedule** (3 endpoints)
+  - `group` - Schedule groups
+  - `onetime` - One-time schedules
+  - `recurring` - Recurring schedules
+
+- **firewall.service** (3 endpoints)
+  - `category` - Service categories
+  - `custom` - Custom service definitions
+  - `group` - Service groups
+
+- **firewall.shaper** (2 endpoints)
+  - `per-ip-shaper` - Per-IP traffic shaping
+  - `traffic-shaper` - Shared traffic shaping
+
+- **firewall.ssh** (4 endpoints)
+  - `host-key` - SSH proxy host public keys
+  - `local-ca` - SSH proxy local CA
+  - `local-key` - SSH proxy local keys (with PEM format support)
+  - `setting` - SSH proxy settings
+
+- **firewall.ssl** (1 endpoint)
+  - `setting` - SSL proxy settings (timeout, DH bits, caching)
+
+- **firewall.wildcard-fqdn** (2 endpoints)
+  - `custom` - Wildcard FQDN addresses (e.g., *.example.com)
+  - `group` - Wildcard FQDN groups
+
+### Technical Improvements
+- ✅ Nested API structure: `fgt.cmdb.firewall.[subcategory].[endpoint]`
+- ✅ Lazy-loading with @property methods
+- ✅ Singleton pattern for settings endpoints (results as dict)
+- ✅ Collection pattern for list endpoints (results as list)
+- ✅ exists() methods with try/except for 404 handling
+- ✅ Real SSH key generation for testing (PEM format)
+- ✅ Member management for group endpoints
+- ✅ 138 comprehensive tests (100% pass rate)
+
+### Documentation
+- ✅ Complete module creation guide (1,900+ lines)
+- ✅ Documentation generation prompt
+- ✅ Comprehensive docstrings with examples for all methods
+- ✅ Type hints on all parameters
 
 ## [0.2.0] - 2025-12-14
 

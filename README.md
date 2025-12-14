@@ -4,10 +4,20 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-- **CMDB API**: 51 endpoints across 14 categories ✅
+- **CMDB API**: 68 endpoints across 15 categories (45% coverage) ✅
+  - **NEW:** Firewall category with 17 endpoints across 7 sub-categories
 - **Service API**: 21 methods across 3 modules ✅
 - **Log API**: 42 methods across 5 modules (100% complete) ✅
 - **Monitor API**: Not yet implemented ⏸️
+
+**Latest Addition (v0.3.0):**
+- ✅ firewall.ipmacbinding (setting, table)
+- ✅ firewall.schedule (group, onetime, recurring)
+- ✅ firewall.service (category, custom, group)
+- ✅ firewall.shaper (per-ip-shaper, traffic-shaper)
+- ✅ firewall.ssh (host-key, local-ca, local-key, setting)
+- ✅ firewall.ssl (setting)
+- ✅ firewall.wildcard-fqdn (custom, group)
 
 ## 🎯 Features
 
