@@ -145,9 +145,32 @@ addresses = fgt.cmdb.firewall.address.list(
 
 ## API Structure
 
-### CMDB (Configuration Management Database)
+### CMDB (Configuration Management Database) - 51 endpoints across 14 categories
+
 ```python
+# Security Features
+fgt.cmdb.antivirus.*               # Antivirus profiles
+fgt.cmdb.dlp.*                     # Data Loss Prevention (8 endpoints)
+fgt.cmdb.dnsfilter.*               # DNS filtering (2 endpoints)
+fgt.cmdb.emailfilter.*             # Email filtering (8 endpoints)
+fgt.cmdb.file_filter.*             # File filtering
+
+# Network & Access Control
 fgt.cmdb.firewall.address.*        # Firewall addresses
+fgt.cmdb.application.*             # Application control (4 endpoints)
+fgt.cmdb.endpoint_control.*        # Endpoint control (3 endpoints)
+fgt.cmdb.ethernet_oam.*            # Ethernet OAM (hardware required)
+
+# Infrastructure & Management
+fgt.cmdb.extension_controller.*    # FortiExtender & FortiGate connectors (6 endpoints)
+fgt.cmdb.certificate.*             # Certificate management (5 endpoints)
+fgt.cmdb.authentication.*          # Authentication (3 endpoints)
+
+# Other Categories
+fgt.cmdb.alertemail.*              # Email alerts
+fgt.cmdb.automation.*              # Automation settings
+fgt.cmdb.casb.*                    # Cloud Access Security Broker (3 endpoints)
+fgt.cmdb.diameter_filter.*         # Diameter filtering
 fgt.cmdb.firewall.policy.*         # Firewall policies
 fgt.cmdb.firewall.service.*        # Services
 fgt.cmdb.system.interface.*        # Interfaces

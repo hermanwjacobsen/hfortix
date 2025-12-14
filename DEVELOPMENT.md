@@ -2,7 +2,15 @@
 
 This guide covers how to set up your development environment and contribute to the Fortinet Python SDK.
 
-## 🚀 Quick Start for Developers
+## � Project Status (December 14, 2025)
+
+- **Version**: 0.2.0
+- **CMDB Endpoints**: 51 endpoints across 14 categories
+- **Test Coverage**: Comprehensive tests for all endpoints
+- **Python Version**: 3.9+
+- **Type Hints**: Full type hint support with modern syntax
+
+## �🚀 Quick Start for Developers
 
 ### 1. Clone the Repository
 

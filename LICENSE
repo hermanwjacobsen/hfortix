@@ -1,21 +1,45 @@
-MIT License
+PROPRIETARY LICENSE
 
 Copyright (c) 2025 Herman W. Jacobsen
+All Rights Reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+PERMITTED USE:
+This software is free to use for any purpose, including commercial services.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+You MAY:
+- Use this software for personal projects
+- Use this software for educational purposes
+- Use this software for research
+- Use this software in your company/business for internal operations
+- Use this software to manage FortiGate devices in enterprise environments
+- Use this software as part of IT support services
+- Use this software as part of managed services (MSP)
+- Use this software while providing consulting or technical support
+- Charge clients for your services that utilize this software
+- Modify the code for your own use
+- Study how the software works
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+You MAY NOT:
+- Sell, license, or redistribute this software itself as a standalone product
+- Package this software and sell it as "your" product
+- Claim ownership or authorship of this software
+- Remove or modify this copyright notice
+
+CLARIFICATION:
+- ✅ Companies CAN use this for free to manage FortiGate infrastructure
+- ✅ IT support technicians CAN use this when providing paid support services
+- ✅ MSPs CAN use this to manage client FortiGates as part of their service offering
+- ✅ Consultants CAN use this as a tool while billing for their time
+- ✅ Service providers CAN charge for their expertise using this tool
+- ❌ Vendors CANNOT sell this software itself as a product
+- ❌ Companies CANNOT rebrand and resell this as their own software
+
+SIMPLE RULE: Use it freely for your work, just don't sell the software itself.
+
+NO WARRANTY:
+This software is provided "AS IS", without warranty of any kind, express or
+implied, including but not limited to the warranties of merchantability,
+fitness for a particular purpose and noninfringement. In no event shall the
+author or copyright holder be liable for any claim, damages or other liability,
+whether in an action of contract, tort or otherwise, arising from, out of or in
+connection with the software or the use or other dealings in the software.

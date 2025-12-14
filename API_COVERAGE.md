@@ -2,23 +2,23 @@
 
 This document tracks the implementation status of FortiOS API endpoints in the Fortinet Python SDK.
 
-**Last Updated:** 2025-12-13  
-**SDK Version:** 0.1.0  
+**Last Updated:** 2025-12-14  
+**SDK Version:** 0.2.0  
 **FortiOS Version:** 7.6.x
 
 ## 📊 Overall Progress
 
 | Category | Status | Endpoints | Coverage |
 |----------|--------|-----------|----------|
-| **CMDB** | 🔷 Beta | 8 of 38 categories | ~21% |
+| **CMDB** | 🔷 Beta | 14 of 38 categories | ~37% |
 | **Monitor** | ⏸️ Not Started | 0 of 29 categories | 0% |
-| **Log** | 🔷 Beta | 5 of 5 categories | 100% |
-| **Service** | 🔷 Beta | 3 of 3 categories | 100% |
+| **Log** | ✅ Complete | 5 of 5 categories | 100% |
+| **Service** | ✅ Complete | 3 of 3 categories | 100% |
 
-**Total Configuration API Categories:** 38  
-**Total Monitor API Categories:** 29  
-**Total Log API Categories:** 5  
-**Total Service API Categories:** 3
+**CMDB Detailed Progress:**
+- **Total Endpoints Implemented:** 51 endpoints across 14 categories
+- **Total Endpoints Available:** 150+ endpoints across 38 categories
+- **Coverage:** ~34% of all CMDB endpoints
 
 **Legend:**
 - ✅ **Complete** - Full CRUD support, tested, documented
@@ -26,12 +26,13 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - 🚧 **In Progress** - Partially implemented
 - ⏸️ **Not Started** - Not yet implemented
 - 🚫 **Not Applicable** - Read-only or special endpoint
+- 🔧 **Hardware Required** - Requires physical hardware or specific licenses
 
 ---
 
 ## 🔧 CMDB (Configuration Management Database)
 
-### Implemented Categories
+### Implemented Categories (14 categories, 51 endpoints)
 
 #### 1. Alert Email (alertemail/)
 | Endpoint | Status | Methods | Notes |
@@ -88,15 +89,71 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 |----------|--------|---------|-------|
 | `/cmdb/diameter-filter/profile` | 🔷 Beta | GET, POST, PUT, DELETE | Diameter filter profiles |
 
+#### 9. DLP (dlp/) - ✅ Complete (8 endpoints)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/dlp/data-type` | ✅ Complete | GET, POST, PUT, DELETE | Predefined data type patterns |
+| `/cmdb/dlp/dictionary` | ✅ Complete | GET, POST, PUT, DELETE | Custom DLP dictionaries |
+| `/cmdb/dlp/exact-data-match` | ✅ Complete | GET, POST, PUT, DELETE | Fingerprinting for exact data matching |
+| `/cmdb/dlp/filepattern` | ✅ Complete | GET, POST, PUT, DELETE | File type and pattern matching |
+| `/cmdb/dlp/label` | ✅ Complete | GET, POST, PUT, DELETE | Classification labels |
+| `/cmdb/dlp/profile` | ✅ Complete | GET, POST, PUT, DELETE | DLP policy profiles |
+| `/cmdb/dlp/sensor` | ✅ Complete | GET, POST, PUT, DELETE | DLP sensor configuration |
+| `/cmdb/dlp/settings` | ✅ Complete | GET, PUT | Global DLP settings |
+
+#### 10. DNS Filter (dnsfilter/) - ✅ Complete (2 endpoints)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/dnsfilter/domain-filter` | ✅ Complete | GET, POST, PUT, DELETE | Custom domain filtering lists |
+| `/cmdb/dnsfilter/profile` | ✅ Complete | GET, POST, PUT, DELETE | DNS filtering profiles |
+
+#### 11. Email Filter (emailfilter/) - ✅ Complete (8 endpoints)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/emailfilter/block-allow-list` | ✅ Complete | GET, POST, PUT, DELETE | Email sender block/allow lists |
+| `/cmdb/emailfilter/bword` | ✅ Complete | GET, POST, PUT, DELETE | Banned word filtering |
+| `/cmdb/emailfilter/dnsbl` | ✅ Complete | GET, POST, PUT, DELETE | DNS-based blacklist checking |
+| `/cmdb/emailfilter/fortishield` | ✅ Complete | GET, POST, PUT, DELETE | FortiShield spam filtering |
+| `/cmdb/emailfilter/iptrust` | ✅ Complete | GET, POST, PUT, DELETE | Trusted IP addresses |
+| `/cmdb/emailfilter/mheader` | ✅ Complete | GET, POST, PUT, DELETE | Email header filtering rules |
+| `/cmdb/emailfilter/options` | ✅ Complete | GET, PUT | Global email filter options |
+| `/cmdb/emailfilter/profile` | ✅ Complete | GET, POST, PUT, DELETE | Email filtering profiles |
+
+#### 12. Endpoint Control (endpoint-control/) - ✅ Complete (3 endpoints)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/endpoint-control/fctems` | ✅ Complete | GET, PUT | FortiClient EMS integration (pre-allocated slots) |
+| `/cmdb/endpoint-control/fctems-override` | ✅ Complete | GET, PUT | EMS override configurations |
+| `/cmdb/endpoint-control/settings` | ✅ Complete | GET, PUT | Endpoint control settings |
+
+#### 13. Ethernet OAM (ethernet-oam/) - 🔧 Hardware Required (1 endpoint)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/ethernet-oam/cfm` | 🔧 Hardware | GET, POST, PUT, DELETE | Connectivity Fault Management (requires physical FortiGate) |
+
+#### 14. Extension Controller (extension-controller/) - ✅ Complete (6 endpoints)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/extension-controller/dataplan` | ✅ Complete | GET, POST, PUT, DELETE | FortiExtender data plan configuration |
+| `/cmdb/extension-controller/extender` | ✅ Complete | GET, POST, PUT, DELETE | FortiExtender controller settings |
+| `/cmdb/extension-controller/extender-profile` | ✅ Complete | GET, POST, PUT, DELETE | FortiExtender profiles |
+| `/cmdb/extension-controller/extender-vap` | ✅ Complete | GET, POST, PUT, DELETE | FortiExtender WiFi VAP |
+| `/cmdb/extension-controller/fortigate` | ✅ Complete | GET, POST, PUT, DELETE | FortiGate controller configuration |
+| `/cmdb/extension-controller/fortigate-profile` | ✅ Complete | GET, POST, PUT, DELETE | FortiGate connector profiles |
+
+#### 15. File Filter (file-filter/) - ✅ Complete (1 endpoint)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/file-filter/profile` | ✅ Complete | GET, POST, PUT, DELETE | File content filtering profiles |
+
 ---
 
-### Not Yet Implemented (30 Categories Remaining)
+### Not Yet Implemented (24 Categories Remaining)
 
 <details>
 <summary><strong>Click to expand full list of remaining CMDB categories</strong></summary>
 
-#### 1. DLP (dlp/) - ⏸️ Not Started
-Data Loss Prevention configuration
+#### 1. DDoS (ddos/) - ⏸️ Not Started
 
 #### 2. DNS Filter (dnsfilter/) - ⏸️ Not Started
 DNS filtering profiles and domain filters

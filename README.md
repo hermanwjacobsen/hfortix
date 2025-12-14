@@ -2,6 +2,13 @@
 
 Python client library for Fortinet products including FortiOS, FortiManager, and FortiAnalyzer.
 
+## 🎯 Current Status
+
+- **CMDB API**: 51 endpoints across 14 categories ✅
+- **Service API**: 21 methods across 3 modules ✅
+- **Log API**: 42 methods across 5 modules (100% complete) ✅
+- **Monitor API**: Not yet implemented ⏸️
+
 ## 🎯 Features
 
 - **Modular Architecture**: Each product module can be used independently or together
@@ -9,6 +16,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions
 - **Type-Safe**: Proper exception hierarchy and error handling
 - **Well-Documented**: Extensive API documentation and examples
+- **Modern Python**: Type hints, async support, PEP 585 compliance
 
 ## 📦 Available Modules
 

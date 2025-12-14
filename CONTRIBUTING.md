@@ -2,6 +2,30 @@
 
 Thank you for your interest in contributing! This document provides guidelines and instructions for contributing to the project.
 
+## 📝 License Notice
+
+This project uses a **Proprietary License with free use**. By contributing, you agree that:
+- Your contributions will be licensed under the same terms
+- The software can be used freely but not sold as a product
+- You retain copyright to your contributions
+- You grant permission for your contributions to be used in this project
+
+See [LICENSE](LICENSE) for full terms.
+
+## 🎯 Current Project Status
+
+**As of December 14, 2025:**
+- **CMDB**: 51 endpoints across 14 categories (~37% coverage)
+- **Log API**: 5 modules (100% complete)
+- **Service API**: 3 modules (100% complete)
+- **Monitor API**: Not yet started
+
+**Priority areas for contribution:**
+- Additional CMDB categories (24 remaining)
+- Monitor API endpoints
+- Documentation improvements
+- Test coverage expansion
+
 ## 🎯 How Can I Contribute?
 
 ### Reporting Bugs
