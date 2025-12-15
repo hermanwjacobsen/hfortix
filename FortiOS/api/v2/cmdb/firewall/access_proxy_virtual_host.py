@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class AccessProxyVirtualHost:
@@ -17,12 +17,12 @@ class AccessProxyVirtualHost:
     This endpoint configures virtual hosts for access proxy.
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Access Proxy Virtual Host endpoint
         
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
         self._path = 'firewall/access-proxy-virtual-host'

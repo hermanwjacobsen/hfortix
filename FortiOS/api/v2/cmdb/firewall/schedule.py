@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class Schedule:
@@ -16,12 +16,12 @@ class Schedule:
     Provides access to firewall schedule endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Schedule helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 

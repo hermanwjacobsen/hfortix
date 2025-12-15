@@ -5,7 +5,7 @@ Antivirus configuration endpoints
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class Antivirus:
@@ -14,12 +14,12 @@ class Antivirus:
     Provides access to antivirus configuration endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Antivirus helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 

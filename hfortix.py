@@ -23,10 +23,10 @@ from typing import TYPE_CHECKING
 
 # Import version from FortiOS submodule
 try:
-    from FortiOS.version import __version__, __author__
+    from FortiOS import __version__, __author__
 except ImportError:
     # Fallback if FortiOS not installed
-    __version__ = '0.3.5'
+    __version__ = '0.3.6'
     __author__ = 'Herman W. Jacobsen'
 
 # Import base exceptions - always available

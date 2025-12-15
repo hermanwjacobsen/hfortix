@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class DosPolicy6:
@@ -17,12 +17,12 @@ class DosPolicy6:
     This endpoint configures policies to protect against DoS attacks on IPv6 networks.
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize DoS Policy6 endpoint
         
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
         self._path = 'firewall/DoS-policy6'

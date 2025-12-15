@@ -7,10 +7,10 @@ This is a placeholder for future development.
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ...client import FortiOS
+    from ...http_client import HTTPClient
 
 __all__ = ['Monitor']
 
@@ -45,12 +45,12 @@ class Monitor:
     - And 11 more...
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Monitor helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -58,34 +58,3 @@ class Monitor:
         """Control autocomplete to show only public attributes"""
         return []  # No public attributes yet, monitor endpoints not implemented
 
-    def _get(
-        self,
-        path: str,
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
-        """
-        GET request to Monitor API (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-
-        Args:
-            path: Endpoint path (e.g., 'system/status', 'firewall/session')
-            params: Query parameters dict
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
-        Returns:
-            JSON response
-
-        Examples:
-            >>> # Get system status
-            >>> monitor._get('system/status')
-
-            >>> # Get firewall sessions
-            >>> monitor._get('firewall/session')
-
-        Note:
-            Most monitor endpoints are read-only (GET only) and provide
-            real-time status information.
-        """
-        return self._client.get('monitor', path, params=params, vdom=vdom)

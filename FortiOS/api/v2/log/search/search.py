@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class Search:
@@ -18,7 +18,7 @@ class Search:
     Provides methods to manage log search sessions (abort, status).
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """Initialize Search log API with FortiOS client."""
         self._client = client
 

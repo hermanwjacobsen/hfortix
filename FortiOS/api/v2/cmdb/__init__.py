@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
-    from ...client import FortiOS
+    from ...http_client import HTTPClient
 
 __all__ = ['CMDB']
 
@@ -36,12 +36,12 @@ class CMDB:
         firewall: Firewall policies and objects
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize CMDB helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -89,111 +89,3 @@ class CMDB:
             'ethernet_oam', 'extension_controller', 'file_filter', 'firewall'
         ]
 
-    def _get(
-        self,
-        path: str,
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
-        """
-        GET request to CMDB API (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.get()
-
-        Args:
-            path: Endpoint path (e.g., 'firewall/address', 'alertemail/setting')
-            params: Query parameters dict
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
-        Returns:
-            JSON response
-
-        Examples:
-            # For endpoints without dedicated classes (e.g., firewall/vip)
-            cmdb._get('firewall/vip')
-            cmdb._get('firewall/vip/myaddr')
-        """
-        return self._client.request('GET', 'cmdb', path, params=params, vdom=vdom)
-
-    def _post(
-        self,
-        path: str,
-        data: dict[str, Any],
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
-        """
-        POST request to CMDB API (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.create()
-
-        Args:
-            path: Endpoint path
-            data: Object data to create
-            params: Query parameters (action=clone, nkey, etc.)
-            vdom: Virtual domain
-
-        Returns:
-            JSON response
-
-        Examples:
-            # For endpoints without dedicated classes (e.g., firewall/vip)
-            cmdb._post('firewall/vip', {'name': 'test', ...})
-        """
-        return self._client.request('POST', 'cmdb', path, data=data, params=params, vdom=vdom)
-
-    def _put(
-        self,
-        path: str,
-        data: dict[str, Any],
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
-        """
-        PUT request to CMDB API (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.update()
-
-        Args:
-            path: Endpoint path (include object identifier)
-            data: Updated object data
-            params: Query parameters (action=move, before, after, etc.)
-            vdom: Virtual domain
-
-        Returns:
-            JSON response
-
-        Examples:
-            # For endpoints without dedicated classes (e.g., firewall/vip)
-            cmdb._put('firewall/vip/myaddr', {'extport': '443'})
-        """
-        return self._client.request('PUT', 'cmdb', path, data=data, params=params, vdom=vdom)
-
-    def _delete(
-        self,
-        path: str,
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
-        """
-        DELETE request to CMDB API (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-        Prefer using endpoint-specific methods: fgt.cmdb.firewall.address.delete()
-
-        Args:
-            path: Endpoint path (include object identifier)
-            params: Query parameters
-            vdom: Virtual domain
-
-        Returns:
-            JSON response
-
-        Examples:
-            # For endpoints without dedicated classes (e.g., firewall/vip)
-            cmdb._delete('firewall/vip/myaddr')
-        """
-        return self._client.request('DELETE', 'cmdb', path, params=params, vdom=vdom)

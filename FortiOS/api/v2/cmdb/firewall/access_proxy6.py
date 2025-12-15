@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class AccessProxy6:
@@ -17,12 +17,12 @@ class AccessProxy6:
     This endpoint configures IPv6 access proxy for secure application access.
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Access Proxy6 endpoint
         
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
         self._path = 'firewall/access-proxy6'

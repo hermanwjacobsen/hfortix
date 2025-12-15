@@ -5,7 +5,7 @@ Configure CASB security policies and rules
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 from .attribute_match import AttributeMatch
 from .profile import Profile
@@ -16,12 +16,12 @@ from .user_activity import UserActivity
 class Casb:
     """CASB category class"""
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize CASB category
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 

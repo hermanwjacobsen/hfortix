@@ -1,4 +1,10 @@
 """FortiOS CMDB DLP Settings API module.
+from __future__ import annotations
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
+
 
 This module provides methods for managing global DLP settings configuration.
 
@@ -14,7 +20,7 @@ class Settings:
     Settings are singleton resources (only one instance exists globally).
     """
     
-    def __init__(self, client):
+    def __init__(self, client: 'HTTPClient') -> None:
         """Initialize Settings API module.
         
         Args:

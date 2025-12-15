@@ -4,10 +4,10 @@ Service operations endpoints (sniffer, security rating, etc.)
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ...client import FortiOS
+    from ...http_client import HTTPClient
 
 __all__ = ['Service']
 
@@ -18,12 +18,12 @@ class Service:
     Provides access to service endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Service helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -39,41 +39,3 @@ class Service:
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return ['sniffer', 'security_rating', 'system']
-
-    def _get(
-        self,
-        endpoint: str,
-        params: Optional[dict[str, Any]] = None
-    ) -> dict[str, Any]:
-        """
-        GET request to service API endpoint (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-
-        Args:
-            endpoint: API endpoint path (without /api/v2/service/)
-            params: Query parameters
-
-        Returns:
-            dict: API response
-        """
-        return self._client.get('service', endpoint, params=params)
-
-    def _post(
-        self,
-        endpoint: str,
-        data: Optional[dict[str, Any]] = None
-    ) -> dict[str, Any]:
-        """
-        POST request to service API endpoint (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-
-        Args:
-            endpoint: API endpoint path (without /api/v2/service/)
-            data: Request body data
-
-        Returns:
-            dict: API response
-        """
-        return self._client.post('service', endpoint, data=data)

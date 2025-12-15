@@ -4,10 +4,10 @@ Log retrieval endpoints for various log sources
 """
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ...client import FortiOS
+    from ...http_client import HTTPClient
 
 __all__ = ['Log']
 
@@ -18,12 +18,12 @@ class Log:
     Provides access to log endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Log helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -44,40 +44,3 @@ class Log:
         """Control autocomplete to show only public attributes"""
         return ['disk', 'fortianalyzer', 'memory', 'forticloud', 'search']
 
-    def _get(
-        self,
-        endpoint: str,
-        params: Optional[dict[str, Any]] = None
-    ) -> dict[str, Any]:
-        """
-        GET request to log API endpoint (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-
-        Args:
-            endpoint: API endpoint path (without /api/v2/log/)
-            params: Query parameters
-
-        Returns:
-            dict: API response
-        """
-        return self._client.get('log', endpoint, params=params)
-
-    def _get_binary(
-        self,
-        endpoint: str,
-        params: Optional[dict[str, Any]] = None
-    ) -> bytes:
-        """
-        GET request to log API endpoint returning binary data (Advanced/Internal)
-        
-        ⚠️ Advanced Usage: For endpoints without dedicated classes.
-
-        Args:
-            endpoint: API endpoint path (without /api/v2/log/)
-            params: Query parameters
-
-        Returns:
-            bytes: Binary response data
-        """
-        return self._client.get_binary('log', endpoint, params=params)

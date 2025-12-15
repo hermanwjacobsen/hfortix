@@ -1,4 +1,10 @@
 """
+from __future__ import annotations
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
+
 FortiOS CMDB - DLP Exact Data Match
 
 Configure exact-data-match template used by DLP scan.
@@ -18,7 +24,7 @@ from typing import Any
 class ExactDataMatch:
     """DLP exact-data-match endpoint"""
     
-    def __init__(self, client):
+    def __init__(self, client: 'HTTPClient') -> None:
         self._client = client
     
     def get(

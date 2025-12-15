@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
     from .access_proxy import AccessProxy
     from .access_proxy6 import AccessProxy6
     from .access_proxy_ssh_client_cert import AccessProxySshClientCert
@@ -35,12 +35,12 @@ class Firewall:
     Provides access to firewall configuration endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Firewall helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -146,3 +146,12 @@ class Firewall:
             from .access_proxy_virtual_host import AccessProxyVirtualHost
             self.__access_proxy_virtual_host = AccessProxyVirtualHost(self._client)
         return self.__access_proxy_virtual_host
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return [
+            'ipmacbinding', 'schedule', 'service', 'shaper', 'ssh', 'ssl', 'wildcard_fqdn',
+            'dos_policy', 'dos_policy6', 'address', 'address6', 'address6_template',
+            'addrgrp', 'addrgrp6', 'access_proxy', 'access_proxy6',
+            'access_proxy_ssh_client_cert', 'access_proxy_virtual_host'
+        ]

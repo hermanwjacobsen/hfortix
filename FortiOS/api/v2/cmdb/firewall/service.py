@@ -8,35 +8,41 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class Service:
     """Service sub-category grouping related endpoints"""
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize Service sub-category
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
     @property
     def category(self):
         """Access category endpoint"""
-        from .service_category import ServiceCategory
-        return ServiceCategory(self._client)
+        if not hasattr(self, '_category'):
+            from .service_category import ServiceCategory
+            self._category = ServiceCategory(self._client)
+        return self._category
 
     @property
     def custom(self):
         """Access custom endpoint"""
-        from .service_custom import ServiceCustom
-        return ServiceCustom(self._client)
+        if not hasattr(self, '_custom'):
+            from .service_custom import ServiceCustom
+            self._custom = ServiceCustom(self._client)
+        return self._custom
 
     @property
     def group(self):
         """Access group endpoint"""
-        from .service_group import ServiceGroup
-        return ServiceGroup(self._client)
+        if not hasattr(self, '_group'):
+            from .service_group import ServiceGroup
+            self._group = ServiceGroup(self._client)
+        return self._group

@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....client import FortiOS
+    from ....http_client import HTTPClient
 
 
 class EmailFilter:
@@ -16,12 +16,12 @@ class EmailFilter:
     Provides access to email filtering configuration endpoints
     """
 
-    def __init__(self, client: 'FortiOS') -> None:
+    def __init__(self, client: 'HTTPClient') -> None:
         """
         Initialize EmailFilter helper
 
         Args:
-            client: FortiOS client instance
+            client: HTTPClient instance
         """
         self._client = client
 
@@ -43,3 +43,10 @@ class EmailFilter:
         self.mheader = Mheader(client)
         self.options = Options(client)
         self.profile = Profile(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return [
+            'block_allow_list', 'bword', 'dnsbl', 'fortishield',
+            'iptrust', 'mheader', 'options', 'profile'
+        ]
