@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/authentication/scheme/{name} - Update authentication scheme
     DELETE /api/v2/cmdb/authentication/scheme/{name} - Delete authentication scheme
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

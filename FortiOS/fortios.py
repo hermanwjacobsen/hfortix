@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, Optional, Union
 
 from .http_client import HTTPClient
+from .api import API
 
 __all__ = ['FortiOS']
 
@@ -54,6 +55,9 @@ class FortiOS:
         - Token Setup: QUICKSTART.md
         - Examples: EXAMPLES.md
     """
+    
+    # Type hint for IDE autocomplete
+    api: API
     
     def __init__(
         self,
@@ -119,10 +123,6 @@ class FortiOS:
         from .api import API
         
         self.api = API(self._client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return ['api']
 
     @property
     def host(self) -> Optional[str]:

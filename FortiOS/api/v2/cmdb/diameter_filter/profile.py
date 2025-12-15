@@ -2,6 +2,7 @@
 FortiOS CMDB Diameter Filter Profile API
 Configure Diameter filter profiles
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

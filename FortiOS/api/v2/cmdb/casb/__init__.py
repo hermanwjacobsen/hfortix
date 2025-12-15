@@ -7,6 +7,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+__all__ = ['Casb']
+
 from .attribute_match import AttributeMatch
 from .profile import Profile
 from .saas_application import SaasApplication
@@ -29,4 +31,8 @@ class Casb:
         self.attribute_match = AttributeMatch(client)
         self.profile = Profile(client)
         self.saas_application = SaasApplication(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['attribute_match', 'profile', 'saas_application', 'user_activity']
         self.user_activity = UserActivity(client)

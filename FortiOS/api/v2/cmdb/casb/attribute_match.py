@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /casb/attribute-match/{name} - Update attribute match rule
     DELETE /casb/attribute-match/{name} - Delete attribute match rule
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -2,6 +2,7 @@
 FortiOS CMDB API
 Configuration Management Database endpoints
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

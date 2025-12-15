@@ -2,6 +2,7 @@
 FortiOS Firewall IP-MAC Binding API
 IP-MAC binding configuration endpoints
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING

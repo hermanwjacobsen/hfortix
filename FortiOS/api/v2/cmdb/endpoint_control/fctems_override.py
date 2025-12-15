@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}  - Update EMS override entry
     DELETE /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}  - Delete EMS override entry
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

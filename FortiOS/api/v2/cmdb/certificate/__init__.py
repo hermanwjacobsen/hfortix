@@ -21,6 +21,8 @@ from .remote import Remote
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+__all__ = ['Certificate']
+
 
 class Certificate:
     """Certificate management category"""
@@ -37,3 +39,7 @@ class Certificate:
         self.hsm_local = HsmLocal(client)
         self.local = Local(client)
         self.remote = Remote(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['ca', 'crl', 'hsm_local', 'local', 'remote']

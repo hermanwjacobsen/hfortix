@@ -24,7 +24,7 @@ class Setting:
         """
         self._client = client
     
-    def get(self, vdom=None, **params):
+    def get(self, vdom=None, **params) -> HTTPResponse:
         """
         Get SSL proxy settings.
         
@@ -58,7 +58,7 @@ class Setting:
         ssl_queue_threshold: int = None,
         abbreviate_handshake: str = None,
         vdom=None
-    ):
+    ) -> HTTPResponse:
         """
         Update SSL proxy settings.
         

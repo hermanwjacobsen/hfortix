@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/list/{name} - Update application control list
     DELETE /api/v2/cmdb/application/list/{name} - Delete application control list
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -7,6 +7,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+__all__ = ['Antivirus']
+
 
 class Antivirus:
     """
@@ -38,3 +40,7 @@ class Antivirus:
         self.profile = Profile(client)
         self.quarantine = Quarantine(client)
         self.settings = Settings(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['exempt_list', 'profile', 'quarantine', 'settings']

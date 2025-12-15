@@ -2,6 +2,7 @@
 FortiOS Firewall API
 Firewall configuration endpoints
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -19,6 +20,8 @@ if TYPE_CHECKING:
     from .addrgrp6 import Addrgrp6
     from .dos_policy import DosPolicy
     from .dos_policy6 import DosPolicy6
+
+__all__ = ['Firewall']
 
 from .ipmacbinding import Ipmacbinding
 from .schedule import Schedule

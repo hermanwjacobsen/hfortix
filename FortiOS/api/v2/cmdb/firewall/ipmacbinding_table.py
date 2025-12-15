@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num} - Update IP-MAC binding
     DELETE /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num} - Delete IP-MAC binding
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

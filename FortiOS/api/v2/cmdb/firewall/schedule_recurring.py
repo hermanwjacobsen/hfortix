@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.schedule/recurring/{name} - Update recurring schedule
     DELETE /api/v2/cmdb/firewall.schedule/recurring/{name} - Delete recurring schedule
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

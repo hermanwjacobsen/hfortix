@@ -7,6 +7,7 @@ API Endpoints:
     GET    /api/v2/cmdb/authentication/setting       - Get authentication settings
     PUT    /api/v2/cmdb/authentication/setting       - Update authentication settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

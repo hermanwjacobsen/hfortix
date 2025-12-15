@@ -27,7 +27,7 @@ class PerIpShaper:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         List all per-IP traffic shapers.
         
@@ -69,7 +69,7 @@ class PerIpShaper:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get per-IP traffic shaper(s).
         
@@ -120,7 +120,7 @@ class PerIpShaper:
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Create a per-IP traffic shaper.
         
@@ -189,7 +189,7 @@ class PerIpShaper:
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update a per-IP traffic shaper.
         
@@ -250,7 +250,7 @@ class PerIpShaper:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ):
+    ) -> HTTPResponse:
         """
         Delete a per-IP traffic shaper.
         

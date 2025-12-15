@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall/addrgrp/{name} - Update IPv4 address group
     DELETE /api/v2/cmdb/firewall/addrgrp/{name} - Delete IPv4 address group
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

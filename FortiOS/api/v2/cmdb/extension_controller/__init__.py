@@ -2,12 +2,15 @@
 FortiOS Extension Controller API
 Extension controller configuration endpoints for FortiExtender and FortiGate connectors
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
+
+__all__ = ['ExtensionController']
 
 
 class ExtensionController:
@@ -38,4 +41,8 @@ class ExtensionController:
         self.extender_profile = ExtenderProfile(client)
         self.extender_vap = ExtenderVap(client)
         self.fortigate = Fortigate(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['dataplan', 'extender', 'extender_profile', 'extender_vap', 'fortigate', 'fortigate_profile']
         self.fortigate_profile = FortigateProfile(client)

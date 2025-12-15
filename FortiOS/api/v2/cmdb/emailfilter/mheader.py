@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/emailfilter/mheader/{id}  - Update MIME header entry
     DELETE /api/v2/cmdb/emailfilter/mheader/{id}  - Delete MIME header entry
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

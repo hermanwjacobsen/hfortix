@@ -27,7 +27,7 @@ class TrafficShaper:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         List all shared traffic shapers.
         
@@ -69,7 +69,7 @@ class TrafficShaper:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get shared traffic shaper(s).
         
@@ -129,7 +129,7 @@ class TrafficShaper:
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Create a shared traffic shaper.
         
@@ -240,7 +240,7 @@ class TrafficShaper:
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update a shared traffic shaper.
         
@@ -329,7 +329,7 @@ class TrafficShaper:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ):
+    ) -> HTTPResponse:
         """
         Delete a shared traffic shaper.
         

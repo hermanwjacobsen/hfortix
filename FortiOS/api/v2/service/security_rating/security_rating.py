@@ -7,6 +7,7 @@ API Endpoints:
     GET /security-rating/report/           - Get full Security Rating report
     GET /security-rating/recommendations/  - Get recommendations for specific checks
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

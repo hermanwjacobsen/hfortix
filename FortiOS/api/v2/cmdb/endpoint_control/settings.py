@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/endpoint-control/settings - Get endpoint control settings
     PUT /api/v2/cmdb/endpoint-control/settings - Update endpoint control settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.service/category/{name} - Update service category
     DELETE /api/v2/cmdb/firewall.service/category/{name} - Delete service category
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

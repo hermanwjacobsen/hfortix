@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/ethernet-oam/cfm/{domain-id}  - Update CFM domain
     DELETE /api/v2/cmdb/ethernet-oam/cfm/{domain-id}  - Delete CFM domain
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

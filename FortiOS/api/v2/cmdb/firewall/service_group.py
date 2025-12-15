@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.service/group/{name} - Update service group
     DELETE /api/v2/cmdb/firewall.service/group/{name} - Delete service group
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -24,7 +24,7 @@ class Setting:
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get SSH proxy settings.
         
@@ -76,7 +76,7 @@ class Setting:
         log_violation: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update SSH proxy settings.
         

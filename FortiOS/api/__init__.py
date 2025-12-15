@@ -8,6 +8,10 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..http_client import HTTPClient
+    from .v2.cmdb import CMDB
+    from .v2.log import Log
+    from .v2.monitor import Monitor
+    from .v2.service import Service
 
 __all__ = ['API']
 
@@ -22,6 +26,12 @@ class API:
         log: Log retrieval
         service: System services
     """
+    
+    # Type hints for attributes (helps IDE autocomplete)
+    cmdb: 'CMDB'
+    log: 'Log'
+    monitor: 'Monitor'
+    service: 'Service'
     
     def __init__(self, client: 'HTTPClient') -> None:
         """Initialize API namespace"""

@@ -9,6 +9,7 @@ API Endpoints:
     PUT    /antivirus/exempt-list/{name} - Update exempt list entry
     DELETE /antivirus/exempt-list/{name} - Delete exempt list entry
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -357,16 +358,3 @@ class ExemptList:
         params.update(kwargs)
 
         return self._client.delete('cmdb', f'antivirus/exempt-list/{name}', params=params if params else None, vdom=vdom)
-
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **params: Any
-    ) -> dict[str, Any]:
-        """
-        Alias for get() without name parameter - more intuitive for getting all entries
-
-        Example:
-            >>> all_entries = fgt.cmdb.antivirus.exempt_list.list()
-        """
-        return self.get(vdom=vdom, **params)

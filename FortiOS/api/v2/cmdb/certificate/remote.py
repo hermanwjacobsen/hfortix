@@ -12,6 +12,7 @@ Note: This is a READ-ONLY endpoint. Remote certificates are typically:
     - SSL/TLS certificates from external services
     - Certificates retrieved during SSL inspection
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

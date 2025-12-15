@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/firewall.ipmacbinding/setting - Get IP-MAC binding settings
     PUT /api/v2/cmdb/firewall.ipmacbinding/setting - Update IP-MAC binding settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.schedule/group/{name} - Update schedule group
     DELETE /api/v2/cmdb/firewall.schedule/group/{name} - Delete schedule group
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

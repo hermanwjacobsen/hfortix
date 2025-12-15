@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/extension-controller/fortigate/{name} - Update FortiGate controller
     DELETE /api/v2/cmdb/extension-controller/fortigate/{name} - Delete FortiGate controller
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

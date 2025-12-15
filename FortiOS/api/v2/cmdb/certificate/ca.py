@@ -12,6 +12,7 @@ Note: This is a READ-ONLY endpoint. CA certificates are typically:
     - User-uploaded certificates via GUI/CLI
     - Factory certificates
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /casb/user-activity/{name} - Update user activity control
     DELETE /casb/user-activity/{name} - Delete user activity control
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -9,6 +9,7 @@ API Endpoints:
     GET /api/v2/cmdb/emailfilter/fortishield - Get FortiGuard AntiSpam settings
     PUT /api/v2/cmdb/emailfilter/fortishield - Update FortiGuard AntiSpam settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

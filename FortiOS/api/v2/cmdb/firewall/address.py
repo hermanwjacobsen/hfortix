@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall/address/{name} - Update IPv4 address
     DELETE /api/v2/cmdb/firewall/address/{name} - Delete IPv4 address
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

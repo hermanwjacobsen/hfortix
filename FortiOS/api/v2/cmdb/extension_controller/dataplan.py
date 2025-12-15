@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/extension-controller/dataplan/{name} - Update dataplan
     DELETE /api/v2/cmdb/extension-controller/dataplan/{name} - Delete dataplan
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/group/{name} - Update an application group
     DELETE /api/v2/cmdb/application/group/{name} - Delete an application group
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

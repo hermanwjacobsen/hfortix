@@ -27,7 +27,7 @@ class HostKey:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         List all SSH host keys.
         
@@ -69,7 +69,7 @@ class HostKey:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get SSH host key(s).
         
@@ -123,7 +123,7 @@ class HostKey:
         usage: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Create an SSH host key.
         
@@ -207,7 +207,7 @@ class HostKey:
         usage: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update an SSH host key.
         
@@ -277,7 +277,7 @@ class HostKey:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ):
+    ) -> HTTPResponse:
         """
         Delete an SSH host key.
         

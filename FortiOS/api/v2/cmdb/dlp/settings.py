@@ -1,16 +1,16 @@
 """FortiOS CMDB DLP Settings API module.
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
 
 This module provides methods for managing global DLP settings configuration.
 
 Note: This is a singleton endpoint - settings exist globally and cannot be created or deleted.
 Only GET and UPDATE operations are supported.
 """
+
+from __future__ import annotations
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient, HTTPResponse
 
 
 class Settings:
@@ -28,7 +28,7 @@ class Settings:
         """
         self._client = client
     
-    def get(self, vdom=None, **kwargs):
+    def get(self, vdom=None, **kwargs) -> HTTPResponse:
         """Retrieve current DLP settings.
         
         Args:
@@ -49,7 +49,7 @@ class Settings:
         """
         return self._client.get('cmdb', 'dlp/settings', vdom=vdom, params=kwargs)
     
-    def update(self, config_builder_timeout=None, vdom=None, **kwargs):
+    def update(self, config_builder_timeout=None, vdom=None, **kwargs) -> HTTPResponse:
         """Update DLP settings.
         
         Args:

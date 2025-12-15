@@ -2,6 +2,7 @@
 FortiOS Access Proxy6 Endpoint
 API endpoint for managing IPv6 access proxy configuration.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any

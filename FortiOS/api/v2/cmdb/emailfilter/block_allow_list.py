@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/emailfilter/block-allow-list/{id}  - Update block/allow list
     DELETE /api/v2/cmdb/emailfilter/block-allow-list/{id}  - Delete block/allow list
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

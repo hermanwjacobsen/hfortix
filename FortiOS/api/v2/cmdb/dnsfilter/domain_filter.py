@@ -1,16 +1,13 @@
 """FortiOS CMDB DNS Filter Domain Filter API module.
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
 
 This module provides methods for managing DNS domain filters.
 """
 
 from __future__ import annotations
-from typing import Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class DomainFilter:

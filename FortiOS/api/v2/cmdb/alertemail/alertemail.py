@@ -6,6 +6,7 @@ API Endpoints:
     GET  /alertemail/setting - Get alert email settings
     PUT  /alertemail/setting - Update alert email settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -203,7 +204,3 @@ class AlertEmail:
         data.update(kwargs)
 
         return self._client.put('cmdb', 'alertemail/setting', data, vdom=vdom)
-
-    # Backward compatibility aliases
-    get_setting = get
-    update_setting = lambda self, data, vdom=None: self._client.put('cmdb', 'alertemail/setting', data, vdom=vdom)

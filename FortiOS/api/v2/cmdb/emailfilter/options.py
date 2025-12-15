@@ -9,6 +9,7 @@ API Endpoints:
     GET /api/v2/cmdb/emailfilter/options - Get AntiSpam options
     PUT /api/v2/cmdb/emailfilter/options - Update AntiSpam options
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

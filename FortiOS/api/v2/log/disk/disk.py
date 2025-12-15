@@ -14,6 +14,7 @@ API Endpoints:
     GET /disk/traffic/{subtype}                  - Get traffic logs by subtype
     GET /disk/event/{subtype}                    - Get event logs by subtype
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional

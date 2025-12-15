@@ -2,6 +2,7 @@
 FortiOS Access Proxy Virtual Host Endpoint
 API endpoint for managing Access Proxy virtual hosts.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any

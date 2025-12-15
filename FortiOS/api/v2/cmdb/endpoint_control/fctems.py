@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/endpoint-control/fctems/{ems-id}  - Update EMS entry
     DELETE /api/v2/cmdb/endpoint-control/fctems/{ems-id}  - Delete EMS entry
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

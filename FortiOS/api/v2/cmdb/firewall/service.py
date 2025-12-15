@@ -3,12 +3,13 @@ FortiOS CMDB - Firewall Service
 
 Service configuration sub-category grouping related endpoints.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from ....http_client import HTTPClient, HTTPResponse
 
 
 class Service:

@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.service/custom/{name} - Update custom service
     DELETE /api/v2/cmdb/firewall.service/custom/{name} - Delete custom service
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

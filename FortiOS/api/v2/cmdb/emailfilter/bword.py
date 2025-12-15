@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/emailfilter/bword/{id}  - Update banned word list
     DELETE /api/v2/cmdb/emailfilter/bword/{id}  - Delete banned word list
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

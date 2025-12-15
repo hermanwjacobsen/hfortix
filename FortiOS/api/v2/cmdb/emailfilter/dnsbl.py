@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/emailfilter/dnsbl/{id}  - Update DNSBL entry
     DELETE /api/v2/cmdb/emailfilter/dnsbl/{id}  - Delete DNSBL entry
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

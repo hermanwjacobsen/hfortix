@@ -7,6 +7,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+__all__ = ['Application']
+
 
 class Application:
     """
@@ -33,3 +35,7 @@ class Application:
         self.group = Group(client)
         self.list = List(client)
         self.name = Name(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['custom', 'group', 'list', 'name']

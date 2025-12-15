@@ -14,8 +14,8 @@ API Categories:
     - service: System services
 
 Exceptions:
-    FortiOSError: Base exception for FortiOS-specific errors
-    LoginError: Authentication failure
+    FortinetError: Base exception for FortiOS-specific errors
+    AuthenticationError: Authentication failure
     APIError: API request/response errors
 """
 
@@ -31,15 +31,15 @@ VERSION = tuple(map(int, __version__.split('.')))
 
 # Public API
 from .fortios import FortiOS
-from .exceptions import APIError, FortiOSError, LoginError
+from .exceptions import APIError, FortinetError, AuthenticationError
 
 __all__ = [
     # Main client
     'FortiOS',
     
     # Exceptions
-    'FortiOSError',
-    'LoginError', 
+    'FortinetError',
+    'AuthenticationError', 
     'APIError',
     
     # Version info

@@ -1,10 +1,4 @@
 """
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
 FortiOS CMDB - DLP Sensor
 
 Configure sensors used by DLP blocking.
@@ -18,7 +12,10 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import TYPE_CHECKING, Any, Optional, Union
+
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class Sensor:

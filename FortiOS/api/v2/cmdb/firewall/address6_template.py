@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall/address6-template/{name} - Update IPv6 address template
     DELETE /api/v2/cmdb/firewall/address6-template/{name} - Delete IPv6 address template
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

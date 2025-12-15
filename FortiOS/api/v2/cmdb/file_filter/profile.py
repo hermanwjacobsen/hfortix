@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/file-filter/profile/{name} - Update file filter profile
     DELETE /api/v2/cmdb/file-filter/profile/{name} - Delete file filter profile
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

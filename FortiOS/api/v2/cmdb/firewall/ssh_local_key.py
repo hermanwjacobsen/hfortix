@@ -27,7 +27,7 @@ class LocalKey:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         List all SSH local keys.
         
@@ -69,7 +69,7 @@ class LocalKey:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get SSH local key(s).
         
@@ -119,7 +119,7 @@ class LocalKey:
         public_key: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Create an SSH local key.
         
@@ -183,7 +183,7 @@ class LocalKey:
         public_key: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update an SSH local key.
         
@@ -234,7 +234,7 @@ class LocalKey:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ):
+    ) -> HTTPResponse:
         """
         Delete an SSH local key.
         

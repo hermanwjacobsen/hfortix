@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/application/custom/{tag} - Update a custom application signature
     DELETE /api/v2/cmdb/application/custom/{tag} - Delete a custom application signature
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

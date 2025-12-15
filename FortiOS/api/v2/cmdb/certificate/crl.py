@@ -12,6 +12,7 @@ Note: This is a READ-ONLY endpoint. CRL certificates are typically:
     - User-uploaded CRLs via GUI/CLI
     - Auto-updated CRLs from LDAP/HTTP/SCEP sources
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

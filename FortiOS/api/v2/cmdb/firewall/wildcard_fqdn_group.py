@@ -23,7 +23,7 @@ class Group:
         """
         self._client = client
     
-    def list(self, vdom=None, **params):
+    def list(self, vdom=None, **params) -> HTTPResponse:
         """
         Get list of wildcard FQDN groups.
         
@@ -39,7 +39,7 @@ class Group:
         """
         return self._client.get('cmdb', 'firewall.wildcard-fqdn/group', vdom=vdom, params=params)
     
-    def get(self, name: str, vdom=None, **params):
+    def get(self, name: str, vdom=None, **params) -> HTTPResponse:
         """
         Get a specific wildcard FQDN group.
         
@@ -65,7 +65,7 @@ class Group:
         visibility: str = None,
         uuid: str = None,
         vdom=None
-    ):
+    ) -> HTTPResponse:
         """
         Create a new wildcard FQDN group.
         
@@ -116,7 +116,7 @@ class Group:
         visibility: str = None,
         uuid: str = None,
         vdom=None
-    ):
+    ) -> HTTPResponse:
         """
         Update an existing wildcard FQDN group.
         
@@ -158,7 +158,7 @@ class Group:
         
         return self._client.put('cmdb', f'firewall.wildcard-fqdn/group/{name}', data, vdom=vdom)
     
-    def delete(self, name: str, vdom=None):
+    def delete(self, name: str, vdom=None) -> HTTPResponse:
         """
         Delete a wildcard FQDN group.
         
@@ -174,7 +174,7 @@ class Group:
         """
         return self._client.delete('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom)
     
-    def exists(self, name: str, vdom=None):
+    def exists(self, name: str, vdom=None) -> HTTPResponse:
         """
         Check if a wildcard FQDN group exists.
         

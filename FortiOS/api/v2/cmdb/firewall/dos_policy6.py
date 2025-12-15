@@ -2,6 +2,7 @@
 FortiOS DoS Policy6 Endpoint
 API endpoint for managing IPv6 DoS policies.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any

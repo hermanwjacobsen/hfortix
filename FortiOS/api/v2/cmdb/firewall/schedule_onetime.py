@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.schedule/onetime/{name} - Update onetime schedule
     DELETE /api/v2/cmdb/firewall.schedule/onetime/{name} - Delete onetime schedule
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

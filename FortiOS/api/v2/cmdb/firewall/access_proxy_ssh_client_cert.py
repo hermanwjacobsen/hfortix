@@ -2,6 +2,7 @@
 FortiOS Access Proxy SSH Client Certificate Endpoint
 API endpoint for managing Access Proxy SSH client certificates.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any

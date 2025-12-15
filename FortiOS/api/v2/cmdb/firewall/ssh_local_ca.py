@@ -27,7 +27,7 @@ class LocalCa:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         List all SSH local CAs.
         
@@ -69,7 +69,7 @@ class LocalCa:
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Get SSH local CA(s).
         
@@ -117,7 +117,7 @@ class LocalCa:
         source_ip: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Create an SSH local CA.
         
@@ -172,7 +172,7 @@ class LocalCa:
         source_ip: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs
-    ):
+    ) -> HTTPResponse:
         """
         Update an SSH local CA.
         
@@ -217,7 +217,7 @@ class LocalCa:
         self,
         name: str,
         vdom: Optional[Union[str, bool]] = None
-    ):
+    ) -> HTTPResponse:
         """
         Delete an SSH local CA.
         

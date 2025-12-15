@@ -7,9 +7,14 @@ of the public API.
 """
 from __future__ import annotations
 
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, TypeAlias
 
 import requests
+
+# Type alias for API responses
+HTTPResponse: TypeAlias = dict[str, Any]
+
+__all__ = ['HTTPClient', 'HTTPResponse']
 
 
 class HTTPClient:
@@ -200,6 +205,133 @@ class HTTPClient:
     ) -> dict[str, Any]:
         """DELETE request - Delete object"""
         return self.request('DELETE', api_type, path, params=params, vdom=vdom)
+    
+    # ========================================================================
+    # Validation Helper Methods
+    # ========================================================================
+    
+    @staticmethod
+    def validate_mkey(mkey: Any, parameter_name: str = 'mkey') -> str:
+        """
+        Validate and convert mkey to string
+        
+        Args:
+            mkey: The management key value to validate
+            parameter_name: Name of the parameter (for error messages)
+        
+        Returns:
+            String representation of mkey
+        
+        Raises:
+            ValueError: If mkey is None, empty, or invalid
+        
+        Example:
+            >>> mkey = HTTPClient.validate_mkey(user_id, 'user_id')
+        """
+        if mkey is None:
+            raise ValueError(f"{parameter_name} is required and cannot be None")
+        
+        mkey_str = str(mkey).strip()
+        if not mkey_str:
+            raise ValueError(f"{parameter_name} cannot be empty")
+        
+        return mkey_str
+    
+    @staticmethod
+    def validate_required_params(params: dict[str, Any], required: list[str]) -> None:
+        """
+        Validate that required parameters are present in params dict
+        
+        Args:
+            params: Dictionary of parameters to validate
+            required: List of required parameter names
+        
+        Raises:
+            ValueError: If any required parameters are missing
+        
+        Example:
+            >>> HTTPClient.validate_required_params(data, ['name', 'type'])
+        """
+        if not params:
+            if required:
+                raise ValueError(f"Missing required parameters: {', '.join(required)}")
+            return
+        
+        missing = [param for param in required if param not in params or params[param] is None]
+        if missing:
+            raise ValueError(f"Missing required parameters: {', '.join(missing)}")
+    
+    @staticmethod
+    def validate_range(
+        value: Union[int, float],
+        min_val: Union[int, float],
+        max_val: Union[int, float],
+        parameter_name: str = 'value'
+    ) -> None:
+        """
+        Validate that a numeric value is within a specified range
+        
+        Args:
+            value: The value to validate
+            min_val: Minimum allowed value (inclusive)
+            max_val: Maximum allowed value (inclusive)
+            parameter_name: Name of the parameter (for error messages)
+        
+        Raises:
+            ValueError: If value is outside the specified range
+        
+        Example:
+            >>> HTTPClient.validate_range(port, 1, 65535, 'port')
+        """
+        if not isinstance(value, (int, float)):
+            raise ValueError(f"{parameter_name} must be a number")
+        
+        if not (min_val <= value <= max_val):
+            raise ValueError(
+                f"{parameter_name} must be between {min_val} and {max_val}, got {value}"
+            )
+    
+    @staticmethod
+    def validate_choice(
+        value: Any,
+        choices: list[Any],
+        parameter_name: str = 'value'
+    ) -> None:
+        """
+        Validate that a value is one of the allowed choices
+        
+        Args:
+            value: The value to validate
+            choices: List of allowed values
+            parameter_name: Name of the parameter (for error messages)
+        
+        Raises:
+            ValueError: If value is not in the allowed choices
+        
+        Example:
+            >>> HTTPClient.validate_choice(protocol, ['tcp', 'udp'], 'protocol')
+        """
+        if value not in choices:
+            raise ValueError(
+                f"{parameter_name} must be one of {choices}, got '{value}'"
+            )
+    
+    @staticmethod
+    def build_params(**kwargs: Any) -> dict[str, Any]:
+        """
+        Build parameters dict, filtering out None values
+        
+        Args:
+            **kwargs: Keyword arguments to build params from
+        
+        Returns:
+            Dictionary with None values removed
+        
+        Example:
+            >>> params = HTTPClient.build_params(format=['name'], datasource=True, other=None)
+            >>> # Returns: {'format': ['name'], 'datasource': True}
+        """
+        return {k: v for k, v in kwargs.items() if v is not None}
     
     def close(self) -> None:
         """Close the HTTP session and release resources"""

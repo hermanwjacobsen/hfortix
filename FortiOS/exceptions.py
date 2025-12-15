@@ -76,16 +76,10 @@ from exceptions_forti import (
     raise_for_status,
 )
 
-# Backward compatibility aliases
-FortiOSError = FortinetError
-LoginError = AuthenticationError
-
 __all__ = [
     # Base exceptions
     'FortinetError',
-    'FortiOSError',
     'AuthenticationError',
-    'LoginError',
     'AuthorizationError',
     'APIError',
 

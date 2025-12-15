@@ -6,6 +6,7 @@ API Endpoints:
     GET  /antivirus/settings - Get antivirus settings
     PUT  /antivirus/settings - Update antivirus settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

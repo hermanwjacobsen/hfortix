@@ -2,12 +2,15 @@
 FortiOS Endpoint Control API
 Endpoint control configuration endpoints
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
+
+__all__ = ['EndpointControl']
 
 
 class EndpointControl:
@@ -33,3 +36,7 @@ class EndpointControl:
         self.fctems = Fctems(client)
         self.fctems_override = FctemsOverride(client)
         self.settings = Settings(client)
+    
+    def __dir__(self):
+        """Control autocomplete to show only public attributes"""
+        return ['fctems', 'fctems_override', 'settings']

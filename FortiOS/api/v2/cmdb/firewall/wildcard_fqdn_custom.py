@@ -24,7 +24,7 @@ class Custom:
         """
         self._client = client
     
-    def list(self, vdom=None, **params):
+    def list(self, vdom=None, **params) -> HTTPResponse:
         """
         Get list of wildcard FQDN custom addresses.
         
@@ -40,7 +40,7 @@ class Custom:
         """
         return self._client.get('cmdb', 'firewall.wildcard-fqdn/custom', vdom=vdom, params=params)
     
-    def get(self, name: str, vdom=None, **params):
+    def get(self, name: str, vdom=None, **params) -> HTTPResponse:
         """
         Get a specific wildcard FQDN custom address.
         
@@ -66,7 +66,7 @@ class Custom:
         visibility: str = None,
         uuid: str = None,
         vdom=None
-    ):
+    ) -> HTTPResponse:
         """
         Create a new wildcard FQDN custom address.
         
@@ -122,7 +122,7 @@ class Custom:
         visibility: str = None,
         uuid: str = None,
         vdom=None
-    ):
+    ) -> HTTPResponse:
         """
         Update an existing wildcard FQDN custom address.
         
@@ -160,7 +160,7 @@ class Custom:
         
         return self._client.put('cmdb', f'firewall.wildcard-fqdn/custom/{name}', data, vdom=vdom)
     
-    def delete(self, name: str, vdom=None):
+    def delete(self, name: str, vdom=None) -> HTTPResponse:
         """
         Delete a wildcard FQDN custom address.
         
@@ -176,7 +176,7 @@ class Custom:
         """
         return self._client.delete('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom)
     
-    def exists(self, name: str, vdom=None):
+    def exists(self, name: str, vdom=None) -> HTTPResponse:
         """
         Check if a wildcard FQDN custom address exists.
         

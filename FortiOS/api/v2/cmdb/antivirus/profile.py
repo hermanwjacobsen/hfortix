@@ -9,6 +9,7 @@ API Endpoints:
     PUT    /antivirus/profile/{name} - Update antivirus profile
     DELETE /antivirus/profile/{name} - Delete antivirus profile
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -490,16 +491,3 @@ class Profile:
         params.update(kwargs)
 
         return self._client.delete('cmdb', f'antivirus/profile/{name}', params=params if params else None, vdom=vdom)
-
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **params: Any
-    ) -> dict[str, Any]:
-        """
-        Alias for get() without name parameter - more intuitive for getting all profiles
-
-        Example:
-            >>> all_profiles = fgt.cmdb.antivirus.profile.list()
-        """
-        return self.get(vdom=vdom, **params)

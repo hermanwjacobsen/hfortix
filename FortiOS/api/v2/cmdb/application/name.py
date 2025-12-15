@@ -13,6 +13,7 @@ API Endpoints:
 
 Note: POST, PUT, and DELETE operations are not supported on this endpoint.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union

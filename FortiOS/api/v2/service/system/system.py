@@ -8,6 +8,7 @@ API Endpoints:
     GET /system/fabric-time-in-sync/                             - Check Fabric time synchronization
     GET /system/fabric-admin-lockout-exists-on-firmware-update/  - Check admin lockout on firmware update
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
