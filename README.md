@@ -1,6 +1,10 @@
-# Fortinet Python SDK
+# HFortix - Fortinet Python SDK
 
 Python client library for Fortinet products including FortiOS, FortiManager, and FortiAnalyzer.
+
+[![PyPI version](https://badge.fury.io/py/hfortix.svg)](https://pypi.org/project/hfortix/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 🎯 Current Status
 
@@ -10,14 +14,15 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Log API**: 42 methods across 5 modules (100% complete) ✅
 - **Monitor API**: Not yet implemented ⏸️
 
-**Latest Addition (v0.3.0):**
-- ✅ **Flat Firewall Endpoints (NEW - 11 endpoints):**
+**Latest Addition (v0.3.3):**
+- ✅ **Unified Package Import**: `from hfortix import FortiOS` (new recommended syntax)
+- ✅ **Flat Firewall Endpoints (11 endpoints):**
   - firewall/DoS-policy, DoS-policy6 (DoS protection)
   - firewall/access-proxy, access-proxy6 (Reverse proxy/WAF)
   - firewall/access-proxy-ssh-client-cert (SSH certificates)
   - firewall/access-proxy-virtual-host (Virtual hosts)
   - firewall/address, address6 (IPv4/IPv6 addresses)
-  - firewall/addrgrp, addrgrp6 (IPv4/IPv6 address groups)
+  - firewall/addrgrp, addrgrp6 (IPv4/IPv6 address groups with simplified API)
   - firewall/address6-template (IPv6 address templates)
 - ✅ **Firewall Sub-categories:**
   - firewall.ipmacbinding (setting, table)
@@ -30,83 +35,58 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Features
 
-- **Modular Architecture**: Each product module can be used independently or together
-- **Flexible Installation**: Clone individual modules or the complete package
+- **Unified Package**: Import all Fortinet products from a single package
+- **Modular Architecture**: Each product module can be used independently
+- **PyPI Installation**: `pip install hfortix` - simple and straightforward
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions
 - **Type-Safe**: Proper exception hierarchy and error handling
+- **Simplified APIs**: Auto-conversion for common patterns (e.g., address group members)
 - **Well-Documented**: Extensive API documentation and examples
-- **Modern Python**: Type hints, async support, PEP 585 compliance
+- **Modern Python**: Type hints, PEP 585 compliance, Python 3.8+
 
 ## 📦 Available Modules
 
 | Module | Status | Description |
 |--------|--------|-------------|
-| **FortiOS** | 🚧 In Development | FortiGate firewall management API |
-| **FortiManager** | ⏸️ Not Started | Centralized management for FortiGate devices |
-| **FortiAnalyzer** | ⏸️ Not Started | Log analysis and reporting platform |
+| **FortiOS** | ✅ Active | FortiGate firewall management API |
+| **FortiManager** | ⏸️ Planned | Centralized management for FortiGate devices |
+| **FortiAnalyzer** | ⏸️ Planned | Log analysis and reporting platform |
 
-## 🚀 Installation Options
+## 🚀 Installation
 
-### Option 1: Complete Package (All Modules)
+### From PyPI (Recommended)
 ```bash
-git clone https://github.com/hermanwjacobsen/hfortix.git
-cd hfortix
-pip install -e .
+pip install hfortix
 ```
 
-### Option 2: FortiOS Only (Standalone)
-```bash
-git clone https://github.com/hermanwjacobsen/hfortix.git
-cd hfortix/FortiOS
-# Use FortiOS as standalone module
-```
+## 📖 Quick Start
 
-## 📖 Usage
-
-### Import from Complete Package
+### Basic Usage
 ```python
-from fortinet import FortiOS, FortinetError, APIError
+from hfortix import FortiOS
 
-# Production with valid SSL certificate
+# Initialize with API token (recommended)
 fgt = FortiOS(
-    host='fortigate.company.com',
-    token='your-api-token',
-    verify=True  # Recommended for production
-)
-
-# Development/Testing with self-signed certificate
-fgt_dev = FortiOS(
     host='192.168.1.99',
     token='your-api-token',
-    verify=False  # Only for dev/test environments
+    verify=False  # Use True in production with valid SSL cert
 )
 
-# Use the API
-result = fgt.cmdb.firewall.address.list()
-```
+# List firewall addresses
+addresses = fgt.cmdb.firewall.address.list()
+print(f"Found {len(addresses['results'])} addresses")
 
-### Import as Standalone Module
-```python
-from FortiOS import FortiOS
-
-# Production environment
-fgt = FortiOS(
-    host='fortigate.company.com',
-    token='your-api-token',
-    verify=True
-)
-
-# Development environment
-fgt_dev = FortiOS(
-    host='192.168.1.99',
-    token='your-api-token',
-    verify=False
+# Create a new address
+result = fgt.cmdb.firewall.address.create(
+    name='web-server',
+    subnet='192.168.10.50/32',
+    comment='Production web server'
 )
 ```
 
 ### Exception Handling
 ```python
-from fortinet import (
+from hfortix import (
     FortiOS,
     APIError,
     ResourceNotFoundError,
@@ -167,9 +147,9 @@ print(modules)
 
 ### FortiOS - Firewall Address Management
 ```python
-from fortinet import FortiOS
+from hfortix import FortiOS
 
-fgt = FortiOS(host='192.168.1.99', token='your-token')
+fgt = FortiOS(host='192.168.1.99', token='your-token', verify=False)
 
 # List addresses
 addresses = fgt.cmdb.firewall.address.list()

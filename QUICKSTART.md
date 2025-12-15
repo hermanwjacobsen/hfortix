@@ -1,47 +1,47 @@
-# Fortinet SDK - Quick Reference
+# HFortix - Quick Reference
 
-## Installation Methods
+## Installation
 
-### Full Package
+### From PyPI (Recommended)
 ```bash
-git clone <repo-url>
-cd fortinet
-pip install -e .
+pip install hfortix
 ```
 
-### Standalone FortiOS
+### From Source
 ```bash
-git clone <repo-url>
-cd fortinet/FortiOS
-# Use as standalone module
+git clone https://github.com/hermanwjacobsen/hfortix.git
+cd hfortix
+pip install -e .
 ```
 
 ## Import Patterns
 
-### Pattern 1: Full Package Import
+### Recommended: Unified Package Import
 ```python
-from fortinet import FortiOS, FortinetError
+from hfortix import FortiOS
 ```
 
-### Pattern 2: Standalone Import
+### Alternative: Direct Module Import
 ```python
-from FortiOS import FortiOS
+from FortiOS import FortiOS  # Also works
 ```
 
-### Pattern 3: Exception Import
+### Exception Imports
 ```python
-from fortinet.exceptions import APIError, ResourceNotFoundError
+from hfortix import APIError, ResourceNotFoundError, FortinetError
 ```
 
-### Pattern 4: Product-Specific Import
+### Future Products (Coming Soon)
 ```python
-from fortinet.FortiOS import FortiOS
+from hfortix import FortiOS, FortiManager, FortiAnalyzer
 ```
 
 ## Quick Start
 
+## Basic Connection
+
 ```python
-from fortinet import FortiOS, APIError
+from hfortix import FortiOS, APIError
 
 # Production environment - with valid SSL certificate
 fgt = FortiOS(
@@ -96,10 +96,10 @@ except APIError as e:
 - `InvalidValueError` - Invalid parameter value
 - `PermissionDeniedError` - Insufficient permissions
 
-## Module Discovery
+## Package Information
 
 ```python
-from fortinet import get_available_modules, get_version
+from hfortix import get_available_modules, get_version
 
 print(get_version())  # '0.1.0'
 print(get_available_modules())  
