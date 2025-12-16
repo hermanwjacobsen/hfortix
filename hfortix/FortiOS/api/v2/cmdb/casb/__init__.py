@@ -31,8 +31,8 @@ class Casb:
         self.attribute_match = AttributeMatch(client)
         self.profile = Profile(client)
         self.saas_application = SaasApplication(client)
+        self.user_activity = UserActivity(client)
     
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return ['attribute_match', 'profile', 'saas_application', 'user_activity']
-        self.user_activity = UserActivity(client)

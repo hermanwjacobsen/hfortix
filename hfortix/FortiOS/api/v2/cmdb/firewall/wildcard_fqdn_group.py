@@ -4,6 +4,9 @@ FortiOS API endpoint: firewall.wildcard-fqdn/group
 Config global Wildcard FQDN address groups.
 """
 
+from typing import Dict, Optional, Any
+from .....http_client import HTTPResponse
+
 
 class Group:
     """
@@ -55,10 +58,10 @@ class Group:
             result = fgt.cmdb.firewall.wildcard_fqdn.group.get('example-group')
         """
         return self._client.get('cmdb', f'firewall.wildcard-fqdn/group/{name}', vdom=vdom, params=params)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         member: list = None,
         color: int = None,
         comment: str = None,
@@ -69,6 +72,10 @@ class Group:
         """
         Create a new wildcard FQDN group.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name (str): Group name
             member (list): List of wildcard FQDN address names (list of dicts with 'name' key)
@@ -92,6 +99,30 @@ class Group:
                 comment='Wildcard FQDN group for web domains'
             )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if color is not None:
+                data['color'] = color
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if uuid is not None:
+                data['uuid'] = uuid
+
         data = {'name': name}
         
         if member is not None:
@@ -106,10 +137,10 @@ class Group:
             data['uuid'] = uuid
         
         return self._client.post('cmdb', 'firewall.wildcard-fqdn/group', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         member: list = None,
         color: int = None,
         comment: str = None,
@@ -120,6 +151,10 @@ class Group:
         """
         Update an existing wildcard FQDN group.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name (str): Group name
             member (list): List of wildcard FQDN address names (list of dicts with 'name' key)
@@ -143,6 +178,28 @@ class Group:
                 ]
             )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if color is not None:
+                data['color'] = color
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if uuid is not None:
+                data['uuid'] = uuid
+
         data = {}
         
         if member is not None:

@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -158,7 +158,8 @@ class Bword:
 
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # List configuration
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
@@ -211,7 +212,8 @@ class Bword:
 
     def update(
         self,
-        list_id: int,
+        data_dict: Optional[Dict[str, Any]] = None,
+        list_id: Optional[int] = None,
         # List configuration
         name: Optional[str] = None,
         comment: Optional[str] = None,

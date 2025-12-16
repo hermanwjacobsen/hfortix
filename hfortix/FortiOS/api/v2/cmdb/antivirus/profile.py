@@ -12,7 +12,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -115,7 +115,8 @@ class Profile:
 
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         replacemsg_group: Optional[str] = None,
         scan_mode: Optional[str] = None,
@@ -261,7 +262,8 @@ class Profile:
 
     def update(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         replacemsg_group: Optional[str] = None,
         scan_mode: Optional[str] = None,

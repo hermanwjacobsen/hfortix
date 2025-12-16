@@ -10,7 +10,9 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}  - Delete traffic shaper
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class TrafficShaper:
@@ -109,10 +111,10 @@ class TrafficShaper:
         params.update(kwargs)
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         guaranteed_bandwidth: Optional[int] = None,
         maximum_bandwidth: Optional[int] = None,
         bandwidth_unit: Optional[str] = None,
@@ -133,6 +135,10 @@ class TrafficShaper:
         """
         Create a shared traffic shaper.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Traffic shaper name (max 35 chars)
             guaranteed_bandwidth: Guaranteed bandwidth (0-16776000)
@@ -177,53 +183,49 @@ class TrafficShaper:
             ...     diffservcode='101110'
             ... )
         """
-        data = {'name': name}
-        
-        param_map = {
-            'guaranteed_bandwidth': guaranteed_bandwidth,
-            'maximum_bandwidth': maximum_bandwidth,
-            'bandwidth_unit': bandwidth_unit,
-            'priority': priority,
-            'per_policy': per_policy,
-            'diffserv': diffserv,
-            'diffservcode': diffservcode,
-            'dscp_marking_method': dscp_marking_method,
-            'exceed_bandwidth': exceed_bandwidth,
-            'exceed_dscp': exceed_dscp,
-            'maximum_dscp': maximum_dscp,
-            'overhead': overhead,
-            'exceed_class_id': exceed_class_id,
-            'comment': comment,
-        }
-        
-        api_field_map = {
-            'guaranteed_bandwidth': 'guaranteed-bandwidth',
-            'maximum_bandwidth': 'maximum-bandwidth',
-            'bandwidth_unit': 'bandwidth-unit',
-            'priority': 'priority',
-            'per_policy': 'per-policy',
-            'diffserv': 'diffserv',
-            'diffservcode': 'diffservcode',
-            'dscp_marking_method': 'dscp-marking-method',
-            'exceed_bandwidth': 'exceed-bandwidth',
-            'exceed_dscp': 'exceed-dscp',
-            'maximum_dscp': 'maximum-dscp',
-            'overhead': 'overhead',
-            'exceed_class_id': 'exceed-class-id',
-            'comment': 'comment',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if guaranteed_bandwidth is not None:
+                data['guaranteed-bandwidth'] = guaranteed_bandwidth
+            if maximum_bandwidth is not None:
+                data['maximum-bandwidth'] = maximum_bandwidth
+            if bandwidth_unit is not None:
+                data['bandwidth-unit'] = bandwidth_unit
+            if priority is not None:
+                data['priority'] = priority
+            if per_policy is not None:
+                data['per-policy'] = per_policy
+            if diffserv is not None:
+                data['diffserv'] = diffserv
+            if diffservcode is not None:
+                data['diffservcode'] = diffservcode
+            if dscp_marking_method is not None:
+                data['dscp-marking-method'] = dscp_marking_method
+            if exceed_bandwidth is not None:
+                data['exceed-bandwidth'] = exceed_bandwidth
+            if exceed_dscp is not None:
+                data['exceed-dscp'] = exceed_dscp
+            if maximum_dscp is not None:
+                data['maximum-dscp'] = maximum_dscp
+            if overhead is not None:
+                data['overhead'] = overhead
+            if exceed_class_id is not None:
+                data['exceed-class-id'] = exceed_class_id
+            if comment is not None:
+                data['comment'] = comment
         
         return self._client.post('cmdb', 'firewall.shaper/traffic-shaper', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         guaranteed_bandwidth: Optional[int] = None,
         maximum_bandwidth: Optional[int] = None,
         bandwidth_unit: Optional[str] = None,
@@ -244,6 +246,10 @@ class TrafficShaper:
         """
         Update a shared traffic shaper.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Traffic shaper name
             guaranteed_bandwidth: Guaranteed bandwidth (0-16776000)
@@ -281,47 +287,41 @@ class TrafficShaper:
             ...     priority='top'
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'guaranteed_bandwidth': guaranteed_bandwidth,
-            'maximum_bandwidth': maximum_bandwidth,
-            'bandwidth_unit': bandwidth_unit,
-            'priority': priority,
-            'per_policy': per_policy,
-            'diffserv': diffserv,
-            'diffservcode': diffservcode,
-            'dscp_marking_method': dscp_marking_method,
-            'exceed_bandwidth': exceed_bandwidth,
-            'exceed_dscp': exceed_dscp,
-            'maximum_dscp': maximum_dscp,
-            'overhead': overhead,
-            'exceed_class_id': exceed_class_id,
-            'comment': comment,
-        }
-        
-        api_field_map = {
-            'guaranteed_bandwidth': 'guaranteed-bandwidth',
-            'maximum_bandwidth': 'maximum-bandwidth',
-            'bandwidth_unit': 'bandwidth-unit',
-            'priority': 'priority',
-            'per_policy': 'per-policy',
-            'diffserv': 'diffserv',
-            'diffservcode': 'diffservcode',
-            'dscp_marking_method': 'dscp-marking-method',
-            'exceed_bandwidth': 'exceed-bandwidth',
-            'exceed_dscp': 'exceed-dscp',
-            'maximum_dscp': 'maximum-dscp',
-            'overhead': 'overhead',
-            'exceed_class_id': 'exceed-class-id',
-            'comment': 'comment',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if guaranteed_bandwidth is not None:
+                data['guaranteed-bandwidth'] = guaranteed_bandwidth
+            if maximum_bandwidth is not None:
+                data['maximum-bandwidth'] = maximum_bandwidth
+            if bandwidth_unit is not None:
+                data['bandwidth-unit'] = bandwidth_unit
+            if priority is not None:
+                data['priority'] = priority
+            if per_policy is not None:
+                data['per-policy'] = per_policy
+            if diffserv is not None:
+                data['diffserv'] = diffserv
+            if diffservcode is not None:
+                data['diffservcode'] = diffservcode
+            if dscp_marking_method is not None:
+                data['dscp-marking-method'] = dscp_marking_method
+            if exceed_bandwidth is not None:
+                data['exceed-bandwidth'] = exceed_bandwidth
+            if exceed_dscp is not None:
+                data['exceed-dscp'] = exceed_dscp
+            if maximum_dscp is not None:
+                data['maximum-dscp'] = maximum_dscp
+            if overhead is not None:
+                data['overhead'] = overhead
+            if exceed_class_id is not None:
+                data['exceed-class-id'] = exceed_class_id
+            if comment is not None:
+                data['comment'] = comment
         
         return self._client.put('cmdb', f'firewall.shaper/traffic-shaper/{name}', data, vdom=vdom)
     

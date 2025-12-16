@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -158,7 +158,8 @@ class Cfm:
 
     def create(
         self,
-        domain_id: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        domain_id: Optional[str] = None,
         # CFM domain configuration
         name: Optional[str] = None,
         level: Optional[int] = None,
@@ -236,7 +237,8 @@ class Cfm:
 
     def update(
         self,
-        domain_id: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        domain_id: Optional[str] = None,
         # CFM domain configuration
         name: Optional[str] = None,
         level: Optional[int] = None,

@@ -41,8 +41,8 @@ class ExtensionController:
         self.extender_profile = ExtenderProfile(client)
         self.extender_vap = ExtenderVap(client)
         self.fortigate = Fortigate(client)
+        self.fortigate_profile = FortigateProfile(client)
     
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return ['dataplan', 'extender', 'extender_profile', 'extender_vap', 'fortigate', 'fortigate_profile']
-        self.fortigate_profile = FortigateProfile(client)

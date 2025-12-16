@@ -10,7 +10,9 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.ssh/host-key/{id}  - Delete host key
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class HostKey:
@@ -109,10 +111,10 @@ class HostKey:
         params.update(kwargs)
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         status: Optional[str] = None,
         type: Optional[str] = None,
         hostname: Optional[str] = None,
@@ -127,6 +129,10 @@ class HostKey:
         """
         Create an SSH host key.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Host key name (max 35 chars)
             status: Enable/disable host key - 'enable' or 'disable'
@@ -162,41 +168,37 @@ class HostKey:
             ...     type='RSA'
             ... )
         """
-        data = {'name': name}
-        
-        param_map = {
-            'status': status,
-            'type': type,
-            'hostname': hostname,
-            'nid': nid,
-            'ip': ip,
-            'port': port,
-            'public_key': public_key,
-            'usage': usage,
-        }
-        
-        api_field_map = {
-            'status': 'status',
-            'type': 'type',
-            'hostname': 'hostname',
-            'nid': 'nid',
-            'ip': 'ip',
-            'port': 'port',
-            'public_key': 'public-key',
-            'usage': 'usage',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if status is not None:
+                data['status'] = status
+            if type is not None:
+                data['type'] = type
+            if hostname is not None:
+                data['hostname'] = hostname
+            if nid is not None:
+                data['nid'] = nid
+            if ip is not None:
+                data['ip'] = ip
+            if port is not None:
+                data['port'] = port
+            if public_key is not None:
+                data['public-key'] = public_key
+            if usage is not None:
+                data['usage'] = usage
         
         return self._client.post('cmdb', 'firewall.ssh/host-key', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         status: Optional[str] = None,
         type: Optional[str] = None,
         hostname: Optional[str] = None,
@@ -211,6 +213,10 @@ class HostKey:
         """
         Update an SSH host key.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Host key name
             status: Enable/disable host key - 'enable' or 'disable'
@@ -241,35 +247,29 @@ class HostKey:
             ...     status='disable'
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'status': status,
-            'type': type,
-            'hostname': hostname,
-            'nid': nid,
-            'ip': ip,
-            'port': port,
-            'public_key': public_key,
-            'usage': usage,
-        }
-        
-        api_field_map = {
-            'status': 'status',
-            'type': 'type',
-            'hostname': 'hostname',
-            'nid': 'nid',
-            'ip': 'ip',
-            'port': 'port',
-            'public_key': 'public-key',
-            'usage': 'usage',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if status is not None:
+                data['status'] = status
+            if type is not None:
+                data['type'] = type
+            if hostname is not None:
+                data['hostname'] = hostname
+            if nid is not None:
+                data['nid'] = nid
+            if ip is not None:
+                data['ip'] = ip
+            if port is not None:
+                data['port'] = port
+            if public_key is not None:
+                data['public-key'] = public_key
+            if usage is not None:
+                data['usage'] = usage
         
         return self._client.put('cmdb', f'firewall.ssh/host-key/{name}', data, vdom=vdom)
     

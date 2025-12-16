@@ -56,7 +56,7 @@ class FortiOS:
         - Examples: EXAMPLES.md
     """
     
-    # Type hint for IDE autocomplete
+    # Type hint for IDE autocomplete (note: Python will also create __annotations__)
     api: API
     
     def __init__(
@@ -119,10 +119,24 @@ class FortiOS:
             vdom=vdom
         )
 
-        # Initialize API namespace
-        from .api import API
-        
-        self.api = API(self._client)
+        # Initialize API namespace.
+        # Store it privately and expose a property so IDEs treat it as a concrete
+        # instance attribute (often improves autocomplete ranking vs dunder attrs).
+        self._api = API(self._client)
+
+    @property
+    def api(self) -> API:
+        """Primary entry point to FortiOS endpoints (cmdb/monitor/log/service)."""
+        return self._api
+
+    def __dir__(self) -> list[str]:
+        """Prefer showing `api` early in interactive completion."""
+        # Start with the default dir() list, then move "api" to the front.
+        names = sorted(set(super().__dir__()))
+        if 'api' in names:
+            names.remove('api')
+            names.insert(0, 'api')
+        return names
 
     @property
     def host(self) -> Optional[str]:

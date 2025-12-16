@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 from .....exceptions import APIError, ResourceNotFoundError
 
@@ -126,9 +126,10 @@ class UserActivity:
 
     def create(
         self,
-        name: str,
-        application: str,
-        casb_name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        application: Optional[str] = None,
+        casb_name: Optional[str] = None,
         status: str = 'enable',
         category: Optional[str] = None,
         description: Optional[str] = None,
@@ -194,7 +195,8 @@ class UserActivity:
 
     def update(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         status: Optional[str] = None,
         category: Optional[str] = None,
         description: Optional[str] = None,

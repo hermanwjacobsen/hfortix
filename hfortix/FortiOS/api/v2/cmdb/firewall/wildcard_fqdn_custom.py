@@ -4,6 +4,9 @@ FortiOS API endpoint: firewall.wildcard-fqdn/custom
 Config global/VDOM Wildcard FQDN address.
 """
 
+from typing import Dict, Optional, Any
+from .....http_client import HTTPResponse
+
 
 class Custom:
     """
@@ -56,10 +59,10 @@ class Custom:
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.get('*.example.com')
         """
         return self._client.get('cmdb', f'firewall.wildcard-fqdn/custom/{name}', vdom=vdom, params=params)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         wildcard_fqdn: str = None,
         color: int = None,
         comment: str = None,
@@ -70,6 +73,10 @@ class Custom:
         """
         Create a new wildcard FQDN custom address.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name (str): Address name
             wildcard_fqdn (str): Wildcard FQDN (e.g., *.example.com, mail.*.com)
@@ -98,6 +105,26 @@ class Custom:
                 visibility='enable'
             )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if wildcard_fqdn is not None:
+                data['wildcard-fqdn'] = wildcard_fqdn
+            if color is not None:
+                data['color'] = color
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if uuid is not None:
+                data['uuid'] = uuid
+
         data = {'name': name}
         
         if wildcard_fqdn is not None:
@@ -112,10 +139,10 @@ class Custom:
             data['uuid'] = uuid
         
         return self._client.post('cmdb', 'firewall.wildcard-fqdn/custom', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         wildcard_fqdn: str = None,
         color: int = None,
         comment: str = None,
@@ -126,6 +153,10 @@ class Custom:
         """
         Update an existing wildcard FQDN custom address.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name (str): Address name
             wildcard_fqdn (str): Wildcard FQDN
@@ -145,6 +176,24 @@ class Custom:
                 color=5
             )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if wildcard_fqdn is not None:
+                data['wildcard-fqdn'] = wildcard_fqdn
+            if color is not None:
+                data['color'] = color
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if uuid is not None:
+                data['uuid'] = uuid
+
         data = {}
         
         if wildcard_fqdn is not None:

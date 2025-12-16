@@ -7,7 +7,9 @@ API Endpoints:
     PUT    /api/v2/cmdb/firewall.ssh/setting  - Update SSH proxy settings
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class Setting:
@@ -59,9 +61,9 @@ class Setting:
         params.update(kwargs)
         
         return self._client.get('cmdb', 'firewall.ssh/setting', params=params if params else None, vdom=vdom)
-    
     def update(
         self,
+        data: Optional[Dict[str, Any]] = None,
         caname: Optional[str] = None,
         untrusted_caname: Optional[str] = None,
         host_trusted_checking: Optional[str] = None,
@@ -80,6 +82,10 @@ class Setting:
         """
         Update SSH proxy settings.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             caname: CA certificate name
             untrusted_caname: Untrusted CA certificate name
@@ -118,42 +124,36 @@ class Setting:
             ...     hostkey_ecdsa256='ecdsa-key-256'
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'caname': caname,
-            'untrusted_caname': untrusted_caname,
-            'host_trusted_checking': host_trusted_checking,
-            'hostkey_rsa2048': hostkey_rsa2048,
-            'hostkey_dsa1024': hostkey_dsa1024,
-            'hostkey_ecdsa256': hostkey_ecdsa256,
-            'hostkey_ecdsa384': hostkey_ecdsa384,
-            'hostkey_ecdsa521': hostkey_ecdsa521,
-            'hostkey_ed25519': hostkey_ed25519,
-            'ssh_policy_check': ssh_policy_check,
-            'ssh_tun_policy_check': ssh_tun_policy_check,
-            'log_violation': log_violation,
-        }
-        
-        api_field_map = {
-            'caname': 'caname',
-            'untrusted_caname': 'untrusted-caname',
-            'host_trusted_checking': 'host-trusted-checking',
-            'hostkey_rsa2048': 'hostkey-rsa2048',
-            'hostkey_dsa1024': 'hostkey-dsa1024',
-            'hostkey_ecdsa256': 'hostkey-ecdsa256',
-            'hostkey_ecdsa384': 'hostkey-ecdsa384',
-            'hostkey_ecdsa521': 'hostkey-ecdsa521',
-            'hostkey_ed25519': 'hostkey-ed25519',
-            'ssh_policy_check': 'ssh-policy-check',
-            'ssh_tun_policy_check': 'ssh-tun-policy-check',
-            'log_violation': 'log-violation',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if caname is not None:
+                data['caname'] = caname
+            if untrusted_caname is not None:
+                data['untrusted-caname'] = untrusted_caname
+            if host_trusted_checking is not None:
+                data['host-trusted-checking'] = host_trusted_checking
+            if hostkey_rsa2048 is not None:
+                data['hostkey-rsa2048'] = hostkey_rsa2048
+            if hostkey_dsa1024 is not None:
+                data['hostkey-dsa1024'] = hostkey_dsa1024
+            if hostkey_ecdsa256 is not None:
+                data['hostkey-ecdsa256'] = hostkey_ecdsa256
+            if hostkey_ecdsa384 is not None:
+                data['hostkey-ecdsa384'] = hostkey_ecdsa384
+            if hostkey_ecdsa521 is not None:
+                data['hostkey-ecdsa521'] = hostkey_ecdsa521
+            if hostkey_ed25519 is not None:
+                data['hostkey-ed25519'] = hostkey_ed25519
+            if ssh_policy_check is not None:
+                data['ssh-policy-check'] = ssh_policy_check
+            if ssh_tun_policy_check is not None:
+                data['ssh-tun-policy-check'] = ssh_tun_policy_check
+            if log_violation is not None:
+                data['log-violation'] = log_violation
         
         return self._client.put('cmdb', 'firewall.ssh/setting', data, vdom=vdom)

@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -135,12 +135,12 @@ class IpmacbindingTable:
         
         path = f'firewall.ipmacbinding/table/{seq_num}'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        seq_num: int,
-        ip: str,
-        mac: str,
+        data: Optional[Dict[str, Any]] = None,
+        seq_num: Optional[int] = None,
+        ip: Optional[str] = None,
+        mac: Optional[str] = None,
         name: Optional[str] = None,
         status: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -149,6 +149,10 @@ class IpmacbindingTable:
         """
         Create a new IP-MAC binding entry.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             seq_num: Entry number (0-4294967295)
             ip: IPv4 address (format: xxx.xxx.xxx.xxx)
@@ -178,6 +182,24 @@ class IpmacbindingTable:
             ...     status='enable'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if seq_num is not None:
+                data['seq-num'] = seq_num
+            if ip is not None:
+                data['ip'] = ip
+            if mac is not None:
+                data['mac'] = mac
+            if name is not None:
+                data['name'] = name
+            if status is not None:
+                data['status'] = status
+
         data = {
             'seq-num': seq_num,
             'ip': ip,
@@ -200,10 +222,10 @@ class IpmacbindingTable:
         
         path = 'firewall.ipmacbinding/table'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
-        seq_num: int,
+        seq_num: Optional[int] = None,
+        data: Optional[Dict[str, Any]] = None,
         ip: Optional[str] = None,
         mac: Optional[str] = None,
         name: Optional[str] = None,
@@ -214,6 +236,10 @@ class IpmacbindingTable:
         """
         Update an existing IP-MAC binding entry.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             seq_num: Entry number to update
             ip: IPv4 address (format: xxx.xxx.xxx.xxx)
@@ -246,6 +272,22 @@ class IpmacbindingTable:
             ...     status='disable'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if seq_num is not None:
+                data['seq-num'] = seq_num
+            if ip is not None:
+                data['ip'] = ip
+            if mac is not None:
+                data['mac'] = mac
+            if status is not None:
+                data['status'] = status
+
         data = {}
         
         param_map = {

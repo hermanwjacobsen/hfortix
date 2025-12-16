@@ -12,7 +12,7 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -130,7 +130,8 @@ class DataType:
     
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Data type configuration
         pattern: str | None = None,
         verify: str | None = None,
@@ -229,7 +230,8 @@ class DataType:
     
     def update(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Data type configuration
         pattern: str | None = None,
         verify: str | None = None,

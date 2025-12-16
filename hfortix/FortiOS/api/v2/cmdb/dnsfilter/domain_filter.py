@@ -4,7 +4,7 @@ This module provides methods for managing DNS domain filters.
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -88,8 +88,9 @@ class DomainFilter:
     
     def create(
         self,
-        filter_id: int,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        filter_id: Optional[int] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[str] = None,
@@ -156,7 +157,8 @@ class DomainFilter:
     
     def update(
         self,
-        filter_id: int,
+        data_dict: Optional[Dict[str, Any]] = None,
+        filter_id: Optional[int] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,

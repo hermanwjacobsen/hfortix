@@ -14,7 +14,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -64,7 +64,8 @@ class Sniffer:
         return self._client.get('service', 'sniffer/list/',
                                params=params if params else None, vdom=vdom)
 
-    def start(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def start(self, data_dict: Optional[Dict[str, Any]] = None,
+        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Start a new packet capture
 
@@ -72,7 +73,8 @@ class Sniffer:
         configured in the FortiOS configuration before starting.
 
         Args:
-            mkey (str, required): Packet capture name
+            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
+            mkey (str, optional): Packet capture name
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
 
@@ -84,25 +86,39 @@ class Sniffer:
             - mkey (str): Name of the packet capture that was started
 
         Examples:
-            >>> # Start a packet capture
-            >>> result = fgt.service.sniffer.start('my-capture')
+            >>> # Dictionary pattern
+            >>> result = fgt.service.sniffer.start(data_dict={'mkey': 'my-capture'})
+            
+            >>> # Keyword pattern
+            >>> result = fgt.service.sniffer.start(mkey='my-capture')
 
             >>> # Start capture in specific VDOM
-            >>> result = fgt.service.sniffer.start('my-capture', vdom='root')
+            >>> result = fgt.service.sniffer.start(mkey='my-capture', vdom='root')
         """
-        data = {'mkey': mkey}
+        if data_dict is not None:
+            data = data_dict.copy()
+        else:
+            data: Dict[str, Any] = {}
+            if mkey is not None:
+                data['mkey'] = mkey
+        
         data.update(kwargs)
+        
+        if 'mkey' not in data:
+            raise ValueError("mkey is required")
 
         return self._client.post('service', 'sniffer/start/', data, vdom=vdom)
 
-    def stop(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def stop(self, data_dict: Optional[Dict[str, Any]] = None,
+        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Stop a running packet capture
 
         Stops a running packet capture.
 
         Args:
-            mkey (str, required): Packet capture name
+            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
+            mkey (str, optional): Packet capture name
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
 
@@ -110,14 +126,26 @@ class Sniffer:
             dict: API response
 
         Examples:
-            >>> # Stop a packet capture
-            >>> result = fgt.service.sniffer.stop('my-capture')
+            >>> # Dictionary pattern
+            >>> result = fgt.service.sniffer.stop(data_dict={'mkey': 'my-capture'})
+            
+            >>> # Keyword pattern
+            >>> result = fgt.service.sniffer.stop(mkey='my-capture')
 
             >>> # Stop capture in specific VDOM
-            >>> result = fgt.service.sniffer.stop('my-capture', vdom='root')
+            >>> result = fgt.service.sniffer.stop(mkey='my-capture', vdom='root')
         """
-        data = {'mkey': mkey}
+        if data_dict is not None:
+            data = data_dict.copy()
+        else:
+            data: Dict[str, Any] = {}
+            if mkey is not None:
+                data['mkey'] = mkey
+        
         data.update(kwargs)
+        
+        if 'mkey' not in data:
+            raise ValueError("mkey is required")
 
         return self._client.post('service', 'sniffer/stop/', data, vdom=vdom)
 
@@ -179,14 +207,16 @@ class Sniffer:
         # Return raw binary content (PCAP file)
         return res.content
 
-    def delete(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def delete(self, data_dict: Optional[Dict[str, Any]] = None,
+        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Delete a packet capture
 
         Deletes a packet capture from the FortiGate.
 
         Args:
-            mkey (str, required): Packet capture name
+            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
+            mkey (str, optional): Packet capture name
             vdom (str, optional): Virtual Domain name
             **kwargs: Additional parameters
 
@@ -194,14 +224,26 @@ class Sniffer:
             dict: API response
 
         Examples:
-            >>> # Delete a packet capture
-            >>> result = fgt.service.sniffer.delete('my-capture')
+            >>> # Dictionary pattern
+            >>> result = fgt.service.sniffer.delete(data_dict={'mkey': 'my-capture'})
+            
+            >>> # Keyword pattern
+            >>> result = fgt.service.sniffer.delete(mkey='my-capture')
 
             >>> # Delete capture from specific VDOM
-            >>> result = fgt.service.sniffer.delete('my-capture', vdom='root')
+            >>> result = fgt.service.sniffer.delete(mkey='my-capture', vdom='root')
         """
-        data = {'mkey': mkey}
+        if data_dict is not None:
+            data = data_dict.copy()
+        else:
+            data: Dict[str, Any] = {}
+            if mkey is not None:
+                data['mkey'] = mkey
+        
         data.update(kwargs)
+        
+        if 'mkey' not in data:
+            raise ValueError("mkey is required")
 
         return self._client.post('service', 'sniffer/delete/', data, vdom=vdom)
 

@@ -5,7 +5,7 @@ API endpoint for managing IPv4 DoS policies.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -43,7 +43,7 @@ class DosPolicy:
             >>> policies = fgt.cmdb.firewall.dos_policy.list()
             >>> print(f"Total policies: {len(policies['results'])}")
         """
-        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
+        return self._client.get('cmdb', self._path, vdom=vdom, params=params)
 
     def get(self, policyid: int | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -69,16 +69,17 @@ class DosPolicy:
             path = f'{self._path}/{policyid}'
         else:
             path = self._path
-        return self._client.cmdb._get(path, vdom=vdom, params=params)
+        return self._client.get('cmdb', path, vdom=vdom, params=params)
 
     def create(
         self,
-        policyid: int,
-        name: str,
-        interface: str | dict[str, str],
-        srcaddr: list[str] | list[dict[str, str]],
-        dstaddr: list[str] | list[dict[str, str]],
-        service: list[str] | list[dict[str, str]],
+        data: Optional[Dict[str, Any]] = None,
+        policyid: Optional[int] = None,
+        name: Optional[str] = None,
+        interface: Optional[str | dict[str, str]] = None,
+        srcaddr: Optional[list[str] | list[dict[str, str]]] = None,
+        dstaddr: Optional[list[str] | list[dict[str, str]]] = None,
+        service: Optional[list[str] | list[dict[str, str]]] = None,
         status: str = 'enable',
         comments: str | None = None,
         anomaly: list[dict[str, Any]] | None = None,
@@ -161,38 +162,61 @@ class DosPolicy:
             ...     service=[{'name': 'ALL'}]
             ... )
         """
-        # Convert interface to dict format if string provided
-        if isinstance(interface, str):
-            interface_data = {'q_origin_key': interface}
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
         else:
-            interface_data = interface
-        
-        # Convert address lists to dict format if strings provided
-        srcaddr_data = [{'name': addr} if isinstance(addr, str) else addr for addr in srcaddr]
-        dstaddr_data = [{'name': addr} if isinstance(addr, str) else addr for addr in dstaddr]
-        service_data = [{'name': svc} if isinstance(svc, str) else svc for svc in service]
-        
-        data: dict[str, Any] = {
-            'policyid': policyid,
-            'name': name,
-            'interface': interface_data,
-            'srcaddr': srcaddr_data,
-            'dstaddr': dstaddr_data,
-            'service': service_data,
-            'status': status
-        }
-        
-        if comments is not None:
-            data['comments'] = comments
-        if anomaly is not None:
-            data['anomaly'] = anomaly
+            # Pattern 2: build from kwargs
+            # Convert interface to dict format if string provided
+            if interface is not None:
+                if isinstance(interface, str):
+                    interface_data = {'q_origin_key': interface}
+                else:
+                    interface_data = interface
+            else:
+                interface_data = None
             
-        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
+            # Convert address lists to dict format if strings provided
+            srcaddr_data = None
+            if srcaddr is not None:
+                srcaddr_data = [{'name': addr} if isinstance(addr, str) else addr for addr in srcaddr]
+            
+            dstaddr_data = None
+            if dstaddr is not None:
+                dstaddr_data = [{'name': addr} if isinstance(addr, str) else addr for addr in dstaddr]
+            
+            service_data = None
+            if service is not None:
+                service_data = [{'name': svc} if isinstance(svc, str) else svc for svc in service]
+            
+            payload: Dict[str, Any] = {}
+            if policyid is not None:
+                payload['policyid'] = policyid
+            if name is not None:
+                payload['name'] = name
+            if interface_data is not None:
+                payload['interface'] = interface_data
+            if srcaddr_data is not None:
+                payload['srcaddr'] = srcaddr_data
+            if dstaddr_data is not None:
+                payload['dstaddr'] = dstaddr_data
+            if service_data is not None:
+                payload['service'] = service_data
+            if status is not None:
+                payload['status'] = status
+            if comments is not None:
+                payload['comments'] = comments
+            if anomaly is not None:
+                payload['anomaly'] = anomaly
+
+        return self._client.post('cmdb', self._path, data=payload, vdom=vdom)
 
     def update(
         self,
-        policyid: int,
-        name: str | None = None,
+        data: Optional[Dict[str, Any]] = None,
+        policyid: Optional[int] = None,
+        name: Optional[str] = None,
         interface: str | None = None,
         srcaddr: list[dict[str, str]] | None = None,
         dstaddr: list[dict[str, str]] | None = None,
@@ -227,27 +251,36 @@ class DosPolicy:
             ...     comments='Temporarily disabled'
             ... )
         """
-        data: dict[str, Any] = {}
-        
-        if name is not None:
-            data['name'] = name
-        if interface is not None:
-            data['interface'] = interface
-        if srcaddr is not None:
-            data['srcaddr'] = srcaddr
-        if dstaddr is not None:
-            data['dstaddr'] = dstaddr
-        if service is not None:
-            data['service'] = service
-        if status is not None:
-            data['status'] = status
-        if comments is not None:
-            data['comments'] = comments
-        if anomaly is not None:
-            data['anomaly'] = anomaly
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+            # Extract policyid from data if not provided as param
+            if policyid is None:
+                policyid = payload.get('policyid')
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            
+            if name is not None:
+                payload['name'] = name
+            if interface is not None:
+                payload['interface'] = interface
+            if srcaddr is not None:
+                payload['srcaddr'] = srcaddr
+            if dstaddr is not None:
+                payload['dstaddr'] = dstaddr
+            if service is not None:
+                payload['service'] = service
+            if status is not None:
+                payload['status'] = status
+            if comments is not None:
+                payload['comments'] = comments
+            if anomaly is not None:
+                payload['anomaly'] = anomaly
             
         path = f'{self._path}/{policyid}'
-        return self._client.cmdb._put(path, data=data, vdom=vdom)
+        return self._client.put('cmdb', path, data=payload, vdom=vdom)
 
     def delete(self, policyid: int, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -264,7 +297,7 @@ class DosPolicy:
             >>> result = fgt.cmdb.firewall.dos_policy.delete(policyid=1)
         """
         path = f'{self._path}/{policyid}'
-        return self._client.cmdb._delete(path, vdom=vdom)
+        return self._client.delete('cmdb', path, vdom=vdom)
 
     def exists(self, policyid: int, vdom: str | None = None) -> bool:
         """

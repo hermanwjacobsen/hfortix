@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -185,7 +185,8 @@ class Group:
 
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Group parameters
         comment: Optional[str] = None,
         type: Optional[str] = None,
@@ -277,7 +278,8 @@ class Group:
 
     def update(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Group parameters
         comment: Optional[str] = None,
         type: Optional[str] = None,

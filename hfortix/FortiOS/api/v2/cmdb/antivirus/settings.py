@@ -9,7 +9,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -78,6 +78,7 @@ class Settings:
 
     def update(
         self,
+        data: Optional[Dict[str, Any]] = None,
         default_db: Optional[str] = None,
         grayware: Optional[str] = None,
         override_timeout: Optional[int] = None,

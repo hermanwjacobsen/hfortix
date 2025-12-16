@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -142,10 +142,10 @@ class ServiceCategory:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -154,6 +154,10 @@ class ServiceCategory:
         """
         Create a new service category.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Category name (required)
             comment: Comment text (max 255 chars)
@@ -178,31 +182,25 @@ class ServiceCategory:
             ...     fabric_object='enable'
             ... )
         """
-        data = {}
-        param_map = {
-            'name': name,
-            'comment': comment,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'name': 'name',
-            'comment': 'comment',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if comment is not None:
+                data['comment'] = comment
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.post('cmdb', 'firewall.service/category', data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         comment: Optional[str] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -211,6 +209,10 @@ class ServiceCategory:
         """
         Update an existing service category.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Category name (required)
             comment: Comment text (max 255 chars)
@@ -234,23 +236,17 @@ class ServiceCategory:
             ...     fabric_object='enable'
             ... )
         """
-        data = {}
-        param_map = {
-            'comment': comment,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'comment': 'comment',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if comment is not None:
+                data['comment'] = comment
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.put('cmdb', f'firewall.service/category/{name}', data, vdom=vdom)
 

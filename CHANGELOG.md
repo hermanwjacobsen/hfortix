@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Dual-Pattern Interface** (100% Complete) - All 43 create/update methods now support:
+  - Dictionary pattern: `create(data_dict={'name': 'x', 'param': 'y'})`
+  - Keyword pattern: `create(name='x', param='y')`
+  - Mixed pattern: `create(data_dict=base, name='override')`
+  - Coverage: 38 CMDB endpoints + 5 Service methods
+  - See `X/docs/migration/DUAL_PATTERN_MIGRATION.md` for details
+
+### Changed
+- **Documentation**: Updated all docs with dual-pattern examples
+  - README.md, QUICKSTART.md with usage examples
+  - Module creation prompts (.github/prompts/)
+  - Project documentation (X/docs/project/)
+
 ### In Progress
 - Firewall category expansion (83 remaining endpoints)
 - Monitor API implementation
@@ -88,7 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Technical Details
 - Type hints now work correctly in VS Code, PyCharm, and other PEP 561-compliant IDEs
-- Autocomplete shows all available endpoints when typing `fgt.cmdb.firewall.`
+- Autocomplete shows all available endpoints when typing `fgt.api.cmdb.firewall.`
 - Method signatures display parameter types and return types
 - No breaking changes - fully backward compatible
 
@@ -231,7 +245,7 @@ Implemented nested/hierarchical structure for firewall endpoints with lazy-loadi
   - `group` - Wildcard FQDN groups
 
 ### Technical Improvements
-- ✅ Nested API structure: `fgt.cmdb.firewall.[subcategory].[endpoint]`
+- ✅ Nested API structure: `fgt.api.cmdb.firewall.[subcategory].[endpoint]`
 - ✅ Lazy-loading with @property methods
 - ✅ Singleton pattern for settings endpoints (results as dict)
 - ✅ Collection pattern for list endpoints (results as list)

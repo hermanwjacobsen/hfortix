@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -158,7 +158,8 @@ class Fctems:
 
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # EMS configuration
         ems_id: Optional[str] = None,
         status: Optional[str] = None,
@@ -287,7 +288,8 @@ class Fctems:
 
     def update(
         self,
-        ems_id: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        ems_id: Optional[str] = None,
         # EMS configuration
         name: Optional[str] = None,
         status: Optional[str] = None,

@@ -54,9 +54,63 @@ We welcome contributions for new FortiOS API endpoints! Here's the process:
 
 1. **Check the API documentation** - Reference the official Fortinet API docs
 2. **Follow the existing pattern** - Look at similar endpoints for structure
-3. **Include docstrings** - Document all parameters and return values
-4. **Add examples** - Test your implementation thoroughly
-5. **Update API_COVERAGE.md** - Mark the endpoint as implemented
+3. **Use dual-pattern interface** - All create/update methods MUST support:
+   - `data_dict` parameter (dictionary pattern)
+   - Individual parameters (keyword pattern)
+   - Mixed usage (template + overrides)
+4. **Include docstrings** - Document all parameters and return values
+5. **Add examples** - Show all 3 usage patterns in docstring
+6. **Test your implementation** - Verify all patterns work correctly
+7. **Update API_COVERAGE.md** - Mark the endpoint as implemented
+
+#### Dual-Pattern Template
+
+```python
+def create(
+    self,
+    data_dict: Optional[dict[str, Any]] = None,
+    name: Optional[str] = None,
+    param1: Optional[type] = None,
+    vdom: Optional[Union[str, bool]] = None,
+    **kwargs: Any
+) -> dict[str, Any]:
+    """
+    Create [resource].
+    
+    Supports dual-pattern interface:
+    1. Dictionary: create(data_dict={'name': 'x', 'param1': 'y'})
+    2. Keywords: create(name='x', param1='y')
+    3. Mixed: create(data_dict=base, name='override')
+    
+    Examples:
+        >>> # Dictionary pattern
+        >>> config = {'name': 'obj1', 'param1': 'value'}
+        >>> result = fgt.api.cmdb.category.endpoint.create(data_dict=config)
+        
+        >>> # Keyword pattern
+        >>> result = fgt.api.cmdb.category.endpoint.create(name='obj1', param1='value')
+        
+        >>> # Mixed pattern
+        >>> result = fgt.api.cmdb.category.endpoint.create(
+        ...     data_dict=base_config,
+        ...     name='override'
+        ... )
+    """
+    data = data_dict.copy() if data_dict else {}
+    
+    param_map = {'name': name, 'param1': param1}
+    api_field_map = {'name': 'name', 'param1': 'api-param-1'}
+    
+    for python_key, value in param_map.items():
+        if value is not None:
+            api_key = api_field_map.get(python_key, python_key)
+            data[api_key] = value
+    
+    data.update(kwargs)
+    return self._client.post('cmdb', 'path', data=data, vdom=vdom)
+```
+
+Reference: `.github/prompts/module_creation.prompt.md` for complete templates
 
 #### Endpoint Implementation Template
 
@@ -91,7 +145,7 @@ class EndpointName:
             dict: API response with results
             
         Example:
-            >>> result = fgt.cmdb.{path}.{endpoint}.list()
+            >>> result = fgt.api.cmdb.{path}.{endpoint}.list()
             >>> for item in result['results']:
             ...     print(item['name'])
         """
@@ -124,7 +178,7 @@ class EndpointName:
             dict: API response
             
         Example:
-            >>> result = fgt.cmdb.{path}.{endpoint}.create({
+            >>> result = fgt.api.cmdb.{path}.{endpoint}.create({
             ...     'name': 'example',
             ...     'param1': 'value1'
             ... })
@@ -218,7 +272,7 @@ def create(self, data, vdom='root', **params):
         InvalidValueError: If subnet format is invalid
         
     Example:
-        >>> result = fgt.cmdb.firewall.address.create({
+    >>> result = fgt.api.cmdb.firewall.address.create({
         ...     'name': 'web-server',
         ...     'subnet': '10.0.1.100/32',
         ...     'comment': 'Production web server'

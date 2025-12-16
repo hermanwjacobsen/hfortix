@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -131,11 +131,11 @@ class Address:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
-        type: str = 'ipmask',
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        type: Optional[str] = None,
         subnet: Optional[str] = None,
         start_ip: Optional[str] = None,
         end_ip: Optional[str] = None,
@@ -153,6 +153,10 @@ class Address:
         """
         Create IPv4 address object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address name (required)
             type: Address type: 'ipmask', 'iprange', 'fqdn', 'geography', 'wildcard', 'dynamic', etc. (default: 'ipmask')
@@ -197,6 +201,40 @@ class Address:
             ...     fqdn='dns.google.com'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if type is not None:
+                data['type'] = type
+            if subnet is not None:
+                data['subnet'] = subnet
+            if start_ip is not None:
+                data['start-ip'] = start_ip
+            if end_ip is not None:
+                data['end-ip'] = end_ip
+            if fqdn is not None:
+                data['fqdn'] = fqdn
+            if country is not None:
+                data['country'] = country
+            if comment is not None:
+                data['comment'] = comment
+            if associated_interface is not None:
+                data['associated-interface'] = associated_interface
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if tags is not None:
+                data['tags'] = tags
+            if allow_routing is not None:
+                data['allow-routing'] = allow_routing
+
         data = {'name': name, 'type': type}
         
         # Parameter mapping (convert snake_case to hyphenated-case)
@@ -240,10 +278,10 @@ class Address:
         
         path = 'firewall/address'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         subnet: Optional[str] = None,
         start_ip: Optional[str] = None,
         end_ip: Optional[str] = None,
@@ -261,6 +299,10 @@ class Address:
         """
         Update IPv4 address object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address name (required)
             subnet: IP address and subnet mask (for type=ipmask)
@@ -288,6 +330,36 @@ class Address:
             ...     comment='Updated internal network'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if subnet is not None:
+                data['subnet'] = subnet
+            if start_ip is not None:
+                data['start-ip'] = start_ip
+            if end_ip is not None:
+                data['end-ip'] = end_ip
+            if fqdn is not None:
+                data['fqdn'] = fqdn
+            if country is not None:
+                data['country'] = country
+            if comment is not None:
+                data['comment'] = comment
+            if associated_interface is not None:
+                data['associated-interface'] = associated_interface
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if tags is not None:
+                data['tags'] = tags
+            if allow_routing is not None:
+                data['allow-routing'] = allow_routing
+
         data = {}
         
         # Parameter mapping (convert snake_case to hyphenated-case)

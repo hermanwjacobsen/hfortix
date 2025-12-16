@@ -10,7 +10,9 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.ssh/local-ca/{id}  - Delete local CA
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class LocalCa:
@@ -109,10 +111,10 @@ class LocalCa:
         params.update(kwargs)
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         source: Optional[str] = None,
         source_ip: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -121,6 +123,10 @@ class LocalCa:
         """
         Create an SSH local CA.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Local CA name (max 35 chars)
             source: CA source - 'built-in' or 'user'
@@ -145,29 +151,25 @@ class LocalCa:
             ...     source_ip='192.168.1.50'
             ... )
         """
-        data = {'name': name}
-        
-        param_map = {
-            'source': source,
-            'source_ip': source_ip,
-        }
-        
-        api_field_map = {
-            'source': 'source',
-            'source_ip': 'source-ip',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if source is not None:
+                data['source'] = source
+            if source_ip is not None:
+                data['source-ip'] = source_ip
         
         return self._client.post('cmdb', 'firewall.ssh/local-ca', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         source: Optional[str] = None,
         source_ip: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -176,6 +178,10 @@ class LocalCa:
         """
         Update an SSH local CA.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Local CA name
             source: CA source - 'built-in' or 'user'
@@ -193,23 +199,17 @@ class LocalCa:
             ...     source_ip='192.168.1.51'
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'source': source,
-            'source_ip': source_ip,
-        }
-        
-        api_field_map = {
-            'source': 'source',
-            'source_ip': 'source-ip',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if source is not None:
+                data['source'] = source
+            if source_ip is not None:
+                data['source-ip'] = source_ip
         
         return self._client.put('cmdb', f'firewall.ssh/local-ca/{name}', data, vdom=vdom)
     

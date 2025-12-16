@@ -81,16 +81,51 @@ fgt = FortiOS(
 )
 
 # List firewall addresses
-addresses = fgt.cmdb.firewall.address.list()
+addresses = fgt.api.cmdb.firewall.address.list()
 print(f"Found {len(addresses['results'])} addresses")
 
 # Create a new address
-result = fgt.cmdb.firewall.address.create(
+result = fgt.api.cmdb.firewall.address.create(
     name='web-server',
     subnet='192.168.10.50/32',
     comment='Production web server'
 )
 ```
+
+### Dual-Pattern Interface ✨
+
+HFortix supports **flexible dual-pattern syntax** - use dictionaries, keywords, or mix both:
+
+```python
+# Pattern 1: Dictionary-based (great for templates)
+config = {
+    'name': 'web-server',
+    'subnet': '192.168.10.50/32',
+    'comment': 'Production web server'
+}
+fgt.api.cmdb.firewall.address.create(data_dict=config)
+
+# Pattern 2: Keyword-based (great for readability)
+fgt.api.cmdb.firewall.address.create(
+    name='web-server',
+    subnet='192.168.10.50/32',
+    comment='Production web server'
+)
+
+# Pattern 3: Mixed (template + overrides)
+base_config = load_template('address_template.json')
+fgt.api.cmdb.firewall.address.create(
+    data_dict=base_config,
+    name=f'server-{site_id}',  # Override name
+    comment=f'Site: {site_name}'
+)
+```
+
+**Available on:** 43 methods across 13 categories (100% coverage)
+- All CMDB create/update operations (38 endpoints)
+- Service operations (5 methods)
+
+[See full dual-pattern documentation →](X/docs/migration/DUAL_PATTERN_MIGRATION.md)
 
 ### Exception Handling
 ```python
@@ -102,7 +137,7 @@ from hfortix import (
 )
 
 try:
-    result = fgt.cmdb.firewall.address.create(
+    result = fgt.api.cmdb.firewall.address.create(
         name='test-address',
         subnet='10.0.0.0/24'
     )
@@ -120,23 +155,23 @@ except APIError as e:
 
 ```
 fortinet/
-├── __init__.py              # Main package entry point
-├── exceptions.py            # Base exceptions for all products
-├── exceptions_forti.py      # FortiOS-specific error codes
-├── FortiOS/                 # FortiGate management
-│   ├── __init__.py
-│   ├── client.py
-│   ├── exceptions.py        # Backward compatibility
-│   └── api/                 # API endpoints
-│       └── v2/
-│           ├── cmdb/        # Configuration (firewall, system, etc.)
-│           ├── monitor/     # Monitoring endpoints
-│           ├── log/         # Log retrieval
-│           └── service/     # Services (sniffer, security rating)
-├── FortiManager/            # Coming soon
-│   └── __init__.py
-└── FortiAnalyzer/           # Coming soon
-    └── __init__.py
+├── hfortix/                  # Main package
+│   ├── __init__.py           # Public API exports
+│   ├── exceptions.py         # Base exceptions
+│   ├── exceptions_forti.py   # FortiOS-specific error codes/helpers
+│   ├── py.typed              # PEP 561 marker
+│   └── FortiOS/
+│       ├── __init__.py
+│       ├── fortios.py        # FortiOS client
+│       ├── http_client.py    # Internal HTTP client
+│       ├── exceptions.py     # FortiOS re-exports
+│       └── api/
+│           └── v2/
+│               ├── cmdb/
+│               ├── log/
+│               ├── service/
+│               └── monitor/  # (placeholder / in progress)
+└── X/                        # Internal notes + script-style test harness (not pytest)
 ```
 
 ## 🔍 Module Discovery
@@ -144,7 +179,7 @@ fortinet/
 Check which modules are available:
 
 ```python
-from fortinet import get_available_modules
+from hfortix import get_available_modules
 
 modules = get_available_modules()
 print(modules)
@@ -160,29 +195,29 @@ from hfortix import FortiOS
 fgt = FortiOS(host='192.168.1.99', token='your-token', verify=False)
 
 # List addresses
-addresses = fgt.cmdb.firewall.address.list()
+addresses = fgt.api.cmdb.firewall.address.list()
 
 # Create address
-result = fgt.cmdb.firewall.address.create(
+result = fgt.api.cmdb.firewall.address.create(
     name='web-server',
     subnet='10.0.1.100/32',
     comment='Production web server'
 )
 
 # Update address
-result = fgt.cmdb.firewall.address.update(
+result = fgt.api.cmdb.firewall.address.update(
     name='web-server',
     comment='Updated comment'
 )
 
 # Delete address
-result = fgt.cmdb.firewall.address.delete(name='web-server')
+result = fgt.api.cmdb.firewall.address.delete(name='web-server')
 ```
 
 ### FortiOS - DoS Protection (NEW!)
 ```python
 # Create IPv4 DoS policy with simplified API
-result = fgt.cmdb.firewall.dos_policy.create(
+result = fgt.api.cmdb.firewall.dos_policy.create(
     policyid=1,
     name='protect-web-servers',
     interface='port3',              # Simple string format
@@ -198,7 +233,7 @@ result = fgt.cmdb.firewall.dos_policy.create(
 # service=['HTTP'] → [{'name': 'HTTP'}]
 
 # Custom anomaly detection thresholds
-result = fgt.cmdb.firewall.dos_policy.create(
+result = fgt.api.cmdb.firewall.dos_policy.create(
     policyid=2,
     name='strict-dos-policy',
     interface='wan1',
@@ -215,7 +250,7 @@ result = fgt.cmdb.firewall.dos_policy.create(
 ### FortiOS - Reverse Proxy/WAF (NEW!)
 ```python
 # Create access proxy (requires VIP with type='access-proxy')
-result = fgt.cmdb.firewall.access_proxy.create(
+result = fgt.api.cmdb.firewall.access_proxy.create(
     name='web-proxy',
     vip='web-vip',                    # VIP must be type='access-proxy'
     auth_portal='enable',
@@ -225,7 +260,7 @@ result = fgt.cmdb.firewall.access_proxy.create(
 )
 
 # Create virtual host with simplified API
-result = fgt.cmdb.firewall.access_proxy_virtual_host.create(
+result = fgt.api.cmdb.firewall.access_proxy_virtual_host.create(
     name='api-vhost',
     host='*.api.example.com',
     host_type='wildcard',
@@ -239,7 +274,7 @@ result = fgt.cmdb.firewall.access_proxy_virtual_host.create(
 ### FortiOS - Address & Address Group Management (NEW!)
 ```python
 # Create IPv4 address (subnet)
-result = fgt.cmdb.firewall.address.create(
+result = fgt.api.cmdb.firewall.address.create(
     name='internal-net',
     type='ipmask',
     subnet='192.168.1.0/24',
@@ -247,7 +282,7 @@ result = fgt.cmdb.firewall.address.create(
 )
 
 # Create IPv4 address (IP range)
-result = fgt.cmdb.firewall.address.create(
+result = fgt.api.cmdb.firewall.address.create(
     name='dhcp-range',
     type='iprange',
     start_ip='192.168.1.100',
@@ -255,14 +290,14 @@ result = fgt.cmdb.firewall.address.create(
 )
 
 # Create IPv4 address (FQDN)
-result = fgt.cmdb.firewall.address.create(
+result = fgt.api.cmdb.firewall.address.create(
     name='google-dns',
     type='fqdn',
     fqdn='dns.google.com'
 )
 
 # Create IPv6 address
-result = fgt.cmdb.firewall.address6.create(
+result = fgt.api.cmdb.firewall.address6.create(
     name='ipv6-internal',
     type='ipprefix',
     ip6='2001:db8::/32',
@@ -270,7 +305,7 @@ result = fgt.cmdb.firewall.address6.create(
 )
 
 # Create address group with simplified API
-result = fgt.cmdb.firewall.addrgrp.create(
+result = fgt.api.cmdb.firewall.addrgrp.create(
     name='internal-networks',
     member=['subnet1', 'subnet2', 'subnet3'],  # Simple string list!
     comment='All internal networks'
@@ -280,14 +315,14 @@ result = fgt.cmdb.firewall.addrgrp.create(
 # member=['addr1', 'addr2'] → [{'name': 'addr1'}, {'name': 'addr2'}]
 
 # Create IPv6 address group
-result = fgt.cmdb.firewall.addrgrp6.create(
+result = fgt.api.cmdb.firewall.addrgrp6.create(
     name='ipv6-internal-networks',
     member=['ipv6-subnet1', 'ipv6-subnet2'],
     comment='All internal IPv6 networks'
 )
 
 # Create IPv6 address template
-result = fgt.cmdb.firewall.address6_template.create(
+result = fgt.api.cmdb.firewall.address6_template.create(
     name='ipv6-subnet-template',
     ip6='2001:db8::/32',
     subnet_segment_count=2,
@@ -298,7 +333,7 @@ result = fgt.cmdb.firewall.address6_template.create(
 ### FortiOS - Schedule Management
 ```python
 # Create recurring schedule
-result = fgt.cmdb.firewall.schedule.recurring.create(
+result = fgt.api.cmdb.firewall.schedule.recurring.create(
     name='business-hours',
     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday'],
     start='08:00',
@@ -311,7 +346,7 @@ tomorrow = datetime.now() + timedelta(days=1)
 start = f"09:00 {tomorrow.strftime('%Y/%m/%d')}"
 end = f"17:00 {tomorrow.strftime('%Y/%m/%d')}"
 
-result = fgt.cmdb.firewall.schedule.onetime.create(
+result = fgt.api.cmdb.firewall.schedule.onetime.create(
     name='maintenance-window',
     start=start,
     end=end,
@@ -342,19 +377,17 @@ Exception
 Each module includes comprehensive tests:
 
 ```bash
-# Run FortiOS tests (requires FortiGate access)
-cd FortiOS/Tests
-python3 test_exceptions.py
-python3 cmdb/firewall/address.py
+# This repo includes script-style integration checks under X/tests (requires FortiGate access).
+# They are not intended for pytest collection.
 ```
 
 ## 📝 Version
 
-Current version: **0.1.0**
+Current version: **0.3.7**
 
 ```python
-from fortinet import get_version
-print(get_version())  # '0.1.0'
+from hfortix import get_version
+print(get_version())
 ```
 
 ## 🤝 Contributing
@@ -367,7 +400,7 @@ print(get_version())  # '0.1.0'
 
 ## 📄 License
 
-[Your License Here]
+MIT
 
 ## 🔗 Links
 

@@ -5,7 +5,7 @@ API endpoint for managing IPv6 access proxy configuration.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -43,7 +43,7 @@ class AccessProxy6:
             >>> proxies = fgt.cmdb.firewall.access_proxy6.list()
             >>> print(f"Total IPv6 proxies: {len(proxies['results'])}")
         """
-        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
+        return self._client.get('cmdb', self._path, params=params, vdom=vdom)
 
     def get(self, name: str | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -69,12 +69,13 @@ class AccessProxy6:
             path = f'{self._path}/{name}'
         else:
             path = self._path
-        return self._client.cmdb._get(path, vdom=vdom, params=params)
+        return self._client.get('cmdb', path, params=params, vdom=vdom)
 
     def create(
         self,
-        name: str,
-        vip: str | None = None,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        vip: Optional[str] = None,
         client_cert: str | None = None,
         auth_portal: str = 'disable',
         auth_virtual_host: str | None = None,
@@ -124,38 +125,54 @@ class AccessProxy6:
             ...     log_blocked_traffic='enable'
             ... )
         """
-        data: dict[str, Any] = {
-            'name': name,
-            'auth-portal': auth_portal,
-            'empty-cert-action': empty_cert_action,
-            'log-blocked-traffic': log_blocked_traffic,
-            'add-vhost-domain-to-dnsdb': add_vhost_domain_to_dnsdb,
-            'http-supported-max-version': http_supported_max_version,
-            'svr-pool-multiplex': svr_pool_multiplex,
-            'svr-pool-ttl': svr_pool_ttl,
-            'svr-pool-server-max-request': svr_pool_server_max_request,
-            'svr-pool-server-max-concurrent-request': svr_pool_server_max_concurrent_request
-        }
-        
-        if vip is not None:
-            data['vip'] = vip
-        if client_cert is not None:
-            data['client-cert'] = client_cert
-        if auth_virtual_host is not None:
-            data['auth-virtual-host'] = auth_virtual_host
-        if decapped_traffic_mirror is not None:
-            data['decapped-traffic-mirror'] = decapped_traffic_mirror
-        if api_gateway is not None:
-            data['api-gateway'] = api_gateway
-        if api_gateway6 is not None:
-            data['api-gateway6'] = api_gateway6
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            if name is not None:
+                payload['name'] = name
+            if auth_portal is not None:
+                payload['auth-portal'] = auth_portal
+            if empty_cert_action is not None:
+                payload['empty-cert-action'] = empty_cert_action
+            if log_blocked_traffic is not None:
+                payload['log-blocked-traffic'] = log_blocked_traffic
+            if add_vhost_domain_to_dnsdb is not None:
+                payload['add-vhost-domain-to-dnsdb'] = add_vhost_domain_to_dnsdb
+            if http_supported_max_version is not None:
+                payload['http-supported-max-version'] = http_supported_max_version
+            if svr_pool_multiplex is not None:
+                payload['svr-pool-multiplex'] = svr_pool_multiplex
+            if svr_pool_ttl is not None:
+                payload['svr-pool-ttl'] = svr_pool_ttl
+            if svr_pool_server_max_request is not None:
+                payload['svr-pool-server-max-request'] = svr_pool_server_max_request
+            if svr_pool_server_max_concurrent_request is not None:
+                payload['svr-pool-server-max-concurrent-request'] = svr_pool_server_max_concurrent_request
             
-        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
+            if vip is not None:
+                payload['vip'] = vip
+            if client_cert is not None:
+                payload['client-cert'] = client_cert
+            if auth_virtual_host is not None:
+                payload['auth-virtual-host'] = auth_virtual_host
+            if decapped_traffic_mirror is not None:
+                payload['decapped-traffic-mirror'] = decapped_traffic_mirror
+            if api_gateway is not None:
+                payload['api-gateway'] = api_gateway
+            if api_gateway6 is not None:
+                payload['api-gateway6'] = api_gateway6
+            
+        return self._client.post('cmdb', self._path, data=payload, vdom=vdom)
 
     def update(
         self,
-        name: str,
-        vip: str | None = None,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        vip: Optional[str] = None,
         client_cert: str | None = None,
         auth_portal: str | None = None,
         auth_virtual_host: str | None = None,
@@ -203,41 +220,50 @@ class AccessProxy6:
             ...     auth_portal='disable'
             ... )
         """
-        data: dict[str, Any] = {}
-        
-        if vip is not None:
-            data['vip'] = vip
-        if client_cert is not None:
-            data['client-cert'] = client_cert
-        if auth_portal is not None:
-            data['auth-portal'] = auth_portal
-        if auth_virtual_host is not None:
-            data['auth-virtual-host'] = auth_virtual_host
-        if empty_cert_action is not None:
-            data['empty-cert-action'] = empty_cert_action
-        if log_blocked_traffic is not None:
-            data['log-blocked-traffic'] = log_blocked_traffic
-        if add_vhost_domain_to_dnsdb is not None:
-            data['add-vhost-domain-to-dnsdb'] = add_vhost_domain_to_dnsdb
-        if http_supported_max_version is not None:
-            data['http-supported-max-version'] = http_supported_max_version
-        if svr_pool_multiplex is not None:
-            data['svr-pool-multiplex'] = svr_pool_multiplex
-        if svr_pool_ttl is not None:
-            data['svr-pool-ttl'] = svr_pool_ttl
-        if svr_pool_server_max_request is not None:
-            data['svr-pool-server-max-request'] = svr_pool_server_max_request
-        if svr_pool_server_max_concurrent_request is not None:
-            data['svr-pool-server-max-concurrent-request'] = svr_pool_server_max_concurrent_request
-        if decapped_traffic_mirror is not None:
-            data['decapped-traffic-mirror'] = decapped_traffic_mirror
-        if api_gateway is not None:
-            data['api-gateway'] = api_gateway
-        if api_gateway6 is not None:
-            data['api-gateway6'] = api_gateway6
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+            # Extract name from data if not provided as param
+            if name is None:
+                name = payload.get('name')
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            
+            if vip is not None:
+                payload['vip'] = vip
+            if client_cert is not None:
+                payload['client-cert'] = client_cert
+            if auth_portal is not None:
+                payload['auth-portal'] = auth_portal
+            if auth_virtual_host is not None:
+                payload['auth-virtual-host'] = auth_virtual_host
+            if empty_cert_action is not None:
+                payload['empty-cert-action'] = empty_cert_action
+            if log_blocked_traffic is not None:
+                payload['log-blocked-traffic'] = log_blocked_traffic
+            if add_vhost_domain_to_dnsdb is not None:
+                payload['add-vhost-domain-to-dnsdb'] = add_vhost_domain_to_dnsdb
+            if http_supported_max_version is not None:
+                payload['http-supported-max-version'] = http_supported_max_version
+            if svr_pool_multiplex is not None:
+                payload['svr-pool-multiplex'] = svr_pool_multiplex
+            if svr_pool_ttl is not None:
+                payload['svr-pool-ttl'] = svr_pool_ttl
+            if svr_pool_server_max_request is not None:
+                payload['svr-pool-server-max-request'] = svr_pool_server_max_request
+            if svr_pool_server_max_concurrent_request is not None:
+                payload['svr-pool-server-max-concurrent-request'] = svr_pool_server_max_concurrent_request
+            if decapped_traffic_mirror is not None:
+                payload['decapped-traffic-mirror'] = decapped_traffic_mirror
+            if api_gateway is not None:
+                payload['api-gateway'] = api_gateway
+            if api_gateway6 is not None:
+                payload['api-gateway6'] = api_gateway6
             
         path = f'{self._path}/{name}'
-        return self._client.cmdb._put(path, data=data, vdom=vdom)
+        return self._client.put('cmdb', path, data=payload, vdom=vdom)
 
     def delete(self, name: str, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -254,7 +280,7 @@ class AccessProxy6:
             >>> result = fgt.cmdb.firewall.access_proxy6.delete('proxy6-1')
         """
         path = f'{self._path}/{name}'
-        return self._client.cmdb._delete(path, vdom=vdom)
+        return self._client.delete('cmdb', path, vdom=vdom)
 
     def exists(self, name: str, vdom: str | None = None) -> bool:
         """

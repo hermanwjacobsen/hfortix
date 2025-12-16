@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -37,14 +37,16 @@ class Fortigate:
         """Get all FortiGate controllers."""
         return self.get(name=None, vdom=vdom, **kwargs)
 
-    def create(self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def create(self, data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """Create a new FortiGate controller."""
         data = {'name': name}
         for key, value in kwargs.items():
             data[key.replace('_', '-')] = value
         return self._client.post('cmdb', 'extension-controller/fortigate', data=data, vdom=vdom)
 
-    def update(self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def update(self, data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """Update a FortiGate controller."""
         data = {}
         for key, value in kwargs.items():

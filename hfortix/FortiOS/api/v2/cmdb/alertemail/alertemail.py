@@ -9,7 +9,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -40,6 +40,7 @@ class AlertEmail:
 
     def update(
         self,
+        data: Optional[Dict[str, Any]] = None,
         username: Optional[str] = None,
         mailto1: Optional[str] = None,
         mailto2: Optional[str] = None,
@@ -151,56 +152,61 @@ class AlertEmail:
             ...     warning_interval=30
             ... )
         """
-        # Build data dict from provided parameters
-        data = {}
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
 
-        # Map Python parameter names to API field names
-        param_map = {
-            'username': 'username',
-            'mailto1': 'mailto1',
-            'mailto2': 'mailto2',
-            'mailto3': 'mailto3',
-            'filter_mode': 'filter-mode',
-            'email_interval': 'email-interval',
-            'severity': 'severity',
-            'local_disk_usage': 'local-disk-usage',
-            # Log types
-            'ips_logs': 'IPS-logs',
-            'firewall_authentication_failure_logs': 'firewall-authentication-failure-logs',
-            'ha_logs': 'HA-logs',
-            'ipsec_errors_logs': 'IPsec-errors-logs',
-            'fds_update_logs': 'FDS-update-logs',
-            'ppp_errors_logs': 'PPP-errors-logs',
-            'antivirus_logs': 'antivirus-logs',
-            'webfilter_logs': 'webfilter-logs',
-            'configuration_changes_logs': 'configuration-changes-logs',
-            'violation_traffic_logs': 'violation-traffic-logs',
-            'admin_login_logs': 'admin-login-logs',
-            'fds_license_expiring_warning': 'FDS-license-expiring-warning',
-            'log_disk_usage_warning': 'log-disk-usage-warning',
-            'fortiguard_log_quota_warning': 'fortiguard-log-quota-warning',
-            'amc_interface_bypass_mode': 'amc-interface-bypass-mode',
-            'fips_cc_errors': 'FIPS-CC-errors',
-            'fsso_disconnect_logs': 'FSSO-disconnect-logs',
-            'ssh_logs': 'ssh-logs',
-            # Intervals
-            'emergency_interval': 'emergency-interval',
-            'alert_interval': 'alert-interval',
-            'critical_interval': 'critical-interval',
-            'error_interval': 'error-interval',
-            'warning_interval': 'warning-interval',
-            'notification_interval': 'notification-interval',
-            'information_interval': 'information-interval',
-            'debug_interval': 'debug-interval',
-        }
+            # Map Python parameter names to API field names
+            param_map = {
+                'username': 'username',
+                'mailto1': 'mailto1',
+                'mailto2': 'mailto2',
+                'mailto3': 'mailto3',
+                'filter_mode': 'filter-mode',
+                'email_interval': 'email-interval',
+                'severity': 'severity',
+                'local_disk_usage': 'local-disk-usage',
+                # Log types
+                'ips_logs': 'IPS-logs',
+                'firewall_authentication_failure_logs': 'firewall-authentication-failure-logs',
+                'ha_logs': 'HA-logs',
+                'ipsec_errors_logs': 'IPsec-errors-logs',
+                'fds_update_logs': 'FDS-update-logs',
+                'ppp_errors_logs': 'PPP-errors-logs',
+                'antivirus_logs': 'antivirus-logs',
+                'webfilter_logs': 'webfilter-logs',
+                'configuration_changes_logs': 'configuration-changes-logs',
+                'violation_traffic_logs': 'violation-traffic-logs',
+                'admin_login_logs': 'admin-login-logs',
+                'fds_license_expiring_warning': 'FDS-license-expiring-warning',
+                'log_disk_usage_warning': 'log-disk-usage-warning',
+                'fortiguard_log_quota_warning': 'fortiguard-log-quota-warning',
+                'amc_interface_bypass_mode': 'amc-interface-bypass-mode',
+                'fips_cc_errors': 'FIPS-CC-errors',
+                'fsso_disconnect_logs': 'FSSO-disconnect-logs',
+                'ssh_logs': 'ssh-logs',
+                # Intervals
+                'emergency_interval': 'emergency-interval',
+                'alert_interval': 'alert-interval',
+                'critical_interval': 'critical-interval',
+                'error_interval': 'error-interval',
+                'warning_interval': 'warning-interval',
+                'notification_interval': 'notification-interval',
+                'information_interval': 'information-interval',
+                'debug_interval': 'debug-interval',
+            }
 
-        # Add all non-None parameters to data dict
-        for param_name, api_name in param_map.items():
-            value = locals().get(param_name)
-            if value is not None:
-                data[api_name] = value
+            # Add all non-None parameters to payload dict
+            for param_name, api_name in param_map.items():
+                value = locals().get(param_name)
+                if value is not None:
+                    payload[api_name] = value
 
-        # Add any extra kwargs
-        data.update(kwargs)
+            # Add any extra kwargs
+            payload.update(kwargs)
 
-        return self._client.put('cmdb', 'alertemail/setting', data, vdom=vdom)
+        return self._client.put('cmdb', 'alertemail/setting', payload, vdom=vdom)

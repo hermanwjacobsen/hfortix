@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -98,6 +98,7 @@ class Setting:
 
     def update(
         self,
+        data_dict: Optional[Dict[str, Any]] = None,
         active_auth_scheme: Optional[str] = None,
         sso_auth_scheme: Optional[str] = None,
         update_time: Optional[str] = None,

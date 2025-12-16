@@ -5,7 +5,7 @@ API endpoint for managing Access Proxy SSH client certificates.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any
+from typing import Dict, TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -43,7 +43,7 @@ class AccessProxySshClientCert:
             >>> certs = fgt.cmdb.firewall.access_proxy_ssh_client_cert.list()
             >>> print(f"Total certificates: {len(certs['results'])}")
         """
-        return self._client.cmdb._get(self._path, vdom=vdom, params=params)
+        return self._client.get('cmdb', self._path, params=params, vdom=vdom)
 
     def get(self, name: str | None = None, vdom: str | None = None, **params: Any) -> dict[str, Any]:
         """
@@ -69,12 +69,13 @@ class AccessProxySshClientCert:
             path = f'{self._path}/{name}'
         else:
             path = self._path
-        return self._client.cmdb._get(path, vdom=vdom, params=params)
+        return self._client.get('cmdb', path, params=params, vdom=vdom)
 
     def create(
         self,
-        name: str,
-        auth_ca: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        auth_ca: Optional[str] = None,
         cert_extension: list[dict[str, Any]] | None = None,
         permit_agent_forwarding: str = 'enable',
         permit_port_forwarding: str = 'enable',
@@ -110,26 +111,39 @@ class AccessProxySshClientCert:
             ...     permit_port_forwarding='disable'
             ... )
         """
-        data: dict[str, Any] = {
-            'name': name,
-            'auth-ca': auth_ca,
-            'permit-agent-forwarding': permit_agent_forwarding,
-            'permit-port-forwarding': permit_port_forwarding,
-            'permit-pty': permit_pty,
-            'permit-user-rc': permit_user_rc,
-            'permit-x11-forwarding': permit_x11_forwarding,
-            'source-address': source_address
-        }
-        
-        if cert_extension is not None:
-            data['cert-extension'] = cert_extension
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            if name is not None:
+                payload['name'] = name
+            if auth_ca is not None:
+                payload['auth-ca'] = auth_ca
+            if permit_agent_forwarding is not None:
+                payload['permit-agent-forwarding'] = permit_agent_forwarding
+            if permit_port_forwarding is not None:
+                payload['permit-port-forwarding'] = permit_port_forwarding
+            if permit_pty is not None:
+                payload['permit-pty'] = permit_pty
+            if permit_user_rc is not None:
+                payload['permit-user-rc'] = permit_user_rc
+            if permit_x11_forwarding is not None:
+                payload['permit-x11-forwarding'] = permit_x11_forwarding
+            if source_address is not None:
+                payload['source-address'] = source_address
+            if cert_extension is not None:
+                payload['cert-extension'] = cert_extension
             
-        return self._client.cmdb._post(self._path, data=data, vdom=vdom)
+        return self._client.post('cmdb', self._path, data=payload, vdom=vdom)
 
     def update(
         self,
-        name: str,
-        auth_ca: str | None = None,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        auth_ca: Optional[str] = None,
         cert_extension: list[dict[str, Any]] | None = None,
         permit_agent_forwarding: str | None = None,
         permit_port_forwarding: str | None = None,
@@ -163,27 +177,36 @@ class AccessProxySshClientCert:
             ...     permit_port_forwarding='enable'
             ... )
         """
-        data: dict[str, Any] = {}
-        
-        if auth_ca is not None:
-            data['auth-ca'] = auth_ca
-        if cert_extension is not None:
-            data['cert-extension'] = cert_extension
-        if permit_agent_forwarding is not None:
-            data['permit-agent-forwarding'] = permit_agent_forwarding
-        if permit_port_forwarding is not None:
-            data['permit-port-forwarding'] = permit_port_forwarding
-        if permit_pty is not None:
-            data['permit-pty'] = permit_pty
-        if permit_user_rc is not None:
-            data['permit-user-rc'] = permit_user_rc
-        if permit_x11_forwarding is not None:
-            data['permit-x11-forwarding'] = permit_x11_forwarding
-        if source_address is not None:
-            data['source-address'] = source_address
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+            # Extract name from data if not provided as param
+            if name is None:
+                name = payload.get('name')
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            
+            if auth_ca is not None:
+                payload['auth-ca'] = auth_ca
+            if cert_extension is not None:
+                payload['cert-extension'] = cert_extension
+            if permit_agent_forwarding is not None:
+                payload['permit-agent-forwarding'] = permit_agent_forwarding
+            if permit_port_forwarding is not None:
+                payload['permit-port-forwarding'] = permit_port_forwarding
+            if permit_pty is not None:
+                payload['permit-pty'] = permit_pty
+            if permit_user_rc is not None:
+                payload['permit-user-rc'] = permit_user_rc
+            if permit_x11_forwarding is not None:
+                payload['permit-x11-forwarding'] = permit_x11_forwarding
+            if source_address is not None:
+                payload['source-address'] = source_address
             
         path = f'{self._path}/{name}'
-        return self._client.cmdb._put(path, data=data, vdom=vdom)
+        return self._client.put('cmdb', path, data=payload, vdom=vdom)
 
     def delete(self, name: str, vdom: str | None = None) -> dict[str, Any]:
         """
@@ -200,7 +223,7 @@ class AccessProxySshClientCert:
             >>> result = fgt.cmdb.firewall.access_proxy_ssh_client_cert.delete('ssh-cert1')
         """
         path = f'{self._path}/{name}'
-        return self._client.cmdb._delete(path, vdom=vdom)
+        return self._client.delete('cmdb', path, vdom=vdom)
 
     def exists(self, name: str, vdom: str | None = None) -> bool:
         """

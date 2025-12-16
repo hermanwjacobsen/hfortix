@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -142,10 +142,10 @@ class ServiceGroup:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         member: Optional[list] = None,
         comment: Optional[str] = None,
         color: Optional[int] = None,
@@ -157,6 +157,10 @@ class ServiceGroup:
         """
         Create a new service group.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Group name (required)
             member: List of member services (list of dicts with 'name' key)
@@ -191,37 +195,35 @@ class ServiceGroup:
             ...     color=10
             ... )
         """
-        data = {}
-        param_map = {
-            'name': name,
-            'member': member,
-            'comment': comment,
-            'color': color,
-            'proxy': proxy,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'name': 'name',
-            'member': 'member',
-            'comment': 'comment',
-            'color': 'color',
-            'proxy': 'proxy',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if comment is not None:
+                data['comment'] = comment
+            if color is not None:
+                data['color'] = color
+            if proxy is not None:
+                data['proxy'] = proxy
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.post('cmdb', 'firewall.service/group', data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         member: Optional[list] = None,
         comment: Optional[str] = None,
         color: Optional[int] = None,
@@ -233,6 +235,10 @@ class ServiceGroup:
         """
         Update an existing service group.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Group name (required)
             member: List of member services (list of dicts with 'name' key)
@@ -263,29 +269,27 @@ class ServiceGroup:
             ...     color=15
             ... )
         """
-        data = {}
-        param_map = {
-            'member': member,
-            'comment': comment,
-            'color': color,
-            'proxy': proxy,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'member': 'member',
-            'comment': 'comment',
-            'color': 'color',
-            'proxy': 'proxy',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if comment is not None:
+                data['comment'] = comment
+            if color is not None:
+                data['color'] = color
+            if proxy is not None:
+                data['proxy'] = proxy
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.put('cmdb', f'firewall.service/group/{name}', data, vdom=vdom)
 

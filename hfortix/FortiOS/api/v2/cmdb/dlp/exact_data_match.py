@@ -12,7 +12,7 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -130,7 +130,8 @@ class ExactDataMatch:
     
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Template configuration
         optional: int | None = None,
         data: str | None = None,
@@ -142,6 +143,7 @@ class ExactDataMatch:
         Create a new DLP exact-data-match template.
         
         Args:
+            data_dict: Complete configuration as dictionary (alternative to individual params)
             name: Name of the template (max 35 chars)
             optional: Number of optional columns need to match (0-32)
             data: External resource for exact data match (max 35 chars)
@@ -204,7 +206,8 @@ class ExactDataMatch:
     
     def update(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Template configuration
         optional: int | None = None,
         data: str | None = None,
@@ -216,6 +219,7 @@ class ExactDataMatch:
         Update an existing DLP exact-data-match template.
         
         Args:
+            data_dict: Complete configuration as dictionary (alternative to individual params)
             name: Name of the template to update
             optional: Number of optional columns need to match (0-32)
             data: External resource for exact data match (max 35 chars)

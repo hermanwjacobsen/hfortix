@@ -12,7 +12,7 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -130,7 +130,8 @@ class Filepattern:
     
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # File pattern configuration
         id: int | None = None,
         comment: str | None = None,
@@ -221,7 +222,8 @@ class Filepattern:
     
     def update(
         self,
-        id: int,
+        data_dict: Optional[Dict[str, Any]] = None,
+        id: Optional[int] = None,
         # File pattern configuration
         name: str | None = None,
         comment: str | None = None,

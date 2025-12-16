@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -83,6 +83,7 @@ class Settings:
 
     def update(
         self,
+        data_dict: Optional[Dict[str, Any]] = None,
         # FortiClient settings
         forticlient_reg_key_enforce: Optional[str] = None,
         forticlient_reg_key: Optional[str] = None,

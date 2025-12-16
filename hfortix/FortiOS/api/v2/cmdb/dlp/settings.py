@@ -7,7 +7,7 @@ Only GET and UPDATE operations are supported.
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient, HTTPResponse
@@ -49,7 +49,8 @@ class Settings:
         """
         return self._client.get('cmdb', 'dlp/settings', vdom=vdom, params=kwargs)
     
-    def update(self, config_builder_timeout=None, vdom=None, **kwargs) -> HTTPResponse:
+    def update(self, data_dict: Optional[Dict[str, Any]] = None,
+        config_builder_timeout=None, vdom=None, **kwargs) -> HTTPResponse:
         """Update DLP settings.
         
         Args:

@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -142,10 +142,10 @@ class ServiceCustom:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         protocol: Optional[str] = None,
         tcp_portrange: Optional[str] = None,
         udp_portrange: Optional[str] = None,
@@ -167,6 +167,10 @@ class ServiceCustom:
         """
         Create a new custom service.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Service name (required)
             protocol: Protocol type - 'TCP/UDP/SCTP', 'ICMP', 'ICMP6', 'IP', 'HTTP', 'FTP', 'CONNECT', 'SOCKS-TCP', 'SOCKS-UDP', 'ALL'
@@ -215,57 +219,51 @@ class ServiceCustom:
             ...     icmpcode=0
             ... )
         """
-        data = {}
-        param_map = {
-            'name': name,
-            'protocol': protocol,
-            'tcp_portrange': tcp_portrange,
-            'udp_portrange': udp_portrange,
-            'sctp_portrange': sctp_portrange,
-            'icmptype': icmptype,
-            'icmpcode': icmpcode,
-            'protocol_number': protocol_number,
-            'category': category,
-            'comment': comment,
-            'visibility': visibility,
-            'color': color,
-            'app_service_type': app_service_type,
-            'app_category': app_category,
-            'application': application,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'name': 'name',
-            'protocol': 'protocol',
-            'tcp_portrange': 'tcp-portrange',
-            'udp_portrange': 'udp-portrange',
-            'sctp_portrange': 'sctp-portrange',
-            'icmptype': 'icmptype',
-            'icmpcode': 'icmpcode',
-            'protocol_number': 'protocol-number',
-            'category': 'category',
-            'comment': 'comment',
-            'visibility': 'visibility',
-            'color': 'color',
-            'app_service_type': 'app-service-type',
-            'app_category': 'app-category',
-            'application': 'application',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if protocol is not None:
+                data['protocol'] = protocol
+            if tcp_portrange is not None:
+                data['tcp-portrange'] = tcp_portrange
+            if udp_portrange is not None:
+                data['udp-portrange'] = udp_portrange
+            if sctp_portrange is not None:
+                data['sctp-portrange'] = sctp_portrange
+            if icmptype is not None:
+                data['icmptype'] = icmptype
+            if icmpcode is not None:
+                data['icmpcode'] = icmpcode
+            if protocol_number is not None:
+                data['protocol-number'] = protocol_number
+            if category is not None:
+                data['category'] = category
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if app_service_type is not None:
+                data['app-service-type'] = app_service_type
+            if app_category is not None:
+                data['app-category'] = app_category
+            if application is not None:
+                data['application'] = application
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.post('cmdb', 'firewall.service/custom', data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         protocol: Optional[str] = None,
         tcp_portrange: Optional[str] = None,
         udp_portrange: Optional[str] = None,
@@ -287,6 +285,10 @@ class ServiceCustom:
         """
         Update an existing custom service.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Service name (required)
             protocol: Protocol type - 'TCP/UDP/SCTP', 'ICMP', 'ICMP6', 'IP', 'HTTP', 'FTP', 'CONNECT', 'SOCKS-TCP', 'SOCKS-UDP', 'ALL'
@@ -324,49 +326,43 @@ class ServiceCustom:
             ...     comment='HTTPS on alternate ports'
             ... )
         """
-        data = {}
-        param_map = {
-            'protocol': protocol,
-            'tcp_portrange': tcp_portrange,
-            'udp_portrange': udp_portrange,
-            'sctp_portrange': sctp_portrange,
-            'icmptype': icmptype,
-            'icmpcode': icmpcode,
-            'protocol_number': protocol_number,
-            'category': category,
-            'comment': comment,
-            'visibility': visibility,
-            'color': color,
-            'app_service_type': app_service_type,
-            'app_category': app_category,
-            'application': application,
-            'fabric_object': fabric_object,
-        }
-        
-        api_field_map = {
-            'protocol': 'protocol',
-            'tcp_portrange': 'tcp-portrange',
-            'udp_portrange': 'udp-portrange',
-            'sctp_portrange': 'sctp-portrange',
-            'icmptype': 'icmptype',
-            'icmpcode': 'icmpcode',
-            'protocol_number': 'protocol-number',
-            'category': 'category',
-            'comment': 'comment',
-            'visibility': 'visibility',
-            'color': 'color',
-            'app_service_type': 'app-service-type',
-            'app_category': 'app-category',
-            'application': 'application',
-            'fabric_object': 'fabric-object',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if protocol is not None:
+                data['protocol'] = protocol
+            if tcp_portrange is not None:
+                data['tcp-portrange'] = tcp_portrange
+            if udp_portrange is not None:
+                data['udp-portrange'] = udp_portrange
+            if sctp_portrange is not None:
+                data['sctp-portrange'] = sctp_portrange
+            if icmptype is not None:
+                data['icmptype'] = icmptype
+            if icmpcode is not None:
+                data['icmpcode'] = icmpcode
+            if protocol_number is not None:
+                data['protocol-number'] = protocol_number
+            if category is not None:
+                data['category'] = category
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if app_service_type is not None:
+                data['app-service-type'] = app_service_type
+            if app_category is not None:
+                data['app-category'] = app_category
+            if application is not None:
+                data['application'] = application
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
         
         return self._client.put('cmdb', f'firewall.service/custom/{name}', data, vdom=vdom)
 

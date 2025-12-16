@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -129,10 +129,10 @@ class ScheduleGroup:
         
         path = f'firewall.schedule/group/{name}'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         member: Optional[list[dict[str, str]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
@@ -142,6 +142,10 @@ class ScheduleGroup:
         """
         Create a new schedule group.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Schedule group name
             member: List of schedule objects, each dict with 'name' key
@@ -170,6 +174,26 @@ class ScheduleGroup:
             ...     color=5
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if color is not None:
+                data['color'] = color
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {'name': name}
         
         param_map = {
@@ -189,10 +213,10 @@ class ScheduleGroup:
         
         path = 'firewall.schedule/group'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         member: Optional[list[dict[str, str]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
@@ -202,6 +226,10 @@ class ScheduleGroup:
         """
         Update an existing schedule group.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Schedule group name
             member: List of schedule objects, each dict with 'name' key
@@ -229,6 +257,24 @@ class ScheduleGroup:
             ...     color=10
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if color is not None:
+                data['color'] = color
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {}
         
         param_map = {

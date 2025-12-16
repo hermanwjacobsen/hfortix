@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Dict, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -152,7 +152,8 @@ class Dataplan:
 
     def create(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Dataplan configuration
         modem_id: Optional[str] = None,
         type: Optional[str] = None,
@@ -245,7 +246,8 @@ class Dataplan:
 
     def update(
         self,
-        name: str,
+        data_dict: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         # Dataplan configuration
         modem_id: Optional[str] = None,
         type: Optional[str] = None,

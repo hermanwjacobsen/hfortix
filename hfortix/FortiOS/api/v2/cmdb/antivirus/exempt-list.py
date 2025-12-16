@@ -12,7 +12,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -121,7 +121,8 @@ class ExemptList:
 
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         hash_type: Optional[str] = None,
         hash: Optional[str] = None,
@@ -162,39 +163,47 @@ class ExemptList:
             ...     hash='d41d8cd98f00b204e9800998ecf8427e'
             ... )
         """
-        # Build data dict from provided parameters
-        data = {'name': name}
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
+            if name is not None:
+                payload['name'] = name
 
-        # Map Python parameter names to API field names
-        param_map = {
-            'comment': comment,
-            'hash_type': hash_type,
-            'hash': hash,
-            'status': status,
-        }
+            # Map Python parameter names to API field names
+            param_map = {
+                'comment': comment,
+                'hash_type': hash_type,
+                'hash': hash,
+                'status': status,
+            }
 
-        # API field name mapping
-        api_field_map = {
-            'comment': 'comment',
-            'hash_type': 'hash-type',
-            'hash': 'hash',
-            'status': 'status',
-        }
+            # API field name mapping
+            api_field_map = {
+                'comment': 'comment',
+                'hash_type': 'hash-type',
+                'hash': 'hash',
+                'status': 'status',
+            }
 
-        # Add non-None parameters
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
+            # Add non-None parameters
+            for param_name, value in param_map.items():
+                if value is not None:
+                    api_name = api_field_map[param_name]
+                    payload[api_name] = value
 
-        # Add any extra kwargs
-        data.update(kwargs)
+            # Add any extra kwargs
+            payload.update(kwargs)
 
-        return self._client.post('cmdb', 'antivirus/exempt-list', data, vdom=vdom)
+        return self._client.post('cmdb', 'antivirus/exempt-list', payload, vdom=vdom)
 
     def update(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         comment: Optional[str] = None,
         hash_type: Optional[str] = None,
         hash: Optional[str] = None,
@@ -250,35 +259,43 @@ class ExemptList:
             ...     after='entry2'
             ... )
         """
-        # Build data dict from provided parameters
-        data = {}
+        # Support both patterns: data dict or individual kwargs
+        if data is not None:
+            # Pattern 1: data dict provided
+            payload = data.copy()
+            # Extract name from data if not provided as param
+            if name is None:
+                name = payload.get('name')
+        else:
+            # Pattern 2: build from kwargs
+            payload: Dict[str, Any] = {}
 
-        # Map data parameters
-        data_param_map = {
-            'comment': comment,
-            'hash_type': hash_type,
-            'hash': hash,
-            'status': status,
-        }
+            # Map data parameters
+            data_param_map = {
+                'comment': comment,
+                'hash_type': hash_type,
+                'hash': hash,
+                'status': status,
+            }
 
-        # API field name mapping for data
-        api_field_map = {
-            'comment': 'comment',
-            'hash_type': 'hash-type',
-            'hash': 'hash',
-            'status': 'status',
-        }
+            # API field name mapping for data
+            api_field_map = {
+                'comment': 'comment',
+                'hash_type': 'hash-type',
+                'hash': 'hash',
+                'status': 'status',
+            }
 
-        # Add non-None data parameters
-        for param_name, value in data_param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
+            # Add non-None data parameters
+            for param_name, value in data_param_map.items():
+                if value is not None:
+                    api_name = api_field_map[param_name]
+                    payload[api_name] = value
 
-        # Add any extra data kwargs
-        for key, value in kwargs.items():
-            if key not in ['action', 'before', 'after', 'scope']:
-                data[key] = value
+            # Add any extra data kwargs
+            for key, value in kwargs.items():
+                if key not in ['action', 'before', 'after', 'scope']:
+                    payload[key] = value
 
         # Build query params dict
         params = {}
@@ -296,7 +313,7 @@ class ExemptList:
             if value is not None:
                 params[param_name] = value
 
-        return self._client.put('cmdb', f'antivirus/exempt-list/{name}', data, params=params if params else None, vdom=vdom)
+        return self._client.put('cmdb', f'antivirus/exempt-list/{name}', payload, params=params if params else None, vdom=vdom)
 
     def delete(
         self,

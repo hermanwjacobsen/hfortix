@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -126,12 +126,12 @@ class ScheduleRecurring:
         
         path = f'firewall.schedule/recurring/{name}'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
-        start: str,
-        end: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        start: Optional[str] = None,
+        end: Optional[str] = None,
         day: Optional[list[str]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
@@ -141,6 +141,10 @@ class ScheduleRecurring:
         """
         Create a new recurring schedule.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Schedule name
             start: Start time (format: hh:mm, e.g., '08:00')
@@ -179,6 +183,26 @@ class ScheduleRecurring:
             ...     day=['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if start is not None:
+                data['start'] = start
+            if end is not None:
+                data['end'] = end
+            if day is not None:
+                data['day'] = day
+            if color is not None:
+                data['color'] = color
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {
             'name': name,
             'start': start,
@@ -202,10 +226,10 @@ class ScheduleRecurring:
         
         path = 'firewall.schedule/recurring'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         start: Optional[str] = None,
         end: Optional[str] = None,
         day: Optional[list[str]] = None,
@@ -217,6 +241,10 @@ class ScheduleRecurring:
         """
         Update an existing recurring schedule.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Schedule name
             start: Start time (format: hh:mm)
@@ -243,6 +271,24 @@ class ScheduleRecurring:
             ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if start is not None:
+                data['start'] = start
+            if end is not None:
+                data['end'] = end
+            if day is not None:
+                data['day'] = day
+            if color is not None:
+                data['color'] = color
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {}
         
         param_map = {

@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -130,11 +130,11 @@ class Addrgrp6:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
-        member: list[str] | list[dict[str, str]],
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
         color: Optional[int] = None,
@@ -147,6 +147,10 @@ class Addrgrp6:
         """
         Create IPv6 address group object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address group name (required)
             member: List of address names (strings) or dicts [{'name': 'addr1'}] (required)
@@ -189,6 +193,34 @@ class Addrgrp6:
         if member and isinstance(member, list) and len(member) > 0:
             if isinstance(member[0], str):
                 member = [{'name': m} for m in member]
+
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if tags is not None:
+                data['tags'] = tags
+            if exclude is not None:
+                data['exclude'] = exclude
+            if exclude_member is not None:
+                data['exclude-member'] = exclude_member
         
         data = {'name': name, 'member': member}
         
@@ -223,10 +255,10 @@ class Addrgrp6:
         
         path = 'firewall/addrgrp6'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
@@ -240,6 +272,10 @@ class Addrgrp6:
         """
         Update IPv6 address group object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address group name (required)
             member: List of address names (strings) or dicts [{'name': 'addr1'}]
@@ -263,6 +299,32 @@ class Addrgrp6:
             ...     comment='Updated IPv6 internal networks'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if member is not None:
+                # Convert string list to dict list if needed
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+            if color is not None:
+                data['color'] = color
+            if tags is not None:
+                data['tags'] = tags
+            if exclude is not None:
+                data['exclude'] = exclude
+            if exclude_member is not None:
+                data['exclude-member'] = exclude_member
+
         data = {}
         
         # Convert member list if needed (simplified API)

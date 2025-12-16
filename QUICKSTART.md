@@ -23,7 +23,7 @@ from hfortix import FortiOS
 
 ### Alternative: Direct Module Import
 ```python
-from FortiOS import FortiOS  # Also works
+from hfortix.FortiOS import FortiOS
 ```
 
 ### Exception Imports
@@ -33,7 +33,8 @@ from hfortix import APIError, ResourceNotFoundError, FortinetError
 
 ### Future Products (Coming Soon)
 ```python
-from hfortix import FortiOS, FortiManager, FortiAnalyzer
+# FortiManager / FortiAnalyzer are planned; currently FortiOS is available.
+from hfortix import FortiOS
 ```
 
 ## Quick Start
@@ -60,26 +61,67 @@ fgt_dev = FortiOS(
 # Basic operations
 try:
     # List
-    addresses = fgt.cmdb.firewall.address.list()
+    addresses = fgt.api.cmdb.firewall.address.list()
     
     # Create
-    result = fgt.cmdb.firewall.address.create(
+    result = fgt.api.cmdb.firewall.address.create(
         name='web-server',
         subnet='10.0.1.100/32'
     )
     
+    # Or use dictionary pattern
+    config = {'name': 'db-server', 'subnet': '10.0.1.200/32'}
+    result = fgt.api.cmdb.firewall.address.create(data_dict=config)
+    
     # Update
-    result = fgt.cmdb.firewall.address.update(
+    result = fgt.api.cmdb.firewall.address.update(
         name='web-server',
         comment='Updated'
     )
     
     # Delete
-    result = fgt.cmdb.firewall.address.delete(name='web-server')
+    result = fgt.api.cmdb.firewall.address.delete(name='web-server')
     
 except APIError as e:
     print(f"Error: {e.message} (Code: {e.error_code})")
 ```
+
+## Dual-Pattern Interface
+
+HFortix supports flexible syntax - use dictionaries, keywords, or mix both:
+
+```python
+# Pattern 1: Dictionary-based (great for templates/configs)
+config = {
+    'name': 'web-server',
+    'subnet': '192.168.10.50/32',
+    'comment': 'Production server'
+}
+fgt.api.cmdb.firewall.address.create(data_dict=config)
+
+# Pattern 2: Keyword-based (readable/interactive)
+fgt.api.cmdb.firewall.address.create(
+    name='web-server',
+    subnet='192.168.10.50/32',
+    comment='Production server'
+)
+
+# Pattern 3: Mixed (template + overrides)
+base = load_template('server.json')
+fgt.api.cmdb.firewall.address.create(
+    data_dict=base,
+    name=f'server-{site_id}',      # Override from template
+    comment=f'Site: {site_name}'    # Add site-specific info
+)
+
+# Service operations also support dual-pattern
+fgt.service.sniffer.start(data_dict={'mkey': 'capture1'})
+fgt.service.sniffer.start(mkey='capture1')  # Same result
+```
+
+**Available on:** 43 methods across 13 categories (100% coverage)
+
+See [Full Documentation](X/docs/migration/DUAL_PATTERN_MIGRATION.md) for complete details.
 
 ## Exception Quick Reference
 
@@ -101,7 +143,7 @@ except APIError as e:
 ```python
 from hfortix import get_available_modules, get_version
 
-print(get_version())  # '0.1.0'
+print(get_version())
 print(get_available_modules())  
 # {'FortiOS': True, 'FortiManager': False, 'FortiAnalyzer': False}
 ```
@@ -125,20 +167,20 @@ fgt = FortiOS(
 ### Pagination
 ```python
 # Get all items (handles pagination automatically)
-all_addresses = fgt.cmdb.firewall.address.list()
+all_addresses = fgt.api.cmdb.firewall.address.list()
 
 # Manual pagination
-page1 = fgt.cmdb.firewall.address.list(start=0, count=100)
-page2 = fgt.cmdb.firewall.address.list(start=100, count=100)
+page1 = fgt.api.cmdb.firewall.address.list(start=0, count=100)
+page2 = fgt.api.cmdb.firewall.address.list(start=100, count=100)
 ```
 
 ### Filtering
 ```python
 # Filter by name
-result = fgt.cmdb.firewall.address.get(name='web-server')
+result = fgt.api.cmdb.firewall.address.get(name='web-server')
 
 # Filter in list (FortiOS filter syntax)
-addresses = fgt.cmdb.firewall.address.list(
+addresses = fgt.api.cmdb.firewall.address.list(
     filter='name==web-*'
 )
 ```
@@ -149,48 +191,48 @@ addresses = fgt.cmdb.firewall.address.list(
 
 ```python
 # Security Features
-fgt.cmdb.antivirus.*               # Antivirus profiles
-fgt.cmdb.dlp.*                     # Data Loss Prevention (8 endpoints)
-fgt.cmdb.dnsfilter.*               # DNS filtering (2 endpoints)
-fgt.cmdb.emailfilter.*             # Email filtering (8 endpoints)
-fgt.cmdb.file_filter.*             # File filtering
+fgt.api.cmdb.antivirus.*               # Antivirus profiles
+fgt.api.cmdb.dlp.*                     # Data Loss Prevention (8 endpoints)
+fgt.api.cmdb.dnsfilter.*               # DNS filtering (2 endpoints)
+fgt.api.cmdb.emailfilter.*             # Email filtering (8 endpoints)
+fgt.api.cmdb.file_filter.*             # File filtering
 
 # Network & Access Control
-fgt.cmdb.firewall.address.*        # Firewall addresses
-fgt.cmdb.application.*             # Application control (4 endpoints)
-fgt.cmdb.endpoint_control.*        # Endpoint control (3 endpoints)
-fgt.cmdb.ethernet_oam.*            # Ethernet OAM (hardware required)
+fgt.api.cmdb.firewall.address.*        # Firewall addresses
+fgt.api.cmdb.application.*             # Application control (4 endpoints)
+fgt.api.cmdb.endpoint_control.*        # Endpoint control (3 endpoints)
+fgt.api.cmdb.ethernet_oam.*            # Ethernet OAM (hardware required)
 
 # Infrastructure & Management
-fgt.cmdb.extension_controller.*    # FortiExtender & FortiGate connectors (6 endpoints)
-fgt.cmdb.certificate.*             # Certificate management (5 endpoints)
-fgt.cmdb.authentication.*          # Authentication (3 endpoints)
+fgt.api.cmdb.extension_controller.*    # FortiExtender & FortiGate connectors (6 endpoints)
+fgt.api.cmdb.certificate.*             # Certificate management (5 endpoints)
+fgt.api.cmdb.authentication.*          # Authentication (3 endpoints)
 
 # Other Categories
-fgt.cmdb.alertemail.*              # Email alerts
-fgt.cmdb.automation.*              # Automation settings
-fgt.cmdb.casb.*                    # Cloud Access Security Broker (3 endpoints)
-fgt.cmdb.diameter_filter.*         # Diameter filtering
-fgt.cmdb.firewall.policy.*         # Firewall policies
-fgt.cmdb.firewall.service.*        # Services
-fgt.cmdb.system.interface.*        # Interfaces
-fgt.cmdb.system.global_.*          # Global settings
-fgt.cmdb.router.static.*           # Static routes
-fgt.cmdb.vpn.ipsec.*              # IPSec VPN
+fgt.api.cmdb.alertemail.*              # Email alerts
+fgt.api.cmdb.automation.*              # Automation settings
+fgt.api.cmdb.casb.*                    # Cloud Access Security Broker (3 endpoints)
+fgt.api.cmdb.diameter_filter.*         # Diameter filtering
+fgt.api.cmdb.firewall.policy.*         # Firewall policies
+fgt.api.cmdb.firewall.service.*        # Services
+fgt.api.cmdb.system.interface.*        # Interfaces
+fgt.api.cmdb.system.global_.*          # Global settings
+fgt.api.cmdb.router.static.*           # Static routes
+fgt.api.cmdb.vpn.ipsec.*              # IPSec VPN
 ```
 
 ### Monitor
 ```python
-fgt.monitor.system.interface.*     # Interface stats
-fgt.monitor.firewall.session.*     # Session table
-fgt.monitor.system.resource.*      # Resource usage
+fgt.api.monitor.system.interface.*     # Interface stats
+fgt.api.monitor.firewall.session.*     # Session table
+fgt.api.monitor.system.resource.*      # Resource usage
 ```
 
 ### Log
 ```python
-fgt.log.disk.traffic.*             # Traffic logs
-fgt.log.disk.event.*               # Event logs
-fgt.log.disk.virus.*               # Antivirus logs
+fgt.api.log.disk.traffic.*             # Traffic logs
+fgt.api.log.disk.event.*               # Event logs
+fgt.api.log.disk.virus.*               # Antivirus logs
 ```
 
 ## Error Codes Reference

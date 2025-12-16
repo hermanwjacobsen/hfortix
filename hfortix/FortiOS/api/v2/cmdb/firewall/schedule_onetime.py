@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -126,12 +126,12 @@ class ScheduleOnetime:
         
         path = f'firewall.schedule/onetime/{name}'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
-        start: str,
-        end: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        start: Optional[str] = None,
+        end: Optional[str] = None,
         color: Optional[int] = None,
         expiration_days: Optional[int] = None,
         fabric_object: Optional[str] = None,
@@ -141,6 +141,10 @@ class ScheduleOnetime:
         """
         Create a new onetime schedule.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Schedule name
             start: Start time (format: hh:mm yyyy/mm/dd, e.g., '23:00 2025/01/01')
@@ -170,6 +174,26 @@ class ScheduleOnetime:
             ...     expiration_days=7
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if start is not None:
+                data['start'] = start
+            if end is not None:
+                data['end'] = end
+            if color is not None:
+                data['color'] = color
+            if expiration_days is not None:
+                data['expiration-days'] = expiration_days
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {
             'name': name,
             'start': start,
@@ -193,10 +217,10 @@ class ScheduleOnetime:
         
         path = 'firewall.schedule/onetime'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         start: Optional[str] = None,
         end: Optional[str] = None,
         color: Optional[int] = None,
@@ -208,6 +232,10 @@ class ScheduleOnetime:
         """
         Update an existing onetime schedule.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Schedule name
             start: Start time (format: hh:mm yyyy/mm/dd)
@@ -228,6 +256,24 @@ class ScheduleOnetime:
             ...     end='08:00 2025/01/16'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if start is not None:
+                data['start'] = start
+            if end is not None:
+                data['end'] = end
+            if color is not None:
+                data['color'] = color
+            if expiration_days is not None:
+                data['expiration-days'] = expiration_days
+            if fabric_object is not None:
+                data['fabric-object'] = fabric_object
+
         data = {}
         
         param_map = {

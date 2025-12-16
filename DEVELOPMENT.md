@@ -2,13 +2,33 @@
 
 This guide covers how to set up your development environment and contribute to the Fortinet Python SDK.
 
-## � Project Status (December 14, 2025)
+## 📊 Project Status (December 16, 2025)
 
-- **Version**: 0.2.0
+- **Version**: 0.3.7
 - **CMDB Endpoints**: 51 endpoints across 14 categories
+- **Dual-Pattern Support**: 43 methods (100% of create/update operations)
 - **Test Coverage**: Comprehensive tests for all endpoints
-- **Python Version**: 3.9+
+- **Python Version**: 3.8+
 - **Type Hints**: Full type hint support with modern syntax
+
+### ✨ Latest Feature: Dual-Pattern Interface
+
+All create/update methods now support flexible syntax:
+
+```python
+# Dictionary pattern - great for templates
+config = {'name': 'web-server', 'subnet': '10.0.1.100/32'}
+fgt.api.cmdb.firewall.address.create(data_dict=config)
+
+# Keyword pattern - readable and interactive
+fgt.api.cmdb.firewall.address.create(name='web-server', subnet='10.0.1.100/32')
+
+# Mixed pattern - template with overrides
+fgt.api.cmdb.firewall.address.create(data_dict=base, name=f'server-{site_id}')
+```
+
+**Coverage**: 38 CMDB endpoints + 5 Service methods  
+**Documentation**: `X/docs/migration/DUAL_PATTERN_MIGRATION.md`
 
 ## �🚀 Quick Start for Developers
 
@@ -23,13 +43,13 @@ cd hfortix
 
 ```bash
 # Create virtual environment
-python3 -m venv venv
+python3 -m venv .venv
 
 # Activate virtual environment
 # On Linux/Mac:
-source venv/bin/activate
+source .venv/bin/activate
 # On Windows:
-venv\Scripts\activate
+.venv\Scripts\activate
 
 # Install in development mode
 pip install -e .
@@ -54,7 +74,7 @@ FGT_VERIFY_SSL=false
 ### 4. Test Your Setup
 
 ```python
-from fortinet import FortiOS, get_available_modules
+from hfortix import FortiOS, get_available_modules
 
 # Check available modules
 print(get_available_modules())
@@ -63,7 +83,7 @@ print(get_available_modules())
 fgt = FortiOS(host='192.168.1.99', token='your-token', verify=False)
 
 # Test connection
-result = fgt.cmdb.system.interface.list()
+result = fgt.api.cmdb.system.interface.list()
 print(f"Connected! Found {len(result.get('results', []))} interfaces")
 ```
 
@@ -73,23 +93,23 @@ print(f"Connected! Found {len(result.get('results', []))} interfaces")
 
 ```
 fortinet/
-├── __init__.py                 # Main package entry point
-├── exceptions.py               # Base exceptions (all products)
-├── exceptions_forti.py         # FortiOS-specific exceptions
-├── FortiOS/                    # FortiOS module
-│   ├── __init__.py
-│   ├── client.py              # Main FortiOS client
-│   ├── exceptions.py          # Backward compatibility
-│   └── api/                   # API endpoints
-│       └── v2/
-│           ├── cmdb/          # Configuration endpoints
-│           ├── monitor/       # Monitoring endpoints (TODO)
-│           ├── log/           # Log endpoints
-│           └── service/       # Service endpoints
-├── FortiManager/              # FortiManager module (placeholder)
-│   └── __init__.py
-└── FortiAnalyzer/             # FortiAnalyzer module (placeholder)
-    └── __init__.py
+├── hfortix/
+│   ├── __init__.py            # Public API exports
+│   ├── exceptions.py          # Base exceptions
+│   ├── exceptions_forti.py    # FortiOS-specific error helpers
+│   ├── py.typed               # PEP 561 marker
+│   └── FortiOS/
+│       ├── __init__.py
+│       ├── fortios.py         # FortiOS client
+│       ├── http_client.py     # Internal HTTP client
+│       ├── exceptions.py      # FortiOS re-exports
+│       └── api/
+│           └── v2/
+│               ├── cmdb/
+│               ├── log/
+│               ├── service/
+│               └── monitor/   # (placeholder / in progress)
+└── X/                         # Internal notes + script-style integration harness
 ```
 
 ---
@@ -107,7 +127,7 @@ Find the endpoint in the [FortiOS API documentation](https://fndn.fortinet.net):
 
 #### Step 2: Create the Module File
 
-Location: `/app/dev/classes/fortinet/FortiOS/api/v2/cmdb/{category}/{endpoint}.py`
+Location: `/app/dev/classes/fortinet/hfortix/FortiOS/api/v2/cmdb/{category}/{endpoint}.py`
 
 ```python
 """
@@ -149,18 +169,67 @@ class EndpointName:
             APIError: If API request fails
             
         Example:
-            >>> result = fgt.cmdb.{category}.{endpoint}.list()
+            >>> result = fgt.api.cmdb.{category}.{endpoint}.list()
             >>> for item in result['results']:
             ...     print(item['name'])
         """
         return self._client.get(f'cmdb/{self._path}', vdom=vdom, params=params)
     
-    # Add get, create, update, delete methods as appropriate
+    def create(self, data_dict=None, name=None, param1=None, vdom='root', **kwargs):
+        """
+        Create a new {endpoint} object.
+        
+        Supports dual-pattern interface:
+        1. Dictionary: create(data_dict={'name': 'x', 'param1': 'y'})
+        2. Keywords: create(name='x', param1='y')
+        3. Mixed: create(data_dict=base, name='override')
+        
+        Args:
+            data_dict (dict, optional): Complete object configuration
+            name (str, optional): Object name (required if not in data_dict)
+            param1 (type, optional): Parameter description
+            vdom (str): Virtual domain name (default: 'root')
+            **kwargs: Additional parameters
+        
+        Returns:
+            dict: API response
+        
+        Examples:
+            >>> # Dictionary pattern
+            >>> config = {'name': 'obj1', 'param1': 'value'}
+            >>> result = fgt.api.cmdb.{category}.{endpoint}.create(data_dict=config)
+            
+            >>> # Keyword pattern
+            >>> result = fgt.api.cmdb.{category}.{endpoint}.create(
+            ...     name='obj1',
+            ...     param1='value'
+            ... )
+            
+            >>> # Mixed pattern
+            >>> result = fgt.api.cmdb.{category}.{endpoint}.create(
+            ...     data_dict=base_config,
+            ...     name='override'
+            ... )
+        """
+        data = data_dict.copy() if data_dict else {}
+        
+        param_map = {'name': name, 'param1': param1}
+        api_field_map = {'name': 'name', 'param1': 'api-param-1'}
+        
+        for python_key, value in param_map.items():
+            if value is not None:
+                api_key = api_field_map.get(python_key, python_key)
+                data[api_key] = value
+        
+        data.update(kwargs)
+        return self._client.post(f'cmdb/{self._path}', data=data, vdom=vdom)
+    
+    # Add update, delete methods following the same dual-pattern template
 ```
 
 #### Step 3: Update the Category __init__.py
 
-Add import and initialize in `/app/dev/classes/fortinet/FortiOS/api/v2/cmdb/{category}/__init__.py`:
+Add import and initialize in `/app/dev/classes/fortinet/hfortix/FortiOS/api/v2/cmdb/{category}/__init__.py`:
 
 ```python
 from .endpoint_name import EndpointName
@@ -199,7 +268,7 @@ def test_crud_operations():
     
     # Test LIST
     print("\n1. LIST all {endpoint} objects")
-    result = fgt.cmdb.{category}.{endpoint}.list()
+    result = fgt.api.cmdb.{category}.{endpoint}.list()
     print(f"   Found {len(result.get('results', []))} objects")
     
     # Test CREATE
@@ -208,7 +277,7 @@ def test_crud_operations():
         'name': 'test-object',
         # ... other required fields
     }
-    result = fgt.cmdb.{category}.{endpoint}.create(test_data)
+    result = fgt.api.cmdb.{category}.{endpoint}.create(test_data)
     print(f"   Created: {result}")
     
     # Test UPDATE
@@ -216,17 +285,17 @@ def test_crud_operations():
     update_data = {
         'comment': 'Updated by test script'
     }
-    result = fgt.cmdb.{category}.{endpoint}.update('test-object', update_data)
+    result = fgt.api.cmdb.{category}.{endpoint}.update('test-object', update_data)
     print(f"   Updated: {result}")
     
     # Test GET
     print("\n4. GET specific {endpoint}")
-    result = fgt.cmdb.{category}.{endpoint}.get('test-object')
+    result = fgt.api.cmdb.{category}.{endpoint}.get('test-object')
     print(f"   Retrieved: {result['results'][0]['name']}")
     
     # Test DELETE
     print("\n5. DELETE {endpoint}")
-    result = fgt.cmdb.{category}.{endpoint}.delete('test-object')
+    result = fgt.api.cmdb.{category}.{endpoint}.delete('test-object')
     print(f"   Deleted: {result}")
     
     print("\n✅ All tests completed successfully!")
@@ -316,7 +385,7 @@ logging.basicConfig(level=logging.DEBUG)
 ```python
 import json
 
-result = fgt.cmdb.firewall.address.list()
+result = fgt.api.cmdb.firewall.address.list()
 print(json.dumps(result, indent=2))
 ```
 
@@ -338,7 +407,7 @@ diagnose debug disable
 ```bash
 # Make sure you're in the right directory
 cd /app/dev/classes/fortinet
-python3 -m fortinet
+python3 -c "import hfortix; print(hfortix.get_version())"
 ```
 
 **Authentication Failures:**
@@ -351,7 +420,7 @@ curl -k -H "Authorization: Bearer YOUR_TOKEN" \
 **VDOM Issues:**
 ```python
 # Specify VDOM explicitly
-result = fgt.cmdb.firewall.address.list(vdom='root')
+result = fgt.api.cmdb.firewall.address.list(vdom='root')
 ```
 
 ---

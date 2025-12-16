@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -130,12 +130,12 @@ class Address6Template:
             path = f'{path}/{name}'
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def create(
         self,
-        name: str,
-        ip6: str,
-        subnet_segment_count: int = 1,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
+        ip6: Optional[str] = None,
+        subnet_segment_count: Optional[int] = None,
         subnet_segment: Optional[list[dict[str, Any]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
@@ -145,6 +145,10 @@ class Address6Template:
         """
         Create IPv6 address template object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address template name (required)
             ip6: IPv6 prefix (required, e.g., '2001:db8::/32')
@@ -171,6 +175,26 @@ class Address6Template:
             ...     comment='IPv6 subnet template for site/vlan'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if ip6 is not None:
+                data['ip6'] = ip6
+            if subnet_segment_count is not None:
+                data['subnet-segment-count'] = subnet_segment_count
+            if subnet_segment is not None:
+                data['subnet-segment'] = subnet_segment
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+
         data = {
             'name': name,
             'ip6': ip6,
@@ -202,10 +226,10 @@ class Address6Template:
         
         path = 'firewall/address6-template'
         return self._client.post('cmdb', path, data=data, vdom=vdom)
-
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         ip6: Optional[str] = None,
         subnet_segment_count: Optional[int] = None,
         subnet_segment: Optional[list[dict[str, Any]]] = None,
@@ -217,6 +241,10 @@ class Address6Template:
         """
         Update IPv6 address template object.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address template name (required)
             ip6: IPv6 prefix (e.g., '2001:db8::/32')
@@ -237,6 +265,24 @@ class Address6Template:
             ...     comment='Updated IPv6 subnet template'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if ip6 is not None:
+                data['ip6'] = ip6
+            if subnet_segment_count is not None:
+                data['subnet-segment-count'] = subnet_segment_count
+            if subnet_segment is not None:
+                data['subnet-segment'] = subnet_segment
+            if comment is not None:
+                data['comment'] = comment
+            if visibility is not None:
+                data['visibility'] = visibility
+
         data = {}
         
         # Parameter mapping (convert snake_case to hyphenated-case)

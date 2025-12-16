@@ -4,6 +4,9 @@ FortiOS API endpoint: firewall.ssl/setting
 SSL proxy settings (singleton).
 """
 
+from typing import Optional, Dict, Any
+from .....http_client import HTTPResponse
+
 
 class Setting:
     """
@@ -43,9 +46,9 @@ class Setting:
             result = fgt.cmdb.firewall.ssl.setting.get(meta=True)
         """
         return self._client.get('cmdb', 'firewall.ssl/setting', vdom=vdom, params=params)
-    
     def update(
         self,
+        data: Optional[Dict[str, Any]] = None,
         proxy_connect_timeout: int = None,
         ssl_dh_bits: str = None,
         ssl_send_empty_frags: str = None,
@@ -62,6 +65,10 @@ class Setting:
         """
         Update SSL proxy settings.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             proxy_connect_timeout (int): Time limit to detect proxy connection timeout (1-3600 sec)
             ssl_dh_bits (str): Bit-size of Diffie-Hellman prime: 768, 1024, 1536, 2048, 3072, 4096
@@ -93,6 +100,36 @@ class Setting:
                 abbreviate_handshake='enable'
             )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if proxy_connect_timeout is not None:
+                data['proxy-connect-timeout'] = proxy_connect_timeout
+            if ssl_dh_bits is not None:
+                data['ssl-dh-bits'] = ssl_dh_bits
+            if ssl_send_empty_frags is not None:
+                data['ssl-send-empty-frags'] = ssl_send_empty_frags
+            if no_matching_cipher_action is not None:
+                data['no-matching-cipher-action'] = no_matching_cipher_action
+            if cert_cache_capacity is not None:
+                data['cert-cache-capacity'] = cert_cache_capacity
+            if cert_cache_timeout is not None:
+                data['cert-cache-timeout'] = cert_cache_timeout
+            if session_cache_capacity is not None:
+                data['session-cache-capacity'] = session_cache_capacity
+            if session_cache_timeout is not None:
+                data['session-cache-timeout'] = session_cache_timeout
+            if kxp_queue_threshold is not None:
+                data['kxp-queue-threshold'] = kxp_queue_threshold
+            if ssl_queue_threshold is not None:
+                data['ssl-queue-threshold'] = ssl_queue_threshold
+            if abbreviate_handshake is not None:
+                data['abbreviate-handshake'] = abbreviate_handshake
+
         data = {}
         
         if proxy_connect_timeout is not None:

@@ -35,6 +35,10 @@ class API:
     
     def __init__(self, client: 'HTTPClient') -> None:
         """Initialize API namespace"""
+        # Keep a reference to the internal HTTP client for advanced usage and
+        # for the repository's script-style harnesses under X/tests.
+        self._client = client
+
         from .v2.cmdb import CMDB
         from .v2.log import Log
         from .v2.monitor import Monitor

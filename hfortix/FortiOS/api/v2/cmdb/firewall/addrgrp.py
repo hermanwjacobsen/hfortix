@@ -133,8 +133,9 @@ class Addrgrp:
 
     def create(
         self,
-        name: str,
-        member: list[str] | list[dict[str, str]],
+        data: Optional[dict[str, Any]] = None,
+        name: Optional[str] = None,
+        member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
         color: Optional[int] = None,
@@ -147,10 +148,15 @@ class Addrgrp:
     ) -> dict[str, Any]:
         """
         Create IPv4 address group object.
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'name': 'grp1', 'member': [...]}, vdom='root')
+        2. Pass kwargs: create(name='grp1', member=[...], vdom='root')
 
         Args:
-            name: Address group name (required)
-            member: List of address names (strings) or dicts [{'name': 'addr1'}] (required)
+            data: Complete address group configuration dict (optional if using kwargs)
+            name: Address group name (required if not using data)
+            member: List of address names (strings) or dicts [{'name': 'addr1'}] (required if not using data)
             comment: Description/comment
             visibility: Enable/disable visibility ('enable'|'disable')
             color: Icon color (0-32)
@@ -165,6 +171,12 @@ class Addrgrp:
             API response dict
 
         Examples:
+            >>> # Create with data dict
+            >>> result = fgt.cmdb.firewall.addrgrp.create(
+            ...     data={'name': 'internal-networks', 'member': [{'name': 'subnet1'}]},
+            ...     vdom='root'
+            ... )
+            
             >>> # Create address group with string list (simplified API)
             >>> result = fgt.cmdb.firewall.addrgrp.create(
             ...     name='internal-networks',
@@ -187,12 +199,22 @@ class Addrgrp:
             ...     exclude_member=[{'name': 'quarantine-net'}]
             ... )
         """
-        # Convert member list if needed (simplified API)
-        if member and isinstance(member, list) and len(member) > 0:
-            if isinstance(member[0], str):
-                member = [{'name': m} for m in member]
-        
-        data = {'name': name, 'member': member}
+        # Build data from kwargs if not provided
+        if data is None:
+            if name is None or member is None:
+                raise ValueError("Either 'data' dict or both 'name' and 'member' must be provided")
+            
+            # Convert member list if needed (simplified API)
+            if member and isinstance(member, list) and len(member) > 0:
+                if isinstance(member[0], str):
+                    member = [{'name': m} for m in member]
+            
+            data = {'name': name, 'member': member}
+        else:
+            # If data dict is provided, process member field if needed
+            if 'member' in data and isinstance(data['member'], list) and len(data['member']) > 0:
+                if isinstance(data['member'][0], str):
+                    data['member'] = [{'name': m} for m in data['member']]
         
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
@@ -231,6 +253,7 @@ class Addrgrp:
     def update(
         self,
         name: str,
+        data: Optional[dict[str, Any]] = None,
         member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
@@ -244,9 +267,14 @@ class Addrgrp:
     ) -> dict[str, Any]:
         """
         Update IPv4 address group object.
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(name='grp1', data={'member': [...]}, vdom='root')
+        2. Pass kwargs: update(name='grp1', member=[...], vdom='root')
 
         Args:
             name: Address group name (required)
+            data: Update configuration dict (optional if using kwargs)
             member: List of address names (strings) or dicts [{'name': 'addr1'}]
             comment: Description/comment
             visibility: Enable/disable visibility ('enable'|'disable')
@@ -262,6 +290,13 @@ class Addrgrp:
             API response dict
 
         Examples:
+            >>> # Update with data dict
+            >>> result = fgt.cmdb.firewall.addrgrp.update(
+            ...     name='internal-networks',
+            ...     data={'comment': 'Updated comment'},
+            ...     vdom='root'
+            ... )
+            
             >>> # Update members with simplified API
             >>> result = fgt.cmdb.firewall.addrgrp.update(
             ...     name='internal-networks',
@@ -269,45 +304,53 @@ class Addrgrp:
             ...     comment='Updated internal networks'
             ... )
         """
-        data = {}
-        
-        # Convert member list if needed (simplified API)
-        if member is not None:
-            if isinstance(member, list) and len(member) > 0:
-                if isinstance(member[0], str):
-                    member = [{'name': m} for m in member]
-            data['member'] = member
-        
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            'comment': 'comment',
-            'visibility': 'visibility',
-            'color': 'color',
-            'tags': 'tags',
-            'allow_routing': 'allow-routing',
-            'exclude': 'exclude',
-            'exclude_member': 'exclude-member',
-        }
-        
-        param_map = {
-            'comment': comment,
-            'visibility': visibility,
-            'color': color,
-            'tags': tags,
-            'allow_routing': allow_routing,
-            'exclude': exclude,
-            'exclude_member': exclude_member,
-        }
-        
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                data[key] = value
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Handle member conversion in data dict pattern
+            if 'member' in data and isinstance(data['member'], list) and len(data['member']) > 0:
+                if isinstance(data['member'][0], str):
+                    data['member'] = [{'name': m} for m in data['member']]
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            
+            # Convert member list if needed (simplified API)
+            if member is not None:
+                if isinstance(member, list) and len(member) > 0:
+                    if isinstance(member[0], str):
+                        member = [{'name': m} for m in member]
+                data['member'] = member
+            
+            # Parameter mapping (convert snake_case to hyphenated-case)
+            api_field_map = {
+                'comment': 'comment',
+                'visibility': 'visibility',
+                'color': 'color',
+                'tags': 'tags',
+                'allow_routing': 'allow-routing',
+                'exclude': 'exclude',
+                'exclude_member': 'exclude-member',
+            }
+            
+            param_map = {
+                'comment': comment,
+                'visibility': visibility,
+                'color': color,
+                'tags': tags,
+                'allow_routing': allow_routing,
+                'exclude': exclude,
+                'exclude_member': exclude_member,
+            }
+            
+            for python_key, value in param_map.items():
+                if value is not None:
+                    api_key = api_field_map.get(python_key, python_key)
+                    data[api_key] = value
+            
+            # Add any additional kwargs
+            for key, value in kwargs.items():
+                if value is not None:
+                    data[key] = value
         
         path = f'firewall/addrgrp/{name}'
         return self._client.put('cmdb', path, data=data, vdom=vdom)

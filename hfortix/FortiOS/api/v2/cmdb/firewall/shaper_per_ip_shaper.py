@@ -10,7 +10,9 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}  - Delete per-IP shaper
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class PerIpShaper:
@@ -109,10 +111,10 @@ class PerIpShaper:
         params.update(kwargs)
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         max_bandwidth: Optional[int] = None,
         max_concurrent_session: Optional[int] = None,
         max_concurrent_tcp_session: Optional[int] = None,
@@ -124,6 +126,10 @@ class PerIpShaper:
         """
         Create a per-IP traffic shaper.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Per-IP shaper name (max 35 chars)
             max_bandwidth: Upper bandwidth limit (0-16776000 kbps, 0 = unlimited)
@@ -153,35 +159,31 @@ class PerIpShaper:
             ...     max_concurrent_udp_session=30
             ... )
         """
-        data = {'name': name}
-        
-        param_map = {
-            'max_bandwidth': max_bandwidth,
-            'max_concurrent_session': max_concurrent_session,
-            'max_concurrent_tcp_session': max_concurrent_tcp_session,
-            'max_concurrent_udp_session': max_concurrent_udp_session,
-            'comment': comment,
-        }
-        
-        api_field_map = {
-            'max_bandwidth': 'max-bandwidth',
-            'max_concurrent_session': 'max-concurrent-session',
-            'max_concurrent_tcp_session': 'max-concurrent-tcp-session',
-            'max_concurrent_udp_session': 'max-concurrent-udp-session',
-            'comment': 'comment',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if max_bandwidth is not None:
+                data['max-bandwidth'] = max_bandwidth
+            if max_concurrent_session is not None:
+                data['max-concurrent-session'] = max_concurrent_session
+            if max_concurrent_tcp_session is not None:
+                data['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+            if max_concurrent_udp_session is not None:
+                data['max-concurrent-udp-session'] = max_concurrent_udp_session
+            if comment is not None:
+                data['comment'] = comment
         
         return self._client.post('cmdb', 'firewall.shaper/per-ip-shaper', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         max_bandwidth: Optional[int] = None,
         max_concurrent_session: Optional[int] = None,
         max_concurrent_tcp_session: Optional[int] = None,
@@ -193,6 +195,10 @@ class PerIpShaper:
         """
         Update a per-IP traffic shaper.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Per-IP shaper name
             max_bandwidth: Upper bandwidth limit (0-16776000 kbps, 0 = unlimited)
@@ -220,29 +226,23 @@ class PerIpShaper:
             ...     max_concurrent_udp_session=50
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'max_bandwidth': max_bandwidth,
-            'max_concurrent_session': max_concurrent_session,
-            'max_concurrent_tcp_session': max_concurrent_tcp_session,
-            'max_concurrent_udp_session': max_concurrent_udp_session,
-            'comment': comment,
-        }
-        
-        api_field_map = {
-            'max_bandwidth': 'max-bandwidth',
-            'max_concurrent_session': 'max-concurrent-session',
-            'max_concurrent_tcp_session': 'max-concurrent-tcp-session',
-            'max_concurrent_udp_session': 'max-concurrent-udp-session',
-            'comment': 'comment',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if max_bandwidth is not None:
+                data['max-bandwidth'] = max_bandwidth
+            if max_concurrent_session is not None:
+                data['max-concurrent-session'] = max_concurrent_session
+            if max_concurrent_tcp_session is not None:
+                data['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+            if max_concurrent_udp_session is not None:
+                data['max-concurrent-udp-session'] = max_concurrent_udp_session
+            if comment is not None:
+                data['comment'] = comment
         
         return self._client.put('cmdb', f'firewall.shaper/per-ip-shaper/{name}', data, vdom=vdom)
     

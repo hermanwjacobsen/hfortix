@@ -10,7 +10,9 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.ssh/local-key/{id}  - Delete local key
 """
 
-from typing import Optional, Union, List
+from typing import Dict, Optional, Union, List, Any
+
+from .....http_client import HTTPResponse
 
 
 class LocalKey:
@@ -109,10 +111,10 @@ class LocalKey:
         params.update(kwargs)
         
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
     def create(
         self,
-        name: str,
+        data: Optional[Dict[str, Any]] = None,
+        name: Optional[str] = None,
         source: Optional[str] = None,
         password: Optional[str] = None,
         private_key: Optional[str] = None,
@@ -123,6 +125,10 @@ class LocalKey:
         """
         Create an SSH local key.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Local key name (max 35 chars)
             source: Key source - 'built-in' or 'user'
@@ -150,33 +156,29 @@ class LocalKey:
             ...     public_key='ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQ...'
             ... )
         """
-        data = {'name': name}
-        
-        param_map = {
-            'source': source,
-            'password': password,
-            'private_key': private_key,
-            'public_key': public_key,
-        }
-        
-        api_field_map = {
-            'source': 'source',
-            'password': 'password',
-            'private_key': 'private-key',
-            'public_key': 'public-key',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if name is not None:
+                data['name'] = name
+            if source is not None:
+                data['source'] = source
+            if password is not None:
+                data['password'] = password
+            if private_key is not None:
+                data['private-key'] = private_key
+            if public_key is not None:
+                data['public-key'] = public_key
         
         return self._client.post('cmdb', 'firewall.ssh/local-key', data, vdom=vdom)
-    
     def update(
         self,
         name: str,
+        data: Optional[Dict[str, Any]] = None,
         source: Optional[str] = None,
         password: Optional[str] = None,
         private_key: Optional[str] = None,
@@ -187,6 +189,10 @@ class LocalKey:
         """
         Update an SSH local key.
         
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Local key name
             source: Key source - 'built-in' or 'user'
@@ -206,27 +212,21 @@ class LocalKey:
             ...     password='newpassword123'
             ... )
         """
-        data = {}
-        
-        param_map = {
-            'source': source,
-            'password': password,
-            'private_key': private_key,
-            'public_key': public_key,
-        }
-        
-        api_field_map = {
-            'source': 'source',
-            'password': 'password',
-            'private_key': 'private-key',
-            'public_key': 'public-key',
-        }
-        
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-        data.update(kwargs)
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if source is not None:
+                data['source'] = source
+            if password is not None:
+                data['password'] = password
+            if private_key is not None:
+                data['private-key'] = private_key
+            if public_key is not None:
+                data['public-key'] = public_key
         
         return self._client.put('cmdb', f'firewall.ssh/local-key/{name}', data, vdom=vdom)
     

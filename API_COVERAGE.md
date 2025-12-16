@@ -2,9 +2,22 @@
 
 This document tracks the implementation status of FortiOS API endpoints in the Fortinet Python SDK.
 
-**Last Updated:** 2025-12-14  
-**SDK Version:** 0.3.0  
+**Last Updated:** 2025-12-16  
+**SDK Version:** 0.3.7  
 **FortiOS Version:** 7.6.x
+
+## 🎯 Key Features
+
+### Dual-Pattern Interface ✨
+**All create/update methods support flexible syntax:**
+- **Dictionary Pattern**: `create(data_dict={'name': 'x', 'subnet': '10.0.0.0/24'})`
+- **Keyword Pattern**: `create(name='x', subnet='10.0.0.0/24')`
+- **Mixed Pattern**: `create(data_dict=base, name='override')`
+
+**Coverage**: 43 methods (38 CMDB + 5 Service) - 100% of implemented operations  
+[Full Documentation →](X/docs/migration/DUAL_PATTERN_MIGRATION.md)
+
+---
 
 ## 📊 Overall Progress
 
@@ -205,8 +218,8 @@ File filtering profiles
 **Flat Endpoints Implemented:** 6 (DoS-policy, DoS-policy6, access-proxy, access-proxy6, access-proxy-ssh-client-cert, access-proxy-virtual-host)  
 **Test Coverage:** 186 tests (100% pass rate)  
 **Pattern:** 
-- Nested: `fgt.cmdb.firewall.[subcategory].[endpoint]`
-- Flat: `fgt.cmdb.firewall.[endpoint]`
+- Nested: `fgt.api.cmdb.firewall.[subcategory].[endpoint]`
+- Flat: `fgt.api.cmdb.firewall.[endpoint]`
 
 **Key Features:**
 - Simplified API with automatic type conversion

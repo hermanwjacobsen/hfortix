@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import Dict, TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -81,9 +81,9 @@ class IpmacbindingSetting:
         
         path = 'firewall.ipmacbinding/setting'
         return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-
     def update(
         self,
+        data: Optional[Dict[str, Any]] = None,
         bindthroughfw: Optional[str] = None,
         bindtofw: Optional[str] = None,
         undefinedhost: Optional[str] = None,
@@ -93,6 +93,10 @@ class IpmacbindingSetting:
         """
         Update IP-MAC binding settings.
 
+        
+        Supports two usage patterns:
+        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        2. Pass kwargs: update(key='value', vdom='root')
         Args:
             bindthroughfw: Enable/disable IP/MAC binding for packets through firewall
                           ('enable' or 'disable')
@@ -126,6 +130,20 @@ class IpmacbindingSetting:
             ...     undefinedhost='allow'
             ... )
         """
+        # Pattern 1: data dict provided
+        if data is not None:
+            # Use provided data dict
+            pass
+        # Pattern 2: kwargs pattern - build data dict
+        else:
+            data = {}
+            if bindthroughfw is not None:
+                data['bindthroughfw'] = bindthroughfw
+            if bindtofw is not None:
+                data['bindtofw'] = bindtofw
+            if undefinedhost is not None:
+                data['undefinedhost'] = undefinedhost
+
         data = {}
         
         param_map = {

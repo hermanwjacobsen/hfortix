@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -185,7 +185,8 @@ class Custom:
 
     def create(
         self,
-        tag: str,
+        data: Optional[Dict[str, Any]] = None,
+        tag: Optional[str] = None,
         # Signature parameters
         id: Optional[int] = None,
         comment: Optional[str] = None,
@@ -263,7 +264,8 @@ class Custom:
 
     def update(
         self,
-        tag: str,
+        data: Optional[Dict[str, Any]] = None,
+        tag: Optional[str] = None,
         # Signature parameters
         id: Optional[int] = None,
         comment: Optional[str] = None,
