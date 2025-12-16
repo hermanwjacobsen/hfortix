@@ -1,71 +1,73 @@
 from __future__ import annotations
 
+import logging
 from typing import Any, Optional, Union
 
-from .http_client import HTTPClient
 from .api import API
+from .http_client import HTTPClient
 
-__all__ = ['FortiOS']
+__all__ = ["FortiOS"]
 
 
 class FortiOS:
     """
     FortiOS REST API Client
-    
+
     Python client for interacting with Fortinet FortiGate firewalls via REST API.
     Supports configuration management (CMDB), monitoring, logging, and services.
-    
+
     This client uses token-based authentication and provides a stateless interface
     to FortiOS devices. No login/logout required - just initialize with your token
     and start making API calls.
-    
+
     Main API categories:
         - api.cmdb: Configuration Management Database (firewall policies, objects, etc.)
         - api.monitor: Real-time monitoring and status
         - api.log: Log queries and analysis
         - api.service: System services (sniffer, security rating, etc.)
-    
+
     Attributes:
         api (API): API namespace containing cmdb, monitor, log, service
-    
+
     Example:
     >>> from hfortix import FortiOS
         >>> fgt = FortiOS("fortigate.example.com", token="your_token_here")
-        >>> 
+        >>>
         >>> # List firewall addresses
         >>> addresses = fgt.api.cmdb.firewall.address.list()
-        >>> 
+        >>>
         >>> # Create a firewall address
         >>> fgt.api.cmdb.firewall.address.create(
         ...     name='test-host',
         ...     subnet='192.0.2.100/32',
         ...     comment='Example host'
         ... )
-        >>> 
+        >>>
         >>> # Get system status
         >>> status = fgt.api.monitor.system.status.get()
-    
+
     Note:
         - Requires FortiOS 6.0+ with REST API enabled
         - API token must be created in FortiOS: System > Admin > API Users
         - Use verify=False only in development with self-signed certificates
-    
+
     See Also:
         - API Reference: https://docs.fortinet.com/
         - Token Setup: QUICKSTART.md
         - Examples: EXAMPLES.md
     """
-    
+
     # Type hint for IDE autocomplete (note: Python will also create __annotations__)
     api: API
-    
+
     def __init__(
         self,
         host: Optional[str] = None,
         token: Optional[str] = None,
         verify: bool = True,
         vdom: Optional[str] = None,
-        port: Optional[int] = None
+        port: Optional[int] = None,
+        debug: Optional[str] = None,
     ) -> None:
         """
         Initialize FortiOS API client
@@ -79,6 +81,8 @@ class FortiOS:
             verify: Verify SSL certificates (default: True, recommended for production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
             port: HTTPS port (default: None = use 443, or specify custom port like 8443)
+            debug: Logging level for this instance ('debug', 'info', 'warning', 'error', 'off')
+                   If not specified, uses the global log level set via hfortix.set_log_level()
 
         Examples:
             # Production - with valid SSL certificate
@@ -92,15 +96,22 @@ class FortiOS:
 
             # Port in hostname (alternative)
             fgt = FortiOS("192.0.2.10:8443", token="your_token_here", verify=False)
+
+            # Enable debug logging for this instance only
+            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False, debug='info')
         """
         self._host = host
         self._vdom = vdom
         self._port = port
 
+        # Set up instance-specific logging if requested
+        if debug:
+            self._setup_logging(debug)
+
         # Build URL with port handling
         if host:
             # If port is already in host string, use as-is
-            if ':' in host:
+            if ":" in host:
                 url = f"https://{host}"
             # If explicit port provided, append it
             elif port:
@@ -112,17 +123,41 @@ class FortiOS:
             url = None
 
         # Initialize HTTP client
-        self._client = HTTPClient(
-            url=url,
-            verify=verify,
-            token=token,
-            vdom=vdom
-        )
+        self._client = HTTPClient(url=url, verify=verify, token=token, vdom=vdom)
 
         # Initialize API namespace.
         # Store it privately and expose a property so IDEs treat it as a concrete
         # instance attribute (often improves autocomplete ranking vs dunder attrs).
         self._api = API(self._client)
+
+        # Log initialization
+        logger = logging.getLogger("hfortix.client")
+        logger.info("Initialized FortiOS client for %s", host or "unknown")
+        if not verify:
+            logger.warning("SSL verification disabled - not recommended for production")
+        if vdom:
+            logger.debug("Using VDOM: %s", vdom)
+
+    def _setup_logging(self, level: str) -> None:
+        """Set up logging for this instance"""
+        level_map = {
+            "DEBUG": logging.DEBUG,
+            "INFO": logging.INFO,
+            "WARNING": logging.WARNING,
+            "ERROR": logging.ERROR,
+            "OFF": logging.CRITICAL + 10,
+        }
+
+        log_level = level_map.get(level.upper(), logging.WARNING)
+        logger = logging.getLogger("hfortix")
+        logger.setLevel(log_level)
+
+        # Configure basic logging if not already configured
+        if not logging.getLogger().handlers:
+            logging.basicConfig(
+                format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
+            )
 
     @property
     def api(self) -> API:
@@ -133,9 +168,9 @@ class FortiOS:
         """Prefer showing `api` early in interactive completion."""
         # Start with the default dir() list, then move "api" to the front.
         names = sorted(set(super().__dir__()))
-        if 'api' in names:
-            names.remove('api')
-            names.insert(0, 'api')
+        if "api" in names:
+            names.remove("api")
+            names.insert(0, "api")
         return names
 
     @property
@@ -162,7 +197,7 @@ class FortiOS:
         """
         self._client.close()
 
-    def __enter__(self) -> 'FortiOS':
+    def __enter__(self) -> "FortiOS":
         """Context manager entry"""
         return self
 
@@ -170,4 +205,3 @@ class FortiOS:
         """Context manager exit - automatically closes session"""
         self.close()
         return False
-

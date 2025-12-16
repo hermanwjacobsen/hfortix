@@ -2,12 +2,13 @@
 FortiOS Application API
 Application control configuration endpoints
 """
+
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-__all__ = ['Application']
+__all__ = ["Application"]
 
 
 class Application:
@@ -16,7 +17,7 @@ class Application:
     Provides access to application control configuration endpoints
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Application helper
 
@@ -35,7 +36,7 @@ class Application:
         self.group = Group(client)
         self.list = List(client)
         self.name = Name(client)
-    
+
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ['custom', 'group', 'list', 'name']
+        return ["custom", "group", "list", "name"]

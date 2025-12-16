@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Setting:
     """Automation setting endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Automation Setting endpoint
 
@@ -35,7 +35,8 @@ class Setting:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get automation settings
@@ -63,27 +64,30 @@ class Setting:
         params = {}
 
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if action is not None:
-            params['action'] = action
+            params["action"] = action
 
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'automation/setting', params=params, vdom=vdom)
+        return self._client.get(
+            "cmdb", "automation/setting", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         max_concurrent_stitches: Optional[int] = None,
         fabric_sync: Optional[str] = None,
         secure_mode: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update automation settings
@@ -116,20 +120,22 @@ class Setting:
 
         # Map parameters (Python snake_case to API hyphenated-case)
         param_map = {
-            'max_concurrent_stitches': 'max-concurrent-stitches',
-            'fabric_sync': 'fabric-sync',
-            'secure_mode': 'secure-mode'
+            "max_concurrent_stitches": "max-concurrent-stitches",
+            "fabric_sync": "fabric-sync",
+            "secure_mode": "secure-mode",
         }
 
         # Add parameters to data
         if max_concurrent_stitches is not None:
-            data[param_map['max_concurrent_stitches']] = max_concurrent_stitches
+            data[param_map["max_concurrent_stitches"]] = max_concurrent_stitches
         if fabric_sync is not None:
-            data[param_map['fabric_sync']] = fabric_sync
+            data[param_map["fabric_sync"]] = fabric_sync
         if secure_mode is not None:
-            data[param_map['secure_mode']] = secure_mode
+            data[param_map["secure_mode"]] = secure_mode
 
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'automation/setting', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", "automation/setting", data=data, vdom=vdom, raw_json=raw_json
+        )

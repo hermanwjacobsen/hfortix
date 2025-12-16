@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 class ExemptList:
     """Antivirus Exempt List endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -40,7 +40,8 @@ class ExemptList:
         skip: Optional[bool] = None,
         format: Optional[str] = None,
         action: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         GET /antivirus/exempt-list or /antivirus/exempt-list/{name}
@@ -95,17 +96,17 @@ class ExemptList:
 
         # Map parameters
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         # Add non-None parameters
@@ -116,19 +117,22 @@ class ExemptList:
         # Add any extra kwargs
         params.update(kwargs)
 
-        path = f'antivirus/exempt-list/{name}' if name else 'antivirus/exempt-list'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        path = f"antivirus/exempt-list/{name}" if name else "antivirus/exempt-list"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         hash_type: Optional[str] = None,
         hash: Optional[str] = None,
         status: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         POST /antivirus/exempt-list
@@ -164,29 +168,29 @@ class ExemptList:
             ... )
         """
         # Support both patterns: data dict or individual kwargs
-        if data is not None:
+        if payload_dict is not None:
             # Pattern 1: data dict provided
-            payload = data.copy()
+            payload = payload_dict.copy()
         else:
             # Pattern 2: build from kwargs
             payload: Dict[str, Any] = {}
             if name is not None:
-                payload['name'] = name
+                payload["name"] = name
 
             # Map Python parameter names to API field names
             param_map = {
-                'comment': comment,
-                'hash_type': hash_type,
-                'hash': hash,
-                'status': status,
+                "comment": comment,
+                "hash_type": hash_type,
+                "hash": hash,
+                "status": status,
             }
 
             # API field name mapping
             api_field_map = {
-                'comment': 'comment',
-                'hash_type': 'hash-type',
-                'hash': 'hash',
-                'status': 'status',
+                "comment": "comment",
+                "hash_type": "hash-type",
+                "hash": "hash",
+                "status": "status",
             }
 
             # Add non-None parameters
@@ -198,11 +202,13 @@ class ExemptList:
             # Add any extra kwargs
             payload.update(kwargs)
 
-        return self._client.post('cmdb', 'antivirus/exempt-list', payload, vdom=vdom)
+        return self._client.post(
+            "cmdb", "antivirus/exempt-list", payload, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         hash_type: Optional[str] = None,
@@ -214,7 +220,8 @@ class ExemptList:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         PUT /antivirus/exempt-list/{name}
@@ -260,30 +267,30 @@ class ExemptList:
             ... )
         """
         # Support both patterns: data dict or individual kwargs
-        if data is not None:
+        if payload_dict is not None:
             # Pattern 1: data dict provided
-            payload = data.copy()
+            payload = payload_dict.copy()
             # Extract name from data if not provided as param
             if name is None:
-                name = payload.get('name')
+                name = payload.get("name")
         else:
             # Pattern 2: build from kwargs
             payload: Dict[str, Any] = {}
 
             # Map data parameters
             data_param_map = {
-                'comment': comment,
-                'hash_type': hash_type,
-                'hash': hash,
-                'status': status,
+                "comment": comment,
+                "hash_type": hash_type,
+                "hash": hash,
+                "status": status,
             }
 
             # API field name mapping for data
             api_field_map = {
-                'comment': 'comment',
-                'hash_type': 'hash-type',
-                'hash': 'hash',
-                'status': 'status',
+                "comment": "comment",
+                "hash_type": "hash-type",
+                "hash": "hash",
+                "status": "status",
             }
 
             # Add non-None data parameters
@@ -294,7 +301,7 @@ class ExemptList:
 
             # Add any extra data kwargs
             for key, value in kwargs.items():
-                if key not in ['action', 'before', 'after', 'scope']:
+                if key not in ["action", "before", "after", "scope"]:
                     payload[key] = value
 
         # Build query params dict
@@ -302,10 +309,10 @@ class ExemptList:
 
         # Map query parameters
         query_param_map = {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         # Add non-None query parameters
@@ -313,7 +320,14 @@ class ExemptList:
             if value is not None:
                 params[param_name] = value
 
-        return self._client.put('cmdb', f'antivirus/exempt-list/{name}', payload, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"antivirus/exempt-list/{name}",
+            payload,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
@@ -322,7 +336,8 @@ class ExemptList:
         # Action parameters
         mkey: Optional[str] = None,
         scope: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         DELETE /antivirus/exempt-list/{name}
@@ -362,8 +377,8 @@ class ExemptList:
 
         # Map parameters
         param_map = {
-            'mkey': mkey,
-            'scope': scope,
+            "mkey": mkey,
+            "scope": scope,
         }
 
         # Add non-None parameters
@@ -374,4 +389,10 @@ class ExemptList:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.delete('cmdb', f'antivirus/exempt-list/{name}', params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"antivirus/exempt-list/{name}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

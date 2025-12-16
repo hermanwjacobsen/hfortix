@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 class Settings:
     """Antivirus Settings endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -29,7 +29,8 @@ class Settings:
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
         action: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         GET /antivirus/settings
@@ -60,10 +61,10 @@ class Settings:
 
         # Map parameters
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
 
         # Add non-None parameters
@@ -74,11 +75,17 @@ class Settings:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'antivirus/settings', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            "antivirus/settings",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         default_db: Optional[str] = None,
         grayware: Optional[str] = None,
         override_timeout: Optional[int] = None,
@@ -87,7 +94,8 @@ class Settings:
         machine_learning_detection: Optional[str] = None,
         use_extreme_db: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         PUT /antivirus/settings
@@ -128,37 +136,37 @@ class Settings:
             ... )
         """
         # Build data dict from provided parameters
-        data = {}
+        payload_dict = {}
 
         # Map Python parameter names to API field names
         param_map = {
-            'default_db': default_db,
-            'grayware': grayware,
-            'override_timeout': override_timeout,
-            'cache_infected_result': cache_infected_result,
-            'cache_clean_result': cache_clean_result,
-            'machine_learning_detection': machine_learning_detection,
-            'use_extreme_db': use_extreme_db,
+            "default_db": default_db,
+            "grayware": grayware,
+            "override_timeout": override_timeout,
+            "cache_infected_result": cache_infected_result,
+            "cache_clean_result": cache_clean_result,
+            "machine_learning_detection": machine_learning_detection,
+            "use_extreme_db": use_extreme_db,
         }
 
         # API field name mapping
         api_field_map = {
-            'default_db': 'default-db',
-            'grayware': 'grayware',
-            'override_timeout': 'override-timeout',
-            'cache_infected_result': 'cache-infected-result',
-            'cache_clean_result': 'cache-clean-result',
-            'machine_learning_detection': 'machine-learning-detection',
-            'use_extreme_db': 'use-extreme-db',
+            "default_db": "default-db",
+            "grayware": "grayware",
+            "override_timeout": "override-timeout",
+            "cache_infected_result": "cache-infected-result",
+            "cache_clean_result": "cache-clean-result",
+            "machine_learning_detection": "machine-learning-detection",
+            "use_extreme_db": "use-extreme-db",
         }
 
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
         # Add any extra kwargs
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.put('cmdb', 'antivirus/settings', data, vdom=vdom)
+        return self._client.put("cmdb", "antivirus/settings", data, vdom=vdom, raw_json=raw_json)

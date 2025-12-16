@@ -12,7 +12,8 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -20,10 +21,10 @@ if TYPE_CHECKING:
 
 class Profile:
     """DLP profile endpoint"""
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    
+
     def get(
         self,
         name: str | None = None,
@@ -40,11 +41,12 @@ class Profile:
         format: str | None = None,
         action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Get DLP profile(s).
-        
+
         Args:
             name: Name of specific profile to retrieve
             attr: Attribute name that references other table
@@ -60,63 +62,61 @@ class Profile:
             action: Special actions - 'default', 'schema', 'revision'
             vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with profile configuration(s)
-        
+
         Examples:
             >>> # Get all profiles
             >>> result = fgt.cmdb.dlp.profile.get()
             >>> print(f"Total profiles: {len(result['results'])}")
-            
+
             >>> # Get specific profile
             >>> result = fgt.cmdb.dlp.profile.get('email-dlp')
             >>> print(f"Feature set: {result['results']['feature-set']}")
         """
         # Build path
-        path = 'dlp/profile'
+        path = "dlp/profile"
         if name:
-            path = f'dlp/profile/{name}'
-        
+            path = f"dlp/profile/{name}"
+
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
-    def list(
-        self,
-        vdom: str | None = None,
-        **kwargs
-    ) -> dict[str, Any]:
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
         """
         List all DLP profiles (convenience method).
-        
+
         Args:
             vdom: Virtual Domain(s)
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with all profiles
-        
+
         Examples:
             >>> # List all profiles
             >>> result = fgt.cmdb.dlp.profile.list()
@@ -124,10 +124,10 @@ class Profile:
             ...     print(f"{prof['name']}: {prof.get('comment', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Profile configuration
         comment: str | None = None,
@@ -141,11 +141,12 @@ class Profile:
         summary_proto: str | None = None,
         fortidata_error_action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Create a new DLP profile.
-        
+
         Args:
             name: Name of the DLP profile (max 47 chars)
             comment: Comment (max 255 chars)
@@ -173,10 +174,10 @@ class Profile:
             fortidata_error_action: Action if FortiData query fails - 'log-only', 'block', 'ignore'
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create simple DLP profile
             >>> result = fgt.cmdb.dlp.profile.create(
@@ -185,7 +186,7 @@ class Profile:
             ...     feature_set='proxy',
             ...     dlp_log='enable'
             ... )
-            
+
             >>> # Create profile with rules
             >>> result = fgt.cmdb.dlp.profile.create(
             ...     name='file-dlp',
@@ -208,58 +209,58 @@ class Profile:
         """
         data = {}
         param_map = {
-            'name': name,
-            'comment': comment,
-            'feature_set': feature_set,
-            'replacemsg_group': replacemsg_group,
-            'rule': rule,
-            'dlp_log': dlp_log,
-            'extended_log': extended_log,
-            'nac_quar_log': nac_quar_log,
-            'full_archive_proto': full_archive_proto,
-            'summary_proto': summary_proto,
-            'fortidata_error_action': fortidata_error_action,
+            "name": name,
+            "comment": comment,
+            "feature_set": feature_set,
+            "replacemsg_group": replacemsg_group,
+            "rule": rule,
+            "dlp_log": dlp_log,
+            "extended_log": extended_log,
+            "nac_quar_log": nac_quar_log,
+            "full_archive_proto": full_archive_proto,
+            "summary_proto": summary_proto,
+            "fortidata_error_action": fortidata_error_action,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'name': 'name',
-            'comment': 'comment',
-            'feature_set': 'feature-set',
-            'replacemsg_group': 'replacemsg-group',
-            'rule': 'rule',
-            'dlp_log': 'dlp-log',
-            'extended_log': 'extended-log',
-            'nac_quar_log': 'nac-quar-log',
-            'full_archive_proto': 'full-archive-proto',
-            'summary_proto': 'summary-proto',
-            'fortidata_error_action': 'fortidata-error-action',
+            "name": "name",
+            "comment": "comment",
+            "feature_set": "feature-set",
+            "replacemsg_group": "replacemsg-group",
+            "rule": "rule",
+            "dlp_log": "dlp-log",
+            "extended_log": "extended-log",
+            "nac_quar_log": "nac-quar-log",
+            "full_archive_proto": "full-archive-proto",
+            "summary_proto": "summary-proto",
+            "fortidata_error_action": "fortidata-error-action",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle rule list - convert snake_case keys to hyphen-case
-                if param_name == 'rule' and isinstance(value, list):
+                if param_name == "rule" and isinstance(value, list):
                     converted_rules = []
                     for rule_item in value:
                         converted_rule = {}
                         for k, v in rule_item.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_rule[api_key] = v
                         converted_rules.append(converted_rule)
                     data[api_name] = converted_rules
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dlp/profile', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dlp/profile", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Profile configuration
         comment: str | None = None,
@@ -273,11 +274,12 @@ class Profile:
         summary_proto: str | None = None,
         fortidata_error_action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Update an existing DLP profile.
-        
+
         Args:
             name: Name of the DLP profile to update
             comment: Comment (max 255 chars)
@@ -292,17 +294,17 @@ class Profile:
             fortidata_error_action: Action if FortiData query fails - 'log-only', 'block', 'ignore'
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update comment
             >>> result = fgt.cmdb.dlp.profile.update(
             ...     name='email-protection',
             ...     comment='Updated email DLP'
             ... )
-            
+
             >>> # Add a rule
             >>> result = fgt.cmdb.dlp.profile.update(
             ...     name='email-protection',
@@ -322,71 +324,72 @@ class Profile:
         """
         data = {}
         param_map = {
-            'comment': comment,
-            'feature_set': feature_set,
-            'replacemsg_group': replacemsg_group,
-            'rule': rule,
-            'dlp_log': dlp_log,
-            'extended_log': extended_log,
-            'nac_quar_log': nac_quar_log,
-            'full_archive_proto': full_archive_proto,
-            'summary_proto': summary_proto,
-            'fortidata_error_action': fortidata_error_action,
+            "comment": comment,
+            "feature_set": feature_set,
+            "replacemsg_group": replacemsg_group,
+            "rule": rule,
+            "dlp_log": dlp_log,
+            "extended_log": extended_log,
+            "nac_quar_log": nac_quar_log,
+            "full_archive_proto": full_archive_proto,
+            "summary_proto": summary_proto,
+            "fortidata_error_action": fortidata_error_action,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'comment': 'comment',
-            'feature_set': 'feature-set',
-            'replacemsg_group': 'replacemsg-group',
-            'rule': 'rule',
-            'dlp_log': 'dlp-log',
-            'extended_log': 'extended-log',
-            'nac_quar_log': 'nac-quar-log',
-            'full_archive_proto': 'full-archive-proto',
-            'summary_proto': 'summary-proto',
-            'fortidata_error_action': 'fortidata-error-action',
+            "comment": "comment",
+            "feature_set": "feature-set",
+            "replacemsg_group": "replacemsg-group",
+            "rule": "rule",
+            "dlp_log": "dlp-log",
+            "extended_log": "extended-log",
+            "nac_quar_log": "nac-quar-log",
+            "full_archive_proto": "full-archive-proto",
+            "summary_proto": "summary-proto",
+            "fortidata_error_action": "fortidata-error-action",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle rule list - convert snake_case keys to hyphen-case
-                if param_name == 'rule' and isinstance(value, list):
+                if param_name == "rule" and isinstance(value, list):
                     converted_rules = []
                     for rule_item in value:
                         converted_rule = {}
                         for k, v in rule_item.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_rule[api_key] = v
                         converted_rules.append(converted_rule)
                     data[api_name] = converted_rules
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dlp/profile/{name}', data, vdom=vdom)
-    
+
+        return self._client.put("cmdb", f"dlp/profile/{name}", data, vdom=vdom, raw_json=raw_json)
+
     def delete(
         self,
         name: str,
-        vdom: str | None = None
+        vdom: str | None = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a DLP profile.
-        
+
         Args:
             name: Name of the profile to delete
             vdom: Virtual Domain(s)
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete a profile
             >>> result = fgt.cmdb.dlp.profile.delete('email-protection')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/profile/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"dlp/profile/{name}", vdom=vdom, raw_json=raw_json)

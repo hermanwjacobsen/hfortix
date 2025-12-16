@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Fctems:
     """FortiClient EMS endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Fctems endpoint.
 
@@ -47,7 +47,8 @@ class Fctems:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get FortiClient EMS entry(ies).
@@ -86,17 +87,17 @@ class Fctems:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -105,11 +106,13 @@ class Fctems:
 
         params.update(kwargs)
 
-        path = 'endpoint-control/fctems'
+        path = "endpoint-control/fctems"
         if ems_id:
-            path = f'{path}/{ems_id}'
+            path = f"{path}/{ems_id}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -125,7 +128,7 @@ class Fctems:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get all FortiClient EMS entries (convenience method).
@@ -153,12 +156,12 @@ class Fctems:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # EMS configuration
         ems_id: Optional[str] = None,
@@ -191,7 +194,8 @@ class Fctems:
         admin_password: Optional[str] = None,
         admin_type: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new FortiClient EMS entry.
@@ -242,53 +246,55 @@ class Fctems:
             ...     status='enable'
             ... )
         """
-        data = {'name': name}
-        
+        data = {"name": name}
+
         param_map = {
-            'ems_id': ems_id,
-            'status': status,
-            'address': address,
-            'serial_number': serial_number,
-            'fortinetone_cloud_authentication': fortinetone_cloud_authentication,
-            'server': server,
-            'https_port': https_port,
-            'source_ip': source_ip,
-            'pull_sysinfo': pull_sysinfo,
-            'pull_vulnerabilities': pull_vulnerabilities,
-            'pull_avatars': pull_avatars,
-            'pull_tags': pull_tags,
-            'pull_malware_hash': pull_malware_hash,
-            'cloud_server_type': cloud_server_type,
-            'call_timeout': call_timeout,
-            'out_of_sync_threshold': out_of_sync_threshold,
-            'send_tags_to_all_vdoms': send_tags_to_all_vdoms,
-            'websocket_override': websocket_override,
-            'preserve_ssl_session': preserve_ssl_session,
-            'interface_select_method': interface_select_method,
-            'interface': interface,
-            'trust_ca_cn': trust_ca_cn,
-            'verifying_ca': verifying_ca,
-            'status_check_interval': status_check_interval,
-            'certificate_fingerprint': certificate_fingerprint,
-            'admin_username': admin_username,
-            'admin_password': admin_password,
-            'admin_type': admin_type,
+            "ems_id": ems_id,
+            "status": status,
+            "address": address,
+            "serial_number": serial_number,
+            "fortinetone_cloud_authentication": fortinetone_cloud_authentication,
+            "server": server,
+            "https_port": https_port,
+            "source_ip": source_ip,
+            "pull_sysinfo": pull_sysinfo,
+            "pull_vulnerabilities": pull_vulnerabilities,
+            "pull_avatars": pull_avatars,
+            "pull_tags": pull_tags,
+            "pull_malware_hash": pull_malware_hash,
+            "cloud_server_type": cloud_server_type,
+            "call_timeout": call_timeout,
+            "out_of_sync_threshold": out_of_sync_threshold,
+            "send_tags_to_all_vdoms": send_tags_to_all_vdoms,
+            "websocket_override": websocket_override,
+            "preserve_ssl_session": preserve_ssl_session,
+            "interface_select_method": interface_select_method,
+            "interface": interface,
+            "trust_ca_cn": trust_ca_cn,
+            "verifying_ca": verifying_ca,
+            "status_check_interval": status_check_interval,
+            "certificate_fingerprint": certificate_fingerprint,
+            "admin_username": admin_username,
+            "admin_password": admin_password,
+            "admin_type": admin_type,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         if capabilities is not None:
-            data['capabilities'] = capabilities
+            data["capabilities"] = capabilities
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'endpoint-control/fctems', data=data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "endpoint-control/fctems", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         ems_id: Optional[str] = None,
         # EMS configuration
         name: Optional[str] = None,
@@ -326,7 +332,8 @@ class Fctems:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update a FortiClient EMS entry.
@@ -353,58 +360,61 @@ class Fctems:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'name': name,
-            'status': status,
-            'address': address,
-            'serial_number': serial_number,
-            'fortinetone_cloud_authentication': fortinetone_cloud_authentication,
-            'server': server,
-            'https_port': https_port,
-            'source_ip': source_ip,
-            'pull_sysinfo': pull_sysinfo,
-            'pull_vulnerabilities': pull_vulnerabilities,
-            'pull_avatars': pull_avatars,
-            'pull_tags': pull_tags,
-            'pull_malware_hash': pull_malware_hash,
-            'cloud_server_type': cloud_server_type,
-            'call_timeout': call_timeout,
-            'out_of_sync_threshold': out_of_sync_threshold,
-            'send_tags_to_all_vdoms': send_tags_to_all_vdoms,
-            'websocket_override': websocket_override,
-            'preserve_ssl_session': preserve_ssl_session,
-            'interface_select_method': interface_select_method,
-            'interface': interface,
-            'trust_ca_cn': trust_ca_cn,
-            'verifying_ca': verifying_ca,
-            'status_check_interval': status_check_interval,
-            'certificate_fingerprint': certificate_fingerprint,
-            'admin_username': admin_username,
-            'admin_password': admin_password,
-            'admin_type': admin_type,
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "name": name,
+            "status": status,
+            "address": address,
+            "serial_number": serial_number,
+            "fortinetone_cloud_authentication": fortinetone_cloud_authentication,
+            "server": server,
+            "https_port": https_port,
+            "source_ip": source_ip,
+            "pull_sysinfo": pull_sysinfo,
+            "pull_vulnerabilities": pull_vulnerabilities,
+            "pull_avatars": pull_avatars,
+            "pull_tags": pull_tags,
+            "pull_malware_hash": pull_malware_hash,
+            "cloud_server_type": cloud_server_type,
+            "call_timeout": call_timeout,
+            "out_of_sync_threshold": out_of_sync_threshold,
+            "send_tags_to_all_vdoms": send_tags_to_all_vdoms,
+            "websocket_override": websocket_override,
+            "preserve_ssl_session": preserve_ssl_session,
+            "interface_select_method": interface_select_method,
+            "interface": interface,
+            "trust_ca_cn": trust_ca_cn,
+            "verifying_ca": verifying_ca,
+            "status_check_interval": status_check_interval,
+            "certificate_fingerprint": certificate_fingerprint,
+            "admin_username": admin_username,
+            "admin_password": admin_password,
+            "admin_type": admin_type,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         if capabilities is not None:
-            data['capabilities'] = capabilities
+            data["capabilities"] = capabilities
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'endpoint-control/fctems/{ems_id}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"endpoint-control/fctems/{ems_id}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         ems_id: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a FortiClient EMS entry.
@@ -422,7 +432,12 @@ class Fctems:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
-        return self._client.delete('cmdb', f'endpoint-control/fctems/{ems_id}', 
-                                   params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"endpoint-control/fctems/{ems_id}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

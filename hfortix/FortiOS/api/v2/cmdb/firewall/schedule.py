@@ -17,7 +17,7 @@ class Schedule:
     Provides access to firewall schedule endpoints
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Schedule helper
 

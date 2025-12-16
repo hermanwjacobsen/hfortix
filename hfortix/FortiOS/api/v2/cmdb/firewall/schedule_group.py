@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class ScheduleGroup:
     """Firewall schedule group endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize ScheduleGroup endpoint
 
@@ -40,7 +40,8 @@ class ScheduleGroup:
         datasource: Optional[bool] = None,
         format: Optional[list] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         List all schedule groups.
@@ -63,28 +64,30 @@ class ScheduleGroup:
             >>> result = fgt.cmdb.firewall.schedule.group.list()
             >>> for group in result['results']:
             ...     print(f"{group['name']}: {len(group.get('member', []))} members")
-            
+
             >>> # List with specific fields
             >>> result = fgt.cmdb.firewall.schedule.group.list(format=['name', 'member'])
         """
         params = {}
         param_map = {
-            'filter': filter,
-            'start': start,
-            'count': count,
-            'with_meta': with_meta,
-            'datasource': datasource,
-            'format': format,
+            "filter": filter,
+            "start": start,
+            "count": count,
+            "with_meta": with_meta,
+            "datasource": datasource,
+            "format": format,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall.schedule/group'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = "firewall.schedule/group"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def get(
         self,
@@ -93,7 +96,8 @@ class ScheduleGroup:
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get a specific schedule group by name.
@@ -116,35 +120,39 @@ class ScheduleGroup:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = f'firewall.schedule/group/{name}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = f"firewall.schedule/group/{name}"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         member: Optional[list[dict[str, str]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new schedule group.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Schedule group name
@@ -166,7 +174,7 @@ class ScheduleGroup:
             ...         {'name': 'weekend-morning'}
             ...     ]
             ... )
-            
+
             >>> # Create with color
             >>> result = fgt.cmdb.firewall.schedule.group.create(
             ...     name='maintenance-windows',
@@ -175,60 +183,62 @@ class ScheduleGroup:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if member is not None:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{'name': m} for m in member]
-                data['member'] = member
+                        member = [{"name": m} for m in member]
+                payload_dict["member"] = member
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if fabric_object is not None:
-                data['fabric-object'] = fabric_object
+                payload_dict["fabric-object"] = fabric_object
 
-        data = {'name': name}
-        
+        payload_dict = {"name": name}
+
         param_map = {
-            'member': member,
-            'color': color,
-            'fabric-object': fabric_object,
+            "member": member,
+            "color": color,
+            "fabric-object": fabric_object,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
-                data[key] = value
-        
+                payload_dict[key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall.schedule/group'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall.schedule/group"
+        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         member: Optional[list[dict[str, str]]] = None,
         color: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing schedule group.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Schedule group name
@@ -250,7 +260,7 @@ class ScheduleGroup:
             ...         {'name': 'saturday-morning'}
             ...     ]
             ... )
-            
+
             >>> # Change color
             >>> result = fgt.cmdb.firewall.schedule.group.update(
             ...     name='maintenance-windows',
@@ -258,47 +268,48 @@ class ScheduleGroup:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if member is not None:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{'name': m} for m in member]
-                data['member'] = member
+                        member = [{"name": m} for m in member]
+                payload_dict["member"] = member
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if fabric_object is not None:
-                data['fabric-object'] = fabric_object
+                payload_dict["fabric-object"] = fabric_object
 
-        data = {}
-        
+        payload_dict = {}
+
         param_map = {
-            'member': member,
-            'color': color,
-            'fabric-object': fabric_object,
+            "member": member,
+            "color": color,
+            "fabric-object": fabric_object,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
-                data[key] = value
-        
+                payload_dict[key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = f'firewall.schedule/group/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = f"firewall.schedule/group/{name}"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
         name: str,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a schedule group.
@@ -314,14 +325,10 @@ class ScheduleGroup:
             >>> # Delete schedule group
             >>> result = fgt.cmdb.firewall.schedule.group.delete('old-schedule')
         """
-        path = f'firewall.schedule/group/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"firewall.schedule/group/{name}"
+        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a schedule group exists.
 
@@ -337,7 +344,7 @@ class ScheduleGroup:
             ...     print("Schedule group exists")
         """
         try:
-            result = self.get(name, vdom=vdom)
-            return result.get('status') == 'success'
+            result = self.get(name, vdom=vdom, raw_json=True)
+            return result.get("status") == "success"
         except Exception:
             return False

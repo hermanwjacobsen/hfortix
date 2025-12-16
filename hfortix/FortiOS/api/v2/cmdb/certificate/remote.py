@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class Remote:
     """Certificate Remote endpoint (read-only)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Remote endpoint
 
@@ -70,7 +70,8 @@ class Remote:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get remote certificate(s)
@@ -99,22 +100,22 @@ class Remote:
             >>> result = fgt.cmdb.certificate.remote.get('RemoteCert1', with_meta=True)
         """
         # Build path
-        path = f'certificate/remote/{name}' if name else 'certificate/remote'
+        path = f"certificate/remote/{name}" if name else "certificate/remote"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -124,7 +125,9 @@ class Remote:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

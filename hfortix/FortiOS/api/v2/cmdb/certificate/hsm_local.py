@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 class HsmLocal:
     """Certificate HSM-Local endpoint (full CRUD)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize HsmLocal endpoint
 
@@ -71,7 +71,8 @@ class HsmLocal:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get HSM local certificate(s)
@@ -100,22 +101,22 @@ class HsmLocal:
             >>> result = fgt.cmdb.certificate.hsm_local.get(action='schema')
         """
         # Build path
-        path = f'certificate/hsm-local/{name}' if name else 'certificate/hsm-local'
+        path = f"certificate/hsm-local/{name}" if name else "certificate/hsm-local"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -125,9 +126,16 @@ class HsmLocal:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
-    def create(self, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def create(
+        self,
+        data: dict[str, Any],
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Create new HSM local certificate
 
@@ -154,9 +162,17 @@ class HsmLocal:
             ... }
             >>> result = fgt.cmdb.certificate.hsm_local.create(data)
         """
-        return self._client.post('cmdb', 'certificate/hsm-local', data=data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "certificate/hsm-local", data=data, vdom=vdom, raw_json=raw_json
+        )
 
-    def update(self, name: str, data: dict[str, Any], vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def update(
+        self,
+        name: str,
+        data: dict[str, Any],
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Update existing HSM local certificate
 
@@ -172,9 +188,16 @@ class HsmLocal:
             >>> data = {'comments': 'Updated HSM certificate'}
             >>> result = fgt.cmdb.certificate.hsm_local.update('my-hsm-cert', data)
         """
-        return self._client.put('cmdb', f'certificate/hsm-local/{name}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"certificate/hsm-local/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete HSM local certificate
 
@@ -188,7 +211,9 @@ class HsmLocal:
         Example:
             >>> result = fgt.cmdb.certificate.hsm_local.delete('my-hsm-cert')
         """
-        return self._client.delete('cmdb', f'certificate/hsm-local/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"certificate/hsm-local/{name}", vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

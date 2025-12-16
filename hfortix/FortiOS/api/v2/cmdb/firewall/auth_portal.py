@@ -17,7 +17,7 @@ Reference (FortiOS 7.6.5):
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -27,10 +27,10 @@ class AuthPortal:
     """Firewall auth-portal singleton endpoint."""
 
     # Fortinet-documented endpoint identifiers
-    name = 'auth-portal'
-    path = 'firewall/auth-portal'
+    name = "auth-portal"
+    path = "firewall/auth-portal"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """Initialize AuthPortal endpoint.
 
         Args:
@@ -46,6 +46,7 @@ class AuthPortal:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get authentication portal configuration.
@@ -70,11 +71,11 @@ class AuthPortal:
         """
         params: dict[str, Any] = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -83,11 +84,13 @@ class AuthPortal:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         groups: Optional[list[dict[str, Any]]] = None,
         portal_addr: Optional[str] = None,
         portal_addr6: Optional[str] = None,
@@ -98,6 +101,7 @@ class AuthPortal:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update authentication portal configuration.
@@ -128,19 +132,19 @@ class AuthPortal:
             ... )
         """
         # Support both patterns: data dict or individual kwargs
-        if data is not None:
+        if payload_dict is not None:
             # Pattern 1: data dict provided
-            payload = data.copy()
+            payload = payload_dict.copy()
         else:
             # Pattern 2: build from kwargs
             payload: Dict[str, Any] = {}
 
             field_map = {
-                'groups': groups,
-                'portal-addr': portal_addr,
-                'portal-addr6': portal_addr6,
-                'identity-based-route': identity_based_route,
-                'proxy-auth': proxy_auth,
+                "groups": groups,
+                "portal-addr": portal_addr,
+                "portal-addr6": portal_addr6,
+                "identity-based-route": identity_based_route,
+                "proxy-auth": proxy_auth,
             }
 
             for key, value in field_map.items():
@@ -154,13 +158,20 @@ class AuthPortal:
 
         params: dict[str, Any] = {}
         param_map = {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
 
-        return self._client.put('cmdb', self.path, data=payload, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            self.path,
+            data=payload,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

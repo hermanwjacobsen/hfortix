@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class FortiAnalyzer:
     """FortiAnalyzer log endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize FortiAnalyzer log handler
 
@@ -35,7 +35,9 @@ class FortiAnalyzer:
         """
         self._client = client
 
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def virus_archive(
+        self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Get quarantined virus file metadata from FortiAnalyzer.
 
@@ -53,16 +55,20 @@ class FortiAnalyzer:
             >>> # List all virus archives
             >>> result = fgt.log.fortianalyzer.virus_archive()
         """
-        endpoint = 'fortianalyzer/virus/archive'
+        endpoint = "fortianalyzer/virus/archive"
 
         params = {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive(
+        self, log_type: str, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Get archived packet captures for IPS or Application Control from FortiAnalyzer.
 
@@ -81,16 +87,20 @@ class FortiAnalyzer:
             >>> # Get specific archive by ID
             >>> result = fgt.log.fortianalyzer.archive(log_type='app-ctrl', mkey=123)
         """
-        endpoint = f'fortianalyzer/{log_type}/archive'
+        endpoint = f"fortianalyzer/{log_type}/archive"
 
         params = {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive_download(
+        self, log_type: str, mkey: Optional[int] = None, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Download an archived packet capture file from FortiAnalyzer.
 
@@ -111,14 +121,14 @@ class FortiAnalyzer:
             >>> # Download app-ctrl packet capture
             >>> pcap_data = fgt.log.fortianalyzer.archive_download(log_type='app-ctrl', mkey=456)
         """
-        endpoint = f'fortianalyzer/{log_type}/archive-download'
+        endpoint = f"fortianalyzer/{log_type}/archive-download"
 
         params = {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
         params.update(kwargs)
 
-        return self._client.get_binary('log', endpoint, params=params if params else None)
+        return self._client.get_binary("log", endpoint, params=params if params else None)
 
     def raw(
         self,
@@ -129,7 +139,8 @@ class FortiAnalyzer:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw log data from FortiAnalyzer in plain text format.
@@ -163,16 +174,16 @@ class FortiAnalyzer:
             ...     filter='hostname==example.com'
             ... )
         """
-        endpoint = f'fortianalyzer/{log_type}/raw'
+        endpoint = f"fortianalyzer/{log_type}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'is_ha_member': is_ha_member,
-            'filter': filter,
-            'keep_session_alive': keep_session_alive,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "is_ha_member": is_ha_member,
+            "filter": filter,
+            "keep_session_alive": keep_session_alive,
         }
 
         for key, value in param_map.items():
@@ -180,7 +191,9 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic_raw(
         self,
@@ -191,7 +204,8 @@ class FortiAnalyzer:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw traffic logs from FortiAnalyzer in plain text format.
@@ -221,16 +235,16 @@ class FortiAnalyzer:
             ...     filter='srcip==192.0.2.100'
             ... )
         """
-        endpoint = f'fortianalyzer/traffic/{subtype}/raw'
+        endpoint = f"fortianalyzer/traffic/{subtype}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'is_ha_member': is_ha_member,
-            'filter': filter,
-            'keep_session_alive': keep_session_alive,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "is_ha_member": is_ha_member,
+            "filter": filter,
+            "keep_session_alive": keep_session_alive,
         }
 
         for key, value in param_map.items():
@@ -238,7 +252,9 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event_raw(
         self,
@@ -249,7 +265,8 @@ class FortiAnalyzer:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw event logs from FortiAnalyzer in plain text format.
@@ -281,16 +298,16 @@ class FortiAnalyzer:
             ...     filter='user==vpnuser1'
             ... )
         """
-        endpoint = f'fortianalyzer/event/{subtype}/raw'
+        endpoint = f"fortianalyzer/event/{subtype}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'is_ha_member': is_ha_member,
-            'filter': filter,
-            'keep_session_alive': keep_session_alive,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "is_ha_member": is_ha_member,
+            "filter": filter,
+            "keep_session_alive": keep_session_alive,
         }
 
         for key, value in param_map.items():
@@ -298,7 +315,9 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def get(
         self,
@@ -307,8 +326,9 @@ class FortiAnalyzer:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get log data from FortiAnalyzer for the specified type (formatted, not raw).
@@ -351,14 +371,14 @@ class FortiAnalyzer:
             ...     filter='app==Facebook'
             ... )
         """
-        endpoint = f'fortianalyzer/{log_type}'
+        endpoint = f"fortianalyzer/{log_type}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -366,7 +386,9 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic(
         self,
@@ -375,8 +397,9 @@ class FortiAnalyzer:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get formatted traffic logs from FortiAnalyzer (JSON format).
@@ -415,14 +438,14 @@ class FortiAnalyzer:
             ...     end=end_time
             ... )
         """
-        endpoint = f'fortianalyzer/traffic/{subtype}'
+        endpoint = f"fortianalyzer/traffic/{subtype}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -430,7 +453,9 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event(
         self,
@@ -439,8 +464,9 @@ class FortiAnalyzer:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get formatted event logs from FortiAnalyzer (JSON format).
@@ -481,14 +507,14 @@ class FortiAnalyzer:
             ...     end=end_time
             ... )
         """
-        endpoint = f'fortianalyzer/event/{subtype}'
+        endpoint = f"fortianalyzer/event/{subtype}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -496,4 +522,6 @@ class FortiAnalyzer:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )

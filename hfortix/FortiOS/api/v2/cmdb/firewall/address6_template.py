@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Address6Template:
     """Firewall IPv6 address template endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Address6Template endpoint
 
@@ -47,7 +47,7 @@ class Address6Template:
             >>> result = fgt.cmdb.firewall.address6_template.list()
             >>> for tmpl in result['results']:
             ...     print(f"{tmpl['name']}: {tmpl.get('ip6', 'N/A')}")
-            
+
             >>> # List with filters
             >>> result = fgt.cmdb.firewall.address6_template.list(
             ...     format=['name', 'ip6', 'comment']
@@ -70,7 +70,8 @@ class Address6Template:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get IPv6 address template object(s).
@@ -97,42 +98,45 @@ class Address6Template:
         Examples:
             >>> # List all templates
             >>> result = fgt.cmdb.firewall.address6_template.get()
-            
+
             >>> # Get specific template
             >>> result = fgt.cmdb.firewall.address6_template.get('ipv6-template')
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.firewall.address6_template.get('ipv6-template', with_meta=True)
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall/address6-template'
+
+        path = "firewall/address6-template"
         if name:
-            path = f'{path}/{name}'
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+            path = f"{path}/{name}"
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         ip6: Optional[str] = None,
         subnet_segment_count: Optional[int] = None,
@@ -140,14 +144,15 @@ class Address6Template:
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create IPv6 address template object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address template name (required)
@@ -176,74 +181,72 @@ class Address6Template:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if ip6 is not None:
-                data['ip6'] = ip6
+                payload_dict["ip6"] = ip6
             if subnet_segment_count is not None:
-                data['subnet-segment-count'] = subnet_segment_count
+                payload_dict["subnet-segment-count"] = subnet_segment_count
             if subnet_segment is not None:
-                data['subnet-segment'] = subnet_segment
+                payload_dict["subnet-segment"] = subnet_segment
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
 
-        data = {
-            'name': name,
-            'ip6': ip6,
-            'subnet-segment-count': subnet_segment_count
-        }
-        
+        payload_dict = {"name": name, "ip6": ip6, "subnet-segment-count": subnet_segment_count}
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'subnet_segment': 'subnet-segment',
-            'comment': 'comment',
-            'visibility': 'visibility',
+            "subnet_segment": "subnet-segment",
+            "comment": "comment",
+            "visibility": "visibility",
         }
-        
+
         param_map = {
-            'subnet_segment': subnet_segment,
-            'comment': comment,
-            'visibility': visibility,
+            "subnet_segment": subnet_segment,
+            "comment": comment,
+            "visibility": visibility,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall/address6-template'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall/address6-template"
+        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         ip6: Optional[str] = None,
         subnet_segment_count: Optional[int] = None,
         subnet_segment: Optional[list[dict[str, Any]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPv6 address template object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address template name (required)
@@ -266,56 +269,61 @@ class Address6Template:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if ip6 is not None:
-                data['ip6'] = ip6
+                payload_dict["ip6"] = ip6
             if subnet_segment_count is not None:
-                data['subnet-segment-count'] = subnet_segment_count
+                payload_dict["subnet-segment-count"] = subnet_segment_count
             if subnet_segment is not None:
-                data['subnet-segment'] = subnet_segment
+                payload_dict["subnet-segment"] = subnet_segment
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
 
-        data = {}
-        
+        payload_dict = {}
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'ip6': 'ip6',
-            'subnet_segment_count': 'subnet-segment-count',
-            'subnet_segment': 'subnet-segment',
-            'comment': 'comment',
-            'visibility': 'visibility',
+            "ip6": "ip6",
+            "subnet_segment_count": "subnet-segment-count",
+            "subnet_segment": "subnet-segment",
+            "comment": "comment",
+            "visibility": "visibility",
         }
-        
+
         param_map = {
-            'ip6': ip6,
-            'subnet_segment_count': subnet_segment_count,
-            'subnet_segment': subnet_segment,
-            'comment': comment,
-            'visibility': visibility,
+            "ip6": ip6,
+            "subnet_segment_count": subnet_segment_count,
+            "subnet_segment": subnet_segment,
+            "comment": comment,
+            "visibility": visibility,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = f'firewall/address6-template/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+        path = f"firewall/address6-template/{name}"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete IPv6 address template object.
 
@@ -330,8 +338,8 @@ class Address6Template:
             >>> # Delete address template
             >>> result = fgt.cmdb.firewall.address6_template.delete('test-template')
         """
-        path = f'firewall/address6-template/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"firewall/address6-template/{name}"
+        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

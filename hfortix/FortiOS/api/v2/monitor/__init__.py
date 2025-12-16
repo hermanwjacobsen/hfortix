@@ -13,7 +13,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ...http_client import HTTPClient
 
-__all__ = ['Monitor']
+__all__ = ["Monitor"]
 
 
 class Monitor:
@@ -46,7 +46,7 @@ class Monitor:
     - And 11 more...
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Monitor helper
 
@@ -58,4 +58,3 @@ class Monitor:
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return []  # No public attributes yet, monitor endpoints not implemented
-

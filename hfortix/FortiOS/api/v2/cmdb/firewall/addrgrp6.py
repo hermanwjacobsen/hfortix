@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Addrgrp6:
     """Firewall IPv6 address group endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Addrgrp6 endpoint
 
@@ -47,7 +47,7 @@ class Addrgrp6:
             >>> result = fgt.cmdb.firewall.addrgrp6.list()
             >>> for grp in result['results']:
             ...     print(f"{grp['name']}: {len(grp.get('member', []))} members")
-            
+
             >>> # List with filters
             >>> result = fgt.cmdb.firewall.addrgrp6.list(
             ...     format=['name', 'member', 'comment']
@@ -70,7 +70,8 @@ class Addrgrp6:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get IPv6 address group object(s).
@@ -97,42 +98,45 @@ class Addrgrp6:
         Examples:
             >>> # List all IPv6 address groups
             >>> result = fgt.cmdb.firewall.addrgrp6.get()
-            
+
             >>> # Get specific IPv6 address group
             >>> result = fgt.cmdb.firewall.addrgrp6.get('ipv6-internal-networks')
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.firewall.addrgrp6.get('ipv6-internal-networks', with_meta=True)
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall/addrgrp6'
+
+        path = "firewall/addrgrp6"
         if name:
-            path = f'{path}/{name}'
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+            path = f"{path}/{name}"
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
@@ -142,14 +146,15 @@ class Addrgrp6:
         exclude: Optional[str] = None,
         exclude_member: Optional[list[dict[str, str]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create IPv6 address group object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address group name (required)
@@ -173,14 +178,14 @@ class Addrgrp6:
             ...     member=['ipv6-subnet1', 'ipv6-subnet2'],
             ...     comment='All internal IPv6 networks'
             ... )
-            
+
             >>> # Create IPv6 address group with dict list (explicit format)
             >>> result = fgt.cmdb.firewall.addrgrp6.create(
             ...     name='ipv6-web-servers',
             ...     member=[{'name': 'ipv6-web1'}, {'name': 'ipv6-web2'}],
             ...     comment='IPv6 web server group'
             ... )
-            
+
             >>> # Create group with excluded members
             >>> result = fgt.cmdb.firewall.addrgrp6.create(
             ...     name='ipv6-trusted-nets',
@@ -192,73 +197,74 @@ class Addrgrp6:
         # Convert member list if needed (simplified API)
         if member and isinstance(member, list) and len(member) > 0:
             if isinstance(member[0], str):
-                member = [{'name': m} for m in member]
+                member = [{"name": m} for m in member]
 
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if member is not None:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{'name': m} for m in member]
-                data['member'] = member
+                        member = [{"name": m} for m in member]
+                payload_dict["member"] = member
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if tags is not None:
-                data['tags'] = tags
+                payload_dict["tags"] = tags
             if exclude is not None:
-                data['exclude'] = exclude
+                payload_dict["exclude"] = exclude
             if exclude_member is not None:
-                data['exclude-member'] = exclude_member
-        
-        data = {'name': name, 'member': member}
-        
+                payload_dict["exclude-member"] = exclude_member
+
+        payload_dict = {"name": name, "member": member}
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'comment': 'comment',
-            'visibility': 'visibility',
-            'color': 'color',
-            'tags': 'tags',
-            'exclude': 'exclude',
-            'exclude_member': 'exclude-member',
+            "comment": "comment",
+            "visibility": "visibility",
+            "color": "color",
+            "tags": "tags",
+            "exclude": "exclude",
+            "exclude_member": "exclude-member",
         }
-        
+
         param_map = {
-            'comment': comment,
-            'visibility': visibility,
-            'color': color,
-            'tags': tags,
-            'exclude': exclude,
-            'exclude_member': exclude_member,
+            "comment": comment,
+            "visibility": visibility,
+            "color": color,
+            "tags": tags,
+            "exclude": exclude,
+            "exclude_member": exclude_member,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall/addrgrp6'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall/addrgrp6"
+        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         member: Optional[list[str] | list[dict[str, str]]] = None,
         comment: Optional[str] = None,
         visibility: Optional[str] = None,
@@ -267,14 +273,15 @@ class Addrgrp6:
         exclude: Optional[str] = None,
         exclude_member: Optional[list[dict[str, str]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPv6 address group object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address group name (required)
@@ -300,73 +307,78 @@ class Addrgrp6:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if member is not None:
                 # Convert string list to dict list if needed
                 if isinstance(member, list) and len(member) > 0:
                     if isinstance(member[0], str):
-                        member = [{'name': m} for m in member]
-                data['member'] = member
+                        member = [{"name": m} for m in member]
+                payload_dict["member"] = member
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if tags is not None:
-                data['tags'] = tags
+                payload_dict["tags"] = tags
             if exclude is not None:
-                data['exclude'] = exclude
+                payload_dict["exclude"] = exclude
             if exclude_member is not None:
-                data['exclude-member'] = exclude_member
+                payload_dict["exclude-member"] = exclude_member
 
-        data = {}
-        
+        payload_dict = {}
+
         # Convert member list if needed (simplified API)
         if member is not None:
             if isinstance(member, list) and len(member) > 0:
                 if isinstance(member[0], str):
-                    member = [{'name': m} for m in member]
-            data['member'] = member
-        
+                    member = [{"name": m} for m in member]
+            payload_dict["member"] = member
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'comment': 'comment',
-            'visibility': 'visibility',
-            'color': 'color',
-            'tags': 'tags',
-            'exclude': 'exclude',
-            'exclude_member': 'exclude-member',
+            "comment": "comment",
+            "visibility": "visibility",
+            "color": "color",
+            "tags": "tags",
+            "exclude": "exclude",
+            "exclude_member": "exclude-member",
         }
-        
+
         param_map = {
-            'comment': comment,
-            'visibility': visibility,
-            'color': color,
-            'tags': tags,
-            'exclude': exclude,
-            'exclude_member': exclude_member,
+            "comment": comment,
+            "visibility": visibility,
+            "color": color,
+            "tags": tags,
+            "exclude": exclude,
+            "exclude_member": exclude_member,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = f'firewall/addrgrp6/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+        path = f"firewall/addrgrp6/{name}"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete IPv6 address group object.
 
@@ -381,8 +393,8 @@ class Addrgrp6:
             >>> # Delete IPv6 address group
             >>> result = fgt.cmdb.firewall.addrgrp6.delete('test-group6')
         """
-        path = f'firewall/addrgrp6/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"firewall/addrgrp6/{name}"
+        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

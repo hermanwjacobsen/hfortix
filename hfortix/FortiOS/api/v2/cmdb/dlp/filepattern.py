@@ -12,7 +12,8 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -20,10 +21,10 @@ if TYPE_CHECKING:
 
 class Filepattern:
     """DLP filepattern endpoint"""
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    
+
     def get(
         self,
         id: int | None = None,
@@ -40,11 +41,12 @@ class Filepattern:
         format: str | None = None,
         action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Get DLP file pattern(s).
-        
+
         Args:
             id: File pattern ID. If provided, gets specific file pattern.
             attr: Attribute name that references other table
@@ -60,66 +62,64 @@ class Filepattern:
             action: Special actions - 'default', 'schema', 'revision'
             vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with file pattern configuration(s)
-        
+
         Examples:
             >>> # Get all file patterns
             >>> result = fgt.cmdb.dlp.filepattern.get()
             >>> print(f"Total patterns: {len(result['results'])}")
-            
+
             >>> # Get specific file pattern
             >>> result = fgt.cmdb.dlp.filepattern.get(1)
             >>> print(f"Name: {result['results']['name']}")
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.dlp.filepattern.get(with_meta=True)
         """
         # Build path
-        path = 'dlp/filepattern'
+        path = "dlp/filepattern"
         if id is not None:
-            path = f'dlp/filepattern/{id}'
-        
+            path = f"dlp/filepattern/{id}"
+
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
-    def list(
-        self,
-        vdom: str | None = None,
-        **kwargs
-    ) -> dict[str, Any]:
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
         """
         List all DLP file patterns (convenience method).
-        
+
         Args:
             vdom: Virtual Domain(s)
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with all file patterns
-        
+
         Examples:
             >>> # List all file patterns
             >>> result = fgt.cmdb.dlp.filepattern.list()
@@ -127,21 +127,22 @@ class Filepattern:
             ...     print(f"{p['id']}: {p['name']}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # File pattern configuration
         id: int | None = None,
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Create a new DLP file pattern.
-        
+
         Args:
             name: Name of the file pattern list (max 63 chars)
             id: ID (0-4294967295)
@@ -153,10 +154,10 @@ class Filepattern:
                   Valid types: '7z', 'zip', 'rar', 'tar', 'pdf', 'exe', 'msoffice', 'msofficex', etc.
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create pattern for executable files
             >>> result = fgt.cmdb.dlp.filepattern.create(
@@ -168,7 +169,7 @@ class Filepattern:
             ...         {'filter_type': 'type', 'file_type': 'bat'}
             ...     ]
             ... )
-            
+
             >>> # Create pattern for file names
             >>> result = fgt.cmdb.dlp.filepattern.create(
             ...     name='confidential-docs',
@@ -180,60 +181,64 @@ class Filepattern:
         """
         data = {}
         param_map = {
-            'id': id,
-            'name': name,
-            'comment': comment,
-            'entries': entries,
+            "id": id,
+            "name": name,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'id': 'id',
-            'name': 'name',
-            'comment': 'comment',
-            'entries': 'entries',
+            "id": "id",
+            "name": "name",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
-                        
+
                         # If filter-type is 'type', set pattern to file-type value
-                        if converted_entry.get('filter-type') == 'type' and 'file-type' in converted_entry:
-                            converted_entry['pattern'] = converted_entry['file-type']
-                        
+                        if (
+                            converted_entry.get("filter-type") == "type"
+                            and "file-type" in converted_entry
+                        ):
+                            converted_entry["pattern"] = converted_entry["file-type"]
+
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dlp/filepattern', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dlp/filepattern", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         id: Optional[int] = None,
         # File pattern configuration
         name: str | None = None,
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Update an existing DLP file pattern.
-        
+
         Args:
             id: ID of the file pattern to update
             name: Name of the file pattern list (max 63 chars)
@@ -244,17 +249,17 @@ class Filepattern:
                 - file_type (str): File type (required if filter_type='type')
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update comment
             >>> result = fgt.cmdb.dlp.filepattern.update(
             ...     id=1,
             ...     comment='Updated block list'
             ... )
-            
+
             >>> # Update entries
             >>> result = fgt.cmdb.dlp.filepattern.update(
             ...     id=1,
@@ -267,64 +272,68 @@ class Filepattern:
         """
         data = {}
         param_map = {
-            'id': id,
-            'name': name,
-            'comment': comment,
-            'entries': entries,
+            "id": id,
+            "name": name,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'id': 'id',
-            'name': 'name',
-            'comment': 'comment',
-            'entries': 'entries',
+            "id": "id",
+            "name": "name",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
-                        
+
                         # If filter-type is 'type', set pattern to file-type value
-                        if converted_entry.get('filter-type') == 'type' and 'file-type' in converted_entry:
-                            converted_entry['pattern'] = converted_entry['file-type']
-                        
+                        if (
+                            converted_entry.get("filter-type") == "type"
+                            and "file-type" in converted_entry
+                        ):
+                            converted_entry["pattern"] = converted_entry["file-type"]
+
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dlp/filepattern/{id}', data, vdom=vdom)
-    
+
+        return self._client.put("cmdb", f"dlp/filepattern/{id}", data, vdom=vdom, raw_json=raw_json)
+
     def delete(
         self,
         id: int,
-        vdom: str | None = None
+        vdom: str | None = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a DLP file pattern.
-        
+
         Args:
             id: ID of the file pattern to delete
             vdom: Virtual Domain(s)
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete file pattern
             >>> result = fgt.cmdb.dlp.filepattern.delete(1)
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/filepattern/{id}', vdom=vdom)
+        return self._client.delete("cmdb", f"dlp/filepattern/{id}", vdom=vdom, raw_json=raw_json)

@@ -10,17 +10,17 @@ API Endpoints:
     DELETE /api/v2/cmdb/firewall.ssh/host-key/{id}  - Delete host key
 """
 
-from typing import Dict, Optional, Union, List, Any
+from typing import Any, Dict, List, Optional, Union
 
 from .....http_client import HTTPResponse
 
 
 class HostKey:
     """SSH proxy host key endpoint"""
-    
+
     def __init__(self, client):
         self._client = client
-    
+
     def list(
         self,
         filter: Optional[str] = None,
@@ -28,11 +28,11 @@ class HostKey:
         sort: Optional[str] = None,
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs
+        **kwargs,
     ) -> HTTPResponse:
         """
         List all SSH host keys.
-        
+
         Args:
             filter: Filter results
             range: Range of results (e.g., '0-50')
@@ -40,28 +40,21 @@ class HostKey:
             format: List of fields to include in response
             vdom: Virtual domain
             **kwargs: Additional parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # List all host keys
             >>> result = fgt.cmdb.firewall.ssh.host_key.list()
-            
+
             >>> # List with specific fields
             >>> result = fgt.cmdb.firewall.ssh.host_key.list(
             ...     format=['name', 'hostname', 'status']
             ... )
         """
-        return self.get(
-            filter=filter,
-            range=range,
-            sort=sort,
-            format=format,
-            vdom=vdom,
-            **kwargs
-        )
-    
+        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
+
     def get(
         self,
         name: Optional[str] = None,
@@ -70,11 +63,12 @@ class HostKey:
         sort: Optional[str] = None,
         format: Optional[List[str]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> HTTPResponse:
         """
         Get SSH host key(s).
-        
+
         Args:
             name: Host key name (if retrieving specific key)
             filter: Filter results
@@ -83,37 +77,40 @@ class HostKey:
             format: List of fields to include
             vdom: Virtual domain
             **kwargs: Additional parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Get specific host key
             >>> result = fgt.cmdb.firewall.ssh.host_key.get('server1-key')
-            
+
             >>> # Get all host keys
             >>> result = fgt.cmdb.firewall.ssh.host_key.get()
         """
-        path = 'firewall.ssh/host-key'
+        path = "firewall.ssh/host-key"
         if name:
-            path = f'{path}/{name}'
-        
+            path = f"{path}/{name}"
+
         params = {}
         param_map = {
-            'filter': filter,
-            'range': range,
-            'sort': sort,
-            'format': format,
+            "filter": filter,
+            "range": range,
+            "sort": sort,
+            "format": format,
         }
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         status: Optional[str] = None,
         type: Optional[str] = None,
@@ -124,14 +121,15 @@ class HostKey:
         public_key: Optional[str] = None,
         usage: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> HTTPResponse:
         """
         Create an SSH host key.
-        
-        
+
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Host key name (max 35 chars)
@@ -145,10 +143,10 @@ class HostKey:
             usage: Usage - 'transparent-proxy', 'access-proxy'
             vdom: Virtual domain
             **kwargs: Additional parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create SSH host key
             >>> result = fgt.cmdb.firewall.ssh.host_key.create(
@@ -159,7 +157,7 @@ class HostKey:
             ...     type='RSA',
             ...     status='enable'
             ... )
-            
+
             >>> # Create with public key
             >>> result = fgt.cmdb.firewall.ssh.host_key.create(
             ...     'server2-key',
@@ -169,36 +167,39 @@ class HostKey:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if status is not None:
-                data['status'] = status
+                payload_dict["status"] = status
             if type is not None:
-                data['type'] = type
+                payload_dict["type"] = type
             if hostname is not None:
-                data['hostname'] = hostname
+                payload_dict["hostname"] = hostname
             if nid is not None:
-                data['nid'] = nid
+                payload_dict["nid"] = nid
             if ip is not None:
-                data['ip'] = ip
+                payload_dict["ip"] = ip
             if port is not None:
-                data['port'] = port
+                payload_dict["port"] = port
             if public_key is not None:
-                data['public-key'] = public_key
+                payload_dict["public-key"] = public_key
             if usage is not None:
-                data['usage'] = usage
-        
-        return self._client.post('cmdb', 'firewall.ssh/host-key', data, vdom=vdom)
+                payload_dict["usage"] = usage
+
+        return self._client.post(
+            "cmdb", "firewall.ssh/host-key", payload_dict, vdom=vdom, raw_json=raw_json
+        )
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         status: Optional[str] = None,
         type: Optional[str] = None,
         hostname: Optional[str] = None,
@@ -208,14 +209,15 @@ class HostKey:
         public_key: Optional[str] = None,
         usage: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> HTTPResponse:
         """
         Update an SSH host key.
-        
-        
+
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Host key name
@@ -229,10 +231,10 @@ class HostKey:
             usage: Usage - 'transparent-proxy', 'access-proxy'
             vdom: Virtual domain
             **kwargs: Additional parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update hostname and port
             >>> result = fgt.cmdb.firewall.ssh.host_key.update(
@@ -240,7 +242,7 @@ class HostKey:
             ...     hostname='newssh.example.com',
             ...     port=2222
             ... )
-            
+
             >>> # Update status
             >>> result = fgt.cmdb.firewall.ssh.host_key.update(
             ...     'server2-key',
@@ -248,77 +250,78 @@ class HostKey:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if status is not None:
-                data['status'] = status
+                payload_dict["status"] = status
             if type is not None:
-                data['type'] = type
+                payload_dict["type"] = type
             if hostname is not None:
-                data['hostname'] = hostname
+                payload_dict["hostname"] = hostname
             if nid is not None:
-                data['nid'] = nid
+                payload_dict["nid"] = nid
             if ip is not None:
-                data['ip'] = ip
+                payload_dict["ip"] = ip
             if port is not None:
-                data['port'] = port
+                payload_dict["port"] = port
             if public_key is not None:
-                data['public-key'] = public_key
+                payload_dict["public-key"] = public_key
             if usage is not None:
-                data['usage'] = usage
-        
-        return self._client.put('cmdb', f'firewall.ssh/host-key/{name}', data, vdom=vdom)
-    
+                payload_dict["usage"] = usage
+
+        return self._client.put(
+            "cmdb", f"firewall.ssh/host-key/{name}", payload_dict, vdom=vdom, raw_json=raw_json
+        )
+
     def delete(
         self,
         name: str,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> HTTPResponse:
         """
         Delete an SSH host key.
-        
+
         Args:
             name: Host key name
             vdom: Virtual domain
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete host key
             >>> result = fgt.cmdb.firewall.ssh.host_key.delete('server1-key')
         """
-        return self._client.delete('cmdb', f'firewall.ssh/host-key/{name}', vdom=vdom)
-    
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+        return self._client.delete(
+            "cmdb", f"firewall.ssh/host-key/{name}", vdom=vdom, raw_json=raw_json
+        )
+
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if SSH host key exists.
-        
+
         Args:
             name: Host key name
             vdom: Virtual domain
-        
+
         Returns:
             True if host key exists, False otherwise
-        
+
         Examples:
             >>> if fgt.cmdb.firewall.ssh.host_key.exists('server1-key'):
             ...     print("Host key exists")
         """
         try:
-            result = self.get(name, vdom=vdom)
+            result = self.get(name, vdom=vdom, raw_json=True)
             return (
-                result.get('status') == 'success' and
-                result.get('http_status') == 200 and
-                len(result.get('results', [])) > 0
+                result.get("status") == "success"
+                and result.get("http_status") == 200
+                and len(result.get("results", [])) > 0
             )
         except Exception:
             return False

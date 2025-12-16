@@ -12,7 +12,8 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -20,10 +21,10 @@ if TYPE_CHECKING:
 
 class Sensor:
     """DLP sensor endpoint"""
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    
+
     def get(
         self,
         name: str | None = None,
@@ -40,11 +41,12 @@ class Sensor:
         format: str | None = None,
         action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Get DLP sensor(s).
-        
+
         Args:
             name: Name of specific sensor to retrieve
             attr: Attribute name that references other table
@@ -60,63 +62,61 @@ class Sensor:
             action: Special actions - 'default', 'schema', 'revision'
             vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with sensor configuration(s)
-        
+
         Examples:
             >>> # Get all sensors
             >>> result = fgt.cmdb.dlp.sensor.get()
             >>> print(f"Total sensors: {len(result['results'])}")
-            
+
             >>> # Get specific sensor
             >>> result = fgt.cmdb.dlp.sensor.get('credit-card-sensor')
             >>> print(f"Match type: {result['results']['match-type']}")
         """
         # Build path
-        path = 'dlp/sensor'
+        path = "dlp/sensor"
         if name:
-            path = f'dlp/sensor/{name}'
-        
+            path = f"dlp/sensor/{name}"
+
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
-    def list(
-        self,
-        vdom: str | None = None,
-        **kwargs
-    ) -> dict[str, Any]:
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
         """
         List all DLP sensors (convenience method).
-        
+
         Args:
             vdom: Virtual Domain(s)
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with all sensors
-        
+
         Examples:
             >>> # List all sensors
             >>> result = fgt.cmdb.dlp.sensor.list()
@@ -124,10 +124,10 @@ class Sensor:
             ...     print(f"{sensor['name']}: {sensor.get('comment', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Sensor configuration
         match_type: str | None = None,
@@ -135,11 +135,12 @@ class Sensor:
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Create a new DLP sensor.
-        
+
         Args:
             name: Name of the sensor (max 35 chars)
             match_type: Logical relation between entries - 'match-all', 'match-any', or 'match-eval'
@@ -152,10 +153,10 @@ class Sensor:
                 - status (str): Enable/disable this entry - 'enable' or 'disable'
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create sensor with match-any
             >>> result = fgt.cmdb.dlp.sensor.create(
@@ -177,7 +178,7 @@ class Sensor:
             ...         }
             ...     ]
             ... )
-            
+
             >>> # Create sensor with match-all
             >>> result = fgt.cmdb.dlp.sensor.create(
             ...     name='multi-match-sensor',
@@ -191,46 +192,46 @@ class Sensor:
         """
         data = {}
         param_map = {
-            'name': name,
-            'match_type': match_type,
-            'eval': eval,
-            'comment': comment,
-            'entries': entries,
+            "name": name,
+            "match_type": match_type,
+            "eval": eval,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'name': 'name',
-            'match_type': 'match-type',
-            'eval': 'eval',
-            'comment': 'comment',
-            'entries': 'entries',
+            "name": "name",
+            "match_type": "match-type",
+            "eval": "eval",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dlp/sensor', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dlp/sensor", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Sensor configuration
         match_type: str | None = None,
@@ -238,11 +239,12 @@ class Sensor:
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Update an existing DLP sensor.
-        
+
         Args:
             name: Name of the sensor to update
             match_type: Logical relation between entries - 'match-all', 'match-any', or 'match-eval'
@@ -251,17 +253,17 @@ class Sensor:
             entries: List of sensor entries (see create() for structure)
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update comment
             >>> result = fgt.cmdb.dlp.sensor.update(
             ...     name='pii-sensor',
             ...     comment='Updated PII detection sensor'
             ... )
-            
+
             >>> # Update entries
             >>> result = fgt.cmdb.dlp.sensor.update(
             ...     name='pii-sensor',
@@ -289,59 +291,60 @@ class Sensor:
         """
         data = {}
         param_map = {
-            'match_type': match_type,
-            'eval': eval,
-            'comment': comment,
-            'entries': entries,
+            "match_type": match_type,
+            "eval": eval,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'match_type': 'match-type',
-            'eval': 'eval',
-            'comment': 'comment',
-            'entries': 'entries',
+            "match_type": "match-type",
+            "eval": "eval",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dlp/sensor/{name}', data, vdom=vdom)
-    
+
+        return self._client.put("cmdb", f"dlp/sensor/{name}", data, vdom=vdom, raw_json=raw_json)
+
     def delete(
         self,
         name: str,
-        vdom: str | None = None
+        vdom: str | None = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a DLP sensor.
-        
+
         Args:
             name: Name of the sensor to delete
             vdom: Virtual Domain(s)
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete a sensor
             >>> result = fgt.cmdb.dlp.sensor.delete('pii-sensor')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/sensor/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"dlp/sensor/{name}", vdom=vdom, raw_json=raw_json)

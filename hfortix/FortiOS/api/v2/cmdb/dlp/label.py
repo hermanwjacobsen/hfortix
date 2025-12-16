@@ -12,7 +12,8 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -20,10 +21,10 @@ if TYPE_CHECKING:
 
 class Label:
     """DLP label endpoint"""
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    
+
     def get(
         self,
         name: str | None = None,
@@ -40,11 +41,12 @@ class Label:
         format: str | None = None,
         action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Get DLP label(s).
-        
+
         Args:
             name: Name of specific label to retrieve
             attr: Attribute name that references other table
@@ -60,63 +62,61 @@ class Label:
             action: Special actions - 'default', 'schema', 'revision'
             vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with label configuration(s)
-        
+
         Examples:
             >>> # Get all labels
             >>> result = fgt.cmdb.dlp.label.get()
             >>> print(f"Total labels: {len(result['results'])}")
-            
+
             >>> # Get specific label
             >>> result = fgt.cmdb.dlp.label.get('mpip-label1')
             >>> print(f"Type: {result['results']['type']}")
         """
         # Build path
-        path = 'dlp/label'
+        path = "dlp/label"
         if name:
-            path = f'dlp/label/{name}'
-        
+            path = f"dlp/label/{name}"
+
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
-    def list(
-        self,
-        vdom: str | None = None,
-        **kwargs
-    ) -> dict[str, Any]:
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
         """
         List all DLP labels (convenience method).
-        
+
         Args:
             vdom: Virtual Domain(s)
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with all labels
-        
+
         Examples:
             >>> # List all labels
             >>> result = fgt.cmdb.dlp.label.list()
@@ -124,23 +124,24 @@ class Label:
             ...     print(f"{lbl['name']}: {lbl.get('type', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Label configuration
-        type: str = 'mpip',
+        type: str = "mpip",
         mpip_type: str | None = None,
         connector: str | None = None,
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Create a new DLP label.
-        
+
         Args:
             name: Name of the label (max 35 chars)
             type: Label type - 'mpip' (Microsoft Purview Information Protection)
@@ -154,10 +155,10 @@ class Label:
                 - guid (str): MPIP label guid (max 36 chars)
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create local MPIP label
             >>> result = fgt.cmdb.dlp.label.create(
@@ -173,7 +174,7 @@ class Label:
             ...         }
             ...     ]
             ... )
-            
+
             >>> # Create remote MPIP label with connector
             >>> result = fgt.cmdb.dlp.label.create(
             ...     name='mpip-remote',
@@ -185,48 +186,48 @@ class Label:
         """
         data = {}
         param_map = {
-            'name': name,
-            'type': type,
-            'mpip_type': mpip_type,
-            'connector': connector,
-            'comment': comment,
-            'entries': entries,
+            "name": name,
+            "type": type,
+            "mpip_type": mpip_type,
+            "connector": connector,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'name': 'name',
-            'type': 'type',
-            'mpip_type': 'mpip-type',
-            'connector': 'connector',
-            'comment': 'comment',
-            'entries': 'entries',
+            "name": "name",
+            "type": "type",
+            "mpip_type": "mpip-type",
+            "connector": "connector",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dlp/label', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dlp/label", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Label configuration
         type: str | None = None,
@@ -235,11 +236,12 @@ class Label:
         comment: str | None = None,
         entries: list[dict[str, Any]] | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Update an existing DLP label.
-        
+
         Args:
             name: Name of the label to update
             type: Label type - 'mpip' (Microsoft Purview Information Protection)
@@ -253,17 +255,17 @@ class Label:
                 - guid (str): MPIP label guid (max 36 chars)
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update comment
             >>> result = fgt.cmdb.dlp.label.update(
             ...     name='mpip-label1',
             ...     comment='Updated comment'
             ... )
-            
+
             >>> # Update entries
             >>> result = fgt.cmdb.dlp.label.update(
             ...     name='mpip-label1',
@@ -283,61 +285,62 @@ class Label:
         """
         data = {}
         param_map = {
-            'type': type,
-            'mpip_type': mpip_type,
-            'connector': connector,
-            'comment': comment,
-            'entries': entries,
+            "type": type,
+            "mpip_type": mpip_type,
+            "connector": connector,
+            "comment": comment,
+            "entries": entries,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'type': 'type',
-            'mpip_type': 'mpip-type',
-            'connector': 'connector',
-            'comment': 'comment',
-            'entries': 'entries',
+            "type": "type",
+            "mpip_type": "mpip-type",
+            "connector": "connector",
+            "comment": "comment",
+            "entries": "entries",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == 'entries' and isinstance(value, list):
+                if param_name == "entries" and isinstance(value, list):
                     converted_entries = []
                     for entry in value:
                         converted_entry = {}
                         for k, v in entry.items():
                             # Convert snake_case to hyphen-case
-                            api_key = k.replace('_', '-')
+                            api_key = k.replace("_", "-")
                             converted_entry[api_key] = v
                         converted_entries.append(converted_entry)
                     data[api_name] = converted_entries
                 else:
                     data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dlp/label/{name}', data, vdom=vdom)
-    
+
+        return self._client.put("cmdb", f"dlp/label/{name}", data, vdom=vdom, raw_json=raw_json)
+
     def delete(
         self,
         name: str,
-        vdom: str | None = None
+        vdom: str | None = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a DLP label.
-        
+
         Args:
             name: Name of the label to delete
             vdom: Virtual Domain(s)
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete a label
             >>> result = fgt.cmdb.dlp.label.delete('mpip-label1')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/label/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"dlp/label/{name}", vdom=vdom, raw_json=raw_json)

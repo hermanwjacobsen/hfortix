@@ -9,20 +9,20 @@ from typing import Any, Dict, List, Optional, Union
 class Vip6:
     """
     Wrapper for firewall vip6 API endpoint.
-    
+
     Manages vip6 configuration with full Swagger-spec parameter support.
     """
-    
+
     def __init__(self, http_client: Any):
         """
         Initialize the Vip6 wrapper.
-        
+
         Args:
             http_client: The HTTP client for API communication
         """
         self._client = http_client
-        self.path = 'firewall/vip6'
-    
+        self.path = "firewall/vip6"
+
     def list(
         self,
         datasource: Optional[Any] = None,
@@ -44,11 +44,12 @@ class Vip6:
         primary_keys: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a list of all vip6 entries.
-        
+
         Args:
             datasource: Enable to include datasource information for each linked object.
             start: Starting entry index.
@@ -70,58 +71,58 @@ class Vip6:
             action: default: Return the CLI default values for entire CLI tree.
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with results list
         """
         params = {}
-        
+
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to is not None:
-            params['skip_to'] = skip_to
+            params["skip_to"] = skip_to
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if with_contents_hash is not None:
-            params['with_contents_hash'] = with_contents_hash
+            params["with_contents_hash"] = with_contents_hash
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if key is not None:
-            params['key'] = key
+            params["key"] = key
         if pattern is not None:
-            params['pattern'] = pattern
+            params["pattern"] = pattern
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if datasource_format is not None:
-            params['datasource_format'] = datasource_format
+            params["datasource_format"] = datasource_format
         if unfiltered_count is not None:
-            params['unfiltered_count'] = unfiltered_count
+            params["unfiltered_count"] = unfiltered_count
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         if primary_keys is not None:
-            params['primary_keys'] = primary_keys
+            params["primary_keys"] = primary_keys
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', self.path, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get("cmdb", self.path, params=params, vdom=vdom, raw_json=raw_json)
 
     def get(
         self,
@@ -138,11 +139,12 @@ class Vip6:
         format: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a specific vip6 entry by its name.
-        
+
         Args:
             mkey: The name (primary key)
             attr: Attribute name that references other table
@@ -158,56 +160,58 @@ class Vip6:
             action: datasource: Return all applicable datasource entries for a specific at
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with entry details
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         nkey: Optional[Any] = None,
@@ -295,17 +299,18 @@ class Vip6:
         uuid: Optional[str] = None,
         weblogic_server: Optional[str] = None,
         websphere_server: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Create a new vip6 entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={"key": "value"}, vdom="root")
+        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: create(key="value", vdom="root")
-        
+
         Args:
-            data: The configuration data (optional if using kwargs)
+            payload_dict: The configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
@@ -480,203 +485,205 @@ class Vip6:
                 Enable to add an HTTP header to indicate SSL offloading for ...
             websphere-server (string) (enum: ['disable', 'enable']):
                 Enable to add an HTTP header to indicate SSL offloading for ...
-            
+
         Returns:
             API response dictionary
         """
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if add_nat64_route is not None:
-            data['add-nat64-route'] = add_nat64_route
+            payload_dict["add-nat64-route"] = add_nat64_route
         if client_cert is not None:
-            data['client-cert'] = client_cert
+            payload_dict["client-cert"] = client_cert
         if color is not None:
-            data['color'] = color
+            payload_dict["color"] = color
         if comment is not None:
-            data['comment'] = comment
+            payload_dict["comment"] = comment
         if embedded_ipv4_address is not None:
-            data['embedded-ipv4-address'] = embedded_ipv4_address
+            payload_dict["embedded-ipv4-address"] = embedded_ipv4_address
         if empty_cert_action is not None:
-            data['empty-cert-action'] = empty_cert_action
+            payload_dict["empty-cert-action"] = empty_cert_action
         if extip is not None:
-            data['extip'] = extip
+            payload_dict["extip"] = extip
         if extport is not None:
-            data['extport'] = extport
+            payload_dict["extport"] = extport
         if h2_support is not None:
-            data['h2-support'] = h2_support
+            payload_dict["h2-support"] = h2_support
         if h3_support is not None:
-            data['h3-support'] = h3_support
+            payload_dict["h3-support"] = h3_support
         if http_cookie_age is not None:
-            data['http-cookie-age'] = http_cookie_age
+            payload_dict["http-cookie-age"] = http_cookie_age
         if http_cookie_domain is not None:
-            data['http-cookie-domain'] = http_cookie_domain
+            payload_dict["http-cookie-domain"] = http_cookie_domain
         if http_cookie_domain_from_host is not None:
-            data['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+            payload_dict["http-cookie-domain-from-host"] = http_cookie_domain_from_host
         if http_cookie_generation is not None:
-            data['http-cookie-generation'] = http_cookie_generation
+            payload_dict["http-cookie-generation"] = http_cookie_generation
         if http_cookie_path is not None:
-            data['http-cookie-path'] = http_cookie_path
+            payload_dict["http-cookie-path"] = http_cookie_path
         if http_cookie_share is not None:
-            data['http-cookie-share'] = http_cookie_share
+            payload_dict["http-cookie-share"] = http_cookie_share
         if http_ip_header is not None:
-            data['http-ip-header'] = http_ip_header
+            payload_dict["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
-            data['http-ip-header-name'] = http_ip_header_name
+            payload_dict["http-ip-header-name"] = http_ip_header_name
         if http_multiplex is not None:
-            data['http-multiplex'] = http_multiplex
+            payload_dict["http-multiplex"] = http_multiplex
         if http_redirect is not None:
-            data['http-redirect'] = http_redirect
+            payload_dict["http-redirect"] = http_redirect
         if https_cookie_secure is not None:
-            data['https-cookie-secure'] = https_cookie_secure
+            payload_dict["https-cookie-secure"] = https_cookie_secure
         if id is not None:
-            data['id'] = id
+            payload_dict["id"] = id
         if ipv4_mappedip is not None:
-            data['ipv4-mappedip'] = ipv4_mappedip
+            payload_dict["ipv4-mappedip"] = ipv4_mappedip
         if ipv4_mappedport is not None:
-            data['ipv4-mappedport'] = ipv4_mappedport
+            payload_dict["ipv4-mappedport"] = ipv4_mappedport
         if ldb_method is not None:
-            data['ldb-method'] = ldb_method
+            payload_dict["ldb-method"] = ldb_method
         if mappedip is not None:
-            data['mappedip'] = mappedip
+            payload_dict["mappedip"] = mappedip
         if mappedport is not None:
-            data['mappedport'] = mappedport
+            payload_dict["mappedport"] = mappedport
         if max_embryonic_connections is not None:
-            data['max-embryonic-connections'] = max_embryonic_connections
+            payload_dict["max-embryonic-connections"] = max_embryonic_connections
         if monitor is not None:
-            data['monitor'] = monitor
+            payload_dict["monitor"] = monitor
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if nat_source_vip is not None:
-            data['nat-source-vip'] = nat_source_vip
+            payload_dict["nat-source-vip"] = nat_source_vip
         if nat64 is not None:
-            data['nat64'] = nat64
+            payload_dict["nat64"] = nat64
         if nat66 is not None:
-            data['nat66'] = nat66
+            payload_dict["nat66"] = nat66
         if ndp_reply is not None:
-            data['ndp-reply'] = ndp_reply
+            payload_dict["ndp-reply"] = ndp_reply
         if outlook_web_access is not None:
-            data['outlook-web-access'] = outlook_web_access
+            payload_dict["outlook-web-access"] = outlook_web_access
         if persistence is not None:
-            data['persistence'] = persistence
+            payload_dict["persistence"] = persistence
         if portforward is not None:
-            data['portforward'] = portforward
+            payload_dict["portforward"] = portforward
         if protocol is not None:
-            data['protocol'] = protocol
+            payload_dict["protocol"] = protocol
         if quic is not None:
-            data['quic'] = quic
+            payload_dict["quic"] = quic
         if realservers is not None:
-            data['realservers'] = realservers
+            payload_dict["realservers"] = realservers
         if server_type is not None:
-            data['server-type'] = server_type
+            payload_dict["server-type"] = server_type
         if src_filter is not None:
-            data['src-filter'] = src_filter
+            payload_dict["src-filter"] = src_filter
         if src_vip_filter is not None:
-            data['src-vip-filter'] = src_vip_filter
+            payload_dict["src-vip-filter"] = src_vip_filter
         if ssl_accept_ffdhe_groups is not None:
-            data['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+            payload_dict["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
         if ssl_algorithm is not None:
-            data['ssl-algorithm'] = ssl_algorithm
+            payload_dict["ssl-algorithm"] = ssl_algorithm
         if ssl_certificate is not None:
-            data['ssl-certificate'] = ssl_certificate
+            payload_dict["ssl-certificate"] = ssl_certificate
         if ssl_cipher_suites is not None:
-            data['ssl-cipher-suites'] = ssl_cipher_suites
+            payload_dict["ssl-cipher-suites"] = ssl_cipher_suites
         if ssl_client_fallback is not None:
-            data['ssl-client-fallback'] = ssl_client_fallback
+            payload_dict["ssl-client-fallback"] = ssl_client_fallback
         if ssl_client_rekey_count is not None:
-            data['ssl-client-rekey-count'] = ssl_client_rekey_count
+            payload_dict["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_client_renegotiation is not None:
-            data['ssl-client-renegotiation'] = ssl_client_renegotiation
+            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_max is not None:
-            data['ssl-client-session-state-max'] = ssl_client_session_state_max
+            payload_dict["ssl-client-session-state-max"] = ssl_client_session_state_max
         if ssl_client_session_state_timeout is not None:
-            data['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+            payload_dict["ssl-client-session-state-timeout"] = ssl_client_session_state_timeout
         if ssl_client_session_state_type is not None:
-            data['ssl-client-session-state-type'] = ssl_client_session_state_type
+            payload_dict["ssl-client-session-state-type"] = ssl_client_session_state_type
         if ssl_dh_bits is not None:
-            data['ssl-dh-bits'] = ssl_dh_bits
+            payload_dict["ssl-dh-bits"] = ssl_dh_bits
         if ssl_hpkp is not None:
-            data['ssl-hpkp'] = ssl_hpkp
+            payload_dict["ssl-hpkp"] = ssl_hpkp
         if ssl_hpkp_age is not None:
-            data['ssl-hpkp-age'] = ssl_hpkp_age
+            payload_dict["ssl-hpkp-age"] = ssl_hpkp_age
         if ssl_hpkp_backup is not None:
-            data['ssl-hpkp-backup'] = ssl_hpkp_backup
+            payload_dict["ssl-hpkp-backup"] = ssl_hpkp_backup
         if ssl_hpkp_include_subdomains is not None:
-            data['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+            payload_dict["ssl-hpkp-include-subdomains"] = ssl_hpkp_include_subdomains
         if ssl_hpkp_primary is not None:
-            data['ssl-hpkp-primary'] = ssl_hpkp_primary
+            payload_dict["ssl-hpkp-primary"] = ssl_hpkp_primary
         if ssl_hpkp_report_uri is not None:
-            data['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+            payload_dict["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hsts is not None:
-            data['ssl-hsts'] = ssl_hsts
+            payload_dict["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
-            data['ssl-hsts-age'] = ssl_hsts_age
+            payload_dict["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+            payload_dict["ssl-hsts-include-subdomains"] = ssl_hsts_include_subdomains
         if ssl_http_location_conversion is not None:
-            data['ssl-http-location-conversion'] = ssl_http_location_conversion
+            payload_dict["ssl-http-location-conversion"] = ssl_http_location_conversion
         if ssl_http_match_host is not None:
-            data['ssl-http-match-host'] = ssl_http_match_host
+            payload_dict["ssl-http-match-host"] = ssl_http_match_host
         if ssl_max_version is not None:
-            data['ssl-max-version'] = ssl_max_version
+            payload_dict["ssl-max-version"] = ssl_max_version
         if ssl_min_version is not None:
-            data['ssl-min-version'] = ssl_min_version
+            payload_dict["ssl-min-version"] = ssl_min_version
         if ssl_mode is not None:
-            data['ssl-mode'] = ssl_mode
+            payload_dict["ssl-mode"] = ssl_mode
         if ssl_pfs is not None:
-            data['ssl-pfs'] = ssl_pfs
+            payload_dict["ssl-pfs"] = ssl_pfs
         if ssl_send_empty_frags is not None:
-            data['ssl-send-empty-frags'] = ssl_send_empty_frags
+            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
         if ssl_server_algorithm is not None:
-            data['ssl-server-algorithm'] = ssl_server_algorithm
+            payload_dict["ssl-server-algorithm"] = ssl_server_algorithm
         if ssl_server_cipher_suites is not None:
-            data['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+            payload_dict["ssl-server-cipher-suites"] = ssl_server_cipher_suites
         if ssl_server_max_version is not None:
-            data['ssl-server-max-version'] = ssl_server_max_version
+            payload_dict["ssl-server-max-version"] = ssl_server_max_version
         if ssl_server_min_version is not None:
-            data['ssl-server-min-version'] = ssl_server_min_version
+            payload_dict["ssl-server-min-version"] = ssl_server_min_version
         if ssl_server_renegotiation is not None:
-            data['ssl-server-renegotiation'] = ssl_server_renegotiation
+            payload_dict["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_session_state_max is not None:
-            data['ssl-server-session-state-max'] = ssl_server_session_state_max
+            payload_dict["ssl-server-session-state-max"] = ssl_server_session_state_max
         if ssl_server_session_state_timeout is not None:
-            data['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+            payload_dict["ssl-server-session-state-timeout"] = ssl_server_session_state_timeout
         if ssl_server_session_state_type is not None:
-            data['ssl-server-session-state-type'] = ssl_server_session_state_type
+            payload_dict["ssl-server-session-state-type"] = ssl_server_session_state_type
         if type is not None:
-            data['type'] = type
+            payload_dict["type"] = type
         if user_agent_detect is not None:
-            data['user-agent-detect'] = user_agent_detect
+            payload_dict["user-agent-detect"] = user_agent_detect
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if weblogic_server is not None:
-            data['weblogic-server'] = weblogic_server
+            payload_dict["weblogic-server"] = weblogic_server
         if websphere_server is not None:
-            data['websphere-server'] = websphere_server
-        
+            payload_dict["websphere-server"] = websphere_server
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if nkey is not None:
-            params['nkey'] = nkey
+            params["nkey"] = nkey
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.post(
+            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
         mkey: Union[str, int],
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         before: Optional[Any] = None,
@@ -765,21 +772,22 @@ class Vip6:
         uuid: Optional[str] = None,
         weblogic_server: Optional[str] = None,
         websphere_server: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Update an existing vip6 entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, data={"key": "value"}, vdom="root")
+        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-        
+
         Args:
             mkey: The name (primary key)
-            data: The updated configuration data (optional if using kwargs)
+            payload_dict: The updated configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that 
+            before: If *action=move*, use *before* to specify the ID of the resource that
             after: If *action=move*, use *after* to specify the ID of the resource that t
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
@@ -952,247 +960,257 @@ class Vip6:
                 Enable to add an HTTP header to indicate SSL offloading for ...
             websphere-server (string) (enum: ['disable', 'enable']):
                 Enable to add an HTTP header to indicate SSL offloading for ...
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if add_nat64_route is not None:
-            data['add-nat64-route'] = add_nat64_route
+            payload_dict["add-nat64-route"] = add_nat64_route
         if client_cert is not None:
-            data['client-cert'] = client_cert
+            payload_dict["client-cert"] = client_cert
         if color is not None:
-            data['color'] = color
+            payload_dict["color"] = color
         if comment is not None:
-            data['comment'] = comment
+            payload_dict["comment"] = comment
         if embedded_ipv4_address is not None:
-            data['embedded-ipv4-address'] = embedded_ipv4_address
+            payload_dict["embedded-ipv4-address"] = embedded_ipv4_address
         if empty_cert_action is not None:
-            data['empty-cert-action'] = empty_cert_action
+            payload_dict["empty-cert-action"] = empty_cert_action
         if extip is not None:
-            data['extip'] = extip
+            payload_dict["extip"] = extip
         if extport is not None:
-            data['extport'] = extport
+            payload_dict["extport"] = extport
         if h2_support is not None:
-            data['h2-support'] = h2_support
+            payload_dict["h2-support"] = h2_support
         if h3_support is not None:
-            data['h3-support'] = h3_support
+            payload_dict["h3-support"] = h3_support
         if http_cookie_age is not None:
-            data['http-cookie-age'] = http_cookie_age
+            payload_dict["http-cookie-age"] = http_cookie_age
         if http_cookie_domain is not None:
-            data['http-cookie-domain'] = http_cookie_domain
+            payload_dict["http-cookie-domain"] = http_cookie_domain
         if http_cookie_domain_from_host is not None:
-            data['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+            payload_dict["http-cookie-domain-from-host"] = http_cookie_domain_from_host
         if http_cookie_generation is not None:
-            data['http-cookie-generation'] = http_cookie_generation
+            payload_dict["http-cookie-generation"] = http_cookie_generation
         if http_cookie_path is not None:
-            data['http-cookie-path'] = http_cookie_path
+            payload_dict["http-cookie-path"] = http_cookie_path
         if http_cookie_share is not None:
-            data['http-cookie-share'] = http_cookie_share
+            payload_dict["http-cookie-share"] = http_cookie_share
         if http_ip_header is not None:
-            data['http-ip-header'] = http_ip_header
+            payload_dict["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
-            data['http-ip-header-name'] = http_ip_header_name
+            payload_dict["http-ip-header-name"] = http_ip_header_name
         if http_multiplex is not None:
-            data['http-multiplex'] = http_multiplex
+            payload_dict["http-multiplex"] = http_multiplex
         if http_redirect is not None:
-            data['http-redirect'] = http_redirect
+            payload_dict["http-redirect"] = http_redirect
         if https_cookie_secure is not None:
-            data['https-cookie-secure'] = https_cookie_secure
+            payload_dict["https-cookie-secure"] = https_cookie_secure
         if id is not None:
-            data['id'] = id
+            payload_dict["id"] = id
         if ipv4_mappedip is not None:
-            data['ipv4-mappedip'] = ipv4_mappedip
+            payload_dict["ipv4-mappedip"] = ipv4_mappedip
         if ipv4_mappedport is not None:
-            data['ipv4-mappedport'] = ipv4_mappedport
+            payload_dict["ipv4-mappedport"] = ipv4_mappedport
         if ldb_method is not None:
-            data['ldb-method'] = ldb_method
+            payload_dict["ldb-method"] = ldb_method
         if mappedip is not None:
-            data['mappedip'] = mappedip
+            payload_dict["mappedip"] = mappedip
         if mappedport is not None:
-            data['mappedport'] = mappedport
+            payload_dict["mappedport"] = mappedport
         if max_embryonic_connections is not None:
-            data['max-embryonic-connections'] = max_embryonic_connections
+            payload_dict["max-embryonic-connections"] = max_embryonic_connections
         if monitor is not None:
-            data['monitor'] = monitor
+            payload_dict["monitor"] = monitor
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if nat_source_vip is not None:
-            data['nat-source-vip'] = nat_source_vip
+            payload_dict["nat-source-vip"] = nat_source_vip
         if nat64 is not None:
-            data['nat64'] = nat64
+            payload_dict["nat64"] = nat64
         if nat66 is not None:
-            data['nat66'] = nat66
+            payload_dict["nat66"] = nat66
         if ndp_reply is not None:
-            data['ndp-reply'] = ndp_reply
+            payload_dict["ndp-reply"] = ndp_reply
         if outlook_web_access is not None:
-            data['outlook-web-access'] = outlook_web_access
+            payload_dict["outlook-web-access"] = outlook_web_access
         if persistence is not None:
-            data['persistence'] = persistence
+            payload_dict["persistence"] = persistence
         if portforward is not None:
-            data['portforward'] = portforward
+            payload_dict["portforward"] = portforward
         if protocol is not None:
-            data['protocol'] = protocol
+            payload_dict["protocol"] = protocol
         if quic is not None:
-            data['quic'] = quic
+            payload_dict["quic"] = quic
         if realservers is not None:
-            data['realservers'] = realservers
+            payload_dict["realservers"] = realservers
         if server_type is not None:
-            data['server-type'] = server_type
+            payload_dict["server-type"] = server_type
         if src_filter is not None:
-            data['src-filter'] = src_filter
+            payload_dict["src-filter"] = src_filter
         if src_vip_filter is not None:
-            data['src-vip-filter'] = src_vip_filter
+            payload_dict["src-vip-filter"] = src_vip_filter
         if ssl_accept_ffdhe_groups is not None:
-            data['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+            payload_dict["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
         if ssl_algorithm is not None:
-            data['ssl-algorithm'] = ssl_algorithm
+            payload_dict["ssl-algorithm"] = ssl_algorithm
         if ssl_certificate is not None:
-            data['ssl-certificate'] = ssl_certificate
+            payload_dict["ssl-certificate"] = ssl_certificate
         if ssl_cipher_suites is not None:
-            data['ssl-cipher-suites'] = ssl_cipher_suites
+            payload_dict["ssl-cipher-suites"] = ssl_cipher_suites
         if ssl_client_fallback is not None:
-            data['ssl-client-fallback'] = ssl_client_fallback
+            payload_dict["ssl-client-fallback"] = ssl_client_fallback
         if ssl_client_rekey_count is not None:
-            data['ssl-client-rekey-count'] = ssl_client_rekey_count
+            payload_dict["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_client_renegotiation is not None:
-            data['ssl-client-renegotiation'] = ssl_client_renegotiation
+            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_max is not None:
-            data['ssl-client-session-state-max'] = ssl_client_session_state_max
+            payload_dict["ssl-client-session-state-max"] = ssl_client_session_state_max
         if ssl_client_session_state_timeout is not None:
-            data['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+            payload_dict["ssl-client-session-state-timeout"] = ssl_client_session_state_timeout
         if ssl_client_session_state_type is not None:
-            data['ssl-client-session-state-type'] = ssl_client_session_state_type
+            payload_dict["ssl-client-session-state-type"] = ssl_client_session_state_type
         if ssl_dh_bits is not None:
-            data['ssl-dh-bits'] = ssl_dh_bits
+            payload_dict["ssl-dh-bits"] = ssl_dh_bits
         if ssl_hpkp is not None:
-            data['ssl-hpkp'] = ssl_hpkp
+            payload_dict["ssl-hpkp"] = ssl_hpkp
         if ssl_hpkp_age is not None:
-            data['ssl-hpkp-age'] = ssl_hpkp_age
+            payload_dict["ssl-hpkp-age"] = ssl_hpkp_age
         if ssl_hpkp_backup is not None:
-            data['ssl-hpkp-backup'] = ssl_hpkp_backup
+            payload_dict["ssl-hpkp-backup"] = ssl_hpkp_backup
         if ssl_hpkp_include_subdomains is not None:
-            data['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+            payload_dict["ssl-hpkp-include-subdomains"] = ssl_hpkp_include_subdomains
         if ssl_hpkp_primary is not None:
-            data['ssl-hpkp-primary'] = ssl_hpkp_primary
+            payload_dict["ssl-hpkp-primary"] = ssl_hpkp_primary
         if ssl_hpkp_report_uri is not None:
-            data['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+            payload_dict["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hsts is not None:
-            data['ssl-hsts'] = ssl_hsts
+            payload_dict["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
-            data['ssl-hsts-age'] = ssl_hsts_age
+            payload_dict["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+            payload_dict["ssl-hsts-include-subdomains"] = ssl_hsts_include_subdomains
         if ssl_http_location_conversion is not None:
-            data['ssl-http-location-conversion'] = ssl_http_location_conversion
+            payload_dict["ssl-http-location-conversion"] = ssl_http_location_conversion
         if ssl_http_match_host is not None:
-            data['ssl-http-match-host'] = ssl_http_match_host
+            payload_dict["ssl-http-match-host"] = ssl_http_match_host
         if ssl_max_version is not None:
-            data['ssl-max-version'] = ssl_max_version
+            payload_dict["ssl-max-version"] = ssl_max_version
         if ssl_min_version is not None:
-            data['ssl-min-version'] = ssl_min_version
+            payload_dict["ssl-min-version"] = ssl_min_version
         if ssl_mode is not None:
-            data['ssl-mode'] = ssl_mode
+            payload_dict["ssl-mode"] = ssl_mode
         if ssl_pfs is not None:
-            data['ssl-pfs'] = ssl_pfs
+            payload_dict["ssl-pfs"] = ssl_pfs
         if ssl_send_empty_frags is not None:
-            data['ssl-send-empty-frags'] = ssl_send_empty_frags
+            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
         if ssl_server_algorithm is not None:
-            data['ssl-server-algorithm'] = ssl_server_algorithm
+            payload_dict["ssl-server-algorithm"] = ssl_server_algorithm
         if ssl_server_cipher_suites is not None:
-            data['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+            payload_dict["ssl-server-cipher-suites"] = ssl_server_cipher_suites
         if ssl_server_max_version is not None:
-            data['ssl-server-max-version'] = ssl_server_max_version
+            payload_dict["ssl-server-max-version"] = ssl_server_max_version
         if ssl_server_min_version is not None:
-            data['ssl-server-min-version'] = ssl_server_min_version
+            payload_dict["ssl-server-min-version"] = ssl_server_min_version
         if ssl_server_renegotiation is not None:
-            data['ssl-server-renegotiation'] = ssl_server_renegotiation
+            payload_dict["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_session_state_max is not None:
-            data['ssl-server-session-state-max'] = ssl_server_session_state_max
+            payload_dict["ssl-server-session-state-max"] = ssl_server_session_state_max
         if ssl_server_session_state_timeout is not None:
-            data['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+            payload_dict["ssl-server-session-state-timeout"] = ssl_server_session_state_timeout
         if ssl_server_session_state_type is not None:
-            data['ssl-server-session-state-type'] = ssl_server_session_state_type
+            payload_dict["ssl-server-session-state-type"] = ssl_server_session_state_type
         if type is not None:
-            data['type'] = type
+            payload_dict["type"] = type
         if user_agent_detect is not None:
-            data['user-agent-detect'] = user_agent_detect
+            payload_dict["user-agent-detect"] = user_agent_detect
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if weblogic_server is not None:
-            data['weblogic-server'] = weblogic_server
+            payload_dict["weblogic-server"] = weblogic_server
         if websphere_server is not None:
-            data['websphere-server'] = websphere_server
-        
+            payload_dict["websphere-server"] = websphere_server
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if before is not None:
-            params['before'] = before
+            params["before"] = before
         if after is not None:
-            params['after'] = after
+            params["after"] = after
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.put('cmdb', f'{self.path}/{mkey_str}', data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{mkey_str}",
+            data=payload_dict,
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         mkey: Union[str, int],
         vdom: Optional[Any] = None,
         scope: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Delete a vip6 entry.
-        
+
         Args:
             mkey: The name (primary key)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.delete('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.delete(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )

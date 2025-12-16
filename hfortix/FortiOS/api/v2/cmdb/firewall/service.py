@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 class Service:
     """Service sub-category grouping related endpoints"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Service sub-category
 
@@ -27,23 +27,26 @@ class Service:
     @property
     def category(self):
         """Access category endpoint"""
-        if not hasattr(self, '_category'):
+        if not hasattr(self, "_category"):
             from .service_category import ServiceCategory
+
             self._category = ServiceCategory(self._client)
         return self._category
 
     @property
     def custom(self):
         """Access custom endpoint"""
-        if not hasattr(self, '_custom'):
+        if not hasattr(self, "_custom"):
             from .service_custom import ServiceCustom
+
             self._custom = ServiceCustom(self._client)
         return self._custom
 
     @property
     def group(self):
         """Access group endpoint"""
-        if not hasattr(self, '_group'):
+        if not hasattr(self, "_group"):
             from .service_group import ServiceGroup
+
             self._group = ServiceGroup(self._client)
         return self._group

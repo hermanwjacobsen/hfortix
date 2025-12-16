@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class IpmacbindingSetting:
     """Firewall IP-MAC binding setting endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize IpmacbindingSetting endpoint
 
@@ -36,7 +36,8 @@ class IpmacbindingSetting:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get IP-MAC binding settings.
@@ -57,45 +58,49 @@ class IpmacbindingSetting:
             >>> # Get IP-MAC binding settings
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.get()
             >>> print(f"Bind through firewall: {result['results']['bindthroughfw']}")
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.get(with_meta=True)
-            
+
             >>> # Get schema
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.get(action='schema')
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall.ipmacbinding/setting'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = "firewall.ipmacbinding/setting"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         bindthroughfw: Optional[str] = None,
         bindtofw: Optional[str] = None,
         undefinedhost: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IP-MAC binding settings.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             bindthroughfw: Enable/disable IP/MAC binding for packets through firewall
@@ -115,14 +120,14 @@ class IpmacbindingSetting:
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.update(
             ...     bindthroughfw='enable'
             ... )
-            
+
             >>> # Configure all settings
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.update(
             ...     bindthroughfw='enable',
             ...     bindtofw='enable',
             ...     undefinedhost='block'
             ... )
-            
+
             >>> # Disable binding and allow undefined hosts
             >>> result = fgt.cmdb.firewall.ipmacbinding_setting.update(
             ...     bindthroughfw='disable',
@@ -131,35 +136,35 @@ class IpmacbindingSetting:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if bindthroughfw is not None:
-                data['bindthroughfw'] = bindthroughfw
+                payload_dict["bindthroughfw"] = bindthroughfw
             if bindtofw is not None:
-                data['bindtofw'] = bindtofw
+                payload_dict["bindtofw"] = bindtofw
             if undefinedhost is not None:
-                data['undefinedhost'] = undefinedhost
+                payload_dict["undefinedhost"] = undefinedhost
 
-        data = {}
-        
+        payload_dict = {}
+
         param_map = {
-            'bindthroughfw': bindthroughfw,
-            'bindtofw': bindtofw,
-            'undefinedhost': undefinedhost,
+            "bindthroughfw": bindthroughfw,
+            "bindtofw": bindtofw,
+            "undefinedhost": undefinedhost,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
-                data[key] = value
-        
+                payload_dict[key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall.ipmacbinding/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall.ipmacbinding/setting"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)

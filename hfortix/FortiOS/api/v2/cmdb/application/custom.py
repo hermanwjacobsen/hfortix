@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Custom:
     """Application custom signatures endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Custom endpoint.
 
@@ -47,7 +47,8 @@ class Custom:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get custom application signature(s).
@@ -93,17 +94,17 @@ class Custom:
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -113,11 +114,13 @@ class Custom:
         params.update(kwargs)
 
         # Build path
-        path = 'application/custom'
+        path = "application/custom"
         if tag:
-            path = f'{path}/{tag}'
+            path = f"{path}/{tag}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -133,7 +136,7 @@ class Custom:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         List all custom application signatures.
@@ -180,12 +183,12 @@ class Custom:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         tag: Optional[str] = None,
         # Signature parameters
         id: Optional[int] = None,
@@ -197,7 +200,8 @@ class Custom:
         behavior: Optional[str] = None,
         vendor: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new custom application signature.
@@ -240,31 +244,31 @@ class Custom:
             ... )
         """
         # Build data dictionary
-        data = {}
+        payload_dict = {}
         param_map = {
-            'tag': tag,
-            'id': id,
-            'comment': comment,
-            'signature': signature,
-            'category': category,
-            'protocol': protocol,
-            'technology': technology,
-            'behavior': behavior,
-            'vendor': vendor,
+            "tag": tag,
+            "id": id,
+            "comment": comment,
+            "signature": signature,
+            "category": category,
+            "protocol": protocol,
+            "technology": technology,
+            "behavior": behavior,
+            "vendor": vendor,
         }
 
         # No special field mapping needed - all fields use same name
         for param_name, value in param_map.items():
             if value is not None:
-                data[param_name] = value
+                payload_dict[param_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.post('cmdb', 'application/custom', data, vdom=vdom)
+        return self._client.post("cmdb", "application/custom", data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         tag: Optional[str] = None,
         # Signature parameters
         id: Optional[int] = None,
@@ -281,7 +285,8 @@ class Custom:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing custom application signature.
@@ -328,33 +333,33 @@ class Custom:
             ... )
         """
         # Build data dictionary
-        data = {}
+        payload_dict = {}
         param_map = {
-            'tag': tag,
-            'id': id,
-            'comment': comment,
-            'signature': signature,
-            'category': category,
-            'protocol': protocol,
-            'technology': technology,
-            'behavior': behavior,
-            'vendor': vendor,
+            "tag": tag,
+            "id": id,
+            "comment": comment,
+            "signature": signature,
+            "category": category,
+            "protocol": protocol,
+            "technology": technology,
+            "behavior": behavior,
+            "vendor": vendor,
         }
 
         # No special field mapping needed
         for param_name, value in param_map.items():
             if value is not None:
-                data[param_name] = value
+                payload_dict[param_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
         # Build query parameters for action/move
         params = {}
         query_param_map = {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in query_param_map.items():
@@ -362,18 +367,20 @@ class Custom:
                 params[key] = value
 
         return self._client.put(
-            'cmdb',
-            f'application/custom/{tag}',
+            "cmdb",
+            f"application/custom/{tag}",
             data,
             params=params if params else None,
-            vdom=vdom
+            vdom=vdom,
+            raw_json=raw_json,
         )
 
     def delete(
         self,
         tag: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a custom application signature.
@@ -399,11 +406,12 @@ class Custom:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
         return self._client.delete(
-            'cmdb',
-            f'application/custom/{tag}',
+            "cmdb",
+            f"application/custom/{tag}",
             params=params if params else None,
-            vdom=vdom
+            vdom=vdom,
+            raw_json=raw_json,
         )

@@ -10,14 +10,14 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 if TYPE_CHECKING:
     from ...http_client import HTTPClient
 
-__all__ = ['CMDB']
+__all__ = ["CMDB"]
 
 
 class CMDB:
     """
     CMDB API helper class
     Provides access to FortiOS configuration endpoints
-    
+
     Attributes:
         alertemail: Alert email configuration
         antivirus: Antivirus profiles and settings
@@ -37,7 +37,7 @@ class CMDB:
         firewall: Firewall policies and objects
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize CMDB helper
 
@@ -84,9 +84,20 @@ class CMDB:
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return [
-            'alertemail', 'antivirus', 'application', 'authentication',
-            'automation', 'casb', 'certificate', 'diameter_filter',
-            'dlp', 'dnsfilter', 'emailfilter', 'endpoint_control',
-            'ethernet_oam', 'extension_controller', 'file_filter', 'firewall'
+            "alertemail",
+            "antivirus",
+            "application",
+            "authentication",
+            "automation",
+            "casb",
+            "certificate",
+            "diameter_filter",
+            "dlp",
+            "dnsfilter",
+            "emailfilter",
+            "endpoint_control",
+            "ethernet_oam",
+            "extension_controller",
+            "file_filter",
+            "firewall",
         ]
-

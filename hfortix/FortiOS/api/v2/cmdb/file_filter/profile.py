@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Profile:
     """File filter profile endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -40,7 +40,8 @@ class Profile:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get file filter profile(s).
@@ -67,45 +68,43 @@ class Profile:
         Examples:
             >>> # List all file filter profiles
             >>> result = fgt.cmdb.file_filter.profile.list()
-            
+
             >>> # Get specific profile
             >>> result = fgt.cmdb.file_filter.profile.get('default')
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.file_filter.profile.get('default', with_meta=True)
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
-        params.update(kwargs)
-        
-        path = 'file-filter/profile'
-        if name:
-            path = f'{path}/{name}'
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
 
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+        params.update(kwargs)
+
+        path = "file-filter/profile"
+        if name:
+            path = f"{path}/{name}"
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get all file filter profiles.
 
@@ -124,10 +123,11 @@ class Profile:
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new file filter profile.
@@ -162,7 +162,7 @@ class Profile:
             ...     comment='Strict file filtering',
             ...     log='enable'
             ... )
-            
+
             >>> # Create with rules
             >>> result = fgt.cmdb.file_filter.profile.create(
             ...     name='office-filter',
@@ -175,21 +175,24 @@ class Profile:
             ...     }]
             ... )
         """
-        data = {'name': name}
-        
+        data = {"name": name}
+
         # Convert snake_case to hyphen-case for API
         for key, value in kwargs.items():
-            api_key = key.replace('_', '-')
+            api_key = key.replace("_", "-")
             data[api_key] = value
-        
-        return self._client.post('cmdb', 'file-filter/profile', data=data, vdom=vdom)
+
+        return self._client.post(
+            "cmdb", "file-filter/profile", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update a file filter profile.
@@ -209,7 +212,7 @@ class Profile:
             ...     log='enable',
             ...     extended_log='enable'
             ... )
-            
+
             >>> # Update rules
             >>> result = fgt.cmdb.file_filter.profile.update(
             ...     'office-filter',
@@ -222,19 +225,22 @@ class Profile:
             ... )
         """
         data = {}
-        
+
         # Convert snake_case to hyphen-case for API
         for key, value in kwargs.items():
-            api_key = key.replace('_', '-')
+            api_key = key.replace("_", "-")
             data[api_key] = value
-        
-        return self._client.put('cmdb', f'file-filter/profile/{name}', data=data, vdom=vdom)
+
+        return self._client.put(
+            "cmdb", f"file-filter/profile/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         name: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a file filter profile.
@@ -253,11 +259,12 @@ class Profile:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         return self._client.delete(
-            'cmdb',
-            f'file-filter/profile/{name}',
+            "cmdb",
+            f"file-filter/profile/{name}",
             params=params if params else None,
-            vdom=vdom
+            vdom=vdom,
+            raw_json=raw_json,
         )

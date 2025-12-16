@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Profile:
     """Email filter profile endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Profile endpoint.
 
@@ -47,7 +47,8 @@ class Profile:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get email filter profile(s).
@@ -86,17 +87,17 @@ class Profile:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -105,11 +106,13 @@ class Profile:
 
         params.update(kwargs)
 
-        path = 'emailfilter/profile'
+        path = "emailfilter/profile"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -125,7 +128,7 @@ class Profile:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get all email filter profiles (convenience method).
@@ -153,12 +156,12 @@ class Profile:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Profile configuration
         comment: Optional[str] = None,
@@ -186,7 +189,8 @@ class Profile:
         spam_rbl_table: Optional[int] = None,
         spam_iptrust_table: Optional[int] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new email filter profile.
@@ -241,50 +245,61 @@ class Profile:
             ...     imap={'log': 'enable', 'action': 'discard'}
             ... )
         """
-        data = {'name': name}
-        
+        data = {"name": name}
+
         param_map = {
-            'comment': comment,
-            'feature_set': feature_set,
-            'replacemsg_group': replacemsg_group,
-            'spam_log': spam_log,
-            'spam_log_fortiguard_response': spam_log_fortiguard_response,
-            'spam_filtering': spam_filtering,
-            'external': external,
-            'spam_bword_threshold': spam_bword_threshold,
-            'spam_bword_table': spam_bword_table,
-            'spam_bal_table': spam_bal_table,
-            'spam_bwl_table': spam_bwl_table,
-            'spam_mheader_table': spam_mheader_table,
-            'spam_rbl_table': spam_rbl_table,
-            'spam_iptrust_table': spam_iptrust_table,
+            "comment": comment,
+            "feature_set": feature_set,
+            "replacemsg_group": replacemsg_group,
+            "spam_log": spam_log,
+            "spam_log_fortiguard_response": spam_log_fortiguard_response,
+            "spam_filtering": spam_filtering,
+            "external": external,
+            "spam_bword_threshold": spam_bword_threshold,
+            "spam_bword_table": spam_bword_table,
+            "spam_bal_table": spam_bal_table,
+            "spam_bwl_table": spam_bwl_table,
+            "spam_mheader_table": spam_mheader_table,
+            "spam_rbl_table": spam_rbl_table,
+            "spam_iptrust_table": spam_iptrust_table,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         # Handle options list
         if options is not None:
-            data['options'] = options
+            data["options"] = options
 
         # Handle nested dictionaries
-        for dict_param in ['file_filter', 'imap', 'pop3', 'smtp', 'mapi', 
-                          'msn_hotmail', 'yahoo_mail', 'gmail', 'other_webmails']:
+        for dict_param in [
+            "file_filter",
+            "imap",
+            "pop3",
+            "smtp",
+            "mapi",
+            "msn_hotmail",
+            "yahoo_mail",
+            "gmail",
+            "other_webmails",
+        ]:
             value = locals()[dict_param]
             if value is not None:
                 converted = {}
                 for k, v in value.items():
-                    converted[k.replace('_', '-')] = v
-                data[dict_param.replace('_', '-')] = converted
+                    converted[k.replace("_", "-")] = v
+                data[dict_param.replace("_", "-")] = converted
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'emailfilter/profile', data=data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "emailfilter/profile", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Profile configuration
         comment: Optional[str] = None,
@@ -317,7 +332,8 @@ class Profile:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an email filter profile.
@@ -373,55 +389,67 @@ class Profile:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'comment': comment,
-            'feature_set': feature_set,
-            'replacemsg_group': replacemsg_group,
-            'spam_log': spam_log,
-            'spam_log_fortiguard_response': spam_log_fortiguard_response,
-            'spam_filtering': spam_filtering,
-            'external': external,
-            'spam_bword_threshold': spam_bword_threshold,
-            'spam_bword_table': spam_bword_table,
-            'spam_bal_table': spam_bal_table,
-            'spam_bwl_table': spam_bwl_table,
-            'spam_mheader_table': spam_mheader_table,
-            'spam_rbl_table': spam_rbl_table,
-            'spam_iptrust_table': spam_iptrust_table,
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "comment": comment,
+            "feature_set": feature_set,
+            "replacemsg_group": replacemsg_group,
+            "spam_log": spam_log,
+            "spam_log_fortiguard_response": spam_log_fortiguard_response,
+            "spam_filtering": spam_filtering,
+            "external": external,
+            "spam_bword_threshold": spam_bword_threshold,
+            "spam_bword_table": spam_bword_table,
+            "spam_bal_table": spam_bal_table,
+            "spam_bwl_table": spam_bwl_table,
+            "spam_mheader_table": spam_mheader_table,
+            "spam_rbl_table": spam_rbl_table,
+            "spam_iptrust_table": spam_iptrust_table,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         # Handle options list
         if options is not None:
-            data['options'] = options
+            data["options"] = options
 
         # Handle nested dictionaries
-        for dict_param in ['file_filter', 'imap', 'pop3', 'smtp', 'mapi', 
-                          'msn_hotmail', 'yahoo_mail', 'gmail', 'other_webmails']:
+        for dict_param in [
+            "file_filter",
+            "imap",
+            "pop3",
+            "smtp",
+            "mapi",
+            "msn_hotmail",
+            "yahoo_mail",
+            "gmail",
+            "other_webmails",
+        ]:
             value = locals()[dict_param]
             if value is not None:
                 converted = {}
                 for k, v in value.items():
-                    converted[k.replace('_', '-')] = v
-                data[dict_param.replace('_', '-')] = converted
+                    converted[k.replace("_", "-")] = v
+                data[dict_param.replace("_", "-")] = converted
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'emailfilter/profile/{name}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"emailfilter/profile/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         name: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete an email filter profile.
@@ -439,7 +467,12 @@ class Profile:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
-        return self._client.delete('cmdb', f'emailfilter/profile/{name}', 
-                                   params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"emailfilter/profile/{name}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

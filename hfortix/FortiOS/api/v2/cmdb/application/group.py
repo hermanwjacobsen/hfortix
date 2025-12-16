@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Group:
     """Application groups endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Group endpoint.
 
@@ -47,7 +47,8 @@ class Group:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get application group(s).
@@ -93,17 +94,17 @@ class Group:
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -113,11 +114,13 @@ class Group:
         params.update(kwargs)
 
         # Build path
-        path = 'application/group'
+        path = "application/group"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -133,7 +136,7 @@ class Group:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         List all application groups.
@@ -180,12 +183,12 @@ class Group:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Group parameters
         comment: Optional[str] = None,
@@ -199,7 +202,8 @@ class Group:
         behavior: Optional[str] = None,
         popularity: Optional[list[Union[int, dict[str, Any]]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new application group.
@@ -252,33 +256,33 @@ class Group:
             ... )
         """
         # Build data dictionary
-        data = {}
+        payload_dict = {}
         param_map = {
-            'name': name,
-            'comment': comment,
-            'type': type,
-            'application': application,
-            'category': category,
-            'risk': risk,
-            'protocols': protocols,
-            'vendor': vendor,
-            'technology': technology,
-            'behavior': behavior,
-            'popularity': popularity,
+            "name": name,
+            "comment": comment,
+            "type": type,
+            "application": application,
+            "category": category,
+            "risk": risk,
+            "protocols": protocols,
+            "vendor": vendor,
+            "technology": technology,
+            "behavior": behavior,
+            "popularity": popularity,
         }
 
         # No special field mapping needed - all fields use same name
         for param_name, value in param_map.items():
             if value is not None:
-                data[param_name] = value
+                payload_dict[param_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.post('cmdb', 'application/group', data, vdom=vdom)
+        return self._client.post("cmdb", "application/group", data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Group parameters
         comment: Optional[str] = None,
@@ -297,7 +301,8 @@ class Group:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing application group.
@@ -351,35 +356,35 @@ class Group:
             ... )
         """
         # Build data dictionary
-        data = {}
+        payload_dict = {}
         param_map = {
-            'name': name,
-            'comment': comment,
-            'type': type,
-            'application': application,
-            'category': category,
-            'risk': risk,
-            'protocols': protocols,
-            'vendor': vendor,
-            'technology': technology,
-            'behavior': behavior,
-            'popularity': popularity,
+            "name": name,
+            "comment": comment,
+            "type": type,
+            "application": application,
+            "category": category,
+            "risk": risk,
+            "protocols": protocols,
+            "vendor": vendor,
+            "technology": technology,
+            "behavior": behavior,
+            "popularity": popularity,
         }
 
         # No special field mapping needed
         for param_name, value in param_map.items():
             if value is not None:
-                data[param_name] = value
+                payload_dict[param_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
         # Build query parameters for action/move
         params = {}
         query_param_map = {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in query_param_map.items():
@@ -387,18 +392,20 @@ class Group:
                 params[key] = value
 
         return self._client.put(
-            'cmdb',
-            f'application/group/{name}',
+            "cmdb",
+            f"application/group/{name}",
             data,
             params=params if params else None,
-            vdom=vdom
+            vdom=vdom,
+            raw_json=raw_json,
         )
 
     def delete(
         self,
         name: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete an application group.
@@ -424,11 +431,12 @@ class Group:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
         return self._client.delete(
-            'cmdb',
-            f'application/group/{name}',
+            "cmdb",
+            f"application/group/{name}",
             params=params if params else None,
-            vdom=vdom
+            vdom=vdom,
+            raw_json=raw_json,
         )

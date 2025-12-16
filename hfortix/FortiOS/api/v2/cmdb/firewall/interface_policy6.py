@@ -21,10 +21,10 @@ if TYPE_CHECKING:
 class InterfacePolicy6:
     """Firewall `interface-policy6` table endpoint."""
 
-    name = 'interface-policy6'
-    path = 'firewall/interface-policy6'
+    name = "interface-policy6"
+    path = "firewall/interface-policy6"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     # -----------------------------
@@ -40,23 +40,26 @@ class InterfacePolicy6:
         sort: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """List interface-policy6 objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'filter': filter,
-            'sort': sort,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "filter": filter,
+            "sort": sort,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
@@ -65,19 +68,27 @@ class InterfacePolicy6:
         action: Optional[str] = None,
         nkey: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Create one or more interface-policy6 objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'nkey': nkey,
-            'scope': scope,
+            "action": action,
+            "nkey": nkey,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.post('cmdb', self.path, data=data, params=params if params else None, vdom=vdom)
+        return self._client.post(
+            "cmdb",
+            self.path,
+            data=data,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     # -----------------------------
     # Member operations
@@ -91,24 +102,31 @@ class InterfacePolicy6:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get an interface-policy6 entry by policyid."""
-        policyid_str = self._client.validate_mkey(policyid, 'policyid')
+        policyid_str = self._client.validate_mkey(policyid, "policyid")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', f'{self.path}/{policyid_str}', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            f"{self.path}/{policyid_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
@@ -119,35 +137,50 @@ class InterfacePolicy6:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update an interface-policy6 entry by policyid."""
-        policyid_str = self._client.validate_mkey(policyid, 'policyid')
+        policyid_str = self._client.validate_mkey(policyid, "policyid")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.put('cmdb', f'{self.path}/{policyid_str}', data=data, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{policyid_str}",
+            data=data,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         policyid: Union[int, str],
         vdom: Optional[Union[str, bool]] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Delete an interface-policy6 entry by policyid."""
-        policyid_str = self._client.validate_mkey(policyid, 'policyid')
+        policyid_str = self._client.validate_mkey(policyid, "policyid")
         params: dict[str, Any] = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         params.update(kwargs)
-        return self._client.delete('cmdb', f'{self.path}/{policyid_str}', params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"{self.path}/{policyid_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

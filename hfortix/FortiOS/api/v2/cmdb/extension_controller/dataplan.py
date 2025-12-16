@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Dataplan:
     """FortiExtender dataplan endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Dataplan endpoint.
 
@@ -47,7 +47,8 @@ class Dataplan:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get FortiExtender dataplan(s).
@@ -80,17 +81,17 @@ class Dataplan:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -99,11 +100,13 @@ class Dataplan:
 
         params.update(kwargs)
 
-        path = 'extension-controller/dataplan'
+        path = "extension-controller/dataplan"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -119,7 +122,7 @@ class Dataplan:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get all FortiExtender dataplans (convenience method).
@@ -147,12 +150,12 @@ class Dataplan:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Dataplan configuration
         modem_id: Optional[str] = None,
@@ -174,7 +177,8 @@ class Dataplan:
         preferred_subnet: Optional[int] = None,
         private_network: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new FortiExtender dataplan.
@@ -213,40 +217,42 @@ class Dataplan:
             ...     apn='internet'
             ... )
         """
-        data = {'name': name}
-        
+        data = {"name": name}
+
         param_map = {
-            'modem_id': modem_id,
-            'type': type,
-            'slot': slot,
-            'iccid': iccid,
-            'carrier': carrier,
-            'apn': apn,
-            'auth_type': auth_type,
-            'username': username,
-            'password': password,
-            'pdn': pdn,
-            'signal_threshold': signal_threshold,
-            'signal_period': signal_period,
-            'capacity': capacity,
-            'monthly_fee': monthly_fee,
-            'billing_date': billing_date,
-            'overage': overage,
-            'preferred_subnet': preferred_subnet,
-            'private_network': private_network,
+            "modem_id": modem_id,
+            "type": type,
+            "slot": slot,
+            "iccid": iccid,
+            "carrier": carrier,
+            "apn": apn,
+            "auth_type": auth_type,
+            "username": username,
+            "password": password,
+            "pdn": pdn,
+            "signal_threshold": signal_threshold,
+            "signal_period": signal_period,
+            "capacity": capacity,
+            "monthly_fee": monthly_fee,
+            "billing_date": billing_date,
+            "overage": overage,
+            "preferred_subnet": preferred_subnet,
+            "private_network": private_network,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'extension-controller/dataplan', data=data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "extension-controller/dataplan", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Dataplan configuration
         modem_id: Optional[str] = None,
@@ -273,7 +279,8 @@ class Dataplan:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update a FortiExtender dataplan.
@@ -299,45 +306,48 @@ class Dataplan:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'modem_id': modem_id,
-            'type': type,
-            'slot': slot,
-            'iccid': iccid,
-            'carrier': carrier,
-            'apn': apn,
-            'auth_type': auth_type,
-            'username': username,
-            'password': password,
-            'pdn': pdn,
-            'signal_threshold': signal_threshold,
-            'signal_period': signal_period,
-            'capacity': capacity,
-            'monthly_fee': monthly_fee,
-            'billing_date': billing_date,
-            'overage': overage,
-            'preferred_subnet': preferred_subnet,
-            'private_network': private_network,
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "modem_id": modem_id,
+            "type": type,
+            "slot": slot,
+            "iccid": iccid,
+            "carrier": carrier,
+            "apn": apn,
+            "auth_type": auth_type,
+            "username": username,
+            "password": password,
+            "pdn": pdn,
+            "signal_threshold": signal_threshold,
+            "signal_period": signal_period,
+            "capacity": capacity,
+            "monthly_fee": monthly_fee,
+            "billing_date": billing_date,
+            "overage": overage,
+            "preferred_subnet": preferred_subnet,
+            "private_network": private_network,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'extension-controller/dataplan/{name}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"extension-controller/dataplan/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         name: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a FortiExtender dataplan.
@@ -355,7 +365,12 @@ class Dataplan:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
-        return self._client.delete('cmdb', f'extension-controller/dataplan/{name}', 
-                                   params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"extension-controller/dataplan/{name}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

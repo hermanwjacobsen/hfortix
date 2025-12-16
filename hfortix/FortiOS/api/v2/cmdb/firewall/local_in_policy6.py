@@ -9,20 +9,20 @@ from typing import Any, Dict, List, Optional, Union
 class LocalInPolicy6:
     """
     Wrapper for firewall local-in-policy6 API endpoint.
-    
+
     Manages local-in-policy6 configuration with full Swagger-spec parameter support.
     """
-    
+
     def __init__(self, http_client: Any):
         """
         Initialize the LocalInPolicy6 wrapper.
-        
+
         Args:
             http_client: The HTTP client for API communication
         """
         self._client = http_client
-        self.path = 'firewall/local-in-policy6'
-    
+        self.path = "firewall/local-in-policy6"
+
     def list(
         self,
         datasource: Optional[Any] = None,
@@ -44,11 +44,12 @@ class LocalInPolicy6:
         primary_keys: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a list of all local-in-policy6 entries.
-        
+
         Args:
             datasource: Enable to include datasource information for each linked object.
             start: Starting entry index.
@@ -70,58 +71,58 @@ class LocalInPolicy6:
             action: default: Return the CLI default values for entire CLI tree.
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with results list
         """
         params = {}
-        
+
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to is not None:
-            params['skip_to'] = skip_to
+            params["skip_to"] = skip_to
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if with_contents_hash is not None:
-            params['with_contents_hash'] = with_contents_hash
+            params["with_contents_hash"] = with_contents_hash
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if key is not None:
-            params['key'] = key
+            params["key"] = key
         if pattern is not None:
-            params['pattern'] = pattern
+            params["pattern"] = pattern
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if datasource_format is not None:
-            params['datasource_format'] = datasource_format
+            params["datasource_format"] = datasource_format
         if unfiltered_count is not None:
-            params['unfiltered_count'] = unfiltered_count
+            params["unfiltered_count"] = unfiltered_count
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         if primary_keys is not None:
-            params['primary_keys'] = primary_keys
+            params["primary_keys"] = primary_keys
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', self.path, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get("cmdb", self.path, params=params, vdom=vdom, raw_json=raw_json)
 
     def get(
         self,
@@ -138,11 +139,12 @@ class LocalInPolicy6:
         format: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a specific local-in-policy6 entry by its policyid.
-        
+
         Args:
             mkey: The policyid (primary key)
             attr: Attribute name that references other table
@@ -158,56 +160,58 @@ class LocalInPolicy6:
             action: datasource: Return all applicable datasource entries for a specific at
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with entry details
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         nkey: Optional[Any] = None,
@@ -233,17 +237,18 @@ class LocalInPolicy6:
         status: Optional[str] = None,
         uuid: Optional[str] = None,
         virtual_patch: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Create a new local-in-policy6 entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={"key": "value"}, vdom="root")
+        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: create(key="value", vdom="root")
-        
+
         Args:
-            data: The configuration data (optional if using kwargs)
+            payload_dict: The configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
@@ -296,81 +301,83 @@ class LocalInPolicy6:
                 Universally Unique Identifier (UUID; automatically assigned ...
             virtual-patch (string) (enum: ['enable', 'disable']):
                 Enable/disable the virtual patching feature.
-            
+
         Returns:
             API response dictionary
         """
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if action is not None:
-            data['action'] = action
+            payload_dict["action"] = action
         if comments is not None:
-            data['comments'] = comments
+            payload_dict["comments"] = comments
         if dstaddr is not None:
-            data['dstaddr'] = dstaddr
+            payload_dict["dstaddr"] = dstaddr
         if dstaddr_negate is not None:
-            data['dstaddr-negate'] = dstaddr_negate
+            payload_dict["dstaddr-negate"] = dstaddr_negate
         if internet_service6_src is not None:
-            data['internet-service6-src'] = internet_service6_src
+            payload_dict["internet-service6-src"] = internet_service6_src
         if internet_service6_src_custom is not None:
-            data['internet-service6-src-custom'] = internet_service6_src_custom
+            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
         if internet_service6_src_group is not None:
-            data['internet-service6-src-group'] = internet_service6_src_group
+            payload_dict["internet-service6-src-group"] = internet_service6_src_group
         if internet_service6_src_name is not None:
-            data['internet-service6-src-name'] = internet_service6_src_name
+            payload_dict["internet-service6-src-name"] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data['internet-service6-src-negate'] = internet_service6_src_negate
+            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
         if intf is not None:
-            data['intf'] = intf
+            payload_dict["intf"] = intf
         if logtraffic is not None:
-            data['logtraffic'] = logtraffic
+            payload_dict["logtraffic"] = logtraffic
         if policyid is not None:
-            data['policyid'] = policyid
+            payload_dict["policyid"] = policyid
         if schedule is not None:
-            data['schedule'] = schedule
+            payload_dict["schedule"] = schedule
         if service is not None:
-            data['service'] = service
+            payload_dict["service"] = service
         if service_negate is not None:
-            data['service-negate'] = service_negate
+            payload_dict["service-negate"] = service_negate
         if srcaddr is not None:
-            data['srcaddr'] = srcaddr
+            payload_dict["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data['srcaddr-negate'] = srcaddr_negate
+            payload_dict["srcaddr-negate"] = srcaddr_negate
         if status is not None:
-            data['status'] = status
+            payload_dict["status"] = status
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if virtual_patch is not None:
-            data['virtual-patch'] = virtual_patch
-        
+            payload_dict["virtual-patch"] = virtual_patch
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if nkey is not None:
-            params['nkey'] = nkey
+            params["nkey"] = nkey
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.post(
+            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
         mkey: Union[str, int],
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         before: Optional[Any] = None,
@@ -397,21 +404,22 @@ class LocalInPolicy6:
         status: Optional[str] = None,
         uuid: Optional[str] = None,
         virtual_patch: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Update an existing local-in-policy6 entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, data={"key": "value"}, vdom="root")
+        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-        
+
         Args:
             mkey: The policyid (primary key)
-            data: The updated configuration data (optional if using kwargs)
+            payload_dict: The updated configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that 
+            before: If *action=move*, use *before* to specify the ID of the resource that
             after: If *action=move*, use *after* to specify the ID of the resource that t
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
@@ -462,125 +470,135 @@ class LocalInPolicy6:
                 Universally Unique Identifier (UUID; automatically assigned ...
             virtual-patch (string) (enum: ['enable', 'disable']):
                 Enable/disable the virtual patching feature.
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if action is not None:
-            data['action'] = action
+            payload_dict["action"] = action
         if comments is not None:
-            data['comments'] = comments
+            payload_dict["comments"] = comments
         if dstaddr is not None:
-            data['dstaddr'] = dstaddr
+            payload_dict["dstaddr"] = dstaddr
         if dstaddr_negate is not None:
-            data['dstaddr-negate'] = dstaddr_negate
+            payload_dict["dstaddr-negate"] = dstaddr_negate
         if internet_service6_src is not None:
-            data['internet-service6-src'] = internet_service6_src
+            payload_dict["internet-service6-src"] = internet_service6_src
         if internet_service6_src_custom is not None:
-            data['internet-service6-src-custom'] = internet_service6_src_custom
+            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
         if internet_service6_src_group is not None:
-            data['internet-service6-src-group'] = internet_service6_src_group
+            payload_dict["internet-service6-src-group"] = internet_service6_src_group
         if internet_service6_src_name is not None:
-            data['internet-service6-src-name'] = internet_service6_src_name
+            payload_dict["internet-service6-src-name"] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data['internet-service6-src-negate'] = internet_service6_src_negate
+            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
         if intf is not None:
-            data['intf'] = intf
+            payload_dict["intf"] = intf
         if logtraffic is not None:
-            data['logtraffic'] = logtraffic
+            payload_dict["logtraffic"] = logtraffic
         if policyid is not None:
-            data['policyid'] = policyid
+            payload_dict["policyid"] = policyid
         if schedule is not None:
-            data['schedule'] = schedule
+            payload_dict["schedule"] = schedule
         if service is not None:
-            data['service'] = service
+            payload_dict["service"] = service
         if service_negate is not None:
-            data['service-negate'] = service_negate
+            payload_dict["service-negate"] = service_negate
         if srcaddr is not None:
-            data['srcaddr'] = srcaddr
+            payload_dict["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data['srcaddr-negate'] = srcaddr_negate
+            payload_dict["srcaddr-negate"] = srcaddr_negate
         if status is not None:
-            data['status'] = status
+            payload_dict["status"] = status
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if virtual_patch is not None:
-            data['virtual-patch'] = virtual_patch
-        
+            payload_dict["virtual-patch"] = virtual_patch
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if before is not None:
-            params['before'] = before
+            params["before"] = before
         if after is not None:
-            params['after'] = after
+            params["after"] = after
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.put('cmdb', f'{self.path}/{mkey_str}', data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{mkey_str}",
+            data=payload_dict,
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         mkey: Union[str, int],
         vdom: Optional[Any] = None,
         scope: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Delete a local-in-policy6 entry.
-        
+
         Args:
             mkey: The policyid (primary key)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.delete('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.delete(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )

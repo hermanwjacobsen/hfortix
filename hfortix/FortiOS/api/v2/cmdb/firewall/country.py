@@ -21,10 +21,10 @@ if TYPE_CHECKING:
 class Country:
     """Firewall `country` table endpoint."""
 
-    name = 'country'
-    path = 'firewall/country'
+    name = "country"
+    path = "firewall/country"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     # -----------------------------
@@ -40,52 +40,58 @@ class Country:
         sort: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """List country objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'filter': filter,
-            'sort': sort,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "filter": filter,
+            "sort": sort,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[dict[str, Any]] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         # Body parameters
         id: Optional[int] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Create one or more country objects.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={"id": 10001, "name": "Custom"}, vdom="root")
+        1. Pass data dict: create(payload_dict={"id": 10001, "name": "Custom"}, vdom="root")
         2. Pass kwargs: create(id=10001, name="Custom", vdom="root")
         """
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
             if id is not None:
-                data['id'] = id
+                payload_dict["id"] = id
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if comment is not None:
-                data['comment'] = comment
-        
+                payload_dict["comment"] = comment
+
         params = kwargs or None
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        return self._client.post(
+            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     # -----------------------------
     # Member operations
@@ -99,29 +105,36 @@ class Country:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get a country by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', f'{self.path}/{id_str}', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            f"{self.path}/{id_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
         id: Union[int, str],
-        data: Optional[dict[str, Any]] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         action: Optional[str] = None,
         before: Optional[str] = None,
@@ -130,44 +143,55 @@ class Country:
         # Body parameters
         name: Optional[str] = None,
         comment: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update a country by id.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(id=10001, data={"comment": "Updated"}, vdom="root")
+        1. Pass data dict: update(id=10001, payload_dict={"comment": "Updated"}, vdom="root")
         2. Pass kwargs: update(id=10001, comment="Updated", vdom="root")
         """
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
 
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
 
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.put('cmdb', f'{self.path}/{id_str}', data=data, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{id_str}",
+            data=payload_dict,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         id: Union[int, str],
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Delete a country by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
         params = kwargs or None
-        return self._client.delete('cmdb', f'{self.path}/{id_str}', params=params, vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"{self.path}/{id_str}", params=params, vdom=vdom, raw_json=raw_json
+        )

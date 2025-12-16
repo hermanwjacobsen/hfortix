@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 class Local:
     """Certificate Local endpoint (read-only)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Local endpoint
 
@@ -74,7 +74,8 @@ class Local:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get local certificate(s)
@@ -103,22 +104,22 @@ class Local:
             >>> result = fgt.cmdb.certificate.local.get('Fortinet_CA_SSL', with_meta=True)
         """
         # Build path
-        path = f'certificate/local/{name}' if name else 'certificate/local'
+        path = f"certificate/local/{name}" if name else "certificate/local"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -128,7 +129,9 @@ class Local:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
@@ -151,12 +154,15 @@ class Local:
         except (APIError, ResourceNotFoundError):
             return False
 
-    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_factory_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all factory (pre-installed) local certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with factory certificates
@@ -165,14 +171,17 @@ class Local:
             >>> result = fgt.cmdb.certificate.local.get_factory_certificates()
             >>> print(f"Factory certificates: {len(result['results'])}")
         """
-        return self.get(filter='source==factory', vdom=vdom)
+        return self.get(filter="source==factory", vdom=vdom, raw_json=raw_json)
 
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_user_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all user-uploaded local certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with user certificates
@@ -181,4 +190,4 @@ class Local:
             >>> result = fgt.cmdb.certificate.local.get_user_certificates()
             >>> print(f"User certificates: {len(result['results'])}")
         """
-        return self.get(filter='source==user', vdom=vdom)
+        return self.get(filter="source==user", vdom=vdom, raw_json=raw_json)

@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 from .domain_filter import DomainFilter
 from .profile import Profile
 
-__all__ = ['DNSFilter']
+__all__ = ["DNSFilter"]
 
 
 class DNSFilter:
@@ -21,18 +21,18 @@ class DNSFilter:
     DNS Filter API helper class
     Provides access to DNS filtering configuration endpoints
     """
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize DNSFilter helper
-        
+
         Args:
             client: HTTPClient instance
         """
         self._client = client
         self.domain_filter = DomainFilter(client)
         self.profile = Profile(client)
-    
+
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ['domain_filter', 'profile']
+        return ["domain_filter", "profile"]

@@ -19,7 +19,7 @@ from .profile import Profile
 from .sensor import Sensor
 from .settings import Settings
 
-__all__ = ['DLP']
+__all__ = ["DLP"]
 
 
 class DLP:
@@ -27,11 +27,11 @@ class DLP:
     DLP API helper class
     Provides access to Data Loss Prevention configuration endpoints
     """
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize DLP helper
-        
+
         Args:
             client: HTTPClient instance
         """
@@ -44,10 +44,16 @@ class DLP:
         self.profile = Profile(client)
         self.sensor = Sensor(client)
         self.settings = Settings(client)
-    
+
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
         return [
-            'data_type', 'dictionary', 'exact_data_match', 'filepattern',
-            'label', 'profile', 'sensor', 'settings'
+            "data_type",
+            "dictionary",
+            "exact_data_match",
+            "filepattern",
+            "label",
+            "profile",
+            "sensor",
+            "settings",
         ]

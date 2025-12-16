@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class Ca:
     """Certificate CA endpoint (read-only)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Ca endpoint
 
@@ -73,7 +73,8 @@ class Ca:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CA certificate(s)
@@ -102,22 +103,22 @@ class Ca:
             >>> result = fgt.cmdb.certificate.ca.get('Fortinet_CA_SSL', with_meta=True)
         """
         # Build path
-        path = f'certificate/ca/{name}' if name else 'certificate/ca'
+        path = f"certificate/ca/{name}" if name else "certificate/ca"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -127,7 +128,9 @@ class Ca:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
@@ -150,12 +153,15 @@ class Ca:
         except (APIError, ResourceNotFoundError):
             return False
 
-    def get_bundle_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_bundle_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all bundle (pre-installed) CA certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with bundle certificates
@@ -164,14 +170,17 @@ class Ca:
             >>> result = fgt.cmdb.certificate.ca.get_bundle_certificates()
             >>> print(f"Bundle CAs: {len(result['results'])}")
         """
-        return self.get(filter='source==bundle', vdom=vdom)
+        return self.get(filter="source==bundle", vdom=vdom, raw_json=raw_json)
 
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_user_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all user-uploaded CA certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with user certificates
@@ -180,14 +189,17 @@ class Ca:
             >>> result = fgt.cmdb.certificate.ca.get_user_certificates()
             >>> print(f"User CAs: {len(result['results'])}")
         """
-        return self.get(filter='source==user', vdom=vdom)
+        return self.get(filter="source==user", vdom=vdom, raw_json=raw_json)
 
-    def get_trusted_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_trusted_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all trusted CA certificates (for SSL inspection)
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with trusted certificates
@@ -196,4 +208,4 @@ class Ca:
             >>> result = fgt.cmdb.certificate.ca.get_trusted_certificates()
             >>> print(f"Trusted CAs: {len(result['results'])}")
         """
-        return self.get(filter='ssl-inspection-trusted==enable', vdom=vdom)
+        return self.get(filter="ssl-inspection-trusted==enable", vdom=vdom, raw_json=raw_json)

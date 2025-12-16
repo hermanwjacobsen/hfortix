@@ -25,7 +25,7 @@ if TYPE_CHECKING:
 class Name:
     """Application signature endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -43,7 +43,8 @@ class Name:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get application signature(s)
@@ -84,17 +85,17 @@ class Name:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -104,11 +105,13 @@ class Name:
         params.update(kwargs)
 
         # Build path
-        path = 'application/name'
+        path = "application/name"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """

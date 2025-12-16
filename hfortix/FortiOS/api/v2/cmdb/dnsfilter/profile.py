@@ -4,7 +4,8 @@ This module provides methods for managing DNS filter profiles.
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -12,27 +13,28 @@ if TYPE_CHECKING:
 
 class Profile:
     """Manage DNS filter profile objects.
-    
+
     This class provides methods to create, read, update, and delete DNS filter profiles
     that configure DNS filtering policies.
     """
-    
+
     def __init__(self, client: Any) -> None:
         """Initialize Profile API module.
-        
+
         Args:
             client: The FortiOS API client instance.
         """
         self._client = client
-    
+
     def get(
         self,
         name: Optional[str] = None,
         vdom: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """Retrieve DNS filter profile configuration.
-        
+
         Args:
             name (str, optional): Profile name. If provided, retrieves specific profile.
                 If not provided, retrieves all profiles.
@@ -45,50 +47,52 @@ class Profile:
                 - filter (str): Filter expression
                 - count (int): Maximum number of entries to return
                 - start (int): Starting entry index
-        
+
         Returns:
             dict: API response containing DNS filter profile configuration.
-        
+
         Example:
             >>> # Get all profiles
             >>> profiles = client.cmdb.dnsfilter.profile.list()
-            
+
             >>> # Get specific profile
             >>> profile = client.cmdb.dnsfilter.profile.get(name='default')
         """
         if name is not None:
-            path = f'dnsfilter/profile/{name}'
+            path = f"dnsfilter/profile/{name}"
         else:
-            path = 'dnsfilter/profile'
-        
+            path = "dnsfilter/profile"
+
         params = {}
         if kwargs:
             params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def list(self, vdom: Optional[str] = None, **kwargs: Any) -> dict[str, Any]:
         """List all DNS filter profiles.
-        
+
         Convenience method that calls get() without a name.
-        
+
         Args:
             vdom (str, optional): Virtual domain name.
             **kwargs: Additional query parameters.
-        
+
         Returns:
             dict: API response containing list of all profiles.
-        
+
         Example:
             >>> profiles = client.cmdb.dnsfilter.profile.list()
             >>> for p in profiles['results']:
             ...     print(p['name'], p.get('comment', ''))
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         domain_filter: Optional[list[dict[str, Any]]] = None,
@@ -107,10 +111,11 @@ class Profile:
         transparent_dns_database: Optional[list[dict[str, Any]]] = None,
         strip_ech: Optional[str] = None,
         vdom: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """Create a new DNS filter profile.
-        
+
         Args:
             name (str): Profile name (max 47 chars, required).
             comment (str, optional): Comment (max 255 chars).
@@ -149,10 +154,10 @@ class Profile:
             strip_ech (str, optional): Enable/disable removal of encrypted client hello parameter.
             vdom (str, optional): Virtual domain name.
             **kwargs: Additional parameters.
-        
+
         Returns:
             dict: API response containing operation results.
-        
+
         Example:
             >>> # Create profile with domain filter
             >>> client.cmdb.dnsfilter.profile.create(
@@ -165,46 +170,46 @@ class Profile:
             ...     safe_search='enable'
             ... )
         """
-        data = {'name': name}
-        
+        data = {"name": name}
+
         param_map = {
-            'comment': comment,
-            'domain_filter': domain_filter,
-            'ftgd_dns': ftgd_dns,
-            'log_all_domain': log_all_domain,
-            'sdns_ftgd_err_log': sdns_ftgd_err_log,
-            'sdns_domain_log': sdns_domain_log,
-            'block_action': block_action,
-            'redirect_portal': redirect_portal,
-            'redirect_portal6': redirect_portal6,
-            'block_botnet': block_botnet,
-            'safe_search': safe_search,
-            'youtube_restrict': youtube_restrict,
-            'external_ip_blocklist': external_ip_blocklist,
-            'dns_translation': dns_translation,
-            'transparent_dns_database': transparent_dns_database,
-            'strip_ech': strip_ech
+            "comment": comment,
+            "domain_filter": domain_filter,
+            "ftgd_dns": ftgd_dns,
+            "log_all_domain": log_all_domain,
+            "sdns_ftgd_err_log": sdns_ftgd_err_log,
+            "sdns_domain_log": sdns_domain_log,
+            "block_action": block_action,
+            "redirect_portal": redirect_portal,
+            "redirect_portal6": redirect_portal6,
+            "block_botnet": block_botnet,
+            "safe_search": safe_search,
+            "youtube_restrict": youtube_restrict,
+            "external_ip_blocklist": external_ip_blocklist,
+            "dns_translation": dns_translation,
+            "transparent_dns_database": transparent_dns_database,
+            "strip_ech": strip_ech,
         }
-        
+
         api_field_map = {
-            'comment': 'comment',
-            'domain_filter': 'domain-filter',
-            'ftgd_dns': 'ftgd-dns',
-            'log_all_domain': 'log-all-domain',
-            'sdns_ftgd_err_log': 'sdns-ftgd-err-log',
-            'sdns_domain_log': 'sdns-domain-log',
-            'block_action': 'block-action',
-            'redirect_portal': 'redirect-portal',
-            'redirect_portal6': 'redirect-portal6',
-            'block_botnet': 'block-botnet',
-            'safe_search': 'safe-search',
-            'youtube_restrict': 'youtube-restrict',
-            'external_ip_blocklist': 'external-ip-blocklist',
-            'dns_translation': 'dns-translation',
-            'transparent_dns_database': 'transparent-dns-database',
-            'strip_ech': 'strip-ech'
+            "comment": "comment",
+            "domain_filter": "domain-filter",
+            "ftgd_dns": "ftgd-dns",
+            "log_all_domain": "log-all-domain",
+            "sdns_ftgd_err_log": "sdns-ftgd-err-log",
+            "sdns_domain_log": "sdns-domain-log",
+            "block_action": "block-action",
+            "redirect_portal": "redirect-portal",
+            "redirect_portal6": "redirect-portal6",
+            "block_botnet": "block-botnet",
+            "safe_search": "safe-search",
+            "youtube_restrict": "youtube-restrict",
+            "external_ip_blocklist": "external-ip-blocklist",
+            "dns_translation": "dns-translation",
+            "transparent_dns_database": "transparent-dns-database",
+            "strip_ech": "strip-ech",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
@@ -216,7 +221,7 @@ class Profile:
                             converted_item = {}
                             for k, v in item.items():
                                 # Convert snake_case to hyphen-case
-                                api_key = k.replace('_', '-')
+                                api_key = k.replace("_", "-")
                                 converted_item[api_key] = v
                             converted_list.append(converted_item)
                         else:
@@ -224,15 +229,15 @@ class Profile:
                     data[api_name] = converted_list
                 else:
                     data[api_name] = value
-        
+
         if kwargs:
             data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dnsfilter/profile', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dnsfilter/profile", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         domain_filter: Optional[list[dict[str, Any]]] = None,
@@ -251,10 +256,11 @@ class Profile:
         transparent_dns_database: Optional[list[dict[str, Any]]] = None,
         strip_ech: Optional[str] = None,
         vdom: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """Update an existing DNS filter profile.
-        
+
         Args:
             name (str): Profile name to update.
             comment (str, optional): Updated comment.
@@ -275,10 +281,10 @@ class Profile:
             strip_ech (str, optional): Updated ECH stripping setting.
             vdom (str, optional): Virtual domain name.
             **kwargs: Additional parameters.
-        
+
         Returns:
             dict: API response containing operation results.
-        
+
         Example:
             >>> # Update profile to enable safe search
             >>> client.cmdb.dnsfilter.profile.update(
@@ -288,45 +294,45 @@ class Profile:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'comment': comment,
-            'domain_filter': domain_filter,
-            'ftgd_dns': ftgd_dns,
-            'log_all_domain': log_all_domain,
-            'sdns_ftgd_err_log': sdns_ftgd_err_log,
-            'sdns_domain_log': sdns_domain_log,
-            'block_action': block_action,
-            'redirect_portal': redirect_portal,
-            'redirect_portal6': redirect_portal6,
-            'block_botnet': block_botnet,
-            'safe_search': safe_search,
-            'youtube_restrict': youtube_restrict,
-            'external_ip_blocklist': external_ip_blocklist,
-            'dns_translation': dns_translation,
-            'transparent_dns_database': transparent_dns_database,
-            'strip_ech': strip_ech
+            "comment": comment,
+            "domain_filter": domain_filter,
+            "ftgd_dns": ftgd_dns,
+            "log_all_domain": log_all_domain,
+            "sdns_ftgd_err_log": sdns_ftgd_err_log,
+            "sdns_domain_log": sdns_domain_log,
+            "block_action": block_action,
+            "redirect_portal": redirect_portal,
+            "redirect_portal6": redirect_portal6,
+            "block_botnet": block_botnet,
+            "safe_search": safe_search,
+            "youtube_restrict": youtube_restrict,
+            "external_ip_blocklist": external_ip_blocklist,
+            "dns_translation": dns_translation,
+            "transparent_dns_database": transparent_dns_database,
+            "strip_ech": strip_ech,
         }
-        
+
         api_field_map = {
-            'comment': 'comment',
-            'domain_filter': 'domain-filter',
-            'ftgd_dns': 'ftgd-dns',
-            'log_all_domain': 'log-all-domain',
-            'sdns_ftgd_err_log': 'sdns-ftgd-err-log',
-            'sdns_domain_log': 'sdns-domain-log',
-            'block_action': 'block-action',
-            'redirect_portal': 'redirect-portal',
-            'redirect_portal6': 'redirect-portal6',
-            'block_botnet': 'block-botnet',
-            'safe_search': 'safe-search',
-            'youtube_restrict': 'youtube-restrict',
-            'external_ip_blocklist': 'external-ip-blocklist',
-            'dns_translation': 'dns-translation',
-            'transparent_dns_database': 'transparent-dns-database',
-            'strip_ech': 'strip-ech'
+            "comment": "comment",
+            "domain_filter": "domain-filter",
+            "ftgd_dns": "ftgd-dns",
+            "log_all_domain": "log-all-domain",
+            "sdns_ftgd_err_log": "sdns-ftgd-err-log",
+            "sdns_domain_log": "sdns-domain-log",
+            "block_action": "block-action",
+            "redirect_portal": "redirect-portal",
+            "redirect_portal6": "redirect-portal6",
+            "block_botnet": "block-botnet",
+            "safe_search": "safe-search",
+            "youtube_restrict": "youtube-restrict",
+            "external_ip_blocklist": "external-ip-blocklist",
+            "dns_translation": "dns-translation",
+            "transparent_dns_database": "transparent-dns-database",
+            "strip_ech": "strip-ech",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
@@ -338,7 +344,7 @@ class Profile:
                             converted_item = {}
                             for k, v in item.items():
                                 # Convert snake_case to hyphen-case
-                                api_key = k.replace('_', '-')
+                                api_key = k.replace("_", "-")
                                 converted_item[api_key] = v
                             converted_list.append(converted_item)
                         else:
@@ -346,23 +352,32 @@ class Profile:
                     data[api_name] = converted_list
                 else:
                     data[api_name] = value
-        
+
         if kwargs:
             data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dnsfilter/profile/{name}', data, vdom=vdom)
-    
-    def delete(self, name: str, vdom: Optional[str] = None) -> dict[str, Any]:
+
+        return self._client.put(
+            "cmdb", f"dnsfilter/profile/{name}", data, vdom=vdom, raw_json=raw_json
+        )
+
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[str] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """Delete a DNS filter profile.
-        
+
         Args:
             name (str): Profile name to delete.
             vdom (str, optional): Virtual domain name.
-        
+
         Returns:
             dict: API response containing operation results.
-        
+
         Example:
             >>> client.cmdb.dnsfilter.profile.delete(name='corporate-filter')
         """
-        return self._client.delete('cmdb', f'dnsfilter/profile/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"dnsfilter/profile/{name}", vdom=vdom, raw_json=raw_json
+        )

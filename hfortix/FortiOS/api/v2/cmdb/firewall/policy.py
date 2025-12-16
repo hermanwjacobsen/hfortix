@@ -9,20 +9,20 @@ from typing import Any, Dict, List, Optional, Union
 class Policy:
     """
     Wrapper for firewall policy API endpoint.
-    
+
     Manages policy configuration with full Swagger-spec parameter support.
     """
-    
+
     def __init__(self, http_client: Any):
         """
         Initialize the Policy wrapper.
-        
+
         Args:
             http_client: The HTTP client for API communication
         """
         self._client = http_client
-        self.path = 'firewall/policy'
-    
+        self.path = "firewall/policy"
+
     def list(
         self,
         datasource: Optional[Any] = None,
@@ -44,11 +44,12 @@ class Policy:
         primary_keys: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a list of all policy entries.
-        
+
         Args:
             datasource: Enable to include datasource information for each linked object.
             start: Starting entry index.
@@ -70,58 +71,58 @@ class Policy:
             action: default: Return the CLI default values for entire CLI tree.
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with results list
         """
         params = {}
-        
+
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to is not None:
-            params['skip_to'] = skip_to
+            params["skip_to"] = skip_to
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if with_contents_hash is not None:
-            params['with_contents_hash'] = with_contents_hash
+            params["with_contents_hash"] = with_contents_hash
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if key is not None:
-            params['key'] = key
+            params["key"] = key
         if pattern is not None:
-            params['pattern'] = pattern
+            params["pattern"] = pattern
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if datasource_format is not None:
-            params['datasource_format'] = datasource_format
+            params["datasource_format"] = datasource_format
         if unfiltered_count is not None:
-            params['unfiltered_count'] = unfiltered_count
+            params["unfiltered_count"] = unfiltered_count
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         if primary_keys is not None:
-            params['primary_keys'] = primary_keys
+            params["primary_keys"] = primary_keys
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', self.path, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get("cmdb", self.path, params=params, vdom=vdom, raw_json=raw_json)
 
     def get(
         self,
@@ -138,11 +139,12 @@ class Policy:
         format: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a specific policy entry by its policyid.
-        
+
         Args:
             mkey: The policyid (primary key)
             attr: Attribute name that references other table
@@ -158,56 +160,58 @@ class Policy:
             action: datasource: Return all applicable datasource entries for a specific at
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with entry details
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         nkey: Optional[Any] = None,
@@ -389,17 +393,18 @@ class Policy:
         ztna_policy_redirect: Optional[str] = None,
         ztna_status: Optional[str] = None,
         ztna_tags_match_logic: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Create a new policy entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={"key": "value"}, vdom="root")
+        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: create(key="value", vdom="root")
-        
+
         Args:
-            data: The configuration data (optional if using kwargs)
+            payload_dict: The configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
@@ -764,393 +769,395 @@ class Policy:
                 Enable/disable zero trust access.
             ztna-tags-match-logic (string) (enum: ['or', 'and']):
                 ZTNA tag matching logic.
-            
+
         Returns:
             API response dictionary
         """
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if action is not None:
-            data['action'] = action
+            payload_dict["action"] = action
         if anti_replay is not None:
-            data['anti-replay'] = anti_replay
+            payload_dict["anti-replay"] = anti_replay
         if app_monitor is not None:
-            data['app-monitor'] = app_monitor
+            payload_dict["app-monitor"] = app_monitor
         if application_list is not None:
-            data['application-list'] = application_list
+            payload_dict["application-list"] = application_list
         if auth_cert is not None:
-            data['auth-cert'] = auth_cert
+            payload_dict["auth-cert"] = auth_cert
         if auth_path is not None:
-            data['auth-path'] = auth_path
+            payload_dict["auth-path"] = auth_path
         if auth_redirect_addr is not None:
-            data['auth-redirect-addr'] = auth_redirect_addr
+            payload_dict["auth-redirect-addr"] = auth_redirect_addr
         if auto_asic_offload is not None:
-            data['auto-asic-offload'] = auto_asic_offload
+            payload_dict["auto-asic-offload"] = auto_asic_offload
         if av_profile is not None:
-            data['av-profile'] = av_profile
+            payload_dict["av-profile"] = av_profile
         if block_notification is not None:
-            data['block-notification'] = block_notification
+            payload_dict["block-notification"] = block_notification
         if captive_portal_exempt is not None:
-            data['captive-portal-exempt'] = captive_portal_exempt
+            payload_dict["captive-portal-exempt"] = captive_portal_exempt
         if capture_packet is not None:
-            data['capture-packet'] = capture_packet
+            payload_dict["capture-packet"] = capture_packet
         if casb_profile is not None:
-            data['casb-profile'] = casb_profile
+            payload_dict["casb-profile"] = casb_profile
         if comments is not None:
-            data['comments'] = comments
+            payload_dict["comments"] = comments
         if custom_log_fields is not None:
-            data['custom-log-fields'] = custom_log_fields
+            payload_dict["custom-log-fields"] = custom_log_fields
         if decrypted_traffic_mirror is not None:
-            data['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+            payload_dict["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if delay_tcp_npu_session is not None:
-            data['delay-tcp-npu-session'] = delay_tcp_npu_session
+            payload_dict["delay-tcp-npu-session"] = delay_tcp_npu_session
         if diameter_filter_profile is not None:
-            data['diameter-filter-profile'] = diameter_filter_profile
+            payload_dict["diameter-filter-profile"] = diameter_filter_profile
         if diffserv_copy is not None:
-            data['diffserv-copy'] = diffserv_copy
+            payload_dict["diffserv-copy"] = diffserv_copy
         if diffserv_forward is not None:
-            data['diffserv-forward'] = diffserv_forward
+            payload_dict["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data['diffserv-reverse'] = diffserv_reverse
+            payload_dict["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data['diffservcode-forward'] = diffservcode_forward
+            payload_dict["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data['diffservcode-rev'] = diffservcode_rev
+            payload_dict["diffservcode-rev"] = diffservcode_rev
         if disclaimer is not None:
-            data['disclaimer'] = disclaimer
+            payload_dict["disclaimer"] = disclaimer
         if dlp_profile is not None:
-            data['dlp-profile'] = dlp_profile
+            payload_dict["dlp-profile"] = dlp_profile
         if dnsfilter_profile is not None:
-            data['dnsfilter-profile'] = dnsfilter_profile
+            payload_dict["dnsfilter-profile"] = dnsfilter_profile
         if dsri is not None:
-            data['dsri'] = dsri
+            payload_dict["dsri"] = dsri
         if dstaddr is not None:
-            data['dstaddr'] = dstaddr
+            payload_dict["dstaddr"] = dstaddr
         if dstaddr_negate is not None:
-            data['dstaddr-negate'] = dstaddr_negate
+            payload_dict["dstaddr-negate"] = dstaddr_negate
         if dstaddr6 is not None:
-            data['dstaddr6'] = dstaddr6
+            payload_dict["dstaddr6"] = dstaddr6
         if dstaddr6_negate is not None:
-            data['dstaddr6-negate'] = dstaddr6_negate
+            payload_dict["dstaddr6-negate"] = dstaddr6_negate
         if dstintf is not None:
-            data['dstintf'] = dstintf
+            payload_dict["dstintf"] = dstintf
         if dynamic_shaping is not None:
-            data['dynamic-shaping'] = dynamic_shaping
+            payload_dict["dynamic-shaping"] = dynamic_shaping
         if email_collect is not None:
-            data['email-collect'] = email_collect
+            payload_dict["email-collect"] = email_collect
         if emailfilter_profile is not None:
-            data['emailfilter-profile'] = emailfilter_profile
+            payload_dict["emailfilter-profile"] = emailfilter_profile
         if fec is not None:
-            data['fec'] = fec
+            payload_dict["fec"] = fec
         if file_filter_profile is not None:
-            data['file-filter-profile'] = file_filter_profile
+            payload_dict["file-filter-profile"] = file_filter_profile
         if firewall_session_dirty is not None:
-            data['firewall-session-dirty'] = firewall_session_dirty
+            payload_dict["firewall-session-dirty"] = firewall_session_dirty
         if fixedport is not None:
-            data['fixedport'] = fixedport
+            payload_dict["fixedport"] = fixedport
         if fsso_agent_for_ntlm is not None:
-            data['fsso-agent-for-ntlm'] = fsso_agent_for_ntlm
+            payload_dict["fsso-agent-for-ntlm"] = fsso_agent_for_ntlm
         if fsso_groups is not None:
-            data['fsso-groups'] = fsso_groups
+            payload_dict["fsso-groups"] = fsso_groups
         if geoip_anycast is not None:
-            data['geoip-anycast'] = geoip_anycast
+            payload_dict["geoip-anycast"] = geoip_anycast
         if geoip_match is not None:
-            data['geoip-match'] = geoip_match
+            payload_dict["geoip-match"] = geoip_match
         if groups is not None:
-            data['groups'] = groups
+            payload_dict["groups"] = groups
         if http_policy_redirect is not None:
-            data['http-policy-redirect'] = http_policy_redirect
+            payload_dict["http-policy-redirect"] = http_policy_redirect
         if icap_profile is not None:
-            data['icap-profile'] = icap_profile
+            payload_dict["icap-profile"] = icap_profile
         if identity_based_route is not None:
-            data['identity-based-route'] = identity_based_route
+            payload_dict["identity-based-route"] = identity_based_route
         if inbound is not None:
-            data['inbound'] = inbound
+            payload_dict["inbound"] = inbound
         if inspection_mode is not None:
-            data['inspection-mode'] = inspection_mode
+            payload_dict["inspection-mode"] = inspection_mode
         if internet_service is not None:
-            data['internet-service'] = internet_service
+            payload_dict["internet-service"] = internet_service
         if internet_service_custom is not None:
-            data['internet-service-custom'] = internet_service_custom
+            payload_dict["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data['internet-service-custom-group'] = internet_service_custom_group
+            payload_dict["internet-service-custom-group"] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data['internet-service-fortiguard'] = internet_service_fortiguard
+            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
         if internet_service_group is not None:
-            data['internet-service-group'] = internet_service_group
+            payload_dict["internet-service-group"] = internet_service_group
         if internet_service_name is not None:
-            data['internet-service-name'] = internet_service_name
+            payload_dict["internet-service-name"] = internet_service_name
         if internet_service_negate is not None:
-            data['internet-service-negate'] = internet_service_negate
+            payload_dict["internet-service-negate"] = internet_service_negate
         if internet_service_src is not None:
-            data['internet-service-src'] = internet_service_src
+            payload_dict["internet-service-src"] = internet_service_src
         if internet_service_src_custom is not None:
-            data['internet-service-src-custom'] = internet_service_src_custom
+            payload_dict["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data['internet-service-src-custom-group'] = internet_service_src_custom_group
+            payload_dict["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+            payload_dict["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if internet_service_src_group is not None:
-            data['internet-service-src-group'] = internet_service_src_group
+            payload_dict["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_name is not None:
-            data['internet-service-src-name'] = internet_service_src_name
+            payload_dict["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_negate is not None:
-            data['internet-service-src-negate'] = internet_service_src_negate
+            payload_dict["internet-service-src-negate"] = internet_service_src_negate
         if internet_service6 is not None:
-            data['internet-service6'] = internet_service6
+            payload_dict["internet-service6"] = internet_service6
         if internet_service6_custom is not None:
-            data['internet-service6-custom'] = internet_service6_custom
+            payload_dict["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data['internet-service6-custom-group'] = internet_service6_custom_group
+            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
         if internet_service6_fortiguard is not None:
-            data['internet-service6-fortiguard'] = internet_service6_fortiguard
+            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
         if internet_service6_group is not None:
-            data['internet-service6-group'] = internet_service6_group
+            payload_dict["internet-service6-group"] = internet_service6_group
         if internet_service6_name is not None:
-            data['internet-service6-name'] = internet_service6_name
+            payload_dict["internet-service6-name"] = internet_service6_name
         if internet_service6_negate is not None:
-            data['internet-service6-negate'] = internet_service6_negate
+            payload_dict["internet-service6-negate"] = internet_service6_negate
         if internet_service6_src is not None:
-            data['internet-service6-src'] = internet_service6_src
+            payload_dict["internet-service6-src"] = internet_service6_src
         if internet_service6_src_custom is not None:
-            data['internet-service6-src-custom'] = internet_service6_src_custom
+            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
         if internet_service6_src_group is not None:
-            data['internet-service6-src-group'] = internet_service6_src_group
+            payload_dict["internet-service6-src-group"] = internet_service6_src_group
         if internet_service6_src_name is not None:
-            data['internet-service6-src-name'] = internet_service6_src_name
+            payload_dict["internet-service6-src-name"] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data['internet-service6-src-negate'] = internet_service6_src_negate
+            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
         if ippool is not None:
-            data['ippool'] = ippool
+            payload_dict["ippool"] = ippool
         if ips_sensor is not None:
-            data['ips-sensor'] = ips_sensor
+            payload_dict["ips-sensor"] = ips_sensor
         if ips_voip_filter is not None:
-            data['ips-voip-filter'] = ips_voip_filter
+            payload_dict["ips-voip-filter"] = ips_voip_filter
         if log_http_transaction is not None:
-            data['log-http-transaction'] = log_http_transaction
+            payload_dict["log-http-transaction"] = log_http_transaction
         if logtraffic is not None:
-            data['logtraffic'] = logtraffic
+            payload_dict["logtraffic"] = logtraffic
         if logtraffic_start is not None:
-            data['logtraffic-start'] = logtraffic_start
+            payload_dict["logtraffic-start"] = logtraffic_start
         if match_vip is not None:
-            data['match-vip'] = match_vip
+            payload_dict["match-vip"] = match_vip
         if match_vip_only is not None:
-            data['match-vip-only'] = match_vip_only
+            payload_dict["match-vip-only"] = match_vip_only
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if nat is not None:
-            data['nat'] = nat
+            payload_dict["nat"] = nat
         if nat46 is not None:
-            data['nat46'] = nat46
+            payload_dict["nat46"] = nat46
         if nat64 is not None:
-            data['nat64'] = nat64
+            payload_dict["nat64"] = nat64
         if natinbound is not None:
-            data['natinbound'] = natinbound
+            payload_dict["natinbound"] = natinbound
         if natip is not None:
-            data['natip'] = natip
+            payload_dict["natip"] = natip
         if natoutbound is not None:
-            data['natoutbound'] = natoutbound
+            payload_dict["natoutbound"] = natoutbound
         if network_service_dynamic is not None:
-            data['network-service-dynamic'] = network_service_dynamic
+            payload_dict["network-service-dynamic"] = network_service_dynamic
         if network_service_src_dynamic is not None:
-            data['network-service-src-dynamic'] = network_service_src_dynamic
+            payload_dict["network-service-src-dynamic"] = network_service_src_dynamic
         if np_acceleration is not None:
-            data['np-acceleration'] = np_acceleration
+            payload_dict["np-acceleration"] = np_acceleration
         if ntlm is not None:
-            data['ntlm'] = ntlm
+            payload_dict["ntlm"] = ntlm
         if ntlm_enabled_browsers is not None:
-            data['ntlm-enabled-browsers'] = ntlm_enabled_browsers
+            payload_dict["ntlm-enabled-browsers"] = ntlm_enabled_browsers
         if ntlm_guest is not None:
-            data['ntlm-guest'] = ntlm_guest
+            payload_dict["ntlm-guest"] = ntlm_guest
         if outbound is not None:
-            data['outbound'] = outbound
+            payload_dict["outbound"] = outbound
         if passive_wan_health_measurement is not None:
-            data['passive-wan-health-measurement'] = passive_wan_health_measurement
+            payload_dict["passive-wan-health-measurement"] = passive_wan_health_measurement
         if pcp_inbound is not None:
-            data['pcp-inbound'] = pcp_inbound
+            payload_dict["pcp-inbound"] = pcp_inbound
         if pcp_outbound is not None:
-            data['pcp-outbound'] = pcp_outbound
+            payload_dict["pcp-outbound"] = pcp_outbound
         if pcp_poolname is not None:
-            data['pcp-poolname'] = pcp_poolname
+            payload_dict["pcp-poolname"] = pcp_poolname
         if per_ip_shaper is not None:
-            data['per-ip-shaper'] = per_ip_shaper
+            payload_dict["per-ip-shaper"] = per_ip_shaper
         if permit_any_host is not None:
-            data['permit-any-host'] = permit_any_host
+            payload_dict["permit-any-host"] = permit_any_host
         if permit_stun_host is not None:
-            data['permit-stun-host'] = permit_stun_host
+            payload_dict["permit-stun-host"] = permit_stun_host
         if policy_expiry is not None:
-            data['policy-expiry'] = policy_expiry
+            payload_dict["policy-expiry"] = policy_expiry
         if policy_expiry_date is not None:
-            data['policy-expiry-date'] = policy_expiry_date
+            payload_dict["policy-expiry-date"] = policy_expiry_date
         if policy_expiry_date_utc is not None:
-            data['policy-expiry-date-utc'] = policy_expiry_date_utc
+            payload_dict["policy-expiry-date-utc"] = policy_expiry_date_utc
         if policyid is not None:
-            data['policyid'] = policyid
+            payload_dict["policyid"] = policyid
         if poolname is not None:
-            data['poolname'] = poolname
+            payload_dict["poolname"] = poolname
         if poolname6 is not None:
-            data['poolname6'] = poolname6
+            payload_dict["poolname6"] = poolname6
         if port_preserve is not None:
-            data['port-preserve'] = port_preserve
+            payload_dict["port-preserve"] = port_preserve
         if port_random is not None:
-            data['port-random'] = port_random
+            payload_dict["port-random"] = port_random
         if profile_group is not None:
-            data['profile-group'] = profile_group
+            payload_dict["profile-group"] = profile_group
         if profile_protocol_options is not None:
-            data['profile-protocol-options'] = profile_protocol_options
+            payload_dict["profile-protocol-options"] = profile_protocol_options
         if profile_type is not None:
-            data['profile-type'] = profile_type
+            payload_dict["profile-type"] = profile_type
         if radius_ip_auth_bypass is not None:
-            data['radius-ip-auth-bypass'] = radius_ip_auth_bypass
+            payload_dict["radius-ip-auth-bypass"] = radius_ip_auth_bypass
         if radius_mac_auth_bypass is not None:
-            data['radius-mac-auth-bypass'] = radius_mac_auth_bypass
+            payload_dict["radius-mac-auth-bypass"] = radius_mac_auth_bypass
         if redirect_url is not None:
-            data['redirect-url'] = redirect_url
+            payload_dict["redirect-url"] = redirect_url
         if replacemsg_override_group is not None:
-            data['replacemsg-override-group'] = replacemsg_override_group
+            payload_dict["replacemsg-override-group"] = replacemsg_override_group
         if reputation_direction is not None:
-            data['reputation-direction'] = reputation_direction
+            payload_dict["reputation-direction"] = reputation_direction
         if reputation_direction6 is not None:
-            data['reputation-direction6'] = reputation_direction6
+            payload_dict["reputation-direction6"] = reputation_direction6
         if reputation_minimum is not None:
-            data['reputation-minimum'] = reputation_minimum
+            payload_dict["reputation-minimum"] = reputation_minimum
         if reputation_minimum6 is not None:
-            data['reputation-minimum6'] = reputation_minimum6
+            payload_dict["reputation-minimum6"] = reputation_minimum6
         if rtp_addr is not None:
-            data['rtp-addr'] = rtp_addr
+            payload_dict["rtp-addr"] = rtp_addr
         if rtp_nat is not None:
-            data['rtp-nat'] = rtp_nat
+            payload_dict["rtp-nat"] = rtp_nat
         if schedule is not None:
-            data['schedule'] = schedule
+            payload_dict["schedule"] = schedule
         if schedule_timeout is not None:
-            data['schedule-timeout'] = schedule_timeout
+            payload_dict["schedule-timeout"] = schedule_timeout
         if sctp_filter_profile is not None:
-            data['sctp-filter-profile'] = sctp_filter_profile
+            payload_dict["sctp-filter-profile"] = sctp_filter_profile
         if send_deny_packet is not None:
-            data['send-deny-packet'] = send_deny_packet
+            payload_dict["send-deny-packet"] = send_deny_packet
         if service is not None:
-            data['service'] = service
+            payload_dict["service"] = service
         if service_negate is not None:
-            data['service-negate'] = service_negate
+            payload_dict["service-negate"] = service_negate
         if session_ttl is not None:
-            data['session-ttl'] = session_ttl
+            payload_dict["session-ttl"] = session_ttl
         if sgt is not None:
-            data['sgt'] = sgt
+            payload_dict["sgt"] = sgt
         if sgt_check is not None:
-            data['sgt-check'] = sgt_check
+            payload_dict["sgt-check"] = sgt_check
         if src_vendor_mac is not None:
-            data['src-vendor-mac'] = src_vendor_mac
+            payload_dict["src-vendor-mac"] = src_vendor_mac
         if srcaddr is not None:
-            data['srcaddr'] = srcaddr
+            payload_dict["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data['srcaddr-negate'] = srcaddr_negate
+            payload_dict["srcaddr-negate"] = srcaddr_negate
         if srcaddr6 is not None:
-            data['srcaddr6'] = srcaddr6
+            payload_dict["srcaddr6"] = srcaddr6
         if srcaddr6_negate is not None:
-            data['srcaddr6-negate'] = srcaddr6_negate
+            payload_dict["srcaddr6-negate"] = srcaddr6_negate
         if srcintf is not None:
-            data['srcintf'] = srcintf
+            payload_dict["srcintf"] = srcintf
         if ssh_filter_profile is not None:
-            data['ssh-filter-profile'] = ssh_filter_profile
+            payload_dict["ssh-filter-profile"] = ssh_filter_profile
         if ssh_policy_redirect is not None:
-            data['ssh-policy-redirect'] = ssh_policy_redirect
+            payload_dict["ssh-policy-redirect"] = ssh_policy_redirect
         if ssl_ssh_profile is not None:
-            data['ssl-ssh-profile'] = ssl_ssh_profile
+            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
         if status is not None:
-            data['status'] = status
+            payload_dict["status"] = status
         if tcp_mss_receiver is not None:
-            data['tcp-mss-receiver'] = tcp_mss_receiver
+            payload_dict["tcp-mss-receiver"] = tcp_mss_receiver
         if tcp_mss_sender is not None:
-            data['tcp-mss-sender'] = tcp_mss_sender
+            payload_dict["tcp-mss-sender"] = tcp_mss_sender
         if tcp_session_without_syn is not None:
-            data['tcp-session-without-syn'] = tcp_session_without_syn
+            payload_dict["tcp-session-without-syn"] = tcp_session_without_syn
         if timeout_send_rst is not None:
-            data['timeout-send-rst'] = timeout_send_rst
+            payload_dict["timeout-send-rst"] = timeout_send_rst
         if tos is not None:
-            data['tos'] = tos
+            payload_dict["tos"] = tos
         if tos_mask is not None:
-            data['tos-mask'] = tos_mask
+            payload_dict["tos-mask"] = tos_mask
         if tos_negate is not None:
-            data['tos-negate'] = tos_negate
+            payload_dict["tos-negate"] = tos_negate
         if traffic_shaper is not None:
-            data['traffic-shaper'] = traffic_shaper
+            payload_dict["traffic-shaper"] = traffic_shaper
         if traffic_shaper_reverse is not None:
-            data['traffic-shaper-reverse'] = traffic_shaper_reverse
+            payload_dict["traffic-shaper-reverse"] = traffic_shaper_reverse
         if users is not None:
-            data['users'] = users
+            payload_dict["users"] = users
         if utm_status is not None:
-            data['utm-status'] = utm_status
+            payload_dict["utm-status"] = utm_status
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if videofilter_profile is not None:
-            data['videofilter-profile'] = videofilter_profile
+            payload_dict["videofilter-profile"] = videofilter_profile
         if virtual_patch_profile is not None:
-            data['virtual-patch-profile'] = virtual_patch_profile
+            payload_dict["virtual-patch-profile"] = virtual_patch_profile
         if vlan_cos_fwd is not None:
-            data['vlan-cos-fwd'] = vlan_cos_fwd
+            payload_dict["vlan-cos-fwd"] = vlan_cos_fwd
         if vlan_cos_rev is not None:
-            data['vlan-cos-rev'] = vlan_cos_rev
+            payload_dict["vlan-cos-rev"] = vlan_cos_rev
         if vlan_filter is not None:
-            data['vlan-filter'] = vlan_filter
+            payload_dict["vlan-filter"] = vlan_filter
         if voip_profile is not None:
-            data['voip-profile'] = voip_profile
+            payload_dict["voip-profile"] = voip_profile
         if vpntunnel is not None:
-            data['vpntunnel'] = vpntunnel
+            payload_dict["vpntunnel"] = vpntunnel
         if waf_profile is not None:
-            data['waf-profile'] = waf_profile
+            payload_dict["waf-profile"] = waf_profile
         if wccp is not None:
-            data['wccp'] = wccp
+            payload_dict["wccp"] = wccp
         if webfilter_profile is not None:
-            data['webfilter-profile'] = webfilter_profile
+            payload_dict["webfilter-profile"] = webfilter_profile
         if webproxy_forward_server is not None:
-            data['webproxy-forward-server'] = webproxy_forward_server
+            payload_dict["webproxy-forward-server"] = webproxy_forward_server
         if webproxy_profile is not None:
-            data['webproxy-profile'] = webproxy_profile
+            payload_dict["webproxy-profile"] = webproxy_profile
         if ztna_device_ownership is not None:
-            data['ztna-device-ownership'] = ztna_device_ownership
+            payload_dict["ztna-device-ownership"] = ztna_device_ownership
         if ztna_ems_tag is not None:
-            data['ztna-ems-tag'] = ztna_ems_tag
+            payload_dict["ztna-ems-tag"] = ztna_ems_tag
         if ztna_ems_tag_negate is not None:
-            data['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+            payload_dict["ztna-ems-tag-negate"] = ztna_ems_tag_negate
         if ztna_ems_tag_secondary is not None:
-            data['ztna-ems-tag-secondary'] = ztna_ems_tag_secondary
+            payload_dict["ztna-ems-tag-secondary"] = ztna_ems_tag_secondary
         if ztna_geo_tag is not None:
-            data['ztna-geo-tag'] = ztna_geo_tag
+            payload_dict["ztna-geo-tag"] = ztna_geo_tag
         if ztna_policy_redirect is not None:
-            data['ztna-policy-redirect'] = ztna_policy_redirect
+            payload_dict["ztna-policy-redirect"] = ztna_policy_redirect
         if ztna_status is not None:
-            data['ztna-status'] = ztna_status
+            payload_dict["ztna-status"] = ztna_status
         if ztna_tags_match_logic is not None:
-            data['ztna-tags-match-logic'] = ztna_tags_match_logic
-        
+            payload_dict["ztna-tags-match-logic"] = ztna_tags_match_logic
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if nkey is not None:
-            params['nkey'] = nkey
+            params["nkey"] = nkey
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.post(
+            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
         mkey: Union[str, int],
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         before: Optional[Any] = None,
@@ -1333,21 +1340,22 @@ class Policy:
         ztna_policy_redirect: Optional[str] = None,
         ztna_status: Optional[str] = None,
         ztna_tags_match_logic: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Update an existing policy entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, data={"key": "value"}, vdom="root")
+        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-        
+
         Args:
             mkey: The policyid (primary key)
-            data: The updated configuration data (optional if using kwargs)
+            payload_dict: The updated configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that 
+            before: If *action=move*, use *before* to specify the ID of the resource that
             after: If *action=move*, use *after* to specify the ID of the resource that t
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
@@ -1710,437 +1718,447 @@ class Policy:
                 Enable/disable zero trust access.
             ztna-tags-match-logic (string) (enum: ['or', 'and']):
                 ZTNA tag matching logic.
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if action is not None:
-            data['action'] = action
+            payload_dict["action"] = action
         if anti_replay is not None:
-            data['anti-replay'] = anti_replay
+            payload_dict["anti-replay"] = anti_replay
         if app_monitor is not None:
-            data['app-monitor'] = app_monitor
+            payload_dict["app-monitor"] = app_monitor
         if application_list is not None:
-            data['application-list'] = application_list
+            payload_dict["application-list"] = application_list
         if auth_cert is not None:
-            data['auth-cert'] = auth_cert
+            payload_dict["auth-cert"] = auth_cert
         if auth_path is not None:
-            data['auth-path'] = auth_path
+            payload_dict["auth-path"] = auth_path
         if auth_redirect_addr is not None:
-            data['auth-redirect-addr'] = auth_redirect_addr
+            payload_dict["auth-redirect-addr"] = auth_redirect_addr
         if auto_asic_offload is not None:
-            data['auto-asic-offload'] = auto_asic_offload
+            payload_dict["auto-asic-offload"] = auto_asic_offload
         if av_profile is not None:
-            data['av-profile'] = av_profile
+            payload_dict["av-profile"] = av_profile
         if block_notification is not None:
-            data['block-notification'] = block_notification
+            payload_dict["block-notification"] = block_notification
         if captive_portal_exempt is not None:
-            data['captive-portal-exempt'] = captive_portal_exempt
+            payload_dict["captive-portal-exempt"] = captive_portal_exempt
         if capture_packet is not None:
-            data['capture-packet'] = capture_packet
+            payload_dict["capture-packet"] = capture_packet
         if casb_profile is not None:
-            data['casb-profile'] = casb_profile
+            payload_dict["casb-profile"] = casb_profile
         if comments is not None:
-            data['comments'] = comments
+            payload_dict["comments"] = comments
         if custom_log_fields is not None:
-            data['custom-log-fields'] = custom_log_fields
+            payload_dict["custom-log-fields"] = custom_log_fields
         if decrypted_traffic_mirror is not None:
-            data['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+            payload_dict["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if delay_tcp_npu_session is not None:
-            data['delay-tcp-npu-session'] = delay_tcp_npu_session
+            payload_dict["delay-tcp-npu-session"] = delay_tcp_npu_session
         if diameter_filter_profile is not None:
-            data['diameter-filter-profile'] = diameter_filter_profile
+            payload_dict["diameter-filter-profile"] = diameter_filter_profile
         if diffserv_copy is not None:
-            data['diffserv-copy'] = diffserv_copy
+            payload_dict["diffserv-copy"] = diffserv_copy
         if diffserv_forward is not None:
-            data['diffserv-forward'] = diffserv_forward
+            payload_dict["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
-            data['diffserv-reverse'] = diffserv_reverse
+            payload_dict["diffserv-reverse"] = diffserv_reverse
         if diffservcode_forward is not None:
-            data['diffservcode-forward'] = diffservcode_forward
+            payload_dict["diffservcode-forward"] = diffservcode_forward
         if diffservcode_rev is not None:
-            data['diffservcode-rev'] = diffservcode_rev
+            payload_dict["diffservcode-rev"] = diffservcode_rev
         if disclaimer is not None:
-            data['disclaimer'] = disclaimer
+            payload_dict["disclaimer"] = disclaimer
         if dlp_profile is not None:
-            data['dlp-profile'] = dlp_profile
+            payload_dict["dlp-profile"] = dlp_profile
         if dnsfilter_profile is not None:
-            data['dnsfilter-profile'] = dnsfilter_profile
+            payload_dict["dnsfilter-profile"] = dnsfilter_profile
         if dsri is not None:
-            data['dsri'] = dsri
+            payload_dict["dsri"] = dsri
         if dstaddr is not None:
-            data['dstaddr'] = dstaddr
+            payload_dict["dstaddr"] = dstaddr
         if dstaddr_negate is not None:
-            data['dstaddr-negate'] = dstaddr_negate
+            payload_dict["dstaddr-negate"] = dstaddr_negate
         if dstaddr6 is not None:
-            data['dstaddr6'] = dstaddr6
+            payload_dict["dstaddr6"] = dstaddr6
         if dstaddr6_negate is not None:
-            data['dstaddr6-negate'] = dstaddr6_negate
+            payload_dict["dstaddr6-negate"] = dstaddr6_negate
         if dstintf is not None:
-            data['dstintf'] = dstintf
+            payload_dict["dstintf"] = dstintf
         if dynamic_shaping is not None:
-            data['dynamic-shaping'] = dynamic_shaping
+            payload_dict["dynamic-shaping"] = dynamic_shaping
         if email_collect is not None:
-            data['email-collect'] = email_collect
+            payload_dict["email-collect"] = email_collect
         if emailfilter_profile is not None:
-            data['emailfilter-profile'] = emailfilter_profile
+            payload_dict["emailfilter-profile"] = emailfilter_profile
         if fec is not None:
-            data['fec'] = fec
+            payload_dict["fec"] = fec
         if file_filter_profile is not None:
-            data['file-filter-profile'] = file_filter_profile
+            payload_dict["file-filter-profile"] = file_filter_profile
         if firewall_session_dirty is not None:
-            data['firewall-session-dirty'] = firewall_session_dirty
+            payload_dict["firewall-session-dirty"] = firewall_session_dirty
         if fixedport is not None:
-            data['fixedport'] = fixedport
+            payload_dict["fixedport"] = fixedport
         if fsso_agent_for_ntlm is not None:
-            data['fsso-agent-for-ntlm'] = fsso_agent_for_ntlm
+            payload_dict["fsso-agent-for-ntlm"] = fsso_agent_for_ntlm
         if fsso_groups is not None:
-            data['fsso-groups'] = fsso_groups
+            payload_dict["fsso-groups"] = fsso_groups
         if geoip_anycast is not None:
-            data['geoip-anycast'] = geoip_anycast
+            payload_dict["geoip-anycast"] = geoip_anycast
         if geoip_match is not None:
-            data['geoip-match'] = geoip_match
+            payload_dict["geoip-match"] = geoip_match
         if groups is not None:
-            data['groups'] = groups
+            payload_dict["groups"] = groups
         if http_policy_redirect is not None:
-            data['http-policy-redirect'] = http_policy_redirect
+            payload_dict["http-policy-redirect"] = http_policy_redirect
         if icap_profile is not None:
-            data['icap-profile'] = icap_profile
+            payload_dict["icap-profile"] = icap_profile
         if identity_based_route is not None:
-            data['identity-based-route'] = identity_based_route
+            payload_dict["identity-based-route"] = identity_based_route
         if inbound is not None:
-            data['inbound'] = inbound
+            payload_dict["inbound"] = inbound
         if inspection_mode is not None:
-            data['inspection-mode'] = inspection_mode
+            payload_dict["inspection-mode"] = inspection_mode
         if internet_service is not None:
-            data['internet-service'] = internet_service
+            payload_dict["internet-service"] = internet_service
         if internet_service_custom is not None:
-            data['internet-service-custom'] = internet_service_custom
+            payload_dict["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data['internet-service-custom-group'] = internet_service_custom_group
+            payload_dict["internet-service-custom-group"] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data['internet-service-fortiguard'] = internet_service_fortiguard
+            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
         if internet_service_group is not None:
-            data['internet-service-group'] = internet_service_group
+            payload_dict["internet-service-group"] = internet_service_group
         if internet_service_name is not None:
-            data['internet-service-name'] = internet_service_name
+            payload_dict["internet-service-name"] = internet_service_name
         if internet_service_negate is not None:
-            data['internet-service-negate'] = internet_service_negate
+            payload_dict["internet-service-negate"] = internet_service_negate
         if internet_service_src is not None:
-            data['internet-service-src'] = internet_service_src
+            payload_dict["internet-service-src"] = internet_service_src
         if internet_service_src_custom is not None:
-            data['internet-service-src-custom'] = internet_service_src_custom
+            payload_dict["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data['internet-service-src-custom-group'] = internet_service_src_custom_group
+            payload_dict["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+            payload_dict["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if internet_service_src_group is not None:
-            data['internet-service-src-group'] = internet_service_src_group
+            payload_dict["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_name is not None:
-            data['internet-service-src-name'] = internet_service_src_name
+            payload_dict["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_negate is not None:
-            data['internet-service-src-negate'] = internet_service_src_negate
+            payload_dict["internet-service-src-negate"] = internet_service_src_negate
         if internet_service6 is not None:
-            data['internet-service6'] = internet_service6
+            payload_dict["internet-service6"] = internet_service6
         if internet_service6_custom is not None:
-            data['internet-service6-custom'] = internet_service6_custom
+            payload_dict["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data['internet-service6-custom-group'] = internet_service6_custom_group
+            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
         if internet_service6_fortiguard is not None:
-            data['internet-service6-fortiguard'] = internet_service6_fortiguard
+            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
         if internet_service6_group is not None:
-            data['internet-service6-group'] = internet_service6_group
+            payload_dict["internet-service6-group"] = internet_service6_group
         if internet_service6_name is not None:
-            data['internet-service6-name'] = internet_service6_name
+            payload_dict["internet-service6-name"] = internet_service6_name
         if internet_service6_negate is not None:
-            data['internet-service6-negate'] = internet_service6_negate
+            payload_dict["internet-service6-negate"] = internet_service6_negate
         if internet_service6_src is not None:
-            data['internet-service6-src'] = internet_service6_src
+            payload_dict["internet-service6-src"] = internet_service6_src
         if internet_service6_src_custom is not None:
-            data['internet-service6-src-custom'] = internet_service6_src_custom
+            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
         if internet_service6_src_group is not None:
-            data['internet-service6-src-group'] = internet_service6_src_group
+            payload_dict["internet-service6-src-group"] = internet_service6_src_group
         if internet_service6_src_name is not None:
-            data['internet-service6-src-name'] = internet_service6_src_name
+            payload_dict["internet-service6-src-name"] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data['internet-service6-src-negate'] = internet_service6_src_negate
+            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
         if ippool is not None:
-            data['ippool'] = ippool
+            payload_dict["ippool"] = ippool
         if ips_sensor is not None:
-            data['ips-sensor'] = ips_sensor
+            payload_dict["ips-sensor"] = ips_sensor
         if ips_voip_filter is not None:
-            data['ips-voip-filter'] = ips_voip_filter
+            payload_dict["ips-voip-filter"] = ips_voip_filter
         if log_http_transaction is not None:
-            data['log-http-transaction'] = log_http_transaction
+            payload_dict["log-http-transaction"] = log_http_transaction
         if logtraffic is not None:
-            data['logtraffic'] = logtraffic
+            payload_dict["logtraffic"] = logtraffic
         if logtraffic_start is not None:
-            data['logtraffic-start'] = logtraffic_start
+            payload_dict["logtraffic-start"] = logtraffic_start
         if match_vip is not None:
-            data['match-vip'] = match_vip
+            payload_dict["match-vip"] = match_vip
         if match_vip_only is not None:
-            data['match-vip-only'] = match_vip_only
+            payload_dict["match-vip-only"] = match_vip_only
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if nat is not None:
-            data['nat'] = nat
+            payload_dict["nat"] = nat
         if nat46 is not None:
-            data['nat46'] = nat46
+            payload_dict["nat46"] = nat46
         if nat64 is not None:
-            data['nat64'] = nat64
+            payload_dict["nat64"] = nat64
         if natinbound is not None:
-            data['natinbound'] = natinbound
+            payload_dict["natinbound"] = natinbound
         if natip is not None:
-            data['natip'] = natip
+            payload_dict["natip"] = natip
         if natoutbound is not None:
-            data['natoutbound'] = natoutbound
+            payload_dict["natoutbound"] = natoutbound
         if network_service_dynamic is not None:
-            data['network-service-dynamic'] = network_service_dynamic
+            payload_dict["network-service-dynamic"] = network_service_dynamic
         if network_service_src_dynamic is not None:
-            data['network-service-src-dynamic'] = network_service_src_dynamic
+            payload_dict["network-service-src-dynamic"] = network_service_src_dynamic
         if np_acceleration is not None:
-            data['np-acceleration'] = np_acceleration
+            payload_dict["np-acceleration"] = np_acceleration
         if ntlm is not None:
-            data['ntlm'] = ntlm
+            payload_dict["ntlm"] = ntlm
         if ntlm_enabled_browsers is not None:
-            data['ntlm-enabled-browsers'] = ntlm_enabled_browsers
+            payload_dict["ntlm-enabled-browsers"] = ntlm_enabled_browsers
         if ntlm_guest is not None:
-            data['ntlm-guest'] = ntlm_guest
+            payload_dict["ntlm-guest"] = ntlm_guest
         if outbound is not None:
-            data['outbound'] = outbound
+            payload_dict["outbound"] = outbound
         if passive_wan_health_measurement is not None:
-            data['passive-wan-health-measurement'] = passive_wan_health_measurement
+            payload_dict["passive-wan-health-measurement"] = passive_wan_health_measurement
         if pcp_inbound is not None:
-            data['pcp-inbound'] = pcp_inbound
+            payload_dict["pcp-inbound"] = pcp_inbound
         if pcp_outbound is not None:
-            data['pcp-outbound'] = pcp_outbound
+            payload_dict["pcp-outbound"] = pcp_outbound
         if pcp_poolname is not None:
-            data['pcp-poolname'] = pcp_poolname
+            payload_dict["pcp-poolname"] = pcp_poolname
         if per_ip_shaper is not None:
-            data['per-ip-shaper'] = per_ip_shaper
+            payload_dict["per-ip-shaper"] = per_ip_shaper
         if permit_any_host is not None:
-            data['permit-any-host'] = permit_any_host
+            payload_dict["permit-any-host"] = permit_any_host
         if permit_stun_host is not None:
-            data['permit-stun-host'] = permit_stun_host
+            payload_dict["permit-stun-host"] = permit_stun_host
         if policy_expiry is not None:
-            data['policy-expiry'] = policy_expiry
+            payload_dict["policy-expiry"] = policy_expiry
         if policy_expiry_date is not None:
-            data['policy-expiry-date'] = policy_expiry_date
+            payload_dict["policy-expiry-date"] = policy_expiry_date
         if policy_expiry_date_utc is not None:
-            data['policy-expiry-date-utc'] = policy_expiry_date_utc
+            payload_dict["policy-expiry-date-utc"] = policy_expiry_date_utc
         if policyid is not None:
-            data['policyid'] = policyid
+            payload_dict["policyid"] = policyid
         if poolname is not None:
-            data['poolname'] = poolname
+            payload_dict["poolname"] = poolname
         if poolname6 is not None:
-            data['poolname6'] = poolname6
+            payload_dict["poolname6"] = poolname6
         if port_preserve is not None:
-            data['port-preserve'] = port_preserve
+            payload_dict["port-preserve"] = port_preserve
         if port_random is not None:
-            data['port-random'] = port_random
+            payload_dict["port-random"] = port_random
         if profile_group is not None:
-            data['profile-group'] = profile_group
+            payload_dict["profile-group"] = profile_group
         if profile_protocol_options is not None:
-            data['profile-protocol-options'] = profile_protocol_options
+            payload_dict["profile-protocol-options"] = profile_protocol_options
         if profile_type is not None:
-            data['profile-type'] = profile_type
+            payload_dict["profile-type"] = profile_type
         if radius_ip_auth_bypass is not None:
-            data['radius-ip-auth-bypass'] = radius_ip_auth_bypass
+            payload_dict["radius-ip-auth-bypass"] = radius_ip_auth_bypass
         if radius_mac_auth_bypass is not None:
-            data['radius-mac-auth-bypass'] = radius_mac_auth_bypass
+            payload_dict["radius-mac-auth-bypass"] = radius_mac_auth_bypass
         if redirect_url is not None:
-            data['redirect-url'] = redirect_url
+            payload_dict["redirect-url"] = redirect_url
         if replacemsg_override_group is not None:
-            data['replacemsg-override-group'] = replacemsg_override_group
+            payload_dict["replacemsg-override-group"] = replacemsg_override_group
         if reputation_direction is not None:
-            data['reputation-direction'] = reputation_direction
+            payload_dict["reputation-direction"] = reputation_direction
         if reputation_direction6 is not None:
-            data['reputation-direction6'] = reputation_direction6
+            payload_dict["reputation-direction6"] = reputation_direction6
         if reputation_minimum is not None:
-            data['reputation-minimum'] = reputation_minimum
+            payload_dict["reputation-minimum"] = reputation_minimum
         if reputation_minimum6 is not None:
-            data['reputation-minimum6'] = reputation_minimum6
+            payload_dict["reputation-minimum6"] = reputation_minimum6
         if rtp_addr is not None:
-            data['rtp-addr'] = rtp_addr
+            payload_dict["rtp-addr"] = rtp_addr
         if rtp_nat is not None:
-            data['rtp-nat'] = rtp_nat
+            payload_dict["rtp-nat"] = rtp_nat
         if schedule is not None:
-            data['schedule'] = schedule
+            payload_dict["schedule"] = schedule
         if schedule_timeout is not None:
-            data['schedule-timeout'] = schedule_timeout
+            payload_dict["schedule-timeout"] = schedule_timeout
         if sctp_filter_profile is not None:
-            data['sctp-filter-profile'] = sctp_filter_profile
+            payload_dict["sctp-filter-profile"] = sctp_filter_profile
         if send_deny_packet is not None:
-            data['send-deny-packet'] = send_deny_packet
+            payload_dict["send-deny-packet"] = send_deny_packet
         if service is not None:
-            data['service'] = service
+            payload_dict["service"] = service
         if service_negate is not None:
-            data['service-negate'] = service_negate
+            payload_dict["service-negate"] = service_negate
         if session_ttl is not None:
-            data['session-ttl'] = session_ttl
+            payload_dict["session-ttl"] = session_ttl
         if sgt is not None:
-            data['sgt'] = sgt
+            payload_dict["sgt"] = sgt
         if sgt_check is not None:
-            data['sgt-check'] = sgt_check
+            payload_dict["sgt-check"] = sgt_check
         if src_vendor_mac is not None:
-            data['src-vendor-mac'] = src_vendor_mac
+            payload_dict["src-vendor-mac"] = src_vendor_mac
         if srcaddr is not None:
-            data['srcaddr'] = srcaddr
+            payload_dict["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
-            data['srcaddr-negate'] = srcaddr_negate
+            payload_dict["srcaddr-negate"] = srcaddr_negate
         if srcaddr6 is not None:
-            data['srcaddr6'] = srcaddr6
+            payload_dict["srcaddr6"] = srcaddr6
         if srcaddr6_negate is not None:
-            data['srcaddr6-negate'] = srcaddr6_negate
+            payload_dict["srcaddr6-negate"] = srcaddr6_negate
         if srcintf is not None:
-            data['srcintf'] = srcintf
+            payload_dict["srcintf"] = srcintf
         if ssh_filter_profile is not None:
-            data['ssh-filter-profile'] = ssh_filter_profile
+            payload_dict["ssh-filter-profile"] = ssh_filter_profile
         if ssh_policy_redirect is not None:
-            data['ssh-policy-redirect'] = ssh_policy_redirect
+            payload_dict["ssh-policy-redirect"] = ssh_policy_redirect
         if ssl_ssh_profile is not None:
-            data['ssl-ssh-profile'] = ssl_ssh_profile
+            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
         if status is not None:
-            data['status'] = status
+            payload_dict["status"] = status
         if tcp_mss_receiver is not None:
-            data['tcp-mss-receiver'] = tcp_mss_receiver
+            payload_dict["tcp-mss-receiver"] = tcp_mss_receiver
         if tcp_mss_sender is not None:
-            data['tcp-mss-sender'] = tcp_mss_sender
+            payload_dict["tcp-mss-sender"] = tcp_mss_sender
         if tcp_session_without_syn is not None:
-            data['tcp-session-without-syn'] = tcp_session_without_syn
+            payload_dict["tcp-session-without-syn"] = tcp_session_without_syn
         if timeout_send_rst is not None:
-            data['timeout-send-rst'] = timeout_send_rst
+            payload_dict["timeout-send-rst"] = timeout_send_rst
         if tos is not None:
-            data['tos'] = tos
+            payload_dict["tos"] = tos
         if tos_mask is not None:
-            data['tos-mask'] = tos_mask
+            payload_dict["tos-mask"] = tos_mask
         if tos_negate is not None:
-            data['tos-negate'] = tos_negate
+            payload_dict["tos-negate"] = tos_negate
         if traffic_shaper is not None:
-            data['traffic-shaper'] = traffic_shaper
+            payload_dict["traffic-shaper"] = traffic_shaper
         if traffic_shaper_reverse is not None:
-            data['traffic-shaper-reverse'] = traffic_shaper_reverse
+            payload_dict["traffic-shaper-reverse"] = traffic_shaper_reverse
         if users is not None:
-            data['users'] = users
+            payload_dict["users"] = users
         if utm_status is not None:
-            data['utm-status'] = utm_status
+            payload_dict["utm-status"] = utm_status
         if uuid is not None:
-            data['uuid'] = uuid
+            payload_dict["uuid"] = uuid
         if videofilter_profile is not None:
-            data['videofilter-profile'] = videofilter_profile
+            payload_dict["videofilter-profile"] = videofilter_profile
         if virtual_patch_profile is not None:
-            data['virtual-patch-profile'] = virtual_patch_profile
+            payload_dict["virtual-patch-profile"] = virtual_patch_profile
         if vlan_cos_fwd is not None:
-            data['vlan-cos-fwd'] = vlan_cos_fwd
+            payload_dict["vlan-cos-fwd"] = vlan_cos_fwd
         if vlan_cos_rev is not None:
-            data['vlan-cos-rev'] = vlan_cos_rev
+            payload_dict["vlan-cos-rev"] = vlan_cos_rev
         if vlan_filter is not None:
-            data['vlan-filter'] = vlan_filter
+            payload_dict["vlan-filter"] = vlan_filter
         if voip_profile is not None:
-            data['voip-profile'] = voip_profile
+            payload_dict["voip-profile"] = voip_profile
         if vpntunnel is not None:
-            data['vpntunnel'] = vpntunnel
+            payload_dict["vpntunnel"] = vpntunnel
         if waf_profile is not None:
-            data['waf-profile'] = waf_profile
+            payload_dict["waf-profile"] = waf_profile
         if wccp is not None:
-            data['wccp'] = wccp
+            payload_dict["wccp"] = wccp
         if webfilter_profile is not None:
-            data['webfilter-profile'] = webfilter_profile
+            payload_dict["webfilter-profile"] = webfilter_profile
         if webproxy_forward_server is not None:
-            data['webproxy-forward-server'] = webproxy_forward_server
+            payload_dict["webproxy-forward-server"] = webproxy_forward_server
         if webproxy_profile is not None:
-            data['webproxy-profile'] = webproxy_profile
+            payload_dict["webproxy-profile"] = webproxy_profile
         if ztna_device_ownership is not None:
-            data['ztna-device-ownership'] = ztna_device_ownership
+            payload_dict["ztna-device-ownership"] = ztna_device_ownership
         if ztna_ems_tag is not None:
-            data['ztna-ems-tag'] = ztna_ems_tag
+            payload_dict["ztna-ems-tag"] = ztna_ems_tag
         if ztna_ems_tag_negate is not None:
-            data['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+            payload_dict["ztna-ems-tag-negate"] = ztna_ems_tag_negate
         if ztna_ems_tag_secondary is not None:
-            data['ztna-ems-tag-secondary'] = ztna_ems_tag_secondary
+            payload_dict["ztna-ems-tag-secondary"] = ztna_ems_tag_secondary
         if ztna_geo_tag is not None:
-            data['ztna-geo-tag'] = ztna_geo_tag
+            payload_dict["ztna-geo-tag"] = ztna_geo_tag
         if ztna_policy_redirect is not None:
-            data['ztna-policy-redirect'] = ztna_policy_redirect
+            payload_dict["ztna-policy-redirect"] = ztna_policy_redirect
         if ztna_status is not None:
-            data['ztna-status'] = ztna_status
+            payload_dict["ztna-status"] = ztna_status
         if ztna_tags_match_logic is not None:
-            data['ztna-tags-match-logic'] = ztna_tags_match_logic
-        
+            payload_dict["ztna-tags-match-logic"] = ztna_tags_match_logic
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if before is not None:
-            params['before'] = before
+            params["before"] = before
         if after is not None:
-            params['after'] = after
+            params["after"] = after
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.put('cmdb', f'{self.path}/{mkey_str}', data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{mkey_str}",
+            data=payload_dict,
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         mkey: Union[str, int],
         vdom: Optional[Any] = None,
         scope: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Delete a policy entry.
-        
+
         Args:
             mkey: The policyid (primary key)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.delete('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.delete(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )

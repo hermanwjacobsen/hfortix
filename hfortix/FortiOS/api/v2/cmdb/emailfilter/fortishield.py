@@ -12,7 +12,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 class Fortishield:
     """Email filter FortiGuard AntiSpam settings endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Fortishield endpoint.
 
@@ -39,7 +39,8 @@ class Fortishield:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get FortiGuard AntiSpam settings.
@@ -65,11 +66,11 @@ class Fortishield:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -78,18 +79,24 @@ class Fortishield:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'emailfilter/fortishield', 
-                               params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            "emailfilter/fortishield",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         # FortiGuard configuration
         spam_submit_srv: Optional[str] = None,
         spam_submit_force: Optional[str] = None,
         spam_submit_txt2htm: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiGuard AntiSpam settings.
@@ -113,17 +120,19 @@ class Fortishield:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'spam_submit_srv': spam_submit_srv,
-            'spam_submit_force': spam_submit_force,
-            'spam_submit_txt2htm': spam_submit_txt2htm,
+            "spam_submit_srv": spam_submit_srv,
+            "spam_submit_force": spam_submit_force,
+            "spam_submit_txt2htm": spam_submit_txt2htm,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'emailfilter/fortishield', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", "emailfilter/fortishield", data=data, vdom=vdom, raw_json=raw_json
+        )

@@ -21,7 +21,7 @@ if TYPE_CHECKING:
 class Profile:
     """Antivirus Profile endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -40,7 +40,8 @@ class Profile:
         skip: Optional[bool] = None,
         format: Optional[str] = None,
         action: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         GET /antivirus/profile or /antivirus/profile/{name}
@@ -89,17 +90,17 @@ class Profile:
 
         # Map parameters
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         # Add non-None parameters
@@ -110,12 +111,14 @@ class Profile:
         # Add any extra kwargs
         params.update(kwargs)
 
-        path = f'antivirus/profile/{name}' if name else 'antivirus/profile'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        path = f"antivirus/profile/{name}" if name else "antivirus/profile"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         replacemsg_group: Optional[str] = None,
@@ -140,7 +143,8 @@ class Profile:
         external_blocklist_archive_scan: Optional[str] = None,
         ems_threat_feed: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         POST /antivirus/profile
@@ -195,74 +199,76 @@ class Profile:
             ... )
         """
         # Build data dict from provided parameters
-        data = {'name': name}
+        payload_dict = {"name": name}
 
         # Map Python parameter names to API field names
         param_map = {
-            'comment': comment,
-            'replacemsg_group': replacemsg_group,
-            'scan_mode': scan_mode,
-            'mobile_malware_db': mobile_malware_db,
-            'analytics_max_upload': analytics_max_upload,
-            'analytics_ignore_filetype': analytics_ignore_filetype,
-            'analytics_accept_filetype': analytics_accept_filetype,
-            'analytics_wl_filetype': analytics_wl_filetype,
-            'analytics_bl_filetype': analytics_bl_filetype,
-            'analytics_db': analytics_db,
-            'feature_set': feature_set,
-            'fortindr_error_action': fortindr_error_action,
-            'fortindr_timeout_action': fortindr_timeout_action,
-            'fortisandbox_mode': fortisandbox_mode,
-            'fortisandbox_max_upload': fortisandbox_max_upload,
-            'fortisandbox_error_action': fortisandbox_error_action,
-            'fortisandbox_timeout_action': fortisandbox_timeout_action,
-            'outbreak_prevention_mode': outbreak_prevention_mode,
-            'outbreak_prevention_archive_scan': outbreak_prevention_archive_scan,
-            'external_blocklist_enable_all': external_blocklist_enable_all,
-            'external_blocklist_archive_scan': external_blocklist_archive_scan,
-            'ems_threat_feed': ems_threat_feed,
+            "comment": comment,
+            "replacemsg_group": replacemsg_group,
+            "scan_mode": scan_mode,
+            "mobile_malware_db": mobile_malware_db,
+            "analytics_max_upload": analytics_max_upload,
+            "analytics_ignore_filetype": analytics_ignore_filetype,
+            "analytics_accept_filetype": analytics_accept_filetype,
+            "analytics_wl_filetype": analytics_wl_filetype,
+            "analytics_bl_filetype": analytics_bl_filetype,
+            "analytics_db": analytics_db,
+            "feature_set": feature_set,
+            "fortindr_error_action": fortindr_error_action,
+            "fortindr_timeout_action": fortindr_timeout_action,
+            "fortisandbox_mode": fortisandbox_mode,
+            "fortisandbox_max_upload": fortisandbox_max_upload,
+            "fortisandbox_error_action": fortisandbox_error_action,
+            "fortisandbox_timeout_action": fortisandbox_timeout_action,
+            "outbreak_prevention_mode": outbreak_prevention_mode,
+            "outbreak_prevention_archive_scan": outbreak_prevention_archive_scan,
+            "external_blocklist_enable_all": external_blocklist_enable_all,
+            "external_blocklist_archive_scan": external_blocklist_archive_scan,
+            "ems_threat_feed": ems_threat_feed,
         }
 
         # API field name mapping
         api_field_map = {
-            'comment': 'comment',
-            'replacemsg_group': 'replacemsg-group',
-            'scan_mode': 'scan-mode',
-            'mobile_malware_db': 'mobile-malware-db',
-            'analytics_max_upload': 'analytics-max-upload',
-            'analytics_ignore_filetype': 'analytics-ignore-filetype',
-            'analytics_accept_filetype': 'analytics-accept-filetype',
-            'analytics_wl_filetype': 'analytics-wl-filetype',
-            'analytics_bl_filetype': 'analytics-bl-filetype',
-            'analytics_db': 'analytics-db',
-            'feature_set': 'feature-set',
-            'fortindr_error_action': 'fortindr-error-action',
-            'fortindr_timeout_action': 'fortindr-timeout-action',
-            'fortisandbox_mode': 'fortisandbox-mode',
-            'fortisandbox_max_upload': 'fortisandbox-max-upload',
-            'fortisandbox_error_action': 'fortisandbox-error-action',
-            'fortisandbox_timeout_action': 'fortisandbox-timeout-action',
-            'outbreak_prevention_mode': 'outbreak-prevention-mode',
-            'outbreak_prevention_archive_scan': 'outbreak-prevention-archive-scan',
-            'external_blocklist_enable_all': 'external-blocklist-enable-all',
-            'external_blocklist_archive_scan': 'external-blocklist-archive-scan',
-            'ems_threat_feed': 'ems-threat-feed',
+            "comment": "comment",
+            "replacemsg_group": "replacemsg-group",
+            "scan_mode": "scan-mode",
+            "mobile_malware_db": "mobile-malware-db",
+            "analytics_max_upload": "analytics-max-upload",
+            "analytics_ignore_filetype": "analytics-ignore-filetype",
+            "analytics_accept_filetype": "analytics-accept-filetype",
+            "analytics_wl_filetype": "analytics-wl-filetype",
+            "analytics_bl_filetype": "analytics-bl-filetype",
+            "analytics_db": "analytics-db",
+            "feature_set": "feature-set",
+            "fortindr_error_action": "fortindr-error-action",
+            "fortindr_timeout_action": "fortindr-timeout-action",
+            "fortisandbox_mode": "fortisandbox-mode",
+            "fortisandbox_max_upload": "fortisandbox-max-upload",
+            "fortisandbox_error_action": "fortisandbox-error-action",
+            "fortisandbox_timeout_action": "fortisandbox-timeout-action",
+            "outbreak_prevention_mode": "outbreak-prevention-mode",
+            "outbreak_prevention_archive_scan": "outbreak-prevention-archive-scan",
+            "external_blocklist_enable_all": "external-blocklist-enable-all",
+            "external_blocklist_archive_scan": "external-blocklist-archive-scan",
+            "ems_threat_feed": "ems-threat-feed",
         }
 
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
         # Add any extra kwargs (protocol settings like http, ftp, etc.)
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.post('cmdb', 'antivirus/profile', data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "antivirus/profile", payload_dict, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         replacemsg_group: Optional[str] = None,
@@ -292,7 +298,8 @@ class Profile:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         PUT /antivirus/profile/{name}
@@ -357,80 +364,80 @@ class Profile:
             ... )
         """
         # Build data dict from provided parameters
-        data = {}
+        payload_dict = {}
 
         # Map data parameters
         data_param_map = {
-            'comment': comment,
-            'replacemsg_group': replacemsg_group,
-            'scan_mode': scan_mode,
-            'mobile_malware_db': mobile_malware_db,
-            'analytics_max_upload': analytics_max_upload,
-            'analytics_ignore_filetype': analytics_ignore_filetype,
-            'analytics_accept_filetype': analytics_accept_filetype,
-            'analytics_wl_filetype': analytics_wl_filetype,
-            'analytics_bl_filetype': analytics_bl_filetype,
-            'analytics_db': analytics_db,
-            'feature_set': feature_set,
-            'fortindr_error_action': fortindr_error_action,
-            'fortindr_timeout_action': fortindr_timeout_action,
-            'fortisandbox_mode': fortisandbox_mode,
-            'fortisandbox_max_upload': fortisandbox_max_upload,
-            'fortisandbox_error_action': fortisandbox_error_action,
-            'fortisandbox_timeout_action': fortisandbox_timeout_action,
-            'outbreak_prevention_mode': outbreak_prevention_mode,
-            'outbreak_prevention_archive_scan': outbreak_prevention_archive_scan,
-            'external_blocklist_enable_all': external_blocklist_enable_all,
-            'external_blocklist_archive_scan': external_blocklist_archive_scan,
-            'ems_threat_feed': ems_threat_feed,
+            "comment": comment,
+            "replacemsg_group": replacemsg_group,
+            "scan_mode": scan_mode,
+            "mobile_malware_db": mobile_malware_db,
+            "analytics_max_upload": analytics_max_upload,
+            "analytics_ignore_filetype": analytics_ignore_filetype,
+            "analytics_accept_filetype": analytics_accept_filetype,
+            "analytics_wl_filetype": analytics_wl_filetype,
+            "analytics_bl_filetype": analytics_bl_filetype,
+            "analytics_db": analytics_db,
+            "feature_set": feature_set,
+            "fortindr_error_action": fortindr_error_action,
+            "fortindr_timeout_action": fortindr_timeout_action,
+            "fortisandbox_mode": fortisandbox_mode,
+            "fortisandbox_max_upload": fortisandbox_max_upload,
+            "fortisandbox_error_action": fortisandbox_error_action,
+            "fortisandbox_timeout_action": fortisandbox_timeout_action,
+            "outbreak_prevention_mode": outbreak_prevention_mode,
+            "outbreak_prevention_archive_scan": outbreak_prevention_archive_scan,
+            "external_blocklist_enable_all": external_blocklist_enable_all,
+            "external_blocklist_archive_scan": external_blocklist_archive_scan,
+            "ems_threat_feed": ems_threat_feed,
         }
 
         # API field name mapping for data
         api_field_map = {
-            'comment': 'comment',
-            'replacemsg_group': 'replacemsg-group',
-            'scan_mode': 'scan-mode',
-            'mobile_malware_db': 'mobile-malware-db',
-            'analytics_max_upload': 'analytics-max-upload',
-            'analytics_ignore_filetype': 'analytics-ignore-filetype',
-            'analytics_accept_filetype': 'analytics-accept-filetype',
-            'analytics_wl_filetype': 'analytics-wl-filetype',
-            'analytics_bl_filetype': 'analytics-bl-filetype',
-            'analytics_db': 'analytics-db',
-            'feature_set': 'feature-set',
-            'fortindr_error_action': 'fortindr-error-action',
-            'fortindr_timeout_action': 'fortindr-timeout-action',
-            'fortisandbox_mode': 'fortisandbox-mode',
-            'fortisandbox_max_upload': 'fortisandbox-max-upload',
-            'fortisandbox_error_action': 'fortisandbox-error-action',
-            'fortisandbox_timeout_action': 'fortisandbox-timeout-action',
-            'outbreak_prevention_mode': 'outbreak-prevention-mode',
-            'outbreak_prevention_archive_scan': 'outbreak-prevention-archive-scan',
-            'external_blocklist_enable_all': 'external-blocklist-enable-all',
-            'external_blocklist_archive_scan': 'external-blocklist-archive-scan',
-            'ems_threat_feed': 'ems-threat-feed',
+            "comment": "comment",
+            "replacemsg_group": "replacemsg-group",
+            "scan_mode": "scan-mode",
+            "mobile_malware_db": "mobile-malware-db",
+            "analytics_max_upload": "analytics-max-upload",
+            "analytics_ignore_filetype": "analytics-ignore-filetype",
+            "analytics_accept_filetype": "analytics-accept-filetype",
+            "analytics_wl_filetype": "analytics-wl-filetype",
+            "analytics_bl_filetype": "analytics-bl-filetype",
+            "analytics_db": "analytics-db",
+            "feature_set": "feature-set",
+            "fortindr_error_action": "fortindr-error-action",
+            "fortindr_timeout_action": "fortindr-timeout-action",
+            "fortisandbox_mode": "fortisandbox-mode",
+            "fortisandbox_max_upload": "fortisandbox-max-upload",
+            "fortisandbox_error_action": "fortisandbox-error-action",
+            "fortisandbox_timeout_action": "fortisandbox-timeout-action",
+            "outbreak_prevention_mode": "outbreak-prevention-mode",
+            "outbreak_prevention_archive_scan": "outbreak-prevention-archive-scan",
+            "external_blocklist_enable_all": "external-blocklist-enable-all",
+            "external_blocklist_archive_scan": "external-blocklist-archive-scan",
+            "ems_threat_feed": "ems-threat-feed",
         }
 
         # Add non-None data parameters
         for param_name, value in data_param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
         # Add any extra data kwargs
         for key, value in kwargs.items():
-            if key not in ['action', 'before', 'after', 'scope']:
-                data[key] = value
+            if key not in ["action", "before", "after", "scope"]:
+                payload_dict[key] = value
 
         # Build query params dict
         params = {}
 
         # Map query parameters
         query_param_map = {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         # Add non-None query parameters
@@ -438,7 +445,14 @@ class Profile:
             if value is not None:
                 params[param_name] = value
 
-        return self._client.put('cmdb', f'antivirus/profile/{name}', data, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"antivirus/profile/{name}",
+            payload_dict,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
@@ -447,7 +461,8 @@ class Profile:
         # Action parameters
         mkey: Optional[str] = None,
         scope: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         DELETE /antivirus/profile/{name}
@@ -480,8 +495,8 @@ class Profile:
 
         # Map parameters
         param_map = {
-            'mkey': mkey,
-            'scope': scope,
+            "mkey": mkey,
+            "scope": scope,
         }
 
         # Add non-None parameters
@@ -492,4 +507,10 @@ class Profile:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.delete('cmdb', f'antivirus/profile/{name}', params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"antivirus/profile/{name}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

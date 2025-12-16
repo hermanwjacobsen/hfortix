@@ -22,10 +22,10 @@ if TYPE_CHECKING:
 class InternetServiceIpblVendor:
     """Firewall `internet-service-ipbl-vendor` table endpoint."""
 
-    name = 'internet-service-ipbl-vendor'
-    path = 'firewall/internet-service-ipbl-vendor'
+    name = "internet-service-ipbl-vendor"
+    path = "firewall/internet-service-ipbl-vendor"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     # -----------------------------
@@ -41,23 +41,26 @@ class InternetServiceIpblVendor:
         sort: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """List Internet Service IPBL Vendor objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'filter': filter,
-            'sort': sort,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "filter": filter,
+            "sort": sort,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     # -----------------------------
     # Member operations
@@ -71,21 +74,28 @@ class InternetServiceIpblVendor:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get an Internet Service IPBL Vendor entry by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', f'{self.path}/{id_str}', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            f"{self.path}/{id_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

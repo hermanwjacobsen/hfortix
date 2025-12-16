@@ -9,20 +9,20 @@ from typing import Any, Dict, List, Optional, Union
 class SslServer:
     """
     Wrapper for firewall ssl-server API endpoint.
-    
+
     Manages ssl-server configuration with full Swagger-spec parameter support.
     """
-    
+
     def __init__(self, http_client: Any):
         """
         Initialize the SslServer wrapper.
-        
+
         Args:
             http_client: The HTTP client for API communication
         """
         self._client = http_client
-        self.path = 'firewall/ssl-server'
-    
+        self.path = "firewall/ssl-server"
+
     def list(
         self,
         datasource: Optional[Any] = None,
@@ -44,11 +44,12 @@ class SslServer:
         primary_keys: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a list of all ssl-server entries.
-        
+
         Args:
             datasource: Enable to include datasource information for each linked object.
             start: Starting entry index.
@@ -70,58 +71,58 @@ class SslServer:
             action: default: Return the CLI default values for entire CLI tree.
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with results list
         """
         params = {}
-        
+
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to is not None:
-            params['skip_to'] = skip_to
+            params["skip_to"] = skip_to
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if with_contents_hash is not None:
-            params['with_contents_hash'] = with_contents_hash
+            params["with_contents_hash"] = with_contents_hash
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if key is not None:
-            params['key'] = key
+            params["key"] = key
         if pattern is not None:
-            params['pattern'] = pattern
+            params["pattern"] = pattern
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if exclude_default_values is not None:
-            params['exclude-default-values'] = exclude_default_values
+            params["exclude-default-values"] = exclude_default_values
         if datasource_format is not None:
-            params['datasource_format'] = datasource_format
+            params["datasource_format"] = datasource_format
         if unfiltered_count is not None:
-            params['unfiltered_count'] = unfiltered_count
+            params["unfiltered_count"] = unfiltered_count
         if stat_items is not None:
-            params['stat-items'] = stat_items
+            params["stat-items"] = stat_items
         if primary_keys is not None:
-            params['primary_keys'] = primary_keys
+            params["primary_keys"] = primary_keys
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', self.path, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get("cmdb", self.path, params=params, vdom=vdom, raw_json=raw_json)
 
     def get(
         self,
@@ -138,11 +139,12 @@ class SslServer:
         format: Optional[Any] = None,
         action: Optional[Any] = None,
         vdom: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Retrieve a specific ssl-server entry by its name.
-        
+
         Args:
             mkey: The name (primary key)
             attr: Attribute name that references other table
@@ -158,56 +160,58 @@ class SslServer:
             action: datasource: Return all applicable datasource entries for a specific at
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary with entry details
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if attr is not None:
-            params['attr'] = attr
+            params["attr"] = attr
         if count is not None:
-            params['count'] = count
+            params["count"] = count
         if skip_to_datasource is not None:
-            params['skip_to_datasource'] = skip_to_datasource
+            params["skip_to_datasource"] = skip_to_datasource
         if acs is not None:
-            params['acs'] = acs
+            params["acs"] = acs
         if search is not None:
-            params['search'] = search
+            params["search"] = search
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if datasource is not None:
-            params['datasource'] = datasource
+            params["datasource"] = datasource
         if with_meta is not None:
-            params['with_meta'] = with_meta
+            params["with_meta"] = with_meta
         if skip is not None:
-            params['skip'] = skip
+            params["skip"] = skip
         if format is not None:
-            params['format'] = format
+            params["format"] = format
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if vdom is not None:
-            params['vdom'] = vdom
-        
+            params["vdom"] = vdom
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.get('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.get(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         nkey: Optional[Any] = None,
@@ -226,17 +230,18 @@ class SslServer:
         ssl_mode: Optional[str] = None,
         ssl_send_empty_frags: Optional[str] = None,
         url_rewrite: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Create a new ssl-server entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={"key": "value"}, vdom="root")
+        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: create(key="value", vdom="root")
-        
+
         Args:
-            data: The configuration data (optional if using kwargs)
+            payload_dict: The configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
             nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
@@ -273,65 +278,67 @@ class SslServer:
                 Enable/disable sending empty fragments to avoid attack on CB...
             url-rewrite (string) (enum: ['enable', 'disable']):
                 Enable/disable rewriting the URL.
-            
+
         Returns:
             API response dictionary
         """
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if add_header_x_forwarded_proto is not None:
-            data['add-header-x-forwarded-proto'] = add_header_x_forwarded_proto
+            payload_dict["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
         if ip is not None:
-            data['ip'] = ip
+            payload_dict["ip"] = ip
         if mapped_port is not None:
-            data['mapped-port'] = mapped_port
+            payload_dict["mapped-port"] = mapped_port
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if port is not None:
-            data['port'] = port
+            payload_dict["port"] = port
         if ssl_algorithm is not None:
-            data['ssl-algorithm'] = ssl_algorithm
+            payload_dict["ssl-algorithm"] = ssl_algorithm
         if ssl_cert is not None:
-            data['ssl-cert'] = ssl_cert
+            payload_dict["ssl-cert"] = ssl_cert
         if ssl_client_renegotiation is not None:
-            data['ssl-client-renegotiation'] = ssl_client_renegotiation
+            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_dh_bits is not None:
-            data['ssl-dh-bits'] = ssl_dh_bits
+            payload_dict["ssl-dh-bits"] = ssl_dh_bits
         if ssl_max_version is not None:
-            data['ssl-max-version'] = ssl_max_version
+            payload_dict["ssl-max-version"] = ssl_max_version
         if ssl_min_version is not None:
-            data['ssl-min-version'] = ssl_min_version
+            payload_dict["ssl-min-version"] = ssl_min_version
         if ssl_mode is not None:
-            data['ssl-mode'] = ssl_mode
+            payload_dict["ssl-mode"] = ssl_mode
         if ssl_send_empty_frags is not None:
-            data['ssl-send-empty-frags'] = ssl_send_empty_frags
+            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
         if url_rewrite is not None:
-            data['url-rewrite'] = url_rewrite
-        
+            payload_dict["url-rewrite"] = url_rewrite
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if nkey is not None:
-            params['nkey'] = nkey
+            params["nkey"] = nkey
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.post(
+            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
         mkey: Union[str, int],
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
         action: Optional[Any] = None,
         before: Optional[Any] = None,
@@ -351,21 +358,22 @@ class SslServer:
         ssl_mode: Optional[str] = None,
         ssl_send_empty_frags: Optional[str] = None,
         url_rewrite: Optional[str] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Update an existing ssl-server entry.
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, data={"key": "value"}, vdom="root")
+        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
         2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-        
+
         Args:
             mkey: The name (primary key)
-            data: The updated configuration data (optional if using kwargs)
+            payload_dict: The updated configuration data (optional if using kwargs)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that 
+            before: If *action=move*, use *before* to specify the ID of the resource that
             after: If *action=move*, use *after* to specify the ID of the resource that t
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
@@ -400,109 +408,119 @@ class SslServer:
                 Enable/disable sending empty fragments to avoid attack on CB...
             url-rewrite (string) (enum: ['enable', 'disable']):
                 Enable/disable rewriting the URL.
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         # Build data from kwargs if not provided
-        if data is None:
-            data = {}
+        if payload_dict is None:
+            payload_dict = {}
         if add_header_x_forwarded_proto is not None:
-            data['add-header-x-forwarded-proto'] = add_header_x_forwarded_proto
+            payload_dict["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
         if ip is not None:
-            data['ip'] = ip
+            payload_dict["ip"] = ip
         if mapped_port is not None:
-            data['mapped-port'] = mapped_port
+            payload_dict["mapped-port"] = mapped_port
         if name is not None:
-            data['name'] = name
+            payload_dict["name"] = name
         if port is not None:
-            data['port'] = port
+            payload_dict["port"] = port
         if ssl_algorithm is not None:
-            data['ssl-algorithm'] = ssl_algorithm
+            payload_dict["ssl-algorithm"] = ssl_algorithm
         if ssl_cert is not None:
-            data['ssl-cert'] = ssl_cert
+            payload_dict["ssl-cert"] = ssl_cert
         if ssl_client_renegotiation is not None:
-            data['ssl-client-renegotiation'] = ssl_client_renegotiation
+            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_dh_bits is not None:
-            data['ssl-dh-bits'] = ssl_dh_bits
+            payload_dict["ssl-dh-bits"] = ssl_dh_bits
         if ssl_max_version is not None:
-            data['ssl-max-version'] = ssl_max_version
+            payload_dict["ssl-max-version"] = ssl_max_version
         if ssl_min_version is not None:
-            data['ssl-min-version'] = ssl_min_version
+            payload_dict["ssl-min-version"] = ssl_min_version
         if ssl_mode is not None:
-            data['ssl-mode'] = ssl_mode
+            payload_dict["ssl-mode"] = ssl_mode
         if ssl_send_empty_frags is not None:
-            data['ssl-send-empty-frags'] = ssl_send_empty_frags
+            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
         if url_rewrite is not None:
-            data['url-rewrite'] = url_rewrite
-        
+            payload_dict["url-rewrite"] = url_rewrite
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if action is not None:
-            params['action'] = action
+            params["action"] = action
         if before is not None:
-            params['before'] = before
+            params["before"] = before
         if after is not None:
-            params['after'] = after
+            params["after"] = after
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.put('cmdb', f'{self.path}/{mkey_str}', data=data, params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{mkey_str}",
+            data=payload_dict,
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         mkey: Union[str, int],
         vdom: Optional[Any] = None,
         scope: Optional[Any] = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> Dict[str, Any]:
         """
         Delete a ssl-server entry.
-        
+
         Args:
             mkey: The name (primary key)
             vdom: Specify the Virtual Domain(s) from which results are returned or chang
             scope: Specify the Scope from which results are returned or changes are appli
             **kwargs: Additional parameters
-            
+
         Returns:
             API response dictionary
         """
         # Validate mkey
         if mkey is None:
             raise ValueError("mkey cannot be None")
-        
+
         mkey_str = str(mkey)
         if not mkey_str:
             raise ValueError("mkey cannot be empty")
-        
+
         params = {}
-        
+
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         if scope is not None:
-            params['scope'] = scope
-        
+            params["scope"] = scope
+
         # Add any additional kwargs
         params.update(kwargs)
-        
+
         # Extract vdom if present
-        vdom = params.pop('vdom', None)
-        
-        return self._client.delete('cmdb', f'{self.path}/{mkey_str}', params=params, vdom=vdom)
+        vdom = params.pop("vdom", None)
+
+        return self._client.delete(
+            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+        )

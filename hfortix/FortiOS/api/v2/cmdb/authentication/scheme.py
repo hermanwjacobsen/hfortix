@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,11 +22,13 @@ if TYPE_CHECKING:
 class Scheme:
     """Authentication scheme endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     @staticmethod
-    def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
+    def _format_name_list(
+        items: Optional[list[Union[str, dict[str, Any]]]],
+    ) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
 
@@ -42,11 +44,11 @@ class Scheme:
         formatted = []
         for item in items:
             if isinstance(item, str):
-                formatted.append({'name': item})
+                formatted.append({"name": item})
             elif isinstance(item, dict):
                 formatted.append(item)
             else:
-                formatted.append({'name': str(item)})
+                formatted.append({"name": str(item)})
 
         return formatted
 
@@ -65,7 +67,8 @@ class Scheme:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get authentication scheme(s)
@@ -106,17 +109,17 @@ class Scheme:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -126,11 +129,13 @@ class Scheme:
         params.update(kwargs)
 
         # Build path
-        path = 'authentication/scheme'
+        path = "authentication/scheme"
         if name is not None:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
@@ -150,7 +155,7 @@ class Scheme:
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         method: Optional[str] = None,
         negotiate_ntlm: Optional[str] = None,
@@ -170,7 +175,8 @@ class Scheme:
         digest_algo: Optional[str] = None,
         digest_rfc2069: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create authentication scheme
@@ -236,45 +242,45 @@ class Scheme:
         user_database = self._format_name_list(user_database)
 
         param_map = {
-            'name': name,
-            'method': method,
-            'negotiate_ntlm': negotiate_ntlm,
-            'kerberos_keytab': kerberos_keytab,
-            'domain_controller': domain_controller,
-            'saml_server': saml_server,
-            'saml_timeout': saml_timeout,
-            'fsso_agent_for_ntlm': fsso_agent_for_ntlm,
-            'require_tfa': require_tfa,
-            'fsso_guest': fsso_guest,
-            'user_cert': user_cert,
-            'cert_http_header': cert_http_header,
-            'user_database': user_database,
-            'ssh_ca': ssh_ca,
-            'external_idp': external_idp,
-            'group_attr_type': group_attr_type,
-            'digest_algo': digest_algo,
-            'digest_rfc2069': digest_rfc2069
+            "name": name,
+            "method": method,
+            "negotiate_ntlm": negotiate_ntlm,
+            "kerberos_keytab": kerberos_keytab,
+            "domain_controller": domain_controller,
+            "saml_server": saml_server,
+            "saml_timeout": saml_timeout,
+            "fsso_agent_for_ntlm": fsso_agent_for_ntlm,
+            "require_tfa": require_tfa,
+            "fsso_guest": fsso_guest,
+            "user_cert": user_cert,
+            "cert_http_header": cert_http_header,
+            "user_database": user_database,
+            "ssh_ca": ssh_ca,
+            "external_idp": external_idp,
+            "group_attr_type": group_attr_type,
+            "digest_algo": digest_algo,
+            "digest_rfc2069": digest_rfc2069,
         }
 
         api_field_map = {
-            'name': 'name',
-            'method': 'method',
-            'negotiate_ntlm': 'negotiate-ntlm',
-            'kerberos_keytab': 'kerberos-keytab',
-            'domain_controller': 'domain-controller',
-            'saml_server': 'saml-server',
-            'saml_timeout': 'saml-timeout',
-            'fsso_agent_for_ntlm': 'fsso-agent-for-ntlm',
-            'require_tfa': 'require-tfa',
-            'fsso_guest': 'fsso-guest',
-            'user_cert': 'user-cert',
-            'cert_http_header': 'cert-http-header',
-            'user_database': 'user-database',
-            'ssh_ca': 'ssh-ca',
-            'external_idp': 'external-idp',
-            'group_attr_type': 'group-attr-type',
-            'digest_algo': 'digest-algo',
-            'digest_rfc2069': 'digest-rfc2069'
+            "name": "name",
+            "method": "method",
+            "negotiate_ntlm": "negotiate-ntlm",
+            "kerberos_keytab": "kerberos-keytab",
+            "domain_controller": "domain-controller",
+            "saml_server": "saml-server",
+            "saml_timeout": "saml-timeout",
+            "fsso_agent_for_ntlm": "fsso-agent-for-ntlm",
+            "require_tfa": "require-tfa",
+            "fsso_guest": "fsso-guest",
+            "user_cert": "user-cert",
+            "cert_http_header": "cert-http-header",
+            "user_database": "user-database",
+            "ssh_ca": "ssh-ca",
+            "external_idp": "external-idp",
+            "group_attr_type": "group-attr-type",
+            "digest_algo": "digest-algo",
+            "digest_rfc2069": "digest-rfc2069",
         }
 
         data = {}
@@ -285,11 +291,13 @@ class Scheme:
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'authentication/scheme', data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "authentication/scheme", data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         method: Optional[str] = None,
         negotiate_ntlm: Optional[str] = None,
@@ -309,7 +317,8 @@ class Scheme:
         digest_algo: Optional[str] = None,
         digest_rfc2069: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update authentication scheme
@@ -364,43 +373,43 @@ class Scheme:
         user_database = self._format_name_list(user_database)
 
         param_map = {
-            'method': method,
-            'negotiate_ntlm': negotiate_ntlm,
-            'kerberos_keytab': kerberos_keytab,
-            'domain_controller': domain_controller,
-            'saml_server': saml_server,
-            'saml_timeout': saml_timeout,
-            'fsso_agent_for_ntlm': fsso_agent_for_ntlm,
-            'require_tfa': require_tfa,
-            'fsso_guest': fsso_guest,
-            'user_cert': user_cert,
-            'cert_http_header': cert_http_header,
-            'user_database': user_database,
-            'ssh_ca': ssh_ca,
-            'external_idp': external_idp,
-            'group_attr_type': group_attr_type,
-            'digest_algo': digest_algo,
-            'digest_rfc2069': digest_rfc2069
+            "method": method,
+            "negotiate_ntlm": negotiate_ntlm,
+            "kerberos_keytab": kerberos_keytab,
+            "domain_controller": domain_controller,
+            "saml_server": saml_server,
+            "saml_timeout": saml_timeout,
+            "fsso_agent_for_ntlm": fsso_agent_for_ntlm,
+            "require_tfa": require_tfa,
+            "fsso_guest": fsso_guest,
+            "user_cert": user_cert,
+            "cert_http_header": cert_http_header,
+            "user_database": user_database,
+            "ssh_ca": ssh_ca,
+            "external_idp": external_idp,
+            "group_attr_type": group_attr_type,
+            "digest_algo": digest_algo,
+            "digest_rfc2069": digest_rfc2069,
         }
 
         api_field_map = {
-            'method': 'method',
-            'negotiate_ntlm': 'negotiate-ntlm',
-            'kerberos_keytab': 'kerberos-keytab',
-            'domain_controller': 'domain-controller',
-            'saml_server': 'saml-server',
-            'saml_timeout': 'saml-timeout',
-            'fsso_agent_for_ntlm': 'fsso-agent-for-ntlm',
-            'require_tfa': 'require-tfa',
-            'fsso_guest': 'fsso-guest',
-            'user_cert': 'user-cert',
-            'cert_http_header': 'cert-http-header',
-            'user_database': 'user-database',
-            'ssh_ca': 'ssh-ca',
-            'external_idp': 'external-idp',
-            'group_attr_type': 'group-attr-type',
-            'digest_algo': 'digest-algo',
-            'digest_rfc2069': 'digest-rfc2069'
+            "method": "method",
+            "negotiate_ntlm": "negotiate-ntlm",
+            "kerberos_keytab": "kerberos-keytab",
+            "domain_controller": "domain-controller",
+            "saml_server": "saml-server",
+            "saml_timeout": "saml-timeout",
+            "fsso_agent_for_ntlm": "fsso-agent-for-ntlm",
+            "require_tfa": "require-tfa",
+            "fsso_guest": "fsso-guest",
+            "user_cert": "user-cert",
+            "cert_http_header": "cert-http-header",
+            "user_database": "user-database",
+            "ssh_ca": "ssh-ca",
+            "external_idp": "external-idp",
+            "group_attr_type": "group-attr-type",
+            "digest_algo": "digest-algo",
+            "digest_rfc2069": "digest-rfc2069",
         }
 
         data = {}
@@ -411,12 +420,15 @@ class Scheme:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'authentication/scheme/{name}', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"authentication/scheme/{name}", data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         name: str,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete authentication scheme
@@ -432,4 +444,6 @@ class Scheme:
             >>> # Delete authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.delete('basic-http-auth')
         """
-        return self._client.delete('cmdb', f'authentication/scheme/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"authentication/scheme/{name}", vdom=vdom, raw_json=raw_json
+        )

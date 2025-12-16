@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 from .....exceptions import APIError, ResourceNotFoundError
 
@@ -24,7 +24,7 @@ if TYPE_CHECKING:
 class UserActivity:
     """CASB user activity endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize UserActivity endpoint
 
@@ -71,7 +71,8 @@ class UserActivity:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CASB user activity control(s)
@@ -97,22 +98,22 @@ class UserActivity:
             >>> result = fgt.cmdb.casb.user_activity.get()
         """
         # Build path
-        path = f'casb/user-activity/{name}' if name else 'casb/user-activity'
+        path = f"casb/user-activity/{name}" if name else "casb/user-activity"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -122,22 +123,25 @@ class UserActivity:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         application: Optional[str] = None,
         casb_name: Optional[str] = None,
-        status: str = 'enable',
+        status: str = "enable",
         category: Optional[str] = None,
         description: Optional[str] = None,
         match_strategy: Optional[str] = None,
         match: Optional[list[dict[str, Any]]] = None,
         control_options: Optional[list[dict[str, Any]]] = None,
         type: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Create new CASB user activity control
@@ -171,31 +175,26 @@ class UserActivity:
             ...     match_strategy='or'
             ... )
         """
-        data = {
-            'name': name,
-            'application': application,
-            'casb-name': casb_name,
-            'status': status
-        }
+        data = {"name": name, "application": application, "casb-name": casb_name, "status": status}
 
         if category is not None:
-            data['category'] = category
+            data["category"] = category
         if description is not None:
-            data['description'] = description
+            data["description"] = description
         if match_strategy is not None:
-            data['match-strategy'] = match_strategy
+            data["match-strategy"] = match_strategy
         if match is not None:
-            data['match'] = match
+            data["match"] = match
         if control_options is not None:
-            data['control-options'] = control_options
+            data["control-options"] = control_options
         if type is not None:
-            data['type'] = type
+            data["type"] = type
 
-        return self._client.post('cmdb', 'casb/user-activity', data, vdom=vdom)
+        return self._client.post("cmdb", "casb/user-activity", data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         status: Optional[str] = None,
         category: Optional[str] = None,
@@ -205,7 +204,8 @@ class UserActivity:
         control_options: Optional[list[dict[str, Any]]] = None,
         application: Optional[str] = None,
         casb_name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Update existing CASB user activity control
@@ -241,25 +241,32 @@ class UserActivity:
         data = {}
 
         if status is not None:
-            data['status'] = status
+            data["status"] = status
         if category is not None:
-            data['category'] = category
+            data["category"] = category
         if description is not None:
-            data['description'] = description
+            data["description"] = description
         if match_strategy is not None:
-            data['match-strategy'] = match_strategy
+            data["match-strategy"] = match_strategy
         if match is not None:
-            data['match'] = match
+            data["match"] = match
         if control_options is not None:
-            data['control-options'] = control_options
+            data["control-options"] = control_options
         if application is not None:
-            data['application'] = application
+            data["application"] = application
         if casb_name is not None:
-            data['casb-name'] = casb_name
+            data["casb-name"] = casb_name
 
-        return self._client.put('cmdb', f'casb/user-activity/{name}', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"casb/user-activity/{name}", data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete CASB user activity control
 
@@ -275,7 +282,9 @@ class UserActivity:
         Example:
             >>> result = fgt.cmdb.casb.user_activity.delete('my-app-upload')
         """
-        return self._client.delete('cmdb', f'casb/user-activity/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"casb/user-activity/{name}", vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

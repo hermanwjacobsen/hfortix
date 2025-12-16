@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class AttributeMatch:
     """CASB attribute match endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize AttributeMatch endpoint
 
@@ -67,7 +67,8 @@ class AttributeMatch:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CASB attribute match rule(s)
@@ -105,22 +106,22 @@ class AttributeMatch:
             >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule', with_meta=True)
         """
         # Build path
-        path = f'casb/attribute-match/{name}' if name else 'casb/attribute-match'
+        path = f"casb/attribute-match/{name}" if name else "casb/attribute-match"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -130,17 +131,20 @@ class AttributeMatch:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         application: Optional[str] = None,
         match_strategy: Optional[str] = None,
         match: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create CASB attribute match rule
@@ -190,50 +194,44 @@ class AttributeMatch:
             ... )
         """
         # Build data dictionary
-        data = {'name': name}
+        data = {"name": name}
 
         # Map parameters
-        param_map = {
-            'application': application,
-            'match_strategy': match_strategy,
-            'match': match
-        }
+        param_map = {"application": application, "match_strategy": match_strategy, "match": match}
 
-        api_field_map = {
-            'match_strategy': 'match-strategy'
-        }
+        api_field_map = {"match_strategy": "match-strategy"}
 
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map.get(param_name, param_name)
 
                 # Handle nested match rules
-                if param_name == 'match' and isinstance(value, list):
+                if param_name == "match" and isinstance(value, list):
                     # Convert snake_case to hyphen-case in nested structures
                     converted_match = []
                     for match_item in value:
                         converted_item = {}
-                        if 'id' in match_item:
-                            converted_item['id'] = match_item['id']
-                        if 'rule_strategy' in match_item:
-                            converted_item['rule-strategy'] = match_item['rule_strategy']
-                        if 'rule' in match_item and isinstance(match_item['rule'], list):
+                        if "id" in match_item:
+                            converted_item["id"] = match_item["id"]
+                        if "rule_strategy" in match_item:
+                            converted_item["rule-strategy"] = match_item["rule_strategy"]
+                        if "rule" in match_item and isinstance(match_item["rule"], list):
                             converted_rules = []
-                            for rule in match_item['rule']:
+                            for rule in match_item["rule"]:
                                 converted_rule = {}
                                 field_mapping = {
-                                    'id': 'id',
-                                    'attribute': 'attribute',
-                                    'match_pattern': 'match-pattern',
-                                    'match_value': 'match-value',
-                                    'case_sensitive': 'case-sensitive',
-                                    'negate': 'negate'
+                                    "id": "id",
+                                    "attribute": "attribute",
+                                    "match_pattern": "match-pattern",
+                                    "match_value": "match-value",
+                                    "case_sensitive": "case-sensitive",
+                                    "negate": "negate",
                                 }
                                 for py_key, api_key in field_mapping.items():
                                     if py_key in rule:
                                         converted_rule[api_key] = rule[py_key]
                                 converted_rules.append(converted_rule)
-                            converted_item['rule'] = converted_rules
+                            converted_item["rule"] = converted_rules
                         converted_match.append(converted_item)
                     data[api_name] = converted_match
                 else:
@@ -242,17 +240,18 @@ class AttributeMatch:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'casb/attribute-match', data, vdom=vdom)
+        return self._client.post("cmdb", "casb/attribute-match", data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         application: Optional[str] = None,
         match_strategy: Optional[str] = None,
         match: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update CASB attribute match rule
@@ -285,46 +284,40 @@ class AttributeMatch:
         data = {}
 
         # Map parameters
-        param_map = {
-            'application': application,
-            'match_strategy': match_strategy,
-            'match': match
-        }
+        param_map = {"application": application, "match_strategy": match_strategy, "match": match}
 
-        api_field_map = {
-            'match_strategy': 'match-strategy'
-        }
+        api_field_map = {"match_strategy": "match-strategy"}
 
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map.get(param_name, param_name)
 
                 # Handle nested match rules (same as create)
-                if param_name == 'match' and isinstance(value, list):
+                if param_name == "match" and isinstance(value, list):
                     converted_match = []
                     for match_item in value:
                         converted_item = {}
-                        if 'id' in match_item:
-                            converted_item['id'] = match_item['id']
-                        if 'rule_strategy' in match_item:
-                            converted_item['rule-strategy'] = match_item['rule_strategy']
-                        if 'rule' in match_item and isinstance(match_item['rule'], list):
+                        if "id" in match_item:
+                            converted_item["id"] = match_item["id"]
+                        if "rule_strategy" in match_item:
+                            converted_item["rule-strategy"] = match_item["rule_strategy"]
+                        if "rule" in match_item and isinstance(match_item["rule"], list):
                             converted_rules = []
-                            for rule in match_item['rule']:
+                            for rule in match_item["rule"]:
                                 converted_rule = {}
                                 field_mapping = {
-                                    'id': 'id',
-                                    'attribute': 'attribute',
-                                    'match_pattern': 'match-pattern',
-                                    'match_value': 'match-value',
-                                    'case_sensitive': 'case-sensitive',
-                                    'negate': 'negate'
+                                    "id": "id",
+                                    "attribute": "attribute",
+                                    "match_pattern": "match-pattern",
+                                    "match_value": "match-value",
+                                    "case_sensitive": "case-sensitive",
+                                    "negate": "negate",
                                 }
                                 for py_key, api_key in field_mapping.items():
                                     if py_key in rule:
                                         converted_rule[api_key] = rule[py_key]
                                 converted_rules.append(converted_rule)
-                            converted_item['rule'] = converted_rules
+                            converted_item["rule"] = converted_rules
                         converted_match.append(converted_item)
                     data[api_name] = converted_match
                 else:
@@ -333,9 +326,16 @@ class AttributeMatch:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'casb/attribute-match/{name}', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"casb/attribute-match/{name}", data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete CASB attribute match rule
 
@@ -351,4 +351,6 @@ class AttributeMatch:
             >>> result = fgt.cmdb.casb.attribute_match.delete('my-rule')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'casb/attribute-match/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"casb/attribute-match/{name}", vdom=vdom, raw_json=raw_json
+        )

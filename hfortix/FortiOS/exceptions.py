@@ -1,58 +1,37 @@
 """FortiOS exception exports.
 
-Historically this module existed as a compatibility wrapper. In the hfortix
-package layout, it simply re-exports the shared exception hierarchy and the
-FortiOS-specific helpers.
+This module exports all FortiOS exceptions and error handling utilities.
+All exception classes are defined in exceptions_forti.py.
 """
 
-from ..exceptions import (
-    HTTP_STATUS_CODES,
-    APIError,
-    AuthenticationError,
-    AuthorizationError,
-    BadRequestError,
-    FortinetError,
-    MethodNotAllowedError,
-    RateLimitError,
-    ResourceNotFoundError,
-    ServerError,
-    get_http_status_description,
-)
-
-from ..exceptions_forti import (
-    FORTIOS_ERROR_CODES,
-    DuplicateEntryError,
-    EntryInUseError,
-    InvalidValueError,
-    PermissionDeniedError,
-    get_error_description,
-    raise_for_status,
-)
+from .exceptions_forti import (  # Base exceptions; HTTP status exceptions; FortiOS-specific exceptions; Helper functions; Data
+    FORTIOS_ERROR_CODES, HTTP_STATUS_CODES, APIError, AuthenticationError,
+    AuthorizationError, BadRequestError, DuplicateEntryError, EntryInUseError,
+    FortinetError, InvalidValueError, MethodNotAllowedError,
+    PermissionDeniedError, RateLimitError, ResourceNotFoundError, ServerError,
+    get_error_description, get_http_status_description, raise_for_status)
 
 __all__ = [
     # Base exceptions
-    'FortinetError',
-    'AuthenticationError',
-    'AuthorizationError',
-    'APIError',
-
+    "FortinetError",
+    "AuthenticationError",
+    "AuthorizationError",
+    "APIError",
     # Specific exceptions
-    'ResourceNotFoundError',
-    'BadRequestError',
-    'MethodNotAllowedError',
-    'RateLimitError',
-    'ServerError',
-    'DuplicateEntryError',
-    'EntryInUseError',
-    'InvalidValueError',
-    'PermissionDeniedError',
-
+    "ResourceNotFoundError",
+    "BadRequestError",
+    "MethodNotAllowedError",
+    "RateLimitError",
+    "ServerError",
+    "DuplicateEntryError",
+    "EntryInUseError",
+    "InvalidValueError",
+    "PermissionDeniedError",
     # Helper functions
-    'get_error_description',
-    'get_http_status_description',
-    'raise_for_status',
-
+    "get_error_description",
+    "get_http_status_description",
+    "raise_for_status",
     # Data
-    'HTTP_STATUS_CODES',
-    'FORTIOS_ERROR_CODES',
+    "HTTP_STATUS_CODES",
+    "FORTIOS_ERROR_CODES",
 ]

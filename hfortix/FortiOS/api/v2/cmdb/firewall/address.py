@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Address:
     """Firewall IPv4 address endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Address endpoint
 
@@ -47,7 +47,7 @@ class Address:
             >>> result = fgt.cmdb.firewall.address.list()
             >>> for addr in result['results']:
             ...     print(f"{addr['name']}: {addr.get('subnet', 'N/A')}")
-            
+
             >>> # List with filters
             >>> result = fgt.cmdb.firewall.address.list(
             ...     filter='type==ipmask',
@@ -71,7 +71,8 @@ class Address:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get IPv4 address object(s).
@@ -98,42 +99,45 @@ class Address:
         Examples:
             >>> # List all addresses
             >>> result = fgt.cmdb.firewall.address.get()
-            
+
             >>> # Get specific address
             >>> result = fgt.cmdb.firewall.address.get('web-server')
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.firewall.address.get('web-server', with_meta=True)
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall/address'
+
+        path = "firewall/address"
         if name:
-            path = f'{path}/{name}'
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+            path = f"{path}/{name}"
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         type: Optional[str] = None,
         subnet: Optional[str] = None,
@@ -148,14 +152,15 @@ class Address:
         tags: Optional[list[dict[str, Any]]] = None,
         allow_routing: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create IPv4 address object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Address name (required)
@@ -185,7 +190,7 @@ class Address:
             ...     subnet='192.168.1.0/24',
             ...     comment='Internal network'
             ... )
-            
+
             >>> # Create IP range
             >>> result = fgt.cmdb.firewall.address.create(
             ...     name='dhcp-range',
@@ -193,7 +198,7 @@ class Address:
             ...     start_ip='192.168.1.100',
             ...     end_ip='192.168.1.200'
             ... )
-            
+
             >>> # Create FQDN
             >>> result = fgt.cmdb.firewall.address.create(
             ...     name='google-dns',
@@ -202,86 +207,87 @@ class Address:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if type is not None:
-                data['type'] = type
+                payload_dict["type"] = type
             if subnet is not None:
-                data['subnet'] = subnet
+                payload_dict["subnet"] = subnet
             if start_ip is not None:
-                data['start-ip'] = start_ip
+                payload_dict["start-ip"] = start_ip
             if end_ip is not None:
-                data['end-ip'] = end_ip
+                payload_dict["end-ip"] = end_ip
             if fqdn is not None:
-                data['fqdn'] = fqdn
+                payload_dict["fqdn"] = fqdn
             if country is not None:
-                data['country'] = country
+                payload_dict["country"] = country
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if associated_interface is not None:
-                data['associated-interface'] = associated_interface
+                payload_dict["associated-interface"] = associated_interface
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if tags is not None:
-                data['tags'] = tags
+                payload_dict["tags"] = tags
             if allow_routing is not None:
-                data['allow-routing'] = allow_routing
+                payload_dict["allow-routing"] = allow_routing
 
-        data = {'name': name, 'type': type}
-        
+        payload_dict = {"name": name, "type": type}
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'subnet': 'subnet',
-            'start_ip': 'start-ip',
-            'end_ip': 'end-ip',
-            'fqdn': 'fqdn',
-            'country': 'country',
-            'comment': 'comment',
-            'associated_interface': 'associated-interface',
-            'visibility': 'visibility',
-            'color': 'color',
-            'tags': 'tags',
-            'allow_routing': 'allow-routing',
+            "subnet": "subnet",
+            "start_ip": "start-ip",
+            "end_ip": "end-ip",
+            "fqdn": "fqdn",
+            "country": "country",
+            "comment": "comment",
+            "associated_interface": "associated-interface",
+            "visibility": "visibility",
+            "color": "color",
+            "tags": "tags",
+            "allow_routing": "allow-routing",
         }
-        
+
         param_map = {
-            'subnet': subnet,
-            'start_ip': start_ip,
-            'end_ip': end_ip,
-            'fqdn': fqdn,
-            'country': country,
-            'comment': comment,
-            'associated_interface': associated_interface,
-            'visibility': visibility,
-            'color': color,
-            'tags': tags,
-            'allow_routing': allow_routing,
+            "subnet": subnet,
+            "start_ip": start_ip,
+            "end_ip": end_ip,
+            "fqdn": fqdn,
+            "country": country,
+            "comment": comment,
+            "associated_interface": associated_interface,
+            "visibility": visibility,
+            "color": color,
+            "tags": tags,
+            "allow_routing": allow_routing,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall/address'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall/address"
+        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         subnet: Optional[str] = None,
         start_ip: Optional[str] = None,
         end_ip: Optional[str] = None,
@@ -294,14 +300,15 @@ class Address:
         tags: Optional[list[dict[str, Any]]] = None,
         allow_routing: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPv4 address object.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Address name (required)
@@ -331,80 +338,82 @@ class Address:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if subnet is not None:
-                data['subnet'] = subnet
+                payload_dict["subnet"] = subnet
             if start_ip is not None:
-                data['start-ip'] = start_ip
+                payload_dict["start-ip"] = start_ip
             if end_ip is not None:
-                data['end-ip'] = end_ip
+                payload_dict["end-ip"] = end_ip
             if fqdn is not None:
-                data['fqdn'] = fqdn
+                payload_dict["fqdn"] = fqdn
             if country is not None:
-                data['country'] = country
+                payload_dict["country"] = country
             if comment is not None:
-                data['comment'] = comment
+                payload_dict["comment"] = comment
             if associated_interface is not None:
-                data['associated-interface'] = associated_interface
+                payload_dict["associated-interface"] = associated_interface
             if visibility is not None:
-                data['visibility'] = visibility
+                payload_dict["visibility"] = visibility
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if tags is not None:
-                data['tags'] = tags
+                payload_dict["tags"] = tags
             if allow_routing is not None:
-                data['allow-routing'] = allow_routing
+                payload_dict["allow-routing"] = allow_routing
 
-        data = {}
-        
+        payload_dict = {}
+
         # Parameter mapping (convert snake_case to hyphenated-case)
         api_field_map = {
-            'subnet': 'subnet',
-            'start_ip': 'start-ip',
-            'end_ip': 'end-ip',
-            'fqdn': 'fqdn',
-            'country': 'country',
-            'comment': 'comment',
-            'associated_interface': 'associated-interface',
-            'visibility': 'visibility',
-            'color': 'color',
-            'tags': 'tags',
-            'allow_routing': 'allow-routing',
+            "subnet": "subnet",
+            "start_ip": "start-ip",
+            "end_ip": "end-ip",
+            "fqdn": "fqdn",
+            "country": "country",
+            "comment": "comment",
+            "associated_interface": "associated-interface",
+            "visibility": "visibility",
+            "color": "color",
+            "tags": "tags",
+            "allow_routing": "allow-routing",
         }
-        
+
         param_map = {
-            'subnet': subnet,
-            'start_ip': start_ip,
-            'end_ip': end_ip,
-            'fqdn': fqdn,
-            'country': country,
-            'comment': comment,
-            'associated_interface': associated_interface,
-            'visibility': visibility,
-            'color': color,
-            'tags': tags,
-            'allow_routing': allow_routing,
+            "subnet": subnet,
+            "start_ip": start_ip,
+            "end_ip": end_ip,
+            "fqdn": fqdn,
+            "country": country,
+            "comment": comment,
+            "associated_interface": associated_interface,
+            "visibility": visibility,
+            "color": color,
+            "tags": tags,
+            "allow_routing": allow_routing,
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map.get(python_key, python_key)
-                data[api_key] = value
-        
+                payload_dict[api_key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = f'firewall/address/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+        path = f"firewall/address/{name}"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
+    def delete(
+        self, name: str, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Delete IPv4 address object.
 
@@ -419,8 +428,8 @@ class Address:
             >>> # Delete address
             >>> result = fgt.cmdb.firewall.address.delete('test-address')
         """
-        path = f'firewall/address/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"firewall/address/{name}"
+        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class List:
     """Application control list endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -40,7 +40,8 @@ class List:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get application control list(s)
@@ -82,17 +83,17 @@ class List:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -102,11 +103,13 @@ class List:
         params.update(kwargs)
 
         # Build path
-        path = 'application/list'
+        path = "application/list"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(self, **kwargs: Any) -> dict[str, Any]:
         """
@@ -126,7 +129,7 @@ class List:
 
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         app_replacemsg: Optional[str] = None,
@@ -146,7 +149,8 @@ class List:
         unknown_application_log: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create application control list
@@ -205,61 +209,61 @@ class List:
             ...     ]
             ... )
         """
-        data = {}
+        payload_dict = {}
         param_map = {
-            'name': name,
-            'comment': comment,
-            'app_replacemsg': app_replacemsg,
-            'control_default_network_services': control_default_network_services,
-            'deep_app_inspection': deep_app_inspection,
-            'default_network_services': default_network_services,
-            'enforce_default_app_port': enforce_default_app_port,
-            'extended_log': extended_log,
-            'force_inclusion_ssl_di_sigs': force_inclusion_ssl_di_sigs,
-            'options': options,
-            'other_application_action': other_application_action,
-            'other_application_log': other_application_log,
-            'p2p_black_list': p2p_black_list,
-            'p2p_block_list': p2p_block_list,
-            'replacemsg_group': replacemsg_group,
-            'unknown_application_action': unknown_application_action,
-            'unknown_application_log': unknown_application_log,
-            'entries': entries
+            "name": name,
+            "comment": comment,
+            "app_replacemsg": app_replacemsg,
+            "control_default_network_services": control_default_network_services,
+            "deep_app_inspection": deep_app_inspection,
+            "default_network_services": default_network_services,
+            "enforce_default_app_port": enforce_default_app_port,
+            "extended_log": extended_log,
+            "force_inclusion_ssl_di_sigs": force_inclusion_ssl_di_sigs,
+            "options": options,
+            "other_application_action": other_application_action,
+            "other_application_log": other_application_log,
+            "p2p_black_list": p2p_black_list,
+            "p2p_block_list": p2p_block_list,
+            "replacemsg_group": replacemsg_group,
+            "unknown_application_action": unknown_application_action,
+            "unknown_application_log": unknown_application_log,
+            "entries": entries,
         }
 
         api_field_map = {
-            'name': 'name',
-            'comment': 'comment',
-            'app_replacemsg': 'app-replacemsg',
-            'control_default_network_services': 'control-default-network-services',
-            'deep_app_inspection': 'deep-app-inspection',
-            'default_network_services': 'default-network-services',
-            'enforce_default_app_port': 'enforce-default-app-port',
-            'extended_log': 'extended-log',
-            'force_inclusion_ssl_di_sigs': 'force-inclusion-ssl-di-sigs',
-            'options': 'options',
-            'other_application_action': 'other-application-action',
-            'other_application_log': 'other-application-log',
-            'p2p_black_list': 'p2p-black-list',
-            'p2p_block_list': 'p2p-block-list',
-            'replacemsg_group': 'replacemsg-group',
-            'unknown_application_action': 'unknown-application-action',
-            'unknown_application_log': 'unknown-application-log',
-            'entries': 'entries'
+            "name": "name",
+            "comment": "comment",
+            "app_replacemsg": "app-replacemsg",
+            "control_default_network_services": "control-default-network-services",
+            "deep_app_inspection": "deep-app-inspection",
+            "default_network_services": "default-network-services",
+            "enforce_default_app_port": "enforce-default-app-port",
+            "extended_log": "extended-log",
+            "force_inclusion_ssl_di_sigs": "force-inclusion-ssl-di-sigs",
+            "options": "options",
+            "other_application_action": "other-application-action",
+            "other_application_log": "other-application-log",
+            "p2p_black_list": "p2p-black-list",
+            "p2p_block_list": "p2p-block-list",
+            "replacemsg_group": "replacemsg-group",
+            "unknown_application_action": "unknown-application-action",
+            "unknown_application_log": "unknown-application-log",
+            "entries": "entries",
         }
 
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.post('cmdb', 'application/list', data, vdom=vdom)
+        return self._client.post("cmdb", "application/list", data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         app_replacemsg: Optional[str] = None,
@@ -279,7 +283,8 @@ class List:
         unknown_application_log: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update application control list
@@ -325,60 +330,63 @@ class List:
             ...     p2p_block_list=['skype', 'edonkey', 'bittorrent', 'ares']
             ... )
         """
-        data = {}
+        payload_dict = {}
         param_map = {
-            'comment': comment,
-            'app_replacemsg': app_replacemsg,
-            'control_default_network_services': control_default_network_services,
-            'deep_app_inspection': deep_app_inspection,
-            'default_network_services': default_network_services,
-            'enforce_default_app_port': enforce_default_app_port,
-            'extended_log': extended_log,
-            'force_inclusion_ssl_di_sigs': force_inclusion_ssl_di_sigs,
-            'options': options,
-            'other_application_action': other_application_action,
-            'other_application_log': other_application_log,
-            'p2p_black_list': p2p_black_list,
-            'p2p_block_list': p2p_block_list,
-            'replacemsg_group': replacemsg_group,
-            'unknown_application_action': unknown_application_action,
-            'unknown_application_log': unknown_application_log,
-            'entries': entries
+            "comment": comment,
+            "app_replacemsg": app_replacemsg,
+            "control_default_network_services": control_default_network_services,
+            "deep_app_inspection": deep_app_inspection,
+            "default_network_services": default_network_services,
+            "enforce_default_app_port": enforce_default_app_port,
+            "extended_log": extended_log,
+            "force_inclusion_ssl_di_sigs": force_inclusion_ssl_di_sigs,
+            "options": options,
+            "other_application_action": other_application_action,
+            "other_application_log": other_application_log,
+            "p2p_black_list": p2p_black_list,
+            "p2p_block_list": p2p_block_list,
+            "replacemsg_group": replacemsg_group,
+            "unknown_application_action": unknown_application_action,
+            "unknown_application_log": unknown_application_log,
+            "entries": entries,
         }
 
         api_field_map = {
-            'comment': 'comment',
-            'app_replacemsg': 'app-replacemsg',
-            'control_default_network_services': 'control-default-network-services',
-            'deep_app_inspection': 'deep-app-inspection',
-            'default_network_services': 'default-network-services',
-            'enforce_default_app_port': 'enforce-default-app-port',
-            'extended_log': 'extended-log',
-            'force_inclusion_ssl_di_sigs': 'force-inclusion-ssl-di-sigs',
-            'options': 'options',
-            'other_application_action': 'other-application-action',
-            'other_application_log': 'other-application-log',
-            'p2p_black_list': 'p2p-black-list',
-            'p2p_block_list': 'p2p-block-list',
-            'replacemsg_group': 'replacemsg-group',
-            'unknown_application_action': 'unknown-application-action',
-            'unknown_application_log': 'unknown-application-log',
-            'entries': 'entries'
+            "comment": "comment",
+            "app_replacemsg": "app-replacemsg",
+            "control_default_network_services": "control-default-network-services",
+            "deep_app_inspection": "deep-app-inspection",
+            "default_network_services": "default-network-services",
+            "enforce_default_app_port": "enforce-default-app-port",
+            "extended_log": "extended-log",
+            "force_inclusion_ssl_di_sigs": "force-inclusion-ssl-di-sigs",
+            "options": "options",
+            "other_application_action": "other-application-action",
+            "other_application_log": "other-application-log",
+            "p2p_black_list": "p2p-black-list",
+            "p2p_block_list": "p2p-block-list",
+            "replacemsg_group": "replacemsg-group",
+            "unknown_application_action": "unknown-application-action",
+            "unknown_application_log": "unknown-application-log",
+            "entries": "entries",
         }
 
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.put('cmdb', f'application/list/{name}', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"application/list/{name}", data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         name: str,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete application control list
@@ -394,4 +402,4 @@ class List:
             >>> # Delete application list
             >>> result = fgt.cmdb.application.list.delete('web-filter')
         """
-        return self._client.delete('cmdb', f'application/list/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"application/list/{name}", vdom=vdom, raw_json=raw_json)

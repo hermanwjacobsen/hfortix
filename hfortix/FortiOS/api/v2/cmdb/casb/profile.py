@@ -20,7 +20,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -29,7 +29,7 @@ if TYPE_CHECKING:
 class Profile:
     """CASB profile endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize CASB Profile endpoint
 
@@ -72,7 +72,8 @@ class Profile:
         search: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CASB profile(s)
@@ -115,17 +116,17 @@ class Profile:
         params = {}
 
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
-            'format': format,
-            'filter': filter,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
+            "format": format,
+            "filter": filter,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
@@ -135,20 +136,23 @@ class Profile:
         params.update(kwargs)
 
         # Build path
-        path = 'casb/profile'
+        path = "casb/profile"
         if name:
-            path = f'{path}/{name}'
+            path = f"{path}/{name}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         saas_application: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new CASB profile
@@ -191,10 +195,10 @@ class Profile:
             ...     }]
             ... )
         """
-        data = {'name': name}
+        data = {"name": name}
 
         if comment is not None:
-            data['comment'] = comment
+            data["comment"] = comment
 
         if saas_application is not None:
             # Convert Python naming to FortiOS API naming
@@ -203,28 +207,29 @@ class Profile:
                 converted_app = {}
                 for key, value in app.items():
                     # Convert snake_case to kebab-case
-                    api_key = key.replace('_', '-')
+                    api_key = key.replace("_", "-")
                     converted_app[api_key] = value
                 converted_apps.append(converted_app)
-            data['saas-application'] = converted_apps
+            data["saas-application"] = converted_apps
 
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
                 # Convert Python naming to API naming
-                api_key = key.replace('_', '-')
+                api_key = key.replace("_", "-")
                 data[api_key] = value
 
-        return self._client.post('cmdb', 'casb/profile', data=data, vdom=vdom)
+        return self._client.post("cmdb", "casb/profile", data=data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         saas_application: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing CASB profile
@@ -260,7 +265,7 @@ class Profile:
         data = {}
 
         if comment is not None:
-            data['comment'] = comment
+            data["comment"] = comment
 
         if saas_application is not None:
             # Convert Python naming to FortiOS API naming
@@ -269,21 +274,28 @@ class Profile:
                 converted_app = {}
                 for key, value in app.items():
                     # Convert snake_case to kebab-case
-                    api_key = key.replace('_', '-')
+                    api_key = key.replace("_", "-")
                     converted_app[api_key] = value
                 converted_apps.append(converted_app)
-            data['saas-application'] = converted_apps
+            data["saas-application"] = converted_apps
 
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
                 # Convert Python naming to API naming
-                api_key = key.replace('_', '-')
+                api_key = key.replace("_", "-")
                 data[api_key] = value
 
-        return self._client.put('cmdb', f'casb/profile/{name}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"casb/profile/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete a CASB profile
 
@@ -300,7 +312,7 @@ class Profile:
             >>> if result['status'] == 'success':
             ...     print("Profile deleted successfully")
         """
-        return self._client.delete('cmdb', f'casb/profile/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"casb/profile/{name}", vdom=vdom, raw_json=raw_json)
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
@@ -320,7 +332,7 @@ class Profile:
             ...     print("Profile not found")
         """
         try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get('status') == 'success' and 'results' in result
+            result = self.get(name=name, vdom=vdom, raw_json=True)
+            return result.get("status") == "success" and "results" in result
         except Exception:
             return False

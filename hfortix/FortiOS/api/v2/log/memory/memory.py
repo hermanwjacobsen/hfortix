@@ -19,13 +19,15 @@ class Memory:
     Provides methods to retrieve and manage logs stored in memory.
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """Initialize Memory log API with FortiOS client."""
         self._client = client
 
     # Archive Operations
 
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def virus_archive(
+        self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Return a description of the quarantined virus file.
 
@@ -43,12 +45,16 @@ class Memory:
             >>> # Get specific archive by checksum
             >>> archive = fgt.log.memory.virus_archive(mkey='abc123...')
         """
-        endpoint = 'memory/virus/archive'
+        endpoint = "memory/virus/archive"
         if mkey is not None:
-            endpoint += f'/{mkey}'
-        return self._client.get('log', endpoint, params=kwargs if kwargs else None)
+            endpoint += f"/{mkey}"
+        return self._client.get(
+            "log", endpoint, params=kwargs if kwargs else None, raw_json=raw_json
+        )
 
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive(
+        self, log_type: str, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Return a list of archived items for the desired type.
 
@@ -67,12 +73,16 @@ class Memory:
             >>> # Get specific app-ctrl archive
             >>> archive = fgt.log.memory.archive('app-ctrl', mkey='12345')
         """
-        endpoint = f'memory/{log_type}/archive'
+        endpoint = f"memory/{log_type}/archive"
         if mkey is not None:
-            endpoint += f'/{mkey}'
-        return self._client.get('log', endpoint, params=kwargs if kwargs else None)
+            endpoint += f"/{mkey}"
+        return self._client.get(
+            "log", endpoint, params=kwargs if kwargs else None, raw_json=raw_json
+        )
 
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive_download(
+        self, log_type: str, mkey: Optional[int] = None, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Download an archived file.
 
@@ -93,10 +103,10 @@ class Memory:
             >>> # Download IPS archive
             >>> file_data = fgt.log.memory.archive_download('ips', mkey='12345')
         """
-        endpoint = f'memory/{log_type}/archive-download'
+        endpoint = f"memory/{log_type}/archive-download"
         if mkey is not None:
-            endpoint += f'/{mkey}'
-        return self._client.get_binary('log', endpoint, params=kwargs if kwargs else None)
+            endpoint += f"/{mkey}"
+        return self._client.get_binary("log", endpoint, params=kwargs if kwargs else None)
 
     # Raw Log Retrieval
 
@@ -108,7 +118,8 @@ class Memory:
         serial_no: Optional[str] = None,
         start: Optional[int] = None,
         end: Optional[int] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve raw log data for the given log type.
@@ -143,15 +154,15 @@ class Memory:
             ...     end=end_time
             ... )
         """
-        endpoint = f'memory/{log_type}/raw'
+        endpoint = f"memory/{log_type}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'start': start,
-            'end': end,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "start": start,
+            "end": end,
         }
 
         for key, value in param_map.items():
@@ -159,7 +170,9 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic_raw(
         self,
@@ -169,7 +182,8 @@ class Memory:
         serial_no: Optional[str] = None,
         start: Optional[int] = None,
         end: Optional[int] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve raw traffic log data for the given subtype.
@@ -202,15 +216,15 @@ class Memory:
             ...     end=end_time
             ... )
         """
-        endpoint = f'memory/traffic/{subtype}/raw'
+        endpoint = f"memory/traffic/{subtype}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'start': start,
-            'end': end,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "start": start,
+            "end": end,
         }
 
         for key, value in param_map.items():
@@ -218,7 +232,9 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event_raw(
         self,
@@ -228,7 +244,8 @@ class Memory:
         serial_no: Optional[str] = None,
         start: Optional[int] = None,
         end: Optional[int] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve raw event log data for the given subtype.
@@ -263,15 +280,15 @@ class Memory:
             ...     end=end_time
             ... )
         """
-        endpoint = f'memory/event/{subtype}/raw'
+        endpoint = f"memory/event/{subtype}/raw"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'session_id': session_id,
-            'serial_no': serial_no,
-            'start': start,
-            'end': end,
+            "rows": rows,
+            "session_id": session_id,
+            "serial_no": serial_no,
+            "start": start,
+            "end": end,
         }
 
         for key, value in param_map.items():
@@ -279,7 +296,9 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     # Formatted Log Retrieval
 
@@ -290,8 +309,9 @@ class Memory:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve formatted log data for the given log type.
@@ -334,14 +354,14 @@ class Memory:
             ...     filter='app==Facebook'
             ... )
         """
-        endpoint = f'memory/{log_type}'
+        endpoint = f"memory/{log_type}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -349,7 +369,9 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic(
         self,
@@ -358,8 +380,9 @@ class Memory:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get formatted traffic logs from memory (JSON format).
@@ -399,14 +422,14 @@ class Memory:
             ...     end=end_time
             ... )
         """
-        endpoint = f'memory/traffic/{subtype}'
+        endpoint = f"memory/traffic/{subtype}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -414,7 +437,9 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event(
         self,
@@ -423,8 +448,9 @@ class Memory:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        vdom: str = 'root',
-        **kwargs: Any
+        vdom: str = "root",
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get formatted event logs from memory (JSON format).
@@ -466,14 +492,14 @@ class Memory:
             ...     end=end_time
             ... )
         """
-        endpoint = f'memory/event/{subtype}'
+        endpoint = f"memory/event/{subtype}"
 
         params = {}
         param_map = {
-            'rows': rows,
-            'start': start,
-            'end': end,
-            'filter': filter,
+            "rows": rows,
+            "start": start,
+            "end": end,
+            "filter": filter,
         }
 
         for key, value in param_map.items():
@@ -481,4 +507,6 @@ class Memory:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )

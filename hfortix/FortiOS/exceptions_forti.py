@@ -3,51 +3,166 @@ FortiOS-Specific Exceptions
 FortiOS error codes and product-specific exception handling
 """
 
-from .exceptions import (
-    APIError, 
-    ResourceNotFoundError, 
-    BadRequestError,
-    AuthenticationError,
-    AuthorizationError,
-    MethodNotAllowedError,
-    RateLimitError,
-    ServerError,
-)
+# ============================================================================
+# Base Exception Classes
+# ============================================================================
+
+
+class FortinetError(Exception):
+    """Base exception for all Fortinet API errors"""
+
+    pass
+
+
+class APIError(FortinetError):
+    """
+    Generic API error with optional metadata
+
+    Attributes:
+        message: Error message
+        http_status: HTTP status code (e.g., 400, 404, 500)
+        error_code: FortiOS internal error code (e.g., -5, -3)
+        response: Full API response dict
+    """
+
+    def __init__(self, message, http_status=None, error_code=None, response=None):
+        super().__init__(message)
+        self.http_status = http_status
+        self.error_code = error_code
+        self.response = response
+
+
+class BadRequestError(APIError):
+    """HTTP 400 - Bad Request"""
+
+    def __init__(self, message="Bad request", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 400
+        super().__init__(message, **kwargs)
+
+
+class AuthenticationError(FortinetError):
+    """HTTP 401 - Authentication failed (invalid credentials)"""
+
+    pass
+
+
+class AuthorizationError(FortinetError):
+    """HTTP 403 - Authorization failed (insufficient permissions)"""
+
+    pass
+
+
+class ResourceNotFoundError(APIError):
+    """HTTP 404 - Resource not found"""
+
+    def __init__(self, message="Resource not found", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 404
+        super().__init__(message, **kwargs)
+
+
+class MethodNotAllowedError(APIError):
+    """HTTP 405 - Method not allowed"""
+
+    def __init__(self, message="Method not allowed", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 405
+        super().__init__(message, **kwargs)
+
+
+class RateLimitError(APIError):
+    """HTTP 429 - Rate limit exceeded"""
+
+    def __init__(self, message="Rate limit exceeded", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 429
+        super().__init__(message, **kwargs)
+
+
+class ServerError(APIError):
+    """HTTP 500 - Internal server error"""
+
+    def __init__(self, message="Internal server error", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 500
+        super().__init__(message, **kwargs)
+
+
+# ============================================================================
+# HTTP Status Code Reference
+# ============================================================================
+
+HTTP_STATUS_CODES = {
+    200: "OK - Request successful",
+    201: "Created - Resource created successfully",
+    204: "No Content - Request successful, no content to return",
+    400: "Bad Request - Invalid request syntax or parameters",
+    401: "Unauthorized - Authentication required or failed",
+    403: "Forbidden - Insufficient permissions",
+    404: "Not Found - Resource does not exist",
+    405: "Method Not Allowed - HTTP method not supported for this endpoint",
+    409: "Conflict - Request conflicts with current state",
+    422: "Unprocessable Entity - Request syntax is correct but semantically invalid",
+    429: "Too Many Requests - Rate limit exceeded",
+    500: "Internal Server Error - Server encountered an error",
+    502: "Bad Gateway - Invalid response from upstream server",
+    503: "Service Unavailable - Server temporarily unavailable",
+    504: "Gateway Timeout - Upstream server timeout",
+}
+
+
+def get_http_status_description(status_code):
+    """
+    Get human-readable description for HTTP status code
+
+    Args:
+        status_code (int): HTTP status code
+
+    Returns:
+        str: Status description or "Unknown status code"
+    """
+    return HTTP_STATUS_CODES.get(status_code, f"Unknown status code: {status_code}")
 
 
 # ============================================================================
 # FortiOS-Specific Exceptions
 # ============================================================================
 
+
 class DuplicateEntryError(APIError):
     """Duplicate entry exists (error code -5, -15, -100, etc.)"""
+
     def __init__(self, message="A duplicate entry already exists", **kwargs):
-        if 'error_code' not in kwargs:
-            kwargs['error_code'] = -5
+        if "error_code" not in kwargs:
+            kwargs["error_code"] = -5
         super().__init__(message, **kwargs)
 
 
 class EntryInUseError(APIError):
     """Entry cannot be deleted because it's in use (error code -23, -94, -95, etc.)"""
+
     def __init__(self, message="Entry is in use and cannot be deleted", **kwargs):
-        if 'error_code' not in kwargs:
-            kwargs['error_code'] = -23
+        if "error_code" not in kwargs:
+            kwargs["error_code"] = -23
         super().__init__(message, **kwargs)
 
 
 class InvalidValueError(APIError):
     """Invalid value provided (error code -651, -1, -50, etc.)"""
+
     def __init__(self, message="Input value is invalid", **kwargs):
-        if 'error_code' not in kwargs:
-            kwargs['error_code'] = -651
+        if "error_code" not in kwargs:
+            kwargs["error_code"] = -651
         super().__init__(message, **kwargs)
 
 
 class PermissionDeniedError(APIError):
     """Permission denied, insufficient privileges (error code -14, -37)"""
+
     def __init__(self, message="Permission denied. Insufficient privileges.", **kwargs):
-        if 'error_code' not in kwargs:
-            kwargs['error_code'] = -14
+        if "error_code" not in kwargs:
+            kwargs["error_code"] = -14
         super().__init__(message, **kwargs)
 
 
@@ -158,7 +273,6 @@ FORTIOS_ERROR_CODES = {
     -98: "There is no such user group name",
     -99: "The radius cannot be deleted because it is in use by one of the groups",
     -100: "A duplicate user name already exists",
-    
     # User/Group/Auth Errors (-101 to -200)
     -101: "A duplicate remote server name already exists",
     -102: "The route gateway is used by policy route",
@@ -243,7 +357,6 @@ FORTIOS_ERROR_CODES = {
     -187: "End Point pattern exceeds the maximum length",
     -188: "Cannot have both HA and session-sync turned on",
     -190: "Too many interfaces to detect",
-    
     # Authentication Errors (-203 to -257)
     -203: "Invalid Username or Password",
     -204: "Invalid Username or Password",
@@ -281,7 +394,6 @@ FORTIOS_ERROR_CODES = {
     -254: "Invalid IPv6 prefix",
     -255: "Invalid IPv6 address",
     -257: "Invalid hostname",
-    
     # VIP/Certificate/Protocol Errors (-292 to -393)
     -292: "Reached maximum number of real servers for this VIP",
     -300: "Email banned word operation failed",
@@ -309,7 +421,6 @@ FORTIOS_ERROR_CODES = {
     -392: "Invalid GTP IMEI value",
     -393: "Carrier feature license invalid or not present",
     -400: "Invalid ping server IP",
-    
     # Interface/VDOM Errors (-506 to -565)
     -506: "Interface IP overlap",
     -508: "Please input a valid interface IP",
@@ -347,7 +458,6 @@ FORTIOS_ERROR_CODES = {
     -565: "A specific application must be selected for 'Not Installed' or 'Not Running' rules with a 'Deny' action",
     -580: "The vdom property limit has been reached",
     -581: "Must delete one replacemsg group otherwise it will exceed group limit after vdom enable",
-    
     # Web Filtering/Content Errors (-600 to -713)
     -600: "Invalid category or group",
     -602: "Invalid reporting time range",
@@ -384,7 +494,6 @@ FORTIOS_ERROR_CODES = {
     -711: "Unknown signature format",
     -712: "The user-defined rule name is invalid",
     -713: "Input value is invalid",
-    
     # VPN/Backup/System Errors (-800 to -1102)
     -800: "The SSL VPN session zone cannot be deleted because it is in use by one of the policies",
     -901: "Backup failed, please try again",
@@ -402,7 +511,6 @@ FORTIOS_ERROR_CODES = {
     -1100: "Invalid FortiClient Installer",
     -1101: "FortiGuard service is unavailable",
     -1102: "Downloading FortiClient installer from FortiGuard timed out",
-    
     # Password/SSL VPN Errors (-2001 to -2011)
     -2001: "Your password must be at least 1 character long",
     -2002: "Your password cannot contain the following characters: ~ ! # % ^ & *+`':()[]{}<>|/",
@@ -413,7 +521,6 @@ FORTIOS_ERROR_CODES = {
     -2008: "Destination address of split tunneling policy is invalid",
     -2009: "Please select at least one client check option when client check is enabled",
     -2011: "At least one IP pool must be specified for SSL VPN tunnel mode",
-    
     # File/FortiAnalyzer Errors (-3000 to -3248)
     -3000: "Internal error processing requested file",
     -3001: "Line in the uploaded file is too long",
@@ -457,7 +564,6 @@ FORTIOS_ERROR_CODES = {
     -3246: "Error retrieving diff from the management station",
     -3247: "Error requesting firmware image list",
     -3248: "Failed to delete script execution history record",
-    
     # Wireless/System Errors (-4001 to -10002)
     -4001: "Please remove virtual AP interfaces before switching out of AP mode",
     -10000: "Invalid action",
@@ -470,16 +576,17 @@ FORTIOS_ERROR_CODES = {
 # Helper Functions
 # ============================================================================
 
+
 def get_error_description(error_code):
     """
     Get human-readable description for FortiOS error code
-    
+
     Args:
         error_code (int): FortiOS error code
-    
+
     Returns:
         str: Error description or "Unknown error"
-    
+
     Examples:
         >>> get_error_description(-5)
         'A duplicate entry already exists'
@@ -492,40 +599,50 @@ def get_error_description(error_code):
 def raise_for_status(response):
     """
     Raise appropriate exception based on FortiOS API response
-    
+
     Args:
         response (dict): API response dictionary
-    
+
     Raises:
         APIError: If response indicates an error
-    
+
     Examples:
         >>> response = {'status': 'error', 'http_status': 404, 'error': -3}
         >>> raise_for_status(response)  # Raises ResourceNotFoundError
     """
     if not isinstance(response, dict):
         return
-    
-    status = response.get('status')
-    if status == 'success':
+
+    status = response.get("status")
+    if status == "success":
         return
-    
-    http_status = response.get('http_status')
-    error_code = response.get('error')
-    message = response.get('error_description', 'API request failed')
-    
+
+    http_status = response.get("http_status")
+    error_code = response.get("error")
+    message = response.get("error_description", "API request failed")
+
     # Priority 1: Check error codes first (more specific than HTTP status)
     if error_code == -5 or error_code == -15 or error_code == -100:
-        raise DuplicateEntryError(message, http_status=http_status, error_code=error_code, response=response)
+        raise DuplicateEntryError(
+            message, http_status=http_status, error_code=error_code, response=response
+        )
     elif error_code == -23 or error_code == -94 or error_code == -95 or error_code == -96:
-        raise EntryInUseError(message, http_status=http_status, error_code=error_code, response=response)
+        raise EntryInUseError(
+            message, http_status=http_status, error_code=error_code, response=response
+        )
     elif error_code == -14 or error_code == -37:
-        raise PermissionDeniedError(message, http_status=http_status, error_code=error_code, response=response)
+        raise PermissionDeniedError(
+            message, http_status=http_status, error_code=error_code, response=response
+        )
     elif error_code == -651 or error_code == -1 or error_code == -50:
-        raise InvalidValueError(message, http_status=http_status, error_code=error_code, response=response)
+        raise InvalidValueError(
+            message, http_status=http_status, error_code=error_code, response=response
+        )
     elif error_code == -3:
-        raise ResourceNotFoundError(message, http_status=http_status, error_code=error_code, response=response)
-    
+        raise ResourceNotFoundError(
+            message, http_status=http_status, error_code=error_code, response=response
+        )
+
     # Priority 2: Check HTTP status codes
     elif http_status == 404:
         raise ResourceNotFoundError(message, error_code=error_code, response=response)
@@ -541,7 +658,7 @@ def raise_for_status(response):
         raise RateLimitError(message, error_code=error_code, response=response)
     elif http_status == 500:
         raise ServerError(message, error_code=error_code, response=response)
-    
+
     # Default: Generic APIError
     else:
         raise APIError(message, http_status=http_status, error_code=error_code, response=response)
@@ -553,15 +670,13 @@ def raise_for_status(response):
 
 __all__ = [
     # FortiOS-specific exceptions
-    'DuplicateEntryError',
-    'EntryInUseError',
-    'InvalidValueError',
-    'PermissionDeniedError',
-    
+    "DuplicateEntryError",
+    "EntryInUseError",
+    "InvalidValueError",
+    "PermissionDeniedError",
     # Helper functions
-    'get_error_description',
-    'raise_for_status',
-    
+    "get_error_description",
+    "raise_for_status",
     # Data
-    'FORTIOS_ERROR_CODES',
+    "FORTIOS_ERROR_CODES",
 ]

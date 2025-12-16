@@ -11,65 +11,64 @@ Each product module can be used independently or as part of the complete package
 Examples:
     # Recommended: Import from main package
     from hfortix import FortiOS
-    
+
     # Also works: Import from submodule
     from hfortix.FortiOS import FortiOS
-    
+
     # Import base exceptions
     from hfortix import FortinetError, APIError
 """
 
 from __future__ import annotations
 
+import logging
+
+from .FortiOS import FortiOS, __author__, __version__
+from .FortiOS.exceptions import (HTTP_STATUS_CODES, APIError,
+                                 AuthenticationError, AuthorizationError,
+                                 BadRequestError, FortinetError,
+                                 MethodNotAllowedError, RateLimitError,
+                                 ResourceNotFoundError, ServerError,
+                                 get_http_status_description)
+
 # Canonical public API for the hfortix package.
 #
 # Backward compatibility shims are intentionally not provided here.
 
-from .FortiOS import __author__, __version__, FortiOS
-from .exceptions import (
-    APIError,
-    AuthenticationError,
-    AuthorizationError,
-    BadRequestError,
-    FortinetError,
-    HTTP_STATUS_CODES,
-    MethodNotAllowedError,
-    RateLimitError,
-    ResourceNotFoundError,
-    ServerError,
-    get_http_status_description,
-)
 
 # Export what's available
 __all__ = [
     # Version info
-    '__version__',
-    '__author__',
-    
+    "__version__",
+    "__author__",
     # Base exceptions (always available)
-    'FortinetError',
-    'AuthenticationError',
-    'AuthorizationError',
-    'APIError',
-    'ResourceNotFoundError',
-    'BadRequestError',
-    'MethodNotAllowedError',
-    'RateLimitError',
-    'ServerError',
-    'get_http_status_description',
-    'HTTP_STATUS_CODES',
+    "FortinetError",
+    "AuthenticationError",
+    "AuthorizationError",
+    "APIError",
+    "ResourceNotFoundError",
+    "BadRequestError",
+    "MethodNotAllowedError",
+    "RateLimitError",
+    "ServerError",
+    "get_http_status_description",
+    "HTTP_STATUS_CODES",
+    # Utility functions
+    "get_available_modules",
+    "get_version",
+    "set_log_level",
 ]
 
-__all__.append('FortiOS')
+__all__.append("FortiOS")
 
 
 def get_available_modules():
     """
     Get list of available Fortinet product modules.
-    
+
     Returns:
         dict: Dictionary with module names as keys and availability as values
-        
+
     Example:
     >>> from hfortix import get_available_modules
         >>> modules = get_available_modules()
@@ -77,22 +76,86 @@ def get_available_modules():
         {'FortiOS': True, 'FortiManager': False, 'FortiAnalyzer': False}
     """
     return {
-        'FortiOS': True,
-        'FortiManager': False,
-        'FortiAnalyzer': False,
+        "FortiOS": True,
+        "FortiManager": False,
+        "FortiAnalyzer": False,
     }
 
 
 def get_version():
     """
     Get the current version of the Fortinet SDK.
-    
+
     Returns:
         str: Version string
-        
+
     Example:
     >>> from hfortix import get_version
         >>> print(get_version())
         '0.1.0'
     """
     return __version__
+
+
+def set_log_level(level: str = "WARNING") -> None:
+    """
+    Set logging level for hfortix SDK globally
+
+    Controls the verbosity of logging output across all hfortix instances.
+    By default, logging is minimal (WARNING level).
+    Use this function to enable detailed logging for debugging or monitoring.
+
+    Args:
+        level: Log level as string. Options:
+            - 'DEBUG': Very verbose - all requests, parameters, responses, timing
+            - 'INFO': Normal - request summaries and timings
+            - 'WARNING': Quiet - only warnings and errors (default)
+            - 'ERROR': Silent - only errors
+            - 'OFF': Completely silent - no logging output
+
+    Examples:
+        >>> import hfortix
+        >>>
+        >>> # Enable detailed debugging
+        >>> hfortix.set_log_level('DEBUG')
+        >>> fgt = hfortix.FortiOS("192.168.1.99", token="...")
+        >>> fgt.api.cmdb.firewall.address.list()
+        # Shows: Request details, parameters, response, timing
+
+        >>> # Normal operation logging
+        >>> hfortix.set_log_level('INFO')
+        >>> fgt.api.cmdb.firewall.address.create(name='test', subnet='10.0.0.1/32')
+        # Shows: POST firewall/address → 200 (0.23s)
+
+        >>> # Completely silent
+        >>> hfortix.set_log_level('OFF')
+        >>> fgt.api.cmdb.firewall.address.list()
+        # No output
+
+    Note:
+        - This sets the global log level for all hfortix instances
+        - Can be called multiple times to change level dynamically
+        - Use debug='info' parameter in FortiOS() for per-instance control
+        - Sensitive data (passwords, tokens) is automatically sanitized
+
+    See Also:
+        FortiOS.__init__() - Use debug parameter for per-instance logging
+    """
+    level_map = {
+        "DEBUG": logging.DEBUG,
+        "INFO": logging.INFO,
+        "WARNING": logging.WARNING,
+        "ERROR": logging.ERROR,
+        "OFF": logging.CRITICAL + 10,  # Above CRITICAL = effectively disabled
+    }
+
+    log_level = level_map.get(level.upper(), logging.WARNING)
+    logger = logging.getLogger("hfortix")
+    logger.setLevel(log_level)
+
+    # Configure basic logging if not already configured
+    if not logging.getLogger().handlers:
+        logging.basicConfig(
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+            datefmt="%Y-%m-%d %H:%M:%S",
+        )

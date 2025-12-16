@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 class System:
     """System service endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize System service endpoint.
 
@@ -34,7 +34,8 @@ class System:
         severity: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve PSIRT vulnerability advisories for the Security Fabric.
@@ -71,25 +72,26 @@ class System:
             # Get vulnerabilities across Security Fabric
             result = fgt.service.system.psirt_vulnerabilities(scope='global')
         """
-        endpoint = 'system/psirt-vulnerabilities/'
+        endpoint = "system/psirt-vulnerabilities/"
         params = {}
 
         if severity is not None:
-            params['severity'] = severity
+            params["severity"] = severity
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
 
         params.update(kwargs)
 
-        return self._client.get('service', endpoint, params=params)
+        return self._client.get("service", endpoint, params=params, raw_json=raw_json)
 
     def fabric_time_in_sync(
         self,
         utc: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Check whether Security Fabric device times are synchronized.
@@ -126,19 +128,21 @@ class System:
             else:
                 print("Security Fabric times are NOT synchronized")
         """
-        endpoint = 'system/fabric-time-in-sync/'
+        endpoint = "system/fabric-time-in-sync/"
         params = {}
 
         if utc is not None:
-            params['utc'] = utc
+            params["utc"] = utc
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
 
         params.update(kwargs)
 
-        return self._client.get('service', endpoint, params=params)
+        return self._client.get("service", endpoint, params=params, raw_json=raw_json)
 
-    def fabric_admin_lockout_exists(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def fabric_admin_lockout_exists(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Check for admin lockout risks on firmware update.
 
@@ -168,12 +172,12 @@ class System:
             else:
                 print("✅ Safe to upgrade firmware - no admin lockout risk")
         """
-        endpoint = 'system/fabric-admin-lockout-exists-on-firmware-update/'
+        endpoint = "system/fabric-admin-lockout-exists-on-firmware-update/"
         params = {}
 
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
 
         params.update(kwargs)
 
-        return self._client.get('service', endpoint, params=params)
+        return self._client.get("service", endpoint, params=params, raw_json=raw_json)

@@ -5,4 +5,4 @@ Packet capture service endpoints
 
 from .sniffer import Sniffer
 
-__all__ = ['Sniffer']
+__all__ = ["Sniffer"]

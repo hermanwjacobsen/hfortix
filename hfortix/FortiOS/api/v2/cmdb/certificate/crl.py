@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class Crl:
     """Certificate CRL endpoint (read-only)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Crl endpoint
 
@@ -73,7 +73,8 @@ class Crl:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CRL certificate(s)
@@ -102,22 +103,22 @@ class Crl:
             >>> result = fgt.cmdb.certificate.crl.get('my-crl', with_meta=True)
         """
         # Build path
-        path = f'certificate/crl/{name}' if name else 'certificate/crl'
+        path = f"certificate/crl/{name}" if name else "certificate/crl"
 
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -127,7 +128,9 @@ class Crl:
         # Add any additional parameters
         params.update(kwargs)
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
@@ -150,12 +153,15 @@ class Crl:
         except (APIError, ResourceNotFoundError):
             return False
 
-    def get_factory_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_factory_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all factory (pre-installed) CRL certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with factory certificates
@@ -164,14 +170,17 @@ class Crl:
             >>> result = fgt.cmdb.certificate.crl.get_factory_certificates()
             >>> print(f"Factory CRLs: {len(result['results'])}")
         """
-        return self.get(filter='source==factory', vdom=vdom)
+        return self.get(filter="source==factory", vdom=vdom, raw_json=raw_json)
 
-    def get_user_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_user_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all user-uploaded CRL certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with user certificates
@@ -180,14 +189,17 @@ class Crl:
             >>> result = fgt.cmdb.certificate.crl.get_user_certificates()
             >>> print(f"User CRLs: {len(result['results'])}")
         """
-        return self.get(filter='source==user', vdom=vdom)
+        return self.get(filter="source==user", vdom=vdom, raw_json=raw_json)
 
-    def get_ldap_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_ldap_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all LDAP-sourced CRL certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with LDAP certificates
@@ -196,14 +208,17 @@ class Crl:
             >>> result = fgt.cmdb.certificate.crl.get_ldap_certificates()
             >>> print(f"LDAP CRLs: {len(result['results'])}")
         """
-        return self.get(filter='ldap-server!=', vdom=vdom)
+        return self.get(filter="ldap-server!=", vdom=vdom, raw_json=raw_json)
 
-    def get_http_certificates(self, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get_http_certificates(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False
+    ) -> dict[str, Any]:
         """
         Get all HTTP-sourced CRL certificates
 
         Args:
             vdom (str/bool, optional): Virtual domain, False to skip
+            raw_json (bool, optional): Return raw JSON response
 
         Returns:
             dict: API response with HTTP certificates
@@ -212,4 +227,4 @@ class Crl:
             >>> result = fgt.cmdb.certificate.crl.get_http_certificates()
             >>> print(f"HTTP CRLs: {len(result['results'])}")
         """
-        return self.get(filter='http-url!=', vdom=vdom)
+        return self.get(filter="http-url!=", vdom=vdom, raw_json=raw_json)

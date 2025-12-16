@@ -26,7 +26,7 @@ if TYPE_CHECKING:
 class Disk:
     """Disk log endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Disk log endpoint.
 
@@ -35,7 +35,9 @@ class Disk:
         """
         self._client = client
 
-    def virus_archive(self, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def virus_archive(
+        self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Get quarantined virus file metadata.
 
@@ -64,17 +66,21 @@ class Disk:
             # Get specific virus by checksum
             result = fgt.log.disk.virus_archive(mkey=12345)
         """
-        endpoint = 'disk/virus/archive'
+        endpoint = "disk/virus/archive"
         params = {}
 
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
-    def archive(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive(
+        self, log_type: str, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Get archived items (packet captures from IPS or Application Control).
 
@@ -104,17 +110,21 @@ class Disk:
             # Get specific app-ctrl archive
             result = fgt.log.disk.archive(log_type='app-ctrl', mkey=123)
         """
-        endpoint = f'disk/{log_type}/archive'
+        endpoint = f"disk/{log_type}/archive"
         params = {}
 
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
-    def archive_download(self, log_type: str, mkey: Optional[int] = None, **kwargs: Any) -> dict[str, Any]:
+    def archive_download(
+        self, log_type: str, mkey: Optional[int] = None, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Download an archived file (binary data).
 
@@ -137,16 +147,16 @@ class Disk:
             with open('capture.pcap', 'wb') as f:
                 f.write(pcap_data)
         """
-        endpoint = f'disk/{log_type}/archive-download'
+        endpoint = f"disk/{log_type}/archive-download"
         params = {}
 
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
 
         params.update(kwargs)
 
         # This returns binary data, similar to sniffer download
-        return self._client.get_binary('log', endpoint, params=params if params else None)
+        return self._client.get_binary("log", endpoint, params=params if params else None)
 
     def raw(
         self,
@@ -157,7 +167,8 @@ class Disk:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw log data for the specified log type.
@@ -201,25 +212,27 @@ class Disk:
                 keep_session_alive='true'
             )
         """
-        endpoint = f'disk/{log_type}/raw'
+        endpoint = f"disk/{log_type}/raw"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if session_id is not None:
-            params['session_id'] = session_id
+            params["session_id"] = session_id
         if serial_no is not None:
-            params['serial_no'] = serial_no
+            params["serial_no"] = serial_no
         if is_ha_member is not None:
-            params['is_ha_member'] = is_ha_member
+            params["is_ha_member"] = is_ha_member
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if keep_session_alive is not None:
-            params['keep_session_alive'] = keep_session_alive
+            params["keep_session_alive"] = keep_session_alive
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic_raw(
         self,
@@ -230,7 +243,8 @@ class Disk:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw traffic logs by subtype.
@@ -262,25 +276,27 @@ class Disk:
                 filter='srcip==192.0.2.100'
             )
         """
-        endpoint = f'disk/traffic/{subtype}/raw'
+        endpoint = f"disk/traffic/{subtype}/raw"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if session_id is not None:
-            params['session_id'] = session_id
+            params["session_id"] = session_id
         if serial_no is not None:
-            params['serial_no'] = serial_no
+            params["serial_no"] = serial_no
         if is_ha_member is not None:
-            params['is_ha_member'] = is_ha_member
+            params["is_ha_member"] = is_ha_member
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if keep_session_alive is not None:
-            params['keep_session_alive'] = keep_session_alive
+            params["keep_session_alive"] = keep_session_alive
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event_raw(
         self,
@@ -291,7 +307,8 @@ class Disk:
         is_ha_member: Optional[bool] = None,
         filter: Optional[str] = None,
         keep_session_alive: Optional[bool] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get raw event logs by subtype.
@@ -324,25 +341,27 @@ class Disk:
                 filter='action==login'
             )
         """
-        endpoint = f'disk/event/{subtype}/raw'
+        endpoint = f"disk/event/{subtype}/raw"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if session_id is not None:
-            params['session_id'] = session_id
+            params["session_id"] = session_id
         if serial_no is not None:
-            params['serial_no'] = serial_no
+            params["serial_no"] = serial_no
         if is_ha_member is not None:
-            params['is_ha_member'] = is_ha_member
+            params["is_ha_member"] = is_ha_member
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
         if keep_session_alive is not None:
-            params['keep_session_alive'] = keep_session_alive
+            params["keep_session_alive"] = keep_session_alive
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def get(
         self,
@@ -351,7 +370,8 @@ class Disk:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get log data for the specified type (formatted, not raw).
@@ -387,21 +407,23 @@ class Disk:
                 rows=50
             )
         """
-        endpoint = f'disk/{log_type}'
+        endpoint = f"disk/{log_type}"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if end is not None:
-            params['end'] = end
+            params["end"] = end
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def traffic(
         self,
@@ -410,7 +432,8 @@ class Disk:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get traffic logs by subtype (formatted, not raw).
@@ -443,21 +466,23 @@ class Disk:
                 end=end_time
             )
         """
-        endpoint = f'disk/traffic/{subtype}'
+        endpoint = f"disk/traffic/{subtype}"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if end is not None:
-            params['end'] = end
+            params["end"] = end
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )
 
     def event(
         self,
@@ -466,7 +491,8 @@ class Disk:
         start: Optional[int] = None,
         end: Optional[int] = None,
         filter: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get event logs by subtype (formatted, not raw).
@@ -501,18 +527,20 @@ class Disk:
                 filter='level==warning'
             )
         """
-        endpoint = f'disk/event/{subtype}'
+        endpoint = f"disk/event/{subtype}"
         params = {}
 
         if rows is not None:
-            params['rows'] = rows
+            params["rows"] = rows
         if start is not None:
-            params['start'] = start
+            params["start"] = start
         if end is not None:
-            params['end'] = end
+            params["end"] = end
         if filter is not None:
-            params['filter'] = filter
+            params["filter"] = filter
 
         params.update(kwargs)
 
-        return self._client.get('log', endpoint, params=params if params else None)
+        return self._client.get(
+            "log", endpoint, params=params if params else None, raw_json=raw_json
+        )

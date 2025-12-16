@@ -6,7 +6,7 @@ Supports configuration management (CMDB), monitoring, logging, and services.
 
 Main Classes:
     FortiOS: Main API client class
-    
+
 API Categories:
     - cmdb: Configuration Management Database
     - monitor: Real-time monitoring and status
@@ -27,26 +27,24 @@ __email__ = "herman@wjacobsen.fo"
 __url__ = "https://github.com/hermanwjacobsen/hfortix"
 
 # Version info tuple for programmatic access
-VERSION = tuple(map(int, __version__.split('.')))
+VERSION = tuple(map(int, __version__.split(".")))
 
+from .exceptions import APIError, AuthenticationError, FortinetError
 # Public API
 from .fortios import FortiOS
-from .exceptions import APIError, FortinetError, AuthenticationError
 
 __all__ = [
     # Main client
-    'FortiOS',
-    
+    "FortiOS",
     # Exceptions
-    'FortinetError',
-    'AuthenticationError', 
-    'APIError',
-    
+    "FortinetError",
+    "AuthenticationError",
+    "APIError",
     # Version info
-    '__version__',
-    '__author__',
-    '__license__',
-    '__email__',
-    '__url__',
-    'VERSION',
+    "__version__",
+    "__author__",
+    "__license__",
+    "__email__",
+    "__url__",
+    "VERSION",
 ]

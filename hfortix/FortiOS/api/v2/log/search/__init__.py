@@ -4,4 +4,4 @@ FortiOS Log Search API Module
 
 from .search import Search
 
-__all__ = ['Search']
+__all__ = ["Search"]

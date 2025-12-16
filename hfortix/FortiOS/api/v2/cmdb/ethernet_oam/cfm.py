@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class Cfm:
     """Connectivity Fault Management (CFM) domain endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Cfm endpoint.
 
@@ -47,7 +47,8 @@ class Cfm:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CFM domain(s).
@@ -86,17 +87,17 @@ class Cfm:
         """
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -105,11 +106,13 @@ class Cfm:
 
         params.update(kwargs)
 
-        path = 'ethernet-oam/cfm'
+        path = "ethernet-oam/cfm"
         if domain_id:
-            path = f'{path}/{domain_id}'
+            path = f"{path}/{domain_id}"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def list(
         self,
@@ -125,7 +128,7 @@ class Cfm:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get all CFM domains (convenience method).
@@ -153,19 +156,20 @@ class Cfm:
             format=format,
             action=action,
             vdom=vdom,
-            **kwargs
+            **kwargs,
         )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         domain_id: Optional[str] = None,
         # CFM domain configuration
         name: Optional[str] = None,
         level: Optional[int] = None,
         ma_group: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new CFM domain.
@@ -210,16 +214,16 @@ class Cfm:
             ...     ]
             ... )
         """
-        data = {'domain-id': domain_id}
-        
+        data = {"domain-id": domain_id}
+
         param_map = {
-            'name': name,
-            'level': level,
+            "name": name,
+            "level": level,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         if ma_group is not None:
             # Convert snake_case keys to hyphen-case in MA group dicts
@@ -227,17 +231,19 @@ class Cfm:
             for ma in ma_group:
                 converted_ma = {}
                 for k, v in ma.items():
-                    converted_ma[k.replace('_', '-')] = v
+                    converted_ma[k.replace("_", "-")] = v
                 converted_ma_group.append(converted_ma)
-            data['ma-group'] = converted_ma_group
+            data["ma-group"] = converted_ma_group
 
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'ethernet-oam/cfm', data=data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "ethernet-oam/cfm", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         domain_id: Optional[str] = None,
         # CFM domain configuration
         name: Optional[str] = None,
@@ -249,7 +255,8 @@ class Cfm:
         after: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update a CFM domain.
@@ -278,19 +285,19 @@ class Cfm:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'name': name,
-            'level': level,
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "name": name,
+            "level": level,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         if ma_group is not None:
             # Convert snake_case keys to hyphen-case in MA group dicts
@@ -298,19 +305,22 @@ class Cfm:
             for ma in ma_group:
                 converted_ma = {}
                 for k, v in ma.items():
-                    converted_ma[k.replace('_', '-')] = v
+                    converted_ma[k.replace("_", "-")] = v
                 converted_ma_group.append(converted_ma)
-            data['ma-group'] = converted_ma_group
+            data["ma-group"] = converted_ma_group
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'ethernet-oam/cfm/{domain_id}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"ethernet-oam/cfm/{domain_id}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
         domain_id: str,
         scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a CFM domain.
@@ -328,7 +338,12 @@ class Cfm:
         """
         params = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
 
-        return self._client.delete('cmdb', f'ethernet-oam/cfm/{domain_id}', 
-                                   params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"ethernet-oam/cfm/{domain_id}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

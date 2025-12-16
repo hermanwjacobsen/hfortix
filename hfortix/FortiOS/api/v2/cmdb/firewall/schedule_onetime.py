@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class ScheduleOnetime:
     """Firewall onetime schedule endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize ScheduleOnetime endpoint
 
@@ -40,7 +40,8 @@ class ScheduleOnetime:
         datasource: Optional[bool] = None,
         format: Optional[list] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         List all onetime schedules.
@@ -66,22 +67,24 @@ class ScheduleOnetime:
         """
         params = {}
         param_map = {
-            'filter': filter,
-            'start': start,
-            'count': count,
-            'with_meta': with_meta,
-            'datasource': datasource,
-            'format': format,
+            "filter": filter,
+            "start": start,
+            "count": count,
+            "with_meta": with_meta,
+            "datasource": datasource,
+            "format": format,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'firewall.schedule/onetime'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = "firewall.schedule/onetime"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def get(
         self,
@@ -90,7 +93,8 @@ class ScheduleOnetime:
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get a specific onetime schedule by name.
@@ -113,22 +117,25 @@ class ScheduleOnetime:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = f'firewall.schedule/onetime/{name}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = f"firewall.schedule/onetime/{name}"
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
     def create(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         start: Optional[str] = None,
         end: Optional[str] = None,
@@ -136,14 +143,15 @@ class ScheduleOnetime:
         expiration_days: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new onetime schedule.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: create(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: create(key='value', vdom='root')
         Args:
             name: Schedule name
@@ -165,7 +173,7 @@ class ScheduleOnetime:
             ...     start='22:00 2025/01/15',
             ...     end='06:00 2025/01/16'
             ... )
-            
+
             >>> # Create with auto-expiration
             >>> result = fgt.cmdb.firewall.schedule.onetime.create(
             ...     name='temporary-access',
@@ -175,66 +183,68 @@ class ScheduleOnetime:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if name is not None:
-                data['name'] = name
+                payload_dict["name"] = name
             if start is not None:
-                data['start'] = start
+                payload_dict["start"] = start
             if end is not None:
-                data['end'] = end
+                payload_dict["end"] = end
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if expiration_days is not None:
-                data['expiration-days'] = expiration_days
+                payload_dict["expiration-days"] = expiration_days
             if fabric_object is not None:
-                data['fabric-object'] = fabric_object
+                payload_dict["fabric-object"] = fabric_object
 
-        data = {
-            'name': name,
-            'start': start,
-            'end': end,
+        payload_dict = {
+            "name": name,
+            "start": start,
+            "end": end,
         }
-        
+
         param_map = {
-            'color': color,
-            'expiration-days': expiration_days,
-            'fabric-object': fabric_object,
+            "color": color,
+            "expiration-days": expiration_days,
+            "fabric-object": fabric_object,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
-                data[key] = value
-        
+                payload_dict[key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = 'firewall.schedule/onetime'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = "firewall.schedule/onetime"
+        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
         name: str,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         start: Optional[str] = None,
         end: Optional[str] = None,
         color: Optional[int] = None,
         expiration_days: Optional[int] = None,
         fabric_object: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing onetime schedule.
 
-        
+
         Supports two usage patterns:
-        1. Pass data dict: update(data={'key': 'value'}, vdom='root')
+        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
         2. Pass kwargs: update(key='value', vdom='root')
         Args:
             name: Schedule name
@@ -257,49 +267,50 @@ class ScheduleOnetime:
             ... )
         """
         # Pattern 1: data dict provided
-        if data is not None:
+        if payload_dict is not None:
             # Use provided data dict
             pass
         # Pattern 2: kwargs pattern - build data dict
         else:
-            data = {}
+            payload_dict = {}
             if start is not None:
-                data['start'] = start
+                payload_dict["start"] = start
             if end is not None:
-                data['end'] = end
+                payload_dict["end"] = end
             if color is not None:
-                data['color'] = color
+                payload_dict["color"] = color
             if expiration_days is not None:
-                data['expiration-days'] = expiration_days
+                payload_dict["expiration-days"] = expiration_days
             if fabric_object is not None:
-                data['fabric-object'] = fabric_object
+                payload_dict["fabric-object"] = fabric_object
 
-        data = {}
-        
+        payload_dict = {}
+
         param_map = {
-            'start': start,
-            'end': end,
-            'color': color,
-            'expiration-days': expiration_days,
-            'fabric-object': fabric_object,
+            "start": start,
+            "end": end,
+            "color": color,
+            "expiration-days": expiration_days,
+            "fabric-object": fabric_object,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
-                data[key] = value
-        
+                payload_dict[key] = value
+
         # Add any additional kwargs
         for key, value in kwargs.items():
             if value is not None:
-                data[key] = value
-        
-        path = f'firewall.schedule/onetime/{name}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+                payload_dict[key] = value
+
+        path = f"firewall.schedule/onetime/{name}"
+        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
         name: str,
-        vdom: Optional[Union[str, bool]] = None
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a onetime schedule.
@@ -315,14 +326,10 @@ class ScheduleOnetime:
             >>> # Delete schedule
             >>> result = fgt.cmdb.firewall.schedule.onetime.delete('old-maintenance')
         """
-        path = f'firewall.schedule/onetime/{name}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"firewall.schedule/onetime/{name}"
+        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if a onetime schedule exists.
 
@@ -338,7 +345,7 @@ class ScheduleOnetime:
             ...     print("Schedule exists")
         """
         try:
-            result = self.get(name, vdom=vdom)
-            return result.get('status') == 'success'
+            result = self.get(name, vdom=vdom, raw_json=True)
+            return result.get("status") == "success"
         except Exception:
             return False

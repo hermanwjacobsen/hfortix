@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class SecurityRating:
     """Security Rating service endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def report(
@@ -30,7 +30,8 @@ class SecurityRating:
         checks: Optional[str] = None,
         show_hidden: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve full report of all Security Rating tests
@@ -95,13 +96,13 @@ class SecurityRating:
             ...     vdom='root'
             ... )
         """
-        params = {'type': type}
+        params = {"type": type}
 
         param_map = {
-            'scope': scope,
-            'standalone': standalone,
-            'checks': checks,
-            'show-hidden': show_hidden
+            "scope": scope,
+            "standalone": standalone,
+            "checks": checks,
+            "show-hidden": show_hidden,
         }
 
         for key, value in param_map.items():
@@ -110,15 +111,17 @@ class SecurityRating:
 
         params.update(kwargs)
 
-        return self._client.get('service', 'security-rating/report/',
-                               params=params, vdom=vdom)
+        return self._client.get(
+            "service", "security-rating/report/", params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def recommendations(
         self,
         checks: str,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve recommendations for Security Rating tests
@@ -175,11 +178,9 @@ class SecurityRating:
             ...     scope='global'
             ... )
         """
-        params = {'checks': checks}
+        params = {"checks": checks}
 
-        param_map = {
-            'scope': scope
-        }
+        param_map = {"scope": scope}
 
         for key, value in param_map.items():
             if value is not None:
@@ -187,5 +188,10 @@ class SecurityRating:
 
         params.update(kwargs)
 
-        return self._client.get('service', 'security-rating/recommendations/',
-                               params=params, vdom=vdom)
+        return self._client.get(
+            "service",
+            "security-rating/recommendations/",
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

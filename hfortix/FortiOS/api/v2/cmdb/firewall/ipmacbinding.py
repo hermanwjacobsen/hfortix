@@ -17,7 +17,7 @@ class Ipmacbinding:
     Provides access to firewall IP-MAC binding endpoints
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Ipmacbinding helper
 

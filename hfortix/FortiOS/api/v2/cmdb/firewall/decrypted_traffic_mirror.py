@@ -13,7 +13,7 @@ Notes:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,10 +22,10 @@ if TYPE_CHECKING:
 class DecryptedTrafficMirror:
     """Firewall `decrypted-traffic-mirror` table endpoint."""
 
-    name = 'decrypted-traffic-mirror'
-    path = 'firewall/decrypted-traffic-mirror'
+    name = "decrypted-traffic-mirror"
+    path = "firewall/decrypted-traffic-mirror"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     # -----------------------------
@@ -41,24 +41,27 @@ class DecryptedTrafficMirror:
         sort: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """List decrypted traffic mirror objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'filter': filter,
-            'sort': sort,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "filter": filter,
+            "sort": sort,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
@@ -67,19 +70,27 @@ class DecryptedTrafficMirror:
         action: Optional[str] = None,
         nkey: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Create one or more decrypted traffic mirror objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'nkey': nkey,
-            'scope': scope,
+            "action": action,
+            "nkey": nkey,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.post('cmdb', self.path, data=data, params=params if params else None, vdom=vdom)
+        return self._client.post(
+            "cmdb",
+            self.path,
+            data=data,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     # -----------------------------
     # Member operations
@@ -93,24 +104,31 @@ class DecryptedTrafficMirror:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get a decrypted traffic mirror entry by name."""
-        name_str = self._client.validate_mkey(name, 'name')
+        name_str = self._client.validate_mkey(name, "name")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', f'{self.path}/{name_str}', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            f"{self.path}/{name_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
@@ -121,35 +139,50 @@ class DecryptedTrafficMirror:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update a decrypted traffic mirror entry by name."""
-        name_str = self._client.validate_mkey(name, 'name')
+        name_str = self._client.validate_mkey(name, "name")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.put('cmdb', f'{self.path}/{name_str}', data=data, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{name_str}",
+            data=data,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         name: Union[str, int],
         vdom: Optional[Union[str, bool]] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Delete a decrypted traffic mirror entry by name."""
-        name_str = self._client.validate_mkey(name, 'name')
+        name_str = self._client.validate_mkey(name, "name")
         params: dict[str, Any] = {}
         if scope is not None:
-            params['scope'] = scope
+            params["scope"] = scope
         params.update(kwargs)
-        return self._client.delete('cmdb', f'{self.path}/{name_str}', params=params if params else None, vdom=vdom)
+        return self._client.delete(
+            "cmdb",
+            f"{self.path}/{name_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

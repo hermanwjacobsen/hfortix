@@ -1,3 +1,3 @@
 from .fortianalyzer import FortiAnalyzer
 
-__all__ = ['FortiAnalyzer']
+__all__ = ["FortiAnalyzer"]

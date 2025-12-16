@@ -14,7 +14,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -23,10 +23,16 @@ if TYPE_CHECKING:
 class Sniffer:
     """Packet sniffer service endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def list(
+        self,
+        mkey: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List all packet captures
 
@@ -57,15 +63,26 @@ class Sniffer:
         """
         params = {}
         if mkey is not None:
-            params['mkey'] = mkey
+            params["mkey"] = mkey
 
         params.update(kwargs)
 
-        return self._client.get('service', 'sniffer/list/',
-                               params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "service",
+            "sniffer/list/",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
-    def start(self, data_dict: Optional[Dict[str, Any]] = None,
-        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def start(
+        self,
+        data_dict: Optional[Dict[str, Any]] = None,
+        mkey: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Start a new packet capture
 
@@ -88,7 +105,7 @@ class Sniffer:
         Examples:
             >>> # Dictionary pattern
             >>> result = fgt.service.sniffer.start(data_dict={'mkey': 'my-capture'})
-            
+
             >>> # Keyword pattern
             >>> result = fgt.service.sniffer.start(mkey='my-capture')
 
@@ -100,17 +117,23 @@ class Sniffer:
         else:
             data: Dict[str, Any] = {}
             if mkey is not None:
-                data['mkey'] = mkey
-        
+                data["mkey"] = mkey
+
         data.update(kwargs)
-        
-        if 'mkey' not in data:
+
+        if "mkey" not in data:
             raise ValueError("mkey is required")
 
-        return self._client.post('service', 'sniffer/start/', data, vdom=vdom)
+        return self._client.post("service", "sniffer/start/", data, vdom=vdom, raw_json=raw_json)
 
-    def stop(self, data_dict: Optional[Dict[str, Any]] = None,
-        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def stop(
+        self,
+        data_dict: Optional[Dict[str, Any]] = None,
+        mkey: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Stop a running packet capture
 
@@ -128,7 +151,7 @@ class Sniffer:
         Examples:
             >>> # Dictionary pattern
             >>> result = fgt.service.sniffer.stop(data_dict={'mkey': 'my-capture'})
-            
+
             >>> # Keyword pattern
             >>> result = fgt.service.sniffer.stop(mkey='my-capture')
 
@@ -140,14 +163,14 @@ class Sniffer:
         else:
             data: Dict[str, Any] = {}
             if mkey is not None:
-                data['mkey'] = mkey
-        
+                data["mkey"] = mkey
+
         data.update(kwargs)
-        
-        if 'mkey' not in data:
+
+        if "mkey" not in data:
             raise ValueError("mkey is required")
 
-        return self._client.post('service', 'sniffer/stop/', data, vdom=vdom)
+        return self._client.post("service", "sniffer/stop/", data, vdom=vdom, raw_json=raw_json)
 
     def download(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> bytes:
         """
@@ -179,20 +202,17 @@ class Sniffer:
 
         # Add vdom parameter if specified
         if vdom is not None:
-            params['vdom'] = vdom
+            params["vdom"] = vdom
         elif self._client.vdom is not None:
-            params['vdom'] = self._client.vdom
+            params["vdom"] = self._client.vdom
 
         # Prepare request data
-        data = {'mkey': mkey}
+        data = {"mkey": mkey}
         data.update(kwargs)
 
         # Make request - download returns binary PCAP data, not JSON
         res = self._client.session.request(
-            method='POST',
-            url=url,
-            json=data,
-            params=params if params else None
+            method="POST", url=url, json=data, params=params if params else None
         )
 
         # Check for errors
@@ -200,6 +220,7 @@ class Sniffer:
             try:
                 error_detail = res.json()
                 from .....exceptions import APIError
+
                 raise APIError(f"HTTP {res.status_code}: {error_detail}")
             except ValueError:
                 res.raise_for_status()
@@ -207,8 +228,14 @@ class Sniffer:
         # Return raw binary content (PCAP file)
         return res.content
 
-    def delete(self, data_dict: Optional[Dict[str, Any]] = None,
-        mkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def delete(
+        self,
+        data_dict: Optional[Dict[str, Any]] = None,
+        raw_json: bool = False,
+        mkey: Optional[str] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Delete a packet capture
 
@@ -226,7 +253,7 @@ class Sniffer:
         Examples:
             >>> # Dictionary pattern
             >>> result = fgt.service.sniffer.delete(data_dict={'mkey': 'my-capture'})
-            
+
             >>> # Keyword pattern
             >>> result = fgt.service.sniffer.delete(mkey='my-capture')
 
@@ -238,16 +265,18 @@ class Sniffer:
         else:
             data: Dict[str, Any] = {}
             if mkey is not None:
-                data['mkey'] = mkey
-        
+                data["mkey"] = mkey
+
         data.update(kwargs)
-        
-        if 'mkey' not in data:
+
+        if "mkey" not in data:
             raise ValueError("mkey is required")
 
-        return self._client.post('service', 'sniffer/delete/', data, vdom=vdom)
+        return self._client.post("service", "sniffer/delete/", data, vdom=vdom, raw_json=raw_json)
 
-    def meta(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def meta(
+        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False, **kwargs: Any
+    ) -> dict[str, Any]:
         """
         Get system limitations and meta information
 
@@ -277,5 +306,10 @@ class Sniffer:
         params = {}
         params.update(kwargs)
 
-        return self._client.get('service', 'sniffer/meta/',
-                               params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "service",
+            "sniffer/meta/",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )

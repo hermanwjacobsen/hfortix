@@ -13,7 +13,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -22,7 +22,7 @@ if TYPE_CHECKING:
 class SaasApplication:
     """CASB SaaS application endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize CASB SaaS Application endpoint
 
@@ -65,7 +65,8 @@ class SaasApplication:
         search: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get CASB SaaS application(s)
@@ -108,17 +109,17 @@ class SaasApplication:
         params = {}
 
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
-            'format': format,
-            'filter': filter,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
+            "format": format,
+            "filter": filter,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
@@ -129,13 +130,15 @@ class SaasApplication:
         params.update(kwargs)
 
         # Build path
-        path = f'casb/saas-application/{name}' if name else 'casb/saas-application'
+        path = f"casb/saas-application/{name}" if name else "casb/saas-application"
 
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         type: Optional[str] = None,
         casb_name: Optional[str] = None,
@@ -149,7 +152,8 @@ class SaasApplication:
         tenant_control: Optional[str] = None,
         tenant_control_tenants: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create CASB SaaS application
@@ -190,35 +194,35 @@ class SaasApplication:
             ... )
         """
         # Build data dictionary
-        data = {'name': name}
+        data = {"name": name}
 
         # Map parameters (Python snake_case to API hyphenated-case)
         param_map = {
-            'type': type,
-            'casb_name': casb_name,
-            'status': status,
-            'domain_control': domain_control,
-            'domain_control_domains': domain_control_domains,
-            'log': log,
-            'access_rule': access_rule,
-            'safe_search': safe_search,
-            'safe_search_control': safe_search_control,
-            'tenant_control': tenant_control,
-            'tenant_control_tenants': tenant_control_tenants
+            "type": type,
+            "casb_name": casb_name,
+            "status": status,
+            "domain_control": domain_control,
+            "domain_control_domains": domain_control_domains,
+            "log": log,
+            "access_rule": access_rule,
+            "safe_search": safe_search,
+            "safe_search_control": safe_search_control,
+            "tenant_control": tenant_control,
+            "tenant_control_tenants": tenant_control_tenants,
         }
 
         api_field_map = {
-            'type': 'type',
-            'casb_name': 'casb-name',
-            'status': 'status',
-            'domain_control': 'domain-control',
-            'domain_control_domains': 'domain-control-domains',
-            'log': 'log',
-            'access_rule': 'access-rule',
-            'safe_search': 'safe-search',
-            'safe_search_control': 'safe-search-control',
-            'tenant_control': 'tenant-control',
-            'tenant_control_tenants': 'tenant-control-tenants'
+            "type": "type",
+            "casb_name": "casb-name",
+            "status": "status",
+            "domain_control": "domain-control",
+            "domain_control_domains": "domain-control-domains",
+            "log": "log",
+            "access_rule": "access-rule",
+            "safe_search": "safe-search",
+            "safe_search_control": "safe-search-control",
+            "tenant_control": "tenant-control",
+            "tenant_control_tenants": "tenant-control-tenants",
         }
 
         for param_name, value in param_map.items():
@@ -229,11 +233,13 @@ class SaasApplication:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.post('cmdb', 'casb/saas-application', data, vdom=vdom)
+        return self._client.post(
+            "cmdb", "casb/saas-application", data, vdom=vdom, raw_json=raw_json
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         type: Optional[str] = None,
         casb_name: Optional[str] = None,
@@ -247,7 +253,8 @@ class SaasApplication:
         tenant_control: Optional[str] = None,
         tenant_control_tenants: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update CASB SaaS application
@@ -290,31 +297,31 @@ class SaasApplication:
 
         # Map parameters (Python snake_case to API hyphenated-case)
         param_map = {
-            'type': type,
-            'casb_name': casb_name,
-            'status': status,
-            'domain_control': domain_control,
-            'domain_control_domains': domain_control_domains,
-            'log': log,
-            'access_rule': access_rule,
-            'safe_search': safe_search,
-            'safe_search_control': safe_search_control,
-            'tenant_control': tenant_control,
-            'tenant_control_tenants': tenant_control_tenants
+            "type": type,
+            "casb_name": casb_name,
+            "status": status,
+            "domain_control": domain_control,
+            "domain_control_domains": domain_control_domains,
+            "log": log,
+            "access_rule": access_rule,
+            "safe_search": safe_search,
+            "safe_search_control": safe_search_control,
+            "tenant_control": tenant_control,
+            "tenant_control_tenants": tenant_control_tenants,
         }
 
         api_field_map = {
-            'type': 'type',
-            'casb_name': 'casb-name',
-            'status': 'status',
-            'domain_control': 'domain-control',
-            'domain_control_domains': 'domain-control-domains',
-            'log': 'log',
-            'access_rule': 'access-rule',
-            'safe_search': 'safe-search',
-            'safe_search_control': 'safe-search-control',
-            'tenant_control': 'tenant-control',
-            'tenant_control_tenants': 'tenant-control-tenants'
+            "type": "type",
+            "casb_name": "casb-name",
+            "status": "status",
+            "domain_control": "domain-control",
+            "domain_control_domains": "domain-control-domains",
+            "log": "log",
+            "access_rule": "access-rule",
+            "safe_search": "safe-search",
+            "safe_search_control": "safe-search-control",
+            "tenant_control": "tenant-control",
+            "tenant_control_tenants": "tenant-control-tenants",
         }
 
         for param_name, value in param_map.items():
@@ -325,9 +332,16 @@ class SaasApplication:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.put('cmdb', f'casb/saas-application/{name}', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"casb/saas-application/{name}", data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete CASB SaaS application
 
@@ -343,4 +357,6 @@ class SaasApplication:
             >>> result = fgt.cmdb.casb.saas_application.delete('my-custom-app')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'casb/saas-application/{name}', vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"casb/saas-application/{name}", vdom=vdom, raw_json=raw_json
+        )

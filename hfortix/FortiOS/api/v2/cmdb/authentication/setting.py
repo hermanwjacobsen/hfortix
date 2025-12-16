@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -19,11 +19,13 @@ if TYPE_CHECKING:
 class Setting:
     """Authentication setting endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     @staticmethod
-    def _format_name_list(items: Optional[list[Union[str, dict[str, Any]]]]) -> Optional[list[dict[str, Any]]]:
+    def _format_name_list(
+        items: Optional[list[Union[str, dict[str, Any]]]],
+    ) -> Optional[list[dict[str, Any]]]:
         """
         Convert simple list of strings to FortiOS format [{'name': 'item'}]
 
@@ -39,11 +41,11 @@ class Setting:
         formatted = []
         for item in items:
             if isinstance(item, str):
-                formatted.append({'name': item})
+                formatted.append({"name": item})
             elif isinstance(item, dict):
                 formatted.append(item)
             else:
-                formatted.append({'name': str(item)})
+                formatted.append({"name": str(item)})
 
         return formatted
 
@@ -54,7 +56,8 @@ class Setting:
         skip: Optional[bool] = False,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get authentication settings
@@ -81,10 +84,10 @@ class Setting:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -93,12 +96,17 @@ class Setting:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'authentication/setting',
-                               params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            "authentication/setting",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         active_auth_scheme: Optional[str] = None,
         sso_auth_scheme: Optional[str] = None,
         update_time: Optional[str] = None,
@@ -121,7 +129,8 @@ class Setting:
         user_cert_ca: Optional[list[Union[str, dict[str, Any]]]] = None,
         dev_range: Optional[list[Union[str, dict[str, Any]]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update authentication settings
@@ -189,51 +198,51 @@ class Setting:
         dev_range = self._format_name_list(dev_range)
 
         param_map = {
-            'active_auth_scheme': active_auth_scheme,
-            'sso_auth_scheme': sso_auth_scheme,
-            'update_time': update_time,
-            'persistent_cookie': persistent_cookie,
-            'ip_auth_cookie': ip_auth_cookie,
-            'cookie_max_age': cookie_max_age,
-            'cookie_refresh_div': cookie_refresh_div,
-            'captive_portal_type': captive_portal_type,
-            'captive_portal_ip': captive_portal_ip,
-            'captive_portal_ip6': captive_portal_ip6,
-            'captive_portal': captive_portal,
-            'captive_portal6': captive_portal6,
-            'cert_auth': cert_auth,
-            'cert_captive_portal': cert_captive_portal,
-            'cert_captive_portal_ip': cert_captive_portal_ip,
-            'cert_captive_portal_port': cert_captive_portal_port,
-            'captive_portal_port': captive_portal_port,
-            'auth_https': auth_https,
-            'captive_portal_ssl_port': captive_portal_ssl_port,
-            'user_cert_ca': user_cert_ca,
-            'dev_range': dev_range
+            "active_auth_scheme": active_auth_scheme,
+            "sso_auth_scheme": sso_auth_scheme,
+            "update_time": update_time,
+            "persistent_cookie": persistent_cookie,
+            "ip_auth_cookie": ip_auth_cookie,
+            "cookie_max_age": cookie_max_age,
+            "cookie_refresh_div": cookie_refresh_div,
+            "captive_portal_type": captive_portal_type,
+            "captive_portal_ip": captive_portal_ip,
+            "captive_portal_ip6": captive_portal_ip6,
+            "captive_portal": captive_portal,
+            "captive_portal6": captive_portal6,
+            "cert_auth": cert_auth,
+            "cert_captive_portal": cert_captive_portal,
+            "cert_captive_portal_ip": cert_captive_portal_ip,
+            "cert_captive_portal_port": cert_captive_portal_port,
+            "captive_portal_port": captive_portal_port,
+            "auth_https": auth_https,
+            "captive_portal_ssl_port": captive_portal_ssl_port,
+            "user_cert_ca": user_cert_ca,
+            "dev_range": dev_range,
         }
 
         api_field_map = {
-            'active_auth_scheme': 'active-auth-scheme',
-            'sso_auth_scheme': 'sso-auth-scheme',
-            'update_time': 'update-time',
-            'persistent_cookie': 'persistent-cookie',
-            'ip_auth_cookie': 'ip-auth-cookie',
-            'cookie_max_age': 'cookie-max-age',
-            'cookie_refresh_div': 'cookie-refresh-div',
-            'captive_portal_type': 'captive-portal-type',
-            'captive_portal_ip': 'captive-portal-ip',
-            'captive_portal_ip6': 'captive-portal-ip6',
-            'captive_portal': 'captive-portal',
-            'captive_portal6': 'captive-portal6',
-            'cert_auth': 'cert-auth',
-            'cert_captive_portal': 'cert-captive-portal',
-            'cert_captive_portal_ip': 'cert-captive-portal-ip',
-            'cert_captive_portal_port': 'cert-captive-portal-port',
-            'captive_portal_port': 'captive-portal-port',
-            'auth_https': 'auth-https',
-            'captive_portal_ssl_port': 'captive-portal-ssl-port',
-            'user_cert_ca': 'user-cert-ca',
-            'dev_range': 'dev-range'
+            "active_auth_scheme": "active-auth-scheme",
+            "sso_auth_scheme": "sso-auth-scheme",
+            "update_time": "update-time",
+            "persistent_cookie": "persistent-cookie",
+            "ip_auth_cookie": "ip-auth-cookie",
+            "cookie_max_age": "cookie-max-age",
+            "cookie_refresh_div": "cookie-refresh-div",
+            "captive_portal_type": "captive-portal-type",
+            "captive_portal_ip": "captive-portal-ip",
+            "captive_portal_ip6": "captive-portal-ip6",
+            "captive_portal": "captive-portal",
+            "captive_portal6": "captive-portal6",
+            "cert_auth": "cert-auth",
+            "cert_captive_portal": "cert-captive-portal",
+            "cert_captive_portal_ip": "cert-captive-portal-ip",
+            "cert_captive_portal_port": "cert-captive-portal-port",
+            "captive_portal_port": "captive-portal-port",
+            "auth_https": "auth-https",
+            "captive_portal_ssl_port": "captive-portal-ssl-port",
+            "user_cert_ca": "user-cert-ca",
+            "dev_range": "dev-range",
         }
 
         data = {}
@@ -244,4 +253,6 @@ class Setting:
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'authentication/setting', data, vdom=vdom)
+        return self._client.put(
+            "cmdb", "authentication/setting", data, vdom=vdom, raw_json=raw_json
+        )

@@ -12,7 +12,8 @@ API Endpoints:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -20,10 +21,10 @@ if TYPE_CHECKING:
 
 class DataType:
     """DLP data-type endpoint"""
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    
+
     def get(
         self,
         name: str | None = None,
@@ -40,11 +41,12 @@ class DataType:
         format: str | None = None,
         action: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Get DLP data type(s).
-        
+
         Args:
             name: Data type name. If provided, gets specific data type.
             attr: Attribute name that references other table
@@ -60,66 +62,64 @@ class DataType:
             action: Special actions - 'default', 'schema', 'revision'
             vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with data type configuration(s)
-        
+
         Examples:
             >>> # Get all data types
             >>> result = fgt.cmdb.dlp.data_type.get()
             >>> print(f"Total data types: {len(result['results'])}")
-            
+
             >>> # Get specific data type
             >>> result = fgt.cmdb.dlp.data_type.get('credit-card')
             >>> print(f"Pattern: {result['results']['pattern']}")
-            
+
             >>> # Get with metadata
             >>> result = fgt.cmdb.dlp.data_type.get(with_meta=True)
         """
         # Build path
-        path = 'dlp/data-type'
+        path = "dlp/data-type"
         if name:
-            path = f'dlp/data-type/{name}'
-        
+            path = f"dlp/data-type/{name}"
+
         # Build query parameters
         params = {}
         param_map = {
-            'attr': attr,
-            'count': count,
-            'skip_to_datasource': skip_to_datasource,
-            'acs': acs,
-            'search': search,
-            'scope': scope,
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "attr": attr,
+            "count": count,
+            "skip_to_datasource": skip_to_datasource,
+            "acs": acs,
+            "search": search,
+            "scope": scope,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
-    
-    def list(
-        self,
-        vdom: str | None = None,
-        **kwargs
-    ) -> dict[str, Any]:
+
+        return self._client.get(
+            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
+
+    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
         """
         List all DLP data types (convenience method).
-        
+
         Args:
             vdom: Virtual Domain(s)
             **kwargs: Additional query parameters
-        
+
         Returns:
             API response dictionary with all data types
-        
+
         Examples:
             >>> # List all data types
             >>> result = fgt.cmdb.dlp.data_type.list()
@@ -127,10 +127,10 @@ class DataType:
             ...     print(f"{dt['name']}: {dt.get('comment', 'N/A')}")
         """
         return self.get(vdom=vdom, **kwargs)
-    
+
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Data type configuration
         pattern: str | None = None,
@@ -145,11 +145,12 @@ class DataType:
         verify_transformed_pattern: str | None = None,
         comment: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Create a new DLP data type.
-        
+
         Args:
             name: Name of the data type (max 35 chars)
             pattern: Regular expression pattern string without look around (max 255 chars)
@@ -165,10 +166,10 @@ class DataType:
             comment: Optional comments (max 255 chars)
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Create simple data type
             >>> result = fgt.cmdb.dlp.data_type.create(
@@ -176,7 +177,7 @@ class DataType:
             ...     pattern=r'\\d{3}-\\d{2}-\\d{4}',
             ...     comment='Custom SSN pattern'
             ... )
-            
+
             >>> # Create with verification
             >>> result = fgt.cmdb.dlp.data_type.create(
             ...     name='custom-credit-card',
@@ -189,48 +190,48 @@ class DataType:
         """
         data = {}
         param_map = {
-            'name': name,
-            'pattern': pattern,
-            'verify': verify,
-            'verify2': verify2,
-            'match_around': match_around,
-            'look_back': look_back,
-            'look_ahead': look_ahead,
-            'match_back': match_back,
-            'match_ahead': match_ahead,
-            'transform': transform,
-            'verify_transformed_pattern': verify_transformed_pattern,
-            'comment': comment,
+            "name": name,
+            "pattern": pattern,
+            "verify": verify,
+            "verify2": verify2,
+            "match_around": match_around,
+            "look_back": look_back,
+            "look_ahead": look_ahead,
+            "match_back": match_back,
+            "match_ahead": match_ahead,
+            "transform": transform,
+            "verify_transformed_pattern": verify_transformed_pattern,
+            "comment": comment,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'name': 'name',
-            'pattern': 'pattern',
-            'verify': 'verify',
-            'verify2': 'verify2',
-            'match_around': 'match-around',
-            'look_back': 'look-back',
-            'look_ahead': 'look-ahead',
-            'match_back': 'match-back',
-            'match_ahead': 'match-ahead',
-            'transform': 'transform',
-            'verify_transformed_pattern': 'verify-transformed-pattern',
-            'comment': 'comment',
+            "name": "name",
+            "pattern": "pattern",
+            "verify": "verify",
+            "verify2": "verify2",
+            "match_around": "match-around",
+            "look_back": "look-back",
+            "look_ahead": "look-ahead",
+            "match_back": "match-back",
+            "match_ahead": "match-ahead",
+            "transform": "transform",
+            "verify_transformed_pattern": "verify-transformed-pattern",
+            "comment": "comment",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.post('cmdb', 'dlp/data-type', data, vdom=vdom)
-    
+
+        return self._client.post("cmdb", "dlp/data-type", data, vdom=vdom, raw_json=raw_json)
+
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         # Data type configuration
         pattern: str | None = None,
@@ -245,11 +246,12 @@ class DataType:
         verify_transformed_pattern: str | None = None,
         comment: str | None = None,
         vdom: str | None = None,
-        **kwargs
+        raw_json: bool = False,
+        **kwargs,
     ) -> dict[str, Any]:
         """
         Update an existing DLP data type.
-        
+
         Args:
             name: Name of the data type to update
             pattern: Regular expression pattern string without look around (max 255 chars)
@@ -265,10 +267,10 @@ class DataType:
             comment: Optional comments (max 255 chars)
             vdom: Virtual Domain(s)
             **kwargs: Additional data parameters
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Update pattern
             >>> result = fgt.cmdb.dlp.data_type.update(
@@ -276,7 +278,7 @@ class DataType:
             ...     pattern=r'\\d{3}-?\\d{2}-?\\d{4}',
             ...     comment='Updated SSN pattern - optional hyphens'
             ... )
-            
+
             >>> # Update verification settings
             >>> result = fgt.cmdb.dlp.data_type.update(
             ...     name='custom-credit-card',
@@ -287,63 +289,64 @@ class DataType:
         """
         data = {}
         param_map = {
-            'name': name,
-            'pattern': pattern,
-            'verify': verify,
-            'verify2': verify2,
-            'match_around': match_around,
-            'look_back': look_back,
-            'look_ahead': look_ahead,
-            'match_back': match_back,
-            'match_ahead': match_ahead,
-            'transform': transform,
-            'verify_transformed_pattern': verify_transformed_pattern,
-            'comment': comment,
+            "name": name,
+            "pattern": pattern,
+            "verify": verify,
+            "verify2": verify2,
+            "match_around": match_around,
+            "look_back": look_back,
+            "look_ahead": look_ahead,
+            "match_back": match_back,
+            "match_ahead": match_ahead,
+            "transform": transform,
+            "verify_transformed_pattern": verify_transformed_pattern,
+            "comment": comment,
         }
-        
+
         # Map to API field names
         api_field_map = {
-            'name': 'name',
-            'pattern': 'pattern',
-            'verify': 'verify',
-            'verify2': 'verify2',
-            'match_around': 'match-around',
-            'look_back': 'look-back',
-            'look_ahead': 'look-ahead',
-            'match_back': 'match-back',
-            'match_ahead': 'match-ahead',
-            'transform': 'transform',
-            'verify_transformed_pattern': 'verify-transformed-pattern',
-            'comment': 'comment',
+            "name": "name",
+            "pattern": "pattern",
+            "verify": "verify",
+            "verify2": "verify2",
+            "match_around": "match-around",
+            "look_back": "look-back",
+            "look_ahead": "look-ahead",
+            "match_back": "match-back",
+            "match_ahead": "match-ahead",
+            "transform": "transform",
+            "verify_transformed_pattern": "verify-transformed-pattern",
+            "comment": "comment",
         }
-        
+
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
                 data[api_name] = value
-        
+
         data.update(kwargs)
-        
-        return self._client.put('cmdb', f'dlp/data-type/{name}', data, vdom=vdom)
-    
+
+        return self._client.put("cmdb", f"dlp/data-type/{name}", data, vdom=vdom, raw_json=raw_json)
+
     def delete(
         self,
         name: str,
-        vdom: str | None = None
+        vdom: str | None = None,
+        raw_json: bool = False,
     ) -> dict[str, Any]:
         """
         Delete a DLP data type.
-        
+
         Args:
             name: Name of the data type to delete
             vdom: Virtual Domain(s)
-        
+
         Returns:
             API response dictionary
-        
+
         Examples:
             >>> # Delete data type
             >>> result = fgt.cmdb.dlp.data_type.delete('custom-ssn')
             >>> print(f"Status: {result['status']}")
         """
-        return self._client.delete('cmdb', f'dlp/data-type/{name}', vdom=vdom)
+        return self._client.delete("cmdb", f"dlp/data-type/{name}", vdom=vdom, raw_json=raw_json)

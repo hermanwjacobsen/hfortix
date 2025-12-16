@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 class Quarantine:
     """Antivirus Quarantine endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -29,7 +29,8 @@ class Quarantine:
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
         action: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         GET /antivirus/quarantine
@@ -60,10 +61,10 @@ class Quarantine:
 
         # Map parameters
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
 
         # Add non-None parameters
@@ -74,11 +75,17 @@ class Quarantine:
         # Add any extra kwargs
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'antivirus/quarantine', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            "antivirus/quarantine",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
-        data: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         agelimit: Optional[int] = None,
         maxfilesize: Optional[int] = None,
         quarantine_quota: Optional[int] = None,
@@ -93,7 +100,8 @@ class Quarantine:
         lowspace: Optional[str] = None,
         destination: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         PUT /antivirus/quarantine
@@ -141,49 +149,49 @@ class Quarantine:
             ... )
         """
         # Build data dict from provided parameters
-        data = {}
+        payload_dict = {}
 
         # Map Python parameter names to API field names
         param_map = {
-            'agelimit': agelimit,
-            'maxfilesize': maxfilesize,
-            'quarantine_quota': quarantine_quota,
-            'drop_infected': drop_infected,
-            'store_infected': store_infected,
-            'drop_blocked': drop_blocked,
-            'store_blocked': store_blocked,
-            'drop_heuristic': drop_heuristic,
-            'store_heuristic': store_heuristic,
-            'drop_machine_learning': drop_machine_learning,
-            'store_machine_learning': store_machine_learning,
-            'lowspace': lowspace,
-            'destination': destination,
+            "agelimit": agelimit,
+            "maxfilesize": maxfilesize,
+            "quarantine_quota": quarantine_quota,
+            "drop_infected": drop_infected,
+            "store_infected": store_infected,
+            "drop_blocked": drop_blocked,
+            "store_blocked": store_blocked,
+            "drop_heuristic": drop_heuristic,
+            "store_heuristic": store_heuristic,
+            "drop_machine_learning": drop_machine_learning,
+            "store_machine_learning": store_machine_learning,
+            "lowspace": lowspace,
+            "destination": destination,
         }
 
         # API field name mapping
         api_field_map = {
-            'agelimit': 'agelimit',
-            'maxfilesize': 'maxfilesize',
-            'quarantine_quota': 'quarantine-quota',
-            'drop_infected': 'drop-infected',
-            'store_infected': 'store-infected',
-            'drop_blocked': 'drop-blocked',
-            'store_blocked': 'store-blocked',
-            'drop_heuristic': 'drop-heuristic',
-            'store_heuristic': 'store-heuristic',
-            'drop_machine_learning': 'drop-machine-learning',
-            'store_machine_learning': 'store-machine-learning',
-            'lowspace': 'lowspace',
-            'destination': 'destination',
+            "agelimit": "agelimit",
+            "maxfilesize": "maxfilesize",
+            "quarantine_quota": "quarantine-quota",
+            "drop_infected": "drop-infected",
+            "store_infected": "store-infected",
+            "drop_blocked": "drop-blocked",
+            "store_blocked": "store-blocked",
+            "drop_heuristic": "drop-heuristic",
+            "store_heuristic": "store-heuristic",
+            "drop_machine_learning": "drop-machine-learning",
+            "store_machine_learning": "store-machine-learning",
+            "lowspace": "lowspace",
+            "destination": "destination",
         }
 
         # Add non-None parameters
         for param_name, value in param_map.items():
             if value is not None:
                 api_name = api_field_map[param_name]
-                data[api_name] = value
+                payload_dict[api_name] = value
 
         # Add any extra kwargs
-        data.update(kwargs)
+        payload_dict.update(kwargs)
 
-        return self._client.put('cmdb', 'antivirus/quarantine', data, vdom=vdom)
+        return self._client.put("cmdb", "antivirus/quarantine", data, vdom=vdom, raw_json=raw_json)

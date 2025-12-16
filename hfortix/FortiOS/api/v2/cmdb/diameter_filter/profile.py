@@ -5,7 +5,7 @@ Configure Diameter filter profiles
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -16,7 +16,7 @@ class Profile:
     Diameter Filter Profile API endpoint
     """
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Profile endpoint
 
@@ -26,20 +26,34 @@ class Profile:
         self._client = client
         self._base_path = "diameter-filter/profile"
 
-    def list(self, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def list(
+        self,
+        params: Optional[dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         List all diameter filter profiles
 
         Args:
             params: Optional query parameters
             vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
+            raw_json: If True, return raw JSON response without unwrapping
 
         Returns:
             List of diameter filter profiles
         """
-        return self._client.get('cmdb', self._base_path, params=params, vdom=vdom)
+        return self._client.get(
+            "cmdb", self._base_path, params=params, vdom=vdom, raw_json=raw_json
+        )
 
-    def get(self, name: Optional[str] = None, params: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def get(
+        self,
+        name: Optional[str] = None,
+        params: Optional[dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Get diameter filter profile details
 
@@ -52,12 +66,14 @@ class Profile:
             Profile details or list of profiles
         """
         if name:
-            return self._client.get('cmdb', f"{self._base_path}/{name}", params=params, vdom=vdom)
+            return self._client.get(
+                "cmdb", f"{self._base_path}/{name}", params=params, vdom=vdom, raw_json=raw_json
+            )
         return self.list(params=params, vdom=vdom)
 
     def create(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         monitor_all_messages: Optional[str] = None,
@@ -70,7 +86,8 @@ class Profile:
         cmd_flags_reserve_set: Optional[str] = None,
         command_code_invalid: Optional[str] = None,
         command_code_range: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create a new diameter filter profile
@@ -103,7 +120,7 @@ class Profile:
         Returns:
             Creation response
         """
-        vdom = kwargs.pop('vdom', None)
+        vdom = kwargs.pop("vdom", None)
 
         data = {"name": name}
 
@@ -133,11 +150,11 @@ class Profile:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.post('cmdb', self._base_path, data=data, vdom=vdom)
+        return self._client.post("cmdb", self._base_path, data=data, vdom=vdom, raw_json=raw_json)
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
         comment: Optional[str] = None,
         monitor_all_messages: Optional[str] = None,
@@ -150,7 +167,8 @@ class Profile:
         cmd_flags_reserve_set: Optional[str] = None,
         command_code_invalid: Optional[str] = None,
         command_code_range: Optional[str] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update an existing diameter filter profile
@@ -183,7 +201,7 @@ class Profile:
         Returns:
             Update response
         """
-        vdom = kwargs.pop('vdom', None)
+        vdom = kwargs.pop("vdom", None)
 
         data = {}
 
@@ -213,9 +231,16 @@ class Profile:
         # Add any additional parameters
         data.update(kwargs)
 
-        return self._client.put('cmdb', f"{self._base_path}/{name}", data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"{self._base_path}/{name}", data=data, vdom=vdom, raw_json=raw_json
+        )
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]:
         """
         Delete a diameter filter profile
 
@@ -226,7 +251,9 @@ class Profile:
         Returns:
             Deletion response
         """
-        return self._client.delete('cmdb', f"{self._base_path}/{name}", vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"{self._base_path}/{name}", vdom=vdom, raw_json=raw_json
+        )
 
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """

@@ -10,7 +10,7 @@ API Endpoints:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Dict, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 class Settings:
     """Endpoint Control Settings endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize Settings endpoint.
 
@@ -37,7 +37,8 @@ class Settings:
         format: Optional[str] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get endpoint control settings.
@@ -65,11 +66,11 @@ class Settings:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }
 
         for key, value in param_map.items():
@@ -78,12 +79,17 @@ class Settings:
 
         params.update(kwargs)
 
-        return self._client.get('cmdb', 'endpoint-control/settings', 
-                               params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            "endpoint-control/settings",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: Optional[Dict[str, Any]] = None,
         # FortiClient settings
         forticlient_reg_key_enforce: Optional[str] = None,
         forticlient_reg_key: Optional[str] = None,
@@ -104,7 +110,8 @@ class Settings:
         action: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update endpoint control settings.
@@ -121,7 +128,7 @@ class Settings:
             forticlient_offline_grace (str, optional): Grace period for offline registered clients
                 'enable'/'disable'
             forticlient_offline_grace_interval (int, optional): Grace period interval (60-600 seconds)
-            forticlient_keepalive_interval (int, optional): Keepalive interval (20-300 seconds, 
+            forticlient_keepalive_interval (int, optional): Keepalive interval (20-300 seconds,
                 default 60)
             forticlient_sys_update_interval (int, optional): System update interval (30-1440 minutes,
                 default 720)
@@ -157,31 +164,33 @@ class Settings:
             ... )
         """
         data = {}
-        
+
         param_map = {
-            'forticlient_reg_key_enforce': forticlient_reg_key_enforce,
-            'forticlient_reg_key': forticlient_reg_key,
-            'forticlient_reg_timeout': forticlient_reg_timeout,
-            'download_custom_link': download_custom_link,
-            'download_location': download_location,
-            'forticlient_offline_grace': forticlient_offline_grace,
-            'forticlient_offline_grace_interval': forticlient_offline_grace_interval,
-            'forticlient_keepalive_interval': forticlient_keepalive_interval,
-            'forticlient_sys_update_interval': forticlient_sys_update_interval,
-            'forticlient_avdb_update_interval': forticlient_avdb_update_interval,
-            'forticlient_warning_interval': forticlient_warning_interval,
-            'forticlient_user_avatar': forticlient_user_avatar,
-            'forticlient_disconnect_unsupported_client': forticlient_disconnect_unsupported_client,
-            'forticlient_dereg_unsupported_client': forticlient_dereg_unsupported_client,
-            'forticlient_ems_rest_api_call_timeout': forticlient_ems_rest_api_call_timeout,
-            'action': action,
-            'scope': scope,
+            "forticlient_reg_key_enforce": forticlient_reg_key_enforce,
+            "forticlient_reg_key": forticlient_reg_key,
+            "forticlient_reg_timeout": forticlient_reg_timeout,
+            "download_custom_link": download_custom_link,
+            "download_location": download_location,
+            "forticlient_offline_grace": forticlient_offline_grace,
+            "forticlient_offline_grace_interval": forticlient_offline_grace_interval,
+            "forticlient_keepalive_interval": forticlient_keepalive_interval,
+            "forticlient_sys_update_interval": forticlient_sys_update_interval,
+            "forticlient_avdb_update_interval": forticlient_avdb_update_interval,
+            "forticlient_warning_interval": forticlient_warning_interval,
+            "forticlient_user_avatar": forticlient_user_avatar,
+            "forticlient_disconnect_unsupported_client": forticlient_disconnect_unsupported_client,
+            "forticlient_dereg_unsupported_client": forticlient_dereg_unsupported_client,
+            "forticlient_ems_rest_api_call_timeout": forticlient_ems_rest_api_call_timeout,
+            "action": action,
+            "scope": scope,
         }
 
         for key, value in param_map.items():
             if value is not None:
-                data[key.replace('_', '-')] = value
+                data[key.replace("_", "-")] = value
 
         data.update(kwargs)
 
-        return self._client.put('cmdb', 'endpoint-control/settings', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", "endpoint-control/settings", data=data, vdom=vdom, raw_json=raw_json
+        )

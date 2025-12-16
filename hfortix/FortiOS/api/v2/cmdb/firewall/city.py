@@ -12,7 +12,7 @@ Notes:
 
 from __future__ import annotations
 
-from typing import Dict, TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Dict, Optional, Union
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -21,10 +21,10 @@ if TYPE_CHECKING:
 class City:
     """Firewall `city` table endpoint."""
 
-    name = 'city'
-    path = 'firewall/city'
+    name = "city"
+    path = "firewall/city"
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     # -----------------------------
@@ -40,33 +40,39 @@ class City:
         sort: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """List city objects."""
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'filter': filter,
-            'sort': sort,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "filter": filter,
+            "sort": sort,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
-        return self._client.get('cmdb', self.path, params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
+        )
 
     def create(
         self,
         data: dict[str, Any],
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Create one or more city objects."""
         params = kwargs or None
-        return self._client.post('cmdb', self.path, data=data, params=params, vdom=vdom)
+        return self._client.post(
+            "cmdb", self.path, data=data, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     # -----------------------------
     # Member operations
@@ -80,24 +86,31 @@ class City:
         format: Optional[list] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Get a city by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'format': format,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "format": format,
+            "action": action,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.get('cmdb', f'{self.path}/{id_str}', params=params if params else None, vdom=vdom)
+        return self._client.get(
+            "cmdb",
+            f"{self.path}/{id_str}",
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def update(
         self,
@@ -108,31 +121,42 @@ class City:
         before: Optional[str] = None,
         after: Optional[str] = None,
         scope: Optional[str] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update a city by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
 
         params: dict[str, Any] = {}
         for key, value in {
-            'action': action,
-            'before': before,
-            'after': after,
-            'scope': scope,
+            "action": action,
+            "before": before,
+            "after": after,
+            "scope": scope,
         }.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        return self._client.put('cmdb', f'{self.path}/{id_str}', data=data, params=params if params else None, vdom=vdom)
+        return self._client.put(
+            "cmdb",
+            f"{self.path}/{id_str}",
+            data=data,
+            params=params if params else None,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
 
     def delete(
         self,
         id: Union[int, str],
         vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Delete a city by id."""
-        id_str = self._client.validate_mkey(id, 'id')
+        id_str = self._client.validate_mkey(id, "id")
         params = kwargs or None
-        return self._client.delete('cmdb', f'{self.path}/{id_str}', params=params, vdom=vdom)
+        return self._client.delete(
+            "cmdb", f"{self.path}/{id_str}", params=params, vdom=vdom, raw_json=raw_json
+        )
