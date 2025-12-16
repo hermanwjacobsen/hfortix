@@ -8,36 +8,34 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 ## 🎯 Current Status
 
-- **CMDB API**: 79 endpoints across 15 categories (52% coverage) ✅
-  - **NEW:** Firewall category with 28 endpoints (11 flat + 17 nested)
-- **Service API**: 21 methods across 3 modules ✅
-- **Log API**: 42 methods across 5 modules (100% complete) ✅
-- **Monitor API**: Not yet implemented ⏸️
+**FortiOS 7.6.5 Coverage (December 16, 2025):**
 
-**Latest Addition (v0.3.5):**
-- ✨ **Enhanced IDE Autocomplete**: Full PEP 561 type hint support for better IntelliSense
-- ✅ **Type Annotations**: Explicit type hints on all API helper classes (cmdb, firewall, etc.)
-- ✅ **Better Import Discovery**: Improved `__all__` exports for cleaner autocomplete suggestions
-- 🐛 **Bug Fix**: Removed duplicate assignments in CMDB initialization
+- **CMDB API**: 15 of 40 categories (38% coverage) - 74+ endpoints 🔷 Beta
+- **Log API**: 5 of 5 categories (100% coverage) - 42 methods 🔷 Beta
+- **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
+- **Monitor API**: Not yet implemented (0 of 28 categories) ⏸️
+
+**Latest Features (Unreleased):**
+- ✨ **raw_json Parameter**: All 45+ API methods now support `raw_json=True` for full response access
+  - Default: Returns just the results data
+  - With `raw_json=True`: Returns complete response with status codes, metadata
+  - Example: `fgt.api.cmdb.firewall.address.get('obj1', raw_json=True)`
+- ✨ **Logging System**: Global and per-instance logging control
+  - Global: `hfortix.set_log_level('DEBUG'|'INFO'|'WARNING'|'ERROR'|'OFF')`
+  - Per-instance: `FortiOS(debug='info')`
+  - Automatic sensitive data sanitization (tokens, passwords)
+  - Request/response logging with timing information
+- ✅ **Code Quality**: 100% PEP 8 compliance (black + isort + flake8)
+- ✅ **Bug Fixes**: Fixed undefined variables, certificate helpers, DoS policy bugs
+- ✅ **Comprehensive Tests**: 159 test files covering all endpoints
 
 **Previous Releases:**
-- v0.3.4: Unified import syntax documentation (`from hfortix import FortiOS`)
-- v0.3.3: Package restructuring for unified imports
-- v0.3.0: Firewall endpoints (11 flat + 17 nested = 28 total)
-  - firewall/DoS-policy, DoS-policy6 (DoS protection)
-  - firewall/access-proxy, access-proxy6 (Reverse proxy/WAF)
-  - firewall/access-proxy-ssh-client-cert (SSH certificates)
-  - firewall/access-proxy-virtual-host (Virtual hosts)
-  - firewall/address, address6 (IPv4/IPv6 addresses)
-  - firewall/addrgrp, addrgrp6 (IPv4/IPv6 address groups with simplified API)
-  - firewall/address6-template (IPv6 address templates)
-- ✅ **Firewall Sub-categories:**
-  - firewall.ipmacbinding (setting, table)
-  - firewall.schedule (group, onetime, recurring)
-  - firewall.service (category, custom, group)
-  - firewall.shaper (per-ip-shaper, traffic-shaper)
-  - firewall.ssh (host-key, local-ca, local-key, setting)
-  - firewall.ssl (setting)
+- v0.3.8: Dual-pattern interface for all create/update methods
+- v0.3.7: Packaging and layout improvements
+- v0.3.6: Hidden internal CRUD methods for cleaner autocomplete
+- v0.3.5: Enhanced IDE autocomplete with PEP 561 type hints
+- v0.3.4: Unified import syntax documentation
+- v0.3.0: Firewall endpoints (28 total: 11 flat + 17 nested)
   - firewall.wildcard-fqdn (custom, group)
 
 ## 🎯 Features
@@ -92,6 +90,61 @@ result = fgt.api.cmdb.firewall.address.create(
 )
 ```
 
+### Raw JSON Response ✨
+
+All API methods support `raw_json` parameter for full response access:
+
+```python
+# Default behavior - returns just the results
+addresses = fgt.api.cmdb.firewall.address.list()
+print(addresses)  # ['obj1', 'obj2', 'obj3']
+
+# With raw_json=True - returns complete API response
+response = fgt.api.cmdb.firewall.address.list(raw_json=True)
+print(response['http_status'])  # 200
+print(response['status'])       # 'success'
+print(response['results'])      # ['obj1', 'obj2', 'obj3']
+print(response['serial'])       # 'FGT60FTK19000001'
+print(response['version'])      # 'v7.6.5'
+
+# Useful for error checking
+result = fgt.api.cmdb.firewall.address.get('web-server', raw_json=True)
+if result['http_status'] == 200:
+    print(f"Object found: {result['results']}")
+else:
+    print(f"Error: {result.get('error', 'Unknown error')}")
+```
+
+**Available on:** All 45+ API methods (100% coverage)
+
+### Logging Control ✨
+
+Control logging output globally or per-instance:
+
+```python
+import hfortix
+from hfortix import FortiOS
+
+# Enable detailed logging globally for all instances
+hfortix.set_log_level('DEBUG')  # Very verbose - all requests/responses
+hfortix.set_log_level('INFO')   # Normal - request summaries
+hfortix.set_log_level('WARNING') # Quiet - only warnings (default)
+hfortix.set_log_level('ERROR')   # Silent - only errors
+hfortix.set_log_level('OFF')     # No logging output
+
+# Or enable logging for a specific instance
+fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
+
+# Automatic sensitive data sanitization
+# Tokens, passwords, and API keys are automatically masked in logs
+```
+
+**Features:**
+- 5 log levels (DEBUG, INFO, WARNING, ERROR, OFF)
+- Automatic sensitive data sanitization
+- Request/response logging with timing
+- Hierarchical loggers for fine-grained control
+
 ### Dual-Pattern Interface ✨
 
 HFortix supports **flexible dual-pattern syntax** - use dictionaries, keywords, or mix both:
@@ -124,8 +177,6 @@ fgt.api.cmdb.firewall.address.create(
 **Available on:** 43 methods across 13 categories (100% coverage)
 - All CMDB create/update operations (38 endpoints)
 - Service operations (5 methods)
-
-[See full dual-pattern documentation →](X/docs/migration/DUAL_PATTERN_MIGRATION.md)
 
 ### Exception Handling
 ```python

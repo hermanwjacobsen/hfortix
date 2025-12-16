@@ -8,35 +8,42 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ## 🎯 Key Features
 
+### raw_json Parameter ✨
+**All API methods support raw_json parameter for full response access:**
+- **Default Behavior**: `get('name')` → returns just the results
+- **Full Response**: `get('name', raw_json=True)` → returns complete API response with status codes
+- **Coverage**: 100% of all implemented methods (45+ endpoints)
+
 ### Dual-Pattern Interface ✨
 **All create/update methods support flexible syntax:**
 - **Dictionary Pattern**: `create(data_dict={'name': 'x', 'subnet': '10.0.0.0/24'})`
 - **Keyword Pattern**: `create(name='x', subnet='10.0.0.0/24')`
 - **Mixed Pattern**: `create(data_dict=base, name='override')`
 
-**Coverage**: 43 methods (38 CMDB + 5 Service) - 100% of implemented operations  
-[Full Documentation →](X/docs/migration/DUAL_PATTERN_MIGRATION.md)
+**Coverage**: 43 methods (38 CMDB + 5 Service) - 100% of implemented operations
 
 ---
 
 ## 📊 Overall Progress
 
+**FortiOS Version:** 7.6.5
+
 | Category | Status | Endpoints | Coverage |
 |----------|--------|-----------|----------|
-| **CMDB** | 🔷 Beta | 15 of 38 categories | ~39% |
-| **Monitor** | ⏸️ Not Started | 0 of 29 categories | 0% |
-| **Log** | ✅ Complete | 5 of 5 categories | 100% |
-| **Service** | ✅ Complete | 3 of 3 categories | 100% |
+| **CMDB** | 🔷 Beta | 15 of 40 categories | ~38% |
+| **Monitor** | ⏸️ Not Started | 0 of 28 categories | 0% |
+| **Log** | 🔷 Beta | 5 of 5 categories | 100% |
+| **Service** | 🔷 Beta | 3 of 3 categories | 100% |
 
 **CMDB Detailed Progress:**
-- **Total Endpoints Implemented:** 74 endpoints across 15 categories
-- **Total Endpoints Available:** 150+ endpoints across 38 categories
-- **Coverage:** ~49% of all CMDB endpoints
-- **New:** Firewall category with 23 endpoints across 7 sub-categories
+- **Total Categories Available:** 40 (FortiOS 7.6.5)
+- **Categories Implemented:** 15 (alertemail, antivirus, application, authentication, automation, casb, certificate, diameter-filter, dlp, dnsfilter, emailfilter, extension-controller, file-filter, firewall)
+- **Total Endpoints Implemented:** 74+ endpoints
+- **Coverage:** ~38% of all CMDB categories
 
 **Legend:**
-- ✅ **Complete** - Full CRUD support, tested, documented
-- 🔷 **Beta** - Implemented, functional, may need additional testing
+- ✅ **Complete** - Full CRUD support, unit tests complete, documented
+- 🔷 **Beta** - Implemented, functional, unit tests in progress
 - 🚧 **In Progress** - Partially implemented
 - ⏸️ **Not Started** - Not yet implemented
 - 🚫 **Not Applicable** - Read-only or special endpoint
@@ -162,32 +169,48 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ---
 
-### Not Yet Implemented (24 Categories Remaining)
+### Not Yet Implemented (25 Categories Remaining)
+
+**FortiOS 7.6.5 CMDB Categories Not Yet Implemented:**
 
 <details>
 <summary><strong>Click to expand full list of remaining CMDB categories</strong></summary>
 
-#### 1. DDoS (ddos/) - ⏸️ Not Started
+1. **endpoint-control** - Endpoint security and compliance
+2. **ethernet-oam** - Ethernet Operations, Administration, and Maintenance
+3. **ftp-proxy** - FTP proxy configuration
+4. **icap** - Internet Content Adaptation Protocol
+5. **ips** - Intrusion Prevention System sensors and custom signatures
+6. **log** - Logging configuration (disk, syslog, FortiAnalyzer settings)
+7. **monitoring** - SNMP and monitoring configuration
+8. **report** - Report settings and configuration
+9. **router** - 🔥 **HIGH PRIORITY** - Routing configuration (static, BGP, OSPF, policy routing)
+10. **rule** - Traffic shaping and QoS rules
+11. **sctp-filter** - Stream Control Transmission Protocol filtering
+12. **ssh-filter** - SSH protocol filtering
+13. **switch-controller** - FortiSwitch management and configuration
+14. **system** - 🔥 **HIGH PRIORITY** - System-wide settings (admin, interface, zone, HA, etc.)
+15. **telemetry-controller** - Telemetry and monitoring integration
+16. **user** - 🔥 **HIGH PRIORITY** - User authentication and LDAP/RADIUS servers
+17. **videofilter** - Video streaming filtering
+18. **virtual-patch** - Virtual patching for vulnerabilities
+19. **voip** - VoIP inspection and SIP configuration
+20. **vpn** - 🔥 **HIGH PRIORITY** - VPN configuration (IPsec, SSL-VPN, tunnels)
+21. **waf** - Web Application Firewall profiles
+22. **wanopt** - WAN optimization configuration
+23. **web-proxy** - Explicit web proxy configuration
+24. **webfilter** - 🔥 **HIGH PRIORITY** - Web filtering and URL categories
+25. **wireless-controller** - FortiAP wireless management
+26. **ztna** - Zero Trust Network Access configuration
 
-#### 2. DNS Filter (dnsfilter/) - ⏸️ Not Started
-DNS filtering profiles and domain filters
+**Priority Categories for Next Release:**
+- router (routing protocols)
+- system (core system settings)
+- user (authentication servers)
+- vpn (VPN tunnels and SSL-VPN)
+- webfilter (URL filtering)
 
-#### 3. Email Filter (emailfilter/) - ⏸️ Not Started
-Email filtering and anti-spam configuration
-
-#### 4. Endpoint Control (endpoint-control/) - ⏸️ Not Started
-Endpoint security and compliance
-
-#### 5. Ethernet OAM (ethernet-oam/) - ⏸️ Not Started
-Ethernet Operations, Administration, and Maintenance
-
-#### 6. Extension Controller (extension-controller/) - ⏸️ Not Started
-FortiExtender management
-
-#### 7. File Filter (file-filter/) - ⏸️ Not Started
-File filtering profiles
-
-#### 8. Firewall (firewall/)
+</details>
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | **DoS-policy** | ✅ Complete | GET, POST, PUT, DELETE | IPv4 DoS protection policies |
@@ -239,50 +262,9 @@ File filtering profiles
 - ssl-server, ssl-ssh-profile - SSL/SSH profiles
 - And 60+ more endpoints...
 
-#### 9. FTP Proxy (ftp-proxy/) - ⏸️ Not Started
-FTP proxy configuration
+</details>
 
-#### 10. ICAP (icap/) - ⏸️ Not Started
-Internet Content Adaptation Protocol
-
-#### 11. IPS (ips/) - ⏸️ Not Started
-Intrusion Prevention System sensors and custom signatures
-
-#### 12. Log (log/) - ⏸️ Not Started
-Logging configuration (disk, syslog, FortiAnalyzer settings)
-
-#### 13. Monitoring (monitoring/) - ⏸️ Not Started
-SNMP and monitoring configuration
-
-#### 14. Report (report/) - ⏸️ Not Started
-Report settings and configuration
-
-#### 15. Router (router/) - ⏸️ Not Started
-**HIGH PRIORITY** - Routing configuration (static, BGP, OSPF, policy routing)
-
-#### 16. Rule (rule/) - ⏸️ Not Started
-Traffic shaping and QoS rules
-
-#### 17. SCTP Filter (sctp-filter/) - ⏸️ Not Started
-Stream Control Transmission Protocol filtering
-
-#### 18. SSH Filter (ssh-filter/) - ⏸️ Not Started
-SSH protocol filtering
-
-#### 19. Switch Controller (switch-controller/) - ⏸️ Not Started
-Managed FortiSwitch configuration
-
-#### 20. System (system/) - ⏸️ Not Started
-**HIGH PRIORITY** - System settings (global, interface, admin, DNS, NTP, etc.)
-
-#### 21. Telemetry Controller (telemetry-controller/) - ⏸️ Not Started
-Telemetry and analytics configuration
-
-#### 22. User (user/) - ⏸️ Not Started
-User and group management, LDAP, RADIUS, local users
-
-#### 23. Video Filter (videofilter/) - ⏸️ Not Started
-Video streaming filtering
+---
 
 #### 24. Virtual Patch (virtual-patch/) - ⏸️ Not Started
 Virtual patching for vulnerability protection
@@ -390,16 +372,30 @@ Zero Trust Network Access configuration
 | `/service/system` | 🔷 Beta | Various | System operations (reboot, backup, etc.) |
 
 ---
-## �� API Scope Summary
 
-| API Type | Implemented | Total | Coverage |
+## 📊 API Scope Summary
 
-|----------|-------------|-------|----------|
-| **Configuration (CMDB)** | 8 | 38 | 21% |
-| **Monitoring** | 0 | 29 | 0% |
-| **Logging** | 5 | 5 | 100% |
-| **Services** | 3 | 3 | 100% |
-| **Overall** | **16** | **75** | **21%** |
+**FortiOS 7.6.5 Coverage Overview:**
+
+| API Type | Implemented | Total Available | Coverage |
+|----------|-------------|-----------------|----------|
+| **Configuration (CMDB)** | 15 categories | 40 categories | 38% |
+| **Monitoring** | 0 categories | 28 categories | 0% |
+| **Logging** | 5 categories | 5 categories | 100% |
+| **Services** | 3 categories | 3 categories | 100% |
+| **Overall** | **23 categories** | **76 categories** | **30%** |
+
+**Endpoint Level Detail:**
+- **CMDB Endpoints:** 74+ endpoints implemented across 15 categories
+- **Log Endpoints:** 42 methods (100% complete)
+- **Service Endpoints:** 21 methods (100% complete)
+- **Total Methods:** 135+ API methods available
+
+**Recent Additions (v0.3.8):**
+- ✅ raw_json parameter added to all 45+ API methods
+- ✅ Code quality: 100% PEP 8 compliance (black + isort + flake8)
+- ✅ Comprehensive error handling with 387 error codes
+- ✅ Full type hints and docstrings
 
 ---
 

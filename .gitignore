@@ -63,4 +63,20 @@ X/
 *password*
 credentials.json
 
+# Temporary fix/refactor/debug scripts
+add_raw_json*.py
+fix_*.py
+refactor_*.py
+debug_*.py
+check_*.py
+rename_*.py
+test_raw_json*.py
+test_autocomplete.py
+test_error_handling.py
+
+# Temporary log files
+*_update.log
+test_results*.log
+raw_json*.log
+
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)

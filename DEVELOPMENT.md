@@ -4,16 +4,60 @@ This guide covers how to set up your development environment and contribute to t
 
 ## 📊 Project Status (December 16, 2025)
 
-- **Version**: 0.3.8
-- **CMDB Endpoints**: 51 endpoints across 14 categories
-- **Dual-Pattern Support**: 43 methods (100% of create/update operations)
-- **Test Coverage**: Comprehensive tests for all endpoints
+- **Version**: 0.3.8+
+- **Status**: Beta (unit tests in progress)
+- **CMDB Endpoints**: 15 of 40 categories (38% coverage) - 74+ endpoints
+- **Log API**: 5 of 5 categories (100% coverage) - 42 methods
+- **Service API**: 3 of 3 categories (100% coverage) - 21 methods
+- **raw_json Support**: 45+ methods (100% coverage)
+- **Test Coverage**: 159 comprehensive test files
 - **Python Version**: 3.8+
 - **Type Hints**: Full type hint support with modern syntax
+- **Code Quality**: 100% PEP 8 compliant (black + isort + flake8)
 
-### ✨ Latest Feature: Dual-Pattern Interface
+### ✨ Latest Features
 
-All create/update methods now support flexible syntax:
+**Logging System (Completed):**
+
+Global and per-instance logging control:
+
+```python
+import hfortix
+from hfortix import FortiOS
+
+# Enable detailed logging globally
+hfortix.set_log_level('DEBUG')  # Very verbose
+hfortix.set_log_level('INFO')   # Normal
+hfortix.set_log_level('WARNING') # Quiet (default)
+
+# Or per-instance
+fgt = FortiOS('192.168.1.99', token='token', debug='info')
+```
+
+**Features:**
+- 5 log levels (DEBUG, INFO, WARNING, ERROR, OFF)
+- Automatic sensitive data sanitization (tokens, passwords, keys)
+- Request/response logging with timing information
+- Hierarchical loggers (`hfortix.http`, `hfortix.client`)
+
+**raw_json Parameter (Completed):**
+
+All API methods now support `raw_json` parameter for full response access:
+
+```python
+# Default - returns just results
+addresses = fgt.api.cmdb.firewall.address.list()
+
+# With raw_json=True - returns complete response
+response = fgt.api.cmdb.firewall.address.list(raw_json=True)
+print(response['http_status'])  # 200
+print(response['status'])       # 'success'
+print(response['results'])      # The actual data
+```
+
+**Dual-Pattern Interface (Completed):**
+
+All create/update methods support flexible syntax:
 
 ```python
 # Dictionary pattern - great for templates
@@ -27,10 +71,7 @@ fgt.api.cmdb.firewall.address.create(name='web-server', subnet='10.0.1.100/32')
 fgt.api.cmdb.firewall.address.create(data_dict=base, name=f'server-{site_id}')
 ```
 
-**Coverage**: 38 CMDB endpoints + 5 Service methods  
-**Documentation**: `X/docs/migration/DUAL_PATTERN_MIGRATION.md`
-
-## �🚀 Quick Start for Developers
+## 🚀 Quick Start for Developers
 
 ### 1. Clone the Repository
 

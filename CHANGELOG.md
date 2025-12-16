@@ -7,9 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **raw_json Parameter** (100% Coverage) - All API methods now support raw_json parameter:
+  - Default behavior: Returns just the results data
+  - With `raw_json=True`: Returns complete API response with status codes, metadata
+  - Coverage: 45+ methods across all CMDB, Log, and Service endpoints
+  - Enables access to `http_status`, `status`, `serial`, `version`, `build` fields
+
+- **Logging System** (Complete) - Comprehensive logging framework:
+  - Global control: `hfortix.set_log_level('DEBUG'|'INFO'|'WARNING'|'ERROR'|'OFF')`
+  - Per-instance control: `FortiOS(debug='info')`
+  - 5 log levels with automatic sensitive data sanitization
+  - Hierarchical loggers (`hfortix.http`, `hfortix.client`)
+  - Request/response logging with timing information
+  - Replaced all print() statements with proper logging
+
+### Changed
+- **Code Quality** - Applied comprehensive formatting and linting:
+  - Black formatter applied to all 195 files (100% PEP 8 compliance)
+  - isort applied to organize imports (86 files updated)
+  - flake8 checks passed with max-complexity=10
+  - All type hints verified
+  - Removed all print() statements in production code (replaced with logging)
+
+### Fixed
+- **Bug Fixes** - Fixed multiple undefined variable errors:
+  - `antivirus/profile.py`: Fixed 2 instances of undefined 'data' variable (lines 265, 451)
+  - `certificate` helpers: Added raw_json parameter to import_p12() and other helper methods
+  - `DoS Policy`: Fixed interface_data variable bugs in dos_policy.py and dos_policy6.py
+  - `firewall` access-proxy: Fixed raw_json parameter placement in 6 files
+  - Multiple service/shaper/ssh files: Fixed data→payload_dict variable name consistency
+  
+- **Test Fixes** - Updated test files to use raw_json=True where needed:
+  - Fixed 159 test files to properly check API responses
+  - Updated payload structures in multiple test files
+  - Fixed syntax errors in certificate and firewall tests
+
 ### Planned
-- Complete CMDB endpoint coverage (74/150+ endpoints complete)
-- Monitor endpoints implementation
+- Complete CMDB endpoint coverage (15 of 40 categories implemented)
+- Monitor endpoints implementation (0 of 28 categories)
 - FortiManager module
 - FortiAnalyzer module
 - Async support
@@ -23,13 +59,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Keyword pattern: `create(name='x', param='y')`
   - Mixed pattern: `create(data_dict=base, name='override')`
   - Coverage: 38 CMDB endpoints + 5 Service methods
-  - See `X/docs/migration/DUAL_PATTERN_MIGRATION.md` for details
 
 ### Changed
 - **Documentation**: Updated all docs with dual-pattern examples
   - README.md, QUICKSTART.md with usage examples
-  - Module creation prompts (.github/prompts/)
-  - Project documentation (X/docs/project/)
 
 ### Fixed
 - `extension_controller`: Fixed fortigate_profile registration
@@ -40,11 +73,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.3.7] - 2025-12-16
 
 ### Improved
-- Packaging/layout cleanup to align with the canonical `hfortix/` package structure.
-- Reduced tooling friction by keeping script-style content under `X/` out of pytest discovery.
-
-### Added
-- Additional FortiOS v2 endpoint modules (log/service/cmdb expansions).
+- Packaging/layout cleanup to align with the canonical `hfortix/` package structure
+- Additional FortiOS v2 endpoint modules (log/service/cmdb expansions)
 
 ## [0.3.6] - 2025-12-15
 
