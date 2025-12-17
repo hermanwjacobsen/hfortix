@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Fortinet Community Forums
+    url: https://community.fortinet.com/
+    about: For general Fortinet questions, please use the official community forums
+  - name: Security Vulnerability
+    url: https://github.com/hermanwjacobsen/hfortix/security/advisories/new
+    about: Please report security vulnerabilities privately
