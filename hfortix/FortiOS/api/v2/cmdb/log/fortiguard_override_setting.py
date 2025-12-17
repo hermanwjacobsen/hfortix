@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiGuard Override Setting
 Override global FortiCloud logging settings for VDOMs.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortiguard/override-setting - Get FortiGuard override settings
-    PUT /api/v2/cmdb/log.fortiguard/override-setting - Update FortiGuard override settings
+    GET  /api/v2/cmdb/log.fortiguard/override-setting  - Get configuration
+    PUT  /api/v2/cmdb/log.fortiguard/override-setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortiguardOverrideSetting:
         path = "log.fortiguard/override-setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         override: Optional[str] = None,

@@ -56,7 +56,7 @@ class Global:
             "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         data: dict[str, Any],
         vdom: Optional[Union[str, bool]] = None,

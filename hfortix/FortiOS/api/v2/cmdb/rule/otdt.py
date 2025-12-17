@@ -4,11 +4,10 @@ FortiOS CMDB - Rule OTDT
 Show OT (Operational Technology) detection signatures.
 
 API Endpoints:
-    GET    /api/v2/cmdb/rule/otdt        - List all OT detection signatures
-    GET    /api/v2/cmdb/rule/otdt/{name} - Get specific OT detection signature
-    POST   /api/v2/cmdb/rule/otdt        - Create OT detection signature
-    PUT    /api/v2/cmdb/rule/otdt/{name} - Update OT detection signature
-    DELETE /api/v2/cmdb/rule/otdt/{name} - Delete OT detection signature
+    GET    /api/v2/cmdb/rule/otdt           - List all / Get specific
+    POST   /api/v2/cmdb/rule/otdt           - Create
+    PUT    /api/v2/cmdb/rule/otdt/{name}   - Update
+    DELETE /api/v2/cmdb/rule/otdt/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,22 +32,6 @@ class Otdt:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all OT detection signatures.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of OT detection signatures
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.otdt.list()
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -56,7 +39,7 @@ class Otdt:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get OT detection signature(s).
+        Get OT detection signature(s) - List all or get specific.
 
         Args:
             name: Signature name (if specified, gets single signature)
@@ -79,7 +62,7 @@ class Otdt:
     # The create/update/delete methods are included for API completeness but will
     # return HTTP 500 errors as these signatures cannot be manually created/modified.
     
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -179,7 +162,7 @@ class Otdt:
         data.update(kwargs)
         return self._client.post("cmdb", "rule/otdt", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

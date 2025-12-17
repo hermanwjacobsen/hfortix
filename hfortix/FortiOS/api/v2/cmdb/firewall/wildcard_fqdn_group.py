@@ -77,7 +77,7 @@ class Group:
             raw_json=raw_json,
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -90,7 +90,7 @@ class Group:
         raw_json: bool = False,
     ) -> HTTPResponse:
         """
-        Create a new wildcard FQDN group.
+        Create wildcard FQDN group.
 
 
         Supports two usage patterns:
@@ -109,7 +109,7 @@ class Group:
             dict: API response
 
         Example:
-            # Create group with members
+            # POST - Create group with members
             result = fgt.cmdb.firewall.wildcard_fqdn.group.create(
                 'web-wildcards',
                 member=[
@@ -160,7 +160,7 @@ class Group:
             "cmdb", "firewall.wildcard-fqdn/group", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -173,7 +173,7 @@ class Group:
         raw_json: bool = False,
     ) -> HTTPResponse:
         """
-        Update an existing wildcard FQDN group.
+        Update wildcard FQDN group.
 
 
         Supports two usage patterns:
@@ -192,7 +192,7 @@ class Group:
             dict: API response
 
         Example:
-            # Update members
+            # PUT - Update members
             result = fgt.cmdb.firewall.wildcard_fqdn.group.update(
                 'web-wildcards',
                 member=[

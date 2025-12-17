@@ -4,11 +4,10 @@ FortiOS CMDB - System Zone
 Configure zones to group two or more interfaces. When a zone is created you can configure policies for the zone instead of individual interfaces in the zone.
 
 API Endpoints:
-    GET    /system/zone           - List all zone
-    GET    /system/zone/{name}   - Get specific zone
-    POST   /system/zone           - Create zone
-    PUT    /system/zone/{name}   - Update zone
-    DELETE /system/zone/{name}   - Delete zone
+    GET    /system/zone           - List all / Get specific
+    POST   /system/zone           - Create
+    PUT    /system/zone/{name}   - Update
+    DELETE /system/zone/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Zone:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all zone
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of zone
-
-        Examples:
-            >>> # List all zone
-            >>> result = fgt.api.cmdb.system.zone.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Zone:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Zone:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new zone
+        Create zone
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Zone:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.zone.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.zone.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Zone:
         
         return self._client.post("cmdb", "system/zone", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Zone:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.zone.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.zone.update(
             ...     name='obj1',
             ...     comment='Updated'

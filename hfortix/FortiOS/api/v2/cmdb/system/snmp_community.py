@@ -4,11 +4,10 @@ FortiOS CMDB - System SnmpCommunity
 SNMP community configuration.
 
 API Endpoints:
-    GET    /system.snmp/community           - List all snmp community
-    GET    /system.snmp/community/{name}   - Get specific snmp community
-    POST   /system.snmp/community           - Create snmp community
-    PUT    /system.snmp/community/{name}   - Update snmp community
-    DELETE /system.snmp/community/{name}   - Delete snmp community
+    GET    /system.snmp/community           - List all / Get specific
+    POST   /system.snmp/community           - Create
+    PUT    /system.snmp/community/{name}   - Update
+    DELETE /system.snmp/community/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SnmpCommunity:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all snmp community
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of snmp community
-
-        Examples:
-            >>> # List all snmp community
-            >>> result = fgt.api.cmdb.system.snmp_community.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SnmpCommunity:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SnmpCommunity:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new snmp community
+        Create snmp community
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SnmpCommunity:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.snmp_community.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.snmp_community.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SnmpCommunity:
         
         return self._client.post("cmdb", "system.snmp/community", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SnmpCommunity:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.snmp_community.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.snmp_community.update(
             ...     name='obj1',
             ...     comment='Updated'

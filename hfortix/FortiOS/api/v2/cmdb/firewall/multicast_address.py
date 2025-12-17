@@ -211,7 +211,7 @@ class MulticastAddress:
             "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
@@ -231,7 +231,7 @@ class MulticastAddress:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Create a new multicast-address entry.
+        Create multicast-address entry.
 
         Supports two usage patterns:
         1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
@@ -312,7 +312,7 @@ class MulticastAddress:
             "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         mkey: Union[str, int],
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -334,7 +334,7 @@ class MulticastAddress:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Update an existing multicast-address entry.
+        Update multicast-address entry.
 
         Supports two usage patterns:
         1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")

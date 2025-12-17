@@ -4,8 +4,8 @@ FortiOS CMDB - System Ike
 Configure IKE global attributes.
 
 API Endpoints:
-    GET  /system/ike  - Get ike settings
-    PUT  /system/ike  - Update ike settings
+    GET  /system/ike  - Get configuration
+    PUT  /system/ike  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Ike:
         
         return self._client.get("cmdb", "system/ike", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Ike:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ike.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ike.update(
             ...     setting1='value1',
             ...     setting2='value2'

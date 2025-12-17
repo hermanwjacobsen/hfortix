@@ -5,7 +5,7 @@ Configure a list of hashes to be exempt from AV scanning
 API Endpoints:
     GET    /antivirus/exempt-list       - Get all exempt list entries
     GET    /antivirus/exempt-list/{name} - Get specific exempt list entry
-    POST   /antivirus/exempt-list       - Create new exempt list entry
+    POST   /antivirus/exempt-list       - Create exempt list entry
     PUT    /antivirus/exempt-list/{name} - Update exempt list entry
     DELETE /antivirus/exempt-list/{name} - Delete exempt list entry
 """
@@ -129,7 +129,7 @@ class ExemptList:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -143,7 +143,7 @@ class ExemptList:
     ) -> dict[str, Any]:
         """
         POST /antivirus/exempt-list
-        Create new exempt list entry
+        Create exempt list entry
 
         Args:
             name: Table entry name (required, max 35 chars)
@@ -158,7 +158,7 @@ class ExemptList:
             Response dict with status
 
         Examples:
-            >>> # Create with SHA256 hash
+            >>> # POST - Create with SHA256 hash
             >>> fgt.cmdb.antivirus.exempt_list.create(
             ...     name='trusted_file',
             ...     hash_type='sha256',
@@ -167,7 +167,7 @@ class ExemptList:
             ...     comment='Trusted application'
             ... )
 
-            >>> # Create with MD5 hash
+            >>> # POST - Create with MD5 hash
             >>> fgt.cmdb.antivirus.exempt_list.create(
             ...     name='safe_file',
             ...     hash_type='md5',
@@ -213,7 +213,7 @@ class ExemptList:
             "cmdb", "antivirus/exempt-list", payload, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -253,13 +253,13 @@ class ExemptList:
             Response dict with status
 
         Examples:
-            >>> # Update status
+            >>> # PUT - Update status
             >>> fgt.cmdb.antivirus.exempt_list.update(
             ...     name='trusted_file',
             ...     status='disable'
             ... )
 
-            >>> # Update hash and comment
+            >>> # PUT - Update hash and comment
             >>> fgt.cmdb.antivirus.exempt_list.update(
             ...     name='trusted_file',
             ...     hash='new_hash_value',

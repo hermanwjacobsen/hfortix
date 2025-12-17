@@ -4,11 +4,10 @@ FortiOS CMDB - System DeviceUpgrade
 Independent upgrades for managed devices.
 
 API Endpoints:
-    GET    /system/device-upgrade           - List all device-upgrade
-    GET    /system/device-upgrade/{name}   - Get specific device-upgrade
-    POST   /system/device-upgrade           - Create device-upgrade
-    PUT    /system/device-upgrade/{name}   - Update device-upgrade
-    DELETE /system/device-upgrade/{name}   - Delete device-upgrade
+    GET    /system/device-upgrade           - List all / Get specific
+    POST   /system/device-upgrade           - Create
+    PUT    /system/device-upgrade/{name}   - Update
+    DELETE /system/device-upgrade/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DeviceUpgrade:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all device-upgrade
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of device-upgrade
-
-        Examples:
-            >>> # List all device-upgrade
-            >>> result = fgt.api.cmdb.system.device_upgrade.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DeviceUpgrade:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DeviceUpgrade:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new device-upgrade
+        Create device-upgrade
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DeviceUpgrade:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.device_upgrade.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.device_upgrade.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DeviceUpgrade:
         
         return self._client.post("cmdb", "system/device-upgrade", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DeviceUpgrade:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.device_upgrade.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.device_upgrade.update(
             ...     name='obj1',
             ...     comment='Updated'

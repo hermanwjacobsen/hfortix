@@ -74,7 +74,7 @@ class Profile:
             )
         return self.list(params=params, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -93,7 +93,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new diameter filter profile
+        Create diameter filter profile
 
         Args:
             name: Profile name (max 47 chars)
@@ -155,7 +155,7 @@ class Profile:
 
         return self._client.post("cmdb", self._base_path, data=data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,7 +174,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing diameter filter profile
+        Update diameter filter profile
 
         Args:
             name: Profile name

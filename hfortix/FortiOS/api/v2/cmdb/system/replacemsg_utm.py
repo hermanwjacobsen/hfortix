@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgUtm
 Replacement messages.
 
 API Endpoints:
-    GET    /system.replacemsg/utm           - List all replacemsg utm
-    GET    /system.replacemsg/utm/{name}   - Get specific replacemsg utm
-    POST   /system.replacemsg/utm           - Create replacemsg utm
-    PUT    /system.replacemsg/utm/{name}   - Update replacemsg utm
-    DELETE /system.replacemsg/utm/{name}   - Delete replacemsg utm
+    GET    /system.replacemsg/utm           - List all / Get specific
+    POST   /system.replacemsg/utm           - Create
+    PUT    /system.replacemsg/utm/{name}   - Update
+    DELETE /system.replacemsg/utm/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgUtm:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg utm
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg utm
-
-        Examples:
-            >>> # List all replacemsg utm
-            >>> result = fgt.api.cmdb.system.replacemsg_utm.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgUtm:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgUtm:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg utm
+        Create replacemsg utm
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgUtm:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_utm.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_utm.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgUtm:
         
         return self._client.post("cmdb", "system.replacemsg/utm", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgUtm:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_utm.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_utm.update(
             ...     name='obj1',
             ...     comment='Updated'

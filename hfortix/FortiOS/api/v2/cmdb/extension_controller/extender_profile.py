@@ -4,11 +4,10 @@ FortiOS CMDB - Extension Controller Extender Profile
 Configure FortiExtender extender profiles.
 
 API Endpoints:
-    GET    /api/v2/cmdb/extension-controller/extender-profile        - List all profiles
-    GET    /api/v2/cmdb/extension-controller/extender-profile/{name} - Get specific profile
-    POST   /api/v2/cmdb/extension-controller/extender-profile        - Create profile
-    PUT    /api/v2/cmdb/extension-controller/extender-profile/{name} - Update profile
-    DELETE /api/v2/cmdb/extension-controller/extender-profile/{name} - Delete profile
+    GET    /api/v2/cmdb/extension-controller/extender-profile           - List all / Get specific
+    POST   /api/v2/cmdb/extension-controller/extender-profile           - Create
+    PUT    /api/v2/cmdb/extension-controller/extender-profile/{name}   - Update
+    DELETE /api/v2/cmdb/extension-controller/extender-profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -35,7 +34,7 @@ class ExtenderProfile:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get FortiExtender profile(s)."""
+        """Get FortiExtender profile(s) - List all or get specific."""
         params = {k: v for k, v in kwargs.items() if v is not None}
         path = "extension-controller/extender-profile"
         if name:
@@ -44,11 +43,7 @@ class ExtenderProfile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """Get all FortiExtender profiles."""
-        return self.get(name=None, vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,
@@ -56,7 +51,7 @@ class ExtenderProfile:
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create a new FortiExtender profile."""
+        """Create FortiExtender profile."""
         data = {"name": name}
         for key, value in kwargs.items():
             data[key.replace("_", "-")] = value
@@ -64,7 +59,7 @@ class ExtenderProfile:
             "cmdb", "extension-controller/extender-profile", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,

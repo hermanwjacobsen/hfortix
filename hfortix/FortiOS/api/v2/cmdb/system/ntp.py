@@ -4,8 +4,8 @@ FortiOS CMDB - System Ntp
 Configure system NTP information.
 
 API Endpoints:
-    GET  /system/ntp  - Get ntp settings
-    PUT  /system/ntp  - Update ntp settings
+    GET  /system/ntp  - Get configuration
+    PUT  /system/ntp  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Ntp:
 
         return self._client.get("cmdb", "system/ntp", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Ntp:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ntp.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
 
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ntp.update(
             ...     setting1='value1',
             ...     setting2='value2'

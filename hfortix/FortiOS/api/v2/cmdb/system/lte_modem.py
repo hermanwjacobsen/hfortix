@@ -4,8 +4,8 @@ FortiOS CMDB - System LteModem
 Configure USB LTE/WIMAX devices.
 
 API Endpoints:
-    GET  /system/lte-modem  - Get lte-modem settings
-    PUT  /system/lte-modem  - Update lte-modem settings
+    GET  /system/lte-modem  - Get configuration
+    PUT  /system/lte-modem  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class LteModem:
         
         return self._client.get("cmdb", "system/lte-modem", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class LteModem:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.lte_modem.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.lte_modem.update(
             ...     setting1='value1',
             ...     setting2='value2'

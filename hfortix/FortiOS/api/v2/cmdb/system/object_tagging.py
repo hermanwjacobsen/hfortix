@@ -4,11 +4,10 @@ FortiOS CMDB - System ObjectTagging
 Configure object tagging.
 
 API Endpoints:
-    GET    /system/object-tagging           - List all object-tagging
-    GET    /system/object-tagging/{name}   - Get specific object-tagging
-    POST   /system/object-tagging           - Create object-tagging
-    PUT    /system/object-tagging/{name}   - Update object-tagging
-    DELETE /system/object-tagging/{name}   - Delete object-tagging
+    GET    /system/object-tagging           - List all / Get specific
+    POST   /system/object-tagging           - Create
+    PUT    /system/object-tagging/{name}   - Update
+    DELETE /system/object-tagging/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ObjectTagging:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all object-tagging
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of object-tagging
-
-        Examples:
-            >>> # List all object-tagging
-            >>> result = fgt.api.cmdb.system.object_tagging.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ObjectTagging:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ObjectTagging:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new object-tagging
+        Create object-tagging
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ObjectTagging:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.object_tagging.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.object_tagging.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ObjectTagging:
         
         return self._client.post("cmdb", "system/object-tagging", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ObjectTagging:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.object_tagging.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.object_tagging.update(
             ...     name='obj1',
             ...     comment='Updated'

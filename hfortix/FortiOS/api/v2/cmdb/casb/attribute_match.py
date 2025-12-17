@@ -4,11 +4,10 @@ FortiOS CMDB - CASB Attribute Match
 Configure CASB attribute match rules.
 
 API Endpoints:
-    GET    /casb/attribute-match       - List all attribute match rules
-    GET    /casb/attribute-match/{name} - Get specific attribute match rule
-    POST   /casb/attribute-match       - Create attribute match rule
-    PUT    /casb/attribute-match/{name} - Update attribute match rule
-    DELETE /casb/attribute-match/{name} - Delete attribute match rule
+    GET    /casb/attribute-match           - List all / Get specific
+    POST   /casb/attribute-match           - Create
+    PUT    /casb/attribute-match/{name}   - Update
+    DELETE /casb/attribute-match/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -74,7 +73,7 @@ class AttributeMatch:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB attribute match rule(s)
+        Get CASB attribute match rule(s) - List all or get specific
 
         Args:
             name (str, optional): Attribute match rule name (for specific rule)
@@ -142,7 +141,7 @@ class AttributeMatch:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,14 +173,14 @@ class AttributeMatch:
             dict: API response
 
         Examples:
-            >>> # Create simple attribute match rule
+            >>> # POST - Create simple attribute match rule
             >>> result = fgt.cmdb.casb.attribute_match.create(
             ...     name='my-rule',
             ...     application='office365',
             ...     match_strategy='or'
             ... )
 
-            >>> # Create rule with match conditions
+            >>> # POST - Create rule with match conditions
             >>> result = fgt.cmdb.casb.attribute_match.create(
             ...     name='advanced-rule',
             ...     application='google-workspace',
@@ -249,7 +248,7 @@ class AttributeMatch:
 
         return self._client.post("cmdb", "casb/attribute-match", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -275,13 +274,13 @@ class AttributeMatch:
             dict: API response
 
         Examples:
-            >>> # Update match strategy
+            >>> # PUT - Update match strategy
             >>> result = fgt.cmdb.casb.attribute_match.update(
             ...     name='my-rule',
             ...     match_strategy='and'
             ... )
 
-            >>> # Update application
+            >>> # PUT - Update application
             >>> result = fgt.cmdb.casb.attribute_match.update(
             ...     name='my-rule',
             ...     application='salesforce'

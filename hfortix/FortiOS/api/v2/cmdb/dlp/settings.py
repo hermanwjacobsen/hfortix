@@ -53,7 +53,7 @@ class Settings:
         """
         return self._client.get("cmdb", "dlp/settings", vdom=vdom, params=kwargs, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,

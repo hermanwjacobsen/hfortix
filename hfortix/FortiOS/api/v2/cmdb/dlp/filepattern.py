@@ -4,11 +4,10 @@ FortiOS CMDB - DLP File Pattern
 Configure file patterns used by DLP blocking.
 
 API Endpoints:
-    GET    /dlp/filepattern       - List all file patterns
-    GET    /dlp/filepattern/{id}  - Get specific file pattern
-    POST   /dlp/filepattern       - Create new file pattern
-    PUT    /dlp/filepattern/{id}  - Update file pattern
-    DELETE /dlp/filepattern/{id}  - Delete file pattern
+    GET    /dlp/filepattern           - List all / Get specific
+    POST   /dlp/filepattern           - Create
+    PUT    /dlp/filepattern/{id}   - Update
+    DELETE /dlp/filepattern/{id}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class Filepattern:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP file pattern(s).
+        Get DLP file pattern(s) - List all or get specific.
 
         Args:
             id: File pattern ID. If provided, gets specific file pattern.
@@ -131,7 +130,7 @@ class Filepattern:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -144,7 +143,7 @@ class Filepattern:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP file pattern.
+        Create DLP file pattern.
 
         Args:
             name: Name of the file pattern list (max 63 chars)
@@ -162,7 +161,7 @@ class Filepattern:
             API response dictionary
 
         Examples:
-            >>> # Create pattern for executable files
+            >>> # POST - Create pattern for executable files
             >>> result = fgt.cmdb.dlp.filepattern.create(
             ...     name='block-executables',
             ...     comment='Block executable file types',
@@ -173,7 +172,7 @@ class Filepattern:
             ...     ]
             ... )
 
-            >>> # Create pattern for file names
+            >>> # POST - Create pattern for file names
             >>> result = fgt.cmdb.dlp.filepattern.create(
             ...     name='confidential-docs',
             ...     entries=[
@@ -227,7 +226,7 @@ class Filepattern:
 
         return self._client.post("cmdb", "dlp/filepattern", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         id: Optional[int] = None,
@@ -240,7 +239,7 @@ class Filepattern:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP file pattern.
+        Update DLP file pattern.
 
         Args:
             id: ID of the file pattern to update
@@ -257,13 +256,13 @@ class Filepattern:
             API response dictionary
 
         Examples:
-            >>> # Update comment
+            >>> # PUT - Update comment
             >>> result = fgt.cmdb.dlp.filepattern.update(
             ...     id=1,
             ...     comment='Updated block list'
             ... )
 
-            >>> # Update entries
+            >>> # PUT - Update entries
             >>> result = fgt.cmdb.dlp.filepattern.update(
             ...     id=1,
             ...     entries=[

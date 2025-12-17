@@ -68,7 +68,7 @@ class TacacsAccounting2Setting:
         path = "log.tacacs+accounting2/setting"
         return self._client.get("cmdb", path)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         interface: Optional[str] = None,

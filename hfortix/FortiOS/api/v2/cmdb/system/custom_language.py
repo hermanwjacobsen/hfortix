@@ -4,11 +4,10 @@ FortiOS CMDB - System CustomLanguage
 Configure custom languages.
 
 API Endpoints:
-    GET    /system/custom-language           - List all custom-language
-    GET    /system/custom-language/{name}   - Get specific custom-language
-    POST   /system/custom-language           - Create custom-language
-    PUT    /system/custom-language/{name}   - Update custom-language
-    DELETE /system/custom-language/{name}   - Delete custom-language
+    GET    /system/custom-language           - List all / Get specific
+    POST   /system/custom-language           - Create
+    PUT    /system/custom-language/{name}   - Update
+    DELETE /system/custom-language/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class CustomLanguage:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all custom-language
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of custom-language
-
-        Examples:
-            >>> # List all custom-language
-            >>> result = fgt.api.cmdb.system.custom_language.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class CustomLanguage:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class CustomLanguage:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new custom-language
+        Create custom-language
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class CustomLanguage:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.custom_language.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.custom_language.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class CustomLanguage:
         
         return self._client.post("cmdb", "system/custom-language", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class CustomLanguage:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.custom_language.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.custom_language.update(
             ...     name='obj1',
             ...     comment='Updated'

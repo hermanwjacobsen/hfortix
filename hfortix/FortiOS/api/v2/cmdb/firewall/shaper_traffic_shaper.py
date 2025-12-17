@@ -3,11 +3,10 @@ FortiOS CMDB - Firewall Shared Traffic Shaper
 Configure shared traffic shaper.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.shaper/traffic-shaper       - List all traffic shapers
-    GET    /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}  - Get specific traffic shaper
-    POST   /api/v2/cmdb/firewall.shaper/traffic-shaper       - Create traffic shaper
-    PUT    /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}  - Update traffic shaper
-    DELETE /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}  - Delete traffic shaper
+    GET    /api/v2/cmdb/firewall.shaper/traffic-shaper           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.shaper/traffic-shaper           - Create
+    PUT    /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}   - Update
+    DELETE /api/v2/cmdb/firewall.shaper/traffic-shaper/{id}   - Delete
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -23,40 +22,6 @@ class TrafficShaper:
     def __init__(self, client):
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        List all shared traffic shapers.
-
-        Args:
-            filter: Filter results
-            range: Range of results (e.g., '0-50')
-            sort: Sort results
-            format: List of fields to include in response
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all traffic shapers
-            >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.list(
-            ...     format=['name', 'guaranteed-bandwidth', 'maximum-bandwidth']
-            ... )
-        """
-        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -69,7 +34,7 @@ class TrafficShaper:
         **kwargs,
     ) -> HTTPResponse:
         """
-        Get shared traffic shaper(s).
+        Get shared traffic shaper(s) - List all or get specific.
 
         Args:
             name: Traffic shaper name (if retrieving specific shaper)
@@ -110,7 +75,7 @@ class TrafficShaper:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -162,7 +127,7 @@ class TrafficShaper:
             API response dictionary
 
         Examples:
-            >>> # Create basic traffic shaper
+            >>> # POST - Create basic traffic shaper
             >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.create(
             ...     'web-traffic',
             ...     guaranteed_bandwidth=5120,
@@ -172,7 +137,7 @@ class TrafficShaper:
             ...     comment='Web traffic shaper'
             ... )
 
-            >>> # Create traffic shaper with DSCP marking
+            >>> # POST - Create traffic shaper with DSCP marking
             >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.create(
             ...     'voip-traffic',
             ...     guaranteed_bandwidth=2048,
@@ -225,7 +190,7 @@ class TrafficShaper:
             "cmdb", "firewall.shaper/traffic-shaper", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -278,14 +243,14 @@ class TrafficShaper:
             API response dictionary
 
         Examples:
-            >>> # Update bandwidth limits
+            >>> # PUT - Update bandwidth limits
             >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.update(
             ...     'web-traffic',
             ...     guaranteed_bandwidth=10240,
             ...     maximum_bandwidth=20480
             ... )
 
-            >>> # Update priority
+            >>> # PUT - Update priority
             >>> result = fgt.cmdb.firewall.shaper.traffic_shaper.update(
             ...     'voip-traffic',
             ...     priority='top'

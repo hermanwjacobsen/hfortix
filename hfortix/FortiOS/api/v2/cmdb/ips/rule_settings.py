@@ -29,7 +29,7 @@ class RuleSettings:
             vdom=vdom,
         )
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         id: Optional[int] = None,
@@ -42,7 +42,7 @@ class RuleSettings:
         data.update(kwargs)
         return self._client.post("cmdb", "ips/rule-settings", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         id: int,
         data_dict: Optional[dict[str, Any]] = None,

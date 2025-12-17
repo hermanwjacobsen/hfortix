@@ -25,7 +25,7 @@ class ThreatWeight:
         # Get current threat weight settings
         settings = fgt.api.cmdb.log.threat_weight.get()
 
-        # Update threat weight settings
+        # PUT - Update threat weight settings
         fgt.api.cmdb.log.threat_weight.update(
             status='enable',
             level={'low': 1, 'medium': 2, 'high': 3, 'critical': 4}
@@ -56,7 +56,7 @@ class ThreatWeight:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         application: Optional[list] = None,

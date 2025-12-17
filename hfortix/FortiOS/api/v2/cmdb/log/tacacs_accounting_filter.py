@@ -66,7 +66,7 @@ class TacacsAccountingFilter:
         path = "log.tacacs+accounting/filter"
         return self._client.get("cmdb", path)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         cli_cmd_audit: Optional[str] = None,

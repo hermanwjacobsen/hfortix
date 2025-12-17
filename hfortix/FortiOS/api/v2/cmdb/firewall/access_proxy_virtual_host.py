@@ -83,7 +83,7 @@ class AccessProxyVirtualHost:
             path = self._path
         return self._client.get("cmdb", path, vdom=vdom, params=params, raw_json=raw_json)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -95,7 +95,7 @@ class AccessProxyVirtualHost:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Create new virtual host
+        Create virtual host
 
         Args:
             name: Virtual host name
@@ -149,7 +149,7 @@ class AccessProxyVirtualHost:
 
         return self._client.post("cmdb", self._path, data=payload, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -161,7 +161,7 @@ class AccessProxyVirtualHost:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Update existing virtual host
+        Update virtual host
 
         Args:
             name: Virtual host name to update

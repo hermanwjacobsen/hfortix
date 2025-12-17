@@ -57,9 +57,6 @@ class FortiOS:
         - Examples: EXAMPLES.md
     """
 
-    # Type hint for IDE autocomplete (note: Python will also create __annotations__)
-    api: API
-
     def __init__(
         self,
         host: Optional[str] = None,

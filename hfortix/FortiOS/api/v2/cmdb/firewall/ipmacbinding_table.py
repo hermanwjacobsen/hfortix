@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall IP-MAC Binding Table
 Configure IP to MAC address pairs in the IP/MAC binding table.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ipmacbinding/table        - List all IP-MAC bindings
-    GET    /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num} - Get specific binding
-    POST   /api/v2/cmdb/firewall.ipmacbinding/table        - Create new IP-MAC binding
-    PUT    /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num} - Update IP-MAC binding
-    DELETE /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num} - Delete IP-MAC binding
+    GET    /api/v2/cmdb/firewall.ipmacbinding/table           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.ipmacbinding/table           - Create
+    PUT    /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num}   - Update
+    DELETE /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num}   - Delete
 """
 
 from __future__ import annotations
@@ -145,7 +144,7 @@ class IpmacbindingTable:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         seq_num: Optional[int] = None,
@@ -158,7 +157,7 @@ class IpmacbindingTable:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new IP-MAC binding entry.
+        Create IP-MAC binding entry.
 
 
         Supports two usage patterns:
@@ -177,14 +176,14 @@ class IpmacbindingTable:
             API response dict
 
         Examples:
-            >>> # Create a simple IP-MAC binding
+            >>> # POST - Create a simple IP-MAC binding
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.create(
             ...     seq_num=1,
             ...     ip='192.168.1.100',
             ...     mac='00:11:22:33:44:55'
             ... )
 
-            >>> # Create with name and status
+            >>> # POST - Create with name and status
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.create(
             ...     seq_num=2,
             ...     ip='192.168.1.200',
@@ -234,7 +233,7 @@ class IpmacbindingTable:
         path = "firewall.ipmacbinding/table"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         seq_num: Optional[int] = None,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -247,7 +246,7 @@ class IpmacbindingTable:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing IP-MAC binding entry.
+        Update IP-MAC binding entry.
 
 
         Supports two usage patterns:
@@ -266,13 +265,13 @@ class IpmacbindingTable:
             API response dict
 
         Examples:
-            >>> # Update IP address
+            >>> # PUT - Update IP address
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.update(
             ...     seq_num=1,
             ...     ip='192.168.1.150'
             ... )
 
-            >>> # Update MAC and name
+            >>> # PUT - Update MAC and name
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.update(
             ...     seq_num=2,
             ...     mac='11:22:33:44:55:66',

@@ -4,11 +4,10 @@ FortiOS CMDB - System DeviceUpgradeExemptions
 Configure device upgrade exemptions. Device will stop receiving upgrade notifications on the GUI.
 
 API Endpoints:
-    GET    /system/device-upgrade-exemptions           - List all device-upgrade-exemptions
-    GET    /system/device-upgrade-exemptions/{name}   - Get specific device-upgrade-exemptions
-    POST   /system/device-upgrade-exemptions           - Create device-upgrade-exemptions
-    PUT    /system/device-upgrade-exemptions/{name}   - Update device-upgrade-exemptions
-    DELETE /system/device-upgrade-exemptions/{name}   - Delete device-upgrade-exemptions
+    GET    /system/device-upgrade-exemptions           - List all / Get specific
+    POST   /system/device-upgrade-exemptions           - Create
+    PUT    /system/device-upgrade-exemptions/{name}   - Update
+    DELETE /system/device-upgrade-exemptions/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DeviceUpgradeExemptions:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all device-upgrade-exemptions
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of device-upgrade-exemptions
-
-        Examples:
-            >>> # List all device-upgrade-exemptions
-            >>> result = fgt.api.cmdb.system.device_upgrade_exemptions.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DeviceUpgradeExemptions:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DeviceUpgradeExemptions:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new device-upgrade-exemptions
+        Create device-upgrade-exemptions
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DeviceUpgradeExemptions:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.device_upgrade_exemptions.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.device_upgrade_exemptions.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DeviceUpgradeExemptions:
         
         return self._client.post("cmdb", "system/device-upgrade-exemptions", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DeviceUpgradeExemptions:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.device_upgrade_exemptions.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.device_upgrade_exemptions.update(
             ...     name='obj1',
             ...     comment='Updated'

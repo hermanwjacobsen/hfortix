@@ -3,8 +3,8 @@ FortiOS CMDB - Antivirus Quarantine
 Configure quarantine options
 
 API Endpoints:
-    GET  /antivirus/quarantine - Get quarantine settings
-    PUT  /antivirus/quarantine - Update quarantine settings
+    GET  /antivirus/quarantine  - Get configuration
+    PUT  /antivirus/quarantine  - Update configuration
 """
 
 from __future__ import annotations
@@ -86,7 +86,7 @@ class Quarantine:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         agelimit: Optional[int] = None,

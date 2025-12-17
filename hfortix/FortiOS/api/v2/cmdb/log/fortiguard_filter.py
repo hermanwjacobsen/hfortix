@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiGuard Filter
 Filters for FortiCloud logging.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortiguard/filter - Get FortiGuard filter settings
-    PUT /api/v2/cmdb/log.fortiguard/filter - Update FortiGuard filter settings
+    GET  /api/v2/cmdb/log.fortiguard/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.fortiguard/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortiguardFilter:
         path = "log.fortiguard/filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -79,7 +79,7 @@ class FortiguardFilter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.fortiguard_filter.update(severity='warning')
 
             >>> # Enable specific traffic types

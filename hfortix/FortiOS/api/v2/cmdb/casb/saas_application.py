@@ -4,11 +4,10 @@ FortiOS CMDB - CASB SaaS Application
 Configure CASB SaaS application.
 
 API Endpoints:
-    GET    /casb/saas-application       - List all SaaS applications
-    GET    /casb/saas-application/{name} - Get specific SaaS application
-    POST   /casb/saas-application       - Create SaaS application
-    PUT    /casb/saas-application/{name} - Update SaaS application
-    DELETE /casb/saas-application/{name} - Delete SaaS application
+    GET    /casb/saas-application           - List all / Get specific
+    POST   /casb/saas-application           - Create
+    PUT    /casb/saas-application/{name}   - Update
+    DELETE /casb/saas-application/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -72,7 +71,7 @@ class SaasApplication:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB SaaS application(s)
+        Get CASB SaaS application(s) - List all or get specific
 
         Args:
             name (str, optional): Application name (get specific application)
@@ -143,7 +142,7 @@ class SaasApplication:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -185,14 +184,14 @@ class SaasApplication:
             dict: API response
 
         Examples:
-            >>> # Create custom SaaS application
+            >>> # POST - Create custom SaaS application
             >>> result = fgt.cmdb.casb.saas_application.create(
             ...     name='my-custom-app',
             ...     type='customized',
             ...     status='enable'
             ... )
 
-            >>> # Create with domain control
+            >>> # POST - Create with domain control
             >>> result = fgt.cmdb.casb.saas_application.create(
             ...     name='secure-app',
             ...     type='customized',
@@ -244,7 +243,7 @@ class SaasApplication:
             "cmdb", "casb/saas-application", data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -286,7 +285,7 @@ class SaasApplication:
             dict: API response
 
         Examples:
-            >>> # Update application status
+            >>> # PUT - Update application status
             >>> result = fgt.cmdb.casb.saas_application.update(
             ...     name='my-custom-app',
             ...     status='disable'

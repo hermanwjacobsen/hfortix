@@ -4,8 +4,8 @@ FortiOS CMDB - System NgfwSettings
 Configure IPS NGFW policy-mode VDOM settings.
 
 API Endpoints:
-    GET  /system/ngfw-settings  - Get ngfw-settings settings
-    PUT  /system/ngfw-settings  - Update ngfw-settings settings
+    GET  /system/ngfw-settings  - Get configuration
+    PUT  /system/ngfw-settings  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class NgfwSettings:
         
         return self._client.get("cmdb", "system/ngfw-settings", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class NgfwSettings:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ngfw_settings.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ngfw_settings.update(
             ...     setting1='value1',
             ...     setting2='value2'

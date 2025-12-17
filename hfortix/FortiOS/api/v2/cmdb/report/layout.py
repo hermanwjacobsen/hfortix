@@ -26,14 +26,14 @@ class Layout:
         # Get specific report layout
         layout = fgt.api.cmdb.report.layout.get(pkey='daily-report')
 
-        # Create new report layout
+        # POST - Create report layout
         fgt.api.cmdb.report.layout.create(
             name='custom-report',
             title='Custom Report',
             schedule_type='daily'
         )
 
-        # Update report layout
+        # PUT - Update report layout
         fgt.api.cmdb.report.layout.update(
             pkey='custom-report',
             title='Updated Report'
@@ -77,7 +77,7 @@ class Layout:
         path = f"{self._endpoint}/{pkey}" if pkey else self._endpoint
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         body_item: Optional[list] = None,
@@ -101,7 +101,7 @@ class Layout:
         **kwargs: Any,
     ) -> Dict[str, Any]:
         """
-        Create a new report layout.
+        Create report layout.
 
         Args:
             data_dict: Dictionary with API format parameters
@@ -167,7 +167,7 @@ class Layout:
 
         return self._client.post("cmdb", self._endpoint, data=payload, vdom=vdom)
 
-    def update(
+    def put(
         self,
         pkey: str,
         data_dict: Optional[Dict[str, Any]] = None,
@@ -192,7 +192,7 @@ class Layout:
         **kwargs: Any,
     ) -> Dict[str, Any]:
         """
-        Update an existing report layout.
+        Update report layout.
 
         Args:
             pkey: Layout name to update

@@ -4,11 +4,10 @@ FortiOS CMDB - System Alias
 Configure alias command.
 
 API Endpoints:
-    GET    /system/alias           - List all alias
-    GET    /system/alias/{name}   - Get specific alias
-    POST   /system/alias           - Create alias
-    PUT    /system/alias/{name}   - Update alias
-    DELETE /system/alias/{name}   - Delete alias
+    GET    /system/alias           - List all / Get specific
+    POST   /system/alias           - Create
+    PUT    /system/alias/{name}   - Update
+    DELETE /system/alias/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Alias:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all alias
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of alias
-
-        Examples:
-            >>> # List all alias
-            >>> result = fgt.api.cmdb.system.alias.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Alias:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Alias:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new alias
+        Create alias
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Alias:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.alias.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.alias.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Alias:
         
         return self._client.post("cmdb", "system/alias", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Alias:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.alias.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.alias.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -6,7 +6,7 @@ Configure firewall application groups.
 API Endpoints:
     GET    /api/v2/cmdb/application/group       - List all application groups
     GET    /api/v2/cmdb/application/group/{name} - Get a specific application group
-    POST   /api/v2/cmdb/application/group       - Create a new application group
+    POST   /api/v2/cmdb/application/group       - Create application group
     PUT    /api/v2/cmdb/application/group/{name} - Update an application group
     DELETE /api/v2/cmdb/application/group/{name} - Delete an application group
 """
@@ -54,7 +54,7 @@ class Group:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get application group(s).
+        Get application group(s) - List all or get specific.
 
         Retrieves either a specific application group by name, or lists
         all application groups with optional filtering.
@@ -189,7 +189,7 @@ class Group:
             **kwargs,
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -209,7 +209,7 @@ class Group:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new application group.
+        Create application group.
 
         Args:
             name (str, required): Application group name (max 63 chars)
@@ -230,7 +230,7 @@ class Group:
             dict: API response containing creation status
 
         Examples:
-            >>> # Create a group with specific applications
+            >>> # POST - Create a group with specific applications
             >>> result = fgt.cmdb.application.group.create(
             ...     name='WebApps',
             ...     comment='Web application group',
@@ -241,7 +241,7 @@ class Group:
             ...     ]
             ... )
 
-            >>> # Create a filter-based group
+            >>> # POST - Create a filter-based group
             >>> result = fgt.cmdb.application.group.create(
             ...     name='HighRiskApps',
             ...     comment='High risk applications',
@@ -250,7 +250,7 @@ class Group:
             ...     popularity='5'
             ... )
 
-            >>> # Create with category filter
+            >>> # POST - Create with category filter
             >>> result = fgt.cmdb.application.group.create(
             ...     name='SocialMedia',
             ...     type='filter',
@@ -283,7 +283,7 @@ class Group:
 
         return self._client.post("cmdb", "application/group", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -308,7 +308,7 @@ class Group:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing application group.
+        Update application group.
 
         Args:
             name (str, required): Application group name to update
@@ -333,7 +333,7 @@ class Group:
             dict: API response containing update status
 
         Examples:
-            >>> # Update comment and add applications
+            >>> # PUT - Update comment and add applications
             >>> result = fgt.cmdb.application.group.update(
             ...     name='WebApps',
             ...     comment='Updated web applications',
@@ -344,7 +344,7 @@ class Group:
             ...     ]
             ... )
 
-            >>> # Update filter criteria
+            >>> # PUT - Update filter criteria
             >>> result = fgt.cmdb.application.group.update(
             ...     name='HighRiskApps',
             ...     risk=[{'level': 5}],  # Only critical

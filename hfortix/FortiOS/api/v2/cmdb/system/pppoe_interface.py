@@ -4,11 +4,10 @@ FortiOS CMDB - System PppoeInterface
 Configure the PPPoE interfaces.
 
 API Endpoints:
-    GET    /system/pppoe-interface           - List all pppoe-interface
-    GET    /system/pppoe-interface/{name}   - Get specific pppoe-interface
-    POST   /system/pppoe-interface           - Create pppoe-interface
-    PUT    /system/pppoe-interface/{name}   - Update pppoe-interface
-    DELETE /system/pppoe-interface/{name}   - Delete pppoe-interface
+    GET    /system/pppoe-interface           - List all / Get specific
+    POST   /system/pppoe-interface           - Create
+    PUT    /system/pppoe-interface/{name}   - Update
+    DELETE /system/pppoe-interface/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class PppoeInterface:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all pppoe-interface
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of pppoe-interface
-
-        Examples:
-            >>> # List all pppoe-interface
-            >>> result = fgt.api.cmdb.system.pppoe_interface.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class PppoeInterface:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class PppoeInterface:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new pppoe-interface
+        Create pppoe-interface
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class PppoeInterface:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.pppoe_interface.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.pppoe_interface.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class PppoeInterface:
         
         return self._client.post("cmdb", "system/pppoe-interface", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class PppoeInterface:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.pppoe_interface.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.pppoe_interface.update(
             ...     name='obj1',
             ...     comment='Updated'

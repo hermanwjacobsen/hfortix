@@ -6,7 +6,7 @@ Configure custom application signatures.
 API Endpoints:
     GET    /api/v2/cmdb/application/custom       - List all custom application signatures
     GET    /api/v2/cmdb/application/custom/{tag} - Get a specific custom application signature
-    POST   /api/v2/cmdb/application/custom       - Create a new custom application signature
+    POST   /api/v2/cmdb/application/custom       - Create custom application signature
     PUT    /api/v2/cmdb/application/custom/{tag} - Update a custom application signature
     DELETE /api/v2/cmdb/application/custom/{tag} - Delete a custom application signature
 """
@@ -54,7 +54,7 @@ class Custom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get custom application signature(s).
+        Get custom application signature(s) - List all or get specific.
 
         Retrieves either a specific custom application signature by tag, or lists
         all custom application signatures with optional filtering.
@@ -189,7 +189,7 @@ class Custom:
             **kwargs,
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         tag: Optional[str] = None,
@@ -207,7 +207,7 @@ class Custom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new custom application signature.
+        Create custom application signature.
 
         Args:
             tag (str, required): Signature tag (max 63 chars)
@@ -226,7 +226,7 @@ class Custom:
             dict: API response containing creation status
 
         Examples:
-            >>> # Create a simple custom signature (category is required!)
+            >>> # POST - Create a simple custom signature (category is required!)
             >>> result = fgt.cmdb.application.custom.create(
             ...     tag='MyCustomApp',
             ...     comment='Custom web application',
@@ -235,7 +235,7 @@ class Custom:
             ...     protocol='HTTP'
             ... )
 
-            >>> # Create with full details
+            >>> # POST - Create with full details
             >>> result = fgt.cmdb.application.custom.create(
             ...     tag='CustomDatabase',
             ...     comment='Custom database protocol',
@@ -269,7 +269,7 @@ class Custom:
 
         return self._client.post("cmdb", "application/custom", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         tag: Optional[str] = None,
@@ -292,7 +292,7 @@ class Custom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing custom application signature.
+        Update custom application signature.
 
         Args:
             tag (str, required): Signature tag to update
@@ -315,13 +315,13 @@ class Custom:
             dict: API response containing update status
 
         Examples:
-            >>> # Update signature text
+            >>> # PUT - Update signature text
             >>> result = fgt.cmdb.application.custom.update(
             ...     tag='MyCustomApp',
             ...     signature='F-SBID( --protocol tcp; --service HTTPS; --pattern "newpattern"; )'
             ... )
 
-            >>> # Update comment and protocol
+            >>> # PUT - Update comment and protocol
             >>> result = fgt.cmdb.application.custom.update(
             ...     tag='CustomDatabase',
             ...     comment='Updated database protocol',

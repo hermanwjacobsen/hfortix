@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiGuard Setting
 Configure logging to FortiCloud.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortiguard/setting - Get FortiGuard settings
-    PUT /api/v2/cmdb/log.fortiguard/setting - Update FortiGuard settings
+    GET  /api/v2/cmdb/log.fortiguard/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.fortiguard/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortiguardSetting:
         path = "log.fortiguard/setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

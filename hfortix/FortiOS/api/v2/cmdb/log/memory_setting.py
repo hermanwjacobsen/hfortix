@@ -4,8 +4,8 @@ FortiOS CMDB - Log Memory Setting
 Settings for memory buffer.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.memory/setting - Get memory buffer settings
-    PUT /api/v2/cmdb/log.memory/setting - Update memory buffer settings
+    GET  /api/v2/cmdb/log.memory/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.memory/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class MemorySetting:
         path = "log.memory/setting"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

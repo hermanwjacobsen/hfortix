@@ -5,7 +5,7 @@ Configure AntiVirus profiles
 API Endpoints:
     GET    /antivirus/profile       - Get all antivirus profiles
     GET    /antivirus/profile/{name} - Get specific antivirus profile
-    POST   /antivirus/profile       - Create new antivirus profile
+    POST   /antivirus/profile       - Create antivirus profile
     PUT    /antivirus/profile/{name} - Update antivirus profile
     DELETE /antivirus/profile/{name} - Delete antivirus profile
 """
@@ -119,7 +119,7 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -151,7 +151,7 @@ class Profile:
     ) -> dict[str, Any]:
         """
         POST /antivirus/profile
-        Create new antivirus profile
+        Create antivirus profile
 
         Args:
             name: Profile name (required, max 35 chars)
@@ -184,7 +184,7 @@ class Profile:
             Response dict with status
 
         Examples:
-            >>> # Create basic profile
+            >>> # POST - Create basic profile
             >>> fgt.cmdb.antivirus.profile.create(
             ...     name='corporate_av',
             ...     comment='Corporate antivirus policy',
@@ -192,7 +192,7 @@ class Profile:
             ...     analytics_db='enable'
             ... )
 
-            >>> # Create with FortiSandbox
+            >>> # POST - Create with FortiSandbox
             >>> fgt.cmdb.antivirus.profile.create(
             ...     name='strict_av',
             ...     scan_mode='full',
@@ -269,7 +269,7 @@ class Profile:
             "cmdb", "antivirus/profile", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -345,13 +345,13 @@ class Profile:
             Response dict with status
 
         Examples:
-            >>> # Update scan mode
+            >>> # PUT - Update scan mode
             >>> fgt.cmdb.antivirus.profile.update(
             ...     name='default',
             ...     scan_mode='full'
             ... )
 
-            >>> # Update FortiSandbox settings
+            >>> # PUT - Update FortiSandbox settings
             >>> fgt.cmdb.antivirus.profile.update(
             ...     name='corporate_av',
             ...     fortisandbox_mode='inline',

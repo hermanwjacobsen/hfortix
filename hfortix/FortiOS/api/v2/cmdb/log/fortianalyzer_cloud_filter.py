@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiAnalyzer Cloud Filter
 Filters for FortiAnalyzer Cloud.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortianalyzer-cloud/filter - Get FortiAnalyzer Cloud filter settings
-    PUT /api/v2/cmdb/log.fortianalyzer-cloud/filter - Update FortiAnalyzer Cloud filter settings
+    GET  /api/v2/cmdb/log.fortianalyzer-cloud/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.fortianalyzer-cloud/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortianalyzerCloudFilter:
         path = "log.fortianalyzer-cloud/filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -81,7 +81,7 @@ class FortianalyzerCloudFilter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.fortianalyzer_cloud_filter.update(severity='warning')
 
             >>> # Enable specific traffic types

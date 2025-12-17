@@ -66,7 +66,7 @@ class WebtrendsFilter:
         path = "log.webtrends/filter"
         return self._client.get("cmdb", path)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         anomaly: Optional[str] = None,

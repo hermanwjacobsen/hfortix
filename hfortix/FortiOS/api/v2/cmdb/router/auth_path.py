@@ -4,11 +4,10 @@ FortiOS CMDB - Router Auth Path
 Configure authentication based routing.
 
 API Endpoints:
-    GET    /api/v2/cmdb/router/auth-path        - List all auth paths
-    GET    /api/v2/cmdb/router/auth-path/{name} - Get specific auth path
-    POST   /api/v2/cmdb/router/auth-path        - Create auth path
-    PUT    /api/v2/cmdb/router/auth-path/{name} - Update auth path
-    DELETE /api/v2/cmdb/router/auth-path/{name} - Delete auth path
+    GET    /api/v2/cmdb/router/auth-path           - List all / Get specific
+    POST   /api/v2/cmdb/router/auth-path           - Create
+    PUT    /api/v2/cmdb/router/auth-path/{name}   - Update
+    DELETE /api/v2/cmdb/router/auth-path/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -41,7 +40,7 @@ class AuthPath:
             path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -60,7 +59,7 @@ class AuthPath:
         data.update(kwargs)
         return self._client.post("cmdb", "router/auth-path", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

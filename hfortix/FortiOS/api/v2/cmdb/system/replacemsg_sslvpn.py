@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgSslvpn
 Replacement messages.
 
 API Endpoints:
-    GET    /system.replacemsg/sslvpn           - List all replacemsg sslvpn
-    GET    /system.replacemsg/sslvpn/{name}   - Get specific replacemsg sslvpn
-    POST   /system.replacemsg/sslvpn           - Create replacemsg sslvpn
-    PUT    /system.replacemsg/sslvpn/{name}   - Update replacemsg sslvpn
-    DELETE /system.replacemsg/sslvpn/{name}   - Delete replacemsg sslvpn
+    GET    /system.replacemsg/sslvpn           - List all / Get specific
+    POST   /system.replacemsg/sslvpn           - Create
+    PUT    /system.replacemsg/sslvpn/{name}   - Update
+    DELETE /system.replacemsg/sslvpn/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgSslvpn:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg sslvpn
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg sslvpn
-
-        Examples:
-            >>> # List all replacemsg sslvpn
-            >>> result = fgt.api.cmdb.system.replacemsg_sslvpn.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgSslvpn:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgSslvpn:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg sslvpn
+        Create replacemsg sslvpn
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgSslvpn:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_sslvpn.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_sslvpn.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgSslvpn:
         
         return self._client.post("cmdb", "system.replacemsg/sslvpn", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgSslvpn:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_sslvpn.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_sslvpn.update(
             ...     name='obj1',
             ...     comment='Updated'

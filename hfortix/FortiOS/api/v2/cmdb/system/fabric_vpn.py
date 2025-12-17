@@ -4,8 +4,8 @@ FortiOS CMDB - System FabricVpn
 Setup for self orchestrated fabric auto discovery VPN.
 
 API Endpoints:
-    GET  /system/fabric-vpn  - Get fabric-vpn settings
-    PUT  /system/fabric-vpn  - Update fabric-vpn settings
+    GET  /system/fabric-vpn  - Get configuration
+    PUT  /system/fabric-vpn  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class FabricVpn:
         
         return self._client.get("cmdb", "system/fabric-vpn", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class FabricVpn:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.fabric_vpn.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.fabric_vpn.update(
             ...     setting1='value1',
             ...     setting2='value2'

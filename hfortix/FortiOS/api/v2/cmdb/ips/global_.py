@@ -4,8 +4,8 @@ FortiOS CMDB - IPS Global
 Configure IPS global parameter (singleton).
 
 API Endpoints:
-    GET /api/v2/cmdb/ips/global - Get IPS global settings
-    PUT /api/v2/cmdb/ips/global - Update IPS global settings
+    GET  /api/v2/cmdb/ips/global  - Get configuration
+    PUT  /api/v2/cmdb/ips/global  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class Global:
         path = "ips/global"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         anomaly_mode: Optional[str] = None,

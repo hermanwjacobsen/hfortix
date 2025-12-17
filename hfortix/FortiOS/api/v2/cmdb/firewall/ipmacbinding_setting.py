@@ -4,8 +4,8 @@ FortiOS CMDB - Firewall IP-MAC Binding Setting
 Configure IP to MAC binding settings.
 
 API Endpoints:
-    GET /api/v2/cmdb/firewall.ipmacbinding/setting - Get IP-MAC binding settings
-    PUT /api/v2/cmdb/firewall.ipmacbinding/setting - Update IP-MAC binding settings
+    GET  /api/v2/cmdb/firewall.ipmacbinding/setting  - Get configuration
+    PUT  /api/v2/cmdb/firewall.ipmacbinding/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -88,7 +88,7 @@ class IpmacbindingSetting:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         bindthroughfw: Optional[str] = None,

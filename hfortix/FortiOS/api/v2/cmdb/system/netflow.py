@@ -4,8 +4,8 @@ FortiOS CMDB - System Netflow
 Configure NetFlow.
 
 API Endpoints:
-    GET  /system/netflow  - Get netflow settings
-    PUT  /system/netflow  - Update netflow settings
+    GET  /system/netflow  - Get configuration
+    PUT  /system/netflow  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Netflow:
         
         return self._client.get("cmdb", "system/netflow", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Netflow:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.netflow.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.netflow.update(
             ...     setting1='value1',
             ...     setting2='value2'

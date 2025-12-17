@@ -4,8 +4,8 @@ FortiOS CMDB - System SshConfig
 Configure SSH config.
 
 API Endpoints:
-    GET  /system/ssh-config  - Get ssh-config settings
-    PUT  /system/ssh-config  - Update ssh-config settings
+    GET  /system/ssh-config  - Get configuration
+    PUT  /system/ssh-config  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class SshConfig:
         
         return self._client.get("cmdb", "system/ssh-config", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class SshConfig:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ssh_config.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ssh_config.update(
             ...     setting1='value1',
             ...     setting2='value2'

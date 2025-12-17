@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Data Type
 Configure predefined data type used by DLP blocking.
 
 API Endpoints:
-    GET    /dlp/data-type       - List all data types
-    GET    /dlp/data-type/{name} - Get specific data type
-    POST   /dlp/data-type       - Create new data type
-    PUT    /dlp/data-type/{name} - Update data type
-    DELETE /dlp/data-type/{name} - Delete data type
+    GET    /dlp/data-type           - List all / Get specific
+    POST   /dlp/data-type           - Create
+    PUT    /dlp/data-type/{name}   - Update
+    DELETE /dlp/data-type/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class DataType:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP data type(s).
+        Get DLP data type(s) - List all or get specific.
 
         Args:
             name: Data type name. If provided, gets specific data type.
@@ -131,7 +130,7 @@ class DataType:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -152,7 +151,7 @@ class DataType:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP data type.
+        Create DLP data type.
 
         Args:
             name: Name of the data type (max 35 chars)
@@ -174,14 +173,14 @@ class DataType:
             API response dictionary
 
         Examples:
-            >>> # Create simple data type
+            >>> # POST - Create simple data type
             >>> result = fgt.cmdb.dlp.data_type.create(
             ...     name='custom-ssn',
             ...     pattern=r'\\d{3}-\\d{2}-\\d{4}',
             ...     comment='Custom SSN pattern'
             ... )
 
-            >>> # Create with verification
+            >>> # POST - Create with verification
             >>> result = fgt.cmdb.dlp.data_type.create(
             ...     name='custom-credit-card',
             ...     pattern=r'\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}',
@@ -232,7 +231,7 @@ class DataType:
 
         return self._client.post("cmdb", "dlp/data-type", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -253,7 +252,7 @@ class DataType:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP data type.
+        Update DLP data type.
 
         Args:
             name: Name of the data type to update
@@ -275,14 +274,14 @@ class DataType:
             API response dictionary
 
         Examples:
-            >>> # Update pattern
+            >>> # PUT - Update pattern
             >>> result = fgt.cmdb.dlp.data_type.update(
             ...     name='custom-ssn',
             ...     pattern=r'\\d{3}-?\\d{2}-?\\d{4}',
             ...     comment='Updated SSN pattern - optional hyphens'
             ... )
 
-            >>> # Update verification settings
+            >>> # PUT - Update verification settings
             >>> result = fgt.cmdb.dlp.data_type.update(
             ...     name='custom-credit-card',
             ...     look_back=8,

@@ -3,8 +3,8 @@ FortiOS CMDB - Antivirus Settings
 Configure AntiVirus settings
 
 API Endpoints:
-    GET  /antivirus/settings - Get antivirus settings
-    PUT  /antivirus/settings - Update antivirus settings
+    GET  /antivirus/settings  - Get configuration
+    PUT  /antivirus/settings  - Update configuration
 """
 
 from __future__ import annotations
@@ -86,7 +86,7 @@ class Settings:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         default_db: Optional[str] = None,

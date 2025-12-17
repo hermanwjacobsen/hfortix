@@ -4,11 +4,10 @@ FortiOS CMDB - Ethernet OAM CFM
 Configure Connectivity Fault Management (CFM) domains for Ethernet OAM.
 
 API Endpoints:
-    GET    /api/v2/cmdb/ethernet-oam/cfm              - List all CFM domains
-    GET    /api/v2/cmdb/ethernet-oam/cfm/{domain-id}  - Get specific CFM domain
-    POST   /api/v2/cmdb/ethernet-oam/cfm              - Create CFM domain
-    PUT    /api/v2/cmdb/ethernet-oam/cfm/{domain-id}  - Update CFM domain
-    DELETE /api/v2/cmdb/ethernet-oam/cfm/{domain-id}  - Delete CFM domain
+    GET    /api/v2/cmdb/ethernet-oam/cfm           - List all / Get specific
+    POST   /api/v2/cmdb/ethernet-oam/cfm           - Create
+    PUT    /api/v2/cmdb/ethernet-oam/cfm/{domain-id}   - Update
+    DELETE /api/v2/cmdb/ethernet-oam/cfm/{domain-id}   - Delete
 """
 
 from __future__ import annotations
@@ -54,7 +53,7 @@ class Cfm:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CFM domain(s).
+        Get CFM domain(s) - List all or get specific.
 
         Args:
             domain_id (str, optional): Domain ID to retrieve. If None, retrieves all domains
@@ -117,52 +116,7 @@ class Cfm:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all CFM domains (convenience method).
-
-        Args:
-            Same as get() method, excluding domain_id
-
-        Returns:
-            dict: API response containing all CFM domains
-
-        Examples:
-            >>> domains = fgt.cmdb.ethernet_oam.cfm.list()
-        """
-        return self.get(
-            domain_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         domain_id: Optional[str] = None,
@@ -175,7 +129,7 @@ class Cfm:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new CFM domain.
+        Create CFM domain.
 
         Args:
             domain_id (str): Domain ID (primary identifier)
@@ -195,14 +149,14 @@ class Cfm:
             dict: API response
 
         Examples:
-            >>> # Create CFM domain
+            >>> # POST - Create CFM domain
             >>> result = fgt.cmdb.ethernet_oam.cfm.create(
             ...     domain_id='domain1',
             ...     name='MyDomain',
             ...     level=5
             ... )
 
-            >>> # Create with MA groups
+            >>> # POST - Create with MA groups
             >>> result = fgt.cmdb.ethernet_oam.cfm.create(
             ...     domain_id='domain2',
             ...     name='Domain2',
@@ -244,7 +198,7 @@ class Cfm:
             "cmdb", "ethernet-oam/cfm", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         domain_id: Optional[str] = None,
@@ -252,7 +206,7 @@ class Cfm:
         name: Optional[str] = None,
         level: Optional[int] = None,
         ma_group: Optional[list[dict[str, Any]]] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -280,7 +234,7 @@ class Cfm:
             dict: API response
 
         Examples:
-            >>> # Update CFM domain
+            >>> # PUT - Update CFM domain
             >>> result = fgt.cmdb.ethernet_oam.cfm.update(
             ...     domain_id='domain1',
             ...     level=6,

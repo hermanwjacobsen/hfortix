@@ -4,8 +4,8 @@ FortiOS CMDB - System SessionTtl
 Configure global session TTL timers for this FortiGate.
 
 API Endpoints:
-    GET  /system/session-ttl  - Get session-ttl settings
-    PUT  /system/session-ttl  - Update session-ttl settings
+    GET  /system/session-ttl  - Get configuration
+    PUT  /system/session-ttl  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class SessionTtl:
         
         return self._client.get("cmdb", "system/session-ttl", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class SessionTtl:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.session_ttl.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.session_ttl.update(
             ...     setting1='value1',
             ...     setting2='value2'

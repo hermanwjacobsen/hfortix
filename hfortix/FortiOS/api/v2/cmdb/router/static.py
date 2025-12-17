@@ -4,11 +4,10 @@ FortiOS CMDB - Router Static
 Configure IPv4 static routing tables.
 
 API Endpoints:
-    GET    /api/v2/cmdb/router/static          - List all IPv4 static routes
-    GET    /api/v2/cmdb/router/static/{seq-num} - Get specific static route
-    POST   /api/v2/cmdb/router/static          - Create IPv4 static route
-    PUT    /api/v2/cmdb/router/static/{seq-num} - Update IPv4 static route
-    DELETE /api/v2/cmdb/router/static/{seq-num} - Delete IPv4 static route
+    GET    /api/v2/cmdb/router/static           - List all / Get specific
+    POST   /api/v2/cmdb/router/static           - Create
+    PUT    /api/v2/cmdb/router/static/{seq-num}   - Update
+    DELETE /api/v2/cmdb/router/static/{seq-num}   - Delete
 """
 
 from __future__ import annotations
@@ -70,7 +69,7 @@ class Static:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv4 static route(s).
+        Get IPv4 static route(s) - List all or get specific.
 
         Args:
             seq_num: Sequence number (if specified, gets single route)
@@ -128,7 +127,7 @@ class Static:
 
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         seq_num: Optional[int] = None,
@@ -195,14 +194,14 @@ class Static:
             API response dict
 
         Examples:
-            >>> # Create basic static route
+            >>> # POST - Create basic static route
             >>> result = fgt.api.cmdb.router.static.create(
             ...     dst='10.0.0.0/8',
             ...     gateway='192.168.1.1',
             ...     device='port1'
             ... )
 
-            >>> # Create with priority and comment
+            >>> # POST - Create with priority and comment
             >>> result = fgt.api.cmdb.router.static.create(
             ...     dst='0.0.0.0/0',
             ...     gateway='192.168.1.254',
@@ -287,7 +286,7 @@ class Static:
 
         return self._client.post("cmdb", "router/static", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         seq_num: int,
         data_dict: Optional[dict[str, Any]] = None,
@@ -354,13 +353,13 @@ class Static:
             API response dict
 
         Examples:
-            >>> # Update gateway
+            >>> # PUT - Update gateway
             >>> result = fgt.api.cmdb.router.static.update(
             ...     seq_num=1,
             ...     gateway='192.168.1.254'
             ... )
 
-            >>> # Update multiple fields
+            >>> # PUT - Update multiple fields
             >>> result = fgt.api.cmdb.router.static.update(
             ...     seq_num=1,
             ...     priority=20,

@@ -3,11 +3,10 @@ FortiOS CMDB - Firewall SSH Host Key
 SSH proxy host public keys.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ssh/host-key       - List all host keys
-    GET    /api/v2/cmdb/firewall.ssh/host-key/{id}  - Get specific host key
-    POST   /api/v2/cmdb/firewall.ssh/host-key       - Create host key
-    PUT    /api/v2/cmdb/firewall.ssh/host-key/{id}  - Update host key
-    DELETE /api/v2/cmdb/firewall.ssh/host-key/{id}  - Delete host key
+    GET    /api/v2/cmdb/firewall.ssh/host-key           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.ssh/host-key           - Create
+    PUT    /api/v2/cmdb/firewall.ssh/host-key/{id}   - Update
+    DELETE /api/v2/cmdb/firewall.ssh/host-key/{id}   - Delete
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -23,40 +22,6 @@ class HostKey:
     def __init__(self, client):
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        List all SSH host keys.
-
-        Args:
-            filter: Filter results
-            range: Range of results (e.g., '0-50')
-            sort: Sort results
-            format: List of fields to include in response
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all host keys
-            >>> result = fgt.cmdb.firewall.ssh.host_key.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.ssh.host_key.list(
-            ...     format=['name', 'hostname', 'status']
-            ... )
-        """
-        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -69,7 +34,7 @@ class HostKey:
         **kwargs,
     ) -> HTTPResponse:
         """
-        Get SSH host key(s).
+        Get SSH host key(s) - List all or get specific.
 
         Args:
             name: Host key name (if retrieving specific key)
@@ -110,7 +75,7 @@ class HostKey:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -150,7 +115,7 @@ class HostKey:
             API response dictionary
 
         Examples:
-            >>> # Create SSH host key
+            >>> # POST - Create SSH host key
             >>> result = fgt.cmdb.firewall.ssh.host_key.create(
             ...     'server1-key',
             ...     hostname='ssh.example.com',
@@ -160,7 +125,7 @@ class HostKey:
             ...     status='enable'
             ... )
 
-            >>> # Create with public key
+            >>> # POST - Create with public key
             >>> result = fgt.cmdb.firewall.ssh.host_key.create(
             ...     'server2-key',
             ...     hostname='ssh2.example.com',
@@ -198,7 +163,7 @@ class HostKey:
             "cmdb", "firewall.ssh/host-key", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -238,14 +203,14 @@ class HostKey:
             API response dictionary
 
         Examples:
-            >>> # Update hostname and port
+            >>> # PUT - Update hostname and port
             >>> result = fgt.cmdb.firewall.ssh.host_key.update(
             ...     'server1-key',
             ...     hostname='newssh.example.com',
             ...     port=2222
             ... )
 
-            >>> # Update status
+            >>> # PUT - Update status
             >>> result = fgt.cmdb.firewall.ssh.host_key.update(
             ...     'server2-key',
             ...     status='disable'

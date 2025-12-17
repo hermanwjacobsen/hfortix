@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiAnalyzer2 Override Filter
 Override filters for FortiAnalyzer (secondary server) in VDOMs.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortianalyzer2/override-filter - Get FortiAnalyzer2 override filter settings
-    PUT /api/v2/cmdb/log.fortianalyzer2/override-filter - Update FortiAnalyzer2 override filter settings
+    GET  /api/v2/cmdb/log.fortianalyzer2/override-filter  - Get configuration
+    PUT  /api/v2/cmdb/log.fortianalyzer2/override-filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class Fortianalyzer2OverrideFilter:
         path = "log.fortianalyzer2/override-filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -81,7 +81,7 @@ class Fortianalyzer2OverrideFilter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update VDOM-specific filter
+            >>> # PUT - Update VDOM-specific filter
             >>> fgt.api.cmdb.log.fortianalyzer2_override_filter.update(
             ...     severity='error',
             ...     vdom='vdom1'

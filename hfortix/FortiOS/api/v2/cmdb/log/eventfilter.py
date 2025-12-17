@@ -24,7 +24,7 @@ class Eventfilter:
         # Get current event filter settings
         settings = fgt.api.cmdb.log.eventfilter.get()
 
-        # Update event filter settings
+        # PUT - Update event filter settings
         fgt.api.cmdb.log.eventfilter.update(
             system='enable',
             vpn='enable',
@@ -56,7 +56,7 @@ class Eventfilter:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         cifs: Optional[str] = None,

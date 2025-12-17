@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Dictionary
 Configure dictionaries used by DLP blocking.
 
 API Endpoints:
-    GET    /dlp/dictionary       - List all dictionaries
-    GET    /dlp/dictionary/{name} - Get specific dictionary
-    POST   /dlp/dictionary       - Create new dictionary
-    PUT    /dlp/dictionary/{name} - Update dictionary
-    DELETE /dlp/dictionary/{name} - Delete dictionary
+    GET    /dlp/dictionary           - List all / Get specific
+    POST   /dlp/dictionary           - Create
+    PUT    /dlp/dictionary/{name}   - Update
+    DELETE /dlp/dictionary/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class Dictionary:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP dictionary(s).
+        Get DLP dictionary(s) - List all or get specific.
 
         Args:
             name: Dictionary name. If provided, gets specific dictionary.
@@ -131,7 +130,7 @@ class Dictionary:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -146,7 +145,7 @@ class Dictionary:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP dictionary.
+        Create DLP dictionary.
 
         Args:
             name: Name of the dictionary (max 35 chars)
@@ -169,7 +168,7 @@ class Dictionary:
             API response dictionary
 
         Examples:
-            >>> # Create simple dictionary
+            >>> # POST - Create simple dictionary
             >>> result = fgt.cmdb.dlp.dictionary.create(
             ...     name='banned-words',
             ...     match_type='match-any',
@@ -180,7 +179,7 @@ class Dictionary:
             ...     ]
             ... )
 
-            >>> # Create with case-insensitive matching
+            >>> # POST - Create with case-insensitive matching
             >>> result = fgt.cmdb.dlp.dictionary.create(
             ...     name='pii-keywords',
             ...     match_type='match-any',
@@ -233,7 +232,7 @@ class Dictionary:
 
         return self._client.post("cmdb", "dlp/dictionary", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -248,7 +247,7 @@ class Dictionary:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP dictionary.
+        Update DLP dictionary.
 
         Args:
             name: Name of the dictionary to update
@@ -271,7 +270,7 @@ class Dictionary:
             API response dictionary
 
         Examples:
-            >>> # Update dictionary comment
+            >>> # PUT - Update dictionary comment
             >>> result = fgt.cmdb.dlp.dictionary.update(
             ...     name='banned-words',
             ...     comment='Updated list of banned words'

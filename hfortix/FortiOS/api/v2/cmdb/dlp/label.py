@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Label
 Configure labels used by DLP blocking.
 
 API Endpoints:
-    GET    /dlp/label       - List all labels
-    GET    /dlp/label/{name} - Get specific label
-    POST   /dlp/label       - Create new label
-    PUT    /dlp/label/{name} - Update label
-    DELETE /dlp/label/{name} - Delete label
+    GET    /dlp/label           - List all / Get specific
+    POST   /dlp/label           - Create
+    PUT    /dlp/label/{name}   - Update
+    DELETE /dlp/label/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class Label:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP label(s).
+        Get DLP label(s) - List all or get specific.
 
         Args:
             name: Name of specific label to retrieve
@@ -128,7 +127,7 @@ class Label:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -143,7 +142,7 @@ class Label:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP label.
+        Create DLP label.
 
         Args:
             name: Name of the label (max 35 chars)
@@ -163,7 +162,7 @@ class Label:
             API response dictionary
 
         Examples:
-            >>> # Create local MPIP label
+            >>> # POST - Create local MPIP label
             >>> result = fgt.cmdb.dlp.label.create(
             ...     name='mpip-label1',
             ...     type='mpip',
@@ -178,7 +177,7 @@ class Label:
             ...     ]
             ... )
 
-            >>> # Create remote MPIP label with connector
+            >>> # POST - Create remote MPIP label with connector
             >>> result = fgt.cmdb.dlp.label.create(
             ...     name='mpip-remote',
             ...     type='mpip',
@@ -228,7 +227,7 @@ class Label:
 
         return self._client.post("cmdb", "dlp/label", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -243,7 +242,7 @@ class Label:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP label.
+        Update DLP label.
 
         Args:
             name: Name of the label to update
@@ -263,13 +262,13 @@ class Label:
             API response dictionary
 
         Examples:
-            >>> # Update comment
+            >>> # PUT - Update comment
             >>> result = fgt.cmdb.dlp.label.update(
             ...     name='mpip-label1',
             ...     comment='Updated comment'
             ... )
 
-            >>> # Update entries
+            >>> # PUT - Update entries
             >>> result = fgt.cmdb.dlp.label.update(
             ...     name='mpip-label1',
             ...     entries=[

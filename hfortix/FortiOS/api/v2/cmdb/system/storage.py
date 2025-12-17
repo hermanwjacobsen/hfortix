@@ -4,11 +4,10 @@ FortiOS CMDB - System Storage
 Configure logical storage.
 
 API Endpoints:
-    GET    /system/storage           - List all storage
-    GET    /system/storage/{name}   - Get specific storage
-    POST   /system/storage           - Create storage
-    PUT    /system/storage/{name}   - Update storage
-    DELETE /system/storage/{name}   - Delete storage
+    GET    /system/storage           - List all / Get specific
+    POST   /system/storage           - Create
+    PUT    /system/storage/{name}   - Update
+    DELETE /system/storage/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Storage:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all storage
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of storage
-
-        Examples:
-            >>> # List all storage
-            >>> result = fgt.api.cmdb.system.storage.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Storage:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Storage:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new storage
+        Create storage
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Storage:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.storage.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.storage.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Storage:
         
         return self._client.post("cmdb", "system/storage", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Storage:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.storage.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.storage.update(
             ...     name='obj1',
             ...     comment='Updated'

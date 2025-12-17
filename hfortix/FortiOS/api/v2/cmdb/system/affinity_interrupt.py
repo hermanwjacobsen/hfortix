@@ -4,11 +4,10 @@ FortiOS CMDB - System AffinityInterrupt
 Configure interrupt affinity.
 
 API Endpoints:
-    GET    /system/affinity-interrupt           - List all affinity-interrupt
-    GET    /system/affinity-interrupt/{name}   - Get specific affinity-interrupt
-    POST   /system/affinity-interrupt           - Create affinity-interrupt
-    PUT    /system/affinity-interrupt/{name}   - Update affinity-interrupt
-    DELETE /system/affinity-interrupt/{name}   - Delete affinity-interrupt
+    GET    /system/affinity-interrupt           - List all / Get specific
+    POST   /system/affinity-interrupt           - Create
+    PUT    /system/affinity-interrupt/{name}   - Update
+    DELETE /system/affinity-interrupt/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class AffinityInterrupt:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all affinity-interrupt
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of affinity-interrupt
-
-        Examples:
-            >>> # List all affinity-interrupt
-            >>> result = fgt.api.cmdb.system.affinity_interrupt.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class AffinityInterrupt:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class AffinityInterrupt:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new affinity-interrupt
+        Create affinity-interrupt
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class AffinityInterrupt:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.affinity_interrupt.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.affinity_interrupt.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class AffinityInterrupt:
         
         return self._client.post("cmdb", "system/affinity-interrupt", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class AffinityInterrupt:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.affinity_interrupt.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.affinity_interrupt.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -3,8 +3,8 @@ FortiOS CMDB - Alert Email Settings
 Configure alert email settings
 
 API Endpoints:
-    GET  /alertemail/setting - Get alert email settings
-    PUT  /alertemail/setting - Update alert email settings
+    GET  /alertemail/setting  - Get configuration
+    PUT  /alertemail/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -45,7 +45,7 @@ class AlertEmail:
         """
         return self._client.get("cmdb", "alertemail/setting", vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         username: Optional[str] = None,

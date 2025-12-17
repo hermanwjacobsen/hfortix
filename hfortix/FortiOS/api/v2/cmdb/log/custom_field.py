@@ -26,14 +26,14 @@ class CustomField:
         # Get specific custom field
         field = fgt.api.cmdb.log.custom_field.get(pkey='field1')
 
-        # Create new custom field
+        # POST - Create custom field
         fgt.api.cmdb.log.custom_field.create(
             id='field1',
             name='CustomField1',
             value='custom_value'
         )
 
-        # Update custom field
+        # PUT - Update custom field
         fgt.api.cmdb.log.custom_field.update(
             pkey='field1',
             name='UpdatedField'
@@ -77,7 +77,7 @@ class CustomField:
         path = f"{self._endpoint}/{pkey}" if pkey else self._endpoint
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         id: Optional[str] = None,
@@ -87,7 +87,7 @@ class CustomField:
         **kwargs: Any,
     ) -> Dict[str, Any]:
         """
-        Create a new custom log field.
+        Create custom log field.
 
         Args:
             data_dict: Dictionary with API format parameters
@@ -124,7 +124,7 @@ class CustomField:
 
         return self._client.post("cmdb", self._endpoint, data=payload, vdom=vdom)
 
-    def update(
+    def put(
         self,
         pkey: str,
         data_dict: Optional[Dict[str, Any]] = None,
@@ -135,7 +135,7 @@ class CustomField:
         **kwargs: Any,
     ) -> Dict[str, Any]:
         """
-        Update an existing custom log field.
+        Update custom log field.
 
         Args:
             pkey: Custom field ID to update

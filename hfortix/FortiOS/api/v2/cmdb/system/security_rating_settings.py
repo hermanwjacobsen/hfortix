@@ -4,8 +4,8 @@ FortiOS CMDB - System SecurityRatingSettings
 Settings for Security Rating.
 
 API Endpoints:
-    GET  /system.security-rating/settings  - Get security-rating settings settings
-    PUT  /system.security-rating/settings  - Update security-rating settings settings
+    GET  /system.security-rating/settings  - Get configuration
+    PUT  /system.security-rating/settings  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class SecurityRatingSettings:
         
         return self._client.get("cmdb", "system.security-rating/settings", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class SecurityRatingSettings:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.security_rating_settings.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.security_rating_settings.update(
             ...     setting1='value1',
             ...     setting2='value2'

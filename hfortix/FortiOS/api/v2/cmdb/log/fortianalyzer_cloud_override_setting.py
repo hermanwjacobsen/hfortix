@@ -39,7 +39,7 @@ class FortianalyzerCloudOverrideSetting:
         path = "log.fortianalyzer-cloud/override-setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

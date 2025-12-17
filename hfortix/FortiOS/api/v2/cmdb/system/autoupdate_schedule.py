@@ -4,8 +4,8 @@ FortiOS CMDB - System AutoupdateSchedule
 Configure update schedule.
 
 API Endpoints:
-    GET  /system.autoupdate/schedule  - Get autoupdate schedule settings
-    PUT  /system.autoupdate/schedule  - Update autoupdate schedule settings
+    GET  /system.autoupdate/schedule  - Get configuration
+    PUT  /system.autoupdate/schedule  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class AutoupdateSchedule:
         
         return self._client.get("cmdb", "system.autoupdate/schedule", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class AutoupdateSchedule:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.autoupdate_schedule.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.autoupdate_schedule.update(
             ...     setting1='value1',
             ...     setting2='value2'

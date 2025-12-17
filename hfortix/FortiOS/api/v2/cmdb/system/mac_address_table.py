@@ -4,11 +4,10 @@ FortiOS CMDB - System MacAddressTable
 Configure MAC address tables.
 
 API Endpoints:
-    GET    /system/mac-address-table           - List all mac-address-table
-    GET    /system/mac-address-table/{name}   - Get specific mac-address-table
-    POST   /system/mac-address-table           - Create mac-address-table
-    PUT    /system/mac-address-table/{name}   - Update mac-address-table
-    DELETE /system/mac-address-table/{name}   - Delete mac-address-table
+    GET    /system/mac-address-table           - List all / Get specific
+    POST   /system/mac-address-table           - Create
+    PUT    /system/mac-address-table/{name}   - Update
+    DELETE /system/mac-address-table/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class MacAddressTable:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all mac-address-table
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of mac-address-table
-
-        Examples:
-            >>> # List all mac-address-table
-            >>> result = fgt.api.cmdb.system.mac_address_table.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class MacAddressTable:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class MacAddressTable:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new mac-address-table
+        Create mac-address-table
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class MacAddressTable:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.mac_address_table.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.mac_address_table.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class MacAddressTable:
         
         return self._client.post("cmdb", "system/mac-address-table", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class MacAddressTable:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.mac_address_table.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.mac_address_table.update(
             ...     name='obj1',
             ...     comment='Updated'

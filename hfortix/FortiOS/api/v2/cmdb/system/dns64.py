@@ -4,8 +4,8 @@ FortiOS CMDB - System Dns64
 Configure DNS64.
 
 API Endpoints:
-    GET  /system/dns64  - Get dns64 settings
-    PUT  /system/dns64  - Update dns64 settings
+    GET  /system/dns64  - Get configuration
+    PUT  /system/dns64  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Dns64:
         
         return self._client.get("cmdb", "system/dns64", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Dns64:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dns64.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dns64.update(
             ...     setting1='value1',
             ...     setting2='value2'

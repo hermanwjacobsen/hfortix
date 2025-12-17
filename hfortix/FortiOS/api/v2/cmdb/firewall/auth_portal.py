@@ -91,7 +91,7 @@ class AuthPortal:
             "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         groups: Optional[list[dict[str, Any]]] = None,

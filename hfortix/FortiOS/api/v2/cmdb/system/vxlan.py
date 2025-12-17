@@ -4,11 +4,10 @@ FortiOS CMDB - System Vxlan
 Configure VXLAN devices.
 
 API Endpoints:
-    GET    /system/vxlan           - List all vxlan
-    GET    /system/vxlan/{name}   - Get specific vxlan
-    POST   /system/vxlan           - Create vxlan
-    PUT    /system/vxlan/{name}   - Update vxlan
-    DELETE /system/vxlan/{name}   - Delete vxlan
+    GET    /system/vxlan           - List all / Get specific
+    POST   /system/vxlan           - Create
+    PUT    /system/vxlan/{name}   - Update
+    DELETE /system/vxlan/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Vxlan:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all vxlan
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of vxlan
-
-        Examples:
-            >>> # List all vxlan
-            >>> result = fgt.api.cmdb.system.vxlan.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Vxlan:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Vxlan:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new vxlan
+        Create vxlan
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Vxlan:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.vxlan.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.vxlan.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Vxlan:
         
         return self._client.post("cmdb", "system/vxlan", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Vxlan:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vxlan.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vxlan.update(
             ...     name='obj1',
             ...     comment='Updated'

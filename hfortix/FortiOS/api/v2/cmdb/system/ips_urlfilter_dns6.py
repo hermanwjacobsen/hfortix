@@ -4,11 +4,10 @@ FortiOS CMDB - System IpsUrlfilterDns6
 Configure IPS URL filter IPv6 DNS servers.
 
 API Endpoints:
-    GET    /system/ips-urlfilter-dns6           - List all ips-urlfilter-dns6
-    GET    /system/ips-urlfilter-dns6/{name}   - Get specific ips-urlfilter-dns6
-    POST   /system/ips-urlfilter-dns6           - Create ips-urlfilter-dns6
-    PUT    /system/ips-urlfilter-dns6/{name}   - Update ips-urlfilter-dns6
-    DELETE /system/ips-urlfilter-dns6/{name}   - Delete ips-urlfilter-dns6
+    GET    /system/ips-urlfilter-dns6           - List all / Get specific
+    POST   /system/ips-urlfilter-dns6           - Create
+    PUT    /system/ips-urlfilter-dns6/{name}   - Update
+    DELETE /system/ips-urlfilter-dns6/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class IpsUrlfilterDns6:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ips-urlfilter-dns6
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of ips-urlfilter-dns6
-
-        Examples:
-            >>> # List all ips-urlfilter-dns6
-            >>> result = fgt.api.cmdb.system.ips_urlfilter_dns6.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class IpsUrlfilterDns6:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class IpsUrlfilterDns6:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new ips-urlfilter-dns6
+        Create ips-urlfilter-dns6
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class IpsUrlfilterDns6:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.ips_urlfilter_dns6.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.ips_urlfilter_dns6.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class IpsUrlfilterDns6:
         
         return self._client.post("cmdb", "system/ips-urlfilter-dns6", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class IpsUrlfilterDns6:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ips_urlfilter_dns6.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ips_urlfilter_dns6.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,11 +4,10 @@ FortiOS CMDB - System AffinityPacketRedistribution
 Configure packet redistribution.
 
 API Endpoints:
-    GET    /system/affinity-packet-redistribution           - List all affinity-packet-redistribution
-    GET    /system/affinity-packet-redistribution/{name}   - Get specific affinity-packet-redistribution
-    POST   /system/affinity-packet-redistribution           - Create affinity-packet-redistribution
-    PUT    /system/affinity-packet-redistribution/{name}   - Update affinity-packet-redistribution
-    DELETE /system/affinity-packet-redistribution/{name}   - Delete affinity-packet-redistribution
+    GET    /system/affinity-packet-redistribution           - List all / Get specific
+    POST   /system/affinity-packet-redistribution           - Create
+    PUT    /system/affinity-packet-redistribution/{name}   - Update
+    DELETE /system/affinity-packet-redistribution/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class AffinityPacketRedistribution:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all affinity-packet-redistribution
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of affinity-packet-redistribution
-
-        Examples:
-            >>> # List all affinity-packet-redistribution
-            >>> result = fgt.api.cmdb.system.affinity_packet_redistribution.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class AffinityPacketRedistribution:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class AffinityPacketRedistribution:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new affinity-packet-redistribution
+        Create affinity-packet-redistribution
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class AffinityPacketRedistribution:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.affinity_packet_redistribution.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.affinity_packet_redistribution.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class AffinityPacketRedistribution:
         
         return self._client.post("cmdb", "system/affinity-packet-redistribution", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class AffinityPacketRedistribution:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.affinity_packet_redistribution.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.affinity_packet_redistribution.update(
             ...     name='obj1',
             ...     comment='Updated'

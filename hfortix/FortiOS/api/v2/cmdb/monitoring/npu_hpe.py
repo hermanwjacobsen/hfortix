@@ -25,7 +25,7 @@ class NpuHpe:
         # Get current NPU-HPE monitoring settings
         settings = fgt.api.cmdb.monitoring.npu_hpe.get()
 
-        # Update NPU-HPE monitoring settings
+        # PUT - Update NPU-HPE monitoring settings
         fgt.api.cmdb.monitoring.npu_hpe.update(
             status='enable',
             interval=60
@@ -56,7 +56,7 @@ class NpuHpe:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         interval: Optional[int] = None,

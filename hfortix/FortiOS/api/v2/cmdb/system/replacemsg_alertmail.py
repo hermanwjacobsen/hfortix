@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgAlertmail
 Replacement messages.
 
 API Endpoints:
-    GET    /system.replacemsg/alertmail           - List all replacemsg alertmail
-    GET    /system.replacemsg/alertmail/{name}   - Get specific replacemsg alertmail
-    POST   /system.replacemsg/alertmail           - Create replacemsg alertmail
-    PUT    /system.replacemsg/alertmail/{name}   - Update replacemsg alertmail
-    DELETE /system.replacemsg/alertmail/{name}   - Delete replacemsg alertmail
+    GET    /system.replacemsg/alertmail           - List all / Get specific
+    POST   /system.replacemsg/alertmail           - Create
+    PUT    /system.replacemsg/alertmail/{name}   - Update
+    DELETE /system.replacemsg/alertmail/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgAlertmail:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg alertmail
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg alertmail
-
-        Examples:
-            >>> # List all replacemsg alertmail
-            >>> result = fgt.api.cmdb.system.replacemsg_alertmail.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgAlertmail:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgAlertmail:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg alertmail
+        Create replacemsg alertmail
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgAlertmail:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_alertmail.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_alertmail.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgAlertmail:
         
         return self._client.post("cmdb", "system.replacemsg/alertmail", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgAlertmail:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_alertmail.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_alertmail.update(
             ...     name='obj1',
             ...     comment='Updated'

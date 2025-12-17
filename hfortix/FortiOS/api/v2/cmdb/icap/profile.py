@@ -4,11 +4,10 @@ FortiOS CMDB - ICAP Profile
 Configure ICAP profiles for content inspection.
 
 API Endpoints:
-    GET    /api/v2/cmdb/icap/profile        - List all ICAP profiles
-    GET    /api/v2/cmdb/icap/profile/{name} - Get specific ICAP profile
-    POST   /api/v2/cmdb/icap/profile        - Create ICAP profile
-    PUT    /api/v2/cmdb/icap/profile/{name} - Update ICAP profile
-    DELETE /api/v2/cmdb/icap/profile/{name} - Delete ICAP profile
+    GET    /api/v2/cmdb/icap/profile           - List all / Get specific
+    POST   /api/v2/cmdb/icap/profile           - Create
+    PUT    /api/v2/cmdb/icap/profile/{name}   - Update
+    DELETE /api/v2/cmdb/icap/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -92,7 +91,7 @@ class Profile:
         path = f"icap/profile/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -189,7 +188,7 @@ class Profile:
             Dictionary containing creation result
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> config = {
             ...     'name': 'web-filter',
             ...     'request': 'enable',
@@ -199,7 +198,7 @@ class Profile:
             ... }
             >>> result = fgt.api.cmdb.icap.profile.create(data_dict=config)
 
-            >>> # Create with keywords
+            >>> # POST - Create with keywords
             >>> result = fgt.api.cmdb.icap.profile.create(
             ...     name='email-filter',
             ...     response='enable',
@@ -287,7 +286,7 @@ class Profile:
         path = "icap/profile"
         return self._client.post("cmdb", path, data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,
@@ -384,11 +383,11 @@ class Profile:
             Dictionary containing update result
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {'request': 'enable', 'response': 'enable', 'timeout': 90}
             >>> result = fgt.api.cmdb.icap.profile.update('web-filter', data_dict=config)
 
-            >>> # Update with keywords
+            >>> # PUT - Update with keywords
             >>> result = fgt.api.cmdb.icap.profile.update(
             ...     'web-filter',
             ...     request_server='new-icap-server',

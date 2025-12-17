@@ -4,11 +4,10 @@ FortiOS CMDB - Email Filter Profile
 Configure Email Filter profiles.
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/profile       - List all email filter profiles
-    GET    /api/v2/cmdb/emailfilter/profile/{name} - Get specific email filter profile
-    POST   /api/v2/cmdb/emailfilter/profile       - Create email filter profile
-    PUT    /api/v2/cmdb/emailfilter/profile/{name} - Update email filter profile
-    DELETE /api/v2/cmdb/emailfilter/profile/{name} - Delete email filter profile
+    GET    /api/v2/cmdb/emailfilter/profile           - List all / Get specific
+    POST   /api/v2/cmdb/emailfilter/profile           - Create
+    PUT    /api/v2/cmdb/emailfilter/profile/{name}   - Update
+    DELETE /api/v2/cmdb/emailfilter/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -54,7 +53,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get email filter profile(s).
+        Get email filter profile(s) - List all or get specific.
 
         Args:
             name (str, optional): Profile name to retrieve. If None, retrieves all profiles
@@ -117,52 +116,7 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all email filter profiles (convenience method).
-
-        Args:
-            Same as get() method, excluding name
-
-        Returns:
-            dict: API response containing all email filter profiles
-
-        Examples:
-            >>> profiles = fgt.cmdb.emailfilter.profile.list()
-        """
-        return self.get(
-            name=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -196,7 +150,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new email filter profile.
+        Create email filter profile.
 
         Args:
             name (str): Profile name
@@ -231,7 +185,7 @@ class Profile:
             dict: API response
 
         Examples:
-            >>> # Create basic email filter profile
+            >>> # POST - Create basic email filter profile
             >>> result = fgt.cmdb.emailfilter.profile.create(
             ...     name='corporate-email',
             ...     comment='Corporate email filtering',
@@ -240,7 +194,7 @@ class Profile:
             ...     options=['bannedword', 'spambwl']
             ... )
 
-            >>> # Create with protocol-specific settings
+            >>> # POST - Create with protocol-specific settings
             >>> result = fgt.cmdb.emailfilter.profile.create(
             ...     name='strict-filter',
             ...     spam_filtering='enable',
@@ -300,7 +254,7 @@ class Profile:
             "cmdb", "emailfilter/profile", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -329,7 +283,7 @@ class Profile:
         spam_mheader_table: Optional[int] = None,
         spam_rbl_table: Optional[int] = None,
         spam_iptrust_table: Optional[int] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -378,14 +332,14 @@ class Profile:
             dict: API response
 
         Examples:
-            >>> # Update spam filtering settings
+            >>> # PUT - Update spam filtering settings
             >>> result = fgt.cmdb.emailfilter.profile.update(
             ...     name='corporate-email',
             ...     spam_log='enable',
             ...     spam_bword_threshold=10
             ... )
 
-            >>> # Update SMTP settings
+            >>> # PUT - Update SMTP settings
             >>> result = fgt.cmdb.emailfilter.profile.update(
             ...     name='strict-filter',
             ...     smtp={'log': 'enable', 'action': 'discard'}

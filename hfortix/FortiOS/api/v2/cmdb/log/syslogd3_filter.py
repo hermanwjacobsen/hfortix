@@ -4,8 +4,8 @@ FortiOS CMDB - Log Syslogd3 Filter
 Filters for remote syslog server.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.syslogd3/filter - Get syslogd3 filter settings
-    PUT /api/v2/cmdb/log.syslogd3/filter - Update syslogd3 filter settings
+    GET  /api/v2/cmdb/log.syslogd3/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.syslogd3/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class Syslogd3Filter:
         path = "log.syslogd3/filter"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -116,7 +116,7 @@ class Syslogd3Filter:
             Update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.syslogd.filter.update(severity='warning')
 
             >>> # Enable forward traffic logging
@@ -125,7 +125,7 @@ class Syslogd3Filter:
             ...     local_traffic='enable'
             ... )
 
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {
             ...     'severity': 'information',
             ...     'forward-traffic': 'enable',

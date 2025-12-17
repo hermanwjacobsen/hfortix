@@ -4,11 +4,10 @@ FortiOS CMDB - System SsoFortigateCloudAdmin
 Configure FortiCloud SSO admin users.
 
 API Endpoints:
-    GET    /system/sso-fortigate-cloud-admin           - List all sso-fortigate-cloud-admin
-    GET    /system/sso-fortigate-cloud-admin/{name}   - Get specific sso-fortigate-cloud-admin
-    POST   /system/sso-fortigate-cloud-admin           - Create sso-fortigate-cloud-admin
-    PUT    /system/sso-fortigate-cloud-admin/{name}   - Update sso-fortigate-cloud-admin
-    DELETE /system/sso-fortigate-cloud-admin/{name}   - Delete sso-fortigate-cloud-admin
+    GET    /system/sso-fortigate-cloud-admin           - List all / Get specific
+    POST   /system/sso-fortigate-cloud-admin           - Create
+    PUT    /system/sso-fortigate-cloud-admin/{name}   - Update
+    DELETE /system/sso-fortigate-cloud-admin/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SsoFortigateCloudAdmin:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sso-fortigate-cloud-admin
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sso-fortigate-cloud-admin
-
-        Examples:
-            >>> # List all sso-fortigate-cloud-admin
-            >>> result = fgt.api.cmdb.system.sso_fortigate_cloud_admin.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SsoFortigateCloudAdmin:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SsoFortigateCloudAdmin:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sso-fortigate-cloud-admin
+        Create sso-fortigate-cloud-admin
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SsoFortigateCloudAdmin:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sso_fortigate_cloud_admin.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sso_fortigate_cloud_admin.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SsoFortigateCloudAdmin:
         
         return self._client.post("cmdb", "system/sso-fortigate-cloud-admin", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SsoFortigateCloudAdmin:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sso_fortigate_cloud_admin.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sso_fortigate_cloud_admin.update(
             ...     name='obj1',
             ...     comment='Updated'

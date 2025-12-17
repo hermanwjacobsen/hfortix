@@ -4,11 +4,10 @@ FortiOS CMDB - System Accprofile
 Configure access profiles for system administrators.
 
 API Endpoints:
-    GET    /system/accprofile           - List all accprofile
-    GET    /system/accprofile/{name}   - Get specific accprofile
-    POST   /system/accprofile           - Create accprofile
-    PUT    /system/accprofile/{name}   - Update accprofile
-    DELETE /system/accprofile/{name}   - Delete accprofile
+    GET    /system/accprofile           - List all / Get specific
+    POST   /system/accprofile           - Create
+    PUT    /system/accprofile/{name}   - Update
+    DELETE /system/accprofile/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Accprofile:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all accprofile
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of accprofile
-
-        Examples:
-            >>> # List all accprofile
-            >>> result = fgt.api.cmdb.system.accprofile.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Accprofile:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Accprofile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new accprofile
+        Create accprofile
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Accprofile:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.accprofile.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.accprofile.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Accprofile:
         
         return self._client.post("cmdb", "system/accprofile", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Accprofile:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.accprofile.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.accprofile.update(
             ...     name='obj1',
             ...     comment='Updated'

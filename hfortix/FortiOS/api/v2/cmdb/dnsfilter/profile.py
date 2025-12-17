@@ -74,26 +74,7 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[str] = None, **kwargs: Any) -> dict[str, Any]:
-        """List all DNS filter profiles.
-
-        Convenience method that calls get() without a name.
-
-        Args:
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional query parameters.
-
-        Returns:
-            dict: API response containing list of all profiles.
-
-        Example:
-            >>> profiles = client.cmdb.dnsfilter.profile.list()
-            >>> for p in profiles['results']:
-            ...     print(p['name'], p.get('comment', ''))
-        """
-        return self.get(vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -117,7 +98,7 @@ class Profile:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create a new DNS filter profile.
+        """Create DNS filter profile.
 
         Args:
             name (str): Profile name (max 47 chars, required).
@@ -162,7 +143,7 @@ class Profile:
             dict: API response containing operation results.
 
         Example:
-            >>> # Create profile with domain filter
+            >>> # POST - Create profile with domain filter
             >>> client.cmdb.dnsfilter.profile.create(
             ...     name='corporate-filter',
             ...     comment='Corporate DNS filtering policy',
@@ -238,7 +219,7 @@ class Profile:
 
         return self._client.post("cmdb", "dnsfilter/profile", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -262,7 +243,7 @@ class Profile:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update an existing DNS filter profile.
+        """Update DNS filter profile.
 
         Args:
             name (str): Profile name to update.
@@ -289,7 +270,7 @@ class Profile:
             dict: API response containing operation results.
 
         Example:
-            >>> # Update profile to enable safe search
+            >>> # PUT - Update profile to enable safe search
             >>> client.cmdb.dnsfilter.profile.update(
             ...     name='corporate-filter',
             ...     safe_search='enable',

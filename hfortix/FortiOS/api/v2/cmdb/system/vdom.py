@@ -4,11 +4,10 @@ FortiOS CMDB - System Vdom
 Configure virtual domain.
 
 API Endpoints:
-    GET    /system/vdom           - List all vdom
-    GET    /system/vdom/{name}   - Get specific vdom
-    POST   /system/vdom           - Create vdom
-    PUT    /system/vdom/{name}   - Update vdom
-    DELETE /system/vdom/{name}   - Delete vdom
+    GET    /system/vdom           - List all / Get specific
+    POST   /system/vdom           - Create
+    PUT    /system/vdom/{name}   - Update
+    DELETE /system/vdom/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Vdom:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all vdom
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of vdom
-
-        Examples:
-            >>> # List all vdom
-            >>> result = fgt.api.cmdb.system.vdom.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Vdom:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Vdom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new vdom
+        Create vdom
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Vdom:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.vdom.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.vdom.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Vdom:
         
         return self._client.post("cmdb", "system/vdom", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Vdom:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom.update(
             ...     name='obj1',
             ...     comment='Updated'

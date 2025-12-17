@@ -4,11 +4,10 @@ FortiOS CMDB - Certificate HSM-Local
 Manage HSM (Hardware Security Module) local certificates.
 
 API Endpoints:
-    GET    /certificate/hsm-local           - List all HSM local certificates
-    GET    /certificate/hsm-local/{name}    - Get specific HSM local certificate
-    POST   /certificate/hsm-local           - Create new HSM local certificate
-    PUT    /certificate/hsm-local/{name}    - Update HSM local certificate
-    DELETE /certificate/hsm-local/{name}    - Delete HSM local certificate
+    GET    /certificate/hsm-local           - List all / Get specific
+    POST   /certificate/hsm-local           - Create
+    PUT    /certificate/hsm-local/{name}   - Update
+    DELETE /certificate/hsm-local/{name}   - Delete
 
 Note: This endpoint supports full CRUD operations for HSM certificates.
 HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud HSM).
@@ -39,26 +38,6 @@ class HsmLocal:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all HSM local certificates
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters (filter, format, count, search, etc.)
-
-        Returns:
-            dict: API response with list of HSM local certificates
-
-        Examples:
-            >>> # List all HSM local certificates
-            >>> result = fgt.cmdb.certificate.hsm_local.list()
-
-            >>> # List with filter
-            >>> result = fgt.cmdb.certificate.hsm_local.list(filter='vendor==google')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -78,7 +57,7 @@ class HsmLocal:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get HSM local certificate(s)
+        Get HSM local certificate(s) - List all or get specific
 
         Args:
             name (str, optional): HSM local certificate name (for specific certificate)
@@ -137,14 +116,14 @@ class HsmLocal:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         data: dict[str, Any],
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Create new HSM local certificate
+        Create HSM local certificate
 
         Args:
             data (dict): Certificate data including:
@@ -173,7 +152,7 @@ class HsmLocal:
             "cmdb", "certificate/hsm-local", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         data: dict[str, Any],
@@ -181,7 +160,7 @@ class HsmLocal:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Update existing HSM local certificate
+        Update HSM local certificate
 
         Args:
             name (str): Certificate name to update

@@ -38,29 +38,6 @@ class Ca:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CA certificates
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters (filter, format, count, search, etc.)
-
-        Returns:
-            dict: API response with list of CA certificates
-
-        Examples:
-            >>> # List all CA certificates
-            >>> result = fgt.cmdb.certificate.ca.list()
-
-            >>> # List only user-uploaded certificates
-            >>> result = fgt.cmdb.certificate.ca.list(filter='source==user')
-
-            >>> # List trusted certificates
-            >>> result = fgt.cmdb.certificate.ca.list(filter='ssl-inspection-trusted==enable')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -80,7 +57,7 @@ class Ca:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CA certificate(s)
+        Get CA certificate(s) - List all or get specific
 
         Args:
             name (str, optional): CA certificate name (for specific certificate)

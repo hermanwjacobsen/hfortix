@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Address6 Template
 Configure IPv6 address templates.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/address6-template        - List all IPv6 address templates
-    GET    /api/v2/cmdb/firewall/address6-template/{name} - Get specific IPv6 address template
-    POST   /api/v2/cmdb/firewall/address6-template        - Create IPv6 address template
-    PUT    /api/v2/cmdb/firewall/address6-template/{name} - Update IPv6 address template
-    DELETE /api/v2/cmdb/firewall/address6-template/{name} - Delete IPv6 address template
+    GET    /api/v2/cmdb/firewall/address6-template           - List all / Get specific
+    POST   /api/v2/cmdb/firewall/address6-template           - Create
+    PUT    /api/v2/cmdb/firewall/address6-template/{name}   - Update
+    DELETE /api/v2/cmdb/firewall/address6-template/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -77,7 +76,7 @@ class Address6Template:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv6 address template object(s).
+        Get IPv6 address template object(s) - List all or get specific.
 
         Args:
             name: Object name (if specified, gets single object)
@@ -137,7 +136,7 @@ class Address6Template:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -171,7 +170,7 @@ class Address6Template:
             API response dict
 
         Examples:
-            >>> # Create IPv6 address template
+            >>> # POST - Create IPv6 address template
             >>> result = fgt.cmdb.firewall.address6_template.create(
             ...     name='ipv6-subnet-template',
             ...     ip6='2001:db8::/32',
@@ -231,7 +230,7 @@ class Address6Template:
         path = "firewall/address6-template"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -265,7 +264,7 @@ class Address6Template:
             API response dict
 
         Examples:
-            >>> # Update IPv6 address template
+            >>> # PUT - Update IPv6 address template
             >>> result = fgt.cmdb.firewall.address6_template.update(
             ...     name='ipv6-subnet-template',
             ...     comment='Updated IPv6 subnet template'

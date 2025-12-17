@@ -24,7 +24,7 @@ class Setting:
         # Get current log settings
         settings = fgt.api.cmdb.log.setting.get()
 
-        # Update log settings
+        # PUT - Update log settings
         fgt.api.cmdb.log.setting.update(
             resolve_ip='enable',
             resolve_port='enable',
@@ -56,7 +56,7 @@ class Setting:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         anonymization_hash: Optional[str] = None,

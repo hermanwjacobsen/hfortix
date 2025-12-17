@@ -3,11 +3,10 @@ FortiOS CMDB - Firewall SSH Local Key
 SSH proxy local keys.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ssh/local-key       - List all local keys
-    GET    /api/v2/cmdb/firewall.ssh/local-key/{id}  - Get specific local key
-    POST   /api/v2/cmdb/firewall.ssh/local-key       - Create local key
-    PUT    /api/v2/cmdb/firewall.ssh/local-key/{id}  - Update local key
-    DELETE /api/v2/cmdb/firewall.ssh/local-key/{id}  - Delete local key
+    GET    /api/v2/cmdb/firewall.ssh/local-key           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.ssh/local-key           - Create
+    PUT    /api/v2/cmdb/firewall.ssh/local-key/{id}   - Update
+    DELETE /api/v2/cmdb/firewall.ssh/local-key/{id}   - Delete
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -23,40 +22,6 @@ class LocalKey:
     def __init__(self, client):
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        List all SSH local keys.
-
-        Args:
-            filter: Filter results
-            range: Range of results (e.g., '0-50')
-            sort: Sort results
-            format: List of fields to include in response
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all local keys
-            >>> result = fgt.cmdb.firewall.ssh.local_key.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.ssh.local_key.list(
-            ...     format=['name', 'source']
-            ... )
-        """
-        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -69,7 +34,7 @@ class LocalKey:
         **kwargs,
     ) -> HTTPResponse:
         """
-        Get SSH local key(s).
+        Get SSH local key(s) - List all or get specific.
 
         Args:
             name: Local key name (if retrieving specific key)
@@ -110,7 +75,7 @@ class LocalKey:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -142,13 +107,13 @@ class LocalKey:
             API response dictionary
 
         Examples:
-            >>> # Create local key
+            >>> # POST - Create local key
             >>> result = fgt.cmdb.firewall.ssh.local_key.create(
             ...     'server-key',
             ...     source='user'
             ... )
 
-            >>> # Create with keys
+            >>> # POST - Create with keys
             >>> result = fgt.cmdb.firewall.ssh.local_key.create(
             ...     'admin-key',
             ...     source='user',
@@ -178,7 +143,7 @@ class LocalKey:
             "cmdb", "firewall.ssh/local-key", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -210,7 +175,7 @@ class LocalKey:
             API response dictionary
 
         Examples:
-            >>> # Update password
+            >>> # PUT - Update password
             >>> result = fgt.cmdb.firewall.ssh.local_key.update(
             ...     'server-key',
             ...     password='newpassword123'

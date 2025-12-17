@@ -4,8 +4,8 @@ FortiOS CMDB - System Fortisandbox
 Configure FortiSandbox.
 
 API Endpoints:
-    GET  /system/fortisandbox  - Get fortisandbox settings
-    PUT  /system/fortisandbox  - Update fortisandbox settings
+    GET  /system/fortisandbox  - Get configuration
+    PUT  /system/fortisandbox  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Fortisandbox:
         
         return self._client.get("cmdb", "system/fortisandbox", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Fortisandbox:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.fortisandbox.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.fortisandbox.update(
             ...     setting1='value1',
             ...     setting2='value2'

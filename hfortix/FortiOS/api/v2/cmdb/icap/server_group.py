@@ -4,11 +4,10 @@ FortiOS CMDB - ICAP Server Group
 Configure ICAP server groups consisting of multiple forward servers with failover and load balancing.
 
 API Endpoints:
-    GET    /api/v2/cmdb/icap/server-group        - List all ICAP server groups
-    GET    /api/v2/cmdb/icap/server-group/{name} - Get specific ICAP server group
-    POST   /api/v2/cmdb/icap/server-group        - Create ICAP server group
-    PUT    /api/v2/cmdb/icap/server-group/{name} - Update ICAP server group
-    DELETE /api/v2/cmdb/icap/server-group/{name} - Delete ICAP server group
+    GET    /api/v2/cmdb/icap/server-group           - List all / Get specific
+    POST   /api/v2/cmdb/icap/server-group           - Create
+    PUT    /api/v2/cmdb/icap/server-group/{name}   - Update
+    DELETE /api/v2/cmdb/icap/server-group/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -92,7 +91,7 @@ class ServerGroup:
         path = f"icap/server-group/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -137,7 +136,7 @@ class ServerGroup:
             Dictionary containing creation result
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> config = {
             ...     'name': 'icap-group1',
             ...     'ldb-method': 'weighted',
@@ -148,7 +147,7 @@ class ServerGroup:
             ... }
             >>> result = fgt.api.cmdb.icap.server_group.create(data_dict=config)
 
-            >>> # Create with keywords
+            >>> # POST - Create with keywords
             >>> result = fgt.api.cmdb.icap.server_group.create(
             ...     name='icap-group2',
             ...     ldb_method='least-session',
@@ -179,7 +178,7 @@ class ServerGroup:
         path = "icap/server-group"
         return self._client.post("cmdb", path, data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,
@@ -219,7 +218,7 @@ class ServerGroup:
             Dictionary containing update result
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {
             ...     'ldb-method': 'least-session',
             ...     'server-list': [
@@ -230,7 +229,7 @@ class ServerGroup:
             ... }
             >>> result = fgt.api.cmdb.icap.server_group.update('icap-group1', data_dict=config)
 
-            >>> # Update with keywords
+            >>> # PUT - Update with keywords
             >>> result = fgt.api.cmdb.icap.server_group.update(
             ...     'icap-group1',
             ...     ldb_method='weighted'

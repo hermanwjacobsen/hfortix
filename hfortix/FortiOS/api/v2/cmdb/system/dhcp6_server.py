@@ -4,11 +4,10 @@ FortiOS CMDB - System Dhcp6Server
 Configure DHCPv6 servers.
 
 API Endpoints:
-    GET    /system.dhcp6/server           - List all dhcp6 server
-    GET    /system.dhcp6/server/{name}   - Get specific dhcp6 server
-    POST   /system.dhcp6/server           - Create dhcp6 server
-    PUT    /system.dhcp6/server/{name}   - Update dhcp6 server
-    DELETE /system.dhcp6/server/{name}   - Delete dhcp6 server
+    GET    /system.dhcp6/server           - List all / Get specific
+    POST   /system.dhcp6/server           - Create
+    PUT    /system.dhcp6/server/{name}   - Update
+    DELETE /system.dhcp6/server/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Dhcp6Server:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all dhcp6 server
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of dhcp6 server
-
-        Examples:
-            >>> # List all dhcp6 server
-            >>> result = fgt.api.cmdb.system.dhcp6_server.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Dhcp6Server:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Dhcp6Server:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new dhcp6 server
+        Create dhcp6 server
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Dhcp6Server:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.dhcp6_server.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.dhcp6_server.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Dhcp6Server:
         
         return self._client.post("cmdb", "system.dhcp6/server", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Dhcp6Server:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dhcp6_server.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dhcp6_server.update(
             ...     name='obj1',
             ...     comment='Updated'

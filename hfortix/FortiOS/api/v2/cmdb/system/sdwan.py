@@ -4,8 +4,8 @@ FortiOS CMDB - System Sdwan
 Configure redundant Internet connections with multiple outbound links and health-check profiles.
 
 API Endpoints:
-    GET  /system/sdwan  - Get sdwan settings
-    PUT  /system/sdwan  - Update sdwan settings
+    GET  /system/sdwan  - Get configuration
+    PUT  /system/sdwan  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Sdwan:
         
         return self._client.get("cmdb", "system/sdwan", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Sdwan:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sdwan.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sdwan.update(
             ...     setting1='value1',
             ...     setting2='value2'

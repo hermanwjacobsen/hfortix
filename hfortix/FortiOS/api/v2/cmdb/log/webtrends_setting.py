@@ -65,7 +65,7 @@ class WebtrendsSetting:
         path = "log.webtrends/setting"
         return self._client.get("cmdb", path)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         server: Optional[str] = None,

@@ -29,7 +29,7 @@ class ViewMap:
             vdom=vdom,
         )
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         id: Optional[int] = None,
@@ -66,7 +66,7 @@ class ViewMap:
         data.update(kwargs)
         return self._client.post("cmdb", "ips/view-map", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         id: int,
         data_dict: Optional[dict[str, Any]] = None,

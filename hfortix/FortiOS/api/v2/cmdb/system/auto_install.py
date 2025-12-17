@@ -4,8 +4,8 @@ FortiOS CMDB - System AutoInstall
 Configure USB auto installation.
 
 API Endpoints:
-    GET  /system/auto-install  - Get auto-install settings
-    PUT  /system/auto-install  - Update auto-install settings
+    GET  /system/auto-install  - Get configuration
+    PUT  /system/auto-install  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class AutoInstall:
         
         return self._client.get("cmdb", "system/auto-install", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class AutoInstall:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.auto_install.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.auto_install.update(
             ...     setting1='value1',
             ...     setting2='value2'

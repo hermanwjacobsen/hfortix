@@ -4,11 +4,10 @@ FortiOS CMDB - Extension Controller Extender
 Configure FortiExtender controller settings.
 
 API Endpoints:
-    GET    /api/v2/cmdb/extension-controller/extender        - List all extenders
-    GET    /api/v2/cmdb/extension-controller/extender/{name} - Get specific extender
-    POST   /api/v2/cmdb/extension-controller/extender        - Create extender
-    PUT    /api/v2/cmdb/extension-controller/extender/{name} - Update extender
-    DELETE /api/v2/cmdb/extension-controller/extender/{name} - Delete extender
+    GET    /api/v2/cmdb/extension-controller/extender           - List all / Get specific
+    POST   /api/v2/cmdb/extension-controller/extender           - Create
+    PUT    /api/v2/cmdb/extension-controller/extender/{name}   - Update
+    DELETE /api/v2/cmdb/extension-controller/extender/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -54,7 +53,7 @@ class Extender:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get FortiExtender(s).
+        Get FortiExtender(s) - List all or get specific.
 
         Args:
             name (str, optional): Extender name. If None, retrieves all extenders
@@ -96,41 +95,7 @@ class Extender:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """Get all FortiExtenders (convenience method)."""
-        return self.get(
-            name=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -139,7 +104,7 @@ class Extender:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new FortiExtender.
+        Create FortiExtender.
 
         Args:
             name (str): Extender name/ID
@@ -159,7 +124,7 @@ class Extender:
             "cmdb", "extension-controller/extender", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,

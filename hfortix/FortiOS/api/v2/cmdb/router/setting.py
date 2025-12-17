@@ -4,8 +4,8 @@ FortiOS CMDB - Router Setting
 Configure router settings.
 
 API Endpoints:
-    GET /api/v2/cmdb/router/setting - Get router settings
-    PUT /api/v2/cmdb/router/setting - Update router settings
+    GET  /api/v2/cmdb/router/setting  - Get configuration
+    PUT  /api/v2/cmdb/router/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -83,7 +83,7 @@ class Setting:
             "cmdb", "router/setting", params=params if params else None, vdom=vdom
         )
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         show_filter: Optional[str] = None,
@@ -112,12 +112,12 @@ class Setting:
             API response dict
 
         Examples:
-            >>> # Update hostname
+            >>> # PUT - Update hostname
             >>> result = fgt.api.cmdb.router.setting.update(
             ...     hostname='core-router'
             ... )
 
-            >>> # Update kernel route distance
+            >>> # PUT - Update kernel route distance
             >>> result = fgt.api.cmdb.router.setting.update(
             ...     kernel_route_distance=150
             ... )

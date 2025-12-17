@@ -75,7 +75,7 @@ class CentralSnatMap:
             "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         data: dict[str, Any],
         vdom: Optional[Union[str, bool]] = None,
@@ -132,7 +132,7 @@ class CentralSnatMap:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         policyid: Union[int, str],
         data: dict[str, Any],
@@ -144,7 +144,7 @@ class CentralSnatMap:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update an existing central SNAT policy."""
+        """Update central SNAT policy."""
         policyid_str = self._client.validate_mkey(policyid, "policyid")
 
         params: dict[str, Any] = {}

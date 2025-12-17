@@ -4,11 +4,10 @@ FortiOS CMDB - System VdomException
 Global configuration objects that can be configured independently across different ha peers for all VDOMs or for the defined VDOM scope.
 
 API Endpoints:
-    GET    /system/vdom-exception           - List all vdom-exception
-    GET    /system/vdom-exception/{name}   - Get specific vdom-exception
-    POST   /system/vdom-exception           - Create vdom-exception
-    PUT    /system/vdom-exception/{name}   - Update vdom-exception
-    DELETE /system/vdom-exception/{name}   - Delete vdom-exception
+    GET    /system/vdom-exception           - List all / Get specific
+    POST   /system/vdom-exception           - Create
+    PUT    /system/vdom-exception/{name}   - Update
+    DELETE /system/vdom-exception/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class VdomException:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all vdom-exception
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of vdom-exception
-
-        Examples:
-            >>> # List all vdom-exception
-            >>> result = fgt.api.cmdb.system.vdom_exception.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class VdomException:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class VdomException:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new vdom-exception
+        Create vdom-exception
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class VdomException:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.vdom_exception.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.vdom_exception.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class VdomException:
         
         return self._client.post("cmdb", "system/vdom-exception", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class VdomException:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom_exception.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom_exception.update(
             ...     name='obj1',
             ...     comment='Updated'

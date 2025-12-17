@@ -4,11 +4,10 @@ FortiOS CMDB - CASB User Activity Control
 Configure CASB user activity controls for monitoring and restricting activities in SaaS applications.
 
 API Endpoints:
-    GET    /casb/user-activity       - List all user activity controls
-    GET    /casb/user-activity/{name} - Get specific user activity control
-    POST   /casb/user-activity       - Create user activity control
-    PUT    /casb/user-activity/{name} - Update user activity control
-    DELETE /casb/user-activity/{name} - Delete user activity control
+    GET    /casb/user-activity           - List all / Get specific
+    POST   /casb/user-activity           - Create
+    PUT    /casb/user-activity/{name}   - Update
+    DELETE /casb/user-activity/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -36,29 +35,6 @@ class UserActivity:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CASB user activity controls
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters (filter, format, count, search, etc.)
-
-        Returns:
-            dict: API response with list of user activity controls
-
-        Examples:
-            >>> # List all user activities
-            >>> result = fgt.cmdb.casb.user_activity.list()
-
-            >>> # List only custom activities
-            >>> result = fgt.cmdb.casb.user_activity.list(filter='type==customized')
-
-            >>> # List activities for specific app
-            >>> result = fgt.cmdb.casb.user_activity.list(filter='application==box')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -78,7 +54,7 @@ class UserActivity:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB user activity control(s)
+        Get CASB user activity control(s) - List all or get specific
 
         Args:
             name (str, optional): User activity control name (for specific control)
@@ -130,7 +106,7 @@ class UserActivity:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -147,7 +123,7 @@ class UserActivity:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Create new CASB user activity control
+        Create CASB user activity control
 
         Note: Custom user activity controls can only be created for customized SaaS applications
 
@@ -168,7 +144,7 @@ class UserActivity:
             dict: API response
 
         Examples:
-            >>> # Create custom user activity control
+            >>> # POST - Create custom user activity control
             >>> result = fgt.cmdb.casb.user_activity.create(
             ...     name='my-app-upload',
             ...     application='my-custom-app',
@@ -195,7 +171,7 @@ class UserActivity:
 
         return self._client.post("cmdb", "casb/user-activity", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -211,7 +187,7 @@ class UserActivity:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Update existing CASB user activity control
+        Update CASB user activity control
 
         Args:
             name (str): User activity control name to update
@@ -229,13 +205,13 @@ class UserActivity:
             dict: API response
 
         Examples:
-            >>> # Update status
+            >>> # PUT - Update status
             >>> result = fgt.cmdb.casb.user_activity.update(
             ...     name='my-app-upload',
             ...     status='disable'
             ... )
 
-            >>> # Update match strategy
+            >>> # PUT - Update match strategy
             >>> result = fgt.cmdb.casb.user_activity.update(
             ...     name='my-app-upload',
             ...     match_strategy='and'

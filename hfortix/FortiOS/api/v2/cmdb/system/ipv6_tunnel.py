@@ -4,11 +4,10 @@ FortiOS CMDB - System Ipv6Tunnel
 Configure IPv6/IPv4 in IPv6 tunnel.
 
 API Endpoints:
-    GET    /system/ipv6-tunnel           - List all ipv6-tunnel
-    GET    /system/ipv6-tunnel/{name}   - Get specific ipv6-tunnel
-    POST   /system/ipv6-tunnel           - Create ipv6-tunnel
-    PUT    /system/ipv6-tunnel/{name}   - Update ipv6-tunnel
-    DELETE /system/ipv6-tunnel/{name}   - Delete ipv6-tunnel
+    GET    /system/ipv6-tunnel           - List all / Get specific
+    POST   /system/ipv6-tunnel           - Create
+    PUT    /system/ipv6-tunnel/{name}   - Update
+    DELETE /system/ipv6-tunnel/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Ipv6Tunnel:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ipv6-tunnel
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of ipv6-tunnel
-
-        Examples:
-            >>> # List all ipv6-tunnel
-            >>> result = fgt.api.cmdb.system.ipv6_tunnel.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Ipv6Tunnel:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Ipv6Tunnel:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new ipv6-tunnel
+        Create ipv6-tunnel
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Ipv6Tunnel:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.ipv6_tunnel.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.ipv6_tunnel.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Ipv6Tunnel:
         
         return self._client.post("cmdb", "system/ipv6-tunnel", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Ipv6Tunnel:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ipv6_tunnel.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ipv6_tunnel.update(
             ...     name='obj1',
             ...     comment='Updated'

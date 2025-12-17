@@ -4,11 +4,10 @@ FortiOS CMDB - Router Access List
 Configure access lists.
 
 API Endpoints:
-    GET    /api/v2/cmdb/router/access-list        - List all access lists
-    GET    /api/v2/cmdb/router/access-list/{name} - Get specific access list
-    POST   /api/v2/cmdb/router/access-list        - Create access list
-    PUT    /api/v2/cmdb/router/access-list/{name} - Update access list
-    DELETE /api/v2/cmdb/router/access-list/{name} - Delete access list
+    GET    /api/v2/cmdb/router/access-list           - List all / Get specific
+    POST   /api/v2/cmdb/router/access-list           - Create
+    PUT    /api/v2/cmdb/router/access-list/{name}   - Update
+    DELETE /api/v2/cmdb/router/access-list/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,22 +32,6 @@ class AccessList:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all access lists.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of access lists
-
-        Examples:
-            >>> result = fgt.api.cmdb.router.access_list.list()
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -56,7 +39,7 @@ class AccessList:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get access list(s).
+        Get access list(s) - List all or get specific.
 
         Args:
             name: Access list name (if specified, gets single list)
@@ -76,7 +59,7 @@ class AccessList:
 
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -117,7 +100,7 @@ class AccessList:
         data.update(kwargs)
         return self._client.post("cmdb", "router/access-list", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

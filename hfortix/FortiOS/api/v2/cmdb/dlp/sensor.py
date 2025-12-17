@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Sensor
 Configure sensors used by DLP blocking.
 
 API Endpoints:
-    GET    /dlp/sensor       - List all sensors
-    GET    /dlp/sensor/{name} - Get specific sensor
-    POST   /dlp/sensor       - Create new sensor
-    PUT    /dlp/sensor/{name} - Update sensor
-    DELETE /dlp/sensor/{name} - Delete sensor
+    GET    /dlp/sensor           - List all / Get specific
+    POST   /dlp/sensor           - Create
+    PUT    /dlp/sensor/{name}   - Update
+    DELETE /dlp/sensor/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class Sensor:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP sensor(s).
+        Get DLP sensor(s) - List all or get specific.
 
         Args:
             name: Name of specific sensor to retrieve
@@ -128,7 +127,7 @@ class Sensor:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -142,7 +141,7 @@ class Sensor:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP sensor.
+        Create DLP sensor.
 
         Args:
             name: Name of the sensor (max 35 chars)
@@ -161,7 +160,7 @@ class Sensor:
             API response dictionary
 
         Examples:
-            >>> # Create sensor with match-any
+            >>> # POST - Create sensor with match-any
             >>> result = fgt.cmdb.dlp.sensor.create(
             ...     name='pii-sensor',
             ...     match_type='match-any',
@@ -182,7 +181,7 @@ class Sensor:
             ...     ]
             ... )
 
-            >>> # Create sensor with match-all
+            >>> # POST - Create sensor with match-all
             >>> result = fgt.cmdb.dlp.sensor.create(
             ...     name='multi-match-sensor',
             ...     match_type='match-all',
@@ -232,7 +231,7 @@ class Sensor:
 
         return self._client.post("cmdb", "dlp/sensor", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -246,7 +245,7 @@ class Sensor:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP sensor.
+        Update DLP sensor.
 
         Args:
             name: Name of the sensor to update
@@ -261,13 +260,13 @@ class Sensor:
             API response dictionary
 
         Examples:
-            >>> # Update comment
+            >>> # PUT - Update comment
             >>> result = fgt.cmdb.dlp.sensor.update(
             ...     name='pii-sensor',
             ...     comment='Updated PII detection sensor'
             ... )
 
-            >>> # Update entries
+            >>> # PUT - Update entries
             >>> result = fgt.cmdb.dlp.sensor.update(
             ...     name='pii-sensor',
             ...     entries=[

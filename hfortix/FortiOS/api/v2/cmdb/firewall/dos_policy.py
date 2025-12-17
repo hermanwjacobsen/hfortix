@@ -83,7 +83,7 @@ class DosPolicy:
             path = self._path
         return self._client.get("cmdb", path, vdom=vdom, params=params, raw_json=raw_json)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         policyid: Optional[int] = None,
@@ -99,7 +99,7 @@ class DosPolicy:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Create new IPv4 DoS policy
+        Create IPv4 DoS policy
 
         Args:
             policyid: Policy ID
@@ -229,7 +229,7 @@ class DosPolicy:
 
         return self._client.post("cmdb", self._path, data=payload, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         policyid: Optional[int] = None,
@@ -245,7 +245,7 @@ class DosPolicy:
         raw_json: bool = False,
     ) -> dict[str, Any]:
         """
-        Update existing IPv4 DoS policy
+        Update IPv4 DoS policy
 
         Args:
             policyid: Policy ID to update

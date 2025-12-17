@@ -4,11 +4,10 @@ FortiOS CMDB - System SnmpMibView
 SNMP Access Control MIB View configuration.
 
 API Endpoints:
-    GET    /system.snmp/mib-view           - List all snmp mib-view
-    GET    /system.snmp/mib-view/{name}   - Get specific snmp mib-view
-    POST   /system.snmp/mib-view           - Create snmp mib-view
-    PUT    /system.snmp/mib-view/{name}   - Update snmp mib-view
-    DELETE /system.snmp/mib-view/{name}   - Delete snmp mib-view
+    GET    /system.snmp/mib-view           - List all / Get specific
+    POST   /system.snmp/mib-view           - Create
+    PUT    /system.snmp/mib-view/{name}   - Update
+    DELETE /system.snmp/mib-view/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SnmpMibView:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all snmp mib-view
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of snmp mib-view
-
-        Examples:
-            >>> # List all snmp mib-view
-            >>> result = fgt.api.cmdb.system.snmp_mib_view.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SnmpMibView:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SnmpMibView:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new snmp mib-view
+        Create snmp mib-view
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SnmpMibView:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.snmp_mib_view.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.snmp_mib_view.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SnmpMibView:
         
         return self._client.post("cmdb", "system.snmp/mib-view", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SnmpMibView:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.snmp_mib_view.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.snmp_mib_view.update(
             ...     name='obj1',
             ...     comment='Updated'

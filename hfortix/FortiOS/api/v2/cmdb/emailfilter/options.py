@@ -90,7 +90,7 @@ class Options:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         # AntiSpam options
@@ -111,7 +111,7 @@ class Options:
             dict: API response
 
         Examples:
-            >>> # Update DNS timeout
+            >>> # PUT - Update DNS timeout
             >>> result = fgt.cmdb.emailfilter.options.update(
             ...     dns_timeout=10
             ... )

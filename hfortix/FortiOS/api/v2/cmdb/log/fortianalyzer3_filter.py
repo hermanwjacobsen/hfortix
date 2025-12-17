@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiAnalyzer3 Filter
 Filters for FortiAnalyzer (tertiary server).
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortianalyzer3/filter - Get FortiAnalyzer3 filter settings
-    PUT /api/v2/cmdb/log.fortianalyzer3/filter - Update FortiAnalyzer3 filter settings
+    GET  /api/v2/cmdb/log.fortianalyzer3/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.fortianalyzer3/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class Fortianalyzer3Filter:
         path = "log.fortianalyzer3/filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -81,7 +81,7 @@ class Fortianalyzer3Filter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.fortianalyzer3_filter.update(severity='warning')
         """
         data = data_dict.copy() if data_dict else {}

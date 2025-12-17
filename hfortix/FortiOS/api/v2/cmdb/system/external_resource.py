@@ -4,11 +4,10 @@ FortiOS CMDB - System ExternalResource
 Configure external resource.
 
 API Endpoints:
-    GET    /system/external-resource           - List all external-resource
-    GET    /system/external-resource/{name}   - Get specific external-resource
-    POST   /system/external-resource           - Create external-resource
-    PUT    /system/external-resource/{name}   - Update external-resource
-    DELETE /system/external-resource/{name}   - Delete external-resource
+    GET    /system/external-resource           - List all / Get specific
+    POST   /system/external-resource           - Create
+    PUT    /system/external-resource/{name}   - Update
+    DELETE /system/external-resource/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ExternalResource:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all external-resource
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of external-resource
-
-        Examples:
-            >>> # List all external-resource
-            >>> result = fgt.api.cmdb.system.external_resource.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ExternalResource:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ExternalResource:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new external-resource
+        Create external-resource
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ExternalResource:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.external_resource.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.external_resource.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ExternalResource:
         
         return self._client.post("cmdb", "system/external-resource", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ExternalResource:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.external_resource.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.external_resource.update(
             ...     name='obj1',
             ...     comment='Updated'

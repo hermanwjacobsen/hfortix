@@ -74,7 +74,7 @@ class Scheme:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get authentication scheme(s)
+        Get authentication scheme(s) - List all or get specific
 
         Retrieve authentication schemes with filtering and query options.
 
@@ -140,23 +140,7 @@ class Scheme:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, **kwargs: Any) -> dict[str, Any]:
-        """
-        Get all authentication schemes (convenience method)
-
-        Args:
-            **kwargs: All parameters from get() method
-
-        Returns:
-            dict: API response with all schemes
-
-        Examples:
-            >>> # Get all authentication schemes
-            >>> all_schemes = fgt.cmdb.authentication.scheme.list()
-        """
-        return self.get(**kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -184,7 +168,7 @@ class Scheme:
         """
         Create authentication scheme
 
-        Create a new authentication scheme to define authentication methods.
+        Create authentication scheme to define authentication methods.
 
         Args:
             name (str, required): Authentication scheme name (max 35 chars)
@@ -218,14 +202,14 @@ class Scheme:
             dict: API response
 
         Examples:
-            >>> # Create basic HTTP authentication scheme
+            >>> # POST - Create basic HTTP authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
             ...     name='basic-http-auth',
             ...     method='basic',
             ...     user_database=['local-user-db']
             ... )
 
-            >>> # Create LDAP authentication scheme
+            >>> # POST - Create LDAP authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
             ...     name='ldap-auth',
             ...     method='form',
@@ -233,7 +217,7 @@ class Scheme:
             ...     require_tfa='enable'
             ... )
 
-            >>> # Create SAML authentication scheme
+            >>> # POST - Create SAML authentication scheme
             >>> result = fgt.cmdb.authentication.scheme.create(
             ...     name='saml-sso',
             ...     method='saml',
@@ -298,7 +282,7 @@ class Scheme:
             "cmdb", "authentication/scheme", data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -326,7 +310,7 @@ class Scheme:
         """
         Update authentication scheme
 
-        Update an existing authentication scheme configuration.
+        Update authentication scheme configuration.
 
         Args:
             name (str, required): Authentication scheme name
@@ -359,13 +343,13 @@ class Scheme:
             dict: API response
 
         Examples:
-            >>> # Update scheme to require two-factor authentication
+            >>> # PUT - Update scheme to require two-factor authentication
             >>> result = fgt.cmdb.authentication.scheme.update(
             ...     name='basic-http-auth',
             ...     require_tfa='enable'
             ... )
 
-            >>> # Update authentication method
+            >>> # PUT - Update authentication method
             >>> result = fgt.cmdb.authentication.scheme.update(
             ...     name='web-auth',
             ...     method='form',

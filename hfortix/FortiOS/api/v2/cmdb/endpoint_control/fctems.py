@@ -4,11 +4,10 @@ FortiOS CMDB - Endpoint Control FortiClient EMS
 Configure FortiClient Enterprise Management Server (EMS) entries.
 
 API Endpoints:
-    GET    /api/v2/cmdb/endpoint-control/fctems           - List all EMS entries
-    GET    /api/v2/cmdb/endpoint-control/fctems/{ems-id}  - Get specific EMS entry
-    POST   /api/v2/cmdb/endpoint-control/fctems           - Create EMS entry
-    PUT    /api/v2/cmdb/endpoint-control/fctems/{ems-id}  - Update EMS entry
-    DELETE /api/v2/cmdb/endpoint-control/fctems/{ems-id}  - Delete EMS entry
+    GET    /api/v2/cmdb/endpoint-control/fctems           - List all / Get specific
+    POST   /api/v2/cmdb/endpoint-control/fctems           - Create
+    PUT    /api/v2/cmdb/endpoint-control/fctems/{ems-id}   - Update
+    DELETE /api/v2/cmdb/endpoint-control/fctems/{ems-id}   - Delete
 """
 
 from __future__ import annotations
@@ -117,52 +116,7 @@ class Fctems:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all FortiClient EMS entries (convenience method).
-
-        Args:
-            Same as get() method, excluding ems_id
-
-        Returns:
-            dict: API response containing all EMS entries
-
-        Examples:
-            >>> entries = fgt.cmdb.endpoint_control.fctems.list()
-        """
-        return self.get(
-            ems_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -201,7 +155,7 @@ class Fctems:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new FortiClient EMS entry.
+        Create FortiClient EMS entry.
 
         Args:
             name (str): EMS entry name
@@ -241,7 +195,7 @@ class Fctems:
             dict: API response
 
         Examples:
-            >>> # Create EMS entry
+            >>> # POST - Create EMS entry
             >>> result = fgt.cmdb.endpoint_control.fctems.create(
             ...     name='EMS1',
             ...     server='ems.example.com',
@@ -295,7 +249,7 @@ class Fctems:
             "cmdb", "endpoint-control/fctems", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         ems_id: Optional[str] = None,
@@ -329,7 +283,7 @@ class Fctems:
         admin_username: Optional[str] = None,
         admin_password: Optional[str] = None,
         admin_type: Optional[str] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -355,7 +309,7 @@ class Fctems:
             dict: API response
 
         Examples:
-            >>> # Update EMS entry
+            >>> # PUT - Update EMS entry
             >>> result = fgt.cmdb.endpoint_control.fctems.update(
             ...     ems_id='EMS1',
             ...     status='enable',

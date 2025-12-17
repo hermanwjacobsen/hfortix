@@ -21,7 +21,7 @@ class Bfd6:
             params["action"] = action
         params.update(kwargs)
         return self._client.get("cmdb", "router/bfd6", params=params if params else None, vdom=vdom)
-    def update(self, data_dict: Optional[dict[str, Any]] = None, neighbor: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def put(self, data_dict: Optional[dict[str, Any]] = None, neighbor: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         if neighbor is not None:
             data["neighbor"] = neighbor

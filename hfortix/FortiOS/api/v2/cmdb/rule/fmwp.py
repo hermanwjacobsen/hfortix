@@ -4,11 +4,10 @@ FortiOS CMDB - Rule FMWP
 Show FMWP (FortiManager Wireless Protection) signatures.
 
 API Endpoints:
-    GET    /api/v2/cmdb/rule/fmwp        - List all FMWP signatures
-    GET    /api/v2/cmdb/rule/fmwp/{name} - Get specific FMWP signature
-    POST   /api/v2/cmdb/rule/fmwp        - Create FMWP signature
-    PUT    /api/v2/cmdb/rule/fmwp/{name} - Update FMWP signature
-    DELETE /api/v2/cmdb/rule/fmwp/{name} - Delete FMWP signature
+    GET    /api/v2/cmdb/rule/fmwp           - List all / Get specific
+    POST   /api/v2/cmdb/rule/fmwp           - Create
+    PUT    /api/v2/cmdb/rule/fmwp/{name}   - Update
+    DELETE /api/v2/cmdb/rule/fmwp/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,22 +32,6 @@ class Fmwp:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all FMWP signatures.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of FMWP signatures
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.fmwp.list()
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -56,7 +39,7 @@ class Fmwp:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get FMWP signature(s).
+        Get FMWP signature(s) - List all or get specific.
 
         Args:
             name: Signature name (if specified, gets single signature)
@@ -79,7 +62,7 @@ class Fmwp:
     # The create/update/delete methods are included for API completeness but will
     # return HTTP 500 errors as these signatures cannot be manually created/modified.
     
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -184,7 +167,7 @@ class Fmwp:
         data.update(kwargs)
         return self._client.post("cmdb", "rule/fmwp", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

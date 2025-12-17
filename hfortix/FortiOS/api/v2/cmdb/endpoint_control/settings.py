@@ -4,8 +4,8 @@ FortiOS CMDB - Endpoint Control Settings
 Configure endpoint control settings.
 
 API Endpoints:
-    GET /api/v2/cmdb/endpoint-control/settings - Get endpoint control settings
-    PUT /api/v2/cmdb/endpoint-control/settings - Update endpoint control settings
+    GET  /api/v2/cmdb/endpoint-control/settings  - Get configuration
+    PUT  /api/v2/cmdb/endpoint-control/settings  - Update configuration
 """
 
 from __future__ import annotations
@@ -90,7 +90,7 @@ class Settings:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         # FortiClient settings
@@ -109,7 +109,7 @@ class Settings:
         forticlient_disconnect_unsupported_client: Optional[str] = None,
         forticlient_dereg_unsupported_client: Optional[str] = None,
         forticlient_ems_rest_api_call_timeout: Optional[int] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         scope: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -154,12 +154,12 @@ class Settings:
             dict: API response
 
         Examples:
-            >>> # Update FortiClient keepalive interval
+            >>> # PUT - Update FortiClient keepalive interval
             >>> result = fgt.cmdb.endpoint_control.settings.update(
             ...     forticlient_keepalive_interval=120
             ... )
 
-            >>> # Update multiple settings
+            >>> # PUT - Update multiple settings
             >>> result = fgt.cmdb.endpoint_control.settings.update(
             ...     forticlient_keepalive_interval=90,
             ...     forticlient_sys_update_interval=480,

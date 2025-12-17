@@ -57,7 +57,7 @@ class Setting:
             "cmdb", "firewall.ssl/setting", vdom=vdom, params=params, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         proxy_connect_timeout: int = None,
@@ -99,13 +99,13 @@ class Setting:
             dict: API response
 
         Example:
-            # Update timeout settings
+            # PUT - Update timeout settings
             result = fgt.cmdb.firewall.ssl.setting.update(
                 proxy_connect_timeout=30,
                 cert_cache_timeout=60
             )
 
-            # Update SSL settings
+            # PUT - Update SSL settings
             result = fgt.cmdb.firewall.ssl.setting.update(
                 ssl_dh_bits='2048',
                 ssl_send_empty_frags='enable',

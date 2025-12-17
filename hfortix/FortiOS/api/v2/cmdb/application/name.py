@@ -50,7 +50,7 @@ class Name:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get application signature(s)
+        Get application signature(s) - List all or get specific
 
         Retrieve application signatures with filtering and query options.
 
@@ -116,18 +116,3 @@ class Name:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, **kwargs: Any) -> dict[str, Any]:
-        """
-        Get all application signatures (convenience method)
-
-        Args:
-            **kwargs: All parameters from get() method
-
-        Returns:
-            dict: API response with all signatures
-
-        Examples:
-            >>> # Get all signatures
-            >>> all_sigs = fgt.cmdb.application.name.list()
-        """
-        return self.get(**kwargs)

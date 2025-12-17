@@ -4,11 +4,10 @@ FortiOS CMDB - System SwitchInterface
 Configure software switch interfaces by grouping physical and WiFi interfaces.
 
 API Endpoints:
-    GET    /system/switch-interface           - List all switch-interface
-    GET    /system/switch-interface/{name}   - Get specific switch-interface
-    POST   /system/switch-interface           - Create switch-interface
-    PUT    /system/switch-interface/{name}   - Update switch-interface
-    DELETE /system/switch-interface/{name}   - Delete switch-interface
+    GET    /system/switch-interface           - List all / Get specific
+    POST   /system/switch-interface           - Create
+    PUT    /system/switch-interface/{name}   - Update
+    DELETE /system/switch-interface/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SwitchInterface:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all switch-interface
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of switch-interface
-
-        Examples:
-            >>> # List all switch-interface
-            >>> result = fgt.api.cmdb.system.switch_interface.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SwitchInterface:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SwitchInterface:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new switch-interface
+        Create switch-interface
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SwitchInterface:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.switch_interface.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.switch_interface.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SwitchInterface:
         
         return self._client.post("cmdb", "system/switch-interface", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SwitchInterface:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.switch_interface.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.switch_interface.update(
             ...     name='obj1',
             ...     comment='Updated'

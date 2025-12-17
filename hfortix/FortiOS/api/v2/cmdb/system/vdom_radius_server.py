@@ -4,11 +4,10 @@ FortiOS CMDB - System VdomRadiusServer
 Configure a RADIUS server to use as a RADIUS Single Sign On (RSSO) server for this VDOM.
 
 API Endpoints:
-    GET    /system/vdom-radius-server           - List all vdom-radius-server
-    GET    /system/vdom-radius-server/{name}   - Get specific vdom-radius-server
-    POST   /system/vdom-radius-server           - Create vdom-radius-server
-    PUT    /system/vdom-radius-server/{name}   - Update vdom-radius-server
-    DELETE /system/vdom-radius-server/{name}   - Delete vdom-radius-server
+    GET    /system/vdom-radius-server           - List all / Get specific
+    POST   /system/vdom-radius-server           - Create
+    PUT    /system/vdom-radius-server/{name}   - Update
+    DELETE /system/vdom-radius-server/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class VdomRadiusServer:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all vdom-radius-server
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of vdom-radius-server
-
-        Examples:
-            >>> # List all vdom-radius-server
-            >>> result = fgt.api.cmdb.system.vdom_radius_server.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class VdomRadiusServer:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class VdomRadiusServer:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new vdom-radius-server
+        Create vdom-radius-server
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class VdomRadiusServer:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.vdom_radius_server.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.vdom_radius_server.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class VdomRadiusServer:
         
         return self._client.post("cmdb", "system/vdom-radius-server", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class VdomRadiusServer:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom_radius_server.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom_radius_server.update(
             ...     name='obj1',
             ...     comment='Updated'

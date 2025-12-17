@@ -15,7 +15,7 @@ class PrefixList6:
         if name is not None:
             path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-    def create(self, data_dict: Optional[dict[str, Any]] = None, name: Optional[str] = None, comments: Optional[str] = None, rule: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def post(self, data_dict: Optional[dict[str, Any]] = None, name: Optional[str] = None, comments: Optional[str] = None, rule: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         if name is not None:
             data["name"] = name
@@ -25,7 +25,7 @@ class PrefixList6:
             data["rule"] = rule
         data.update(kwargs)
         return self._client.post("cmdb", "router/prefix-list6", data=data, vdom=vdom)
-    def update(self, name: str, data_dict: Optional[dict[str, Any]] = None, comments: Optional[str] = None, rule: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def put(self, name: str, data_dict: Optional[dict[str, Any]] = None, comments: Optional[str] = None, rule: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         if comments is not None:
             data["comments"] = comments

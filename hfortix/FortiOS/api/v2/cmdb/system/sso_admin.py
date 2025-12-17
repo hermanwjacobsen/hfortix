@@ -4,11 +4,10 @@ FortiOS CMDB - System SsoAdmin
 Configure SSO admin users.
 
 API Endpoints:
-    GET    /system/sso-admin           - List all sso-admin
-    GET    /system/sso-admin/{name}   - Get specific sso-admin
-    POST   /system/sso-admin           - Create sso-admin
-    PUT    /system/sso-admin/{name}   - Update sso-admin
-    DELETE /system/sso-admin/{name}   - Delete sso-admin
+    GET    /system/sso-admin           - List all / Get specific
+    POST   /system/sso-admin           - Create
+    PUT    /system/sso-admin/{name}   - Update
+    DELETE /system/sso-admin/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SsoAdmin:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sso-admin
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sso-admin
-
-        Examples:
-            >>> # List all sso-admin
-            >>> result = fgt.api.cmdb.system.sso_admin.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SsoAdmin:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SsoAdmin:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sso-admin
+        Create sso-admin
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SsoAdmin:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sso_admin.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sso_admin.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SsoAdmin:
         
         return self._client.post("cmdb", "system/sso-admin", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SsoAdmin:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sso_admin.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sso_admin.update(
             ...     name='obj1',
             ...     comment='Updated'

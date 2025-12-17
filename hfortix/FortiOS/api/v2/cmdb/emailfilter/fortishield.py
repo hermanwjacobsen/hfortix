@@ -6,8 +6,8 @@ Configure FortiGuard AntiSpam settings.
 This is a singleton endpoint - only GET and PUT operations are supported.
 
 API Endpoints:
-    GET /api/v2/cmdb/emailfilter/fortishield - Get FortiGuard AntiSpam settings
-    PUT /api/v2/cmdb/emailfilter/fortishield - Update FortiGuard AntiSpam settings
+    GET  /api/v2/cmdb/emailfilter/fortishield  - Get configuration
+    PUT  /api/v2/cmdb/emailfilter/fortishield  - Update configuration
 """
 
 from __future__ import annotations
@@ -90,7 +90,7 @@ class Fortishield:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         # FortiGuard configuration
@@ -115,7 +115,7 @@ class Fortishield:
             dict: API response
 
         Examples:
-            >>> # Update FortiGuard settings
+            >>> # PUT - Update FortiGuard settings
             >>> result = fgt.cmdb.emailfilter.fortishield.update(
             ...     spam_submit_srv='spam-submit.fortinet.com',
             ...     spam_submit_force='disable',

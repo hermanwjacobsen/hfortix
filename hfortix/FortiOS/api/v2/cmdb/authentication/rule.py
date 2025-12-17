@@ -74,7 +74,7 @@ class Rule:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get authentication rule(s)
+        Get authentication rule(s) - List all or get specific
 
         Retrieve authentication rules with filtering and query options.
 
@@ -140,23 +140,7 @@ class Rule:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, **kwargs: Any) -> dict[str, Any]:
-        """
-        Get all authentication rules (convenience method)
-
-        Args:
-            **kwargs: All parameters from get() method
-
-        Returns:
-            dict: API response with all rules
-
-        Examples:
-            >>> # Get all authentication rules
-            >>> all_rules = fgt.cmdb.authentication.rule.list()
-        """
-        return self.get(**kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -184,7 +168,7 @@ class Rule:
         """
         Create authentication rule
 
-        Create a new authentication rule to control user authentication requirements.
+        Create authentication rule to control user authentication requirements.
         Note: Either srcaddr or srcaddr6 is required by FortiOS.
 
         Args:
@@ -213,7 +197,7 @@ class Rule:
             dict: API response
 
         Examples:
-            >>> # Create basic authentication rule (simple format)
+            >>> # POST - Create basic authentication rule (simple format)
             >>> result = fgt.cmdb.authentication.rule.create(
             ...     name='web-auth-rule',
             ...     status='enable',
@@ -222,7 +206,7 @@ class Rule:
             ...     active_auth_method='form-based'
             ... )
 
-            >>> # Create rule with source addresses (dict format also works)
+            >>> # POST - Create rule with source addresses (dict format also works)
             >>> result = fgt.cmdb.authentication.rule.create(
             ...     name='lan-auth-rule',
             ...     status='enable',
@@ -290,7 +274,7 @@ class Rule:
 
         return self._client.post("cmdb", "authentication/rule", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -318,7 +302,7 @@ class Rule:
         """
         Update authentication rule
 
-        Update an existing authentication rule configuration.
+        Update authentication rule configuration.
 
         Args:
             name (str, required): Authentication rule name
@@ -346,13 +330,13 @@ class Rule:
             dict: API response
 
         Examples:
-            >>> # Update rule status
+            >>> # PUT - Update rule status
             >>> result = fgt.cmdb.authentication.rule.update(
             ...     name='web-auth-rule',
             ...     status='disable'
             ... )
 
-            >>> # Update authentication method
+            >>> # PUT - Update authentication method
             >>> result = fgt.cmdb.authentication.rule.update(
             ...     name='web-auth-rule',
             ...     active_auth_method='ldap-auth'

@@ -21,7 +21,7 @@ class Multicast6:
             params["action"] = action
         params.update(kwargs)
         return self._client.get("cmdb", "router/multicast6", params=params if params else None, vdom=vdom)
-    def update(self, data_dict: Optional[dict[str, Any]] = None, multicast_routing: Optional[str] = None, multicast_pmtu: Optional[str] = None, pim_sm_global: Optional[dict] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def put(self, data_dict: Optional[dict[str, Any]] = None, multicast_routing: Optional[str] = None, multicast_pmtu: Optional[str] = None, pim_sm_global: Optional[dict] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         param_map = {"multicast_routing": "multicast-routing", "multicast_pmtu": "multicast-pmtu", "pim_sm_global": "pim-sm-global"}
         if multicast_routing is not None:

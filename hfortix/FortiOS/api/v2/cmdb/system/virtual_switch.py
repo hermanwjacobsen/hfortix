@@ -4,11 +4,10 @@ FortiOS CMDB - System VirtualSwitch
 Configure virtual hardware switch interfaces.
 
 API Endpoints:
-    GET    /system/virtual-switch           - List all virtual-switch
-    GET    /system/virtual-switch/{name}   - Get specific virtual-switch
-    POST   /system/virtual-switch           - Create virtual-switch
-    PUT    /system/virtual-switch/{name}   - Update virtual-switch
-    DELETE /system/virtual-switch/{name}   - Delete virtual-switch
+    GET    /system/virtual-switch           - List all / Get specific
+    POST   /system/virtual-switch           - Create
+    PUT    /system/virtual-switch/{name}   - Update
+    DELETE /system/virtual-switch/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class VirtualSwitch:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all virtual-switch
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of virtual-switch
-
-        Examples:
-            >>> # List all virtual-switch
-            >>> result = fgt.api.cmdb.system.virtual_switch.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class VirtualSwitch:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class VirtualSwitch:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new virtual-switch
+        Create virtual-switch
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class VirtualSwitch:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.virtual_switch.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.virtual_switch.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class VirtualSwitch:
         
         return self._client.post("cmdb", "system/virtual-switch", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class VirtualSwitch:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.virtual_switch.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.virtual_switch.update(
             ...     name='obj1',
             ...     comment='Updated'

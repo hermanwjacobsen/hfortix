@@ -4,11 +4,10 @@ FortiOS CMDB - Endpoint Control FortiClient EMS Override
 Configure FortiClient Enterprise Management Server (EMS) override entries for granular control.
 
 API Endpoints:
-    GET    /api/v2/cmdb/endpoint-control/fctems-override           - List all EMS override entries
-    GET    /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}  - Get specific EMS override entry
-    POST   /api/v2/cmdb/endpoint-control/fctems-override           - Create EMS override entry
-    PUT    /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}  - Update EMS override entry
-    DELETE /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}  - Delete EMS override entry
+    GET    /api/v2/cmdb/endpoint-control/fctems-override           - List all / Get specific
+    POST   /api/v2/cmdb/endpoint-control/fctems-override           - Create
+    PUT    /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}   - Update
+    DELETE /api/v2/cmdb/endpoint-control/fctems-override/{ems-id}   - Delete
 """
 
 from __future__ import annotations
@@ -117,52 +116,7 @@ class FctemsOverride:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all FortiClient EMS override entries (convenience method).
-
-        Args:
-            Same as get() method, excluding ems_id
-
-        Returns:
-            dict: API response containing all EMS override entries
-
-        Examples:
-            >>> entries = fgt.cmdb.endpoint_control.fctems_override.list()
-        """
-        return self.get(
-            ems_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         ems_id: Optional[str] = None,
@@ -198,7 +152,7 @@ class FctemsOverride:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new FortiClient EMS override entry.
+        Create FortiClient EMS override entry.
 
         Args:
             ems_id (str): EMS ID (primary identifier)
@@ -235,7 +189,7 @@ class FctemsOverride:
             dict: API response
 
         Examples:
-            >>> # Create EMS override entry
+            >>> # POST - Create EMS override entry
             >>> result = fgt.cmdb.endpoint_control.fctems_override.create(
             ...     ems_id='EMS1',
             ...     status='enable',
@@ -286,7 +240,7 @@ class FctemsOverride:
             "cmdb", "endpoint-control/fctems-override", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         ems_id: Optional[str] = None,
@@ -317,7 +271,7 @@ class FctemsOverride:
         trust_ca_cn: Optional[str] = None,
         verifying_ca: Optional[str] = None,
         status_check_interval: Optional[int] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -343,7 +297,7 @@ class FctemsOverride:
             dict: API response
 
         Examples:
-            >>> # Update EMS override entry
+            >>> # PUT - Update EMS override entry
             >>> result = fgt.cmdb.endpoint_control.fctems_override.update(
             ...     ems_id='EMS1',
             ...     status='disable',

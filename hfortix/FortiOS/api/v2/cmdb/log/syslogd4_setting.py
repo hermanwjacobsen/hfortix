@@ -4,8 +4,8 @@ FortiOS CMDB - Log Syslogd4 Setting
 Global settings for remote syslog server.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.syslogd4/setting - Get syslogd4 settings
-    PUT /api/v2/cmdb/log.syslogd4/setting - Update syslogd4 settings
+    GET  /api/v2/cmdb/log.syslogd4/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.syslogd4/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class Syslogd4Setting:
         path = "log.syslogd4/setting"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,
@@ -140,7 +140,7 @@ class Syslogd4Setting:
             ...     facility='local7'
             ... )
 
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {
             ...     'status': 'enable',
             ...     'server': '192.168.1.100',

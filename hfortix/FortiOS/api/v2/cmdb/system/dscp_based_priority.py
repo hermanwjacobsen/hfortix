@@ -4,11 +4,10 @@ FortiOS CMDB - System DscpBasedPriority
 Configure DSCP based priority table.
 
 API Endpoints:
-    GET    /system/dscp-based-priority           - List all dscp-based-priority
-    GET    /system/dscp-based-priority/{name}   - Get specific dscp-based-priority
-    POST   /system/dscp-based-priority           - Create dscp-based-priority
-    PUT    /system/dscp-based-priority/{name}   - Update dscp-based-priority
-    DELETE /system/dscp-based-priority/{name}   - Delete dscp-based-priority
+    GET    /system/dscp-based-priority           - List all / Get specific
+    POST   /system/dscp-based-priority           - Create
+    PUT    /system/dscp-based-priority/{name}   - Update
+    DELETE /system/dscp-based-priority/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DscpBasedPriority:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all dscp-based-priority
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of dscp-based-priority
-
-        Examples:
-            >>> # List all dscp-based-priority
-            >>> result = fgt.api.cmdb.system.dscp_based_priority.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DscpBasedPriority:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DscpBasedPriority:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new dscp-based-priority
+        Create dscp-based-priority
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DscpBasedPriority:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.dscp_based_priority.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.dscp_based_priority.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DscpBasedPriority:
         
         return self._client.post("cmdb", "system/dscp-based-priority", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DscpBasedPriority:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dscp_based_priority.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dscp_based_priority.update(
             ...     name='obj1',
             ...     comment='Updated'

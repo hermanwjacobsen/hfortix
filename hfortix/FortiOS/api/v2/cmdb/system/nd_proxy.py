@@ -4,8 +4,8 @@ FortiOS CMDB - System NdProxy
 Configure IPv6 neighbor discovery proxy (RFC4389).
 
 API Endpoints:
-    GET  /system/nd-proxy  - Get nd-proxy settings
-    PUT  /system/nd-proxy  - Update nd-proxy settings
+    GET  /system/nd-proxy  - Get configuration
+    PUT  /system/nd-proxy  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class NdProxy:
         
         return self._client.get("cmdb", "system/nd-proxy", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class NdProxy:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.nd_proxy.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.nd_proxy.update(
             ...     setting1='value1',
             ...     setting2='value2'

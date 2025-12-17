@@ -68,7 +68,7 @@ class FtpProxyExplicit:
             self._api_type, self._path, params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         status: Optional[str] = None,
         incoming_port: Optional[str] = None,

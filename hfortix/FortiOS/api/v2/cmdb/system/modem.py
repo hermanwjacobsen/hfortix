@@ -4,8 +4,8 @@ FortiOS CMDB - System Modem
 Configure MODEM.
 
 API Endpoints:
-    GET  /system/modem  - Get modem settings
-    PUT  /system/modem  - Update modem settings
+    GET  /system/modem  - Get configuration
+    PUT  /system/modem  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Modem:
         
         return self._client.get("cmdb", "system/modem", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Modem:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.modem.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.modem.update(
             ...     setting1='value1',
             ...     setting2='value2'

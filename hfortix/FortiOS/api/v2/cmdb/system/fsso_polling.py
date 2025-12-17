@@ -4,8 +4,8 @@ FortiOS CMDB - System FssoPolling
 Configure Fortinet Single Sign On (FSSO) server.
 
 API Endpoints:
-    GET  /system/fsso-polling  - Get fsso-polling settings
-    PUT  /system/fsso-polling  - Update fsso-polling settings
+    GET  /system/fsso-polling  - Get configuration
+    PUT  /system/fsso-polling  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class FssoPolling:
         
         return self._client.get("cmdb", "system/fsso-polling", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class FssoPolling:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.fsso_polling.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.fsso_polling.update(
             ...     setting1='value1',
             ...     setting2='value2'

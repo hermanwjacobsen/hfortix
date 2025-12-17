@@ -207,7 +207,7 @@ class MulticastPolicy:
             "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         data: Dict[str, Any],
         vdom: Optional[str] = None,
@@ -219,7 +219,7 @@ class MulticastPolicy:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Create a new multicast policy.
+        Create multicast policy.
 
         Args:
             data: The policy configuration data
@@ -249,7 +249,7 @@ class MulticastPolicy:
             "cmdb", self.path, data=data, params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         mkey: Union[str, int],
         data: Dict[str, Any],
@@ -263,7 +263,7 @@ class MulticastPolicy:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Update an existing multicast policy.
+        Update multicast policy.
 
         Args:
             mkey: The policy ID (primary key)

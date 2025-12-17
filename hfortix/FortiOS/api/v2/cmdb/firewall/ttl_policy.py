@@ -211,7 +211,7 @@ class TtlPolicy:
             "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
@@ -229,7 +229,7 @@ class TtlPolicy:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Create a new ttl-policy entry.
+        Create ttl-policy entry.
 
         Supports two usage patterns:
         1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
@@ -306,7 +306,7 @@ class TtlPolicy:
             "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         mkey: Union[str, int],
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -326,7 +326,7 @@ class TtlPolicy:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Update an existing ttl-policy entry.
+        Update ttl-policy entry.
 
         Supports two usage patterns:
         1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")

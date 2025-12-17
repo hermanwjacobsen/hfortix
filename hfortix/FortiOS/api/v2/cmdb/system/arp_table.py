@@ -4,11 +4,10 @@ FortiOS CMDB - System ArpTable
 Configure ARP table.
 
 API Endpoints:
-    GET    /system/arp-table           - List all arp-table
-    GET    /system/arp-table/{name}   - Get specific arp-table
-    POST   /system/arp-table           - Create arp-table
-    PUT    /system/arp-table/{name}   - Update arp-table
-    DELETE /system/arp-table/{name}   - Delete arp-table
+    GET    /system/arp-table           - List all / Get specific
+    POST   /system/arp-table           - Create
+    PUT    /system/arp-table/{name}   - Update
+    DELETE /system/arp-table/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ArpTable:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all arp-table
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of arp-table
-
-        Examples:
-            >>> # List all arp-table
-            >>> result = fgt.api.cmdb.system.arp_table.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ArpTable:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ArpTable:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new arp-table
+        Create arp-table
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ArpTable:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.arp_table.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.arp_table.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ArpTable:
         
         return self._client.post("cmdb", "system/arp-table", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ArpTable:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.arp_table.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.arp_table.update(
             ...     name='obj1',
             ...     comment='Updated'

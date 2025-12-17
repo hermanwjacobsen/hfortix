@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Schedule Onetime
 Onetime schedule configuration.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.schedule/onetime        - List all onetime schedules
-    GET    /api/v2/cmdb/firewall.schedule/onetime/{name} - Get specific onetime schedule
-    POST   /api/v2/cmdb/firewall.schedule/onetime        - Create new onetime schedule
-    PUT    /api/v2/cmdb/firewall.schedule/onetime/{name} - Update onetime schedule
-    DELETE /api/v2/cmdb/firewall.schedule/onetime/{name} - Delete onetime schedule
+    GET    /api/v2/cmdb/firewall.schedule/onetime           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.schedule/onetime           - Create
+    PUT    /api/v2/cmdb/firewall.schedule/onetime/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.schedule/onetime/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -136,7 +135,7 @@ class ScheduleOnetime:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -150,7 +149,7 @@ class ScheduleOnetime:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new onetime schedule.
+        Create onetime schedule.
 
 
         Supports two usage patterns:
@@ -170,14 +169,14 @@ class ScheduleOnetime:
             API response dict
 
         Examples:
-            >>> # Create maintenance window
+            >>> # POST - Create maintenance window
             >>> result = fgt.cmdb.firewall.schedule.onetime.create(
             ...     name='maintenance-jan-2025',
             ...     start='22:00 2025/01/15',
             ...     end='06:00 2025/01/16'
             ... )
 
-            >>> # Create with auto-expiration
+            >>> # POST - Create with auto-expiration
             >>> result = fgt.cmdb.firewall.schedule.onetime.create(
             ...     name='temporary-access',
             ...     start='08:00 2025/12/20',
@@ -229,7 +228,7 @@ class ScheduleOnetime:
         path = "firewall.schedule/onetime"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -243,7 +242,7 @@ class ScheduleOnetime:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing onetime schedule.
+        Update onetime schedule.
 
 
         Supports two usage patterns:

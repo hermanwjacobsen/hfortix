@@ -4,8 +4,8 @@ FortiOS CMDB - System PcpServer
 Configure PCP server information.
 
 API Endpoints:
-    GET  /system/pcp-server  - Get pcp-server settings
-    PUT  /system/pcp-server  - Update pcp-server settings
+    GET  /system/pcp-server  - Get configuration
+    PUT  /system/pcp-server  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class PcpServer:
         
         return self._client.get("cmdb", "system/pcp-server", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class PcpServer:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.pcp_server.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.pcp_server.update(
             ...     setting1='value1',
             ...     setting2='value2'

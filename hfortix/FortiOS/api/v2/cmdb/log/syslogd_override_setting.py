@@ -4,8 +4,8 @@ FortiOS CMDB - Log Syslogd Override Setting
 Override settings for remote syslog server.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.syslogd/override-setting - Get syslogd override settings
-    PUT /api/v2/cmdb/log.syslogd/override-setting - Update syslogd override settings
+    GET  /api/v2/cmdb/log.syslogd/override-setting  - Get configuration
+    PUT  /api/v2/cmdb/log.syslogd/override-setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class SyslogdOverrideSetting:
         path = "log.syslogd/override-setting"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,
@@ -142,7 +142,7 @@ class SyslogdOverrideSetting:
             ...     facility='local7'
             ... )
 
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {
             ...     'status': 'enable',
             ...     'server': '192.168.1.100',

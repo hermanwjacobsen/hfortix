@@ -4,11 +4,10 @@ FortiOS CMDB - Extension Controller FortiGate
 Configure FortiGate controller settings for managing connected FortiGates.
 
 API Endpoints:
-    GET    /api/v2/cmdb/extension-controller/fortigate        - List all FortiGate controllers
-    GET    /api/v2/cmdb/extension-controller/fortigate/{name} - Get specific FortiGate controller
-    POST   /api/v2/cmdb/extension-controller/fortigate        - Create FortiGate controller
-    PUT    /api/v2/cmdb/extension-controller/fortigate/{name} - Update FortiGate controller
-    DELETE /api/v2/cmdb/extension-controller/fortigate/{name} - Delete FortiGate controller
+    GET    /api/v2/cmdb/extension-controller/fortigate           - List all / Get specific
+    POST   /api/v2/cmdb/extension-controller/fortigate           - Create
+    PUT    /api/v2/cmdb/extension-controller/fortigate/{name}   - Update
+    DELETE /api/v2/cmdb/extension-controller/fortigate/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -35,7 +34,7 @@ class Fortigate:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get FortiGate controller(s)."""
+        """Get FortiGate controller(s) - List all or get specific."""
         params = {k: v for k, v in kwargs.items() if v is not None}
         path = "extension-controller/fortigate"
         if name:
@@ -44,11 +43,7 @@ class Fortigate:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """Get all FortiGate controllers."""
-        return self.get(name=None, vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,
@@ -56,7 +51,7 @@ class Fortigate:
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create a new FortiGate controller."""
+        """Create FortiGate controller."""
         data = {"name": name}
         for key, value in kwargs.items():
             data[key.replace("_", "-")] = value
@@ -64,7 +59,7 @@ class Fortigate:
             "cmdb", "extension-controller/fortigate", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,

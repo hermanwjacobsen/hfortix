@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiAnalyzer Override Setting
 Override settings for FortiAnalyzer in VDOMs.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortianalyzer/override-setting - Get FortiAnalyzer override settings
-    PUT /api/v2/cmdb/log.fortianalyzer/override-setting - Update FortiAnalyzer override settings
+    GET  /api/v2/cmdb/log.fortianalyzer/override-setting  - Get configuration
+    PUT  /api/v2/cmdb/log.fortianalyzer/override-setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortianalyzerOverrideSetting:
         path = "log.fortianalyzer/override-setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

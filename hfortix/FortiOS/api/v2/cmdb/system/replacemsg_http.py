@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgHttp
 Replacement messages.
 
 API Endpoints:
-    GET    /system.replacemsg/http           - List all replacemsg http
-    GET    /system.replacemsg/http/{name}   - Get specific replacemsg http
-    POST   /system.replacemsg/http           - Create replacemsg http
-    PUT    /system.replacemsg/http/{name}   - Update replacemsg http
-    DELETE /system.replacemsg/http/{name}   - Delete replacemsg http
+    GET    /system.replacemsg/http           - List all / Get specific
+    POST   /system.replacemsg/http           - Create
+    PUT    /system.replacemsg/http/{name}   - Update
+    DELETE /system.replacemsg/http/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgHttp:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg http
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg http
-
-        Examples:
-            >>> # List all replacemsg http
-            >>> result = fgt.api.cmdb.system.replacemsg_http.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgHttp:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgHttp:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg http
+        Create replacemsg http
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgHttp:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_http.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_http.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgHttp:
         
         return self._client.post("cmdb", "system.replacemsg/http", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgHttp:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_http.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_http.update(
             ...     name='obj1',
             ...     comment='Updated'

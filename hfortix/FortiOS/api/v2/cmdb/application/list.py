@@ -47,7 +47,7 @@ class List:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get application control list(s)
+        Get application control list(s) - List all or get specific
 
         Retrieve application control lists with filtering and query options.
 
@@ -114,23 +114,7 @@ class List:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, **kwargs: Any) -> dict[str, Any]:
-        """
-        Get all application control lists (convenience method)
-
-        Args:
-            **kwargs: All parameters from get() method
-
-        Returns:
-            dict: API response with all lists
-
-        Examples:
-            >>> # Get all lists
-            >>> all_lists = fgt.cmdb.application.list.list()
-        """
-        return self.get(**kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -158,7 +142,7 @@ class List:
         """
         Create application control list
 
-        Create a new application control list with specified settings.
+        Create application control list with specified settings.
 
         Args:
             name (str, required): Application list name (max 35 chars)
@@ -186,7 +170,7 @@ class List:
             dict: API response
 
         Examples:
-            >>> # Create simple application list
+            >>> # POST - Create simple application list
             >>> result = fgt.cmdb.application.list.create(
             ...     name='web-filter',
             ...     comment='Block P2P and unknown apps',
@@ -194,7 +178,7 @@ class List:
             ...     unknown_application_log='enable'
             ... )
 
-            >>> # Create list with P2P blocking
+            >>> # POST - Create list with P2P blocking
             >>> result = fgt.cmdb.application.list.create(
             ...     name='security-policy',
             ...     comment='Enhanced security controls',
@@ -203,7 +187,7 @@ class List:
             ...     extended_log='enable'
             ... )
 
-            >>> # Create list with entries
+            >>> # POST - Create list with entries
             >>> result = fgt.cmdb.application.list.create(
             ...     name='business-apps',
             ...     entries=[
@@ -264,7 +248,7 @@ class List:
 
         return self._client.post("cmdb", "application/list", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -292,7 +276,7 @@ class List:
         """
         Update application control list
 
-        Update an existing application control list.
+        Update application control list.
 
         Args:
             name (str, required): Application list name
@@ -327,7 +311,7 @@ class List:
             ...     extended_log='enable'
             ... )
 
-            >>> # Update P2P block list
+            >>> # PUT - Update P2P block list
             >>> result = fgt.cmdb.application.list.update(
             ...     name='security-policy',
             ...     p2p_block_list=['skype', 'edonkey', 'bittorrent', 'ares']

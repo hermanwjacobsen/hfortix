@@ -4,11 +4,10 @@ FortiOS CMDB - System AutoScript
 Configure auto script.
 
 API Endpoints:
-    GET    /system/auto-script           - List all auto-script
-    GET    /system/auto-script/{name}   - Get specific auto-script
-    POST   /system/auto-script           - Create auto-script
-    PUT    /system/auto-script/{name}   - Update auto-script
-    DELETE /system/auto-script/{name}   - Delete auto-script
+    GET    /system/auto-script           - List all / Get specific
+    POST   /system/auto-script           - Create
+    PUT    /system/auto-script/{name}   - Update
+    DELETE /system/auto-script/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class AutoScript:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all auto-script
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of auto-script
-
-        Examples:
-            >>> # List all auto-script
-            >>> result = fgt.api.cmdb.system.auto_script.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class AutoScript:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class AutoScript:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new auto-script
+        Create auto-script
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class AutoScript:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.auto_script.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.auto_script.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class AutoScript:
         
         return self._client.post("cmdb", "system/auto-script", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class AutoScript:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.auto_script.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.auto_script.update(
             ...     name='obj1',
             ...     comment='Updated'

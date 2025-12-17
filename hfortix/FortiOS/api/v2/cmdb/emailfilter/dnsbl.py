@@ -4,11 +4,10 @@ FortiOS CMDB - Email Filter DNSBL
 Configure AntiSpam DNSBL/ORBL (DNS-based Blacklist/Open Relay Blacklist).
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/dnsbl       - List all DNSBL entries
-    GET    /api/v2/cmdb/emailfilter/dnsbl/{id}  - Get specific DNSBL entry
-    POST   /api/v2/cmdb/emailfilter/dnsbl       - Create DNSBL entry
-    PUT    /api/v2/cmdb/emailfilter/dnsbl/{id}  - Update DNSBL entry
-    DELETE /api/v2/cmdb/emailfilter/dnsbl/{id}  - Delete DNSBL entry
+    GET    /api/v2/cmdb/emailfilter/dnsbl           - List all / Get specific
+    POST   /api/v2/cmdb/emailfilter/dnsbl           - Create
+    PUT    /api/v2/cmdb/emailfilter/dnsbl/{id}   - Update
+    DELETE /api/v2/cmdb/emailfilter/dnsbl/{id}   - Delete
 """
 
 from __future__ import annotations
@@ -117,52 +116,7 @@ class Dnsbl:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all email filter DNSBL entries (convenience method).
-
-        Args:
-            Same as get() method, excluding entry_id
-
-        Returns:
-            dict: API response containing all DNSBL entries
-
-        Examples:
-            >>> entries = fgt.cmdb.emailfilter.dnsbl.list()
-        """
-        return self.get(
-            entry_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,7 +128,7 @@ class Dnsbl:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new email filter DNSBL entry.
+        Create email filter DNSBL entry.
 
         Args:
             name (str): DNSBL entry name
@@ -188,7 +142,7 @@ class Dnsbl:
             dict: API response
 
         Examples:
-            >>> # Create DNSBL entry
+            >>> # POST - Create DNSBL entry
             >>> result = fgt.cmdb.emailfilter.dnsbl.create(
             ...     name='spamhaus',
             ...     comment='Spamhaus DNSBL service',
@@ -217,7 +171,7 @@ class Dnsbl:
             "cmdb", "emailfilter/dnsbl", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         entry_id: Optional[int] = None,
@@ -225,7 +179,7 @@ class Dnsbl:
         name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -253,7 +207,7 @@ class Dnsbl:
             dict: API response
 
         Examples:
-            >>> # Update DNSBL entry
+            >>> # PUT - Update DNSBL entry
             >>> result = fgt.cmdb.emailfilter.dnsbl.update(
             ...     entry_id=1,
             ...     entries=[

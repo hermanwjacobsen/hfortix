@@ -4,8 +4,8 @@ FortiOS CMDB - System Dns
 Configure DNS.
 
 API Endpoints:
-    GET  /system/dns  - Get dns settings
-    PUT  /system/dns  - Update dns settings
+    GET  /system/dns  - Get configuration
+    PUT  /system/dns  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Dns:
 
         return self._client.get("cmdb", "system/dns", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Dns:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dns.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
 
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dns.update(
             ...     setting1='value1',
             ...     setting2='value2'

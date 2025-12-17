@@ -4,11 +4,10 @@ FortiOS CMDB - System SdnProxy
 Configure SDN proxy.
 
 API Endpoints:
-    GET    /system/sdn-proxy           - List all sdn-proxy
-    GET    /system/sdn-proxy/{name}   - Get specific sdn-proxy
-    POST   /system/sdn-proxy           - Create sdn-proxy
-    PUT    /system/sdn-proxy/{name}   - Update sdn-proxy
-    DELETE /system/sdn-proxy/{name}   - Delete sdn-proxy
+    GET    /system/sdn-proxy           - List all / Get specific
+    POST   /system/sdn-proxy           - Create
+    PUT    /system/sdn-proxy/{name}   - Update
+    DELETE /system/sdn-proxy/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SdnProxy:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sdn-proxy
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sdn-proxy
-
-        Examples:
-            >>> # List all sdn-proxy
-            >>> result = fgt.api.cmdb.system.sdn_proxy.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SdnProxy:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SdnProxy:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sdn-proxy
+        Create sdn-proxy
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SdnProxy:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sdn_proxy.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sdn_proxy.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SdnProxy:
         
         return self._client.post("cmdb", "system/sdn-proxy", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SdnProxy:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sdn_proxy.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sdn_proxy.update(
             ...     name='obj1',
             ...     comment='Updated'

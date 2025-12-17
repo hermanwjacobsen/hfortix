@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Address Group
 Configure IPv4 address groups.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/addrgrp        - List all IPv4 address groups
-    GET    /api/v2/cmdb/firewall/addrgrp/{name} - Get specific IPv4 address group
-    POST   /api/v2/cmdb/firewall/addrgrp        - Create IPv4 address group
-    PUT    /api/v2/cmdb/firewall/addrgrp/{name} - Update IPv4 address group
-    DELETE /api/v2/cmdb/firewall/addrgrp/{name} - Delete IPv4 address group
+    GET    /api/v2/cmdb/firewall/addrgrp           - List all / Get specific
+    POST   /api/v2/cmdb/firewall/addrgrp           - Create
+    PUT    /api/v2/cmdb/firewall/addrgrp/{name}   - Update
+    DELETE /api/v2/cmdb/firewall/addrgrp/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -77,7 +76,7 @@ class Addrgrp:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv4 address group object(s).
+        Get IPv4 address group object(s) - List all or get specific.
 
         Args:
             name: Object name (if specified, gets single object)
@@ -137,7 +136,7 @@ class Addrgrp:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -178,27 +177,27 @@ class Addrgrp:
             API response dict
 
         Examples:
-            >>> # Create with data dict
+            >>> # POST - Create with data dict
             >>> result = fgt.cmdb.firewall.addrgrp.create(
             ...     payload_dict={'name': 'internal-networks', 'member': [{'name': 'subnet1'}]},
             ...     vdom='root'
             ... )
 
-            >>> # Create address group with string list (simplified API)
+            >>> # POST - Create address group with string list (simplified API)
             >>> result = fgt.cmdb.firewall.addrgrp.create(
             ...     name='internal-networks',
             ...     member=['subnet1', 'subnet2', 'subnet3'],
             ...     comment='All internal networks'
             ... )
 
-            >>> # Create address group with dict list (explicit format)
+            >>> # POST - Create address group with dict list (explicit format)
             >>> result = fgt.cmdb.firewall.addrgrp.create(
             ...     name='web-servers',
             ...     member=[{'name': 'web1'}, {'name': 'web2'}],
             ...     comment='Web server group'
             ... )
 
-            >>> # Create group with excluded members
+            >>> # POST - Create group with excluded members
             >>> result = fgt.cmdb.firewall.addrgrp.create(
             ...     name='trusted-nets',
             ...     member=['all-internal'],
@@ -261,7 +260,7 @@ class Addrgrp:
         path = "firewall/addrgrp"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[dict[str, Any]] = None,
@@ -302,14 +301,14 @@ class Addrgrp:
             API response dict
 
         Examples:
-            >>> # Update with data dict
+            >>> # PUT - Update with data dict
             >>> result = fgt.cmdb.firewall.addrgrp.update(
             ...     name='internal-networks',
             ...     payload_dict={'comment': 'Updated comment'},
             ...     vdom='root'
             ... )
 
-            >>> # Update members with simplified API
+            >>> # PUT - Update members with simplified API
             >>> result = fgt.cmdb.firewall.addrgrp.update(
             ...     name='internal-networks',
             ...     member=['subnet1', 'subnet2', 'subnet3', 'subnet4'],

@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgGroup
 Configure replacement message groups.
 
 API Endpoints:
-    GET    /system/replacemsg-group           - List all replacemsg-group
-    GET    /system/replacemsg-group/{name}   - Get specific replacemsg-group
-    POST   /system/replacemsg-group           - Create replacemsg-group
-    PUT    /system/replacemsg-group/{name}   - Update replacemsg-group
-    DELETE /system/replacemsg-group/{name}   - Delete replacemsg-group
+    GET    /system/replacemsg-group           - List all / Get specific
+    POST   /system/replacemsg-group           - Create
+    PUT    /system/replacemsg-group/{name}   - Update
+    DELETE /system/replacemsg-group/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgGroup:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg-group
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg-group
-
-        Examples:
-            >>> # List all replacemsg-group
-            >>> result = fgt.api.cmdb.system.replacemsg_group.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgGroup:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg-group
+        Create replacemsg-group
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgGroup:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_group.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_group.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgGroup:
         
         return self._client.post("cmdb", "system/replacemsg-group", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgGroup:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_group.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_group.update(
             ...     name='obj1',
             ...     comment='Updated'

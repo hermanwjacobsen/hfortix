@@ -4,11 +4,10 @@ FortiOS CMDB - System DhcpServer
 Configure DHCP servers.
 
 API Endpoints:
-    GET    /system.dhcp/server           - List all dhcp server
-    GET    /system.dhcp/server/{name}   - Get specific dhcp server
-    POST   /system.dhcp/server           - Create dhcp server
-    PUT    /system.dhcp/server/{name}   - Update dhcp server
-    DELETE /system.dhcp/server/{name}   - Delete dhcp server
+    GET    /system.dhcp/server           - List all / Get specific
+    POST   /system.dhcp/server           - Create
+    PUT    /system.dhcp/server/{name}   - Update
+    DELETE /system.dhcp/server/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DhcpServer:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all dhcp server
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of dhcp server
-
-        Examples:
-            >>> # List all dhcp server
-            >>> result = fgt.api.cmdb.system.dhcp_server.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DhcpServer:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DhcpServer:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new dhcp server
+        Create dhcp server
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DhcpServer:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.dhcp_server.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.dhcp_server.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DhcpServer:
         
         return self._client.post("cmdb", "system.dhcp/server", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DhcpServer:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dhcp_server.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dhcp_server.update(
             ...     name='obj1',
             ...     comment='Updated'

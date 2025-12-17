@@ -21,7 +21,7 @@ class Multicast:
             params["action"] = action
         params.update(kwargs)
         return self._client.get("cmdb", "router/multicast", params=params if params else None, vdom=vdom)
-    def update(self, data_dict: Optional[dict[str, Any]] = None, route_threshold: Optional[int] = None, route_limit: Optional[int] = None, multicast_routing: Optional[str] = None, pim_sm_global: Optional[dict] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def put(self, data_dict: Optional[dict[str, Any]] = None, route_threshold: Optional[int] = None, route_limit: Optional[int] = None, multicast_routing: Optional[str] = None, pim_sm_global: Optional[dict] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         param_map = {"route_threshold": "route-threshold", "route_limit": "route-limit", "multicast_routing": "multicast-routing", "pim_sm_global": "pim-sm-global"}
         if route_threshold is not None:

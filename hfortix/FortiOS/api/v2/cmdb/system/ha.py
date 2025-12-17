@@ -4,8 +4,8 @@ FortiOS CMDB - System Ha
 Configure HA.
 
 API Endpoints:
-    GET  /system/ha  - Get ha settings
-    PUT  /system/ha  - Update ha settings
+    GET  /system/ha  - Get configuration
+    PUT  /system/ha  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Ha:
         
         return self._client.get("cmdb", "system/ha", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Ha:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ha.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ha.update(
             ...     setting1='value1',
             ...     setting2='value2'

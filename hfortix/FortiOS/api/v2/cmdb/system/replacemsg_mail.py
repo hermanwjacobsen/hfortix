@@ -4,11 +4,10 @@ FortiOS CMDB - System ReplacemsgMail
 Replacement messages.
 
 API Endpoints:
-    GET    /system.replacemsg/mail           - List all replacemsg mail
-    GET    /system.replacemsg/mail/{name}   - Get specific replacemsg mail
-    POST   /system.replacemsg/mail           - Create replacemsg mail
-    PUT    /system.replacemsg/mail/{name}   - Update replacemsg mail
-    DELETE /system.replacemsg/mail/{name}   - Delete replacemsg mail
+    GET    /system.replacemsg/mail           - List all / Get specific
+    POST   /system.replacemsg/mail           - Create
+    PUT    /system.replacemsg/mail/{name}   - Update
+    DELETE /system.replacemsg/mail/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ReplacemsgMail:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all replacemsg mail
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of replacemsg mail
-
-        Examples:
-            >>> # List all replacemsg mail
-            >>> result = fgt.api.cmdb.system.replacemsg_mail.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ReplacemsgMail:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ReplacemsgMail:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new replacemsg mail
+        Create replacemsg mail
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ReplacemsgMail:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_mail.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_mail.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ReplacemsgMail:
         
         return self._client.post("cmdb", "system.replacemsg/mail", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ReplacemsgMail:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.replacemsg_mail.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.replacemsg_mail.update(
             ...     name='obj1',
             ...     comment='Updated'

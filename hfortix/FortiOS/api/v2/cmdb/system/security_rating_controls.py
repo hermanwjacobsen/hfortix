@@ -4,11 +4,10 @@ FortiOS CMDB - System SecurityRatingControls
 Settings for individual Security Rating controls.
 
 API Endpoints:
-    GET    /system.security-rating/controls           - List all security-rating controls
-    GET    /system.security-rating/controls/{name}   - Get specific security-rating controls
-    POST   /system.security-rating/controls           - Create security-rating controls
-    PUT    /system.security-rating/controls/{name}   - Update security-rating controls
-    DELETE /system.security-rating/controls/{name}   - Delete security-rating controls
+    GET    /system.security-rating/controls           - List all / Get specific
+    POST   /system.security-rating/controls           - Create
+    PUT    /system.security-rating/controls/{name}   - Update
+    DELETE /system.security-rating/controls/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SecurityRatingControls:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all security-rating controls
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of security-rating controls
-
-        Examples:
-            >>> # List all security-rating controls
-            >>> result = fgt.api.cmdb.system.security_rating_controls.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SecurityRatingControls:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SecurityRatingControls:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new security-rating controls
+        Create security-rating controls
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SecurityRatingControls:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.security_rating_controls.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.security_rating_controls.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SecurityRatingControls:
         
         return self._client.post("cmdb", "system.security-rating/controls", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SecurityRatingControls:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.security_rating_controls.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.security_rating_controls.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,8 +4,8 @@ FortiOS CMDB - System NetworkVisibility
 Configure network visibility settings.
 
 API Endpoints:
-    GET  /system/network-visibility  - Get network-visibility settings
-    PUT  /system/network-visibility  - Update network-visibility settings
+    GET  /system/network-visibility  - Get configuration
+    PUT  /system/network-visibility  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class NetworkVisibility:
         
         return self._client.get("cmdb", "system/network-visibility", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class NetworkVisibility:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.network_visibility.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.network_visibility.update(
             ...     setting1='value1',
             ...     setting2='value2'

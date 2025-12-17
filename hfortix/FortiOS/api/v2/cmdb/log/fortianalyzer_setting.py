@@ -4,8 +4,8 @@ FortiOS CMDB - Log FortiAnalyzer Setting
 Global FortiAnalyzer settings.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.fortianalyzer/setting - Get FortiAnalyzer settings
-    PUT /api/v2/cmdb/log.fortianalyzer/setting - Update FortiAnalyzer settings
+    GET  /api/v2/cmdb/log.fortianalyzer/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.fortianalyzer/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class FortianalyzerSetting:
         path = "log.fortianalyzer/setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

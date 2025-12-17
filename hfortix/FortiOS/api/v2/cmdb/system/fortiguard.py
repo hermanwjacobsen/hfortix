@@ -4,8 +4,8 @@ FortiOS CMDB - System Fortiguard
 Configure FortiGuard services.
 
 API Endpoints:
-    GET  /system/fortiguard  - Get fortiguard settings
-    PUT  /system/fortiguard  - Update fortiguard settings
+    GET  /system/fortiguard  - Get configuration
+    PUT  /system/fortiguard  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Fortiguard:
         
         return self._client.get("cmdb", "system/fortiguard", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Fortiguard:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.fortiguard.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.fortiguard.update(
             ...     setting1='value1',
             ...     setting2='value2'

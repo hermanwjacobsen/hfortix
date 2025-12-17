@@ -78,7 +78,7 @@ class Custom:
             raw_json=raw_json,
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -91,7 +91,7 @@ class Custom:
         raw_json: bool = False,
     ) -> HTTPResponse:
         """
-        Create a new wildcard FQDN custom address.
+        Create wildcard FQDN custom address.
 
 
         Supports two usage patterns:
@@ -110,14 +110,14 @@ class Custom:
             dict: API response
 
         Example:
-            # Create wildcard FQDN address
+            # POST - Create wildcard FQDN address
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.create(
                 'wildcard-example',
                 wildcard_fqdn='*.example.com',
                 comment='Match all example.com subdomains'
             )
 
-            # Create with color
+            # POST - Create with color
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.create(
                 'mail-wildcard',
                 wildcard_fqdn='mail.*',
@@ -162,7 +162,7 @@ class Custom:
             "cmdb", "firewall.wildcard-fqdn/custom", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -175,7 +175,7 @@ class Custom:
         raw_json: bool = False,
     ) -> HTTPResponse:
         """
-        Update an existing wildcard FQDN custom address.
+        Update wildcard FQDN custom address.
 
 
         Supports two usage patterns:

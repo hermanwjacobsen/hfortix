@@ -4,11 +4,10 @@ FortiOS CMDB - File Filter Profile
 Configure file-filter profiles for content inspection and filtering.
 
 API Endpoints:
-    GET    /api/v2/cmdb/file-filter/profile        - List all file filter profiles
-    GET    /api/v2/cmdb/file-filter/profile/{name} - Get specific file filter profile
-    POST   /api/v2/cmdb/file-filter/profile        - Create file filter profile
-    PUT    /api/v2/cmdb/file-filter/profile/{name} - Update file filter profile
-    DELETE /api/v2/cmdb/file-filter/profile/{name} - Delete file filter profile
+    GET    /api/v2/cmdb/file-filter/profile           - List all / Get specific
+    POST   /api/v2/cmdb/file-filter/profile           - Create
+    PUT    /api/v2/cmdb/file-filter/profile/{name}   - Update
+    DELETE /api/v2/cmdb/file-filter/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -47,7 +46,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get file filter profile(s).
+        Get file filter profile(s) - List all or get specific.
 
         Args:
             name: Profile name (if specified, gets single profile)
@@ -107,24 +106,7 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        Get all file filter profiles.
-
-        Args:
-            vdom: Virtual domain
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of profiles
-
-        Examples:
-            >>> # List all profiles
-            >>> result = fgt.cmdb.file_filter.profile.list()
-        """
-        return self.get(name=None, vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -133,7 +115,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new file filter profile.
+        Create file filter profile.
 
         Args:
             name: Profile name
@@ -159,14 +141,14 @@ class Profile:
             API response dict
 
         Examples:
-            >>> # Create basic profile
+            >>> # POST - Create basic profile
             >>> result = fgt.cmdb.file_filter.profile.create(
             ...     name='strict-filter',
             ...     comment='Strict file filtering',
             ...     log='enable'
             ... )
 
-            >>> # Create with rules
+            >>> # POST - Create with rules
             >>> result = fgt.cmdb.file_filter.profile.create(
             ...     name='office-filter',
             ...     comment='Block executable files',
@@ -189,7 +171,7 @@ class Profile:
             "cmdb", "file-filter/profile", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -209,14 +191,14 @@ class Profile:
             API response dict
 
         Examples:
-            >>> # Update logging settings
+            >>> # PUT - Update logging settings
             >>> result = fgt.cmdb.file_filter.profile.update(
             ...     'strict-filter',
             ...     log='enable',
             ...     extended_log='enable'
             ... )
 
-            >>> # Update rules
+            >>> # PUT - Update rules
             >>> result = fgt.cmdb.file_filter.profile.update(
             ...     'office-filter',
             ...     rules=[{

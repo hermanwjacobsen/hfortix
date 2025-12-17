@@ -4,8 +4,8 @@ FortiOS CMDB - Log Disk Setting
 Settings for local disk logging.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.disk/setting - Get disk log settings
-    PUT /api/v2/cmdb/log.disk/setting - Update disk log settings
+    GET  /api/v2/cmdb/log.disk/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.disk/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class DiskSetting:
         path = "log.disk/setting"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

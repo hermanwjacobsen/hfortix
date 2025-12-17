@@ -4,8 +4,8 @@ FortiOS CMDB - System VdomNetflow
 Configure NetFlow per VDOM.
 
 API Endpoints:
-    GET  /system/vdom-netflow  - Get vdom-netflow settings
-    PUT  /system/vdom-netflow  - Update vdom-netflow settings
+    GET  /system/vdom-netflow  - Get configuration
+    PUT  /system/vdom-netflow  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class VdomNetflow:
         
         return self._client.get("cmdb", "system/vdom-netflow", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class VdomNetflow:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom_netflow.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom_netflow.update(
             ...     setting1='value1',
             ...     setting2='value2'

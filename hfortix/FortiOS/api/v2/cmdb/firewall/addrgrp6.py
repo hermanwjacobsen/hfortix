@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Address6 Group
 Configure IPv6 address groups.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/addrgrp6        - List all IPv6 address groups
-    GET    /api/v2/cmdb/firewall/addrgrp6/{name} - Get specific IPv6 address group
-    POST   /api/v2/cmdb/firewall/addrgrp6        - Create IPv6 address group
-    PUT    /api/v2/cmdb/firewall/addrgrp6/{name} - Update IPv6 address group
-    DELETE /api/v2/cmdb/firewall/addrgrp6/{name} - Delete IPv6 address group
+    GET    /api/v2/cmdb/firewall/addrgrp6           - List all / Get specific
+    POST   /api/v2/cmdb/firewall/addrgrp6           - Create
+    PUT    /api/v2/cmdb/firewall/addrgrp6/{name}   - Update
+    DELETE /api/v2/cmdb/firewall/addrgrp6/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -77,7 +76,7 @@ class Addrgrp6:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv6 address group object(s).
+        Get IPv6 address group object(s) - List all or get specific.
 
         Args:
             name: Object name (if specified, gets single object)
@@ -137,7 +136,7 @@ class Addrgrp6:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -175,21 +174,21 @@ class Addrgrp6:
             API response dict
 
         Examples:
-            >>> # Create IPv6 address group with string list (simplified API)
+            >>> # POST - Create IPv6 address group with string list (simplified API)
             >>> result = fgt.cmdb.firewall.addrgrp6.create(
             ...     name='ipv6-internal-networks',
             ...     member=['ipv6-subnet1', 'ipv6-subnet2'],
             ...     comment='All internal IPv6 networks'
             ... )
 
-            >>> # Create IPv6 address group with dict list (explicit format)
+            >>> # POST - Create IPv6 address group with dict list (explicit format)
             >>> result = fgt.cmdb.firewall.addrgrp6.create(
             ...     name='ipv6-web-servers',
             ...     member=[{'name': 'ipv6-web1'}, {'name': 'ipv6-web2'}],
             ...     comment='IPv6 web server group'
             ... )
 
-            >>> # Create group with excluded members
+            >>> # POST - Create group with excluded members
             >>> result = fgt.cmdb.firewall.addrgrp6.create(
             ...     name='ipv6-trusted-nets',
             ...     member=['ipv6-all-internal'],
@@ -264,7 +263,7 @@ class Addrgrp6:
         path = "firewall/addrgrp6"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -302,7 +301,7 @@ class Addrgrp6:
             API response dict
 
         Examples:
-            >>> # Update members with simplified API
+            >>> # PUT - Update members with simplified API
             >>> result = fgt.cmdb.firewall.addrgrp6.update(
             ...     name='ipv6-internal-networks',
             ...     member=['ipv6-subnet1', 'ipv6-subnet2', 'ipv6-subnet3'],

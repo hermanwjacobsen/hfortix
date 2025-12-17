@@ -4,11 +4,10 @@ FortiOS CMDB - Extension Controller FortiGate Profile
 Configure FortiGate connector profile settings and templates.
 
 API Endpoints:
-    GET    /api/v2/cmdb/extension-controller/fortigate-profile        - List all FortiGate profiles
-    GET    /api/v2/cmdb/extension-controller/fortigate-profile/{name} - Get specific FortiGate profile
-    POST   /api/v2/cmdb/extension-controller/fortigate-profile        - Create FortiGate profile
-    PUT    /api/v2/cmdb/extension-controller/fortigate-profile/{name} - Update FortiGate profile
-    DELETE /api/v2/cmdb/extension-controller/fortigate-profile/{name} - Delete FortiGate profile
+    GET    /api/v2/cmdb/extension-controller/fortigate-profile           - List all / Get specific
+    POST   /api/v2/cmdb/extension-controller/fortigate-profile           - Create
+    PUT    /api/v2/cmdb/extension-controller/fortigate-profile/{name}   - Update
+    DELETE /api/v2/cmdb/extension-controller/fortigate-profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -35,7 +34,7 @@ class FortigateProfile:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get FortiGate profile(s)."""
+        """Get FortiGate profile(s) - List all or get specific."""
         params = {k: v for k, v in kwargs.items() if v is not None}
         path = "extension-controller/fortigate-profile"
         if name:
@@ -44,11 +43,7 @@ class FortigateProfile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """Get all FortiGate profiles."""
-        return self.get(name=None, vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,
@@ -56,7 +51,7 @@ class FortigateProfile:
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create a new FortiGate profile."""
+        """Create FortiGate profile."""
         data = {"name": name}
         for key, value in kwargs.items():
             data[key.replace("_", "-")] = value
@@ -68,7 +63,7 @@ class FortigateProfile:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         raw_json: bool = False,

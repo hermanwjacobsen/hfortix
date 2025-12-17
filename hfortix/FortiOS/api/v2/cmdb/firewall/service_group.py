@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Service Group
 Configure service groups.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.service/group        - List all service groups
-    GET    /api/v2/cmdb/firewall.service/group/{name} - Get specific service group
-    POST   /api/v2/cmdb/firewall.service/group        - Create new service group
-    PUT    /api/v2/cmdb/firewall.service/group/{name} - Update service group
-    DELETE /api/v2/cmdb/firewall.service/group/{name} - Delete service group
+    GET    /api/v2/cmdb/firewall.service/group           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.service/group           - Create
+    PUT    /api/v2/cmdb/firewall.service/group/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.service/group/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,54 +32,6 @@ class ServiceGroup:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all service groups.
-
-        Args:
-            filter: Filter results
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of fields to return
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all service groups
-            >>> result = fgt.cmdb.firewall.service.group.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.service.group.list(
-            ...     format=['name', 'member']
-            ... )
-        """
-        return self.get(
-            name=None,
-            filter=filter,
-            start=start,
-            count=count,
-            with_meta=with_meta,
-            datasource=datasource,
-            format=format,
-            vdom=vdom,
-            **kwargs,
-        )
 
     def get(
         self,
@@ -149,7 +100,7 @@ class ServiceGroup:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -163,7 +114,7 @@ class ServiceGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new service group.
+        Create service group.
 
 
         Supports two usage patterns:
@@ -183,7 +134,7 @@ class ServiceGroup:
             API response dictionary
 
         Examples:
-            >>> # Create service group with members
+            >>> # POST - Create service group with members
             >>> result = fgt.cmdb.firewall.service.group.create(
             ...     name='Web-Services',
             ...     member=[
@@ -193,7 +144,7 @@ class ServiceGroup:
             ...     comment='Standard web services'
             ... )
 
-            >>> # Create with color
+            >>> # POST - Create with color
             >>> result = fgt.cmdb.firewall.service.group.create(
             ...     name='Custom-Services',
             ...     member=[
@@ -231,7 +182,7 @@ class ServiceGroup:
             "cmdb", "firewall.service/group", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -245,7 +196,7 @@ class ServiceGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing service group.
+        Update service group.
 
 
         Supports two usage patterns:
@@ -265,7 +216,7 @@ class ServiceGroup:
             API response dictionary
 
         Examples:
-            >>> # Update members
+            >>> # PUT - Update members
             >>> result = fgt.cmdb.firewall.service.group.update(
             ...     name='Web-Services',
             ...     member=[
@@ -275,7 +226,7 @@ class ServiceGroup:
             ...     ]
             ... )
 
-            >>> # Update color
+            >>> # PUT - Update color
             >>> result = fgt.cmdb.firewall.service.group.update(
             ...     name='Web-Services',
             ...     color=15

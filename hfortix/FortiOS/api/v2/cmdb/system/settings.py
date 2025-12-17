@@ -4,8 +4,8 @@ FortiOS CMDB - System Settings
 Configure VDOM settings.
 
 API Endpoints:
-    GET  /system/settings  - Get settings settings
-    PUT  /system/settings  - Update settings settings
+    GET  /system/settings  - Get configuration
+    PUT  /system/settings  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Settings:
         
         return self._client.get("cmdb", "system/settings", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Settings:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.settings.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.settings.update(
             ...     setting1='value1',
             ...     setting2='value2'

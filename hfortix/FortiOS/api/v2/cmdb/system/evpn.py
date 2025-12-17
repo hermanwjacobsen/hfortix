@@ -4,11 +4,10 @@ FortiOS CMDB - System Evpn
 Configure EVPN instance.
 
 API Endpoints:
-    GET    /system/evpn           - List all evpn
-    GET    /system/evpn/{name}   - Get specific evpn
-    POST   /system/evpn           - Create evpn
-    PUT    /system/evpn/{name}   - Update evpn
-    DELETE /system/evpn/{name}   - Delete evpn
+    GET    /system/evpn           - List all / Get specific
+    POST   /system/evpn           - Create
+    PUT    /system/evpn/{name}   - Update
+    DELETE /system/evpn/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Evpn:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all evpn
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of evpn
-
-        Examples:
-            >>> # List all evpn
-            >>> result = fgt.api.cmdb.system.evpn.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Evpn:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Evpn:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new evpn
+        Create evpn
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Evpn:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.evpn.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.evpn.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Evpn:
         
         return self._client.post("cmdb", "system/evpn", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Evpn:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.evpn.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.evpn.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,11 +4,10 @@ FortiOS CMDB - System SnmpRmonStat
 SNMP Remote Network Monitoring (RMON) Ethernet statistics configuration.
 
 API Endpoints:
-    GET    /system.snmp/rmon-stat           - List all snmp rmon-stat
-    GET    /system.snmp/rmon-stat/{name}   - Get specific snmp rmon-stat
-    POST   /system.snmp/rmon-stat           - Create snmp rmon-stat
-    PUT    /system.snmp/rmon-stat/{name}   - Update snmp rmon-stat
-    DELETE /system.snmp/rmon-stat/{name}   - Delete snmp rmon-stat
+    GET    /system.snmp/rmon-stat           - List all / Get specific
+    POST   /system.snmp/rmon-stat           - Create
+    PUT    /system.snmp/rmon-stat/{name}   - Update
+    DELETE /system.snmp/rmon-stat/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SnmpRmonStat:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all snmp rmon-stat
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of snmp rmon-stat
-
-        Examples:
-            >>> # List all snmp rmon-stat
-            >>> result = fgt.api.cmdb.system.snmp_rmon_stat.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SnmpRmonStat:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SnmpRmonStat:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new snmp rmon-stat
+        Create snmp rmon-stat
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SnmpRmonStat:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.snmp_rmon_stat.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.snmp_rmon_stat.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SnmpRmonStat:
         
         return self._client.post("cmdb", "system.snmp/rmon-stat", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SnmpRmonStat:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.snmp_rmon_stat.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.snmp_rmon_stat.update(
             ...     name='obj1',
             ...     comment='Updated'

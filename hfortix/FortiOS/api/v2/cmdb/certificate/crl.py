@@ -38,29 +38,6 @@ class Crl:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CRL certificates
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters (filter, format, count, search, etc.)
-
-        Returns:
-            dict: API response with list of CRL certificates
-
-        Examples:
-            >>> # List all CRL certificates
-            >>> result = fgt.cmdb.certificate.crl.list()
-
-            >>> # List only factory CRLs
-            >>> result = fgt.cmdb.certificate.crl.list(filter='source==factory')
-
-            >>> # List user-uploaded CRLs
-            >>> result = fgt.cmdb.certificate.crl.list(filter='source==user')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -80,7 +57,7 @@ class Crl:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CRL certificate(s)
+        Get CRL certificate(s) - List all or get specific
 
         Args:
             name (str, optional): CRL certificate name (for specific certificate)

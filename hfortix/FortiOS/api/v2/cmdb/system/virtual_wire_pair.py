@@ -4,11 +4,10 @@ FortiOS CMDB - System VirtualWirePair
 Configure virtual wire pairs.
 
 API Endpoints:
-    GET    /system/virtual-wire-pair           - List all virtual-wire-pair
-    GET    /system/virtual-wire-pair/{name}   - Get specific virtual-wire-pair
-    POST   /system/virtual-wire-pair           - Create virtual-wire-pair
-    PUT    /system/virtual-wire-pair/{name}   - Update virtual-wire-pair
-    DELETE /system/virtual-wire-pair/{name}   - Delete virtual-wire-pair
+    GET    /system/virtual-wire-pair           - List all / Get specific
+    POST   /system/virtual-wire-pair           - Create
+    PUT    /system/virtual-wire-pair/{name}   - Update
+    DELETE /system/virtual-wire-pair/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class VirtualWirePair:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all virtual-wire-pair
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of virtual-wire-pair
-
-        Examples:
-            >>> # List all virtual-wire-pair
-            >>> result = fgt.api.cmdb.system.virtual_wire_pair.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class VirtualWirePair:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class VirtualWirePair:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new virtual-wire-pair
+        Create virtual-wire-pair
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class VirtualWirePair:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.virtual_wire_pair.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.virtual_wire_pair.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class VirtualWirePair:
         
         return self._client.post("cmdb", "system/virtual-wire-pair", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class VirtualWirePair:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.virtual_wire_pair.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.virtual_wire_pair.update(
             ...     name='obj1',
             ...     comment='Updated'

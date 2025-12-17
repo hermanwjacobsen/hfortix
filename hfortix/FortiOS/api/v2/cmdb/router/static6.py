@@ -15,7 +15,7 @@ class Static6:
         if seq_num is not None:
             path = f"{path}/{encode_path_component(str(seq_num))}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-    def create(self, data_dict: Optional[dict[str, Any]] = None, seq_num: Optional[int] = None, dst: Optional[str] = None, gateway: Optional[str] = None, device: Optional[str] = None, devindex: Optional[int] = None, distance: Optional[int] = None, weight: Optional[int] = None, priority: Optional[int] = None, comment: Optional[str] = None, blackhole: Optional[str] = None, sdwan_zone: Optional[list] = None, virtual_wan_link: Optional[str] = None, link_monitor_exempt: Optional[str] = None, vrf: Optional[int] = None, bfd: Optional[str] = None, status: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def post(self, data_dict: Optional[dict[str, Any]] = None, seq_num: Optional[int] = None, dst: Optional[str] = None, gateway: Optional[str] = None, device: Optional[str] = None, devindex: Optional[int] = None, distance: Optional[int] = None, weight: Optional[int] = None, priority: Optional[int] = None, comment: Optional[str] = None, blackhole: Optional[str] = None, sdwan_zone: Optional[list] = None, virtual_wan_link: Optional[str] = None, link_monitor_exempt: Optional[str] = None, vrf: Optional[int] = None, bfd: Optional[str] = None, status: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         param_map = {"seq_num": "seq-num", "sdwan_zone": "sdwan-zone", "virtual_wan_link": "virtual-wan-link", "link_monitor_exempt": "link-monitor-exempt"}
         if seq_num is not None:
@@ -52,7 +52,7 @@ class Static6:
             data["status"] = status
         data.update(kwargs)
         return self._client.post("cmdb", "router/static6", data=data, vdom=vdom)
-    def update(self, seq_num: int, data_dict: Optional[dict[str, Any]] = None, dst: Optional[str] = None, gateway: Optional[str] = None, device: Optional[str] = None, devindex: Optional[int] = None, distance: Optional[int] = None, weight: Optional[int] = None, priority: Optional[int] = None, comment: Optional[str] = None, blackhole: Optional[str] = None, sdwan_zone: Optional[list] = None, virtual_wan_link: Optional[str] = None, link_monitor_exempt: Optional[str] = None, vrf: Optional[int] = None, bfd: Optional[str] = None, status: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def put(self, seq_num: int, data_dict: Optional[dict[str, Any]] = None, dst: Optional[str] = None, gateway: Optional[str] = None, device: Optional[str] = None, devindex: Optional[int] = None, distance: Optional[int] = None, weight: Optional[int] = None, priority: Optional[int] = None, comment: Optional[str] = None, blackhole: Optional[str] = None, sdwan_zone: Optional[list] = None, virtual_wan_link: Optional[str] = None, link_monitor_exempt: Optional[str] = None, vrf: Optional[int] = None, bfd: Optional[str] = None, status: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         data = data_dict.copy() if data_dict else {}
         param_map = {"sdwan_zone": "sdwan-zone", "virtual_wan_link": "virtual-wan-link", "link_monitor_exempt": "link-monitor-exempt"}
         if dst is not None:

@@ -4,8 +4,8 @@ FortiOS CMDB - System Sflow
 Configure sFlow.
 
 API Endpoints:
-    GET  /system/sflow  - Get sflow settings
-    PUT  /system/sflow  - Update sflow settings
+    GET  /system/sflow  - Get configuration
+    PUT  /system/sflow  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Sflow:
         
         return self._client.get("cmdb", "system/sflow", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Sflow:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sflow.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sflow.update(
             ...     setting1='value1',
             ...     setting2='value2'

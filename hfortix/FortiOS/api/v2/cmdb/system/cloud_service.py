@@ -4,11 +4,10 @@ FortiOS CMDB - System CloudService
 Configure system cloud service.
 
 API Endpoints:
-    GET    /system/cloud-service           - List all cloud-service
-    GET    /system/cloud-service/{name}   - Get specific cloud-service
-    POST   /system/cloud-service           - Create cloud-service
-    PUT    /system/cloud-service/{name}   - Update cloud-service
-    DELETE /system/cloud-service/{name}   - Delete cloud-service
+    GET    /system/cloud-service           - List all / Get specific
+    POST   /system/cloud-service           - Create
+    PUT    /system/cloud-service/{name}   - Update
+    DELETE /system/cloud-service/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class CloudService:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all cloud-service
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of cloud-service
-
-        Examples:
-            >>> # List all cloud-service
-            >>> result = fgt.api.cmdb.system.cloud_service.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class CloudService:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class CloudService:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new cloud-service
+        Create cloud-service
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class CloudService:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.cloud_service.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.cloud_service.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class CloudService:
         
         return self._client.post("cmdb", "system/cloud-service", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class CloudService:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.cloud_service.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.cloud_service.update(
             ...     name='obj1',
             ...     comment='Updated'

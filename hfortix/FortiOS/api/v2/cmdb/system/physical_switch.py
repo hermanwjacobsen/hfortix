@@ -4,11 +4,10 @@ FortiOS CMDB - System PhysicalSwitch
 Configure physical switches.
 
 API Endpoints:
-    GET    /system/physical-switch           - List all physical-switch
-    GET    /system/physical-switch/{name}   - Get specific physical-switch
-    POST   /system/physical-switch           - Create physical-switch
-    PUT    /system/physical-switch/{name}   - Update physical-switch
-    DELETE /system/physical-switch/{name}   - Delete physical-switch
+    GET    /system/physical-switch           - List all / Get specific
+    POST   /system/physical-switch           - Create
+    PUT    /system/physical-switch/{name}   - Update
+    DELETE /system/physical-switch/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class PhysicalSwitch:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all physical-switch
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of physical-switch
-
-        Examples:
-            >>> # List all physical-switch
-            >>> result = fgt.api.cmdb.system.physical_switch.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class PhysicalSwitch:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class PhysicalSwitch:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new physical-switch
+        Create physical-switch
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class PhysicalSwitch:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.physical_switch.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.physical_switch.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class PhysicalSwitch:
         
         return self._client.post("cmdb", "system/physical-switch", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class PhysicalSwitch:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.physical_switch.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.physical_switch.update(
             ...     name='obj1',
             ...     comment='Updated'

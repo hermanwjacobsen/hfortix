@@ -4,8 +4,8 @@ FortiOS CMDB - System ProbeResponse
 Configure system probe response.
 
 API Endpoints:
-    GET  /system/probe-response  - Get probe-response settings
-    PUT  /system/probe-response  - Update probe-response settings
+    GET  /system/probe-response  - Get configuration
+    PUT  /system/probe-response  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class ProbeResponse:
         
         return self._client.get("cmdb", "system/probe-response", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class ProbeResponse:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.probe_response.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.probe_response.update(
             ...     setting1='value1',
             ...     setting2='value2'

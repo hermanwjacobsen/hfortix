@@ -4,8 +4,8 @@ FortiOS CMDB - System VdomSflow
 Configure sFlow per VDOM to add or change the IP address and UDP port that FortiGate sFlow agents in this VDOM use to send sFlow datagrams to an sFlow collector.
 
 API Endpoints:
-    GET  /system/vdom-sflow  - Get vdom-sflow settings
-    PUT  /system/vdom-sflow  - Update vdom-sflow settings
+    GET  /system/vdom-sflow  - Get configuration
+    PUT  /system/vdom-sflow  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class VdomSflow:
         
         return self._client.get("cmdb", "system/vdom-sflow", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class VdomSflow:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom_sflow.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom_sflow.update(
             ...     setting1='value1',
             ...     setting2='value2'

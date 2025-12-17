@@ -4,11 +4,10 @@ FortiOS CMDB - System GeoipOverride
 Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.
 
 API Endpoints:
-    GET    /system/geoip-override           - List all geoip-override
-    GET    /system/geoip-override/{name}   - Get specific geoip-override
-    POST   /system/geoip-override           - Create geoip-override
-    PUT    /system/geoip-override/{name}   - Update geoip-override
-    DELETE /system/geoip-override/{name}   - Delete geoip-override
+    GET    /system/geoip-override           - List all / Get specific
+    POST   /system/geoip-override           - Create
+    PUT    /system/geoip-override/{name}   - Update
+    DELETE /system/geoip-override/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class GeoipOverride:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all geoip-override
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of geoip-override
-
-        Examples:
-            >>> # List all geoip-override
-            >>> result = fgt.api.cmdb.system.geoip_override.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class GeoipOverride:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class GeoipOverride:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new geoip-override
+        Create geoip-override
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class GeoipOverride:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.geoip_override.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.geoip_override.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class GeoipOverride:
         
         return self._client.post("cmdb", "system/geoip-override", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class GeoipOverride:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.geoip_override.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.geoip_override.update(
             ...     name='obj1',
             ...     comment='Updated'

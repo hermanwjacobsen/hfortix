@@ -39,29 +39,6 @@ class Local:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all local certificates
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters (filter, format, count, search, etc.)
-
-        Returns:
-            dict: API response with list of local certificates
-
-        Examples:
-            >>> # List all local certificates
-            >>> result = fgt.cmdb.certificate.local.list()
-
-            >>> # List only factory certificates
-            >>> result = fgt.cmdb.certificate.local.list(filter='source==factory')
-
-            >>> # List user-uploaded certificates
-            >>> result = fgt.cmdb.certificate.local.list(filter='source==user')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -81,7 +58,7 @@ class Local:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get local certificate(s)
+        Get local certificate(s) - List all or get specific
 
         Args:
             name (str, optional): Local certificate name (for specific certificate)

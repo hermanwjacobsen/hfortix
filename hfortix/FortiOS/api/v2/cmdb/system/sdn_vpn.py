@@ -4,11 +4,10 @@ FortiOS CMDB - System SdnVpn
 Configure public cloud VPN service.
 
 API Endpoints:
-    GET    /system/sdn-vpn           - List all sdn-vpn
-    GET    /system/sdn-vpn/{name}   - Get specific sdn-vpn
-    POST   /system/sdn-vpn           - Create sdn-vpn
-    PUT    /system/sdn-vpn/{name}   - Update sdn-vpn
-    DELETE /system/sdn-vpn/{name}   - Delete sdn-vpn
+    GET    /system/sdn-vpn           - List all / Get specific
+    POST   /system/sdn-vpn           - Create
+    PUT    /system/sdn-vpn/{name}   - Update
+    DELETE /system/sdn-vpn/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SdnVpn:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sdn-vpn
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sdn-vpn
-
-        Examples:
-            >>> # List all sdn-vpn
-            >>> result = fgt.api.cmdb.system.sdn_vpn.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SdnVpn:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SdnVpn:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sdn-vpn
+        Create sdn-vpn
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SdnVpn:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sdn_vpn.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sdn_vpn.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SdnVpn:
         
         return self._client.post("cmdb", "system/sdn-vpn", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SdnVpn:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sdn_vpn.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sdn_vpn.update(
             ...     name='obj1',
             ...     comment='Updated'

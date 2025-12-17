@@ -4,11 +4,10 @@ FortiOS CMDB - System LldpNetworkPolicy
 Configure LLDP network policy.
 
 API Endpoints:
-    GET    /system.lldp/network-policy           - List all lldp network-policy
-    GET    /system.lldp/network-policy/{name}   - Get specific lldp network-policy
-    POST   /system.lldp/network-policy           - Create lldp network-policy
-    PUT    /system.lldp/network-policy/{name}   - Update lldp network-policy
-    DELETE /system.lldp/network-policy/{name}   - Delete lldp network-policy
+    GET    /system.lldp/network-policy           - List all / Get specific
+    POST   /system.lldp/network-policy           - Create
+    PUT    /system.lldp/network-policy/{name}   - Update
+    DELETE /system.lldp/network-policy/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class LldpNetworkPolicy:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all lldp network-policy
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of lldp network-policy
-
-        Examples:
-            >>> # List all lldp network-policy
-            >>> result = fgt.api.cmdb.system.lldp_network_policy.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class LldpNetworkPolicy:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class LldpNetworkPolicy:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new lldp network-policy
+        Create lldp network-policy
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class LldpNetworkPolicy:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.lldp_network_policy.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.lldp_network_policy.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class LldpNetworkPolicy:
         
         return self._client.post("cmdb", "system.lldp/network-policy", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class LldpNetworkPolicy:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.lldp_network_policy.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.lldp_network_policy.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,8 +4,8 @@ FortiOS CMDB - System SovSase
 Configure Sovereign SASE.
 
 API Endpoints:
-    GET  /system/sov-sase  - Get sov-sase settings
-    PUT  /system/sov-sase  - Update sov-sase settings
+    GET  /system/sov-sase  - Get configuration
+    PUT  /system/sov-sase  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class SovSase:
         
         return self._client.get("cmdb", "system/sov-sase", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class SovSase:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sov_sase.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sov_sase.update(
             ...     setting1='value1',
             ...     setting2='value2'

@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Service Category
 Configure service categories.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.service/category        - List all service categories
-    GET    /api/v2/cmdb/firewall.service/category/{name} - Get specific service category
-    POST   /api/v2/cmdb/firewall.service/category        - Create new service category
-    PUT    /api/v2/cmdb/firewall.service/category/{name} - Update service category
-    DELETE /api/v2/cmdb/firewall.service/category/{name} - Delete service category
+    GET    /api/v2/cmdb/firewall.service/category           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.service/category           - Create
+    PUT    /api/v2/cmdb/firewall.service/category/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.service/category/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,54 +32,6 @@ class ServiceCategory:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all service categories.
-
-        Args:
-            filter: Filter results
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of fields to return
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all service categories
-            >>> result = fgt.cmdb.firewall.service.category.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.service.category.list(
-            ...     format=['name', 'comment']
-            ... )
-        """
-        return self.get(
-            name=None,
-            filter=filter,
-            start=start,
-            count=count,
-            with_meta=with_meta,
-            datasource=datasource,
-            format=format,
-            vdom=vdom,
-            **kwargs,
-        )
 
     def get(
         self,
@@ -149,7 +100,7 @@ class ServiceCategory:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -160,7 +111,7 @@ class ServiceCategory:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new service category.
+        Create service category.
 
 
         Supports two usage patterns:
@@ -177,13 +128,13 @@ class ServiceCategory:
             API response dictionary
 
         Examples:
-            >>> # Create basic category
+            >>> # POST - Create basic category
             >>> result = fgt.cmdb.firewall.service.category.create(
             ...     name='Custom-Apps',
             ...     comment='Custom application services'
             ... )
 
-            >>> # Create with fabric object
+            >>> # POST - Create with fabric object
             >>> result = fgt.cmdb.firewall.service.category.create(
             ...     name='Enterprise-Apps',
             ...     comment='Enterprise applications',
@@ -208,7 +159,7 @@ class ServiceCategory:
             "cmdb", "firewall.service/category", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -219,7 +170,7 @@ class ServiceCategory:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing service category.
+        Update service category.
 
 
         Supports two usage patterns:
@@ -236,7 +187,7 @@ class ServiceCategory:
             API response dictionary
 
         Examples:
-            >>> # Update comment
+            >>> # PUT - Update comment
             >>> result = fgt.cmdb.firewall.service.category.update(
             ...     name='Custom-Apps',
             ...     comment='Updated description'

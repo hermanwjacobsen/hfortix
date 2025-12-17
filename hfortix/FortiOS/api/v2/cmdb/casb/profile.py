@@ -11,11 +11,10 @@ A CASB profile ties together SaaS applications with various security controls in
 - Custom controls
 
 API Endpoints:
-    GET    /casb/profile       - List all CASB profiles
-    GET    /casb/profile/{name} - Get specific CASB profile
-    POST   /casb/profile       - Create CASB profile
-    PUT    /casb/profile/{name} - Update CASB profile
-    DELETE /casb/profile/{name} - Delete CASB profile
+    GET    /casb/profile           - List all / Get specific
+    POST   /casb/profile           - Create
+    PUT    /casb/profile/{name}   - Update
+    DELETE /casb/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -79,7 +78,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB profile(s)
+        Get CASB profile(s) - List all or get specific
 
         Args:
             name (str, optional): Profile name (get specific profile)
@@ -147,7 +146,7 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -158,7 +157,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new CASB profile
+        Create CASB profile
 
         Args:
             name (str): Profile name (required)
@@ -180,13 +179,13 @@ class Profile:
             dict: API response
 
         Examples:
-            >>> # Create basic profile
+            >>> # POST - Create basic profile
             >>> result = fgt.cmdb.casb.profile.create(
             ...     name='office365-security',
             ...     comment='Office 365 security profile'
             ... )
 
-            >>> # Create profile with SaaS application
+            >>> # POST - Create profile with SaaS application
             >>> result = fgt.cmdb.casb.profile.create(
             ...     name='salesforce-profile',
             ...     comment='Salesforce monitoring profile',
@@ -224,7 +223,7 @@ class Profile:
 
         return self._client.post("cmdb", "casb/profile", data=data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -235,7 +234,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing CASB profile
+        Update CASB profile
 
         Args:
             name (str): Profile name (required)
@@ -248,7 +247,7 @@ class Profile:
             dict: API response
 
         Examples:
-            >>> # Update profile comment
+            >>> # PUT - Update profile comment
             >>> result = fgt.cmdb.casb.profile.update(
             ...     name='office365-security',
             ...     comment='Updated Office 365 security profile'

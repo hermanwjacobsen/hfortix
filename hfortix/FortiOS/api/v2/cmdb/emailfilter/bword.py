@@ -4,11 +4,10 @@ FortiOS CMDB - Email Filter Banned Word List
 Configure AntiSpam banned word list.
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/bword       - List all banned word lists
-    GET    /api/v2/cmdb/emailfilter/bword/{id}  - Get specific banned word list
-    POST   /api/v2/cmdb/emailfilter/bword       - Create banned word list
-    PUT    /api/v2/cmdb/emailfilter/bword/{id}  - Update banned word list
-    DELETE /api/v2/cmdb/emailfilter/bword/{id}  - Delete banned word list
+    GET    /api/v2/cmdb/emailfilter/bword           - List all / Get specific
+    POST   /api/v2/cmdb/emailfilter/bword           - Create
+    PUT    /api/v2/cmdb/emailfilter/bword/{id}   - Update
+    DELETE /api/v2/cmdb/emailfilter/bword/{id}   - Delete
 """
 
 from __future__ import annotations
@@ -54,7 +53,7 @@ class Bword:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get email filter banned word list(s).
+        Get email filter banned word list(s) - List all or get specific.
 
         Args:
             list_id (int, optional): List ID to retrieve. If None, retrieves all lists
@@ -117,52 +116,7 @@ class Bword:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all email filter banned word lists (convenience method).
-
-        Args:
-            Same as get() method, excluding list_id
-
-        Returns:
-            dict: API response containing all banned word lists
-
-        Examples:
-            >>> lists = fgt.cmdb.emailfilter.bword.list()
-        """
-        return self.get(
-            list_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,7 +128,7 @@ class Bword:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new email filter banned word list.
+        Create email filter banned word list.
 
         Args:
             name (str): Banned word list name
@@ -190,7 +144,7 @@ class Bword:
             dict: API response
 
         Examples:
-            >>> # Create banned word list
+            >>> # POST - Create banned word list
             >>> result = fgt.cmdb.emailfilter.bword.create(
             ...     name='profanity-filter',
             ...     comment='Block profanity in emails',
@@ -219,7 +173,7 @@ class Bword:
             "cmdb", "emailfilter/bword", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         list_id: Optional[int] = None,
@@ -227,7 +181,7 @@ class Bword:
         name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -255,7 +209,7 @@ class Bword:
             dict: API response
 
         Examples:
-            >>> # Update banned word list
+            >>> # PUT - Update banned word list
             >>> result = fgt.cmdb.emailfilter.bword.update(
             ...     list_id=1,
             ...     entries=[

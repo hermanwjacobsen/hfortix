@@ -4,8 +4,8 @@ FortiOS CMDB - System Acme
 Configure ACME client.
 
 API Endpoints:
-    GET  /system/acme  - Get acme settings
-    PUT  /system/acme  - Update acme settings
+    GET  /system/acme  - Get configuration
+    PUT  /system/acme  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Acme:
         
         return self._client.get("cmdb", "system/acme", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Acme:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.acme.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.acme.update(
             ...     setting1='value1',
             ...     setting2='value2'

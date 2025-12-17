@@ -4,8 +4,8 @@ FortiOS CMDB - System FederatedUpgrade
 Coordinate federated upgrades within the Security Fabric.
 
 API Endpoints:
-    GET  /system/federated-upgrade  - Get federated-upgrade settings
-    PUT  /system/federated-upgrade  - Update federated-upgrade settings
+    GET  /system/federated-upgrade  - Get configuration
+    PUT  /system/federated-upgrade  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class FederatedUpgrade:
         
         return self._client.get("cmdb", "system/federated-upgrade", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class FederatedUpgrade:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.federated_upgrade.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.federated_upgrade.update(
             ...     setting1='value1',
             ...     setting2='value2'

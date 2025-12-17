@@ -4,11 +4,10 @@ FortiOS CMDB - Email Filter Block/Allow List
 Configure anti-spam block/allow list.
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/block-allow-list       - List all block/allow lists
-    GET    /api/v2/cmdb/emailfilter/block-allow-list/{id}  - Get specific block/allow list
-    POST   /api/v2/cmdb/emailfilter/block-allow-list       - Create block/allow list
-    PUT    /api/v2/cmdb/emailfilter/block-allow-list/{id}  - Update block/allow list
-    DELETE /api/v2/cmdb/emailfilter/block-allow-list/{id}  - Delete block/allow list
+    GET    /api/v2/cmdb/emailfilter/block-allow-list           - List all / Get specific
+    POST   /api/v2/cmdb/emailfilter/block-allow-list           - Create
+    PUT    /api/v2/cmdb/emailfilter/block-allow-list/{id}   - Update
+    DELETE /api/v2/cmdb/emailfilter/block-allow-list/{id}   - Delete
 """
 
 from __future__ import annotations
@@ -117,52 +116,7 @@ class BlockAllowList:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all email filter block/allow lists (convenience method).
-
-        Args:
-            Same as get() method, excluding list_id
-
-        Returns:
-            dict: API response containing all block/allow lists
-
-        Examples:
-            >>> lists = fgt.cmdb.emailfilter.block_allow_list.list()
-        """
-        return self.get(
-            list_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,7 +128,7 @@ class BlockAllowList:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new email filter block/allow list.
+        Create email filter block/allow list.
 
         Args:
             name (str): Block/allow list name
@@ -189,7 +143,7 @@ class BlockAllowList:
             dict: API response
 
         Examples:
-            >>> # Create block list
+            >>> # POST - Create block list
             >>> result = fgt.cmdb.emailfilter.block_allow_list.create(
             ...     name='spam-senders',
             ...     comment='Block known spam senders',
@@ -218,7 +172,7 @@ class BlockAllowList:
             "cmdb", "emailfilter/block-allow-list", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         list_id: Optional[int] = None,
@@ -226,7 +180,7 @@ class BlockAllowList:
         name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -254,7 +208,7 @@ class BlockAllowList:
             dict: API response
 
         Examples:
-            >>> # Update block list entries
+            >>> # PUT - Update block list entries
             >>> result = fgt.cmdb.emailfilter.block_allow_list.update(
             ...     list_id=1,
             ...     entries=[

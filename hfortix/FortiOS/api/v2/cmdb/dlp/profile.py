@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Profile
 Configure DLP profiles.
 
 API Endpoints:
-    GET    /dlp/profile       - List all profiles
-    GET    /dlp/profile/{name} - Get specific profile
-    POST   /dlp/profile       - Create new profile
-    PUT    /dlp/profile/{name} - Update profile
-    DELETE /dlp/profile/{name} - Delete profile
+    GET    /dlp/profile           - List all / Get specific
+    POST   /dlp/profile           - Create
+    PUT    /dlp/profile/{name}   - Update
+    DELETE /dlp/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class Profile:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP profile(s).
+        Get DLP profile(s) - List all or get specific.
 
         Args:
             name: Name of specific profile to retrieve
@@ -128,7 +127,7 @@ class Profile:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -148,7 +147,7 @@ class Profile:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP profile.
+        Create DLP profile.
 
         Args:
             name: Name of the DLP profile (max 47 chars)
@@ -182,7 +181,7 @@ class Profile:
             API response dictionary
 
         Examples:
-            >>> # Create simple DLP profile
+            >>> # POST - Create simple DLP profile
             >>> result = fgt.cmdb.dlp.profile.create(
             ...     name='email-protection',
             ...     comment='DLP for email',
@@ -190,7 +189,7 @@ class Profile:
             ...     dlp_log='enable'
             ... )
 
-            >>> # Create profile with rules
+            >>> # POST - Create profile with rules
             >>> result = fgt.cmdb.dlp.profile.create(
             ...     name='file-dlp',
             ...     comment='Block sensitive files',
@@ -261,7 +260,7 @@ class Profile:
 
         return self._client.post("cmdb", "dlp/profile", data, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -281,7 +280,7 @@ class Profile:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP profile.
+        Update DLP profile.
 
         Args:
             name: Name of the DLP profile to update
@@ -302,7 +301,7 @@ class Profile:
             API response dictionary
 
         Examples:
-            >>> # Update comment
+            >>> # PUT - Update comment
             >>> result = fgt.cmdb.dlp.profile.update(
             ...     name='email-protection',
             ...     comment='Updated email DLP'

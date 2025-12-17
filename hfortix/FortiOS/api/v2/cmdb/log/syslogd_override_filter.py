@@ -4,8 +4,8 @@ FortiOS CMDB - Log Syslogd Override Filter
 Override filters for remote syslog server.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.syslogd/override-filter - Get syslogd override filter settings
-    PUT /api/v2/cmdb/log.syslogd/override-filter - Update syslogd override filter settings
+    GET  /api/v2/cmdb/log.syslogd/override-filter  - Get configuration
+    PUT  /api/v2/cmdb/log.syslogd/override-filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class SyslogdOverrideFilter:
         path = "log.syslogd/override-filter"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -116,7 +116,7 @@ class SyslogdOverrideFilter:
             Update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.syslogd.override_filter.update(severity='warning')
 
             >>> # Enable forward traffic logging
@@ -125,7 +125,7 @@ class SyslogdOverrideFilter:
             ...     local_traffic='enable'
             ... )
 
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {
             ...     'severity': 'information',
             ...     'forward-traffic': 'enable',

@@ -4,8 +4,8 @@ FortiOS CMDB - IPS Settings
 Configure IPS VDOM parameter (singleton).
 
 API Endpoints:
-    GET /api/v2/cmdb/ips/settings - Get IPS VDOM settings
-    PUT /api/v2/cmdb/ips/settings - Update IPS VDOM settings
+    GET  /api/v2/cmdb/ips/settings  - Get configuration
+    PUT  /api/v2/cmdb/ips/settings  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class Settings:
         path = "ips/settings"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         ha_session_pickup: Optional[str] = None,

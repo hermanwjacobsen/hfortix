@@ -4,11 +4,10 @@ FortiOS CMDB - System DnsDatabase
 Configure DNS databases.
 
 API Endpoints:
-    GET    /system/dns-database           - List all dns-database
-    GET    /system/dns-database/{name}   - Get specific dns-database
-    POST   /system/dns-database           - Create dns-database
-    PUT    /system/dns-database/{name}   - Update dns-database
-    DELETE /system/dns-database/{name}   - Delete dns-database
+    GET    /system/dns-database           - List all / Get specific
+    POST   /system/dns-database           - Create
+    PUT    /system/dns-database/{name}   - Update
+    DELETE /system/dns-database/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DnsDatabase:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all dns-database
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of dns-database
-
-        Examples:
-            >>> # List all dns-database
-            >>> result = fgt.api.cmdb.system.dns_database.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DnsDatabase:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DnsDatabase:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new dns-database
+        Create dns-database
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DnsDatabase:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.dns_database.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.dns_database.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DnsDatabase:
         
         return self._client.post("cmdb", "system/dns-database", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DnsDatabase:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dns_database.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dns_database.update(
             ...     name='obj1',
             ...     comment='Updated'

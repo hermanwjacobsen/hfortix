@@ -4,8 +4,8 @@ FortiOS CMDB - Log Memory Filter
 Filters for memory buffer logging.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.memory/filter - Get memory filter settings
-    PUT /api/v2/cmdb/log.memory/filter - Update memory filter settings
+    GET  /api/v2/cmdb/log.memory/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.memory/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -39,7 +39,7 @@ class MemoryFilter:
         path = "log.memory/filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -81,7 +81,7 @@ class MemoryFilter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.memory_filter.update(severity='warning')
 
             >>> # Enable specific traffic types with debug

@@ -4,11 +4,10 @@ FortiOS CMDB - System Ipv6NeighborCache
 Configure IPv6 neighbor cache table.
 
 API Endpoints:
-    GET    /system/ipv6-neighbor-cache           - List all ipv6-neighbor-cache
-    GET    /system/ipv6-neighbor-cache/{name}   - Get specific ipv6-neighbor-cache
-    POST   /system/ipv6-neighbor-cache           - Create ipv6-neighbor-cache
-    PUT    /system/ipv6-neighbor-cache/{name}   - Update ipv6-neighbor-cache
-    DELETE /system/ipv6-neighbor-cache/{name}   - Delete ipv6-neighbor-cache
+    GET    /system/ipv6-neighbor-cache           - List all / Get specific
+    POST   /system/ipv6-neighbor-cache           - Create
+    PUT    /system/ipv6-neighbor-cache/{name}   - Update
+    DELETE /system/ipv6-neighbor-cache/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Ipv6NeighborCache:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ipv6-neighbor-cache
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of ipv6-neighbor-cache
-
-        Examples:
-            >>> # List all ipv6-neighbor-cache
-            >>> result = fgt.api.cmdb.system.ipv6_neighbor_cache.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Ipv6NeighborCache:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Ipv6NeighborCache:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new ipv6-neighbor-cache
+        Create ipv6-neighbor-cache
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Ipv6NeighborCache:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.ipv6_neighbor_cache.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.ipv6_neighbor_cache.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Ipv6NeighborCache:
         
         return self._client.post("cmdb", "system/ipv6-neighbor-cache", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Ipv6NeighborCache:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ipv6_neighbor_cache.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ipv6_neighbor_cache.update(
             ...     name='obj1',
             ...     comment='Updated'

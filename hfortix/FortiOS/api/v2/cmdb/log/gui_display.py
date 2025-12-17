@@ -24,7 +24,7 @@ class GuiDisplay:
         # Get current GUI display settings
         settings = fgt.api.cmdb.log.gui_display.get()
 
-        # Update GUI display settings
+        # PUT - Update GUI display settings
         fgt.api.cmdb.log.gui_display.update(
             resolve_hosts='enable',
             resolve_apps='enable'
@@ -55,7 +55,7 @@ class GuiDisplay:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         fortiview_unscanned_apps: Optional[str] = None,

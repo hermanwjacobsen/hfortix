@@ -4,11 +4,10 @@ FortiOS CMDB - System Ddns
 Configure DDNS.
 
 API Endpoints:
-    GET    /system/ddns           - List all ddns
-    GET    /system/ddns/{name}   - Get specific ddns
-    POST   /system/ddns           - Create ddns
-    PUT    /system/ddns/{name}   - Update ddns
-    DELETE /system/ddns/{name}   - Delete ddns
+    GET    /system/ddns           - List all / Get specific
+    POST   /system/ddns           - Create
+    PUT    /system/ddns/{name}   - Update
+    DELETE /system/ddns/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Ddns:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ddns
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of ddns
-
-        Examples:
-            >>> # List all ddns
-            >>> result = fgt.api.cmdb.system.ddns.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Ddns:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Ddns:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new ddns
+        Create ddns
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Ddns:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.ddns.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.ddns.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Ddns:
         
         return self._client.post("cmdb", "system/ddns", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Ddns:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ddns.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ddns.update(
             ...     name='obj1',
             ...     comment='Updated'

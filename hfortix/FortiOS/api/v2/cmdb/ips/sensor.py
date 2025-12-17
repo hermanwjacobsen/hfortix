@@ -4,11 +4,10 @@ FortiOS CMDB - IPS Sensor
 Configure IPS sensor profiles.
 
 API Endpoints:
-    GET    /api/v2/cmdb/ips/sensor        - List all IPS sensors
-    GET    /api/v2/cmdb/ips/sensor/{name} - Get specific IPS sensor
-    POST   /api/v2/cmdb/ips/sensor        - Create IPS sensor
-    PUT    /api/v2/cmdb/ips/sensor/{name} - Update IPS sensor
-    DELETE /api/v2/cmdb/ips/sensor/{name} - Delete IPS sensor
+    GET    /api/v2/cmdb/ips/sensor           - List all / Get specific
+    POST   /api/v2/cmdb/ips/sensor           - Create
+    PUT    /api/v2/cmdb/ips/sensor/{name}   - Update
+    DELETE /api/v2/cmdb/ips/sensor/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -39,7 +38,7 @@ class Sensor:
         path = f"ips/sensor/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -84,7 +83,7 @@ class Sensor:
         path = "ips/sensor"
         return self._client.post("cmdb", path, data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

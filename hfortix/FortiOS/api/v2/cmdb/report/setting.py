@@ -24,7 +24,7 @@ class Setting:
         # Get current report settings
         settings = fgt.api.cmdb.report.setting.get()
 
-        # Update report settings
+        # PUT - Update report settings
         fgt.api.cmdb.report.setting.update(
             pdf_report='enable',
             report_source='forward-traffic'
@@ -55,7 +55,7 @@ class Setting:
         """
         return self._client.get("cmdb", self._endpoint)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
         fortiview: Optional[str] = None,

@@ -4,11 +4,10 @@ FortiOS CMDB - ICAP Server
 Configure ICAP servers for content inspection.
 
 API Endpoints:
-    GET    /api/v2/cmdb/icap/server        - List all ICAP servers
-    GET    /api/v2/cmdb/icap/server/{name} - Get specific ICAP server
-    POST   /api/v2/cmdb/icap/server        - Create ICAP server
-    PUT    /api/v2/cmdb/icap/server/{name} - Update ICAP server
-    DELETE /api/v2/cmdb/icap/server/{name} - Delete ICAP server
+    GET    /api/v2/cmdb/icap/server           - List all / Get specific
+    POST   /api/v2/cmdb/icap/server           - Create
+    PUT    /api/v2/cmdb/icap/server/{name}   - Update
+    DELETE /api/v2/cmdb/icap/server/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -92,7 +91,7 @@ class Server:
         path = f"icap/server/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -151,7 +150,7 @@ class Server:
             Dictionary containing creation result
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> config = {
             ...     'name': 'icap-server1',
             ...     'ip-address': '10.0.1.100',
@@ -160,7 +159,7 @@ class Server:
             ... }
             >>> result = fgt.api.cmdb.icap.server.create(data_dict=config)
 
-            >>> # Create with keywords
+            >>> # POST - Create with keywords
             >>> result = fgt.api.cmdb.icap.server.create(
             ...     name='icap-server2',
             ...     ip_address='10.0.1.101',
@@ -210,7 +209,7 @@ class Server:
         path = "icap/server"
         return self._client.post("cmdb", path, data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,
@@ -269,11 +268,11 @@ class Server:
             Dictionary containing update result
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> config = {'port': 1345, 'healthcheck': 'enable'}
             >>> result = fgt.api.cmdb.icap.server.update('icap-server1', data_dict=config)
 
-            >>> # Update with keywords
+            >>> # PUT - Update with keywords
             >>> result = fgt.api.cmdb.icap.server.update(
             ...     'icap-server1',
             ...     max_connections=150

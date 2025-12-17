@@ -4,8 +4,8 @@ FortiOS CMDB - Log Memory Global Setting
 Global settings for memory logging.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.memory/global-setting - Get memory global settings
-    PUT /api/v2/cmdb/log.memory/global-setting - Update memory global settings
+    GET  /api/v2/cmdb/log.memory/global-setting  - Get configuration
+    PUT  /api/v2/cmdb/log.memory/global-setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class MemoryGlobalSetting:
         path = "log.memory/global-setting"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         max_size: Optional[int] = None,
@@ -100,18 +100,18 @@ class MemoryGlobalSetting:
             Update result
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> fgt.api.cmdb.log.memory.global_setting.update(
             ...     data_dict={'max-size': 163840}
             ... )
 
-            >>> # Update with keywords
+            >>> # PUT - Update with keywords
             >>> fgt.api.cmdb.log.memory.global_setting.update(
             ...     max_size=163840,
             ...     full_first_warning_threshold=75
             ... )
 
-            >>> # Update with mixed
+            >>> # PUT - Update with mixed
             >>> config = {'max-size': 163840}
             >>> fgt.api.cmdb.log.memory.global_setting.update(
             ...     data_dict=config,

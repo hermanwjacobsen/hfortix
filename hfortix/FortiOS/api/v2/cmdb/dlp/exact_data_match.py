@@ -4,11 +4,10 @@ FortiOS CMDB - DLP Exact Data Match
 Configure exact-data-match template used by DLP scan.
 
 API Endpoints:
-    GET    /dlp/exact-data-match       - List all exact-data-match templates
-    GET    /dlp/exact-data-match/{name} - Get specific template
-    POST   /dlp/exact-data-match       - Create new template
-    PUT    /dlp/exact-data-match/{name} - Update template
-    DELETE /dlp/exact-data-match/{name} - Delete template
+    GET    /dlp/exact-data-match           - List all / Get specific
+    POST   /dlp/exact-data-match           - Create
+    PUT    /dlp/exact-data-match/{name}   - Update
+    DELETE /dlp/exact-data-match/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -48,7 +47,7 @@ class ExactDataMatch:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Get DLP exact-data-match template(s).
+        Get DLP exact-data-match template(s) - List all or get specific.
 
         Args:
             name: Template name. If provided, gets specific template.
@@ -131,7 +130,7 @@ class ExactDataMatch:
         """
         return self.get(vdom=vdom, **kwargs)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -144,7 +143,7 @@ class ExactDataMatch:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Create a new DLP exact-data-match template.
+        Create DLP exact-data-match template.
 
         Args:
             payload_dict: Complete configuration as dictionary (alternative to individual params)
@@ -162,7 +161,7 @@ class ExactDataMatch:
             API response dictionary
 
         Examples:
-            >>> # Create template for employee data
+            >>> # POST - Create template for employee data
             >>> result = fgt.cmdb.dlp.exact_data_match.create(
             ...     name='employee-ssn-db',
             ...     data='employee-data-source',
@@ -173,7 +172,7 @@ class ExactDataMatch:
             ...     ]
             ... )
 
-            >>> # Create template with credit card data
+            >>> # POST - Create template with credit card data
             >>> result = fgt.cmdb.dlp.exact_data_match.create(
             ...     name='cc-database',
             ...     data='credit-card-source',
@@ -210,7 +209,7 @@ class ExactDataMatch:
             "cmdb", "dlp/exact-data-match", data_payload, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -223,7 +222,7 @@ class ExactDataMatch:
         **kwargs,
     ) -> dict[str, Any]:
         """
-        Update an existing DLP exact-data-match template.
+        Update DLP exact-data-match template.
 
         Args:
             payload_dict: Complete configuration as dictionary (alternative to individual params)
@@ -241,13 +240,13 @@ class ExactDataMatch:
             API response dictionary
 
         Examples:
-            >>> # Update optional count
+            >>> # PUT - Update optional count
             >>> result = fgt.cmdb.dlp.exact_data_match.update(
             ...     name='employee-ssn-db',
             ...     optional=2
             ... )
 
-            >>> # Update columns
+            >>> # PUT - Update columns
             >>> result = fgt.cmdb.dlp.exact_data_match.update(
             ...     name='employee-ssn-db',
             ...     columns=[

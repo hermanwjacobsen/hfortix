@@ -4,8 +4,8 @@ FortiOS CMDB - System VdomDns
 Configure DNS servers for a non-management VDOM.
 
 API Endpoints:
-    GET  /system/vdom-dns  - Get vdom-dns settings
-    PUT  /system/vdom-dns  - Update vdom-dns settings
+    GET  /system/vdom-dns  - Get configuration
+    PUT  /system/vdom-dns  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class VdomDns:
         
         return self._client.get("cmdb", "system/vdom-dns", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class VdomDns:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.vdom_dns.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.vdom_dns.update(
             ...     setting1='value1',
             ...     setting2='value2'

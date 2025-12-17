@@ -4,8 +4,8 @@ FortiOS CMDB - System Csf
 Add this FortiGate to a Security Fabric or set up a new Security Fabric on this FortiGate.
 
 API Endpoints:
-    GET  /system/csf  - Get csf settings
-    PUT  /system/csf  - Update csf settings
+    GET  /system/csf  - Get configuration
+    PUT  /system/csf  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Csf:
         
         return self._client.get("cmdb", "system/csf", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Csf:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.csf.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.csf.update(
             ...     setting1='value1',
             ...     setting2='value2'

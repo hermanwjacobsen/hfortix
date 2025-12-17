@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Schedule Recurring
 Recurring schedule configuration.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.schedule/recurring        - List all recurring schedules
-    GET    /api/v2/cmdb/firewall.schedule/recurring/{name} - Get specific recurring schedule
-    POST   /api/v2/cmdb/firewall.schedule/recurring        - Create new recurring schedule
-    PUT    /api/v2/cmdb/firewall.schedule/recurring/{name} - Update recurring schedule
-    DELETE /api/v2/cmdb/firewall.schedule/recurring/{name} - Delete recurring schedule
+    GET    /api/v2/cmdb/firewall.schedule/recurring           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.schedule/recurring           - Create
+    PUT    /api/v2/cmdb/firewall.schedule/recurring/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.schedule/recurring/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -136,7 +135,7 @@ class ScheduleRecurring:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -150,7 +149,7 @@ class ScheduleRecurring:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new recurring schedule.
+        Create recurring schedule.
 
 
         Supports two usage patterns:
@@ -170,7 +169,7 @@ class ScheduleRecurring:
             API response dict
 
         Examples:
-            >>> # Create weekday business hours
+            >>> # POST - Create weekday business hours
             >>> result = fgt.cmdb.firewall.schedule.recurring.create(
             ...     name='weekday-business-hours',
             ...     start='08:00',
@@ -178,7 +177,7 @@ class ScheduleRecurring:
             ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
             ... )
 
-            >>> # Create weekend schedule
+            >>> # POST - Create weekend schedule
             >>> result = fgt.cmdb.firewall.schedule.recurring.create(
             ...     name='weekend-morning',
             ...     start='08:00',
@@ -186,7 +185,7 @@ class ScheduleRecurring:
             ...     day=['saturday', 'sunday']
             ... )
 
-            >>> # Create 24/7 schedule
+            >>> # POST - Create 24/7 schedule
             >>> result = fgt.cmdb.firewall.schedule.recurring.create(
             ...     name='always',
             ...     start='00:00',
@@ -238,7 +237,7 @@ class ScheduleRecurring:
         path = "firewall.schedule/recurring"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -252,7 +251,7 @@ class ScheduleRecurring:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing recurring schedule.
+        Update recurring schedule.
 
 
         Supports two usage patterns:

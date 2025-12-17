@@ -4,8 +4,8 @@ FortiOS CMDB - System Ptp
 Configure system PTP information.
 
 API Endpoints:
-    GET  /system/ptp  - Get ptp settings
-    PUT  /system/ptp  - Update ptp settings
+    GET  /system/ptp  - Get configuration
+    PUT  /system/ptp  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Ptp:
         
         return self._client.get("cmdb", "system/ptp", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Ptp:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.ptp.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.ptp.update(
             ...     setting1='value1',
             ...     setting2='value2'

@@ -4,11 +4,10 @@ FortiOS CMDB - Email Filter MIME Header
 Configure AntiSpam MIME header.
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/mheader       - List all MIME header entries
-    GET    /api/v2/cmdb/emailfilter/mheader/{id}  - Get specific MIME header entry
-    POST   /api/v2/cmdb/emailfilter/mheader       - Create MIME header entry
-    PUT    /api/v2/cmdb/emailfilter/mheader/{id}  - Update MIME header entry
-    DELETE /api/v2/cmdb/emailfilter/mheader/{id}  - Delete MIME header entry
+    GET    /api/v2/cmdb/emailfilter/mheader           - List all / Get specific
+    POST   /api/v2/cmdb/emailfilter/mheader           - Create
+    PUT    /api/v2/cmdb/emailfilter/mheader/{id}   - Update
+    DELETE /api/v2/cmdb/emailfilter/mheader/{id}   - Delete
 """
 
 from __future__ import annotations
@@ -117,52 +116,7 @@ class Mheader:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(
-        self,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get all email filter MIME header entries (convenience method).
-
-        Args:
-            Same as get() method, excluding entry_id
-
-        Returns:
-            dict: API response containing all MIME header entries
-
-        Examples:
-            >>> entries = fgt.cmdb.emailfilter.mheader.list()
-        """
-        return self.get(
-            entry_id=None,
-            attr=attr,
-            count=count,
-            skip_to_datasource=skip_to_datasource,
-            acs=acs,
-            search=search,
-            scope=scope,
-            datasource=datasource,
-            with_meta=with_meta,
-            skip=skip,
-            format=format,
-            action=action,
-            vdom=vdom,
-            **kwargs,
-        )
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -174,7 +128,7 @@ class Mheader:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new email filter MIME header entry.
+        Create email filter MIME header entry.
 
         Args:
             name (str): MIME header entry name
@@ -189,7 +143,7 @@ class Mheader:
             dict: API response
 
         Examples:
-            >>> # Create MIME header entry
+            >>> # POST - Create MIME header entry
             >>> result = fgt.cmdb.emailfilter.mheader.create(
             ...     name='spam-headers',
             ...     comment='Check for spam indicators in headers',
@@ -218,7 +172,7 @@ class Mheader:
             "cmdb", "emailfilter/mheader", data=data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         entry_id: Optional[int] = None,
@@ -226,7 +180,7 @@ class Mheader:
         name: Optional[str] = None,
         comment: Optional[str] = None,
         entries: Optional[list[dict[str, Any]]] = None,
-        # Update parameters
+        # PUT - Update parameters
         action: Optional[str] = None,
         before: Optional[str] = None,
         after: Optional[str] = None,
@@ -254,7 +208,7 @@ class Mheader:
             dict: API response
 
         Examples:
-            >>> # Update MIME header entry
+            >>> # PUT - Update MIME header entry
             >>> result = fgt.cmdb.emailfilter.mheader.update(
             ...     entry_id=1,
             ...     entries=[

@@ -64,7 +64,7 @@ class InternetServiceCustomGroup:
             "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         data: dict[str, Any],
         vdom: Optional[Union[str, bool]] = None,
@@ -131,7 +131,7 @@ class InternetServiceCustomGroup:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         name: Union[str, int],
         data: dict[str, Any],

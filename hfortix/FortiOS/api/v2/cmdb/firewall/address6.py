@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Address6
 Configure IPv6 firewall addresses.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/address6        - List all IPv6 addresses
-    GET    /api/v2/cmdb/firewall/address6/{name} - Get specific IPv6 address
-    POST   /api/v2/cmdb/firewall/address6        - Create IPv6 address
-    PUT    /api/v2/cmdb/firewall/address6/{name} - Update IPv6 address
-    DELETE /api/v2/cmdb/firewall/address6/{name} - Delete IPv6 address
+    GET    /api/v2/cmdb/firewall/address6           - List all / Get specific
+    POST   /api/v2/cmdb/firewall/address6           - Create
+    PUT    /api/v2/cmdb/firewall/address6/{name}   - Update
+    DELETE /api/v2/cmdb/firewall/address6/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -78,7 +77,7 @@ class Address6:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv6 address object(s).
+        Get IPv6 address object(s) - List all or get specific.
 
         Args:
             name: Object name (if specified, gets single object)
@@ -138,7 +137,7 @@ class Address6:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -182,7 +181,7 @@ class Address6:
             API response dict
 
         Examples:
-            >>> # Create IPv6 prefix
+            >>> # POST - Create IPv6 prefix
             >>> result = fgt.cmdb.firewall.address6.create(
             ...     name='ipv6-internal',
             ...     type='ipprefix',
@@ -190,7 +189,7 @@ class Address6:
             ...     comment='Internal IPv6 network'
             ... )
 
-            >>> # Create IPv6 range
+            >>> # POST - Create IPv6 range
             >>> result = fgt.cmdb.firewall.address6.create(
             ...     name='ipv6-dhcp-range',
             ...     type='iprange',
@@ -198,7 +197,7 @@ class Address6:
             ...     end_ip='2001:db8::200'
             ... )
 
-            >>> # Create IPv6 FQDN
+            >>> # POST - Create IPv6 FQDN
             >>> result = fgt.cmdb.firewall.address6.create(
             ...     name='google-dns6',
             ...     type='fqdn',
@@ -275,7 +274,7 @@ class Address6:
         path = "firewall/address6"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -317,7 +316,7 @@ class Address6:
             API response dict
 
         Examples:
-            >>> # Update IPv6 prefix
+            >>> # PUT - Update IPv6 prefix
             >>> result = fgt.cmdb.firewall.address6.update(
             ...     name='ipv6-internal',
             ...     ip6='2001:db8:1::/48',

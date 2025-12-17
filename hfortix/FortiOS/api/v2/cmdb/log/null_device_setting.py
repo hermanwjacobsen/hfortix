@@ -4,8 +4,8 @@ FortiOS CMDB - Log Null Device Setting
 Settings for null device logging.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.null-device/setting - Get null device settings
-    PUT /api/v2/cmdb/log.null-device/setting - Update null device settings
+    GET  /api/v2/cmdb/log.null-device/setting  - Get configuration
+    PUT  /api/v2/cmdb/log.null-device/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -69,7 +69,7 @@ class NullDeviceSetting:
         path = "log.null-device/setting"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         status: Optional[str] = None,

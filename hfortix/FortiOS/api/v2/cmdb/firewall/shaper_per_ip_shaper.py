@@ -3,11 +3,10 @@ FortiOS CMDB - Firewall Per-IP Traffic Shaper
 Configure per-IP traffic shaper.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.shaper/per-ip-shaper       - List all per-IP shapers
-    GET    /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}  - Get specific per-IP shaper
-    POST   /api/v2/cmdb/firewall.shaper/per-ip-shaper       - Create per-IP shaper
-    PUT    /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}  - Update per-IP shaper
-    DELETE /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}  - Delete per-IP shaper
+    GET    /api/v2/cmdb/firewall.shaper/per-ip-shaper           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.shaper/per-ip-shaper           - Create
+    PUT    /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}   - Update
+    DELETE /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}   - Delete
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -23,40 +22,6 @@ class PerIpShaper:
     def __init__(self, client):
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        List all per-IP traffic shapers.
-
-        Args:
-            filter: Filter results
-            range: Range of results (e.g., '0-50')
-            sort: Sort results
-            format: List of fields to include in response
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all per-IP shapers
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.list(
-            ...     format=['name', 'max-bandwidth', 'max-concurrent-session']
-            ... )
-        """
-        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -69,7 +34,7 @@ class PerIpShaper:
         **kwargs,
     ) -> HTTPResponse:
         """
-        Get per-IP traffic shaper(s).
+        Get per-IP traffic shaper(s) - List all or get specific.
 
         Args:
             name: Per-IP shaper name (if retrieving specific shaper)
@@ -110,7 +75,7 @@ class PerIpShaper:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -144,7 +109,7 @@ class PerIpShaper:
             API response dictionary
 
         Examples:
-            >>> # Create per-IP shaper with bandwidth limit
+            >>> # POST - Create per-IP shaper with bandwidth limit
             >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.create(
             ...     'user-limit',
             ...     max_bandwidth=10240,
@@ -152,7 +117,7 @@ class PerIpShaper:
             ...     comment='Per-user bandwidth limit'
             ... )
 
-            >>> # Create per-IP shaper with TCP/UDP session limits
+            >>> # POST - Create per-IP shaper with TCP/UDP session limits
             >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.create(
             ...     'session-limit',
             ...     max_concurrent_tcp_session=50,
@@ -183,7 +148,7 @@ class PerIpShaper:
             "cmdb", "firewall.shaper/per-ip-shaper", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -217,13 +182,13 @@ class PerIpShaper:
             API response dictionary
 
         Examples:
-            >>> # Update bandwidth limit
+            >>> # PUT - Update bandwidth limit
             >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.update(
             ...     'user-limit',
             ...     max_bandwidth=20480
             ... )
 
-            >>> # Update session limits
+            >>> # PUT - Update session limits
             >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.update(
             ...     'session-limit',
             ...     max_concurrent_tcp_session=100,

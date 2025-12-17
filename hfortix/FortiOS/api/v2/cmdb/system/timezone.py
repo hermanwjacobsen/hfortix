@@ -4,11 +4,10 @@ FortiOS CMDB - System Timezone
 Show timezone.
 
 API Endpoints:
-    GET    /system/timezone           - List all timezone
-    GET    /system/timezone/{name}   - Get specific timezone
-    POST   /system/timezone           - Create timezone
-    PUT    /system/timezone/{name}   - Update timezone
-    DELETE /system/timezone/{name}   - Delete timezone
+    GET    /system/timezone           - List all / Get specific
+    POST   /system/timezone           - Create
+    PUT    /system/timezone/{name}   - Update
+    DELETE /system/timezone/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Timezone:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all timezone
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of timezone
-
-        Examples:
-            >>> # List all timezone
-            >>> result = fgt.api.cmdb.system.timezone.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Timezone:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Timezone:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new timezone
+        Create timezone
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Timezone:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.timezone.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.timezone.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Timezone:
         
         return self._client.post("cmdb", "system/timezone", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Timezone:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.timezone.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.timezone.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,11 +4,10 @@ FortiOS CMDB - System MobileTunnel
 Configure Mobile tunnels, an implementation of Network Mobility (NEMO) extensions for Mobile IPv4 RFC5177.
 
 API Endpoints:
-    GET    /system/mobile-tunnel           - List all mobile-tunnel
-    GET    /system/mobile-tunnel/{name}   - Get specific mobile-tunnel
-    POST   /system/mobile-tunnel           - Create mobile-tunnel
-    PUT    /system/mobile-tunnel/{name}   - Update mobile-tunnel
-    DELETE /system/mobile-tunnel/{name}   - Delete mobile-tunnel
+    GET    /system/mobile-tunnel           - List all / Get specific
+    POST   /system/mobile-tunnel           - Create
+    PUT    /system/mobile-tunnel/{name}   - Update
+    DELETE /system/mobile-tunnel/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class MobileTunnel:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all mobile-tunnel
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of mobile-tunnel
-
-        Examples:
-            >>> # List all mobile-tunnel
-            >>> result = fgt.api.cmdb.system.mobile_tunnel.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class MobileTunnel:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class MobileTunnel:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new mobile-tunnel
+        Create mobile-tunnel
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class MobileTunnel:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.mobile_tunnel.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.mobile_tunnel.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class MobileTunnel:
         
         return self._client.post("cmdb", "system/mobile-tunnel", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class MobileTunnel:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.mobile_tunnel.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.mobile_tunnel.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,11 +4,10 @@ FortiOS CMDB - System HealthCheckFortiguard
 SD-WAN status checking or health checking. Identify a server predefine by FortiGuard and determine how SD-WAN verifies that FGT can communicate with it.
 
 API Endpoints:
-    GET    /system/health-check-fortiguard           - List all health-check-fortiguard
-    GET    /system/health-check-fortiguard/{name}   - Get specific health-check-fortiguard
-    POST   /system/health-check-fortiguard           - Create health-check-fortiguard
-    PUT    /system/health-check-fortiguard/{name}   - Update health-check-fortiguard
-    DELETE /system/health-check-fortiguard/{name}   - Delete health-check-fortiguard
+    GET    /system/health-check-fortiguard           - List all / Get specific
+    POST   /system/health-check-fortiguard           - Create
+    PUT    /system/health-check-fortiguard/{name}   - Update
+    DELETE /system/health-check-fortiguard/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class HealthCheckFortiguard:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all health-check-fortiguard
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of health-check-fortiguard
-
-        Examples:
-            >>> # List all health-check-fortiguard
-            >>> result = fgt.api.cmdb.system.health_check_fortiguard.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class HealthCheckFortiguard:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class HealthCheckFortiguard:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new health-check-fortiguard
+        Create health-check-fortiguard
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class HealthCheckFortiguard:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.health_check_fortiguard.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.health_check_fortiguard.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class HealthCheckFortiguard:
         
         return self._client.post("cmdb", "system/health-check-fortiguard", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class HealthCheckFortiguard:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.health_check_fortiguard.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.health_check_fortiguard.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -5,8 +5,8 @@ Configure filters for local disk logging. Use these filters to determine
 the log messages to record according to severity and type.
 
 API Endpoints:
-    GET /api/v2/cmdb/log.disk/filter - Get disk log filter settings
-    PUT /api/v2/cmdb/log.disk/filter - Update disk log filter settings
+    GET  /api/v2/cmdb/log.disk/filter  - Get configuration
+    PUT  /api/v2/cmdb/log.disk/filter  - Update configuration
 """
 
 from __future__ import annotations
@@ -42,7 +42,7 @@ class DiskFilter:
         path = "log.disk/filter"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         severity: Optional[str] = None,
@@ -86,7 +86,7 @@ class DiskFilter:
             Dictionary containing update result
 
         Examples:
-            >>> # Update severity level
+            >>> # PUT - Update severity level
             >>> fgt.api.cmdb.log.disk_filter.update(severity='warning')
 
             >>> # Enable specific traffic types

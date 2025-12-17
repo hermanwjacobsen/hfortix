@@ -4,11 +4,10 @@ FortiOS CMDB - SCTP Filter Profile
 Configure SCTP filter profiles.
 
 API Endpoints:
-    GET    /api/v2/cmdb/sctp-filter/profile        - List all SCTP filter profiles
-    GET    /api/v2/cmdb/sctp-filter/profile/{name} - Get specific SCTP filter profile
-    POST   /api/v2/cmdb/sctp-filter/profile        - Create SCTP filter profile
-    PUT    /api/v2/cmdb/sctp-filter/profile/{name} - Update SCTP filter profile
-    DELETE /api/v2/cmdb/sctp-filter/profile/{name} - Delete SCTP filter profile
+    GET    /api/v2/cmdb/sctp-filter/profile           - List all / Get specific
+    POST   /api/v2/cmdb/sctp-filter/profile           - Create
+    PUT    /api/v2/cmdb/sctp-filter/profile/{name}   - Update
+    DELETE /api/v2/cmdb/sctp-filter/profile/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,22 +32,6 @@ class Profile:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all SCTP filter profiles.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of SCTP filter profiles
-
-        Examples:
-            >>> result = fgt.api.cmdb.sctp_filter.profile.list()
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -56,7 +39,7 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get SCTP filter profile(s).
+        Get SCTP filter profile(s) - List all or get specific.
 
         Args:
             name: Profile name (if specified, gets single profile)
@@ -75,7 +58,7 @@ class Profile:
             path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -137,7 +120,7 @@ class Profile:
         data.update(kwargs)
         return self._client.post("cmdb", "sctp-filter/profile", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

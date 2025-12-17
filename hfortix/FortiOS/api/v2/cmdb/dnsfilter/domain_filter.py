@@ -74,26 +74,7 @@ class DomainFilter:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: Optional[str] = None, **kwargs: Any) -> dict[str, Any]:
-        """List all DNS domain filters.
-
-        Convenience method that calls get() without a filter_id.
-
-        Args:
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional query parameters.
-
-        Returns:
-            dict: API response containing list of all domain filters.
-
-        Example:
-            >>> filters = client.cmdb.dnsfilter.domain_filter.list()
-            >>> for f in filters['results']:
-            ...     print(f['id'], f['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
-
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         filter_id: Optional[int] = None,
@@ -104,7 +85,7 @@ class DomainFilter:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create a new DNS domain filter.
+        """Create DNS domain filter.
 
         Args:
             filter_id (int): Domain filter ID (0-4294967295).
@@ -124,7 +105,7 @@ class DomainFilter:
             dict: API response containing operation results.
 
         Example:
-            >>> # Create filter with blocking entries
+            >>> # POST - Create filter with blocking entries
             >>> client.cmdb.dnsfilter.domain_filter.create(
             ...     filter_id=10,
             ...     name='social-media-block',
@@ -162,7 +143,7 @@ class DomainFilter:
             "cmdb", "dnsfilter/domain-filter", data, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         filter_id: Optional[int] = None,
@@ -173,7 +154,7 @@ class DomainFilter:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update an existing DNS domain filter.
+        """Update DNS domain filter.
 
         Args:
             filter_id (int): Domain filter ID to update.

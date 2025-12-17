@@ -3,8 +3,8 @@ FortiOS CMDB - Firewall SSH Settings
 SSH proxy settings.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ssh/setting  - Get SSH proxy settings
-    PUT    /api/v2/cmdb/firewall.ssh/setting  - Update SSH proxy settings
+    GET  /api/v2/cmdb/firewall.ssh/setting  - Get configuration
+    PUT  /api/v2/cmdb/firewall.ssh/setting  - Update configuration
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -71,7 +71,7 @@ class Setting:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         caname: Optional[str] = None,
@@ -117,7 +117,7 @@ class Setting:
             API response dictionary
 
         Examples:
-            >>> # Update CA certificate
+            >>> # PUT - Update CA certificate
             >>> result = fgt.cmdb.firewall.ssh.setting.update(
             ...     caname='Fortinet_CA_SSL',
             ...     host_trusted_checking='enable'

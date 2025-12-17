@@ -4,11 +4,10 @@ FortiOS CMDB - System AutomationAction
 Action for automation stitches.
 
 API Endpoints:
-    GET    /system/automation-action           - List all automation-action
-    GET    /system/automation-action/{name}   - Get specific automation-action
-    POST   /system/automation-action           - Create automation-action
-    PUT    /system/automation-action/{name}   - Update automation-action
-    DELETE /system/automation-action/{name}   - Delete automation-action
+    GET    /system/automation-action           - List all / Get specific
+    POST   /system/automation-action           - Create
+    PUT    /system/automation-action/{name}   - Update
+    DELETE /system/automation-action/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class AutomationAction:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all automation-action
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of automation-action
-
-        Examples:
-            >>> # List all automation-action
-            >>> result = fgt.api.cmdb.system.automation_action.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class AutomationAction:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class AutomationAction:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new automation-action
+        Create automation-action
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class AutomationAction:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.automation_action.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.automation_action.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class AutomationAction:
         
         return self._client.post("cmdb", "system/automation-action", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class AutomationAction:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.automation_action.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.automation_action.update(
             ...     name='obj1',
             ...     comment='Updated'

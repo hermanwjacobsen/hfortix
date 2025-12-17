@@ -4,11 +4,10 @@ FortiOS CMDB - System DnsServer
 Configure DNS servers.
 
 API Endpoints:
-    GET    /system/dns-server           - List all dns-server
-    GET    /system/dns-server/{name}   - Get specific dns-server
-    POST   /system/dns-server           - Create dns-server
-    PUT    /system/dns-server/{name}   - Update dns-server
-    DELETE /system/dns-server/{name}   - Delete dns-server
+    GET    /system/dns-server           - List all / Get specific
+    POST   /system/dns-server           - Create
+    PUT    /system/dns-server/{name}   - Update
+    DELETE /system/dns-server/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class DnsServer:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all dns-server
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of dns-server
-
-        Examples:
-            >>> # List all dns-server
-            >>> result = fgt.api.cmdb.system.dns_server.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class DnsServer:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class DnsServer:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new dns-server
+        Create dns-server
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class DnsServer:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.dns_server.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.dns_server.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class DnsServer:
         
         return self._client.post("cmdb", "system/dns-server", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class DnsServer:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.dns_server.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.dns_server.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -4,8 +4,8 @@ FortiOS CMDB - System Stp
 Configure Spanning Tree Protocol (STP).
 
 API Endpoints:
-    GET  /system/stp  - Get stp settings
-    PUT  /system/stp  - Update stp settings
+    GET  /system/stp  - Get configuration
+    PUT  /system/stp  - Update configuration
 """
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ class Stp:
         
         return self._client.get("cmdb", "system/stp", params=params if params else None, vdom=vdom)
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -93,12 +93,12 @@ class Stp:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.stp.update(
             ...     payload_dict={'setting1': 'value1'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.stp.update(
             ...     setting1='value1',
             ...     setting2='value2'

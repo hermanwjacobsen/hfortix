@@ -4,11 +4,10 @@ FortiOS CMDB - IPS Custom
 Configure IPS custom signature.
 
 API Endpoints:
-    GET    /api/v2/cmdb/ips/custom        - List all custom signatures
-    GET    /api/v2/cmdb/ips/custom/{tag}  - Get specific custom signature
-    POST   /api/v2/cmdb/ips/custom        - Create custom signature
-    PUT    /api/v2/cmdb/ips/custom/{tag}  - Update custom signature
-    DELETE /api/v2/cmdb/ips/custom/{tag}  - Delete custom signature
+    GET    /api/v2/cmdb/ips/custom           - List all / Get specific
+    POST   /api/v2/cmdb/ips/custom           - Create
+    PUT    /api/v2/cmdb/ips/custom/{tag}   - Update
+    DELETE /api/v2/cmdb/ips/custom/{tag}   - Delete
 """
 
 from __future__ import annotations
@@ -65,7 +64,7 @@ class Custom:
         path = f"ips/custom/{encode_path_component(tag)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         tag: Optional[str] = None,
@@ -143,7 +142,7 @@ class Custom:
         path = "ips/custom"
         return self._client.post("cmdb", path, data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         tag: str,
         data_dict: Optional[dict[str, Any]] = None,

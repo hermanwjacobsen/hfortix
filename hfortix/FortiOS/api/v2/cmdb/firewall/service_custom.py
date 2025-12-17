@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Service Custom
 Configure custom services.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.service/custom        - List all custom services
-    GET    /api/v2/cmdb/firewall.service/custom/{name} - Get specific custom service
-    POST   /api/v2/cmdb/firewall.service/custom        - Create new custom service
-    PUT    /api/v2/cmdb/firewall.service/custom/{name} - Update custom service
-    DELETE /api/v2/cmdb/firewall.service/custom/{name} - Delete custom service
+    GET    /api/v2/cmdb/firewall.service/custom           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.service/custom           - Create
+    PUT    /api/v2/cmdb/firewall.service/custom/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.service/custom/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -33,54 +32,6 @@ class ServiceCustom:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all custom services.
-
-        Args:
-            filter: Filter results
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of fields to return
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all custom services
-            >>> result = fgt.cmdb.firewall.service.custom.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.service.custom.list(
-            ...     format=['name', 'protocol', 'tcp-portrange']
-            ... )
-        """
-        return self.get(
-            name=None,
-            filter=filter,
-            start=start,
-            count=count,
-            with_meta=with_meta,
-            datasource=datasource,
-            format=format,
-            vdom=vdom,
-            **kwargs,
-        )
 
     def get(
         self,
@@ -149,7 +100,7 @@ class ServiceCustom:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -173,7 +124,7 @@ class ServiceCustom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new custom service.
+        Create custom service.
 
 
         Supports two usage patterns:
@@ -203,7 +154,7 @@ class ServiceCustom:
             API response dictionary
 
         Examples:
-            >>> # Create TCP service
+            >>> # POST - Create TCP service
             >>> result = fgt.cmdb.firewall.service.custom.create(
             ...     name='HTTPS-8443',
             ...     protocol='TCP/UDP/SCTP',
@@ -211,7 +162,7 @@ class ServiceCustom:
             ...     comment='HTTPS on port 8443'
             ... )
 
-            >>> # Create UDP service with multiple ports
+            >>> # POST - Create UDP service with multiple ports
             >>> result = fgt.cmdb.firewall.service.custom.create(
             ...     name='Custom-DNS',
             ...     protocol='TCP/UDP/SCTP',
@@ -219,7 +170,7 @@ class ServiceCustom:
             ...     category='Network Services'
             ... )
 
-            >>> # Create ICMP service
+            >>> # POST - Create ICMP service
             >>> result = fgt.cmdb.firewall.service.custom.create(
             ...     name='ICMP-Echo',
             ...     protocol='ICMP',
@@ -271,7 +222,7 @@ class ServiceCustom:
             "cmdb", "firewall.service/custom", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -295,7 +246,7 @@ class ServiceCustom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing custom service.
+        Update custom service.
 
 
         Supports two usage patterns:
@@ -325,13 +276,13 @@ class ServiceCustom:
             API response dictionary
 
         Examples:
-            >>> # Update port range
+            >>> # PUT - Update port range
             >>> result = fgt.cmdb.firewall.service.custom.update(
             ...     name='HTTPS-8443',
             ...     tcp_portrange='8443 8444'
             ... )
 
-            >>> # Update category and comment
+            >>> # PUT - Update category and comment
             >>> result = fgt.cmdb.firewall.service.custom.update(
             ...     name='HTTPS-8443',
             ...     category='Web Access',

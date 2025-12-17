@@ -4,11 +4,10 @@ FortiOS CMDB - System AutomationStitch
 Automation stitches.
 
 API Endpoints:
-    GET    /system/automation-stitch           - List all automation-stitch
-    GET    /system/automation-stitch/{name}   - Get specific automation-stitch
-    POST   /system/automation-stitch           - Create automation-stitch
-    PUT    /system/automation-stitch/{name}   - Update automation-stitch
-    DELETE /system/automation-stitch/{name}   - Delete automation-stitch
+    GET    /system/automation-stitch           - List all / Get specific
+    POST   /system/automation-stitch           - Create
+    PUT    /system/automation-stitch/{name}   - Update
+    DELETE /system/automation-stitch/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class AutomationStitch:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all automation-stitch
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of automation-stitch
-
-        Examples:
-            >>> # List all automation-stitch
-            >>> result = fgt.api.cmdb.system.automation_stitch.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class AutomationStitch:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class AutomationStitch:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new automation-stitch
+        Create automation-stitch
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class AutomationStitch:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.automation_stitch.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.automation_stitch.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class AutomationStitch:
         
         return self._client.post("cmdb", "system/automation-stitch", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class AutomationStitch:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.automation_stitch.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.automation_stitch.update(
             ...     name='obj1',
             ...     comment='Updated'

@@ -211,7 +211,7 @@ class IpTranslation:
             "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         vdom: Optional[Any] = None,
@@ -227,7 +227,7 @@ class IpTranslation:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Create a new ip-translation entry.
+        Create ip-translation entry.
 
         Supports two usage patterns:
         1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
@@ -292,7 +292,7 @@ class IpTranslation:
             "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         mkey: Union[str, int],
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -310,7 +310,7 @@ class IpTranslation:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        Update an existing ip-translation entry.
+        Update ip-translation entry.
 
         Supports two usage patterns:
         1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")

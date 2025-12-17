@@ -4,8 +4,8 @@ FortiOS CMDB - Automation Settings
 Automation stitch configuration settings.
 
 API Endpoints:
-    GET    /automation/setting       - Get automation settings
-    PUT    /automation/setting       - Update automation settings
+    GET  /automation/setting  - Get configuration
+    PUT  /automation/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -82,7 +82,7 @@ class Setting:
             "cmdb", "automation/setting", params=params, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         max_concurrent_stitches: Optional[int] = None,
@@ -106,7 +106,7 @@ class Setting:
             dict: API response
 
         Examples:
-            >>> # Update max concurrent stitches
+            >>> # PUT - Update max concurrent stitches
             >>> result = fgt.cmdb.automation.setting.update(
             ...     max_concurrent_stitches=100
             ... )

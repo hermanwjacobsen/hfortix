@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Address
 Configure IPv4 addresses.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/address        - List all IPv4 addresses
-    GET    /api/v2/cmdb/firewall/address/{name} - Get specific IPv4 address
-    POST   /api/v2/cmdb/firewall/address        - Create IPv4 address
-    PUT    /api/v2/cmdb/firewall/address/{name} - Update IPv4 address
-    DELETE /api/v2/cmdb/firewall/address/{name} - Delete IPv4 address
+    GET    /api/v2/cmdb/firewall/address           - List all / Get specific
+    POST   /api/v2/cmdb/firewall/address           - Create
+    PUT    /api/v2/cmdb/firewall/address/{name}   - Update
+    DELETE /api/v2/cmdb/firewall/address/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -77,7 +76,7 @@ class Address:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv4 address object(s).
+        Get IPv4 address object(s) - List all or get specific.
 
         Args:
             name: Object name (if specified, gets single object)
@@ -137,7 +136,7 @@ class Address:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -185,7 +184,7 @@ class Address:
             API response dict
 
         Examples:
-            >>> # Create subnet address
+            >>> # POST - Create subnet address
             >>> result = fgt.cmdb.firewall.address.create(
             ...     name='internal-net',
             ...     type='ipmask',
@@ -193,7 +192,7 @@ class Address:
             ...     comment='Internal network'
             ... )
 
-            >>> # Create IP range
+            >>> # POST - Create IP range
             >>> result = fgt.cmdb.firewall.address.create(
             ...     name='dhcp-range',
             ...     type='iprange',
@@ -201,7 +200,7 @@ class Address:
             ...     end_ip='192.168.1.200'
             ... )
 
-            >>> # Create FQDN
+            >>> # POST - Create FQDN
             >>> result = fgt.cmdb.firewall.address.create(
             ...     name='google-dns',
             ...     type='fqdn',
@@ -286,7 +285,7 @@ class Address:
         path = "firewall/address"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -332,7 +331,7 @@ class Address:
             API response dict
 
         Examples:
-            >>> # Update subnet
+            >>> # PUT - Update subnet
             >>> result = fgt.cmdb.firewall.address.update(
             ...     name='internal-net',
             ...     subnet='192.168.2.0/24',

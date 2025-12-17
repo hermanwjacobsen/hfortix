@@ -4,11 +4,10 @@ FortiOS CMDB - System ApiUser
 Configure API users.
 
 API Endpoints:
-    GET    /system/api-user           - List all api-user
-    GET    /system/api-user/{name}   - Get specific api-user
-    POST   /system/api-user           - Create api-user
-    PUT    /system/api-user/{name}   - Update api-user
-    DELETE /system/api-user/{name}   - Delete api-user
+    GET    /system/api-user           - List all / Get specific
+    POST   /system/api-user           - Create
+    PUT    /system/api-user/{name}   - Update
+    DELETE /system/api-user/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class ApiUser:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all api-user
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of api-user
-
-        Examples:
-            >>> # List all api-user
-            >>> result = fgt.api.cmdb.system.api_user.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class ApiUser:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class ApiUser:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new api-user
+        Create api-user
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class ApiUser:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.api_user.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.api_user.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class ApiUser:
         
         return self._client.post("cmdb", "system/api-user", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class ApiUser:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.api_user.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.api_user.update(
             ...     name='obj1',
             ...     comment='Updated'

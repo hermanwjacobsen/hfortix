@@ -3,11 +3,10 @@ FortiOS CMDB - Firewall SSH Local CA
 SSH proxy local CA.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ssh/local-ca       - List all local CAs
-    GET    /api/v2/cmdb/firewall.ssh/local-ca/{id}  - Get specific local CA
-    POST   /api/v2/cmdb/firewall.ssh/local-ca       - Create local CA
-    PUT    /api/v2/cmdb/firewall.ssh/local-ca/{id}  - Update local CA
-    DELETE /api/v2/cmdb/firewall.ssh/local-ca/{id}  - Delete local CA
+    GET    /api/v2/cmdb/firewall.ssh/local-ca           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.ssh/local-ca           - Create
+    PUT    /api/v2/cmdb/firewall.ssh/local-ca/{id}   - Update
+    DELETE /api/v2/cmdb/firewall.ssh/local-ca/{id}   - Delete
 """
 
 from typing import Any, Dict, List, Optional, Union
@@ -23,40 +22,6 @@ class LocalCa:
     def __init__(self, client):
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        List all SSH local CAs.
-
-        Args:
-            filter: Filter results
-            range: Range of results (e.g., '0-50')
-            sort: Sort results
-            format: List of fields to include in response
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # List all local CAs
-            >>> result = fgt.cmdb.firewall.ssh.local_ca.list()
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.ssh.local_ca.list(
-            ...     format=['name', 'source']
-            ... )
-        """
-        return self.get(filter=filter, range=range, sort=sort, format=format, vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
@@ -69,7 +34,7 @@ class LocalCa:
         **kwargs,
     ) -> HTTPResponse:
         """
-        Get SSH local CA(s).
+        Get SSH local CA(s) - List all or get specific.
 
         Args:
             name: Local CA name (if retrieving specific CA)
@@ -110,7 +75,7 @@ class LocalCa:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -138,13 +103,13 @@ class LocalCa:
             API response dictionary
 
         Examples:
-            >>> # Create local CA
+            >>> # POST - Create local CA
             >>> result = fgt.cmdb.firewall.ssh.local_ca.create(
             ...     'company-ca',
             ...     source='user'
             ... )
 
-            >>> # Create with source IP
+            >>> # POST - Create with source IP
             >>> result = fgt.cmdb.firewall.ssh.local_ca.create(
             ...     'internal-ca',
             ...     source='user',
@@ -169,7 +134,7 @@ class LocalCa:
             "cmdb", "firewall.ssh/local-ca", payload_dict, vdom=vdom, raw_json=raw_json
         )
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -197,7 +162,7 @@ class LocalCa:
             API response dictionary
 
         Examples:
-            >>> # Update source IP
+            >>> # PUT - Update source IP
             >>> result = fgt.cmdb.firewall.ssh.local_ca.update(
             ...     'company-ca',
             ...     source_ip='192.168.1.51'

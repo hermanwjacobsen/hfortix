@@ -4,11 +4,10 @@ FortiOS CMDB - System LinkMonitor
 Configure Link Health Monitor.
 
 API Endpoints:
-    GET    /system/link-monitor           - List all link-monitor
-    GET    /system/link-monitor/{name}   - Get specific link-monitor
-    POST   /system/link-monitor           - Create link-monitor
-    PUT    /system/link-monitor/{name}   - Update link-monitor
-    DELETE /system/link-monitor/{name}   - Delete link-monitor
+    GET    /system/link-monitor           - List all / Get specific
+    POST   /system/link-monitor           - Create
+    PUT    /system/link-monitor/{name}   - Update
+    DELETE /system/link-monitor/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class LinkMonitor:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all link-monitor
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of link-monitor
-
-        Examples:
-            >>> # List all link-monitor
-            >>> result = fgt.api.cmdb.system.link_monitor.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class LinkMonitor:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class LinkMonitor:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new link-monitor
+        Create link-monitor
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class LinkMonitor:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.link_monitor.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.link_monitor.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class LinkMonitor:
         
         return self._client.post("cmdb", "system/link-monitor", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class LinkMonitor:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.link_monitor.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.link_monitor.update(
             ...     name='obj1',
             ...     comment='Updated'

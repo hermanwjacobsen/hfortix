@@ -4,11 +4,10 @@ FortiOS CMDB - System SdnConnector
 Configure connection to SDN Connector.
 
 API Endpoints:
-    GET    /system/sdn-connector           - List all sdn-connector
-    GET    /system/sdn-connector/{name}   - Get specific sdn-connector
-    POST   /system/sdn-connector           - Create sdn-connector
-    PUT    /system/sdn-connector/{name}   - Update sdn-connector
-    DELETE /system/sdn-connector/{name}   - Delete sdn-connector
+    GET    /system/sdn-connector           - List all / Get specific
+    POST   /system/sdn-connector           - Create
+    PUT    /system/sdn-connector/{name}   - Update
+    DELETE /system/sdn-connector/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SdnConnector:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sdn-connector
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sdn-connector
-
-        Examples:
-            >>> # List all sdn-connector
-            >>> result = fgt.api.cmdb.system.sdn_connector.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SdnConnector:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SdnConnector:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sdn-connector
+        Create sdn-connector
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SdnConnector:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sdn_connector.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sdn_connector.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SdnConnector:
         
         return self._client.post("cmdb", "system/sdn-connector", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SdnConnector:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sdn_connector.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sdn_connector.update(
             ...     name='obj1',
             ...     comment='Updated'

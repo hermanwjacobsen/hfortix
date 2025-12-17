@@ -4,11 +4,10 @@ FortiOS CMDB - System SitTunnel
 Configure IPv6 tunnel over IPv4.
 
 API Endpoints:
-    GET    /system/sit-tunnel           - List all sit-tunnel
-    GET    /system/sit-tunnel/{name}   - Get specific sit-tunnel
-    POST   /system/sit-tunnel           - Create sit-tunnel
-    PUT    /system/sit-tunnel/{name}   - Update sit-tunnel
-    DELETE /system/sit-tunnel/{name}   - Delete sit-tunnel
+    GET    /system/sit-tunnel           - List all / Get specific
+    POST   /system/sit-tunnel           - Create
+    PUT    /system/sit-tunnel/{name}   - Update
+    DELETE /system/sit-tunnel/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SitTunnel:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all sit-tunnel
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of sit-tunnel
-
-        Examples:
-            >>> # List all sit-tunnel
-            >>> result = fgt.api.cmdb.system.sit_tunnel.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SitTunnel:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SitTunnel:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new sit-tunnel
+        Create sit-tunnel
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SitTunnel:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.sit_tunnel.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.sit_tunnel.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SitTunnel:
         
         return self._client.post("cmdb", "system/sit-tunnel", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SitTunnel:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.sit_tunnel.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.sit_tunnel.update(
             ...     name='obj1',
             ...     comment='Updated'

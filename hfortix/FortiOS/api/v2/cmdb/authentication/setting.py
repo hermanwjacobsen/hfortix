@@ -4,8 +4,8 @@ FortiOS CMDB - Authentication Settings
 Configure global authentication settings.
 
 API Endpoints:
-    GET    /api/v2/cmdb/authentication/setting       - Get authentication settings
-    PUT    /api/v2/cmdb/authentication/setting       - Update authentication settings
+    GET  /api/v2/cmdb/authentication/setting  - Get configuration
+    PUT  /api/v2/cmdb/authentication/setting  - Update configuration
 """
 
 from __future__ import annotations
@@ -107,7 +107,7 @@ class Setting:
             raw_json=raw_json,
         )
 
-    def update(
+    def put(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         active_auth_scheme: Optional[str] = None,

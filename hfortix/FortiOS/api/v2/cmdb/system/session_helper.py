@@ -4,11 +4,10 @@ FortiOS CMDB - System SessionHelper
 Configure session helper.
 
 API Endpoints:
-    GET    /system/session-helper           - List all session-helper
-    GET    /system/session-helper/{name}   - Get specific session-helper
-    POST   /system/session-helper           - Create session-helper
-    PUT    /system/session-helper/{name}   - Update session-helper
-    DELETE /system/session-helper/{name}   - Delete session-helper
+    GET    /system/session-helper           - List all / Get specific
+    POST   /system/session-helper           - Create
+    PUT    /system/session-helper/{name}   - Update
+    DELETE /system/session-helper/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class SessionHelper:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all session-helper
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of session-helper
-
-        Examples:
-            >>> # List all session-helper
-            >>> result = fgt.api.cmdb.system.session_helper.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class SessionHelper:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class SessionHelper:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new session-helper
+        Create session-helper
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class SessionHelper:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.session_helper.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.session_helper.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class SessionHelper:
         
         return self._client.post("cmdb", "system/session-helper", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class SessionHelper:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.session_helper.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.session_helper.update(
             ...     name='obj1',
             ...     comment='Updated'

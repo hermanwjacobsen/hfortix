@@ -4,11 +4,10 @@ FortiOS CMDB - Firewall Schedule Group
 Schedule group configuration.
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.schedule/group        - List all schedule groups
-    GET    /api/v2/cmdb/firewall.schedule/group/{name} - Get specific schedule group
-    POST   /api/v2/cmdb/firewall.schedule/group        - Create new schedule group
-    PUT    /api/v2/cmdb/firewall.schedule/group/{name} - Update schedule group
-    DELETE /api/v2/cmdb/firewall.schedule/group/{name} - Delete schedule group
+    GET    /api/v2/cmdb/firewall.schedule/group           - List all / Get specific
+    POST   /api/v2/cmdb/firewall.schedule/group           - Create
+    PUT    /api/v2/cmdb/firewall.schedule/group/{name}   - Update
+    DELETE /api/v2/cmdb/firewall.schedule/group/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -139,7 +138,7 @@ class ScheduleGroup:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -151,7 +150,7 @@ class ScheduleGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create a new schedule group.
+        Create schedule group.
 
 
         Supports two usage patterns:
@@ -169,7 +168,7 @@ class ScheduleGroup:
             API response dict
 
         Examples:
-            >>> # Create schedule group with members
+            >>> # POST - Create schedule group with members
             >>> result = fgt.cmdb.firewall.schedule.group.create(
             ...     name='business-hours',
             ...     member=[
@@ -178,7 +177,7 @@ class ScheduleGroup:
             ...     ]
             ... )
 
-            >>> # Create with color
+            >>> # POST - Create with color
             >>> result = fgt.cmdb.firewall.schedule.group.create(
             ...     name='maintenance-windows',
             ...     member=[{'name': 'saturday-night'}],
@@ -225,7 +224,7 @@ class ScheduleGroup:
         path = "firewall.schedule/group"
         return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -237,7 +236,7 @@ class ScheduleGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an existing schedule group.
+        Update schedule group.
 
 
         Supports two usage patterns:
@@ -255,7 +254,7 @@ class ScheduleGroup:
             API response dict
 
         Examples:
-            >>> # Update members
+            >>> # PUT - Update members
             >>> result = fgt.cmdb.firewall.schedule.group.update(
             ...     name='business-hours',
             ...     member=[

@@ -4,11 +4,10 @@ FortiOS CMDB - Router AS Path List
 Configure Autonomous System (AS) path lists.
 
 API Endpoints:
-    GET    /api/v2/cmdb/router/aspath-list        - List all AS path lists
-    GET    /api/v2/cmdb/router/aspath-list/{name} - Get specific AS path list
-    POST   /api/v2/cmdb/router/aspath-list        - Create AS path list
-    PUT    /api/v2/cmdb/router/aspath-list/{name} - Update AS path list
-    DELETE /api/v2/cmdb/router/aspath-list/{name} - Delete AS path list
+    GET    /api/v2/cmdb/router/aspath-list           - List all / Get specific
+    POST   /api/v2/cmdb/router/aspath-list           - Create
+    PUT    /api/v2/cmdb/router/aspath-list/{name}   - Update
+    DELETE /api/v2/cmdb/router/aspath-list/{name}   - Delete
 """
 
 from __future__ import annotations
@@ -27,23 +26,19 @@ class AspathList:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """List all AS path lists."""
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get AS path list(s)."""
+        """Get AS path list(s) - List all or get specific."""
         path = "router/aspath-list"
         if name:
             path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         data_dict: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -60,7 +55,7 @@ class AspathList:
         data.update(kwargs)
         return self._client.post("cmdb", "router/aspath-list", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         data_dict: Optional[dict[str, Any]] = None,

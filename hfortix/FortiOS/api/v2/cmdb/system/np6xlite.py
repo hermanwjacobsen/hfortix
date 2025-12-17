@@ -4,11 +4,10 @@ FortiOS CMDB - System Np6xlite
 Configure NP6XLITE attributes.
 
 API Endpoints:
-    GET    /system/np6xlite           - List all np6xlite
-    GET    /system/np6xlite/{name}   - Get specific np6xlite
-    POST   /system/np6xlite           - Create np6xlite
-    PUT    /system/np6xlite/{name}   - Update np6xlite
-    DELETE /system/np6xlite/{name}   - Delete np6xlite
+    GET    /system/np6xlite           - List all / Get specific
+    POST   /system/np6xlite           - Create
+    PUT    /system/np6xlite/{name}   - Update
+    DELETE /system/np6xlite/{name}   - Delete
 """
 from __future__ import annotations
 
@@ -31,25 +30,6 @@ class Np6xlite:
             client: HTTPClient instance
         """
         self._client = client
-
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all np6xlite
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of np6xlite
-
-        Examples:
-            >>> # List all np6xlite
-            >>> result = fgt.api.cmdb.system.np6xlite.list()
-            >>> for item in result['results']:
-            ...     print(item['name'])
-        """
-        return self.get(vdom=vdom, **kwargs)
 
     def get(
         self,
@@ -113,7 +93,7 @@ class Np6xlite:
         
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
-    def create(
+    def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,
         name: Optional[str] = None,
@@ -121,7 +101,7 @@ class Np6xlite:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create new np6xlite
+        Create np6xlite
 
         Args:
             payload_dict (dict, optional): Complete configuration as dictionary
@@ -133,12 +113,12 @@ class Np6xlite:
             dict: API response
 
         Examples:
-            >>> # Create with dictionary
+            >>> # POST - Create with dictionary
             >>> result = fgt.api.cmdb.system.np6xlite.create(
             ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
             ... )
             
-            >>> # Create with parameters
+            >>> # POST - Create with parameters
             >>> result = fgt.api.cmdb.system.np6xlite.create(
             ...     name='obj1',
             ...     comment='Test'
@@ -156,7 +136,7 @@ class Np6xlite:
         
         return self._client.post("cmdb", "system/np6xlite", data=data, vdom=vdom)
 
-    def update(
+    def put(
         self,
         name: str,
         payload_dict: Optional[Dict[str, Any]] = None,
@@ -176,13 +156,13 @@ class Np6xlite:
             dict: API response
 
         Examples:
-            >>> # Update with dictionary
+            >>> # PUT - Update with dictionary
             >>> result = fgt.api.cmdb.system.np6xlite.update(
             ...     name='obj1',
             ...     payload_dict={'comment': 'Updated'}
             ... )
             
-            >>> # Update with parameters
+            >>> # PUT - Update with parameters
             >>> result = fgt.api.cmdb.system.np6xlite.update(
             ...     name='obj1',
             ...     comment='Updated'
