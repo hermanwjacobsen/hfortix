@@ -118,6 +118,8 @@ class InternetServiceCustom:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """Update an Internet Service Custom entry by name."""
+        name_str = self._client.validate_mkey(name, "name")
+        
         params: dict[str, Any] = {}
         for key, value in {
             "action": action,
