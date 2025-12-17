@@ -21,7 +21,8 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
 **🔥 Recent Highlights:**
-- ✨ **Enhanced Reliability** (v0.3.11+): Automatic retry logic with exponential backoff, HTTP/2 support, connection pooling
+- ✨ **Enhanced Reliability** (v0.3.12): Automatic retry logic with exponential backoff, HTTP/2 support, connection pooling
+- ✨ **httpx Migration** (v0.3.12): Modern HTTP client with better performance and async-ready architecture
 - ✨ **Monitor API** (v0.3.11): 6 categories with 50+ monitoring endpoints (firewall stats, sessions, EMS, etc.)
 - ✨ **Log Configuration** (v0.3.11): 56 endpoints for comprehensive logging setup
 - ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
@@ -32,7 +33,15 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **📖 Full release notes:** See [CHANGELOG.md](CHANGELOG.md) for complete version history.
 
-**Latest Features (v0.3.11):**
+**Latest Features (v0.3.12):**
+- ✨ **HTTP/2 Support**: Modern httpx library with connection multiplexing for improved performance
+- ✨ **Automatic Retry Logic**: Exponential backoff (1s, 2s, 4s, 8s, 30s max) for transient failures
+- ✨ **Enhanced Reliability**: Retries on connection errors, timeouts, rate limits (429), server errors (500-504)
+- ✨ **Context Manager Support**: Use `with HTTPClient(...) as client:` for automatic cleanup
+- ✨ **Retry Statistics**: Track retry attempts by reason and endpoint
+- ✨ **Better Error Handling**: Graceful fallback for non-JSON responses, improved logging
+
+**Previous Release (v0.3.11):**
 - ✨ **FTP Proxy Category**: FTP proxy configuration (1 endpoint)
   - **explicit**: FTP proxy explicit configuration with SSL/TLS support
   - FTPS support, SSL certificate management, custom encryption
@@ -487,7 +496,7 @@ Exception
 
 ## 📝 Version
 
-Current version: **0.3.11** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
+Current version: **0.3.12** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
 
 ```python
 from hfortix import get_version
