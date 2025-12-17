@@ -421,7 +421,7 @@ mypy fortinet/
 ```python
 import logging
 
-# Enable debug logging for requests
+# Enable debug logging for HTTP client
 logging.basicConfig(level=logging.DEBUG)
 ```
 

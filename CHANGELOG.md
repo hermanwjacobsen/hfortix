@@ -7,6 +7,73 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **BREAKING: Migrated from requests to httpx** - Complete HTTP client library migration
+  - Replaced `requests` library with modern `httpx` library
+  - **HTTP/2 Support Enabled** - Improved performance with connection multiplexing
+  - More explicit timeout configuration using `httpx.Timeout` object
+  - Connection pooling: 100 max connections, 20 keepalive connections
+  - Updated exception handling:
+    * `ConnectionError` → `httpx.ConnectError, httpx.NetworkError`
+    * `Timeout` → `httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout, httpx.ConnectTimeout`
+    * `requests.HTTPError` → `httpx.HTTPStatusError`
+  - Response API changes: `response.ok` → `response.is_success`
+  - Requires: `httpx[http2]>=0.27.0` (previously `requests>=2.31.0`)
+  - **No API Changes**: All 644 endpoint methods work unchanged
+  - Better foundation for future async support
+
+### Added
+
+- **Automatic Retry Logic** - HTTPClient now automatically retries failed requests with exponential backoff
+  - Retries on transient failures: connection errors, timeouts, rate limits (429), server errors (500, 502, 503, 504)
+  - Configurable via `max_retries` parameter (default: 3 attempts)
+  - Exponential backoff: 1s, 2s, 4s, 8s (capped at 30s)
+  - Respects `Retry-After` header for rate limit responses
+  - Detailed retry logging at INFO level
+  - Improves reliability in unstable network conditions
+
+- **Context Manager Support** - HTTPClient can now be used with `with` statement
+  - Automatically closes client on exit: `with HTTPClient(...) as client:`
+  - Ensures proper resource cleanup
+  - Implements `__enter__` and `__exit__` methods
+
+- **Enhanced Documentation**
+  - Query parameter encoding behavior documented in class docstring
+  - Timeout configuration explained with detailed examples
+  - Path encoding strategy documented (safe='/%' prevents double-encoding)
+  - Binary error response handling documented
+
+### Fixed
+
+- **URL Normalization** - Base URL now has trailing slashes stripped during initialization
+  - Prevents potential double-slash issues like `https://host//api/v2/...`
+  - Ensures consistent URL construction across all requests
+  
+- **HTTP Client Path Normalization** - Fixed 404 errors when endpoint methods pass paths with leading slashes
+  - HTTPClient now strips leading slashes from paths before URL construction
+  - Prevents double-slash URLs (e.g., `/api/v2/monitor//firewall/acl`)
+  - Backwards compatible: works with both `"firewall/acl"` and `"/firewall/acl"` path formats
+  - Affects `request()` and `get_binary()` methods
+  - Resolves `ResourceNotFoundError` for monitor endpoints like `firewall.acl.list()`
+
+- **Path Encoding Implementation** - Paths are now properly URL-encoded
+  - Special characters in paths are encoded (e.g., spaces → `%20`, `@` → `%40`)
+  - Safe characters: `/` (path separator) and `%` (already-encoded marker)
+  - Prevents double-encoding of pre-encoded components
+  - Example: `"user@domain"` → `"user%40domain"`
+
+- **Binary Response Error Handling** - Improved error handling for non-JSON responses
+  - Added try/except around JSON parsing in `_handle_response_errors()`
+  - Falls back to standard HTTP error for binary/HTML error pages
+  - Logs response size for debugging
+  - Handles proxy/firewall error pages gracefully
+
+- **Rate Limit Handling** - HTTP 429 responses now properly handled with retry logic
+  - Respects `Retry-After` header from server
+  - Falls back to exponential backoff if header not present
+  - Prevents overwhelming servers during rate limiting
+
 ## [0.3.11] - 2025-12-17
 
 ### Added - December 17, 2025

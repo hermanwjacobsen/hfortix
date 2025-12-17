@@ -4,7 +4,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 [![PyPI version](https://badge.fury.io/py/hfortix.svg)](https://pypi.org/project/hfortix/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-blue.svg)](LICENSE)
 
 ## 🎯 Current Status
 
@@ -20,7 +20,19 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
-**Latest Features (v0.3.11-beta):**
+**🔥 Recent Highlights:**
+- ✨ **Enhanced Reliability** (v0.3.11+): Automatic retry logic with exponential backoff, HTTP/2 support, connection pooling
+- ✨ **Monitor API** (v0.3.11): 6 categories with 50+ monitoring endpoints (firewall stats, sessions, EMS, etc.)
+- ✨ **Log Configuration** (v0.3.11): 56 endpoints for comprehensive logging setup
+- ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
+- ✨ **Configurable Timeouts** (v0.3.10): Customize connection and read timeouts for slow networks
+- ✨ **URL Encoding** (v0.3.10): Automatic handling of special characters in object names
+- ✨ **Full Response Access** (v0.3.9): `raw_json=True` parameter on all 250+ API methods
+- ✨ **Advanced Logging** (v0.3.9): Global and per-instance logging with automatic data sanitization
+
+**📖 Full release notes:** See [CHANGELOG.md](CHANGELOG.md) for complete version history.
+
+**Latest Features (v0.3.11):**
 - ✨ **FTP Proxy Category**: FTP proxy configuration (1 endpoint)
   - **explicit**: FTP proxy explicit configuration with SSL/TLS support
   - FTPS support, SSL certificate management, custom encryption
@@ -79,6 +91,8 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Modular Architecture**: Each product module can be used independently
 - **PyPI Installation**: `pip install hfortix` - simple and straightforward
 - **Comprehensive Exception Handling**: 387+ FortiOS error codes with detailed descriptions
+- **Automatic Retry Logic**: Built-in retry mechanism with exponential backoff for transient failures
+- **HTTP/2 Support**: Modern HTTP client with connection multiplexing for improved performance
 - **Type-Safe**: Proper exception hierarchy and error handling
 - **Simplified APIs**: Auto-conversion for common patterns (e.g., address group members)
 - **Well-Documented**: Extensive API documentation and examples
@@ -473,7 +487,7 @@ Exception
 
 ## 📝 Version
 
-Current version: **0.3.8**
+Current version: **0.3.11** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
 
 ```python
 from hfortix import get_version
@@ -490,7 +504,19 @@ print(get_version())
 
 ## 📄 License
 
-MIT
+Proprietary License - Free for personal, educational, and business use.
+
+**You may:**
+- Use for personal projects and learning
+- Use in your business operations
+- Deploy in client environments
+- Use in managed services and technical support
+
+**You may not:**
+- Sell the software itself as a standalone product
+- Redistribute as your own product
+
+See [CHANGELOG.md](CHANGELOG.md) v0.2.0 for details.
 
 ## 🔗 Links
 
@@ -503,7 +529,10 @@ MIT
 - **Use API Tokens**: Only token-based authentication is supported for FortiOS REST API
 - **Error Handling**: Always catch specific exceptions for better error handling
 - **Verify SSL**: Set `verify=True` in production (requires valid certificates)
-- **Rate Limiting**: Be aware of API rate limits (HTTP 429 errors)
+- **Automatic Retries**: Built-in retry logic handles transient failures (429, 500, 502, 503, 504)
+- **Connection Pooling**: HTTP/2 support with connection multiplexing for better performance
+- **Timeout Configuration**: Customize `connect_timeout` and `read_timeout` for your environment
+- **Logging**: Use `hfortix.set_log_level('INFO')` for request/response debugging
 
 ## ⚙️ Configuration
 

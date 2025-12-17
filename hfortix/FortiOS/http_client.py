@@ -4,16 +4,19 @@ Internal HTTP Client for FortiOS API
 This module contains the HTTPClient class which handles all HTTP communication
 with FortiGate devices. It is an internal implementation detail and not part
 of the public API.
+
+Now powered by httpx for better performance, HTTP/2 support, and modern async capabilities.
 """
 
 from __future__ import annotations
 
 import logging
 import time
+import uuid
 from typing import Any, Optional, TypeAlias, Union
 from urllib.parse import quote
 
-import requests
+import httpx
 
 logger = logging.getLogger("hfortix.http")
 
@@ -55,6 +58,19 @@ class HTTPClient:
     - SSL verification
     - Request/response handling
     - Error handling
+    - Automatic retry with exponential backoff
+    - Context manager support (use with 'with' statement)
+
+    Query Parameter Encoding:
+        The requests library automatically handles query parameter encoding:
+        - Lists: Encoded as repeated parameters (e.g., ['a', 'b'] → ?key=a&key=b)
+        - Booleans: Converted to lowercase strings ('true'/'false')
+        - None values: Should be filtered out before passing to params
+        - Special characters: URL-encoded automatically
+        
+    Path Encoding:
+        Paths are URL-encoded with / and % as safe characters to prevent
+        double-encoding of already-encoded components.
 
     This class is internal and not exposed to users.
     """
@@ -81,27 +97,44 @@ class HTTPClient:
             connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
             read_timeout: Timeout for reading response in seconds (default: 300.0)
         """
-        self._url = url
+        # Normalize URL: remove trailing slashes to prevent double-slash issues
+        self._url = url.rstrip('/')
         self._verify = verify
         self._vdom = vdom
         self._max_retries = max_retries
         self._connect_timeout = connect_timeout
         self._read_timeout = read_timeout
-        self._session = requests.Session()
-        self._session.verify = verify
+        
+        # Initialize httpx client with proper timeout configuration
+        self._client = httpx.Client(
+            timeout=httpx.Timeout(
+                connect=connect_timeout,
+                read=read_timeout,
+                write=30.0,  # Default write timeout
+                pool=10.0    # Default pool timeout
+            ),
+            verify=verify,
+            http2=True,  # Enable HTTP/2 support
+            limits=httpx.Limits(
+                max_connections=100,
+                max_keepalive_connections=20
+            )
+        )
 
-        if not verify:
-            import urllib3
-
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        # Initialize retry statistics
+        self._retry_stats = {
+            'total_retries': 0,
+            'retry_by_reason': {},
+            'retry_by_endpoint': {},
+        }
 
         # Set token if provided
         if token:
-            self._session.headers["Authorization"] = f"Bearer {token}"
+            self._client.headers["Authorization"] = f"Bearer {token}"
 
         logger.debug(
-            "HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs)",
-            url,
+            "HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, http2=enabled)",
+            self._url,
             max_retries,
             connect_timeout,
             read_timeout,
@@ -109,11 +142,21 @@ class HTTPClient:
 
     @staticmethod
     def _sanitize_data(data: Optional[dict[str, Any]]) -> dict[str, Any]:
-        """Remove sensitive fields from data before logging"""
+        """
+        Remove sensitive fields from data before logging (recursive)
+        
+        Recursively sanitizes nested dictionaries and lists to prevent
+        logging sensitive information like passwords, tokens, keys, etc.
+        
+        Args:
+            data: Data to sanitize
+            
+        Returns:
+            Sanitized copy of data with sensitive values redacted
+        """
         if not data:
             return {}
 
-        safe = dict(data)
         sensitive_keys = [
             "password",
             "passwd",
@@ -125,18 +168,91 @@ class HTTPClient:
             "psk",
         ]
 
-        for key in list(safe.keys()):
-            if any(s in key.lower() for s in sensitive_keys):
-                safe[key] = "***REDACTED***"
+        def sanitize_recursive(obj: Any) -> Any:
+            """Recursively sanitize nested structures"""
+            if isinstance(obj, dict):
+                result = {}
+                for k, v in obj.items():
+                    if any(s in k.lower() for s in sensitive_keys):
+                        result[k] = "***REDACTED***"
+                    else:
+                        result[k] = sanitize_recursive(v)
+                return result
+            elif isinstance(obj, list):
+                return [sanitize_recursive(item) for item in obj]
+            else:
+                return obj
 
-        return safe
+        return sanitize_recursive(data)
 
-    def _handle_response_errors(self, response: requests.Response) -> None:
+    def _build_url(self, api_type: str, path: str) -> str:
+        """
+        Build complete API URL from components
+        
+        Centralizes URL construction logic with proper encoding.
+        
+        Args:
+            api_type: API type (cmdb, monitor, log, service)
+            path: Endpoint path
+            
+        Returns:
+            Complete URL string
+        """
+        # Normalize path: remove leading slash
+        path = path.lstrip('/') if isinstance(path, str) else path
+        
+        # URL encode the path, treating / and % as safe characters
+        encoded_path = quote(str(path), safe='/%') if isinstance(path, str) else path
+        
+        return f"{self._url}/api/v2/{api_type}/{encoded_path}"
+
+    def get_retry_stats(self) -> dict[str, Any]:
+        """
+        Get retry statistics
+        
+        Returns:
+            dict: Retry statistics including:
+                - total_retries: Total number of retries across all requests
+                - retry_by_reason: Count of retries grouped by reason
+                - retry_by_endpoint: Count of retries grouped by endpoint
+        
+        Example:
+            >>> stats = client.get_retry_stats()
+            >>> print(f"Total retries: {stats['total_retries']}")
+            >>> print(f"Timeout retries: {stats['retry_by_reason'].get('Timeout', 0)}")
+        """
+        return {
+            'total_retries': self._retry_stats['total_retries'],
+            'retry_by_reason': self._retry_stats['retry_by_reason'].copy(),
+            'retry_by_endpoint': self._retry_stats['retry_by_endpoint'].copy(),
+        }
+
+    def _record_retry(self, reason: str, endpoint: str) -> None:
+        """
+        Record retry statistics
+        
+        Args:
+            reason: Reason for retry (e.g., 'ConnectionError', 'Timeout', 'HTTP 429')
+            endpoint: Endpoint being retried
+        """
+        self._retry_stats['total_retries'] += 1
+        
+        # Track by reason
+        if reason not in self._retry_stats['retry_by_reason']:
+            self._retry_stats['retry_by_reason'][reason] = 0
+        self._retry_stats['retry_by_reason'][reason] += 1
+        
+        # Track by endpoint
+        if endpoint not in self._retry_stats['retry_by_endpoint']:
+            self._retry_stats['retry_by_endpoint'][endpoint] = 0
+        self._retry_stats['retry_by_endpoint'][endpoint] += 1
+
+    def _handle_response_errors(self, response: httpx.Response) -> None:
         """
         Handle HTTP response errors consistently using FortiOS error handling
 
         Args:
-            response: requests.Response object
+            response: httpx.Response object
 
         Raises:
             DuplicateEntryError: If entry already exists (-5, -15, -100)
@@ -152,12 +268,12 @@ class HTTPClient:
             ServerError: If server error (HTTP 500)
             APIError: For other API errors
         """
-        if not response.ok:
+        if not response.is_success:
             try:
                 from .exceptions_forti import (get_error_description,
                                                raise_for_status)
 
-                # Parse JSON response
+                # Try to parse JSON response (most FortiOS errors are JSON)
                 json_response = response.json()
 
                 # Add error description if error code present
@@ -182,9 +298,128 @@ class HTTPClient:
                 raise_for_status(json_response)
 
             except ValueError:
-                # If response is not JSON, raise standard HTTP error
-                logger.error("Request failed: HTTP %d (non-JSON response)", response.status_code)
+                # Response is not JSON (could be binary or HTML error page)
+                # This can happen with binary endpoints or proxy/firewall errors
+                logger.error(
+                    "Request failed: HTTP %d (non-JSON response, %d bytes)",
+                    response.status_code,
+                    len(response.content),
+                )
                 response.raise_for_status()
+
+    def _should_retry(self, error: Exception, attempt: int, endpoint: str = "") -> bool:
+        """
+        Determine if a request should be retried based on error type and attempt number
+
+        Args:
+            error: The exception that occurred
+            attempt: Current attempt number (0-indexed)
+            endpoint: Endpoint being accessed (for statistics)
+
+        Returns:
+            True if request should be retried, False otherwise
+        """
+        if attempt >= self._max_retries:
+            return False
+
+        # Retry on connection errors and timeouts
+        if isinstance(error, (httpx.ConnectError, httpx.NetworkError)):
+            reason = type(error).__name__
+            logger.warning(
+                "Retryable connection error on attempt %d/%d: %s",
+                attempt + 1,
+                self._max_retries + 1,
+                str(error),
+            )
+            self._record_retry(reason, endpoint)
+            return True
+        
+        if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
+            # Differentiate timeout types
+            if isinstance(error, httpx.ConnectTimeout):
+                reason = f"Timeout (connect, {self._connect_timeout}s)"
+                logger.warning(
+                    "Connection timeout after %ds on attempt %d/%d",
+                    self._connect_timeout,
+                    attempt + 1,
+                    self._max_retries + 1,
+                )
+            elif isinstance(error, httpx.ReadTimeout):
+                reason = f"Timeout (read, {self._read_timeout}s)"
+                logger.warning(
+                    "Read timeout after %ds on attempt %d/%d",
+                    self._read_timeout,
+                    attempt + 1,
+                    self._max_retries + 1,
+                )
+            elif isinstance(error, httpx.WriteTimeout):
+                reason = "Timeout (write)"
+                logger.warning(
+                    "Write timeout on attempt %d/%d",
+                    attempt + 1,
+                    self._max_retries + 1,
+                )
+            else:
+                reason = f"Timeout ({type(error).__name__})"
+                logger.warning(
+                    "Timeout on attempt %d/%d: %s",
+                    attempt + 1,
+                    self._max_retries + 1,
+                    type(error).__name__,
+                )
+            self._record_retry(reason, endpoint)
+            return True
+
+        # Retry on rate limit errors (429) and server errors (500, 502, 503, 504)
+        if isinstance(error, httpx.HTTPStatusError):
+            http_error: httpx.HTTPStatusError = error
+            response = http_error.response
+            if response is not None:
+                status_code = response.status_code
+                if status_code in (429, 500, 502, 503, 504):
+                    reason = f"HTTP {status_code}"
+                    logger.warning(
+                        "Retryable HTTP %d on attempt %d/%d",
+                        status_code,
+                        attempt + 1,
+                        self._max_retries + 1,
+                    )
+                    self._record_retry(reason, endpoint)
+                    return True
+
+        return False
+
+    def _get_retry_delay(self, attempt: int, response: Optional[httpx.Response] = None) -> float:
+        """
+        Calculate retry delay with exponential backoff
+
+        Args:
+            attempt: Current attempt number (0-indexed)
+            response: Optional response object (to check Retry-After header)
+
+        Returns:
+            Delay in seconds before next retry
+        """
+        # Check for Retry-After header (for 429 rate limits)
+        if response is not None:
+            # Log rate limit status if available
+            rate_limit_remaining = response.headers.get('X-RateLimit-Remaining')
+            if rate_limit_remaining:
+                logger.debug("Rate limit remaining: %s", rate_limit_remaining)
+            
+            if "Retry-After" in response.headers:
+                try:
+                    retry_after = int(response.headers["Retry-After"])
+                    logger.debug("Using Retry-After header: %d seconds", retry_after)
+                    return float(retry_after)
+                except (ValueError, TypeError):
+                    pass
+
+        # Exponential backoff: 1s, 2s, 4s, 8s, ...
+        # Cap at 30 seconds to avoid excessive delays
+        delay = min(2 ** attempt, 30.0)
+        logger.debug("Exponential backoff delay: %.1f seconds", delay)
+        return delay
 
     def request(
         self,
@@ -195,6 +430,7 @@ class HTTPClient:
         params: Optional[dict[str, Any]] = None,
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
+        request_id: Optional[str] = None,
     ) -> dict[str, Any]:
         """
         Generic request method for all API calls
@@ -212,11 +448,17 @@ class HTTPClient:
             dict: If raw_json=False, returns response['results'] (or full response if no 'results' key)
                   If raw_json=True, returns complete API response with status, http_status, etc.
         """
-        # URL encode the entire path, treating / as safe (path separator)
-        # Note: Individual path components may already be encoded by endpoint files
-        # using encode_path_component(), so we only encode other special chars here
-        # Do NOT double-encode - quote with safe='/' leaves already-encoded %XX sequences alone
-        url = f"{self._url}/api/v2/{api_type}/{path}"
+        # Normalize path: remove any leading slash so callers may pass
+        # either 'firewall/acl' or '/firewall/acl' without causing a double-slash
+        # in the constructed URL. Keep internal separators intact.
+        path = path.lstrip('/') if isinstance(path, str) else path
+
+        # URL encode the path, treating / as safe (path separator)
+        # Individual path components may already be encoded by endpoint files using
+        # encode_path_component(), so quote() with safe='/' won't double-encode
+        # already-encoded %XX sequences (e.g., %2F stays as %2F)
+        encoded_path = quote(str(path), safe='/%') if isinstance(path, str) else path
+        url = f"{self._url}/api/v2/{api_type}/{encoded_path}"
         params = params or {}
 
         # Only add vdom parameter if explicitly specified
@@ -238,37 +480,79 @@ class HTTPClient:
         # Track timing
         start_time = time.time()
 
-        # Make request with configured timeouts
-        res = self._session.request(
-            method=method,
-            url=url,
-            json=data if data else None,
-            params=params if params else None,
-            timeout=(self._connect_timeout, self._read_timeout),
-        )
+        # Retry loop with exponential backoff
+        last_error = None
+        for attempt in range(self._max_retries + 1):
+            try:
+                # Make request with httpx client
+                res = self._client.request(
+                    method=method,
+                    url=url,
+                    json=data if data else None,
+                    params=params if params else None,
+                )
 
-        # Calculate duration
-        duration = time.time() - start_time
+                # Calculate duration
+                duration = time.time() - start_time
 
-        # Handle errors
-        self._handle_response_errors(res)
+                # Handle errors (will raise exception if error response)
+                self._handle_response_errors(res)
 
-        # Log response (INFO level)
-        logger.info("%s %s → %d (%.3fs)", method.upper(), full_path, res.status_code, duration)
+                # Log response (INFO level)
+                logger.info("%s %s → %d (%.3fs)", method.upper(), full_path, res.status_code, duration)
 
-        # Warn about slow requests (WARNING level)
-        if duration > 2.0:
-            logger.warning("Slow request: %s %s took %.3fs", method.upper(), full_path, duration)
+                # Warn about slow requests (WARNING level)
+                if duration > 2.0:
+                    logger.warning("Slow request: %s %s took %.3fs", method.upper(), full_path, duration)
 
-        # Parse JSON response
-        json_response = res.json()
+                # Parse JSON response
+                json_response = res.json()
 
-        # Return full response if raw_json=True, otherwise extract results
-        if raw_json:
-            return json_response
-        else:
-            # Return 'results' field if present, otherwise full response
-            return json_response.get("results", json_response)
+                # Return full response if raw_json=True, otherwise extract results
+                if raw_json:
+                    return json_response
+                else:
+                    # Return 'results' field if present, otherwise full response
+                    return json_response.get("results", json_response)
+
+            except Exception as e:
+                last_error = e
+
+                # Check if we should retry
+                if self._should_retry(e, attempt):
+                    # Calculate delay
+                    response_obj = getattr(e, 'response', None) if isinstance(e, httpx.HTTPStatusError) else None
+                    delay = self._get_retry_delay(attempt, response_obj)
+
+                    # Log retry
+                    logger.info(
+                        "Retrying %s %s after %.1fs (attempt %d/%d)",
+                        method.upper(),
+                        full_path,
+                        delay,
+                        attempt + 2,
+                        self._max_retries + 1,
+                    )
+
+                    # Wait before retry
+                    time.sleep(delay)
+                    continue
+                else:
+                    # Don't retry, raise the error
+                    raise
+
+        # If we've exhausted all retries, raise the last error
+        if last_error:
+            logger.error(
+                "Request failed after %d attempts: %s %s",
+                self._max_retries + 1,
+                method.upper(),
+                full_path,
+            )
+            raise last_error
+
+        # This should never be reached, but satisfies type checker
+        raise RuntimeError("Request loop completed without success or error")
 
     def get(
         self,
@@ -300,6 +584,7 @@ class HTTPClient:
         Returns:
             Raw binary response data
         """
+        path = path.lstrip('/') if isinstance(path, str) else path
         url = f"{self._url}/api/v2/{api_type}/{path}"
         params = params or {}
 
@@ -310,7 +595,7 @@ class HTTPClient:
             params["vdom"] = self._vdom
 
         # Make request
-        res = self._session.get(url, params=params if params else None)
+        res = self._client.get(url, params=params if params else None)
 
         # Handle errors
         self._handle_response_errors(res)
@@ -477,7 +762,16 @@ class HTTPClient:
         """
         return {k: v for k, v in kwargs.items() if v is not None}
 
+    def __enter__(self) -> "HTTPClient":
+        """Enter context manager - returns self for use in 'with' statements"""
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """Exit context manager - ensures session is closed"""
+        self.close()
+
     def close(self) -> None:
         """Close the HTTP session and release resources"""
-        if self._session:
-            self._session.close()
+        if self._client:
+            self._client.close()
+            logger.debug("HTTP client session closed")
