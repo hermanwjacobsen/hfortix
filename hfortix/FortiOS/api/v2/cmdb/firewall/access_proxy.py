@@ -31,25 +31,6 @@ class AccessProxy:
         self._client = client
         self._path = "firewall/access-proxy"
 
-    def list(
-        self, vdom: str | None = None, raw_json: bool = False, **params: Any
-    ) -> dict[str, Any]:
-        """
-        List all IPv4 access proxies
-
-        Args:
-            vdom: Virtual domain name
-            **params: Additional query parameters
-
-        Returns:
-            API response containing list of access proxies
-
-        Example:
-            >>> proxies = fgt.cmdb.firewall.access_proxy.list()
-            >>> print(f"Total proxies: {len(proxies['results'])}")
-        """
-        return self._client.get("cmdb", self._path, params=params, vdom=vdom, raw_json=raw_json)
-
     def get(
         self,
         name: str | None = None,

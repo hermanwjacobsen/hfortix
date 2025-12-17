@@ -31,26 +31,6 @@ class DosPolicy:
         self._client = client
         self._path = "firewall/DoS-policy"
 
-    def list(
-        self, vdom: str | None = None, raw_json: bool = False, **params: Any
-    ) -> dict[str, Any]:
-        """
-        List all IPv4 DoS policies
-
-        Args:
-            vdom: Virtual domain name
-            raw_json: If True, return raw JSON response without unwrapping
-            **params: Additional query parameters
-
-        Returns:
-            API response containing list of DoS policies
-
-        Example:
-            >>> policies = fgt.cmdb.firewall.dos_policy.list()
-            >>> print(f"Total policies: {len(policies['results'])}")
-        """
-        return self._client.get("cmdb", self._path, vdom=vdom, params=params, raw_json=raw_json)
-
     def get(
         self,
         policyid: int | None = None,

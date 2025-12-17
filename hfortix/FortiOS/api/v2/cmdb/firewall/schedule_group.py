@@ -33,64 +33,6 @@ class ScheduleGroup:
         """
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all schedule groups.
-
-        Args:
-            filter: Filter results
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of property names to include
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # List all schedule groups
-            >>> result = fgt.cmdb.firewall.schedule.group.list()
-            >>> for group in result['results']:
-            ...     print(f"{group['name']}: {len(group.get('member', []))} members")
-
-            >>> # List with specific fields
-            >>> result = fgt.cmdb.firewall.schedule.group.list(format=['name', 'member'])
-        """
-        params = {}
-        param_map = {
-            "filter": filter,
-            "start": start,
-            "count": count,
-            "with_meta": with_meta,
-            "datasource": datasource,
-            "format": format,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall.schedule/group"
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
     def get(
         self,
         name: Optional[str] = None,

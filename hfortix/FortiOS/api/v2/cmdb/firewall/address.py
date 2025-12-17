@@ -32,31 +32,6 @@ class Address:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all IPv4 address objects.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters (filter, format, count, etc.)
-
-        Returns:
-            API response dict with list of address objects
-
-        Examples:
-            >>> # List all addresses
-            >>> result = fgt.cmdb.firewall.address.list()
-            >>> for addr in result['results']:
-            ...     print(f"{addr['name']}: {addr.get('subnet', 'N/A')}")
-
-            >>> # List with filters
-            >>> result = fgt.cmdb.firewall.address.list(
-            ...     filter='type==ipmask',
-            ...     format=['name', 'subnet', 'comment']
-            ... )
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

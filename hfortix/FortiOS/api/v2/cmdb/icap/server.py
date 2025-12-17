@@ -26,29 +26,9 @@ class Server:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ICAP servers.
-
-        Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing list of ICAP servers
-
-        Examples:
-            >>> # List all servers
-            >>> servers = fgt.api.cmdb.icap.server.list()
-            >>> for server in servers['results']:
-            ...     print(server['name'], server['ip-address'])
-        """
-        path = "icap/server"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
@@ -57,7 +37,7 @@ class Server:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get specific ICAP server.
+        Get ICAP server(s) - List all or get specific.
 
         Args:
             name: Server name
@@ -88,7 +68,9 @@ class Server:
                 params[key] = value
         params.update(kwargs)
 
-        path = f"icap/server/{encode_path_component(name)}"
+        path = "icap/server"
+        if name is not None:
+            path = f"{path}/{encode_path_component(str(name))}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def post(
@@ -211,7 +193,7 @@ class Server:
 
     def put(
         self,
-        name: str,
+        name: Optional[str] = None,
         data_dict: Optional[dict[str, Any]] = None,
         addr_type: Optional[str] = None,
         ip_address: Optional[str] = None,
@@ -315,10 +297,12 @@ class Server:
 
         data.update(kwargs)
 
-        path = f"icap/server/{encode_path_component(name)}"
+        path = "icap/server"
+        if name is not None:
+            path = f"{path}/{encode_path_component(str(name))}"
         return self._client.put("cmdb", path, data=data, vdom=vdom)
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete ICAP server.
 
@@ -334,10 +318,12 @@ class Server:
             >>> result = fgt.api.cmdb.icap.server.delete('old-server')
             >>> print(result['status'])
         """
-        path = f"icap/server/{encode_path_component(name)}"
+        path = "icap/server"
+        if name is not None:
+            path = f"{path}/{encode_path_component(str(name))}"
         return self._client.delete("cmdb", path, vdom=vdom)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def exists(self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if ICAP server exists.
 

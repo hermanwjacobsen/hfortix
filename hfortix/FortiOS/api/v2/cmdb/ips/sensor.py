@@ -26,16 +26,30 @@ class Sensor:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """List all IPS sensors."""
-        path = "ips/sensor"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
     def get(
-        self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
+        self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
     ) -> dict[str, Any]:
-        """Get specific IPS sensor."""
-        path = f"ips/sensor/{encode_path_component(name)}"
+        """
+        Get IPS sensor(s) - List all or get specific.
+        
+        Args:
+            name: Sensor name (if specified, gets single sensor)
+            vdom: Virtual domain name or False for global
+            **kwargs: Additional parameters
+            
+        Returns:
+            Dictionary containing sensor configuration(s)
+            
+        Examples:
+            >>> # List all sensors
+            >>> sensors = fgt.api.cmdb.ips.sensor.get()
+            
+            >>> # Get specific sensor
+            >>> sensor = fgt.api.cmdb.ips.sensor.get('default')
+        """
+        path = "ips/sensor"
+        if name is not None:
+            path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def post(

@@ -111,25 +111,6 @@ class Dictionary:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
-        """
-        List all DLP dictionaries (convenience method).
-
-        Args:
-            vdom: Virtual Domain(s)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dictionary with all dictionaries
-
-        Examples:
-            >>> # List all dictionaries
-            >>> result = fgt.cmdb.dlp.dictionary.list()
-            >>> for d in result['results']:
-            ...     print(f"{d['name']}: {d.get('comment', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,

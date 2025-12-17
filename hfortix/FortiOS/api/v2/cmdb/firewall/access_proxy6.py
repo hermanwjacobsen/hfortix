@@ -31,25 +31,6 @@ class AccessProxy6:
         self._client = client
         self._path = "firewall/access-proxy6"
 
-    def list(
-        self, vdom: str | None = None, raw_json: bool = False, **params: Any
-    ) -> dict[str, Any]:
-        """
-        List all IPv6 access proxies
-
-        Args:
-            vdom: Virtual domain name
-            **params: Additional query parameters
-
-        Returns:
-            API response containing list of IPv6 access proxies
-
-        Example:
-            >>> proxies = fgt.cmdb.firewall.access_proxy6.list()
-            >>> print(f"Total IPv6 proxies: {len(proxies['results'])}")
-        """
-        return self._client.get("cmdb", self._path, params=params, vdom=vdom, raw_json=raw_json)
-
     def get(
         self,
         name: str | None = None,

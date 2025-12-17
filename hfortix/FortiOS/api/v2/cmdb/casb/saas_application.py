@@ -33,25 +33,6 @@ class SaasApplication:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CASB SaaS applications
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of SaaS applications
-
-        Examples:
-            >>> # List all SaaS applications
-            >>> apps = fgt.cmdb.casb.saas_application.list()
-            >>> for app in apps['results']:
-            ...     print(f"{app['name']}: {app.get('type', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

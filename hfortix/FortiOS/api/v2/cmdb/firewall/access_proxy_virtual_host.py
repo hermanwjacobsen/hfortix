@@ -31,26 +31,6 @@ class AccessProxyVirtualHost:
         self._client = client
         self._path = "firewall/access-proxy-virtual-host"
 
-    def list(
-        self, vdom: str | None = None, raw_json: bool = False, **params: Any
-    ) -> dict[str, Any]:
-        """
-        List all access proxy virtual hosts
-
-        Args:
-            vdom: Virtual domain name
-            raw_json: If True, return raw JSON response without unwrapping
-            **params: Additional query parameters
-
-        Returns:
-            API response containing list of virtual hosts
-
-        Example:
-            >>> vhosts = fgt.cmdb.firewall.access_proxy_virtual_host.list()
-            >>> print(f"Total virtual hosts: {len(vhosts['results'])}")
-        """
-        return self._client.get("cmdb", self._path, vdom=vdom, params=params, raw_json=raw_json)
-
     def get(
         self,
         name: str | None = None,

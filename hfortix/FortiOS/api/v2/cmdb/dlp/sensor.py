@@ -108,25 +108,6 @@ class Sensor:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
-        """
-        List all DLP sensors (convenience method).
-
-        Args:
-            vdom: Virtual Domain(s)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dictionary with all sensors
-
-        Examples:
-            >>> # List all sensors
-            >>> result = fgt.cmdb.dlp.sensor.list()
-            >>> for sensor in result['results']:
-            ...     print(f"{sensor['name']}: {sensor.get('comment', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,

@@ -40,25 +40,6 @@ class Profile:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CASB profiles
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of CASB profiles
-
-        Examples:
-            >>> # List all CASB profiles
-            >>> profiles = fgt.cmdb.casb.profile.list()
-            >>> for profile in profiles['results']:
-            ...     print(f"{profile['name']}: {profile.get('comment', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

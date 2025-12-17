@@ -26,29 +26,9 @@ class Profile:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ICAP profiles.
-
-        Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing list of ICAP profiles
-
-        Examples:
-            >>> # List all profiles
-            >>> profiles = fgt.api.cmdb.icap.profile.list()
-            >>> for profile in profiles['results']:
-            ...     print(profile['name'])
-        """
-        path = "icap/profile"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
@@ -57,10 +37,10 @@ class Profile:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get specific ICAP profile.
+        Get ICAP profile(s) - List all or get specific.
 
         Args:
-            name: Profile name
+            name: Profile name (if specified, gets single profile)
             datasource: Include datasource information
             with_meta: Include metadata
             skip: Skip hidden properties
@@ -69,9 +49,12 @@ class Profile:
             **kwargs: Additional parameters
 
         Returns:
-            Dictionary containing profile configuration
+            Dictionary containing profile configuration(s)
 
         Examples:
+            >>> # List all profiles
+            >>> profiles = fgt.api.cmdb.icap.profile.get()
+            
             >>> # Get specific profile
             >>> profile = fgt.api.cmdb.icap.profile.get('default')
             >>> print(profile['request'])
@@ -88,7 +71,9 @@ class Profile:
                 params[key] = value
         params.update(kwargs)
 
-        path = f"icap/profile/{encode_path_component(name)}"
+        path = "icap/profile"
+        if name is not None:
+            path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def post(

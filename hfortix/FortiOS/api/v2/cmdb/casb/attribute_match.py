@@ -33,27 +33,6 @@ class AttributeMatch:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all CASB attribute match rules
-
-        Args:
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with list of attribute match rules
-
-        Examples:
-            >>> # List all attribute match rules
-            >>> rules = fgt.cmdb.casb.attribute_match.list()
-            >>> print(f"Total rules: {len(rules['results'])}")
-
-            >>> # List with specific VDOM
-            >>> rules = fgt.cmdb.casb.attribute_match.list(vdom='root')
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

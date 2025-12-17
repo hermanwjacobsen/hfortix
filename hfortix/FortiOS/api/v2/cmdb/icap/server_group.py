@@ -26,29 +26,9 @@ class ServerGroup:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all ICAP server groups.
-
-        Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing list of ICAP server groups
-
-        Examples:
-            >>> # List all server groups
-            >>> groups = fgt.api.cmdb.icap.server_group.list()
-            >>> for group in groups['results']:
-            ...     print(group['name'], group['ldb-method'])
-        """
-        path = "icap/server-group"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
@@ -57,10 +37,10 @@ class ServerGroup:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get specific ICAP server group.
+        Get ICAP server group(s) - List all or get specific.
 
         Args:
-            name: Server group name
+            name: Server group name (if specified, gets single group)
             datasource: Include datasource information
             with_meta: Include metadata
             skip: Skip hidden properties
@@ -69,9 +49,12 @@ class ServerGroup:
             **kwargs: Additional parameters
 
         Returns:
-            Dictionary containing server group configuration
+            Dictionary containing server group configuration(s)
 
         Examples:
+            >>> # List all server groups
+            >>> groups = fgt.api.cmdb.icap.server_group.get()
+            
             >>> # Get specific server group
             >>> group = fgt.api.cmdb.icap.server_group.get('icap-group1')
             >>> print(group['ldb-method'], group['server-list'])
@@ -88,7 +71,9 @@ class ServerGroup:
                 params[key] = value
         params.update(kwargs)
 
-        path = f"icap/server-group/{encode_path_component(name)}"
+        path = "icap/server-group"
+        if name is not None:
+            path = f"{path}/{encode_path_component(name)}"
         return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def post(

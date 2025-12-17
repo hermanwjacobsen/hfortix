@@ -26,42 +26,30 @@ class Custom:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def get(
+        self, tag: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
+    ) -> dict[str, Any]:
         """
-        List all IPS custom signatures.
+        Get IPS custom signature(s) - List all or get specific.
 
         Args:
+            tag: Signature tag (if specified, gets single signature)
             vdom: Virtual domain name or False for global
             **kwargs: Additional parameters
 
         Returns:
-            Dictionary containing list of custom signatures
+            Dictionary containing signature configuration(s)
 
         Examples:
             >>> # List all custom signatures
-            >>> sigs = fgt.api.cmdb.ips.custom.list()
-        """
-        path = "ips/custom"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    def get(
-        self, tag: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get specific IPS custom signature.
-
-        Args:
-            tag: Signature tag
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing signature configuration
-
-        Examples:
+            >>> sigs = fgt.api.cmdb.ips.custom.get()
+            
+            >>> # Get specific signature
             >>> sig = fgt.api.cmdb.ips.custom.get('custom-sig-1')
         """
-        path = f"ips/custom/{encode_path_component(tag)}"
+        path = "ips/custom"
+        if tag is not None:
+            path = f"{path}/{encode_path_component(tag)}"
         return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def post(

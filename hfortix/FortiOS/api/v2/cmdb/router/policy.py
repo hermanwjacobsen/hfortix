@@ -8,8 +8,6 @@ if TYPE_CHECKING:
 class Policy:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        return self.get(vdom=vdom, **kwargs)
     def get(self, seq_num: Optional[int] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         path = "router/policy"
         if seq_num is not None:

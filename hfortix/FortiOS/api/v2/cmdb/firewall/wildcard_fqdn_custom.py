@@ -28,25 +28,6 @@ class Custom:
         """
         self._client = client
 
-    def list(self, vdom=None, raw_json: bool = False, **params) -> HTTPResponse:
-        """
-        Get list of wildcard FQDN custom addresses.
-
-        Args:
-            vdom (str, optional): Virtual domain name
-            raw_json: If True, return raw JSON response without unwrapping
-            **params: Additional query parameters (filter, format, etc.)
-
-        Returns:
-            dict: API response with list of wildcard FQDN addresses
-
-        Example:
-            result = fgt.cmdb.firewall.wildcard_fqdn.custom.list()
-        """
-        return self._client.get(
-            "cmdb", "firewall.wildcard-fqdn/custom", vdom=vdom, params=params, raw_json=raw_json
-        )
-
     def get(
         self,
         name: Optional[str] = None,

@@ -33,61 +33,6 @@ class ScheduleRecurring:
         """
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all recurring schedules.
-
-        Args:
-            filter: Filter results
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of property names to include
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # List all recurring schedules
-            >>> result = fgt.cmdb.firewall.schedule.recurring.list()
-            >>> for schedule in result['results']:
-            ...     print(f"{schedule['name']}: {schedule.get('day', [])} {schedule['start']} to {schedule['end']}")
-        """
-        params = {}
-        param_map = {
-            "filter": filter,
-            "start": start,
-            "count": count,
-            "with_meta": with_meta,
-            "datasource": datasource,
-            "format": format,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall.schedule/recurring"
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
     def get(
         self,
         name: Optional[str] = None,

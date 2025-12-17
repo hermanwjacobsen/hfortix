@@ -29,27 +29,6 @@ class Profile:
         self._client = client
         self._base_path = "diameter-filter/profile"
 
-    def list(
-        self,
-        params: Optional[dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-    ) -> dict[str, Any]:
-        """
-        List all diameter filter profiles
-
-        Args:
-            params: Optional query parameters
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            raw_json: If True, return raw JSON response without unwrapping
-
-        Returns:
-            List of diameter filter profiles
-        """
-        return self._client.get(
-            "cmdb", self._base_path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
     def get(
         self,
         name: Optional[str] = None,

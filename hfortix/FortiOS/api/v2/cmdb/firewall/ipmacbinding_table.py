@@ -33,70 +33,9 @@ class IpmacbindingTable:
         """
         self._client = client
 
-    def list(
-        self,
-        filter: Optional[str] = None,
-        start: Optional[int] = None,
-        count: Optional[int] = None,
-        with_meta: Optional[bool] = None,
-        datasource: Optional[bool] = None,
-        format: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        List all IP-MAC binding table entries.
-
-        Args:
-            filter: Filter results (e.g., 'status==enable')
-            start: Starting entry index
-            count: Maximum number of entries to return
-            with_meta: Include metadata
-            datasource: Include datasource information
-            format: List of property names to include
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # List all IP-MAC bindings
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.list()
-            >>> for entry in result['results']:
-            ...     print(f"{entry['seq-num']}: {entry['ip']} -> {entry['mac']}")
-
-            >>> # List only enabled bindings
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.list(filter='status==enable')
-
-            >>> # Get first 10 entries
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.list(start=0, count=10)
-        """
-        params = {}
-        param_map = {
-            "filter": filter,
-            "start": start,
-            "count": count,
-            "with_meta": with_meta,
-            "datasource": datasource,
-            "format": format,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall.ipmacbinding/table"
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
     def get(
         self,
-        seq_num: int,
+        seq_num: Optional[int] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         action: Optional[str] = None,
@@ -105,10 +44,10 @@ class IpmacbindingTable:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific IP-MAC binding entry by sequence number.
+        Get IP-MAC binding entries - List all or get specific.
 
         Args:
-            seq_num: Entry sequence number
+            seq_num: Entry sequence number (if specified, gets single entry)
             datasource: Include datasource information
             with_meta: Include metadata
             action: Special actions (default, schema)
@@ -119,6 +58,9 @@ class IpmacbindingTable:
             API response dict
 
         Examples:
+            >>> # List all binding entries
+            >>> result = fgt.cmdb.firewall.ipmacbinding.table.get()
+            
             >>> # Get binding entry 1
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.get(1)
             >>> print(f"IP: {result['results']['ip']}, MAC: {result['results']['mac']}")
@@ -139,7 +81,9 @@ class IpmacbindingTable:
 
         params.update(kwargs)
 
-        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
+        path = "firewall.ipmacbinding/table"
+        if seq_num is not None:
+            path = f"{path}/{encode_path_component(str(seq_num))}"
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )

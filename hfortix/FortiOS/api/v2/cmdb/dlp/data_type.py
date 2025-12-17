@@ -111,25 +111,6 @@ class DataType:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
-        """
-        List all DLP data types (convenience method).
-
-        Args:
-            vdom: Virtual Domain(s)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dictionary with all data types
-
-        Examples:
-            >>> # List all data types
-            >>> result = fgt.cmdb.dlp.data_type.list()
-            >>> for dt in result['results']:
-            ...     print(f"{dt['name']}: {dt.get('comment', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,

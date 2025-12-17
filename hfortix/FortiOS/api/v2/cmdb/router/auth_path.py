@@ -26,9 +26,6 @@ class AuthPath:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

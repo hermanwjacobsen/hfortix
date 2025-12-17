@@ -32,25 +32,6 @@ class Static:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all IPv4 static routes.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dict with list of static routes
-
-        Examples:
-            >>> # List all static routes
-            >>> result = fgt.api.cmdb.router.static.list()
-            >>> for route in result['results']:
-            ...     print(f"Seq: {route['seq-num']}, Dst: {route.get('dst')}, Gateway: {route.get('gateway')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         seq_num: Optional[int] = None,

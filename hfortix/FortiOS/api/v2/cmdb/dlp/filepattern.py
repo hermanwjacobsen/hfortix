@@ -111,25 +111,6 @@ class Filepattern:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
-        """
-        List all DLP file patterns (convenience method).
-
-        Args:
-            vdom: Virtual Domain(s)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dictionary with all file patterns
-
-        Examples:
-            >>> # List all file patterns
-            >>> result = fgt.cmdb.dlp.filepattern.list()
-            >>> for p in result['results']:
-            ...     print(f"{p['id']}: {p['name']}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,

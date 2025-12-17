@@ -33,30 +33,6 @@ class Addrgrp6:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all IPv6 address group objects.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters (filter, format, count, etc.)
-
-        Returns:
-            API response dict with list of address group objects
-
-        Examples:
-            >>> # List all IPv6 address groups
-            >>> result = fgt.cmdb.firewall.addrgrp6.list()
-            >>> for grp in result['results']:
-            ...     print(f"{grp['name']}: {len(grp.get('member', []))} members")
-
-            >>> # List with filters
-            >>> result = fgt.cmdb.firewall.addrgrp6.list(
-            ...     format=['name', 'member', 'comment']
-            ... )
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

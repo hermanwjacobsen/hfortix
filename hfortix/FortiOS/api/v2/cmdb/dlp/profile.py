@@ -108,25 +108,6 @@ class Profile:
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
 
-    def list(self, vdom: str | None = None, **kwargs) -> dict[str, Any]:
-        """
-        List all DLP profiles (convenience method).
-
-        Args:
-            vdom: Virtual Domain(s)
-            **kwargs: Additional query parameters
-
-        Returns:
-            API response dictionary with all profiles
-
-        Examples:
-            >>> # List all profiles
-            >>> result = fgt.cmdb.dlp.profile.list()
-            >>> for prof in result['results']:
-            ...     print(f"{prof['name']}: {prof.get('comment', 'N/A')}")
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def post(
         self,
         payload_dict: Optional[Dict[str, Any]] = None,

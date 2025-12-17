@@ -14,15 +14,16 @@ class Rule:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        return self._client.get("cmdb", "ips/rule", params=kwargs if kwargs else None, vdom=vdom)
-
     def get(
-        self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
+        self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
     ) -> dict[str, Any]:
+        """Get IPS rule(s) - List all or get specific."""
+        path = "ips/rule"
+        if name is not None:
+            path = f"{path}/{encode_path_component(name)}"
         return self._client.get(
             "cmdb",
-            f"ips/rule/{encode_path_component(name)}",
+            path,
             params=kwargs if kwargs else None,
             vdom=vdom,
         )

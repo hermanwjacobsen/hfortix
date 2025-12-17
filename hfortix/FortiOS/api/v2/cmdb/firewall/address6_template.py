@@ -33,30 +33,6 @@ class Address6Template:
         """
         self._client = client
 
-    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        """
-        List all IPv6 address template objects.
-
-        Args:
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters (filter, format, count, etc.)
-
-        Returns:
-            API response dict with list of address template objects
-
-        Examples:
-            >>> # List all IPv6 address templates
-            >>> result = fgt.cmdb.firewall.address6_template.list()
-            >>> for tmpl in result['results']:
-            ...     print(f"{tmpl['name']}: {tmpl.get('ip6', 'N/A')}")
-
-            >>> # List with filters
-            >>> result = fgt.cmdb.firewall.address6_template.list(
-            ...     format=['name', 'ip6', 'comment']
-            ... )
-        """
-        return self.get(vdom=vdom, **kwargs)
-
     def get(
         self,
         name: Optional[str] = None,

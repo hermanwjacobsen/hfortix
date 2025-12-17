@@ -31,26 +31,6 @@ class AccessProxySshClientCert:
         self._client = client
         self._path = "firewall/access-proxy-ssh-client-cert"
 
-    def list(
-        self, vdom: str | None = None, raw_json: bool = False, **params: Any
-    ) -> dict[str, Any]:
-        """
-        List all access proxy SSH client certificates
-
-        Args:
-            vdom: Virtual domain name
-            raw_json: If True, return raw JSON response without unwrapping
-            **params: Additional query parameters
-
-        Returns:
-            API response containing list of SSH client certificates
-
-        Example:
-            >>> certs = fgt.cmdb.firewall.access_proxy_ssh_client_cert.list()
-            >>> print(f"Total certificates: {len(certs['results'])}")
-        """
-        return self._client.get("cmdb", self._path, params=params, vdom=vdom, raw_json=raw_json)
-
     def get(
         self,
         name: str | None = None,
