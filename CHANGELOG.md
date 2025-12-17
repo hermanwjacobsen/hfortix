@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.11] - 2025-12-17
+
 ### Added - December 17, 2025
 
 - **FTP Proxy Category** - FTP proxy configuration (1 endpoint):
@@ -81,8 +83,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Usage patterns for nested vs flat endpoints
 
 ### Improved
-- **API Coverage** - Now at 47% overall (36 of 77 categories):
-  - CMDB: 22 of 40 categories (55% - all beta)
+- **API Coverage** - Now at 48% overall (37 of 77 categories):
+  - CMDB: 23 of 40 categories (57.5% - all beta)
   - Monitor: 6 of 33 categories (18% - all beta)
   - Log: 5 of 5 categories (100% - all beta)
   - Service: 3 of 3 categories (100% - all beta)
@@ -96,7 +98,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Production-ready status (v1.0.0) requires comprehensive unit test coverage
 
 ### Planned
-- Complete CMDB endpoint coverage (22 of 40 categories implemented)
+- Complete CMDB endpoint coverage (23 of 40 categories implemented)
 - Monitor endpoints implementation (6 of 33 categories)
 - Remaining Monitor categories: system, user, router, vpn, network, etc.
 - FortiManager module

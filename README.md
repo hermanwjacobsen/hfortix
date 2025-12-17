@@ -20,7 +20,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
-**Latest Features (v0.3.10-beta):**
+**Latest Features (v0.3.11-beta):**
 - ✨ **FTP Proxy Category**: FTP proxy configuration (1 endpoint)
   - **explicit**: FTP proxy explicit configuration with SSL/TLS support
   - FTPS support, SSL certificate management, custom encryption
