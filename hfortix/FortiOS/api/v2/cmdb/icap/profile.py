@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/icap/profile/{name} - Update ICAP profile
     DELETE /api/v2/cmdb/icap/profile/{name} - Delete ICAP profile
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -23,14 +24,10 @@ from hfortix.FortiOS.http_client import encode_path_component
 class Profile:
     """ICAP Profile endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all ICAP profiles.
 
@@ -47,8 +44,8 @@ class Profile:
             >>> for profile in profiles['results']:
             ...     print(profile['name'])
         """
-        path = 'icap/profile'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "icap/profile"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def get(
         self,
@@ -58,7 +55,7 @@ class Profile:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get specific ICAP profile.
@@ -82,18 +79,18 @@ class Profile:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with-meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with-meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        path = f'icap/profile/{encode_path_component(name)}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        path = f"icap/profile/{encode_path_component(name)}"
+        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -130,7 +127,7 @@ class Profile:
         icap_headers: Optional[list[dict[str, Any]]] = None,
         respmod_forward_rules: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create ICAP profile.
@@ -213,71 +210,71 @@ class Profile:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'name': name,
-            'replacemsg_group': replacemsg_group,
-            'comment': comment,
-            'request': request,
-            'response': response,
-            'file_transfer': file_transfer,
-            'streaming_content_bypass': streaming_content_bypass,
-            'ocr_only': ocr_only,
-            'size_limit_204': size_limit_204,
-            'response_204': response_204,
-            'preview': preview,
-            'preview_data_length': preview_data_length,
-            'request_server': request_server,
-            'response_server': response_server,
-            'file_transfer_server': file_transfer_server,
-            'request_failure': request_failure,
-            'response_failure': response_failure,
-            'file_transfer_failure': file_transfer_failure,
-            'request_path': request_path,
-            'response_path': response_path,
-            'file_transfer_path': file_transfer_path,
-            'methods': methods,
-            'response_req_hdr': response_req_hdr,
-            'respmod_default_action': respmod_default_action,
-            'icap_block_log': icap_block_log,
-            'chunk_encap': chunk_encap,
-            'extension_feature': extension_feature,
-            'scan_progress_interval': scan_progress_interval,
-            'timeout': timeout,
-            'icap_headers': icap_headers,
-            'respmod_forward_rules': respmod_forward_rules,
+            "name": name,
+            "replacemsg_group": replacemsg_group,
+            "comment": comment,
+            "request": request,
+            "response": response,
+            "file_transfer": file_transfer,
+            "streaming_content_bypass": streaming_content_bypass,
+            "ocr_only": ocr_only,
+            "size_limit_204": size_limit_204,
+            "response_204": response_204,
+            "preview": preview,
+            "preview_data_length": preview_data_length,
+            "request_server": request_server,
+            "response_server": response_server,
+            "file_transfer_server": file_transfer_server,
+            "request_failure": request_failure,
+            "response_failure": response_failure,
+            "file_transfer_failure": file_transfer_failure,
+            "request_path": request_path,
+            "response_path": response_path,
+            "file_transfer_path": file_transfer_path,
+            "methods": methods,
+            "response_req_hdr": response_req_hdr,
+            "respmod_default_action": respmod_default_action,
+            "icap_block_log": icap_block_log,
+            "chunk_encap": chunk_encap,
+            "extension_feature": extension_feature,
+            "scan_progress_interval": scan_progress_interval,
+            "timeout": timeout,
+            "icap_headers": icap_headers,
+            "respmod_forward_rules": respmod_forward_rules,
         }
 
         api_field_map = {
-            'name': 'name',
-            'replacemsg_group': 'replacemsg-group',
-            'comment': 'comment',
-            'request': 'request',
-            'response': 'response',
-            'file_transfer': 'file-transfer',
-            'streaming_content_bypass': 'streaming-content-bypass',
-            'ocr_only': 'ocr-only',
-            'size_limit_204': '204-size-limit',
-            'response_204': '204-response',
-            'preview': 'preview',
-            'preview_data_length': 'preview-data-length',
-            'request_server': 'request-server',
-            'response_server': 'response-server',
-            'file_transfer_server': 'file-transfer-server',
-            'request_failure': 'request-failure',
-            'response_failure': 'response-failure',
-            'file_transfer_failure': 'file-transfer-failure',
-            'request_path': 'request-path',
-            'response_path': 'response-path',
-            'file_transfer_path': 'file-transfer-path',
-            'methods': 'methods',
-            'response_req_hdr': 'response-req-hdr',
-            'respmod_default_action': 'respmod-default-action',
-            'icap_block_log': 'icap-block-log',
-            'chunk_encap': 'chunk-encap',
-            'extension_feature': 'extension-feature',
-            'scan_progress_interval': 'scan-progress-interval',
-            'timeout': 'timeout',
-            'icap_headers': 'icap-headers',
-            'respmod_forward_rules': 'respmod-forward-rules',
+            "name": "name",
+            "replacemsg_group": "replacemsg-group",
+            "comment": "comment",
+            "request": "request",
+            "response": "response",
+            "file_transfer": "file-transfer",
+            "streaming_content_bypass": "streaming-content-bypass",
+            "ocr_only": "ocr-only",
+            "size_limit_204": "204-size-limit",
+            "response_204": "204-response",
+            "preview": "preview",
+            "preview_data_length": "preview-data-length",
+            "request_server": "request-server",
+            "response_server": "response-server",
+            "file_transfer_server": "file-transfer-server",
+            "request_failure": "request-failure",
+            "response_failure": "response-failure",
+            "file_transfer_failure": "file-transfer-failure",
+            "request_path": "request-path",
+            "response_path": "response-path",
+            "file_transfer_path": "file-transfer-path",
+            "methods": "methods",
+            "response_req_hdr": "response-req-hdr",
+            "respmod_default_action": "respmod-default-action",
+            "icap_block_log": "icap-block-log",
+            "chunk_encap": "chunk-encap",
+            "extension_feature": "extension-feature",
+            "scan_progress_interval": "scan-progress-interval",
+            "timeout": "timeout",
+            "icap_headers": "icap-headers",
+            "respmod_forward_rules": "respmod-forward-rules",
         }
 
         for python_key, value in param_map.items():
@@ -287,8 +284,8 @@ class Profile:
 
         data.update(kwargs)
 
-        path = 'icap/profile'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        path = "icap/profile"
+        return self._client.post("cmdb", path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -325,7 +322,7 @@ class Profile:
         icap_headers: Optional[list[dict[str, Any]]] = None,
         respmod_forward_rules: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update ICAP profile.
@@ -401,69 +398,69 @@ class Profile:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'replacemsg_group': replacemsg_group,
-            'comment': comment,
-            'request': request,
-            'response': response,
-            'file_transfer': file_transfer,
-            'streaming_content_bypass': streaming_content_bypass,
-            'ocr_only': ocr_only,
-            'size_limit_204': size_limit_204,
-            'response_204': response_204,
-            'preview': preview,
-            'preview_data_length': preview_data_length,
-            'request_server': request_server,
-            'response_server': response_server,
-            'file_transfer_server': file_transfer_server,
-            'request_failure': request_failure,
-            'response_failure': response_failure,
-            'file_transfer_failure': file_transfer_failure,
-            'request_path': request_path,
-            'response_path': response_path,
-            'file_transfer_path': file_transfer_path,
-            'methods': methods,
-            'response_req_hdr': response_req_hdr,
-            'respmod_default_action': respmod_default_action,
-            'icap_block_log': icap_block_log,
-            'chunk_encap': chunk_encap,
-            'extension_feature': extension_feature,
-            'scan_progress_interval': scan_progress_interval,
-            'timeout': timeout,
-            'icap_headers': icap_headers,
-            'respmod_forward_rules': respmod_forward_rules,
+            "replacemsg_group": replacemsg_group,
+            "comment": comment,
+            "request": request,
+            "response": response,
+            "file_transfer": file_transfer,
+            "streaming_content_bypass": streaming_content_bypass,
+            "ocr_only": ocr_only,
+            "size_limit_204": size_limit_204,
+            "response_204": response_204,
+            "preview": preview,
+            "preview_data_length": preview_data_length,
+            "request_server": request_server,
+            "response_server": response_server,
+            "file_transfer_server": file_transfer_server,
+            "request_failure": request_failure,
+            "response_failure": response_failure,
+            "file_transfer_failure": file_transfer_failure,
+            "request_path": request_path,
+            "response_path": response_path,
+            "file_transfer_path": file_transfer_path,
+            "methods": methods,
+            "response_req_hdr": response_req_hdr,
+            "respmod_default_action": respmod_default_action,
+            "icap_block_log": icap_block_log,
+            "chunk_encap": chunk_encap,
+            "extension_feature": extension_feature,
+            "scan_progress_interval": scan_progress_interval,
+            "timeout": timeout,
+            "icap_headers": icap_headers,
+            "respmod_forward_rules": respmod_forward_rules,
         }
 
         api_field_map = {
-            'replacemsg_group': 'replacemsg-group',
-            'comment': 'comment',
-            'request': 'request',
-            'response': 'response',
-            'file_transfer': 'file-transfer',
-            'streaming_content_bypass': 'streaming-content-bypass',
-            'ocr_only': 'ocr-only',
-            'size_limit_204': '204-size-limit',
-            'response_204': '204-response',
-            'preview': 'preview',
-            'preview_data_length': 'preview-data-length',
-            'request_server': 'request-server',
-            'response_server': 'response-server',
-            'file_transfer_server': 'file-transfer-server',
-            'request_failure': 'request-failure',
-            'response_failure': 'response-failure',
-            'file_transfer_failure': 'file-transfer-failure',
-            'request_path': 'request-path',
-            'response_path': 'response-path',
-            'file_transfer_path': 'file-transfer-path',
-            'methods': 'methods',
-            'response_req_hdr': 'response-req-hdr',
-            'respmod_default_action': 'respmod-default-action',
-            'icap_block_log': 'icap-block-log',
-            'chunk_encap': 'chunk-encap',
-            'extension_feature': 'extension-feature',
-            'scan_progress_interval': 'scan-progress-interval',
-            'timeout': 'timeout',
-            'icap_headers': 'icap-headers',
-            'respmod_forward_rules': 'respmod-forward-rules',
+            "replacemsg_group": "replacemsg-group",
+            "comment": "comment",
+            "request": "request",
+            "response": "response",
+            "file_transfer": "file-transfer",
+            "streaming_content_bypass": "streaming-content-bypass",
+            "ocr_only": "ocr-only",
+            "size_limit_204": "204-size-limit",
+            "response_204": "204-response",
+            "preview": "preview",
+            "preview_data_length": "preview-data-length",
+            "request_server": "request-server",
+            "response_server": "response-server",
+            "file_transfer_server": "file-transfer-server",
+            "request_failure": "request-failure",
+            "response_failure": "response-failure",
+            "file_transfer_failure": "file-transfer-failure",
+            "request_path": "request-path",
+            "response_path": "response-path",
+            "file_transfer_path": "file-transfer-path",
+            "methods": "methods",
+            "response_req_hdr": "response-req-hdr",
+            "respmod_default_action": "respmod-default-action",
+            "icap_block_log": "icap-block-log",
+            "chunk_encap": "chunk-encap",
+            "extension_feature": "extension-feature",
+            "scan_progress_interval": "scan-progress-interval",
+            "timeout": "timeout",
+            "icap_headers": "icap-headers",
+            "respmod_forward_rules": "respmod-forward-rules",
         }
 
         for python_key, value in param_map.items():
@@ -473,14 +470,10 @@ class Profile:
 
         data.update(kwargs)
 
-        path = f'icap/profile/{encode_path_component(name)}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = f"icap/profile/{encode_path_component(name)}"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)
 
-    def delete(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete ICAP profile.
 
@@ -496,14 +489,10 @@ class Profile:
             >>> result = fgt.api.cmdb.icap.profile.delete('old-profile')
             >>> print(result['status'])
         """
-        path = f'icap/profile/{encode_path_component(name)}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"icap/profile/{encode_path_component(name)}"
+        return self._client.delete("cmdb", path, vdom=vdom)
 
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if ICAP profile exists.
 

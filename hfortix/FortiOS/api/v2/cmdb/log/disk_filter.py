@@ -1,13 +1,14 @@
 """
 FortiOS CMDB - Log Disk Filter
 
-Configure filters for local disk logging. Use these filters to determine 
+Configure filters for local disk logging. Use these filters to determine
 the log messages to record according to severity and type.
 
 API Endpoints:
     GET /api/v2/cmdb/log.disk/filter - Get disk log filter settings
     PUT /api/v2/cmdb/log.disk/filter - Update disk log filter settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -19,14 +20,10 @@ if TYPE_CHECKING:
 class DiskFilter:
     """Log Disk Filter endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get disk log filter settings.
 
@@ -42,8 +39,8 @@ class DiskFilter:
             >>> settings = fgt.api.cmdb.log.disk_filter.get()
             >>> print(settings['severity'])
         """
-        path = 'log.disk/filter'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.disk/filter"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -62,7 +59,7 @@ class DiskFilter:
         free_style: Optional[list[dict[str, Any]]] = None,
         debug: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update disk log filter settings.
@@ -91,14 +88,14 @@ class DiskFilter:
         Examples:
             >>> # Update severity level
             >>> fgt.api.cmdb.log.disk_filter.update(severity='warning')
-            
+
             >>> # Enable specific traffic types
             >>> fgt.api.cmdb.log.disk_filter.update(
             ...     forward_traffic='enable',
             ...     local_traffic='enable',
             ...     anomaly='enable'
             ... )
-            
+
             >>> # Use data_dict pattern
             >>> fgt.api.cmdb.log.disk_filter.update(
             ...     data_dict={
@@ -111,19 +108,19 @@ class DiskFilter:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'severity': severity,
-            'forward-traffic': forward_traffic,
-            'local-traffic': local_traffic,
-            'multicast-traffic': multicast_traffic,
-            'sniffer-traffic': sniffer_traffic,
-            'ztna-traffic': ztna_traffic,
-            'anomaly': anomaly,
-            'voip': voip,
-            'dlp-archive': dlp_archive,
-            'forti-switch': forti_switch,
-            'http-transaction': http_transaction,
-            'free-style': free_style,
-            'debug': debug,
+            "severity": severity,
+            "forward-traffic": forward_traffic,
+            "local-traffic": local_traffic,
+            "multicast-traffic": multicast_traffic,
+            "sniffer-traffic": sniffer_traffic,
+            "ztna-traffic": ztna_traffic,
+            "anomaly": anomaly,
+            "voip": voip,
+            "dlp-archive": dlp_archive,
+            "forti-switch": forti_switch,
+            "http-transaction": http_transaction,
+            "free-style": free_style,
+            "debug": debug,
         }
 
         for key, value in param_map.items():
@@ -132,5 +129,5 @@ class DiskFilter:
 
         data.update(kwargs)
 
-        path = 'log.disk/filter'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.disk/filter"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

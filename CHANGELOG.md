@@ -8,6 +8,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added - December 17, 2025
+
+- **FTP Proxy Category** - FTP proxy configuration (1 endpoint):
+  - **explicit** - FTP proxy explicit configuration (GET, PUT)
+  - Parameters: status, incoming_port, incoming_ip, outgoing_ip, sec_default_action, server_data_mode
+  - SSL/TLS support: ssl, ssl_cert, ssl_dh_bits, ssl_algorithm
+  - Singleton endpoint pattern (no POST/DELETE operations)
+  - Test coverage: 5 test sections with comprehensive parameter validation
+
+- **Monitor API Categories** - 6 categories implemented (18% coverage):
+  - **azure/** - Azure application list monitoring (1 endpoint)
+  - **casb/** - SaaS application statistics (1 endpoint)
+  - **endpoint-control/** - FortiClient EMS monitoring (7 endpoints):
+    - ems-status, ems-status-summary, installer, profile-xml
+    - record-list, registration-password, summary
+  - **extender-controller/** - FortiExtender status monitoring (1 endpoint)
+  - **extension-controller/** - Extension controller status (2 endpoints):
+    - extender, fortigate
+  - **firewall/** - Firewall monitoring (39 endpoints):
+    - Policy statistics (policy, policy6, proxy-policy, security-policy, etc.)
+    - Session monitoring with 20+ filter parameters
+    - ACL counters (acl, acl6) with clear operations
+    - Address objects (address, address6, address-dynamic, address-fqdn)
+    - Traffic shapers (per-ip-shaper, shaper, multi-class-shaper)
+    - Special endpoints (policy-lookup callable, clearpass-address actions)
+    - GTP statistics, health monitoring, load balancing
+    - Internet service matching and reputation
+    - VIP overlap detection, UUID objects
+  - Test coverage: 39 firewall tests with 100% pass rate
+  - All endpoints support explicit parameters (no **kwargs)
+
 - **Log Configuration Category** - Complete logging configuration (56 endpoints):
   - Nested object pattern: `fgt.api.cmdb.log.disk.filter.get()`
   - **disk/** - Disk logging (filter, setting)
@@ -51,16 +81,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Usage patterns for nested vs flat endpoints
 
 ### Improved
-- **API Coverage** - Now at 33% overall (27 of 82 categories):
-  - CMDB: 18 of 40 categories (45%)
-  - Monitor: 1 of 33 categories (3%)
-  - Log: 5 of 5 categories (100% - all beta until v1.0.0)
-  - Service: 3 of 3 categories (100% - all beta until v1.0.0)
-  - Total: 150+ endpoints, 200+ API methods
+- **API Coverage** - Now at 47% overall (36 of 77 categories):
+  - CMDB: 22 of 40 categories (55% - all beta)
+  - Monitor: 6 of 33 categories (18% - all beta)
+  - Log: 5 of 5 categories (100% - all beta)
+  - Service: 3 of 3 categories (100% - all beta)
+  - Total: 200+ endpoints, 250+ API methods
+  - **Note:** All implementations remain in beta until v1.0.0
+
+### Status
+- **Beta Release** - All implementations are in beta status:
+  - Functional and tested with real FortiGate devices
+  - May have incomplete parameter coverage or undiscovered edge cases
+  - Production-ready status (v1.0.0) requires comprehensive unit test coverage
 
 ### Planned
-- Complete CMDB endpoint coverage (18 of 40 categories implemented)
-- Monitor endpoints implementation (1 of 33 categories)
+- Complete CMDB endpoint coverage (22 of 40 categories implemented)
+- Monitor endpoints implementation (6 of 33 categories)
+- Remaining Monitor categories: system, user, router, vpn, network, etc.
 - FortiManager module
 - FortiAnalyzer module
 - Async support

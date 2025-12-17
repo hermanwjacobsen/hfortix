@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class Options:
     """Email filter options endpoint"""
 

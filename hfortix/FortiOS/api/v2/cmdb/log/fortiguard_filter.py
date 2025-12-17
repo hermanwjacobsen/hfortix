@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortiguard/filter - Get FortiGuard filter settings
     PUT /api/v2/cmdb/log.fortiguard/filter - Update FortiGuard filter settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class FortiguardFilter:
     """Log FortiGuard Filter endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiGuard filter settings.
 
@@ -39,8 +36,8 @@ class FortiguardFilter:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortiguard_filter.get()
         """
-        path = 'log.fortiguard/filter'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortiguard/filter"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -57,7 +54,7 @@ class FortiguardFilter:
         http_transaction: Optional[str] = None,
         free_style: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiGuard filter settings.
@@ -84,7 +81,7 @@ class FortiguardFilter:
         Examples:
             >>> # Update severity level
             >>> fgt.api.cmdb.log.fortiguard_filter.update(severity='warning')
-            
+
             >>> # Enable specific traffic types
             >>> fgt.api.cmdb.log.fortiguard_filter.update(
             ...     forward_traffic='enable',
@@ -94,17 +91,17 @@ class FortiguardFilter:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'severity': severity,
-            'forward-traffic': forward_traffic,
-            'local-traffic': local_traffic,
-            'multicast-traffic': multicast_traffic,
-            'sniffer-traffic': sniffer_traffic,
-            'ztna-traffic': ztna_traffic,
-            'anomaly': anomaly,
-            'voip': voip,
-            'forti-switch': forti_switch,
-            'http-transaction': http_transaction,
-            'free-style': free_style,
+            "severity": severity,
+            "forward-traffic": forward_traffic,
+            "local-traffic": local_traffic,
+            "multicast-traffic": multicast_traffic,
+            "sniffer-traffic": sniffer_traffic,
+            "ztna-traffic": ztna_traffic,
+            "anomaly": anomaly,
+            "voip": voip,
+            "forti-switch": forti_switch,
+            "http-transaction": http_transaction,
+            "free-style": free_style,
         }
 
         for key, value in param_map.items():
@@ -113,5 +110,5 @@ class FortiguardFilter:
 
         data.update(kwargs)
 
-        path = 'log.fortiguard/filter'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortiguard/filter"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

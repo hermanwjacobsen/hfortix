@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/icap/server-group/{name} - Update ICAP server group
     DELETE /api/v2/cmdb/icap/server-group/{name} - Delete ICAP server group
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -23,14 +24,10 @@ from hfortix.FortiOS.http_client import encode_path_component
 class ServerGroup:
     """ICAP Server Group endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all ICAP server groups.
 
@@ -47,8 +44,8 @@ class ServerGroup:
             >>> for group in groups['results']:
             ...     print(group['name'], group['ldb-method'])
         """
-        path = 'icap/server-group'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "icap/server-group"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def get(
         self,
@@ -58,7 +55,7 @@ class ServerGroup:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get specific ICAP server group.
@@ -82,18 +79,18 @@ class ServerGroup:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with-meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with-meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        path = f'icap/server-group/{encode_path_component(name)}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        path = f"icap/server-group/{encode_path_component(name)}"
+        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -102,7 +99,7 @@ class ServerGroup:
         ldb_method: Optional[str] = None,
         server_list: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create ICAP server group.
@@ -161,15 +158,15 @@ class ServerGroup:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'name': name,
-            'ldb_method': ldb_method,
-            'server_list': server_list,
+            "name": name,
+            "ldb_method": ldb_method,
+            "server_list": server_list,
         }
 
         api_field_map = {
-            'name': 'name',
-            'ldb_method': 'ldb-method',
-            'server_list': 'server-list',
+            "name": "name",
+            "ldb_method": "ldb-method",
+            "server_list": "server-list",
         }
 
         for python_key, value in param_map.items():
@@ -179,8 +176,8 @@ class ServerGroup:
 
         data.update(kwargs)
 
-        path = 'icap/server-group'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        path = "icap/server-group"
+        return self._client.post("cmdb", path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -189,7 +186,7 @@ class ServerGroup:
         ldb_method: Optional[str] = None,
         server_list: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update ICAP server group.
@@ -242,13 +239,13 @@ class ServerGroup:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'ldb_method': ldb_method,
-            'server_list': server_list,
+            "ldb_method": ldb_method,
+            "server_list": server_list,
         }
 
         api_field_map = {
-            'ldb_method': 'ldb-method',
-            'server_list': 'server-list',
+            "ldb_method": "ldb-method",
+            "server_list": "server-list",
         }
 
         for python_key, value in param_map.items():
@@ -258,14 +255,10 @@ class ServerGroup:
 
         data.update(kwargs)
 
-        path = f'icap/server-group/{encode_path_component(name)}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = f"icap/server-group/{encode_path_component(name)}"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)
 
-    def delete(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete ICAP server group.
 
@@ -281,14 +274,10 @@ class ServerGroup:
             >>> result = fgt.api.cmdb.icap.server_group.delete('old-group')
             >>> print(result['status'])
         """
-        path = f'icap/server-group/{encode_path_component(name)}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"icap/server-group/{encode_path_component(name)}"
+        return self._client.delete("cmdb", path, vdom=vdom)
 
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if ICAP server group exists.
 

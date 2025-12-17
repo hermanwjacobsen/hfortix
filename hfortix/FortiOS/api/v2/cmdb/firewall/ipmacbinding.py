@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class Ipmacbinding:
     """
     Firewall IP-MAC Binding API helper class

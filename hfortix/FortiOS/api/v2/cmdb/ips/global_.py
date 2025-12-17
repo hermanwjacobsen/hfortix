@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/ips/global - Get IPS global settings
     PUT /api/v2/cmdb/ips/global - Update IPS global settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class Global:
     """IPS Global Settings endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get IPS global settings.
 
@@ -39,8 +36,8 @@ class Global:
         Examples:
             >>> settings = fgt.api.cmdb.ips.global_.get()
         """
-        path = 'ips/global'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "ips/global"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -65,7 +62,7 @@ class Global:
         tls_active_probe: Optional[dict[str, Any]] = None,
         traffic_submit: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPS global settings.
@@ -107,25 +104,25 @@ class Global:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'anomaly-mode': anomaly_mode,
-            'av-mem-limit': av_mem_limit,
-            'cp-accel-mode': cp_accel_mode,
-            'database': database,
-            'deep-app-insp-db-limit': deep_app_insp_db_limit,
-            'deep-app-insp-timeout': deep_app_insp_timeout,
-            'engine-count': engine_count,
-            'exclude-signatures': exclude_signatures,
-            'fail-open': fail_open,
-            'ips-reserve-cpu': ips_reserve_cpu,
-            'machine-learning-detection': machine_learning_detection,
-            'ngfw-max-scan-range': ngfw_max_scan_range,
-            'np-accel-mode': np_accel_mode,
-            'packet-log-queue-depth': packet_log_queue_depth,
-            'session-limit-mode': session_limit_mode,
-            'socket-size': socket_size,
-            'sync-session-ttl': sync_session_ttl,
-            'tls-active-probe': tls_active_probe,
-            'traffic-submit': traffic_submit,
+            "anomaly-mode": anomaly_mode,
+            "av-mem-limit": av_mem_limit,
+            "cp-accel-mode": cp_accel_mode,
+            "database": database,
+            "deep-app-insp-db-limit": deep_app_insp_db_limit,
+            "deep-app-insp-timeout": deep_app_insp_timeout,
+            "engine-count": engine_count,
+            "exclude-signatures": exclude_signatures,
+            "fail-open": fail_open,
+            "ips-reserve-cpu": ips_reserve_cpu,
+            "machine-learning-detection": machine_learning_detection,
+            "ngfw-max-scan-range": ngfw_max_scan_range,
+            "np-accel-mode": np_accel_mode,
+            "packet-log-queue-depth": packet_log_queue_depth,
+            "session-limit-mode": session_limit_mode,
+            "socket-size": socket_size,
+            "sync-session-ttl": sync_session_ttl,
+            "tls-active-probe": tls_active_probe,
+            "traffic-submit": traffic_submit,
         }
 
         for key, value in param_map.items():
@@ -134,5 +131,5 @@ class Global:
 
         data.update(kwargs)
 
-        path = 'ips/global'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "ips/global"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

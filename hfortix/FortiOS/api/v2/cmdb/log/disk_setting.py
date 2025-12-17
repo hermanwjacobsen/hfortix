@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.disk/setting - Get disk log settings
     PUT /api/v2/cmdb/log.disk/setting - Update disk log settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class DiskSetting:
     """Log Disk Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get disk log settings.
 
@@ -39,8 +36,8 @@ class DiskSetting:
         Examples:
             >>> settings = fgt.api.cmdb.log.disk_setting.get()
         """
-        path = 'log.disk/setting'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.disk/setting"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -77,7 +74,7 @@ class DiskSetting:
         interface: Optional[str] = None,
         vrf_select: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update disk log settings.
@@ -124,14 +121,14 @@ class DiskSetting:
         Examples:
             >>> # Enable disk logging
             >>> fgt.api.cmdb.log.disk_setting.update(status='enable')
-            
+
             >>> # Configure rolling
             >>> fgt.api.cmdb.log.disk_setting.update(
             ...     max_log_file_size=100,
             ...     roll_schedule='daily',
             ...     roll_time='00:00'
             ... )
-            
+
             >>> # Configure upload
             >>> fgt.api.cmdb.log.disk_setting.update(
             ...     upload='enable',
@@ -143,37 +140,37 @@ class DiskSetting:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'status': status,
-            'ips-archive': ips_archive,
-            'max-log-file-size': max_log_file_size,
-            'max-policy-packet-capture-size': max_policy_packet_capture_size,
-            'roll-schedule': roll_schedule,
-            'roll-day': roll_day,
-            'roll-time': roll_time,
-            'diskfull': diskfull,
-            'log-quota': log_quota,
-            'dlp-archive-quota': dlp_archive_quota,
-            'report-quota': report_quota,
-            'maximum-log-age': maximum_log_age,
-            'upload': upload,
-            'upload-destination': upload_destination,
-            'uploadip': uploadip,
-            'uploadport': uploadport,
-            'source-ip': source_ip,
-            'uploaduser': uploaduser,
-            'uploadpass': uploadpass,
-            'uploaddir': uploaddir,
-            'uploadtype': uploadtype,
-            'uploadsched': uploadsched,
-            'uploadtime': uploadtime,
-            'upload-delete-files': upload_delete_files,
-            'upload-ssl-conn': upload_ssl_conn,
-            'full-first-warning-threshold': full_first_warning_threshold,
-            'full-second-warning-threshold': full_second_warning_threshold,
-            'full-final-warning-threshold': full_final_warning_threshold,
-            'interface-select-method': interface_select_method,
-            'interface': interface,
-            'vrf-select': vrf_select,
+            "status": status,
+            "ips-archive": ips_archive,
+            "max-log-file-size": max_log_file_size,
+            "max-policy-packet-capture-size": max_policy_packet_capture_size,
+            "roll-schedule": roll_schedule,
+            "roll-day": roll_day,
+            "roll-time": roll_time,
+            "diskfull": diskfull,
+            "log-quota": log_quota,
+            "dlp-archive-quota": dlp_archive_quota,
+            "report-quota": report_quota,
+            "maximum-log-age": maximum_log_age,
+            "upload": upload,
+            "upload-destination": upload_destination,
+            "uploadip": uploadip,
+            "uploadport": uploadport,
+            "source-ip": source_ip,
+            "uploaduser": uploaduser,
+            "uploadpass": uploadpass,
+            "uploaddir": uploaddir,
+            "uploadtype": uploadtype,
+            "uploadsched": uploadsched,
+            "uploadtime": uploadtime,
+            "upload-delete-files": upload_delete_files,
+            "upload-ssl-conn": upload_ssl_conn,
+            "full-first-warning-threshold": full_first_warning_threshold,
+            "full-second-warning-threshold": full_second_warning_threshold,
+            "full-final-warning-threshold": full_final_warning_threshold,
+            "interface-select-method": interface_select_method,
+            "interface": interface,
+            "vrf-select": vrf_select,
         }
 
         for key, value in param_map.items():
@@ -182,5 +179,5 @@ class DiskSetting:
 
         data.update(kwargs)
 
-        path = 'log.disk/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.disk/setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

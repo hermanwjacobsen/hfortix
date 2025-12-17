@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortiguard/override-filter - Get FortiGuard override filter settings
     PUT /api/v2/cmdb/log.fortiguard/override-filter - Update FortiGuard override filter settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class FortiguardOverrideFilter:
     """Log FortiGuard Override Filter endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiGuard override filter settings.
 
@@ -39,8 +36,8 @@ class FortiguardOverrideFilter:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortiguard_override_filter.get()
         """
-        path = 'log.fortiguard/override-filter'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortiguard/override-filter"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -57,7 +54,7 @@ class FortiguardOverrideFilter:
         http_transaction: Optional[str] = None,
         free_style: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiGuard override filter settings for VDOM-specific filtering.
@@ -92,17 +89,17 @@ class FortiguardOverrideFilter:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'severity': severity,
-            'forward-traffic': forward_traffic,
-            'local-traffic': local_traffic,
-            'multicast-traffic': multicast_traffic,
-            'sniffer-traffic': sniffer_traffic,
-            'ztna-traffic': ztna_traffic,
-            'anomaly': anomaly,
-            'voip': voip,
-            'forti-switch': forti_switch,
-            'http-transaction': http_transaction,
-            'free-style': free_style,
+            "severity": severity,
+            "forward-traffic": forward_traffic,
+            "local-traffic": local_traffic,
+            "multicast-traffic": multicast_traffic,
+            "sniffer-traffic": sniffer_traffic,
+            "ztna-traffic": ztna_traffic,
+            "anomaly": anomaly,
+            "voip": voip,
+            "forti-switch": forti_switch,
+            "http-transaction": http_transaction,
+            "free-style": free_style,
         }
 
         for key, value in param_map.items():
@@ -111,5 +108,5 @@ class FortiguardOverrideFilter:
 
         data.update(kwargs)
 
-        path = 'log.fortiguard/override-filter'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortiguard/override-filter"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

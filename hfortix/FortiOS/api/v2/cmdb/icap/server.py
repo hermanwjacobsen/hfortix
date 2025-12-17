@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/icap/server/{name} - Update ICAP server
     DELETE /api/v2/cmdb/icap/server/{name} - Delete ICAP server
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -23,14 +24,10 @@ from hfortix.FortiOS.http_client import encode_path_component
 class Server:
     """ICAP Server endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all ICAP servers.
 
@@ -47,8 +44,8 @@ class Server:
             >>> for server in servers['results']:
             ...     print(server['name'], server['ip-address'])
         """
-        path = 'icap/server'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "icap/server"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def get(
         self,
@@ -58,7 +55,7 @@ class Server:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get specific ICAP server.
@@ -82,18 +79,18 @@ class Server:
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with-meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with-meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
         params.update(kwargs)
 
-        path = f'icap/server/{encode_path_component(name)}'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+        path = f"icap/server/{encode_path_component(name)}"
+        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def create(
         self,
@@ -111,7 +108,7 @@ class Server:
         healthcheck: Optional[str] = None,
         healthcheck_service: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create ICAP server.
@@ -174,33 +171,33 @@ class Server:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'name': name,
-            'addr_type': addr_type,
-            'ip_address': ip_address,
-            'ip_version': ip_version,
-            'ip6_address': ip6_address,
-            'fqdn': fqdn,
-            'port': port,
-            'max_connections': max_connections,
-            'secure': secure,
-            'ssl_cert': ssl_cert,
-            'healthcheck': healthcheck,
-            'healthcheck_service': healthcheck_service,
+            "name": name,
+            "addr_type": addr_type,
+            "ip_address": ip_address,
+            "ip_version": ip_version,
+            "ip6_address": ip6_address,
+            "fqdn": fqdn,
+            "port": port,
+            "max_connections": max_connections,
+            "secure": secure,
+            "ssl_cert": ssl_cert,
+            "healthcheck": healthcheck,
+            "healthcheck_service": healthcheck_service,
         }
 
         api_field_map = {
-            'name': 'name',
-            'addr_type': 'addr-type',
-            'ip_address': 'ip-address',
-            'ip_version': 'ip-version',
-            'ip6_address': 'ip6-address',
-            'fqdn': 'fqdn',
-            'port': 'port',
-            'max_connections': 'max-connections',
-            'secure': 'secure',
-            'ssl_cert': 'ssl-cert',
-            'healthcheck': 'healthcheck',
-            'healthcheck_service': 'healthcheck-service',
+            "name": "name",
+            "addr_type": "addr-type",
+            "ip_address": "ip-address",
+            "ip_version": "ip-version",
+            "ip6_address": "ip6-address",
+            "fqdn": "fqdn",
+            "port": "port",
+            "max_connections": "max-connections",
+            "secure": "secure",
+            "ssl_cert": "ssl-cert",
+            "healthcheck": "healthcheck",
+            "healthcheck_service": "healthcheck-service",
         }
 
         for python_key, value in param_map.items():
@@ -210,8 +207,8 @@ class Server:
 
         data.update(kwargs)
 
-        path = 'icap/server'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        path = "icap/server"
+        return self._client.post("cmdb", path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -229,7 +226,7 @@ class Server:
         healthcheck: Optional[str] = None,
         healthcheck_service: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update ICAP server.
@@ -285,31 +282,31 @@ class Server:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'addr_type': addr_type,
-            'ip_address': ip_address,
-            'ip_version': ip_version,
-            'ip6_address': ip6_address,
-            'fqdn': fqdn,
-            'port': port,
-            'max_connections': max_connections,
-            'secure': secure,
-            'ssl_cert': ssl_cert,
-            'healthcheck': healthcheck,
-            'healthcheck_service': healthcheck_service,
+            "addr_type": addr_type,
+            "ip_address": ip_address,
+            "ip_version": ip_version,
+            "ip6_address": ip6_address,
+            "fqdn": fqdn,
+            "port": port,
+            "max_connections": max_connections,
+            "secure": secure,
+            "ssl_cert": ssl_cert,
+            "healthcheck": healthcheck,
+            "healthcheck_service": healthcheck_service,
         }
 
         api_field_map = {
-            'addr_type': 'addr-type',
-            'ip_address': 'ip-address',
-            'ip_version': 'ip-version',
-            'ip6_address': 'ip6-address',
-            'fqdn': 'fqdn',
-            'port': 'port',
-            'max_connections': 'max-connections',
-            'secure': 'secure',
-            'ssl_cert': 'ssl-cert',
-            'healthcheck': 'healthcheck',
-            'healthcheck_service': 'healthcheck-service',
+            "addr_type": "addr-type",
+            "ip_address": "ip-address",
+            "ip_version": "ip-version",
+            "ip6_address": "ip6-address",
+            "fqdn": "fqdn",
+            "port": "port",
+            "max_connections": "max-connections",
+            "secure": "secure",
+            "ssl_cert": "ssl-cert",
+            "healthcheck": "healthcheck",
+            "healthcheck_service": "healthcheck-service",
         }
 
         for python_key, value in param_map.items():
@@ -319,14 +316,10 @@ class Server:
 
         data.update(kwargs)
 
-        path = f'icap/server/{encode_path_component(name)}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = f"icap/server/{encode_path_component(name)}"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)
 
-    def delete(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
+    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete ICAP server.
 
@@ -342,14 +335,10 @@ class Server:
             >>> result = fgt.api.cmdb.icap.server.delete('old-server')
             >>> print(result['status'])
         """
-        path = f'icap/server/{encode_path_component(name)}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"icap/server/{encode_path_component(name)}"
+        return self._client.delete("cmdb", path, vdom=vdom)
 
-    def exists(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if ICAP server exists.
 

@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class AccessProxySshClientCert:
     """
     Manage Access Proxy SSH client certificates

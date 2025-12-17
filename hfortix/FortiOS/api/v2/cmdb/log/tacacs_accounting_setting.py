@@ -7,7 +7,7 @@ for configuring TACACS+ accounting server settings.
 API Path: log.tacacs+accounting/setting
 """
 
-from typing import Optional, Dict, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
@@ -16,15 +16,15 @@ if TYPE_CHECKING:
 class TacacsAccountingSetting:
     """
     Interface for configuring TACACS+ accounting server settings.
-    
+
     This class provides methods to manage TACACS+ accounting server configuration,
     including server details, authentication, and connection settings.
-    
+
     Supports three types of parameters:
     - data_dict: Standard dictionary format matching API structure
     - keyword arguments: Python snake_case parameters
     - mixed: Both data_dict and keyword arguments combined
-    
+
     Example usage:
         # Using keyword arguments (snake_case)
         fgt.api.cmdb.log.tacacs_accounting.setting.update(
@@ -32,7 +32,7 @@ class TacacsAccountingSetting:
             server='192.168.1.100',
             server_key='mysecretkey'
         )
-        
+
         # Using data_dict (hyphenated)
         fgt.api.cmdb.log.tacacs_accounting.setting.update(
             data_dict={
@@ -42,32 +42,32 @@ class TacacsAccountingSetting:
             }
         )
     """
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize the TacacsAccountingSetting instance.
-        
+
         Args:
             client: The HTTP client used to communicate with the FortiOS device
         """
         self._client = client
-        self._endpoint = 'log.tacacs+accounting/setting'
-    
+        self._endpoint = "log.tacacs+accounting/setting"
+
     def get(self) -> Dict[str, Any]:
         """
         Retrieve current TACACS+ accounting server settings.
-        
+
         Returns:
             Dictionary containing TACACS+ accounting server configuration
-            
+
         Example:
             >>> result = fgt.api.cmdb.log.tacacs_accounting.setting.get()
             >>> print(result['status'])
             'enable'
         """
-        path = 'log.tacacs+accounting/setting'
-        return self._client.get('cmdb', path)
-    
+        path = "log.tacacs+accounting/setting"
+        return self._client.get("cmdb", path)
+
     def update(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
@@ -78,16 +78,16 @@ class TacacsAccountingSetting:
         source_ip: Optional[str] = None,
         status: Optional[str] = None,
         vrf_select: Optional[str] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Dict[str, Any]:
         """
         Update TACACS+ accounting server settings.
-        
+
         Accepts parameters in multiple formats for flexibility:
         1. data_dict with API format (hyphenated keys)
         2. Python snake_case keyword arguments
         3. Both data_dict and kwargs combined
-        
+
         Args:
             data_dict: Dictionary with API format parameters (hyphenated)
             interface: Specify outgoing interface to reach server
@@ -99,10 +99,10 @@ class TacacsAccountingSetting:
             status: Enable/disable TACACS+ accounting (enable | disable)
             vrf_select: VRF select
             **kwargs: Additional parameters in API format (hyphenated)
-        
+
         Returns:
             Dictionary containing API response
-            
+
         Example:
             >>> # Using keyword arguments
             >>> fgt.api.cmdb.log.tacacs_accounting.setting.update(
@@ -110,7 +110,7 @@ class TacacsAccountingSetting:
             ...     server='192.168.1.100',
             ...     server_key='mysecretkey'
             ... )
-            
+
             >>> # Using data_dict
             >>> fgt.api.cmdb.log.tacacs_accounting.setting.update(
             ...     data_dict={
@@ -121,26 +121,26 @@ class TacacsAccountingSetting:
         """
         # Start with data_dict if provided, otherwise empty dict
         payload = dict(data_dict) if data_dict else {}
-        
+
         # Map Python parameter names to API format and add to payload
         param_map = {
-            'interface': 'interface',
-            'interface_select_method': 'interface-select-method',
-            'server': 'server',
-            'server_key': 'server-key',
-            'source_ip': 'source-ip',
-            'status': 'status',
-            'vrf_select': 'vrf-select',
+            "interface": "interface",
+            "interface_select_method": "interface-select-method",
+            "server": "server",
+            "server_key": "server-key",
+            "source_ip": "source-ip",
+            "status": "status",
+            "vrf_select": "vrf-select",
         }
-        
+
         # Add mapped parameters
         for py_name, api_name in param_map.items():
             value = locals().get(py_name)
             if value is not None:
                 payload[api_name] = value
-        
+
         # Add any additional kwargs
         payload.update(kwargs)
-        
-        path = 'log.tacacs+accounting/setting'
-        return self._client.put('cmdb', path, data=payload)
+
+        path = "log.tacacs+accounting/setting"
+        return self._client.put("cmdb", path, data=payload)

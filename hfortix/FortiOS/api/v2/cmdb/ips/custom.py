@@ -10,6 +10,7 @@ API Endpoints:
     PUT    /api/v2/cmdb/ips/custom/{tag}  - Update custom signature
     DELETE /api/v2/cmdb/ips/custom/{tag}  - Delete custom signature
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -23,14 +24,10 @@ from hfortix.FortiOS.http_client import encode_path_component
 class Custom:
     """IPS Custom Signature endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         List all IPS custom signatures.
 
@@ -45,14 +42,11 @@ class Custom:
             >>> # List all custom signatures
             >>> sigs = fgt.api.cmdb.ips.custom.list()
         """
-        path = 'ips/custom'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "ips/custom"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def get(
-        self,
-        tag: str,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        self, tag: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
     ) -> dict[str, Any]:
         """
         Get specific IPS custom signature.
@@ -68,8 +62,8 @@ class Custom:
         Examples:
             >>> sig = fgt.api.cmdb.ips.custom.get('custom-sig-1')
         """
-        path = f'ips/custom/{encode_path_component(tag)}'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = f"ips/custom/{encode_path_component(tag)}"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def create(
         self,
@@ -88,7 +82,7 @@ class Custom:
         action: Optional[str] = None,
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Create IPS custom signature.
@@ -125,19 +119,19 @@ class Custom:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'tag': tag,
-            'signature': signature,
-            'rule-id': rule_id,
-            'severity': severity,
-            'location': location,
-            'os': os,
-            'application': application,
-            'protocol': protocol,
-            'status': status,
-            'log': log,
-            'log-packet': log_packet,
-            'action': action,
-            'comment': comment,
+            "tag": tag,
+            "signature": signature,
+            "rule-id": rule_id,
+            "severity": severity,
+            "location": location,
+            "os": os,
+            "application": application,
+            "protocol": protocol,
+            "status": status,
+            "log": log,
+            "log-packet": log_packet,
+            "action": action,
+            "comment": comment,
         }
 
         for key, value in param_map.items():
@@ -146,8 +140,8 @@ class Custom:
 
         data.update(kwargs)
 
-        path = 'ips/custom'
-        return self._client.post('cmdb', path, data=data, vdom=vdom)
+        path = "ips/custom"
+        return self._client.post("cmdb", path, data=data, vdom=vdom)
 
     def update(
         self,
@@ -166,7 +160,7 @@ class Custom:
         action: Optional[str] = None,
         comment: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPS custom signature.
@@ -202,18 +196,18 @@ class Custom:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'signature': signature,
-            'rule-id': rule_id,
-            'severity': severity,
-            'location': location,
-            'os': os,
-            'application': application,
-            'protocol': protocol,
-            'status': status,
-            'log': log,
-            'log-packet': log_packet,
-            'action': action,
-            'comment': comment,
+            "signature": signature,
+            "rule-id": rule_id,
+            "severity": severity,
+            "location": location,
+            "os": os,
+            "application": application,
+            "protocol": protocol,
+            "status": status,
+            "log": log,
+            "log-packet": log_packet,
+            "action": action,
+            "comment": comment,
         }
 
         for key, value in param_map.items():
@@ -222,14 +216,10 @@ class Custom:
 
         data.update(kwargs)
 
-        path = f'ips/custom/{encode_path_component(tag)}'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = f"ips/custom/{encode_path_component(tag)}"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)
 
-    def delete(
-        self,
-        tag: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> dict[str, Any]:
+    def delete(self, tag: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
         """
         Delete IPS custom signature.
 
@@ -243,14 +233,10 @@ class Custom:
         Examples:
             >>> fgt.api.cmdb.ips.custom.delete('custom-sig-1')
         """
-        path = f'ips/custom/{encode_path_component(tag)}'
-        return self._client.delete('cmdb', path, vdom=vdom)
+        path = f"ips/custom/{encode_path_component(tag)}"
+        return self._client.delete("cmdb", path, vdom=vdom)
 
-    def exists(
-        self,
-        tag: str,
-        vdom: Optional[Union[str, bool]] = None
-    ) -> bool:
+    def exists(self, tag: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         """
         Check if IPS custom signature exists.
 

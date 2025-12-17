@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class InternetServiceSld:
     """Firewall `internet-service-sld` table endpoint."""
 

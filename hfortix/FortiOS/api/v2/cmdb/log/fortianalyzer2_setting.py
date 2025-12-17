@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortianalyzer2/setting - Get FortiAnalyzer2 settings
     PUT /api/v2/cmdb/log.fortianalyzer2/setting - Update FortiAnalyzer2 settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class Fortianalyzer2Setting:
     """Log FortiAnalyzer2 Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiAnalyzer2 settings.
 
@@ -39,8 +36,8 @@ class Fortianalyzer2Setting:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortianalyzer2_setting.get()
         """
-        path = 'log.fortianalyzer2/setting'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortianalyzer2/setting"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -74,7 +71,7 @@ class Fortianalyzer2Setting:
         ips_archive: Optional[str] = None,
         vrf_select: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiAnalyzer2 settings.
@@ -126,34 +123,34 @@ class Fortianalyzer2Setting:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'status': status,
-            'certificate': certificate,
-            'server': server,
-            'alt-server': alt_server,
-            'fallback-to-primary': fallback_to_primary,
-            'certificate-verification': certificate_verification,
-            'server-cert-ca': server_cert_ca,
-            'serial': serial,
-            'preshared-key': preshared_key,
-            'access-config': access_config,
-            'hmac-algorithm': hmac_algorithm,
-            'enc-algorithm': enc_algorithm,
-            'ssl-min-proto-version': ssl_min_proto_version,
-            'conn-timeout': conn_timeout,
-            'monitor-keepalive-period': monitor_keepalive_period,
-            'monitor-failure-retry-period': monitor_failure_retry_period,
-            'reliable': reliable,
-            'priority': priority,
-            'max-log-rate': max_log_rate,
-            'interface-select-method': interface_select_method,
-            'interface': interface,
-            'source-ip': source_ip,
-            'upload-option': upload_option,
-            'upload-interval': upload_interval,
-            'upload-day': upload_day,
-            'upload-time': upload_time,
-            'ips-archive': ips_archive,
-            'vrf-select': vrf_select,
+            "status": status,
+            "certificate": certificate,
+            "server": server,
+            "alt-server": alt_server,
+            "fallback-to-primary": fallback_to_primary,
+            "certificate-verification": certificate_verification,
+            "server-cert-ca": server_cert_ca,
+            "serial": serial,
+            "preshared-key": preshared_key,
+            "access-config": access_config,
+            "hmac-algorithm": hmac_algorithm,
+            "enc-algorithm": enc_algorithm,
+            "ssl-min-proto-version": ssl_min_proto_version,
+            "conn-timeout": conn_timeout,
+            "monitor-keepalive-period": monitor_keepalive_period,
+            "monitor-failure-retry-period": monitor_failure_retry_period,
+            "reliable": reliable,
+            "priority": priority,
+            "max-log-rate": max_log_rate,
+            "interface-select-method": interface_select_method,
+            "interface": interface,
+            "source-ip": source_ip,
+            "upload-option": upload_option,
+            "upload-interval": upload_interval,
+            "upload-day": upload_day,
+            "upload-time": upload_time,
+            "ips-archive": ips_archive,
+            "vrf-select": vrf_select,
         }
 
         for key, value in param_map.items():
@@ -162,5 +159,5 @@ class Fortianalyzer2Setting:
 
         data.update(kwargs)
 
-        path = 'log.fortianalyzer2/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortianalyzer2/setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

@@ -20,6 +20,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class ExemptList:
     """Antivirus Exempt List endpoint"""
 
@@ -119,7 +120,11 @@ class ExemptList:
         # Add any extra kwargs
         params.update(kwargs)
 
-        path = f"antivirus/exempt-list/{encode_path_component(name)}" if name else "antivirus/exempt-list"
+        path = (
+            f"antivirus/exempt-list/{encode_path_component(name)}"
+            if name
+            else "antivirus/exempt-list"
+        )
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )

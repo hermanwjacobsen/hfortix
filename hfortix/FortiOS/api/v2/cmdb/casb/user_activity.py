@@ -23,6 +23,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class UserActivity:
     """CASB user activity endpoint"""
 

@@ -3,6 +3,7 @@ FortiOS ICAP API
 
 Internet Content Adaptation Protocol (ICAP) configuration for content inspection.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -14,7 +15,7 @@ if TYPE_CHECKING:
 class Icap:
     """ICAP API endpoints"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
         from .profile import Profile

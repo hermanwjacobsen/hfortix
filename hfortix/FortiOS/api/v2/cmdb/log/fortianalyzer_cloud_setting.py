@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortianalyzer-cloud/setting - Get FortiAnalyzer Cloud settings
     PUT /api/v2/cmdb/log.fortianalyzer-cloud/setting - Update FortiAnalyzer Cloud settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class FortianalyzerCloudSetting:
     """Log FortiAnalyzer Cloud Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiAnalyzer Cloud settings.
 
@@ -39,8 +36,8 @@ class FortianalyzerCloudSetting:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortianalyzer_cloud_setting.get()
         """
-        path = 'log.fortianalyzer-cloud/setting'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortianalyzer-cloud/setting"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -69,7 +66,7 @@ class FortianalyzerCloudSetting:
         monitor_failure_retry_period: Optional[int] = None,
         vrf_select: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiAnalyzer Cloud settings.
@@ -111,7 +108,7 @@ class FortianalyzerCloudSetting:
             ...     status='enable',
             ...     upload_option='realtime'
             ... )
-            
+
             >>> # Configure scheduled upload with encryption
             >>> fgt.api.cmdb.log.fortianalyzer_cloud_setting.update(
             ...     status='enable',
@@ -121,7 +118,7 @@ class FortianalyzerCloudSetting:
             ...     enc_algorithm='high',
             ...     ssl_min_proto_version='TLSv1-2'
             ... )
-            
+
             >>> # Configure with certificate verification
             >>> fgt.api.cmdb.log.fortianalyzer_cloud_setting.update(
             ...     certificate_verification='enable',
@@ -132,29 +129,29 @@ class FortianalyzerCloudSetting:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'status': status,
-            'ips-archive': ips_archive,
-            'upload-option': upload_option,
-            'upload-interval': upload_interval,
-            'upload-day': upload_day,
-            'upload-time': upload_time,
-            'priority': priority,
-            'max-log-rate': max_log_rate,
-            'access-config': access_config,
-            'enc-algorithm': enc_algorithm,
-            'ssl-min-proto-version': ssl_min_proto_version,
-            'certificate': certificate,
-            'certificate-verification': certificate_verification,
-            'serial': serial,
-            'preshared-key': preshared_key,
-            'interface-select-method': interface_select_method,
-            'interface': interface,
-            'source-ip': source_ip,
-            'hmac-algorithm': hmac_algorithm,
-            'conn-timeout': conn_timeout,
-            'monitor-keepalive-period': monitor_keepalive_period,
-            'monitor-failure-retry-period': monitor_failure_retry_period,
-            'vrf-select': vrf_select,
+            "status": status,
+            "ips-archive": ips_archive,
+            "upload-option": upload_option,
+            "upload-interval": upload_interval,
+            "upload-day": upload_day,
+            "upload-time": upload_time,
+            "priority": priority,
+            "max-log-rate": max_log_rate,
+            "access-config": access_config,
+            "enc-algorithm": enc_algorithm,
+            "ssl-min-proto-version": ssl_min_proto_version,
+            "certificate": certificate,
+            "certificate-verification": certificate_verification,
+            "serial": serial,
+            "preshared-key": preshared_key,
+            "interface-select-method": interface_select_method,
+            "interface": interface,
+            "source-ip": source_ip,
+            "hmac-algorithm": hmac_algorithm,
+            "conn-timeout": conn_timeout,
+            "monitor-keepalive-period": monitor_keepalive_period,
+            "monitor-failure-retry-period": monitor_failure_retry_period,
+            "vrf-select": vrf_select,
         }
 
         for key, value in param_map.items():
@@ -163,5 +160,5 @@ class FortianalyzerCloudSetting:
 
         data.update(kwargs)
 
-        path = 'log.fortianalyzer-cloud/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortianalyzer-cloud/setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

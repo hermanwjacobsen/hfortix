@@ -13,6 +13,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class DosPolicy:
     """
     Manage IPv4 DoS (Denial of Service) policies

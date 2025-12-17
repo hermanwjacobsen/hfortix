@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class Addrgrp6:
     """Firewall IPv6 address group endpoint"""
 

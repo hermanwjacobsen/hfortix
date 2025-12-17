@@ -7,7 +7,7 @@ for configuring log event filters.
 API Path: log/eventfilter
 """
 
-from typing import Optional, Dict, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
@@ -16,14 +16,14 @@ if TYPE_CHECKING:
 class Eventfilter:
     """
     Interface for configuring log event filters.
-    
+
     This class provides methods to manage log event filter configuration.
     This is a singleton endpoint (GET/PUT only).
-    
+
     Example usage:
         # Get current event filter settings
         settings = fgt.api.cmdb.log.eventfilter.get()
-        
+
         # Update event filter settings
         fgt.api.cmdb.log.eventfilter.update(
             system='enable',
@@ -31,31 +31,31 @@ class Eventfilter:
             user='enable'
         )
     """
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize the Eventfilter instance.
-        
+
         Args:
             client: The HTTP client used to communicate with the FortiOS device
         """
         self._client = client
-        self._endpoint = 'log/eventfilter'
-    
+        self._endpoint = "log/eventfilter"
+
     def get(self) -> Dict[str, Any]:
         """
         Retrieve current log event filter settings.
-        
+
         Returns:
             Dictionary containing event filter settings
-            
+
         Example:
             >>> result = fgt.api.cmdb.log.eventfilter.get()
             >>> print(result['system'])
             'enable'
         """
-        return self._client.get('cmdb', self._endpoint)
-    
+        return self._client.get("cmdb", self._endpoint)
+
     def update(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
@@ -76,11 +76,11 @@ class Eventfilter:
         wan_opt: Optional[str] = None,
         web_svc: Optional[str] = None,
         wireless_activity: Optional[str] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Dict[str, Any]:
         """
         Update log event filter settings.
-        
+
         Args:
             data_dict: Dictionary with API format parameters
             cifs: Enable/disable CIFS logging (enable | disable)
@@ -101,10 +101,10 @@ class Eventfilter:
             web_svc: Enable/disable web service logging (enable | disable)
             wireless_activity: Enable/disable wireless activity logging (enable | disable)
             **kwargs: Additional parameters
-        
+
         Returns:
             Dictionary containing API response
-            
+
         Example:
             >>> fgt.api.cmdb.log.eventfilter.update(
             ...     system='enable',
@@ -114,32 +114,32 @@ class Eventfilter:
             ... )
         """
         payload = dict(data_dict) if data_dict else {}
-        
+
         param_map = {
-            'cifs': 'cifs',
-            'connector': 'connector',
-            'endpoint': 'endpoint',
-            'event': 'event',
-            'fortiextender': 'fortiextender',
-            'ha': 'ha',
-            'rest_api': 'rest-api',
-            'router': 'router',
-            'sdwan': 'sdwan',
-            'security_rating': 'security-rating',
-            'switch_controller': 'switch-controller',
-            'system': 'system',
-            'user': 'user',
-            'vpn': 'vpn',
-            'wan_opt': 'wan-opt',
-            'web_svc': 'web-svc',
-            'wireless_activity': 'wireless-activity',
+            "cifs": "cifs",
+            "connector": "connector",
+            "endpoint": "endpoint",
+            "event": "event",
+            "fortiextender": "fortiextender",
+            "ha": "ha",
+            "rest_api": "rest-api",
+            "router": "router",
+            "sdwan": "sdwan",
+            "security_rating": "security-rating",
+            "switch_controller": "switch-controller",
+            "system": "system",
+            "user": "user",
+            "vpn": "vpn",
+            "wan_opt": "wan-opt",
+            "web_svc": "web-svc",
+            "wireless_activity": "wireless-activity",
         }
-        
+
         for py_name, api_name in param_map.items():
             value = locals().get(py_name)
             if value is not None:
                 payload[api_name] = value
-        
+
         payload.update(kwargs)
-        
-        return self._client.put('cmdb', self._endpoint, data=payload)
+
+        return self._client.put("cmdb", self._endpoint, data=payload)

@@ -12,15 +12,29 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **FortiOS 7.6.5 Coverage (December 17, 2025):**
 
-- **CMDB API**: 18 of 40 categories (45% coverage) - 150+ endpoints 🔷 Beta
+- **CMDB API**: 23 of 40 categories (57.5% coverage) - 200+ endpoints 🔷 Beta
+- **Monitor API**: 6 of 33 categories (18% coverage) - 50+ endpoints 🔷 Beta
 - **Log API**: 5 of 5 categories (100% coverage) - Log reading functionality 🔷 Beta
 - **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
-- **Monitor API**: 1 of 33 categories (3% coverage) - Partial system monitoring 🔷 Beta
-- **Overall**: 27 of 77 categories (35% coverage) - 200+ API methods
+- **Overall**: 37 of 77 categories (48% coverage) - 250+ API methods
 
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
 **Latest Features (v0.3.10-beta):**
+- ✨ **FTP Proxy Category**: FTP proxy configuration (1 endpoint)
+  - **explicit**: FTP proxy explicit configuration with SSL/TLS support
+  - FTPS support, SSL certificate management, custom encryption
+  - 10 parameters: status, ports, IPs, security actions, SSL settings
+  - Test coverage: 5 test sections with comprehensive validation
+- ✨ **Monitor API Categories**: 6 categories implemented (18% coverage)
+  - **firewall/**: 39 endpoints for firewall monitoring
+  - Policy statistics, session monitoring, ACL counters
+  - Address objects, traffic shapers, GTP stats
+  - Special endpoints: policy-lookup (callable), clearpass-address (actions)
+  - **endpoint-control/**: 7 endpoints for FortiClient EMS monitoring
+  - **azure/, casb/, extender-controller/, extension-controller/**: Additional monitoring
+  - Test coverage: 39 firewall tests with 100% pass rate
+  - All endpoints support explicit parameters (no **kwargs)
 - ✨ **Log Configuration Category**: 56 endpoints for comprehensive logging setup
   - Nested object pattern: `fgt.api.cmdb.log.disk.filter.get()`
   - Multiple FortiAnalyzer, syslog, TACACS+ server support

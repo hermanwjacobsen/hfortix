@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortianalyzer3/override-filter - Get FortiAnalyzer3 override filter settings
     PUT /api/v2/cmdb/log.fortianalyzer3/override-filter - Update FortiAnalyzer3 override filter settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class Fortianalyzer3OverrideFilter:
     """Log FortiAnalyzer3 Override Filter endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiAnalyzer3 override filter settings.
 
@@ -39,8 +36,8 @@ class Fortianalyzer3OverrideFilter:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortianalyzer3_override_filter.get()
         """
-        path = 'log.fortianalyzer3/override-filter'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortianalyzer3/override-filter"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -58,7 +55,7 @@ class Fortianalyzer3OverrideFilter:
         http_transaction: Optional[str] = None,
         free_style: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiAnalyzer3 override filter settings for VDOM-specific filtering.
@@ -93,18 +90,18 @@ class Fortianalyzer3OverrideFilter:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'severity': severity,
-            'forward-traffic': forward_traffic,
-            'local-traffic': local_traffic,
-            'multicast-traffic': multicast_traffic,
-            'sniffer-traffic': sniffer_traffic,
-            'ztna-traffic': ztna_traffic,
-            'anomaly': anomaly,
-            'voip': voip,
-            'dlp-archive': dlp_archive,
-            'forti-switch': forti_switch,
-            'http-transaction': http_transaction,
-            'free-style': free_style,
+            "severity": severity,
+            "forward-traffic": forward_traffic,
+            "local-traffic": local_traffic,
+            "multicast-traffic": multicast_traffic,
+            "sniffer-traffic": sniffer_traffic,
+            "ztna-traffic": ztna_traffic,
+            "anomaly": anomaly,
+            "voip": voip,
+            "dlp-archive": dlp_archive,
+            "forti-switch": forti_switch,
+            "http-transaction": http_transaction,
+            "free-style": free_style,
         }
 
         for key, value in param_map.items():
@@ -113,5 +110,5 @@ class Fortianalyzer3OverrideFilter:
 
         data.update(kwargs)
 
-        path = 'log.fortianalyzer3/override-filter'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortianalyzer3/override-filter"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

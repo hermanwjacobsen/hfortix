@@ -4,8 +4,8 @@ Provides access to /api/v2/cmdb/firewall/vendor-mac-summary endpoint.
 """
 
 from typing import Any, Dict, List, Optional, Union
-from hfortix.FortiOS.http_client import encode_path_component
 
+from hfortix.FortiOS.http_client import encode_path_component
 
 
 class VendorMacSummary:

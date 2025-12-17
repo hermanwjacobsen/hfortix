@@ -26,23 +26,23 @@ __all__ = ["HTTPClient", "HTTPResponse", "encode_path_component"]
 def encode_path_component(component: str) -> str:
     """
     Encode a single path component for use in URLs.
-    
+
     This encodes special characters including forward slashes, which are
     commonly used in FortiOS object names (e.g., IP addresses with CIDR notation).
-    
+
     Args:
         component: Path component to encode (e.g., object name)
-        
+
     Returns:
         URL-encoded string safe for use in URL paths
-        
+
     Examples:
         >>> encode_path_component("Test_NET_192.0.2.0/24")
         'Test_NET_192.0.2.0%2F24'
         >>> encode_path_component("test@example.com")
         'test%40example.com'
     """
-    return quote(component, safe='')
+    return quote(component, safe="")
 
 
 class HTTPClient:
@@ -122,7 +122,7 @@ class HTTPClient:
             "key",
             "private-key",
             "passphrase",
-            "psk"
+            "psk",
         ]
 
         for key in list(safe.keys()):

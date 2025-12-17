@@ -1,17 +1,32 @@
 """FortiOS CMDB - IPS Rule"""
+
 from __future__ import annotations
+
 from typing import TYPE_CHECKING, Any, Optional, Union
+
 if TYPE_CHECKING:
     from ...http_client import HTTPClient
+
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class Rule:
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
+
     def list(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        return self._client.get('cmdb', 'ips/rule', params=kwargs if kwargs else None, vdom=vdom)
-    def get(self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        return self._client.get('cmdb', f'ips/rule/{encode_path_component(name)}', params=kwargs if kwargs else None, vdom=vdom)
+        return self._client.get("cmdb", "ips/rule", params=kwargs if kwargs else None, vdom=vdom)
+
+    def get(
+        self, name: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
+    ) -> dict[str, Any]:
+        return self._client.get(
+            "cmdb",
+            f"ips/rule/{encode_path_component(name)}",
+            params=kwargs if kwargs else None,
+            vdom=vdom,
+        )
+
     def create(
         self,
         data_dict: Optional[dict[str, Any]] = None,
@@ -31,10 +46,10 @@ class Rule:
         date: Optional[int] = None,
         metadata: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """Create IPS rule.
-        
+
         Args:
             name: Rule name
             status: Enable/disable rule (enable|disable)
@@ -53,31 +68,32 @@ class Rule:
             metadata: Metadata (list of metadata objects)
         """
         data = data_dict.copy() if data_dict else {}
-        
+
         param_map = {
-            'name': name,
-            'status': status,
-            'log': log,
-            'log-packet': log_packet,
-            'action': action,
-            'group': group,
-            'severity': severity,
-            'location': location,
-            'os': os,
-            'application': application,
-            'service': service,
-            'rule-id': rule_id,
-            'rev': rev,
-            'date': date,
-            'metadata': metadata,
+            "name": name,
+            "status": status,
+            "log": log,
+            "log-packet": log_packet,
+            "action": action,
+            "group": group,
+            "severity": severity,
+            "location": location,
+            "os": os,
+            "application": application,
+            "service": service,
+            "rule-id": rule_id,
+            "rev": rev,
+            "date": date,
+            "metadata": metadata,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 data[key] = value
-        
+
         data.update(kwargs)
-        return self._client.post('cmdb', 'ips/rule', data=data, vdom=vdom)
+        return self._client.post("cmdb", "ips/rule", data=data, vdom=vdom)
+
     def update(
         self,
         name: str,
@@ -97,10 +113,10 @@ class Rule:
         date: Optional[int] = None,
         metadata: Optional[list[dict[str, Any]]] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """Update IPS rule.
-        
+
         Args:
             name: Rule name to update
             status: Enable/disable rule (enable|disable)
@@ -119,32 +135,36 @@ class Rule:
             metadata: Metadata (list of metadata objects)
         """
         data = data_dict.copy() if data_dict else {}
-        
+
         param_map = {
-            'status': status,
-            'log': log,
-            'log-packet': log_packet,
-            'action': action,
-            'group': group,
-            'severity': severity,
-            'location': location,
-            'os': os,
-            'application': application,
-            'service': service,
-            'rule-id': rule_id,
-            'rev': rev,
-            'date': date,
-            'metadata': metadata,
+            "status": status,
+            "log": log,
+            "log-packet": log_packet,
+            "action": action,
+            "group": group,
+            "severity": severity,
+            "location": location,
+            "os": os,
+            "application": application,
+            "service": service,
+            "rule-id": rule_id,
+            "rev": rev,
+            "date": date,
+            "metadata": metadata,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 data[key] = value
-        
+
         data.update(kwargs)
-        return self._client.put('cmdb', f'ips/rule/{encode_path_component(name)}', data=data, vdom=vdom)
+        return self._client.put(
+            "cmdb", f"ips/rule/{encode_path_component(name)}", data=data, vdom=vdom
+        )
+
     def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
-        return self._client.delete('cmdb', f'ips/rule/{encode_path_component(name)}', vdom=vdom)
+        return self._client.delete("cmdb", f"ips/rule/{encode_path_component(name)}", vdom=vdom)
+
     def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
         try:
             self.get(name, vdom=vdom)

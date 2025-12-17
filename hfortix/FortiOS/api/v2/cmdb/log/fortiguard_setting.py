@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortiguard/setting - Get FortiGuard settings
     PUT /api/v2/cmdb/log.fortiguard/setting - Update FortiGuard settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class FortiguardSetting:
     """Log FortiGuard Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiGuard settings.
 
@@ -39,8 +36,8 @@ class FortiguardSetting:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortiguard_setting.get()
         """
-        path = 'log.fortiguard/setting'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortiguard/setting"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -61,7 +58,7 @@ class FortiguardSetting:
         source_ip: Optional[str] = None,
         vrf_select: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiGuard settings for FortiCloud logging.
@@ -95,7 +92,7 @@ class FortiguardSetting:
             ...     status='enable',
             ...     upload_option='realtime'
             ... )
-            
+
             >>> # Configure scheduled upload with encryption
             >>> fgt.api.cmdb.log.fortiguard_setting.update(
             ...     status='enable',
@@ -109,21 +106,21 @@ class FortiguardSetting:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'status': status,
-            'upload-option': upload_option,
-            'upload-interval': upload_interval,
-            'upload-day': upload_day,
-            'upload-time': upload_time,
-            'priority': priority,
-            'max-log-rate': max_log_rate,
-            'access-config': access_config,
-            'enc-algorithm': enc_algorithm,
-            'ssl-min-proto-version': ssl_min_proto_version,
-            'conn-timeout': conn_timeout,
-            'interface-select-method': interface_select_method,
-            'interface': interface,
-            'source-ip': source_ip,
-            'vrf-select': vrf_select,
+            "status": status,
+            "upload-option": upload_option,
+            "upload-interval": upload_interval,
+            "upload-day": upload_day,
+            "upload-time": upload_time,
+            "priority": priority,
+            "max-log-rate": max_log_rate,
+            "access-config": access_config,
+            "enc-algorithm": enc_algorithm,
+            "ssl-min-proto-version": ssl_min_proto_version,
+            "conn-timeout": conn_timeout,
+            "interface-select-method": interface_select_method,
+            "interface": interface,
+            "source-ip": source_ip,
+            "vrf-select": vrf_select,
         }
 
         for key, value in param_map.items():
@@ -132,5 +129,5 @@ class FortiguardSetting:
 
         data.update(kwargs)
 
-        path = 'log.fortiguard/setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortiguard/setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

@@ -3,6 +3,7 @@ FortiOS IPS API
 
 Intrusion Prevention System (IPS) configuration for threat protection.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING
@@ -14,7 +15,7 @@ if TYPE_CHECKING:
 class Ips:
     """IPS API endpoints"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
         from .custom import Custom

@@ -18,6 +18,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class IpmacbindingSetting:
     """Firewall IP-MAC binding setting endpoint"""
 

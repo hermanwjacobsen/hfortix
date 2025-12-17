@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.syslogd3/override-setting - Get syslogd3 override settings
     PUT /api/v2/cmdb/log.syslogd3/override-setting - Update syslogd3 override settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,7 +19,7 @@ if TYPE_CHECKING:
 class Syslogd3OverrideSetting:
     """Log Syslogd3 Override Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -28,7 +29,7 @@ class Syslogd3OverrideSetting:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get syslogd3 override settings.
@@ -47,26 +48,26 @@ class Syslogd3OverrideSetting:
         Examples:
             >>> # Get syslogd3 override settings
             >>> result = fgt.api.cmdb.log.syslogd.override_setting.get()
-            
+
             >>> # Get with metadata
             >>> result = fgt.api.cmdb.log.syslogd.override_setting.get(with_meta=True)
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'log.syslogd3/override-setting'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = "log.syslogd3/override-setting"
+        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def update(
         self,
@@ -90,7 +91,7 @@ class Syslogd3OverrideSetting:
         use_management_vdom: Optional[str] = None,
         vrf_select: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update syslogd3 override settings.
@@ -132,7 +133,7 @@ class Syslogd3OverrideSetting:
             ...     status='enable',
             ...     server='192.168.1.100'
             ... )
-            
+
             >>> # Configure syslog server settings
             >>> fgt.api.cmdb.log.syslogd.override_setting.update(
             ...     server='syslog.example.com',
@@ -140,7 +141,7 @@ class Syslogd3OverrideSetting:
             ...     mode='udp',
             ...     facility='local7'
             ... )
-            
+
             >>> # Update with dictionary
             >>> config = {
             ...     'status': 'enable',
@@ -151,55 +152,55 @@ class Syslogd3OverrideSetting:
             >>> fgt.api.cmdb.log.syslogd.override_setting.update(data_dict=config)
         """
         data = data_dict.copy() if data_dict else {}
-        
+
         param_map = {
-            'status': status,
-            'server': server,
-            'mode': mode,
-            'port': port,
-            'facility': facility,
-            'source_ip': source_ip,
-            'format': format,
-            'priority': priority,
-            'max_log_rate': max_log_rate,
-            'enc_algorithm': enc_algorithm,
-            'ssl_min_proto_version': ssl_min_proto_version,
-            'certificate': certificate,
-            'custom_field_name': custom_field_name,
-            'interface_select_method': interface_select_method,
-            'interface': interface,
-            'source_ip_interface': source_ip_interface,
-            'use_management_vdom': use_management_vdom,
-            'vrf_select': vrf_select,
+            "status": status,
+            "server": server,
+            "mode": mode,
+            "port": port,
+            "facility": facility,
+            "source_ip": source_ip,
+            "format": format,
+            "priority": priority,
+            "max_log_rate": max_log_rate,
+            "enc_algorithm": enc_algorithm,
+            "ssl_min_proto_version": ssl_min_proto_version,
+            "certificate": certificate,
+            "custom_field_name": custom_field_name,
+            "interface_select_method": interface_select_method,
+            "interface": interface,
+            "source_ip_interface": source_ip_interface,
+            "use_management_vdom": use_management_vdom,
+            "vrf_select": vrf_select,
         }
-        
+
         api_field_map = {
-            'status': 'status',
-            'server': 'server',
-            'mode': 'mode',
-            'port': 'port',
-            'facility': 'facility',
-            'source_ip': 'source-ip',
-            'format': 'format',
-            'priority': 'priority',
-            'max_log_rate': 'max-log-rate',
-            'enc_algorithm': 'enc-algorithm',
-            'ssl_min_proto_version': 'ssl-min-proto-version',
-            'certificate': 'certificate',
-            'custom_field_name': 'custom-field-name',
-            'interface_select_method': 'interface-select-method',
-            'interface': 'interface',
-            'source_ip_interface': 'source-ip-interface',
-            'use_management_vdom': 'use-management-vdom',
-            'vrf_select': 'vrf-select',
+            "status": "status",
+            "server": "server",
+            "mode": "mode",
+            "port": "port",
+            "facility": "facility",
+            "source_ip": "source-ip",
+            "format": "format",
+            "priority": "priority",
+            "max_log_rate": "max-log-rate",
+            "enc_algorithm": "enc-algorithm",
+            "ssl_min_proto_version": "ssl-min-proto-version",
+            "certificate": "certificate",
+            "custom_field_name": "custom-field-name",
+            "interface_select_method": "interface-select-method",
+            "interface": "interface",
+            "source_ip_interface": "source-ip-interface",
+            "use_management_vdom": "use-management-vdom",
+            "vrf_select": "vrf-select",
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map[python_key]
                 data[api_key] = value
-        
+
         data.update(kwargs)
-        
-        path = 'log.syslogd3/override-setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+
+        path = "log.syslogd3/override-setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

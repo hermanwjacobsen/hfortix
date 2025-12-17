@@ -35,6 +35,7 @@ class CMDB:
         extension_controller: Extension controller
         file_filter: File filtering profiles
         firewall: Firewall policies and objects
+        ftp_proxy: FTP proxy settings
         icap: ICAP profiles and servers
         ips: Intrusion Prevention System
         log: Logging configuration
@@ -68,6 +69,7 @@ class CMDB:
         from .extension_controller import ExtensionController
         from .file_filter import FileFilter
         from .firewall import Firewall
+        from .ftp_proxy import FtpProxy
         from .icap import Icap
         from .ips import Ips
         from .log import Log
@@ -90,6 +92,7 @@ class CMDB:
         self.extension_controller: ExtensionController = ExtensionController(client)
         self.file_filter: FileFilter = FileFilter(client)
         self.firewall: Firewall = Firewall(client)
+        self.ftp_proxy: FtpProxy = FtpProxy(client)
         self.icap: Icap = Icap(client)
         self.ips: Ips = Ips(client)
         self.log: Log = Log(client)
@@ -115,6 +118,7 @@ class CMDB:
             "extension_controller",
             "file_filter",
             "firewall",
+            "ftp_proxy",
             "icap",
             "ips",
             "log",

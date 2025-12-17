@@ -6,9 +6,9 @@ Config global/VDOM Wildcard FQDN address.
 
 from typing import Any, Dict, Optional
 
-from .....http_client import HTTPResponse
 from hfortix.FortiOS.http_client import encode_path_component
 
+from .....http_client import HTTPResponse
 
 
 class Custom:

@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.fortiguard/override-setting - Get FortiGuard override settings
     PUT /api/v2/cmdb/log.fortiguard/override-setting - Update FortiGuard override settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class FortiguardOverrideSetting:
     """Log FortiGuard Override Setting endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get FortiGuard override settings.
 
@@ -39,8 +36,8 @@ class FortiguardOverrideSetting:
         Examples:
             >>> settings = fgt.api.cmdb.log.fortiguard_override_setting.get()
         """
-        path = 'log.fortiguard/override-setting'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "log.fortiguard/override-setting"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -55,7 +52,7 @@ class FortiguardOverrideSetting:
         max_log_rate: Optional[int] = None,
         access_config: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update FortiGuard override settings for VDOM-specific FortiCloud configuration.
@@ -89,15 +86,15 @@ class FortiguardOverrideSetting:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'override': override,
-            'status': status,
-            'upload-option': upload_option,
-            'upload-interval': upload_interval,
-            'upload-day': upload_day,
-            'upload-time': upload_time,
-            'priority': priority,
-            'max-log-rate': max_log_rate,
-            'access-config': access_config,
+            "override": override,
+            "status": status,
+            "upload-option": upload_option,
+            "upload-interval": upload_interval,
+            "upload-day": upload_day,
+            "upload-time": upload_time,
+            "priority": priority,
+            "max-log-rate": max_log_rate,
+            "access-config": access_config,
         }
 
         for key, value in param_map.items():
@@ -106,5 +103,5 @@ class FortiguardOverrideSetting:
 
         data.update(kwargs)
 
-        path = 'log.fortiguard/override-setting'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "log.fortiguard/override-setting"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

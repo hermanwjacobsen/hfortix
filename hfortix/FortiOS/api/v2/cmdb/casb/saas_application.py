@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class SaasApplication:
     """CASB SaaS application endpoint"""
 
@@ -132,7 +133,11 @@ class SaasApplication:
         params.update(kwargs)
 
         # Build path
-        path = f"casb/saas-application/{encode_path_component(name)}" if name else "casb/saas-application"
+        path = (
+            f"casb/saas-application/{encode_path_component(name)}"
+            if name
+            else "casb/saas-application"
+        )
 
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json

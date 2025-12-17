@@ -32,17 +32,17 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 | API Category | Status | Implemented | Total Available | Coverage |
 |--------------|--------|-------------|-----------------|----------|
-| **Configuration (CMDB)** | 🔷 Beta | 18 categories | 40 categories | 45% |
-| **Monitoring** | 🔷 Beta | 1 category | 33 categories | 3% |
+| **Configuration (CMDB)** | 🔷 Beta | 23 categories | 40 categories | 57.5% |
+| **Monitoring** | 🔷 Beta | 6 categories | 33 categories | 18% |
 | **Logging** | 🔷 Beta | 5 categories | 5 categories | 100% |
 | **Service** | 🔷 Beta | 3 categories | 3 categories | 100% |
-| **Overall** | 🔷 Beta | **27 categories** | **77 categories** | **35%** |
+| **Overall** | 🔷 Beta | **37 categories** | **77 categories** | **48%** |
 
 **CMDB Detailed Progress:**
 - **Total Categories Available:** 40 (FortiOS 7.6.5 Configuration API)
-- **Categories Implemented:** 18
-- **Total Endpoints Implemented:** 150+ endpoints
-- **Coverage:** 45% of all CMDB categories
+- **Categories Implemented:** 23 (57.5% coverage)
+- **Total Endpoints Implemented:** 200+ endpoints
+- **Coverage:** 57.5% of all CMDB categories
 
 **Note:** All implementations are in beta status and will remain so until version 1.0.0 with comprehensive unit test coverage.
 
@@ -57,7 +57,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ## 🔧 CMDB (Configuration Management Database)
 
-### Implemented Categories (18 categories, 150+ endpoints)
+### Implemented Categories (23 categories, 200+ endpoints)
 
 #### 1. Alert Email (alertemail/)
 | Endpoint | Status | Methods | Notes |
@@ -223,7 +223,21 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - ssl-server, ssl-ssh-profile - SSL/SSH profiles
 - And 60+ more endpoints...
 
-#### 17. ICAP (icap/) - 🔷 Beta (3 endpoints)
+#### 17. FTP Proxy (ftp-proxy/) - 🔷 Beta (1 endpoint)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/cmdb/ftp-proxy/explicit` | 🔷 Beta | GET, PUT | Explicit FTP proxy configuration |
+
+**Features:**
+- Enable/disable explicit FTP proxy
+- Configure incoming/outgoing IP and port
+- Security default action (accept/deny)
+- Server data mode (client/passive)
+- FTPS support with SSL configuration
+- SSL certificate selection and DH bits
+- Singleton endpoint (no POST/DELETE)
+
+#### 18. ICAP (icap/) - 🔷 Beta (3 endpoints)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | `/cmdb/icap/profile` | 🔷 Beta | GET, POST, PUT, DELETE | ICAP profiles with 30+ parameters |
@@ -236,7 +250,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - SSL/TLS ICAP connections
 - Preview, streaming, and bypass options
 
-#### 18. IPS (ips/) - 🔷 Beta (8 endpoints)
+#### 19. IPS (ips/) - 🔷 Beta (8 endpoints)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | `/cmdb/ips/custom` | 🔷 Beta | GET, POST, PUT, DELETE | Custom IPS signatures |
@@ -254,7 +268,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - Sensor-based IPS profiles
 - Rate-based and anomaly-based detection
 
-#### 19. Log (log/) - 🔷 Beta (56 endpoints)
+#### 20. Log (log/) - 🔷 Beta (56 endpoints)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | **disk/filter** | 🔷 Beta | GET, PUT | Disk log filtering (12 params) |
@@ -310,7 +324,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - Custom field management for log enrichment
 - Comprehensive filtering and override capabilities
 
-#### 20. Monitoring (monitoring/) - 🔷 Beta (1 endpoint)
+#### 21. Monitoring (monitoring/) - 🔷 Beta (1 endpoint)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | `/cmdb/monitoring/npu-hpe` | 🔷 Beta | GET, PUT | NPU-HPE monitoring configuration (3 params) |
@@ -320,7 +334,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 - Interval, multipliers, and status configuration
 - Requires hardware NPU support
 
-#### 21. Report (report/) - 🔷 Beta (2 endpoints)
+#### 22. Report (report/) - 🔷 Beta (2 endpoints)
 | Endpoint | Status | Methods | Notes |
 |----------|--------|---------|-------|
 | `/cmdb/report/layout` | 🔷 Beta | GET, POST, PUT, DELETE | Report layouts with CRUD (17 params) |
@@ -334,15 +348,14 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ---
 
-### Not Yet Implemented (22 Categories Remaining)
+### Not Yet Implemented (17 Categories Remaining)
 
 **FortiOS 7.6.5 CMDB Categories Not Yet Implemented:**
 
 <details>
 <summary><strong>Click to expand full list of remaining CMDB categories</strong></summary>
 
-1. **ftp-proxy** - FTP proxy configuration
-2. **router** - 🔥 **HIGH PRIORITY** - Routing configuration (static, BGP, OSPF, policy routing)
+1. **router** - 🔥 **HIGH PRIORITY** - Routing configuration (static, BGP, OSPF, policy routing)
 3. **rule** - Traffic shaping and QoS rules
 4. **sctp-filter** - Stream Control Transmission Protocol filtering
 5. **ssh-filter** - SSH protocol filtering
@@ -361,14 +374,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 18. **wireless-controller** - FortiAP wireless management
 19. **ztna** - Zero Trust Network Access configuration
 
-**Priority Categories for Next Release:**
-- router (routing protocols)
-- system (core system settings)
-- user (authentication servers)
-- vpn (VPN tunnels and SSL-VPN)
-- webfilter (URL filtering)
-
-</details>
+**Note:** All 23 implemented CMDB categories are in beta status.
 
 ---
 
@@ -378,28 +384,28 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 | # | Category | Status | Notes |
 |---|----------|--------|-------|
-| 1 | alertemail | ✅ Implemented | Email alerts |
-| 2 | antivirus | ✅ Implemented | Antivirus profiles |
-| 3 | application | ✅ Implemented | Application control |
-| 4 | authentication | ✅ Implemented | Authentication schemes |
-| 5 | automation | ✅ Implemented | Automation stitch |
-| 6 | casb | ✅ Implemented | CASB profiles |
-| 7 | certificate | ✅ Implemented | Certificate management |
-| 8 | diameter-filter | ✅ Implemented | Diameter filtering |
-| 9 | dlp | ✅ Implemented | Data loss prevention |
-| 10 | dnsfilter | ✅ Implemented | DNS filtering |
-| 11 | emailfilter | ✅ Implemented | Email filtering |
-| 12 | endpoint-control | ✅ Implemented | Endpoint control |
-| 13 | ethernet-oam | ✅ Implemented | Ethernet OAM |
-| 14 | extension-controller | ✅ Implemented | FortiExtender |
-| 15 | file-filter | ✅ Implemented | File filtering |
-| 16 | firewall | ✅ Implemented | Firewall objects & policies |
-| 17 | ftp-proxy | ⏸️ Not Started | FTP proxy |
-| 18 | icap | ✅ Implemented | ICAP integration |
-| 19 | ips | ✅ Implemented | IPS sensors |
-| 20 | log | ✅ Implemented | Log configuration |
-| 21 | monitoring | ✅ Implemented | Monitoring config |
-| 22 | report | ✅ Implemented | Report configuration |
+| 1 | alertemail | 🔷 Beta | Email alerts |
+| 2 | antivirus | 🔷 Beta | Antivirus profiles |
+| 3 | application | 🔷 Beta | Application control |
+| 4 | authentication | 🔷 Beta | Authentication schemes |
+| 5 | automation | 🔷 Beta | Automation stitch |
+| 6 | casb | 🔷 Beta | CASB profiles |
+| 7 | certificate | 🔷 Beta | Certificate management |
+| 8 | diameter-filter | 🔷 Beta | Diameter filtering |
+| 9 | dlp | 🔷 Beta | Data loss prevention |
+| 10 | dnsfilter | 🔷 Beta | DNS filtering |
+| 11 | emailfilter | 🔷 Beta | Email filtering |
+| 12 | endpoint-control | 🔷 Beta | Endpoint control |
+| 13 | ethernet-oam | 🔷 Beta | Ethernet OAM |
+| 14 | extension-controller | 🔷 Beta | FortiExtender |
+| 15 | file-filter | 🔷 Beta | File filtering |
+| 16 | firewall | 🔷 Beta | Firewall objects & policies |
+| 17 | ftp-proxy | 🔷 Beta | FTP proxy |
+| 18 | icap | 🔷 Beta | ICAP integration |
+| 19 | ips | 🔷 Beta | IPS sensors |
+| 20 | log | 🔷 Beta | Log configuration |
+| 21 | monitoring | 🔷 Beta | Monitoring config |
+| 22 | report | 🔷 Beta | Report configuration |
 | 23 | router | ⏸️ Not Started | Routing protocols |
 | 24 | rule | ⏸️ Not Started | Traffic rules |
 | 25 | sctp-filter | ⏸️ Not Started | SCTP filtering |
@@ -420,8 +426,10 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 | 40 | ztna | ⏸️ Not Started | ZTNA |
 
 **Implementation Status:**
-- ✅ **Implemented:** 18 categories (45%)
-- ⏸️ **Not Started:** 22 categories (55%)
+- 🔷 **Beta (Implemented):** 23 categories (57.5%)
+- ⏸️ **Not Started:** 17 categories (42.5%)
+
+**Note:** All implemented categories remain in beta status until v1.0.0 with comprehensive unit test coverage.
 
 ---
 
@@ -443,16 +451,91 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ## 🔍 Monitor API - FortiOS 7.6.5
 
-**Status:** 🔷 Beta - 1 of 33 categories implemented (3%)
+**Status:** 🔷 Beta - 6 of 33 categories implemented (18%)
+
+### Implemented Categories (6 categories, 39+ endpoints)
+
+#### 1. Azure (azure/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/azure/application-list` | 🔷 Beta | GET | List Azure applications |
+
+#### 2. CASB (casb/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/casb/saas-application` | 🔷 Beta | GET | SaaS application statistics |
+
+#### 3. Endpoint Control (endpoint-control/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/endpoint-control/ems-status` | 🔷 Beta | GET | EMS connection status |
+| `/monitor/endpoint-control/ems-status-summary` | 🔷 Beta | GET | EMS status summary |
+| `/monitor/endpoint-control/installer` | 🔷 Beta | GET, POST | FortiClient installer management |
+| `/monitor/endpoint-control/profile-xml` | 🔷 Beta | GET | FortiClient XML profiles |
+| `/monitor/endpoint-control/record-list` | 🔷 Beta | GET | Endpoint control records |
+| `/monitor/endpoint-control/registration-password` | 🔷 Beta | POST | Generate registration passwords |
+| `/monitor/endpoint-control/summary` | 🔷 Beta | GET | Endpoint control summary |
+
+#### 4. Extender Controller (extender-controller/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/extender-controller/extender` | 🔷 Beta | GET | FortiExtender status |
+
+#### 5. Extension Controller (extension-controller/)
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/extension-controller/extender` | 🔷 Beta | GET | Extension controller status |
+| `/monitor/extension-controller/fortigate` | 🔷 Beta | GET | FortiGate connector status |
+
+#### 6. Firewall (firewall/) - 39 endpoints
+| Endpoint | Status | Methods | Notes |
+|----------|--------|---------|-------|
+| `/monitor/firewall/acl` | 🔷 Beta | GET, POST | IPv4 ACL counters |
+| `/monitor/firewall/acl6` | 🔷 Beta | GET, POST | IPv6 ACL counters |
+| `/monitor/firewall/address` | 🔷 Beta | GET | Address objects statistics |
+| `/monitor/firewall/address-dynamic` | 🔷 Beta | GET | Dynamic address statistics |
+| `/monitor/firewall/address-fqdn` | 🔷 Beta | GET | FQDN address resolution |
+| `/monitor/firewall/address-fqdn6` | 🔷 Beta | GET | IPv6 FQDN resolution |
+| `/monitor/firewall/address6` | 🔷 Beta | GET | IPv6 address statistics |
+| `/monitor/firewall/carrier-endpoint-bwl` | 🔷 Beta | GET | Carrier endpoint bandwidth limits |
+| `/monitor/firewall/check-addrgrp-exclude-mac-member` | 🔷 Beta | GET | Check address group MAC exclusions |
+| `/monitor/firewall/clearpass-address` | 🔷 Beta | POST | ClearPass address management |
+| `/monitor/firewall/consolidate-policy` | 🔷 Beta | GET | Policy consolidation analysis |
+| `/monitor/firewall/gtp-runtime-statistics` | 🔷 Beta | GET | GTP protocol statistics |
+| `/monitor/firewall/gtp-statistics` | 🔷 Beta | GET | GTP statistics summary |
+| `/monitor/firewall/health` | 🔷 Beta | GET | Firewall health status |
+| `/monitor/firewall/internet-service-match` | 🔷 Beta | GET | Internet service matching |
+| `/monitor/firewall/internet-service-reputation` | 🔷 Beta | GET | Internet service reputation |
+| `/monitor/firewall/iprope` | 🔷 Beta | GET | IP reputation |
+| `/monitor/firewall/load-balance` | 🔷 Beta | GET | Load balancing statistics |
+| `/monitor/firewall/local-in` | 🔷 Beta | GET | Local-in policy statistics |
+| `/monitor/firewall/local-in6` | 🔷 Beta | GET | IPv6 local-in statistics |
+| `/monitor/firewall/multicast-policy` | 🔷 Beta | GET | Multicast policy statistics |
+| `/monitor/firewall/multicast-policy6` | 🔷 Beta | GET | IPv6 multicast statistics |
+| `/monitor/firewall/network-service-dynamic` | 🔷 Beta | GET | Dynamic network services |
+| `/monitor/firewall/per-ip-shaper` | 🔷 Beta | GET, POST | Per-IP shaper statistics |
+| `/monitor/firewall/policy` | 🔷 Beta | GET | Policy statistics |
+| `/monitor/firewall/policy-lookup` | 🔷 Beta | GET (Callable) | Policy lookup by packet |
+| `/monitor/firewall/policy6` | 🔷 Beta | GET | IPv6 policy statistics |
+| `/monitor/firewall/proute` | 🔷 Beta | GET | Policy-based routing |
+| `/monitor/firewall/proute6` | 🔷 Beta | GET | IPv6 policy routing |
+| `/monitor/firewall/proxy-policy` | 🔷 Beta | GET | Proxy policy statistics |
+| `/monitor/firewall/saas-application` | 🔷 Beta | GET | SaaS application statistics |
+| `/monitor/firewall/sdn-connector-filters` | 🔷 Beta | GET | SDN connector filters |
+| `/monitor/firewall/security-policy` | 🔷 Beta | GET | Security policy statistics |
+| `/monitor/firewall/sessions` | 🔷 Beta | GET | Active firewall sessions |
+| `/monitor/firewall/shaper` | 🔷 Beta | GET, POST | Traffic shaper statistics |
+| `/monitor/firewall/shaper-multi-class-shaper` | 🔷 Beta | GET | Multi-class shaper stats |
+| `/monitor/firewall/uuid` | 🔷 Beta | GET | UUID-based objects |
+| `/monitor/firewall/vip-overlap` | 🔷 Beta | GET | VIP overlap detection |
+| `/monitor/firewall/ztna-firewall-policy` | 🔷 Beta | POST | ZTNA policy counters |
+
+**Test Coverage:** 39 test files with 100% pass rate
+
+### Not Yet Implemented (27 categories)
 
 | # | Category | Status | Notes |
 |---|----------|--------|-------|
-| 1 | azure | ⏸️ Not Started | Azure SD-WAN monitoring |
-| 2 | casb | ⏸️ Not Started | CASB statistics |
-| 3 | endpoint-control | ⏸️ Not Started | Endpoint monitoring |
-| 4 | extender-controller | ⏸️ Not Started | FortiExtender status |
-| 5 | extension-controller | ⏸️ Not Started | Extension controller |
-| 6 | firewall | ⏸️ Not Started | Firewall statistics |
 | 7 | firmware | ⏸️ Not Started | Firmware status |
 | 8 | fortiguard | ⏸️ Not Started | FortiGuard services |
 | 9 | fortiview | ⏸️ Not Started | FortiView data |
@@ -466,7 +549,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 | 17 | sdwan | ⏸️ Not Started | SD-WAN metrics |
 | 18 | service | ⏸️ Not Started | Service status |
 | 19 | switch-controller | ⏸️ Not Started | FortiSwitch monitoring |
-| 20 | system | 🔷 Beta | System resources |
+| 20 | system | 🔷 Beta | System resources (partial via CMDB) |
 | 21 | user | ⏸️ Not Started | Active users |
 | 22 | utm | ⏸️ Not Started | UTM statistics |
 | 23 | videofilter | ⏸️ Not Started | Video filter stats |

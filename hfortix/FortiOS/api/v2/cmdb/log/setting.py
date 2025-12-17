@@ -7,7 +7,7 @@ for configuring general log settings.
 API Path: log/setting
 """
 
-from typing import Optional, Dict, Any, TYPE_CHECKING
+from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
@@ -16,14 +16,14 @@ if TYPE_CHECKING:
 class Setting:
     """
     Interface for configuring general log settings.
-    
+
     This class provides methods to manage general log configuration settings.
     This is a singleton endpoint (GET/PUT only).
-    
+
     Example usage:
         # Get current log settings
         settings = fgt.api.cmdb.log.setting.get()
-        
+
         # Update log settings
         fgt.api.cmdb.log.setting.update(
             resolve_ip='enable',
@@ -31,31 +31,31 @@ class Setting:
             log_user_in_upper='enable'
         )
     """
-    
-    def __init__(self, client: 'HTTPClient') -> None:
+
+    def __init__(self, client: "HTTPClient") -> None:
         """
         Initialize the Setting instance.
-        
+
         Args:
             client: The HTTP client used to communicate with the FortiOS device
         """
         self._client = client
-        self._endpoint = 'log/setting'
-    
+        self._endpoint = "log/setting"
+
     def get(self) -> Dict[str, Any]:
         """
         Retrieve current general log settings.
-        
+
         Returns:
             Dictionary containing log settings
-            
+
         Example:
             >>> result = fgt.api.cmdb.log.setting.get()
             >>> print(result['resolve-ip'])
             'enable'
         """
-        return self._client.get('cmdb', self._endpoint)
-    
+        return self._client.get("cmdb", self._endpoint)
+
     def update(
         self,
         data_dict: Optional[Dict[str, Any]] = None,
@@ -88,11 +88,11 @@ class Setting:
         user_anonymize: Optional[str] = None,
         web_svc_perf: Optional[str] = None,
         zone_name: Optional[str] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Dict[str, Any]:
         """
         Update general log settings.
-        
+
         Args:
             data_dict: Dictionary with API format parameters
             anonymization_hash: Anonymization hash salt
@@ -125,10 +125,10 @@ class Setting:
             web_svc_perf: Web service performance logging (enable | disable)
             zone_name: Zone name format (enable | disable)
             **kwargs: Additional parameters
-        
+
         Returns:
             Dictionary containing API response
-            
+
         Example:
             >>> fgt.api.cmdb.log.setting.update(
             ...     resolve_ip='enable',
@@ -138,44 +138,44 @@ class Setting:
             ... )
         """
         payload = dict(data_dict) if data_dict else {}
-        
+
         param_map = {
-            'anonymization_hash': 'anonymization-hash',
-            'brief_traffic_format': 'brief-traffic-format',
-            'custom_log_fields': 'custom-log-fields',
-            'daemon_log': 'daemon-log',
-            'expolicy_implicit_log': 'expolicy-implicit-log',
-            'extended_log': 'extended-log',
-            'extended_utm_log': 'extended-utm-log',
-            'faz_override': 'faz-override',
-            'fwpolicy_implicit_log': 'fwpolicy-implicit-log',
-            'fwpolicy6_implicit_log': 'fwpolicy6-implicit-log',
-            'local_in_allow': 'local-in-allow',
-            'local_in_deny_broadcast': 'local-in-deny-broadcast',
-            'local_in_deny_unicast': 'local-in-deny-unicast',
-            'local_in_policy_log': 'local-in-policy-log',
-            'local_out': 'local-out',
-            'local_out_ioc_detection': 'local-out-ioc-detection',
-            'log_policy_comment': 'log-policy-comment',
-            'log_user_in_upper': 'log-user-in-upper',
-            'long_live_session_stat': 'long-live-session-stat',
-            'neighbor_event': 'neighbor-event',
-            'resolve_ip': 'resolve-ip',
-            'resolve_port': 'resolve-port',
-            'rest_api_get': 'rest-api-get',
-            'rest_api_performance': 'rest-api-performance',
-            'rest_api_set': 'rest-api-set',
-            'syslog_override': 'syslog-override',
-            'user_anonymize': 'user-anonymize',
-            'web_svc_perf': 'web-svc-perf',
-            'zone_name': 'zone-name',
+            "anonymization_hash": "anonymization-hash",
+            "brief_traffic_format": "brief-traffic-format",
+            "custom_log_fields": "custom-log-fields",
+            "daemon_log": "daemon-log",
+            "expolicy_implicit_log": "expolicy-implicit-log",
+            "extended_log": "extended-log",
+            "extended_utm_log": "extended-utm-log",
+            "faz_override": "faz-override",
+            "fwpolicy_implicit_log": "fwpolicy-implicit-log",
+            "fwpolicy6_implicit_log": "fwpolicy6-implicit-log",
+            "local_in_allow": "local-in-allow",
+            "local_in_deny_broadcast": "local-in-deny-broadcast",
+            "local_in_deny_unicast": "local-in-deny-unicast",
+            "local_in_policy_log": "local-in-policy-log",
+            "local_out": "local-out",
+            "local_out_ioc_detection": "local-out-ioc-detection",
+            "log_policy_comment": "log-policy-comment",
+            "log_user_in_upper": "log-user-in-upper",
+            "long_live_session_stat": "long-live-session-stat",
+            "neighbor_event": "neighbor-event",
+            "resolve_ip": "resolve-ip",
+            "resolve_port": "resolve-port",
+            "rest_api_get": "rest-api-get",
+            "rest_api_performance": "rest-api-performance",
+            "rest_api_set": "rest-api-set",
+            "syslog_override": "syslog-override",
+            "user_anonymize": "user-anonymize",
+            "web_svc_perf": "web-svc-perf",
+            "zone_name": "zone-name",
         }
-        
+
         for py_name, api_name in param_map.items():
             value = locals().get(py_name)
             if value is not None:
                 payload[api_name] = value
-        
+
         payload.update(kwargs)
-        
-        return self._client.put('cmdb', self._endpoint, data=payload)
+
+        return self._client.put("cmdb", self._endpoint, data=payload)

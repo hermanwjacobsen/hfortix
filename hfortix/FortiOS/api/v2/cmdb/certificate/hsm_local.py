@@ -26,6 +26,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class HsmLocal:
     """Certificate HSM-Local endpoint (full CRUD)"""
 
@@ -103,7 +104,11 @@ class HsmLocal:
             >>> result = fgt.cmdb.certificate.hsm_local.get(action='schema')
         """
         # Build path
-        path = f"certificate/hsm-local/{encode_path_component(name)}" if name else "certificate/hsm-local"
+        path = (
+            f"certificate/hsm-local/{encode_path_component(name)}"
+            if name
+            else "certificate/hsm-local"
+        )
 
         # Build query parameters
         params = {}

@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/log.syslogd/filter - Get syslogd filter settings
     PUT /api/v2/cmdb/log.syslogd/filter - Update syslogd filter settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,7 +19,7 @@ if TYPE_CHECKING:
 class SyslogdFilter:
     """Log Syslogd Filter endpoint (singleton)"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
     def get(
@@ -28,7 +29,7 @@ class SyslogdFilter:
         skip: Optional[bool] = None,
         action: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Get syslogd filter settings.
@@ -47,26 +48,26 @@ class SyslogdFilter:
         Examples:
             >>> # Get syslogd filter settings
             >>> result = fgt.api.cmdb.log.syslogd.filter.get()
-            
+
             >>> # Get with metadata
             >>> result = fgt.api.cmdb.log.syslogd.filter.get(with_meta=True)
         """
         params = {}
         param_map = {
-            'datasource': datasource,
-            'with_meta': with_meta,
-            'skip': skip,
-            'action': action,
+            "datasource": datasource,
+            "with_meta": with_meta,
+            "skip": skip,
+            "action": action,
         }
-        
+
         for key, value in param_map.items():
             if value is not None:
                 params[key] = value
-        
+
         params.update(kwargs)
-        
-        path = 'log.syslogd/filter'
-        return self._client.get('cmdb', path, params=params if params else None, vdom=vdom)
+
+        path = "log.syslogd/filter"
+        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
 
     def update(
         self,
@@ -84,7 +85,7 @@ class SyslogdFilter:
         free_style: Optional[str] = None,
         debug: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update syslogd filter settings.
@@ -117,13 +118,13 @@ class SyslogdFilter:
         Examples:
             >>> # Update severity level
             >>> fgt.api.cmdb.log.syslogd.filter.update(severity='warning')
-            
+
             >>> # Enable forward traffic logging
             >>> fgt.api.cmdb.log.syslogd.filter.update(
             ...     forward_traffic='enable',
             ...     local_traffic='enable'
             ... )
-            
+
             >>> # Update with dictionary
             >>> config = {
             ...     'severity': 'information',
@@ -133,43 +134,43 @@ class SyslogdFilter:
             >>> fgt.api.cmdb.log.syslogd.filter.update(data_dict=config)
         """
         data = data_dict.copy() if data_dict else {}
-        
+
         param_map = {
-            'severity': severity,
-            'forward_traffic': forward_traffic,
-            'local_traffic': local_traffic,
-            'multicast_traffic': multicast_traffic,
-            'sniffer_traffic': sniffer_traffic,
-            'ztna_traffic': ztna_traffic,
-            'anomaly': anomaly,
-            'voip': voip,
-            'http_transaction': http_transaction,
-            'forti_switch': forti_switch,
-            'free_style': free_style,
-            'debug': debug,
+            "severity": severity,
+            "forward_traffic": forward_traffic,
+            "local_traffic": local_traffic,
+            "multicast_traffic": multicast_traffic,
+            "sniffer_traffic": sniffer_traffic,
+            "ztna_traffic": ztna_traffic,
+            "anomaly": anomaly,
+            "voip": voip,
+            "http_transaction": http_transaction,
+            "forti_switch": forti_switch,
+            "free_style": free_style,
+            "debug": debug,
         }
-        
+
         api_field_map = {
-            'severity': 'severity',
-            'forward_traffic': 'forward-traffic',
-            'local_traffic': 'local-traffic',
-            'multicast_traffic': 'multicast-traffic',
-            'sniffer_traffic': 'sniffer-traffic',
-            'ztna_traffic': 'ztna-traffic',
-            'anomaly': 'anomaly',
-            'voip': 'voip',
-            'http_transaction': 'http-transaction',
-            'forti_switch': 'forti-switch',
-            'free_style': 'free-style',
-            'debug': 'debug',
+            "severity": "severity",
+            "forward_traffic": "forward-traffic",
+            "local_traffic": "local-traffic",
+            "multicast_traffic": "multicast-traffic",
+            "sniffer_traffic": "sniffer-traffic",
+            "ztna_traffic": "ztna-traffic",
+            "anomaly": "anomaly",
+            "voip": "voip",
+            "http_transaction": "http-transaction",
+            "forti_switch": "forti-switch",
+            "free_style": "free-style",
+            "debug": "debug",
         }
-        
+
         for python_key, value in param_map.items():
             if value is not None:
                 api_key = api_field_map[python_key]
                 data[api_key] = value
-        
+
         data.update(kwargs)
-        
-        path = 'log.syslogd/filter'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+
+        path = "log.syslogd/filter"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)

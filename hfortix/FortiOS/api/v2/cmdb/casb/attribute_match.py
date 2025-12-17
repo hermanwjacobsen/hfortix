@@ -21,6 +21,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class AttributeMatch:
     """CASB attribute match endpoint"""
 
@@ -108,7 +109,11 @@ class AttributeMatch:
             >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule', with_meta=True)
         """
         # Build path
-        path = f"casb/attribute-match/{encode_path_component(name)}" if name else "casb/attribute-match"
+        path = (
+            f"casb/attribute-match/{encode_path_component(name)}"
+            if name
+            else "casb/attribute-match"
+        )
 
         # Build query parameters
         params = {}

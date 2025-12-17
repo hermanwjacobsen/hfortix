@@ -25,6 +25,7 @@ if TYPE_CHECKING:
 
 from hfortix.FortiOS.http_client import encode_path_component
 
+
 class Remote:
     """Certificate Remote endpoint (read-only)"""
 

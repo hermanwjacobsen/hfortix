@@ -7,6 +7,7 @@ API Endpoints:
     GET /api/v2/cmdb/ips/settings - Get IPS VDOM settings
     PUT /api/v2/cmdb/ips/settings - Update IPS VDOM settings
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any, Optional, Union
@@ -18,14 +19,10 @@ if TYPE_CHECKING:
 class Settings:
     """IPS Settings endpoint"""
 
-    def __init__(self, client: 'HTTPClient') -> None:
+    def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def get(
-        self,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
-    ) -> dict[str, Any]:
+    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get IPS VDOM settings.
 
@@ -39,8 +36,8 @@ class Settings:
         Examples:
             >>> settings = fgt.api.cmdb.ips.settings.get()
         """
-        path = 'ips/settings'
-        return self._client.get('cmdb', path, params=kwargs if kwargs else None, vdom=vdom)
+        path = "ips/settings"
+        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
 
     def update(
         self,
@@ -52,7 +49,7 @@ class Settings:
         packet_log_post_attack: Optional[int] = None,
         proxy_inline_ips: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Update IPS VDOM settings.
@@ -80,12 +77,12 @@ class Settings:
         data = data_dict.copy() if data_dict else {}
 
         param_map = {
-            'ha-session-pickup': ha_session_pickup,
-            'ips-packet-quota': ips_packet_quota,
-            'packet-log-history': packet_log_history,
-            'packet-log-memory': packet_log_memory,
-            'packet-log-post-attack': packet_log_post_attack,
-            'proxy-inline-ips': proxy_inline_ips,
+            "ha-session-pickup": ha_session_pickup,
+            "ips-packet-quota": ips_packet_quota,
+            "packet-log-history": packet_log_history,
+            "packet-log-memory": packet_log_memory,
+            "packet-log-post-attack": packet_log_post_attack,
+            "proxy-inline-ips": proxy_inline_ips,
         }
 
         for key, value in param_map.items():
@@ -94,5 +91,5 @@ class Settings:
 
         data.update(kwargs)
 
-        path = 'ips/settings'
-        return self._client.put('cmdb', path, data=data, vdom=vdom)
+        path = "ips/settings"
+        return self._client.put("cmdb", path, data=data, vdom=vdom)
