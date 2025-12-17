@@ -51,28 +51,37 @@ class Custom:
 
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         vdom=None,
         raw_json: bool = False,
         **params,
     ) -> HTTPResponse:
         """
-        Get a specific wildcard FQDN custom address.
+        Get wildcard FQDN custom address(es).
 
         Args:
-            name (str): Address name
+            name (str, optional): Address name. If provided, gets specific address.
+                                  If None, lists all addresses.
             vdom (str, optional): Virtual domain name
             **params: Additional query parameters
 
         Returns:
-            dict: API response with address details
+            dict: API response with address details or list
 
         Example:
+            # List all addresses
+            result = fgt.cmdb.firewall.wildcard_fqdn.custom.get()
+            # Get specific address
             result = fgt.cmdb.firewall.wildcard_fqdn.custom.get('*.example.com')
         """
+        if name is not None:
+            path = f"firewall.wildcard-fqdn/custom/{name}"
+        else:
+            path = "firewall.wildcard-fqdn/custom"
+        
         return self._client.get(
             "cmdb",
-            f"firewall.wildcard-fqdn/custom/{name}",
+            path,
             vdom=vdom,
             params=params,
             raw_json=raw_json,

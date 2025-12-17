@@ -50,28 +50,37 @@ class Group:
 
     def get(
         self,
-        name: str,
+        name: Optional[str] = None,
         vdom=None,
         raw_json: bool = False,
         **params,
     ) -> HTTPResponse:
         """
-        Get a specific wildcard FQDN group.
+        Get wildcard FQDN group(s).
 
         Args:
-            name (str): Group name
+            name (str, optional): Group name. If provided, gets specific group.
+                                  If None, lists all groups.
             vdom (str, optional): Virtual domain name
             **params: Additional query parameters
 
         Returns:
-            dict: API response with group details
+            dict: API response with group details or list
 
         Example:
+            # List all groups
+            result = fgt.cmdb.firewall.wildcard_fqdn.group.get()
+            # Get specific group
             result = fgt.cmdb.firewall.wildcard_fqdn.group.get('example-group')
         """
+        if name is not None:
+            path = f"firewall.wildcard-fqdn/group/{name}"
+        else:
+            path = "firewall.wildcard-fqdn/group"
+        
         return self._client.get(
             "cmdb",
-            f"firewall.wildcard-fqdn/group/{name}",
+            path,
             vdom=vdom,
             params=params,
             raw_json=raw_json,

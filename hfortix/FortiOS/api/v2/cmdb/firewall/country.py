@@ -80,9 +80,7 @@ class Country:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get a country by id."""
-        id_str = self._client.validate_mkey(id, "id")
-
+        """Get a country by id or list all countries."""
         params: dict[str, Any] = {}
         for key, value in {
             "datasource": datasource,
@@ -95,9 +93,16 @@ class Country:
                 params[key] = value
         params.update(kwargs)
 
+        # Determine path based on whether id is provided
+        if id is not None:
+            id_str = self._client.validate_mkey(id, "id")
+            path = f"{self.path}/{encode_path_component(str(id))}"
+        else:
+            path = self.path
+
         return self._client.get(
             "cmdb",
-            f"{self.path}/{encode_path_component(id)}" if id else self.path,
+            path,
             params=params if params else None,
             vdom=vdom,
             raw_json=raw_json,
