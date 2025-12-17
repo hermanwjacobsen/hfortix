@@ -25,108 +25,10 @@ class MulticastPolicy:
         self._client = http_client
         self.path = "firewall/multicast-policy"
 
-    def list(
-        self,
-        # Standard query parameters
-        datasource: Optional[str] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        vdom: Optional[str] = None,
-        # Extended query parameters from Swagger spec
-        action: Optional[str] = None,
-        count: Optional[int] = None,
-        datasource_format: Optional[str] = None,
-        exclude_default_values: Optional[bool] = None,
-        key: Optional[str] = None,
-        pattern: Optional[str] = None,
-        primary_keys: Optional[bool] = None,
-        scope: Optional[str] = None,
-        skip_to: Optional[int] = None,
-        start: Optional[int] = None,
-        stat_items: Optional[bool] = None,
-        unfiltered_count: Optional[bool] = None,
-        with_contents_hash: Optional[bool] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Retrieve a list of all multicast policies.
-
-        Args:
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            filter: Filter the results
-            vdom: Specify the Virtual Domain(s)
-            action: Special action (e.g., 'datasource' to return all applicable datasource)
-            count: Maximum number of entries to return
-            datasource_format: Format for datasource
-            exclude_default_values: Exclude default values from results
-            key: Specific key to retrieve
-            pattern: Pattern for matching
-            primary_keys: Return only primary keys
-            scope: Scope [global|vdom|both]
-            skip_to: Skip to Nth entry
-            start: Start index for pagination
-            stat_items: Include statistics items
-            unfiltered_count: Return unfiltered count
-            with_contents_hash: Include contents hash
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with results list
-        """
-        params = {}
-
-        # Build params dict from provided arguments
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if filter is not None:
-            params["filter"] = filter
-        if action is not None:
-            params["action"] = action
-        if count is not None:
-            params["count"] = count
-        if datasource_format is not None:
-            params["datasource_format"] = datasource_format
-        if exclude_default_values is not None:
-            params["exclude-default-values"] = exclude_default_values
-        if key is not None:
-            params["key"] = key
-        if pattern is not None:
-            params["pattern"] = pattern
-        if primary_keys is not None:
-            params["primary_keys"] = primary_keys
-        if scope is not None:
-            params["scope"] = scope
-        if skip_to is not None:
-            params["skip_to"] = skip_to
-        if start is not None:
-            params["start"] = start
-        if stat_items is not None:
-            params["stat_items"] = stat_items
-        if unfiltered_count is not None:
-            params["unfiltered_count"] = unfiltered_count
-        if with_contents_hash is not None:
-            params["with_contents_hash"] = with_contents_hash
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        return self._client.get("cmdb", self.path, params=params, vdom=vdom, raw_json=raw_json)
 
     def get(
         self,
-        mkey: Union[str, int],
+        mkey: Optional[Union[str, int]] = None,
         # Standard query parameters
         datasource: Optional[str] = None,
         with_meta: Optional[bool] = None,
@@ -204,7 +106,7 @@ class MulticastPolicy:
         params.update(kwargs)
 
         return self._client.get(
-            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
         )
 
     def post(
@@ -251,7 +153,7 @@ class MulticastPolicy:
 
     def put(
         self,
-        mkey: Union[str, int],
+        mkey: Optional[Union[str, int]] = None,
         data: Dict[str, Any],
         vdom: Optional[str] = None,
         # Extended query parameters from Swagger spec
@@ -303,7 +205,7 @@ class MulticastPolicy:
 
         return self._client.put(
             "cmdb",
-            f"{self.path}/{mkey_str}",
+            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
             data=data,
             params=params,
             vdom=vdom,
@@ -312,7 +214,7 @@ class MulticastPolicy:
 
     def delete(
         self,
-        mkey: Union[str, int],
+        mkey: Optional[Union[str, int]] = None,
         vdom: Optional[str] = None,
         # Extended query parameters from Swagger spec
         scope: Optional[str] = None,
@@ -349,5 +251,5 @@ class MulticastPolicy:
         params.update(kwargs)
 
         return self._client.delete(
-            "cmdb", f"{self.path}/{mkey_str}", params=params, vdom=vdom, raw_json=raw_json
+            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
         )

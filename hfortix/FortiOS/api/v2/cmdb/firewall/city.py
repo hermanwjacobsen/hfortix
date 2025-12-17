@@ -33,37 +33,6 @@ class City:
     # -----------------------------
     # Collection operations
     # -----------------------------
-    def list(
-        self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        filter: Optional[list] = None,
-        sort: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """List city objects."""
-        params: dict[str, Any] = {}
-        for key, value in {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "filter": filter,
-            "sort": sort,
-            "action": action,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-        return self._client.get(
-            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
     def post(
         self,
         data: dict[str, Any],
@@ -82,7 +51,7 @@ class City:
     # -----------------------------
     def get(
         self,
-        id: Union[int, str],
+        id: Optional[Union[int, str] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
@@ -109,7 +78,7 @@ class City:
 
         return self._client.get(
             "cmdb",
-            f"{self.path}/{id_str}",
+            f"{self.path}/{encode_path_component(id)}" if id else self.path,
             params=params if params else None,
             vdom=vdom,
             raw_json=raw_json,

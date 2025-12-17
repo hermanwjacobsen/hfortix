@@ -36,45 +36,6 @@ class CentralSnatMap:
     # -----------------------------
     # Collection operations
     # -----------------------------
-    def list(
-        self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        filter: Optional[list] = None,
-        sort: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """List central SNAT policies.
-
-        Args mirror common FortiOS CMDB query parameters.
-
-        Examples:
-            >>> fgt.api.cmdb.firewall.central_snat_map.list()
-            >>> fgt.api.cmdb.firewall.central_snat_map.list(action='schema')
-        """
-        params: dict[str, Any] = {}
-        for key, value in {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "filter": filter,
-            "sort": sort,
-            "action": action,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", self.path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
     def post(
         self,
         data: dict[str, Any],
@@ -99,7 +60,7 @@ class CentralSnatMap:
     # -----------------------------
     def get(
         self,
-        policyid: Union[int, str],
+        policyid: Optional[Union[int, str]] = None,
         datasource: Optional[bool] = None,
         with_meta: Optional[bool] = None,
         skip: Optional[bool] = None,
@@ -109,9 +70,11 @@ class CentralSnatMap:
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get a specific central SNAT policy by policyid."""
-        policyid_str = self._client.validate_mkey(policyid, "policyid")
+        """Get policyid(s) - list all or get specific by policyid.
 
+        Args:
+            policyid: Optional policyid to get specific entry. If None, lists all.
+        """
         params: dict[str, Any] = {}
         for key, value in {
             "datasource": datasource,
@@ -124,9 +87,16 @@ class CentralSnatMap:
                 params[key] = value
         params.update(kwargs)
 
+        # If policyid provided, get specific; otherwise list all
+        if policyid is not None:
+            policyid_str = self._client.validate_mkey(policyid, "policyid")
+            path = f"{self.path}/{policyid_str}"
+        else:
+            path = self.path
+
         return self._client.get(
             "cmdb",
-            f"{self.path}/{policyid_str}",
+            path,
             params=params if params else None,
             vdom=vdom,
             raw_json=raw_json,
