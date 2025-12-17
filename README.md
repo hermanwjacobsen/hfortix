@@ -21,6 +21,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
 
 **🔥 Recent Highlights:**
+- ✨ **Advanced HTTP Features** (v0.3.13): Request correlation tracking, circuit breaker, connection metrics, per-endpoint timeouts, structured logging
 - ✨ **Enhanced Reliability** (v0.3.12): Automatic retry logic with exponential backoff, HTTP/2 support, connection pooling
 - ✨ **httpx Migration** (v0.3.12): Modern HTTP client with better performance and async-ready architecture
 - ✨ **Monitor API** (v0.3.11): 6 categories with 50+ monitoring endpoints (firewall stats, sessions, EMS, etc.)
@@ -33,7 +34,16 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **📖 Full release notes:** See [CHANGELOG.md](CHANGELOG.md) for complete version history.
 
-**Latest Features (v0.3.12):**
+**Latest Features (v0.3.13):**
+- ✨ **Request ID / Correlation Tracking**: Auto-generated or custom request IDs for distributed tracing
+- ✨ **Circuit Breaker Pattern**: Automatic fail-fast to prevent cascading failures (opens after 5 failures, auto-recovers)
+- ✨ **Connection Pool Metrics**: Monitor HTTP client health with `get_connection_stats()` method
+- ✨ **Per-Endpoint Timeouts**: Configure custom timeouts per endpoint with wildcard pattern support
+- ✨ **Structured Logging**: Machine-readable logs with extra fields (request_id, endpoint, method, status_code, duration)
+- ✨ **100% Backwards Compatible**: All existing code works unchanged
+
+
+**Previous Release (v0.3.12):**
 - ✨ **HTTP/2 Support**: Modern httpx library with connection multiplexing for improved performance
 - ✨ **Automatic Retry Logic**: Exponential backoff (1s, 2s, 4s, 8s, 30s max) for transient failures
 - ✨ **Enhanced Reliability**: Retries on connection errors, timeouts, rate limits (429), server errors (500-504)
@@ -201,6 +211,53 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 - Automatic sensitive data sanitization
 - Request/response logging with timing
 - Hierarchical loggers for fine-grained control
+
+### Advanced HTTP Features ✨ NEW in v0.3.13
+
+Enterprise-grade reliability and observability features:
+
+```python
+from hfortix import FortiOS
+
+fgt = FortiOS('192.168.1.99', token='your-token', verify=False)
+
+# 1. Request correlation tracking (auto-generated or custom)
+result = fgt._client.request(
+    "GET", "monitor", "system/status",
+    request_id="batch-update-2025-12-17"
+)
+
+# 2. Monitor connection pool health
+stats = fgt._client.get_connection_stats()
+print(f"Circuit breaker: {stats['circuit_breaker_state']}")
+print(f"HTTP/2 enabled: {stats['http2_enabled']}")
+
+# 3. Circuit breaker pattern (automatic fail-fast)
+# Opens after 5 consecutive failures, auto-recovers after 60s
+try:
+    result = fgt.api.monitor.system.status.get()
+except RuntimeError as e:
+    if "Circuit breaker is OPEN" in str(e):
+        print("Service is down - failing fast")
+        fgt._client.reset_circuit_breaker()  # Manual reset
+
+# 4. Per-endpoint timeouts (custom timeouts for slow endpoints)
+fgt._client.configure_endpoint_timeout('monitor/*', read=10.0)
+fgt._client.configure_endpoint_timeout('cmdb/firewall/policy', read=600.0)
+
+# 5. Structured logging (machine-readable logs with extra fields)
+# All logs include: request_id, endpoint, method, status_code, duration
+# Compatible with Elasticsearch, Splunk, CloudWatch
+```
+
+**Benefits:**
+- **Request Tracking**: Trace requests across distributed systems
+- **Circuit Breaker**: Prevent cascading failures during outages
+- **Metrics**: Monitor connection pool health and performance
+- **Fine-tuned Timeouts**: Different timeouts for fast/slow endpoints
+- **Structured Logs**: Machine-readable for log aggregation tools
+
+📖 **Full documentation**: [docs/ADVANCED_HTTP_FEATURES.md](docs/ADVANCED_HTTP_FEATURES.md)
 
 ### Dual-Pattern Interface ✨
 

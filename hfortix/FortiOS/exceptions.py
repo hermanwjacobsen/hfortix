@@ -6,9 +6,10 @@ All exception classes are defined in exceptions_forti.py.
 
 from .exceptions_forti import (  # Base exceptions; HTTP status exceptions; FortiOS-specific exceptions; Helper functions; Data
     FORTIOS_ERROR_CODES, HTTP_STATUS_CODES, APIError, AuthenticationError,
-    AuthorizationError, BadRequestError, DuplicateEntryError, EntryInUseError,
-    FortinetError, InvalidValueError, MethodNotAllowedError,
-    PermissionDeniedError, RateLimitError, ResourceNotFoundError, ServerError,
+    AuthorizationError, BadRequestError, CircuitBreakerOpenError,
+    DuplicateEntryError, EntryInUseError, FortinetError, InvalidValueError,
+    MethodNotAllowedError, PermissionDeniedError, RateLimitError,
+    ResourceNotFoundError, ServerError, ServiceUnavailableError, TimeoutError,
     get_error_description, get_http_status_description, raise_for_status)
 
 __all__ = [
@@ -23,6 +24,9 @@ __all__ = [
     "MethodNotAllowedError",
     "RateLimitError",
     "ServerError",
+    "ServiceUnavailableError",
+    "CircuitBreakerOpenError",
+    "TimeoutError",
     "DuplicateEntryError",
     "EntryInUseError",
     "InvalidValueError",

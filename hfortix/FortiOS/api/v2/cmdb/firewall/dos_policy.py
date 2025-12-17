@@ -78,7 +78,7 @@ class DosPolicy:
             >>> policies = fgt.cmdb.firewall.dos_policy.get()
         """
         if policyid is not None:
-            path = f"{self._path}/{encode_path_component(policyid)}"
+            path = f"{self._path}/{encode_path_component(str(policyid))}"
         else:
             path = self._path
         return self._client.get("cmdb", path, vdom=vdom, params=params, raw_json=raw_json)
@@ -297,7 +297,7 @@ class DosPolicy:
             if anomaly is not None:
                 payload["anomaly"] = anomaly
 
-        path = f"{self._path}/{encode_path_component(policyid)}"
+        path = f"{self._path}/{encode_path_component(str(policyid))}"
         return self._client.put("cmdb", path, data=payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
@@ -319,7 +319,7 @@ class DosPolicy:
         Example:
             >>> result = fgt.cmdb.firewall.dos_policy.delete(policyid=1)
         """
-        path = f"{self._path}/{encode_path_component(policyid)}"
+        path = f"{self._path}/{encode_path_component(str(policyid))}"
         return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
     def exists(self, policyid: int, vdom: str | None = None) -> bool:

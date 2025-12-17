@@ -89,6 +89,29 @@ class ServerError(APIError):
         super().__init__(message, **kwargs)
 
 
+class ServiceUnavailableError(APIError):
+    """HTTP 503 - Service temporarily unavailable"""
+
+    def __init__(self, message="Service temporarily unavailable", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 503
+        super().__init__(message, **kwargs)
+
+
+class CircuitBreakerOpenError(APIError):
+    """Circuit breaker is open - service appears to be down"""
+
+    def __init__(self, message="Circuit breaker is open", **kwargs):
+        super().__init__(message, **kwargs)
+
+
+class TimeoutError(APIError):
+    """Request timed out"""
+
+    def __init__(self, message="Request timed out", **kwargs):
+        super().__init__(message, **kwargs)
+
+
 # ============================================================================
 # HTTP Status Code Reference
 # ============================================================================
@@ -658,6 +681,8 @@ def raise_for_status(response):
         raise RateLimitError(message, error_code=error_code, response=response)
     elif http_status == 500:
         raise ServerError(message, error_code=error_code, response=response)
+    elif http_status == 503:
+        raise ServiceUnavailableError(message, error_code=error_code, response=response)
 
     # Default: Generic APIError
     else:

@@ -71,6 +71,11 @@ class FortiOS:
         max_retries: int = 3,
         connect_timeout: float = 10.0,
         read_timeout: float = 300.0,
+        user_agent: Optional[str] = None,
+        circuit_breaker_threshold: int = 5,
+        circuit_breaker_timeout: float = 60.0,
+        max_connections: int = 100,
+        max_keepalive_connections: int = 20,
     ) -> None:
         """
         Initialize FortiOS API client
@@ -89,6 +94,12 @@ class FortiOS:
             max_retries: Maximum number of retry attempts on transient failures (default: 3)
             connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
             read_timeout: Timeout for reading response in seconds (default: 300.0)
+            user_agent: Custom User-Agent header (default: 'hfortix/{version}')
+                       Useful for identifying different applications/teams in FortiGate logs
+            circuit_breaker_threshold: Number of consecutive failures before opening circuit (default: 5)
+            circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
+            max_connections: Maximum number of connections in the pool (default: 100)
+            max_keepalive_connections: Maximum number of keepalive connections (default: 20)
 
         Examples:
             # Production - with valid SSL certificate
@@ -108,6 +119,9 @@ class FortiOS:
 
             # Custom timeouts (e.g., slower network)
             fgt = FortiOS("192.0.2.10", token="your_token_here", connect_timeout=30.0, read_timeout=600.0)
+
+            # Custom User-Agent for multi-team environments
+            fgt = FortiOS("192.0.2.10", token="your_token_here", user_agent="BackupScript/2.1.0")
         """
         self._host = host
         self._vdom = vdom
@@ -129,7 +143,7 @@ class FortiOS:
             else:
                 url = f"https://{host}"
         else:
-            url = None
+            raise ValueError("host parameter is required")
 
         # Initialize HTTP client
         self._client = HTTPClient(
@@ -140,6 +154,11 @@ class FortiOS:
             max_retries=max_retries,
             connect_timeout=connect_timeout,
             read_timeout=read_timeout,
+            user_agent=user_agent,
+            circuit_breaker_threshold=circuit_breaker_threshold,
+            circuit_breaker_timeout=circuit_breaker_timeout,
+            max_connections=max_connections,
+            max_keepalive_connections=max_keepalive_connections,
         )
 
         # Initialize API namespace.

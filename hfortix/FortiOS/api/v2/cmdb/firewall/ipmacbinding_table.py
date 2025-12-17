@@ -140,7 +140,7 @@ class IpmacbindingTable:
 
         params.update(kwargs)
 
-        path = f"firewall.ipmacbinding/table/{encode_path_component(seq_num)}"
+        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
         return self._client.get(
             "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
         )
@@ -319,7 +319,7 @@ class IpmacbindingTable:
             if value is not None:
                 payload_dict[key] = value
 
-        path = f"firewall.ipmacbinding/table/{encode_path_component(seq_num)}"
+        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
         return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
 
     def delete(
@@ -345,7 +345,7 @@ class IpmacbindingTable:
             >>> # Delete from specific VDOM
             >>> result = fgt.cmdb.firewall.ipmacbinding.table.delete(2, vdom='customer1')
         """
-        path = f"firewall.ipmacbinding/table/{encode_path_component(seq_num)}"
+        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
         return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
 
     def exists(self, seq_num: int, vdom: Optional[Union[str, bool]] = None) -> bool:

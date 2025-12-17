@@ -78,5 +78,8 @@ test_error_handling.py
 *_update.log
 test_results*.log
 raw_json*.log
-
+test_*
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
+
+docs/
+.github/prompts/
