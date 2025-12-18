@@ -26,7 +26,7 @@ class Sniffer:
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
 
-    def list(
+    def get(
         self,
         mkey: Optional[str] = None,
         vdom: Optional[Union[str, bool]] = None,
@@ -34,9 +34,10 @@ class Sniffer:
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        List all packet captures
+        Get packet captures
 
-        Returns list of all packet captures and their status information.
+        Returns list of all packet captures and their status information,
+        or details of a specific packet capture if mkey is provided.
 
         Args:
             mkey (str, optional): Filter by packet capture name
@@ -44,7 +45,7 @@ class Sniffer:
             **kwargs: Additional query parameters
 
         Returns:
-            dict: API response with list of packet captures
+            dict: API response with packet capture information
 
         Response fields:
             - mkey (str): Packet capture name
@@ -55,11 +56,11 @@ class Sniffer:
             - vdom (str): VDOM the packet capture is in
 
         Examples:
-            >>> # List all packet captures
-            >>> captures = fgt.service.sniffer.list()
+            >>> # Get all packet captures
+            >>> captures = fgt.service.sniffer.get()
 
-            >>> # List specific packet capture
-            >>> capture = fgt.service.sniffer.list(mkey='my-capture')
+            >>> # Get specific packet capture
+            >>> capture = fgt.service.sniffer.get(mkey='my-capture')
         """
         params = {}
         if mkey is not None:
