@@ -23,198 +23,59 @@ if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-class Disk:
-    """Disk log endpoint"""
+# Archive resources
+class ArchiveResource:
+    """Base archive resource"""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        """
-        Initialize Disk log endpoint.
-
-        Args:
-            client: HTTPClient instance
-        """
+    def __init__(self, client: "HTTPClient", log_type: str, storage: str) -> None:
         self._client = client
+        self._log_type = log_type
+        self._storage = storage
 
-    def virus_archive(
-        self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get quarantined virus file metadata.
-
-        Returns metadata describing quarantined virus files including status,
-        checksum, filename, timestamp, and time to live.
-
-        Args:
-            mkey (int, optional): Checksum column from the virus log
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing:
-                - status: Quarantine status (Infected, Machine Learning, Intercepted)
-                - status_description: Description of the archived virus
-                - checksum: File checksum
-                - filename: Original file name
-                - timestamp: Scan time (milliseconds since Unix Epoch)
-                - service: Service that requested quarantine
-                - duplicates: Number of duplicate submissions
-                - ttl: Time to live or "FOREVER"
-
-        Examples:
-            # Get all quarantined virus metadata
-            result = fgt.log.disk.virus_archive()
-
-            # Get specific virus by checksum
-            result = fgt.log.disk.virus_archive(mkey=12345)
-        """
-        endpoint = "disk/virus/archive"
+    def get(self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any) -> dict[str, Any]:
+        """Get archived items."""
+        endpoint = f"{self._storage}/{self._log_type}/archive"
         params = {}
-
         if mkey is not None:
             params["mkey"] = mkey
-
         params.update(kwargs)
+        return self._client.get("log", endpoint, params=params if params else None, raw_json=raw_json)
 
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
 
-    def archive(
-        self, log_type: str, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get archived items (packet captures from IPS or Application Control).
+class ArchiveDownloadResource:
+    """Base archive download resource"""
 
-        Returns a list of archived packet capture details including source/destination
-        IP addresses, ports, protocol, and packet data.
+    def __init__(self, client: "HTTPClient", log_type: str, storage: str) -> None:
+        self._client = client
+        self._log_type = log_type
+        self._storage = storage
 
-        Args:
-            log_type (str): Type of log archive
-                Valid values: 'ips', 'app-ctrl'
-            mkey (int, optional): Archive identifier
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing array of:
-                - src: Source IP address
-                - dst: Destination IP address
-                - proto: Protocol (tcp, udp, icmp, etc.)
-                - src_port: Source port
-                - dst_port: Destination port
-                - len: Size in bytes of captured data
-                - data: Array of bytes representing packet content
-
-        Examples:
-            # Get all IPS archives
-            result = fgt.log.disk.archive(log_type='ips')
-
-            # Get specific app-ctrl archive
-            result = fgt.log.disk.archive(log_type='app-ctrl', mkey=123)
-        """
-        endpoint = f"disk/{log_type}/archive"
+    def get(self, mkey: Optional[int] = None, **kwargs: Any) -> bytes:
+        """Download archived file."""
+        endpoint = f"{self._storage}/{self._log_type}/archive-download"
         params = {}
-
         if mkey is not None:
             params["mkey"] = mkey
-
         params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def archive_download(
-        self, log_type: str, mkey: Optional[int] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Download an archived file (binary data).
-
-        Downloads archived packet capture files. Returns binary data, not JSON.
-
-        Args:
-            log_type (str): Type of log archive
-                Valid values: 'ips', 'app-ctrl'
-            mkey (int, optional): Archive identifier
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            bytes: Raw binary data of the archived file
-
-        Examples:
-            # Download IPS archive
-            pcap_data = fgt.log.disk.archive_download(log_type='ips', mkey=123)
-
-            # Save to file
-            with open('capture.pcap', 'wb') as f:
-                f.write(pcap_data)
-        """
-        endpoint = f"disk/{log_type}/archive-download"
-        params = {}
-
-        if mkey is not None:
-            params["mkey"] = mkey
-
-        params.update(kwargs)
-
-        # This returns binary data, similar to sniffer download
         return self._client.get_binary("log", endpoint, params=params if params else None)
 
-    def raw(
-        self,
-        log_type: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        is_ha_member: Optional[bool] = None,
-        filter: Optional[str] = None,
-        keep_session_alive: Optional[bool] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get raw log data for the specified log type.
 
-        Retrieves raw log entries with filtering and pagination support.
+# Raw log resources
+class RawResource:
+    """Base raw log resource"""
 
-        Args:
-            log_type (str): Type of log to retrieve
-                Valid values: 'virus', 'webfilter', 'waf', 'ips', 'anomaly',
-                'app-ctrl', 'emailfilter', 'dlp', 'voip', 'gtp', 'dns', 'ssh',
-                'ssl', 'cifs', 'file-filter'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID to continue getting data
-            serial_no (str, optional): Retrieve log from specified device
-            is_ha_member (str, optional): Is the specified device an HA member
-            filter (str or list, optional): Filter expression(s)
-                Operators: ==, !=, =@, !@, <=, <, >=, >
-                Logical OR: comma (,)
-                Logical AND: ampersand (&)
-            keep_session_alive (str, optional): Keep log session alive
-            **kwargs: Additional parameters to pass to the API
+    def __init__(self, client: "HTTPClient", log_type: str, storage: str) -> None:
+        self._client = client
+        self._log_type = log_type
+        self._storage = storage
 
-        Returns:
-            dict: API response containing raw log entries
-
-        Examples:
-            # Get virus logs
-            result = fgt.log.disk.raw(log_type='virus', rows=100)
-
-            # Get IPS logs with filter
-            result = fgt.log.disk.raw(
-                log_type='ips',
-                rows=50,
-                filter='severity>=high'
-            )
-
-            # Continue session
-            result = fgt.log.disk.raw(
-                log_type='webfilter',
-                session_id=12345,
-                keep_session_alive='true'
-            )
-        """
-        endpoint = f"disk/{log_type}/raw"
+    def get(self, rows: Optional[int] = None, session_id: Optional[int] = None,
+            serial_no: Optional[str] = None, is_ha_member: Optional[bool] = None,
+            filter: Optional[str] = None, keep_session_alive: Optional[bool] = None,
+            raw_json: bool = False, **kwargs: Any) -> dict[str, Any]:
+        """Get raw logs."""
+        endpoint = f"{self._storage}/{self._log_type}/raw"
         params = {}
-
         if rows is not None:
             params["rows"] = rows
         if session_id is not None:
@@ -227,189 +88,24 @@ class Disk:
             params["filter"] = filter
         if keep_session_alive is not None:
             params["keep_session_alive"] = keep_session_alive
-
         params.update(kwargs)
+        return self._client.get("log", endpoint, params=params if params else None, raw_json=raw_json)
 
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
 
-    def traffic_raw(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        is_ha_member: Optional[bool] = None,
-        filter: Optional[str] = None,
-        keep_session_alive: Optional[bool] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get raw traffic logs by subtype.
+# Formatted log resources
+class LogResource:
+    """Base formatted log resource"""
 
-        Retrieves raw traffic log entries for specific subtypes (forward, local, etc.).
+    def __init__(self, client: "HTTPClient", log_type: str, storage: str) -> None:
+        self._client = client
+        self._log_type = log_type
+        self._storage = storage
 
-        Args:
-            subtype (str): Traffic log subtype
-                Valid values: 'forward', 'local', 'multicast', 'sniffer'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID to continue getting data
-            serial_no (str, optional): Retrieve log from specified device
-            is_ha_member (str, optional): Is the specified device an HA member
-            filter (str or list, optional): Filter expression(s)
-            keep_session_alive (str, optional): Keep log session alive
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing raw traffic log entries
-
-        Examples:
-            # Get forward traffic logs
-            result = fgt.log.disk.traffic_raw(subtype='forward', rows=100)
-
-            # Get local traffic with filter (using RFC 5737 example IP)
-            result = fgt.log.disk.traffic_raw(
-                subtype='local',
-                rows=50,
-                filter='srcip==192.0.2.100'
-            )
-        """
-        endpoint = f"disk/traffic/{subtype}/raw"
+    def get(self, rows: Optional[int] = None, start: Optional[int] = None, end: Optional[int] = None,
+            filter: Optional[str] = None, raw_json: bool = False, **kwargs: Any) -> dict[str, Any]:
+        """Get formatted logs."""
+        endpoint = f"{self._storage}/{self._log_type}"
         params = {}
-
-        if rows is not None:
-            params["rows"] = rows
-        if session_id is not None:
-            params["session_id"] = session_id
-        if serial_no is not None:
-            params["serial_no"] = serial_no
-        if is_ha_member is not None:
-            params["is_ha_member"] = is_ha_member
-        if filter is not None:
-            params["filter"] = filter
-        if keep_session_alive is not None:
-            params["keep_session_alive"] = keep_session_alive
-
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def event_raw(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        is_ha_member: Optional[bool] = None,
-        filter: Optional[str] = None,
-        keep_session_alive: Optional[bool] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get raw event logs by subtype.
-
-        Retrieves raw event log entries for specific subtypes (system, user, etc.).
-
-        Args:
-            subtype (str): Event log subtype
-                Valid values: 'system', 'user', 'router', 'wireless',
-                'wad', 'endpoint', 'ha', 'security-rating', 'fortiextender'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID to continue getting data
-            serial_no (str, optional): Retrieve log from specified device
-            is_ha_member (str, optional): Is the specified device an HA member
-            filter (str or list, optional): Filter expression(s)
-            keep_session_alive (str, optional): Keep log session alive
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing raw event log entries
-
-        Examples:
-            # Get system event logs
-            result = fgt.log.disk.event_raw(subtype='system', rows=100)
-
-            # Get user events with filter
-            result = fgt.log.disk.event_raw(
-                subtype='user',
-                rows=50,
-                filter='action==login'
-            )
-        """
-        endpoint = f"disk/event/{subtype}/raw"
-        params = {}
-
-        if rows is not None:
-            params["rows"] = rows
-        if session_id is not None:
-            params["session_id"] = session_id
-        if serial_no is not None:
-            params["serial_no"] = serial_no
-        if is_ha_member is not None:
-            params["is_ha_member"] = is_ha_member
-        if filter is not None:
-            params["filter"] = filter
-        if keep_session_alive is not None:
-            params["keep_session_alive"] = keep_session_alive
-
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def get(
-        self,
-        log_type: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get log data for the specified type (formatted, not raw).
-
-        Retrieves formatted log entries with time range and filtering support.
-
-        Args:
-            log_type (str): Type of log to retrieve
-                Valid values: 'virus', 'webfilter', 'waf', 'ips', 'anomaly',
-                'app-ctrl', 'emailfilter', 'dlp', 'voip', 'gtp', 'dns', 'ssh',
-                'ssl', 'cifs', 'file-filter'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str or list, optional): Filter expression(s)
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing formatted log entries
-
-        Examples:
-            # Get virus logs
-            result = fgt.log.disk.get(log_type='virus', rows=100)
-
-            # Get IPS logs with time range
-            import time
-            end_time = int(time.time())
-            start_time = end_time - 3600  # Last hour
-            result = fgt.log.disk.get(
-                log_type='ips',
-                start=start_time,
-                end=end_time,
-                rows=50
-            )
-        """
-        endpoint = f"disk/{log_type}"
-        params = {}
-
         if rows is not None:
             params["rows"] = rows
         if start is not None:
@@ -418,129 +114,160 @@ class Disk:
             params["end"] = end
         if filter is not None:
             params["filter"] = filter
-
         params.update(kwargs)
+        return self._client.get("log", endpoint, params=params if params else None, raw_json=raw_json)
 
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
 
-    def traffic(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get traffic logs by subtype (formatted, not raw).
+# Log type containers
+class IPS:
+    """IPS log type - /disk/ips"""
 
-        Retrieves formatted traffic log entries with time range and filtering support.
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.archive = ArchiveResource(client, "ips", storage)
+        self.archive_download = ArchiveDownloadResource(client, "ips", storage)
+        self.raw = RawResource(client, "ips", storage)
+        self._resource = LogResource(client, "ips", storage)
 
-        Args:
-            subtype (str): Traffic log subtype
-                Valid values: 'forward', 'local', 'multicast', 'sniffer'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str or list, optional): Filter expression(s)
-            **kwargs: Additional parameters to pass to the API
+    def get(self, **kwargs: Any) -> dict[str, Any]:
+        """Get IPS logs."""
+        return self._resource.get(**kwargs)
 
-        Returns:
-            dict: API response containing formatted traffic log entries
 
-        Examples:
-            # Get forward traffic logs
-            result = fgt.log.disk.traffic(subtype='forward', rows=100)
+class AppCtrl:
+    """App Control log type - /disk/app-ctrl"""
 
-            # Get local traffic with time range
-            import time
-            end_time = int(time.time())
-            start_time = end_time - 1800  # Last 30 minutes
-            result = fgt.log.disk.traffic(
-                subtype='local',
-                start=start_time,
-                end=end_time
-            )
-        """
-        endpoint = f"disk/traffic/{subtype}"
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.archive = ArchiveResource(client, "app-ctrl", storage)
+        self.archive_download = ArchiveDownloadResource(client, "app-ctrl", storage)
+        self.raw = RawResource(client, "app-ctrl", storage)
+        self._resource = LogResource(client, "app-ctrl", storage)
+
+    def get(self, **kwargs: Any) -> dict[str, Any]:
+        """Get App Control logs."""
+        return self._resource.get(**kwargs)
+
+
+class Virus:
+    """Virus log type - /disk/virus"""
+
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.raw = RawResource(client, "virus", storage)
+        self._resource = LogResource(client, "virus", storage)
+
+    def get(self, **kwargs: Any) -> dict[str, Any]:
+        """Get virus logs."""
+        return self._resource.get(**kwargs)
+
+
+class VirusArchive:
+    """Special virus archive endpoint - /disk/virus/archive"""
+
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self._storage = storage
+
+    def get(self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any) -> dict[str, Any]:
+        """Get quarantined virus file metadata."""
+        endpoint = f"{self._storage}/virus/archive"
         params = {}
-
-        if rows is not None:
-            params["rows"] = rows
-        if start is not None:
-            params["start"] = start
-        if end is not None:
-            params["end"] = end
-        if filter is not None:
-            params["filter"] = filter
-
+        if mkey is not None:
+            params["mkey"] = mkey
         params.update(kwargs)
+        return self._client.get("log", endpoint, params=params if params else None, raw_json=raw_json)
 
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
 
-    def event(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get event logs by subtype (formatted, not raw).
+# Traffic subtypes
+class TrafficForward:
+    """Forward traffic - /disk/traffic/forward"""
 
-        Retrieves formatted event log entries with time range and filtering support.
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.raw = RawResource(client, "traffic/forward", storage)
+        self._resource = LogResource(client, "traffic/forward", storage)
 
-        Args:
-            subtype (str): Event log subtype
-                Valid values: 'system', 'user', 'router', 'wireless',
-                'wad', 'endpoint', 'ha', 'security-rating', 'fortiextender'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str or list, optional): Filter expression(s)
-            **kwargs: Additional parameters to pass to the API
+    def get(self, **kwargs: Any) -> dict[str, Any]:
+        """Get forward traffic logs."""
+        return self._resource.get(**kwargs)
 
-        Returns:
-            dict: API response containing formatted event log entries
 
-        Examples:
-            # Get system event logs
-            result = fgt.log.disk.event(subtype='system', rows=100)
+class Traffic:
+    """Traffic container - /disk/traffic/{subtype}"""
 
-            # Get HA events with time range and filter
-            import time
-            end_time = int(time.time())
-            start_time = end_time - 3600  # Last hour
-            result = fgt.log.disk.event(
-                subtype='ha',
-                start=start_time,
-                end=end_time,
-                filter='level==warning'
-            )
-        """
-        endpoint = f"disk/event/{subtype}"
-        params = {}
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.forward = TrafficForward(client, storage)
 
-        if rows is not None:
-            params["rows"] = rows
-        if start is not None:
-            params["start"] = start
-        if end is not None:
-            params["end"] = end
-        if filter is not None:
-            params["filter"] = filter
 
-        params.update(kwargs)
+# Event subtypes
+class EventSystem:
+    """System events - /disk/event/system"""
 
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.raw = RawResource(client, "event/system", storage)
+        self._resource = LogResource(client, "event/system", storage)
+
+    def get(self, **kwargs: Any) -> dict[str, Any]:
+        """Get system event logs."""
+        return self._resource.get(**kwargs)
+
+
+class Event:
+    """Event container - /disk/event/{subtype}"""
+
+    def __init__(self, client: "HTTPClient", storage: str = "disk") -> None:
+        self._client = client
+        self.system = EventSystem(client, storage)
+
+
+class Disk:
+    """
+    Disk log endpoint
+    
+    Examples:
+        # IPS archive
+        fgt.log.disk.ips.archive.get()
+        fgt.log.disk.ips.archive.get(mkey=123)
+        
+        # IPS logs
+        fgt.log.disk.ips.get(rows=100)
+        fgt.log.disk.ips.raw.get(rows=100)
+        
+        # App Control
+        fgt.log.disk.app_ctrl.archive.get()
+        fgt.log.disk.app_ctrl.get(rows=50)
+        
+        # Virus
+        fgt.log.disk.virus_archive.get()
+        fgt.log.disk.virus.get(rows=100)
+        
+        # Traffic
+        fgt.log.disk.traffic.forward.get(rows=100)
+        fgt.log.disk.traffic.forward.raw.get(rows=100)
+        
+        # Events
+        fgt.log.disk.event.system.get(rows=50)
+        fgt.log.disk.event.system.raw.get(rows=50)
+    """
+
+    def __init__(self, client: "HTTPClient") -> None:
+        """Initialize Disk log endpoint."""
+        self._client = client
+        
+        # Log types with archive support
+        self.ips = IPS(client, "disk")
+        self.app_ctrl = AppCtrl(client, "disk")
+        
+        # Virus (special archive endpoint)
+        self.virus = Virus(client, "disk")
+        self.virus_archive = VirusArchive(client, "disk")
+        
+        # Traffic subtypes
+        self.traffic = Traffic(client, "disk")
+        
+        # Event subtypes
+        self.event = Event(client, "disk")
+
