@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall InternetService
+FortiOS CMDB - Cmdb Firewall Internet Service
+
+Configuration endpoint for managing cmdb firewall internet service objects.
 
 API Endpoints:
-    GET    /firewall/internet-service
-    POST   /firewall/internet-service
-    GET    /firewall/internet-service/{id}
-    PUT    /firewall/internet-service/{id}
-    DELETE /firewall/internet-service/{id}
+    GET    /cmdb/firewall/internet_service
+    POST   /cmdb/firewall/internet_service
+    GET    /cmdb/firewall/internet_service
+    PUT    /cmdb/firewall/internet_service/{identifier}
+    DELETE /cmdb/firewall/internet_service/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.internet_service.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.internet_service.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.internet_service.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.internet_service.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.internet_service.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class InternetService:
-    """InternetService operations."""
+    """
+    Internetservice Operations.
+    
+    Provides CRUD operations for FortiOS internetservice configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

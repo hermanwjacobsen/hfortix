@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Switch-controller ManagedSwitch
+FortiOS CMDB - Cmdb Switch Controller Managed Switch
+
+Configuration endpoint for managing cmdb switch controller managed switch objects.
 
 API Endpoints:
-    GET    /switch-controller/managed-switch
-    POST   /switch-controller/managed-switch
-    GET    /switch-controller/managed-switch/{switch-id}
-    PUT    /switch-controller/managed-switch/{switch-id}
-    DELETE /switch-controller/managed-switch/{switch-id}
+    GET    /cmdb/switch-controller/managed_switch
+    POST   /cmdb/switch-controller/managed_switch
+    GET    /cmdb/switch-controller/managed_switch
+    PUT    /cmdb/switch-controller/managed_switch/{identifier}
+    DELETE /cmdb/switch-controller/managed_switch/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.managed_switch.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.managed_switch.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.managed_switch.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.managed_switch.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.managed_switch.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ManagedSwitch:
-    """ManagedSwitch operations."""
+    """
+    Managedswitch Operations.
+    
+    Provides CRUD operations for FortiOS managedswitch configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

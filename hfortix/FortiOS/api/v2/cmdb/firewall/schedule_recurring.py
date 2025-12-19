@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall ScheduleRecurring
+FortiOS CMDB - Cmdb Firewall Schedule Recurring
+
+Configuration endpoint for managing cmdb firewall schedule recurring objects.
 
 API Endpoints:
-    GET    /firewall.schedule/recurring
-    POST   /firewall.schedule/recurring
-    GET    /firewall.schedule/recurring/{name}
-    PUT    /firewall.schedule/recurring/{name}
-    DELETE /firewall.schedule/recurring/{name}
+    GET    /cmdb/firewall/schedule_recurring
+    POST   /cmdb/firewall/schedule_recurring
+    GET    /cmdb/firewall/schedule_recurring
+    PUT    /cmdb/firewall/schedule_recurring/{identifier}
+    DELETE /cmdb/firewall/schedule_recurring/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.schedule_recurring.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.schedule_recurring.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.schedule_recurring.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.schedule_recurring.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.schedule_recurring.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ScheduleRecurring:
-    """ScheduleRecurring operations."""
+    """
+    Schedulerecurring Operations.
+    
+    Provides CRUD operations for FortiOS schedulerecurring configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

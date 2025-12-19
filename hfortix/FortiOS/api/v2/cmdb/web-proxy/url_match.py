@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Web-proxy UrlMatch
+FortiOS CMDB - Cmdb Web Proxy Url Match
+
+Configuration endpoint for managing cmdb web proxy url match objects.
 
 API Endpoints:
-    GET    /web-proxy/url-match
-    POST   /web-proxy/url-match
-    GET    /web-proxy/url-match/{name}
-    PUT    /web-proxy/url-match/{name}
-    DELETE /web-proxy/url-match/{name}
+    GET    /cmdb/web-proxy/url_match
+    POST   /cmdb/web-proxy/url_match
+    GET    /cmdb/web-proxy/url_match
+    PUT    /cmdb/web-proxy/url_match/{identifier}
+    DELETE /cmdb/web-proxy/url_match/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.web_proxy.url_match.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.web_proxy.url_match.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.web_proxy.url_match.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.web_proxy.url_match.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.web_proxy.url_match.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class UrlMatch:
-    """UrlMatch operations."""
+    """
+    Urlmatch Operations.
+    
+    Provides CRUD operations for FortiOS urlmatch configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

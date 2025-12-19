@@ -1,4 +1,27 @@
-"""Monitor API - TrustedUrls operations."""
+"""
+FortiOS MONITOR - Monitor Webfilter Trusted Urls
+
+Monitoring endpoint for monitor webfilter trusted urls data.
+
+API Endpoints:
+    GET    /monitor/webfilter/trusted_urls
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.webfilter.trusted_urls.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.webfilter.trusted_urls.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class TrustedUrls:
-    """TrustedUrls operations."""
+    """
+    Trustedurls Operations.
+    
+    Provides read-only access for FortiOS trustedurls data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

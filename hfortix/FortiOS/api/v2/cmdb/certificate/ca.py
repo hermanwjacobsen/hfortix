@@ -1,9 +1,42 @@
 """
-FortiOS CMDB - Certificate Ca
+FortiOS CMDB - Cmdb Certificate Ca
+
+Configuration endpoint for managing cmdb certificate ca objects.
 
 API Endpoints:
-    GET    /certificate/ca
-    GET    /certificate/ca/{name}
+    GET    /cmdb/certificate/ca
+    GET    /cmdb/certificate/ca
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.certificate.ca.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.certificate.ca.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.certificate.ca.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.certificate.ca.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.certificate.ca.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -13,7 +46,20 @@ if TYPE_CHECKING:
 
 
 class Ca:
-    """Ca operations."""
+    """
+    Ca Operations.
+    
+    Provides CRUD operations for FortiOS ca configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

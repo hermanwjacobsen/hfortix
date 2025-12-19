@@ -1,19 +1,34 @@
 """
-FortiOS Log - FortiAnalyzer Storage
+FortiOS LOG - Log Fortianalyzer Fortianalyzer
 
-Main orchestrator for FortiAnalyzer log API endpoints.
-Retrieves logs from FortiAnalyzer (when FortiGate is configured to send logs to FortiAnalyzer).
+Log retrieval endpoint for log fortianalyzer fortianalyzer logs.
 
 API Endpoints:
-    GET /fortianalyzer/virus/archive                     - Get quarantined virus file metadata
-    GET /fortianalyzer/{type}/archive                    - Get archived items (ips, app-ctrl only)
-    GET /fortianalyzer/{type}/archive-download           - Download archived file (ips, app-ctrl only)
-    GET /fortianalyzer/{type}/raw                        - Get raw log data (all types)
-    GET /fortianalyzer/traffic/{subtype}/raw             - Get raw traffic logs by subtype
-    GET /fortianalyzer/event/{subtype}/raw               - Get raw event logs by subtype
-    GET /fortianalyzer/{type}                            - Get formatted log data for type
-    GET /fortianalyzer/traffic/{subtype}                 - Get formatted traffic logs by subtype
-    GET /fortianalyzer/event/{subtype}                   - Get formatted event logs by subtype
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+    GET    /log/fortianalyzer/fortianalyzer
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.log.fortianalyzer.fortianalyzer.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.log.fortianalyzer.fortianalyzer.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -45,63 +60,15 @@ if TYPE_CHECKING:
 
 class FortiAnalyzer:
     """
-    FortiAnalyzer log endpoint
+    Fortianalyzer Operations.
     
-    Retrieves logs from FortiAnalyzer when FortiGate is configured to send logs to FortiAnalyzer.
-    Uses the same structure as disk logs but with "fortianalyzer" storage.
+    Provides read-only access for FortiOS fortianalyzer data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
     
-    Examples:
-        # IPS archive
-        fgt.api.log.fortianalyzer.ips.archive.get()
-        fgt.api.log.fortianalyzer.ips.archive.get(mkey=123)
-        
-        # IPS logs
-        fgt.api.log.fortianalyzer.ips.get(rows=100)
-        fgt.api.log.fortianalyzer.ips.raw.get(rows=100)
-        
-        # App Control
-        fgt.api.log.fortianalyzer.app_ctrl.archive.get()
-        fgt.api.log.fortianalyzer.app_ctrl.get(rows=50)
-        
-        # Virus
-        fgt.api.log.fortianalyzer.virus_archive.get()
-        fgt.api.log.fortianalyzer.virus.get(rows=100)
-        
-        # All log types
-        fgt.api.log.fortianalyzer.webfilter.get(rows=100)
-        fgt.api.log.fortianalyzer.waf.get(rows=100)
-        fgt.api.log.fortianalyzer.anomaly.get(rows=100)
-        fgt.api.log.fortianalyzer.emailfilter.get(rows=100)
-        fgt.api.log.fortianalyzer.dlp.get(rows=100)
-        fgt.api.log.fortianalyzer.voip.get(rows=100)
-        fgt.api.log.fortianalyzer.gtp.get(rows=100)
-        fgt.api.log.fortianalyzer.dns.get(rows=100)
-        fgt.api.log.fortianalyzer.ssh.get(rows=100)
-        fgt.api.log.fortianalyzer.ssl.get(rows=100)
-        fgt.api.log.fortianalyzer.cifs.get(rows=100)
-        fgt.api.log.fortianalyzer.file_filter.get(rows=100)
-        
-        # Traffic subtypes
-        fgt.api.log.fortianalyzer.traffic.forward.get(rows=100)
-        fgt.api.log.fortianalyzer.traffic.local.get(rows=100)
-        fgt.api.log.fortianalyzer.traffic.multicast.get(rows=100)
-        fgt.api.log.fortianalyzer.traffic.sniffer.get(rows=100)
-        fgt.api.log.fortianalyzer.traffic.fortiview.get(rows=100)
-        fgt.api.log.fortianalyzer.traffic.threat.get(rows=100)
-        
-        # Event subtypes
-        fgt.api.log.fortianalyzer.event.vpn.get(rows=50)
-        fgt.api.log.fortianalyzer.event.user.get(rows=50)
-        fgt.api.log.fortianalyzer.event.router.get(rows=50)
-        fgt.api.log.fortianalyzer.event.wireless.get(rows=50)
-        fgt.api.log.fortianalyzer.event.wad.get(rows=50)
-        fgt.api.log.fortianalyzer.event.endpoint.get(rows=50)
-        fgt.api.log.fortianalyzer.event.ha.get(rows=50)
-        fgt.api.log.fortianalyzer.event.compliance_check.get(rows=50)
-        fgt.api.log.fortianalyzer.event.security_rating.get(rows=50)
-        fgt.api.log.fortianalyzer.event.fortiextender.get(rows=50)
-        fgt.api.log.fortianalyzer.event.connector.get(rows=50)
-        fgt.api.log.fortianalyzer.event.system.get(rows=50)
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
     """
 
     def __init__(self, client: "HTTPClient") -> None:

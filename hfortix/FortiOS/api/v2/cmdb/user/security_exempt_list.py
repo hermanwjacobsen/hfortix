@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - User SecurityExemptList
+FortiOS CMDB - Cmdb User Security Exempt List
+
+Configuration endpoint for managing cmdb user security exempt list objects.
 
 API Endpoints:
-    GET    /user/security-exempt-list
-    POST   /user/security-exempt-list
-    GET    /user/security-exempt-list/{name}
-    PUT    /user/security-exempt-list/{name}
-    DELETE /user/security-exempt-list/{name}
+    GET    /cmdb/user/security_exempt_list
+    POST   /cmdb/user/security_exempt_list
+    GET    /cmdb/user/security_exempt_list
+    PUT    /cmdb/user/security_exempt_list/{identifier}
+    DELETE /cmdb/user/security_exempt_list/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.user.security_exempt_list.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.user.security_exempt_list.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.user.security_exempt_list.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.user.security_exempt_list.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.user.security_exempt_list.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class SecurityExemptList:
-    """SecurityExemptList operations."""
+    """
+    Securityexemptlist Operations.
+    
+    Provides CRUD operations for FortiOS securityexemptlist configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

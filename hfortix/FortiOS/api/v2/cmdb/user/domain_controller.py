@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - User DomainController
+FortiOS CMDB - Cmdb User Domain Controller
+
+Configuration endpoint for managing cmdb user domain controller objects.
 
 API Endpoints:
-    GET    /user/domain-controller
-    POST   /user/domain-controller
-    GET    /user/domain-controller/{name}
-    PUT    /user/domain-controller/{name}
-    DELETE /user/domain-controller/{name}
+    GET    /cmdb/user/domain_controller
+    POST   /cmdb/user/domain_controller
+    GET    /cmdb/user/domain_controller
+    PUT    /cmdb/user/domain_controller/{identifier}
+    DELETE /cmdb/user/domain_controller/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.user.domain_controller.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.user.domain_controller.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.user.domain_controller.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.user.domain_controller.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.user.domain_controller.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class DomainController:
-    """DomainController operations."""
+    """
+    Domaincontroller Operations.
+    
+    Provides CRUD operations for FortiOS domaincontroller configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

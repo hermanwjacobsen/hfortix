@@ -1,4 +1,27 @@
-"""Monitor API - LanExtensionVdomStatus operations."""
+"""
+FortiOS MONITOR - Monitor Extension Controller Lan Extension Vdom Status
+
+Monitoring endpoint for monitor extension controller lan extension vdom status data.
+
+API Endpoints:
+    GET    /monitor/extension_controller/lan_extension_vdom_status
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.extension_controller.lan_extension_vdom_status.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.extension_controller.lan_extension_vdom_status.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class LanExtensionVdomStatus:
-    """LanExtensionVdomStatus operations."""
+    """
+    Lanextensionvdomstatus Operations.
+    
+    Provides read-only access for FortiOS lanextensionvdomstatus data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

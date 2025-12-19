@@ -1,18 +1,34 @@
 """
-FortiOS Log - FortiCloud Storage
+FortiOS LOG - Log Forticloud Forticloud
 
-Main orchestrator for forticloud log API endpoints.
+Log retrieval endpoint for log forticloud forticloud logs.
 
 API Endpoints:
-    GET /forticloud/virus/archive                - Get quarantined virus file metadata
-    GET /forticloud/{type}/archive               - Get archived items (ips, app-ctrl only)
-    GET /forticloud/{type}/archive-download      - Download archived file (ips, app-ctrl only)
-    GET /forticloud/{type}/raw                   - Get raw log data (all types)
-    GET /forticloud/traffic/{subtype}/raw        - Get raw traffic logs by subtype
-    GET /forticloud/event/{subtype}/raw          - Get raw event logs by subtype
-    GET /forticloud/{type}                       - Get formatted log data for type
-    GET /forticloud/traffic/{subtype}            - Get formatted traffic logs by subtype
-    GET /forticloud/event/{subtype}              - Get formatted event logs by subtype
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+    GET    /log/forticloud/forticloud
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.log.forticloud.forticloud.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.log.forticloud.forticloud.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -44,26 +60,15 @@ if TYPE_CHECKING:
 
 class FortiCloud:
     """
-    FortiCloud log endpoint
+    Forticloud Operations.
     
-    Examples:
-        # IPS archive
-        fgt.api.log.forticloud.ips.archive.get()
-        
-        # IPS logs
-        fgt.api.log.forticloud.ips.get(rows=100, filter='srcip==192.168.1.1')
-        fgt.api.log.forticloud.ips.raw()
-        
-        # Virus archive
-        fgt.api.log.forticloud.virus_archive.get(mkey='checksum123')
-        
-        # Traffic logs
-        fgt.api.log.forticloud.traffic.forward.get(rows=50)
-        fgt.api.log.forticloud.traffic.forward.raw()
-        
-        # Event logs  
-        fgt.api.log.forticloud.event.system.get(rows=25)
-        fgt.api.log.forticloud.event.system.raw()
+    Provides read-only access for FortiOS forticloud data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
     """
 
     def __init__(self, client: "HTTPClient") -> None:

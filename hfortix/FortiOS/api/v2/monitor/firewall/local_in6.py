@@ -1,4 +1,27 @@
-"""Monitor API - LocalIn6 operations."""
+"""
+FortiOS MONITOR - Monitor Firewall Local In6
+
+Monitoring endpoint for monitor firewall local in6 data.
+
+API Endpoints:
+    GET    /monitor/firewall/local_in6
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.firewall.local_in6.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.firewall.local_in6.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class LocalIn6:
-    """LocalIn6 operations."""
+    """
+    Localin6 Operations.
+    
+    Provides read-only access for FortiOS localin6 data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

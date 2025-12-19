@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Dlp DataType
+FortiOS CMDB - Cmdb Dlp Data Type
+
+Configuration endpoint for managing cmdb dlp data type objects.
 
 API Endpoints:
-    GET    /dlp/data-type
-    POST   /dlp/data-type
-    GET    /dlp/data-type/{name}
-    PUT    /dlp/data-type/{name}
-    DELETE /dlp/data-type/{name}
+    GET    /cmdb/dlp/data_type
+    POST   /cmdb/dlp/data_type
+    GET    /cmdb/dlp/data_type
+    PUT    /cmdb/dlp/data_type/{identifier}
+    DELETE /cmdb/dlp/data_type/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.dlp.data_type.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.dlp.data_type.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.dlp.data_type.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.dlp.data_type.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.dlp.data_type.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class DataType:
-    """DataType operations."""
+    """
+    Datatype Operations.
+    
+    Provides CRUD operations for FortiOS datatype configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - System GeoipCountry
+FortiOS CMDB - Cmdb System Geoip Country
+
+Configuration endpoint for managing cmdb system geoip country objects.
 
 API Endpoints:
-    GET    /system/geoip-country
-    POST   /system/geoip-country
-    GET    /system/geoip-country/{id}
-    PUT    /system/geoip-country/{id}
-    DELETE /system/geoip-country/{id}
+    GET    /cmdb/system/geoip_country
+    POST   /cmdb/system/geoip_country
+    GET    /cmdb/system/geoip_country
+    PUT    /cmdb/system/geoip_country/{identifier}
+    DELETE /cmdb/system/geoip_country/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.geoip_country.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.geoip_country.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.geoip_country.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.geoip_country.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.geoip_country.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class GeoipCountry:
-    """GeoipCountry operations."""
+    """
+    Geoipcountry Operations.
+    
+    Provides CRUD operations for FortiOS geoipcountry configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

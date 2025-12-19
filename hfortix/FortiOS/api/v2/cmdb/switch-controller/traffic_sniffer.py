@@ -1,9 +1,42 @@
 """
-FortiOS CMDB - Switch-controller TrafficSniffer
+FortiOS CMDB - Cmdb Switch Controller Traffic Sniffer
+
+Configuration endpoint for managing cmdb switch controller traffic sniffer objects.
 
 API Endpoints:
-    GET    /switch-controller/traffic-sniffer
-    PUT    /switch-controller/traffic-sniffer
+    GET    /cmdb/switch-controller/traffic_sniffer
+    PUT    /cmdb/switch-controller/traffic_sniffer/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.traffic_sniffer.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.traffic_sniffer.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.traffic_sniffer.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.traffic_sniffer.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.traffic_sniffer.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -13,7 +46,21 @@ if TYPE_CHECKING:
 
 
 class TrafficSniffer:
-    """TrafficSniffer operations."""
+    """
+    Trafficsniffer Operations.
+    
+    Provides CRUD operations for FortiOS trafficsniffer configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        put(): Update existing configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

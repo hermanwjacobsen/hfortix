@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Dlp ExactDataMatch
+FortiOS CMDB - Cmdb Dlp Exact Data Match
+
+Configuration endpoint for managing cmdb dlp exact data match objects.
 
 API Endpoints:
-    GET    /dlp/exact-data-match
-    POST   /dlp/exact-data-match
-    GET    /dlp/exact-data-match/{name}
-    PUT    /dlp/exact-data-match/{name}
-    DELETE /dlp/exact-data-match/{name}
+    GET    /cmdb/dlp/exact_data_match
+    POST   /cmdb/dlp/exact_data_match
+    GET    /cmdb/dlp/exact_data_match
+    PUT    /cmdb/dlp/exact_data_match/{identifier}
+    DELETE /cmdb/dlp/exact_data_match/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.dlp.exact_data_match.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.dlp.exact_data_match.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.dlp.exact_data_match.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.dlp.exact_data_match.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.dlp.exact_data_match.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ExactDataMatch:
-    """ExactDataMatch operations."""
+    """
+    Exactdatamatch Operations.
+    
+    Provides CRUD operations for FortiOS exactdatamatch configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

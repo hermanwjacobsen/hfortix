@@ -1,4 +1,27 @@
-"""Monitor API - AddressFqdns6 operations."""
+"""
+FortiOS MONITOR - Monitor Firewall Address Fqdns6
+
+Monitoring endpoint for monitor firewall address fqdns6 data.
+
+API Endpoints:
+    GET    /monitor/firewall/address_fqdns6
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.firewall.address_fqdns6.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.firewall.address_fqdns6.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class AddressFqdns6:
-    """AddressFqdns6 operations."""
+    """
+    Addressfqdns6 Operations.
+    
+    Provides read-only access for FortiOS addressfqdns6 data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

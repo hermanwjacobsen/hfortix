@@ -1,7 +1,26 @@
 """
-FortiExtender Modem Firmware Monitor API
+FortiOS MONITOR - Monitor Extender Controller Modem Firmware
 
-Provides access to FortiExtender modem firmware information.
+Monitoring endpoint for monitor extender controller modem firmware data.
+
+API Endpoints:
+    GET    /monitor/extender_controller/modem_firmware
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.extender_controller.modem_firmware.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.extender_controller.modem_firmware.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from typing import TYPE_CHECKING, Any
@@ -12,15 +31,15 @@ if TYPE_CHECKING:
 
 class ModemFirmware:
     """
-    FortiExtender modem firmware monitoring.
+    Modemfirmware Operations.
+    
+    Provides read-only access for FortiOS modemfirmware data.
 
-    Provides methods to retrieve modem firmware information.
-
-    Example usage:
-        # Get modem firmware info
-        firmware = fgt.api.monitor.extender_controller.extender.modem_firmware.get(
-            serial='FX201E3X16000024'
-        )
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
     """
 
     def __init__(self, client: "HTTPClient") -> None:

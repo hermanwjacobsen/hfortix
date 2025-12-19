@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - System VdomRadiusServer
+FortiOS CMDB - Cmdb System Vdom Radius Server
+
+Configuration endpoint for managing cmdb system vdom radius server objects.
 
 API Endpoints:
-    GET    /system/vdom-radius-server
-    POST   /system/vdom-radius-server
-    GET    /system/vdom-radius-server/{name}
-    PUT    /system/vdom-radius-server/{name}
-    DELETE /system/vdom-radius-server/{name}
+    GET    /cmdb/system/vdom_radius_server
+    POST   /cmdb/system/vdom_radius_server
+    GET    /cmdb/system/vdom_radius_server
+    PUT    /cmdb/system/vdom_radius_server/{identifier}
+    DELETE /cmdb/system/vdom_radius_server/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.vdom_radius_server.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.vdom_radius_server.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.vdom_radius_server.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.vdom_radius_server.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.vdom_radius_server.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class VdomRadiusServer:
-    """VdomRadiusServer operations."""
+    """
+    Vdomradiusserver Operations.
+    
+    Provides CRUD operations for FortiOS vdomradiusserver configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

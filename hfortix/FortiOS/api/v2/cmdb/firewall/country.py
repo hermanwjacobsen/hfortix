@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall Country
+FortiOS CMDB - Cmdb Firewall Country
+
+Configuration endpoint for managing cmdb firewall country objects.
 
 API Endpoints:
-    GET    /firewall/country
-    POST   /firewall/country
-    GET    /firewall/country/{id}
-    PUT    /firewall/country/{id}
-    DELETE /firewall/country/{id}
+    GET    /cmdb/firewall/country
+    POST   /cmdb/firewall/country
+    GET    /cmdb/firewall/country
+    PUT    /cmdb/firewall/country/{identifier}
+    DELETE /cmdb/firewall/country/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.country.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.country.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.country.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.country.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.country.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Country:
-    """Country operations."""
+    """
+    Country Operations.
+    
+    Provides CRUD operations for FortiOS country configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

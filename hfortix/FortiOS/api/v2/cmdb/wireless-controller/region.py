@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Wireless-controller Region
+FortiOS CMDB - Cmdb Wireless Controller Region
+
+Configuration endpoint for managing cmdb wireless controller region objects.
 
 API Endpoints:
-    GET    /wireless-controller/region
-    POST   /wireless-controller/region
-    GET    /wireless-controller/region/{name}
-    PUT    /wireless-controller/region/{name}
-    DELETE /wireless-controller/region/{name}
+    GET    /cmdb/wireless-controller/region
+    POST   /cmdb/wireless-controller/region
+    GET    /cmdb/wireless-controller/region
+    PUT    /cmdb/wireless-controller/region/{identifier}
+    DELETE /cmdb/wireless-controller/region/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.wireless_controller.region.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.wireless_controller.region.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.wireless_controller.region.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.wireless_controller.region.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.wireless_controller.region.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Region:
-    """Region operations."""
+    """
+    Region Operations.
+    
+    Provides CRUD operations for FortiOS region configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - System Zone
+FortiOS CMDB - Cmdb System Zone
+
+Configuration endpoint for managing cmdb system zone objects.
 
 API Endpoints:
-    GET    /system/zone
-    POST   /system/zone
-    GET    /system/zone/{name}
-    PUT    /system/zone/{name}
-    DELETE /system/zone/{name}
+    GET    /cmdb/system/zone
+    POST   /cmdb/system/zone
+    GET    /cmdb/system/zone
+    PUT    /cmdb/system/zone/{identifier}
+    DELETE /cmdb/system/zone/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.zone.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.zone.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.zone.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.zone.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.zone.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Zone:
-    """Zone operations."""
+    """
+    Zone Operations.
+    
+    Provides CRUD operations for FortiOS zone configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

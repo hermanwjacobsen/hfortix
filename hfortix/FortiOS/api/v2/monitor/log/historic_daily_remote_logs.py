@@ -1,4 +1,27 @@
-"""Monitor API - HistoricDailyRemoteLogs operations."""
+"""
+FortiOS MONITOR - Monitor Log Historic Daily Remote Logs
+
+Monitoring endpoint for monitor log historic daily remote logs data.
+
+API Endpoints:
+    GET    /monitor/log/historic_daily_remote_logs
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.log.historic_daily_remote_logs.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.log.historic_daily_remote_logs.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class HistoricDailyRemoteLogs:
-    """HistoricDailyRemoteLogs operations."""
+    """
+    Historicdailyremotelogs Operations.
+    
+    Provides read-only access for FortiOS historicdailyremotelogs data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

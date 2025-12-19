@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Switch-controller SecurityPolicyLocalAccess
+FortiOS CMDB - Cmdb Switch Controller Security Policy Local Access
+
+Configuration endpoint for managing cmdb switch controller security policy local access objects.
 
 API Endpoints:
-    GET    /switch-controller.security-policy/local-access
-    POST   /switch-controller.security-policy/local-access
-    GET    /switch-controller.security-policy/local-access/{name}
-    PUT    /switch-controller.security-policy/local-access/{name}
-    DELETE /switch-controller.security-policy/local-access/{name}
+    GET    /cmdb/switch-controller/security_policy_local_access
+    POST   /cmdb/switch-controller/security_policy_local_access
+    GET    /cmdb/switch-controller/security_policy_local_access
+    PUT    /cmdb/switch-controller/security_policy_local_access/{identifier}
+    DELETE /cmdb/switch-controller/security_policy_local_access/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.security_policy_local_access.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.security_policy_local_access.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.security_policy_local_access.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.security_policy_local_access.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.security_policy_local_access.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class SecurityPolicyLocalAccess:
-    """SecurityPolicyLocalAccess operations."""
+    """
+    Securitypolicylocalaccess Operations.
+    
+    Provides CRUD operations for FortiOS securitypolicylocalaccess configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

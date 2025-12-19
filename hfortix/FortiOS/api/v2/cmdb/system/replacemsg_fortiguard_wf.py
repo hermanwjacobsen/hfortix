@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - System ReplacemsgFortiguardWf
+FortiOS CMDB - Cmdb System Replacemsg Fortiguard Wf
+
+Configuration endpoint for managing cmdb system replacemsg fortiguard wf objects.
 
 API Endpoints:
-    GET    /system.replacemsg/fortiguard-wf
-    POST   /system.replacemsg/fortiguard-wf
-    GET    /system.replacemsg/fortiguard-wf/{msg-type}
-    PUT    /system.replacemsg/fortiguard-wf/{msg-type}
-    DELETE /system.replacemsg/fortiguard-wf/{msg-type}
+    GET    /cmdb/system/replacemsg_fortiguard_wf
+    POST   /cmdb/system/replacemsg_fortiguard_wf
+    GET    /cmdb/system/replacemsg_fortiguard_wf
+    PUT    /cmdb/system/replacemsg_fortiguard_wf/{identifier}
+    DELETE /cmdb/system/replacemsg_fortiguard_wf/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.replacemsg_fortiguard_wf.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.replacemsg_fortiguard_wf.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.replacemsg_fortiguard_wf.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.replacemsg_fortiguard_wf.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.replacemsg_fortiguard_wf.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ReplacemsgFortiguardWf:
-    """ReplacemsgFortiguardWf operations."""
+    """
+    Replacemsgfortiguardwf Operations.
+    
+    Provides CRUD operations for FortiOS replacemsgfortiguardwf configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

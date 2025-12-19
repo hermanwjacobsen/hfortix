@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - System ReplacemsgMail
+FortiOS CMDB - Cmdb System Replacemsg Mail
+
+Configuration endpoint for managing cmdb system replacemsg mail objects.
 
 API Endpoints:
-    GET    /system.replacemsg/mail
-    POST   /system.replacemsg/mail
-    GET    /system.replacemsg/mail/{msg-type}
-    PUT    /system.replacemsg/mail/{msg-type}
-    DELETE /system.replacemsg/mail/{msg-type}
+    GET    /cmdb/system/replacemsg_mail
+    POST   /cmdb/system/replacemsg_mail
+    GET    /cmdb/system/replacemsg_mail
+    PUT    /cmdb/system/replacemsg_mail/{identifier}
+    DELETE /cmdb/system/replacemsg_mail/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.replacemsg_mail.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.replacemsg_mail.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.replacemsg_mail.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.replacemsg_mail.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.replacemsg_mail.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ReplacemsgMail:
-    """ReplacemsgMail operations."""
+    """
+    Replacemsgmail Operations.
+    
+    Provides CRUD operations for FortiOS replacemsgmail configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

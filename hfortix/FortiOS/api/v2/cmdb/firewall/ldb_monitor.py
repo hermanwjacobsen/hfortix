@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall LdbMonitor
+FortiOS CMDB - Cmdb Firewall Ldb Monitor
+
+Configuration endpoint for managing cmdb firewall ldb monitor objects.
 
 API Endpoints:
-    GET    /firewall/ldb-monitor
-    POST   /firewall/ldb-monitor
-    GET    /firewall/ldb-monitor/{name}
-    PUT    /firewall/ldb-monitor/{name}
-    DELETE /firewall/ldb-monitor/{name}
+    GET    /cmdb/firewall/ldb_monitor
+    POST   /cmdb/firewall/ldb_monitor
+    GET    /cmdb/firewall/ldb_monitor
+    PUT    /cmdb/firewall/ldb_monitor/{identifier}
+    DELETE /cmdb/firewall/ldb_monitor/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.ldb_monitor.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.ldb_monitor.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.ldb_monitor.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.ldb_monitor.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.ldb_monitor.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class LdbMonitor:
-    """LdbMonitor operations."""
+    """
+    Ldbmonitor Operations.
+    
+    Provides CRUD operations for FortiOS ldbmonitor configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

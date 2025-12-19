@@ -1,18 +1,34 @@
 """
-FortiOS Log - Memory Storage
+FortiOS LOG - Log Memory Memory
 
-Main orchestrator for memory log API endpoints.
+Log retrieval endpoint for log memory memory logs.
 
 API Endpoints:
-    GET /memory/virus/archive                    - Get quarantined virus file metadata
-    GET /memory/{type}/archive                   - Get archived items (ips, app-ctrl only)
-    GET /memory/{type}/archive-download          - Download archived file (ips, app-ctrl only)
-    GET /memory/{type}/raw                       - Get raw log data (all types)
-    GET /memory/traffic/{subtype}/raw            - Get raw traffic logs by subtype
-    GET /memory/event/{subtype}/raw              - Get raw event logs by subtype
-    GET /memory/{type}                           - Get formatted log data for type
-    GET /memory/traffic/{subtype}                - Get formatted traffic logs by subtype
-    GET /memory/event/{subtype}                  - Get formatted event logs by subtype
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+    GET    /log/memory/memory
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.log.memory.memory.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.log.memory.memory.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -44,26 +60,15 @@ if TYPE_CHECKING:
 
 class Memory:
     """
-    Memory log endpoint
+    Memory Operations.
     
-    Examples:
-        # IPS archive
-        fgt.api.log.memory.ips.archive.get()
-        
-        # IPS logs
-        fgt.api.log.memory.ips.get(rows=100, filter='srcip==192.168.1.1')
-        fgt.api.log.memory.ips.raw()
-        
-        # Virus archive
-        fgt.api.log.memory.virus_archive.get(mkey='checksum123')
-        
-        # Traffic logs
-        fgt.api.log.memory.traffic.forward.get(rows=50)
-        fgt.api.log.memory.traffic.forward.raw()
-        
-        # Event logs  
-        fgt.api.log.memory.event.system.get(rows=25)
-        fgt.api.log.memory.event.system.raw()
+    Provides read-only access for FortiOS memory data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
     """
 
     def __init__(self, client: "HTTPClient") -> None:

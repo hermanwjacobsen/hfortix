@@ -1,4 +1,27 @@
-"""Monitor API - CollectedEmail operations."""
+"""
+FortiOS MONITOR - Monitor User Collected Email
+
+Monitoring endpoint for monitor user collected email data.
+
+API Endpoints:
+    GET    /monitor/user/collected_email
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.user.collected_email.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.user.collected_email.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class CollectedEmail:
-    """CollectedEmail operations."""
+    """
+    Collectedemail Operations.
+    
+    Provides read-only access for FortiOS collectedemail data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

@@ -1,18 +1,34 @@
 """
-FortiOS Log - Disk Storage
+FortiOS LOG - Log Disk Disk
 
-Main orchestrator for disk log API endpoints.
+Log retrieval endpoint for log disk disk logs.
 
 API Endpoints:
-    GET /disk/virus/archive                      - Get quarantined virus file metadata
-    GET /disk/{type}/archive                     - Get archived items (ips, app-ctrl only)
-    GET /disk/{type}/archive-download            - Download archived file (ips, app-ctrl only)
-    GET /disk/{type}/raw                         - Get raw log data (all types)
-    GET /disk/traffic/{subtype}/raw              - Get raw traffic logs by subtype
-    GET /disk/event/{subtype}/raw                - Get raw event logs by subtype
-    GET /disk/{type}                             - Get formatted log data for type
-    GET /disk/traffic/{subtype}                  - Get formatted traffic logs by subtype
-    GET /disk/event/{subtype}                    - Get formatted event logs by subtype
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+    GET    /log/disk/disk
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.log.disk.disk.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.log.disk.disk.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -43,60 +59,15 @@ if TYPE_CHECKING:
 
 class Disk:
     """
-    Disk log endpoint
+    Disk Operations.
     
-    Examples:
-        # IPS archive
-        fgt.api.log.disk.ips.archive.get()
-        fgt.api.log.disk.ips.archive.get(mkey=123)
-        
-        # IPS logs
-        fgt.api.log.disk.ips.get(rows=100)
-        fgt.api.log.disk.ips.raw.get(rows=100)
-        
-        # App Control
-        fgt.api.log.disk.app_ctrl.archive.get()
-        fgt.api.log.disk.app_ctrl.get(rows=50)
-        
-        # Virus
-        fgt.api.log.disk.virus_archive.get()
-        fgt.api.log.disk.virus.get(rows=100)
-        
-        # All log types
-        fgt.api.log.disk.webfilter.get(rows=100)
-        fgt.api.log.disk.waf.get(rows=100)
-        fgt.api.log.disk.anomaly.get(rows=100)
-        fgt.api.log.disk.emailfilter.get(rows=100)
-        fgt.api.log.disk.dlp.get(rows=100)
-        fgt.api.log.disk.voip.get(rows=100)
-        fgt.api.log.disk.gtp.get(rows=100)
-        fgt.api.log.disk.dns.get(rows=100)
-        fgt.api.log.disk.ssh.get(rows=100)
-        fgt.api.log.disk.ssl.get(rows=100)
-        fgt.api.log.disk.cifs.get(rows=100)
-        fgt.api.log.disk.file_filter.get(rows=100)
-        
-        # Traffic subtypes
-        fgt.api.log.disk.traffic.forward.get(rows=100)
-        fgt.api.log.disk.traffic.local.get(rows=100)
-        fgt.api.log.disk.traffic.multicast.get(rows=100)
-        fgt.api.log.disk.traffic.sniffer.get(rows=100)
-        fgt.api.log.disk.traffic.fortiview.get(rows=100)
-        fgt.api.log.disk.traffic.threat.get(rows=100)
-        
-        # Event subtypes
-        fgt.api.log.disk.event.vpn.get(rows=50)
-        fgt.api.log.disk.event.user.get(rows=50)
-        fgt.api.log.disk.event.router.get(rows=50)
-        fgt.api.log.disk.event.wireless.get(rows=50)
-        fgt.api.log.disk.event.wad.get(rows=50)
-        fgt.api.log.disk.event.endpoint.get(rows=50)
-        fgt.api.log.disk.event.ha.get(rows=50)
-        fgt.api.log.disk.event.compliance_check.get(rows=50)
-        fgt.api.log.disk.event.security_rating.get(rows=50)
-        fgt.api.log.disk.event.fortiextender.get(rows=50)
-        fgt.api.log.disk.event.connector.get(rows=50)
-        fgt.api.log.disk.event.system.get(rows=50)
+    Provides read-only access for FortiOS disk data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
     """
 
     def __init__(self, client: "HTTPClient") -> None:

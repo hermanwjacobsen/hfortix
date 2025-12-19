@@ -1,13 +1,26 @@
 """
-FortiOS Service API - Sniffer
+FortiOS SERVICE - Service Sniffer Sniffer
 
-Auto-generated from OpenAPI specification.
+Service endpoint.
 
-Functions support:
-    - Full parameter specification
-    - Dual approach: individual parameters OR payload_dict
-    - raw_json parameter: controls whether to return full parsed response or extracted results
-    - Type hints and comprehensive docstrings
+API Endpoints:
+    GET    /service/sniffer/sniffer
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.service.sniffer.sniffer.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.service.sniffer.sniffer.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -19,7 +32,20 @@ if TYPE_CHECKING:
 
 
 class Delete:
-    """Delete resource"""
+    """
+    Delete Operations.
+    
+    Provides CRUD operations for FortiOS delete configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client

@@ -1,4 +1,27 @@
-"""Monitor API - Ssl operations."""
+"""
+FortiOS MONITOR - Monitor Vpn Ssl
+
+Monitoring endpoint for monitor vpn ssl data.
+
+API Endpoints:
+    GET    /monitor/vpn/ssl
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.vpn.ssl.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.vpn.ssl.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class ClearTunnel:
-    """ClearTunnel operations."""
+    """
+    Cleartunnel Operations.
+    
+    Provides read-only access for FortiOS cleartunnel data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

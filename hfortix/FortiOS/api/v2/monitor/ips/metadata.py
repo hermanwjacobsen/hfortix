@@ -1,4 +1,27 @@
-"""Monitor API - Metadata operations."""
+"""
+FortiOS MONITOR - Monitor Ips Metadata
+
+Monitoring endpoint for monitor ips metadata data.
+
+API Endpoints:
+    GET    /monitor/ips/metadata
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.ips.metadata.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.ips.metadata.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class Metadata:
-    """Metadata operations."""
+    """
+    Metadata Operations.
+    
+    Provides read-only access for FortiOS metadata data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

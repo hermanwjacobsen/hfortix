@@ -1,4 +1,27 @@
-"""Monitor API - InterfaceLog operations."""
+"""
+FortiOS MONITOR - Monitor Virtual Wan Interface Log
+
+Monitoring endpoint for monitor virtual wan interface log data.
+
+API Endpoints:
+    GET    /monitor/virtual_wan/interface_log
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.virtual_wan.interface_log.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.virtual_wan.interface_log.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class InterfaceLog:
-    """InterfaceLog operations."""
+    """
+    Interfacelog Operations.
+    
+    Provides read-only access for FortiOS interfacelog data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

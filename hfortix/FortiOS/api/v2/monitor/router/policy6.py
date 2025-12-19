@@ -1,4 +1,27 @@
-"""Monitor API - Policy6 operations."""
+"""
+FortiOS MONITOR - Monitor Router Policy6
+
+Monitoring endpoint for monitor router policy6 data.
+
+API Endpoints:
+    GET    /monitor/router/policy6
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.router.policy6.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.router.policy6.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class Policy6:
-    """Policy6 operations."""
+    """
+    Policy6 Operations.
+    
+    Provides read-only access for FortiOS policy6 data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

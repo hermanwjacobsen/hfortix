@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Switch-controller CustomCommand
+FortiOS CMDB - Cmdb Switch Controller Custom Command
+
+Configuration endpoint for managing cmdb switch controller custom command objects.
 
 API Endpoints:
-    GET    /switch-controller/custom-command
-    POST   /switch-controller/custom-command
-    GET    /switch-controller/custom-command/{command-name}
-    PUT    /switch-controller/custom-command/{command-name}
-    DELETE /switch-controller/custom-command/{command-name}
+    GET    /cmdb/switch-controller/custom_command
+    POST   /cmdb/switch-controller/custom_command
+    GET    /cmdb/switch-controller/custom_command
+    PUT    /cmdb/switch-controller/custom_command/{identifier}
+    DELETE /cmdb/switch-controller/custom_command/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.custom_command.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.custom_command.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.custom_command.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.custom_command.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.custom_command.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class CustomCommand:
-    """CustomCommand operations."""
+    """
+    Customcommand Operations.
+    
+    Provides CRUD operations for FortiOS customcommand configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

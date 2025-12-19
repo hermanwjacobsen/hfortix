@@ -1,24 +1,26 @@
 """
-FortiOS Log API - Base Resource Classes
+FortiOS LOG - Log Base
 
-Provides base resource classes for all log storage types (disk, memory, fortianalyzer, forticloud):
+Log retrieval endpoint for log base logs.
 
-- ArchiveResource: For archived packet captures (IPS, App-Ctrl only)
-- ArchiveDownloadResource: For downloading archived files (uses get_binary() for binary data)
-- RawResource: For raw log data in plain text format (uses get_binary() then decodes to UTF-8)
-- LogResource: For formatted JSON log data
+API Endpoints:
+    GET    /log/base
 
-About get_binary():
-    get_binary() is a method on HTTPClient that returns raw binary data (bytes) from HTTP response,
-    bypassing JSON parsing. Used for:
-    1. File downloads (archive-download endpoints) - returns bytes directly
-    2. Raw log endpoints - returns plain text which we decode from bytes to UTF-8 string
-    
-All functions support:
-    - Full parameter specification (rows, filter, etc.)
-    - Dual approach: individual parameters OR payload_dict
-    - raw_json parameter: controls whether to return full parsed response or extracted results
-    - Type hints and comprehensive docstrings
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.log.base.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.log.base.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
 """
 
 from __future__ import annotations
@@ -30,7 +32,17 @@ if TYPE_CHECKING:
 
 
 class ArchiveResource:
-    """Archive resource for packet capture data (IPS and App-Ctrl only)"""
+    """
+    Archiveresource Operations.
+    
+    Provides read-only access for FortiOS archiveresource data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: "HTTPClient", log_type: str, storage: str) -> None:
         self._client = client

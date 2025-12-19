@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - User Fsso
+FortiOS CMDB - Cmdb User Fsso
+
+Configuration endpoint for managing cmdb user fsso objects.
 
 API Endpoints:
-    GET    /user/fsso
-    POST   /user/fsso
-    GET    /user/fsso/{name}
-    PUT    /user/fsso/{name}
-    DELETE /user/fsso/{name}
+    GET    /cmdb/user/fsso
+    POST   /cmdb/user/fsso
+    GET    /cmdb/user/fsso
+    PUT    /cmdb/user/fsso/{identifier}
+    DELETE /cmdb/user/fsso/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.user.fsso.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.user.fsso.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.user.fsso.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.user.fsso.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.user.fsso.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Fsso:
-    """Fsso operations."""
+    """
+    Fsso Operations.
+    
+    Provides CRUD operations for FortiOS fsso configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

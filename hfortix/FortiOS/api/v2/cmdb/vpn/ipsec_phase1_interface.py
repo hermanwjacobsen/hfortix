@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Vpn IpsecPhase1Interface
+FortiOS CMDB - Cmdb Vpn Ipsec Phase1 Interface
+
+Configuration endpoint for managing cmdb vpn ipsec phase1 interface objects.
 
 API Endpoints:
-    GET    /vpn.ipsec/phase1-interface
-    POST   /vpn.ipsec/phase1-interface
-    GET    /vpn.ipsec/phase1-interface/{name}
-    PUT    /vpn.ipsec/phase1-interface/{name}
-    DELETE /vpn.ipsec/phase1-interface/{name}
+    GET    /cmdb/vpn/ipsec_phase1_interface
+    POST   /cmdb/vpn/ipsec_phase1_interface
+    GET    /cmdb/vpn/ipsec_phase1_interface
+    PUT    /cmdb/vpn/ipsec_phase1_interface/{identifier}
+    DELETE /cmdb/vpn/ipsec_phase1_interface/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.vpn.ipsec_phase1_interface.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.vpn.ipsec_phase1_interface.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.vpn.ipsec_phase1_interface.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.vpn.ipsec_phase1_interface.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.vpn.ipsec_phase1_interface.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class IpsecPhase1Interface:
-    """IpsecPhase1Interface operations."""
+    """
+    Ipsecphase1Interface Operations.
+    
+    Provides CRUD operations for FortiOS ipsecphase1interface configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

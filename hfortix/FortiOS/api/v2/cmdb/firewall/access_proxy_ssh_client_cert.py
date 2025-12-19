@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall AccessProxySshClientCert
+FortiOS CMDB - Cmdb Firewall Access Proxy Ssh Client Cert
+
+Configuration endpoint for managing cmdb firewall access proxy ssh client cert objects.
 
 API Endpoints:
-    GET    /firewall/access-proxy-ssh-client-cert
-    POST   /firewall/access-proxy-ssh-client-cert
-    GET    /firewall/access-proxy-ssh-client-cert/{name}
-    PUT    /firewall/access-proxy-ssh-client-cert/{name}
-    DELETE /firewall/access-proxy-ssh-client-cert/{name}
+    GET    /cmdb/firewall/access_proxy_ssh_client_cert
+    POST   /cmdb/firewall/access_proxy_ssh_client_cert
+    GET    /cmdb/firewall/access_proxy_ssh_client_cert
+    PUT    /cmdb/firewall/access_proxy_ssh_client_cert/{identifier}
+    DELETE /cmdb/firewall/access_proxy_ssh_client_cert/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.access_proxy_ssh_client_cert.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.access_proxy_ssh_client_cert.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.access_proxy_ssh_client_cert.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.access_proxy_ssh_client_cert.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.access_proxy_ssh_client_cert.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class AccessProxySshClientCert:
-    """AccessProxySshClientCert operations."""
+    """
+    Accessproxysshclientcert Operations.
+    
+    Provides CRUD operations for FortiOS accessproxysshclientcert configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

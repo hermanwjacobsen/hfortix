@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Switch-controller MacPolicy
+FortiOS CMDB - Cmdb Switch Controller Mac Policy
+
+Configuration endpoint for managing cmdb switch controller mac policy objects.
 
 API Endpoints:
-    GET    /switch-controller/mac-policy
-    POST   /switch-controller/mac-policy
-    GET    /switch-controller/mac-policy/{name}
-    PUT    /switch-controller/mac-policy/{name}
-    DELETE /switch-controller/mac-policy/{name}
+    GET    /cmdb/switch-controller/mac_policy
+    POST   /cmdb/switch-controller/mac_policy
+    GET    /cmdb/switch-controller/mac_policy
+    PUT    /cmdb/switch-controller/mac_policy/{identifier}
+    DELETE /cmdb/switch-controller/mac_policy/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.mac_policy.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.mac_policy.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.mac_policy.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.mac_policy.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.mac_policy.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class MacPolicy:
-    """MacPolicy operations."""
+    """
+    Macpolicy Operations.
+    
+    Provides CRUD operations for FortiOS macpolicy configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

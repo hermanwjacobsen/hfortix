@@ -1,9 +1,42 @@
 """
-FortiOS CMDB - Webfilter IpsUrlfilterSetting6
+FortiOS CMDB - Cmdb Webfilter Ips Urlfilter Setting6
+
+Configuration endpoint for managing cmdb webfilter ips urlfilter setting6 objects.
 
 API Endpoints:
-    GET    /webfilter/ips-urlfilter-setting6
-    PUT    /webfilter/ips-urlfilter-setting6
+    GET    /cmdb/webfilter/ips_urlfilter_setting6
+    PUT    /cmdb/webfilter/ips_urlfilter_setting6/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.webfilter.ips_urlfilter_setting6.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -13,7 +46,21 @@ if TYPE_CHECKING:
 
 
 class IpsUrlfilterSetting6:
-    """IpsUrlfilterSetting6 operations."""
+    """
+    Ipsurlfiltersetting6 Operations.
+    
+    Provides CRUD operations for FortiOS ipsurlfiltersetting6 configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        put(): Update existing configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

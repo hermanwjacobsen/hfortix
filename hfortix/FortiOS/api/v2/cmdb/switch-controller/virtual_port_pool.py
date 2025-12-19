@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Switch-controller VirtualPortPool
+FortiOS CMDB - Cmdb Switch Controller Virtual Port Pool
+
+Configuration endpoint for managing cmdb switch controller virtual port pool objects.
 
 API Endpoints:
-    GET    /switch-controller/virtual-port-pool
-    POST   /switch-controller/virtual-port-pool
-    GET    /switch-controller/virtual-port-pool/{name}
-    PUT    /switch-controller/virtual-port-pool/{name}
-    DELETE /switch-controller/virtual-port-pool/{name}
+    GET    /cmdb/switch-controller/virtual_port_pool
+    POST   /cmdb/switch-controller/virtual_port_pool
+    GET    /cmdb/switch-controller/virtual_port_pool
+    PUT    /cmdb/switch-controller/virtual_port_pool/{identifier}
+    DELETE /cmdb/switch-controller/virtual_port_pool/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.switch_controller.virtual_port_pool.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.switch_controller.virtual_port_pool.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.switch_controller.virtual_port_pool.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.switch_controller.virtual_port_pool.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.switch_controller.virtual_port_pool.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class VirtualPortPool:
-    """VirtualPortPool operations."""
+    """
+    Virtualportpool Operations.
+    
+    Provides CRUD operations for FortiOS virtualportpool configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

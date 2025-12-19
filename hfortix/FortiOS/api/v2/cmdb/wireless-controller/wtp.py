@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Wireless-controller Wtp
+FortiOS CMDB - Cmdb Wireless Controller Wtp
+
+Configuration endpoint for managing cmdb wireless controller wtp objects.
 
 API Endpoints:
-    GET    /wireless-controller/wtp
-    POST   /wireless-controller/wtp
-    GET    /wireless-controller/wtp/{wtp-id}
-    PUT    /wireless-controller/wtp/{wtp-id}
-    DELETE /wireless-controller/wtp/{wtp-id}
+    GET    /cmdb/wireless-controller/wtp
+    POST   /cmdb/wireless-controller/wtp
+    GET    /cmdb/wireless-controller/wtp
+    PUT    /cmdb/wireless-controller/wtp/{identifier}
+    DELETE /cmdb/wireless-controller/wtp/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.wireless_controller.wtp.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.wireless_controller.wtp.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.wireless_controller.wtp.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.wireless_controller.wtp.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.wireless_controller.wtp.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Wtp:
-    """Wtp operations."""
+    """
+    Wtp Operations.
+    
+    Provides CRUD operations for FortiOS wtp configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

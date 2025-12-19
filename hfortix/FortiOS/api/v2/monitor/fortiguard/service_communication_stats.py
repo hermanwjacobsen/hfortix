@@ -1,4 +1,27 @@
-"""Monitor API - ServiceCommunicationStats operations."""
+"""
+FortiOS MONITOR - Monitor Fortiguard Service Communication Stats
+
+Monitoring endpoint for monitor fortiguard service communication stats data.
+
+API Endpoints:
+    GET    /monitor/fortiguard/service_communication_stats
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.fortiguard.service_communication_stats.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.fortiguard.service_communication_stats.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class ServiceCommunicationStats:
-    """ServiceCommunicationStats operations."""
+    """
+    Servicecommunicationstats Operations.
+    
+    Provides read-only access for FortiOS servicecommunicationstats data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Ztna ReverseConnector
+FortiOS CMDB - Cmdb Ztna Reverse Connector
+
+Configuration endpoint for managing cmdb ztna reverse connector objects.
 
 API Endpoints:
-    GET    /ztna/reverse-connector
-    POST   /ztna/reverse-connector
-    GET    /ztna/reverse-connector/{name}
-    PUT    /ztna/reverse-connector/{name}
-    DELETE /ztna/reverse-connector/{name}
+    GET    /cmdb/ztna/reverse_connector
+    POST   /cmdb/ztna/reverse_connector
+    GET    /cmdb/ztna/reverse_connector
+    PUT    /cmdb/ztna/reverse_connector/{identifier}
+    DELETE /cmdb/ztna/reverse_connector/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.ztna.reverse_connector.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.ztna.reverse_connector.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.ztna.reverse_connector.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.ztna.reverse_connector.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.ztna.reverse_connector.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class ReverseConnector:
-    """ReverseConnector operations."""
+    """
+    Reverseconnector Operations.
+    
+    Provides CRUD operations for FortiOS reverseconnector configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

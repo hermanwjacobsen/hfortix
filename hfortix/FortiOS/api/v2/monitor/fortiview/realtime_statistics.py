@@ -1,4 +1,27 @@
-"""Monitor API - RealtimeStatistics operations."""
+"""
+FortiOS MONITOR - Monitor Fortiview Realtime Statistics
+
+Monitoring endpoint for monitor fortiview realtime statistics data.
+
+API Endpoints:
+    GET    /monitor/fortiview/realtime_statistics
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # Get monitoring/log data (read-only)
+    >>> data = fgt.api.monitor.fortiview.realtime_statistics.get()
+    >>> 
+    >>> # With filters and parameters
+    >>> data = fgt.api.monitor.fortiview.realtime_statistics.get(
+    ...     count=100,
+    ...     start=0
+    ... )
+
+Note:
+    This is a read-only endpoint. Only GET operations are supported.
+"""
 
 from typing import TYPE_CHECKING, Any
 
@@ -7,7 +30,17 @@ if TYPE_CHECKING:
 
 
 class RealtimeStatistics:
-    """RealtimeStatistics operations."""
+    """
+    Realtimestatistics Operations.
+    
+    Provides read-only access for FortiOS realtimestatistics data.
+
+    Methods:
+        get(): Retrieve monitoring/log data (read-only)
+    
+    Note:
+        This is a read-only endpoint. Configuration changes are not supported.
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

@@ -1,9 +1,42 @@
 """
-FortiOS CMDB - System VdomDns
+FortiOS CMDB - Cmdb System Vdom Dns
+
+Configuration endpoint for managing cmdb system vdom dns objects.
 
 API Endpoints:
-    GET    /system/vdom-dns
-    PUT    /system/vdom-dns
+    GET    /cmdb/system/vdom_dns
+    PUT    /cmdb/system/vdom_dns/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.system.vdom_dns.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.system.vdom_dns.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.system.vdom_dns.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.system.vdom_dns.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.system.vdom_dns.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -13,7 +46,21 @@ if TYPE_CHECKING:
 
 
 class VdomDns:
-    """VdomDns operations."""
+    """
+    Vdomdns Operations.
+    
+    Provides CRUD operations for FortiOS vdomdns configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        put(): Update existing configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

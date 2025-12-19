@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Router MulticastFlow
+FortiOS CMDB - Cmdb Router Multicast Flow
+
+Configuration endpoint for managing cmdb router multicast flow objects.
 
 API Endpoints:
-    GET    /router/multicast-flow
-    POST   /router/multicast-flow
-    GET    /router/multicast-flow/{name}
-    PUT    /router/multicast-flow/{name}
-    DELETE /router/multicast-flow/{name}
+    GET    /cmdb/router/multicast_flow
+    POST   /cmdb/router/multicast_flow
+    GET    /cmdb/router/multicast_flow
+    PUT    /cmdb/router/multicast_flow/{identifier}
+    DELETE /cmdb/router/multicast_flow/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.router.multicast_flow.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.router.multicast_flow.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.router.multicast_flow.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.router.multicast_flow.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.router.multicast_flow.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class MulticastFlow:
-    """MulticastFlow operations."""
+    """
+    Multicastflow Operations.
+    
+    Provides CRUD operations for FortiOS multicastflow configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

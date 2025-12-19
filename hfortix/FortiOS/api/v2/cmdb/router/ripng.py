@@ -1,9 +1,42 @@
 """
-FortiOS CMDB - Router Ripng
+FortiOS CMDB - Cmdb Router Ripng
+
+Configuration endpoint for managing cmdb router ripng objects.
 
 API Endpoints:
-    GET    /router/ripng
-    PUT    /router/ripng
+    GET    /cmdb/router/ripng
+    PUT    /cmdb/router/ripng/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.router.ripng.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.router.ripng.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.router.ripng.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.router.ripng.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.router.ripng.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -13,7 +46,21 @@ if TYPE_CHECKING:
 
 
 class Ripng:
-    """Ripng operations."""
+    """
+    Ripng Operations.
+    
+    Provides CRUD operations for FortiOS ripng configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        put(): Update existing configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

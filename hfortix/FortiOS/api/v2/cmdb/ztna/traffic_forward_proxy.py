@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Ztna TrafficForwardProxy
+FortiOS CMDB - Cmdb Ztna Traffic Forward Proxy
+
+Configuration endpoint for managing cmdb ztna traffic forward proxy objects.
 
 API Endpoints:
-    GET    /ztna/traffic-forward-proxy
-    POST   /ztna/traffic-forward-proxy
-    GET    /ztna/traffic-forward-proxy/{name}
-    PUT    /ztna/traffic-forward-proxy/{name}
-    DELETE /ztna/traffic-forward-proxy/{name}
+    GET    /cmdb/ztna/traffic_forward_proxy
+    POST   /cmdb/ztna/traffic_forward_proxy
+    GET    /cmdb/ztna/traffic_forward_proxy
+    PUT    /cmdb/ztna/traffic_forward_proxy/{identifier}
+    DELETE /cmdb/ztna/traffic_forward_proxy/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.ztna.traffic_forward_proxy.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.ztna.traffic_forward_proxy.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.ztna.traffic_forward_proxy.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.ztna.traffic_forward_proxy.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.ztna.traffic_forward_proxy.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class TrafficForwardProxy:
-    """TrafficForwardProxy operations."""
+    """
+    Trafficforwardproxy Operations.
+    
+    Provides CRUD operations for FortiOS trafficforwardproxy configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """

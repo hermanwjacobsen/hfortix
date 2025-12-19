@@ -1,12 +1,45 @@
 """
-FortiOS CMDB - Firewall Ippool6
+FortiOS CMDB - Cmdb Firewall Ippool6
+
+Configuration endpoint for managing cmdb firewall ippool6 objects.
 
 API Endpoints:
-    GET    /firewall/ippool6
-    POST   /firewall/ippool6
-    GET    /firewall/ippool6/{name}
-    PUT    /firewall/ippool6/{name}
-    DELETE /firewall/ippool6/{name}
+    GET    /cmdb/firewall/ippool6
+    POST   /cmdb/firewall/ippool6
+    GET    /cmdb/firewall/ippool6
+    PUT    /cmdb/firewall/ippool6/{identifier}
+    DELETE /cmdb/firewall/ippool6/{identifier}
+
+Example Usage:
+    >>> from hfortix.FortiOS import FortiOS
+    >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
+    >>> 
+    >>> # List all items
+    >>> items = fgt.api.cmdb.firewall.ippool6.get()
+    >>> 
+    >>> # Get specific item (if supported)
+    >>> item = fgt.api.cmdb.firewall.ippool6.get(name="item_name")
+    >>> 
+    >>> # Create new item (use POST)
+    >>> result = fgt.api.cmdb.firewall.ippool6.post(
+    ...     name="new_item",
+    ...     # ... additional parameters
+    ... )
+    >>> 
+    >>> # Update existing item (use PUT)
+    >>> result = fgt.api.cmdb.firewall.ippool6.put(
+    ...     name="existing_item",
+    ...     # ... parameters to update
+    ... )
+    >>> 
+    >>> # Delete item
+    >>> result = fgt.api.cmdb.firewall.ippool6.delete(name="item_name")
+
+Important:
+    - Use **POST** to create new objects (404 error if already exists)
+    - Use **PUT** to update existing objects (404 error if doesn't exist)
+    - Use **GET** to retrieve configuration (no changes made)
+    - Use **DELETE** to remove objects (404 error if doesn't exist)
 """
 
 from typing import TYPE_CHECKING, Any
@@ -16,7 +49,23 @@ if TYPE_CHECKING:
 
 
 class Ippool6:
-    """Ippool6 operations."""
+    """
+    Ippool6 Operations.
+    
+    Provides CRUD operations for FortiOS ippool6 configuration.
+
+    Methods:
+        get(): Retrieve configuration objects
+        post(): Create new configuration objects
+        put(): Update existing configuration objects
+        delete(): Remove configuration objects
+    
+    Important:
+        - POST creates new objects (404 if name already exists)
+        - PUT updates existing objects (404 if name doesn't exist)
+        - GET retrieves objects without making changes
+        - DELETE removes objects (404 if name doesn't exist)
+    """
 
     def __init__(self, client: 'HTTPClient'):
         """
