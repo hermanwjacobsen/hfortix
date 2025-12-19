@@ -1,435 +1,354 @@
 """
-FortiOS CMDB - Email Filter Profile
-
-Configure Email Filter profiles.
+FortiOS CMDB - Emailfilter Profile
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/profile           - List all / Get specific
-    POST   /api/v2/cmdb/emailfilter/profile           - Create
-    PUT    /api/v2/cmdb/emailfilter/profile/{name}   - Update
-    DELETE /api/v2/cmdb/emailfilter/profile/{name}   - Delete
+    GET    /emailfilter/profile
+    POST   /emailfilter/profile
+    GET    /emailfilter/profile/{name}
+    PUT    /emailfilter/profile/{name}
+    DELETE /emailfilter/profile/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Profile:
-    """Email filter profile endpoint"""
+    """Profile operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Profile endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        # Query parameters
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get email filter profile(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Profile name to retrieve. If None, retrieves all profiles
-            attr (str, optional): Attribute name that references other table
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (int, optional): Skip to provided table's Nth entry
-            acs (bool, optional): If true, returned results are in ascending order
-            search (str, optional): Filter objects by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable CLI skip operator
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing email filter profile data
-
-        Examples:
-            >>> # List all email filter profiles
-            >>> profiles = fgt.cmdb.emailfilter.profile.list()
-
-            >>> # Get a specific profile by name
-            >>> profile = fgt.cmdb.emailfilter.profile.get('default')
-
-            >>> # Get with filtering
-            >>> profiles = fgt.cmdb.emailfilter.profile.get(
-            ...     format='name|comment|spam-log',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "emailfilter/profile"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Profile configuration
-        comment: Optional[str] = None,
-        feature_set: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        spam_log: Optional[str] = None,
-        spam_log_fortiguard_response: Optional[str] = None,
-        file_filter: Optional[dict[str, Any]] = None,
-        spam_filtering: Optional[str] = None,
-        external: Optional[str] = None,
-        options: Optional[list[str]] = None,
-        imap: Optional[dict[str, Any]] = None,
-        pop3: Optional[dict[str, Any]] = None,
-        smtp: Optional[dict[str, Any]] = None,
-        mapi: Optional[dict[str, Any]] = None,
-        msn_hotmail: Optional[dict[str, Any]] = None,
-        yahoo_mail: Optional[dict[str, Any]] = None,
-        gmail: Optional[dict[str, Any]] = None,
-        other_webmails: Optional[dict[str, Any]] = None,
-        spam_bword_threshold: Optional[int] = None,
-        spam_bword_table: Optional[int] = None,
-        spam_bal_table: Optional[int] = None,
-        spam_bwl_table: Optional[int] = None,
-        spam_mheader_table: Optional[int] = None,
-        spam_rbl_table: Optional[int] = None,
-        spam_iptrust_table: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create email filter profile.
-
-        Args:
-            name (str): Profile name
-            comment (str, optional): Optional comment
-            feature_set (str, optional): Flow/proxy mode feature set - 'flow' or 'proxy'
-            replacemsg_group (str, optional): Replacement message group
-            spam_log (str, optional): Enable/disable spam logging - 'enable'/'disable'
-            spam_log_fortiguard_response (str, optional): Enable/disable FortiGuard response logging
-            file_filter (dict, optional): File filter settings with status, log, scan_archive_contents
-            spam_filtering (str, optional): Enable/disable spam filtering - 'enable'/'disable'
-            external (str, optional): Enable/disable external Email inspection - 'enable'/'disable'
-            options (list, optional): Options list - 'bannedword', 'spambwl', 'spamfsip', etc.
-            imap (dict, optional): IMAP protocol options with log, action, tag_type, tag_msg
-            pop3 (dict, optional): POP3 protocol options
-            smtp (dict, optional): SMTP protocol options
-            mapi (dict, optional): MAPI protocol options
-            msn_hotmail (dict, optional): MSN Hotmail options
-            yahoo_mail (dict, optional): Yahoo Mail options
-            gmail (dict, optional): Gmail options
-            other_webmails (dict, optional): Other webmail options
-            spam_bword_threshold (int, optional): Spam banned word threshold
-            spam_bword_table (int, optional): Spam banned word table ID
-            spam_bal_table (int, optional): Spam block/allow list table ID
-            spam_bwl_table (int, optional): Spam black/white list table ID
-            spam_mheader_table (int, optional): Spam MIME header table ID
-            spam_rbl_table (int, optional): Spam RBL table ID
-            spam_iptrust_table (int, optional): Spam IP trust table ID
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create basic email filter profile
-            >>> result = fgt.cmdb.emailfilter.profile.create(
-            ...     name='corporate-email',
-            ...     comment='Corporate email filtering',
-            ...     spam_filtering='enable',
-            ...     spam_log='enable',
-            ...     options=['bannedword', 'spambwl']
-            ... )
-
-            >>> # POST - Create with protocol-specific settings
-            >>> result = fgt.cmdb.emailfilter.profile.create(
-            ...     name='strict-filter',
-            ...     spam_filtering='enable',
-            ...     smtp={'log': 'enable', 'action': 'tag', 'tag_type': 'subject'},
-            ...     imap={'log': 'enable', 'action': 'discard'}
-            ... )
-        """
-        data = {"name": name}
-
-        param_map = {
-            "comment": comment,
-            "feature_set": feature_set,
-            "replacemsg_group": replacemsg_group,
-            "spam_log": spam_log,
-            "spam_log_fortiguard_response": spam_log_fortiguard_response,
-            "spam_filtering": spam_filtering,
-            "external": external,
-            "spam_bword_threshold": spam_bword_threshold,
-            "spam_bword_table": spam_bword_table,
-            "spam_bal_table": spam_bal_table,
-            "spam_bwl_table": spam_bwl_table,
-            "spam_mheader_table": spam_mheader_table,
-            "spam_rbl_table": spam_rbl_table,
-            "spam_iptrust_table": spam_iptrust_table,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key.replace("_", "-")] = value
-
-        # Handle options list
-        if options is not None:
-            data["options"] = options
-
-        # Handle nested dictionaries
-        for dict_param in [
-            "file_filter",
-            "imap",
-            "pop3",
-            "smtp",
-            "mapi",
-            "msn_hotmail",
-            "yahoo_mail",
-            "gmail",
-            "other_webmails",
-        ]:
-            value = locals()[dict_param]
-            if value is not None:
-                converted = {}
-                for k, v in value.items():
-                    converted[k.replace("_", "-")] = v
-                data[dict_param.replace("_", "-")] = converted
-
-        data.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "emailfilter/profile", data=data, vdom=vdom, raw_json=raw_json
-        )
+            endpoint = f"/emailfilter/profile/{name}"
+        else:
+            endpoint = "/emailfilter/profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Profile configuration
-        comment: Optional[str] = None,
-        feature_set: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        spam_log: Optional[str] = None,
-        spam_log_fortiguard_response: Optional[str] = None,
-        file_filter: Optional[dict[str, Any]] = None,
-        spam_filtering: Optional[str] = None,
-        external: Optional[str] = None,
-        options: Optional[list[str]] = None,
-        imap: Optional[dict[str, Any]] = None,
-        pop3: Optional[dict[str, Any]] = None,
-        smtp: Optional[dict[str, Any]] = None,
-        mapi: Optional[dict[str, Any]] = None,
-        msn_hotmail: Optional[dict[str, Any]] = None,
-        yahoo_mail: Optional[dict[str, Any]] = None,
-        gmail: Optional[dict[str, Any]] = None,
-        other_webmails: Optional[dict[str, Any]] = None,
-        spam_bword_threshold: Optional[int] = None,
-        spam_bword_table: Optional[int] = None,
-        spam_bal_table: Optional[int] = None,
-        spam_bwl_table: Optional[int] = None,
-        spam_mheader_table: Optional[int] = None,
-        spam_rbl_table: Optional[int] = None,
-        spam_iptrust_table: Optional[int] = None,
-        # PUT - Update parameters
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        feature_set: str | None = None,
+        replacemsg_group: str | None = None,
+        spam_log: str | None = None,
+        spam_log_fortiguard_response: str | None = None,
+        spam_filtering: str | None = None,
+        external: str | None = None,
+        options: str | None = None,
+        imap: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        other_webmails: list | None = None,
+        spam_bword_threshold: int | None = None,
+        spam_bword_table: int | None = None,
+        spam_bal_table: int | None = None,
+        spam_mheader_table: int | None = None,
+        spam_rbl_table: int | None = None,
+        spam_iptrust_table: int | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an email filter profile.
-
+        Update this specific resource.
+        
         Args:
-            name (str): Profile name to update
-            comment (str, optional): Optional comment
-            feature_set (str, optional): Flow/proxy mode feature set
-            replacemsg_group (str, optional): Replacement message group
-            spam_log (str, optional): Enable/disable spam logging
-            spam_log_fortiguard_response (str, optional): Enable/disable FortiGuard response logging
-            file_filter (dict, optional): File filter settings
-            spam_filtering (str, optional): Enable/disable spam filtering
-            external (str, optional): Enable/disable external Email inspection
-            options (list, optional): Options list
-            imap (dict, optional): IMAP protocol options
-            pop3 (dict, optional): POP3 protocol options
-            smtp (dict, optional): SMTP protocol options
-            mapi (dict, optional): MAPI protocol options
-            msn_hotmail (dict, optional): MSN Hotmail options
-            yahoo_mail (dict, optional): Yahoo Mail options
-            gmail (dict, optional): Gmail options
-            other_webmails (dict, optional): Other webmail options
-            spam_bword_threshold (int, optional): Spam banned word threshold
-            spam_bword_table (int, optional): Spam banned word table ID
-            spam_bal_table (int, optional): Spam block/allow list table ID
-            spam_bwl_table (int, optional): Spam black/white list table ID
-            spam_mheader_table (int, optional): Spam MIME header table ID
-            spam_rbl_table (int, optional): Spam RBL table ID
-            spam_iptrust_table (int, optional): Spam IP trust table ID
-            action (str, optional): 'add-members', 'replace-members', 'remove-members'
-            before (str, optional): Place new object before given object
-            after (str, optional): Place new object after given object
-            scope (str, optional): Scope level - 'global' or 'vdom'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            spam_log: Enable/disable spam logging for email filtering. (optional)
+            spam_log_fortiguard_response: Enable/disable logging FortiGuard spam response. (optional)
+            spam_filtering: Enable/disable spam filtering. (optional)
+            external: Enable/disable external Email inspection. (optional)
+            options: Options. (optional)
+            imap: IMAP. (optional)
+            pop3: POP3. (optional)
+            smtp: SMTP. (optional)
+            other_webmails: Other supported webmails. (optional)
+            spam_bword_threshold: Spam banned word threshold. (optional)
+            spam_bword_table: Anti-spam banned word table ID. (optional)
+            spam_bal_table: Anti-spam block/allow list table ID. (optional)
+            spam_mheader_table: Anti-spam MIME header table ID. (optional)
+            spam_rbl_table: Anti-spam DNSBL table ID. (optional)
+            spam_iptrust_table: Anti-spam IP trust table ID. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update spam filtering settings
-            >>> result = fgt.cmdb.emailfilter.profile.update(
-            ...     name='corporate-email',
-            ...     spam_log='enable',
-            ...     spam_bword_threshold=10
-            ... )
-
-            >>> # PUT - Update SMTP settings
-            >>> result = fgt.cmdb.emailfilter.profile.update(
-            ...     name='strict-filter',
-            ...     smtp={'log': 'enable', 'action': 'discard'}
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
-        param_map = {
-            "comment": comment,
-            "feature_set": feature_set,
-            "replacemsg_group": replacemsg_group,
-            "spam_log": spam_log,
-            "spam_log_fortiguard_response": spam_log_fortiguard_response,
-            "spam_filtering": spam_filtering,
-            "external": external,
-            "spam_bword_threshold": spam_bword_threshold,
-            "spam_bword_table": spam_bword_table,
-            "spam_bal_table": spam_bal_table,
-            "spam_bwl_table": spam_bwl_table,
-            "spam_mheader_table": spam_mheader_table,
-            "spam_rbl_table": spam_rbl_table,
-            "spam_iptrust_table": spam_iptrust_table,
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key.replace("_", "-")] = value
-
-        # Handle options list
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/emailfilter/profile/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if spam_log is not None:
+            data_payload['spam-log'] = spam_log
+        if spam_log_fortiguard_response is not None:
+            data_payload['spam-log-fortiguard-response'] = spam_log_fortiguard_response
+        if spam_filtering is not None:
+            data_payload['spam-filtering'] = spam_filtering
+        if external is not None:
+            data_payload['external'] = external
         if options is not None:
-            data["options"] = options
-
-        # Handle nested dictionaries
-        for dict_param in [
-            "file_filter",
-            "imap",
-            "pop3",
-            "smtp",
-            "mapi",
-            "msn_hotmail",
-            "yahoo_mail",
-            "gmail",
-            "other_webmails",
-        ]:
-            value = locals()[dict_param]
-            if value is not None:
-                converted = {}
-                for k, v in value.items():
-                    converted[k.replace("_", "-")] = v
-                data[dict_param.replace("_", "-")] = converted
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"emailfilter/profile/{name}", data=data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['options'] = options
+        if imap is not None:
+            data_payload['imap'] = imap
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if other_webmails is not None:
+            data_payload['other-webmails'] = other_webmails
+        if spam_bword_threshold is not None:
+            data_payload['spam-bword-threshold'] = spam_bword_threshold
+        if spam_bword_table is not None:
+            data_payload['spam-bword-table'] = spam_bword_table
+        if spam_bal_table is not None:
+            data_payload['spam-bal-table'] = spam_bal_table
+        if spam_mheader_table is not None:
+            data_payload['spam-mheader-table'] = spam_mheader_table
+        if spam_rbl_table is not None:
+            data_payload['spam-rbl-table'] = spam_rbl_table
+        if spam_iptrust_table is not None:
+            data_payload['spam-iptrust-table'] = spam_iptrust_table
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete an email filter profile.
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Profile name to delete
-            scope (str, optional): Scope level - 'global' or 'vdom'
-            vdom (str, optional): Virtual Domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.cmdb.emailfilter.profile.delete('corporate-email')
+            Dictionary containing API response
         """
-        params = {}
-        if scope is not None:
-            params["scope"] = scope
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/emailfilter/profile/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        return self._client.delete(
-            "cmdb",
-            f"emailfilter/profile/{name}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        feature_set: str | None = None,
+        replacemsg_group: str | None = None,
+        spam_log: str | None = None,
+        spam_log_fortiguard_response: str | None = None,
+        spam_filtering: str | None = None,
+        external: str | None = None,
+        options: str | None = None,
+        imap: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        other_webmails: list | None = None,
+        spam_bword_threshold: int | None = None,
+        spam_bword_table: int | None = None,
+        spam_bal_table: int | None = None,
+        spam_mheader_table: int | None = None,
+        spam_rbl_table: int | None = None,
+        spam_iptrust_table: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            spam_log: Enable/disable spam logging for email filtering. (optional)
+            spam_log_fortiguard_response: Enable/disable logging FortiGuard spam response. (optional)
+            spam_filtering: Enable/disable spam filtering. (optional)
+            external: Enable/disable external Email inspection. (optional)
+            options: Options. (optional)
+            imap: IMAP. (optional)
+            pop3: POP3. (optional)
+            smtp: SMTP. (optional)
+            other_webmails: Other supported webmails. (optional)
+            spam_bword_threshold: Spam banned word threshold. (optional)
+            spam_bword_table: Anti-spam banned word table ID. (optional)
+            spam_bal_table: Anti-spam block/allow list table ID. (optional)
+            spam_mheader_table: Anti-spam MIME header table ID. (optional)
+            spam_rbl_table: Anti-spam DNSBL table ID. (optional)
+            spam_iptrust_table: Anti-spam IP trust table ID. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/emailfilter/profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if spam_log is not None:
+            data_payload['spam-log'] = spam_log
+        if spam_log_fortiguard_response is not None:
+            data_payload['spam-log-fortiguard-response'] = spam_log_fortiguard_response
+        if spam_filtering is not None:
+            data_payload['spam-filtering'] = spam_filtering
+        if external is not None:
+            data_payload['external'] = external
+        if options is not None:
+            data_payload['options'] = options
+        if imap is not None:
+            data_payload['imap'] = imap
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if other_webmails is not None:
+            data_payload['other-webmails'] = other_webmails
+        if spam_bword_threshold is not None:
+            data_payload['spam-bword-threshold'] = spam_bword_threshold
+        if spam_bword_table is not None:
+            data_payload['spam-bword-table'] = spam_bword_table
+        if spam_bal_table is not None:
+            data_payload['spam-bal-table'] = spam_bal_table
+        if spam_mheader_table is not None:
+            data_payload['spam-mheader-table'] = spam_mheader_table
+        if spam_rbl_table is not None:
+            data_payload['spam-rbl-table'] = spam_rbl_table
+        if spam_iptrust_table is not None:
+            data_payload['spam-iptrust-table'] = spam_iptrust_table
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

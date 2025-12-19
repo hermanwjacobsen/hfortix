@@ -1,43 +1,32 @@
-"""
-FortiOS Email Filter API
-Email filtering configuration endpoints
-"""
+"""FortiOS CMDB - Emailfilter category"""
 
-from __future__ import annotations
+from .block_allow_list import BlockAllowList
+from .bword import Bword
+from .dnsbl import Dnsbl
+from .fortishield import Fortishield
+from .iptrust import Iptrust
+from .mheader import Mheader
+from .options import Options
+from .profile import Profile
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["EmailFilter"]
+__all__ = ['BlockAllowList', 'Bword', 'Dnsbl', 'Fortishield', 'Iptrust', 'Mheader', 'Options', 'Profile']
 
 
-class EmailFilter:
+
+class Emailfilter:
     """
-    Email Filter API helper class
-    Provides access to email filtering configuration endpoints
+    Emailfilter category wrapper.
+    
+    This class provides access to all emailfilter CMDB endpoints.
     """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    
+    def __init__(self, client):
         """
-        Initialize EmailFilter helper
-
+        Initialize Emailfilter with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
-
-        # Initialize endpoint classes
-        from .block_allow_list import BlockAllowList
-        from .bword import Bword
-        from .dnsbl import Dnsbl
-        from .fortishield import Fortishield
-        from .iptrust import Iptrust
-        from .mheader import Mheader
-        from .options import Options
-        from .profile import Profile
-
         self.block_allow_list = BlockAllowList(client)
         self.bword = Bword(client)
         self.dnsbl = Dnsbl(client)
@@ -46,16 +35,3 @@ class EmailFilter:
         self.mheader = Mheader(client)
         self.options = Options(client)
         self.profile = Profile(client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return [
-            "block_allow_list",
-            "bword",
-            "dnsbl",
-            "fortishield",
-            "iptrust",
-            "mheader",
-            "options",
-            "profile",
-        ]

@@ -1,15 +1,15 @@
-"""IPv6 local-in firewall policy operations."""
+"""Monitor API - LocalIn6 operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class LocalIn6:
-    """Implicit and explicit IPv6 local-in firewall policies."""
+    """LocalIn6 operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize LocalIn6 endpoint.
 
@@ -18,20 +18,26 @@ class LocalIn6:
         """
         self._client = client
 
-    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List implicit and explicit IPv6 local-in firewall policies.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing IPv6 local-in policies
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.local_in6.list()
+            >>> fgt.api.monitor.firewall.local_in6.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/local-in6", params=params)

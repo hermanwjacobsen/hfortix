@@ -1,15 +1,56 @@
-"""Explicit proxy policy statistics operations."""
+"""Monitor API - ProxyPolicy operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class ProxyPolicy:
-    """Explicit proxy policy statistics."""
+class ClearCounters:
+    """ClearCounters operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ClearCounters endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        policy: int | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Reset traffic statistics for one or more explicit proxy policies by policy ID.
+        
+        Args:
+            policy: Single policy ID to reset. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.proxy_policy.clear_counters.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if policy is not None:
+            data['policy'] = policy
+        data.update(kwargs)
+        return self._client.post("monitor", "/firewall/proxy-policy/clear_counters", data=data)
+
+
+class ProxyPolicy:
+    """ProxyPolicy operations."""
+
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize ProxyPolicy endpoint.
 
@@ -18,71 +59,33 @@ class ProxyPolicy:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, policyid: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        List traffic statistics for all explicit proxy policies.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Filter by policy ID
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing proxy policy statistics
-
-        Example:
-            >>> fgt.api.monitor.firewall.proxy_policy.list()
-        """
-        params = data_dict.copy() if data_dict else {}
-        if policyid is not None:
-            params["policyid"] = policyid
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/proxy-policy", params=params)
+        # Initialize nested resources
+        self.clear_counters = ClearCounters(client)
 
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, policyid: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        policyid: int | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get traffic statistics for a specific proxy policy.
-
+        List traffic statistics for all explicit proxy policies.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Policy ID to retrieve
+            policyid: Filter: Policy ID. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing proxy policy statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.proxy_policy.get(policyid=1)
+            >>> fgt.api.monitor.firewall.proxy_policy.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         if policyid is not None:
-            params["policyid"] = policyid
+            params['policyid'] = policyid
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/proxy-policy", params=params)
-
-    def clear_counters(
-        self, data_dict: Optional[Dict[str, Any]] = None, policy_ids: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        Reset traffic statistics for one or more explicit proxy policies by policy ID.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            policy_ids: Comma-separated list of policy IDs
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing operation result
-
-        Example:
-            >>> fgt.api.monitor.firewall.proxy_policy.clear_counters(policy_ids='1,2,3')
-        """
-        data = data_dict.copy() if data_dict else {}
-        if policy_ids is not None:
-            data["policy_ids"] = policy_ids
-        data.update(kwargs)
-        return self._client.post("monitor", "/firewall/proxy-policy/clear_counters", data=data)

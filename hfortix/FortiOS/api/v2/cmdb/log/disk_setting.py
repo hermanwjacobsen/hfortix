@@ -1,183 +1,229 @@
 """
-FortiOS CMDB - Log Disk Setting
-
-Settings for local disk logging.
+FortiOS CMDB - Log DiskSetting
 
 API Endpoints:
-    GET  /api/v2/cmdb/log.disk/setting  - Get configuration
-    PUT  /api/v2/cmdb/log.disk/setting  - Update configuration
+    GET    /log.disk/setting
+    PUT    /log.disk/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class DiskSetting:
-    """Log Disk Setting endpoint (singleton)"""
+    """DiskSetting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Get disk log settings.
+        Initialize DiskSetting endpoint.
 
         Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing disk log settings
-
-        Examples:
-            >>> settings = fgt.api.cmdb.log.disk_setting.get()
+            client: HTTPClient instance for API communication
         """
-        path = "log.disk/setting"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
+        self._client = client
 
-    def put(
+    def get(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        ips_archive: Optional[str] = None,
-        max_log_file_size: Optional[int] = None,
-        max_policy_packet_capture_size: Optional[int] = None,
-        roll_schedule: Optional[str] = None,
-        roll_day: Optional[str] = None,
-        roll_time: Optional[str] = None,
-        diskfull: Optional[str] = None,
-        log_quota: Optional[int] = None,
-        dlp_archive_quota: Optional[int] = None,
-        report_quota: Optional[int] = None,
-        maximum_log_age: Optional[int] = None,
-        upload: Optional[str] = None,
-        upload_destination: Optional[str] = None,
-        uploadip: Optional[str] = None,
-        uploadport: Optional[int] = None,
-        source_ip: Optional[str] = None,
-        uploaduser: Optional[str] = None,
-        uploadpass: Optional[str] = None,
-        uploaddir: Optional[str] = None,
-        uploadtype: Optional[str] = None,
-        uploadsched: Optional[str] = None,
-        uploadtime: Optional[str] = None,
-        upload_delete_files: Optional[str] = None,
-        upload_ssl_conn: Optional[str] = None,
-        full_first_warning_threshold: Optional[int] = None,
-        full_second_warning_threshold: Optional[int] = None,
-        full_final_warning_threshold: Optional[int] = None,
-        interface_select_method: Optional[str] = None,
-        interface: Optional[str] = None,
-        vrf_select: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update disk log settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            status: Enable/disable local disk logging (enable|disable)
-            ips_archive: Enable/disable IPS packet archive logging (enable|disable)
-            max_log_file_size: Maximum log file size before rolling (1-1000 MB)
-            max_policy_packet_capture_size: Maximum packet capture size (0-10000 KB)
-            roll_schedule: Frequency to check log file for rolling (daily|weekly)
-            roll_day: Day of week to roll log file
-            roll_time: Time to roll the log file (hh:mm)
-            diskfull: Action to take when disk is full (overwrite|nolog)
-            log_quota: Disk log quota in MB (0 = unlimited)
-            dlp_archive_quota: DLP archive quota in MB
-            report_quota: Report quota in MB
-            maximum_log_age: Maximum log age in days (0 = unlimited)
-            upload: Enable/disable upload to remote server (enable|disable)
-            upload_destination: Upload destination (ftp-server)
-            uploadip: IP address of upload server
-            uploadport: Upload server port
-            source_ip: Source IP for uploads
-            uploaduser: Upload username
-            uploadpass: Upload password
-            uploaddir: Upload directory
-            uploadtype: Upload log type (traffic|event|virus|webfilter|IPS|spamfilter|dlp-archive|anomaly|voip|dlp|app-ctrl|waf|netscan|gtp|dns|ssh|ssl|file-filter|icap|ztna)
-            uploadsched: Upload schedule name
-            uploadtime: Time to upload logs (hh:mm)
-            upload_delete_files: Delete log files after upload (enable|disable)
-            upload_ssl_conn: SSL connection for upload (default|high|low|disable)
-            full_first_warning_threshold: First warning threshold percentage (1-98)
-            full_second_warning_threshold: Second warning threshold percentage (2-99)
-            full_final_warning_threshold: Final warning threshold percentage (3-100)
-            interface_select_method: Interface selection method (auto|sdwan|specify)
-            interface: Outgoing interface
-            vrf_select: VRF selection (0-31)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> # Enable disk logging
-            >>> fgt.api.cmdb.log.disk_setting.update(status='enable')
-
-            >>> # Configure rolling
-            >>> fgt.api.cmdb.log.disk_setting.update(
-            ...     max_log_file_size=100,
-            ...     roll_schedule='daily',
-            ...     roll_time='00:00'
-            ... )
-
-            >>> # Configure upload
-            >>> fgt.api.cmdb.log.disk_setting.update(
-            ...     upload='enable',
-            ...     uploadip='192.0.2.100',
-            ...     uploadport=21,
-            ...     uploaduser='loguser'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.disk/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "status": status,
-            "ips-archive": ips_archive,
-            "max-log-file-size": max_log_file_size,
-            "max-policy-packet-capture-size": max_policy_packet_capture_size,
-            "roll-schedule": roll_schedule,
-            "roll-day": roll_day,
-            "roll-time": roll_time,
-            "diskfull": diskfull,
-            "log-quota": log_quota,
-            "dlp-archive-quota": dlp_archive_quota,
-            "report-quota": report_quota,
-            "maximum-log-age": maximum_log_age,
-            "upload": upload,
-            "upload-destination": upload_destination,
-            "uploadip": uploadip,
-            "uploadport": uploadport,
-            "source-ip": source_ip,
-            "uploaduser": uploaduser,
-            "uploadpass": uploadpass,
-            "uploaddir": uploaddir,
-            "uploadtype": uploadtype,
-            "uploadsched": uploadsched,
-            "uploadtime": uploadtime,
-            "upload-delete-files": upload_delete_files,
-            "upload-ssl-conn": upload_ssl_conn,
-            "full-first-warning-threshold": full_first_warning_threshold,
-            "full-second-warning-threshold": full_second_warning_threshold,
-            "full-final-warning-threshold": full_final_warning_threshold,
-            "interface-select-method": interface_select_method,
-            "interface": interface,
-            "vrf-select": vrf_select,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = "log.disk/setting"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        ips_archive: str | None = None,
+        max_log_file_size: int | None = None,
+        max_policy_packet_capture_size: int | None = None,
+        roll_schedule: str | None = None,
+        roll_day: str | None = None,
+        roll_time: str | None = None,
+        diskfull: str | None = None,
+        log_quota: int | None = None,
+        dlp_archive_quota: int | None = None,
+        report_quota: int | None = None,
+        maximum_log_age: int | None = None,
+        upload: str | None = None,
+        upload_destination: str | None = None,
+        uploadip: str | None = None,
+        uploadport: int | None = None,
+        source_ip: str | None = None,
+        uploaduser: str | None = None,
+        uploadpass: str | None = None,
+        uploaddir: str | None = None,
+        uploadtype: str | None = None,
+        uploadsched: str | None = None,
+        uploadtime: str | None = None,
+        upload_delete_files: str | None = None,
+        upload_ssl_conn: str | None = None,
+        full_first_warning_threshold: int | None = None,
+        full_second_warning_threshold: int | None = None,
+        full_final_warning_threshold: int | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Enable/disable local disk logging. (optional)
+            ips_archive: Enable/disable IPS packet archiving to the local disk. (optional)
+            max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes). (optional)
+            max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited). (optional)
+            roll_schedule: Frequency to check log file for rolling. (optional)
+            roll_day: Day of week on which to roll log file. (optional)
+            roll_time: Time of day to roll the log file (hh:mm). (optional)
+            diskfull: Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). (optional)
+            log_quota: Disk log quota (MB). (optional)
+            dlp_archive_quota: DLP archive quota (MB). (optional)
+            report_quota: Report db quota (MB). (optional)
+            maximum_log_age: Delete log files older than (days). (optional)
+            upload: Enable/disable uploading log files when they are rolled. (optional)
+            upload_destination: The type of server to upload log files to. Only FTP is currently supported. (optional)
+            uploadip: IP address of the FTP server to upload log files to. (optional)
+            uploadport: TCP port to use for communicating with the FTP server (default = 21). (optional)
+            source_ip: Source IP address to use for uploading disk log files. (optional)
+            uploaduser: Username required to log into the FTP server to upload disk log files. (optional)
+            uploadpass: Password required to log into the FTP server to upload disk log files. (optional)
+            uploaddir: The remote directory on the FTP server to upload log files to. (optional)
+            uploadtype: Types of log files to upload. Separate multiple entries with a space. (optional)
+            uploadsched: Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). (optional)
+            uploadtime: Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh). (optional)
+            upload_delete_files: Delete log files after uploading (default = enable). (optional)
+            upload_ssl_conn: Enable/disable encrypted FTPS communication to upload log files. (optional)
+            full_first_warning_threshold: Log full first warning threshold as a percent (1 - 98, default = 75). (optional)
+            full_second_warning_threshold: Log full second warning threshold as a percent (2 - 99, default = 90). (optional)
+            full_final_warning_threshold: Log full final warning threshold as a percent (3 - 100, default = 95). (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.disk/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if ips_archive is not None:
+            data_payload['ips-archive'] = ips_archive
+        if max_log_file_size is not None:
+            data_payload['max-log-file-size'] = max_log_file_size
+        if max_policy_packet_capture_size is not None:
+            data_payload['max-policy-packet-capture-size'] = max_policy_packet_capture_size
+        if roll_schedule is not None:
+            data_payload['roll-schedule'] = roll_schedule
+        if roll_day is not None:
+            data_payload['roll-day'] = roll_day
+        if roll_time is not None:
+            data_payload['roll-time'] = roll_time
+        if diskfull is not None:
+            data_payload['diskfull'] = diskfull
+        if log_quota is not None:
+            data_payload['log-quota'] = log_quota
+        if dlp_archive_quota is not None:
+            data_payload['dlp-archive-quota'] = dlp_archive_quota
+        if report_quota is not None:
+            data_payload['report-quota'] = report_quota
+        if maximum_log_age is not None:
+            data_payload['maximum-log-age'] = maximum_log_age
+        if upload is not None:
+            data_payload['upload'] = upload
+        if upload_destination is not None:
+            data_payload['upload-destination'] = upload_destination
+        if uploadip is not None:
+            data_payload['uploadip'] = uploadip
+        if uploadport is not None:
+            data_payload['uploadport'] = uploadport
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if uploaduser is not None:
+            data_payload['uploaduser'] = uploaduser
+        if uploadpass is not None:
+            data_payload['uploadpass'] = uploadpass
+        if uploaddir is not None:
+            data_payload['uploaddir'] = uploaddir
+        if uploadtype is not None:
+            data_payload['uploadtype'] = uploadtype
+        if uploadsched is not None:
+            data_payload['uploadsched'] = uploadsched
+        if uploadtime is not None:
+            data_payload['uploadtime'] = uploadtime
+        if upload_delete_files is not None:
+            data_payload['upload-delete-files'] = upload_delete_files
+        if upload_ssl_conn is not None:
+            data_payload['upload-ssl-conn'] = upload_ssl_conn
+        if full_first_warning_threshold is not None:
+            data_payload['full-first-warning-threshold'] = full_first_warning_threshold
+        if full_second_warning_threshold is not None:
+            data_payload['full-second-warning-threshold'] = full_second_warning_threshold
+        if full_final_warning_threshold is not None:
+            data_payload['full-final-warning-threshold'] = full_final_warning_threshold
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

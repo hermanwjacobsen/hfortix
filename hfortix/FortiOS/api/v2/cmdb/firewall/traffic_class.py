@@ -1,292 +1,218 @@
 """
-FortiOS traffic-class API wrapper.
-Provides access to /api/v2/cmdb/firewall/traffic-class endpoint.
+FortiOS CMDB - Firewall TrafficClass
+
+API Endpoints:
+    GET    /firewall/traffic-class
+    POST   /firewall/traffic-class
+    GET    /firewall/traffic-class/{class-id}
+    PUT    /firewall/traffic-class/{class-id}
+    DELETE /firewall/traffic-class/{class-id}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class TrafficClass:
-    """
-    Wrapper for firewall traffic-class API endpoint.
+    """TrafficClass operations."""
 
-    Manages traffic-class configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the TrafficClass wrapper.
+        Initialize TrafficClass endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/traffic-class"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        class_id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific traffic-class entry by its class-id.
-
-        Args:
-            mkey: The class-id (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        class_id: Optional[int] = None,
-        class_name: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create traffic-class entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            class-id (integer) (range: 2-31):
-                Class ID to be named.
-            class-name (string) (max_len: 35):
-                Define the name for this class-id.
-
+            class_id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if class_id is not None:
-            payload_dict["class-id"] = class_id
-        if class_name is not None:
-            payload_dict["class-name"] = class_name
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if class_id:
+            endpoint = f"/firewall/traffic-class/{class_id}"
+        else:
+            endpoint = "/firewall/traffic-class"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        class_id: Optional[int] = None,
-        class_name: Optional[str] = None,
+        class_id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        class_name: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update traffic-class entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The class-id (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            class-id (integer) (range: 2-31):
-                Class ID to be named.
-            class-name (string) (max_len: 35):
-                Define the name for this class-id.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            class_id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            class_id: Class ID to be named. (optional)
+            class_name: Define the name for this class-id. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if class_id is not None:
-            payload_dict["class-id"] = class_id
-        if class_name is not None:
-            payload_dict["class-name"] = class_name
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not class_id:
+            raise ValueError("class_id is required for put()")
+        endpoint = f"/firewall/traffic-class/{class_id}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if class_id is not None:
+            data_payload['class-id'] = class_id
+        if class_name is not None:
+            data_payload['class-name'] = class_name
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        class_id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a traffic-class entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The class-id (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            class_id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not class_id:
+            raise ValueError("class_id is required for delete()")
+        endpoint = f"/firewall/traffic-class/{class_id}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        class_id: int | None = None,
+        class_name: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            class_id: Class ID to be named. (optional)
+            class_name: Define the name for this class-id. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/traffic-class"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if class_id is not None:
+            data_payload['class-id'] = class_id
+        if class_name is not None:
+            data_payload['class-name'] = class_name
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

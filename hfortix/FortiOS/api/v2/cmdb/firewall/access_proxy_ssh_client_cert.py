@@ -1,246 +1,274 @@
 """
-FortiOS Access Proxy SSH Client Certificate Endpoint
-API endpoint for managing Access Proxy SSH client certificates.
+FortiOS CMDB - Firewall AccessProxySshClientCert
+
+API Endpoints:
+    GET    /firewall/access-proxy-ssh-client-cert
+    POST   /firewall/access-proxy-ssh-client-cert
+    GET    /firewall/access-proxy-ssh-client-cert/{name}
+    PUT    /firewall/access-proxy-ssh-client-cert/{name}
+    DELETE /firewall/access-proxy-ssh-client-cert/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class AccessProxySshClientCert:
-    """
-    Manage Access Proxy SSH client certificates
+    """AccessProxySshClientCert operations."""
 
-    This endpoint configures SSH client certificates for access proxy authentication.
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Access Proxy SSH Client Cert endpoint
+        Initialize AccessProxySshClientCert endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._path = "firewall/access-proxy-ssh-client-cert"
 
     def get(
         self,
         name: str | None = None,
-        vdom: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **params: Any,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get SSH client certificate by name or all certificates
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Certificate name (None to get all)
-            vdom: Virtual domain name
-            **params: Additional query parameters (filter, format, etc.)
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response with certificate details
-
-        Example:
-            >>> # Get specific certificate
-            >>> cert = fgt.cmdb.firewall.access_proxy_ssh_client_cert.get('cert1')
-            >>> print(f"Auth CA: {cert['results'][0]['auth-ca']}")
-
-            >>> # Get all certificates
-            >>> certs = fgt.cmdb.firewall.access_proxy_ssh_client_cert.get()
+            Dictionary containing API response
         """
-        if name is not None:
-            path = f"{self._path}/{encode_path_component(name)}"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/access-proxy-ssh-client-cert/{name}"
         else:
-            path = self._path
-        return self._client.get("cmdb", path, params=params, vdom=vdom, raw_json=raw_json)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        auth_ca: Optional[str] = None,
-        cert_extension: list[dict[str, Any]] | None = None,
-        permit_agent_forwarding: str = "enable",
-        permit_port_forwarding: str = "enable",
-        permit_pty: str = "enable",
-        permit_user_rc: str = "enable",
-        permit_x11_forwarding: str = "enable",
-        source_address: str = "enable",
-        vdom: str | None = None,
-        raw_json: bool = False,
-    ) -> dict[str, Any]:
-        """
-        Create SSH client certificate configuration
-
-        Args:
-            name: Certificate name
-            auth_ca: SSH CA name for authentication
-            cert_extension: Certificate extension configuration
-            permit_agent_forwarding: Allow SSH agent forwarding ['enable'|'disable']
-            permit_port_forwarding: Allow port forwarding ['enable'|'disable']
-            permit_pty: Allow PTY allocation ['enable'|'disable']
-            permit_user_rc: Allow user RC file execution ['enable'|'disable']
-            permit_x11_forwarding: Allow X11 forwarding ['enable'|'disable']
-            source_address: Enable source address validation ['enable'|'disable']
-            vdom: Virtual domain name
-
-        Returns:
-            API response
-
-        Example:
-            >>> result = fgt.cmdb.firewall.access_proxy_ssh_client_cert.create(
-            ...     name='ssh-cert1',
-            ...     auth_ca='CA_Cert_1',
-            ...     permit_agent_forwarding='enable',
-            ...     permit_port_forwarding='disable'
-            ... )
-        """
-        # Support both patterns: data dict or individual kwargs
-        if payload_dict is not None:
-            # Pattern 1: data dict provided
-            payload = payload_dict.copy()
-        else:
-            # Pattern 2: build from kwargs
-            payload: Dict[str, Any] = {}
-            if name is not None:
-                payload["name"] = name
-            if auth_ca is not None:
-                payload["auth-ca"] = auth_ca
-            if permit_agent_forwarding is not None:
-                payload["permit-agent-forwarding"] = permit_agent_forwarding
-            if permit_port_forwarding is not None:
-                payload["permit-port-forwarding"] = permit_port_forwarding
-            if permit_pty is not None:
-                payload["permit-pty"] = permit_pty
-            if permit_user_rc is not None:
-                payload["permit-user-rc"] = permit_user_rc
-            if permit_x11_forwarding is not None:
-                payload["permit-x11-forwarding"] = permit_x11_forwarding
-            if source_address is not None:
-                payload["source-address"] = source_address
-            if cert_extension is not None:
-                payload["cert-extension"] = cert_extension
-
-        return self._client.post("cmdb", self._path, data=payload, vdom=vdom, raw_json=raw_json)
+            endpoint = "/firewall/access-proxy-ssh-client-cert"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        auth_ca: Optional[str] = None,
-        cert_extension: list[dict[str, Any]] | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        source_address: str | None = None,
+        permit_x11_forwarding: str | None = None,
         permit_agent_forwarding: str | None = None,
         permit_port_forwarding: str | None = None,
         permit_pty: str | None = None,
         permit_user_rc: str | None = None,
-        permit_x11_forwarding: str | None = None,
-        source_address: str | None = None,
-        vdom: str | None = None,
+        cert_extension: list | None = None,
+        auth_ca: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update SSH client certificate configuration
-
+        Update this specific resource.
+        
         Args:
-            name: Certificate name to update
-            auth_ca: SSH CA name for authentication
-            cert_extension: Certificate extension configuration
-            permit_agent_forwarding: Allow SSH agent forwarding
-            permit_port_forwarding: Allow port forwarding
-            permit_pty: Allow PTY allocation
-            permit_user_rc: Allow user RC file execution
-            permit_x11_forwarding: Allow X11 forwarding
-            source_address: Enable source address validation
-            vdom: Virtual domain name
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: SSH client certificate name. (optional)
+            source_address: Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. (optional)
+            permit_x11_forwarding: Enable/disable appending permit-x11-forwarding certificate extension. (optional)
+            permit_agent_forwarding: Enable/disable appending permit-agent-forwarding certificate extension. (optional)
+            permit_port_forwarding: Enable/disable appending permit-port-forwarding certificate extension. (optional)
+            permit_pty: Enable/disable appending permit-pty certificate extension. (optional)
+            permit_user_rc: Enable/disable appending permit-user-rc certificate extension. (optional)
+            cert_extension: Configure certificate extension for user certificate. (optional)
+            auth_ca: Name of the SSH server public key authentication CA. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response
-
-        Example:
-            >>> result = fgt.cmdb.firewall.access_proxy_ssh_client_cert.update(
-            ...     name='ssh-cert1',
-            ...     permit_port_forwarding='enable'
-            ... )
+            Dictionary containing API response
         """
-        # Support both patterns: data dict or individual kwargs
-        if payload_dict is not None:
-            # Pattern 1: data dict provided
-            payload = payload_dict.copy()
-            # Extract name from data if not provided as param
-            if name is None:
-                name = payload.get("name")
-        else:
-            # Pattern 2: build from kwargs
-            payload: Dict[str, Any] = {}
-
-            if auth_ca is not None:
-                payload["auth-ca"] = auth_ca
-            if cert_extension is not None:
-                payload["cert-extension"] = cert_extension
-            if permit_agent_forwarding is not None:
-                payload["permit-agent-forwarding"] = permit_agent_forwarding
-            if permit_port_forwarding is not None:
-                payload["permit-port-forwarding"] = permit_port_forwarding
-            if permit_pty is not None:
-                payload["permit-pty"] = permit_pty
-            if permit_user_rc is not None:
-                payload["permit-user-rc"] = permit_user_rc
-            if permit_x11_forwarding is not None:
-                payload["permit-x11-forwarding"] = permit_x11_forwarding
-            if source_address is not None:
-                payload["source-address"] = source_address
-
-        path = f"{self._path}/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/access-proxy-ssh-client-cert/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if source_address is not None:
+            data_payload['source-address'] = source_address
+        if permit_x11_forwarding is not None:
+            data_payload['permit-x11-forwarding'] = permit_x11_forwarding
+        if permit_agent_forwarding is not None:
+            data_payload['permit-agent-forwarding'] = permit_agent_forwarding
+        if permit_port_forwarding is not None:
+            data_payload['permit-port-forwarding'] = permit_port_forwarding
+        if permit_pty is not None:
+            data_payload['permit-pty'] = permit_pty
+        if permit_user_rc is not None:
+            data_payload['permit-user-rc'] = permit_user_rc
+        if cert_extension is not None:
+            data_payload['cert-extension'] = cert_extension
+        if auth_ca is not None:
+            data_payload['auth-ca'] = auth_ca
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete SSH client certificate configuration
-
+        Delete this specific resource.
+        
         Args:
-            name: Certificate name to delete
-            vdom: Virtual domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response
-
-        Example:
-            >>> result = fgt.cmdb.firewall.access_proxy_ssh_client_cert.delete('ssh-cert1')
+            Dictionary containing API response
         """
-        path = f"{self._path}/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/access-proxy-ssh-client-cert/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: str | None = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        source_address: str | None = None,
+        permit_x11_forwarding: str | None = None,
+        permit_agent_forwarding: str | None = None,
+        permit_port_forwarding: str | None = None,
+        permit_pty: str | None = None,
+        permit_user_rc: str | None = None,
+        cert_extension: list | None = None,
+        auth_ca: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if SSH client certificate exists
-
+        Create object(s) in this table.
+        
         Args:
-            name: Certificate name to check
-            vdom: Virtual domain name
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: SSH client certificate name. (optional)
+            source_address: Enable/disable appending source-address certificate critical option. This option ensure certificate only accepted from FortiGate source address. (optional)
+            permit_x11_forwarding: Enable/disable appending permit-x11-forwarding certificate extension. (optional)
+            permit_agent_forwarding: Enable/disable appending permit-agent-forwarding certificate extension. (optional)
+            permit_port_forwarding: Enable/disable appending permit-port-forwarding certificate extension. (optional)
+            permit_pty: Enable/disable appending permit-pty certificate extension. (optional)
+            permit_user_rc: Enable/disable appending permit-user-rc certificate extension. (optional)
+            cert_extension: Configure certificate extension for user certificate. (optional)
+            auth_ca: Name of the SSH server public key authentication CA. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if certificate exists, False otherwise
-
-        Example:
-            >>> if fgt.cmdb.firewall.access_proxy_ssh_client_cert.exists('ssh-cert1'):
-            ...     print("SSH client certificate exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom, raw_json=True)
-            return result.get("status") == "success" and len(result.get("results", [])) > 0
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/access-proxy-ssh-client-cert"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if source_address is not None:
+            data_payload['source-address'] = source_address
+        if permit_x11_forwarding is not None:
+            data_payload['permit-x11-forwarding'] = permit_x11_forwarding
+        if permit_agent_forwarding is not None:
+            data_payload['permit-agent-forwarding'] = permit_agent_forwarding
+        if permit_port_forwarding is not None:
+            data_payload['permit-port-forwarding'] = permit_port_forwarding
+        if permit_pty is not None:
+            data_payload['permit-pty'] = permit_pty
+        if permit_user_rc is not None:
+            data_payload['permit-user-rc'] = permit_user_rc
+        if cert_extension is not None:
+            data_payload['cert-extension'] = cert_extension
+        if auth_ca is not None:
+            data_payload['auth-ca'] = auth_ca
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,114 +1,161 @@
 """
 FortiOS CMDB - System EmailServer
 
-Configure the email server used by the FortiGate various things. For example, for sending email messages to users to support user authentication features.
-
 API Endpoints:
-    GET  /system/email-server  - Get configuration
-    PUT  /system/email-server  - Update configuration
+    GET    /system/email-server
+    PUT    /system/email-server
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class EmailServer:
-    """email-server settings endpoint (singleton)"""
+    """EmailServer operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize EmailServer endpoint
+        Initialize EmailServer endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get email-server settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with settings
-
-        Examples:
-            >>> # Get current settings
-            >>> settings = fgt.api.cmdb.system.email_server.get()
-            >>> print(settings)
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/email-server"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        return self._client.get("cmdb", "system/email-server", params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        type: str | None = None,
+        server: str | None = None,
+        port: int | None = None,
+        source_ip: str | None = None,
+        source_ip6: str | None = None,
+        authenticate: str | None = None,
+        validate_server: str | None = None,
+        username: str | None = None,
+        password: str | None = None,
+        security: str | None = None,
+        ssl_min_proto_version: str | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update email-server settings
-
+        Update this specific resource.
+        
         Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            type: Use FortiGuard Message service or custom email server. (optional)
+            server: SMTP server IP address or hostname. (optional)
+            port: SMTP server port. (optional)
+            source_ip: SMTP server IPv4 source IP. (optional)
+            source_ip6: SMTP server IPv6 source IP. (optional)
+            authenticate: Enable/disable authentication. (optional)
+            validate_server: Enable/disable validation of server certificate. (optional)
+            username: SMTP server user name for authentication. (optional)
+            password: SMTP server user password for authentication. (optional)
+            security: Connection security used by the email server. (optional)
+            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.email_server.update(
-            ...     payload_dict={'setting1': 'value1'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.email_server.update(
-            ...     setting1='value1',
-            ...     setting2='value2'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", "system/email-server", data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/email-server"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if type is not None:
+            data_payload['type'] = type
+        if server is not None:
+            data_payload['server'] = server
+        if port is not None:
+            data_payload['port'] = port
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if source_ip6 is not None:
+            data_payload['source-ip6'] = source_ip6
+        if authenticate is not None:
+            data_payload['authenticate'] = authenticate
+        if validate_server is not None:
+            data_payload['validate-server'] = validate_server
+        if username is not None:
+            data_payload['username'] = username
+        if password is not None:
+            data_payload['password'] = password
+        if security is not None:
+            data_payload['security'] = security
+        if ssl_min_proto_version is not None:
+            data_payload['ssl-min-proto-version'] = ssl_min_proto_version
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,0 +1,63 @@
+"""Monitor API - Vdom operations."""
+
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from hfortix.FortiOS.http_client import HTTPClient
+
+
+class AddLicense:
+    """AddLicense operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize AddLicense endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        license: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Add a VDOM license.
+        
+        Args:
+            license: VDOM license key. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.registration.vdom.add_license.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if license is not None:
+            data['license'] = license
+        data.update(kwargs)
+        return self._client.post("monitor", "/registration/vdom/add-license", data=data)
+
+
+class Vdom:
+    """Vdom operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Vdom endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+        # Initialize nested resources
+        self.add_license = AddLicense(client)

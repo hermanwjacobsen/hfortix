@@ -1,66 +1,181 @@
-"""FortiOS CMDB - Router OSPF6 - OSPFv3 configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Ospf6
+
+API Endpoints:
+    GET    /router/ospf6
+    PUT    /router/ospf6
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Ospf6:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Ospf6 operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Ospf6 endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/ospf6"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/ospf6", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, abr_type: Optional[str] = None, auto_cost_ref_bandwidth: Optional[int] = None, default_information_originate: Optional[str] = None, default_information_metric: Optional[int] = None, default_information_metric_type: Optional[str] = None, default_information_route_map: Optional[str] = None, default_metric: Optional[int] = None, router_id: Optional[str] = None, spf_timers: Optional[str] = None, bfd: Optional[str] = None, log_neighbour_changes: Optional[str] = None, restart_mode: Optional[str] = None, restart_period: Optional[int] = None, restart_on_topology_change: Optional[str] = None, area: Optional[list] = None, ospf6_interface: Optional[list] = None, summary_address: Optional[list] = None, redistribute: Optional[list] = None, passive_interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"abr_type": "abr-type", "auto_cost_ref_bandwidth": "auto-cost-ref-bandwidth", "default_information_originate": "default-information-originate", "default_information_metric": "default-information-metric", "default_information_metric_type": "default-information-metric-type", "default_information_route_map": "default-information-route-map", "default_metric": "default-metric", "router_id": "router-id", "spf_timers": "spf-timers", "log_neighbour_changes": "log-neighbour-changes", "restart_mode": "restart-mode", "restart_period": "restart-period", "restart_on_topology_change": "restart-on-topology-change", "ospf6_interface": "ospf6-interface", "summary_address": "summary-address", "passive_interface": "passive-interface"}
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        abr_type: str | None = None,
+        auto_cost_ref_bandwidth: int | None = None,
+        default_information_originate: str | None = None,
+        log_neighbour_changes: str | None = None,
+        default_information_metric: int | None = None,
+        default_information_metric_type: str | None = None,
+        default_information_route_map: str | None = None,
+        default_metric: int | None = None,
+        router_id: str | None = None,
+        spf_timers: str | None = None,
+        bfd: str | None = None,
+        restart_mode: str | None = None,
+        restart_period: int | None = None,
+        restart_on_topology_change: str | None = None,
+        area: list | None = None,
+        ospf6_interface: list | None = None,
+        redistribute: list | None = None,
+        passive_interface: list | None = None,
+        summary_address: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            abr_type: Area border router type. (optional)
+            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits per second. (optional)
+            default_information_originate: Enable/disable generation of default route. (optional)
+            log_neighbour_changes: Log OSPFv3 neighbor changes. (optional)
+            default_information_metric: Default information metric. (optional)
+            default_information_metric_type: Default information metric type. (optional)
+            default_information_route_map: Default information route map. (optional)
+            default_metric: Default metric of redistribute routes. (optional)
+            router_id: A.B.C.D, in IPv4 address format. (optional)
+            spf_timers: SPF calculation frequency. (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            restart_mode: OSPFv3 restart mode (graceful or none). (optional)
+            restart_period: Graceful restart period in seconds. (optional)
+            restart_on_topology_change: Enable/disable continuing graceful restart upon topology change. (optional)
+            area: OSPF6 area configuration. (optional)
+            ospf6_interface: OSPF6 interface configuration. (optional)
+            redistribute: Redistribute configuration. (optional)
+            passive_interface: Passive interface configuration. (optional)
+            summary_address: IPv6 address summary configuration. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/ospf6"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if abr_type is not None:
-            data[param_map["abr_type"]] = abr_type
+            data_payload['abr-type'] = abr_type
         if auto_cost_ref_bandwidth is not None:
-            data[param_map["auto_cost_ref_bandwidth"]] = auto_cost_ref_bandwidth
+            data_payload['auto-cost-ref-bandwidth'] = auto_cost_ref_bandwidth
         if default_information_originate is not None:
-            data[param_map["default_information_originate"]] = default_information_originate
-        if default_information_metric is not None:
-            data[param_map["default_information_metric"]] = default_information_metric
-        if default_information_metric_type is not None:
-            data[param_map["default_information_metric_type"]] = default_information_metric_type
-        if default_information_route_map is not None:
-            data[param_map["default_information_route_map"]] = default_information_route_map
-        if default_metric is not None:
-            data[param_map["default_metric"]] = default_metric
-        if router_id is not None:
-            data[param_map["router_id"]] = router_id
-        if spf_timers is not None:
-            data[param_map["spf_timers"]] = spf_timers
-        if bfd is not None:
-            data["bfd"] = bfd
+            data_payload['default-information-originate'] = default_information_originate
         if log_neighbour_changes is not None:
-            data[param_map["log_neighbour_changes"]] = log_neighbour_changes
+            data_payload['log-neighbour-changes'] = log_neighbour_changes
+        if default_information_metric is not None:
+            data_payload['default-information-metric'] = default_information_metric
+        if default_information_metric_type is not None:
+            data_payload['default-information-metric-type'] = default_information_metric_type
+        if default_information_route_map is not None:
+            data_payload['default-information-route-map'] = default_information_route_map
+        if default_metric is not None:
+            data_payload['default-metric'] = default_metric
+        if router_id is not None:
+            data_payload['router-id'] = router_id
+        if spf_timers is not None:
+            data_payload['spf-timers'] = spf_timers
+        if bfd is not None:
+            data_payload['bfd'] = bfd
         if restart_mode is not None:
-            data[param_map["restart_mode"]] = restart_mode
+            data_payload['restart-mode'] = restart_mode
         if restart_period is not None:
-            data[param_map["restart_period"]] = restart_period
+            data_payload['restart-period'] = restart_period
         if restart_on_topology_change is not None:
-            data[param_map["restart_on_topology_change"]] = restart_on_topology_change
+            data_payload['restart-on-topology-change'] = restart_on_topology_change
         if area is not None:
-            data["area"] = area
+            data_payload['area'] = area
         if ospf6_interface is not None:
-            data[param_map["ospf6_interface"]] = ospf6_interface
-        if summary_address is not None:
-            data[param_map["summary_address"]] = summary_address
+            data_payload['ospf6-interface'] = ospf6_interface
         if redistribute is not None:
-            data["redistribute"] = redistribute
+            data_payload['redistribute'] = redistribute
         if passive_interface is not None:
-            data[param_map["passive_interface"]] = passive_interface
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/ospf6", data=data, vdom=vdom)
+            data_payload['passive-interface'] = passive_interface
+        if summary_address is not None:
+            data_payload['summary-address'] = summary_address
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

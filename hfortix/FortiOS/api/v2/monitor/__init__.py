@@ -7,13 +7,39 @@ Monitor API endpoints are read-only or action-based operations that don't
 modify configuration. They provide real-time status, statistics, and
 operational commands.
 
-Implemented categories (6/29):
+Implemented categories (32/32):
 - azure/ - Azure SDN connector operations
-- casb/ - CASB (Cloud Access Security Broker) operations
-- endpoint_control/ - FortiClient endpoint monitoring and management
-- extender_controller/ - FortiExtender monitoring and management
+- casb/ - CASB operations
+- endpoint_control/ - FortiClient endpoint monitoring
+- extender_controller/ - FortiExtender monitoring
 - extension_controller/ - FortiGate LAN Extension monitoring
 - firewall/ - Firewall monitoring, policies, sessions, and statistics
+- firmware/ - Firmware upgrade operations
+- fortiguard/ - FortiGuard service operations
+- fortiview/ - FortiView statistics
+- geoip/ - GeoIP lookup operations
+- ips/ - IPS monitoring
+- license/ - License status
+- log/ - Log device operations
+- network/ - Network monitoring
+- registration/ - Device registration
+- router/ - Router monitoring and BGP/OSPF operations
+- sdwan/ - SD-WAN monitoring
+- service/ - Service monitoring
+- switch_controller/ - FortiSwitch controller monitoring
+- system/ - System monitoring, status, and diagnostics
+- user/ - User authentication and monitoring
+- utm/ - UTM monitoring
+- videofilter/ - Video filter monitoring
+- virtual_wan/ - Virtual WAN monitoring
+- vpn/ - VPN monitoring (IPsec/SSL)
+- vpn_certificate/ - VPN certificate monitoring
+- wanopt/ - WAN optimization monitoring
+- web_ui/ - Web UI customization
+- webcache/ - Web cache monitoring
+- webfilter/ - Web filter monitoring
+- webproxy/ - Web proxy monitoring
+- wifi/ - WiFi controller and AP monitoring
 """
 
 from __future__ import annotations
@@ -39,28 +65,45 @@ class Monitor:
         - extender_controller: FortiExtender monitoring
         - extension_controller: FortiGate LAN Extension monitoring
         - firewall: Firewall monitoring, policies, sessions, and statistics
+        - firmware: Firmware upgrade operations
+        - fortiguard: FortiGuard service operations
+        - fortiview: FortiView statistics
+        - geoip: GeoIP lookup operations
+        - ips: IPS monitoring
+        - license: License status
+        - log: Log device operations
+        - network: Network monitoring
+        - registration: Device registration
+        - router: Router monitoring and BGP/OSPF operations
+        - sdwan: SD-WAN monitoring
+        - service: Service monitoring
+        - switch_controller: FortiSwitch controller monitoring
+        - system: System monitoring, status, and diagnostics
+        - user: User authentication and monitoring
+        - utm: UTM monitoring
+        - videofilter: Video filter monitoring
+        - virtual_wan: Virtual WAN monitoring
+        - vpn: VPN monitoring (IPsec/SSL)
+        - vpn_certificate: VPN certificate monitoring
+        - wanopt: WAN optimization monitoring
+        - web_ui: Web UI customization
+        - webcache: Web cache monitoring
+        - webfilter: Web filter monitoring
+        - webproxy: Web proxy monitoring
+        - wifi: WiFi controller and AP monitoring
 
     Example:
         >>> # List Azure applications
         >>> apps = client.monitor.azure.application_list.list()
-
-        >>> # Get CASB SaaS application details
-        >>> details = client.monitor.casb.saas_application.details(mkey="Salesforce")
-
-        >>> # Get endpoint summary
-        >>> summary = client.monitor.endpoint_control.summary()
-
-        >>> # List FortiExtenders
-        >>> extenders = client.monitor.extender_controller.list()
-
-        >>> # Get LAN Extension VDOM status
-        >>> status = client.monitor.extension_controller.lan_extension_vdom.status()
 
         >>> # Get firewall policy statistics
         >>> policies = client.monitor.firewall.policy.list()
 
         >>> # List active sessions
         >>> sessions = client.monitor.firewall.sessions.list(srcaddr='10.1.1.100')
+
+        >>> # Check system status
+        >>> status = client.monitor.system.status.get()
     """
 
     def __init__(self, client: "HTTPClient") -> None:
@@ -77,6 +120,32 @@ class Monitor:
         self._extender_controller = None
         self._extension_controller = None
         self._firewall = None
+        self._firmware = None
+        self._fortiguard = None
+        self._fortiview = None
+        self._geoip = None
+        self._ips = None
+        self._license = None
+        self._log = None
+        self._network = None
+        self._registration = None
+        self._router = None
+        self._sdwan = None
+        self._service = None
+        self._switch_controller = None
+        self._system = None
+        self._user = None
+        self._utm = None
+        self._videofilter = None
+        self._virtual_wan = None
+        self._vpn = None
+        self._vpn_certificate = None
+        self._wanopt = None
+        self._web_ui = None
+        self._webcache = None
+        self._webfilter = None
+        self._webproxy = None
+        self._wifi = None
 
     @property
     def azure(self):
@@ -89,7 +158,7 @@ class Monitor:
 
     @property
     def casb(self):
-        """CASB (Cloud Access Security Broker) operations."""
+        """CASB operations."""
         if self._casb is None:
             from .casb import Casb
 
@@ -98,7 +167,7 @@ class Monitor:
 
     @property
     def endpoint_control(self):
-        """FortiClient endpoint monitoring and management."""
+        """FortiClient endpoint monitoring."""
         if self._endpoint_control is None:
             from .endpoint_control import EndpointControl
 
@@ -107,7 +176,7 @@ class Monitor:
 
     @property
     def extender_controller(self):
-        """FortiExtender monitoring and management."""
+        """FortiExtender monitoring."""
         if self._extender_controller is None:
             from .extender_controller import ExtenderController
 
@@ -132,6 +201,240 @@ class Monitor:
             self._firewall = Firewall(self._client)
         return self._firewall
 
+    @property
+    def firmware(self):
+        """Firmware upgrade operations."""
+        if self._firmware is None:
+            from .firmware import Firmware
+
+            self._firmware = Firmware(self._client)
+        return self._firmware
+
+    @property
+    def fortiguard(self):
+        """FortiGuard service operations."""
+        if self._fortiguard is None:
+            from .fortiguard import Fortiguard
+
+            self._fortiguard = Fortiguard(self._client)
+        return self._fortiguard
+
+    @property
+    def fortiview(self):
+        """FortiView statistics."""
+        if self._fortiview is None:
+            from .fortiview import Fortiview
+
+            self._fortiview = Fortiview(self._client)
+        return self._fortiview
+
+    @property
+    def geoip(self):
+        """GeoIP lookup operations."""
+        if self._geoip is None:
+            from .geoip import Geoip
+
+            self._geoip = Geoip(self._client)
+        return self._geoip
+
+    @property
+    def ips(self):
+        """IPS monitoring."""
+        if self._ips is None:
+            from .ips import Ips
+
+            self._ips = Ips(self._client)
+        return self._ips
+
+    @property
+    def license(self):
+        """License status."""
+        if self._license is None:
+            from .license import License
+
+            self._license = License(self._client)
+        return self._license
+
+    @property
+    def log(self):
+        """Log device operations."""
+        if self._log is None:
+            from .log import Log
+
+            self._log = Log(self._client)
+        return self._log
+
+    @property
+    def network(self):
+        """Network monitoring."""
+        if self._network is None:
+            from .network import Network
+
+            self._network = Network(self._client)
+        return self._network
+
+    @property
+    def registration(self):
+        """Device registration."""
+        if self._registration is None:
+            from .registration import Registration
+
+            self._registration = Registration(self._client)
+        return self._registration
+
+    @property
+    def router(self):
+        """Router monitoring and BGP/OSPF operations."""
+        if self._router is None:
+            from .router import Router
+
+            self._router = Router(self._client)
+        return self._router
+
+    @property
+    def sdwan(self):
+        """SD-WAN monitoring."""
+        if self._sdwan is None:
+            from .sdwan import Sdwan
+
+            self._sdwan = Sdwan(self._client)
+        return self._sdwan
+
+    @property
+    def service(self):
+        """Service monitoring."""
+        if self._service is None:
+            from .service import Service
+
+            self._service = Service(self._client)
+        return self._service
+
+    @property
+    def switch_controller(self):
+        """FortiSwitch controller monitoring."""
+        if self._switch_controller is None:
+            from .switch_controller import SwitchController
+
+            self._switch_controller = SwitchController(self._client)
+        return self._switch_controller
+
+    @property
+    def system(self):
+        """System monitoring, status, and diagnostics."""
+        if self._system is None:
+            from .system import System
+
+            self._system = System(self._client)
+        return self._system
+
+    @property
+    def user(self):
+        """User authentication and monitoring."""
+        if self._user is None:
+            from .user import User
+
+            self._user = User(self._client)
+        return self._user
+
+    @property
+    def utm(self):
+        """UTM monitoring."""
+        if self._utm is None:
+            from .utm import Utm
+
+            self._utm = Utm(self._client)
+        return self._utm
+
+    @property
+    def videofilter(self):
+        """Video filter monitoring."""
+        if self._videofilter is None:
+            from .videofilter import Videofilter
+
+            self._videofilter = Videofilter(self._client)
+        return self._videofilter
+
+    @property
+    def virtual_wan(self):
+        """Virtual WAN monitoring."""
+        if self._virtual_wan is None:
+            from .virtual_wan import VirtualWan
+
+            self._virtual_wan = VirtualWan(self._client)
+        return self._virtual_wan
+
+    @property
+    def vpn(self):
+        """VPN monitoring (IPsec/SSL)."""
+        if self._vpn is None:
+            from .vpn import Vpn
+
+            self._vpn = Vpn(self._client)
+        return self._vpn
+
+    @property
+    def vpn_certificate(self):
+        """VPN certificate monitoring."""
+        if self._vpn_certificate is None:
+            from .vpn_certificate import VpnCertificate
+
+            self._vpn_certificate = VpnCertificate(self._client)
+        return self._vpn_certificate
+
+    @property
+    def wanopt(self):
+        """WAN optimization monitoring."""
+        if self._wanopt is None:
+            from .wanopt import Wanopt
+
+            self._wanopt = Wanopt(self._client)
+        return self._wanopt
+
+    @property
+    def web_ui(self):
+        """Web UI customization."""
+        if self._web_ui is None:
+            from .web_ui import WebUi
+
+            self._web_ui = WebUi(self._client)
+        return self._web_ui
+
+    @property
+    def webcache(self):
+        """Web cache monitoring."""
+        if self._webcache is None:
+            from .webcache import Webcache
+
+            self._webcache = Webcache(self._client)
+        return self._webcache
+
+    @property
+    def webfilter(self):
+        """Web filter monitoring."""
+        if self._webfilter is None:
+            from .webfilter import Webfilter
+
+            self._webfilter = Webfilter(self._client)
+        return self._webfilter
+
+    @property
+    def webproxy(self):
+        """Web proxy monitoring."""
+        if self._webproxy is None:
+            from .webproxy import Webproxy
+
+            self._webproxy = Webproxy(self._client)
+        return self._webproxy
+
+    @property
+    def wifi(self):
+        """WiFi controller and AP monitoring."""
+        if self._wifi is None:
+            from .wifi import Wifi
+
+            self._wifi = Wifi(self._client)
+        return self._wifi
+
     def __dir__(self):
         """Control autocomplete to show available attributes"""
         return [
@@ -141,4 +444,30 @@ class Monitor:
             "extender_controller",
             "extension_controller",
             "firewall",
+            "firmware",
+            "fortiguard",
+            "fortiview",
+            "geoip",
+            "ips",
+            "license",
+            "log",
+            "network",
+            "registration",
+            "router",
+            "sdwan",
+            "service",
+            "switch_controller",
+            "system",
+            "user",
+            "utm",
+            "videofilter",
+            "virtual_wan",
+            "vpn",
+            "vpn_certificate",
+            "wanopt",
+            "web_ui",
+            "webcache",
+            "webfilter",
+            "webproxy",
+            "wifi",
         ]

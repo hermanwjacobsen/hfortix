@@ -1,315 +1,242 @@
 """
-FortiOS CMDB - Firewall IP-MAC Binding Table
-
-Configure IP to MAC address pairs in the IP/MAC binding table.
+FortiOS CMDB - Firewall IpmacbindingTable
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ipmacbinding/table           - List all / Get specific
-    POST   /api/v2/cmdb/firewall.ipmacbinding/table           - Create
-    PUT    /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num}   - Update
-    DELETE /api/v2/cmdb/firewall.ipmacbinding/table/{seq-num}   - Delete
+    GET    /firewall.ipmacbinding/table
+    POST   /firewall.ipmacbinding/table
+    GET    /firewall.ipmacbinding/table/{seq-num}
+    PUT    /firewall.ipmacbinding/table/{seq-num}
+    DELETE /firewall.ipmacbinding/table/{seq-num}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class IpmacbindingTable:
-    """Firewall IP-MAC binding table endpoint"""
+    """IpmacbindingTable operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize IpmacbindingTable endpoint
+        Initialize IpmacbindingTable endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        seq_num: Optional[int] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IP-MAC binding entries - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            seq_num: Entry sequence number (if specified, gets single entry)
-            datasource: Include datasource information
-            with_meta: Include metadata
-            action: Special actions (default, schema)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            seq_num: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all binding entries
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.get()
-            
-            >>> # Get binding entry 1
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.get(1)
-            >>> print(f"IP: {result['results']['ip']}, MAC: {result['results']['mac']}")
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.get(1, with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall.ipmacbinding/table"
-        if seq_num is not None:
-            path = f"{path}/{encode_path_component(str(seq_num))}"
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        seq_num: Optional[int] = None,
-        ip: Optional[str] = None,
-        mac: Optional[str] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IP-MAC binding entry.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            seq_num: Entry number (0-4294967295)
-            ip: IPv4 address (format: xxx.xxx.xxx.xxx)
-            mac: MAC address (format: xx:xx:xx:xx:xx:xx)
-            name: Name of the pair (optional, max 35 chars)
-            status: Enable/disable this binding ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create a simple IP-MAC binding
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.create(
-            ...     seq_num=1,
-            ...     ip='192.168.1.100',
-            ...     mac='00:11:22:33:44:55'
-            ... )
-
-            >>> # POST - Create with name and status
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.create(
-            ...     seq_num=2,
-            ...     ip='192.168.1.200',
-            ...     mac='aa:bb:cc:dd:ee:ff',
-            ...     name='server01',
-            ...     status='enable'
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if seq_num:
+            endpoint = f"/firewall.ipmacbinding/table/{seq_num}"
         else:
-            payload_dict = {}
-            if seq_num is not None:
-                payload_dict["seq-num"] = seq_num
-            if ip is not None:
-                payload_dict["ip"] = ip
-            if mac is not None:
-                payload_dict["mac"] = mac
-            if name is not None:
-                payload_dict["name"] = name
-            if status is not None:
-                payload_dict["status"] = status
-
-        payload_dict = {
-            "seq-num": seq_num,
-            "ip": ip,
-            "mac": mac,
-        }
-
-        param_map = {
-            "name": name,
-            "status": status,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall.ipmacbinding/table"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+            endpoint = "/firewall.ipmacbinding/table"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        seq_num: Optional[int] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        ip: Optional[str] = None,
-        mac: Optional[str] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        ip: str | None = None,
+        mac: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IP-MAC binding entry.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            seq_num: Entry number to update
-            ip: IPv4 address (format: xxx.xxx.xxx.xxx)
-            mac: MAC address (format: xx:xx:xx:xx:xx:xx)
-            name: Name of the pair (optional, max 35 chars)
-            status: Enable/disable this binding ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            seq_num: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            seq_num: Entry number. (optional)
+            ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx). (optional)
+            mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal). (optional)
+            name: Name of the pair (optional, default = no name). (optional)
+            status: Enable/disable this IP-mac binding pair. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update IP address
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.update(
-            ...     seq_num=1,
-            ...     ip='192.168.1.150'
-            ... )
-
-            >>> # PUT - Update MAC and name
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.update(
-            ...     seq_num=2,
-            ...     mac='11:22:33:44:55:66',
-            ...     name='updated-server'
-            ... )
-
-            >>> # Disable a binding
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.update(
-            ...     seq_num=3,
-            ...     status='disable'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if seq_num is not None:
-                payload_dict["seq-num"] = seq_num
-            if ip is not None:
-                payload_dict["ip"] = ip
-            if mac is not None:
-                payload_dict["mac"] = mac
-            if status is not None:
-                payload_dict["status"] = status
-
-        payload_dict = {}
-
-        param_map = {
-            "ip": ip,
-            "mac": mac,
-            "name": name,
-            "status": status,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for put()")
+        endpoint = f"/firewall.ipmacbinding/table/{seq_num}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if seq_num is not None:
+            data_payload['seq-num'] = seq_num
+        if ip is not None:
+            data_payload['ip'] = ip
+        if mac is not None:
+            data_payload['mac'] = mac
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        seq_num: int,
-        vdom: Optional[Union[str, bool]] = None,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete an IP-MAC binding entry.
-
+        Delete this specific resource.
+        
         Args:
-            seq_num: Entry number to delete
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            seq_num: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete binding entry
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.delete(1)
-
-            >>> # Delete from specific VDOM
-            >>> result = fgt.cmdb.firewall.ipmacbinding.table.delete(2, vdom='customer1')
+            Dictionary containing API response
         """
-        path = f"firewall.ipmacbinding/table/{encode_path_component(str(seq_num))}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for delete()")
+        endpoint = f"/firewall.ipmacbinding/table/{seq_num}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, seq_num: int, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        seq_num: int | None = None,
+        ip: str | None = None,
+        mac: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if an IP-MAC binding entry exists.
-
+        Create object(s) in this table.
+        
         Args:
-            seq_num: Entry number to check
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            seq_num: Entry number. (optional)
+            ip: IPv4 address portion of the pair (format: xxx.xxx.xxx.xxx). (optional)
+            mac: MAC address portion of the pair (format = xx:xx:xx:xx:xx:xx in hexadecimal). (optional)
+            name: Name of the pair (optional, default = no name). (optional)
+            status: Enable/disable this IP-mac binding pair. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if entry exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.firewall.ipmacbinding.table.exists(1):
-            ...     print("Entry 1 exists")
-            ... else:
-            ...     print("Entry 1 does not exist")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(seq_num, vdom=vdom, raw_json=True)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.ipmacbinding/table"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if seq_num is not None:
+            data_payload['seq-num'] = seq_num
+        if ip is not None:
+            data_payload['ip'] = ip
+        if mac is not None:
+            data_payload['mac'] = mac
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

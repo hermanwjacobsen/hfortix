@@ -1,277 +1,330 @@
 """
-Report layout endpoint module.
+FortiOS CMDB - Report Layout
 
-This module provides access to the report/layout endpoint
-for managing report layout configurations.
-
-API Path: report/layout
+API Endpoints:
+    GET    /report/layout
+    POST   /report/layout
+    GET    /report/layout/{name}
+    PUT    /report/layout/{name}
+    DELETE /report/layout/{name}
 """
 
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class Layout:
-    """
-    Interface for managing report layouts.
+    """Layout operations."""
 
-    This class provides CRUD operations for report layout configuration.
-
-    Example usage:
-        # List all report layouts
-        layouts = fgt.api.cmdb.report.layout.get()
-
-        # Get specific report layout
-        layout = fgt.api.cmdb.report.layout.get(pkey='daily-report')
-
-        # POST - Create report layout
-        fgt.api.cmdb.report.layout.create(
-            name='custom-report',
-            title='Custom Report',
-            schedule_type='daily'
-        )
-
-        # PUT - Update report layout
-        fgt.api.cmdb.report.layout.update(
-            pkey='custom-report',
-            title='Updated Report'
-        )
-
-        # Delete report layout
-        fgt.api.cmdb.report.layout.delete(pkey='custom-report')
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Layout instance.
+        Initialize Layout endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "report/layout"
 
     def get(
-        self, pkey: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
-    ) -> Dict[str, Any]:
-        """
-        Retrieve report layout configuration.
-
-        Args:
-            pkey: Layout name (retrieves specific layout if provided)
-            vdom: Virtual domain
-            **kwargs: Additional query parameters
-
-        Returns:
-            Dictionary containing report layout configuration
-
-        Example:
-            >>> # Get all report layouts
-            >>> result = fgt.api.cmdb.report.layout.get()
-            >>>
-            >>> # Get specific report layout
-            >>> result = fgt.api.cmdb.report.layout.get(pkey='daily-report')
-        """
-        path = f"{self._endpoint}/{pkey}" if pkey else self._endpoint
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    def post(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        body_item: Optional[list] = None,
-        cutoff_option: Optional[str] = None,
-        cutoff_time: Optional[str] = None,
-        day: Optional[str] = None,
-        description: Optional[str] = None,
-        email_recipients: Optional[str] = None,
-        email_send: Optional[str] = None,
-        format: Optional[str] = None,
-        max_pdf_report: Optional[int] = None,
-        name: Optional[str] = None,
-        options: Optional[str] = None,
-        page: Optional[dict] = None,
-        schedule_type: Optional[str] = None,
-        style_theme: Optional[str] = None,
-        subtitle: Optional[str] = None,
-        time: Optional[str] = None,
-        title: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Create report layout.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            data_dict: Dictionary with API format parameters
-            body_item: Report body items configuration
-            cutoff_option: Cutoff option (run-time | custom)
-            cutoff_time: Cutoff time
-            day: Day of week/month for scheduled reports
-            description: Description
-            email_recipients: Email recipients
-            email_send: Enable/disable email sending (enable | disable)
-            format: Report format (pdf | html)
-            max_pdf_report: Maximum number of PDF reports to keep
-            name: Report layout name
-            options: Report options
-            page: Page settings (header, footer, etc.)
-            schedule_type: Schedule type (demand | daily | weekly | monthly)
-            style_theme: Style theme
-            subtitle: Report subtitle
-            time: Time for scheduled reports
-            title: Report title
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.report.layout.create(
-            ...     name='custom-report',
-            ...     title='Custom Daily Report',
-            ...     schedule_type='daily',
-            ...     format='pdf'
-            ... )
         """
-        payload = dict(data_dict) if data_dict else {}
-
-        param_map = {
-            "body_item": "body-item",
-            "cutoff_option": "cutoff-option",
-            "cutoff_time": "cutoff-time",
-            "day": "day",
-            "description": "description",
-            "email_recipients": "email-recipients",
-            "email_send": "email-send",
-            "format": "format",
-            "max_pdf_report": "max-pdf-report",
-            "name": "name",
-            "options": "options",
-            "page": "page",
-            "schedule_type": "schedule-type",
-            "style_theme": "style-theme",
-            "subtitle": "subtitle",
-            "time": "time",
-            "title": "title",
-        }
-
-        for py_name, api_name in param_map.items():
-            value_param = locals().get(py_name)
-            if value_param is not None:
-                payload[api_name] = value_param
-
-        payload.update(kwargs)
-
-        return self._client.post("cmdb", self._endpoint, data=payload, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/report/layout/{name}"
+        else:
+            endpoint = "/report/layout"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        pkey: str,
-        data_dict: Optional[Dict[str, Any]] = None,
-        body_item: Optional[list] = None,
-        cutoff_option: Optional[str] = None,
-        cutoff_time: Optional[str] = None,
-        day: Optional[str] = None,
-        description: Optional[str] = None,
-        email_recipients: Optional[str] = None,
-        email_send: Optional[str] = None,
-        format: Optional[str] = None,
-        max_pdf_report: Optional[int] = None,
-        name: Optional[str] = None,
-        options: Optional[str] = None,
-        page: Optional[dict] = None,
-        schedule_type: Optional[str] = None,
-        style_theme: Optional[str] = None,
-        subtitle: Optional[str] = None,
-        time: Optional[str] = None,
-        title: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        title: str | None = None,
+        subtitle: str | None = None,
+        description: str | None = None,
+        style_theme: str | None = None,
+        options: str | None = None,
+        schedule_type: str | None = None,
+        day: str | None = None,
+        time: str | None = None,
+        cutoff_option: str | None = None,
+        cutoff_time: str | None = None,
+        email_send: str | None = None,
+        email_recipients: str | None = None,
+        max_pdf_report: int | None = None,
+        page: list | None = None,
+        body_item: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update report layout.
-
+        Update this specific resource.
+        
         Args:
-            pkey: Layout name to update
-            data_dict: Dictionary with API format parameters
-            body_item: Report body items configuration
-            cutoff_option: Cutoff option (run-time | custom)
-            cutoff_time: Cutoff time
-            day: Day of week/month for scheduled reports
-            description: Description
-            email_recipients: Email recipients
-            email_send: Enable/disable email sending (enable | disable)
-            format: Report format (pdf | html)
-            max_pdf_report: Maximum number of PDF reports to keep
-            name: Report layout name
-            options: Report options
-            page: Page settings (header, footer, etc.)
-            schedule_type: Schedule type (demand | daily | weekly | monthly)
-            style_theme: Style theme
-            subtitle: Report subtitle
-            time: Time for scheduled reports
-            title: Report title
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Report layout name. (optional)
+            title: Report title. (optional)
+            subtitle: Report subtitle. (optional)
+            description: Description. (optional)
+            style_theme: Report style theme. (optional)
+            options: Report layout options. (optional)
+            schedule_type: Report schedule type. (optional)
+            day: Schedule days of week to generate report. (optional)
+            time: Schedule time to generate report (format = hh:mm). (optional)
+            cutoff_option: Cutoff-option is either run-time or custom. (optional)
+            cutoff_time: Custom cutoff time to generate report (format = hh:mm). (optional)
+            email_send: Enable/disable sending emails after reports are generated. (optional)
+            email_recipients: Email recipients for generated reports. (optional)
+            max_pdf_report: Maximum number of PDF reports to keep at one time (oldest report is overwritten). (optional)
+            page: Configure report page. (optional)
+            body_item: Configure report body item. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.report.layout.update(
-            ...     pkey='custom-report',
-            ...     title='Updated Report Title',
-            ...     email_send='enable'
-            ... )
         """
-        payload = dict(data_dict) if data_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/report/layout/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if title is not None:
+            data_payload['title'] = title
+        if subtitle is not None:
+            data_payload['subtitle'] = subtitle
+        if description is not None:
+            data_payload['description'] = description
+        if style_theme is not None:
+            data_payload['style-theme'] = style_theme
+        if options is not None:
+            data_payload['options'] = options
+        if schedule_type is not None:
+            data_payload['schedule-type'] = schedule_type
+        if day is not None:
+            data_payload['day'] = day
+        if time is not None:
+            data_payload['time'] = time
+        if cutoff_option is not None:
+            data_payload['cutoff-option'] = cutoff_option
+        if cutoff_time is not None:
+            data_payload['cutoff-time'] = cutoff_time
+        if email_send is not None:
+            data_payload['email-send'] = email_send
+        if email_recipients is not None:
+            data_payload['email-recipients'] = email_recipients
+        if max_pdf_report is not None:
+            data_payload['max-pdf-report'] = max_pdf_report
+        if page is not None:
+            data_payload['page'] = page
+        if body_item is not None:
+            data_payload['body-item'] = body_item
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "body_item": "body-item",
-            "cutoff_option": "cutoff-option",
-            "cutoff_time": "cutoff-time",
-            "day": "day",
-            "description": "description",
-            "email_recipients": "email-recipients",
-            "email_send": "email-send",
-            "format": "format",
-            "max_pdf_report": "max-pdf-report",
-            "name": "name",
-            "options": "options",
-            "page": "page",
-            "schedule_type": "schedule-type",
-            "style_theme": "style-theme",
-            "subtitle": "subtitle",
-            "time": "time",
-            "title": "title",
-        }
-
-        for py_name, api_name in param_map.items():
-            value_param = locals().get(py_name)
-            if value_param is not None:
-                payload[api_name] = value_param
-
-        payload.update(kwargs)
-
-        path = f"{self._endpoint}/{pkey}"
-        return self._client.put("cmdb", path, data=payload, vdom=vdom)
-
-    def delete(self, pkey: str, vdom: Optional[Union[str, bool]] = None) -> Dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a report layout.
-
+        Delete this specific resource.
+        
         Args:
-            pkey: Layout name to delete
-            vdom: Virtual domain
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.report.layout.delete(pkey='custom-report')
         """
-        path = f"{self._endpoint}/{pkey}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/report/layout/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        title: str | None = None,
+        subtitle: str | None = None,
+        description: str | None = None,
+        style_theme: str | None = None,
+        options: str | None = None,
+        schedule_type: str | None = None,
+        day: str | None = None,
+        time: str | None = None,
+        cutoff_option: str | None = None,
+        cutoff_time: str | None = None,
+        email_send: str | None = None,
+        email_recipients: str | None = None,
+        max_pdf_report: int | None = None,
+        page: list | None = None,
+        body_item: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Report layout name. (optional)
+            title: Report title. (optional)
+            subtitle: Report subtitle. (optional)
+            description: Description. (optional)
+            style_theme: Report style theme. (optional)
+            options: Report layout options. (optional)
+            schedule_type: Report schedule type. (optional)
+            day: Schedule days of week to generate report. (optional)
+            time: Schedule time to generate report (format = hh:mm). (optional)
+            cutoff_option: Cutoff-option is either run-time or custom. (optional)
+            cutoff_time: Custom cutoff time to generate report (format = hh:mm). (optional)
+            email_send: Enable/disable sending emails after reports are generated. (optional)
+            email_recipients: Email recipients for generated reports. (optional)
+            max_pdf_report: Maximum number of PDF reports to keep at one time (oldest report is overwritten). (optional)
+            page: Configure report page. (optional)
+            body_item: Configure report body item. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/report/layout"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if title is not None:
+            data_payload['title'] = title
+        if subtitle is not None:
+            data_payload['subtitle'] = subtitle
+        if description is not None:
+            data_payload['description'] = description
+        if style_theme is not None:
+            data_payload['style-theme'] = style_theme
+        if options is not None:
+            data_payload['options'] = options
+        if schedule_type is not None:
+            data_payload['schedule-type'] = schedule_type
+        if day is not None:
+            data_payload['day'] = day
+        if time is not None:
+            data_payload['time'] = time
+        if cutoff_option is not None:
+            data_payload['cutoff-option'] = cutoff_option
+        if cutoff_time is not None:
+            data_payload['cutoff-time'] = cutoff_time
+        if email_send is not None:
+            data_payload['email-send'] = email_send
+        if email_recipients is not None:
+            data_payload['email-recipients'] = email_recipients
+        if max_pdf_report is not None:
+            data_payload['max-pdf-report'] = max_pdf_report
+        if page is not None:
+            data_payload['page'] = page
+        if body_item is not None:
+            data_payload['body-item'] = body_item
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

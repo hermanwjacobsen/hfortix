@@ -1,0 +1,67 @@
+"""Monitor API - PrivateDataEncryption operations."""
+
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from hfortix.FortiOS.http_client import HTTPClient
+
+
+class Set:
+    """Set operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Set endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        enable: bool | None = None,
+        password: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Sets private data encryption.
+        
+        Args:
+            enable: Enable private data encryption. (optional)
+            password: Admin password. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.system.private_data_encryption.set.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if enable is not None:
+            data['enable'] = enable
+        if password is not None:
+            data['password'] = password
+        data.update(kwargs)
+        return self._client.post("monitor", "/system/private-data-encryption/set", data=data)
+
+
+class PrivateDataEncryption:
+    """PrivateDataEncryption operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize PrivateDataEncryption endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+        # Initialize nested resources
+        self.set = Set(client)

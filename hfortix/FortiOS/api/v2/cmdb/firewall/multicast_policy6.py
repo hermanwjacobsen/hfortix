@@ -1,440 +1,330 @@
 """
-FortiOS multicast-policy6 API wrapper.
-Provides access to /api/v2/cmdb/firewall/multicast-policy6 endpoint.
+FortiOS CMDB - Firewall MulticastPolicy6
+
+API Endpoints:
+    GET    /firewall/multicast-policy6
+    POST   /firewall/multicast-policy6
+    GET    /firewall/multicast-policy6/{id}
+    PUT    /firewall/multicast-policy6/{id}
+    DELETE /firewall/multicast-policy6/{id}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class MulticastPolicy6:
-    """
-    Wrapper for firewall multicast-policy6 API endpoint.
+    """MulticastPolicy6 operations."""
 
-    Manages multicast-policy6 configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the MulticastPolicy6 wrapper.
+        Initialize MulticastPolicy6 endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/multicast-policy6"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific multicast-policy6 entry by its id.
-
-        Args:
-            mkey: The id (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        auto_asic_offload: Optional[str] = None,
-        comments: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstintf: Optional[str] = None,
-        end_port: Optional[int] = None,
-        id: Optional[int] = None,
-        ips_sensor: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        name: Optional[str] = None,
-        protocol: Optional[int] = None,
-        srcaddr: Optional[list] = None,
-        srcintf: Optional[str] = None,
-        start_port: Optional[int] = None,
-        status: Optional[str] = None,
-        utm_status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create multicast-policy6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Accept or deny traffic matching the policy.
-            auto-asic-offload (string) (enum: ['enable', 'disable']):
-                Enable/disable offloading policy traffic for hardware accele...
-            comments (string) (max_len: 1023):
-                Comment.
-            dstaddr (list[object]):
-                IPv6 destination address name.
-            dstintf (string) (max_len: 35):
-                IPv6 destination interface name.
-            end-port (integer) (range: 0-65535):
-                Integer value for ending TCP/UDP/SCTP destination port in ra...
-            id (integer) (range: 0-4294967294):
-                Policy ID (0 - 4294967294).
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable or disable logging. Log all sessions or security prof...
-            name (string) (max_len: 35):
-                Policy name.
-            protocol (integer) (range: 0-255):
-                Integer value for the protocol type as defined by IANA (0 - ...
-            srcaddr (list[object]):
-                IPv6 source address name.
-            srcintf (string) (max_len: 35):
-                IPv6 source interface name.
-            start-port (integer) (range: 0-65535):
-                Integer value for starting TCP/UDP/SCTP destination port in ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable this policy.
-            utm-status (string) (enum: ['enable', 'disable']):
-                Enable to add an IPS security profile to the policy.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if auto_asic_offload is not None:
-            payload_dict["auto-asic-offload"] = auto_asic_offload
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if end_port is not None:
-            payload_dict["end-port"] = end_port
-        if id is not None:
-            payload_dict["id"] = id
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if name is not None:
-            payload_dict["name"] = name
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if start_port is not None:
-            payload_dict["start-port"] = start_port
-        if status is not None:
-            payload_dict["status"] = status
-        if utm_status is not None:
-            payload_dict["utm-status"] = utm_status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/firewall/multicast-policy6/{id}"
+        else:
+            endpoint = "/firewall/multicast-policy6"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        auto_asic_offload: Optional[str] = None,
-        comments: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstintf: Optional[str] = None,
-        end_port: Optional[int] = None,
-        id: Optional[int] = None,
-        ips_sensor: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        name: Optional[str] = None,
-        protocol: Optional[int] = None,
-        srcaddr: Optional[list] = None,
-        srcintf: Optional[str] = None,
-        start_port: Optional[int] = None,
-        status: Optional[str] = None,
-        utm_status: Optional[str] = None,
-        uuid: Optional[str] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        name: str | None = None,
+        srcintf: str | None = None,
+        dstintf: str | None = None,
+        srcaddr: list | None = None,
+        dstaddr: list | None = None,
+        protocol: int | None = None,
+        start_port: int | None = None,
+        end_port: int | None = None,
+        utm_status: str | None = None,
+        ips_sensor: str | None = None,
+        logtraffic: str | None = None,
+        auto_asic_offload: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update multicast-policy6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The id (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Accept or deny traffic matching the policy.
-            auto-asic-offload (string) (enum: ['enable', 'disable']):
-                Enable/disable offloading policy traffic for hardware accele...
-            comments (string) (max_len: 1023):
-                Comment.
-            dstaddr (list[object]):
-                IPv6 destination address name.
-            dstintf (string) (max_len: 35):
-                IPv6 destination interface name.
-            end-port (integer) (range: 0-65535):
-                Integer value for ending TCP/UDP/SCTP destination port in ra...
-            id (integer) (range: 0-4294967294):
-                Policy ID (0 - 4294967294).
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable or disable logging. Log all sessions or security prof...
-            name (string) (max_len: 35):
-                Policy name.
-            protocol (integer) (range: 0-255):
-                Integer value for the protocol type as defined by IANA (0 - ...
-            srcaddr (list[object]):
-                IPv6 source address name.
-            srcintf (string) (max_len: 35):
-                IPv6 source interface name.
-            start-port (integer) (range: 0-65535):
-                Integer value for starting TCP/UDP/SCTP destination port in ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable this policy.
-            utm-status (string) (enum: ['enable', 'disable']):
-                Enable to add an IPS security profile to the policy.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: Policy ID (0 - 4294967294). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable this policy. (optional)
+            name: Policy name. (optional)
+            srcintf: IPv6 source interface name. (optional)
+            dstintf: IPv6 destination interface name. (optional)
+            srcaddr: IPv6 source address name. (optional)
+            dstaddr: IPv6 destination address name. (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0). (optional)
+            start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
+            end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535). (optional)
+            utm_status: Enable to add an IPS security profile to the policy. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            auto_asic_offload: Enable/disable offloading policy traffic for hardware acceleration. (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if auto_asic_offload is not None:
-            payload_dict["auto-asic-offload"] = auto_asic_offload
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if end_port is not None:
-            payload_dict["end-port"] = end_port
-        if id is not None:
-            payload_dict["id"] = id
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if name is not None:
-            payload_dict["name"] = name
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if start_port is not None:
-            payload_dict["start-port"] = start_port
-        if status is not None:
-            payload_dict["status"] = status
-        if utm_status is not None:
-            payload_dict["utm-status"] = utm_status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/firewall/multicast-policy6/{id}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if name is not None:
+            data_payload['name'] = name
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if start_port is not None:
+            data_payload['start-port'] = start_port
+        if end_port is not None:
+            data_payload['end-port'] = end_port
+        if utm_status is not None:
+            data_payload['utm-status'] = utm_status
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if auto_asic_offload is not None:
+            data_payload['auto-asic-offload'] = auto_asic_offload
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a multicast-policy6 entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The id (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/firewall/multicast-policy6/{id}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        name: str | None = None,
+        srcintf: str | None = None,
+        dstintf: str | None = None,
+        srcaddr: list | None = None,
+        dstaddr: list | None = None,
+        protocol: int | None = None,
+        start_port: int | None = None,
+        end_port: int | None = None,
+        utm_status: str | None = None,
+        ips_sensor: str | None = None,
+        logtraffic: str | None = None,
+        auto_asic_offload: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: Policy ID (0 - 4294967294). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable this policy. (optional)
+            name: Policy name. (optional)
+            srcintf: IPv6 source interface name. (optional)
+            dstintf: IPv6 destination interface name. (optional)
+            srcaddr: IPv6 source address name. (optional)
+            dstaddr: IPv6 destination address name. (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0). (optional)
+            start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
+            end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535). (optional)
+            utm_status: Enable to add an IPS security profile to the policy. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            auto_asic_offload: Enable/disable offloading policy traffic for hardware acceleration. (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/multicast-policy6"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if name is not None:
+            data_payload['name'] = name
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if start_port is not None:
+            data_payload['start-port'] = start_port
+        if end_port is not None:
+            data_payload['end-port'] = end_port
+        if utm_status is not None:
+            data_payload['utm-status'] = utm_status
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if auto_asic_offload is not None:
+            data_payload['auto-asic-offload'] = auto_asic_offload
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

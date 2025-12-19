@@ -1,392 +1,338 @@
 """
-FortiOS CMDB - Application Control Lists
-
-Configure application control lists to control applications and application categories.
+FortiOS CMDB - Application List
 
 API Endpoints:
-    GET    /api/v2/cmdb/application/list       - Get all application control lists
-    GET    /api/v2/cmdb/application/list/{name} - Get specific application control list
-    POST   /api/v2/cmdb/application/list       - Create application control list
-    PUT    /api/v2/cmdb/application/list/{name} - Update application control list
-    DELETE /api/v2/cmdb/application/list/{name} - Delete application control list
+    GET    /application/list
+    POST   /application/list
+    GET    /application/list/{name}
+    PUT    /application/list/{name}
+    DELETE /application/list/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class List:
-    """Application control list endpoint"""
+    """List operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize List endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        datasource: Optional[bool] = False,
-        with_meta: Optional[bool] = False,
-        skip: Optional[bool] = False,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[str] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get application control list(s) - List all or get specific
-
-        Retrieve application control lists with filtering and query options.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): List name. If provided, get specific list.
-            attr (str, optional): Attribute name that references other table
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable skip operator
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (str, optional): Skip to datasource entry
-            acs (bool, optional): If true, return in ascending order
-            search (str, optional): Filter by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            format (str, optional): Return specific fields (e.g., 'name|comment')
-            action (str, optional): Action type - 'default', 'schema', or 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with list data
-
-        Examples:
-            >>> # Get all application control lists
-            >>> lists = fgt.cmdb.application.list.list()
-
-            >>> # Get specific list by name
-            >>> app_list = fgt.cmdb.application.list.get('default')
-
-            >>> # Get with filtering and meta information
-            >>> filtered = fgt.cmdb.application.list.get(
-            ...     format='name|comment|default-network-services',
-            ...     count=10,
-            ...     with_meta=True
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        # Build path
-        path = "application/list"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        app_replacemsg: Optional[str] = None,
-        control_default_network_services: Optional[str] = None,
-        deep_app_inspection: Optional[str] = None,
-        default_network_services: Optional[list[dict[str, Any]]] = None,
-        enforce_default_app_port: Optional[str] = None,
-        extended_log: Optional[str] = None,
-        force_inclusion_ssl_di_sigs: Optional[str] = None,
-        options: Optional[list[str]] = None,
-        other_application_action: Optional[str] = None,
-        other_application_log: Optional[str] = None,
-        p2p_black_list: Optional[list[str]] = None,
-        p2p_block_list: Optional[list[str]] = None,
-        replacemsg_group: Optional[str] = None,
-        unknown_application_action: Optional[str] = None,
-        unknown_application_log: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create application control list
-
-        Create application control list with specified settings.
-
-        Args:
-            name (str, required): Application list name (max 35 chars)
-            comment (str, optional): Comment (max 1023 chars)
-            app_replacemsg (str, optional): Enable/disable replacement messages - 'disable' or 'enable'
-            control_default_network_services (str, optional): Enable/disable default network service control - 'disable' or 'enable'
-            deep_app_inspection (str, optional): Enable/disable deep application inspection - 'disable' or 'enable'
-            default_network_services (list, optional): Default network service filters (e.g., [{'id': 1}])
-            enforce_default_app_port (str, optional): Enable/disable default app port enforcement - 'disable' or 'enable'
-            extended_log (str, optional): Enable/disable extended logging - 'disable' or 'enable'
-            force_inclusion_ssl_di_sigs (str, optional): Enable/disable SSL deep inspection - 'disable' or 'enable'
-            options (list, optional): Basic application protocol signatures allowed (e.g., ['allow-dns', 'allow-icmp'])
-            other_application_action (str, optional): Action for other applications - 'pass' or 'block'
-            other_application_log (str, optional): Enable/disable logging - 'disable' or 'enable'
-            p2p_black_list (list, optional): Deprecated - use p2p_block_list
-            p2p_block_list (list, optional): P2P applications to block (e.g., ['skype', 'edonkey'])
-            replacemsg_group (str, optional): Replacement message group name
-            unknown_application_action (str, optional): Action for unknown apps - 'pass' or 'block'
-            unknown_application_log (str, optional): Enable/disable logging - 'disable' or 'enable'
-            entries (list, optional): Application list entries (list of dicts with id, action, log, etc.)
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create simple application list
-            >>> result = fgt.cmdb.application.list.create(
-            ...     name='web-filter',
-            ...     comment='Block P2P and unknown apps',
-            ...     unknown_application_action='block',
-            ...     unknown_application_log='enable'
-            ... )
-
-            >>> # POST - Create list with P2P blocking
-            >>> result = fgt.cmdb.application.list.create(
-            ...     name='security-policy',
-            ...     comment='Enhanced security controls',
-            ...     p2p_block_list=['skype', 'edonkey', 'bittorrent'],
-            ...     deep_app_inspection='enable',
-            ...     extended_log='enable'
-            ... )
-
-            >>> # POST - Create list with entries
-            >>> result = fgt.cmdb.application.list.create(
-            ...     name='business-apps',
-            ...     entries=[
-            ...         {'id': 1, 'action': 'block', 'log': 'enable', 'application': [{'id': 16072}]},
-            ...         {'id': 2, 'action': 'pass', 'category': [{'id': 2}]}
-            ...     ]
-            ... )
-        """
-        payload_dict = {}
-        param_map = {
-            "name": name,
-            "comment": comment,
-            "app_replacemsg": app_replacemsg,
-            "control_default_network_services": control_default_network_services,
-            "deep_app_inspection": deep_app_inspection,
-            "default_network_services": default_network_services,
-            "enforce_default_app_port": enforce_default_app_port,
-            "extended_log": extended_log,
-            "force_inclusion_ssl_di_sigs": force_inclusion_ssl_di_sigs,
-            "options": options,
-            "other_application_action": other_application_action,
-            "other_application_log": other_application_log,
-            "p2p_black_list": p2p_black_list,
-            "p2p_block_list": p2p_block_list,
-            "replacemsg_group": replacemsg_group,
-            "unknown_application_action": unknown_application_action,
-            "unknown_application_log": unknown_application_log,
-            "entries": entries,
-        }
-
-        api_field_map = {
-            "name": "name",
-            "comment": "comment",
-            "app_replacemsg": "app-replacemsg",
-            "control_default_network_services": "control-default-network-services",
-            "deep_app_inspection": "deep-app-inspection",
-            "default_network_services": "default-network-services",
-            "enforce_default_app_port": "enforce-default-app-port",
-            "extended_log": "extended-log",
-            "force_inclusion_ssl_di_sigs": "force-inclusion-ssl-di-sigs",
-            "options": "options",
-            "other_application_action": "other-application-action",
-            "other_application_log": "other-application-log",
-            "p2p_black_list": "p2p-black-list",
-            "p2p_block_list": "p2p-block-list",
-            "replacemsg_group": "replacemsg-group",
-            "unknown_application_action": "unknown-application-action",
-            "unknown_application_log": "unknown-application-log",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        payload_dict.update(kwargs)
-
-        return self._client.post("cmdb", "application/list", data, vdom=vdom, raw_json=raw_json)
+            endpoint = f"/application/list/{name}"
+        else:
+            endpoint = "/application/list"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        app_replacemsg: Optional[str] = None,
-        control_default_network_services: Optional[str] = None,
-        deep_app_inspection: Optional[str] = None,
-        default_network_services: Optional[list[dict[str, Any]]] = None,
-        enforce_default_app_port: Optional[str] = None,
-        extended_log: Optional[str] = None,
-        force_inclusion_ssl_di_sigs: Optional[str] = None,
-        options: Optional[list[str]] = None,
-        other_application_action: Optional[str] = None,
-        other_application_log: Optional[str] = None,
-        p2p_black_list: Optional[list[str]] = None,
-        p2p_block_list: Optional[list[str]] = None,
-        replacemsg_group: Optional[str] = None,
-        unknown_application_action: Optional[str] = None,
-        unknown_application_log: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        extended_log: str | None = None,
+        other_application_action: str | None = None,
+        app_replacemsg: str | None = None,
+        other_application_log: str | None = None,
+        enforce_default_app_port: str | None = None,
+        force_inclusion_ssl_di_sigs: str | None = None,
+        unknown_application_action: str | None = None,
+        unknown_application_log: str | None = None,
+        p2p_block_list: str | None = None,
+        deep_app_inspection: str | None = None,
+        options: str | None = None,
+        entries: list | None = None,
+        control_default_network_services: str | None = None,
+        default_network_services: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update application control list
-
-        Update application control list.
-
+        Update this specific resource.
+        
         Args:
-            name (str, required): Application list name
-            comment (str, optional): Comment (max 1023 chars)
-            app_replacemsg (str, optional): Enable/disable replacement messages - 'disable' or 'enable'
-            control_default_network_services (str, optional): Enable/disable default network service control - 'disable' or 'enable'
-            deep_app_inspection (str, optional): Enable/disable deep application inspection - 'disable' or 'enable'
-            default_network_services (list, optional): Default network service filters (e.g., [{'id': 1}])
-            enforce_default_app_port (str, optional): Enable/disable default app port enforcement - 'disable' or 'enable'
-            extended_log (str, optional): Enable/disable extended logging - 'disable' or 'enable'
-            force_inclusion_ssl_di_sigs (str, optional): Enable/disable SSL deep inspection - 'disable' or 'enable'
-            options (list, optional): Basic application protocol signatures allowed (e.g., ['allow-dns', 'allow-icmp'])
-            other_application_action (str, optional): Action for other applications - 'pass' or 'block'
-            other_application_log (str, optional): Enable/disable logging - 'disable' or 'enable'
-            p2p_black_list (list, optional): Deprecated - use p2p_block_list
-            p2p_block_list (list, optional): P2P applications to block (e.g., ['skype', 'edonkey'])
-            replacemsg_group (str, optional): Replacement message group name
-            unknown_application_action (str, optional): Action for unknown apps - 'pass' or 'block'
-            unknown_application_log (str, optional): Enable/disable logging - 'disable' or 'enable'
-            entries (list, optional): Application list entries (list of dicts)
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: List name. (optional)
+            comment: Comments. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            extended_log: Enable/disable extended logging. (optional)
+            other_application_action: Action for other applications. (optional)
+            app_replacemsg: Enable/disable replacement messages for blocked applications. (optional)
+            other_application_log: Enable/disable logging for other applications. (optional)
+            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. (optional)
+            unknown_application_action: Pass or block traffic from unknown applications. (optional)
+            unknown_application_log: Enable/disable logging for unknown applications. (optional)
+            p2p_block_list: P2P applications to be block listed. (optional)
+            deep_app_inspection: Enable/disable deep application inspection. (optional)
+            options: Basic application protocol signatures allowed by default. (optional)
+            entries: Application list entries. (optional)
+            control_default_network_services: Enable/disable enforcement of protocols over selected ports. (optional)
+            default_network_services: Default network service entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Enable deep inspection
-            >>> result = fgt.cmdb.application.list.update(
-            ...     name='web-filter',
-            ...     deep_app_inspection='enable',
-            ...     extended_log='enable'
-            ... )
-
-            >>> # PUT - Update P2P block list
-            >>> result = fgt.cmdb.application.list.update(
-            ...     name='security-policy',
-            ...     p2p_block_list=['skype', 'edonkey', 'bittorrent', 'ares']
-            ... )
+            Dictionary containing API response
         """
-        payload_dict = {}
-        param_map = {
-            "comment": comment,
-            "app_replacemsg": app_replacemsg,
-            "control_default_network_services": control_default_network_services,
-            "deep_app_inspection": deep_app_inspection,
-            "default_network_services": default_network_services,
-            "enforce_default_app_port": enforce_default_app_port,
-            "extended_log": extended_log,
-            "force_inclusion_ssl_di_sigs": force_inclusion_ssl_di_sigs,
-            "options": options,
-            "other_application_action": other_application_action,
-            "other_application_log": other_application_log,
-            "p2p_black_list": p2p_black_list,
-            "p2p_block_list": p2p_block_list,
-            "replacemsg_group": replacemsg_group,
-            "unknown_application_action": unknown_application_action,
-            "unknown_application_log": unknown_application_log,
-            "entries": entries,
-        }
-
-        api_field_map = {
-            "comment": "comment",
-            "app_replacemsg": "app-replacemsg",
-            "control_default_network_services": "control-default-network-services",
-            "deep_app_inspection": "deep-app-inspection",
-            "default_network_services": "default-network-services",
-            "enforce_default_app_port": "enforce-default-app-port",
-            "extended_log": "extended-log",
-            "force_inclusion_ssl_di_sigs": "force-inclusion-ssl-di-sigs",
-            "options": "options",
-            "other_application_action": "other-application-action",
-            "other_application_log": "other-application-log",
-            "p2p_black_list": "p2p-black-list",
-            "p2p_block_list": "p2p-block-list",
-            "replacemsg_group": "replacemsg-group",
-            "unknown_application_action": "unknown-application-action",
-            "unknown_application_log": "unknown-application-log",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        payload_dict.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"application/list/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/application/list/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if other_application_action is not None:
+            data_payload['other-application-action'] = other_application_action
+        if app_replacemsg is not None:
+            data_payload['app-replacemsg'] = app_replacemsg
+        if other_application_log is not None:
+            data_payload['other-application-log'] = other_application_log
+        if enforce_default_app_port is not None:
+            data_payload['enforce-default-app-port'] = enforce_default_app_port
+        if force_inclusion_ssl_di_sigs is not None:
+            data_payload['force-inclusion-ssl-di-sigs'] = force_inclusion_ssl_di_sigs
+        if unknown_application_action is not None:
+            data_payload['unknown-application-action'] = unknown_application_action
+        if unknown_application_log is not None:
+            data_payload['unknown-application-log'] = unknown_application_log
+        if p2p_block_list is not None:
+            data_payload['p2p-block-list'] = p2p_block_list
+        if deep_app_inspection is not None:
+            data_payload['deep-app-inspection'] = deep_app_inspection
+        if options is not None:
+            data_payload['options'] = options
+        if entries is not None:
+            data_payload['entries'] = entries
+        if control_default_network_services is not None:
+            data_payload['control-default-network-services'] = control_default_network_services
+        if default_network_services is not None:
+            data_payload['default-network-services'] = default_network_services
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete application control list
-
+        Delete this specific resource.
+        
         Args:
-            name (str, required): Application list name
-            vdom (str, optional): Virtual Domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Delete application list
-            >>> result = fgt.cmdb.application.list.delete('web-filter')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"application/list/{name}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/application/list/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        extended_log: str | None = None,
+        other_application_action: str | None = None,
+        app_replacemsg: str | None = None,
+        other_application_log: str | None = None,
+        enforce_default_app_port: str | None = None,
+        force_inclusion_ssl_di_sigs: str | None = None,
+        unknown_application_action: str | None = None,
+        unknown_application_log: str | None = None,
+        p2p_block_list: str | None = None,
+        deep_app_inspection: str | None = None,
+        options: str | None = None,
+        entries: list | None = None,
+        control_default_network_services: str | None = None,
+        default_network_services: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: List name. (optional)
+            comment: Comments. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            extended_log: Enable/disable extended logging. (optional)
+            other_application_action: Action for other applications. (optional)
+            app_replacemsg: Enable/disable replacement messages for blocked applications. (optional)
+            other_application_log: Enable/disable logging for other applications. (optional)
+            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. (optional)
+            unknown_application_action: Pass or block traffic from unknown applications. (optional)
+            unknown_application_log: Enable/disable logging for unknown applications. (optional)
+            p2p_block_list: P2P applications to be block listed. (optional)
+            deep_app_inspection: Enable/disable deep application inspection. (optional)
+            options: Basic application protocol signatures allowed by default. (optional)
+            entries: Application list entries. (optional)
+            control_default_network_services: Enable/disable enforcement of protocols over selected ports. (optional)
+            default_network_services: Default network service entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/application/list"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if other_application_action is not None:
+            data_payload['other-application-action'] = other_application_action
+        if app_replacemsg is not None:
+            data_payload['app-replacemsg'] = app_replacemsg
+        if other_application_log is not None:
+            data_payload['other-application-log'] = other_application_log
+        if enforce_default_app_port is not None:
+            data_payload['enforce-default-app-port'] = enforce_default_app_port
+        if force_inclusion_ssl_di_sigs is not None:
+            data_payload['force-inclusion-ssl-di-sigs'] = force_inclusion_ssl_di_sigs
+        if unknown_application_action is not None:
+            data_payload['unknown-application-action'] = unknown_application_action
+        if unknown_application_log is not None:
+            data_payload['unknown-application-log'] = unknown_application_log
+        if p2p_block_list is not None:
+            data_payload['p2p-block-list'] = p2p_block_list
+        if deep_app_inspection is not None:
+            data_payload['deep-app-inspection'] = deep_app_inspection
+        if options is not None:
+            data_payload['options'] = options
+        if entries is not None:
+            data_payload['entries'] = entries
+        if control_default_network_services is not None:
+            data_payload['control-default-network-services'] = control_default_network_services
+        if default_network_services is not None:
+            data_payload['default-network-services'] = default_network_services
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

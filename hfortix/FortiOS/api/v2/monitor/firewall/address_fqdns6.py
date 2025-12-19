@@ -1,15 +1,15 @@
-"""IPv6 FQDN address object resolution monitoring."""
+"""Monitor API - AddressFqdns6 operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class AddressFqdns6:
-    """IPv6 FQDN address objects and resolved IPs."""
+    """AddressFqdns6 operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize AddressFqdns6 endpoint.
 
@@ -18,49 +18,30 @@ class AddressFqdns6:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        List of all IPv6 FQDN address objects and the IPs they resolved to.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            name: Filter by address object name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing IPv6 FQDN address resolutions
-
-        Example:
-            >>> fgt.api.monitor.firewall.address_fqdns6.list()
-            >>> fgt.api.monitor.firewall.address_fqdns6.list(name='google_dns_v6')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if name is not None:
-            params["name"] = name
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/address-fqdns6", params=params)
-
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        mkey: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get IPv6 FQDN resolution for a specific address object.
-
+        List of IPv6 FQDN address objects and the IPs they resolved to.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            name: Address object name to retrieve
+            mkey: Name of the FQDN address to retrieve. If this is not provided, the count of IPs FQDN resolves to will be returned. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing IPv6 FQDN address resolution
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.address_fqdns6.get(name='google_dns_v6')
+            >>> fgt.api.monitor.firewall.address_fqdns6.get()
         """
-        params = data_dict.copy() if data_dict else {}
-        if name is not None:
-            params["name"] = name
+        params = payload_dict.copy() if payload_dict else {}
+        if mkey is not None:
+            params['mkey'] = mkey
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/address-fqdns6", params=params)

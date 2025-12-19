@@ -1,114 +1,117 @@
 """
 FortiOS CMDB - System NgfwSettings
 
-Configure IPS NGFW policy-mode VDOM settings.
-
 API Endpoints:
-    GET  /system/ngfw-settings  - Get configuration
-    PUT  /system/ngfw-settings  - Update configuration
+    GET    /system/ngfw-settings
+    PUT    /system/ngfw-settings
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class NgfwSettings:
-    """ngfw-settings settings endpoint (singleton)"""
+    """NgfwSettings operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize NgfwSettings endpoint
+        Initialize NgfwSettings endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get ngfw-settings settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with settings
-
-        Examples:
-            >>> # Get current settings
-            >>> settings = fgt.api.cmdb.system.ngfw_settings.get()
-            >>> print(settings)
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/ngfw-settings"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        return self._client.get("cmdb", "system/ngfw-settings", params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        match_timeout: int | None = None,
+        tcp_match_timeout: int | None = None,
+        tcp_halfopen_match_timeout: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update ngfw-settings settings
-
+        Update this specific resource.
+        
         Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            match_timeout: Number of seconds to wait before a security policy match for an idle non-TCP session (0 - 1800, default = 300, 0 means unlimited). (optional)
+            tcp_match_timeout: Number of seconds to wait before a security policy match for an idle TCP session (0 - 1800, default = 300, 0 means unlimited). (optional)
+            tcp_halfopen_match_timeout: Number of seconds to wait before a security policy match for a session after one peer has sent an open session packet but the other has not responded (0 - 300, default = 8, 0 means unlimited). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.ngfw_settings.update(
-            ...     payload_dict={'setting1': 'value1'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.ngfw_settings.update(
-            ...     setting1='value1',
-            ...     setting2='value2'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", "system/ngfw-settings", data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/ngfw-settings"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if match_timeout is not None:
+            data_payload['match-timeout'] = match_timeout
+        if tcp_match_timeout is not None:
+            data_payload['tcp-match-timeout'] = tcp_match_timeout
+        if tcp_halfopen_match_timeout is not None:
+            data_payload['tcp-halfopen-match-timeout'] = tcp_halfopen_match_timeout
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

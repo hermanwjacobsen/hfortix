@@ -1,223 +1,92 @@
 """
-FortiOS CMDB - DLP Data Type
-
-Configure predefined data type used by DLP blocking.
+FortiOS CMDB - Dlp DataType
 
 API Endpoints:
-    GET    /dlp/data-type           - List all / Get specific
-    POST   /dlp/data-type           - Create
-    PUT    /dlp/data-type/{name}   - Update
-    DELETE /dlp/data-type/{name}   - Delete
+    GET    /dlp/data-type
+    POST   /dlp/data-type
+    GET    /dlp/data-type/{name}
+    PUT    /dlp/data-type/{name}
+    DELETE /dlp/data-type/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class DataType:
-    """DLP data-type endpoint"""
+    """DataType operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize DataType endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
         name: str | None = None,
-        # Query parameters
+        payload_dict: dict[str, Any] | None = None,
         attr: str | None = None,
-        count: int | None = None,
-        skip_to_datasource: dict[str, Any] | None = None,
+        skip_to_datasource: dict | None = None,
         acs: int | None = None,
         search: str | None = None,
-        scope: str | None = None,
-        datasource: bool | None = None,
-        with_meta: bool | None = None,
-        skip: bool | None = None,
-        format: str | None = None,
-        action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get DLP data type(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Data type name. If provided, gets specific data type.
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned results are in ascending order
-            search: Filter objects by search value
-            scope: Scope - 'global', 'vdom', or 'both'
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (pipe-separated)
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary with data type configuration(s)
-
-        Examples:
-            >>> # Get all data types
-            >>> result = fgt.cmdb.dlp.data_type.get()
-            >>> print(f"Total data types: {len(result['results'])}")
-
-            >>> # Get specific data type
-            >>> result = fgt.cmdb.dlp.data_type.get('credit-card')
-            >>> print(f"Pattern: {result['results']['pattern']}")
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.dlp.data_type.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build path
-        path = "dlp/data-type"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"dlp/data-type/{encode_path_component(name)}"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+            endpoint = f"/dlp/data-type/{name}"
+        else:
+            endpoint = "/dlp/data-type"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Data type configuration
-        pattern: str | None = None,
-        verify: str | None = None,
-        verify2: str | None = None,
-        match_around: str | None = None,
-        look_back: int | None = None,
-        look_ahead: int | None = None,
-        match_back: int | None = None,
-        match_ahead: int | None = None,
-        transform: str | None = None,
-        verify_transformed_pattern: str | None = None,
-        comment: str | None = None,
-        vdom: str | None = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> dict[str, Any]:
-        """
-        Create DLP data type.
-
-        Args:
-            name: Name of the data type (max 35 chars)
-            pattern: Regular expression pattern string without look around (max 255 chars)
-            verify: Regular expression pattern string used to verify the data type (max 255 chars)
-            verify2: Extra regular expression pattern string used to verify the data type (max 255 chars)
-            match_around: Dictionary to check for match around (max 35 chars)
-            look_back: Number of characters required to save for verification (1-255, default=1)
-            look_ahead: Number of characters to obtain in advance for verification (1-255, default=1)
-            match_back: Number of characters in front for match-around (1-4096, default=1)
-            match_ahead: Number of characters behind for match-around (1-4096, default=1)
-            transform: Template to transform user input to a pattern using capture group (max 255 chars)
-            verify_transformed_pattern: Enable/disable verification for transformed pattern - 'enable' or 'disable'
-            comment: Optional comments (max 255 chars)
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create simple data type
-            >>> result = fgt.cmdb.dlp.data_type.create(
-            ...     name='custom-ssn',
-            ...     pattern=r'\\d{3}-\\d{2}-\\d{4}',
-            ...     comment='Custom SSN pattern'
-            ... )
-
-            >>> # POST - Create with verification
-            >>> result = fgt.cmdb.dlp.data_type.create(
-            ...     name='custom-credit-card',
-            ...     pattern=r'\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}[\\s-]?\\d{4}',
-            ...     verify=r'^[0-9]{13,19}$',
-            ...     look_back=4,
-            ...     look_ahead=4,
-            ...     comment='Credit card with Luhn verification'
-            ... )
-        """
-        data = {}
-        param_map = {
-            "name": name,
-            "pattern": pattern,
-            "verify": verify,
-            "verify2": verify2,
-            "match_around": match_around,
-            "look_back": look_back,
-            "look_ahead": look_ahead,
-            "match_back": match_back,
-            "match_ahead": match_ahead,
-            "transform": transform,
-            "verify_transformed_pattern": verify_transformed_pattern,
-            "comment": comment,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "pattern": "pattern",
-            "verify": "verify",
-            "verify2": "verify2",
-            "match_around": "match-around",
-            "look_back": "look-back",
-            "look_ahead": "look-ahead",
-            "match_back": "match-back",
-            "match_ahead": "match-ahead",
-            "transform": "transform",
-            "verify_transformed_pattern": "verify-transformed-pattern",
-            "comment": "comment",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "dlp/data-type", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Data type configuration
-        pattern: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
         verify: str | None = None,
         verify2: str | None = None,
         match_around: str | None = None,
@@ -228,108 +97,194 @@ class DataType:
         transform: str | None = None,
         verify_transformed_pattern: str | None = None,
         comment: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update DLP data type.
-
+        Update this specific resource.
+        
         Args:
-            name: Name of the data type to update
-            pattern: Regular expression pattern string without look around (max 255 chars)
-            verify: Regular expression pattern string used to verify the data type (max 255 chars)
-            verify2: Extra regular expression pattern string used to verify the data type (max 255 chars)
-            match_around: Dictionary to check for match around (max 35 chars)
-            look_back: Number of characters required to save for verification (1-255)
-            look_ahead: Number of characters to obtain in advance for verification (1-255)
-            match_back: Number of characters in front for match-around (1-4096)
-            match_ahead: Number of characters behind for match-around (1-4096)
-            transform: Template to transform user input to a pattern using capture group (max 255 chars)
-            verify_transformed_pattern: Enable/disable verification for transformed pattern - 'enable' or 'disable'
-            comment: Optional comments (max 255 chars)
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name of table containing the data type. (optional)
+            verify: Regular expression pattern string used to verify the data type. (optional)
+            verify2: Extra regular expression pattern string used to verify the data type. (optional)
+            match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported). (optional)
+            look_back: Number of characters required to save for verification (1 - 255, default = 1). (optional)
+            look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1). (optional)
+            match_back: Number of characters in front for match-around (1 - 4096, default = 1). (optional)
+            match_ahead: Number of characters behind for match-around (1 - 4096, default = 1). (optional)
+            transform: Template to transform user input to a pattern using capture group from 'pattern'. (optional)
+            verify_transformed_pattern: Enable/disable verification for transformed pattern. (optional)
+            comment: Optional comments. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update pattern
-            >>> result = fgt.cmdb.dlp.data_type.update(
-            ...     name='custom-ssn',
-            ...     pattern=r'\\d{3}-?\\d{2}-?\\d{4}',
-            ...     comment='Updated SSN pattern - optional hyphens'
-            ... )
-
-            >>> # PUT - Update verification settings
-            >>> result = fgt.cmdb.dlp.data_type.update(
-            ...     name='custom-credit-card',
-            ...     look_back=8,
-            ...     look_ahead=8,
-            ...     verify_transformed_pattern='enable'
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-        param_map = {
-            "name": name,
-            "pattern": pattern,
-            "verify": verify,
-            "verify2": verify2,
-            "match_around": match_around,
-            "look_back": look_back,
-            "look_ahead": look_ahead,
-            "match_back": match_back,
-            "match_ahead": match_ahead,
-            "transform": transform,
-            "verify_transformed_pattern": verify_transformed_pattern,
-            "comment": comment,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "pattern": "pattern",
-            "verify": "verify",
-            "verify2": "verify2",
-            "match_around": "match-around",
-            "look_back": "look-back",
-            "look_ahead": "look-ahead",
-            "match_back": "match-back",
-            "match_ahead": "match-ahead",
-            "transform": "transform",
-            "verify_transformed_pattern": "verify-transformed-pattern",
-            "comment": "comment",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put("cmdb", f"dlp/data-type/{name}", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/dlp/data-type/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if verify is not None:
+            data_payload['verify'] = verify
+        if verify2 is not None:
+            data_payload['verify2'] = verify2
+        if match_around is not None:
+            data_payload['match-around'] = match_around
+        if look_back is not None:
+            data_payload['look-back'] = look_back
+        if look_ahead is not None:
+            data_payload['look-ahead'] = look_ahead
+        if match_back is not None:
+            data_payload['match-back'] = match_back
+        if match_ahead is not None:
+            data_payload['match-ahead'] = match_ahead
+        if transform is not None:
+            data_payload['transform'] = transform
+        if verify_transformed_pattern is not None:
+            data_payload['verify-transformed-pattern'] = verify_transformed_pattern
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a DLP data type.
-
+        Delete this specific resource.
+        
         Args:
-            name: Name of the data type to delete
-            vdom: Virtual Domain(s)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete data type
-            >>> result = fgt.cmdb.dlp.data_type.delete('custom-ssn')
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"dlp/data-type/{name}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/dlp/data-type/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        verify: str | None = None,
+        verify2: str | None = None,
+        match_around: str | None = None,
+        look_back: int | None = None,
+        look_ahead: int | None = None,
+        match_back: int | None = None,
+        match_ahead: int | None = None,
+        transform: str | None = None,
+        verify_transformed_pattern: str | None = None,
+        comment: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name of table containing the data type. (optional)
+            verify: Regular expression pattern string used to verify the data type. (optional)
+            verify2: Extra regular expression pattern string used to verify the data type. (optional)
+            match_around: Dictionary to check whether it has a match around (Only support match-any and basic types, no repeat supported). (optional)
+            look_back: Number of characters required to save for verification (1 - 255, default = 1). (optional)
+            look_ahead: Number of characters to obtain in advance for verification (1 - 255, default = 1). (optional)
+            match_back: Number of characters in front for match-around (1 - 4096, default = 1). (optional)
+            match_ahead: Number of characters behind for match-around (1 - 4096, default = 1). (optional)
+            transform: Template to transform user input to a pattern using capture group from 'pattern'. (optional)
+            verify_transformed_pattern: Enable/disable verification for transformed pattern. (optional)
+            comment: Optional comments. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/data-type"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if verify is not None:
+            data_payload['verify'] = verify
+        if verify2 is not None:
+            data_payload['verify2'] = verify2
+        if match_around is not None:
+            data_payload['match-around'] = match_around
+        if look_back is not None:
+            data_payload['look-back'] = look_back
+        if look_ahead is not None:
+            data_payload['look-ahead'] = look_ahead
+        if match_back is not None:
+            data_payload['match-back'] = match_back
+        if match_ahead is not None:
+            data_payload['match-ahead'] = match_ahead
+        if transform is not None:
+            data_payload['transform'] = transform
+        if verify_transformed_pattern is not None:
+            data_payload['verify-transformed-pattern'] = verify_transformed_pattern
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

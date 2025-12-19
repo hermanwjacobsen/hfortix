@@ -1,490 +1,370 @@
 """
-FortiOS local-in-policy6 API wrapper.
-Provides access to /api/v2/cmdb/firewall/local-in-policy6 endpoint.
+FortiOS CMDB - Firewall LocalInPolicy6
+
+API Endpoints:
+    GET    /firewall/local-in-policy6
+    POST   /firewall/local-in-policy6
+    GET    /firewall/local-in-policy6/{policyid}
+    PUT    /firewall/local-in-policy6/{policyid}
+    DELETE /firewall/local-in-policy6/{policyid}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class LocalInPolicy6:
-    """
-    Wrapper for firewall local-in-policy6 API endpoint.
+    """LocalInPolicy6 operations."""
 
-    Manages local-in-policy6 configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the LocalInPolicy6 wrapper.
+        Initialize LocalInPolicy6 endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/local-in-policy6"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific local-in-policy6 entry by its policyid.
-
-        Args:
-            mkey: The policyid (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        comments: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        internet_service6_src: Optional[str] = None,
-        internet_service6_src_custom: Optional[list] = None,
-        internet_service6_src_custom_group: Optional[list] = None,
-        internet_service6_src_fortiguard: Optional[list] = None,
-        internet_service6_src_group: Optional[list] = None,
-        internet_service6_src_name: Optional[list] = None,
-        internet_service6_src_negate: Optional[str] = None,
-        intf: Optional[list] = None,
-        logtraffic: Optional[str] = None,
-        policyid: Optional[int] = None,
-        schedule: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        virtual_patch: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create local-in-policy6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Action performed on traffic matching the policy (default = d...
-            comments (string) (max_len: 1023):
-                Comment.
-            dstaddr (list[object]):
-                Destination address object from available options.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr specifies what the destination address ...
-            internet-service6-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services in source for t...
-            internet-service6-src-custom (list[object]):
-                Custom IPv6 Internet Service source name.
-            internet-service6-src-custom-group (list[object]):
-                Custom Internet Service6 source group name.
-            internet-service6-src-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service source name.
-            internet-service6-src-group (list[object]):
-                Internet Service6 source group name.
-            internet-service6-src-name (list[object]):
-                IPv6 Internet Service source name.
-            internet-service6-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6-src specifies what the servic...
-            intf (list[object]):
-                Incoming interface name from available options.
-            logtraffic (string) (enum: ['enable', 'disable']):
-                Enable/disable local-in traffic logging.
-            policyid (integer) (range: 0-4294967295):
-                User defined local in policy ID.
-            schedule (string) (max_len: 35):
-                Schedule object from available options.
-            service (list[object]):
-                Service object from available options. Separate names with a...
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled service specifies what the service must NOT be.
-            srcaddr (list[object]):
-                Source address object from available options.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr specifies what the source address must ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable this local-in policy.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            virtual-patch (string) (enum: ['enable', 'disable']):
-                Enable/disable the virtual patching feature.
-
+            policyid: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if internet_service6_src is not None:
-            payload_dict["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_custom is not None:
-            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
-        if internet_service6_src_custom_group is not None:
-            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
-        if internet_service6_src_fortiguard is not None:
-            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
-        if internet_service6_src_group is not None:
-            payload_dict["internet-service6-src-group"] = internet_service6_src_group
-        if internet_service6_src_name is not None:
-            payload_dict["internet-service6-src-name"] = internet_service6_src_name
-        if internet_service6_src_negate is not None:
-            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
-        if intf is not None:
-            payload_dict["intf"] = intf
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if status is not None:
-            payload_dict["status"] = status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if virtual_patch is not None:
-            payload_dict["virtual-patch"] = virtual_patch
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if policyid:
+            endpoint = f"/firewall/local-in-policy6/{policyid}"
+        else:
+            endpoint = "/firewall/local-in-policy6"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        comments: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        internet_service6_src: Optional[str] = None,
-        internet_service6_src_custom: Optional[list] = None,
-        internet_service6_src_custom_group: Optional[list] = None,
-        internet_service6_src_fortiguard: Optional[list] = None,
-        internet_service6_src_group: Optional[list] = None,
-        internet_service6_src_name: Optional[list] = None,
-        internet_service6_src_negate: Optional[str] = None,
-        intf: Optional[list] = None,
-        logtraffic: Optional[str] = None,
-        policyid: Optional[int] = None,
-        schedule: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        virtual_patch: Optional[str] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        intf: list | None = None,
+        srcaddr: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr: list | None = None,
+        internet_service6_src: str | None = None,
+        internet_service6_src_name: list | None = None,
+        internet_service6_src_group: list | None = None,
+        internet_service6_src_custom: list | None = None,
+        internet_service6_src_custom_group: list | None = None,
+        internet_service6_src_fortiguard: list | None = None,
+        dstaddr_negate: str | None = None,
+        service: list | None = None,
+        service_negate: str | None = None,
+        internet_service6_src_negate: str | None = None,
+        schedule: str | None = None,
+        status: str | None = None,
+        virtual_patch: str | None = None,
+        logtraffic: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update local-in-policy6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Action performed on traffic matching the policy (default = d...
-            comments (string) (max_len: 1023):
-                Comment.
-            dstaddr (list[object]):
-                Destination address object from available options.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr specifies what the destination address ...
-            internet-service6-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services in source for t...
-            internet-service6-src-custom (list[object]):
-                Custom IPv6 Internet Service source name.
-            internet-service6-src-custom-group (list[object]):
-                Custom Internet Service6 source group name.
-            internet-service6-src-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service source name.
-            internet-service6-src-group (list[object]):
-                Internet Service6 source group name.
-            internet-service6-src-name (list[object]):
-                IPv6 Internet Service source name.
-            internet-service6-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6-src specifies what the servic...
-            intf (list[object]):
-                Incoming interface name from available options.
-            logtraffic (string) (enum: ['enable', 'disable']):
-                Enable/disable local-in traffic logging.
-            policyid (integer) (range: 0-4294967295):
-                User defined local in policy ID.
-            schedule (string) (max_len: 35):
-                Schedule object from available options.
-            service (list[object]):
-                Service object from available options. Separate names with a...
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled service specifies what the service must NOT be.
-            srcaddr (list[object]):
-                Source address object from available options.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr specifies what the source address must ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable this local-in policy.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            virtual-patch (string) (enum: ['enable', 'disable']):
-                Enable/disable the virtual patching feature.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            policyid: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            policyid: User defined local in policy ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            intf: Incoming interface name from available options. (optional)
+            srcaddr: Source address object from available options. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
+            dstaddr: Destination address object from available options. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. (optional)
+            internet_service6_src_name: IPv6 Internet Service source name. (optional)
+            internet_service6_src_group: Internet Service6 source group name. (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
+            service: Service object from available options. Separate names with a space. (optional)
+            service_negate: When enabled service specifies what the service must NOT be. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
+            schedule: Schedule object from available options. (optional)
+            status: Enable/disable this local-in policy. (optional)
+            virtual_patch: Enable/disable the virtual patching feature. (optional)
+            logtraffic: Enable/disable local-in traffic logging. (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if internet_service6_src is not None:
-            payload_dict["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_custom is not None:
-            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
-        if internet_service6_src_custom_group is not None:
-            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
-        if internet_service6_src_fortiguard is not None:
-            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
-        if internet_service6_src_group is not None:
-            payload_dict["internet-service6-src-group"] = internet_service6_src_group
-        if internet_service6_src_name is not None:
-            payload_dict["internet-service6-src-name"] = internet_service6_src_name
-        if internet_service6_src_negate is not None:
-            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
-        if intf is not None:
-            payload_dict["intf"] = intf
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if status is not None:
-            payload_dict["status"] = status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if virtual_patch is not None:
-            payload_dict["virtual-patch"] = virtual_patch
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for put()")
+        endpoint = f"/firewall/local-in-policy6/{policyid}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if intf is not None:
+            data_payload['intf'] = intf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if internet_service6_src is not None:
+            data_payload['internet-service6-src'] = internet_service6_src
+        if internet_service6_src_name is not None:
+            data_payload['internet-service6-src-name'] = internet_service6_src_name
+        if internet_service6_src_group is not None:
+            data_payload['internet-service6-src-group'] = internet_service6_src_group
+        if internet_service6_src_custom is not None:
+            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+        if internet_service6_src_custom_group is not None:
+            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+        if internet_service6_src_fortiguard is not None:
+            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if service is not None:
+            data_payload['service'] = service
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if internet_service6_src_negate is not None:
+            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if status is not None:
+            data_payload['status'] = status
+        if virtual_patch is not None:
+            data_payload['virtual-patch'] = virtual_patch
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a local-in-policy6 entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            policyid: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for delete()")
+        endpoint = f"/firewall/local-in-policy6/{policyid}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        policyid: int | None = None,
+        uuid: str | None = None,
+        intf: list | None = None,
+        srcaddr: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr: list | None = None,
+        internet_service6_src: str | None = None,
+        internet_service6_src_name: list | None = None,
+        internet_service6_src_group: list | None = None,
+        internet_service6_src_custom: list | None = None,
+        internet_service6_src_custom_group: list | None = None,
+        internet_service6_src_fortiguard: list | None = None,
+        dstaddr_negate: str | None = None,
+        service: list | None = None,
+        service_negate: str | None = None,
+        internet_service6_src_negate: str | None = None,
+        schedule: str | None = None,
+        status: str | None = None,
+        virtual_patch: str | None = None,
+        logtraffic: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            policyid: User defined local in policy ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            intf: Incoming interface name from available options. (optional)
+            srcaddr: Source address object from available options. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
+            dstaddr: Destination address object from available options. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. (optional)
+            internet_service6_src_name: IPv6 Internet Service source name. (optional)
+            internet_service6_src_group: Internet Service6 source group name. (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
+            service: Service object from available options. Separate names with a space. (optional)
+            service_negate: When enabled service specifies what the service must NOT be. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
+            schedule: Schedule object from available options. (optional)
+            status: Enable/disable this local-in policy. (optional)
+            virtual_patch: Enable/disable the virtual patching feature. (optional)
+            logtraffic: Enable/disable local-in traffic logging. (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/local-in-policy6"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if intf is not None:
+            data_payload['intf'] = intf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if internet_service6_src is not None:
+            data_payload['internet-service6-src'] = internet_service6_src
+        if internet_service6_src_name is not None:
+            data_payload['internet-service6-src-name'] = internet_service6_src_name
+        if internet_service6_src_group is not None:
+            data_payload['internet-service6-src-group'] = internet_service6_src_group
+        if internet_service6_src_custom is not None:
+            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+        if internet_service6_src_custom_group is not None:
+            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+        if internet_service6_src_fortiguard is not None:
+            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if service is not None:
+            data_payload['service'] = service
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if internet_service6_src_negate is not None:
+            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if status is not None:
+            data_payload['status'] = status
+        if virtual_patch is not None:
+            data_payload['virtual-patch'] = virtual_patch
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

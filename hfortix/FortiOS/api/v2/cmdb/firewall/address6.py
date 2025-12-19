@@ -1,410 +1,426 @@
 """
 FortiOS CMDB - Firewall Address6
 
-Configure IPv6 firewall addresses.
-
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/address6           - List all / Get specific
-    POST   /api/v2/cmdb/firewall/address6           - Create
-    PUT    /api/v2/cmdb/firewall/address6/{name}   - Update
-    DELETE /api/v2/cmdb/firewall/address6/{name}   - Delete
+    GET    /firewall/address6
+    POST   /firewall/address6
+    GET    /firewall/address6/{name}
+    PUT    /firewall/address6/{name}
+    DELETE /firewall/address6/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Address6:
-    """Firewall IPv6 address endpoint"""
+    """Address6 operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Address6 endpoint
+        Initialize Address6 endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[dict] = None,
-        acs: Optional[int] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv6 address object(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Object name (if specified, gets single object)
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned result are in ascending order
-            search: Filter objects by search value
-            scope: Scope level (global, vdom, or both)
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            action: Special action (datasource, stats, schema, etc.)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all addresses
-            >>> result = fgt.cmdb.firewall.address6.get()
-
-            >>> # Get specific address
-            >>> result = fgt.cmdb.firewall.address6.get('ipv6-server')
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.firewall.address6.get('ipv6-server', with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall/address6"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        type: Optional[str] = None,
-        ip6: Optional[str] = None,
-        start_ip: Optional[str] = None,
-        end_ip: Optional[str] = None,
-        fqdn: Optional[str] = None,
-        country: Optional[str] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        color: Optional[int] = None,
-        tags: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IPv6 address object.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Address name (required)
-            type: Address type: 'ipprefix', 'iprange', 'fqdn', 'geography', 'dynamic', etc. (default: 'ipprefix')
-            ip6: IPv6 address and prefix (for type=ipprefix, e.g., '2001:db8::/32')
-            start_ip: Start IPv6 address (for type=iprange)
-            end_ip: End IPv6 address (for type=iprange)
-            fqdn: Fully qualified domain name (for type=fqdn)
-            country: Country code (for type=geography)
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            color: Icon color (0-32)
-            tags: List of tag dicts [{'name': 'tag1'}]
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create IPv6 prefix
-            >>> result = fgt.cmdb.firewall.address6.create(
-            ...     name='ipv6-internal',
-            ...     type='ipprefix',
-            ...     ip6='2001:db8::/32',
-            ...     comment='Internal IPv6 network'
-            ... )
-
-            >>> # POST - Create IPv6 range
-            >>> result = fgt.cmdb.firewall.address6.create(
-            ...     name='ipv6-dhcp-range',
-            ...     type='iprange',
-            ...     start_ip='2001:db8::100',
-            ...     end_ip='2001:db8::200'
-            ... )
-
-            >>> # POST - Create IPv6 FQDN
-            >>> result = fgt.cmdb.firewall.address6.create(
-            ...     name='google-dns6',
-            ...     type='fqdn',
-            ...     fqdn='dns.google.com'
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+            endpoint = f"/firewall/address6/{name}"
         else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if type is not None:
-                payload_dict["type"] = type
-            if ip6 is not None:
-                payload_dict["ip6"] = ip6
-            if start_ip is not None:
-                payload_dict["start-ip"] = start_ip
-            if end_ip is not None:
-                payload_dict["end-ip"] = end_ip
-            if fqdn is not None:
-                payload_dict["fqdn"] = fqdn
-            if country is not None:
-                payload_dict["country"] = country
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-            if color is not None:
-                payload_dict["color"] = color
-            if tags is not None:
-                payload_dict["tags"] = tags
-
-        payload_dict = {"name": name, "type": type}
-
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            "ip6": "ip6",
-            "start_ip": "start-ip",
-            "end_ip": "end-ip",
-            "fqdn": "fqdn",
-            "country": "country",
-            "comment": "comment",
-            "visibility": "visibility",
-            "color": "color",
-            "tags": "tags",
-        }
-
-        param_map = {
-            "ip6": ip6,
-            "start_ip": start_ip,
-            "end_ip": end_ip,
-            "fqdn": fqdn,
-            "country": country,
-            "comment": comment,
-            "visibility": visibility,
-            "color": color,
-            "tags": tags,
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                payload_dict[api_key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall/address6"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+            endpoint = "/firewall/address6"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        ip6: Optional[str] = None,
-        start_ip: Optional[str] = None,
-        end_ip: Optional[str] = None,
-        fqdn: Optional[str] = None,
-        country: Optional[str] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        color: Optional[int] = None,
-        tags: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        type: str | None = None,
+        route_tag: int | None = None,
+        macaddr: list | None = None,
+        sdn: str | None = None,
+        ip6: str | None = None,
+        wildcard: str | None = None,
+        start_ip: str | None = None,
+        end_ip: str | None = None,
+        fqdn: str | None = None,
+        country: str | None = None,
+        cache_ttl: int | None = None,
+        color: int | None = None,
+        obj_id: str | None = None,
+        tagging: list | None = None,
+        comment: str | None = None,
+        template: str | None = None,
+        subnet_segment: list | None = None,
+        host_type: str | None = None,
+        host: str | None = None,
+        tenant: str | None = None,
+        epg_name: str | None = None,
+        sdn_tag: str | None = None,
+        list: list | None = None,
+        sdn_addr_type: str | None = None,
+        passive_fqdn_learning: str | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPv6 address object.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Address name (required)
-            ip6: IPv6 address and prefix (for type=ipprefix)
-            start_ip: Start IPv6 address (for type=iprange)
-            end_ip: End IPv6 address (for type=iprange)
-            fqdn: Fully qualified domain name (for type=fqdn)
-            country: Country code (for type=geography)
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            color: Icon color (0-32)
-            tags: List of tag dicts [{'name': 'tag1'}]
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Address name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            type: Type of IPv6 address object (default = ipprefix). (optional)
+            route_tag: route-tag address. (optional)
+            macaddr: Multiple MAC address ranges. (optional)
+            sdn: SDN. (optional)
+            ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx). (optional)
+            wildcard: IPv6 address and wildcard netmask. (optional)
+            start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx). (optional)
+            end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx). (optional)
+            fqdn: Fully qualified domain name. (optional)
+            country: IPv6 addresses associated to a specific country. (optional)
+            cache_ttl: Minimal TTL of individual IPv6 addresses in FQDN cache. (optional)
+            color: Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1). (optional)
+            obj_id: Object ID for NSX. (optional)
+            tagging: Config object tagging. (optional)
+            comment: Comment. (optional)
+            template: IPv6 address template. (optional)
+            subnet_segment: IPv6 subnet segments. (optional)
+            host_type: Host type. (optional)
+            host: Host Address. (optional)
+            tenant: Tenant. (optional)
+            epg_name: Endpoint group name. (optional)
+            sdn_tag: SDN Tag. (optional)
+            list: IP address list. (optional)
+            sdn_addr_type: Type of addresses to collect. (optional)
+            passive_fqdn_learning: Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update IPv6 prefix
-            >>> result = fgt.cmdb.firewall.address6.update(
-            ...     name='ipv6-internal',
-            ...     ip6='2001:db8:1::/48',
-            ...     comment='Updated IPv6 network'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if ip6 is not None:
-                payload_dict["ip6"] = ip6
-            if start_ip is not None:
-                payload_dict["start-ip"] = start_ip
-            if end_ip is not None:
-                payload_dict["end-ip"] = end_ip
-            if fqdn is not None:
-                payload_dict["fqdn"] = fqdn
-            if country is not None:
-                payload_dict["country"] = country
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-            if color is not None:
-                payload_dict["color"] = color
-            if tags is not None:
-                payload_dict["tags"] = tags
-
-        payload_dict = {}
-
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            "ip6": "ip6",
-            "start_ip": "start-ip",
-            "end_ip": "end-ip",
-            "fqdn": "fqdn",
-            "country": "country",
-            "comment": "comment",
-            "visibility": "visibility",
-            "color": "color",
-            "tags": "tags",
-        }
-
-        param_map = {
-            "ip6": ip6,
-            "start_ip": start_ip,
-            "end_ip": end_ip,
-            "fqdn": fqdn,
-            "country": country,
-            "comment": comment,
-            "visibility": visibility,
-            "color": color,
-            "tags": tags,
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                payload_dict[api_key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = f"firewall/address6/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/address6/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if type is not None:
+            data_payload['type'] = type
+        if route_tag is not None:
+            data_payload['route-tag'] = route_tag
+        if macaddr is not None:
+            data_payload['macaddr'] = macaddr
+        if sdn is not None:
+            data_payload['sdn'] = sdn
+        if ip6 is not None:
+            data_payload['ip6'] = ip6
+        if wildcard is not None:
+            data_payload['wildcard'] = wildcard
+        if start_ip is not None:
+            data_payload['start-ip'] = start_ip
+        if end_ip is not None:
+            data_payload['end-ip'] = end_ip
+        if fqdn is not None:
+            data_payload['fqdn'] = fqdn
+        if country is not None:
+            data_payload['country'] = country
+        if cache_ttl is not None:
+            data_payload['cache-ttl'] = cache_ttl
+        if color is not None:
+            data_payload['color'] = color
+        if obj_id is not None:
+            data_payload['obj-id'] = obj_id
+        if tagging is not None:
+            data_payload['tagging'] = tagging
+        if comment is not None:
+            data_payload['comment'] = comment
+        if template is not None:
+            data_payload['template'] = template
+        if subnet_segment is not None:
+            data_payload['subnet-segment'] = subnet_segment
+        if host_type is not None:
+            data_payload['host-type'] = host_type
+        if host is not None:
+            data_payload['host'] = host
+        if tenant is not None:
+            data_payload['tenant'] = tenant
+        if epg_name is not None:
+            data_payload['epg-name'] = epg_name
+        if sdn_tag is not None:
+            data_payload['sdn-tag'] = sdn_tag
+        if list is not None:
+            data_payload['list'] = list
+        if sdn_addr_type is not None:
+            data_payload['sdn-addr-type'] = sdn_addr_type
+        if passive_fqdn_learning is not None:
+            data_payload['passive-fqdn-learning'] = passive_fqdn_learning
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete IPv6 address object.
-
+        Delete this specific resource.
+        
         Args:
-            name: Address name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete address
-            >>> result = fgt.cmdb.firewall.address6.delete('test-address6')
+            Dictionary containing API response
         """
-        path = f"firewall/address6/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/address6/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        type: str | None = None,
+        route_tag: int | None = None,
+        macaddr: list | None = None,
+        sdn: str | None = None,
+        ip6: str | None = None,
+        wildcard: str | None = None,
+        start_ip: str | None = None,
+        end_ip: str | None = None,
+        fqdn: str | None = None,
+        country: str | None = None,
+        cache_ttl: int | None = None,
+        color: int | None = None,
+        obj_id: str | None = None,
+        tagging: list | None = None,
+        comment: str | None = None,
+        template: str | None = None,
+        subnet_segment: list | None = None,
+        host_type: str | None = None,
+        host: str | None = None,
+        tenant: str | None = None,
+        epg_name: str | None = None,
+        sdn_tag: str | None = None,
+        list: list | None = None,
+        sdn_addr_type: str | None = None,
+        passive_fqdn_learning: str | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if IPv6 address object exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Address name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Address name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            type: Type of IPv6 address object (default = ipprefix). (optional)
+            route_tag: route-tag address. (optional)
+            macaddr: Multiple MAC address ranges. (optional)
+            sdn: SDN. (optional)
+            ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx). (optional)
+            wildcard: IPv6 address and wildcard netmask. (optional)
+            start_ip: First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx). (optional)
+            end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx). (optional)
+            fqdn: Fully qualified domain name. (optional)
+            country: IPv6 addresses associated to a specific country. (optional)
+            cache_ttl: Minimal TTL of individual IPv6 addresses in FQDN cache. (optional)
+            color: Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1). (optional)
+            obj_id: Object ID for NSX. (optional)
+            tagging: Config object tagging. (optional)
+            comment: Comment. (optional)
+            template: IPv6 address template. (optional)
+            subnet_segment: IPv6 subnet segments. (optional)
+            host_type: Host type. (optional)
+            host: Host Address. (optional)
+            tenant: Tenant. (optional)
+            epg_name: Endpoint group name. (optional)
+            sdn_tag: SDN Tag. (optional)
+            list: IP address list. (optional)
+            sdn_addr_type: Type of addresses to collect. (optional)
+            passive_fqdn_learning: Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if object exists, False otherwise
-
-        Examples:
-            >>> # Check if address exists
-            >>> if fgt.cmdb.firewall.address6.exists('ipv6-internal'):
-            ...     print("Address exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/address6"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if type is not None:
+            data_payload['type'] = type
+        if route_tag is not None:
+            data_payload['route-tag'] = route_tag
+        if macaddr is not None:
+            data_payload['macaddr'] = macaddr
+        if sdn is not None:
+            data_payload['sdn'] = sdn
+        if ip6 is not None:
+            data_payload['ip6'] = ip6
+        if wildcard is not None:
+            data_payload['wildcard'] = wildcard
+        if start_ip is not None:
+            data_payload['start-ip'] = start_ip
+        if end_ip is not None:
+            data_payload['end-ip'] = end_ip
+        if fqdn is not None:
+            data_payload['fqdn'] = fqdn
+        if country is not None:
+            data_payload['country'] = country
+        if cache_ttl is not None:
+            data_payload['cache-ttl'] = cache_ttl
+        if color is not None:
+            data_payload['color'] = color
+        if obj_id is not None:
+            data_payload['obj-id'] = obj_id
+        if tagging is not None:
+            data_payload['tagging'] = tagging
+        if comment is not None:
+            data_payload['comment'] = comment
+        if template is not None:
+            data_payload['template'] = template
+        if subnet_segment is not None:
+            data_payload['subnet-segment'] = subnet_segment
+        if host_type is not None:
+            data_payload['host-type'] = host_type
+        if host is not None:
+            data_payload['host'] = host
+        if tenant is not None:
+            data_payload['tenant'] = tenant
+        if epg_name is not None:
+            data_payload['epg-name'] = epg_name
+        if sdn_tag is not None:
+            data_payload['sdn-tag'] = sdn_tag
+        if list is not None:
+            data_payload['list'] = list
+        if sdn_addr_type is not None:
+            data_payload['sdn-addr-type'] = sdn_addr_type
+        if passive_fqdn_learning is not None:
+            data_payload['passive-fqdn-learning'] = passive_fqdn_learning
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

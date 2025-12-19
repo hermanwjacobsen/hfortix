@@ -1,342 +1,250 @@
 """
-FortiOS CMDB - Firewall Address6 Template
-
-Configure IPv6 address templates.
+FortiOS CMDB - Firewall Address6Template
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/address6-template           - List all / Get specific
-    POST   /api/v2/cmdb/firewall/address6-template           - Create
-    PUT    /api/v2/cmdb/firewall/address6-template/{name}   - Update
-    DELETE /api/v2/cmdb/firewall/address6-template/{name}   - Delete
+    GET    /firewall/address6-template
+    POST   /firewall/address6-template
+    GET    /firewall/address6-template/{name}
+    PUT    /firewall/address6-template/{name}
+    DELETE /firewall/address6-template/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Address6Template:
-    """Firewall IPv6 address template endpoint"""
+    """Address6Template operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Address6Template endpoint
+        Initialize Address6Template endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[dict] = None,
-        acs: Optional[int] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv6 address template object(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Object name (if specified, gets single object)
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned result are in ascending order
-            search: Filter objects by search value
-            scope: Scope level (global, vdom, or both)
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            action: Special action (datasource, stats, schema, etc.)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all templates
-            >>> result = fgt.cmdb.firewall.address6_template.get()
-
-            >>> # Get specific template
-            >>> result = fgt.cmdb.firewall.address6_template.get('ipv6-template')
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.firewall.address6_template.get('ipv6-template', with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall/address6-template"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        ip6: Optional[str] = None,
-        subnet_segment_count: Optional[int] = None,
-        subnet_segment: Optional[list[dict[str, Any]]] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IPv6 address template object.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Address template name (required)
-            ip6: IPv6 prefix (required, e.g., '2001:db8::/32')
-            subnet_segment_count: Number of subnet segments (default: 1)
-            subnet_segment: List of subnet segment dicts with keys: 'id', 'name', 'bits', 'exclusive', 'values'
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create IPv6 address template
-            >>> result = fgt.cmdb.firewall.address6_template.create(
-            ...     name='ipv6-subnet-template',
-            ...     ip6='2001:db8::/32',
-            ...     subnet_segment_count=2,
-            ...     subnet_segment=[
-            ...         {'id': 1, 'name': 'site', 'bits': 8, 'exclusive': 'disable'},
-            ...         {'id': 2, 'name': 'vlan', 'bits': 8, 'exclusive': 'disable'}
-            ...     ],
-            ...     comment='IPv6 subnet template for site/vlan'
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+            endpoint = f"/firewall/address6-template/{name}"
         else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if ip6 is not None:
-                payload_dict["ip6"] = ip6
-            if subnet_segment_count is not None:
-                payload_dict["subnet-segment-count"] = subnet_segment_count
-            if subnet_segment is not None:
-                payload_dict["subnet-segment"] = subnet_segment
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-
-        payload_dict = {"name": name, "ip6": ip6, "subnet-segment-count": subnet_segment_count}
-
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            "subnet_segment": "subnet-segment",
-            "comment": "comment",
-            "visibility": "visibility",
-        }
-
-        param_map = {
-            "subnet_segment": subnet_segment,
-            "comment": comment,
-            "visibility": visibility,
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                payload_dict[api_key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall/address6-template"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+            endpoint = "/firewall/address6-template"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        ip6: Optional[str] = None,
-        subnet_segment_count: Optional[int] = None,
-        subnet_segment: Optional[list[dict[str, Any]]] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        ip6: str | None = None,
+        subnet_segment_count: int | None = None,
+        subnet_segment: list | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPv6 address template object.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Address template name (required)
-            ip6: IPv6 prefix (e.g., '2001:db8::/32')
-            subnet_segment_count: Number of subnet segments
-            subnet_segment: List of subnet segment dicts
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: IPv6 address template name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            ip6: IPv6 address prefix. (optional)
+            subnet_segment_count: Number of IPv6 subnet segments. (optional)
+            subnet_segment: IPv6 subnet segments. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update IPv6 address template
-            >>> result = fgt.cmdb.firewall.address6_template.update(
-            ...     name='ipv6-subnet-template',
-            ...     comment='Updated IPv6 subnet template'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if ip6 is not None:
-                payload_dict["ip6"] = ip6
-            if subnet_segment_count is not None:
-                payload_dict["subnet-segment-count"] = subnet_segment_count
-            if subnet_segment is not None:
-                payload_dict["subnet-segment"] = subnet_segment
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-
-        payload_dict = {}
-
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            "ip6": "ip6",
-            "subnet_segment_count": "subnet-segment-count",
-            "subnet_segment": "subnet-segment",
-            "comment": "comment",
-            "visibility": "visibility",
-        }
-
-        param_map = {
-            "ip6": ip6,
-            "subnet_segment_count": subnet_segment_count,
-            "subnet_segment": subnet_segment,
-            "comment": comment,
-            "visibility": visibility,
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                payload_dict[api_key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = f"firewall/address6-template/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/address6-template/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if ip6 is not None:
+            data_payload['ip6'] = ip6
+        if subnet_segment_count is not None:
+            data_payload['subnet-segment-count'] = subnet_segment_count
+        if subnet_segment is not None:
+            data_payload['subnet-segment'] = subnet_segment
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete IPv6 address template object.
-
+        Delete this specific resource.
+        
         Args:
-            name: Address template name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete address template
-            >>> result = fgt.cmdb.firewall.address6_template.delete('test-template')
+            Dictionary containing API response
         """
-        path = f"firewall/address6-template/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/address6-template/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        ip6: str | None = None,
+        subnet_segment_count: int | None = None,
+        subnet_segment: list | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if IPv6 address template object exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Address template name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: IPv6 address template name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            ip6: IPv6 address prefix. (optional)
+            subnet_segment_count: Number of IPv6 subnet segments. (optional)
+            subnet_segment: IPv6 subnet segments. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if object exists, False otherwise
-
-        Examples:
-            >>> # Check if template exists
-            >>> if fgt.cmdb.firewall.address6_template.exists('ipv6-subnet-template'):
-            ...     print("Template exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/address6-template"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if ip6 is not None:
+            data_payload['ip6'] = ip6
+        if subnet_segment_count is not None:
+            data_payload['subnet-segment-count'] = subnet_segment_count
+        if subnet_segment is not None:
+            data_payload['subnet-segment'] = subnet_segment
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

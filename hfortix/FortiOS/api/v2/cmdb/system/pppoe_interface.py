@@ -1,219 +1,354 @@
 """
 FortiOS CMDB - System PppoeInterface
 
-Configure the PPPoE interfaces.
-
 API Endpoints:
-    GET    /system/pppoe-interface           - List all / Get specific
-    POST   /system/pppoe-interface           - Create
-    PUT    /system/pppoe-interface/{name}   - Update
-    DELETE /system/pppoe-interface/{name}   - Delete
+    GET    /system/pppoe-interface
+    POST   /system/pppoe-interface
+    GET    /system/pppoe-interface/{name}
+    PUT    /system/pppoe-interface/{name}
+    DELETE /system/pppoe-interface/{name}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class PppoeInterface:
-    """pppoe-interface endpoint"""
+    """PppoeInterface operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize PppoeInterface endpoint
+        Initialize PppoeInterface endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get pppoe-interface
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.pppoe_interface.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.pppoe_interface.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
-        params.update(kwargs)
-        
-        path = "system/pppoe-interface"
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create pppoe-interface
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.pppoe_interface.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.pppoe_interface.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/pppoe-interface", data=data, vdom=vdom)
+            endpoint = f"/system/pppoe-interface/{name}"
+        else:
+            endpoint = "/system/pppoe-interface"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        dial_on_demand: str | None = None,
+        ipv6: str | None = None,
+        device: str | None = None,
+        username: str | None = None,
+        password: str | None = None,
+        pppoe_egress_cos: str | None = None,
+        auth_type: str | None = None,
+        ipunnumbered: str | None = None,
+        pppoe_unnumbered_negotiate: str | None = None,
+        idle_timeout: int | None = None,
+        multilink: str | None = None,
+        mrru: int | None = None,
+        disc_retry_timeout: int | None = None,
+        padt_retry_timeout: int | None = None,
+        service_name: str | None = None,
+        ac_name: str | None = None,
+        lcp_echo_interval: int | None = None,
+        lcp_max_echo_fails: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update pppoe-interface
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name of the PPPoE interface. (optional)
+            dial_on_demand: Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. (optional)
+            ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). (optional)
+            device: Name for the physical interface. (optional)
+            username: User name. (optional)
+            password: Enter the password. (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
+            auth_type: PPP authentication type to use. (optional)
+            ipunnumbered: PPPoE unnumbered IP. (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec). (optional)
+            multilink: Enable/disable PPP multilink support. (optional)
+            mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
+            disc_retry_timeout: PPPoE discovery init timeout value in (0-4294967295 sec). (optional)
+            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec). (optional)
+            service_name: PPPoE service name. (optional)
+            ac_name: PPPoE AC name. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.pppoe_interface.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.pppoe_interface.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/pppoe-interface/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/system/pppoe-interface/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if dial_on_demand is not None:
+            data_payload['dial-on-demand'] = dial_on_demand
+        if ipv6 is not None:
+            data_payload['ipv6'] = ipv6
+        if device is not None:
+            data_payload['device'] = device
+        if username is not None:
+            data_payload['username'] = username
+        if password is not None:
+            data_payload['password'] = password
+        if pppoe_egress_cos is not None:
+            data_payload['pppoe-egress-cos'] = pppoe_egress_cos
+        if auth_type is not None:
+            data_payload['auth-type'] = auth_type
+        if ipunnumbered is not None:
+            data_payload['ipunnumbered'] = ipunnumbered
+        if pppoe_unnumbered_negotiate is not None:
+            data_payload['pppoe-unnumbered-negotiate'] = pppoe_unnumbered_negotiate
+        if idle_timeout is not None:
+            data_payload['idle-timeout'] = idle_timeout
+        if multilink is not None:
+            data_payload['multilink'] = multilink
+        if mrru is not None:
+            data_payload['mrru'] = mrru
+        if disc_retry_timeout is not None:
+            data_payload['disc-retry-timeout'] = disc_retry_timeout
+        if padt_retry_timeout is not None:
+            data_payload['padt-retry-timeout'] = padt_retry_timeout
+        if service_name is not None:
+            data_payload['service-name'] = service_name
+        if ac_name is not None:
+            data_payload['ac-name'] = ac_name
+        if lcp_echo_interval is not None:
+            data_payload['lcp-echo-interval'] = lcp_echo_interval
+        if lcp_max_echo_fails is not None:
+            data_payload['lcp-max-echo-fails'] = lcp_max_echo_fails
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete pppoe-interface
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.pppoe_interface.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/pppoe-interface/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/system/pppoe-interface/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        dial_on_demand: str | None = None,
+        ipv6: str | None = None,
+        device: str | None = None,
+        username: str | None = None,
+        password: str | None = None,
+        pppoe_egress_cos: str | None = None,
+        auth_type: str | None = None,
+        ipunnumbered: str | None = None,
+        pppoe_unnumbered_negotiate: str | None = None,
+        idle_timeout: int | None = None,
+        multilink: str | None = None,
+        mrru: int | None = None,
+        disc_retry_timeout: int | None = None,
+        padt_retry_timeout: int | None = None,
+        service_name: str | None = None,
+        ac_name: str | None = None,
+        lcp_echo_interval: int | None = None,
+        lcp_max_echo_fails: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if pppoe-interface exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name of the PPPoE interface. (optional)
+            dial_on_demand: Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. (optional)
+            ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). (optional)
+            device: Name for the physical interface. (optional)
+            username: User name. (optional)
+            password: Enter the password. (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
+            auth_type: PPP authentication type to use. (optional)
+            ipunnumbered: PPPoE unnumbered IP. (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec). (optional)
+            multilink: Enable/disable PPP multilink support. (optional)
+            mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
+            disc_retry_timeout: PPPoE discovery init timeout value in (0-4294967295 sec). (optional)
+            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec). (optional)
+            service_name: PPPoE service name. (optional)
+            ac_name: PPPoE AC name. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.pppoe_interface.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/pppoe-interface"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if dial_on_demand is not None:
+            data_payload['dial-on-demand'] = dial_on_demand
+        if ipv6 is not None:
+            data_payload['ipv6'] = ipv6
+        if device is not None:
+            data_payload['device'] = device
+        if username is not None:
+            data_payload['username'] = username
+        if password is not None:
+            data_payload['password'] = password
+        if pppoe_egress_cos is not None:
+            data_payload['pppoe-egress-cos'] = pppoe_egress_cos
+        if auth_type is not None:
+            data_payload['auth-type'] = auth_type
+        if ipunnumbered is not None:
+            data_payload['ipunnumbered'] = ipunnumbered
+        if pppoe_unnumbered_negotiate is not None:
+            data_payload['pppoe-unnumbered-negotiate'] = pppoe_unnumbered_negotiate
+        if idle_timeout is not None:
+            data_payload['idle-timeout'] = idle_timeout
+        if multilink is not None:
+            data_payload['multilink'] = multilink
+        if mrru is not None:
+            data_payload['mrru'] = mrru
+        if disc_retry_timeout is not None:
+            data_payload['disc-retry-timeout'] = disc_retry_timeout
+        if padt_retry_timeout is not None:
+            data_payload['padt-retry-timeout'] = padt_retry_timeout
+        if service_name is not None:
+            data_payload['service-name'] = service_name
+        if ac_name is not None:
+            data_payload['ac-name'] = ac_name
+        if lcp_echo_interval is not None:
+            data_payload['lcp-echo-interval'] = lcp_echo_interval
+        if lcp_max_echo_fails is not None:
+            data_payload['lcp-max-echo-fails'] = lcp_max_echo_fails
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

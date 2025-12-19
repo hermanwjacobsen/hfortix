@@ -1,128 +1,109 @@
 """
-FortiOS CMDB - Email Filter Options
-
-Configure AntiSpam options.
-
-This is a singleton endpoint - only GET and PUT operations are supported.
+FortiOS CMDB - Emailfilter Options
 
 API Endpoints:
-    GET /api/v2/cmdb/emailfilter/options - Get AntiSpam options
-    PUT /api/v2/cmdb/emailfilter/options - Update AntiSpam options
+    GET    /emailfilter/options
+    PUT    /emailfilter/options
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Options:
-    """Email filter options endpoint"""
+    """Options operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Options endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        # Query parameters
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get AntiSpam options.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable CLI skip operator
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing AntiSpam options
-
-        Examples:
-            >>> # Get AntiSpam options
-            >>> options = fgt.cmdb.emailfilter.options.get()
-
-            >>> # Get with meta information
-            >>> options = fgt.cmdb.emailfilter.options.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/emailfilter/options"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "emailfilter/options",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        # AntiSpam options
-        dns_timeout: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        dns_timeout: int | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update AntiSpam options.
-
+        Update this specific resource.
+        
         Args:
-            dns_timeout (int, optional): DNS query timeout in seconds (1-30)
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            dns_timeout: DNS query time out (1 - 30 sec). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update DNS timeout
-            >>> result = fgt.cmdb.emailfilter.options.update(
-            ...     dns_timeout=10
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/emailfilter/options"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if dns_timeout is not None:
-            data["dns-timeout"] = dns_timeout
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", "emailfilter/options", data=data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['dns-timeout'] = dns_timeout
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -614,7 +614,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 
 ## 🤝 Contributing
 
-Want to help implement more endpoints? See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines!
+Want to help implement more endpoints? Contributions are welcome!
 
 ### How to Add Coverage
 
@@ -623,6 +623,7 @@ Want to help implement more endpoints? See [CONTRIBUTING.md](CONTRIBUTING.md) fo
 3. Test your implementation thoroughly
 4. Update this file with implementation status
 5. Update CHANGELOG.md
+6. Submit a pull request
 6. Submit pull request
 
 ---

@@ -1,141 +1,117 @@
 """
-FortiOS CMDB - Email Filter FortiGuard
-
-Configure FortiGuard AntiSpam settings.
-
-This is a singleton endpoint - only GET and PUT operations are supported.
+FortiOS CMDB - Emailfilter Fortishield
 
 API Endpoints:
-    GET  /api/v2/cmdb/emailfilter/fortishield  - Get configuration
-    PUT  /api/v2/cmdb/emailfilter/fortishield  - Update configuration
+    GET    /emailfilter/fortishield
+    PUT    /emailfilter/fortishield
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Fortishield:
-    """Email filter FortiGuard AntiSpam settings endpoint"""
+    """Fortishield operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Fortishield endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        # Query parameters
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get FortiGuard AntiSpam settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable CLI skip operator
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing FortiGuard AntiSpam settings
-
-        Examples:
-            >>> # Get FortiGuard AntiSpam settings
-            >>> settings = fgt.cmdb.emailfilter.fortishield.get()
-
-            >>> # Get with meta information
-            >>> settings = fgt.cmdb.emailfilter.fortishield.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/emailfilter/fortishield"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "emailfilter/fortishield",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        # FortiGuard configuration
-        spam_submit_srv: Optional[str] = None,
-        spam_submit_force: Optional[str] = None,
-        spam_submit_txt2htm: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        spam_submit_srv: str | None = None,
+        spam_submit_force: str | None = None,
+        spam_submit_txt2htm: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update FortiGuard AntiSpam settings.
-
+        Update this specific resource.
+        
         Args:
-            spam_submit_srv (str, optional): Hostname of spam submission server
-            spam_submit_force (str, optional): Enable to submit all email to FortiGuard - 'enable'/'disable'
-            spam_submit_txt2htm (str, optional): Submit text email to FortiGuard - 'enable'/'disable'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            spam_submit_srv: Hostname of the spam submission server. (optional)
+            spam_submit_force: Enable/disable force insertion of a new mime entity for the submission text. (optional)
+            spam_submit_txt2htm: Enable/disable conversion of text email to HTML email. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update FortiGuard settings
-            >>> result = fgt.cmdb.emailfilter.fortishield.update(
-            ...     spam_submit_srv='spam-submit.fortinet.com',
-            ...     spam_submit_force='disable',
-            ...     spam_submit_txt2htm='enable'
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
-        param_map = {
-            "spam_submit_srv": spam_submit_srv,
-            "spam_submit_force": spam_submit_force,
-            "spam_submit_txt2htm": spam_submit_txt2htm,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key.replace("_", "-")] = value
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", "emailfilter/fortishield", data=data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/emailfilter/fortishield"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if spam_submit_srv is not None:
+            data_payload['spam-submit-srv'] = spam_submit_srv
+        if spam_submit_force is not None:
+            data_payload['spam-submit-force'] = spam_submit_force
+        if spam_submit_txt2htm is not None:
+            data_payload['spam-submit-txt2htm'] = spam_submit_txt2htm
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

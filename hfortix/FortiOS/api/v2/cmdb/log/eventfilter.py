@@ -1,145 +1,173 @@
 """
-Log event filter endpoint module.
+FortiOS CMDB - Log Eventfilter
 
-This module provides access to the log/eventfilter endpoint
-for configuring log event filters.
-
-API Path: log/eventfilter
+API Endpoints:
+    GET    /log/eventfilter
+    PUT    /log/eventfilter
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class Eventfilter:
-    """
-    Interface for configuring log event filters.
+    """Eventfilter operations."""
 
-    This class provides methods to manage log event filter configuration.
-    This is a singleton endpoint (GET/PUT only).
-
-    Example usage:
-        # Get current event filter settings
-        settings = fgt.api.cmdb.log.eventfilter.get()
-
-        # PUT - Update event filter settings
-        fgt.api.cmdb.log.eventfilter.update(
-            system='enable',
-            vpn='enable',
-            user='enable'
-        )
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Eventfilter instance.
+        Initialize Eventfilter endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "log/eventfilter"
 
-    def get(self) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve current log event filter settings.
-
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing event filter settings
-
-        Example:
-            >>> result = fgt.api.cmdb.log.eventfilter.get()
-            >>> print(result['system'])
-            'enable'
+            Dictionary containing API response
         """
-        return self._client.get("cmdb", self._endpoint)
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log/eventfilter"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        cifs: Optional[str] = None,
-        connector: Optional[str] = None,
-        endpoint: Optional[str] = None,
-        event: Optional[str] = None,
-        fortiextender: Optional[str] = None,
-        ha: Optional[str] = None,
-        rest_api: Optional[str] = None,
-        router: Optional[str] = None,
-        sdwan: Optional[str] = None,
-        security_rating: Optional[str] = None,
-        switch_controller: Optional[str] = None,
-        system: Optional[str] = None,
-        user: Optional[str] = None,
-        vpn: Optional[str] = None,
-        wan_opt: Optional[str] = None,
-        web_svc: Optional[str] = None,
-        wireless_activity: Optional[str] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        event: str | None = None,
+        system: str | None = None,
+        vpn: str | None = None,
+        user: str | None = None,
+        router: str | None = None,
+        wireless_activity: str | None = None,
+        wan_opt: str | None = None,
+        endpoint: str | None = None,
+        ha: str | None = None,
+        security_rating: str | None = None,
+        fortiextender: str | None = None,
+        connector: str | None = None,
+        sdwan: str | None = None,
+        cifs: str | None = None,
+        switch_controller: str | None = None,
+        rest_api: str | None = None,
+        web_svc: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update log event filter settings.
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Dictionary with API format parameters
-            cifs: Enable/disable CIFS logging (enable | disable)
-            connector: Enable/disable connector logging (enable | disable)
-            endpoint: Enable/disable endpoint logging (enable | disable)
-            event: Enable/disable event logging (enable | disable)
-            fortiextender: Enable/disable FortiExtender logging (enable | disable)
-            ha: Enable/disable HA logging (enable | disable)
-            rest_api: Enable/disable REST API logging (enable | disable)
-            router: Enable/disable router logging (enable | disable)
-            sdwan: Enable/disable SD-WAN logging (enable | disable)
-            security_rating: Enable/disable security rating logging (enable | disable)
-            switch_controller: Enable/disable switch controller logging (enable | disable)
-            system: Enable/disable system event logging (enable | disable)
-            user: Enable/disable user logging (enable | disable)
-            vpn: Enable/disable VPN logging (enable | disable)
-            wan_opt: Enable/disable WAN optimization logging (enable | disable)
-            web_svc: Enable/disable web service logging (enable | disable)
-            wireless_activity: Enable/disable wireless activity logging (enable | disable)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            event: Enable/disable event logging. (optional)
+            system: Enable/disable system event logging. (optional)
+            vpn: Enable/disable VPN event logging. (optional)
+            user: Enable/disable user authentication event logging. (optional)
+            router: Enable/disable router event logging. (optional)
+            wireless_activity: Enable/disable wireless event logging. (optional)
+            wan_opt: Enable/disable WAN optimization event logging. (optional)
+            endpoint: Enable/disable endpoint event logging. (optional)
+            ha: Enable/disable ha event logging. (optional)
+            security_rating: Enable/disable Security Rating result logging. (optional)
+            fortiextender: Enable/disable FortiExtender logging. (optional)
+            connector: Enable/disable SDN connector logging. (optional)
+            sdwan: Enable/disable SD-WAN logging. (optional)
+            cifs: Enable/disable CIFS logging. (optional)
+            switch_controller: Enable/disable Switch-Controller logging. (optional)
+            rest_api: Enable/disable REST API logging. (optional)
+            web_svc: Enable/disable web-svc performance logging. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.log.eventfilter.update(
-            ...     system='enable',
-            ...     vpn='enable',
-            ...     user='enable',
-            ...     router='disable'
-            ... )
         """
-        payload = dict(data_dict) if data_dict else {}
-
-        param_map = {
-            "cifs": "cifs",
-            "connector": "connector",
-            "endpoint": "endpoint",
-            "event": "event",
-            "fortiextender": "fortiextender",
-            "ha": "ha",
-            "rest_api": "rest-api",
-            "router": "router",
-            "sdwan": "sdwan",
-            "security_rating": "security-rating",
-            "switch_controller": "switch-controller",
-            "system": "system",
-            "user": "user",
-            "vpn": "vpn",
-            "wan_opt": "wan-opt",
-            "web_svc": "web-svc",
-            "wireless_activity": "wireless-activity",
-        }
-
-        for py_name, api_name in param_map.items():
-            value = locals().get(py_name)
-            if value is not None:
-                payload[api_name] = value
-
-        payload.update(kwargs)
-
-        return self._client.put("cmdb", self._endpoint, data=payload)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log/eventfilter"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if event is not None:
+            data_payload['event'] = event
+        if system is not None:
+            data_payload['system'] = system
+        if vpn is not None:
+            data_payload['vpn'] = vpn
+        if user is not None:
+            data_payload['user'] = user
+        if router is not None:
+            data_payload['router'] = router
+        if wireless_activity is not None:
+            data_payload['wireless-activity'] = wireless_activity
+        if wan_opt is not None:
+            data_payload['wan-opt'] = wan_opt
+        if endpoint is not None:
+            data_payload['endpoint'] = endpoint
+        if ha is not None:
+            data_payload['ha'] = ha
+        if security_rating is not None:
+            data_payload['security-rating'] = security_rating
+        if fortiextender is not None:
+            data_payload['fortiextender'] = fortiextender
+        if connector is not None:
+            data_payload['connector'] = connector
+        if sdwan is not None:
+            data_payload['sdwan'] = sdwan
+        if cifs is not None:
+            data_payload['cifs'] = cifs
+        if switch_controller is not None:
+            data_payload['switch-controller'] = switch_controller
+        if rest_api is not None:
+            data_payload['rest-api'] = rest_api
+        if web_svc is not None:
+            data_payload['web-svc'] = web_svc
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

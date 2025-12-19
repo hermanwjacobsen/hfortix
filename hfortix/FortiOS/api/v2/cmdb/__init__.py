@@ -57,23 +57,24 @@ class CMDB:
         self._client = client
 
         # Initialize endpoint classes
-        from .alertemail import AlertEmail
+        from .alertemail import Alertemail
         from .antivirus import Antivirus
         from .application import Application
         from .authentication import Authentication
         from .automation import Automation
         from .casb import Casb
         from .certificate import Certificate
-        from .diameter_filter import DiameterFilter
-        from .dlp import DLP
-        from .dnsfilter import DNSFilter
-        from .emailfilter import EmailFilter
-        from .endpoint_control import EndpointControl
-        from .ethernet_oam import EthernetOAM
-        from .extension_controller import ExtensionController
-        from .file_filter import FileFilter
+        from importlib import import_module
+        diameter_filter_mod = import_module('.diameter-filter', 'hfortix.FortiOS.api.v2.cmdb')
+        from .dlp import Dlp
+        from .dnsfilter import Dnsfilter
+        from .emailfilter import Emailfilter
+        endpoint_control_mod = import_module('.endpoint-control', 'hfortix.FortiOS.api.v2.cmdb')
+        ethernet_oam_mod = import_module('.ethernet-oam', 'hfortix.FortiOS.api.v2.cmdb')
+        extension_controller_mod = import_module('.extension-controller', 'hfortix.FortiOS.api.v2.cmdb')
+        file_filter_mod = import_module('.file-filter', 'hfortix.FortiOS.api.v2.cmdb')
         from .firewall import Firewall
-        from .ftp_proxy import FtpProxy
+        ftp_proxy_mod = import_module('.ftp-proxy', 'hfortix.FortiOS.api.v2.cmdb')
         from .icap import Icap
         from .ips import Ips
         from .log import Log
@@ -81,35 +82,35 @@ class CMDB:
         from .report import Report
         from .router import Router
         from .rule import Rule
-        from .sctp_filter import SctpFilter
+        sctp_filter_mod = import_module('.sctp-filter', 'hfortix.FortiOS.api.v2.cmdb')
         from .system import System
 
-        self.alertemail: AlertEmail = AlertEmail(client)
-        self.antivirus: Antivirus = Antivirus(client)
-        self.application: Application = Application(client)
-        self.authentication: Authentication = Authentication(client)
-        self.automation: Automation = Automation(client)
-        self.casb: Casb = Casb(client)
-        self.certificate: Certificate = Certificate(client)
-        self.diameter_filter: DiameterFilter = DiameterFilter(client)
-        self.dlp: DLP = DLP(client)
-        self.dnsfilter: DNSFilter = DNSFilter(client)
-        self.emailfilter: EmailFilter = EmailFilter(client)
-        self.endpoint_control: EndpointControl = EndpointControl(client)
-        self.ethernet_oam: EthernetOAM = EthernetOAM(client)
-        self.extension_controller: ExtensionController = ExtensionController(client)
-        self.file_filter: FileFilter = FileFilter(client)
-        self.firewall: Firewall = Firewall(client)
-        self.ftp_proxy: FtpProxy = FtpProxy(client)
-        self.icap: Icap = Icap(client)
-        self.ips: Ips = Ips(client)
-        self.log: Log = Log(client)
-        self.monitoring: Monitoring = Monitoring(client)
-        self.report: Report = Report(client)
-        self.router: Router = Router(client)
-        self.rule: Rule = Rule(client)
-        self.sctp_filter: SctpFilter = SctpFilter(client)
-        self.system: System = System(client)
+        self.alertemail = Alertemail(client)
+        self.antivirus = Antivirus(client)
+        self.application = Application(client)
+        self.authentication = Authentication(client)
+        self.automation = Automation(client)
+        self.casb = Casb(client)
+        self.certificate = Certificate(client)
+        self.diameter_filter = diameter_filter_mod.DiameterFilter(client)
+        self.dlp = Dlp(client)
+        self.dnsfilter = Dnsfilter(client)
+        self.emailfilter = Emailfilter(client)
+        self.endpoint_control = endpoint_control_mod.EndpointControl(client)
+        self.ethernet_oam = ethernet_oam_mod.EthernetOam(client)
+        self.extension_controller = extension_controller_mod.ExtensionController(client)
+        self.file_filter = file_filter_mod.FileFilter(client)
+        self.firewall = Firewall(client)
+        self.ftp_proxy = ftp_proxy_mod.FtpProxy(client)
+        self.icap = Icap(client)
+        self.ips = Ips(client)
+        self.log = Log(client)
+        self.monitoring = Monitoring(client)
+        self.report = Report(client)
+        self.router = Router(client)
+        self.rule = Rule(client)
+        self.sctp_filter = sctp_filter_mod.SctpFilter(client)
+        self.system = System(client)
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""

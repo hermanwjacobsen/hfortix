@@ -1,76 +1,75 @@
-"""
-Endpoint Control Avatar endpoint
+"""Monitor API - Avatar operations."""
 
-GET /api/v2/monitor/endpoint-control/avatar/download
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["Avatar"]
+    from hfortix.FortiOS.http_client import HTTPClient
 
 
-class Avatar:
-    """
-    Endpoint Control Avatar operations.
+class Download:
+    """Download operations."""
 
-    Download endpoint avatar images.
-    """
-
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Avatar endpoint.
+        Initialize Download endpoint.
 
         Args:
             client: HTTPClient instance
         """
         self._client = client
-        self._base_path = "endpoint-control/avatar"
 
-    def download(
-        self, data_dict: Optional[dict[str, Any]] = None, uid: Optional[str] = None, **kwargs: Any
-    ) -> bytes:
+    def get(
+        self,
+        uid: str | None = None,
+        user: str | None = None,
+        fingerprint: str | None = None,
+        default: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Download an endpoint avatar image.
+        
+        Args:
+            uid: Single FortiClient UID. (optional)
+            user: User name of the endpoint. (optional)
+            fingerprint: Avatar fingerprint. (optional)
+            default: Default avatar name ['authuser'|'unauthuser'|'authuser_72'|'unauthuser_72']. Default avatar when endpoint / device avatar is not available. If default is not set, Not found 404 is returned. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.avatar.download.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if uid is not None:
+            params['uid'] = uid
+        if user is not None:
+            params['user'] = user
+        if fingerprint is not None:
+            params['fingerprint'] = fingerprint
+        if default is not None:
+            params['default'] = default
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/avatar/download", params=params)
 
-        Retrieve the avatar image associated with a specific endpoint.
+
+class Avatar:
+    """Avatar operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Avatar endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            uid: Endpoint UID to get avatar for
-            **kwargs: Additional query parameters
-
-        Returns:
-            bytes: Image file content (typically PNG or JPEG)
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Download avatar using dict
-            >>> avatar_data = fgt.api.monitor.endpoint_control.avatar.download(
-            ...     data_dict={'uid': 'EP12345'}
-            ... )
-            >>> with open('endpoint_avatar.png', 'wb') as f:
-            ...     f.write(avatar_data)
-
-            >>> # Download avatar using keyword
-            >>> avatar_data = fgt.api.monitor.endpoint_control.avatar.download(
-            ...     uid='EP12345'
-            ... )
-
-        Note:
-            Returns binary image data, not JSON.
+            client: HTTPClient instance for API communication
         """
-        params = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        if uid is not None:
-            params["uid"] = uid
-
-        params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/download", params=params)
+        # Initialize nested resources
+        self.download = Download(client)

@@ -1,15 +1,15 @@
-"""Load balance server health monitor operations."""
+"""Monitor API - Health operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class Health:
-    """Load balance server health monitors."""
+    """Health operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Health endpoint.
 
@@ -18,20 +18,26 @@ class Health:
         """
         self._client = client
 
-    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List configured load balance server health monitors.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing health monitor information
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.health.list()
+            >>> fgt.api.monitor.firewall.health.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/health", params=params)

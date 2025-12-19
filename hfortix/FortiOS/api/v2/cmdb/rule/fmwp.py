@@ -1,306 +1,314 @@
 """
-FortiOS CMDB - Rule FMWP
-
-Show FMWP (FortiManager Wireless Protection) signatures.
+FortiOS CMDB - Rule Fmwp
 
 API Endpoints:
-    GET    /api/v2/cmdb/rule/fmwp           - List all / Get specific
-    POST   /api/v2/cmdb/rule/fmwp           - Create
-    PUT    /api/v2/cmdb/rule/fmwp/{name}   - Update
-    DELETE /api/v2/cmdb/rule/fmwp/{name}   - Delete
+    GET    /rule/fmwp
+    POST   /rule/fmwp
+    GET    /rule/fmwp/{name}
+    PUT    /rule/fmwp/{name}
+    DELETE /rule/fmwp/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-from hfortix.FortiOS.http_client import encode_path_component
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Fmwp:
-    """Rule FMWP endpoint"""
+    """Fmwp operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Rule FMWP endpoint
+        Initialize Fmwp endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get FMWP signature(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Signature name (if specified, gets single signature)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.fmwp.get()
-            >>> result = fgt.api.cmdb.rule.fmwp.get(name='signature1')
+            Dictionary containing API response
         """
-        path = "rule/fmwp"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    # NOTE: FMWP signatures are READ-ONLY (managed by FortiGuard Services)
-    # The create/update/delete methods are included for API completeness but will
-    # return HTTP 500 errors as these signatures cannot be manually created/modified.
-    
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        group: Optional[str] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        service: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        rev: Optional[int] = None,
-        date: Optional[int] = None,
-        metadata: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create FMWP signature.
-        
-        NOTE: This operation is not supported. FMWP signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
-        Args:
-            data_dict: Complete signature configuration dictionary
-            name: Rule name (max 63 chars)
-            status: Enable/disable rule. Options: 'disable', 'enable'
-            log: Enable/disable logging. Options: 'disable', 'enable'
-            log_packet: Enable/disable packet logging. Options: 'disable', 'enable'
-            action: Action for matching traffic. Options: 'pass', 'block'
-            group: Rule group (max 63 chars)
-            severity: Severity level
-            location: Vulnerable location
-            os: Vulnerable operating systems
-            application: Vulnerable applications
-            service: Vulnerable service
-            rule_id: Rule ID (0-4294967295)
-            rev: Revision number (0-4294967295)
-            date: Date (0-4294967295)
-            metadata: List of metadata dicts with id, metaid, valueid
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # Using data_dict
-            >>> data = {
-            ...     'name': 'sig1',
-            ...     'status': 'enable',
-            ...     'action': 'block',
-            ...     'log': 'enable'
-            ... }
-            >>> result = fgt.api.cmdb.rule.fmwp.create(data_dict=data)
-            >>> 
-            >>> # Using explicit parameters
-            >>> result = fgt.api.cmdb.rule.fmwp.create(
-            ...     name='sig1',
-            ...     status='enable',
-            ...     action='block',
-            ...     log='enable',
-            ...     severity='high'
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        if status is not None:
-            data["status"] = status
-        if log is not None:
-            data["log"] = log
-        if log_packet is not None:
-            data["log-packet"] = log_packet
-        if action is not None:
-            data["action"] = action
-        if group is not None:
-            data["group"] = group
-        if severity is not None:
-            data["severity"] = severity
-        if location is not None:
-            data["location"] = location
-        if os is not None:
-            data["os"] = os
-        if application is not None:
-            data["application"] = application
-        if service is not None:
-            data["service"] = service
-        if rule_id is not None:
-            data["rule-id"] = rule_id
-        if rev is not None:
-            data["rev"] = rev
-        if date is not None:
-            data["date"] = date
-        if metadata is not None:
-            data["metadata"] = metadata
-            
-        data.update(kwargs)
-        return self._client.post("cmdb", "rule/fmwp", data=data, vdom=vdom)
+            endpoint = f"/rule/fmwp/{name}"
+        else:
+            endpoint = "/rule/fmwp"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        group: Optional[str] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        service: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        rev: Optional[int] = None,
-        date: Optional[int] = None,
-        metadata: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        log: str | None = None,
+        log_packet: str | None = None,
+        group: str | None = None,
+        severity: str | None = None,
+        location: str | None = None,
+        os: str | None = None,
+        application: str | None = None,
+        service: str | None = None,
+        rule_id: int | None = None,
+        rev: int | None = None,
+        date: int | None = None,
+        metadata: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update FMWP signature.
+        Update this specific resource.
         
-        NOTE: This operation is not supported. FMWP signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
         Args:
-            name: Signature name (required)
-            data_dict: Complete signature configuration dictionary
-            status: Enable/disable rule. Options: 'disable', 'enable'
-            log: Enable/disable logging. Options: 'disable', 'enable'
-            log_packet: Enable/disable packet logging. Options: 'disable', 'enable'
-            action: Action for matching traffic. Options: 'pass', 'block'
-            group: Rule group (max 63 chars)
-            severity: Severity level
-            location: Vulnerable location
-            os: Vulnerable operating systems
-            application: Vulnerable applications
-            service: Vulnerable service
-            rule_id: Rule ID (0-4294967295)
-            rev: Revision number (0-4294967295)
-            date: Date (0-4294967295)
-            metadata: List of metadata dicts with id, metaid, valueid
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters to update
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # Using data_dict
-            >>> data = {'status': 'disable', 'log': 'disable'}
-            >>> result = fgt.api.cmdb.rule.fmwp.update(name='sig1', data_dict=data)
-            >>> 
-            >>> # Using explicit parameters
-            >>> result = fgt.api.cmdb.rule.fmwp.update(
-            ...     name='sig1',
-            ...     status='disable',
-            ...     action='pass'
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Rule name. (optional)
+            status: Print all FMWP rules information. (optional)
+            log: Enable/disable logging. (optional)
+            log_packet: Enable/disable packet logging. (optional)
+            group: Group. (optional)
+            severity: Severity. (optional)
+            location: Vulnerable location. (optional)
+            os: Vulnerable operation systems. (optional)
+            application: Vulnerable applications. (optional)
+            service: Vulnerable service. (optional)
+            rule_id: Rule ID. (optional)
+            rev: Revision. (optional)
+            date: Date. (optional)
+            metadata: Meta data. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
         
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/rule/fmwp/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
         if status is not None:
-            data["status"] = status
+            data_payload['status'] = status
         if log is not None:
-            data["log"] = log
+            data_payload['log'] = log
         if log_packet is not None:
-            data["log-packet"] = log_packet
-        if action is not None:
-            data["action"] = action
+            data_payload['log-packet'] = log_packet
         if group is not None:
-            data["group"] = group
+            data_payload['group'] = group
         if severity is not None:
-            data["severity"] = severity
+            data_payload['severity'] = severity
         if location is not None:
-            data["location"] = location
+            data_payload['location'] = location
         if os is not None:
-            data["os"] = os
+            data_payload['os'] = os
         if application is not None:
-            data["application"] = application
+            data_payload['application'] = application
         if service is not None:
-            data["service"] = service
+            data_payload['service'] = service
         if rule_id is not None:
-            data["rule-id"] = rule_id
+            data_payload['rule-id'] = rule_id
         if rev is not None:
-            data["rev"] = rev
+            data_payload['rev'] = rev
         if date is not None:
-            data["date"] = date
+            data_payload['date'] = date
         if metadata is not None:
-            data["metadata"] = metadata
-            
-        data.update(kwargs)
-        path = f"rule/fmwp/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+            data_payload['metadata'] = metadata
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete FMWP signature.
+        Delete this specific resource.
         
-        NOTE: This operation is not supported. FMWP signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
         Args:
-            name: Signature name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.fmwp.delete(name='sig1')
+            Dictionary containing API response
         """
-        path = f"rule/fmwp/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/rule/fmwp/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        log: str | None = None,
+        log_packet: str | None = None,
+        group: str | None = None,
+        severity: str | None = None,
+        location: str | None = None,
+        os: str | None = None,
+        application: str | None = None,
+        service: str | None = None,
+        rule_id: int | None = None,
+        rev: int | None = None,
+        date: int | None = None,
+        metadata: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if FMWP signature exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Signature name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Rule name. (optional)
+            status: Print all FMWP rules information. (optional)
+            log: Enable/disable logging. (optional)
+            log_packet: Enable/disable packet logging. (optional)
+            group: Group. (optional)
+            severity: Severity. (optional)
+            location: Vulnerable location. (optional)
+            os: Vulnerable operation systems. (optional)
+            application: Vulnerable applications. (optional)
+            service: Vulnerable service. (optional)
+            rule_id: Rule ID. (optional)
+            rev: Revision. (optional)
+            date: Date. (optional)
+            metadata: Meta data. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if signature exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.rule.fmwp.exists(name='sig1'):
-            ...     print("Signature exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name=name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/rule/fmwp"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if log is not None:
+            data_payload['log'] = log
+        if log_packet is not None:
+            data_payload['log-packet'] = log_packet
+        if group is not None:
+            data_payload['group'] = group
+        if severity is not None:
+            data_payload['severity'] = severity
+        if location is not None:
+            data_payload['location'] = location
+        if os is not None:
+            data_payload['os'] = os
+        if application is not None:
+            data_payload['application'] = application
+        if service is not None:
+            data_payload['service'] = service
+        if rule_id is not None:
+            data_payload['rule-id'] = rule_id
+        if rev is not None:
+            data_payload['rev'] = rev
+        if date is not None:
+            data_payload['date'] = date
+        if metadata is not None:
+            data_payload['metadata'] = metadata
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

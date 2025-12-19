@@ -1,271 +1,282 @@
 """
-FortiOS CMDB - Firewall Per-IP Traffic Shaper
-Configure per-IP traffic shaper.
+FortiOS CMDB - Firewall ShaperPerIpShaper
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.shaper/per-ip-shaper           - List all / Get specific
-    POST   /api/v2/cmdb/firewall.shaper/per-ip-shaper           - Create
-    PUT    /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}   - Update
-    DELETE /api/v2/cmdb/firewall.shaper/per-ip-shaper/{id}   - Delete
+    GET    /firewall.shaper/per-ip-shaper
+    POST   /firewall.shaper/per-ip-shaper
+    GET    /firewall.shaper/per-ip-shaper/{name}
+    PUT    /firewall.shaper/per-ip-shaper/{name}
+    DELETE /firewall.shaper/per-ip-shaper/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
-from .....http_client import HTTPResponse
 
+class ShaperPerIpShaper:
+    """ShaperPerIpShaper operations."""
 
-class PerIpShaper:
-    """Per-IP traffic shaper endpoint"""
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ShaperPerIpShaper endpoint.
 
-    def __init__(self, client):
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get per-IP traffic shaper(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Per-IP shaper name (if retrieving specific shaper)
-            filter: Filter results
-            range: Range of results
-            sort: Sort results
-            format: List of fields to include
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Get specific per-IP shaper
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.get('high-priority')
-
-            >>> # Get all per-IP shapers
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.get()
+            Dictionary containing API response
         """
-        path = "firewall.shaper/per-ip-shaper"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        params = {}
-        param_map = {
-            "filter": filter,
-            "range": range,
-            "sort": sort,
-            "format": format,
-        }
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        max_bandwidth: Optional[int] = None,
-        max_concurrent_session: Optional[int] = None,
-        max_concurrent_tcp_session: Optional[int] = None,
-        max_concurrent_udp_session: Optional[int] = None,
-        comment: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        Create a per-IP traffic shaper.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Per-IP shaper name (max 35 chars)
-            max_bandwidth: Upper bandwidth limit (0-16776000 kbps, 0 = unlimited)
-            max_concurrent_session: Maximum concurrent sessions (0-2097000, 0 = unlimited)
-            max_concurrent_tcp_session: Maximum concurrent TCP sessions (0-2097000, 0 = unlimited)
-            max_concurrent_udp_session: Maximum concurrent UDP sessions (0-2097000, 0 = unlimited)
-            comment: Comment (max 1023 chars)
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create per-IP shaper with bandwidth limit
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.create(
-            ...     'user-limit',
-            ...     max_bandwidth=10240,
-            ...     max_concurrent_session=100,
-            ...     comment='Per-user bandwidth limit'
-            ... )
-
-            >>> # POST - Create per-IP shaper with TCP/UDP session limits
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.create(
-            ...     'session-limit',
-            ...     max_concurrent_tcp_session=50,
-            ...     max_concurrent_udp_session=30
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+            endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
         else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if max_bandwidth is not None:
-                payload_dict["max-bandwidth"] = max_bandwidth
-            if max_concurrent_session is not None:
-                payload_dict["max-concurrent-session"] = max_concurrent_session
-            if max_concurrent_tcp_session is not None:
-                payload_dict["max-concurrent-tcp-session"] = max_concurrent_tcp_session
-            if max_concurrent_udp_session is not None:
-                payload_dict["max-concurrent-udp-session"] = max_concurrent_udp_session
-            if comment is not None:
-                payload_dict["comment"] = comment
-
-        return self._client.post(
-            "cmdb", "firewall.shaper/per-ip-shaper", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+            endpoint = "/firewall.shaper/per-ip-shaper"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        max_bandwidth: Optional[int] = None,
-        max_concurrent_session: Optional[int] = None,
-        max_concurrent_tcp_session: Optional[int] = None,
-        max_concurrent_udp_session: Optional[int] = None,
-        comment: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        max_bandwidth: int | None = None,
+        bandwidth_unit: str | None = None,
+        max_concurrent_session: int | None = None,
+        max_concurrent_tcp_session: int | None = None,
+        max_concurrent_udp_session: int | None = None,
+        diffserv_forward: str | None = None,
+        diffserv_reverse: str | None = None,
+        diffservcode_forward: str | None = None,
+        diffservcode_rev: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update a per-IP traffic shaper.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Per-IP shaper name
-            max_bandwidth: Upper bandwidth limit (0-16776000 kbps, 0 = unlimited)
-            max_concurrent_session: Maximum concurrent sessions (0-2097000, 0 = unlimited)
-            max_concurrent_tcp_session: Maximum concurrent TCP sessions (0-2097000, 0 = unlimited)
-            max_concurrent_udp_session: Maximum concurrent UDP sessions (0-2097000, 0 = unlimited)
-            comment: Comment (max 1023 chars)
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Traffic shaper name. (optional)
+            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
+            bandwidth_unit: Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
+            max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            diffserv_forward: Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. (optional)
+            diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. (optional)
+            diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update bandwidth limit
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.update(
-            ...     'user-limit',
-            ...     max_bandwidth=20480
-            ... )
-
-            >>> # PUT - Update session limits
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.update(
-            ...     'session-limit',
-            ...     max_concurrent_tcp_session=100,
-            ...     max_concurrent_udp_session=50
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if max_bandwidth is not None:
-                payload_dict["max-bandwidth"] = max_bandwidth
-            if max_concurrent_session is not None:
-                payload_dict["max-concurrent-session"] = max_concurrent_session
-            if max_concurrent_tcp_session is not None:
-                payload_dict["max-concurrent-tcp-session"] = max_concurrent_tcp_session
-            if max_concurrent_udp_session is not None:
-                payload_dict["max-concurrent-udp-session"] = max_concurrent_udp_session
-            if comment is not None:
-                payload_dict["comment"] = comment
-
-        return self._client.put(
-            "cmdb",
-            f"firewall.shaper/per-ip-shaper/{name}",
-            payload_dict,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if max_bandwidth is not None:
+            data_payload['max-bandwidth'] = max_bandwidth
+        if bandwidth_unit is not None:
+            data_payload['bandwidth-unit'] = bandwidth_unit
+        if max_concurrent_session is not None:
+            data_payload['max-concurrent-session'] = max_concurrent_session
+        if max_concurrent_tcp_session is not None:
+            data_payload['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+        if max_concurrent_udp_session is not None:
+            data_payload['max-concurrent-udp-session'] = max_concurrent_udp_session
+        if diffserv_forward is not None:
+            data_payload['diffserv-forward'] = diffserv_forward
+        if diffserv_reverse is not None:
+            data_payload['diffserv-reverse'] = diffserv_reverse
+        if diffservcode_forward is not None:
+            data_payload['diffservcode-forward'] = diffservcode_forward
+        if diffservcode_rev is not None:
+            data_payload['diffservcode-rev'] = diffservcode_rev
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a per-IP traffic shaper.
-
+        Delete this specific resource.
+        
         Args:
-            name: Per-IP shaper name
-            vdom: Virtual domain
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete per-IP shaper
-            >>> result = fgt.cmdb.firewall.shaper.per_ip_shaper.delete('user-limit')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"firewall.shaper/per-ip-shaper/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        max_bandwidth: int | None = None,
+        bandwidth_unit: str | None = None,
+        max_concurrent_session: int | None = None,
+        max_concurrent_tcp_session: int | None = None,
+        max_concurrent_udp_session: int | None = None,
+        diffserv_forward: str | None = None,
+        diffserv_reverse: str | None = None,
+        diffservcode_forward: str | None = None,
+        diffservcode_rev: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if per-IP shaper exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Per-IP shaper name
-            vdom: Virtual domain
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Traffic shaper name. (optional)
+            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
+            bandwidth_unit: Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
+            max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            diffserv_forward: Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. (optional)
+            diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. (optional)
+            diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if per-IP shaper exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.firewall.shaper.per_ip_shaper.exists('user-limit'):
-            ...     print("Per-IP shaper exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name, vdom=vdom, raw_json=True)
-            return (
-                result.get("status") == "success"
-                and result.get("http_status") == 200
-                and len(result.get("results", [])) > 0
-            )
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.shaper/per-ip-shaper"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if max_bandwidth is not None:
+            data_payload['max-bandwidth'] = max_bandwidth
+        if bandwidth_unit is not None:
+            data_payload['bandwidth-unit'] = bandwidth_unit
+        if max_concurrent_session is not None:
+            data_payload['max-concurrent-session'] = max_concurrent_session
+        if max_concurrent_tcp_session is not None:
+            data_payload['max-concurrent-tcp-session'] = max_concurrent_tcp_session
+        if max_concurrent_udp_session is not None:
+            data_payload['max-concurrent-udp-session'] = max_concurrent_udp_session
+        if diffserv_forward is not None:
+            data_payload['diffserv-forward'] = diffserv_forward
+        if diffserv_reverse is not None:
+            data_payload['diffserv-reverse'] = diffserv_reverse
+        if diffservcode_forward is not None:
+            data_payload['diffservcode-forward'] = diffservcode_forward
+        if diffservcode_rev is not None:
+            data_payload['diffservcode-rev'] = diffservcode_rev
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

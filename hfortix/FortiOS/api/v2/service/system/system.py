@@ -1,183 +1,224 @@
 """
-FortiOS Service - System Operations
+FortiOS Service API - System
 
-Provides system-level service operations for Security Fabric and vulnerability management.
+Auto-generated from OpenAPI specification.
 
-API Endpoints:
-    GET /system/psirt-vulnerabilities/                           - Get PSIRT vulnerability advisories
-    GET /system/fabric-time-in-sync/                             - Check Fabric time synchronization
-    GET /system/fabric-admin-lockout-exists-on-firmware-update/  - Check admin lockout on firmware update
+Functions support:
+    - Full parameter specification
+    - Dual approach: individual parameters OR payload_dict
+    - raw_json parameter: controls whether to return full parsed response or extracted results
+    - Type hints and comprehensive docstrings
 """
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from .....http_client import HTTPClient
+
+
+class FabricAdminLockoutExistsOnFirmwareUpdate:
+    """FabricAdminLockoutExistsOnFirmwareUpdate resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def get(
+        self,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Check if there exists a FortiGate in the Fabric that has an administrative user that will get locked out if firmware is updated to a version that does not support safer passwords. 
+ Access Group: any
+
+        Supports dual approach:
+        1. Individual parameters: get(param='value')
+        2. Payload dict: get(payload_dict={'param': 'value'})
+
+        Args:
+            No parameters
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get()
+            
+            # Using payload_dict
+            result = fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        pass
+
+        params.update(kwargs)
+
+        return self._client.get(
+            "service",
+            "system/fabric-admin-lockout-exists-on-firmware-update/",
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+class FabricTimeInSync:
+    """FabricTimeInSync resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def get(
+        self,
+        utc: Optional[str] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Checks whether the other FortiGate device's time in the Security Fabric is in sync with the specified utc timestamp (in seconds) 
+ Access Group: any
+
+        Supports dual approach:
+        1. Individual parameters: get(param='value')
+        2. Payload dict: get(payload_dict={'param': 'value'})
+
+        Args:
+            utc: UTC, in seconds, to check against to see if the device's current time is syncronized with.
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.system.fabric-time-in-sync.get()
+            
+            # Using payload_dict
+            result = fgt.api.service.system.fabric-time-in-sync.get(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        if utc is not None:
+            params['utc'] = utc
+
+        params.update(kwargs)
+
+        return self._client.get(
+            "service",
+            "system/fabric-time-in-sync/",
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+class PsirtVulnerabilities:
+    """PsirtVulnerabilities resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def get(
+        self,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Retrieve a list of N number of PSIRT advisories that the Security Fabric is vulnerable to for a given severity. 
+ Access Group: sysgrp.mnt
+
+        Supports dual approach:
+        1. Individual parameters: get(param='value')
+        2. Payload dict: get(payload_dict={'param': 'value'})
+
+        Args:
+            No parameters
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.system.psirt-vulnerabilities.get()
+            
+            # Using payload_dict
+            result = fgt.api.service.system.psirt-vulnerabilities.get(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        pass
+
+        params.update(kwargs)
+
+        return self._client.get(
+            "service",
+            "system/psirt-vulnerabilities/",
+            params=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
 
 
 class System:
-    """System service endpoint"""
+    """Main System service class"""
 
     def __init__(self, client: "HTTPClient") -> None:
-        """
-        Initialize System service endpoint.
-
-        Args:
-            client: HTTPClient instance
-        """
         self._client = client
+        self._fabricAdminLockoutExistsOnFirmwareUpdate = None
+        self._fabricTimeInSync = None
+        self._psirtVulnerabilities = None
 
-    def psirt_vulnerabilities(
-        self,
-        severity: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve PSIRT vulnerability advisories for the Security Fabric.
+    @property
+    def fabricAdminLockoutExistsOnFirmwareUpdate(self) -> FabricAdminLockoutExistsOnFirmwareUpdate:
+        """Access FabricAdminLockoutExistsOnFirmwareUpdate resource"""
+        if self._fabricAdminLockoutExistsOnFirmwareUpdate is None:
+            self._fabricAdminLockoutExistsOnFirmwareUpdate = FabricAdminLockoutExistsOnFirmwareUpdate(self._client)
+        return self._fabricAdminLockoutExistsOnFirmwareUpdate
 
-        Returns a list of PSIRT advisories that devices in the Security Fabric
-        are vulnerable to, filtered by severity level.
+    @property
+    def fabricTimeInSync(self) -> FabricTimeInSync:
+        """Access FabricTimeInSync resource"""
+        if self._fabricTimeInSync is None:
+            self._fabricTimeInSync = FabricTimeInSync(self._client)
+        return self._fabricTimeInSync
 
-        Args:
-            severity (str, optional): Filter by severity level
-                Valid values: 'none', 'low', 'medium', 'high', 'critical'
-            scope (str, optional): Scope of the query
-                Valid values: 'global' (Security Fabric), 'vdom' (single VDOM)
-            vdom (str, optional): Virtual domain name
-            **kwargs: Additional parameters to pass to the API
+    @property
+    def psirtVulnerabilities(self) -> PsirtVulnerabilities:
+        """Access PsirtVulnerabilities resource"""
+        if self._psirtVulnerabilities is None:
+            self._psirtVulnerabilities = PsirtVulnerabilities(self._client)
+        return self._psirtVulnerabilities
 
-        Returns:
-            dict: API response containing:
-                - status: 'success' or 'error'
-                - http_status: HTTP status code
-                - results: List of PSIRT vulnerabilities with:
-                    - name: Vulnerability name
-                    - irNumber: IR number identifying the vulnerability
-                    - serial: Device ID of vulnerable device
-                    - upgradeToVersion: Recommended upgrade version
-                    - severity: Severity level (none, low, medium, high, critical)
-
-        Examples:
-            # Get all PSIRT vulnerabilities
-            result = fgt.service.system.psirt_vulnerabilities()
-
-            # Get critical vulnerabilities only
-            result = fgt.service.system.psirt_vulnerabilities(severity='critical')
-
-            # Get vulnerabilities across Security Fabric
-            result = fgt.service.system.psirt_vulnerabilities(scope='global')
-        """
-        endpoint = "system/psirt-vulnerabilities/"
-        params = {}
-
-        if severity is not None:
-            params["severity"] = severity
-        if scope is not None:
-            params["scope"] = scope
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        params.update(kwargs)
-
-        return self._client.get("service", endpoint, params=params, raw_json=raw_json)
-
-    def fabric_time_in_sync(
-        self,
-        utc: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Check whether Security Fabric device times are synchronized.
-
-        Checks if other FortiGate devices in the Security Fabric have their time
-        in sync with the specified UTC timestamp. Times are considered synchronized
-        if the difference is within 2 minutes.
-
-        Args:
-            utc (str, optional): UTC timestamp in seconds to check against
-                If not provided, checks against current device time
-            vdom (str, optional): Virtual domain name
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing:
-                - status: 'success' or 'error'
-                - http_status: HTTP status code
-                - results: Synchronization status with:
-                    - synchronized: True if times are in sync (within 2 minutes)
-
-        Examples:
-            # Check if Fabric times are synchronized
-            result = fgt.service.system.fabric_time_in_sync()
-
-            # Check against specific UTC timestamp
-            import time
-            current_utc = str(int(time.time()))
-            result = fgt.service.system.fabric_time_in_sync(utc=current_utc)
-
-            # Check synchronization status
-            if result['results']['synchronized']:
-                print("Security Fabric times are synchronized")
-            else:
-                print("Security Fabric times are NOT synchronized")
-        """
-        endpoint = "system/fabric-time-in-sync/"
-        params = {}
-
-        if utc is not None:
-            params["utc"] = utc
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        params.update(kwargs)
-
-        return self._client.get("service", endpoint, params=params, raw_json=raw_json)
-
-    def fabric_admin_lockout_exists(
-        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Check for admin lockout risks on firmware update.
-
-        Checks if any FortiGate in the Security Fabric has administrative users
-        that will get locked out if the firmware is updated to a version that
-        does not support safer passwords.
-
-        Args:
-            vdom (str, optional): Virtual domain name
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing:
-                - status: 'success' or 'error'
-                - http_status: HTTP status code
-                - results: Lockout risk status with:
-                    - exists: True if at least one admin will be locked out
-
-        Examples:
-            # Check for admin lockout risks
-            result = fgt.service.system.fabric_admin_lockout_exists()
-
-            # Check lockout risk before firmware upgrade
-            if result['results']['exists']:
-                print("⚠️  WARNING: Admins will be locked out on firmware update!")
-                print("Update admin passwords before upgrading firmware.")
-            else:
-                print("✅ Safe to upgrade firmware - no admin lockout risk")
-        """
-        endpoint = "system/fabric-admin-lockout-exists-on-firmware-update/"
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        params.update(kwargs)
-
-        return self._client.get("service", endpoint, params=params, raw_json=raw_json)

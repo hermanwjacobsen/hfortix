@@ -1,15 +1,15 @@
-"""Internet service basic information operations."""
+"""Monitor API - InternetServiceBasic operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class InternetServiceBasic:
-    """Internet services with basic information."""
+    """InternetServiceBasic operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize InternetServiceBasic endpoint.
 
@@ -18,49 +18,30 @@ class InternetServiceBasic:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, id: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
+    def get(
+        self,
+        ipv6_only: bool | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List internet services with basic information.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            id: Filter by internet service ID
+            ipv6_only: Only return IPv6 entries. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing internet services with basic info
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.internet_service_basic.list()
-            >>> fgt.api.monitor.firewall.internet_service_basic.list(id=65536)
+            >>> fgt.api.monitor.firewall.internet_service_basic.get()
         """
-        params = data_dict.copy() if data_dict else {}
-        if id is not None:
-            params["id"] = id
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/internet-service-basic", params=params)
-
-    def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, id: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        Get basic information for a specific internet service.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            id: Internet service ID to retrieve
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing internet service basic info
-
-        Example:
-            >>> fgt.api.monitor.firewall.internet_service_basic.get(id=65536)
-        """
-        params = data_dict.copy() if data_dict else {}
-        if id is not None:
-            params["id"] = id
+        params = payload_dict.copy() if payload_dict else {}
+        if ipv6_only is not None:
+            params['ipv6_only'] = ipv6_only
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/internet-service-basic", params=params)

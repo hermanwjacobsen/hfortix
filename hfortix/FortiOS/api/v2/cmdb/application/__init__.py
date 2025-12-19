@@ -1,42 +1,31 @@
-"""
-FortiOS Application API
-Application control configuration endpoints
-"""
+"""FortiOS CMDB - Application category"""
 
-from typing import TYPE_CHECKING
+from .custom import Custom
+from .group import Group
+from .list import List
+from .name import Name
+from .rule_settings import RuleSettings
 
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+__all__ = ['Custom', 'Group', 'List', 'Name', 'RuleSettings']
 
-__all__ = ["Application"]
 
 
 class Application:
     """
-    Application API helper class
-    Provides access to application control configuration endpoints
+    Application category wrapper.
+    
+    This class provides access to all application CMDB endpoints.
     """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    
+    def __init__(self, client):
         """
-        Initialize Application helper
-
+        Initialize Application with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
-
-        # Initialize endpoint classes
-        from .custom import Custom
-        from .group import Group
-        from .list import List
-        from .name import Name
-
         self.custom = Custom(client)
         self.group = Group(client)
         self.list = List(client)
         self.name = Name(client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return ["custom", "group", "list", "name"]
+        self.rule_settings = RuleSettings(client)

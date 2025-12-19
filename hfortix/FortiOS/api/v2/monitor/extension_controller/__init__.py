@@ -41,12 +41,12 @@ class ExtensionController:
         Access FortiGate connector sub-endpoint.
 
         Returns:
-            FortiGate instance
+            Fortigate instance
         """
         if self._fortigate is None:
-            from .fortigate import FortiGate
+            from .fortigate import Fortigate
 
-            self._fortigate = FortiGate(self._client)
+            self._fortigate = Fortigate(self._client)
         return self._fortigate
 
     @property
@@ -55,12 +55,12 @@ class ExtensionController:
         Access LAN Extension VDOM sub-endpoint.
 
         Returns:
-            LanExtensionVdom instance
+            LanExtensionVdomStatus instance
         """
         if self._lan_extension_vdom is None:
-            from .lan_extension_vdom import LanExtensionVdom
+            from .lan_extension_vdom_status import LanExtensionVdomStatus
 
-            self._lan_extension_vdom = LanExtensionVdom(self._client)
+            self._lan_extension_vdom = LanExtensionVdomStatus(self._client)
         return self._lan_extension_vdom
 
     def __dir__(self):

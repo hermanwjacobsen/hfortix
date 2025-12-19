@@ -1,113 +1,109 @@
 """
-FortiOS CMDB - Log Memory Setting
-
-Settings for memory buffer.
+FortiOS CMDB - Log MemorySetting
 
 API Endpoints:
-    GET  /api/v2/cmdb/log.memory/setting  - Get configuration
-    PUT  /api/v2/cmdb/log.memory/setting  - Update configuration
+    GET    /log.memory/setting
+    PUT    /log.memory/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class MemorySetting:
-    """Log Memory Setting endpoint (singleton)"""
+    """MemorySetting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize MemorySetting endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get memory buffer settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Enable CLI skip operator
-            action: Special actions (default, schema, revision)
-            vdom: Virtual domain
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Memory buffer settings configuration
-
-        Examples:
-            >>> # Get memory buffer settings
-            >>> result = fgt.api.cmdb.log.memory.setting.get()
-
-            >>> # Get with metadata
-            >>> result = fgt.api.cmdb.log.memory.setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.memory/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        path = "log.memory/setting"
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update memory buffer settings.
-
-        Supports three usage patterns:
-        1. Dictionary: update(data_dict={'status': 'enable'})
-        2. Keywords: update(status='enable')
-        3. Mixed: update(data_dict={...}, status='enable')
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            status: Enable/disable memory buffer logging
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Enable/disable logging to the FortiGate's memory. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Update result
-
-        Examples:
-            >>> # Enable memory buffer logging
-            >>> fgt.api.cmdb.log.memory.setting.update(status='enable')
-
-            >>> # Disable memory buffer logging
-            >>> fgt.api.cmdb.log.memory.setting.update(
-            ...     data_dict={'status': 'disable'}
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.memory/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if status is not None:
-            data["status"] = status
-
-        data.update(kwargs)
-
-        path = "log.memory/setting"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+            data_payload['status'] = status
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

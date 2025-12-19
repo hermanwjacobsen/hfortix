@@ -1,392 +1,298 @@
 """
-FortiOS CMDB - Firewall Address Group
-
-Configure IPv4 address groups.
+FortiOS CMDB - Firewall Addrgrp
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall/addrgrp           - List all / Get specific
-    POST   /api/v2/cmdb/firewall/addrgrp           - Create
-    PUT    /api/v2/cmdb/firewall/addrgrp/{name}   - Update
-    DELETE /api/v2/cmdb/firewall/addrgrp/{name}   - Delete
+    GET    /firewall/addrgrp
+    POST   /firewall/addrgrp
+    GET    /firewall/addrgrp/{name}
+    PUT    /firewall/addrgrp/{name}
+    DELETE /firewall/addrgrp/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Addrgrp:
-    """Firewall IPv4 address group endpoint"""
+    """Addrgrp operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Addrgrp endpoint
+        Initialize Addrgrp endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[dict] = None,
-        acs: Optional[int] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv4 address group object(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Object name (if specified, gets single object)
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned result are in ascending order
-            search: Filter objects by search value
-            scope: Scope level (global, vdom, or both)
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            action: Special action (datasource, stats, schema, etc.)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all address groups
-            >>> result = fgt.cmdb.firewall.addrgrp.get()
-
-            >>> # Get specific address group
-            >>> result = fgt.cmdb.firewall.addrgrp.get('internal-networks')
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.firewall.addrgrp.get('internal-networks', with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        path = "firewall/addrgrp"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        member: Optional[list[str] | list[dict[str, str]]] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        color: Optional[int] = None,
-        tags: Optional[list[dict[str, Any]]] = None,
-        allow_routing: Optional[str] = None,
-        exclude: Optional[str] = None,
-        exclude_member: Optional[list[dict[str, str]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IPv4 address group object.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'name': 'grp1', 'member': [...]}, vdom='root')
-        2. Pass kwargs: create(name='grp1', member=[...], vdom='root')
-
-        Args:
-            payload_dict: Complete address group configuration dict (optional if using kwargs)
-            name: Address group name (required if not using data)
-            member: List of address names (strings) or dicts [{'name': 'addr1'}] (required if not using data)
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            color: Icon color (0-32)
-            tags: List of tag dicts [{'name': 'tag1'}]
-            allow_routing: Enable/disable routing ('enable'|'disable')
-            exclude: Enable/disable exclude members ('enable'|'disable')
-            exclude_member: List of address dicts to exclude [{'name': 'addr1'}]
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create with data dict
-            >>> result = fgt.cmdb.firewall.addrgrp.create(
-            ...     payload_dict={'name': 'internal-networks', 'member': [{'name': 'subnet1'}]},
-            ...     vdom='root'
-            ... )
-
-            >>> # POST - Create address group with string list (simplified API)
-            >>> result = fgt.cmdb.firewall.addrgrp.create(
-            ...     name='internal-networks',
-            ...     member=['subnet1', 'subnet2', 'subnet3'],
-            ...     comment='All internal networks'
-            ... )
-
-            >>> # POST - Create address group with dict list (explicit format)
-            >>> result = fgt.cmdb.firewall.addrgrp.create(
-            ...     name='web-servers',
-            ...     member=[{'name': 'web1'}, {'name': 'web2'}],
-            ...     comment='Web server group'
-            ... )
-
-            >>> # POST - Create group with excluded members
-            >>> result = fgt.cmdb.firewall.addrgrp.create(
-            ...     name='trusted-nets',
-            ...     member=['all-internal'],
-            ...     exclude='enable',
-            ...     exclude_member=[{'name': 'quarantine-net'}]
-            ... )
-        """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            if name is None or member is None:
-                raise ValueError("Either 'data' dict or both 'name' and 'member' must be provided")
-
-            # Convert member list if needed (simplified API)
-            if member and isinstance(member, list) and len(member) > 0:
-                if isinstance(member[0], str):
-                    member = [{"name": m} for m in member]
-
-            payload_dict = {"name": name, "member": member}
+            endpoint = f"/firewall/addrgrp/{name}"
         else:
-            # If data dict is provided, process member field if needed
-            if (
-                "member" in data
-                and isinstance(payload_dict["member"], list)
-                and len(payload_dict["member"]) > 0
-            ):
-                if isinstance(payload_dict["member"][0], str):
-                    payload_dict["member"] = [{"name": m} for m in payload_dict["member"]]
-
-        # Parameter mapping (convert snake_case to hyphenated-case)
-        api_field_map = {
-            "comment": "comment",
-            "visibility": "visibility",
-            "color": "color",
-            "tags": "tags",
-            "allow_routing": "allow-routing",
-            "exclude": "exclude",
-            "exclude_member": "exclude-member",
-        }
-
-        param_map = {
-            "comment": comment,
-            "visibility": visibility,
-            "color": color,
-            "tags": tags,
-            "allow_routing": allow_routing,
-            "exclude": exclude,
-            "exclude_member": exclude_member,
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map.get(python_key, python_key)
-                payload_dict[api_key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall/addrgrp"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+            endpoint = "/firewall/addrgrp"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[dict[str, Any]] = None,
-        member: Optional[list[str] | list[dict[str, str]]] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        color: Optional[int] = None,
-        tags: Optional[list[dict[str, Any]]] = None,
-        allow_routing: Optional[str] = None,
-        exclude: Optional[str] = None,
-        exclude_member: Optional[list[dict[str, str]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        type: str | None = None,
+        category: str | None = None,
+        allow_routing: str | None = None,
+        member: list | None = None,
+        comment: str | None = None,
+        uuid: str | None = None,
+        exclude: str | None = None,
+        exclude_member: list | None = None,
+        color: int | None = None,
+        tagging: list | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPv4 address group object.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(name='grp1', payload_dict={'member': [...]}, vdom='root')
-        2. Pass kwargs: update(name='grp1', member=[...], vdom='root')
-
+        Update this specific resource.
+        
         Args:
-            name: Address group name (required)
-            payload_dict: Update configuration dict (optional if using kwargs)
-            member: List of address names (strings) or dicts [{'name': 'addr1'}]
-            comment: Description/comment
-            visibility: Enable/disable visibility ('enable'|'disable')
-            color: Icon color (0-32)
-            tags: List of tag dicts [{'name': 'tag1'}]
-            allow_routing: Enable/disable routing ('enable'|'disable')
-            exclude: Enable/disable exclude members ('enable'|'disable')
-            exclude_member: List of address dicts to exclude [{'name': 'addr1'}]
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Address group name. (optional)
+            type: Address group type. (optional)
+            category: Address group category. (optional)
+            allow_routing: Enable/disable use of this group in routing configurations. (optional)
+            member: Address objects contained within the group. (optional)
+            comment: Comment. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            exclude: Enable/disable address exclusion. (optional)
+            exclude_member: Address exclusion member. (optional)
+            color: Color of icon on the GUI. (optional)
+            tagging: Config object tagging. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update with data dict
-            >>> result = fgt.cmdb.firewall.addrgrp.update(
-            ...     name='internal-networks',
-            ...     payload_dict={'comment': 'Updated comment'},
-            ...     vdom='root'
-            ... )
-
-            >>> # PUT - Update members with simplified API
-            >>> result = fgt.cmdb.firewall.addrgrp.update(
-            ...     name='internal-networks',
-            ...     member=['subnet1', 'subnet2', 'subnet3', 'subnet4'],
-            ...     comment='Updated internal networks'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Handle member conversion in data dict pattern
-            if (
-                "member" in data
-                and isinstance(payload_dict["member"], list)
-                and len(payload_dict["member"]) > 0
-            ):
-                if isinstance(payload_dict["member"][0], str):
-                    payload_dict["member"] = [{"name": m} for m in payload_dict["member"]]
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-
-            # Convert member list if needed (simplified API)
-            if member is not None:
-                if isinstance(member, list) and len(member) > 0:
-                    if isinstance(member[0], str):
-                        member = [{"name": m} for m in member]
-                payload_dict["member"] = member
-
-            # Parameter mapping (convert snake_case to hyphenated-case)
-            api_field_map = {
-                "comment": "comment",
-                "visibility": "visibility",
-                "color": "color",
-                "tags": "tags",
-                "allow_routing": "allow-routing",
-                "exclude": "exclude",
-                "exclude_member": "exclude-member",
-            }
-
-            param_map = {
-                "comment": comment,
-                "visibility": visibility,
-                "color": color,
-                "tags": tags,
-                "allow_routing": allow_routing,
-                "exclude": exclude,
-                "exclude_member": exclude_member,
-            }
-
-            for python_key, value in param_map.items():
-                if value is not None:
-                    api_key = api_field_map.get(python_key, python_key)
-                    payload_dict[api_key] = value
-
-            # Add any additional kwargs
-            for key, value in kwargs.items():
-                if value is not None:
-                    payload_dict[key] = value
-
-        path = f"firewall/addrgrp/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/addrgrp/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if type is not None:
+            data_payload['type'] = type
+        if category is not None:
+            data_payload['category'] = category
+        if allow_routing is not None:
+            data_payload['allow-routing'] = allow_routing
+        if member is not None:
+            data_payload['member'] = member
+        if comment is not None:
+            data_payload['comment'] = comment
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if exclude is not None:
+            data_payload['exclude'] = exclude
+        if exclude_member is not None:
+            data_payload['exclude-member'] = exclude_member
+        if color is not None:
+            data_payload['color'] = color
+        if tagging is not None:
+            data_payload['tagging'] = tagging
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete IPv4 address group object.
-
+        Delete this specific resource.
+        
         Args:
-            name: Address group name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete address group
-            >>> result = fgt.cmdb.firewall.addrgrp.delete('test-group')
+            Dictionary containing API response
         """
-        path = f"firewall/addrgrp/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/addrgrp/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        type: str | None = None,
+        category: str | None = None,
+        allow_routing: str | None = None,
+        member: list | None = None,
+        comment: str | None = None,
+        uuid: str | None = None,
+        exclude: str | None = None,
+        exclude_member: list | None = None,
+        color: int | None = None,
+        tagging: list | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if IPv4 address group object exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Address group name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Address group name. (optional)
+            type: Address group type. (optional)
+            category: Address group category. (optional)
+            allow_routing: Enable/disable use of this group in routing configurations. (optional)
+            member: Address objects contained within the group. (optional)
+            comment: Comment. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            exclude: Enable/disable address exclusion. (optional)
+            exclude_member: Address exclusion member. (optional)
+            color: Color of icon on the GUI. (optional)
+            tagging: Config object tagging. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if object exists, False otherwise
-
-        Examples:
-            >>> # Check if address group exists
-            >>> if fgt.cmdb.firewall.addrgrp.exists('internal-networks'):
-            ...     print("Address group exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/addrgrp"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if type is not None:
+            data_payload['type'] = type
+        if category is not None:
+            data_payload['category'] = category
+        if allow_routing is not None:
+            data_payload['allow-routing'] = allow_routing
+        if member is not None:
+            data_payload['member'] = member
+        if comment is not None:
+            data_payload['comment'] = comment
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if exclude is not None:
+            data_payload['exclude'] = exclude
+        if exclude_member is not None:
+            data_payload['exclude-member'] = exclude_member
+        if color is not None:
+            data_payload['color'] = color
+        if tagging is not None:
+            data_payload['tagging'] = tagging
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

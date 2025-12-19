@@ -1,456 +1,378 @@
 """
 FortiOS CMDB - Router Static
 
-Configure IPv4 static routing tables.
-
 API Endpoints:
-    GET    /api/v2/cmdb/router/static           - List all / Get specific
-    POST   /api/v2/cmdb/router/static           - Create
-    PUT    /api/v2/cmdb/router/static/{seq-num}   - Update
-    DELETE /api/v2/cmdb/router/static/{seq-num}   - Delete
+    GET    /router/static
+    POST   /router/static
+    GET    /router/static/{seq-num}
+    PUT    /router/static/{seq-num}
+    DELETE /router/static/{seq-num}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-from hfortix.FortiOS.http_client import encode_path_component
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Static:
-    """Router IPv4 static routes endpoint"""
+    """Static operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Router Static endpoint
+        Initialize Static endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        seq_num: Optional[int] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[dict] = None,
-        acs: Optional[int] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IPv4 static route(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            seq_num: Sequence number (if specified, gets single route)
-            attr: Attribute name that references other table
+            seq_num: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned result are in ascending order
-            search: Filter objects by search value
-            scope: Scope level (global, vdom, or both)
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            action: Special action (datasource, stats, schema, etc.)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all static routes
-            >>> result = fgt.api.cmdb.router.static.get()
-
-            >>> # Get specific static route by sequence number
-            >>> result = fgt.api.cmdb.router.static.get(seq_num=1)
-
-            >>> # Get with specific format
-            >>> result = fgt.api.cmdb.router.static.get(format=['seq-num', 'dst', 'gateway', 'device'])
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if seq_num:
+            endpoint = f"/router/static/{seq_num}"
+        else:
+            endpoint = "/router/static"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        path = "router/static"
-        if seq_num is not None:
-            path = f"{path}/{encode_path_component(str(seq_num))}"
-
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        seq_num: Optional[int] = None,
-        status: Optional[str] = None,
-        dst: Optional[str] = None,
-        src: Optional[str] = None,
-        gateway: Optional[str] = None,
-        preferred_source: Optional[str] = None,
-        distance: Optional[int] = None,
-        weight: Optional[int] = None,
-        priority: Optional[int] = None,
-        device: Optional[str] = None,
-        comment: Optional[str] = None,
-        blackhole: Optional[str] = None,
-        dynamic_gateway: Optional[str] = None,
-        sdwan_zone: Optional[list] = None,
-        dstaddr: Optional[str] = None,
-        internet_service: Optional[int] = None,
-        internet_service_custom: Optional[str] = None,
-        internet_service_fortiguard: Optional[str] = None,
-        link_monitor_exempt: Optional[str] = None,
-        tag: Optional[int] = None,
-        vrf: Optional[int] = None,
-        bfd: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IPv4 static route.
-
-        Supports three usage patterns:
-        1. Dictionary: create(data_dict={'dst': '10.0.0.0/8', 'gateway': '192.168.1.1', ...})
-        2. Keywords: create(dst='10.0.0.0/8', gateway='192.168.1.1', device='port1')
-        3. Mixed: create(data_dict={...}, gateway='override')
-
-        Args:
-            data_dict: Complete route dictionary (Python snake_case keys)
-            seq_num: Sequence number (0-4294967295)
-            status: Enable/disable this static route ('enable', 'disable')
-            dst: Destination IP and mask for this route (e.g., '10.0.0.0/8')
-            src: Source prefix for this route
-            gateway: Gateway IP for this route
-            preferred_source: Preferred source IP for this route
-            distance: Administrative distance (1-255, default depends on route type)
-            weight: Administrative weight (0-255)
-            priority: Administrative priority (1-65535)
-            device: Gateway out interface or tunnel (max 35 chars)
-            comment: Optional comments (max 255 chars)
-            blackhole: Enable/disable black hole ('enable', 'disable')
-            dynamic_gateway: Enable use of dynamic gateway from DHCP/PPP ('enable', 'disable')
-            sdwan_zone: List of SD-WAN zones [{'name': 'zone1'}, ...]
-            dstaddr: Name of firewall address or address group (max 79 chars)
-            internet_service: Application ID in Internet service database (0-4294967295)
-            internet_service_custom: Application name in Internet service custom database (max 64 chars)
-            internet_service_fortiguard: Application name in Internet service fortiguard database (max 64 chars)
-            link_monitor_exempt: Keep route when link monitor down ('enable', 'disable')
-            tag: Route tag (0-4294967295)
-            vrf: Virtual Routing Forwarding ID (0-511)
-            bfd: Enable/disable BFD ('enable', 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create basic static route
-            >>> result = fgt.api.cmdb.router.static.create(
-            ...     dst='10.0.0.0/8',
-            ...     gateway='192.168.1.1',
-            ...     device='port1'
-            ... )
-
-            >>> # POST - Create with priority and comment
-            >>> result = fgt.api.cmdb.router.static.create(
-            ...     dst='0.0.0.0/0',
-            ...     gateway='192.168.1.254',
-            ...     device='wan1',
-            ...     priority=10,
-            ...     comment='Default route via WAN1'
-            ... )
-
-            >>> # Use dictionary for complex configuration
-            >>> route_config = {
-            ...     'dst': '172.16.0.0/12',
-            ...     'gateway': '10.0.0.1',
-            ...     'device': 'internal',
-            ...     'distance': 10,
-            ...     'comment': 'Private network route'
-            ... }
-            >>> result = fgt.api.cmdb.router.static.create(data_dict=route_config)
-        """
-        # Start with data_dict or empty dict
-        data = data_dict.copy() if data_dict else {}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "seq_num": "seq-num",
-            "preferred_source": "preferred-source",
-            "dynamic_gateway": "dynamic-gateway",
-            "sdwan_zone": "sdwan-zone",
-            "internet_service": "internet-service",
-            "internet_service_custom": "internet-service-custom",
-            "internet_service_fortiguard": "internet-service-fortiguard",
-            "link_monitor_exempt": "link-monitor-exempt",
-        }
-
-        # Apply individual parameters (override data_dict if provided)
-        if seq_num is not None:
-            data[param_map["seq_num"]] = seq_num
-        if status is not None:
-            data["status"] = status
-        if dst is not None:
-            data["dst"] = dst
-        if src is not None:
-            data["src"] = src
-        if gateway is not None:
-            data["gateway"] = gateway
-        if preferred_source is not None:
-            data[param_map["preferred_source"]] = preferred_source
-        if distance is not None:
-            data["distance"] = distance
-        if weight is not None:
-            data["weight"] = weight
-        if priority is not None:
-            data["priority"] = priority
-        if device is not None:
-            data["device"] = device
-        if comment is not None:
-            data["comment"] = comment
-        if blackhole is not None:
-            data["blackhole"] = blackhole
-        if dynamic_gateway is not None:
-            data[param_map["dynamic_gateway"]] = dynamic_gateway
-        if sdwan_zone is not None:
-            data[param_map["sdwan_zone"]] = sdwan_zone
-        if dstaddr is not None:
-            data["dstaddr"] = dstaddr
-        if internet_service is not None:
-            data[param_map["internet_service"]] = internet_service
-        if internet_service_custom is not None:
-            data[param_map["internet_service_custom"]] = internet_service_custom
-        if internet_service_fortiguard is not None:
-            data[param_map["internet_service_fortiguard"]] = internet_service_fortiguard
-        if link_monitor_exempt is not None:
-            data[param_map["link_monitor_exempt"]] = link_monitor_exempt
-        if tag is not None:
-            data["tag"] = tag
-        if vrf is not None:
-            data["vrf"] = vrf
-        if bfd is not None:
-            data["bfd"] = bfd
-
-        # Add any additional kwargs
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "router/static", data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        seq_num: int,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        dst: Optional[str] = None,
-        src: Optional[str] = None,
-        gateway: Optional[str] = None,
-        preferred_source: Optional[str] = None,
-        distance: Optional[int] = None,
-        weight: Optional[int] = None,
-        priority: Optional[int] = None,
-        device: Optional[str] = None,
-        comment: Optional[str] = None,
-        blackhole: Optional[str] = None,
-        dynamic_gateway: Optional[str] = None,
-        sdwan_zone: Optional[list] = None,
-        dstaddr: Optional[str] = None,
-        internet_service: Optional[int] = None,
-        internet_service_custom: Optional[str] = None,
-        internet_service_fortiguard: Optional[str] = None,
-        link_monitor_exempt: Optional[str] = None,
-        tag: Optional[int] = None,
-        vrf: Optional[int] = None,
-        bfd: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        dst: str | None = None,
+        src: str | None = None,
+        gateway: str | None = None,
+        preferred_source: str | None = None,
+        distance: int | None = None,
+        weight: int | None = None,
+        priority: int | None = None,
+        device: str | None = None,
+        comment: str | None = None,
+        blackhole: str | None = None,
+        dynamic_gateway: str | None = None,
+        sdwan_zone: list | None = None,
+        dstaddr: str | None = None,
+        internet_service: int | None = None,
+        internet_service_custom: str | None = None,
+        internet_service_fortiguard: str | None = None,
+        link_monitor_exempt: str | None = None,
+        tag: int | None = None,
+        vrf: int | None = None,
+        bfd: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPv4 static route.
-
-        Supports three usage patterns:
-        1. Dictionary: update(1, data_dict={'gateway': '192.168.1.2', 'comment': 'Updated'})
-        2. Keywords: update(1, gateway='192.168.1.2', comment='Updated')
-        3. Mixed: update(1, data_dict={...}, gateway='override')
-
+        Update this specific resource.
+        
         Args:
-            seq_num: Sequence number of the route to update (required)
-            data_dict: Complete route dictionary (Python snake_case keys)
-            status: Enable/disable this static route ('enable', 'disable')
-            dst: Destination IP and mask for this route
-            src: Source prefix for this route
-            gateway: Gateway IP for this route
-            preferred_source: Preferred source IP for this route
-            distance: Administrative distance (1-255)
-            weight: Administrative weight (0-255)
-            priority: Administrative priority (1-65535)
-            device: Gateway out interface or tunnel (max 35 chars)
-            comment: Optional comments (max 255 chars)
-            blackhole: Enable/disable black hole ('enable', 'disable')
-            dynamic_gateway: Enable use of dynamic gateway from DHCP/PPP ('enable', 'disable')
-            sdwan_zone: List of SD-WAN zones [{'name': 'zone1'}, ...]
-            dstaddr: Name of firewall address or address group (max 79 chars)
-            internet_service: Application ID in Internet service database (0-4294967295)
-            internet_service_custom: Application name in Internet service custom database (max 64 chars)
-            internet_service_fortiguard: Application name in Internet service fortiguard database (max 64 chars)
-            link_monitor_exempt: Keep route when link monitor down ('enable', 'disable')
-            tag: Route tag (0-4294967295)
-            vrf: Virtual Routing Forwarding ID (0-511)
-            bfd: Enable/disable BFD ('enable', 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            seq_num: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            seq_num: Sequence number. (optional)
+            status: Enable/disable this static route. (optional)
+            dst: Destination IP and mask for this route. (optional)
+            src: Source prefix for this route. (optional)
+            gateway: Gateway IP for this route. (optional)
+            preferred_source: Preferred source IP for this route. (optional)
+            distance: Administrative distance (1 - 255). (optional)
+            weight: Administrative weight (0 - 255). (optional)
+            priority: Administrative priority (1 - 65535). (optional)
+            device: Gateway out interface or tunnel. (optional)
+            comment: Optional comments. (optional)
+            blackhole: Enable/disable black hole. (optional)
+            dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. (optional)
+            sdwan_zone: Choose SD-WAN Zone. (optional)
+            dstaddr: Name of firewall address or address group. (optional)
+            internet_service: Application ID in the Internet service database. (optional)
+            internet_service_custom: Application name in the Internet service custom database. (optional)
+            internet_service_fortiguard: Application name in the Internet service fortiguard database. (optional)
+            link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. (optional)
+            tag: Route tag. (optional)
+            vrf: Virtual Routing Forwarding ID. (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update gateway
-            >>> result = fgt.api.cmdb.router.static.update(
-            ...     seq_num=1,
-            ...     gateway='192.168.1.254'
-            ... )
-
-            >>> # PUT - Update multiple fields
-            >>> result = fgt.api.cmdb.router.static.update(
-            ...     seq_num=1,
-            ...     priority=20,
-            ...     comment='Updated priority',
-            ...     distance=15
-            ... )
+            Dictionary containing API response
         """
-        # Start with data_dict or empty dict
-        data = data_dict.copy() if data_dict else {}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "seq_num": "seq-num",
-            "preferred_source": "preferred-source",
-            "dynamic_gateway": "dynamic-gateway",
-            "sdwan_zone": "sdwan-zone",
-            "internet_service": "internet-service",
-            "internet_service_custom": "internet-service-custom",
-            "internet_service_fortiguard": "internet-service-fortiguard",
-            "link_monitor_exempt": "link-monitor-exempt",
-        }
-
-        # Apply individual parameters (override data_dict if provided)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for put()")
+        endpoint = f"/router/static/{seq_num}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if seq_num is not None:
+            data_payload['seq-num'] = seq_num
         if status is not None:
-            data["status"] = status
+            data_payload['status'] = status
         if dst is not None:
-            data["dst"] = dst
+            data_payload['dst'] = dst
         if src is not None:
-            data["src"] = src
+            data_payload['src'] = src
         if gateway is not None:
-            data["gateway"] = gateway
+            data_payload['gateway'] = gateway
         if preferred_source is not None:
-            data[param_map["preferred_source"]] = preferred_source
+            data_payload['preferred-source'] = preferred_source
         if distance is not None:
-            data["distance"] = distance
+            data_payload['distance'] = distance
         if weight is not None:
-            data["weight"] = weight
+            data_payload['weight'] = weight
         if priority is not None:
-            data["priority"] = priority
+            data_payload['priority'] = priority
         if device is not None:
-            data["device"] = device
+            data_payload['device'] = device
         if comment is not None:
-            data["comment"] = comment
+            data_payload['comment'] = comment
         if blackhole is not None:
-            data["blackhole"] = blackhole
+            data_payload['blackhole'] = blackhole
         if dynamic_gateway is not None:
-            data[param_map["dynamic_gateway"]] = dynamic_gateway
+            data_payload['dynamic-gateway'] = dynamic_gateway
         if sdwan_zone is not None:
-            data[param_map["sdwan_zone"]] = sdwan_zone
+            data_payload['sdwan-zone'] = sdwan_zone
         if dstaddr is not None:
-            data["dstaddr"] = dstaddr
+            data_payload['dstaddr'] = dstaddr
         if internet_service is not None:
-            data[param_map["internet_service"]] = internet_service
+            data_payload['internet-service'] = internet_service
         if internet_service_custom is not None:
-            data[param_map["internet_service_custom"]] = internet_service_custom
+            data_payload['internet-service-custom'] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data[param_map["internet_service_fortiguard"]] = internet_service_fortiguard
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
         if link_monitor_exempt is not None:
-            data[param_map["link_monitor_exempt"]] = link_monitor_exempt
+            data_payload['link-monitor-exempt'] = link_monitor_exempt
         if tag is not None:
-            data["tag"] = tag
+            data_payload['tag'] = tag
         if vrf is not None:
-            data["vrf"] = vrf
+            data_payload['vrf'] = vrf
         if bfd is not None:
-            data["bfd"] = bfd
-
-        # Add any additional kwargs
-        data.update(kwargs)
-
-        path = f"router/static/{encode_path_component(str(seq_num))}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+            data_payload['bfd'] = bfd
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
-        self, seq_num: int, vdom: Optional[Union[str, bool]] = None
+        self,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete IPv4 static route.
-
+        Delete this specific resource.
+        
         Args:
-            seq_num: Sequence number of the route to delete
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            seq_num: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete static route
-            >>> result = fgt.api.cmdb.router.static.delete(seq_num=1)
+            Dictionary containing API response
         """
-        path = f"router/static/{encode_path_component(str(seq_num))}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for delete()")
+        endpoint = f"/router/static/{seq_num}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, seq_num: int, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        seq_num: int | None = None,
+        status: str | None = None,
+        dst: str | None = None,
+        src: str | None = None,
+        gateway: str | None = None,
+        preferred_source: str | None = None,
+        distance: int | None = None,
+        weight: int | None = None,
+        priority: int | None = None,
+        device: str | None = None,
+        comment: str | None = None,
+        blackhole: str | None = None,
+        dynamic_gateway: str | None = None,
+        sdwan_zone: list | None = None,
+        dstaddr: str | None = None,
+        internet_service: int | None = None,
+        internet_service_custom: str | None = None,
+        internet_service_fortiguard: str | None = None,
+        link_monitor_exempt: str | None = None,
+        tag: int | None = None,
+        vrf: int | None = None,
+        bfd: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if static route exists.
-
+        Create object(s) in this table.
+        
         Args:
-            seq_num: Sequence number of the route
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            seq_num: Sequence number. (optional)
+            status: Enable/disable this static route. (optional)
+            dst: Destination IP and mask for this route. (optional)
+            src: Source prefix for this route. (optional)
+            gateway: Gateway IP for this route. (optional)
+            preferred_source: Preferred source IP for this route. (optional)
+            distance: Administrative distance (1 - 255). (optional)
+            weight: Administrative weight (0 - 255). (optional)
+            priority: Administrative priority (1 - 65535). (optional)
+            device: Gateway out interface or tunnel. (optional)
+            comment: Optional comments. (optional)
+            blackhole: Enable/disable black hole. (optional)
+            dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. (optional)
+            sdwan_zone: Choose SD-WAN Zone. (optional)
+            dstaddr: Name of firewall address or address group. (optional)
+            internet_service: Application ID in the Internet service database. (optional)
+            internet_service_custom: Application name in the Internet service custom database. (optional)
+            internet_service_fortiguard: Application name in the Internet service fortiguard database. (optional)
+            link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. (optional)
+            tag: Route tag. (optional)
+            vrf: Virtual Routing Forwarding ID. (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if route exists, False otherwise
-
-        Examples:
-            >>> # Check if route exists
-            >>> if fgt.api.cmdb.router.static.exists(seq_num=1):
-            ...     print("Route exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(seq_num=seq_num, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/static"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if seq_num is not None:
+            data_payload['seq-num'] = seq_num
+        if status is not None:
+            data_payload['status'] = status
+        if dst is not None:
+            data_payload['dst'] = dst
+        if src is not None:
+            data_payload['src'] = src
+        if gateway is not None:
+            data_payload['gateway'] = gateway
+        if preferred_source is not None:
+            data_payload['preferred-source'] = preferred_source
+        if distance is not None:
+            data_payload['distance'] = distance
+        if weight is not None:
+            data_payload['weight'] = weight
+        if priority is not None:
+            data_payload['priority'] = priority
+        if device is not None:
+            data_payload['device'] = device
+        if comment is not None:
+            data_payload['comment'] = comment
+        if blackhole is not None:
+            data_payload['blackhole'] = blackhole
+        if dynamic_gateway is not None:
+            data_payload['dynamic-gateway'] = dynamic_gateway
+        if sdwan_zone is not None:
+            data_payload['sdwan-zone'] = sdwan_zone
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if internet_service is not None:
+            data_payload['internet-service'] = internet_service
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if link_monitor_exempt is not None:
+            data_payload['link-monitor-exempt'] = link_monitor_exempt
+        if tag is not None:
+            data_payload['tag'] = tag
+        if vrf is not None:
+            data_payload['vrf'] = vrf
+        if bfd is not None:
+            data_payload['bfd'] = bfd
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

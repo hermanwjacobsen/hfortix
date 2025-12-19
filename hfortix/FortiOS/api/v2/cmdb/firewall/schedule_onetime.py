@@ -1,304 +1,266 @@
 """
-FortiOS CMDB - Firewall Schedule Onetime
-
-Onetime schedule configuration.
+FortiOS CMDB - Firewall ScheduleOnetime
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.schedule/onetime           - List all / Get specific
-    POST   /api/v2/cmdb/firewall.schedule/onetime           - Create
-    PUT    /api/v2/cmdb/firewall.schedule/onetime/{name}   - Update
-    DELETE /api/v2/cmdb/firewall.schedule/onetime/{name}   - Delete
+    GET    /firewall.schedule/onetime
+    POST   /firewall.schedule/onetime
+    GET    /firewall.schedule/onetime/{name}
+    PUT    /firewall.schedule/onetime/{name}
+    DELETE /firewall.schedule/onetime/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class ScheduleOnetime:
-    """Firewall onetime schedule endpoint"""
+    """ScheduleOnetime operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize ScheduleOnetime endpoint
+        Initialize ScheduleOnetime endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific onetime schedule by name, or list all if name is not provided.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Schedule name (optional - if None, lists all schedules)
-            datasource: Include datasource information
-            with_meta: Include metadata
-            action: Special actions (default, schema)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all schedules
-            >>> result = fgt.cmdb.firewall.schedule.onetime.get()
-            >>> # Get onetime schedule
-            >>> result = fgt.cmdb.firewall.schedule.onetime.get('maintenance-2024-01-01')
-            >>> print(f"Starts: {result['results']['start']}")
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall.schedule/onetime/{name}"
+        else:
+            endpoint = "/firewall.schedule/onetime"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        if name is not None:
-            path = f"firewall.schedule/onetime/{encode_path_component(name)}"
-        else:
-            path = "firewall.schedule/onetime"
-            
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        start: Optional[str] = None,
-        end: Optional[str] = None,
-        color: Optional[int] = None,
-        expiration_days: Optional[int] = None,
-        fabric_object: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create onetime schedule.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Schedule name
-            start: Start time (format: hh:mm yyyy/mm/dd, e.g., '23:00 2025/01/01')
-            end: End time (format: hh:mm yyyy/mm/dd, e.g., '02:00 2025/01/02')
-            color: Color (0-32, default=0)
-            expiration_days: Delete after this many days (0=never, 1-100 days)
-            fabric_object: Security Fabric global object setting ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create maintenance window
-            >>> result = fgt.cmdb.firewall.schedule.onetime.create(
-            ...     name='maintenance-jan-2025',
-            ...     start='22:00 2025/01/15',
-            ...     end='06:00 2025/01/16'
-            ... )
-
-            >>> # POST - Create with auto-expiration
-            >>> result = fgt.cmdb.firewall.schedule.onetime.create(
-            ...     name='temporary-access',
-            ...     start='08:00 2025/12/20',
-            ...     end='18:00 2025/12/20',
-            ...     expiration_days=7
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if start is not None:
-                payload_dict["start"] = start
-            if end is not None:
-                payload_dict["end"] = end
-            if color is not None:
-                payload_dict["color"] = color
-            if expiration_days is not None:
-                payload_dict["expiration-days"] = expiration_days
-            if fabric_object is not None:
-                payload_dict["fabric-object"] = fabric_object
-
-        payload_dict = {
-            "name": name,
-            "start": start,
-            "end": end,
-        }
-
-        param_map = {
-            "color": color,
-            "expiration-days": expiration_days,
-            "fabric-object": fabric_object,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall.schedule/onetime"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        start: Optional[str] = None,
-        end: Optional[str] = None,
-        color: Optional[int] = None,
-        expiration_days: Optional[int] = None,
-        fabric_object: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        start_utc: str | None = None,
+        end: str | None = None,
+        end_utc: str | None = None,
+        color: int | None = None,
+        expiration_days: int | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update onetime schedule.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Schedule name
-            start: Start time (format: hh:mm yyyy/mm/dd)
-            end: End time (format: hh:mm yyyy/mm/dd)
-            color: Color (0-32, default=0)
-            expiration_days: Delete after this many days (0=never, 1-100 days)
-            fabric_object: Security Fabric global object setting ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Onetime schedule name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            start_utc: Schedule start date and time, in epoch format. (optional)
+            end: Schedule end date and time, format hh:mm yyyy/mm/dd. (optional)
+            end_utc: Schedule end date and time, in epoch format. (optional)
+            color: Color of icon on the GUI. (optional)
+            expiration_days: Write an event log message this many days before the schedule expires. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Extend maintenance window
-            >>> result = fgt.cmdb.firewall.schedule.onetime.update(
-            ...     name='maintenance-jan-2025',
-            ...     end='08:00 2025/01/16'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if start is not None:
-                payload_dict["start"] = start
-            if end is not None:
-                payload_dict["end"] = end
-            if color is not None:
-                payload_dict["color"] = color
-            if expiration_days is not None:
-                payload_dict["expiration-days"] = expiration_days
-            if fabric_object is not None:
-                payload_dict["fabric-object"] = fabric_object
-
-        payload_dict = {}
-
-        param_map = {
-            "start": start,
-            "end": end,
-            "color": color,
-            "expiration-days": expiration_days,
-            "fabric-object": fabric_object,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = f"firewall.schedule/onetime/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall.schedule/onetime/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if start_utc is not None:
+            data_payload['start-utc'] = start_utc
+        if end is not None:
+            data_payload['end'] = end
+        if end_utc is not None:
+            data_payload['end-utc'] = end_utc
+        if color is not None:
+            data_payload['color'] = color
+        if expiration_days is not None:
+            data_payload['expiration-days'] = expiration_days
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a onetime schedule.
-
+        Delete this specific resource.
+        
         Args:
-            name: Schedule name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete schedule
-            >>> result = fgt.cmdb.firewall.schedule.onetime.delete('old-maintenance')
+            Dictionary containing API response
         """
-        path = f"firewall.schedule/onetime/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall.schedule/onetime/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        start_utc: str | None = None,
+        end: str | None = None,
+        end_utc: str | None = None,
+        color: int | None = None,
+        expiration_days: int | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if a onetime schedule exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Schedule name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Onetime schedule name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            start_utc: Schedule start date and time, in epoch format. (optional)
+            end: Schedule end date and time, format hh:mm yyyy/mm/dd. (optional)
+            end_utc: Schedule end date and time, in epoch format. (optional)
+            color: Color of icon on the GUI. (optional)
+            expiration_days: Write an event log message this many days before the schedule expires. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if schedule exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.firewall.schedule.onetime.exists('maintenance-jan-2025'):
-            ...     print("Schedule exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name, vdom=vdom, raw_json=True)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.schedule/onetime"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if start_utc is not None:
+            data_payload['start-utc'] = start_utc
+        if end is not None:
+            data_payload['end'] = end
+        if end_utc is not None:
+            data_payload['end-utc'] = end_utc
+        if color is not None:
+            data_payload['color'] = color
+        if expiration_days is not None:
+            data_payload['expiration-days'] = expiration_days
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

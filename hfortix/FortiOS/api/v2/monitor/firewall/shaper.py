@@ -1,15 +1,89 @@
-"""Traffic shaper statistics operations."""
+"""Monitor API - Shaper operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class Shaper:
-    """Traffic shaper statistics."""
+class MultiClassShaper:
+    """MultiClassShaper operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize MultiClassShaper endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        List of statistics for multi-class shapers.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.shaper.multi_class_shaper.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params.update(kwargs)
+        return self._client.get("monitor", "/firewall/shaper/multi-class-shaper", params=params)
+
+
+class Reset:
+    """Reset operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Reset endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Reset statistics for all configured traffic shapers.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.shaper.reset.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        data.update(kwargs)
+        return self._client.post("monitor", "/firewall/shaper/reset", data=data)
+
+
+class Shaper:
+    """Shaper operations."""
+
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Shaper endpoint.
 
@@ -18,73 +92,34 @@ class Shaper:
         """
         self._client = client
 
-    def list(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        shaper_name: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        List of statistics for all configured firewall shared traffic shapers.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            shaper_name: Filter by shaper name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing shaper statistics
-
-        Example:
-            >>> fgt.api.monitor.firewall.shaper.list()
-            >>> fgt.api.monitor.firewall.shaper.list(shaper_name='my_shaper')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if shaper_name is not None:
-            params["shaper_name"] = shaper_name
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/shaper", params=params)
+        # Initialize nested resources
+        self.multi_class_shaper = MultiClassShaper(client)
+        self.reset = Reset(client)
 
     def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        shaper_name: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        shaper_name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get statistics for a specific traffic shaper.
-
+        List of statistics for configured firewall shared traffic shapers.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            shaper_name: Shaper name to retrieve
+            shaper_name: Filter the result by shaper name. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing shaper statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.shaper.get(shaper_name='my_shaper')
+            >>> fgt.api.monitor.firewall.shaper.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         if shaper_name is not None:
-            params["shaper_name"] = shaper_name
+            params['shaper_name'] = shaper_name
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/shaper", params=params)
-
-    def reset(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Reset statistics for all configured traffic shapers.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing operation result
-
-        Example:
-            >>> fgt.api.monitor.firewall.shaper.reset()
-        """
-        data = data_dict.copy() if data_dict else {}
-        data.update(kwargs)
-        return self._client.post("monitor", "/firewall/shaper/reset", data=data)

@@ -1,280 +1,242 @@
 """
-FortiOS API endpoint: firewall.wildcard-fqdn/group
+FortiOS CMDB - Firewall WildcardFqdnGroup
 
-Config global Wildcard FQDN address groups.
+API Endpoints:
+    GET    /firewall.wildcard-fqdn/group
+    POST   /firewall.wildcard-fqdn/group
+    GET    /firewall.wildcard-fqdn/group/{name}
+    PUT    /firewall.wildcard-fqdn/group/{name}
+    DELETE /firewall.wildcard-fqdn/group/{name}
 """
 
-from typing import Any, Dict, List, Optional
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
-from .....http_client import HTTPResponse
 
+class WildcardFqdnGroup:
+    """WildcardFqdnGroup operations."""
 
-class Group:
-    """
-    Manage wildcard FQDN address groups.
-
-    Groups can contain multiple wildcard FQDN addresses for use in firewall policies.
-
-    API Path: firewall.wildcard-fqdn/group
-    """
-
-    def __init__(self, client):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Group endpoint.
+        Initialize WildcardFqdnGroup endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom=None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **params,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get wildcard FQDN group(s).
-
-        Args:
-            name (str, optional): Group name. If provided, gets specific group.
-                                  If None, lists all groups.
-            vdom (str, optional): Virtual domain name
-            **params: Additional query parameters
-
-        Returns:
-            dict: API response with group details or list
-
-        Example:
-            # List all groups
-            result = fgt.cmdb.firewall.wildcard_fqdn.group.get()
-            # Get specific group
-            result = fgt.cmdb.firewall.wildcard_fqdn.group.get('example-group')
-        """
-        if name is not None:
-            path = f"firewall.wildcard-fqdn/group/{name}"
-        else:
-            path = "firewall.wildcard-fqdn/group"
+        Select a specific entry from a CLI table.
         
-        return self._client.get(
-            "cmdb",
-            path,
-            vdom=vdom,
-            params=params,
-            raw_json=raw_json,
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        member: Optional[List] = None,
-        color: Optional[int] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        uuid: Optional[str] = None,
-        vdom=None,
-        raw_json: bool = False,
-    ) -> HTTPResponse:
-        """
-        Create wildcard FQDN group.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
         Args:
-            name (str): Group name
-            member (list): List of wildcard FQDN address names (list of dicts with 'name' key)
-            color (int): Color code (0-32, default 0)
-            comment (str): Comment
-            visibility (str): Enable/disable visibility: enable, disable
-            uuid (str): Universally Unique Identifier (UUID)
-            vdom (str, optional): Virtual domain name
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            # POST - Create group with members
-            result = fgt.cmdb.firewall.wildcard_fqdn.group.create(
-                'web-wildcards',
-                member=[
-                    {'name': '*.example.com'},
-                    {'name': '*.test.com'}
-                ],
-                comment='Wildcard FQDN group for web domains'
-            )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall.wildcard-fqdn/group/{name}"
         else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if member is not None:
-                # Convert string list to dict list if needed
-                if isinstance(member, list) and len(member) > 0:
-                    if isinstance(member[0], str):
-                        member = [{"name": m} for m in member]
-                payload_dict["member"] = member
-            if color is not None:
-                payload_dict["color"] = color
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-            if uuid is not None:
-                payload_dict["uuid"] = uuid
-
-        payload_dict = {"name": name}
-
-        if member is not None:
-            payload_dict["member"] = member
-        if color is not None:
-            payload_dict["color"] = color
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if visibility is not None:
-            payload_dict["visibility"] = visibility
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-
-        return self._client.post(
-            "cmdb", "firewall.wildcard-fqdn/group", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+            endpoint = "/firewall.wildcard-fqdn/group"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        member: Optional[List] = None,
-        color: Optional[int] = None,
-        comment: Optional[str] = None,
-        visibility: Optional[str] = None,
-        uuid: Optional[str] = None,
-        vdom=None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        member: list | None = None,
+        color: int | None = None,
+        comment: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update wildcard FQDN group.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name (str): Group name
-            member (list): List of wildcard FQDN address names (list of dicts with 'name' key)
-            color (int): Color code (0-32)
-            comment (str): Comment
-            visibility (str): Enable/disable visibility: enable, disable
-            uuid (str): Universally Unique Identifier (UUID)
-            vdom (str, optional): Virtual domain name
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Address group name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            member: Address group members. (optional)
+            color: GUI icon color. (optional)
+            comment: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            # PUT - Update members
-            result = fgt.cmdb.firewall.wildcard_fqdn.group.update(
-                'web-wildcards',
-                member=[
-                    {'name': '*.example.com'},
-                    {'name': '*.test.com'},
-                    {'name': '*.newdomain.com'}
-                ]
-            )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if member is not None:
-                # Convert string list to dict list if needed
-                if isinstance(member, list) and len(member) > 0:
-                    if isinstance(member[0], str):
-                        member = [{"name": m} for m in member]
-                payload_dict["member"] = member
-            if color is not None:
-                payload_dict["color"] = color
-            if comment is not None:
-                payload_dict["comment"] = comment
-            if visibility is not None:
-                payload_dict["visibility"] = visibility
-            if uuid is not None:
-                payload_dict["uuid"] = uuid
-
-        payload_dict = {}
-
-        if member is not None:
-            payload_dict["member"] = member
-        if color is not None:
-            payload_dict["color"] = color
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if visibility is not None:
-            payload_dict["visibility"] = visibility
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall.wildcard-fqdn/group/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
         if uuid is not None:
-            payload_dict["uuid"] = uuid
-
-        return self._client.put(
-            "cmdb",
-            f"firewall.wildcard-fqdn/group/{name}",
-            payload_dict,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['uuid'] = uuid
+        if member is not None:
+            data_payload['member'] = member
+        if color is not None:
+            data_payload['color'] = color
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom=None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a wildcard FQDN group.
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Group name
-            vdom (str, optional): Virtual domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            result = fgt.cmdb.firewall.wildcard_fqdn.group.delete('web-wildcards')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"firewall.wildcard-fqdn/group/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall.wildcard-fqdn/group/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom=None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        member: list | None = None,
+        color: int | None = None,
+        comment: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if a wildcard FQDN group exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Group name
-            vdom (str, optional): Virtual domain name
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Address group name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            member: Address group members. (optional)
+            color: GUI icon color. (optional)
+            comment: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if group exists, False otherwise
-
-        Example:
-            if fgt.cmdb.firewall.wildcard_fqdn.group.exists('web-wildcards'):
-                print("Group exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name, vdom=vdom, raw_json=True)
-            return result.get("status") == "success" and len(result.get("results", [])) > 0
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.wildcard-fqdn/group"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if member is not None:
+            data_payload['member'] = member
+        if color is not None:
+            data_payload['color'] = color
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

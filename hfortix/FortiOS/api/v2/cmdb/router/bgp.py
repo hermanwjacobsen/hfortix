@@ -1,144 +1,369 @@
-"""FortiOS CMDB - Router BGP - BGP configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Bgp
+
+API Endpoints:
+    GET    /router/bgp
+    PUT    /router/bgp
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Bgp:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Bgp operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Bgp endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/bgp"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/bgp", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, as_number: Optional[int] = None, router_id: Optional[str] = None, keepalive_timer: Optional[int] = None, holdtime_timer: Optional[int] = None, always_compare_med: Optional[str] = None, bestpath_as_path_ignore: Optional[str] = None, bestpath_cmp_confed_aspath: Optional[str] = None, bestpath_cmp_routerid: Optional[str] = None, bestpath_med_confed: Optional[str] = None, bestpath_med_missing_as_worst: Optional[str] = None, client_to_client_reflection: Optional[str] = None, dampening: Optional[str] = None, deterministic_med: Optional[str] = None, ebgp_multipath: Optional[str] = None, ibgp_multipath: Optional[str] = None, enforce_first_as: Optional[str] = None, fast_external_failover: Optional[str] = None, log_neighbour_changes: Optional[str] = None, network_import_check: Optional[str] = None, ignore_optional_capability: Optional[str] = None, additional_path: Optional[str] = None, additional_path6: Optional[str] = None, multipath_recursive_distance: Optional[str] = None, recursive_next_hop: Optional[str] = None, cluster_id: Optional[str] = None, confederation_identifier: Optional[int] = None, confederation_peers: Optional[list] = None, dampening_route_map: Optional[str] = None, dampening_reachability_half_life: Optional[int] = None, dampening_reuse: Optional[int] = None, dampening_suppress: Optional[int] = None, dampening_max_suppress_time: Optional[int] = None, dampening_unreachability_half_life: Optional[int] = None, default_local_preference: Optional[int] = None, scan_time: Optional[int] = None, distance_external: Optional[int] = None, distance_internal: Optional[int] = None, distance_local: Optional[int] = None, synchronization: Optional[str] = None, graceful_restart: Optional[str] = None, graceful_restart_time: Optional[int] = None, graceful_stalepath_time: Optional[int] = None, graceful_update_delay: Optional[int] = None, graceful_end_on_timer: Optional[str] = None, additional_path_select: Optional[int] = None, additional_path_select6: Optional[int] = None, aggregate_address: Optional[list] = None, aggregate_address6: Optional[list] = None, neighbor: Optional[list] = None, neighbor_group: Optional[list] = None, neighbor_range: Optional[list] = None, neighbor_range6: Optional[list] = None, network: Optional[list] = None, network6: Optional[list] = None, redistribute: Optional[list] = None, redistribute6: Optional[list] = None, admin_distance: Optional[list] = None, vrf: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"as_number": "as", "router_id": "router-id", "keepalive_timer": "keepalive-timer", "holdtime_timer": "holdtime-timer", "always_compare_med": "always-compare-med", "bestpath_as_path_ignore": "bestpath-as-path-ignore", "bestpath_cmp_confed_aspath": "bestpath-cmp-confed-aspath", "bestpath_cmp_routerid": "bestpath-cmp-routerid", "bestpath_med_confed": "bestpath-med-confed", "bestpath_med_missing_as_worst": "bestpath-med-missing-as-worst", "client_to_client_reflection": "client-to-client-reflection", "deterministic_med": "deterministic-med", "ebgp_multipath": "ebgp-multipath", "ibgp_multipath": "ibgp-multipath", "enforce_first_as": "enforce-first-as", "fast_external_failover": "fast-external-failover", "log_neighbour_changes": "log-neighbour-changes", "network_import_check": "network-import-check", "ignore_optional_capability": "ignore-optional-capability", "additional_path": "additional-path", "additional_path6": "additional-path6", "multipath_recursive_distance": "multipath-recursive-distance", "recursive_next_hop": "recursive-next-hop", "cluster_id": "cluster-id", "confederation_identifier": "confederation-identifier", "confederation_peers": "confederation-peers", "dampening_route_map": "dampening-route-map", "dampening_reachability_half_life": "dampening-reachability-half-life", "dampening_reuse": "dampening-reuse", "dampening_suppress": "dampening-suppress", "dampening_max_suppress_time": "dampening-max-suppress-time", "dampening_unreachability_half_life": "dampening-unreachability-half-life", "default_local_preference": "default-local-preference", "scan_time": "scan-time", "distance_external": "distance-external", "distance_internal": "distance-internal", "distance_local": "distance-local", "graceful_restart": "graceful-restart", "graceful_restart_time": "graceful-restart-time", "graceful_stalepath_time": "graceful-stalepath-time", "graceful_update_delay": "graceful-update-delay", "graceful_end_on_timer": "graceful-end-on-timer", "additional_path_select": "additional-path-select", "additional_path_select6": "additional-path-select6", "aggregate_address": "aggregate-address", "aggregate_address6": "aggregate-address6", "neighbor_group": "neighbor-group", "neighbor_range": "neighbor-range", "neighbor_range6": "neighbor-range6", "admin_distance": "admin-distance"}
-        if as_number is not None:
-            data[param_map["as_number"]] = as_number
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        as_: str | None = None,
+        router_id: str | None = None,
+        keepalive_timer: int | None = None,
+        holdtime_timer: int | None = None,
+        always_compare_med: str | None = None,
+        bestpath_as_path_ignore: str | None = None,
+        bestpath_cmp_confed_aspath: str | None = None,
+        bestpath_cmp_routerid: str | None = None,
+        bestpath_med_confed: str | None = None,
+        bestpath_med_missing_as_worst: str | None = None,
+        client_to_client_reflection: str | None = None,
+        dampening: str | None = None,
+        deterministic_med: str | None = None,
+        ebgp_multipath: str | None = None,
+        ibgp_multipath: str | None = None,
+        enforce_first_as: str | None = None,
+        fast_external_failover: str | None = None,
+        log_neighbour_changes: str | None = None,
+        network_import_check: str | None = None,
+        ignore_optional_capability: str | None = None,
+        additional_path: str | None = None,
+        additional_path6: str | None = None,
+        additional_path_vpnv4: str | None = None,
+        additional_path_vpnv6: str | None = None,
+        multipath_recursive_distance: str | None = None,
+        recursive_next_hop: str | None = None,
+        recursive_inherit_priority: str | None = None,
+        tag_resolve_mode: str | None = None,
+        cluster_id: str | None = None,
+        confederation_identifier: int | None = None,
+        confederation_peers: list | None = None,
+        dampening_route_map: str | None = None,
+        dampening_reachability_half_life: int | None = None,
+        dampening_reuse: int | None = None,
+        dampening_suppress: int | None = None,
+        dampening_max_suppress_time: int | None = None,
+        dampening_unreachability_half_life: int | None = None,
+        default_local_preference: int | None = None,
+        scan_time: int | None = None,
+        distance_external: int | None = None,
+        distance_internal: int | None = None,
+        distance_local: int | None = None,
+        synchronization: str | None = None,
+        graceful_restart: str | None = None,
+        graceful_restart_time: int | None = None,
+        graceful_stalepath_time: int | None = None,
+        graceful_update_delay: int | None = None,
+        graceful_end_on_timer: str | None = None,
+        additional_path_select: int | None = None,
+        additional_path_select6: int | None = None,
+        additional_path_select_vpnv4: int | None = None,
+        additional_path_select_vpnv6: int | None = None,
+        cross_family_conditional_adv: str | None = None,
+        aggregate_address: list | None = None,
+        aggregate_address6: list | None = None,
+        neighbor: list | None = None,
+        neighbor_group: list | None = None,
+        neighbor_range: list | None = None,
+        neighbor_range6: list | None = None,
+        network: list | None = None,
+        network6: list | None = None,
+        redistribute: list | None = None,
+        redistribute6: list | None = None,
+        admin_distance: list | None = None,
+        vrf: list | None = None,
+        vrf6: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            as_: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. (optional)
+            router_id: Router ID. (optional)
+            keepalive_timer: Frequency to send keep alive requests. (optional)
+            holdtime_timer: Number of seconds to mark peer as dead. (optional)
+            always_compare_med: Enable/disable always compare MED. (optional)
+            bestpath_as_path_ignore: Enable/disable ignore AS path. (optional)
+            bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. (optional)
+            bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. (optional)
+            bestpath_med_confed: Enable/disable compare MED among confederation paths. (optional)
+            bestpath_med_missing_as_worst: Enable/disable treat missing MED as least preferred. (optional)
+            client_to_client_reflection: Enable/disable client-to-client route reflection. (optional)
+            dampening: Enable/disable route-flap dampening. (optional)
+            deterministic_med: Enable/disable enforce deterministic comparison of MED. (optional)
+            ebgp_multipath: Enable/disable EBGP multi-path. (optional)
+            ibgp_multipath: Enable/disable IBGP multi-path. (optional)
+            enforce_first_as: Enable/disable enforce first AS for EBGP routes. (optional)
+            fast_external_failover: Enable/disable reset peer BGP session if link goes down. (optional)
+            log_neighbour_changes: Log BGP neighbor changes. (optional)
+            network_import_check: Enable/disable ensure BGP network route exists in IGP. (optional)
+            ignore_optional_capability: Do not send unknown optional capability notification message. (optional)
+            additional_path: Enable/disable selection of BGP IPv4 additional paths. (optional)
+            additional_path6: Enable/disable selection of BGP IPv6 additional paths. (optional)
+            additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. (optional)
+            additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. (optional)
+            multipath_recursive_distance: Enable/disable use of recursive distance to select multipath. (optional)
+            recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. (optional)
+            recursive_inherit_priority: Enable/disable priority inheritance for recursive resolution. (optional)
+            tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. (optional)
+            cluster_id: Route reflector cluster ID. (optional)
+            confederation_identifier: Confederation identifier. (optional)
+            confederation_peers: Confederation peers. (optional)
+            dampening_route_map: Criteria for dampening. (optional)
+            dampening_reachability_half_life: Reachability half-life time for penalty (min). (optional)
+            dampening_reuse: Threshold to reuse routes. (optional)
+            dampening_suppress: Threshold to suppress routes. (optional)
+            dampening_max_suppress_time: Maximum minutes a route can be suppressed. (optional)
+            dampening_unreachability_half_life: Unreachability half-life time for penalty (min). (optional)
+            default_local_preference: Default local preference. (optional)
+            scan_time: Background scanner interval (sec), 0 to disable it. (optional)
+            distance_external: Distance for routes external to the AS. (optional)
+            distance_internal: Distance for routes internal to the AS. (optional)
+            distance_local: Distance for routes local to the AS. (optional)
+            synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. (optional)
+            graceful_restart: Enable/disable BGP graceful restart capabilities. (optional)
+            graceful_restart_time: Time needed for neighbors to restart (sec). (optional)
+            graceful_stalepath_time: Time to hold stale paths of restarting neighbor (sec). (optional)
+            graceful_update_delay: Route advertisement/selection delay after restart (sec). (optional)
+            graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. (optional)
+            additional_path_select: Number of additional paths to be selected for each IPv4 NLRI. (optional)
+            additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI. (optional)
+            additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI. (optional)
+            additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI. (optional)
+            cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. (optional)
+            aggregate_address: BGP aggregate address table. (optional)
+            aggregate_address6: BGP IPv6 aggregate address table. (optional)
+            neighbor: BGP neighbor table. (optional)
+            neighbor_group: BGP neighbor group table. (optional)
+            neighbor_range: BGP neighbor range table. (optional)
+            neighbor_range6: BGP IPv6 neighbor range table. (optional)
+            network: BGP network table. (optional)
+            network6: BGP IPv6 network table. (optional)
+            redistribute: BGP IPv4 redistribute table. (optional)
+            redistribute6: BGP IPv6 redistribute table. (optional)
+            admin_distance: Administrative distance modifications. (optional)
+            vrf: BGP VRF leaking table. (optional)
+            vrf6: BGP IPv6 VRF leaking table. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/bgp"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if as_ is not None:
+            data_payload['as'] = as_
         if router_id is not None:
-            data[param_map["router_id"]] = router_id
+            data_payload['router-id'] = router_id
         if keepalive_timer is not None:
-            data[param_map["keepalive_timer"]] = keepalive_timer
+            data_payload['keepalive-timer'] = keepalive_timer
         if holdtime_timer is not None:
-            data[param_map["holdtime_timer"]] = holdtime_timer
+            data_payload['holdtime-timer'] = holdtime_timer
         if always_compare_med is not None:
-            data[param_map["always_compare_med"]] = always_compare_med
+            data_payload['always-compare-med'] = always_compare_med
         if bestpath_as_path_ignore is not None:
-            data[param_map["bestpath_as_path_ignore"]] = bestpath_as_path_ignore
+            data_payload['bestpath-as-path-ignore'] = bestpath_as_path_ignore
         if bestpath_cmp_confed_aspath is not None:
-            data[param_map["bestpath_cmp_confed_aspath"]] = bestpath_cmp_confed_aspath
+            data_payload['bestpath-cmp-confed-aspath'] = bestpath_cmp_confed_aspath
         if bestpath_cmp_routerid is not None:
-            data[param_map["bestpath_cmp_routerid"]] = bestpath_cmp_routerid
+            data_payload['bestpath-cmp-routerid'] = bestpath_cmp_routerid
         if bestpath_med_confed is not None:
-            data[param_map["bestpath_med_confed"]] = bestpath_med_confed
+            data_payload['bestpath-med-confed'] = bestpath_med_confed
         if bestpath_med_missing_as_worst is not None:
-            data[param_map["bestpath_med_missing_as_worst"]] = bestpath_med_missing_as_worst
+            data_payload['bestpath-med-missing-as-worst'] = bestpath_med_missing_as_worst
         if client_to_client_reflection is not None:
-            data[param_map["client_to_client_reflection"]] = client_to_client_reflection
+            data_payload['client-to-client-reflection'] = client_to_client_reflection
         if dampening is not None:
-            data["dampening"] = dampening
+            data_payload['dampening'] = dampening
         if deterministic_med is not None:
-            data[param_map["deterministic_med"]] = deterministic_med
+            data_payload['deterministic-med'] = deterministic_med
         if ebgp_multipath is not None:
-            data[param_map["ebgp_multipath"]] = ebgp_multipath
+            data_payload['ebgp-multipath'] = ebgp_multipath
         if ibgp_multipath is not None:
-            data[param_map["ibgp_multipath"]] = ibgp_multipath
+            data_payload['ibgp-multipath'] = ibgp_multipath
         if enforce_first_as is not None:
-            data[param_map["enforce_first_as"]] = enforce_first_as
+            data_payload['enforce-first-as'] = enforce_first_as
         if fast_external_failover is not None:
-            data[param_map["fast_external_failover"]] = fast_external_failover
+            data_payload['fast-external-failover'] = fast_external_failover
         if log_neighbour_changes is not None:
-            data[param_map["log_neighbour_changes"]] = log_neighbour_changes
+            data_payload['log-neighbour-changes'] = log_neighbour_changes
         if network_import_check is not None:
-            data[param_map["network_import_check"]] = network_import_check
+            data_payload['network-import-check'] = network_import_check
         if ignore_optional_capability is not None:
-            data[param_map["ignore_optional_capability"]] = ignore_optional_capability
+            data_payload['ignore-optional-capability'] = ignore_optional_capability
         if additional_path is not None:
-            data[param_map["additional_path"]] = additional_path
+            data_payload['additional-path'] = additional_path
         if additional_path6 is not None:
-            data[param_map["additional_path6"]] = additional_path6
+            data_payload['additional-path6'] = additional_path6
+        if additional_path_vpnv4 is not None:
+            data_payload['additional-path-vpnv4'] = additional_path_vpnv4
+        if additional_path_vpnv6 is not None:
+            data_payload['additional-path-vpnv6'] = additional_path_vpnv6
         if multipath_recursive_distance is not None:
-            data[param_map["multipath_recursive_distance"]] = multipath_recursive_distance
+            data_payload['multipath-recursive-distance'] = multipath_recursive_distance
         if recursive_next_hop is not None:
-            data[param_map["recursive_next_hop"]] = recursive_next_hop
+            data_payload['recursive-next-hop'] = recursive_next_hop
+        if recursive_inherit_priority is not None:
+            data_payload['recursive-inherit-priority'] = recursive_inherit_priority
+        if tag_resolve_mode is not None:
+            data_payload['tag-resolve-mode'] = tag_resolve_mode
         if cluster_id is not None:
-            data[param_map["cluster_id"]] = cluster_id
+            data_payload['cluster-id'] = cluster_id
         if confederation_identifier is not None:
-            data[param_map["confederation_identifier"]] = confederation_identifier
+            data_payload['confederation-identifier'] = confederation_identifier
         if confederation_peers is not None:
-            data[param_map["confederation_peers"]] = confederation_peers
+            data_payload['confederation-peers'] = confederation_peers
         if dampening_route_map is not None:
-            data[param_map["dampening_route_map"]] = dampening_route_map
+            data_payload['dampening-route-map'] = dampening_route_map
         if dampening_reachability_half_life is not None:
-            data[param_map["dampening_reachability_half_life"]] = dampening_reachability_half_life
+            data_payload['dampening-reachability-half-life'] = dampening_reachability_half_life
         if dampening_reuse is not None:
-            data[param_map["dampening_reuse"]] = dampening_reuse
+            data_payload['dampening-reuse'] = dampening_reuse
         if dampening_suppress is not None:
-            data[param_map["dampening_suppress"]] = dampening_suppress
+            data_payload['dampening-suppress'] = dampening_suppress
         if dampening_max_suppress_time is not None:
-            data[param_map["dampening_max_suppress_time"]] = dampening_max_suppress_time
+            data_payload['dampening-max-suppress-time'] = dampening_max_suppress_time
         if dampening_unreachability_half_life is not None:
-            data[param_map["dampening_unreachability_half_life"]] = dampening_unreachability_half_life
+            data_payload['dampening-unreachability-half-life'] = dampening_unreachability_half_life
         if default_local_preference is not None:
-            data[param_map["default_local_preference"]] = default_local_preference
+            data_payload['default-local-preference'] = default_local_preference
         if scan_time is not None:
-            data[param_map["scan_time"]] = scan_time
+            data_payload['scan-time'] = scan_time
         if distance_external is not None:
-            data[param_map["distance_external"]] = distance_external
+            data_payload['distance-external'] = distance_external
         if distance_internal is not None:
-            data[param_map["distance_internal"]] = distance_internal
+            data_payload['distance-internal'] = distance_internal
         if distance_local is not None:
-            data[param_map["distance_local"]] = distance_local
+            data_payload['distance-local'] = distance_local
         if synchronization is not None:
-            data["synchronization"] = synchronization
+            data_payload['synchronization'] = synchronization
         if graceful_restart is not None:
-            data[param_map["graceful_restart"]] = graceful_restart
+            data_payload['graceful-restart'] = graceful_restart
         if graceful_restart_time is not None:
-            data[param_map["graceful_restart_time"]] = graceful_restart_time
+            data_payload['graceful-restart-time'] = graceful_restart_time
         if graceful_stalepath_time is not None:
-            data[param_map["graceful_stalepath_time"]] = graceful_stalepath_time
+            data_payload['graceful-stalepath-time'] = graceful_stalepath_time
         if graceful_update_delay is not None:
-            data[param_map["graceful_update_delay"]] = graceful_update_delay
+            data_payload['graceful-update-delay'] = graceful_update_delay
         if graceful_end_on_timer is not None:
-            data[param_map["graceful_end_on_timer"]] = graceful_end_on_timer
+            data_payload['graceful-end-on-timer'] = graceful_end_on_timer
         if additional_path_select is not None:
-            data[param_map["additional_path_select"]] = additional_path_select
+            data_payload['additional-path-select'] = additional_path_select
         if additional_path_select6 is not None:
-            data[param_map["additional_path_select6"]] = additional_path_select6
+            data_payload['additional-path-select6'] = additional_path_select6
+        if additional_path_select_vpnv4 is not None:
+            data_payload['additional-path-select-vpnv4'] = additional_path_select_vpnv4
+        if additional_path_select_vpnv6 is not None:
+            data_payload['additional-path-select-vpnv6'] = additional_path_select_vpnv6
+        if cross_family_conditional_adv is not None:
+            data_payload['cross-family-conditional-adv'] = cross_family_conditional_adv
         if aggregate_address is not None:
-            data[param_map["aggregate_address"]] = aggregate_address
+            data_payload['aggregate-address'] = aggregate_address
         if aggregate_address6 is not None:
-            data[param_map["aggregate_address6"]] = aggregate_address6
+            data_payload['aggregate-address6'] = aggregate_address6
         if neighbor is not None:
-            data["neighbor"] = neighbor
+            data_payload['neighbor'] = neighbor
         if neighbor_group is not None:
-            data[param_map["neighbor_group"]] = neighbor_group
+            data_payload['neighbor-group'] = neighbor_group
         if neighbor_range is not None:
-            data[param_map["neighbor_range"]] = neighbor_range
+            data_payload['neighbor-range'] = neighbor_range
         if neighbor_range6 is not None:
-            data[param_map["neighbor_range6"]] = neighbor_range6
+            data_payload['neighbor-range6'] = neighbor_range6
         if network is not None:
-            data["network"] = network
+            data_payload['network'] = network
         if network6 is not None:
-            data["network6"] = network6
+            data_payload['network6'] = network6
         if redistribute is not None:
-            data["redistribute"] = redistribute
+            data_payload['redistribute'] = redistribute
         if redistribute6 is not None:
-            data["redistribute6"] = redistribute6
+            data_payload['redistribute6'] = redistribute6
         if admin_distance is not None:
-            data[param_map["admin_distance"]] = admin_distance
+            data_payload['admin-distance'] = admin_distance
         if vrf is not None:
-            data["vrf"] = vrf
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/bgp", data=data, vdom=vdom)
+            data_payload['vrf'] = vrf
+        if vrf6 is not None:
+            data_payload['vrf6'] = vrf6
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

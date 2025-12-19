@@ -1,245 +1,298 @@
 """
-FortiOS CMDB - IPS Custom
-
-Configure IPS custom signature.
+FortiOS CMDB - Ips Custom
 
 API Endpoints:
-    GET    /api/v2/cmdb/ips/custom           - List all / Get specific
-    POST   /api/v2/cmdb/ips/custom           - Create
-    PUT    /api/v2/cmdb/ips/custom/{tag}   - Update
-    DELETE /api/v2/cmdb/ips/custom/{tag}   - Delete
+    GET    /ips/custom
+    POST   /ips/custom
+    GET    /ips/custom/{tag}
+    PUT    /ips/custom/{tag}
+    DELETE /ips/custom/{tag}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class Custom:
-    """IPS Custom Signature endpoint"""
+    """Custom operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Custom endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
-        self, tag: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get IPS custom signature(s) - List all or get specific.
-
-        Args:
-            tag: Signature tag (if specified, gets single signature)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing signature configuration(s)
-
-        Examples:
-            >>> # List all custom signatures
-            >>> sigs = fgt.api.cmdb.ips.custom.get()
-            
-            >>> # Get specific signature
-            >>> sig = fgt.api.cmdb.ips.custom.get('custom-sig-1')
-        """
-        path = "ips/custom"
-        if tag is not None:
-            path = f"{path}/{encode_path_component(tag)}"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        tag: Optional[str] = None,
-        signature: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        protocol: Optional[str] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        comment: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Create IPS custom signature.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            tag: Signature tag (max 63 chars)
-            signature: Custom signature content
-            rule_id: Rule ID in IPS database (0-4294967295)
-            severity: Signature severity (info|low|medium|high|critical)
-            location: Protect client or server traffic
-            os: Operating systems to protect
-            application: Applications to protect
-            protocol: Protocols to examine
-            status: Enable/disable signature (disable|enable)
-            log: Enable/disable logging (disable|enable)
-            log_packet: Enable/disable packet logging (disable|enable)
-            action: Action for detected traffic (pass|block|reset)
-            comment: Comment (max 255 chars)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            tag: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing creation result
-
-        Examples:
-            >>> fgt.api.cmdb.ips.custom.create(
-            ...     tag='custom-sig-1',
-            ...     signature='F-SBID( --name "custom"; )',
-            ...     severity='high',
-            ...     action='block'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "tag": tag,
-            "signature": signature,
-            "rule-id": rule_id,
-            "severity": severity,
-            "location": location,
-            "os": os,
-            "application": application,
-            "protocol": protocol,
-            "status": status,
-            "log": log,
-            "log-packet": log_packet,
-            "action": action,
-            "comment": comment,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = "ips/custom"
-        return self._client.post("cmdb", path, data=data, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if tag:
+            endpoint = f"/ips/custom/{tag}"
+        else:
+            endpoint = "/ips/custom"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        tag: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        signature: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        protocol: Optional[str] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        comment: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        signature: str | None = None,
+        rule_id: int | None = None,
+        severity: str | None = None,
+        location: str | None = None,
+        os: str | None = None,
+        application: str | None = None,
+        protocol: str | None = None,
+        status: str | None = None,
+        log: str | None = None,
+        log_packet: str | None = None,
+        comment: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPS custom signature.
-
+        Update this specific resource.
+        
         Args:
-            tag: Signature tag to update
-            data_dict: Complete configuration dictionary
-            signature: Custom signature content
-            rule_id: Rule ID in IPS database (0-4294967295)
-            severity: Signature severity (info|low|medium|high|critical)
-            location: Protect client or server traffic
-            os: Operating systems to protect
-            application: Applications to protect
-            protocol: Protocols to examine
-            status: Enable/disable signature (disable|enable)
-            log: Enable/disable logging (disable|enable)
-            log_packet: Enable/disable packet logging (disable|enable)
-            action: Action for detected traffic (pass|block|reset)
-            comment: Comment (max 255 chars)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            tag: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            tag: Signature tag. (optional)
+            signature: Custom signature enclosed in single quotes. (optional)
+            rule_id: Signature ID. (optional)
+            severity: Relative severity of the signature, from info to critical. Log messages generated by the signature include the severity. (optional)
+            location: Protect client or server traffic. (optional)
+            os: Operating system(s) that the signature protects. Blank for all operating systems. (optional)
+            application: Applications to be protected. Blank for all applications. (optional)
+            protocol: Protocol(s) that the signature scans. Blank for all protocols. (optional)
+            status: Enable/disable this signature. (optional)
+            log: Enable/disable logging. (optional)
+            log_packet: Enable/disable packet logging. (optional)
+            comment: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> fgt.api.cmdb.ips.custom.update(
-            ...     'custom-sig-1',
-            ...     severity='critical',
-            ...     action='reset'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not tag:
+            raise ValueError("tag is required for put()")
+        endpoint = f"/ips/custom/{tag}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if tag is not None:
+            data_payload['tag'] = tag
+        if signature is not None:
+            data_payload['signature'] = signature
+        if rule_id is not None:
+            data_payload['rule-id'] = rule_id
+        if severity is not None:
+            data_payload['severity'] = severity
+        if location is not None:
+            data_payload['location'] = location
+        if os is not None:
+            data_payload['os'] = os
+        if application is not None:
+            data_payload['application'] = application
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if status is not None:
+            data_payload['status'] = status
+        if log is not None:
+            data_payload['log'] = log
+        if log_packet is not None:
+            data_payload['log-packet'] = log_packet
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "signature": signature,
-            "rule-id": rule_id,
-            "severity": severity,
-            "location": location,
-            "os": os,
-            "application": application,
-            "protocol": protocol,
-            "status": status,
-            "log": log,
-            "log-packet": log_packet,
-            "action": action,
-            "comment": comment,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = f"ips/custom/{encode_path_component(tag)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
-
-    def delete(self, tag: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete IPS custom signature.
-
+        Delete this specific resource.
+        
         Args:
-            tag: Signature tag
-            vdom: Virtual domain name or False for global
-
+            tag: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing deletion result
-
-        Examples:
-            >>> fgt.api.cmdb.ips.custom.delete('custom-sig-1')
+            Dictionary containing API response
         """
-        path = f"ips/custom/{encode_path_component(tag)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not tag:
+            raise ValueError("tag is required for delete()")
+        endpoint = f"/ips/custom/{tag}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, tag: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        tag: str | None = None,
+        signature: str | None = None,
+        rule_id: int | None = None,
+        severity: str | None = None,
+        location: str | None = None,
+        os: str | None = None,
+        application: str | None = None,
+        protocol: str | None = None,
+        status: str | None = None,
+        log: str | None = None,
+        log_packet: str | None = None,
+        comment: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if IPS custom signature exists.
-
+        Create object(s) in this table.
+        
         Args:
-            tag: Signature tag
-            vdom: Virtual domain name or False for global
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            tag: Signature tag. (optional)
+            signature: Custom signature enclosed in single quotes. (optional)
+            rule_id: Signature ID. (optional)
+            severity: Relative severity of the signature, from info to critical. Log messages generated by the signature include the severity. (optional)
+            location: Protect client or server traffic. (optional)
+            os: Operating system(s) that the signature protects. Blank for all operating systems. (optional)
+            application: Applications to be protected. Blank for all applications. (optional)
+            protocol: Protocol(s) that the signature scans. Blank for all protocols. (optional)
+            status: Enable/disable this signature. (optional)
+            log: Enable/disable logging. (optional)
+            log_packet: Enable/disable packet logging. (optional)
+            comment: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if signature exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.ips.custom.exists('custom-sig-1'):
-            ...     print("Signature exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(tag, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/ips/custom"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if tag is not None:
+            data_payload['tag'] = tag
+        if signature is not None:
+            data_payload['signature'] = signature
+        if rule_id is not None:
+            data_payload['rule-id'] = rule_id
+        if severity is not None:
+            data_payload['severity'] = severity
+        if location is not None:
+            data_payload['location'] = location
+        if os is not None:
+            data_payload['os'] = os
+        if application is not None:
+            data_payload['application'] = application
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if status is not None:
+            data_payload['status'] = status
+        if log is not None:
+            data_payload['log'] = log
+        if log_packet is not None:
+            data_payload['log-packet'] = log_packet
+        if comment is not None:
+            data_payload['comment'] = comment
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

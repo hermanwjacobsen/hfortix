@@ -1,322 +1,242 @@
 """
-FortiOS vipgrp6 API wrapper.
-Provides access to /api/v2/cmdb/firewall/vipgrp6 endpoint.
+FortiOS CMDB - Firewall Vipgrp6
+
+API Endpoints:
+    GET    /firewall/vipgrp6
+    POST   /firewall/vipgrp6
+    GET    /firewall/vipgrp6/{name}
+    PUT    /firewall/vipgrp6/{name}
+    DELETE /firewall/vipgrp6/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class Vipgrp6:
-    """
-    Wrapper for firewall vipgrp6 API endpoint.
+    """Vipgrp6 operations."""
 
-    Manages vipgrp6 configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Vipgrp6 wrapper.
+        Initialize Vipgrp6 endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/vipgrp6"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific vipgrp6 entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        color: Optional[int] = None,
-        comments: Optional[str] = None,
-        member: Optional[list] = None,
-        name: Optional[str] = None,
-        uuid: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create vipgrp6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            color (integer) (range: 0-32):
-                Integer value to determine the color of the icon in the GUI ...
-            comments (string) (max_len: 255):
-                Comment.
-            member (list[object]):
-                Member VIP objects of the group (Separate multiple objects w...
-            name (string) (max_len: 79):
-                IPv6 VIP group name.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if color is not None:
-            payload_dict["color"] = color
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if member is not None:
-            payload_dict["member"] = member
-        if name is not None:
-            payload_dict["name"] = name
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/vipgrp6/{name}"
+        else:
+            endpoint = "/firewall/vipgrp6"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        color: Optional[int] = None,
-        comments: Optional[str] = None,
-        member: Optional[list] = None,
-        name: Optional[str] = None,
-        uuid: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        color: int | None = None,
+        comments: str | None = None,
+        member: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update vipgrp6 entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            color (integer) (range: 0-32):
-                Integer value to determine the color of the icon in the GUI ...
-            comments (string) (max_len: 255):
-                Comment.
-            member (list[object]):
-                Member VIP objects of the group (Separate multiple objects w...
-            name (string) (max_len: 79):
-                IPv6 VIP group name.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: IPv6 VIP group name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            color: Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1). (optional)
+            comments: Comment. (optional)
+            member: Member VIP objects of the group (Separate multiple objects with a space). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if color is not None:
-            payload_dict["color"] = color
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if member is not None:
-            payload_dict["member"] = member
-        if name is not None:
-            payload_dict["name"] = name
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/vipgrp6/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if color is not None:
+            data_payload['color'] = color
+        if comments is not None:
+            data_payload['comments'] = comments
+        if member is not None:
+            data_payload['member'] = member
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a vipgrp6 entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/vipgrp6/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        color: int | None = None,
+        comments: str | None = None,
+        member: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: IPv6 VIP group name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            color: Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1). (optional)
+            comments: Comment. (optional)
+            member: Member VIP objects of the group (Separate multiple objects with a space). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/vipgrp6"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if color is not None:
+            data_payload['color'] = color
+        if comments is not None:
+            data_payload['comments'] = comments
+        if member is not None:
+            data_payload['member'] = member
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

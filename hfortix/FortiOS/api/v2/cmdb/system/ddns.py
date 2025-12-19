@@ -1,219 +1,362 @@
 """
 FortiOS CMDB - System Ddns
 
-Configure DDNS.
-
 API Endpoints:
-    GET    /system/ddns           - List all / Get specific
-    POST   /system/ddns           - Create
-    PUT    /system/ddns/{name}   - Update
-    DELETE /system/ddns/{name}   - Delete
+    GET    /system/ddns
+    POST   /system/ddns
+    GET    /system/ddns/{ddnsid}
+    PUT    /system/ddns/{ddnsid}
+    DELETE /system/ddns/{ddnsid}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class Ddns:
-    """ddns endpoint"""
+    """Ddns operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Ddns endpoint
+        Initialize Ddns endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        ddnsid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get ddns
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            ddnsid: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.ddns.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.ddns.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        # Build endpoint path
+        if ddnsid:
+            endpoint = f"/system/ddns/{ddnsid}"
+        else:
+            endpoint = "/system/ddns"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-        
-        path = "system/ddns"
-        if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create ddns
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.ddns.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.ddns.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/ddns", data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        ddnsid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        ddns_server: str | None = None,
+        addr_type: str | None = None,
+        server_type: str | None = None,
+        ddns_server_addr: list | None = None,
+        ddns_zone: str | None = None,
+        ddns_ttl: int | None = None,
+        ddns_auth: str | None = None,
+        ddns_keyname: str | None = None,
+        ddns_key: str | None = None,
+        ddns_domain: str | None = None,
+        ddns_username: str | None = None,
+        ddns_sn: str | None = None,
+        ddns_password: str | None = None,
+        use_public_ip: str | None = None,
+        update_interval: int | None = None,
+        clear_text: str | None = None,
+        ssl_certificate: str | None = None,
+        bound_ip: str | None = None,
+        monitor_interface: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update ddns
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            ddnsid: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            ddnsid: DDNS ID. (optional)
+            ddns_server: Select a DDNS service provider. (optional)
+            addr_type: Address type of interface address in DDNS update. (optional)
+            server_type: Address type of the DDNS server. (optional)
+            ddns_server_addr: Generic DDNS server IP/FQDN list. (optional)
+            ddns_zone: Zone of your domain name (for example, DDNS.com). (optional)
+            ddns_ttl: Time-to-live for DDNS packets. (optional)
+            ddns_auth: Enable/disable TSIG authentication for your DDNS server. (optional)
+            ddns_keyname: DDNS update key name. (optional)
+            ddns_key: DDNS update key (base 64 encoding). (optional)
+            ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com. (optional)
+            ddns_username: DDNS user name. (optional)
+            ddns_sn: DDNS Serial Number. (optional)
+            ddns_password: DDNS password. (optional)
+            use_public_ip: Enable/disable use of public IP address. (optional)
+            update_interval: DDNS update interval (60 - 2592000 sec, 0 means default). (optional)
+            clear_text: Enable/disable use of clear text connections. (optional)
+            ssl_certificate: Name of local certificate for SSL connections. (optional)
+            bound_ip: Bound IP address. (optional)
+            monitor_interface: Monitored interface. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.ddns.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.ddns.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/ddns/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not ddnsid:
+            raise ValueError("ddnsid is required for put()")
+        endpoint = f"/system/ddns/{ddnsid}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if ddnsid is not None:
+            data_payload['ddnsid'] = ddnsid
+        if ddns_server is not None:
+            data_payload['ddns-server'] = ddns_server
+        if addr_type is not None:
+            data_payload['addr-type'] = addr_type
+        if server_type is not None:
+            data_payload['server-type'] = server_type
+        if ddns_server_addr is not None:
+            data_payload['ddns-server-addr'] = ddns_server_addr
+        if ddns_zone is not None:
+            data_payload['ddns-zone'] = ddns_zone
+        if ddns_ttl is not None:
+            data_payload['ddns-ttl'] = ddns_ttl
+        if ddns_auth is not None:
+            data_payload['ddns-auth'] = ddns_auth
+        if ddns_keyname is not None:
+            data_payload['ddns-keyname'] = ddns_keyname
+        if ddns_key is not None:
+            data_payload['ddns-key'] = ddns_key
+        if ddns_domain is not None:
+            data_payload['ddns-domain'] = ddns_domain
+        if ddns_username is not None:
+            data_payload['ddns-username'] = ddns_username
+        if ddns_sn is not None:
+            data_payload['ddns-sn'] = ddns_sn
+        if ddns_password is not None:
+            data_payload['ddns-password'] = ddns_password
+        if use_public_ip is not None:
+            data_payload['use-public-ip'] = use_public_ip
+        if update_interval is not None:
+            data_payload['update-interval'] = update_interval
+        if clear_text is not None:
+            data_payload['clear-text'] = clear_text
+        if ssl_certificate is not None:
+            data_payload['ssl-certificate'] = ssl_certificate
+        if bound_ip is not None:
+            data_payload['bound-ip'] = bound_ip
+        if monitor_interface is not None:
+            data_payload['monitor-interface'] = monitor_interface
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        ddnsid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete ddns
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            ddnsid: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.ddns.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/ddns/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not ddnsid:
+            raise ValueError("ddnsid is required for delete()")
+        endpoint = f"/system/ddns/{ddnsid}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        ddnsid: int | None = None,
+        ddns_server: str | None = None,
+        addr_type: str | None = None,
+        server_type: str | None = None,
+        ddns_server_addr: list | None = None,
+        ddns_zone: str | None = None,
+        ddns_ttl: int | None = None,
+        ddns_auth: str | None = None,
+        ddns_keyname: str | None = None,
+        ddns_key: str | None = None,
+        ddns_domain: str | None = None,
+        ddns_username: str | None = None,
+        ddns_sn: str | None = None,
+        ddns_password: str | None = None,
+        use_public_ip: str | None = None,
+        update_interval: int | None = None,
+        clear_text: str | None = None,
+        ssl_certificate: str | None = None,
+        bound_ip: str | None = None,
+        monitor_interface: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if ddns exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            ddnsid: DDNS ID. (optional)
+            ddns_server: Select a DDNS service provider. (optional)
+            addr_type: Address type of interface address in DDNS update. (optional)
+            server_type: Address type of the DDNS server. (optional)
+            ddns_server_addr: Generic DDNS server IP/FQDN list. (optional)
+            ddns_zone: Zone of your domain name (for example, DDNS.com). (optional)
+            ddns_ttl: Time-to-live for DDNS packets. (optional)
+            ddns_auth: Enable/disable TSIG authentication for your DDNS server. (optional)
+            ddns_keyname: DDNS update key name. (optional)
+            ddns_key: DDNS update key (base 64 encoding). (optional)
+            ddns_domain: Your fully qualified domain name. For example, yourname.ddns.com. (optional)
+            ddns_username: DDNS user name. (optional)
+            ddns_sn: DDNS Serial Number. (optional)
+            ddns_password: DDNS password. (optional)
+            use_public_ip: Enable/disable use of public IP address. (optional)
+            update_interval: DDNS update interval (60 - 2592000 sec, 0 means default). (optional)
+            clear_text: Enable/disable use of clear text connections. (optional)
+            ssl_certificate: Name of local certificate for SSL connections. (optional)
+            bound_ip: Bound IP address. (optional)
+            monitor_interface: Monitored interface. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.ddns.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/ddns"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if ddnsid is not None:
+            data_payload['ddnsid'] = ddnsid
+        if ddns_server is not None:
+            data_payload['ddns-server'] = ddns_server
+        if addr_type is not None:
+            data_payload['addr-type'] = addr_type
+        if server_type is not None:
+            data_payload['server-type'] = server_type
+        if ddns_server_addr is not None:
+            data_payload['ddns-server-addr'] = ddns_server_addr
+        if ddns_zone is not None:
+            data_payload['ddns-zone'] = ddns_zone
+        if ddns_ttl is not None:
+            data_payload['ddns-ttl'] = ddns_ttl
+        if ddns_auth is not None:
+            data_payload['ddns-auth'] = ddns_auth
+        if ddns_keyname is not None:
+            data_payload['ddns-keyname'] = ddns_keyname
+        if ddns_key is not None:
+            data_payload['ddns-key'] = ddns_key
+        if ddns_domain is not None:
+            data_payload['ddns-domain'] = ddns_domain
+        if ddns_username is not None:
+            data_payload['ddns-username'] = ddns_username
+        if ddns_sn is not None:
+            data_payload['ddns-sn'] = ddns_sn
+        if ddns_password is not None:
+            data_payload['ddns-password'] = ddns_password
+        if use_public_ip is not None:
+            data_payload['use-public-ip'] = use_public_ip
+        if update_interval is not None:
+            data_payload['update-interval'] = update_interval
+        if clear_text is not None:
+            data_payload['clear-text'] = clear_text
+        if ssl_certificate is not None:
+            data_payload['ssl-certificate'] = ssl_certificate
+        if bound_ip is not None:
+            data_payload['bound-ip'] = bound_ip
+        if monitor_interface is not None:
+            data_payload['monitor-interface'] = monitor_interface
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

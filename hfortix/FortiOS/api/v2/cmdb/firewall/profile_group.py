@@ -1,482 +1,370 @@
 """
-FortiOS profile-group API wrapper.
-Provides access to /api/v2/cmdb/firewall/profile-group endpoint.
+FortiOS CMDB - Firewall ProfileGroup
+
+API Endpoints:
+    GET    /firewall/profile-group
+    POST   /firewall/profile-group
+    GET    /firewall/profile-group/{name}
+    PUT    /firewall/profile-group/{name}
+    DELETE /firewall/profile-group/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class ProfileGroup:
-    """
-    Wrapper for firewall profile-group API endpoint.
+    """ProfileGroup operations."""
 
-    Manages profile-group configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the ProfileGroup wrapper.
+        Initialize ProfileGroup endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/profile-group"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific profile-group entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        diameter_filter_profile: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        emailfilter_profile: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        icap_profile: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        name: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        virtual_patch_profile: Optional[str] = None,
-        voip_profile: Optional[str] = None,
-        waf_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create profile-group entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            diameter-filter-profile (string) (max_len: 47):
-                Name of an existing Diameter filter profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            name (string) (max_len: 47):
-                Profile group name.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            virtual-patch-profile (string) (max_len: 47):
-                Name of an existing virtual-patch profile.
-            voip-profile (string) (max_len: 47):
-                Name of an existing VoIP (voipd) profile.
-            waf-profile (string) (max_len: 47):
-                Name of an existing Web application firewall profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if diameter_filter_profile is not None:
-            payload_dict["diameter-filter-profile"] = diameter_filter_profile
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if name is not None:
-            payload_dict["name"] = name
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if virtual_patch_profile is not None:
-            payload_dict["virtual-patch-profile"] = virtual_patch_profile
-        if voip_profile is not None:
-            payload_dict["voip-profile"] = voip_profile
-        if waf_profile is not None:
-            payload_dict["waf-profile"] = waf_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/profile-group/{name}"
+        else:
+            endpoint = "/firewall/profile-group"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        diameter_filter_profile: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        emailfilter_profile: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        icap_profile: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        name: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        virtual_patch_profile: Optional[str] = None,
-        voip_profile: Optional[str] = None,
-        waf_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        voip_profile: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        diameter_filter_profile: str | None = None,
+        virtual_patch_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        waf_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update profile-group entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            diameter-filter-profile (string) (max_len: 47):
-                Name of an existing Diameter filter profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            name (string) (max_len: 47):
-                Profile group name.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            virtual-patch-profile (string) (max_len: 47):
-                Name of an existing virtual-patch profile.
-            voip-profile (string) (max_len: 47):
-                Name of an existing VoIP (voipd) profile.
-            waf-profile (string) (max_len: 47):
-                Name of an existing Web application firewall profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Profile group name. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            voip_profile: Name of an existing VoIP (voipd) profile. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            waf_profile: Name of an existing Web application firewall profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if diameter_filter_profile is not None:
-            payload_dict["diameter-filter-profile"] = diameter_filter_profile
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if name is not None:
-            payload_dict["name"] = name
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if virtual_patch_profile is not None:
-            payload_dict["virtual-patch-profile"] = virtual_patch_profile
-        if voip_profile is not None:
-            payload_dict["voip-profile"] = voip_profile
-        if waf_profile is not None:
-            payload_dict["waf-profile"] = waf_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/profile-group/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if voip_profile is not None:
+            data_payload['voip-profile'] = voip_profile
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if diameter_filter_profile is not None:
+            data_payload['diameter-filter-profile'] = diameter_filter_profile
+        if virtual_patch_profile is not None:
+            data_payload['virtual-patch-profile'] = virtual_patch_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if waf_profile is not None:
+            data_payload['waf-profile'] = waf_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a profile-group entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/profile-group/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        voip_profile: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        diameter_filter_profile: str | None = None,
+        virtual_patch_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        waf_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Profile group name. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            voip_profile: Name of an existing VoIP (voipd) profile. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            waf_profile: Name of an existing Web application firewall profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/profile-group"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if voip_profile is not None:
+            data_payload['voip-profile'] = voip_profile
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if diameter_filter_profile is not None:
+            data_payload['diameter-filter-profile'] = diameter_filter_profile
+        if virtual_patch_profile is not None:
+            data_payload['virtual-patch-profile'] = virtual_patch_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if waf_profile is not None:
+            data_payload['waf-profile'] = waf_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

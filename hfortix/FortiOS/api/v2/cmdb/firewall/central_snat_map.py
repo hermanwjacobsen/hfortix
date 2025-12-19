@@ -1,152 +1,378 @@
-"""FortiOS CMDB - Firewall Central SNAT Map
+"""
+FortiOS CMDB - Firewall CentralSnatMap
 
-Configure IPv4 and IPv6 central SNAT policies.
-
-Swagger paths (FortiOS 7.6.5):
-    - /api/v2/cmdb/firewall/central-snat-map
-    - /api/v2/cmdb/firewall/central-snat-map/{policyid}
-
-Notes:
-    - This is a CLI table endpoint keyed by ``policyid``.
-    - The FortiOS API uses hyphenated field names; this wrapper keeps payloads
-      largely "as-is" and only provides minimal helpers.
+API Endpoints:
+    GET    /firewall/central-snat-map
+    POST   /firewall/central-snat-map
+    GET    /firewall/central-snat-map/{policyid}
+    PUT    /firewall/central-snat-map/{policyid}
+    DELETE /firewall/central-snat-map/{policyid}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class CentralSnatMap:
-    """Firewall `central-snat-map` table endpoint."""
+    """CentralSnatMap operations."""
 
-    # Fortinet-documented endpoint identifiers
-    name = "central-snat-map"
-    path = "firewall/central-snat-map"
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize CentralSnatMap endpoint.
 
-    def __init__(self, client: "HTTPClient") -> None:
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
-    # -----------------------------
-    # Collection operations
-    # -----------------------------
-    def post(
-        self,
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """Create one or more central SNAT policies.
-
-        Args:
-            data: FortiOS payload dict (hyphenated keys supported)
-            vdom: Virtual domain
-            **kwargs: Extra query params (rare; forwarded)
-        """
-        params = kwargs or None
-        return self._client.post(
-            "cmdb", self.path, data=data, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    # -----------------------------
-    # Member operations
-    # -----------------------------
     def get(
         self,
-        policyid: Optional[Union[int, str]] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get policyid(s) - list all or get specific by policyid.
-
-        Args:
-            policyid: Optional policyid to get specific entry. If None, lists all.
         """
-        params: dict[str, Any] = {}
-        for key, value in {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        # If policyid provided, get specific; otherwise list all
-        if policyid is not None:
-            policyid_str = self._client.validate_mkey(policyid, "policyid")
-            path = f"{self.path}/{policyid_str}"
+        Select a specific entry from a CLI table.
+        
+        Args:
+            policyid: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if policyid:
+            endpoint = f"/firewall/central-snat-map/{policyid}"
         else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb",
-            path,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            endpoint = "/firewall/central-snat-map"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        policyid: Union[int, str],
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        orig_addr: list | None = None,
+        orig_addr6: list | None = None,
+        dst_addr: list | None = None,
+        dst_addr6: list | None = None,
+        protocol: int | None = None,
+        orig_port: str | None = None,
+        nat: str | None = None,
+        nat46: str | None = None,
+        nat64: str | None = None,
+        nat_ippool: list | None = None,
+        nat_ippool6: list | None = None,
+        port_preserve: str | None = None,
+        port_random: str | None = None,
+        nat_port: str | None = None,
+        dst_port: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update central SNAT policy."""
-        policyid_str = self._client.validate_mkey(policyid, "policyid")
-
-        params: dict[str, Any] = {}
-        for key, value in {
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{policyid_str}",
-            data=data,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            policyid: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            policyid: Policy ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable the active status of this policy. (optional)
+            type: IPv4/IPv6 source NAT. (optional)
+            srcintf: Source interface name from available interfaces. (optional)
+            dstintf: Destination interface name from available interfaces. (optional)
+            orig_addr: IPv4 Original address. (optional)
+            orig_addr6: IPv6 Original address. (optional)
+            dst_addr: IPv4 Destination address. (optional)
+            dst_addr6: IPv6 Destination address. (optional)
+            protocol: Integer value for the protocol type (0 - 255). (optional)
+            orig_port: Original TCP port (1 to 65535, 0 means any port). (optional)
+            nat: Enable/disable source NAT. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            nat64: Enable/disable NAT64. (optional)
+            nat_ippool: Name of the IP pools to be used to translate addresses from available IP Pools. (optional)
+            nat_ippool6: IPv6 pools to be used for source NAT. (optional)
+            port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. (optional)
+            port_random: Enable/disable random source port selection for source NAT. (optional)
+            nat_port: Translated port or port range (1 to 65535, 0 means any port). (optional)
+            dst_port: Destination port or port range (1 to 65535, 0 means any port). (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for put()")
+        endpoint = f"/firewall/central-snat-map/{policyid}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if orig_addr is not None:
+            data_payload['orig-addr'] = orig_addr
+        if orig_addr6 is not None:
+            data_payload['orig-addr6'] = orig_addr6
+        if dst_addr is not None:
+            data_payload['dst-addr'] = dst_addr
+        if dst_addr6 is not None:
+            data_payload['dst-addr6'] = dst_addr6
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if orig_port is not None:
+            data_payload['orig-port'] = orig_port
+        if nat is not None:
+            data_payload['nat'] = nat
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if nat64 is not None:
+            data_payload['nat64'] = nat64
+        if nat_ippool is not None:
+            data_payload['nat-ippool'] = nat_ippool
+        if nat_ippool6 is not None:
+            data_payload['nat-ippool6'] = nat_ippool6
+        if port_preserve is not None:
+            data_payload['port-preserve'] = port_preserve
+        if port_random is not None:
+            data_payload['port-random'] = port_random
+        if nat_port is not None:
+            data_payload['nat-port'] = nat_port
+        if dst_port is not None:
+            data_payload['dst-port'] = dst_port
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        policyid: Union[int, str],
-        vdom: Optional[Union[str, bool]] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Delete an existing central SNAT policy."""
-        policyid_str = self._client.validate_mkey(policyid, "policyid")
-        params = kwargs or None
-        return self._client.delete(
-            "cmdb", f"{self.path}/{policyid_str}", params=params, vdom=vdom, raw_json=raw_json
-        )
+        """
+        Delete this specific resource.
+        
+        Args:
+            policyid: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for delete()")
+        endpoint = f"/firewall/central-snat-map/{policyid}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        policyid: int | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        orig_addr: list | None = None,
+        orig_addr6: list | None = None,
+        dst_addr: list | None = None,
+        dst_addr6: list | None = None,
+        protocol: int | None = None,
+        orig_port: str | None = None,
+        nat: str | None = None,
+        nat46: str | None = None,
+        nat64: str | None = None,
+        nat_ippool: list | None = None,
+        nat_ippool6: list | None = None,
+        port_preserve: str | None = None,
+        port_random: str | None = None,
+        nat_port: str | None = None,
+        dst_port: str | None = None,
+        comments: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            policyid: Policy ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable the active status of this policy. (optional)
+            type: IPv4/IPv6 source NAT. (optional)
+            srcintf: Source interface name from available interfaces. (optional)
+            dstintf: Destination interface name from available interfaces. (optional)
+            orig_addr: IPv4 Original address. (optional)
+            orig_addr6: IPv6 Original address. (optional)
+            dst_addr: IPv4 Destination address. (optional)
+            dst_addr6: IPv6 Destination address. (optional)
+            protocol: Integer value for the protocol type (0 - 255). (optional)
+            orig_port: Original TCP port (1 to 65535, 0 means any port). (optional)
+            nat: Enable/disable source NAT. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            nat64: Enable/disable NAT64. (optional)
+            nat_ippool: Name of the IP pools to be used to translate addresses from available IP Pools. (optional)
+            nat_ippool6: IPv6 pools to be used for source NAT. (optional)
+            port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. (optional)
+            port_random: Enable/disable random source port selection for source NAT. (optional)
+            nat_port: Translated port or port range (1 to 65535, 0 means any port). (optional)
+            dst_port: Destination port or port range (1 to 65535, 0 means any port). (optional)
+            comments: Comment. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/central-snat-map"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if orig_addr is not None:
+            data_payload['orig-addr'] = orig_addr
+        if orig_addr6 is not None:
+            data_payload['orig-addr6'] = orig_addr6
+        if dst_addr is not None:
+            data_payload['dst-addr'] = dst_addr
+        if dst_addr6 is not None:
+            data_payload['dst-addr6'] = dst_addr6
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if orig_port is not None:
+            data_payload['orig-port'] = orig_port
+        if nat is not None:
+            data_payload['nat'] = nat
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if nat64 is not None:
+            data_payload['nat64'] = nat64
+        if nat_ippool is not None:
+            data_payload['nat-ippool'] = nat_ippool
+        if nat_ippool6 is not None:
+            data_payload['nat-ippool6'] = nat_ippool6
+        if port_preserve is not None:
+            data_payload['port-preserve'] = port_preserve
+        if port_random is not None:
+            data_payload['port-random'] = port_random
+        if nat_port is not None:
+            data_payload['nat-port'] = nat_port
+        if dst_port is not None:
+            data_payload['dst-port'] = dst_port
+        if comments is not None:
+            data_payload['comments'] = comments
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

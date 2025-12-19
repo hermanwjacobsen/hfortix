@@ -1,381 +1,290 @@
 """
-FortiOS CMDB - Application Groups
-
-Configure firewall application groups.
+FortiOS CMDB - Application Group
 
 API Endpoints:
-    GET    /api/v2/cmdb/application/group       - List all application groups
-    GET    /api/v2/cmdb/application/group/{name} - Get a specific application group
-    POST   /api/v2/cmdb/application/group       - Create application group
-    PUT    /api/v2/cmdb/application/group/{name} - Update an application group
-    DELETE /api/v2/cmdb/application/group/{name} - Delete an application group
+    GET    /application/group
+    POST   /application/group
+    GET    /application/group/{name}
+    PUT    /application/group/{name}
+    DELETE /application/group/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Group:
-    """Application groups endpoint"""
+    """Group operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Group endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        # Query parameters
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get application group(s) - List all or get specific.
-
-        Retrieves either a specific application group by name, or lists
-        all application groups with optional filtering.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Group name to retrieve. If None, retrieves all groups
-            attr (str, optional): Attribute name that references other table
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (dict, optional): Skip to provided table's Nth entry
-            acs (int, optional): If true, returned results are in ascending order
-            search (str, optional): Filter objects by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            datasource (bool, optional): Include datasource information for each linked object
-            with_meta (bool, optional): Include meta information about each object
-            skip (bool, optional): Enable CLI skip operator to hide skipped properties
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing application group data
-
-        Examples:
-            >>> # List all application groups
-            >>> groups = fgt.cmdb.application.group.list()
-            >>> for grp in groups['results']:
-            ...     print(grp['name'], grp.get('comment', ''))
-
-            >>> # Get a specific group
-            >>> grp = fgt.cmdb.application.group.get('WebApps')
-            >>> print(grp['results']['type'])
-
-            >>> # Get with filtering
-            >>> groups = fgt.cmdb.application.group.get(
-            ...     format='name|comment|type',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        # Build path
-        path = "application/group"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Group parameters
-        comment: Optional[str] = None,
-        type: Optional[str] = None,
-        application: Optional[list[Union[int, dict[str, Any]]]] = None,
-        category: Optional[list[Union[int, dict[str, Any]]]] = None,
-        risk: Optional[list[Union[int, dict[str, Any]]]] = None,
-        protocols: Optional[str] = None,
-        vendor: Optional[list[Union[int, dict[str, Any]]]] = None,
-        technology: Optional[list[Union[int, dict[str, Any]]]] = None,
-        behavior: Optional[str] = None,
-        popularity: Optional[list[Union[int, dict[str, Any]]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create application group.
-
-        Args:
-            name (str, required): Application group name (max 63 chars)
-            comment (str, optional): Comments (max 255 chars)
-            type (str, optional): Application group type - 'application' or 'filter'
-            application (list, optional): Application ID list. List of dicts with 'id' key
-            category (list, optional): Application category ID list. List of dicts with 'id' key
-            risk (list, optional): Risk levels (1-5). List of dicts with 'level' key
-            protocols (str, optional): Application protocol filter
-            vendor (str, optional): Application vendor filter
-            technology (str, optional): Application technology filter
-            behavior (str, optional): Application behavior filter
-            popularity (str, optional): Popularity filter - '1', '2', '3', '4', or '5'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing creation status
-
-        Examples:
-            >>> # POST - Create a group with specific applications
-            >>> result = fgt.cmdb.application.group.create(
-            ...     name='WebApps',
-            ...     comment='Web application group',
-            ...     type='application',
-            ...     application=[
-            ...         {'id': 16072},  # HTTP
-            ...         {'id': 16073}   # HTTPS
-            ...     ]
-            ... )
-
-            >>> # POST - Create a filter-based group
-            >>> result = fgt.cmdb.application.group.create(
-            ...     name='HighRiskApps',
-            ...     comment='High risk applications',
-            ...     type='filter',
-            ...     risk=[{'level': 4}, {'level': 5}],
-            ...     popularity='5'
-            ... )
-
-            >>> # POST - Create with category filter
-            >>> result = fgt.cmdb.application.group.create(
-            ...     name='SocialMedia',
-            ...     type='filter',
-            ...     category=[{'id': 2}],  # Social.Media category
-            ...     comment='Social media applications'
-            ... )
-        """
-        # Build data dictionary
-        payload_dict = {}
-        param_map = {
-            "name": name,
-            "comment": comment,
-            "type": type,
-            "application": application,
-            "category": category,
-            "risk": risk,
-            "protocols": protocols,
-            "vendor": vendor,
-            "technology": technology,
-            "behavior": behavior,
-            "popularity": popularity,
-        }
-
-        # No special field mapping needed - all fields use same name
-        for param_name, value in param_map.items():
-            if value is not None:
-                payload_dict[param_name] = value
-
-        payload_dict.update(kwargs)
-
-        return self._client.post("cmdb", "application/group", data, vdom=vdom, raw_json=raw_json)
+            endpoint = f"/application/group/{name}"
+        else:
+            endpoint = "/application/group"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Group parameters
-        comment: Optional[str] = None,
-        type: Optional[str] = None,
-        application: Optional[list[Union[int, dict[str, Any]]]] = None,
-        category: Optional[list[Union[int, dict[str, Any]]]] = None,
-        risk: Optional[list[Union[int, dict[str, Any]]]] = None,
-        protocols: Optional[str] = None,
-        vendor: Optional[list[Union[int, dict[str, Any]]]] = None,
-        technology: Optional[list[Union[int, dict[str, Any]]]] = None,
-        behavior: Optional[str] = None,
-        popularity: Optional[list[Union[int, dict[str, Any]]]] = None,
-        # Action parameters
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        type: str | None = None,
+        application: list | None = None,
+        category: list | None = None,
+        risk: list | None = None,
+        protocols: str | None = None,
+        vendor: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        popularity: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update application group.
-
+        Update this specific resource.
+        
         Args:
-            name (str, required): Application group name to update
-            comment (str, optional): Comments (max 255 chars)
-            type (str, optional): Application group type - 'application' or 'filter'
-            application (list, optional): Application ID list. List of dicts with 'id' key
-            category (list, optional): Application category ID list. List of dicts with 'id' key
-            risk (list, optional): Risk levels (1-5). List of dicts with 'level' key
-            protocols (str, optional): Application protocol filter
-            vendor (str, optional): Application vendor filter
-            technology (str, optional): Application technology filter
-            behavior (str, optional): Application behavior filter
-            popularity (str, optional): Popularity filter - '1', '2', '3', '4', or '5'
-            action (str, optional): Action to perform - 'move'
-            before (str, optional): Move before this group (requires action='move')
-            after (str, optional): Move after this group (requires action='move')
-            scope (str, optional): Scope level - 'vdom'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters to pass to the API
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Application group name. (optional)
+            comment: Comments. (optional)
+            type: Application group type. (optional)
+            application: Application ID list. (optional)
+            category: Application category ID list. (optional)
+            risk: Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). (optional)
+            protocols: Application protocol filter. (optional)
+            vendor: Application vendor filter. (optional)
+            technology: Application technology filter. (optional)
+            behavior: Application behavior filter. (optional)
+            popularity: Application popularity filter (1 - 5, from least to most popular). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing update status
-
-        Examples:
-            >>> # PUT - Update comment and add applications
-            >>> result = fgt.cmdb.application.group.update(
-            ...     name='WebApps',
-            ...     comment='Updated web applications',
-            ...     application=[
-            ...         {'id': 16072},
-            ...         {'id': 16073},
-            ...         {'id': 16074}
-            ...     ]
-            ... )
-
-            >>> # PUT - Update filter criteria
-            >>> result = fgt.cmdb.application.group.update(
-            ...     name='HighRiskApps',
-            ...     risk=[{'level': 5}],  # Only critical
-            ...     popularity='4'
-            ... )
-
-            >>> # Move group in list
-            >>> result = fgt.cmdb.application.group.update(
-            ...     name='WebApps',
-            ...     action='move',
-            ...     after='SocialMedia'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dictionary
-        payload_dict = {}
-        param_map = {
-            "name": name,
-            "comment": comment,
-            "type": type,
-            "application": application,
-            "category": category,
-            "risk": risk,
-            "protocols": protocols,
-            "vendor": vendor,
-            "technology": technology,
-            "behavior": behavior,
-            "popularity": popularity,
-        }
-
-        # No special field mapping needed
-        for param_name, value in param_map.items():
-            if value is not None:
-                payload_dict[param_name] = value
-
-        payload_dict.update(kwargs)
-
-        # Build query parameters for action/move
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        query_param_map = {
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }
-
-        for key, value in query_param_map.items():
-            if value is not None:
-                params[key] = value
-
-        return self._client.put(
-            "cmdb",
-            f"application/group/{name}",
-            data,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/application/group/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if type is not None:
+            data_payload['type'] = type
+        if application is not None:
+            data_payload['application'] = application
+        if category is not None:
+            data_payload['category'] = category
+        if risk is not None:
+            data_payload['risk'] = risk
+        if protocols is not None:
+            data_payload['protocols'] = protocols
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if popularity is not None:
+            data_payload['popularity'] = popularity
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete an application group.
-
+        Delete this specific resource.
+        
         Args:
-            name (str, required): Application group name to delete
-            scope (str, optional): Scope level - 'vdom'
-            vdom (str, optional): Virtual Domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing deletion status
-
-        Examples:
-            >>> # Delete a group
-            >>> result = fgt.cmdb.application.group.delete('WebApps')
-            >>> print(result['status'])
-
-            >>> # Delete with specific scope
-            >>> result = fgt.cmdb.application.group.delete(
-            ...     name='HighRiskApps',
-            ...     scope='vdom'
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        if scope is not None:
-            params["scope"] = scope
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/application/group/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        return self._client.delete(
-            "cmdb",
-            f"application/group/{name}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        type: str | None = None,
+        application: list | None = None,
+        category: list | None = None,
+        risk: list | None = None,
+        protocols: str | None = None,
+        vendor: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        popularity: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Application group name. (optional)
+            comment: Comments. (optional)
+            type: Application group type. (optional)
+            application: Application ID list. (optional)
+            category: Application category ID list. (optional)
+            risk: Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical). (optional)
+            protocols: Application protocol filter. (optional)
+            vendor: Application vendor filter. (optional)
+            technology: Application technology filter. (optional)
+            behavior: Application behavior filter. (optional)
+            popularity: Application popularity filter (1 - 5, from least to most popular). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/application/group"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if type is not None:
+            data_payload['type'] = type
+        if application is not None:
+            data_payload['application'] = application
+        if category is not None:
+            data_payload['category'] = category
+        if risk is not None:
+            data_payload['risk'] = risk
+        if protocols is not None:
+            data_payload['protocols'] = protocols
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if popularity is not None:
+            data_payload['popularity'] = popularity
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

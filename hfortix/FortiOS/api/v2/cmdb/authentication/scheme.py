@@ -1,436 +1,346 @@
 """
-FortiOS CMDB - Authentication Schemes
-
-Configure authentication schemes for controlling authentication methods.
+FortiOS CMDB - Authentication Scheme
 
 API Endpoints:
-    GET    /api/v2/cmdb/authentication/scheme       - Get all authentication schemes
-    GET    /api/v2/cmdb/authentication/scheme/{name} - Get specific authentication scheme
-    POST   /api/v2/cmdb/authentication/scheme       - Create authentication scheme
-    PUT    /api/v2/cmdb/authentication/scheme/{name} - Update authentication scheme
-    DELETE /api/v2/cmdb/authentication/scheme/{name} - Delete authentication scheme
+    GET    /authentication/scheme
+    POST   /authentication/scheme
+    GET    /authentication/scheme/{name}
+    PUT    /authentication/scheme/{name}
+    DELETE /authentication/scheme/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Scheme:
-    """Authentication scheme endpoint"""
+    """Scheme operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    @staticmethod
-    def _format_name_list(
-        items: Optional[list[Union[str, dict[str, Any]]]],
-    ) -> Optional[list[dict[str, Any]]]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Convert simple list of strings to FortiOS format [{'name': 'item'}]
+        Initialize Scheme endpoint.
 
         Args:
-            items: List of strings or dicts or None
-
-        Returns:
-            List of dicts with 'name' key, or None if input is None
+            client: HTTPClient instance for API communication
         """
-        if items is None:
-            return None
-
-        formatted = []
-        for item in items:
-            if isinstance(item, str):
-                formatted.append({"name": item})
-            elif isinstance(item, dict):
-                formatted.append(item)
-            else:
-                formatted.append({"name": str(item)})
-
-        return formatted
+        self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        datasource: Optional[bool] = False,
-        with_meta: Optional[bool] = False,
-        skip: Optional[bool] = False,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[str] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get authentication scheme(s) - List all or get specific
-
-        Retrieve authentication schemes with filtering and query options.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Scheme name. If provided, get specific scheme.
-            attr (str, optional): Attribute name that references other table
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable skip operator
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (str, optional): Skip to datasource entry
-            acs (bool, optional): If true, return in ascending order
-            search (str, optional): Filter by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            format (str, optional): Return specific fields (e.g., 'name|method')
-            action (str, optional): Action type - 'default', 'schema', or 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with scheme data
-
-        Examples:
-            >>> # Get all authentication schemes
-            >>> schemes = fgt.cmdb.authentication.scheme.list()
-
-            >>> # Get specific scheme by name
-            >>> scheme = fgt.cmdb.authentication.scheme.get('basic-auth')
-
-            >>> # Get with filtering
-            >>> filtered = fgt.cmdb.authentication.scheme.get(
-            ...     format='name|method',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/authentication/scheme/{name}"
+        else:
+            endpoint = "/authentication/scheme"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Build path
-        path = "authentication/scheme"
-        if name is not None:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        method: Optional[str] = None,
-        negotiate_ntlm: Optional[str] = None,
-        kerberos_keytab: Optional[str] = None,
-        domain_controller: Optional[str] = None,
-        saml_server: Optional[str] = None,
-        saml_timeout: Optional[int] = None,
-        fsso_agent_for_ntlm: Optional[str] = None,
-        require_tfa: Optional[str] = None,
-        fsso_guest: Optional[str] = None,
-        user_cert: Optional[str] = None,
-        cert_http_header: Optional[str] = None,
-        user_database: Optional[list[Union[str, dict[str, Any]]]] = None,
-        ssh_ca: Optional[str] = None,
-        external_idp: Optional[str] = None,
-        group_attr_type: Optional[str] = None,
-        digest_algo: Optional[str] = None,
-        digest_rfc2069: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create authentication scheme
-
-        Create authentication scheme to define authentication methods.
-
-        Args:
-            name (str, required): Authentication scheme name (max 35 chars)
-            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest',
-                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml',
-                'entra-sso' (default: 'basic')
-            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM -
-                'enable' or 'disable'
-            kerberos_keytab (str, optional): Kerberos keytab setting (max 35 chars)
-            domain_controller (str, optional): Domain controller setting (max 35 chars)
-            saml_server (str, optional): SAML configuration (max 35 chars)
-            saml_timeout (int, optional): SAML authentication timeout in seconds (30-1200)
-            fsso_agent_for_ntlm (str, optional): FSSO agent to use for NTLM auth (max 35 chars)
-            require_tfa (str, optional): Enable/disable two-factor auth - 'enable' or 'disable'
-            fsso_guest (str, optional): Enable/disable fsso-guest auth - 'enable' or 'disable'
-            user_cert (str, optional): Enable/disable user certificate auth - 'enable' or 'disable'
-            cert_http_header (str, optional): Enable/disable cert auth with HTTP header -
-                'enable' or 'disable'
-            user_database (list, optional): List of authentication server names (strings or
-                dicts with 'name' key)
-            ssh_ca (str, optional): SSH CA name (max 35 chars)
-            external_idp (str, optional): External identity provider configuration (max 35 chars)
-            group_attr_type (str, optional): Group attribute type - 'display-name' or 'external-id'
-            digest_algo (str, optional): Digest auth algorithm - 'md5' or 'sha-256'
-            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client -
-                'enable' or 'disable'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create basic HTTP authentication scheme
-            >>> result = fgt.cmdb.authentication.scheme.create(
-            ...     name='basic-http-auth',
-            ...     method='basic',
-            ...     user_database=['local-user-db']
-            ... )
-
-            >>> # POST - Create LDAP authentication scheme
-            >>> result = fgt.cmdb.authentication.scheme.create(
-            ...     name='ldap-auth',
-            ...     method='form',
-            ...     user_database=['LDAP-Server'],
-            ...     require_tfa='enable'
-            ... )
-
-            >>> # POST - Create SAML authentication scheme
-            >>> result = fgt.cmdb.authentication.scheme.create(
-            ...     name='saml-sso',
-            ...     method='saml',
-            ...     saml_server='Azure-SAML',
-            ...     saml_timeout=300
-            ... )
-        """
-        # Convert simple lists to FortiOS format
-        user_database = self._format_name_list(user_database)
-
-        param_map = {
-            "name": name,
-            "method": method,
-            "negotiate_ntlm": negotiate_ntlm,
-            "kerberos_keytab": kerberos_keytab,
-            "domain_controller": domain_controller,
-            "saml_server": saml_server,
-            "saml_timeout": saml_timeout,
-            "fsso_agent_for_ntlm": fsso_agent_for_ntlm,
-            "require_tfa": require_tfa,
-            "fsso_guest": fsso_guest,
-            "user_cert": user_cert,
-            "cert_http_header": cert_http_header,
-            "user_database": user_database,
-            "ssh_ca": ssh_ca,
-            "external_idp": external_idp,
-            "group_attr_type": group_attr_type,
-            "digest_algo": digest_algo,
-            "digest_rfc2069": digest_rfc2069,
-        }
-
-        api_field_map = {
-            "name": "name",
-            "method": "method",
-            "negotiate_ntlm": "negotiate-ntlm",
-            "kerberos_keytab": "kerberos-keytab",
-            "domain_controller": "domain-controller",
-            "saml_server": "saml-server",
-            "saml_timeout": "saml-timeout",
-            "fsso_agent_for_ntlm": "fsso-agent-for-ntlm",
-            "require_tfa": "require-tfa",
-            "fsso_guest": "fsso-guest",
-            "user_cert": "user-cert",
-            "cert_http_header": "cert-http-header",
-            "user_database": "user-database",
-            "ssh_ca": "ssh-ca",
-            "external_idp": "external-idp",
-            "group_attr_type": "group-attr-type",
-            "digest_algo": "digest-algo",
-            "digest_rfc2069": "digest-rfc2069",
-        }
-
-        data = {}
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "authentication/scheme", data, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        method: Optional[str] = None,
-        negotiate_ntlm: Optional[str] = None,
-        kerberos_keytab: Optional[str] = None,
-        domain_controller: Optional[str] = None,
-        saml_server: Optional[str] = None,
-        saml_timeout: Optional[int] = None,
-        fsso_agent_for_ntlm: Optional[str] = None,
-        require_tfa: Optional[str] = None,
-        fsso_guest: Optional[str] = None,
-        user_cert: Optional[str] = None,
-        cert_http_header: Optional[str] = None,
-        user_database: Optional[list[Union[str, dict[str, Any]]]] = None,
-        ssh_ca: Optional[str] = None,
-        external_idp: Optional[str] = None,
-        group_attr_type: Optional[str] = None,
-        digest_algo: Optional[str] = None,
-        digest_rfc2069: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        method: str | None = None,
+        negotiate_ntlm: str | None = None,
+        kerberos_keytab: str | None = None,
+        domain_controller: str | None = None,
+        saml_server: str | None = None,
+        saml_timeout: int | None = None,
+        fsso_agent_for_ntlm: str | None = None,
+        require_tfa: str | None = None,
+        fsso_guest: str | None = None,
+        user_cert: str | None = None,
+        cert_http_header: str | None = None,
+        user_database: list | None = None,
+        ssh_ca: str | None = None,
+        external_idp: str | None = None,
+        group_attr_type: str | None = None,
+        digest_algo: str | None = None,
+        digest_rfc2069: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update authentication scheme
-
-        Update authentication scheme configuration.
-
+        Update this specific resource.
+        
         Args:
-            name (str, required): Authentication scheme name
-            method (str, optional): Authentication method - 'ntlm', 'basic', 'digest',
-                'form', 'negotiate', 'fsso', 'rsso', 'ssh-publickey', 'cert', 'saml',
-                'entra-sso'
-            negotiate_ntlm (str, optional): Enable/disable negotiate auth for NTLM -
-                'enable' or 'disable'
-            kerberos_keytab (str, optional): Kerberos keytab setting
-            domain_controller (str, optional): Domain controller setting
-            saml_server (str, optional): SAML configuration
-            saml_timeout (int, optional): SAML authentication timeout in seconds (30-1200)
-            fsso_agent_for_ntlm (str, optional): FSSO agent to use for NTLM auth
-            require_tfa (str, optional): Enable/disable two-factor auth - 'enable' or 'disable'
-            fsso_guest (str, optional): Enable/disable fsso-guest auth - 'enable' or 'disable'
-            user_cert (str, optional): Enable/disable user certificate auth - 'enable' or 'disable'
-            cert_http_header (str, optional): Enable/disable cert auth with HTTP header -
-                'enable' or 'disable'
-            user_database (list, optional): List of authentication server names
-            ssh_ca (str, optional): SSH CA name
-            external_idp (str, optional): External identity provider configuration
-            group_attr_type (str, optional): Group attribute type - 'display-name' or 'external-id'
-            digest_algo (str, optional): Digest auth algorithm - 'md5' or 'sha-256'
-            digest_rfc2069 (str, optional): Enable/disable RFC2069 Digest Client -
-                'enable' or 'disable'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Authentication scheme name. (optional)
+            method: Authentication methods (default = basic). (optional)
+            negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). (optional)
+            kerberos_keytab: Kerberos keytab setting. (optional)
+            domain_controller: Domain controller setting. (optional)
+            saml_server: SAML configuration. (optional)
+            saml_timeout: SAML authentication timeout in seconds. (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
+            require_tfa: Enable/disable two-factor authentication (default = disable). (optional)
+            fsso_guest: Enable/disable user fsso-guest authentication (default = disable). (optional)
+            user_cert: Enable/disable authentication with user certificate (default = disable). (optional)
+            cert_http_header: Enable/disable authentication with user certificate in Client-Cert HTTP header (default = disable). (optional)
+            user_database: Authentication server to contain user information; "local-user-db" (default) or "123" (for LDAP). (optional)
+            ssh_ca: SSH CA name. (optional)
+            external_idp: External identity provider configuration. (optional)
+            group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            digest_algo: Digest Authentication Algorithms. (optional)
+            digest_rfc2069: Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field, default = disable). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update scheme to require two-factor authentication
-            >>> result = fgt.cmdb.authentication.scheme.update(
-            ...     name='basic-http-auth',
-            ...     require_tfa='enable'
-            ... )
-
-            >>> # PUT - Update authentication method
-            >>> result = fgt.cmdb.authentication.scheme.update(
-            ...     name='web-auth',
-            ...     method='form',
-            ...     user_database=['LDAP-Server', 'RADIUS-Server']
-            ... )
+            Dictionary containing API response
         """
-        # Convert simple lists to FortiOS format
-        user_database = self._format_name_list(user_database)
-
-        param_map = {
-            "method": method,
-            "negotiate_ntlm": negotiate_ntlm,
-            "kerberos_keytab": kerberos_keytab,
-            "domain_controller": domain_controller,
-            "saml_server": saml_server,
-            "saml_timeout": saml_timeout,
-            "fsso_agent_for_ntlm": fsso_agent_for_ntlm,
-            "require_tfa": require_tfa,
-            "fsso_guest": fsso_guest,
-            "user_cert": user_cert,
-            "cert_http_header": cert_http_header,
-            "user_database": user_database,
-            "ssh_ca": ssh_ca,
-            "external_idp": external_idp,
-            "group_attr_type": group_attr_type,
-            "digest_algo": digest_algo,
-            "digest_rfc2069": digest_rfc2069,
-        }
-
-        api_field_map = {
-            "method": "method",
-            "negotiate_ntlm": "negotiate-ntlm",
-            "kerberos_keytab": "kerberos-keytab",
-            "domain_controller": "domain-controller",
-            "saml_server": "saml-server",
-            "saml_timeout": "saml-timeout",
-            "fsso_agent_for_ntlm": "fsso-agent-for-ntlm",
-            "require_tfa": "require-tfa",
-            "fsso_guest": "fsso-guest",
-            "user_cert": "user-cert",
-            "cert_http_header": "cert-http-header",
-            "user_database": "user-database",
-            "ssh_ca": "ssh-ca",
-            "external_idp": "external-idp",
-            "group_attr_type": "group-attr-type",
-            "digest_algo": "digest-algo",
-            "digest_rfc2069": "digest-rfc2069",
-        }
-
-        data = {}
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"authentication/scheme/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/authentication/scheme/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if method is not None:
+            data_payload['method'] = method
+        if negotiate_ntlm is not None:
+            data_payload['negotiate-ntlm'] = negotiate_ntlm
+        if kerberos_keytab is not None:
+            data_payload['kerberos-keytab'] = kerberos_keytab
+        if domain_controller is not None:
+            data_payload['domain-controller'] = domain_controller
+        if saml_server is not None:
+            data_payload['saml-server'] = saml_server
+        if saml_timeout is not None:
+            data_payload['saml-timeout'] = saml_timeout
+        if fsso_agent_for_ntlm is not None:
+            data_payload['fsso-agent-for-ntlm'] = fsso_agent_for_ntlm
+        if require_tfa is not None:
+            data_payload['require-tfa'] = require_tfa
+        if fsso_guest is not None:
+            data_payload['fsso-guest'] = fsso_guest
+        if user_cert is not None:
+            data_payload['user-cert'] = user_cert
+        if cert_http_header is not None:
+            data_payload['cert-http-header'] = cert_http_header
+        if user_database is not None:
+            data_payload['user-database'] = user_database
+        if ssh_ca is not None:
+            data_payload['ssh-ca'] = ssh_ca
+        if external_idp is not None:
+            data_payload['external-idp'] = external_idp
+        if group_attr_type is not None:
+            data_payload['group-attr-type'] = group_attr_type
+        if digest_algo is not None:
+            data_payload['digest-algo'] = digest_algo
+        if digest_rfc2069 is not None:
+            data_payload['digest-rfc2069'] = digest_rfc2069
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete authentication scheme
-
+        Delete this specific resource.
+        
         Args:
-            name (str, required): Authentication scheme name
-            vdom (str, optional): Virtual Domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Delete authentication scheme
-            >>> result = fgt.cmdb.authentication.scheme.delete('basic-http-auth')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"authentication/scheme/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/authentication/scheme/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        method: str | None = None,
+        negotiate_ntlm: str | None = None,
+        kerberos_keytab: str | None = None,
+        domain_controller: str | None = None,
+        saml_server: str | None = None,
+        saml_timeout: int | None = None,
+        fsso_agent_for_ntlm: str | None = None,
+        require_tfa: str | None = None,
+        fsso_guest: str | None = None,
+        user_cert: str | None = None,
+        cert_http_header: str | None = None,
+        user_database: list | None = None,
+        ssh_ca: str | None = None,
+        external_idp: str | None = None,
+        group_attr_type: str | None = None,
+        digest_algo: str | None = None,
+        digest_rfc2069: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Authentication scheme name. (optional)
+            method: Authentication methods (default = basic). (optional)
+            negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). (optional)
+            kerberos_keytab: Kerberos keytab setting. (optional)
+            domain_controller: Domain controller setting. (optional)
+            saml_server: SAML configuration. (optional)
+            saml_timeout: SAML authentication timeout in seconds. (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
+            require_tfa: Enable/disable two-factor authentication (default = disable). (optional)
+            fsso_guest: Enable/disable user fsso-guest authentication (default = disable). (optional)
+            user_cert: Enable/disable authentication with user certificate (default = disable). (optional)
+            cert_http_header: Enable/disable authentication with user certificate in Client-Cert HTTP header (default = disable). (optional)
+            user_database: Authentication server to contain user information; "local-user-db" (default) or "123" (for LDAP). (optional)
+            ssh_ca: SSH CA name. (optional)
+            external_idp: External identity provider configuration. (optional)
+            group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            digest_algo: Digest Authentication Algorithms. (optional)
+            digest_rfc2069: Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field, default = disable). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/authentication/scheme"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if method is not None:
+            data_payload['method'] = method
+        if negotiate_ntlm is not None:
+            data_payload['negotiate-ntlm'] = negotiate_ntlm
+        if kerberos_keytab is not None:
+            data_payload['kerberos-keytab'] = kerberos_keytab
+        if domain_controller is not None:
+            data_payload['domain-controller'] = domain_controller
+        if saml_server is not None:
+            data_payload['saml-server'] = saml_server
+        if saml_timeout is not None:
+            data_payload['saml-timeout'] = saml_timeout
+        if fsso_agent_for_ntlm is not None:
+            data_payload['fsso-agent-for-ntlm'] = fsso_agent_for_ntlm
+        if require_tfa is not None:
+            data_payload['require-tfa'] = require_tfa
+        if fsso_guest is not None:
+            data_payload['fsso-guest'] = fsso_guest
+        if user_cert is not None:
+            data_payload['user-cert'] = user_cert
+        if cert_http_header is not None:
+            data_payload['cert-http-header'] = cert_http_header
+        if user_database is not None:
+            data_payload['user-database'] = user_database
+        if ssh_ca is not None:
+            data_payload['ssh-ca'] = ssh_ca
+        if external_idp is not None:
+            data_payload['external-idp'] = external_idp
+        if group_attr_type is not None:
+            data_payload['group-attr-type'] = group_attr_type
+        if digest_algo is not None:
+            data_payload['digest-algo'] = digest_algo
+        if digest_rfc2069 is not None:
+            data_payload['digest-rfc2069'] = digest_rfc2069
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,80 +1,402 @@
-"""FortiOS CMDB - Router Policy - IPv4 routing policies"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
-from hfortix.FortiOS.http_client import encode_path_component
+"""
+FortiOS CMDB - Router Policy
+
+API Endpoints:
+    GET    /router/policy
+    POST   /router/policy
+    GET    /router/policy/{seq-num}
+    PUT    /router/policy/{seq-num}
+    DELETE /router/policy/{seq-num}
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Policy:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Policy operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Policy endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, seq_num: Optional[int] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        path = "router/policy"
+
+    def get(
+        self,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select a specific entry from a CLI table.
+        
+        Args:
+            seq_num: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if seq_num:
+            endpoint = f"/router/policy/{seq_num}"
+        else:
+            endpoint = "/router/policy"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        input_device: list | None = None,
+        input_device_negate: str | None = None,
+        src: list | None = None,
+        srcaddr: list | None = None,
+        src_negate: str | None = None,
+        dst: list | None = None,
+        dstaddr: list | None = None,
+        dst_negate: str | None = None,
+        protocol: int | None = None,
+        start_port: int | None = None,
+        end_port: int | None = None,
+        start_source_port: int | None = None,
+        end_source_port: int | None = None,
+        gateway: str | None = None,
+        output_device: str | None = None,
+        tos: str | None = None,
+        tos_mask: str | None = None,
+        status: str | None = None,
+        comments: str | None = None,
+        internet_service_id: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        users: list | None = None,
+        groups: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            seq_num: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            seq_num: Sequence number(1-65535). (optional)
+            input_device: Incoming interface name. (optional)
+            input_device_negate: Enable/disable negation of input device match. (optional)
+            src: Source IP and mask (x.x.x.x/x). (optional)
+            srcaddr: Source address name. (optional)
+            src_negate: Enable/disable negating source address match. (optional)
+            dst: Destination IP and mask (x.x.x.x/x). (optional)
+            dstaddr: Destination address name. (optional)
+            dst_negate: Enable/disable negating destination address match. (optional)
+            protocol: Protocol number (0 - 255). (optional)
+            start_port: Start destination port number (0 - 65535). (optional)
+            end_port: End destination port number (0 - 65535). (optional)
+            start_source_port: Start source port number (0 - 65535). (optional)
+            end_source_port: End source port number (0 - 65535). (optional)
+            gateway: IP address of the gateway. (optional)
+            output_device: Outgoing interface name. (optional)
+            tos: Type of service bit pattern. (optional)
+            tos_mask: Type of service evaluated bits. (optional)
+            status: Enable/disable this policy route. (optional)
+            comments: Optional comments. (optional)
+            internet_service_id: Destination Internet Service ID. (optional)
+            internet_service_custom: Custom Destination Internet Service name. (optional)
+            internet_service_fortiguard: FortiGuard Destination Internet Service name. (optional)
+            users: List of users. (optional)
+            groups: List of user groups. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for put()")
+        endpoint = f"/router/policy/{seq_num}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if seq_num is not None:
-            path = f"{path}/{encode_path_component(str(seq_num))}"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-    def post(self, data_dict: Optional[dict[str, Any]] = None, seq_num: Optional[int] = None, input_device: Optional[list] = None, input_device_negate: Optional[str] = None, src: Optional[list] = None, srcaddr: Optional[list] = None, src_negate: Optional[str] = None, dst: Optional[list] = None, dstaddr: Optional[list] = None, dst_negate: Optional[str] = None, action: Optional[str] = None, protocol: Optional[int] = None, start_port: Optional[int] = None, end_port: Optional[int] = None, start_source_port: Optional[int] = None, end_source_port: Optional[int] = None, gateway: Optional[str] = None, output_device: Optional[str] = None, tos: Optional[str] = None, tos_mask: Optional[str] = None, status: Optional[str] = None, comments: Optional[str] = None, internet_service_id: Optional[list] = None, internet_service_custom: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"seq_num": "seq-num", "input_device": "input-device", "input_device_negate": "input-device-negate", "src_negate": "src-negate", "dst_negate": "dst-negate", "start_port": "start-port", "end_port": "end-port", "start_source_port": "start-source-port", "end_source_port": "end-source-port", "output_device": "output-device", "tos_mask": "tos-mask", "internet_service_id": "internet-service-id", "internet_service_custom": "internet-service-custom"}
-        if seq_num is not None:
-            data[param_map["seq_num"]] = seq_num
+            data_payload['seq-num'] = seq_num
         if input_device is not None:
-            data[param_map["input_device"]] = input_device
+            data_payload['input-device'] = input_device
         if input_device_negate is not None:
-            data[param_map["input_device_negate"]] = input_device_negate
+            data_payload['input-device-negate'] = input_device_negate
         if src is not None:
-            data["src"] = src
+            data_payload['src'] = src
         if srcaddr is not None:
-            data["srcaddr"] = srcaddr
+            data_payload['srcaddr'] = srcaddr
         if src_negate is not None:
-            data[param_map["src_negate"]] = src_negate
+            data_payload['src-negate'] = src_negate
         if dst is not None:
-            data["dst"] = dst
+            data_payload['dst'] = dst
         if dstaddr is not None:
-            data["dstaddr"] = dstaddr
+            data_payload['dstaddr'] = dstaddr
         if dst_negate is not None:
-            data[param_map["dst_negate"]] = dst_negate
-        if action is not None:
-            data["action"] = action
+            data_payload['dst-negate'] = dst_negate
         if protocol is not None:
-            data["protocol"] = protocol
+            data_payload['protocol'] = protocol
         if start_port is not None:
-            data[param_map["start_port"]] = start_port
+            data_payload['start-port'] = start_port
         if end_port is not None:
-            data[param_map["end_port"]] = end_port
+            data_payload['end-port'] = end_port
         if start_source_port is not None:
-            data[param_map["start_source_port"]] = start_source_port
+            data_payload['start-source-port'] = start_source_port
         if end_source_port is not None:
-            data[param_map["end_source_port"]] = end_source_port
+            data_payload['end-source-port'] = end_source_port
         if gateway is not None:
-            data["gateway"] = gateway
+            data_payload['gateway'] = gateway
         if output_device is not None:
-            data[param_map["output_device"]] = output_device
+            data_payload['output-device'] = output_device
         if tos is not None:
-            data["tos"] = tos
+            data_payload['tos'] = tos
         if tos_mask is not None:
-            data[param_map["tos_mask"]] = tos_mask
+            data_payload['tos-mask'] = tos_mask
         if status is not None:
-            data["status"] = status
+            data_payload['status'] = status
         if comments is not None:
-            data["comments"] = comments
+            data_payload['comments'] = comments
         if internet_service_id is not None:
-            data[param_map["internet_service_id"]] = internet_service_id
+            data_payload['internet-service-id'] = internet_service_id
         if internet_service_custom is not None:
-            data[param_map["internet_service_custom"]] = internet_service_custom
-        data.update(kwargs)
-        return self._client.post("cmdb", "router/policy", data=data, vdom=vdom)
-    def put(self, seq_num: int, data_dict: Optional[dict[str, Any]] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        data.update(kwargs)
-        path = f"router/policy/{encode_path_component(str(seq_num))}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
-    def delete(self, seq_num: int, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
-        path = f"router/policy/{encode_path_component(str(seq_num))}"
-        return self._client.delete("cmdb", path, vdom=vdom)
-    def exists(self, seq_num: int, vdom: Optional[Union[str, bool]] = None) -> bool:
-        try:
-            self.get(seq_num=seq_num, vdom=vdom)
-            return True
-        except Exception:
-            return False
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if users is not None:
+            data_payload['users'] = users
+        if groups is not None:
+            data_payload['groups'] = groups
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+
+    def delete(
+        self,
+        seq_num: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Delete this specific resource.
+        
+        Args:
+            seq_num: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not seq_num:
+            raise ValueError("seq_num is required for delete()")
+        endpoint = f"/router/policy/{seq_num}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        seq_num: int | None = None,
+        input_device: list | None = None,
+        input_device_negate: str | None = None,
+        src: list | None = None,
+        srcaddr: list | None = None,
+        src_negate: str | None = None,
+        dst: list | None = None,
+        dstaddr: list | None = None,
+        dst_negate: str | None = None,
+        protocol: int | None = None,
+        start_port: int | None = None,
+        end_port: int | None = None,
+        start_source_port: int | None = None,
+        end_source_port: int | None = None,
+        gateway: str | None = None,
+        output_device: str | None = None,
+        tos: str | None = None,
+        tos_mask: str | None = None,
+        status: str | None = None,
+        comments: str | None = None,
+        internet_service_id: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        users: list | None = None,
+        groups: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            seq_num: Sequence number(1-65535). (optional)
+            input_device: Incoming interface name. (optional)
+            input_device_negate: Enable/disable negation of input device match. (optional)
+            src: Source IP and mask (x.x.x.x/x). (optional)
+            srcaddr: Source address name. (optional)
+            src_negate: Enable/disable negating source address match. (optional)
+            dst: Destination IP and mask (x.x.x.x/x). (optional)
+            dstaddr: Destination address name. (optional)
+            dst_negate: Enable/disable negating destination address match. (optional)
+            protocol: Protocol number (0 - 255). (optional)
+            start_port: Start destination port number (0 - 65535). (optional)
+            end_port: End destination port number (0 - 65535). (optional)
+            start_source_port: Start source port number (0 - 65535). (optional)
+            end_source_port: End source port number (0 - 65535). (optional)
+            gateway: IP address of the gateway. (optional)
+            output_device: Outgoing interface name. (optional)
+            tos: Type of service bit pattern. (optional)
+            tos_mask: Type of service evaluated bits. (optional)
+            status: Enable/disable this policy route. (optional)
+            comments: Optional comments. (optional)
+            internet_service_id: Destination Internet Service ID. (optional)
+            internet_service_custom: Custom Destination Internet Service name. (optional)
+            internet_service_fortiguard: FortiGuard Destination Internet Service name. (optional)
+            users: List of users. (optional)
+            groups: List of user groups. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/policy"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if seq_num is not None:
+            data_payload['seq-num'] = seq_num
+        if input_device is not None:
+            data_payload['input-device'] = input_device
+        if input_device_negate is not None:
+            data_payload['input-device-negate'] = input_device_negate
+        if src is not None:
+            data_payload['src'] = src
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if src_negate is not None:
+            data_payload['src-negate'] = src_negate
+        if dst is not None:
+            data_payload['dst'] = dst
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if dst_negate is not None:
+            data_payload['dst-negate'] = dst_negate
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if start_port is not None:
+            data_payload['start-port'] = start_port
+        if end_port is not None:
+            data_payload['end-port'] = end_port
+        if start_source_port is not None:
+            data_payload['start-source-port'] = start_source_port
+        if end_source_port is not None:
+            data_payload['end-source-port'] = end_source_port
+        if gateway is not None:
+            data_payload['gateway'] = gateway
+        if output_device is not None:
+            data_payload['output-device'] = output_device
+        if tos is not None:
+            data_payload['tos'] = tos
+        if tos_mask is not None:
+            data_payload['tos-mask'] = tos_mask
+        if status is not None:
+            data_payload['status'] = status
+        if comments is not None:
+            data_payload['comments'] = comments
+        if internet_service_id is not None:
+            data_payload['internet-service-id'] = internet_service_id
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if users is not None:
+            data_payload['users'] = users
+        if groups is not None:
+            data_payload['groups'] = groups
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

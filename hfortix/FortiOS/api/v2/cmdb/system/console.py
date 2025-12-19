@@ -1,114 +1,117 @@
 """
 FortiOS CMDB - System Console
 
-Configure console.
-
 API Endpoints:
-    GET  /system/console  - Get configuration
-    PUT  /system/console  - Update configuration
+    GET    /system/console
+    PUT    /system/console
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Console:
-    """console settings endpoint (singleton)"""
+    """Console operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Console endpoint
+        Initialize Console endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get console settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with settings
-
-        Examples:
-            >>> # Get current settings
-            >>> settings = fgt.api.cmdb.system.console.get()
-            >>> print(settings)
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/console"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        return self._client.get("cmdb", "system/console", params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        output: str | None = None,
+        login: str | None = None,
+        fortiexplorer: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update console settings
-
+        Update this specific resource.
+        
         Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            output: Console output mode. (optional)
+            login: Enable/disable serial console and FortiExplorer. (optional)
+            fortiexplorer: Enable/disable access for FortiExplorer. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.console.update(
-            ...     payload_dict={'setting1': 'value1'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.console.update(
-            ...     setting1='value1',
-            ...     setting2='value2'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", "system/console", data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/console"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if output is not None:
+            data_payload['output'] = output
+        if login is not None:
+            data_payload['login'] = login
+        if fortiexplorer is not None:
+            data_payload['fortiexplorer'] = fortiexplorer
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

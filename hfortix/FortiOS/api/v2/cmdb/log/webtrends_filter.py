@@ -1,159 +1,153 @@
 """
-WebTrends filter endpoint module.
+FortiOS CMDB - Log WebtrendsFilter
 
-This module provides access to the log.webtrends/filter endpoint
-for configuring which log types to send to WebTrends.
-
-API Path: log.webtrends/filter
+API Endpoints:
+    GET    /log.webtrends/filter
+    PUT    /log.webtrends/filter
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class WebtrendsFilter:
-    """
-    Interface for configuring WebTrends filter settings.
+    """WebtrendsFilter operations."""
 
-    This class provides methods to manage WebTrends filter configuration,
-    controlling which log types are sent to WebTrends servers.
-
-    Supports three types of parameters:
-    - data_dict: Standard dictionary format matching API structure
-    - keyword arguments: Python snake_case parameters
-    - mixed: Both data_dict and keyword arguments combined
-
-    Example usage:
-        # Using keyword arguments (snake_case)
-        fgt.api.cmdb.log.webtrends.filter.update(
-            severity='information',
-            forward_traffic='enable'
-        )
-
-        # Using data_dict (hyphenated)
-        fgt.api.cmdb.log.webtrends.filter.update(
-            data_dict={
-                'severity': 'information',
-                'forward-traffic': 'enable'
-            }
-        )
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the WebtrendsFilter instance.
+        Initialize WebtrendsFilter endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "log.webtrends/filter"
 
-    def get(self) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve current WebTrends filter configuration.
-
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing WebTrends filter settings
-
-        Example:
-            >>> result = fgt.api.cmdb.log.webtrends.filter.get()
-            >>> print(result['severity'])
-            'information'
+            Dictionary containing API response
         """
-        path = "log.webtrends/filter"
-        return self._client.get("cmdb", path)
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.webtrends/filter"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        anomaly: Optional[str] = None,
-        debug: Optional[str] = None,
-        forti_switch: Optional[str] = None,
-        forward_traffic: Optional[str] = None,
-        free_style: Optional[str] = None,
-        http_transaction: Optional[str] = None,
-        local_traffic: Optional[str] = None,
-        multicast_traffic: Optional[str] = None,
-        severity: Optional[str] = None,
-        sniffer_traffic: Optional[str] = None,
-        voip: Optional[str] = None,
-        ztna_traffic: Optional[str] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        severity: str | None = None,
+        forward_traffic: str | None = None,
+        local_traffic: str | None = None,
+        multicast_traffic: str | None = None,
+        sniffer_traffic: str | None = None,
+        ztna_traffic: str | None = None,
+        http_transaction: str | None = None,
+        anomaly: str | None = None,
+        voip: str | None = None,
+        forti_switch: str | None = None,
+        debug: str | None = None,
+        free_style: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update WebTrends filter configuration.
-
-        Accepts parameters in multiple formats for flexibility:
-        1. data_dict with API format (hyphenated keys)
-        2. Python snake_case keyword arguments
-        3. Both data_dict and kwargs combined
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Dictionary with API format parameters (hyphenated)
-            anomaly: Enable/disable anomaly logging (enable | disable)
-            debug: Enable/disable debug logging (enable | disable)
-            forti_switch: Enable/disable FortiSwitch logging (enable | disable)
-            forward_traffic: Enable/disable forward traffic logging (enable | disable)
-            free_style: Enable/disable free style logging (enable | disable)
-            http_transaction: Enable/disable HTTP transaction logging (enable | disable)
-            local_traffic: Enable/disable local traffic logging (enable | disable)
-            multicast_traffic: Enable/disable multicast traffic logging (enable | disable)
-            severity: Minimum severity level to log
-                     (emergency | alert | critical | error | warning | notification | information | debug)
-            sniffer_traffic: Enable/disable sniffer traffic logging (enable | disable)
-            voip: Enable/disable VoIP logging (enable | disable)
-            ztna_traffic: Enable/disable ZTNA traffic logging (enable | disable)
-            **kwargs: Additional parameters in API format (hyphenated)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            severity: Lowest severity level to log to WebTrends. (optional)
+            forward_traffic: Enable/disable forward traffic logging. (optional)
+            local_traffic: Enable/disable local in or out traffic logging. (optional)
+            multicast_traffic: Enable/disable multicast traffic logging. (optional)
+            sniffer_traffic: Enable/disable sniffer traffic logging. (optional)
+            ztna_traffic: Enable/disable ztna traffic logging. (optional)
+            http_transaction: Enable/disable log HTTP transaction messages. (optional)
+            anomaly: Enable/disable anomaly logging. (optional)
+            voip: Enable/disable VoIP logging. (optional)
+            forti_switch: Enable/disable Forti-Switch logging. (optional)
+            debug: Enable/disable debug logging. (optional)
+            free_style: Free style filters. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> # Using keyword arguments
-            >>> fgt.api.cmdb.log.webtrends.filter.update(
-            ...     severity='information',
-            ...     forward_traffic='enable',
-            ...     local_traffic='disable'
-            ... )
-
-            >>> # Using data_dict
-            >>> fgt.api.cmdb.log.webtrends.filter.update(
-            ...     data_dict={
-            ...         'severity': 'warning',
-            ...         'forward-traffic': 'enable'
-            ...     }
-            ... )
         """
-        # Start with data_dict if provided, otherwise empty dict
-        payload = dict(data_dict) if data_dict else {}
-
-        # Map Python parameter names to API format and add to payload
-        param_map = {
-            "anomaly": "anomaly",
-            "debug": "debug",
-            "forti_switch": "forti-switch",
-            "forward_traffic": "forward-traffic",
-            "free_style": "free-style",
-            "http_transaction": "http-transaction",
-            "local_traffic": "local-traffic",
-            "multicast_traffic": "multicast-traffic",
-            "severity": "severity",
-            "sniffer_traffic": "sniffer-traffic",
-            "voip": "voip",
-            "ztna_traffic": "ztna-traffic",
-        }
-
-        # Add mapped parameters
-        for py_name, api_name in param_map.items():
-            value = locals().get(py_name)
-            if value is not None:
-                payload[api_name] = value
-
-        # Add any additional kwargs
-        payload.update(kwargs)
-
-        path = "log.webtrends/filter"
-        return self._client.put("cmdb", path, data=payload)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.webtrends/filter"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if severity is not None:
+            data_payload['severity'] = severity
+        if forward_traffic is not None:
+            data_payload['forward-traffic'] = forward_traffic
+        if local_traffic is not None:
+            data_payload['local-traffic'] = local_traffic
+        if multicast_traffic is not None:
+            data_payload['multicast-traffic'] = multicast_traffic
+        if sniffer_traffic is not None:
+            data_payload['sniffer-traffic'] = sniffer_traffic
+        if ztna_traffic is not None:
+            data_payload['ztna-traffic'] = ztna_traffic
+        if http_transaction is not None:
+            data_payload['http-transaction'] = http_transaction
+        if anomaly is not None:
+            data_payload['anomaly'] = anomaly
+        if voip is not None:
+            data_payload['voip'] = voip
+        if forti_switch is not None:
+            data_payload['forti-switch'] = forti_switch
+        if debug is not None:
+            data_payload['debug'] = debug
+        if free_style is not None:
+            data_payload['free-style'] = free_style
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,107 +1,125 @@
 """
-Report setting endpoint module.
+FortiOS CMDB - Report Setting
 
-This module provides access to the report/setting endpoint
-for configuring general report settings.
-
-API Path: report/setting
+API Endpoints:
+    GET    /report/setting
+    PUT    /report/setting
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class Setting:
-    """
-    Interface for configuring report settings.
+    """Setting operations."""
 
-    This class provides methods to manage general report settings.
-    This is a singleton endpoint (GET/PUT only).
-
-    Example usage:
-        # Get current report settings
-        settings = fgt.api.cmdb.report.setting.get()
-
-        # PUT - Update report settings
-        fgt.api.cmdb.report.setting.update(
-            pdf_report='enable',
-            report_source='forward-traffic'
-        )
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Setting instance.
+        Initialize Setting endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "report/setting"
 
-    def get(self) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve current report settings.
-
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing report settings
-
-        Example:
-            >>> result = fgt.api.cmdb.report.setting.get()
-            >>> print(result['pdf-report'])
-            'enable'
+            Dictionary containing API response
         """
-        return self._client.get("cmdb", self._endpoint)
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/report/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        fortiview: Optional[str] = None,
-        pdf_report: Optional[str] = None,
-        report_source: Optional[str] = None,
-        top_n: Optional[int] = None,
-        web_browsing_threshold: Optional[int] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        pdf_report: str | None = None,
+        fortiview: str | None = None,
+        report_source: str | None = None,
+        web_browsing_threshold: int | None = None,
+        top_n: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update report settings.
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Dictionary with API format parameters
-            fortiview: Enable/disable FortiView (enable | disable)
-            pdf_report: Enable/disable PDF report (enable | disable)
-            report_source: Report source (forward-traffic | sniffer-traffic | local-deny-traffic)
-            top_n: Number of top items to display
-            web_browsing_threshold: Web browsing threshold
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            pdf_report: Enable/disable PDF report. (optional)
+            fortiview: Enable/disable historical FortiView. (optional)
+            report_source: Report log source. (optional)
+            web_browsing_threshold: Web browsing time calculation threshold (3 - 15 min). (optional)
+            top_n: Number of items to populate (1000 - 20000). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.report.setting.update(
-            ...     pdf_report='enable',
-            ...     report_source='forward-traffic',
-            ...     top_n=100
-            ... )
         """
-        payload = dict(data_dict) if data_dict else {}
-
-        param_map = {
-            "fortiview": "fortiview",
-            "pdf_report": "pdf-report",
-            "report_source": "report-source",
-            "top_n": "top-n",
-            "web_browsing_threshold": "web-browsing-threshold",
-        }
-
-        for py_name, api_name in param_map.items():
-            value = locals().get(py_name)
-            if value is not None:
-                payload[api_name] = value
-
-        payload.update(kwargs)
-
-        return self._client.put("cmdb", self._endpoint, data=payload)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/report/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if pdf_report is not None:
+            data_payload['pdf-report'] = pdf_report
+        if fortiview is not None:
+            data_payload['fortiview'] = fortiview
+        if report_source is not None:
+            data_payload['report-source'] = report_source
+        if web_browsing_threshold is not None:
+            data_payload['web-browsing-threshold'] = web_browsing_threshold
+        if top_n is not None:
+            data_payload['top-n'] = top_n
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

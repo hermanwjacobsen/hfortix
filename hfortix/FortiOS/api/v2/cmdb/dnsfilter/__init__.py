@@ -1,38 +1,25 @@
-"""
-FortiOS CMDB DNS Filter API
-DNS filtering configuration endpoints
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+"""FortiOS CMDB - Dnsfilter category"""
 
 from .domain_filter import DomainFilter
 from .profile import Profile
 
-__all__ = ["DNSFilter"]
+__all__ = ['DomainFilter', 'Profile']
 
 
-class DNSFilter:
+
+class Dnsfilter:
     """
-    DNS Filter API helper class
-    Provides access to DNS filtering configuration endpoints
+    Dnsfilter category wrapper.
+    
+    This class provides access to all dnsfilter CMDB endpoints.
     """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    
+    def __init__(self, client):
         """
-        Initialize DNSFilter helper
-
+        Initialize Dnsfilter with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
         self.domain_filter = DomainFilter(client)
         self.profile = Profile(client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return ["domain_filter", "profile"]

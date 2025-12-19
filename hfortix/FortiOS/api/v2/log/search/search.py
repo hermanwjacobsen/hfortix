@@ -2,73 +2,80 @@
 FortiOS Log Search API
 
 This module provides methods to manage log search sessions.
+
+Functions support:
+    - Full parameter specification
+    - Dual approach: individual parameters OR payload_dict
+    - raw_json parameter: controls whether to return full parsed response or extracted results
+    - Type hints and comprehensive docstrings
 """
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from .....http_client import HTTPClient
 
 
-class Search:
-    """
-    Log Search API for FortiOS.
-
-    Provides methods to manage log search sessions (abort, status).
-    """
+class Abort:
+    """Abort search session endpoint resource"""
 
     def __init__(self, client: "HTTPClient") -> None:
-        """Initialize Search log API with FortiOS client."""
         self._client = client
 
-    def abort(
+    def post(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        session_id: Optional[int] = None,
+        session_id: int,
+        payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Abort a running log search session.
+        
+        Supports dual approach:
+        1. Individual parameters: post(session_id=12345)
+        2. Payload dict: post(session_id=12345, payload_dict={'extra_param': 'value'})
 
         Args:
-            data_dict (dict, optional): Dictionary with 'session_id' key
-            session_id (int, optional): Session ID to abort
-            **kwargs: Additional parameters to pass
+            session_id: Session ID of the log search to abort (required)
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
 
         Returns:
-            dict: Abort operation result
+            Dictionary containing abort operation result
 
         Examples:
-            >>> # Dictionary pattern
-            >>> result = fgt.log.search.abort(data_dict={'session_id': 12345})
-
-            >>> # Keyword pattern
-            >>> result = fgt.log.search.abort(session_id=12345)
-
-            >>> # After starting a search
-            >>> search_result = fgt.log.disk.raw('virus', rows=1000)
-            >>> result = fgt.log.search.abort(session_id=search_result['session_id'])
+            # Abort a search session
+            result = fgt.api.log.search.abort.post(session_id=12345)
+            
+            # After starting a search
+            search_result = fgt.api.log.disk.virus.raw.get(rows=10000)
+            result = fgt.api.log.search.abort.post(session_id=search_result['session_id'])
         """
-        if data_dict is not None:
-            sid = data_dict.get("session_id", session_id)
+        if payload_dict:
+            data = payload_dict.copy()
         else:
-            sid = session_id
+            data = {}
+        
+        data.update(kwargs)
+        
+        endpoint = f"search/abort/{session_id}"
+        return self._client.post("log", endpoint, data=data, raw_json=raw_json)
 
-        if sid is None:
-            raise ValueError("session_id is required")
 
-        endpoint = f"search/abort/{sid}"
-        return self._client.post(
-            "log", endpoint, data=kwargs if kwargs else None, raw_json=raw_json
-        )
+class Status:
+    """Status search session endpoint resource"""
 
-    def status(
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        session_id: Optional[int] = None,
+        session_id: int,
+        payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
@@ -76,40 +83,67 @@ class Search:
         Returns status of log search session, if it is active or not.
 
         This is only applicable for disk log search.
+        
+        Supports dual approach:
+        1. Individual parameters: get(session_id=12345)
+        2. Payload dict: get(session_id=12345, payload_dict={'extra_param': 'value'})
 
         Args:
-            data_dict (dict, optional): Dictionary with 'session_id' key
-            session_id (int, optional): Session ID to check
-            **kwargs: Additional parameters to pass
+            session_id: Session ID of the log search to check status (required)
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
 
         Returns:
-            dict: Session status information
+            Dictionary containing session status information
 
         Examples:
-            >>> # Dictionary pattern
-            >>> status = fgt.log.search.status(data_dict={'session_id': 12345})
+            # Check search status
+            status = fgt.api.log.search.status.get(session_id=12345)
+            print(f"Active: {status.get('active', False)}")
 
-            >>> # Keyword pattern
-            >>> status = fgt.log.search.status(session_id=12345)
-            >>> print(f"Active: {status.get('active', False)}")
-
-            >>> # After starting a disk search
-            >>> search = fgt.log.disk.raw('virus', rows=10000)
-            >>> status = fgt.log.search.status(session_id=search['session_id'])
-            >>> if status.get('active'):
-            ...     print("Search still running...")
-            ... else:
-            ...     print("Search completed!")
+            # After starting a disk search
+            search = fgt.api.log.disk.virus.raw.get(rows=10000)
+            status = fgt.api.log.search.status.get(session_id=search['session_id'])
+            if status.get('active'):
+                print("Search still running...")
+            else:
+                print("Search completed!")
         """
-        if data_dict is not None:
-            sid = data_dict.get("session_id", session_id)
+        if payload_dict:
+            params = payload_dict.copy()
         else:
-            sid = session_id
+            params = {}
+        
+        params.update(kwargs)
+        
+        endpoint = f"search/status/{session_id}"
+        return self._client.get("log", endpoint, params=params, raw_json=raw_json)
 
-        if sid is None:
-            raise ValueError("session_id is required")
 
-        endpoint = f"search/status/{sid}"
-        return self._client.get(
-            "log", endpoint, params=kwargs if kwargs else None, raw_json=raw_json
-        )
+class Search:
+    """
+    Log Search API for FortiOS.
+
+    Provides methods to manage log search sessions.
+    
+    Attributes:
+        abort: Abort a running log search session
+        status: Check status of a log search session
+    
+    Examples:
+        # Abort a search session
+        fgt.api.log.search.abort.post(session_id=12345)
+        
+        # Check search status
+        status = fgt.api.log.search.status.get(session_id=12345)
+    """
+
+    def __init__(self, client: "HTTPClient") -> None:
+        """Initialize Search log API with FortiOS client."""
+        self._client = client
+        self.abort = Abort(client)
+        self.status = Status(client)
+
+
+__all__ = ["Search", "Abort", "Status"]

@@ -1,34 +1,23 @@
-"""
-FortiOS CMDB - Automation API
-
-This module provides access to FortiOS automation configuration endpoints.
-"""
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["Automation"]
+"""FortiOS CMDB - Automation category"""
 
 from .setting import Setting
 
+__all__ = ['Setting']
+
+
 
 class Automation:
-    """Automation configuration endpoints"""
-
-    def __init__(self, client: "HTTPClient") -> None:
+    """
+    Automation category wrapper.
+    
+    This class provides access to all automation CMDB endpoints.
+    """
+    
+    def __init__(self, client):
         """
-        Initialize Automation API
-
+        Initialize Automation with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
-
-        # Initialize endpoint classes
         self.setting = Setting(client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return ["setting"]

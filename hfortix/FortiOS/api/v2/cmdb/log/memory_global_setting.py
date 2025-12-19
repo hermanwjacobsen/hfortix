@@ -1,145 +1,121 @@
 """
-FortiOS CMDB - Log Memory Global Setting
-
-Global settings for memory logging.
+FortiOS CMDB - Log MemoryGlobalSetting
 
 API Endpoints:
-    GET  /api/v2/cmdb/log.memory/global-setting  - Get configuration
-    PUT  /api/v2/cmdb/log.memory/global-setting  - Update configuration
+    GET    /log.memory/global-setting
+    PUT    /log.memory/global-setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class MemoryGlobalSetting:
-    """Log Memory Global Setting endpoint (singleton)"""
+    """MemoryGlobalSetting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize MemoryGlobalSetting endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get memory global settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Enable CLI skip operator
-            action: Special actions (default, schema, revision)
-            vdom: Virtual domain
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Memory global settings configuration
-
-        Examples:
-            >>> # Get memory global settings
-            >>> result = fgt.api.cmdb.log.memory.global_setting.get()
-
-            >>> # Get with metadata
-            >>> result = fgt.api.cmdb.log.memory.global_setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.memory/global-setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        path = "log.memory/global-setting"
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        max_size: Optional[int] = None,
-        full_first_warning_threshold: Optional[int] = None,
-        full_second_warning_threshold: Optional[int] = None,
-        full_final_warning_threshold: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        max_size: int | None = None,
+        full_first_warning_threshold: int | None = None,
+        full_second_warning_threshold: int | None = None,
+        full_final_warning_threshold: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update memory global settings.
-
-        Supports three usage patterns:
-        1. Dictionary: update(data_dict={'max-size': 163840})
-        2. Keywords: update(max_size=163840)
-        3. Mixed: update(data_dict={...}, max_size=163840)
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            max_size: Maximum memory size in KB
-            full_first_warning_threshold: First warning threshold percentage
-            full_second_warning_threshold: Second warning threshold percentage
-            full_final_warning_threshold: Final warning threshold percentage
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            max_size: Maximum amount of memory that can be used for memory logging in bytes. (optional)
+            full_first_warning_threshold: Log full first warning threshold as a percent (1 - 98, default = 75). (optional)
+            full_second_warning_threshold: Log full second warning threshold as a percent (2 - 99, default = 90). (optional)
+            full_final_warning_threshold: Log full final warning threshold as a percent (3 - 100, default = 95). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Update result
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> fgt.api.cmdb.log.memory.global_setting.update(
-            ...     data_dict={'max-size': 163840}
-            ... )
-
-            >>> # PUT - Update with keywords
-            >>> fgt.api.cmdb.log.memory.global_setting.update(
-            ...     max_size=163840,
-            ...     full_first_warning_threshold=75
-            ... )
-
-            >>> # PUT - Update with mixed
-            >>> config = {'max-size': 163840}
-            >>> fgt.api.cmdb.log.memory.global_setting.update(
-            ...     data_dict=config,
-            ...     full_first_warning_threshold=75
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "max_size": max_size,
-            "full_first_warning_threshold": full_first_warning_threshold,
-            "full_second_warning_threshold": full_second_warning_threshold,
-            "full_final_warning_threshold": full_final_warning_threshold,
-        }
-
-        api_field_map = {
-            "max_size": "max-size",
-            "full_first_warning_threshold": "full-first-warning-threshold",
-            "full_second_warning_threshold": "full-second-warning-threshold",
-            "full_final_warning_threshold": "full-final-warning-threshold",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = "log.memory/global-setting"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.memory/global-setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if max_size is not None:
+            data_payload['max-size'] = max_size
+        if full_first_warning_threshold is not None:
+            data_payload['full-first-warning-threshold'] = full_first_warning_threshold
+        if full_second_warning_threshold is not None:
+            data_payload['full-second-warning-threshold'] = full_second_warning_threshold
+        if full_final_warning_threshold is not None:
+            data_payload['full-final-warning-threshold'] = full_final_warning_threshold
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

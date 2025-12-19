@@ -1,15 +1,15 @@
-"""Load balance server statistics operations."""
+"""Monitor API - LoadBalance operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class LoadBalance:
-    """Load balance server statistics."""
+    """LoadBalance operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize LoadBalance endpoint.
 
@@ -18,55 +18,29 @@ class LoadBalance:
         """
         self._client = client
 
-    def list(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        virtual_server: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        List all firewall load balance servers.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            virtual_server: Filter by virtual server name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing load balance server information
-
-        Example:
-            >>> fgt.api.monitor.firewall.load_balance.list()
-            >>> fgt.api.monitor.firewall.load_balance.list(virtual_server='vs1')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if virtual_server is not None:
-            params["virtual_server"] = virtual_server
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/load-balance", params=params)
-
     def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        virtual_server: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        count: int,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get information for a specific load balance server.
-
+        List all firewall load balance servers.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            virtual_server: Virtual server name to retrieve
+            count: Maximum number of entries to return. (required)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing load balance server information
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.load_balance.get(virtual_server='vs1')
+            >>> fgt.api.monitor.firewall.load_balance.get(count=1)
         """
-        params = data_dict.copy() if data_dict else {}
-        if virtual_server is not None:
-            params["virtual_server"] = virtual_server
+        params = payload_dict.copy() if payload_dict else {}
+        params['count'] = count
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/load-balance", params=params)

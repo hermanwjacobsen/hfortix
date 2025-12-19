@@ -1,200 +1,141 @@
 """
 FortiOS CMDB - Antivirus Quarantine
-Configure quarantine options
 
 API Endpoints:
-    GET  /antivirus/quarantine  - Get configuration
-    PUT  /antivirus/quarantine  - Update configuration
+    GET    /antivirus/quarantine
+    PUT    /antivirus/quarantine
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Quarantine:
-    """Antivirus Quarantine endpoint"""
+    """Quarantine operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Quarantine endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        vdom: Optional[Union[str, bool]] = None,
-        # Query parameters
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        GET /antivirus/quarantine
-        Get quarantine settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            vdom: Virtual domain (optional)
-
-            Query parameters (all optional):
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information about each object
-            skip: Enable CLI skip operator to hide skipped properties
-            action: Special actions (default, schema, revision)
-            **kwargs: Any additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Quarantine configuration
-
-        Examples:
-            >>> # Get quarantine settings
-            >>> settings = fgt.cmdb.antivirus.quarantine.get()
-
-            >>> # Get with meta information
-            >>> settings = fgt.cmdb.antivirus.quarantine.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build params dict from provided parameters
-        params = {}
-
-        # Map parameters
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        # Add non-None parameters
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any extra kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/antivirus/quarantine"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "antivirus/quarantine",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        agelimit: Optional[int] = None,
-        maxfilesize: Optional[int] = None,
-        quarantine_quota: Optional[int] = None,
-        drop_infected: Optional[str] = None,
-        store_infected: Optional[str] = None,
-        drop_blocked: Optional[str] = None,
-        store_blocked: Optional[str] = None,
-        drop_heuristic: Optional[str] = None,
-        store_heuristic: Optional[str] = None,
-        drop_machine_learning: Optional[str] = None,
-        store_machine_learning: Optional[str] = None,
-        lowspace: Optional[str] = None,
-        destination: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        agelimit: int | None = None,
+        maxfilesize: int | None = None,
+        quarantine_quota: int | None = None,
+        drop_infected: str | None = None,
+        store_infected: str | None = None,
+        drop_machine_learning: str | None = None,
+        store_machine_learning: str | None = None,
+        lowspace: str | None = None,
+        destination: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        PUT /antivirus/quarantine
-        Update quarantine settings
-
+        Update this specific resource.
+        
         Args:
-            agelimit: Age limit for quarantined files (0 = unlimited, 1-479 days)
-            maxfilesize: Maximum file size to quarantine (0 = unlimited, 1-500 MB)
-            quarantine_quota: Quarantine quota (0 = unlimited, 1-4096 MB)
-            drop_infected: Do not quarantine infected files found in sessions using the selected protocols - 'imap', 'smtp', 'pop3', 'http', 'ftp', 'nntp', 'imaps', 'smtps', 'pop3s', 'ftps', 'mapi', 'cifs', 'ssh'
-            store_infected: Quarantine infected files found in sessions using the selected protocols - same options as drop_infected
-            drop_blocked: Do not quarantine files blocked by FortiGuard - same protocol options
-            store_blocked: Quarantine files blocked by FortiGuard - same protocol options
-            drop_heuristic: Do not quarantine files detected by heuristics - same protocol options
-            store_heuristic: Quarantine files detected by heuristics - same protocol options
-            drop_machine_learning: Do not quarantine files detected by machine learning - same protocol options
-            store_machine_learning: Quarantine files detected by machine learning - same protocol options
-            lowspace: Low space action - 'drop-new' or 'ovrw-old'
-            destination: Quarantine destination - 'NULL', 'disk', 'FortiAnalyzer'
-            vdom: Virtual domain (optional)
-            **kwargs: Any additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            agelimit: Age limit for quarantined files (0 - 479 hours, 0 means forever). (optional)
+            maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited). (optional)
+            quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, 0 means unlimited and depends on disk space). (optional)
+            drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. (optional)
+            store_infected: Quarantine infected files found in sessions using the selected protocols. (optional)
+            drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. (optional)
+            store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. (optional)
+            lowspace: Select the method for handling additional files when running low on disk space. (optional)
+            destination: Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or to delete them instead of quarantining them. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Response dict with status
-
-        Examples:
-            >>> # Set age limit and max file size
-            >>> fgt.cmdb.antivirus.quarantine.update(
-            ...     agelimit=30,
-            ...     maxfilesize=50,
-            ...     quarantine_quota=1024
-            ... )
-
-            >>> # Configure storage options
-            >>> fgt.cmdb.antivirus.quarantine.update(
-            ...     store_infected='imap smtp pop3 http',
-            ...     drop_blocked='ftp',
-            ...     lowspace='ovrw-old'
-            ... )
-
-            >>> # Set destination
-            >>> fgt.cmdb.antivirus.quarantine.update(
-            ...     destination='disk',
-            ...     quarantine_quota=2048
-            ... )
+            Dictionary containing API response
         """
-        # Build data dict from provided parameters
-        payload_dict = {}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "agelimit": agelimit,
-            "maxfilesize": maxfilesize,
-            "quarantine_quota": quarantine_quota,
-            "drop_infected": drop_infected,
-            "store_infected": store_infected,
-            "drop_blocked": drop_blocked,
-            "store_blocked": store_blocked,
-            "drop_heuristic": drop_heuristic,
-            "store_heuristic": store_heuristic,
-            "drop_machine_learning": drop_machine_learning,
-            "store_machine_learning": store_machine_learning,
-            "lowspace": lowspace,
-            "destination": destination,
-        }
-
-        # API field name mapping
-        api_field_map = {
-            "agelimit": "agelimit",
-            "maxfilesize": "maxfilesize",
-            "quarantine_quota": "quarantine-quota",
-            "drop_infected": "drop-infected",
-            "store_infected": "store-infected",
-            "drop_blocked": "drop-blocked",
-            "store_blocked": "store-blocked",
-            "drop_heuristic": "drop-heuristic",
-            "store_heuristic": "store-heuristic",
-            "drop_machine_learning": "drop-machine-learning",
-            "store_machine_learning": "store-machine-learning",
-            "lowspace": "lowspace",
-            "destination": "destination",
-        }
-
-        # Add non-None parameters
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        # Add any extra kwargs
-        payload_dict.update(kwargs)
-
-        return self._client.put("cmdb", "antivirus/quarantine", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/antivirus/quarantine"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if agelimit is not None:
+            data_payload['agelimit'] = agelimit
+        if maxfilesize is not None:
+            data_payload['maxfilesize'] = maxfilesize
+        if quarantine_quota is not None:
+            data_payload['quarantine-quota'] = quarantine_quota
+        if drop_infected is not None:
+            data_payload['drop-infected'] = drop_infected
+        if store_infected is not None:
+            data_payload['store-infected'] = store_infected
+        if drop_machine_learning is not None:
+            data_payload['drop-machine-learning'] = drop_machine_learning
+        if store_machine_learning is not None:
+            data_payload['store-machine-learning'] = store_machine_learning
+        if lowspace is not None:
+            data_payload['lowspace'] = lowspace
+        if destination is not None:
+            data_payload['destination'] = destination
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

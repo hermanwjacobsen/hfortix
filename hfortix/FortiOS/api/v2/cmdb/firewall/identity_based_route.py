@@ -1,163 +1,226 @@
-"""FortiOS CMDB - Firewall Identity Based Route
+"""
+FortiOS CMDB - Firewall IdentityBasedRoute
 
-Configure identity-based routing.
-
-Swagger paths (FortiOS 7.6.5):
-    - /api/v2/cmdb/firewall/identity-based-route
-    - /api/v2/cmdb/firewall/identity-based-route/{name}
-
-Notes:
-    - This is a CLI table endpoint keyed by ``name``.
+API Endpoints:
+    GET    /firewall/identity-based-route
+    POST   /firewall/identity-based-route
+    GET    /firewall/identity-based-route/{name}
+    PUT    /firewall/identity-based-route/{name}
+    DELETE /firewall/identity-based-route/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class IdentityBasedRoute:
-    """Firewall `identity-based-route` table endpoint."""
+    """IdentityBasedRoute operations."""
 
-    name = "identity-based-route"
-    path = "firewall/identity-based-route"
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize IdentityBasedRoute endpoint.
 
-    def __init__(self, client: "HTTPClient") -> None:
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
-    # -----------------------------
-    # Collection operations
-    # -----------------------------
-    def post(
-        self,
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
-        action: Optional[str] = None,
-        nkey: Optional[str] = None,
-        scope: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """Create one or more identity-based route objects."""
-        params: dict[str, Any] = {}
-        for key, value in {
-            "action": action,
-            "nkey": nkey,
-            "scope": scope,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-        return self._client.post(
-            "cmdb",
-            self.path,
-            data=data,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
-
-    # -----------------------------
-    # Member operations
-    # -----------------------------
     def get(
         self,
-        name: Optional[Union[str, int]] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Get an identity-based route entry by name or list all."""
-        params: dict[str, Any] = {}
-        for key, value in {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        # Determine path based on whether name is provided
-        if name is not None:
-            name_str = self._client.validate_mkey(name, "name")
-            path = f"{self.path}/{encode_path_component(str(name))}"
+        """
+        Select a specific entry from a CLI table.
+        
+        Args:
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/identity-based-route/{name}"
         else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb",
-            path,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            endpoint = "/firewall/identity-based-route"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: Union[str, int],
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comments: str | None = None,
+        rule: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update an identity-based route entry by name."""
-        name_str = self._client.validate_mkey(name, "name")
-
-        params: dict[str, Any] = {}
-        for key, value in {
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{name_str}",
-            data=data,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name. (optional)
+            comments: Comments. (optional)
+            rule: Rule. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/identity-based-route/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if rule is not None:
+            data_payload['rule'] = rule
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: Union[str, int],
-        vdom: Optional[Union[str, bool]] = None,
-        scope: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Delete an identity-based route entry by name."""
-        name_str = self._client.validate_mkey(name, "name")
-        params: dict[str, Any] = {}
-        if scope is not None:
-            params["scope"] = scope
+        """
+        Delete this specific resource.
+        
+        Args:
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/identity-based-route/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb",
-            f"{self.path}/{name_str}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comments: str | None = None,
+        rule: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name. (optional)
+            comments: Comments. (optional)
+            rule: Rule. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/identity-based-route"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if rule is not None:
+            data_payload['rule'] = rule
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

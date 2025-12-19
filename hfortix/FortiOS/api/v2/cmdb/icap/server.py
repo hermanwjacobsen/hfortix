@@ -1,346 +1,290 @@
 """
-FortiOS CMDB - ICAP Server
-
-Configure ICAP servers for content inspection.
+FortiOS CMDB - Icap Server
 
 API Endpoints:
-    GET    /api/v2/cmdb/icap/server           - List all / Get specific
-    POST   /api/v2/cmdb/icap/server           - Create
-    PUT    /api/v2/cmdb/icap/server/{name}   - Update
-    DELETE /api/v2/cmdb/icap/server/{name}   - Delete
+    GET    /icap/server
+    POST   /icap/server
+    GET    /icap/server/{name}
+    PUT    /icap/server/{name}
+    DELETE /icap/server/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class Server:
-    """ICAP Server endpoint"""
+    """Server operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Server endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get ICAP server(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Server name
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Skip hidden properties
-            action: Additional action to perform
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing server configuration
-
-        Examples:
-            >>> # Get specific server
-            >>> server = fgt.api.cmdb.icap.server.get('icap-server1')
-            >>> print(server['ip-address'], server['port'])
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with-meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/icap/server/{name}"
+        else:
+            endpoint = "/icap/server"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        path = "icap/server"
-        if name is not None:
-            path = f"{path}/{encode_path_component(str(name))}"
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        addr_type: Optional[str] = None,
-        ip_address: Optional[str] = None,
-        ip_version: Optional[str] = None,
-        ip6_address: Optional[str] = None,
-        fqdn: Optional[str] = None,
-        port: Optional[int] = None,
-        max_connections: Optional[int] = None,
-        secure: Optional[str] = None,
-        ssl_cert: Optional[str] = None,
-        healthcheck: Optional[str] = None,
-        healthcheck_service: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create ICAP server.
-
-        Supports three usage patterns:
-
-        1. Dictionary pattern (template-based):
-           >>> config = {'name': 'icap1', 'ip-address': '10.0.1.100', 'port': 1344}
-           >>> fgt.api.cmdb.icap.server.create(data_dict=config)
-
-        2. Keyword pattern (explicit parameters):
-           >>> fgt.api.cmdb.icap.server.create(
-           ...     name='icap1',
-           ...     ip_address='10.0.1.100',
-           ...     port=1344
-           ... )
-
-        3. Mixed pattern (template + overrides):
-           >>> base = {'ip-address': '10.0.1.100', 'port': 1344}
-           >>> fgt.api.cmdb.icap.server.create(data_dict=base, name='icap1')
-
-        Args:
-            data_dict: Complete configuration dictionary (pattern 1 & 3)
-            name: Server name
-            addr_type: Address type (ip4/ip6/fqdn)
-            ip_address: IPv4 address of ICAP server
-            ip_version: IP version (4 or 6)
-            ip6_address: IPv6 address of ICAP server
-            fqdn: Fully Qualified Domain Name
-            port: ICAP server port (default: 1344)
-            max_connections: Maximum number of connections (0 = unlimited, must not be less than wad-worker-count)
-            secure: Enable/disable secure ICAP connection - ICAPS (enable/disable)
-            ssl_cert: CA certificate name for ICAPS
-            healthcheck: Enable/disable ICAP server health checking (enable/disable)
-            healthcheck_service: ICAP Service name for health checks
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing creation result
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> config = {
-            ...     'name': 'icap-server1',
-            ...     'ip-address': '10.0.1.100',
-            ...     'port': 1344,
-            ...     'healthcheck': 'enable'
-            ... }
-            >>> result = fgt.api.cmdb.icap.server.create(data_dict=config)
-
-            >>> # POST - Create with keywords
-            >>> result = fgt.api.cmdb.icap.server.create(
-            ...     name='icap-server2',
-            ...     ip_address='10.0.1.101',
-            ...     port=1344,
-            ...     max_connections=100
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "name": name,
-            "addr_type": addr_type,
-            "ip_address": ip_address,
-            "ip_version": ip_version,
-            "ip6_address": ip6_address,
-            "fqdn": fqdn,
-            "port": port,
-            "max_connections": max_connections,
-            "secure": secure,
-            "ssl_cert": ssl_cert,
-            "healthcheck": healthcheck,
-            "healthcheck_service": healthcheck_service,
-        }
-
-        api_field_map = {
-            "name": "name",
-            "addr_type": "addr-type",
-            "ip_address": "ip-address",
-            "ip_version": "ip-version",
-            "ip6_address": "ip6-address",
-            "fqdn": "fqdn",
-            "port": "port",
-            "max_connections": "max-connections",
-            "secure": "secure",
-            "ssl_cert": "ssl-cert",
-            "healthcheck": "healthcheck",
-            "healthcheck_service": "healthcheck-service",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = "icap/server"
-        return self._client.post("cmdb", path, data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: Optional[str] = None,
-        data_dict: Optional[dict[str, Any]] = None,
-        addr_type: Optional[str] = None,
-        ip_address: Optional[str] = None,
-        ip_version: Optional[str] = None,
-        ip6_address: Optional[str] = None,
-        fqdn: Optional[str] = None,
-        port: Optional[int] = None,
-        max_connections: Optional[int] = None,
-        secure: Optional[str] = None,
-        ssl_cert: Optional[str] = None,
-        healthcheck: Optional[str] = None,
-        healthcheck_service: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        addr_type: str | None = None,
+        ip_address: str | None = None,
+        ip6_address: str | None = None,
+        fqdn: str | None = None,
+        port: int | None = None,
+        max_connections: int | None = None,
+        secure: str | None = None,
+        ssl_cert: str | None = None,
+        healthcheck: str | None = None,
+        healthcheck_service: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update ICAP server.
-
-        Supports three usage patterns:
-
-        1. Dictionary pattern (template-based):
-           >>> config = {'port': 1345, 'max-connections': 200}
-           >>> fgt.api.cmdb.icap.server.update('icap1', data_dict=config)
-
-        2. Keyword pattern (explicit parameters):
-           >>> fgt.api.cmdb.icap.server.update(
-           ...     'icap1',
-           ...     port=1345,
-           ...     max_connections=200
-           ... )
-
-        3. Mixed pattern (template + overrides):
-           >>> base = {'port': 1344}
-           >>> fgt.api.cmdb.icap.server.update('icap1', data_dict=base, healthcheck='enable')
-
+        Update this specific resource.
+        
         Args:
-            name: Server name
-            data_dict: Complete configuration dictionary (pattern 1 & 3)
-            addr_type: Address type (ip4/ip6/fqdn)
-            ip_address: IPv4 address of ICAP server
-            ip_version: IP version (4 or 6)
-            ip6_address: IPv6 address of ICAP server
-            fqdn: Fully Qualified Domain Name
-            port: ICAP server port
-            max_connections: Maximum number of connections (0 = unlimited)
-            secure: Enable/disable secure ICAP connection - ICAPS (enable/disable)
-            ssl_cert: CA certificate name for ICAPS
-            healthcheck: Enable/disable ICAP server health checking (enable/disable)
-            healthcheck_service: ICAP Service name for health checks
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Server name. (optional)
+            addr_type: Address type of the remote ICAP server: IPv4, IPv6 or FQDN. (optional)
+            ip_address: IPv4 address of the ICAP server. (optional)
+            ip6_address: IPv6 address of the ICAP server. (optional)
+            fqdn: ICAP remote server Fully Qualified Domain Name (FQDN). (optional)
+            port: ICAP server port. (optional)
+            max_connections: Maximum number of concurrent connections to ICAP server (unlimited = 0, default = 100). Must not be less than wad-worker-count. (optional)
+            secure: Enable/disable secure connection to ICAP server. (optional)
+            ssl_cert: CA certificate name. (optional)
+            healthcheck: Enable/disable ICAP remote server health checking. Attempts to connect to the remote ICAP server to verify that the server is operating normally. (optional)
+            healthcheck_service: ICAP Service name to use for health checks. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> config = {'port': 1345, 'healthcheck': 'enable'}
-            >>> result = fgt.api.cmdb.icap.server.update('icap-server1', data_dict=config)
-
-            >>> # PUT - Update with keywords
-            >>> result = fgt.api.cmdb.icap.server.update(
-            ...     'icap-server1',
-            ...     max_connections=150
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "addr_type": addr_type,
-            "ip_address": ip_address,
-            "ip_version": ip_version,
-            "ip6_address": ip6_address,
-            "fqdn": fqdn,
-            "port": port,
-            "max_connections": max_connections,
-            "secure": secure,
-            "ssl_cert": ssl_cert,
-            "healthcheck": healthcheck,
-            "healthcheck_service": healthcheck_service,
-        }
-
-        api_field_map = {
-            "addr_type": "addr-type",
-            "ip_address": "ip-address",
-            "ip_version": "ip-version",
-            "ip6_address": "ip6-address",
-            "fqdn": "fqdn",
-            "port": "port",
-            "max_connections": "max-connections",
-            "secure": "secure",
-            "ssl_cert": "ssl-cert",
-            "healthcheck": "healthcheck",
-            "healthcheck_service": "healthcheck-service",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = "icap/server"
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/icap/server/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if name is not None:
-            path = f"{path}/{encode_path_component(str(name))}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+            data_payload['name'] = name
+        if addr_type is not None:
+            data_payload['addr-type'] = addr_type
+        if ip_address is not None:
+            data_payload['ip-address'] = ip_address
+        if ip6_address is not None:
+            data_payload['ip6-address'] = ip6_address
+        if fqdn is not None:
+            data_payload['fqdn'] = fqdn
+        if port is not None:
+            data_payload['port'] = port
+        if max_connections is not None:
+            data_payload['max-connections'] = max_connections
+        if secure is not None:
+            data_payload['secure'] = secure
+        if ssl_cert is not None:
+            data_payload['ssl-cert'] = ssl_cert
+        if healthcheck is not None:
+            data_payload['healthcheck'] = healthcheck
+        if healthcheck_service is not None:
+            data_payload['healthcheck-service'] = healthcheck_service
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-    def delete(self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete ICAP server.
-
+        Delete this specific resource.
+        
         Args:
-            name: Server name
-            vdom: Virtual domain name or False for global
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing deletion result
-
-        Examples:
-            >>> # Delete server
-            >>> result = fgt.api.cmdb.icap.server.delete('old-server')
-            >>> print(result['status'])
+            Dictionary containing API response
         """
-        path = "icap/server"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/icap/server/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        addr_type: str | None = None,
+        ip_address: str | None = None,
+        ip6_address: str | None = None,
+        fqdn: str | None = None,
+        port: int | None = None,
+        max_connections: int | None = None,
+        secure: str | None = None,
+        ssl_cert: str | None = None,
+        healthcheck: str | None = None,
+        healthcheck_service: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Server name. (optional)
+            addr_type: Address type of the remote ICAP server: IPv4, IPv6 or FQDN. (optional)
+            ip_address: IPv4 address of the ICAP server. (optional)
+            ip6_address: IPv6 address of the ICAP server. (optional)
+            fqdn: ICAP remote server Fully Qualified Domain Name (FQDN). (optional)
+            port: ICAP server port. (optional)
+            max_connections: Maximum number of concurrent connections to ICAP server (unlimited = 0, default = 100). Must not be less than wad-worker-count. (optional)
+            secure: Enable/disable secure connection to ICAP server. (optional)
+            ssl_cert: CA certificate name. (optional)
+            healthcheck: Enable/disable ICAP remote server health checking. Attempts to connect to the remote ICAP server to verify that the server is operating normally. (optional)
+            healthcheck_service: ICAP Service name to use for health checks. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/icap/server"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
         if name is not None:
-            path = f"{path}/{encode_path_component(str(name))}"
-        return self._client.delete("cmdb", path, vdom=vdom)
-
-    def exists(self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None) -> bool:
-        """
-        Check if ICAP server exists.
-
-        Args:
-            name: Server name
-            vdom: Virtual domain name or False for global
-
-        Returns:
-            True if server exists, False otherwise
-
-        Examples:
-            >>> # Check if server exists
-            >>> if fgt.api.cmdb.icap.server.exists('icap-server1'):
-            ...     print("Server exists")
-        """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+            data_payload['name'] = name
+        if addr_type is not None:
+            data_payload['addr-type'] = addr_type
+        if ip_address is not None:
+            data_payload['ip-address'] = ip_address
+        if ip6_address is not None:
+            data_payload['ip6-address'] = ip6_address
+        if fqdn is not None:
+            data_payload['fqdn'] = fqdn
+        if port is not None:
+            data_payload['port'] = port
+        if max_connections is not None:
+            data_payload['max-connections'] = max_connections
+        if secure is not None:
+            data_payload['secure'] = secure
+        if ssl_cert is not None:
+            data_payload['ssl-cert'] = ssl_cert
+        if healthcheck is not None:
+            data_payload['healthcheck'] = healthcheck
+        if healthcheck_service is not None:
+            data_payload['healthcheck-service'] = healthcheck_service
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

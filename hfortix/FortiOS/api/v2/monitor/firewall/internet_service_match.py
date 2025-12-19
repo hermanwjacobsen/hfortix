@@ -1,0 +1,58 @@
+"""Monitor API - InternetServiceMatch operations."""
+
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from hfortix.FortiOS.http_client import HTTPClient
+
+
+class InternetServiceMatch:
+    """InternetServiceMatch operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize InternetServiceMatch endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+    def get(
+        self,
+        ip: str,
+        is_ipv6: bool | None = None,
+        ipv4_mask: str | None = None,
+        ipv6_prefix: int | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        List internet services that exist at a given IP or Subnet.
+        
+        Args:
+            ip: IP (in dot-decimal notation). (required)
+            is_ipv6: Whether IP is IPv6. If not provided, will determine IP version based on given IP, but setting is_ipv6 flag is recommended. (optional)
+            ipv4_mask: IPv4 address mask (in dot-decimal notation). Required if is_ipv6 is false. Example: 255.255.255.255 (optional)
+            ipv6_prefix: IPv6 address prefix. Required if is_ipv6 is true. Example: 128 (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.internet_service_match.get(ip='value')
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params['ip'] = ip
+        if is_ipv6 is not None:
+            params['is_ipv6'] = is_ipv6
+        if ipv4_mask is not None:
+            params['ipv4_mask'] = ipv4_mask
+        if ipv6_prefix is not None:
+            params['ipv6_prefix'] = ipv6_prefix
+        params.update(kwargs)
+        return self._client.get("monitor", "/firewall/internet-service-match", params=params)

@@ -1,572 +1,442 @@
 """
-FortiOS sniffer API wrapper.
-Provides access to /api/v2/cmdb/firewall/sniffer endpoint.
+FortiOS CMDB - Firewall Sniffer
+
+API Endpoints:
+    GET    /firewall/sniffer
+    POST   /firewall/sniffer
+    GET    /firewall/sniffer/{id}
+    PUT    /firewall/sniffer/{id}
+    DELETE /firewall/sniffer/{id}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class Sniffer:
-    """
-    Wrapper for firewall sniffer API endpoint.
+    """Sniffer operations."""
 
-    Manages sniffer configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Sniffer wrapper.
+        Initialize Sniffer endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/sniffer"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific sniffer entry by its id.
-
-        Args:
-            mkey: The id (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        anomaly: Optional[list] = None,
-        application_list: Optional[str] = None,
-        application_list_status: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        av_profile_status: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dlp_profile_status: Optional[str] = None,
-        dsri: Optional[str] = None,
-        emailfilter_profile: Optional[str] = None,
-        emailfilter_profile_status: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        file_filter_profile_status: Optional[str] = None,
-        host: Optional[str] = None,
-        id: Optional[int] = None,
-        interface: Optional[str] = None,
-        ip_threatfeed: Optional[list] = None,
-        ip_threatfeed_status: Optional[str] = None,
-        ips_dos_status: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_sensor_status: Optional[str] = None,
-        ipv6: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        non_ip: Optional[str] = None,
-        port: Optional[str] = None,
-        protocol: Optional[str] = None,
-        status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        vlan: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        webfilter_profile_status: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create sniffer entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            anomaly (list[object]):
-                Configuration method to edit Denial of Service (DoS) anomaly...
-            application-list (string) (max_len: 47):
-                Name of an existing application list.
-            application-list-status (string) (enum: ['enable', 'disable']):
-                Enable/disable application control profile.
-            av-profile (string) (max_len: 47):
-                Name of an existing antivirus profile.
-            av-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable antivirus profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dlp-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable DLP profile.
-            dsri (string) (enum: ['enable', 'disable']):
-                Enable/disable DSRI.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            emailfilter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable emailfilter.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            file-filter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable file filter.
-            host (string) (max_len: 63):
-                Hosts to filter for in sniffer traffic (Format examples: 1.1...
-            id (integer) (range: 0-9999):
-                Sniffer ID (0 - 9999).
-            interface (string) (max_len: 35):
-                Interface name that traffic sniffing will take place on.
-            ip-threatfeed (list[object]):
-                Name of an existing IP threat feed.
-            ip-threatfeed-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IP threat feed.
-            ips-dos-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IPS DoS anomaly detection.
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-sensor-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IPS sensor.
-            ipv6 (string) (enum: ['enable', 'disable']):
-                Enable/disable sniffing IPv6 packets.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Either log all sessions, only sessions that have a security ...
-            non-ip (string) (enum: ['enable', 'disable']):
-                Enable/disable sniffing non-IP packets.
-            port (string) (max_len: 63):
-                Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-20...
-            protocol (string) (max_len: 63):
-                Integer value for the protocol type as defined by IANA (0 - ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable the active status of the sniffer.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            vlan (string) (max_len: 63):
-                List of VLANs to sniff.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing web filter profile.
-            webfilter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable web filter profile.
-
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if anomaly is not None:
-            payload_dict["anomaly"] = anomaly
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if application_list_status is not None:
-            payload_dict["application-list-status"] = application_list_status
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if av_profile_status is not None:
-            payload_dict["av-profile-status"] = av_profile_status
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dlp_profile_status is not None:
-            payload_dict["dlp-profile-status"] = dlp_profile_status
-        if dsri is not None:
-            payload_dict["dsri"] = dsri
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if emailfilter_profile_status is not None:
-            payload_dict["emailfilter-profile-status"] = emailfilter_profile_status
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if file_filter_profile_status is not None:
-            payload_dict["file-filter-profile-status"] = file_filter_profile_status
-        if host is not None:
-            payload_dict["host"] = host
-        if id is not None:
-            payload_dict["id"] = id
-        if interface is not None:
-            payload_dict["interface"] = interface
-        if ip_threatfeed is not None:
-            payload_dict["ip-threatfeed"] = ip_threatfeed
-        if ip_threatfeed_status is not None:
-            payload_dict["ip-threatfeed-status"] = ip_threatfeed_status
-        if ips_dos_status is not None:
-            payload_dict["ips-dos-status"] = ips_dos_status
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_sensor_status is not None:
-            payload_dict["ips-sensor-status"] = ips_sensor_status
-        if ipv6 is not None:
-            payload_dict["ipv6"] = ipv6
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if non_ip is not None:
-            payload_dict["non-ip"] = non_ip
-        if port is not None:
-            payload_dict["port"] = port
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if status is not None:
-            payload_dict["status"] = status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if vlan is not None:
-            payload_dict["vlan"] = vlan
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-        if webfilter_profile_status is not None:
-            payload_dict["webfilter-profile-status"] = webfilter_profile_status
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/firewall/sniffer/{id}"
+        else:
+            endpoint = "/firewall/sniffer"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        anomaly: Optional[list] = None,
-        application_list: Optional[str] = None,
-        application_list_status: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        av_profile_status: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dlp_profile_status: Optional[str] = None,
-        dsri: Optional[str] = None,
-        emailfilter_profile: Optional[str] = None,
-        emailfilter_profile_status: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        file_filter_profile_status: Optional[str] = None,
-        host: Optional[str] = None,
-        id: Optional[int] = None,
-        interface: Optional[str] = None,
-        ip_threatfeed: Optional[list] = None,
-        ip_threatfeed_status: Optional[str] = None,
-        ips_dos_status: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_sensor_status: Optional[str] = None,
-        ipv6: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        non_ip: Optional[str] = None,
-        port: Optional[str] = None,
-        protocol: Optional[str] = None,
-        status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        vlan: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        webfilter_profile_status: Optional[str] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        logtraffic: str | None = None,
+        ipv6: str | None = None,
+        non_ip: str | None = None,
+        interface: str | None = None,
+        host: str | None = None,
+        port: str | None = None,
+        protocol: str | None = None,
+        vlan: str | None = None,
+        application_list_status: str | None = None,
+        application_list: str | None = None,
+        ips_sensor_status: str | None = None,
+        ips_sensor: str | None = None,
+        dsri: str | None = None,
+        av_profile_status: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile_status: str | None = None,
+        webfilter_profile: str | None = None,
+        emailfilter_profile_status: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile_status: str | None = None,
+        dlp_profile: str | None = None,
+        ip_threatfeed_status: str | None = None,
+        ip_threatfeed: list | None = None,
+        file_filter_profile_status: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_dos_status: str | None = None,
+        anomaly: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update sniffer entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The id (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            anomaly (list[object]):
-                Configuration method to edit Denial of Service (DoS) anomaly...
-            application-list (string) (max_len: 47):
-                Name of an existing application list.
-            application-list-status (string) (enum: ['enable', 'disable']):
-                Enable/disable application control profile.
-            av-profile (string) (max_len: 47):
-                Name of an existing antivirus profile.
-            av-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable antivirus profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dlp-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable DLP profile.
-            dsri (string) (enum: ['enable', 'disable']):
-                Enable/disable DSRI.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            emailfilter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable emailfilter.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            file-filter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable file filter.
-            host (string) (max_len: 63):
-                Hosts to filter for in sniffer traffic (Format examples: 1.1...
-            id (integer) (range: 0-9999):
-                Sniffer ID (0 - 9999).
-            interface (string) (max_len: 35):
-                Interface name that traffic sniffing will take place on.
-            ip-threatfeed (list[object]):
-                Name of an existing IP threat feed.
-            ip-threatfeed-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IP threat feed.
-            ips-dos-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IPS DoS anomaly detection.
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-sensor-status (string) (enum: ['enable', 'disable']):
-                Enable/disable IPS sensor.
-            ipv6 (string) (enum: ['enable', 'disable']):
-                Enable/disable sniffing IPv6 packets.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Either log all sessions, only sessions that have a security ...
-            non-ip (string) (enum: ['enable', 'disable']):
-                Enable/disable sniffing non-IP packets.
-            port (string) (max_len: 63):
-                Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-20...
-            protocol (string) (max_len: 63):
-                Integer value for the protocol type as defined by IANA (0 - ...
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable the active status of the sniffer.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            vlan (string) (max_len: 63):
-                List of VLANs to sniff.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing web filter profile.
-            webfilter-profile-status (string) (enum: ['enable', 'disable']):
-                Enable/disable web filter profile.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: Sniffer ID (0 - 9999). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable the active status of the sniffer. (optional)
+            logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. (optional)
+            ipv6: Enable/disable sniffing IPv6 packets. (optional)
+            non_ip: Enable/disable sniffing non-IP packets. (optional)
+            interface: Interface name that traffic sniffing will take place on. (optional)
+            host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240). (optional)
+            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200). (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0 - 255). (optional)
+            vlan: List of VLANs to sniff. (optional)
+            application_list_status: Enable/disable application control profile. (optional)
+            application_list: Name of an existing application list. (optional)
+            ips_sensor_status: Enable/disable IPS sensor. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            dsri: Enable/disable DSRI. (optional)
+            av_profile_status: Enable/disable antivirus profile. (optional)
+            av_profile: Name of an existing antivirus profile. (optional)
+            webfilter_profile_status: Enable/disable web filter profile. (optional)
+            webfilter_profile: Name of an existing web filter profile. (optional)
+            emailfilter_profile_status: Enable/disable emailfilter. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile_status: Enable/disable DLP profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            ip_threatfeed_status: Enable/disable IP threat feed. (optional)
+            ip_threatfeed: Name of an existing IP threat feed. (optional)
+            file_filter_profile_status: Enable/disable file filter. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_dos_status: Enable/disable IPS DoS anomaly detection. (optional)
+            anomaly: Configuration method to edit Denial of Service (DoS) anomaly settings. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if anomaly is not None:
-            payload_dict["anomaly"] = anomaly
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if application_list_status is not None:
-            payload_dict["application-list-status"] = application_list_status
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if av_profile_status is not None:
-            payload_dict["av-profile-status"] = av_profile_status
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dlp_profile_status is not None:
-            payload_dict["dlp-profile-status"] = dlp_profile_status
-        if dsri is not None:
-            payload_dict["dsri"] = dsri
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if emailfilter_profile_status is not None:
-            payload_dict["emailfilter-profile-status"] = emailfilter_profile_status
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if file_filter_profile_status is not None:
-            payload_dict["file-filter-profile-status"] = file_filter_profile_status
-        if host is not None:
-            payload_dict["host"] = host
-        if id is not None:
-            payload_dict["id"] = id
-        if interface is not None:
-            payload_dict["interface"] = interface
-        if ip_threatfeed is not None:
-            payload_dict["ip-threatfeed"] = ip_threatfeed
-        if ip_threatfeed_status is not None:
-            payload_dict["ip-threatfeed-status"] = ip_threatfeed_status
-        if ips_dos_status is not None:
-            payload_dict["ips-dos-status"] = ips_dos_status
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_sensor_status is not None:
-            payload_dict["ips-sensor-status"] = ips_sensor_status
-        if ipv6 is not None:
-            payload_dict["ipv6"] = ipv6
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if non_ip is not None:
-            payload_dict["non-ip"] = non_ip
-        if port is not None:
-            payload_dict["port"] = port
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if status is not None:
-            payload_dict["status"] = status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if vlan is not None:
-            payload_dict["vlan"] = vlan
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-        if webfilter_profile_status is not None:
-            payload_dict["webfilter-profile-status"] = webfilter_profile_status
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/firewall/sniffer/{id}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if ipv6 is not None:
+            data_payload['ipv6'] = ipv6
+        if non_ip is not None:
+            data_payload['non-ip'] = non_ip
+        if interface is not None:
+            data_payload['interface'] = interface
+        if host is not None:
+            data_payload['host'] = host
+        if port is not None:
+            data_payload['port'] = port
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if vlan is not None:
+            data_payload['vlan'] = vlan
+        if application_list_status is not None:
+            data_payload['application-list-status'] = application_list_status
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if ips_sensor_status is not None:
+            data_payload['ips-sensor-status'] = ips_sensor_status
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if dsri is not None:
+            data_payload['dsri'] = dsri
+        if av_profile_status is not None:
+            data_payload['av-profile-status'] = av_profile_status
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile_status is not None:
+            data_payload['webfilter-profile-status'] = webfilter_profile_status
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if emailfilter_profile_status is not None:
+            data_payload['emailfilter-profile-status'] = emailfilter_profile_status
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile_status is not None:
+            data_payload['dlp-profile-status'] = dlp_profile_status
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if ip_threatfeed_status is not None:
+            data_payload['ip-threatfeed-status'] = ip_threatfeed_status
+        if ip_threatfeed is not None:
+            data_payload['ip-threatfeed'] = ip_threatfeed
+        if file_filter_profile_status is not None:
+            data_payload['file-filter-profile-status'] = file_filter_profile_status
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_dos_status is not None:
+            data_payload['ips-dos-status'] = ips_dos_status
+        if anomaly is not None:
+            data_payload['anomaly'] = anomaly
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a sniffer entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The id (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/firewall/sniffer/{id}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        logtraffic: str | None = None,
+        ipv6: str | None = None,
+        non_ip: str | None = None,
+        interface: str | None = None,
+        host: str | None = None,
+        port: str | None = None,
+        protocol: str | None = None,
+        vlan: str | None = None,
+        application_list_status: str | None = None,
+        application_list: str | None = None,
+        ips_sensor_status: str | None = None,
+        ips_sensor: str | None = None,
+        dsri: str | None = None,
+        av_profile_status: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile_status: str | None = None,
+        webfilter_profile: str | None = None,
+        emailfilter_profile_status: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile_status: str | None = None,
+        dlp_profile: str | None = None,
+        ip_threatfeed_status: str | None = None,
+        ip_threatfeed: list | None = None,
+        file_filter_profile_status: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_dos_status: str | None = None,
+        anomaly: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: Sniffer ID (0 - 9999). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable the active status of the sniffer. (optional)
+            logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. (optional)
+            ipv6: Enable/disable sniffing IPv6 packets. (optional)
+            non_ip: Enable/disable sniffing non-IP packets. (optional)
+            interface: Interface name that traffic sniffing will take place on. (optional)
+            host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240). (optional)
+            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200). (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0 - 255). (optional)
+            vlan: List of VLANs to sniff. (optional)
+            application_list_status: Enable/disable application control profile. (optional)
+            application_list: Name of an existing application list. (optional)
+            ips_sensor_status: Enable/disable IPS sensor. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            dsri: Enable/disable DSRI. (optional)
+            av_profile_status: Enable/disable antivirus profile. (optional)
+            av_profile: Name of an existing antivirus profile. (optional)
+            webfilter_profile_status: Enable/disable web filter profile. (optional)
+            webfilter_profile: Name of an existing web filter profile. (optional)
+            emailfilter_profile_status: Enable/disable emailfilter. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile_status: Enable/disable DLP profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            ip_threatfeed_status: Enable/disable IP threat feed. (optional)
+            ip_threatfeed: Name of an existing IP threat feed. (optional)
+            file_filter_profile_status: Enable/disable file filter. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_dos_status: Enable/disable IPS DoS anomaly detection. (optional)
+            anomaly: Configuration method to edit Denial of Service (DoS) anomaly settings. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/sniffer"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if ipv6 is not None:
+            data_payload['ipv6'] = ipv6
+        if non_ip is not None:
+            data_payload['non-ip'] = non_ip
+        if interface is not None:
+            data_payload['interface'] = interface
+        if host is not None:
+            data_payload['host'] = host
+        if port is not None:
+            data_payload['port'] = port
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if vlan is not None:
+            data_payload['vlan'] = vlan
+        if application_list_status is not None:
+            data_payload['application-list-status'] = application_list_status
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if ips_sensor_status is not None:
+            data_payload['ips-sensor-status'] = ips_sensor_status
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if dsri is not None:
+            data_payload['dsri'] = dsri
+        if av_profile_status is not None:
+            data_payload['av-profile-status'] = av_profile_status
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile_status is not None:
+            data_payload['webfilter-profile-status'] = webfilter_profile_status
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if emailfilter_profile_status is not None:
+            data_payload['emailfilter-profile-status'] = emailfilter_profile_status
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile_status is not None:
+            data_payload['dlp-profile-status'] = dlp_profile_status
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if ip_threatfeed_status is not None:
+            data_payload['ip-threatfeed-status'] = ip_threatfeed_status
+        if ip_threatfeed is not None:
+            data_payload['ip-threatfeed'] = ip_threatfeed
+        if file_filter_profile_status is not None:
+            data_payload['file-filter-profile-status'] = file_filter_profile_status
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_dos_status is not None:
+            data_payload['ips-dos-status'] = ips_dos_status
+        if anomaly is not None:
+            data_payload['anomaly'] = anomaly
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,172 +1,141 @@
 """
-FortiOS CMDB - Firewall SSH Settings
-SSH proxy settings.
+FortiOS CMDB - Firewall SshSetting
 
 API Endpoints:
-    GET  /api/v2/cmdb/firewall.ssh/setting  - Get configuration
-    PUT  /api/v2/cmdb/firewall.ssh/setting  - Update configuration
+    GET    /firewall.ssh/setting
+    PUT    /firewall.ssh/setting
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
-from .....http_client import HTTPResponse
 
+class SshSetting:
+    """SshSetting operations."""
 
-class Setting:
-    """SSH proxy settings endpoint (singleton)"""
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize SshSetting endpoint.
 
-    def __init__(self, client):
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get SSH proxy settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Enable skip operator
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Get SSH proxy settings
-            >>> result = fgt.cmdb.firewall.ssh.setting.get()
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.firewall.ssh.setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/firewall.ssh/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "firewall.ssh/setting",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        caname: Optional[str] = None,
-        untrusted_caname: Optional[str] = None,
-        host_trusted_checking: Optional[str] = None,
-        hostkey_rsa2048: Optional[str] = None,
-        hostkey_dsa1024: Optional[str] = None,
-        hostkey_ecdsa256: Optional[str] = None,
-        hostkey_ecdsa384: Optional[str] = None,
-        hostkey_ecdsa521: Optional[str] = None,
-        hostkey_ed25519: Optional[str] = None,
-        ssh_policy_check: Optional[str] = None,
-        ssh_tun_policy_check: Optional[str] = None,
-        log_violation: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        caname: str | None = None,
+        untrusted_caname: str | None = None,
+        hostkey_rsa2048: str | None = None,
+        hostkey_dsa1024: str | None = None,
+        hostkey_ecdsa256: str | None = None,
+        hostkey_ecdsa384: str | None = None,
+        hostkey_ecdsa521: str | None = None,
+        hostkey_ed25519: str | None = None,
+        host_trusted_checking: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update SSH proxy settings.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            caname: CA certificate name
-            untrusted_caname: Untrusted CA certificate name
-            host_trusted_checking: Enable/disable host trusted checking - 'enable' or 'disable'
-            hostkey_rsa2048: RSA 2048-bit host key name
-            hostkey_dsa1024: DSA 1024-bit host key name
-            hostkey_ecdsa256: ECDSA 256-bit host key name
-            hostkey_ecdsa384: ECDSA 384-bit host key name
-            hostkey_ecdsa521: ECDSA 521-bit host key name
-            hostkey_ed25519: ED25519 host key name
-            ssh_policy_check: Enable/disable SSH policy check - 'enable' or 'disable'
-            ssh_tun_policy_check: Enable/disable SSH tunnel policy check - 'enable' or 'disable'
-            log_violation: Enable/disable logging of violations - 'enable' or 'disable'
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            caname: CA certificate used by SSH Inspection. (optional)
+            untrusted_caname: Untrusted CA certificate used by SSH Inspection. (optional)
+            hostkey_rsa2048: RSA certificate used by SSH proxy. (optional)
+            hostkey_dsa1024: DSA certificate used by SSH proxy. (optional)
+            hostkey_ecdsa256: ECDSA nid256 certificate used by SSH proxy. (optional)
+            hostkey_ecdsa384: ECDSA nid384 certificate used by SSH proxy. (optional)
+            hostkey_ecdsa521: ECDSA nid384 certificate used by SSH proxy. (optional)
+            hostkey_ed25519: ED25519 hostkey used by SSH proxy. (optional)
+            host_trusted_checking: Enable/disable host trusted checking. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update CA certificate
-            >>> result = fgt.cmdb.firewall.ssh.setting.update(
-            ...     caname='Fortinet_CA_SSL',
-            ...     host_trusted_checking='enable'
-            ... )
-
-            >>> # Enable SSH policy check
-            >>> result = fgt.cmdb.firewall.ssh.setting.update(
-            ...     ssh_policy_check='enable',
-            ...     log_violation='enable'
-            ... )
-
-            >>> # Configure host keys
-            >>> result = fgt.cmdb.firewall.ssh.setting.update(
-            ...     hostkey_rsa2048='rsa-key-2048',
-            ...     hostkey_ecdsa256='ecdsa-key-256'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if caname is not None:
-                payload_dict["caname"] = caname
-            if untrusted_caname is not None:
-                payload_dict["untrusted-caname"] = untrusted_caname
-            if host_trusted_checking is not None:
-                payload_dict["host-trusted-checking"] = host_trusted_checking
-            if hostkey_rsa2048 is not None:
-                payload_dict["hostkey-rsa2048"] = hostkey_rsa2048
-            if hostkey_dsa1024 is not None:
-                payload_dict["hostkey-dsa1024"] = hostkey_dsa1024
-            if hostkey_ecdsa256 is not None:
-                payload_dict["hostkey-ecdsa256"] = hostkey_ecdsa256
-            if hostkey_ecdsa384 is not None:
-                payload_dict["hostkey-ecdsa384"] = hostkey_ecdsa384
-            if hostkey_ecdsa521 is not None:
-                payload_dict["hostkey-ecdsa521"] = hostkey_ecdsa521
-            if hostkey_ed25519 is not None:
-                payload_dict["hostkey-ed25519"] = hostkey_ed25519
-            if ssh_policy_check is not None:
-                payload_dict["ssh-policy-check"] = ssh_policy_check
-            if ssh_tun_policy_check is not None:
-                payload_dict["ssh-tun-policy-check"] = ssh_tun_policy_check
-            if log_violation is not None:
-                payload_dict["log-violation"] = log_violation
-
-        return self._client.put(
-            "cmdb", "firewall.ssh/setting", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.ssh/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if caname is not None:
+            data_payload['caname'] = caname
+        if untrusted_caname is not None:
+            data_payload['untrusted-caname'] = untrusted_caname
+        if hostkey_rsa2048 is not None:
+            data_payload['hostkey-rsa2048'] = hostkey_rsa2048
+        if hostkey_dsa1024 is not None:
+            data_payload['hostkey-dsa1024'] = hostkey_dsa1024
+        if hostkey_ecdsa256 is not None:
+            data_payload['hostkey-ecdsa256'] = hostkey_ecdsa256
+        if hostkey_ecdsa384 is not None:
+            data_payload['hostkey-ecdsa384'] = hostkey_ecdsa384
+        if hostkey_ecdsa521 is not None:
+            data_payload['hostkey-ecdsa521'] = hostkey_ecdsa521
+        if hostkey_ed25519 is not None:
+            data_payload['hostkey-ed25519'] = hostkey_ed25519
+        if host_trusted_checking is not None:
+            data_payload['host-trusted-checking'] = host_trusted_checking
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

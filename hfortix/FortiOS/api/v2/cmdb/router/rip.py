@@ -1,60 +1,165 @@
-"""FortiOS CMDB - Router RIP - RIP configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Rip
+
+API Endpoints:
+    GET    /router/rip
+    PUT    /router/rip
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Rip:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Rip operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Rip endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/rip"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/rip", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, default_information_originate: Optional[str] = None, default_metric: Optional[int] = None, max_out_metric: Optional[int] = None, recv_buffer_size: Optional[int] = None, distance: Optional[list] = None, distribute_list: Optional[list] = None, neighbor: Optional[list] = None, network: Optional[list] = None, offset_list: Optional[list] = None, passive_interface: Optional[list] = None, redistribute: Optional[list] = None, update_timer: Optional[int] = None, timeout_timer: Optional[int] = None, garbage_timer: Optional[int] = None, version: Optional[str] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"default_information_originate": "default-information-originate", "default_metric": "default-metric", "max_out_metric": "max-out-metric", "recv_buffer_size": "recv-buffer-size", "distribute_list": "distribute-list", "offset_list": "offset-list", "passive_interface": "passive-interface", "update_timer": "update-timer", "timeout_timer": "timeout-timer", "garbage_timer": "garbage-timer"}
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        default_information_originate: str | None = None,
+        default_metric: int | None = None,
+        max_out_metric: int | None = None,
+        distance: list | None = None,
+        distribute_list: list | None = None,
+        neighbor: list | None = None,
+        network: list | None = None,
+        offset_list: list | None = None,
+        passive_interface: list | None = None,
+        redistribute: list | None = None,
+        update_timer: int | None = None,
+        timeout_timer: int | None = None,
+        garbage_timer: int | None = None,
+        version: str | None = None,
+        interface: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            default_information_originate: Enable/disable generation of default route. (optional)
+            default_metric: Default metric. (optional)
+            max_out_metric: Maximum metric allowed to output(0 means 'not set'). (optional)
+            distance: Distance. (optional)
+            distribute_list: Distribute list. (optional)
+            neighbor: Neighbor. (optional)
+            network: Network. (optional)
+            offset_list: Offset list. (optional)
+            passive_interface: Passive interface configuration. (optional)
+            redistribute: Redistribute configuration. (optional)
+            update_timer: Update timer in seconds. (optional)
+            timeout_timer: Timeout timer in seconds. (optional)
+            garbage_timer: Garbage timer in seconds. (optional)
+            version: RIP version. (optional)
+            interface: RIP interface configuration. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/rip"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if default_information_originate is not None:
-            data[param_map["default_information_originate"]] = default_information_originate
+            data_payload['default-information-originate'] = default_information_originate
         if default_metric is not None:
-            data[param_map["default_metric"]] = default_metric
+            data_payload['default-metric'] = default_metric
         if max_out_metric is not None:
-            data[param_map["max_out_metric"]] = max_out_metric
-        if recv_buffer_size is not None:
-            data[param_map["recv_buffer_size"]] = recv_buffer_size
+            data_payload['max-out-metric'] = max_out_metric
         if distance is not None:
-            data["distance"] = distance
+            data_payload['distance'] = distance
         if distribute_list is not None:
-            data[param_map["distribute_list"]] = distribute_list
+            data_payload['distribute-list'] = distribute_list
         if neighbor is not None:
-            data["neighbor"] = neighbor
+            data_payload['neighbor'] = neighbor
         if network is not None:
-            data["network"] = network
+            data_payload['network'] = network
         if offset_list is not None:
-            data[param_map["offset_list"]] = offset_list
+            data_payload['offset-list'] = offset_list
         if passive_interface is not None:
-            data[param_map["passive_interface"]] = passive_interface
+            data_payload['passive-interface'] = passive_interface
         if redistribute is not None:
-            data["redistribute"] = redistribute
+            data_payload['redistribute'] = redistribute
         if update_timer is not None:
-            data[param_map["update_timer"]] = update_timer
+            data_payload['update-timer'] = update_timer
         if timeout_timer is not None:
-            data[param_map["timeout_timer"]] = timeout_timer
+            data_payload['timeout-timer'] = timeout_timer
         if garbage_timer is not None:
-            data[param_map["garbage_timer"]] = garbage_timer
+            data_payload['garbage-timer'] = garbage_timer
         if version is not None:
-            data["version"] = version
+            data_payload['version'] = version
         if interface is not None:
-            data["interface"] = interface
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/rip", data=data, vdom=vdom)
+            data_payload['interface'] = interface
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

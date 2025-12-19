@@ -1,126 +1,113 @@
 """
-WebTrends setting endpoint module.
+FortiOS CMDB - Log WebtrendsSetting
 
-This module provides access to the log.webtrends/setting endpoint
-for configuring WebTrends server settings.
-
-API Path: log.webtrends/setting
+API Endpoints:
+    GET    /log.webtrends/setting
+    PUT    /log.webtrends/setting
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class WebtrendsSetting:
-    """
-    Interface for configuring WebTrends server settings.
+    """WebtrendsSetting operations."""
 
-    This class provides methods to manage WebTrends server configuration.
-
-    Supports three types of parameters:
-    - data_dict: Standard dictionary format matching API structure
-    - keyword arguments: Python snake_case parameters
-    - mixed: Both data_dict and keyword arguments combined
-
-    Example usage:
-        # Using keyword arguments (snake_case)
-        fgt.api.cmdb.log.webtrends.setting.update(
-            status='enable',
-            server='192.168.1.100'
-        )
-
-        # Using data_dict (hyphenated)
-        fgt.api.cmdb.log.webtrends.setting.update(
-            data_dict={
-                'status': 'enable',
-                'server': '192.168.1.100'
-            }
-        )
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the WebtrendsSetting instance.
+        Initialize WebtrendsSetting endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "log.webtrends/setting"
 
-    def get(self) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve current WebTrends server settings.
-
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing WebTrends server configuration
-
-        Example:
-            >>> result = fgt.api.cmdb.log.webtrends.setting.get()
-            >>> print(result['status'])
-            'enable'
+            Dictionary containing API response
         """
-        path = "log.webtrends/setting"
-        return self._client.get("cmdb", path)
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.webtrends/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        server: Optional[str] = None,
-        status: Optional[str] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        server: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update WebTrends server settings.
-
-        Accepts parameters in multiple formats for flexibility:
-        1. data_dict with API format (hyphenated keys)
-        2. Python snake_case keyword arguments
-        3. Both data_dict and kwargs combined
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Dictionary with API format parameters (hyphenated)
-            server: Server name
-            status: Enable/disable WebTrends logging (enable | disable)
-            **kwargs: Additional parameters in API format (hyphenated)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Enable/disable logging to WebTrends. (optional)
+            server: Address of the remote WebTrends server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> # Using keyword arguments
-            >>> fgt.api.cmdb.log.webtrends.setting.update(
-            ...     status='enable',
-            ...     server='webtrends.example.com'
-            ... )
-
-            >>> # Using data_dict
-            >>> fgt.api.cmdb.log.webtrends.setting.update(
-            ...     data_dict={
-            ...         'status': 'enable',
-            ...         'server': '192.168.1.100'
-            ...     }
-            ... )
         """
-        # Start with data_dict if provided, otherwise empty dict
-        payload = dict(data_dict) if data_dict else {}
-
-        # Map Python parameter names to API format and add to payload
-        param_map = {
-            "server": "server",
-            "status": "status",
-        }
-
-        # Add mapped parameters
-        for py_name, api_name in param_map.items():
-            value = locals().get(py_name)
-            if value is not None:
-                payload[api_name] = value
-
-        # Add any additional kwargs
-        payload.update(kwargs)
-
-        path = "log.webtrends/setting"
-        return self._client.put("cmdb", path, data=payload)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.webtrends/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if server is not None:
+            data_payload['server'] = server
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

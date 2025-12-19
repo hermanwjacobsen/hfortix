@@ -1,27 +1,143 @@
 """
-FortiOS Service - Packet Sniffer
+FortiOS Service API - Sniffer
 
-Manage packet captures on FortiOS devices.
+Auto-generated from OpenAPI specification.
 
-API Endpoints:
-    GET    /api/v2/service/sniffer/list/     - List all packet captures
-    POST   /api/v2/service/sniffer/start/    - Start a new packet capture
-    POST   /api/v2/service/sniffer/stop/     - Stop a running packet capture
-    POST   /api/v2/service/sniffer/download/ - Download packet capture as PCAP
-    POST   /api/v2/service/sniffer/delete/   - Delete a packet capture
-    GET    /api/v2/service/sniffer/meta/     - Get system limitations and meta info
+Functions support:
+    - Full parameter specification
+    - Dual approach: individual parameters OR payload_dict
+    - raw_json parameter: controls whether to return full parsed response or extracted results
+    - Type hints and comprehensive docstrings
 """
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+    from .....http_client import HTTPClient
 
 
-class Sniffer:
-    """Packet sniffer service endpoint"""
+class Delete:
+    """Delete resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def post(
+        self,
+        mkey: Optional[str] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Deletes a packet capture. 
+ Access Group: netgrp.packet-capture
+
+        Supports dual approach:
+        1. Individual parameters: post(param='value')
+        2. Payload dict: post(payload_dict={'param': 'value'})
+
+        Args:
+            mkey: Packet capture name.
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.sniffer.delete.post()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.delete.post(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        if mkey is not None:
+            params['mkey'] = mkey
+
+        params.update(kwargs)
+
+        return self._client.post(
+            "service",
+            "sniffer/delete/",
+            data=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+class Download:
+    """Download resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def post(
+        self,
+        mkey: Optional[str] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Returns a PCAP file of the packet capture. 
+ Access Group: netgrp.packet-capture
+
+        Supports dual approach:
+        1. Individual parameters: post(param='value')
+        2. Payload dict: post(payload_dict={'param': 'value'})
+
+        Args:
+            mkey: Packet Capture name.
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.sniffer.download.post()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.download.post(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        if mkey is not None:
+            params['mkey'] = mkey
+
+        params.update(kwargs)
+
+        return self._client.post(
+            "service",
+            "sniffer/download/",
+            data=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+class List:
+    """List resource"""
 
     def __init__(self, client: "HTTPClient") -> None:
         self._client = client
@@ -29,288 +145,283 @@ class Sniffer:
     def get(
         self,
         mkey: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any,
+        **kwargs: Any
     ) -> dict[str, Any]:
         """
-        Get packet captures
+        Returns list of all packet captures and their status information. 
+ Access Group: netgrp.packet-capture
 
-        Returns list of all packet captures and their status information,
-        or details of a specific packet capture if mkey is provided.
+        Supports dual approach:
+        1. Individual parameters: get(param='value')
+        2. Payload dict: get(payload_dict={'param': 'value'})
 
         Args:
-            mkey (str, optional): Filter by packet capture name
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
+            mkey: Filters by packet capture name.
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
 
         Returns:
-            dict: API response with packet capture information
-
-        Response fields:
-            - mkey (str): Packet capture name
-            - status (str): Status - 'not_started', 'running', 'finished', 'error'
-            - config (dict): Packet capture configuration
-            - start_time (int): Unix timestamp when capture started
-            - end_time (int): Unix timestamp when capture ended
-            - vdom (str): VDOM the packet capture is in
+            Dictionary containing response data
 
         Examples:
-            >>> # Get all packet captures
-            >>> captures = fgt.service.sniffer.get()
-
-            >>> # Get specific packet capture
-            >>> capture = fgt.service.sniffer.get(mkey='my-capture')
+            # Using individual parameters
+            result = fgt.api.service.sniffer.list.get()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.list.get(
+                payload_dict={'param': 'value'}
+            )
         """
-        params = {}
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
         if mkey is not None:
-            params["mkey"] = mkey
+            params['mkey'] = mkey
 
         params.update(kwargs)
 
         return self._client.get(
             "service",
             "sniffer/list/",
-            params=params if params else None,
+            params=params,
             vdom=vdom,
             raw_json=raw_json,
         )
 
-    def start(
+
+class Meta:
+    """Meta resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        mkey: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
         raw_json: bool = False,
-        **kwargs: Any,
+        **kwargs: Any
     ) -> dict[str, Any]:
         """
-        Start a new packet capture
+        Returns system limitations & meta information of packet capture feature. 
+ Access Group: netgrp.packet-capture
 
-        Creates a new packet capture and starts it. The packet capture must be
-        configured in the FortiOS configuration before starting.
+        Supports dual approach:
+        1. Individual parameters: get(param='value')
+        2. Payload dict: get(payload_dict={'param': 'value'})
 
         Args:
-            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
-            mkey (str, optional): Packet capture name
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
+            No parameters
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
 
         Returns:
-            dict: API response with start status
-
-        Response fields:
-            - status (str): Start status - 'success'
-            - mkey (str): Name of the packet capture that was started
+            Dictionary containing response data
 
         Examples:
-            >>> # Dictionary pattern
-            >>> result = fgt.service.sniffer.start(data_dict={'mkey': 'my-capture'})
-
-            >>> # Keyword pattern
-            >>> result = fgt.service.sniffer.start(mkey='my-capture')
-
-            >>> # Start capture in specific VDOM
-            >>> result = fgt.service.sniffer.start(mkey='my-capture', vdom='root')
+            # Using individual parameters
+            result = fgt.api.service.sniffer.meta.get()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.meta.get(
+                payload_dict={'param': 'value'}
+            )
         """
-        if data_dict is not None:
-            data = data_dict.copy()
+        if payload_dict:
+            params = payload_dict.copy()
         else:
-            data: Dict[str, Any] = {}
-            if mkey is not None:
-                data["mkey"] = mkey
+            params = {}
+        pass
 
-        data.update(kwargs)
-
-        if "mkey" not in data:
-            raise ValueError("mkey is required")
-
-        return self._client.post("service", "sniffer/start/", data, vdom=vdom, raw_json=raw_json)
-
-    def stop(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        mkey: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Stop a running packet capture
-
-        Stops a running packet capture.
-
-        Args:
-            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
-            mkey (str, optional): Packet capture name
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # Dictionary pattern
-            >>> result = fgt.service.sniffer.stop(data_dict={'mkey': 'my-capture'})
-
-            >>> # Keyword pattern
-            >>> result = fgt.service.sniffer.stop(mkey='my-capture')
-
-            >>> # Stop capture in specific VDOM
-            >>> result = fgt.service.sniffer.stop(mkey='my-capture', vdom='root')
-        """
-        if data_dict is not None:
-            data = data_dict.copy()
-        else:
-            data: Dict[str, Any] = {}
-            if mkey is not None:
-                data["mkey"] = mkey
-
-        data.update(kwargs)
-
-        if "mkey" not in data:
-            raise ValueError("mkey is required")
-
-        return self._client.post("service", "sniffer/stop/", data, vdom=vdom, raw_json=raw_json)
-
-    def download(self, mkey: str, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> bytes:
-        """
-        Download packet capture as PCAP file
-
-        Returns a PCAP file of the packet capture. The capture must be stopped
-        before it can be downloaded.
-
-        Args:
-            mkey (str, required): Packet capture name
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            bytes: PCAP file data (binary)
-
-        Examples:
-            >>> # Download a packet capture
-            >>> pcap_data = fgt.service.sniffer.download('my-capture')
-
-            >>> # Save to file
-            >>> with open('capture.pcap', 'wb') as f:
-            ...     f.write(pcap_data)
-            >>> print(f"Saved {len(pcap_data)} bytes")
-        """
-        # Build URL and parameters
-        url = f"{self._client.url}/api/v2/service/sniffer/download/"
-        params = {}
-
-        # Add vdom parameter if specified
-        if vdom is not None:
-            params["vdom"] = vdom
-        elif self._client.vdom is not None:
-            params["vdom"] = self._client.vdom
-
-        # Prepare request data
-        data = {"mkey": mkey}
-        data.update(kwargs)
-
-        # Make request - download returns binary PCAP data, not JSON
-        res = self._client.session.request(
-            method="POST", url=url, json=data, params=params if params else None
-        )
-
-        # Check for errors
-        if not res.ok:
-            try:
-                error_detail = res.json()
-                from .....exceptions import APIError
-
-                raise APIError(f"HTTP {res.status_code}: {error_detail}")
-            except ValueError:
-                res.raise_for_status()
-
-        # Return raw binary content (PCAP file)
-        return res.content
-
-    def delete(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        raw_json: bool = False,
-        mkey: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Delete a packet capture
-
-        Deletes a packet capture from the FortiGate.
-
-        Args:
-            data_dict (dict, optional): Dictionary with 'mkey' and other parameters
-            mkey (str, optional): Packet capture name
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # Dictionary pattern
-            >>> result = fgt.service.sniffer.delete(data_dict={'mkey': 'my-capture'})
-
-            >>> # Keyword pattern
-            >>> result = fgt.service.sniffer.delete(mkey='my-capture')
-
-            >>> # Delete capture from specific VDOM
-            >>> result = fgt.service.sniffer.delete(mkey='my-capture', vdom='root')
-        """
-        if data_dict is not None:
-            data = data_dict.copy()
-        else:
-            data: Dict[str, Any] = {}
-            if mkey is not None:
-                data["mkey"] = mkey
-
-        data.update(kwargs)
-
-        if "mkey" not in data:
-            raise ValueError("mkey is required")
-
-        return self._client.post("service", "sniffer/delete/", data, vdom=vdom, raw_json=raw_json)
-
-    def meta(
-        self, vdom: Optional[Union[str, bool]] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get system limitations and meta information
-
-        Returns system limitations and meta information about the packet capture
-        feature on this FortiGate.
-
-        Args:
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: API response with meta information
-
-        Response fields:
-            - max_packet_captures (int): Maximum number of packet captures per VDOM
-            - max_packet_count (int): Maximum number of packets in a capture
-            - default_packet_count (int): Default number of packets in a capture
-            - has_disk (int): True (1) if FortiGate has a disk to store captures
-
-        Examples:
-            >>> # Get packet capture meta information
-            >>> meta = fgt.service.sniffer.meta()
-            >>> print(f"Max captures: {meta['results']['max_packet_captures']}")
-            >>> print(f"Max packets: {meta['results']['max_packet_count']}")
-            >>> print(f"Has disk: {meta['results']['has_disk']}")
-        """
-        params = {}
         params.update(kwargs)
 
         return self._client.get(
             "service",
             "sniffer/meta/",
-            params=params if params else None,
+            params=params,
             vdom=vdom,
             raw_json=raw_json,
         )
+
+
+class Start:
+    """Start resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def post(
+        self,
+        mkey: Optional[str] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Creates a new packet capture and starts it. 
+ Access Group: netgrp.packet-capture
+
+        Supports dual approach:
+        1. Individual parameters: post(param='value')
+        2. Payload dict: post(payload_dict={'param': 'value'})
+
+        Args:
+            mkey: Packet capture name
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.sniffer.start.post()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.start.post(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        if mkey is not None:
+            params['mkey'] = mkey
+
+        params.update(kwargs)
+
+        return self._client.post(
+            "service",
+            "sniffer/start/",
+            data=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+class Stop:
+    """Stop resource"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+
+    def post(
+        self,
+        mkey: Optional[str] = None,
+        vdom: Optional[str] = None,
+        payload_dict: Optional[dict[str, Any]] = None,
+        raw_json: bool = False,
+        **kwargs: Any
+    ) -> dict[str, Any]:
+        """
+        Stop a running packet capture. 
+ Access Group: netgrp.packet-capture
+
+        Supports dual approach:
+        1. Individual parameters: post(param='value')
+        2. Payload dict: post(payload_dict={'param': 'value'})
+
+        Args:
+            mkey: Packet capture name.
+            vdom: Virtual Domain name
+            payload_dict: Alternative to individual parameters - pass all params as dict
+            raw_json: Return raw JSON response without parsing
+            **kwargs: Additional parameters to pass to the API
+
+        Returns:
+            Dictionary containing response data
+
+        Examples:
+            # Using individual parameters
+            result = fgt.api.service.sniffer.stop.post()
+            
+            # Using payload_dict
+            result = fgt.api.service.sniffer.stop.post(
+                payload_dict={'param': 'value'}
+            )
+        """
+        if payload_dict:
+            params = payload_dict.copy()
+        else:
+            params = {}
+        if mkey is not None:
+            params['mkey'] = mkey
+
+        params.update(kwargs)
+
+        return self._client.post(
+            "service",
+            "sniffer/stop/",
+            data=params,
+            vdom=vdom,
+            raw_json=raw_json,
+        )
+
+
+
+class Sniffer:
+    """Main Sniffer service class"""
+
+    def __init__(self, client: "HTTPClient") -> None:
+        self._client = client
+        self._delete = None
+        self._download = None
+        self._list = None
+        self._meta = None
+        self._start = None
+        self._stop = None
+
+    @property
+    def delete(self) -> Delete:
+        """Access Delete resource"""
+        if self._delete is None:
+            self._delete = Delete(self._client)
+        return self._delete
+
+    @property
+    def download(self) -> Download:
+        """Access Download resource"""
+        if self._download is None:
+            self._download = Download(self._client)
+        return self._download
+
+    @property
+    def list(self) -> List:
+        """Access List resource"""
+        if self._list is None:
+            self._list = List(self._client)
+        return self._list
+
+    @property
+    def meta(self) -> Meta:
+        """Access Meta resource"""
+        if self._meta is None:
+            self._meta = Meta(self._client)
+        return self._meta
+
+    @property
+    def start(self) -> Start:
+        """Access Start resource"""
+        if self._start is None:
+            self._start = Start(self._client)
+        return self._start
+
+    @property
+    def stop(self) -> Stop:
+        """Access Stop resource"""
+        if self._stop is None:
+            self._stop = Stop(self._client)
+        return self._stop
+

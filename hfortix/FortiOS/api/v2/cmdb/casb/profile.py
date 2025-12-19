@@ -1,321 +1,226 @@
 """
-FortiOS CMDB - CASB Profile
-
-Configure CASB profile.
-
-A CASB profile ties together SaaS applications with various security controls including:
-- Safe search control
-- Tenant control
-- Domain control
-- Access rules
-- Custom controls
+FortiOS CMDB - Casb Profile
 
 API Endpoints:
-    GET    /casb/profile           - List all / Get specific
-    POST   /casb/profile           - Create
-    PUT    /casb/profile/{name}   - Update
-    DELETE /casb/profile/{name}   - Delete
+    GET    /casb/profile
+    POST   /casb/profile
+    GET    /casb/profile/{name}
+    PUT    /casb/profile/{name}
+    DELETE /casb/profile/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Profile:
-    """CASB profile endpoint"""
+    """Profile operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize CASB Profile endpoint
+        Initialize Profile endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB profile(s) - List all or get specific
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Profile name (get specific profile)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions (default, schema, revision)
-            format (str, optional): Field list to return (e.g., 'name|comment')
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (str, optional): Skip to datasource
-            acs (bool, optional): Ascending order
-            search (str, optional): Search value
-            scope (str, optional): Scope [global|vdom|both]
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with CASB profile(s)
-
-        Examples:
-            >>> # Get all CASB profiles
-            >>> profiles = fgt.cmdb.casb.profile.get()
-            >>> print(f"Total profiles: {len(profiles['results'])}")
-
-            >>> # Get specific profile
-            >>> profile = fgt.cmdb.casb.profile.get('security-profile')
-            >>> print(f"Comment: {profile['results']['comment']}")
-
-            >>> # Get with filters
-            >>> profiles = fgt.cmdb.casb.profile.get(
-            ...     format='name|comment',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        # Build query parameters
-        params = {}
-
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        # Build path
-        path = "casb/profile"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        saas_application: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create CASB profile
-
-        Args:
-            name (str): Profile name (required)
-            comment (str, optional): Profile comment/description
-            saas_application (list, optional): List of SaaS application configurations
-                Each item can contain:
-                - name (str): SaaS application name
-                - status (str): 'enable' or 'disable'
-                - safe_search (str): 'enable' or 'disable'
-                - tenant_control (str): 'enable' or 'disable'
-                - domain_control (str): 'enable' or 'disable'
-                - log (str): 'enable' or 'disable'
-                - access_rule (list): Access rules
-                - custom_control (list): Custom controls
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters for the profile
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create basic profile
-            >>> result = fgt.cmdb.casb.profile.create(
-            ...     name='office365-security',
-            ...     comment='Office 365 security profile'
-            ... )
-
-            >>> # POST - Create profile with SaaS application
-            >>> result = fgt.cmdb.casb.profile.create(
-            ...     name='salesforce-profile',
-            ...     comment='Salesforce monitoring profile',
-            ...     saas_application=[{
-            ...         'name': 'salesforce',
-            ...         'status': 'enable',
-            ...         'log': 'enable',
-            ...         'safe_search': 'enable'
-            ...     }]
-            ... )
-        """
-        data = {"name": name}
-
-        if comment is not None:
-            data["comment"] = comment
-
-        if saas_application is not None:
-            # Convert Python naming to FortiOS API naming
-            converted_apps = []
-            for app in saas_application:
-                converted_app = {}
-                for key, value in app.items():
-                    # Convert snake_case to kebab-case
-                    api_key = key.replace("_", "-")
-                    converted_app[api_key] = value
-                converted_apps.append(converted_app)
-            data["saas-application"] = converted_apps
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                # Convert Python naming to API naming
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-
-        return self._client.post("cmdb", "casb/profile", data=data, vdom=vdom, raw_json=raw_json)
+            endpoint = f"/casb/profile/{name}"
+        else:
+            endpoint = "/casb/profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        saas_application: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        saas_application: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update CASB profile
-
+        Update this specific resource.
+        
         Args:
-            name (str): Profile name (required)
-            comment (str, optional): Profile comment/description
-            saas_application (list, optional): List of SaaS application configurations
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: CASB profile name. (optional)
+            comment: Comment. (optional)
+            saas_application: CASB profile SaaS application. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update profile comment
-            >>> result = fgt.cmdb.casb.profile.update(
-            ...     name='office365-security',
-            ...     comment='Updated Office 365 security profile'
-            ... )
-
-            >>> # Add SaaS application to profile
-            >>> result = fgt.cmdb.casb.profile.update(
-            ...     name='office365-security',
-            ...     saas_application=[{
-            ...         'name': 'office365',
-            ...         'status': 'enable',
-            ...         'tenant_control': 'enable',
-            ...         'log': 'enable'
-            ...     }]
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/casb/profile/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
         if comment is not None:
-            data["comment"] = comment
-
+            data_payload['comment'] = comment
         if saas_application is not None:
-            # Convert Python naming to FortiOS API naming
-            converted_apps = []
-            for app in saas_application:
-                converted_app = {}
-                for key, value in app.items():
-                    # Convert snake_case to kebab-case
-                    api_key = key.replace("_", "-")
-                    converted_app[api_key] = value
-                converted_apps.append(converted_app)
-            data["saas-application"] = converted_apps
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                # Convert Python naming to API naming
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-
-        return self._client.put(
-            "cmdb", f"casb/profile/{name}", data=data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['saas-application'] = saas_application
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a CASB profile
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Profile name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Delete profile
-            >>> result = fgt.cmdb.casb.profile.delete('old-profile')
-            >>> if result['status'] == 'success':
-            ...     print("Profile deleted successfully")
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"casb/profile/{name}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/casb/profile/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        saas_application: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if a CASB profile exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Profile name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: CASB profile name. (optional)
+            comment: Comment. (optional)
+            saas_application: CASB profile SaaS application. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if profile exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.casb.profile.exists('security-profile'):
-            ...     print("Profile exists")
-            ... else:
-            ...     print("Profile not found")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom, raw_json=True)
-            return result.get("status") == "success" and "results" in result
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/casb/profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if saas_application is not None:
+            data_payload['saas-application'] = saas_application
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

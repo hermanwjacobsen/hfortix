@@ -1,226 +1,234 @@
-"""FortiOS CMDB DNS Filter Domain Filter API module.
+"""
+FortiOS CMDB - Dnsfilter DomainFilter
 
-This module provides methods for managing DNS domain filters.
+API Endpoints:
+    GET    /dnsfilter/domain-filter
+    POST   /dnsfilter/domain-filter
+    GET    /dnsfilter/domain-filter/{id}
+    PUT    /dnsfilter/domain-filter/{id}
+    DELETE /dnsfilter/domain-filter/{id}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class DomainFilter:
-    """Manage DNS domain filter objects.
+    """DomainFilter operations."""
 
-    This class provides methods to create, read, update, and delete DNS domain filter
-    objects that contain domain filtering entries.
-    """
-
-    def __init__(self, client: Any) -> None:
-        """Initialize DomainFilter API module.
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize DomainFilter endpoint.
 
         Args:
-            client: The FortiOS API client instance.
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        filter_id: Optional[int] = None,
-        vdom: Optional[str] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Retrieve DNS domain filter configuration.
-
-        Args:
-            filter_id (int, optional): Domain filter ID. If provided, retrieves specific filter.
-                If not provided, retrieves all filters.
-            vdom (str, optional): Virtual domain name. Defaults to 'root' if not specified.
-            **kwargs: Additional parameters to pass to the API:
-                - datasource (bool): Include datasource information
-                - with_meta (bool): Include meta information
-                - skip (bool): Enable skip operator
-                - format (list): List of property names to include
-                - filter (str): Filter expression
-                - count (int): Maximum number of entries to return
-                - start (int): Starting entry index
-
-        Returns:
-            dict: API response containing domain filter configuration.
-
-        Example:
-            >>> # Get all domain filters
-            >>> filters = client.cmdb.dnsfilter.domain_filter.list()
-
-            >>> # Get specific filter by ID
-            >>> filter_obj = client.cmdb.dnsfilter.domain_filter.get(filter_id=1)
         """
-        if filter_id is not None:
-            path = f"dnsfilter/domain-filter/{filter_id}"
+        Select a specific entry from a CLI table.
+        
+        Args:
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/dnsfilter/domain-filter/{id}"
         else:
-            path = "dnsfilter/domain-filter"
-
-        params = {}
-        if kwargs:
-            params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        filter_id: Optional[int] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """Create DNS domain filter.
-
-        Args:
-            filter_id (int): Domain filter ID (0-4294967295).
-            name (str): Name of the domain filter table (max 63 chars).
-            comment (str, optional): Optional comment (max 255 chars).
-            entries (list, optional): List of domain filter entries. Each entry is a dict with:
-                - id (int): Entry ID
-                - domain (str): Domain to filter (max 511 chars)
-                - type (str): Filter type - 'simple', 'regex', 'wildcard'
-                - action (str): Action to take - 'block', 'allow', 'monitor'
-                - status (str): Enable/disable - 'enable' or 'disable'
-                - comment (str, optional): Entry comment
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional parameters.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> # POST - Create filter with blocking entries
-            >>> client.cmdb.dnsfilter.domain_filter.create(
-            ...     filter_id=10,
-            ...     name='social-media-block',
-            ...     comment='Block social media sites',
-            ...     entries=[
-            ...         {
-            ...             'id': 1,
-            ...             'domain': '*.facebook.com',
-            ...             'type': 'wildcard',
-            ...             'action': 'block',
-            ...             'status': 'enable'
-            ...         },
-            ...         {
-            ...             'id': 2,
-            ...             'domain': '*.twitter.com',
-            ...             'type': 'wildcard',
-            ...             'action': 'block',
-            ...             'status': 'enable'
-            ...         }
-            ...     ]
-            ... )
-        """
-        data = {"id": filter_id, "name": name}
-
-        if comment is not None:
-            data["comment"] = comment
-
-        if entries is not None:
-            data["entries"] = entries
-
-        if kwargs:
-            data.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "dnsfilter/domain-filter", data, vdom=vdom, raw_json=raw_json
-        )
+            endpoint = "/dnsfilter/domain-filter"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        filter_id: Optional[int] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[str] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update DNS domain filter.
-
-        Args:
-            filter_id (int): Domain filter ID to update.
-            name (str, optional): Updated name (max 63 chars).
-            comment (str, optional): Updated comment (max 255 chars).
-            entries (list, optional): Updated list of domain filter entries. Each entry is a dict with:
-                - id (int): Entry ID
-                - domain (str): Domain to filter (max 511 chars)
-                - type (str): Filter type - 'simple', 'regex', 'wildcard'
-                - action (str): Action to take - 'block', 'allow', 'monitor'
-                - status (str): Enable/disable - 'enable' or 'disable'
-                - comment (str, optional): Entry comment
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional parameters.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> # Add monitoring entry to existing filter
-            >>> client.cmdb.dnsfilter.domain_filter.update(
-            ...     filter_id=10,
-            ...     entries=[
-            ...         {'id': 1, 'domain': '*.facebook.com', 'type': 'wildcard',
-            ...          'action': 'block', 'status': 'enable'},
-            ...         {'id': 2, 'domain': '*.linkedin.com', 'type': 'wildcard',
-            ...          'action': 'monitor', 'status': 'enable'}
-            ...     ]
-            ... )
         """
-        data = {}
-
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: ID. (optional)
+            name: Name of table. (optional)
+            comment: Optional comments. (optional)
+            entries: DNS domain filter entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/dnsfilter/domain-filter/{id}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
         if name is not None:
-            data["name"] = name
-
+            data_payload['name'] = name
         if comment is not None:
-            data["comment"] = comment
-
+            data_payload['comment'] = comment
         if entries is not None:
-            data["entries"] = entries
-
-        if kwargs:
-            data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"dnsfilter/domain-filter/{filter_id}", data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        filter_id: int,
-        vdom: Optional[str] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
-        """Delete a DNS domain filter.
-
-        Args:
-            filter_id (int): Domain filter ID to delete.
-            vdom (str, optional): Virtual domain name.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> client.cmdb.dnsfilter.domain_filter.delete(filter_id=10)
         """
-        return self._client.delete(
-            "cmdb", f"dnsfilter/domain-filter/{filter_id}", vdom=vdom, raw_json=raw_json
-        )
+        Delete this specific resource.
+        
+        Args:
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/dnsfilter/domain-filter/{id}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: ID. (optional)
+            name: Name of table. (optional)
+            comment: Optional comments. (optional)
+            entries: DNS domain filter entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dnsfilter/domain-filter"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

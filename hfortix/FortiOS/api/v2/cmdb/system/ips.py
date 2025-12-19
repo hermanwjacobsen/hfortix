@@ -1,219 +1,113 @@
 """
 FortiOS CMDB - System Ips
 
-Configure IPS system settings.
-
 API Endpoints:
-    GET    /system/ips           - List all / Get specific
-    POST   /system/ips           - Create
-    PUT    /system/ips/{name}   - Update
-    DELETE /system/ips/{name}   - Delete
+    GET    /system/ips
+    PUT    /system/ips
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class Ips:
-    """ips endpoint"""
+    """Ips operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Ips endpoint
+        Initialize Ips endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get ips
-
+        Select all entries in a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.ips.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.ips.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/ips"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        path = "system/ips"
-        if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create ips
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.ips.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.ips.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/ips", data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        signature_hold_time: str | None = None,
+        override_signature_hold_by_id: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update ips
-
-        Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.ips.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.ips.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
+        Update this specific resource.
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            signature_hold_time: Time to hold and monitor IPS signatures. Format <#d##h> (day range: 0 - 21, hour range: 0 - 23, max hold time: 21d0h, default hold time: 0d0h). (optional)
+            override_signature_hold_by_id: Enable/disable override of hold of triggering signatures that are specified by IDs regardless of hold. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
         
-        return self._client.put("cmdb", f"system/ips/{encode_path_component(name)}", data=data, vdom=vdom)
-
-    def delete(
-        self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
-    ) -> dict[str, Any]:
-        """
-        Delete ips
-
-        Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.ips.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/ips/{encode_path_component(name)}", vdom=vdom)
-
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
-        """
-        Check if ips exists
-
-        Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
-        Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.ips.exists('obj1'):
-            ...     print("Exists")
-        """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/ips"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if signature_hold_time is not None:
+            data_payload['signature-hold-time'] = signature_hold_time
+        if override_signature_hold_by_id is not None:
+            data_payload['override-signature-hold-by-id'] = override_signature_hold_by_id
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

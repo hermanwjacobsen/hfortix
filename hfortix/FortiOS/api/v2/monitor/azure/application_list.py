@@ -1,102 +1,87 @@
-"""
-Azure Application List endpoint
+"""Monitor API - ApplicationList operations."""
 
-GET    /api/v2/monitor/azure/application-list
-POST   /api/v2/monitor/azure/application-list/refresh
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["ApplicationList"]
+    from hfortix.FortiOS.http_client import HTTPClient
 
 
-class ApplicationList:
-    """
-    Azure Application List operations.
+class Refresh:
+    """Refresh operations."""
 
-    Retrieve and refresh Azure applications for SDN connector configuration.
-    """
-
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize ApplicationList endpoint.
+        Initialize Refresh endpoint.
 
         Args:
             client: HTTPClient instance
         """
         self._client = client
-        self._base_path = "azure/application-list"
 
-    def list(self) -> dict[str, Any]:
-        """
-        Retrieve a list of Azure applications.
-
-        Get a list of Azure applications that can be used for configuring
-        an Azure SDN connector.
-
-        Returns:
-            dict: Response containing list of Azure applications
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Example:
-            >>> apps = fgt.api.monitor.azure.application_list.list()
-            >>> for app in apps.get("results", []):
-            ...     print(f"{app['name']}: {app['id']}")
-        """
-        return self._client.get("monitor", self._base_path)
-
-    def refresh(
+    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        last_update_time: Optional[int] = None,
+        last_update_time: int | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update the Azure application list data or get refresh status.
+        Update the Azure application list data or get the status of an update.
+        
+        Args:
+            last_update_time: Timestamp of a previous update request. If this is not provided then it will refresh the Azure application list data. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.azure.application_list.refresh.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if last_update_time is not None:
+            data['last_update_time'] = last_update_time
+        data.update(kwargs)
+        return self._client.post("monitor", "/azure/application-list/refresh", data=data)
 
-        Triggers an update of the Azure application list from Azure services,
-        or retrieves the status of an ongoing update operation.
+
+class ApplicationList:
+    """ApplicationList operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ApplicationList endpoint.
 
         Args:
-            data_dict: Dictionary containing body parameters
-            last_update_time: Timestamp of previous update request. If not provided,
-                            refreshes Azure application list data.
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: Response containing refresh status or confirmation
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Start new refresh (empty body)
-            >>> result = fgt.api.monitor.azure.application_list.refresh()
-
-            >>> # Refresh with timestamp using dict
-            >>> result = fgt.api.monitor.azure.application_list.refresh(
-            ...     data_dict={'last_update_time': 1234567890}
-            ... )
-
-            >>> # Refresh with timestamp using keyword
-            >>> result = fgt.api.monitor.azure.application_list.refresh(
-            ...     last_update_time=1234567890
-            ... )
+            client: HTTPClient instance for API communication
         """
-        data = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        # Map parameters
-        if last_update_time is not None:
-            data["last_update_time"] = last_update_time
+        # Initialize nested resources
+        self.refresh = Refresh(client)
 
-        # Add any additional kwargs
-        data.update(kwargs)
-
-        return self._client.post("monitor", f"{self._base_path}/refresh", data=data)
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Retrieve a list of Azure applications that can be used for configuring an Azure SDN connector.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.azure.application_list.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params.update(kwargs)
+        return self._client.get("monitor", "/azure/application-list", params=params)

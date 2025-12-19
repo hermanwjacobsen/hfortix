@@ -1,114 +1,137 @@
 """
 FortiOS CMDB - System Npu
 
-Configure NPU attributes.
-
 API Endpoints:
-    GET  /system/npu  - Get configuration
-    PUT  /system/npu  - Update configuration
+    GET    /system/npu
+    PUT    /system/npu
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Npu:
-    """npu settings endpoint (singleton)"""
+    """Npu operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Npu endpoint
+        Initialize Npu endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get npu settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with settings
-
-        Examples:
-            >>> # Get current settings
-            >>> settings = fgt.api.cmdb.system.npu.get()
-            >>> print(settings)
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/npu"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        return self._client.get("cmdb", "system/npu", params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        dedicated_management_cpu: str | None = None,
+        dedicated_management_affinity: str | None = None,
+        capwap_offload: str | None = None,
+        ipsec_mtu_override: str | None = None,
+        ipsec_ordering: str | None = None,
+        ipsec_enc_subengine_mask: str | None = None,
+        ipsec_dec_subengine_mask: str | None = None,
+        priority_protocol: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update npu settings
-
+        Update this specific resource.
+        
         Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            dedicated_management_cpu: Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. (optional)
+            dedicated_management_affinity: Affinity setting for management daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
+            capwap_offload: Enable/disable offloading managed FortiAP and FortiLink CAPWAP sessions. (optional)
+            ipsec_mtu_override: Enable/disable NP6 IPsec MTU override. (optional)
+            ipsec_ordering: Enable/disable IPsec ordering. (optional)
+            ipsec_enc_subengine_mask: IPsec encryption subengine mask (0x1 - 0x0f, default 0x0f). (optional)
+            ipsec_dec_subengine_mask: IPsec decryption subengine mask (0x1 - 0x0f, default 0x0f). (optional)
+            priority_protocol: Configure NPU priority protocol. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.npu.update(
-            ...     payload_dict={'setting1': 'value1'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.npu.update(
-            ...     setting1='value1',
-            ...     setting2='value2'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", "system/npu", data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/npu"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if dedicated_management_cpu is not None:
+            data_payload['dedicated-management-cpu'] = dedicated_management_cpu
+        if dedicated_management_affinity is not None:
+            data_payload['dedicated-management-affinity'] = dedicated_management_affinity
+        if capwap_offload is not None:
+            data_payload['capwap-offload'] = capwap_offload
+        if ipsec_mtu_override is not None:
+            data_payload['ipsec-mtu-override'] = ipsec_mtu_override
+        if ipsec_ordering is not None:
+            data_payload['ipsec-ordering'] = ipsec_ordering
+        if ipsec_enc_subengine_mask is not None:
+            data_payload['ipsec-enc-subengine-mask'] = ipsec_enc_subengine_mask
+        if ipsec_dec_subengine_mask is not None:
+            data_payload['ipsec-dec-subengine-mask'] = ipsec_dec_subengine_mask
+        if priority_protocol is not None:
+            data_payload['priority-protocol'] = priority_protocol
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

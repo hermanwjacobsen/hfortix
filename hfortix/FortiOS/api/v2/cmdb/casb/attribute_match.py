@@ -1,341 +1,234 @@
 """
-FortiOS CMDB - CASB Attribute Match
-
-Configure CASB attribute match rules.
+FortiOS CMDB - Casb AttributeMatch
 
 API Endpoints:
-    GET    /casb/attribute-match           - List all / Get specific
-    POST   /casb/attribute-match           - Create
-    PUT    /casb/attribute-match/{name}   - Update
-    DELETE /casb/attribute-match/{name}   - Delete
+    GET    /casb/attribute-match
+    POST   /casb/attribute-match
+    GET    /casb/attribute-match/{name}
+    PUT    /casb/attribute-match/{name}
+    DELETE /casb/attribute-match/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class AttributeMatch:
-    """CASB attribute match endpoint"""
+    """AttributeMatch operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize AttributeMatch endpoint
+        Initialize AttributeMatch endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB attribute match rule(s) - List all or get specific
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Attribute match rule name (for specific rule)
-            attr (str, optional): Attribute name that references other table
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (dict, optional): Skip to provided table's Nth entry
-            acs (int, optional): If true, returned results are in ascending order
-            search (str, optional): Filter objects by search value
-            scope (str, optional): Scope [global|vdom|both]
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            format (str, optional): List of property names (pipe-separated)
-            action (str, optional): Special actions (default, schema, revision)
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with attribute match rule(s)
-
-        Examples:
-            >>> # Get all attribute match rules
-            >>> rules = fgt.cmdb.casb.attribute_match.get()
-            >>> for rule in rules['results']:
-            ...     print(f"Rule: {rule['name']}")
-
-            >>> # Get specific rule
-            >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule')
-            >>> print(f"Application: {rule['results']['application']}")
-
-            >>> # Get with metadata
-            >>> rule = fgt.cmdb.casb.attribute_match.get('my-rule', with_meta=True)
+            Dictionary containing API response
         """
-        # Build path
-        path = (
-            f"casb/attribute-match/{encode_path_component(name)}"
-            if name
-            else "casb/attribute-match"
-        )
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any additional parameters
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/casb/attribute-match/{name}"
+        else:
+            endpoint = "/casb/attribute-match"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        application: Optional[str] = None,
-        match_strategy: Optional[str] = None,
-        match: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create CASB attribute match rule
-
-        Args:
-            name (str): Attribute match rule name (max 79 chars)
-            application (str, optional): CASB attribute application name (max 79 chars)
-            match_strategy (str, optional): Match strategy - 'or', 'and', 'subset'
-                - 'or': Match when any rule is satisfied
-                - 'and': Match when all rules are satisfied
-                - 'subset': Match when extracted attributes are found within defined rules
-            match (list, optional): List of tenant match rules (each rule is a dict with:
-                - id (int): Rule ID
-                - rule_strategy (str): 'and' or 'or'
-                - rule (list): List of attribute rules (each with id, attribute, match_pattern, match_value, case_sensitive, negate)
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create simple attribute match rule
-            >>> result = fgt.cmdb.casb.attribute_match.create(
-            ...     name='my-rule',
-            ...     application='office365',
-            ...     match_strategy='or'
-            ... )
-
-            >>> # POST - Create rule with match conditions
-            >>> result = fgt.cmdb.casb.attribute_match.create(
-            ...     name='advanced-rule',
-            ...     application='google-workspace',
-            ...     match_strategy='and',
-            ...     match=[{
-            ...         'id': 1,
-            ...         'rule_strategy': 'or',
-            ...         'rule': [{
-            ...             'id': 1,
-            ...             'attribute': 'domain',
-            ...             'match_pattern': 'simple',
-            ...             'match_value': 'example.com',
-            ...             'case_sensitive': 'enable',
-            ...             'negate': 'disable'
-            ...         }]
-            ...     }]
-            ... )
-        """
-        # Build data dictionary
-        data = {"name": name}
-
-        # Map parameters
-        param_map = {"application": application, "match_strategy": match_strategy, "match": match}
-
-        api_field_map = {"match_strategy": "match-strategy"}
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map.get(param_name, param_name)
-
-                # Handle nested match rules
-                if param_name == "match" and isinstance(value, list):
-                    # Convert snake_case to hyphen-case in nested structures
-                    converted_match = []
-                    for match_item in value:
-                        converted_item = {}
-                        if "id" in match_item:
-                            converted_item["id"] = match_item["id"]
-                        if "rule_strategy" in match_item:
-                            converted_item["rule-strategy"] = match_item["rule_strategy"]
-                        if "rule" in match_item and isinstance(match_item["rule"], list):
-                            converted_rules = []
-                            for rule in match_item["rule"]:
-                                converted_rule = {}
-                                field_mapping = {
-                                    "id": "id",
-                                    "attribute": "attribute",
-                                    "match_pattern": "match-pattern",
-                                    "match_value": "match-value",
-                                    "case_sensitive": "case-sensitive",
-                                    "negate": "negate",
-                                }
-                                for py_key, api_key in field_mapping.items():
-                                    if py_key in rule:
-                                        converted_rule[api_key] = rule[py_key]
-                                converted_rules.append(converted_rule)
-                            converted_item["rule"] = converted_rules
-                        converted_match.append(converted_item)
-                    data[api_name] = converted_match
-                else:
-                    data[api_name] = value
-
-        # Add any additional parameters
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "casb/attribute-match", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        application: Optional[str] = None,
-        match_strategy: Optional[str] = None,
-        match: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        application: str | None = None,
+        match_strategy: str | None = None,
+        match: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update CASB attribute match rule
-
+        Update this specific resource.
+        
         Args:
-            name (str): Attribute match rule name
-            application (str, optional): CASB attribute application name (max 79 chars)
-            match_strategy (str, optional): Match strategy - 'or', 'and', 'subset'
-            match (list, optional): List of tenant match rules
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: CASB attribute match name. (optional)
+            application: CASB attribute application name. (optional)
+            match_strategy: CASB attribute match strategy. (optional)
+            match: CASB tenant match rules. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update match strategy
-            >>> result = fgt.cmdb.casb.attribute_match.update(
-            ...     name='my-rule',
-            ...     match_strategy='and'
-            ... )
-
-            >>> # PUT - Update application
-            >>> result = fgt.cmdb.casb.attribute_match.update(
-            ...     name='my-rule',
-            ...     application='salesforce'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dictionary
-        data = {}
-
-        # Map parameters
-        param_map = {"application": application, "match_strategy": match_strategy, "match": match}
-
-        api_field_map = {"match_strategy": "match-strategy"}
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map.get(param_name, param_name)
-
-                # Handle nested match rules (same as create)
-                if param_name == "match" and isinstance(value, list):
-                    converted_match = []
-                    for match_item in value:
-                        converted_item = {}
-                        if "id" in match_item:
-                            converted_item["id"] = match_item["id"]
-                        if "rule_strategy" in match_item:
-                            converted_item["rule-strategy"] = match_item["rule_strategy"]
-                        if "rule" in match_item and isinstance(match_item["rule"], list):
-                            converted_rules = []
-                            for rule in match_item["rule"]:
-                                converted_rule = {}
-                                field_mapping = {
-                                    "id": "id",
-                                    "attribute": "attribute",
-                                    "match_pattern": "match-pattern",
-                                    "match_value": "match-value",
-                                    "case_sensitive": "case-sensitive",
-                                    "negate": "negate",
-                                }
-                                for py_key, api_key in field_mapping.items():
-                                    if py_key in rule:
-                                        converted_rule[api_key] = rule[py_key]
-                                converted_rules.append(converted_rule)
-                            converted_item["rule"] = converted_rules
-                        converted_match.append(converted_item)
-                    data[api_name] = converted_match
-                else:
-                    data[api_name] = value
-
-        # Add any additional parameters
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"casb/attribute-match/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/casb/attribute-match/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if application is not None:
+            data_payload['application'] = application
+        if match_strategy is not None:
+            data_payload['match-strategy'] = match_strategy
+        if match is not None:
+            data_payload['match'] = match
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete CASB attribute match rule
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Attribute match rule name
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Delete attribute match rule
-            >>> result = fgt.cmdb.casb.attribute_match.delete('my-rule')
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"casb/attribute-match/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/casb/attribute-match/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        application: str | None = None,
+        match_strategy: str | None = None,
+        match: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: CASB attribute match name. (optional)
+            application: CASB attribute application name. (optional)
+            match_strategy: CASB attribute match strategy. (optional)
+            match: CASB tenant match rules. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/casb/attribute-match"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if application is not None:
+            data_payload['application'] = application
+        if match_strategy is not None:
+            data_payload['match-strategy'] = match_strategy
+        if match is not None:
+            data_payload['match'] = match
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

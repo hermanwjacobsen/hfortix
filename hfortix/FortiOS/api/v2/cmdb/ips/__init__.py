@@ -1,32 +1,32 @@
-"""
-FortiOS IPS API
+"""FortiOS CMDB - Ips category"""
 
-Intrusion Prevention System (IPS) configuration for threat protection.
-"""
+from .custom import Custom
+from .decoder import Decoder
+from .global_ import Global
+from .rule import Rule
+from .rule_settings import RuleSettings
+from .sensor import Sensor
+from .settings import Settings
+from .view_map import ViewMap
 
-from __future__ import annotations
+__all__ = ['Custom', 'Decoder', 'Global', 'Rule', 'RuleSettings', 'Sensor', 'Settings', 'ViewMap']
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ...http_client import HTTPClient
 
 
 class Ips:
-    """IPS API endpoints"""
-
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-        from .custom import Custom
-        from .decoder import Decoder
-        from .global_ import Global
-        from .rule import Rule
-        from .rule_settings import RuleSettings
-        from .sensor import Sensor
-        from .settings import Settings
-        from .view_map import ViewMap
-
+    """
+    Ips category wrapper.
+    
+    This class provides access to all ips CMDB endpoints.
+    """
+    
+    def __init__(self, client):
+        """
+        Initialize Ips with all endpoint classes.
+        
+        Args:
+            client: HTTPClient instance
+        """
         self.custom = Custom(client)
         self.decoder = Decoder(client)
         self.global_ = Global(client)

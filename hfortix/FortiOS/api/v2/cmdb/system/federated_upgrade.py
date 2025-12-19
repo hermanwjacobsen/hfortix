@@ -1,114 +1,153 @@
 """
 FortiOS CMDB - System FederatedUpgrade
 
-Coordinate federated upgrades within the Security Fabric.
-
 API Endpoints:
-    GET  /system/federated-upgrade  - Get configuration
-    PUT  /system/federated-upgrade  - Update configuration
+    GET    /system/federated-upgrade
+    PUT    /system/federated-upgrade
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class FederatedUpgrade:
-    """federated-upgrade settings endpoint (singleton)"""
+    """FederatedUpgrade operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize FederatedUpgrade endpoint
+        Initialize FederatedUpgrade endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get federated-upgrade settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with settings
-
-        Examples:
-            >>> # Get current settings
-            >>> settings = fgt.api.cmdb.system.federated_upgrade.get()
-            >>> print(settings)
+            Dictionary containing API response
         """
-        params = {}
-        
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/system/federated-upgrade"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        
-        return self._client.get("cmdb", "system/federated-upgrade", params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        source: str | None = None,
+        failure_reason: str | None = None,
+        failure_device: str | None = None,
+        upgrade_id: int | None = None,
+        next_path_index: int | None = None,
+        ignore_signing_errors: str | None = None,
+        ha_reboot_controller: str | None = None,
+        known_ha_members: list | None = None,
+        initial_version: str | None = None,
+        starter_admin: str | None = None,
+        node_list: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update federated-upgrade settings
-
+        Update this specific resource.
+        
         Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Current status of the upgrade. (optional)
+            source: Source that set up the federated upgrade config. (optional)
+            failure_reason: Reason for upgrade failure. (optional)
+            failure_device: Serial number of the node to include. (optional)
+            upgrade_id: Unique identifier for this upgrade. (optional)
+            next_path_index: The index of the next image to upgrade to. (optional)
+            ignore_signing_errors: Allow/reject use of FortiGate firmware images that are unsigned. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
+            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up. (optional)
+            starter_admin: Admin that started the upgrade. (optional)
+            node_list: Nodes which will be included in the upgrade. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.federated_upgrade.update(
-            ...     payload_dict={'setting1': 'value1'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.federated_upgrade.update(
-            ...     setting1='value1',
-            ...     setting2='value2'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", "system/federated-upgrade", data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/federated-upgrade"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if source is not None:
+            data_payload['source'] = source
+        if failure_reason is not None:
+            data_payload['failure-reason'] = failure_reason
+        if failure_device is not None:
+            data_payload['failure-device'] = failure_device
+        if upgrade_id is not None:
+            data_payload['upgrade-id'] = upgrade_id
+        if next_path_index is not None:
+            data_payload['next-path-index'] = next_path_index
+        if ignore_signing_errors is not None:
+            data_payload['ignore-signing-errors'] = ignore_signing_errors
+        if ha_reboot_controller is not None:
+            data_payload['ha-reboot-controller'] = ha_reboot_controller
+        if known_ha_members is not None:
+            data_payload['known-ha-members'] = known_ha_members
+        if initial_version is not None:
+            data_payload['initial-version'] = initial_version
+        if starter_admin is not None:
+            data_payload['starter-admin'] = starter_admin
+        if node_list is not None:
+            data_payload['node-list'] = node_list
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

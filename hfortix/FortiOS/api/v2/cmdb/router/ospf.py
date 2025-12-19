@@ -1,92 +1,237 @@
-"""FortiOS CMDB - Router OSPF - OSPF configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Ospf
+
+API Endpoints:
+    GET    /router/ospf
+    PUT    /router/ospf
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Ospf:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Ospf operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Ospf endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/ospf"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/ospf", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, abr_type: Optional[str] = None, auto_cost_ref_bandwidth: Optional[int] = None, distance_external: Optional[int] = None, distance_inter_area: Optional[int] = None, distance_intra_area: Optional[int] = None, database_overflow: Optional[str] = None, database_overflow_max_lsas: Optional[int] = None, database_overflow_time_to_recover: Optional[int] = None, default_information_originate: Optional[str] = None, default_information_metric: Optional[int] = None, default_information_metric_type: Optional[str] = None, default_information_route_map: Optional[str] = None, default_metric: Optional[int] = None, distance: Optional[int] = None, rfc1583_compatible: Optional[str] = None, router_id: Optional[str] = None, spf_timers: Optional[str] = None, bfd: Optional[str] = None, log_neighbour_changes: Optional[str] = None, distribute_list_in: Optional[str] = None, distribute_route_map_in: Optional[str] = None, restart_mode: Optional[str] = None, restart_period: Optional[int] = None, restart_on_topology_change: Optional[str] = None, area: Optional[list] = None, ospf_interface: Optional[list] = None, network: Optional[list] = None, neighbor: Optional[list] = None, passive_interface: Optional[list] = None, summary_address: Optional[list] = None, distribute_list: Optional[list] = None, redistribute: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"abr_type": "abr-type", "auto_cost_ref_bandwidth": "auto-cost-ref-bandwidth", "distance_external": "distance-external", "distance_inter_area": "distance-inter-area", "distance_intra_area": "distance-intra-area", "database_overflow": "database-overflow", "database_overflow_max_lsas": "database-overflow-max-lsas", "database_overflow_time_to_recover": "database-overflow-time-to-recover", "default_information_originate": "default-information-originate", "default_information_metric": "default-information-metric", "default_information_metric_type": "default-information-metric-type", "default_information_route_map": "default-information-route-map", "default_metric": "default-metric", "rfc1583_compatible": "rfc1583-compatible", "router_id": "router-id", "spf_timers": "spf-timers", "log_neighbour_changes": "log-neighbour-changes", "distribute_list_in": "distribute-list-in", "distribute_route_map_in": "distribute-route-map-in", "restart_mode": "restart-mode", "restart_period": "restart-period", "restart_on_topology_change": "restart-on-topology-change", "ospf_interface": "ospf-interface", "passive_interface": "passive-interface", "summary_address": "summary-address", "distribute_list": "distribute-list"}
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        abr_type: str | None = None,
+        auto_cost_ref_bandwidth: int | None = None,
+        distance_external: int | None = None,
+        distance_inter_area: int | None = None,
+        distance_intra_area: int | None = None,
+        database_overflow: str | None = None,
+        database_overflow_max_lsas: int | None = None,
+        database_overflow_time_to_recover: int | None = None,
+        default_information_originate: str | None = None,
+        default_information_metric: int | None = None,
+        default_information_metric_type: str | None = None,
+        default_information_route_map: str | None = None,
+        default_metric: int | None = None,
+        distance: int | None = None,
+        lsa_refresh_interval: int | None = None,
+        rfc1583_compatible: str | None = None,
+        router_id: str | None = None,
+        spf_timers: str | None = None,
+        bfd: str | None = None,
+        log_neighbour_changes: str | None = None,
+        distribute_list_in: str | None = None,
+        distribute_route_map_in: str | None = None,
+        restart_mode: str | None = None,
+        restart_period: int | None = None,
+        restart_on_topology_change: str | None = None,
+        area: list | None = None,
+        ospf_interface: list | None = None,
+        network: list | None = None,
+        neighbor: list | None = None,
+        passive_interface: list | None = None,
+        summary_address: list | None = None,
+        distribute_list: list | None = None,
+        redistribute: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            abr_type: Area border router type. (optional)
+            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits per second. (optional)
+            distance_external: Administrative external distance. (optional)
+            distance_inter_area: Administrative inter-area distance. (optional)
+            distance_intra_area: Administrative intra-area distance. (optional)
+            database_overflow: Enable/disable database overflow. (optional)
+            database_overflow_max_lsas: Database overflow maximum LSAs. (optional)
+            database_overflow_time_to_recover: Database overflow time to recover (sec). (optional)
+            default_information_originate: Enable/disable generation of default route. (optional)
+            default_information_metric: Default information metric. (optional)
+            default_information_metric_type: Default information metric type. (optional)
+            default_information_route_map: Default information route map. (optional)
+            default_metric: Default metric of redistribute routes. (optional)
+            distance: Distance of the route. (optional)
+            lsa_refresh_interval: The minimal OSPF LSA update time interval (optional)
+            rfc1583_compatible: Enable/disable RFC1583 compatibility. (optional)
+            router_id: Router ID. (optional)
+            spf_timers: SPF calculation frequency. (optional)
+            bfd: Bidirectional Forwarding Detection (BFD). (optional)
+            log_neighbour_changes: Log of OSPF neighbor changes. (optional)
+            distribute_list_in: Filter incoming routes. (optional)
+            distribute_route_map_in: Filter incoming external routes by route-map. (optional)
+            restart_mode: OSPF restart mode (graceful or LLS). (optional)
+            restart_period: Graceful restart period. (optional)
+            restart_on_topology_change: Enable/disable continuing graceful restart upon topology change. (optional)
+            area: OSPF area configuration. (optional)
+            ospf_interface: OSPF interface configuration. (optional)
+            network: OSPF network configuration. (optional)
+            neighbor: OSPF neighbor configuration are used when OSPF runs on non-broadcast media. (optional)
+            passive_interface: Passive interface configuration. (optional)
+            summary_address: IP address summary configuration. (optional)
+            distribute_list: Distribute list configuration. (optional)
+            redistribute: Redistribute configuration. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/ospf"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if abr_type is not None:
-            data[param_map["abr_type"]] = abr_type
+            data_payload['abr-type'] = abr_type
         if auto_cost_ref_bandwidth is not None:
-            data[param_map["auto_cost_ref_bandwidth"]] = auto_cost_ref_bandwidth
+            data_payload['auto-cost-ref-bandwidth'] = auto_cost_ref_bandwidth
         if distance_external is not None:
-            data[param_map["distance_external"]] = distance_external
+            data_payload['distance-external'] = distance_external
         if distance_inter_area is not None:
-            data[param_map["distance_inter_area"]] = distance_inter_area
+            data_payload['distance-inter-area'] = distance_inter_area
         if distance_intra_area is not None:
-            data[param_map["distance_intra_area"]] = distance_intra_area
+            data_payload['distance-intra-area'] = distance_intra_area
         if database_overflow is not None:
-            data[param_map["database_overflow"]] = database_overflow
+            data_payload['database-overflow'] = database_overflow
         if database_overflow_max_lsas is not None:
-            data[param_map["database_overflow_max_lsas"]] = database_overflow_max_lsas
+            data_payload['database-overflow-max-lsas'] = database_overflow_max_lsas
         if database_overflow_time_to_recover is not None:
-            data[param_map["database_overflow_time_to_recover"]] = database_overflow_time_to_recover
+            data_payload['database-overflow-time-to-recover'] = database_overflow_time_to_recover
         if default_information_originate is not None:
-            data[param_map["default_information_originate"]] = default_information_originate
+            data_payload['default-information-originate'] = default_information_originate
         if default_information_metric is not None:
-            data[param_map["default_information_metric"]] = default_information_metric
+            data_payload['default-information-metric'] = default_information_metric
         if default_information_metric_type is not None:
-            data[param_map["default_information_metric_type"]] = default_information_metric_type
+            data_payload['default-information-metric-type'] = default_information_metric_type
         if default_information_route_map is not None:
-            data[param_map["default_information_route_map"]] = default_information_route_map
+            data_payload['default-information-route-map'] = default_information_route_map
         if default_metric is not None:
-            data[param_map["default_metric"]] = default_metric
+            data_payload['default-metric'] = default_metric
         if distance is not None:
-            data["distance"] = distance
+            data_payload['distance'] = distance
+        if lsa_refresh_interval is not None:
+            data_payload['lsa-refresh-interval'] = lsa_refresh_interval
         if rfc1583_compatible is not None:
-            data[param_map["rfc1583_compatible"]] = rfc1583_compatible
+            data_payload['rfc1583-compatible'] = rfc1583_compatible
         if router_id is not None:
-            data[param_map["router_id"]] = router_id
+            data_payload['router-id'] = router_id
         if spf_timers is not None:
-            data[param_map["spf_timers"]] = spf_timers
+            data_payload['spf-timers'] = spf_timers
         if bfd is not None:
-            data["bfd"] = bfd
+            data_payload['bfd'] = bfd
         if log_neighbour_changes is not None:
-            data[param_map["log_neighbour_changes"]] = log_neighbour_changes
+            data_payload['log-neighbour-changes'] = log_neighbour_changes
         if distribute_list_in is not None:
-            data[param_map["distribute_list_in"]] = distribute_list_in
+            data_payload['distribute-list-in'] = distribute_list_in
         if distribute_route_map_in is not None:
-            data[param_map["distribute_route_map_in"]] = distribute_route_map_in
+            data_payload['distribute-route-map-in'] = distribute_route_map_in
         if restart_mode is not None:
-            data[param_map["restart_mode"]] = restart_mode
+            data_payload['restart-mode'] = restart_mode
         if restart_period is not None:
-            data[param_map["restart_period"]] = restart_period
+            data_payload['restart-period'] = restart_period
         if restart_on_topology_change is not None:
-            data[param_map["restart_on_topology_change"]] = restart_on_topology_change
+            data_payload['restart-on-topology-change'] = restart_on_topology_change
         if area is not None:
-            data["area"] = area
+            data_payload['area'] = area
         if ospf_interface is not None:
-            data[param_map["ospf_interface"]] = ospf_interface
+            data_payload['ospf-interface'] = ospf_interface
         if network is not None:
-            data["network"] = network
+            data_payload['network'] = network
         if neighbor is not None:
-            data["neighbor"] = neighbor
+            data_payload['neighbor'] = neighbor
         if passive_interface is not None:
-            data[param_map["passive_interface"]] = passive_interface
+            data_payload['passive-interface'] = passive_interface
         if summary_address is not None:
-            data[param_map["summary_address"]] = summary_address
+            data_payload['summary-address'] = summary_address
         if distribute_list is not None:
-            data[param_map["distribute_list"]] = distribute_list
+            data_payload['distribute-list'] = distribute_list
         if redistribute is not None:
-            data["redistribute"] = redistribute
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/ospf", data=data, vdom=vdom)
+            data_payload['redistribute'] = redistribute
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

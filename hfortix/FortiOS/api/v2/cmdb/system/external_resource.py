@@ -1,219 +1,402 @@
 """
 FortiOS CMDB - System ExternalResource
 
-Configure external resource.
-
 API Endpoints:
-    GET    /system/external-resource           - List all / Get specific
-    POST   /system/external-resource           - Create
-    PUT    /system/external-resource/{name}   - Update
-    DELETE /system/external-resource/{name}   - Delete
+    GET    /system/external-resource
+    POST   /system/external-resource
+    GET    /system/external-resource/{name}
+    PUT    /system/external-resource/{name}
+    DELETE /system/external-resource/{name}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class ExternalResource:
-    """external-resource endpoint"""
+    """ExternalResource operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize ExternalResource endpoint
+        Initialize ExternalResource endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get external-resource
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.external_resource.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.external_resource.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
-        params.update(kwargs)
-        
-        path = "system/external-resource"
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create external-resource
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.external_resource.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.external_resource.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/external-resource", data=data, vdom=vdom)
+            endpoint = f"/system/external-resource/{name}"
+        else:
+            endpoint = "/system/external-resource"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        namespace: str | None = None,
+        object_array_path: str | None = None,
+        address_name_field: str | None = None,
+        address_data_field: str | None = None,
+        address_comment_field: str | None = None,
+        update_method: str | None = None,
+        category: int | None = None,
+        username: str | None = None,
+        password: str | None = None,
+        client_cert_auth: str | None = None,
+        client_cert: str | None = None,
+        comments: str | None = None,
+        resource: str | None = None,
+        user_agent: str | None = None,
+        server_identity_check: str | None = None,
+        refresh_rate: int | None = None,
+        source_ip: str | None = None,
+        source_ip_interface: str | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update external-resource
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: External resource name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable user resource. (optional)
+            type: User resource type. (optional)
+            namespace: Generic external connector address namespace. (optional)
+            object_array_path: JSON Path to array of generic addresses in resource. (optional)
+            address_name_field: JSON Path to address name in generic address entry. (optional)
+            address_data_field: JSON Path to address data in generic address entry. (optional)
+            address_comment_field: JSON Path to address description in generic address entry. (optional)
+            update_method: External resource update method. (optional)
+            category: User resource category. (optional)
+            username: HTTP basic authentication user name. (optional)
+            password: HTTP basic authentication password. (optional)
+            client_cert_auth: Enable/disable using client certificate for TLS authentication. (optional)
+            client_cert: Client certificate name. (optional)
+            comments: Comment. (optional)
+            resource: URL of external resource. (optional)
+            user_agent: HTTP User-Agent header (default = 'curl/7.58.0'). (optional)
+            server_identity_check: Certificate verification option. (optional)
+            refresh_rate: Time interval to refresh external resource (1 - 43200 min, default = 5 min). (optional)
+            source_ip: Source IPv4 address used to communicate with server. (optional)
+            source_ip_interface: IPv4 Source interface for communication with the server. (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.external_resource.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.external_resource.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/external-resource/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/system/external-resource/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if namespace is not None:
+            data_payload['namespace'] = namespace
+        if object_array_path is not None:
+            data_payload['object-array-path'] = object_array_path
+        if address_name_field is not None:
+            data_payload['address-name-field'] = address_name_field
+        if address_data_field is not None:
+            data_payload['address-data-field'] = address_data_field
+        if address_comment_field is not None:
+            data_payload['address-comment-field'] = address_comment_field
+        if update_method is not None:
+            data_payload['update-method'] = update_method
+        if category is not None:
+            data_payload['category'] = category
+        if username is not None:
+            data_payload['username'] = username
+        if password is not None:
+            data_payload['password'] = password
+        if client_cert_auth is not None:
+            data_payload['client-cert-auth'] = client_cert_auth
+        if client_cert is not None:
+            data_payload['client-cert'] = client_cert
+        if comments is not None:
+            data_payload['comments'] = comments
+        if resource is not None:
+            data_payload['resource'] = resource
+        if user_agent is not None:
+            data_payload['user-agent'] = user_agent
+        if server_identity_check is not None:
+            data_payload['server-identity-check'] = server_identity_check
+        if refresh_rate is not None:
+            data_payload['refresh-rate'] = refresh_rate
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if source_ip_interface is not None:
+            data_payload['source-ip-interface'] = source_ip_interface
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete external-resource
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.external_resource.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/external-resource/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/system/external-resource/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        namespace: str | None = None,
+        object_array_path: str | None = None,
+        address_name_field: str | None = None,
+        address_data_field: str | None = None,
+        address_comment_field: str | None = None,
+        update_method: str | None = None,
+        category: int | None = None,
+        username: str | None = None,
+        password: str | None = None,
+        client_cert_auth: str | None = None,
+        client_cert: str | None = None,
+        comments: str | None = None,
+        resource: str | None = None,
+        user_agent: str | None = None,
+        server_identity_check: str | None = None,
+        refresh_rate: int | None = None,
+        source_ip: str | None = None,
+        source_ip_interface: str | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if external-resource exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: External resource name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: Enable/disable user resource. (optional)
+            type: User resource type. (optional)
+            namespace: Generic external connector address namespace. (optional)
+            object_array_path: JSON Path to array of generic addresses in resource. (optional)
+            address_name_field: JSON Path to address name in generic address entry. (optional)
+            address_data_field: JSON Path to address data in generic address entry. (optional)
+            address_comment_field: JSON Path to address description in generic address entry. (optional)
+            update_method: External resource update method. (optional)
+            category: User resource category. (optional)
+            username: HTTP basic authentication user name. (optional)
+            password: HTTP basic authentication password. (optional)
+            client_cert_auth: Enable/disable using client certificate for TLS authentication. (optional)
+            client_cert: Client certificate name. (optional)
+            comments: Comment. (optional)
+            resource: URL of external resource. (optional)
+            user_agent: HTTP User-Agent header (default = 'curl/7.58.0'). (optional)
+            server_identity_check: Certificate verification option. (optional)
+            refresh_rate: Time interval to refresh external resource (1 - 43200 min, default = 5 min). (optional)
+            source_ip: Source IPv4 address used to communicate with server. (optional)
+            source_ip_interface: IPv4 Source interface for communication with the server. (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.external_resource.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/external-resource"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if namespace is not None:
+            data_payload['namespace'] = namespace
+        if object_array_path is not None:
+            data_payload['object-array-path'] = object_array_path
+        if address_name_field is not None:
+            data_payload['address-name-field'] = address_name_field
+        if address_data_field is not None:
+            data_payload['address-data-field'] = address_data_field
+        if address_comment_field is not None:
+            data_payload['address-comment-field'] = address_comment_field
+        if update_method is not None:
+            data_payload['update-method'] = update_method
+        if category is not None:
+            data_payload['category'] = category
+        if username is not None:
+            data_payload['username'] = username
+        if password is not None:
+            data_payload['password'] = password
+        if client_cert_auth is not None:
+            data_payload['client-cert-auth'] = client_cert_auth
+        if client_cert is not None:
+            data_payload['client-cert'] = client_cert
+        if comments is not None:
+            data_payload['comments'] = comments
+        if resource is not None:
+            data_payload['resource'] = resource
+        if user_agent is not None:
+            data_payload['user-agent'] = user_agent
+        if server_identity_check is not None:
+            data_payload['server-identity-check'] = server_identity_check
+        if refresh_rate is not None:
+            data_payload['refresh-rate'] = refresh_rate
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if source_ip_interface is not None:
+            data_payload['source-ip-interface'] = source_ip_interface
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

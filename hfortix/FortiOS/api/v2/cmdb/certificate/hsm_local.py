@@ -1,223 +1,330 @@
 """
-FortiOS CMDB - Certificate HSM-Local
-
-Manage HSM (Hardware Security Module) local certificates.
+FortiOS CMDB - Certificate HsmLocal
 
 API Endpoints:
-    GET    /certificate/hsm-local           - List all / Get specific
-    POST   /certificate/hsm-local           - Create
-    PUT    /certificate/hsm-local/{name}   - Update
-    DELETE /certificate/hsm-local/{name}   - Delete
-
-Note: This endpoint supports full CRUD operations for HSM certificates.
-HSM certificates require HSM hardware or cloud HSM service (e.g., Google Cloud HSM).
+    GET    /certificate/hsm-local
+    POST   /certificate/hsm-local
+    GET    /certificate/hsm-local/{name}
+    PUT    /certificate/hsm-local/{name}
+    DELETE /certificate/hsm-local/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-from .....exceptions import APIError, ResourceNotFoundError
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class HsmLocal:
-    """Certificate HSM-Local endpoint (full CRUD)"""
+    """HsmLocal operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize HsmLocal endpoint
+        Initialize HsmLocal endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get HSM local certificate(s) - List all or get specific
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): HSM local certificate name (for specific certificate)
-            filter (str): Filter results
-            format (str): Response format (name|brief|full)
-            count (int): Limit number of results
-            with_meta (bool): Include meta information
-            skip (int): Skip N results
-            search (str): Search string
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get specific HSM local certificate
-            >>> result = fgt.cmdb.certificate.hsm_local.get('my-hsm-cert')
-
-            >>> # Get all HSM local certificates
-            >>> result = fgt.cmdb.certificate.hsm_local.get()
-
-            >>> # Get schema
-            >>> result = fgt.cmdb.certificate.hsm_local.get(action='schema')
+            Dictionary containing API response
         """
-        # Build path
-        path = (
-            f"certificate/hsm-local/{encode_path_component(name)}"
-            if name
-            else "certificate/hsm-local"
-        )
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any additional parameters
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/certificate/hsm-local/{name}"
+        else:
+            endpoint = "/certificate/hsm-local"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-    ) -> dict[str, Any]:
-        """
-        Create HSM local certificate
-
-        Args:
-            data (dict): Certificate data including:
-                - name (str, required): Certificate name
-                - vendor (str): HSM vendor (google, aws, azure, etc.)
-                - certificate (str): Certificate content
-                - comments (str): Comments
-                - gch-* fields: Google Cloud HSM specific fields
-            vdom (str/bool, optional): Virtual domain, False to skip
-
-        Returns:
-            dict: API response
-
-        Example:
-            >>> data = {
-            ...     'name': 'my-hsm-cert',
-            ...     'vendor': 'google',
-            ...     'gch-project': 'my-project',
-            ...     'gch-location': 'us-east1',
-            ...     'gch-keyring': 'my-keyring',
-            ...     'gch-cryptokey': 'my-key'
-            ... }
-            >>> result = fgt.cmdb.certificate.hsm_local.create(data)
-        """
-        return self._client.post(
-            "cmdb", "certificate/hsm-local", data=data, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data: dict[str, Any],
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comments: str | None = None,
+        vendor: str | None = None,
+        api_version: str | None = None,
+        certificate: str | None = None,
+        range: str | None = None,
+        source: str | None = None,
+        gch_url: str | None = None,
+        gch_project: str | None = None,
+        gch_location: str | None = None,
+        gch_keyring: str | None = None,
+        gch_cryptokey: str | None = None,
+        gch_cryptokey_version: str | None = None,
+        gch_cloud_service_name: str | None = None,
+        gch_cryptokey_algorithm: str | None = None,
+        details: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update HSM local certificate
-
+        Update this specific resource.
+        
         Args:
-            name (str): Certificate name to update
-            data (dict): Updated certificate data
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name. (optional)
+            comments: Comment. (optional)
+            vendor: HSM vendor. (optional)
+            api_version: API version for communicating with HSM. (optional)
+            certificate: PEM format certificate. (optional)
+            range: Either a global or VDOM IP address range for the certificate. (optional)
+            source: Certificate source type. (optional)
+            gch_url: Google Cloud HSM key URL (e.g. "https://cloudkms.googleapis.com/v1/projects/sampleproject/locations/samplelocation/keyRings/samplekeyring/cryptoKeys/sampleKeyName/cryptoKeyVersions/1"). (optional)
+            gch_project: Google Cloud HSM project ID. (optional)
+            gch_location: Google Cloud HSM location. (optional)
+            gch_keyring: Google Cloud HSM keyring. (optional)
+            gch_cryptokey: Google Cloud HSM cryptokey. (optional)
+            gch_cryptokey_version: Google Cloud HSM cryptokey version. (optional)
+            gch_cloud_service_name: Cloud service config name to generate access token. (optional)
+            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm. (optional)
+            details: Print hsm-local certificate detailed information. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            >>> data = {'comments': 'Updated HSM certificate'}
-            >>> result = fgt.cmdb.certificate.hsm_local.update('my-hsm-cert', data)
+            Dictionary containing API response
         """
-        return self._client.put(
-            "cmdb", f"certificate/hsm-local/{name}", data=data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/certificate/hsm-local/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if api_version is not None:
+            data_payload['api-version'] = api_version
+        if certificate is not None:
+            data_payload['certificate'] = certificate
+        if range is not None:
+            data_payload['range'] = range
+        if source is not None:
+            data_payload['source'] = source
+        if gch_url is not None:
+            data_payload['gch-url'] = gch_url
+        if gch_project is not None:
+            data_payload['gch-project'] = gch_project
+        if gch_location is not None:
+            data_payload['gch-location'] = gch_location
+        if gch_keyring is not None:
+            data_payload['gch-keyring'] = gch_keyring
+        if gch_cryptokey is not None:
+            data_payload['gch-cryptokey'] = gch_cryptokey
+        if gch_cryptokey_version is not None:
+            data_payload['gch-cryptokey-version'] = gch_cryptokey_version
+        if gch_cloud_service_name is not None:
+            data_payload['gch-cloud-service-name'] = gch_cloud_service_name
+        if gch_cryptokey_algorithm is not None:
+            data_payload['gch-cryptokey-algorithm'] = gch_cryptokey_algorithm
+        if details is not None:
+            data_payload['details'] = details
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete HSM local certificate
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Certificate name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            >>> result = fgt.cmdb.certificate.hsm_local.delete('my-hsm-cert')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"certificate/hsm-local/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/certificate/hsm-local/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comments: str | None = None,
+        vendor: str | None = None,
+        api_version: str | None = None,
+        certificate: str | None = None,
+        range: str | None = None,
+        source: str | None = None,
+        gch_url: str | None = None,
+        gch_project: str | None = None,
+        gch_location: str | None = None,
+        gch_keyring: str | None = None,
+        gch_cryptokey: str | None = None,
+        gch_cryptokey_version: str | None = None,
+        gch_cloud_service_name: str | None = None,
+        gch_cryptokey_algorithm: str | None = None,
+        details: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if HSM local certificate exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Certificate name
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name. (optional)
+            comments: Comment. (optional)
+            vendor: HSM vendor. (optional)
+            api_version: API version for communicating with HSM. (optional)
+            certificate: PEM format certificate. (optional)
+            range: Either a global or VDOM IP address range for the certificate. (optional)
+            source: Certificate source type. (optional)
+            gch_url: Google Cloud HSM key URL (e.g. "https://cloudkms.googleapis.com/v1/projects/sampleproject/locations/samplelocation/keyRings/samplekeyring/cryptoKeys/sampleKeyName/cryptoKeyVersions/1"). (optional)
+            gch_project: Google Cloud HSM project ID. (optional)
+            gch_location: Google Cloud HSM location. (optional)
+            gch_keyring: Google Cloud HSM keyring. (optional)
+            gch_cryptokey: Google Cloud HSM cryptokey. (optional)
+            gch_cryptokey_version: Google Cloud HSM cryptokey version. (optional)
+            gch_cloud_service_name: Cloud service config name to generate access token. (optional)
+            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm. (optional)
+            details: Print hsm-local certificate detailed information. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Example:
-            >>> if fgt.cmdb.certificate.hsm_local.exists('my-hsm-cert'):
-            ...     print('HSM certificate exists')
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except (APIError, ResourceNotFoundError):
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/certificate/hsm-local"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if api_version is not None:
+            data_payload['api-version'] = api_version
+        if certificate is not None:
+            data_payload['certificate'] = certificate
+        if range is not None:
+            data_payload['range'] = range
+        if source is not None:
+            data_payload['source'] = source
+        if gch_url is not None:
+            data_payload['gch-url'] = gch_url
+        if gch_project is not None:
+            data_payload['gch-project'] = gch_project
+        if gch_location is not None:
+            data_payload['gch-location'] = gch_location
+        if gch_keyring is not None:
+            data_payload['gch-keyring'] = gch_keyring
+        if gch_cryptokey is not None:
+            data_payload['gch-cryptokey'] = gch_cryptokey
+        if gch_cryptokey_version is not None:
+            data_payload['gch-cryptokey-version'] = gch_cryptokey_version
+        if gch_cloud_service_name is not None:
+            data_payload['gch-cloud-service-name'] = gch_cloud_service_name
+        if gch_cryptokey_algorithm is not None:
+            data_payload['gch-cryptokey-algorithm'] = gch_cryptokey_algorithm
+        if details is not None:
+            data_payload['details'] = details
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

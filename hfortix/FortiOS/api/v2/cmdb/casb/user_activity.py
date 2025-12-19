@@ -1,287 +1,290 @@
 """
-FortiOS CMDB - CASB User Activity Control
-
-Configure CASB user activity controls for monitoring and restricting activities in SaaS applications.
+FortiOS CMDB - Casb UserActivity
 
 API Endpoints:
-    GET    /casb/user-activity           - List all / Get specific
-    POST   /casb/user-activity           - Create
-    PUT    /casb/user-activity/{name}   - Update
-    DELETE /casb/user-activity/{name}   - Delete
+    GET    /casb/user-activity
+    POST   /casb/user-activity
+    GET    /casb/user-activity/{name}
+    PUT    /casb/user-activity/{name}
+    DELETE /casb/user-activity/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
-
-from .....exceptions import APIError, ResourceNotFoundError
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class UserActivity:
-    """CASB user activity endpoint"""
+    """UserActivity operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize UserActivity endpoint
+        Initialize UserActivity endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get CASB user activity control(s) - List all or get specific
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): User activity control name (for specific control)
-            filter (str): Filter results (e.g., 'type==customized')
-            format (str): Response format (name|brief|full)
-            count (int): Limit number of results
-            with_meta (bool): Include meta information
-            skip (int): Skip N results
-            search (str): Search string
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get specific user activity
-            >>> result = fgt.cmdb.casb.user_activity.get('box-upload-file')
-
-            >>> # Get all activities
-            >>> result = fgt.cmdb.casb.user_activity.get()
+            Dictionary containing API response
         """
-        # Build path
-        path = f"casb/user-activity/{encode_path_component(name)}" if name else "casb/user-activity"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any additional parameters
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/casb/user-activity/{name}"
+        else:
+            endpoint = "/casb/user-activity"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        application: Optional[str] = None,
-        casb_name: Optional[str] = None,
-        status: str = "enable",
-        category: Optional[str] = None,
-        description: Optional[str] = None,
-        match_strategy: Optional[str] = None,
-        match: Optional[list[dict[str, Any]]] = None,
-        control_options: Optional[list[dict[str, Any]]] = None,
-        type: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-    ) -> dict[str, Any]:
-        """
-        Create CASB user activity control
-
-        Note: Custom user activity controls can only be created for customized SaaS applications
-
-        Args:
-            name (str): User activity control name
-            application (str): SaaS application name
-            casb_name (str): CASB-specific activity name
-            status (str): Enable/disable status ('enable'|'disable')
-            category (str, optional): Activity category ('activity-control'|'tenant-control'|'app-control')
-            description (str, optional): Description of the activity
-            match_strategy (str, optional): Match strategy ('or'|'and')
-            match (list, optional): List of match rules
-            control_options (list, optional): Control options configuration
-            type (str, optional): Type ('built-in'|'customized')
-            vdom (str/bool, optional): Virtual domain, False to skip
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create custom user activity control
-            >>> result = fgt.cmdb.casb.user_activity.create(
-            ...     name='my-app-upload',
-            ...     application='my-custom-app',
-            ...     casb_name='upload-file',
-            ...     status='enable',
-            ...     category='activity-control',
-            ...     match_strategy='or'
-            ... )
-        """
-        data = {"name": name, "application": application, "casb-name": casb_name, "status": status}
-
-        if category is not None:
-            data["category"] = category
-        if description is not None:
-            data["description"] = description
-        if match_strategy is not None:
-            data["match-strategy"] = match_strategy
-        if match is not None:
-            data["match"] = match
-        if control_options is not None:
-            data["control-options"] = control_options
-        if type is not None:
-            data["type"] = type
-
-        return self._client.post("cmdb", "casb/user-activity", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        category: Optional[str] = None,
-        description: Optional[str] = None,
-        match_strategy: Optional[str] = None,
-        match: Optional[list[dict[str, Any]]] = None,
-        control_options: Optional[list[dict[str, Any]]] = None,
-        application: Optional[str] = None,
-        casb_name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        description: str | None = None,
+        type: str | None = None,
+        casb_name: str | None = None,
+        application: str | None = None,
+        category: str | None = None,
+        match_strategy: str | None = None,
+        match: list | None = None,
+        control_options: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update CASB user activity control
-
+        Update this specific resource.
+        
         Args:
-            name (str): User activity control name to update
-            status (str, optional): Enable/disable status
-            category (str, optional): Activity category
-            description (str, optional): Description
-            match_strategy (str, optional): Match strategy
-            match (list, optional): Match rules
-            control_options (list, optional): Control options
-            application (str, optional): SaaS application name
-            casb_name (str, optional): CASB activity name
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: CASB user activity name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: CASB user activity status. (optional)
+            description: CASB user activity description. (optional)
+            type: CASB user activity type. (optional)
+            casb_name: CASB user activity signature name. (optional)
+            application: CASB SaaS application name. (optional)
+            category: CASB user activity category. (optional)
+            match_strategy: CASB user activity match strategy. (optional)
+            match: CASB user activity match rules. (optional)
+            control_options: CASB control options. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update status
-            >>> result = fgt.cmdb.casb.user_activity.update(
-            ...     name='my-app-upload',
-            ...     status='disable'
-            ... )
-
-            >>> # PUT - Update match strategy
-            >>> result = fgt.cmdb.casb.user_activity.update(
-            ...     name='my-app-upload',
-            ...     match_strategy='and'
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/casb/user-activity/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
         if status is not None:
-            data["status"] = status
-        if category is not None:
-            data["category"] = category
+            data_payload['status'] = status
         if description is not None:
-            data["description"] = description
-        if match_strategy is not None:
-            data["match-strategy"] = match_strategy
-        if match is not None:
-            data["match"] = match
-        if control_options is not None:
-            data["control-options"] = control_options
-        if application is not None:
-            data["application"] = application
+            data_payload['description'] = description
+        if type is not None:
+            data_payload['type'] = type
         if casb_name is not None:
-            data["casb-name"] = casb_name
-
-        return self._client.put(
-            "cmdb", f"casb/user-activity/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['casb-name'] = casb_name
+        if application is not None:
+            data_payload['application'] = application
+        if category is not None:
+            data_payload['category'] = category
+        if match_strategy is not None:
+            data_payload['match-strategy'] = match_strategy
+        if match is not None:
+            data_payload['match'] = match
+        if control_options is not None:
+            data_payload['control-options'] = control_options
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete CASB user activity control
-
-        Note: Built-in user activity controls cannot be deleted, only customized ones
-
+        Delete this specific resource.
+        
         Args:
-            name (str): User activity control name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            >>> result = fgt.cmdb.casb.user_activity.delete('my-app-upload')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"casb/user-activity/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/casb/user-activity/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        status: str | None = None,
+        description: str | None = None,
+        type: str | None = None,
+        casb_name: str | None = None,
+        application: str | None = None,
+        category: str | None = None,
+        match_strategy: str | None = None,
+        match: list | None = None,
+        control_options: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if user activity control exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): User activity control name
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: CASB user activity name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            status: CASB user activity status. (optional)
+            description: CASB user activity description. (optional)
+            type: CASB user activity type. (optional)
+            casb_name: CASB user activity signature name. (optional)
+            application: CASB SaaS application name. (optional)
+            category: CASB user activity category. (optional)
+            match_strategy: CASB user activity match strategy. (optional)
+            match: CASB user activity match rules. (optional)
+            control_options: CASB control options. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Example:
-            >>> if fgt.cmdb.casb.user_activity.exists('box-upload-file'):
-            ...     print('Activity control exists')
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except (APIError, ResourceNotFoundError):
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/casb/user-activity"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if status is not None:
+            data_payload['status'] = status
+        if description is not None:
+            data_payload['description'] = description
+        if type is not None:
+            data_payload['type'] = type
+        if casb_name is not None:
+            data_payload['casb-name'] = casb_name
+        if application is not None:
+            data_payload['application'] = application
+        if category is not None:
+            data_payload['category'] = category
+        if match_strategy is not None:
+            data_payload['match-strategy'] = match_strategy
+        if match is not None:
+            data_payload['match'] = match
+        if control_options is not None:
+            data_payload['control-options'] = control_options
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

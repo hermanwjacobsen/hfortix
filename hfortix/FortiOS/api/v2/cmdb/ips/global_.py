@@ -1,135 +1,181 @@
 """
-FortiOS CMDB - IPS Global
-
-Configure IPS global parameter (singleton).
+FortiOS CMDB - Ips Global
 
 API Endpoints:
-    GET  /api/v2/cmdb/ips/global  - Get configuration
-    PUT  /api/v2/cmdb/ips/global  - Update configuration
+    GET    /ips/global
+    PUT    /ips/global
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class Global:
-    """IPS Global Settings endpoint"""
+    """Global operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Get IPS global settings.
+        Initialize Global endpoint.
 
         Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing global IPS settings
-
-        Examples:
-            >>> settings = fgt.api.cmdb.ips.global_.get()
+            client: HTTPClient instance for API communication
         """
-        path = "ips/global"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
+        self._client = client
 
-    def put(
+    def get(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        anomaly_mode: Optional[str] = None,
-        av_mem_limit: Optional[int] = None,
-        cp_accel_mode: Optional[str] = None,
-        database: Optional[str] = None,
-        deep_app_insp_db_limit: Optional[int] = None,
-        deep_app_insp_timeout: Optional[int] = None,
-        engine_count: Optional[int] = None,
-        exclude_signatures: Optional[str] = None,
-        fail_open: Optional[str] = None,
-        ips_reserve_cpu: Optional[str] = None,
-        machine_learning_detection: Optional[str] = None,
-        ngfw_max_scan_range: Optional[int] = None,
-        np_accel_mode: Optional[str] = None,
-        packet_log_queue_depth: Optional[int] = None,
-        session_limit_mode: Optional[str] = None,
-        socket_size: Optional[int] = None,
-        sync_session_ttl: Optional[str] = None,
-        tls_active_probe: Optional[dict[str, Any]] = None,
-        traffic_submit: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IPS global settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            anomaly_mode: Global IPS anomaly mode (continuous|periodical)
-            av_mem_limit: Maximum memory (MB) for antivirus processes
-            cp_accel_mode: IPS CP acceleration mode (none|basic|advanced)
-            database: IPS signature database (regular|extended)
-            deep_app_insp_db_limit: Limit on deep application inspection sessions
-            deep_app_insp_timeout: Deep application inspection timeout (seconds)
-            engine_count: Number of IPS engines (0-255, 0=auto)
-            exclude_signatures: Excluded signatures (none|industrial)
-            fail_open: Enable/disable fail-open (enable|disable)
-            ips_reserve_cpu: Enable/disable CPU reservation (disable|enable)
-            machine_learning_detection: Enable/disable machine learning (enable|disable)
-            ngfw_max_scan_range: Maximum NGFW scan range (1024-4096 KB)
-            np_accel_mode: IPS NP acceleration mode (none|basic)
-            packet_log_queue_depth: Packet log queue depth (128-2048)
-            session_limit_mode: Session limit mode (accurate|heuristic)
-            socket_size: IPS socket buffer size (0-256 MB, 0=auto)
-            sync_session_ttl: Enable/disable sync session TTL (enable|disable)
-            tls_active_probe: TLS active probe settings
-            traffic_submit: Enable/disable traffic submission (disable|enable)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> fgt.api.cmdb.ips.global_.update(
-            ...     database='extended',
-            ...     anomaly_mode='continuous',
-            ...     engine_count=4
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/ips/global"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "anomaly-mode": anomaly_mode,
-            "av-mem-limit": av_mem_limit,
-            "cp-accel-mode": cp_accel_mode,
-            "database": database,
-            "deep-app-insp-db-limit": deep_app_insp_db_limit,
-            "deep-app-insp-timeout": deep_app_insp_timeout,
-            "engine-count": engine_count,
-            "exclude-signatures": exclude_signatures,
-            "fail-open": fail_open,
-            "ips-reserve-cpu": ips_reserve_cpu,
-            "machine-learning-detection": machine_learning_detection,
-            "ngfw-max-scan-range": ngfw_max_scan_range,
-            "np-accel-mode": np_accel_mode,
-            "packet-log-queue-depth": packet_log_queue_depth,
-            "session-limit-mode": session_limit_mode,
-            "socket-size": socket_size,
-            "sync-session-ttl": sync_session_ttl,
-            "tls-active-probe": tls_active_probe,
-            "traffic-submit": traffic_submit,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = "ips/global"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        fail_open: str | None = None,
+        database: str | None = None,
+        traffic_submit: str | None = None,
+        anomaly_mode: str | None = None,
+        session_limit_mode: str | None = None,
+        socket_size: int | None = None,
+        engine_count: int | None = None,
+        sync_session_ttl: str | None = None,
+        np_accel_mode: str | None = None,
+        ips_reserve_cpu: str | None = None,
+        cp_accel_mode: str | None = None,
+        deep_app_insp_timeout: int | None = None,
+        deep_app_insp_db_limit: int | None = None,
+        exclude_signatures: str | None = None,
+        packet_log_queue_depth: int | None = None,
+        ngfw_max_scan_range: int | None = None,
+        av_mem_limit: int | None = None,
+        machine_learning_detection: str | None = None,
+        tls_active_probe: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            fail_open: Enable to allow traffic if the IPS buffer is full. Default is disable and IPS traffic is blocked when the IPS buffer is full. (optional)
+            database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. (optional)
+            traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. (optional)
+            anomaly_mode: Global blocking mode for rate-based anomalies. (optional)
+            session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). (optional)
+            socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance. (optional)
+            engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores. (optional)
+            sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. (optional)
+            np_accel_mode: Acceleration mode for IPS processing by NPx processors. (optional)
+            ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0. (optional)
+            cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. (optional)
+            deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting). (optional)
+            deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0). (optional)
+            exclude_signatures: Excluded signatures. (optional)
+            packet_log_queue_depth: Packet/pcap log queue depth per IPS engine. (optional)
+            ngfw_max_scan_range: NGFW policy-mode app detection threshold. (optional)
+            av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage. (optional)
+            machine_learning_detection: Enable/disable machine learning detection. (optional)
+            tls_active_probe: TLS active probe configuration. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/ips/global"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if fail_open is not None:
+            data_payload['fail-open'] = fail_open
+        if database is not None:
+            data_payload['database'] = database
+        if traffic_submit is not None:
+            data_payload['traffic-submit'] = traffic_submit
+        if anomaly_mode is not None:
+            data_payload['anomaly-mode'] = anomaly_mode
+        if session_limit_mode is not None:
+            data_payload['session-limit-mode'] = session_limit_mode
+        if socket_size is not None:
+            data_payload['socket-size'] = socket_size
+        if engine_count is not None:
+            data_payload['engine-count'] = engine_count
+        if sync_session_ttl is not None:
+            data_payload['sync-session-ttl'] = sync_session_ttl
+        if np_accel_mode is not None:
+            data_payload['np-accel-mode'] = np_accel_mode
+        if ips_reserve_cpu is not None:
+            data_payload['ips-reserve-cpu'] = ips_reserve_cpu
+        if cp_accel_mode is not None:
+            data_payload['cp-accel-mode'] = cp_accel_mode
+        if deep_app_insp_timeout is not None:
+            data_payload['deep-app-insp-timeout'] = deep_app_insp_timeout
+        if deep_app_insp_db_limit is not None:
+            data_payload['deep-app-insp-db-limit'] = deep_app_insp_db_limit
+        if exclude_signatures is not None:
+            data_payload['exclude-signatures'] = exclude_signatures
+        if packet_log_queue_depth is not None:
+            data_payload['packet-log-queue-depth'] = packet_log_queue_depth
+        if ngfw_max_scan_range is not None:
+            data_payload['ngfw-max-scan-range'] = ngfw_max_scan_range
+        if av_mem_limit is not None:
+            data_payload['av-mem-limit'] = av_mem_limit
+        if machine_learning_detection is not None:
+            data_payload['machine-learning-detection'] = machine_learning_detection
+        if tls_active_probe is not None:
+            data_payload['tls-active-probe'] = tls_active_probe
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

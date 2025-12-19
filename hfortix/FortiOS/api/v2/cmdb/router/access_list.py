@@ -1,175 +1,226 @@
 """
-FortiOS CMDB - Router Access List
-
-Configure access lists.
+FortiOS CMDB - Router AccessList
 
 API Endpoints:
-    GET    /api/v2/cmdb/router/access-list           - List all / Get specific
-    POST   /api/v2/cmdb/router/access-list           - Create
-    PUT    /api/v2/cmdb/router/access-list/{name}   - Update
-    DELETE /api/v2/cmdb/router/access-list/{name}   - Delete
+    GET    /router/access-list
+    POST   /router/access-list
+    GET    /router/access-list/{name}
+    PUT    /router/access-list/{name}
+    DELETE /router/access-list/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-from hfortix.FortiOS.http_client import encode_path_component
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class AccessList:
-    """Router access list endpoint"""
+    """AccessList operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Router Access List endpoint
+        Initialize AccessList endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get access list(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Access list name (if specified, gets single list)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.router.access_list.get()
-            >>> result = fgt.api.cmdb.router.access_list.get(name='ACL-1')
+            Dictionary containing API response
         """
-        path = "router/access-list"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comments: Optional[str] = None,
-        rule: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create access list.
-
-        Args:
-            data_dict: Complete access list dictionary
-            name: Access list name
-            comments: Comments
-            rule: List of rules with id, action, prefix, wildcard, exact-match
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.router.access_list.create(
-            ...     name='ACL-1',
-            ...     comments='Block private networks'
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
-
-        if name is not None:
-            data["name"] = name
-        if comments is not None:
-            data["comments"] = comments
-        if rule is not None:
-            data["rule"] = rule
-
-        data.update(kwargs)
-        return self._client.post("cmdb", "router/access-list", data=data, vdom=vdom)
+            endpoint = f"/router/access-list/{name}"
+        else:
+            endpoint = "/router/access-list"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        comments: Optional[str] = None,
-        rule: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comments: str | None = None,
+        rule: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update access list.
-
+        Update this specific resource.
+        
         Args:
-            name: Access list name (required)
-            data_dict: Complete access list dictionary
-            comments: Comments
-            rule: List of rules
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name. (optional)
+            comments: Comment. (optional)
+            rule: Rule. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.router.access_list.update(
-            ...     name='ACL-1',
-            ...     comments='Updated comments'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/router/access-list/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
         if comments is not None:
-            data["comments"] = comments
+            data_payload['comments'] = comments
         if rule is not None:
-            data["rule"] = rule
+            data_payload['rule'] = rule
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        data.update(kwargs)
-        path = f"router/access-list/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
-
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete access list.
-
+        Delete this specific resource.
+        
         Args:
-            name: Access list name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.router.access_list.delete(name='ACL-1')
+            Dictionary containing API response
         """
-        path = f"router/access-list/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/router/access-list/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comments: str | None = None,
+        rule: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if access list exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Access list name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name. (optional)
+            comments: Comment. (optional)
+            rule: Rule. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if access list exists, False otherwise
+            Dictionary containing API response
         """
-        try:
-            self.get(name=name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/access-list"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if rule is not None:
+            data_payload['rule'] = rule
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

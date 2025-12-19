@@ -1,294 +1,274 @@
 """
-FortiOS CMDB - Firewall SSH Host Key
-SSH proxy host public keys.
+FortiOS CMDB - Firewall SshHostKey
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.ssh/host-key           - List all / Get specific
-    POST   /api/v2/cmdb/firewall.ssh/host-key           - Create
-    PUT    /api/v2/cmdb/firewall.ssh/host-key/{id}   - Update
-    DELETE /api/v2/cmdb/firewall.ssh/host-key/{id}   - Delete
+    GET    /firewall.ssh/host-key
+    POST   /firewall.ssh/host-key
+    GET    /firewall.ssh/host-key/{name}
+    PUT    /firewall.ssh/host-key/{name}
+    DELETE /firewall.ssh/host-key/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
-from .....http_client import HTTPResponse
 
+class SshHostKey:
+    """SshHostKey operations."""
 
-class HostKey:
-    """SSH proxy host key endpoint"""
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize SshHostKey endpoint.
 
-    def __init__(self, client):
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        filter: Optional[str] = None,
-        range: Optional[str] = None,
-        sort: Optional[str] = None,
-        format: Optional[List[str]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get SSH host key(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Host key name (if retrieving specific key)
-            filter: Filter results
-            range: Range of results
-            sort: Sort results
-            format: List of fields to include
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Get specific host key
-            >>> result = fgt.cmdb.firewall.ssh.host_key.get('server1-key')
-
-            >>> # Get all host keys
-            >>> result = fgt.cmdb.firewall.ssh.host_key.get()
+            Dictionary containing API response
         """
-        path = "firewall.ssh/host-key"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-
-        params = {}
-        param_map = {
-            "filter": filter,
-            "range": range,
-            "sort": sort,
-            "format": format,
-        }
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        type: Optional[str] = None,
-        hostname: Optional[str] = None,
-        nid: Optional[str] = None,
-        ip: Optional[str] = None,
-        port: Optional[int] = None,
-        public_key: Optional[str] = None,
-        usage: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
-        """
-        Create an SSH host key.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Host key name (max 35 chars)
-            status: Enable/disable host key - 'enable' or 'disable'
-            type: Key type - 'RSA' or 'DSA' or 'ECDSA' or 'ED25519'
-            hostname: Hostname of the SSH server
-            nid: Set the NID for the SSH host
-            ip: IP address of the SSH server
-            port: Port of the SSH server (1-65535)
-            public_key: SSH public key (Base64 encoded)
-            usage: Usage - 'transparent-proxy', 'access-proxy'
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create SSH host key
-            >>> result = fgt.cmdb.firewall.ssh.host_key.create(
-            ...     'server1-key',
-            ...     hostname='ssh.example.com',
-            ...     ip='192.168.1.100',
-            ...     port=22,
-            ...     type='RSA',
-            ...     status='enable'
-            ... )
-
-            >>> # POST - Create with public key
-            >>> result = fgt.cmdb.firewall.ssh.host_key.create(
-            ...     'server2-key',
-            ...     hostname='ssh2.example.com',
-            ...     public_key='AAAAB3NzaC1yc2EAAAADAQABAAABAQDTest...',
-            ...     type='RSA'
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
+            endpoint = f"/firewall.ssh/host-key/{name}"
         else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if status is not None:
-                payload_dict["status"] = status
-            if type is not None:
-                payload_dict["type"] = type
-            if hostname is not None:
-                payload_dict["hostname"] = hostname
-            if nid is not None:
-                payload_dict["nid"] = nid
-            if ip is not None:
-                payload_dict["ip"] = ip
-            if port is not None:
-                payload_dict["port"] = port
-            if public_key is not None:
-                payload_dict["public-key"] = public_key
-            if usage is not None:
-                payload_dict["usage"] = usage
-
-        return self._client.post(
-            "cmdb", "firewall.ssh/host-key", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+            endpoint = "/firewall.ssh/host-key"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        status: Optional[str] = None,
-        type: Optional[str] = None,
-        hostname: Optional[str] = None,
-        nid: Optional[str] = None,
-        ip: Optional[str] = None,
-        port: Optional[int] = None,
-        public_key: Optional[str] = None,
-        usage: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        nid: str | None = None,
+        usage: str | None = None,
+        ip: str | None = None,
+        port: int | None = None,
+        hostname: str | None = None,
+        public_key: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update an SSH host key.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Host key name
-            status: Enable/disable host key - 'enable' or 'disable'
-            type: Key type - 'RSA' or 'DSA' or 'ECDSA' or 'ED25519'
-            hostname: Hostname of the SSH server
-            nid: Set the NID for the SSH host
-            ip: IP address of the SSH server
-            port: Port of the SSH server (1-65535)
-            public_key: SSH public key (Base64 encoded)
-            usage: Usage - 'transparent-proxy', 'access-proxy'
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: SSH public key name. (optional)
+            status: Set the trust status of the public key. (optional)
+            type: Set the type of the public key. (optional)
+            nid: Set the nid of the ECDSA key. (optional)
+            usage: Usage for this public key. (optional)
+            ip: IP address of the SSH server. (optional)
+            port: Port of the SSH server. (optional)
+            hostname: Hostname of the SSH server to match SSH certificate principals. (optional)
+            public_key: SSH public key. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update hostname and port
-            >>> result = fgt.cmdb.firewall.ssh.host_key.update(
-            ...     'server1-key',
-            ...     hostname='newssh.example.com',
-            ...     port=2222
-            ... )
-
-            >>> # PUT - Update status
-            >>> result = fgt.cmdb.firewall.ssh.host_key.update(
-            ...     'server2-key',
-            ...     status='disable'
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if status is not None:
-                payload_dict["status"] = status
-            if type is not None:
-                payload_dict["type"] = type
-            if hostname is not None:
-                payload_dict["hostname"] = hostname
-            if nid is not None:
-                payload_dict["nid"] = nid
-            if ip is not None:
-                payload_dict["ip"] = ip
-            if port is not None:
-                payload_dict["port"] = port
-            if public_key is not None:
-                payload_dict["public-key"] = public_key
-            if usage is not None:
-                payload_dict["usage"] = usage
-
-        return self._client.put(
-            "cmdb", f"firewall.ssh/host-key/{name}", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall.ssh/host-key/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if nid is not None:
+            data_payload['nid'] = nid
+        if usage is not None:
+            data_payload['usage'] = usage
+        if ip is not None:
+            data_payload['ip'] = ip
+        if port is not None:
+            data_payload['port'] = port
+        if hostname is not None:
+            data_payload['hostname'] = hostname
+        if public_key is not None:
+            data_payload['public-key'] = public_key
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete an SSH host key.
-
+        Delete this specific resource.
+        
         Args:
-            name: Host key name
-            vdom: Virtual domain
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete host key
-            >>> result = fgt.cmdb.firewall.ssh.host_key.delete('server1-key')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"firewall.ssh/host-key/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall.ssh/host-key/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        type: str | None = None,
+        nid: str | None = None,
+        usage: str | None = None,
+        ip: str | None = None,
+        port: int | None = None,
+        hostname: str | None = None,
+        public_key: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if SSH host key exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Host key name
-            vdom: Virtual domain
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: SSH public key name. (optional)
+            status: Set the trust status of the public key. (optional)
+            type: Set the type of the public key. (optional)
+            nid: Set the nid of the ECDSA key. (optional)
+            usage: Usage for this public key. (optional)
+            ip: IP address of the SSH server. (optional)
+            port: Port of the SSH server. (optional)
+            hostname: Hostname of the SSH server to match SSH certificate principals. (optional)
+            public_key: SSH public key. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if host key exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.firewall.ssh.host_key.exists('server1-key'):
-            ...     print("Host key exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name, vdom=vdom, raw_json=True)
-            return (
-                result.get("status") == "success"
-                and result.get("http_status") == 200
-                and len(result.get("results", [])) > 0
-            )
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.ssh/host-key"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if type is not None:
+            data_payload['type'] = type
+        if nid is not None:
+            data_payload['nid'] = nid
+        if usage is not None:
+            data_payload['usage'] = usage
+        if ip is not None:
+            data_payload['ip'] = ip
+        if port is not None:
+            data_payload['port'] = port
+        if hostname is not None:
+            data_payload['hostname'] = hostname
+        if public_key is not None:
+            data_payload['public-key'] = public_key
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

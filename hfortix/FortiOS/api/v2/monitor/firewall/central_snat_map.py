@@ -1,15 +1,93 @@
-"""Central SNAT policy statistics operations."""
+"""Monitor API - CentralSnatMap operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class CentralSnatMap:
-    """Central SNAT policy statistics."""
+class ClearCounters:
+    """ClearCounters operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ClearCounters endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        policy: int | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Reset traffic statistics for one or more firewall central SNAT policy by policy ID.
+        
+        Args:
+            policy: Single policy ID to reset. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.central_snat_map.clear_counters.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if policy is not None:
+            data['policy'] = policy
+        data.update(kwargs)
+        return self._client.post("monitor", "/firewall/central-snat-map/clear-counters", data=data)
+
+
+class Reset:
+    """Reset operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Reset endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Reset traffic statistics for all firewall central SNAT policies.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.central_snat_map.reset.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        data.update(kwargs)
+        return self._client.post("monitor", "/firewall/central-snat-map/reset", data=data)
+
+
+class CentralSnatMap:
+    """CentralSnatMap operations."""
+
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize CentralSnatMap endpoint.
 
@@ -18,96 +96,38 @@ class CentralSnatMap:
         """
         self._client = client
 
-    def list(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        policyid: Optional[int] = None,
-        ip_version: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        List traffic statistics for all firewall central SNAT policies.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Filter by policy ID
-            ip_version: Filter by IP version
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing SNAT policy statistics
-
-        Example:
-            >>> fgt.api.monitor.firewall.central_snat_map.list()
-        """
-        params = data_dict.copy() if data_dict else {}
-        if policyid is not None:
-            params["policyid"] = policyid
-        if ip_version is not None:
-            params["ip_version"] = ip_version
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/central-snat-map", params=params)
+        # Initialize nested resources
+        self.clear_counters = ClearCounters(client)
+        self.reset = Reset(client)
 
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, policyid: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        policyid: int | None = None,
+        ip_version: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get traffic statistics for a specific central SNAT policy.
-
+        List traffic statistics for firewall central SNAT policies.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Policy ID to retrieve
+            policyid: Filter: Policy ID. (optional)
+            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left empty, will retrieve data for both IPv4 and IPv6. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing policy statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.central_snat_map.get(policyid=1)
+            >>> fgt.api.monitor.firewall.central_snat_map.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         if policyid is not None:
-            params["policyid"] = policyid
+            params['policyid'] = policyid
+        if ip_version is not None:
+            params['ip_version'] = ip_version
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/central-snat-map", params=params)
-
-    def reset(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Reset traffic statistics for all firewall central SNAT policies.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing operation result
-
-        Example:
-            >>> fgt.api.monitor.firewall.central_snat_map.reset()
-        """
-        data = data_dict.copy() if data_dict else {}
-        data.update(kwargs)
-        return self._client.post("monitor", "/firewall/central-snat-map/reset", data=data)
-
-    def clear_counters(
-        self, data_dict: Optional[Dict[str, Any]] = None, policy_ids: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        Reset traffic statistics for one or more firewall central SNAT policy by policy ID.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            policy_ids: Comma-separated list of policy IDs
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing operation result
-
-        Example:
-            >>> fgt.api.monitor.firewall.central_snat_map.clear_counters(policy_ids='1,2,3')
-        """
-        data = data_dict.copy() if data_dict else {}
-        if policy_ids is not None:
-            data["policy_ids"] = policy_ids
-        data.update(kwargs)
-        return self._client.post("monitor", "/firewall/central-snat-map/clear-counters", data=data)

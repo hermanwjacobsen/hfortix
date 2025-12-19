@@ -1,60 +1,86 @@
-"""IPv4 pool statistics and mapping operations."""
+"""Monitor API - Ippool operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class IPPool:
-    """IPv4 pool statistics and mappings."""
+class Mapping:
+    """Mapping operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize IPPool endpoint.
+        Initialize Mapping endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def get(
+        self,
+        mkey: str,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Get the list of IPv4 mappings for the specified IP pool.
+        
+        Args:
+            mkey: The IP pool name. (required)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.ippool.mapping.get(mkey='value')
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params['mkey'] = mkey
+        params.update(kwargs)
+        return self._client.get("monitor", "/firewall/ippool/mapping", params=params)
+
+
+class Ippool:
+    """Ippool operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Ippool endpoint.
 
         Args:
             client: HTTPClient instance for API communication
         """
         self._client = client
 
-    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
+        # Initialize nested resources
+        self.mapping = Mapping(client)
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List IPv4 pool statistics.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing IP pool statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.ippool.list()
+            >>> fgt.api.monitor.firewall.ippool.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/ippool", params=params)
-
-    def mapping(
-        self, data_dict: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        Get the list of IPv4 mappings for the specified IP pool.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            name: IP pool name (required)
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing IP pool mappings
-
-        Example:
-            >>> fgt.api.monitor.firewall.ippool.mapping(name='my_pool')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if name is not None:
-            params["name"] = name
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/ippool/mapping", params=params)

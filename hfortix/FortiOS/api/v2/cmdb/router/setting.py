@@ -1,153 +1,117 @@
 """
 FortiOS CMDB - Router Setting
 
-Configure router settings.
-
 API Endpoints:
-    GET  /api/v2/cmdb/router/setting  - Get configuration
-    PUT  /api/v2/cmdb/router/setting  - Update configuration
+    GET    /router/setting
+    PUT    /router/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Setting:
-    """Router setting endpoint"""
+    """Setting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Router Setting endpoint
+        Initialize Setting endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[list] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get router settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource: Enable to include datasource information
-            with_meta: Enable to include meta information
-            skip: Enable to call CLI skip operator
-            format: List of property names to include in results
-            action: Special action (default, schema, etc.)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict with router settings
-
-        Examples:
-            >>> # Get router settings
-            >>> result = fgt.api.cmdb.router.setting.get()
-            >>> print(f"Hostname: {result['results'].get('hostname', 'N/A')}")
-
-            >>> # Get with metadata
-            >>> result = fgt.api.cmdb.router.setting.get(with_meta=True)
-
-            >>> # Get schema
-            >>> schema = fgt.api.cmdb.router.setting.get(action='schema')
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", "router/setting", params=params if params else None, vdom=vdom
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        show_filter: Optional[str] = None,
-        hostname: Optional[str] = None,
-        kernel_route_distance: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        show_filter: str | None = None,
+        hostname: str | None = None,
+        kernel_route_distance: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update router settings.
-
-        Supports three usage patterns:
-        1. Dictionary: update(data_dict={'hostname': 'router1', 'show-filter': 'my-list'})
-        2. Keywords: update(hostname='router1', show_filter='my-list')
-        3. Mixed: update(data_dict={...}, hostname='override')
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Complete settings dictionary (Python snake_case keys)
-            show_filter: Prefix-list as filter for showing routes (max 35 chars)
-            hostname: Hostname for this virtual domain router (max 14 chars)
-            kernel_route_distance: Administrative distance for routes learned from kernel (0-255)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            show_filter: Prefix-list as filter for showing routes. (optional)
+            hostname: Hostname for this virtual domain router. (optional)
+            kernel_route_distance: Administrative distance for routes learned from kernel (0 - 255). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # PUT - Update hostname
-            >>> result = fgt.api.cmdb.router.setting.update(
-            ...     hostname='core-router'
-            ... )
-
-            >>> # PUT - Update kernel route distance
-            >>> result = fgt.api.cmdb.router.setting.update(
-            ...     kernel_route_distance=150
-            ... )
-
-            >>> # Use dictionary
-            >>> config = {
-            ...     'hostname': 'edge-router',
-            ...     'show_filter': 'default-filter',
-            ...     'kernel_route_distance': 200
-            ... }
-            >>> result = fgt.api.cmdb.router.setting.update(data_dict=config)
+            Dictionary containing API response
         """
-        # Start with data_dict or empty dict
-        data = data_dict.copy() if data_dict else {}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "show_filter": "show-filter",
-            "kernel_route_distance": "kernel-route-distance",
-        }
-
-        # Apply individual parameters (override data_dict if provided)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if show_filter is not None:
-            data[param_map["show_filter"]] = show_filter
+            data_payload['show-filter'] = show_filter
         if hostname is not None:
-            data["hostname"] = hostname
+            data_payload['hostname'] = hostname
         if kernel_route_distance is not None:
-            data[param_map["kernel_route_distance"]] = kernel_route_distance
-
-        # Add any additional kwargs
-        data.update(kwargs)
-
-        return self._client.put("cmdb", "router/setting", data=data, vdom=vdom)
+            data_payload['kernel-route-distance'] = kernel_route_distance
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

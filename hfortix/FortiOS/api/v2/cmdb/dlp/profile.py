@@ -1,378 +1,290 @@
 """
-FortiOS CMDB - DLP Profile
-
-Configure DLP profiles.
+FortiOS CMDB - Dlp Profile
 
 API Endpoints:
-    GET    /dlp/profile           - List all / Get specific
-    POST   /dlp/profile           - Create
-    PUT    /dlp/profile/{name}   - Update
-    DELETE /dlp/profile/{name}   - Delete
+    GET    /dlp/profile
+    POST   /dlp/profile
+    GET    /dlp/profile/{name}
+    PUT    /dlp/profile/{name}
+    DELETE /dlp/profile/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Profile:
-    """DLP profile endpoint"""
+    """Profile operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Profile endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
         name: str | None = None,
-        # Query parameters
+        payload_dict: dict[str, Any] | None = None,
         attr: str | None = None,
-        count: int | None = None,
-        skip_to_datasource: dict[str, Any] | None = None,
+        skip_to_datasource: dict | None = None,
         acs: int | None = None,
         search: str | None = None,
-        scope: str | None = None,
-        datasource: bool | None = None,
-        with_meta: bool | None = None,
-        skip: bool | None = None,
-        format: str | None = None,
-        action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get DLP profile(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Name of specific profile to retrieve
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned results are in ascending order
-            search: Filter objects by search value
-            scope: Scope - 'global', 'vdom', or 'both'
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (pipe-separated)
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary with profile configuration(s)
-
-        Examples:
-            >>> # Get all profiles
-            >>> result = fgt.cmdb.dlp.profile.get()
-            >>> print(f"Total profiles: {len(result['results'])}")
-
-            >>> # Get specific profile
-            >>> result = fgt.cmdb.dlp.profile.get('email-dlp')
-            >>> print(f"Feature set: {result['results']['feature-set']}")
+            Dictionary containing API response
         """
-        # Build path
-        path = "dlp/profile"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"dlp/profile/{encode_path_component(name)}"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+            endpoint = f"/dlp/profile/{name}"
+        else:
+            endpoint = "/dlp/profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Profile configuration
-        comment: str | None = None,
-        feature_set: str | None = None,
-        replacemsg_group: str | None = None,
-        rule: list[dict[str, Any]] | None = None,
-        dlp_log: str | None = None,
-        extended_log: str | None = None,
-        nac_quar_log: str | None = None,
-        full_archive_proto: str | None = None,
-        summary_proto: str | None = None,
-        fortidata_error_action: str | None = None,
-        vdom: str | None = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> dict[str, Any]:
-        """
-        Create DLP profile.
-
-        Args:
-            name: Name of the DLP profile (max 47 chars)
-            comment: Comment (max 255 chars)
-            feature_set: Flow/proxy feature set - 'flow' or 'proxy'
-            replacemsg_group: Replacement message group name (max 35 chars)
-            rule: List of DLP rules. Each rule is a dict with:
-                - id (int): Rule ID
-                - name (str): Filter name (max 35 chars)
-                - severity (str): Severity - 'info', 'low', 'medium', 'high', 'critical'
-                - type (str): Rule type - 'file' or 'message'
-                - proto (str): Protocol - 'smtp', 'pop3', 'imap', 'http-get', 'http-post', 'ftp', 'nntp', 'mapi', 'ssh', 'cifs'
-                - filter_by (str): Filter by - 'sensor', 'label', 'encrypted', 'none'
-                - file_size (int): Match files >= this size in KB (0-197632)
-                - file_type (int): DLP file pattern table number
-                - sensor (list): List of DLP sensors (list of dicts with 'name')
-                - label (str): DLP label name (max 35 chars)
-                - archive (str): Enable archiving - 'enable' or 'disable'
-                - action (str): Action - 'allow', 'log-only', 'block', 'quarantine-ip'
-                - expiry (str): Quarantine duration format dddhhmm
-            dlp_log: Enable DLP logging - 'enable' or 'disable'
-            extended_log: Enable extended logging - 'enable' or 'disable'
-            nac_quar_log: Enable NAC quarantine logging - 'enable' or 'disable'
-            full_archive_proto: Protocols to always content archive (same as proto)
-            summary_proto: Protocols to always log summary (same as proto)
-            fortidata_error_action: Action if FortiData query fails - 'log-only', 'block', 'ignore'
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create simple DLP profile
-            >>> result = fgt.cmdb.dlp.profile.create(
-            ...     name='email-protection',
-            ...     comment='DLP for email',
-            ...     feature_set='proxy',
-            ...     dlp_log='enable'
-            ... )
-
-            >>> # POST - Create profile with rules
-            >>> result = fgt.cmdb.dlp.profile.create(
-            ...     name='file-dlp',
-            ...     comment='Block sensitive files',
-            ...     feature_set='proxy',
-            ...     rule=[
-            ...         {
-            ...             'id': 1,
-            ...             'name': 'Block SSN',
-            ...             'severity': 'high',
-            ...             'type': 'file',
-            ...             'proto': 'http-post',
-            ...             'filter_by': 'sensor',
-            ...             'sensor': [{'name': 'ssn-sensor'}],
-            ...             'action': 'block'
-            ...         }
-            ...     ],
-            ...     dlp_log='enable'
-            ... )
-        """
-        data = {}
-        param_map = {
-            "name": name,
-            "comment": comment,
-            "feature_set": feature_set,
-            "replacemsg_group": replacemsg_group,
-            "rule": rule,
-            "dlp_log": dlp_log,
-            "extended_log": extended_log,
-            "nac_quar_log": nac_quar_log,
-            "full_archive_proto": full_archive_proto,
-            "summary_proto": summary_proto,
-            "fortidata_error_action": fortidata_error_action,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "comment": "comment",
-            "feature_set": "feature-set",
-            "replacemsg_group": "replacemsg-group",
-            "rule": "rule",
-            "dlp_log": "dlp-log",
-            "extended_log": "extended-log",
-            "nac_quar_log": "nac-quar-log",
-            "full_archive_proto": "full-archive-proto",
-            "summary_proto": "summary-proto",
-            "fortidata_error_action": "fortidata-error-action",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle rule list - convert snake_case keys to hyphen-case
-                if param_name == "rule" and isinstance(value, list):
-                    converted_rules = []
-                    for rule_item in value:
-                        converted_rule = {}
-                        for k, v in rule_item.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_rule[api_key] = v
-                        converted_rules.append(converted_rule)
-                    data[api_name] = converted_rules
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "dlp/profile", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Profile configuration
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
         comment: str | None = None,
         feature_set: str | None = None,
         replacemsg_group: str | None = None,
-        rule: list[dict[str, Any]] | None = None,
+        rule: list | None = None,
         dlp_log: str | None = None,
         extended_log: str | None = None,
         nac_quar_log: str | None = None,
         full_archive_proto: str | None = None,
         summary_proto: str | None = None,
         fortidata_error_action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update DLP profile.
-
+        Update this specific resource.
+        
         Args:
-            name: Name of the DLP profile to update
-            comment: Comment (max 255 chars)
-            feature_set: Flow/proxy feature set - 'flow' or 'proxy'
-            replacemsg_group: Replacement message group name (max 35 chars)
-            rule: List of DLP rules (see create() for structure)
-            dlp_log: Enable DLP logging - 'enable' or 'disable'
-            extended_log: Enable extended logging - 'enable' or 'disable'
-            nac_quar_log: Enable NAC quarantine logging - 'enable' or 'disable'
-            full_archive_proto: Protocols to always content archive
-            summary_proto: Protocols to always log summary
-            fortidata_error_action: Action if FortiData query fails - 'log-only', 'block', 'ignore'
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name of the DLP profile. (optional)
+            comment: Comment. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            replacemsg_group: Replacement message group used by this DLP profile. (optional)
+            rule: Set up DLP rules for this profile. (optional)
+            dlp_log: Enable/disable DLP logging. (optional)
+            extended_log: Enable/disable extended logging for data loss prevention. (optional)
+            nac_quar_log: Enable/disable NAC quarantine logging. (optional)
+            full_archive_proto: Protocols to always content archive. (optional)
+            summary_proto: Protocols to always log summary. (optional)
+            fortidata_error_action: Action to take if FortiData query fails. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update comment
-            >>> result = fgt.cmdb.dlp.profile.update(
-            ...     name='email-protection',
-            ...     comment='Updated email DLP'
-            ... )
-
-            >>> # Add a rule
-            >>> result = fgt.cmdb.dlp.profile.update(
-            ...     name='email-protection',
-            ...     rule=[
-            ...         {
-            ...             'id': 1,
-            ...             'name': 'Block Credit Cards',
-            ...             'severity': 'critical',
-            ...             'type': 'message',
-            ...             'proto': 'smtp',
-            ...             'filter_by': 'sensor',
-            ...             'sensor': [{'name': 'cc-sensor'}],
-            ...             'action': 'block'
-            ...         }
-            ...     ]
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-        param_map = {
-            "comment": comment,
-            "feature_set": feature_set,
-            "replacemsg_group": replacemsg_group,
-            "rule": rule,
-            "dlp_log": dlp_log,
-            "extended_log": extended_log,
-            "nac_quar_log": nac_quar_log,
-            "full_archive_proto": full_archive_proto,
-            "summary_proto": summary_proto,
-            "fortidata_error_action": fortidata_error_action,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "comment": "comment",
-            "feature_set": "feature-set",
-            "replacemsg_group": "replacemsg-group",
-            "rule": "rule",
-            "dlp_log": "dlp-log",
-            "extended_log": "extended-log",
-            "nac_quar_log": "nac-quar-log",
-            "full_archive_proto": "full-archive-proto",
-            "summary_proto": "summary-proto",
-            "fortidata_error_action": "fortidata-error-action",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle rule list - convert snake_case keys to hyphen-case
-                if param_name == "rule" and isinstance(value, list):
-                    converted_rules = []
-                    for rule_item in value:
-                        converted_rule = {}
-                        for k, v in rule_item.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_rule[api_key] = v
-                        converted_rules.append(converted_rule)
-                    data[api_name] = converted_rules
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put("cmdb", f"dlp/profile/{name}", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/dlp/profile/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if rule is not None:
+            data_payload['rule'] = rule
+        if dlp_log is not None:
+            data_payload['dlp-log'] = dlp_log
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if nac_quar_log is not None:
+            data_payload['nac-quar-log'] = nac_quar_log
+        if full_archive_proto is not None:
+            data_payload['full-archive-proto'] = full_archive_proto
+        if summary_proto is not None:
+            data_payload['summary-proto'] = summary_proto
+        if fortidata_error_action is not None:
+            data_payload['fortidata-error-action'] = fortidata_error_action
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a DLP profile.
-
+        Delete this specific resource.
+        
         Args:
-            name: Name of the profile to delete
-            vdom: Virtual Domain(s)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete a profile
-            >>> result = fgt.cmdb.dlp.profile.delete('email-protection')
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"dlp/profile/{name}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/dlp/profile/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        feature_set: str | None = None,
+        replacemsg_group: str | None = None,
+        rule: list | None = None,
+        dlp_log: str | None = None,
+        extended_log: str | None = None,
+        nac_quar_log: str | None = None,
+        full_archive_proto: str | None = None,
+        summary_proto: str | None = None,
+        fortidata_error_action: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name of the DLP profile. (optional)
+            comment: Comment. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            replacemsg_group: Replacement message group used by this DLP profile. (optional)
+            rule: Set up DLP rules for this profile. (optional)
+            dlp_log: Enable/disable DLP logging. (optional)
+            extended_log: Enable/disable extended logging for data loss prevention. (optional)
+            nac_quar_log: Enable/disable NAC quarantine logging. (optional)
+            full_archive_proto: Protocols to always content archive. (optional)
+            summary_proto: Protocols to always log summary. (optional)
+            fortidata_error_action: Action to take if FortiData query fails. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if rule is not None:
+            data_payload['rule'] = rule
+        if dlp_log is not None:
+            data_payload['dlp-log'] = dlp_log
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if nac_quar_log is not None:
+            data_payload['nac-quar-log'] = nac_quar_log
+        if full_archive_proto is not None:
+            data_payload['full-archive-proto'] = full_archive_proto
+        if summary_proto is not None:
+            data_payload['summary-proto'] = summary_proto
+        if fortidata_error_action is not None:
+            data_payload['fortidata-error-action'] = fortidata_error_action
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

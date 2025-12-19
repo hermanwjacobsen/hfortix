@@ -1,290 +1,234 @@
 """
-FortiOS CMDB - DLP Exact Data Match
-
-Configure exact-data-match template used by DLP scan.
+FortiOS CMDB - Dlp ExactDataMatch
 
 API Endpoints:
-    GET    /dlp/exact-data-match           - List all / Get specific
-    POST   /dlp/exact-data-match           - Create
-    PUT    /dlp/exact-data-match/{name}   - Update
-    DELETE /dlp/exact-data-match/{name}   - Delete
+    GET    /dlp/exact-data-match
+    POST   /dlp/exact-data-match
+    GET    /dlp/exact-data-match/{name}
+    PUT    /dlp/exact-data-match/{name}
+    DELETE /dlp/exact-data-match/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class ExactDataMatch:
-    """DLP exact-data-match endpoint"""
+    """ExactDataMatch operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ExactDataMatch endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
         name: str | None = None,
-        # Query parameters
+        payload_dict: dict[str, Any] | None = None,
         attr: str | None = None,
-        count: int | None = None,
-        skip_to_datasource: dict[str, Any] | None = None,
+        skip_to_datasource: dict | None = None,
         acs: int | None = None,
         search: str | None = None,
-        scope: str | None = None,
-        datasource: bool | None = None,
-        with_meta: bool | None = None,
-        skip: bool | None = None,
-        format: str | None = None,
-        action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get DLP exact-data-match template(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Template name. If provided, gets specific template.
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned results are in ascending order
-            search: Filter objects by search value
-            scope: Scope - 'global', 'vdom', or 'both'
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (pipe-separated)
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary with exact-data-match template(s)
-
-        Examples:
-            >>> # Get all templates
-            >>> result = fgt.cmdb.dlp.exact_data_match.get()
-            >>> print(f"Total templates: {len(result['results'])}")
-
-            >>> # Get specific template
-            >>> result = fgt.cmdb.dlp.exact_data_match.get('employee-db')
-            >>> print(f"Data source: {result['results']['data']}")
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.dlp.exact_data_match.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build path
-        path = "dlp/exact-data-match"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"dlp/exact-data-match/{encode_path_component(name)}"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+            endpoint = f"/dlp/exact-data-match/{name}"
+        else:
+            endpoint = "/dlp/exact-data-match"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Template configuration
-        optional: int | None = None,
-        data: str | None = None,
-        columns: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> dict[str, Any]:
-        """
-        Create DLP exact-data-match template.
-
-        Args:
-            payload_dict: Complete configuration as dictionary (alternative to individual params)
-            name: Name of the template (max 35 chars)
-            optional: Number of optional columns need to match (0-32)
-            data: External resource for exact data match (max 35 chars)
-            columns: List of column definitions. Each column is a dict with:
-                - index (int): Column index (1-32)
-                - type (str): Data-type for this column (max 35 chars)
-                - optional (str): Enable/disable optional match - 'enable' or 'disable'
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create template for employee data
-            >>> result = fgt.cmdb.dlp.exact_data_match.create(
-            ...     name='employee-ssn-db',
-            ...     data='employee-data-source',
-            ...     optional=1,
-            ...     columns=[
-            ...         {'index': 1, 'type': 'ssn-us', 'optional': 'disable'},
-            ...         {'index': 2, 'type': 'keyword', 'optional': 'enable'}
-            ...     ]
-            ... )
-
-            >>> # POST - Create template with credit card data
-            >>> result = fgt.cmdb.dlp.exact_data_match.create(
-            ...     name='cc-database',
-            ...     data='credit-card-source',
-            ...     columns=[
-            ...         {'index': 1, 'type': 'credit-card', 'optional': 'disable'},
-            ...         {'index': 2, 'type': 'keyword', 'optional': 'disable'}
-            ...     ]
-            ... )
-        """
-        data_payload = {}
-        param_map = {
-            "name": name,
-            "optional": optional,
-            "data": data,
-            "columns": columns,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "optional": "optional",
-            "data": "data",
-            "columns": "columns",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data_payload[api_name] = value
-
-        data_payload.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "dlp/exact-data-match", data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Template configuration
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
         optional: int | None = None,
         data: str | None = None,
-        columns: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
+        columns: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update DLP exact-data-match template.
-
+        Update this specific resource.
+        
         Args:
-            payload_dict: Complete configuration as dictionary (alternative to individual params)
-            name: Name of the template to update
-            optional: Number of optional columns need to match (0-32)
-            data: External resource for exact data match (max 35 chars)
-            columns: List of column definitions. Each column is a dict with:
-                - index (int): Column index (1-32)
-                - type (str): Data-type for this column (max 35 chars)
-                - optional (str): Enable/disable optional match - 'enable' or 'disable'
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name of table containing the exact-data-match template. (optional)
+            optional: Number of optional columns need to match. (optional)
+            data: External resource for exact data match. (optional)
+            columns: DLP exact-data-match column types. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update optional count
-            >>> result = fgt.cmdb.dlp.exact_data_match.update(
-            ...     name='employee-ssn-db',
-            ...     optional=2
-            ... )
-
-            >>> # PUT - Update columns
-            >>> result = fgt.cmdb.dlp.exact_data_match.update(
-            ...     name='employee-ssn-db',
-            ...     columns=[
-            ...         {'index': 1, 'type': 'ssn-us', 'optional': 'disable'},
-            ...         {'index': 2, 'type': 'keyword', 'optional': 'enable'},
-            ...         {'index': 3, 'type': 'keyword', 'optional': 'enable'}
-            ...     ]
-            ... )
+            Dictionary containing API response
         """
-        data_payload = {}
-        param_map = {
-            "name": name,
-            "optional": optional,
-            "data": data,
-            "columns": columns,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "optional": "optional",
-            "data": "data",
-            "columns": "columns",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data_payload[api_name] = value
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/dlp/exact-data-match/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if optional is not None:
+            data_payload['optional'] = optional
+        if data is not None:
+            data_payload['data'] = data
+        if columns is not None:
+            data_payload['columns'] = columns
         data_payload.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"dlp/exact-data-match/{name}", data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a DLP exact-data-match template.
-
+        Delete this specific resource.
+        
         Args:
-            name: Name of the template to delete
-            vdom: Virtual Domain(s)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete template
-            >>> result = fgt.cmdb.dlp.exact_data_match.delete('employee-ssn-db')
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"dlp/exact-data-match/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/dlp/exact-data-match/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        optional: int | None = None,
+        data: str | None = None,
+        columns: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name of table containing the exact-data-match template. (optional)
+            optional: Number of optional columns need to match. (optional)
+            data: External resource for exact data match. (optional)
+            columns: DLP exact-data-match column types. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/exact-data-match"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if optional is not None:
+            data_payload['optional'] = optional
+        if data is not None:
+            data_payload['data'] = data
+        if columns is not None:
+            data_payload['columns'] = columns
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

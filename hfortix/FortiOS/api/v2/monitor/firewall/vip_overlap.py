@@ -1,15 +1,15 @@
-"""Virtual IP overlap detection operations."""
+"""Monitor API - VipOverlap operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class VipOverlap:
-    """Overlapping Virtual IP detection."""
+    """VipOverlap operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize VipOverlap endpoint.
 
@@ -18,20 +18,26 @@ class VipOverlap:
         """
         self._client = client
 
-    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         List any Virtual IPs that overlap with another Virtual IP.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing overlapping VIPs
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.vip_overlap.list()
+            >>> fgt.api.monitor.firewall.vip_overlap.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/vip-overlap", params=params)

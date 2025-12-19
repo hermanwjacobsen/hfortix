@@ -1,15 +1,15 @@
-"""IPv6 Fabric Connector dynamic address monitoring."""
+"""Monitor API - Address6Dynamic operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class Address6Dynamic:
-    """IPv6 Fabric Connector address objects and resolved IPs."""
+    """Address6Dynamic operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Address6Dynamic endpoint.
 
@@ -18,49 +18,30 @@ class Address6Dynamic:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        List of all IPv6 Fabric Connector address objects and the IPs they resolve to.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            name: Filter by address object name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing IPv6 Fabric Connector address resolutions
-
-        Example:
-            >>> fgt.api.monitor.firewall.address6_dynamic.list()
-            >>> fgt.api.monitor.firewall.address6_dynamic.list(name='aws_instances_v6')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if name is not None:
-            params["name"] = name
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/address6-dynamic", params=params)
-
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, name: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        mkey: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get IPv6 Fabric Connector address resolution for a specific object.
-
+        List of IPv6 Fabric Connector address objects and the IPs they resolve to.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            name: Address object name to retrieve
+            mkey: Name of the dynamic address to retrieve. If this is not provided, all dynamic addresses will be retrieved. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing IPv6 Fabric Connector address resolution
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.address6_dynamic.get(name='aws_instances_v6')
+            >>> fgt.api.monitor.firewall.address6_dynamic.get()
         """
-        params = data_dict.copy() if data_dict else {}
-        if name is not None:
-            params["name"] = name
+        params = payload_dict.copy() if payload_dict else {}
+        if mkey is not None:
+            params['mkey'] = mkey
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/address6-dynamic", params=params)

@@ -1,219 +1,370 @@
 """
 FortiOS CMDB - System DnsDatabase
 
-Configure DNS databases.
-
 API Endpoints:
-    GET    /system/dns-database           - List all / Get specific
-    POST   /system/dns-database           - Create
-    PUT    /system/dns-database/{name}   - Update
-    DELETE /system/dns-database/{name}   - Delete
+    GET    /system/dns-database
+    POST   /system/dns-database
+    GET    /system/dns-database/{name}
+    PUT    /system/dns-database/{name}
+    DELETE /system/dns-database/{name}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class DnsDatabase:
-    """dns-database endpoint"""
+    """DnsDatabase operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize DnsDatabase endpoint
+        Initialize DnsDatabase endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get dns-database
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.dns_database.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.dns_database.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
-        params.update(kwargs)
-        
-        path = "system/dns-database"
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create dns-database
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.dns_database.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.dns_database.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/dns-database", data=data, vdom=vdom)
+            endpoint = f"/system/dns-database/{name}"
+        else:
+            endpoint = "/system/dns-database"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        domain: str | None = None,
+        allow_transfer: str | None = None,
+        type: str | None = None,
+        view: str | None = None,
+        ip_primary: str | None = None,
+        primary_name: str | None = None,
+        contact: str | None = None,
+        ttl: int | None = None,
+        authoritative: str | None = None,
+        forwarder: str | None = None,
+        forwarder6: str | None = None,
+        source_ip: str | None = None,
+        source_ip6: str | None = None,
+        source_ip_interface: str | None = None,
+        rr_max: int | None = None,
+        dns_entry: list | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update dns-database
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Zone name. (optional)
+            status: Enable/disable this DNS zone. (optional)
+            domain: Domain name. (optional)
+            allow_transfer: DNS zone transfer IP address list. (optional)
+            type: Zone type (primary to manage entries directly, secondary to import entries from other zones). (optional)
+            view: Zone view (public to serve public clients, shadow to serve internal clients). (optional)
+            ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone. (optional)
+            primary_name: Domain name of the default DNS server for this zone. (optional)
+            contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone. (optional)
+            ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400). (optional)
+            authoritative: Enable/disable authoritative zone. (optional)
+            forwarder: DNS zone forwarder IP address list. (optional)
+            forwarder6: Forwarder IPv6 address. (optional)
+            source_ip: Source IP for forwarding to DNS server. (optional)
+            source_ip6: IPv6 source IP address for forwarding to DNS server. (optional)
+            source_ip_interface: IP address of the specified interface as the source IP address. (optional)
+            rr_max: Maximum number of resource records (10 - 65536, 0 means infinite). (optional)
+            dns_entry: DNS entry. (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.dns_database.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.dns_database.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/dns-database/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/system/dns-database/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if domain is not None:
+            data_payload['domain'] = domain
+        if allow_transfer is not None:
+            data_payload['allow-transfer'] = allow_transfer
+        if type is not None:
+            data_payload['type'] = type
+        if view is not None:
+            data_payload['view'] = view
+        if ip_primary is not None:
+            data_payload['ip-primary'] = ip_primary
+        if primary_name is not None:
+            data_payload['primary-name'] = primary_name
+        if contact is not None:
+            data_payload['contact'] = contact
+        if ttl is not None:
+            data_payload['ttl'] = ttl
+        if authoritative is not None:
+            data_payload['authoritative'] = authoritative
+        if forwarder is not None:
+            data_payload['forwarder'] = forwarder
+        if forwarder6 is not None:
+            data_payload['forwarder6'] = forwarder6
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if source_ip6 is not None:
+            data_payload['source-ip6'] = source_ip6
+        if source_ip_interface is not None:
+            data_payload['source-ip-interface'] = source_ip_interface
+        if rr_max is not None:
+            data_payload['rr-max'] = rr_max
+        if dns_entry is not None:
+            data_payload['dns-entry'] = dns_entry
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete dns-database
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.dns_database.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/dns-database/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/system/dns-database/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        domain: str | None = None,
+        allow_transfer: str | None = None,
+        type: str | None = None,
+        view: str | None = None,
+        ip_primary: str | None = None,
+        primary_name: str | None = None,
+        contact: str | None = None,
+        ttl: int | None = None,
+        authoritative: str | None = None,
+        forwarder: str | None = None,
+        forwarder6: str | None = None,
+        source_ip: str | None = None,
+        source_ip6: str | None = None,
+        source_ip_interface: str | None = None,
+        rr_max: int | None = None,
+        dns_entry: list | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if dns-database exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Zone name. (optional)
+            status: Enable/disable this DNS zone. (optional)
+            domain: Domain name. (optional)
+            allow_transfer: DNS zone transfer IP address list. (optional)
+            type: Zone type (primary to manage entries directly, secondary to import entries from other zones). (optional)
+            view: Zone view (public to serve public clients, shadow to serve internal clients). (optional)
+            ip_primary: IP address of primary DNS server. Entries in this primary DNS server and imported into the DNS zone. (optional)
+            primary_name: Domain name of the default DNS server for this zone. (optional)
+            contact: Email address of the administrator for this zone. You can specify only the username, such as admin or the full email address, such as admin@test.com When using only a username, the domain of the email will be this zone. (optional)
+            ttl: Default time-to-live value for the entries of this DNS zone (0 - 2147483647 sec, default = 86400). (optional)
+            authoritative: Enable/disable authoritative zone. (optional)
+            forwarder: DNS zone forwarder IP address list. (optional)
+            forwarder6: Forwarder IPv6 address. (optional)
+            source_ip: Source IP for forwarding to DNS server. (optional)
+            source_ip6: IPv6 source IP address for forwarding to DNS server. (optional)
+            source_ip_interface: IP address of the specified interface as the source IP address. (optional)
+            rr_max: Maximum number of resource records (10 - 65536, 0 means infinite). (optional)
+            dns_entry: DNS entry. (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.dns_database.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/dns-database"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if domain is not None:
+            data_payload['domain'] = domain
+        if allow_transfer is not None:
+            data_payload['allow-transfer'] = allow_transfer
+        if type is not None:
+            data_payload['type'] = type
+        if view is not None:
+            data_payload['view'] = view
+        if ip_primary is not None:
+            data_payload['ip-primary'] = ip_primary
+        if primary_name is not None:
+            data_payload['primary-name'] = primary_name
+        if contact is not None:
+            data_payload['contact'] = contact
+        if ttl is not None:
+            data_payload['ttl'] = ttl
+        if authoritative is not None:
+            data_payload['authoritative'] = authoritative
+        if forwarder is not None:
+            data_payload['forwarder'] = forwarder
+        if forwarder6 is not None:
+            data_payload['forwarder6'] = forwarder6
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if source_ip6 is not None:
+            data_payload['source-ip6'] = source_ip6
+        if source_ip_interface is not None:
+            data_payload['source-ip-interface'] = source_ip_interface
+        if rr_max is not None:
+            data_payload['rr-max'] = rr_max
+        if dns_entry is not None:
+            data_payload['dns-entry'] = dns_entry
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

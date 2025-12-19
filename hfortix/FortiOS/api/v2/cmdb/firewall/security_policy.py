@@ -1,1080 +1,842 @@
 """
-FortiOS security-policy API wrapper.
-Provides access to /api/v2/cmdb/firewall/security-policy endpoint.
+FortiOS CMDB - Firewall SecurityPolicy
+
+API Endpoints:
+    GET    /firewall/security-policy
+    POST   /firewall/security-policy
+    GET    /firewall/security-policy/{policyid}
+    PUT    /firewall/security-policy/{policyid}
+    DELETE /firewall/security-policy/{policyid}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class SecurityPolicy:
-    """
-    Wrapper for firewall security-policy API endpoint.
+    """SecurityPolicy operations."""
 
-    Manages security-policy configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the SecurityPolicy wrapper.
+        Initialize SecurityPolicy endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/security-policy"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific security-policy entry by its policyid.
-
-        Args:
-            mkey: The policyid (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        app_category: Optional[list] = None,
-        app_group: Optional[list] = None,
-        application: Optional[list] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        comments: Optional[str] = None,
-        diameter_filter_profile: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        dstaddr6: Optional[list] = None,
-        dstaddr6_negate: Optional[str] = None,
-        dstintf: Optional[list] = None,
-        emailfilter_profile: Optional[str] = None,
-        enforce_default_app_port: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        fsso_groups: Optional[list] = None,
-        groups: Optional[list] = None,
-        icap_profile: Optional[str] = None,
-        internet_service: Optional[str] = None,
-        internet_service_custom: Optional[list] = None,
-        internet_service_custom_group: Optional[list] = None,
-        internet_service_fortiguard: Optional[list] = None,
-        internet_service_group: Optional[list] = None,
-        internet_service_name: Optional[list] = None,
-        internet_service_negate: Optional[str] = None,
-        internet_service_src: Optional[str] = None,
-        internet_service_src_custom: Optional[list] = None,
-        internet_service_src_custom_group: Optional[list] = None,
-        internet_service_src_fortiguard: Optional[list] = None,
-        internet_service_src_group: Optional[list] = None,
-        internet_service_src_name: Optional[list] = None,
-        internet_service_src_negate: Optional[str] = None,
-        internet_service6: Optional[str] = None,
-        internet_service6_custom: Optional[list] = None,
-        internet_service6_custom_group: Optional[list] = None,
-        internet_service6_fortiguard: Optional[list] = None,
-        internet_service6_group: Optional[list] = None,
-        internet_service6_name: Optional[list] = None,
-        internet_service6_negate: Optional[str] = None,
-        internet_service6_src: Optional[str] = None,
-        internet_service6_src_custom: Optional[list] = None,
-        internet_service6_src_custom_group: Optional[list] = None,
-        internet_service6_src_fortiguard: Optional[list] = None,
-        internet_service6_src_group: Optional[list] = None,
-        internet_service6_src_name: Optional[list] = None,
-        internet_service6_src_negate: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        learning_mode: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        name: Optional[str] = None,
-        nat46: Optional[str] = None,
-        nat64: Optional[str] = None,
-        policyid: Optional[int] = None,
-        profile_group: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        profile_type: Optional[str] = None,
-        schedule: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        send_deny_packet: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        srcaddr6: Optional[list] = None,
-        srcaddr6_negate: Optional[str] = None,
-        srcintf: Optional[list] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        status: Optional[str] = None,
-        url_category: Optional[str] = None,
-        users: Optional[list] = None,
-        uuid: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        virtual_patch_profile: Optional[str] = None,
-        voip_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create security-policy entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Policy action (accept/deny).
-            app-category (list[object]):
-                Application category ID list.
-            app-group (list[object]):
-                Application group names.
-            application (list[object]):
-                Application ID list.
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            comments (string) (max_len: 1023):
-                Comment.
-            diameter-filter-profile (string) (max_len: 47):
-                Name of an existing Diameter filter profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            dstaddr (list[object]):
-                Destination IPv4 address name and address group names.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr specifies what the destination address ...
-            dstaddr6 (list[object]):
-                Destination IPv6 address name and address group names.
-            dstaddr6-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr6 specifies what the destination address...
-            dstintf (list[object]):
-                Outgoing (egress) interface.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            enforce-default-app-port (string) (enum: ['enable', 'disable']):
-                Enable/disable default application port enforcement for allo...
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            fsso-groups (list[object]):
-                Names of FSSO groups.
-            groups (list[object]):
-                Names of user groups that can authenticate with this policy.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            internet-service (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services for this policy. If ...
-            internet-service-custom (list[object]):
-                Custom Internet Service name.
-            internet-service-custom-group (list[object]):
-                Custom Internet Service group name.
-            internet-service-fortiguard (list[object]):
-                FortiGuard Internet Service name.
-            internet-service-group (list[object]):
-                Internet Service group name.
-            internet-service-name (list[object]):
-                Internet Service name.
-            internet-service-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service specifies what the service mus...
-            internet-service-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services in source for this p...
-            internet-service-src-custom (list[object]):
-                Custom Internet Service source name.
-            internet-service-src-custom-group (list[object]):
-                Custom Internet Service source group name.
-            internet-service-src-fortiguard (list[object]):
-                FortiGuard Internet Service source name.
-            internet-service-src-group (list[object]):
-                Internet Service source group name.
-            internet-service-src-name (list[object]):
-                Internet Service source name.
-            internet-service-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service-src specifies what the service...
-            internet-service6 (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services for this policy...
-            internet-service6-custom (list[object]):
-                Custom IPv6 Internet Service name.
-            internet-service6-custom-group (list[object]):
-                Custom IPv6 Internet Service group name.
-            internet-service6-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service name.
-            internet-service6-group (list[object]):
-                Internet Service group name.
-            internet-service6-name (list[object]):
-                IPv6 Internet Service name.
-            internet-service6-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6 specifies what the service mu...
-            internet-service6-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services in source for t...
-            internet-service6-src-custom (list[object]):
-                Custom IPv6 Internet Service source name.
-            internet-service6-src-custom-group (list[object]):
-                Custom Internet Service6 source group name.
-            internet-service6-src-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service source name.
-            internet-service6-src-group (list[object]):
-                Internet Service6 source group name.
-            internet-service6-src-name (list[object]):
-                IPv6 Internet Service source name.
-            internet-service6-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6-src specifies what the servic...
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            learning-mode (string) (enum: ['enable', 'disable']):
-                Enable to allow everything, but log all of the meaningful da...
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable or disable logging. Log all sessions or security prof...
-            name (string) (max_len: 35):
-                Policy name.
-            nat46 (string) (enum: ['enable', 'disable']):
-                Enable/disable NAT46.
-            nat64 (string) (enum: ['enable', 'disable']):
-                Enable/disable NAT64.
-            policyid (integer) (range: 0-4294967294):
-                Policy ID.
-            profile-group (string) (max_len: 47):
-                Name of profile group.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            profile-type (string) (enum: ['single', 'group']):
-                Determine whether the firewall policy allows security profil...
-            schedule (string) (max_len: 35):
-                Schedule name.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            send-deny-packet (string) (enum: ['disable', 'enable']):
-                Enable to send a reply when a session is denied or blocked b...
-            service (list[object]):
-                Service and service group names.
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled service specifies what the service must NOT be.
-            srcaddr (list[object]):
-                Source IPv4 address name and address group names.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr specifies what the source address must ...
-            srcaddr6 (list[object]):
-                Source IPv6 address name and address group names.
-            srcaddr6-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr6 specifies what the source address must...
-            srcintf (list[object]):
-                Incoming (ingress) interface.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            status (string) (enum: ['enable', 'disable']):
-                Enable or disable this policy.
-            url-category (string):
-                URL categories or groups.
-            users (list[object]):
-                Names of individual users that can authenticate with this po...
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            virtual-patch-profile (string) (max_len: 47):
-                Name of an existing virtual-patch profile.
-            voip-profile (string) (max_len: 47):
-                Name of an existing VoIP (voipd) profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-
+            policyid: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if app_category is not None:
-            payload_dict["app-category"] = app_category
-        if app_group is not None:
-            payload_dict["app-group"] = app_group
-        if application is not None:
-            payload_dict["application"] = application
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if diameter_filter_profile is not None:
-            payload_dict["diameter-filter-profile"] = diameter_filter_profile
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6 is not None:
-            payload_dict["dstaddr6"] = dstaddr6
-        if dstaddr6_negate is not None:
-            payload_dict["dstaddr6-negate"] = dstaddr6_negate
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if enforce_default_app_port is not None:
-            payload_dict["enforce-default-app-port"] = enforce_default_app_port
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if fsso_groups is not None:
-            payload_dict["fsso-groups"] = fsso_groups
-        if groups is not None:
-            payload_dict["groups"] = groups
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if internet_service is not None:
-            payload_dict["internet-service"] = internet_service
-        if internet_service_custom is not None:
-            payload_dict["internet-service-custom"] = internet_service_custom
-        if internet_service_custom_group is not None:
-            payload_dict["internet-service-custom-group"] = internet_service_custom_group
-        if internet_service_fortiguard is not None:
-            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
-        if internet_service_group is not None:
-            payload_dict["internet-service-group"] = internet_service_group
-        if internet_service_name is not None:
-            payload_dict["internet-service-name"] = internet_service_name
-        if internet_service_negate is not None:
-            payload_dict["internet-service-negate"] = internet_service_negate
-        if internet_service_src is not None:
-            payload_dict["internet-service-src"] = internet_service_src
-        if internet_service_src_custom is not None:
-            payload_dict["internet-service-src-custom"] = internet_service_src_custom
-        if internet_service_src_custom_group is not None:
-            payload_dict["internet-service-src-custom-group"] = internet_service_src_custom_group
-        if internet_service_src_fortiguard is not None:
-            payload_dict["internet-service-src-fortiguard"] = internet_service_src_fortiguard
-        if internet_service_src_group is not None:
-            payload_dict["internet-service-src-group"] = internet_service_src_group
-        if internet_service_src_name is not None:
-            payload_dict["internet-service-src-name"] = internet_service_src_name
-        if internet_service_src_negate is not None:
-            payload_dict["internet-service-src-negate"] = internet_service_src_negate
-        if internet_service6 is not None:
-            payload_dict["internet-service6"] = internet_service6
-        if internet_service6_custom is not None:
-            payload_dict["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
-        if internet_service6_fortiguard is not None:
-            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
-        if internet_service6_group is not None:
-            payload_dict["internet-service6-group"] = internet_service6_group
-        if internet_service6_name is not None:
-            payload_dict["internet-service6-name"] = internet_service6_name
-        if internet_service6_negate is not None:
-            payload_dict["internet-service6-negate"] = internet_service6_negate
-        if internet_service6_src is not None:
-            payload_dict["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_custom is not None:
-            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
-        if internet_service6_src_custom_group is not None:
-            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
-        if internet_service6_src_fortiguard is not None:
-            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
-        if internet_service6_src_group is not None:
-            payload_dict["internet-service6-src-group"] = internet_service6_src_group
-        if internet_service6_src_name is not None:
-            payload_dict["internet-service6-src-name"] = internet_service6_src_name
-        if internet_service6_src_negate is not None:
-            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if learning_mode is not None:
-            payload_dict["learning-mode"] = learning_mode
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if name is not None:
-            payload_dict["name"] = name
-        if nat46 is not None:
-            payload_dict["nat46"] = nat46
-        if nat64 is not None:
-            payload_dict["nat64"] = nat64
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if profile_group is not None:
-            payload_dict["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if profile_type is not None:
-            payload_dict["profile-type"] = profile_type
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if send_deny_packet is not None:
-            payload_dict["send-deny-packet"] = send_deny_packet
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6 is not None:
-            payload_dict["srcaddr6"] = srcaddr6
-        if srcaddr6_negate is not None:
-            payload_dict["srcaddr6-negate"] = srcaddr6_negate
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if status is not None:
-            payload_dict["status"] = status
-        if url_category is not None:
-            payload_dict["url-category"] = url_category
-        if users is not None:
-            payload_dict["users"] = users
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if virtual_patch_profile is not None:
-            payload_dict["virtual-patch-profile"] = virtual_patch_profile
-        if voip_profile is not None:
-            payload_dict["voip-profile"] = voip_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if policyid:
+            endpoint = f"/firewall/security-policy/{policyid}"
+        else:
+            endpoint = "/firewall/security-policy"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        app_category: Optional[list] = None,
-        app_group: Optional[list] = None,
-        application: Optional[list] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        comments: Optional[str] = None,
-        diameter_filter_profile: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        dstaddr6: Optional[list] = None,
-        dstaddr6_negate: Optional[str] = None,
-        dstintf: Optional[list] = None,
-        emailfilter_profile: Optional[str] = None,
-        enforce_default_app_port: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        fsso_groups: Optional[list] = None,
-        groups: Optional[list] = None,
-        icap_profile: Optional[str] = None,
-        internet_service: Optional[str] = None,
-        internet_service_custom: Optional[list] = None,
-        internet_service_custom_group: Optional[list] = None,
-        internet_service_fortiguard: Optional[list] = None,
-        internet_service_group: Optional[list] = None,
-        internet_service_name: Optional[list] = None,
-        internet_service_negate: Optional[str] = None,
-        internet_service_src: Optional[str] = None,
-        internet_service_src_custom: Optional[list] = None,
-        internet_service_src_custom_group: Optional[list] = None,
-        internet_service_src_fortiguard: Optional[list] = None,
-        internet_service_src_group: Optional[list] = None,
-        internet_service_src_name: Optional[list] = None,
-        internet_service_src_negate: Optional[str] = None,
-        internet_service6: Optional[str] = None,
-        internet_service6_custom: Optional[list] = None,
-        internet_service6_custom_group: Optional[list] = None,
-        internet_service6_fortiguard: Optional[list] = None,
-        internet_service6_group: Optional[list] = None,
-        internet_service6_name: Optional[list] = None,
-        internet_service6_negate: Optional[str] = None,
-        internet_service6_src: Optional[str] = None,
-        internet_service6_src_custom: Optional[list] = None,
-        internet_service6_src_custom_group: Optional[list] = None,
-        internet_service6_src_fortiguard: Optional[list] = None,
-        internet_service6_src_group: Optional[list] = None,
-        internet_service6_src_name: Optional[list] = None,
-        internet_service6_src_negate: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        learning_mode: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        name: Optional[str] = None,
-        nat46: Optional[str] = None,
-        nat64: Optional[str] = None,
-        policyid: Optional[int] = None,
-        profile_group: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        profile_type: Optional[str] = None,
-        schedule: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        send_deny_packet: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        srcaddr6: Optional[list] = None,
-        srcaddr6_negate: Optional[str] = None,
-        srcintf: Optional[list] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        status: Optional[str] = None,
-        url_category: Optional[str] = None,
-        users: Optional[list] = None,
-        uuid: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        virtual_patch_profile: Optional[str] = None,
-        voip_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        name: str | None = None,
+        comments: str | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        srcaddr: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr: list | None = None,
+        dstaddr_negate: str | None = None,
+        srcaddr6: list | None = None,
+        srcaddr6_negate: str | None = None,
+        dstaddr6: list | None = None,
+        dstaddr6_negate: str | None = None,
+        internet_service: str | None = None,
+        internet_service_name: list | None = None,
+        internet_service_negate: str | None = None,
+        internet_service_group: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_custom_group: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        internet_service_src: str | None = None,
+        internet_service_src_name: list | None = None,
+        internet_service_src_negate: str | None = None,
+        internet_service_src_group: list | None = None,
+        internet_service_src_custom: list | None = None,
+        internet_service_src_custom_group: list | None = None,
+        internet_service_src_fortiguard: list | None = None,
+        internet_service6: str | None = None,
+        internet_service6_name: list | None = None,
+        internet_service6_negate: str | None = None,
+        internet_service6_group: list | None = None,
+        internet_service6_custom: list | None = None,
+        internet_service6_custom_group: list | None = None,
+        internet_service6_fortiguard: list | None = None,
+        internet_service6_src: str | None = None,
+        internet_service6_src_name: list | None = None,
+        internet_service6_src_negate: str | None = None,
+        internet_service6_src_group: list | None = None,
+        internet_service6_src_custom: list | None = None,
+        internet_service6_src_custom_group: list | None = None,
+        internet_service6_src_fortiguard: list | None = None,
+        enforce_default_app_port: str | None = None,
+        service: list | None = None,
+        service_negate: str | None = None,
+        send_deny_packet: str | None = None,
+        schedule: str | None = None,
+        status: str | None = None,
+        logtraffic: str | None = None,
+        learning_mode: str | None = None,
+        nat46: str | None = None,
+        nat64: str | None = None,
+        profile_type: str | None = None,
+        profile_group: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        voip_profile: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        diameter_filter_profile: str | None = None,
+        virtual_patch_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        application: list | None = None,
+        app_category: list | None = None,
+        url_category: str | None = None,
+        app_group: list | None = None,
+        groups: list | None = None,
+        users: list | None = None,
+        fsso_groups: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update security-policy entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            action (string) (enum: ['accept', 'deny']):
-                Policy action (accept/deny).
-            app-category (list[object]):
-                Application category ID list.
-            app-group (list[object]):
-                Application group names.
-            application (list[object]):
-                Application ID list.
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            comments (string) (max_len: 1023):
-                Comment.
-            diameter-filter-profile (string) (max_len: 47):
-                Name of an existing Diameter filter profile.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            dstaddr (list[object]):
-                Destination IPv4 address name and address group names.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr specifies what the destination address ...
-            dstaddr6 (list[object]):
-                Destination IPv6 address name and address group names.
-            dstaddr6-negate (string) (enum: ['enable', 'disable']):
-                When enabled dstaddr6 specifies what the destination address...
-            dstintf (list[object]):
-                Outgoing (egress) interface.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            enforce-default-app-port (string) (enum: ['enable', 'disable']):
-                Enable/disable default application port enforcement for allo...
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            fsso-groups (list[object]):
-                Names of FSSO groups.
-            groups (list[object]):
-                Names of user groups that can authenticate with this policy.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            internet-service (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services for this policy. If ...
-            internet-service-custom (list[object]):
-                Custom Internet Service name.
-            internet-service-custom-group (list[object]):
-                Custom Internet Service group name.
-            internet-service-fortiguard (list[object]):
-                FortiGuard Internet Service name.
-            internet-service-group (list[object]):
-                Internet Service group name.
-            internet-service-name (list[object]):
-                Internet Service name.
-            internet-service-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service specifies what the service mus...
-            internet-service-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services in source for this p...
-            internet-service-src-custom (list[object]):
-                Custom Internet Service source name.
-            internet-service-src-custom-group (list[object]):
-                Custom Internet Service source group name.
-            internet-service-src-fortiguard (list[object]):
-                FortiGuard Internet Service source name.
-            internet-service-src-group (list[object]):
-                Internet Service source group name.
-            internet-service-src-name (list[object]):
-                Internet Service source name.
-            internet-service-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service-src specifies what the service...
-            internet-service6 (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services for this policy...
-            internet-service6-custom (list[object]):
-                Custom IPv6 Internet Service name.
-            internet-service6-custom-group (list[object]):
-                Custom IPv6 Internet Service group name.
-            internet-service6-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service name.
-            internet-service6-group (list[object]):
-                Internet Service group name.
-            internet-service6-name (list[object]):
-                IPv6 Internet Service name.
-            internet-service6-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6 specifies what the service mu...
-            internet-service6-src (string) (enum: ['enable', 'disable']):
-                Enable/disable use of IPv6 Internet Services in source for t...
-            internet-service6-src-custom (list[object]):
-                Custom IPv6 Internet Service source name.
-            internet-service6-src-custom-group (list[object]):
-                Custom Internet Service6 source group name.
-            internet-service6-src-fortiguard (list[object]):
-                FortiGuard IPv6 Internet Service source name.
-            internet-service6-src-group (list[object]):
-                Internet Service6 source group name.
-            internet-service6-src-name (list[object]):
-                IPv6 Internet Service source name.
-            internet-service6-src-negate (string) (enum: ['enable', 'disable']):
-                When enabled internet-service6-src specifies what the servic...
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            learning-mode (string) (enum: ['enable', 'disable']):
-                Enable to allow everything, but log all of the meaningful da...
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable or disable logging. Log all sessions or security prof...
-            name (string) (max_len: 35):
-                Policy name.
-            nat46 (string) (enum: ['enable', 'disable']):
-                Enable/disable NAT46.
-            nat64 (string) (enum: ['enable', 'disable']):
-                Enable/disable NAT64.
-            policyid (integer) (range: 0-4294967294):
-                Policy ID.
-            profile-group (string) (max_len: 47):
-                Name of profile group.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            profile-type (string) (enum: ['single', 'group']):
-                Determine whether the firewall policy allows security profil...
-            schedule (string) (max_len: 35):
-                Schedule name.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            send-deny-packet (string) (enum: ['disable', 'enable']):
-                Enable to send a reply when a session is denied or blocked b...
-            service (list[object]):
-                Service and service group names.
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled service specifies what the service must NOT be.
-            srcaddr (list[object]):
-                Source IPv4 address name and address group names.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr specifies what the source address must ...
-            srcaddr6 (list[object]):
-                Source IPv6 address name and address group names.
-            srcaddr6-negate (string) (enum: ['enable', 'disable']):
-                When enabled srcaddr6 specifies what the source address must...
-            srcintf (list[object]):
-                Incoming (ingress) interface.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            status (string) (enum: ['enable', 'disable']):
-                Enable or disable this policy.
-            url-category (string):
-                URL categories or groups.
-            users (list[object]):
-                Names of individual users that can authenticate with this po...
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            virtual-patch-profile (string) (max_len: 47):
-                Name of an existing virtual-patch profile.
-            voip-profile (string) (max_len: 47):
-                Name of an existing VoIP (voipd) profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            policyid: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            policyid: Policy ID. (optional)
+            name: Policy name. (optional)
+            comments: Comment. (optional)
+            srcintf: Incoming (ingress) interface. (optional)
+            dstintf: Outgoing (egress) interface. (optional)
+            srcaddr: Source IPv4 address name and address group names. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
+            dstaddr: Destination IPv4 address name and address group names. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
+            srcaddr6: Source IPv6 address name and address group names. (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
+            dstaddr6: Destination IPv6 address name and address group names. (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
+            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service_name: Internet Service name. (optional)
+            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
+            internet_service_group: Internet Service group name. (optional)
+            internet_service_custom: Custom Internet Service name. (optional)
+            internet_service_custom_group: Custom Internet Service group name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
+            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_src_name: Internet Service source name. (optional)
+            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
+            internet_service_src_group: Internet Service source group name. (optional)
+            internet_service_src_custom: Custom Internet Service source name. (optional)
+            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service6_name: IPv6 Internet Service name. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
+            internet_service6_group: Internet Service group name. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
+            internet_service6_custom_group: Custom IPv6 Internet Service group name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service6_src_name: IPv6 Internet Service source name. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
+            internet_service6_src_group: Internet Service6 source group name. (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            service: Service and service group names. (optional)
+            service_negate: When enabled service specifies what the service must NOT be. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
+            schedule: Schedule name. (optional)
+            status: Enable or disable this policy. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            nat64: Enable/disable NAT64. (optional)
+            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_group: Name of profile group. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            voip_profile: Name of an existing VoIP (voipd) profile. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            application: Application ID list. (optional)
+            app_category: Application category ID list. (optional)
+            url_category: URL categories or groups. (optional)
+            app_group: Application group names. (optional)
+            groups: Names of user groups that can authenticate with this policy. (optional)
+            users: Names of individual users that can authenticate with this policy. (optional)
+            fsso_groups: Names of FSSO groups. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if action is not None:
-            payload_dict["action"] = action
-        if app_category is not None:
-            payload_dict["app-category"] = app_category
-        if app_group is not None:
-            payload_dict["app-group"] = app_group
-        if application is not None:
-            payload_dict["application"] = application
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if diameter_filter_profile is not None:
-            payload_dict["diameter-filter-profile"] = diameter_filter_profile
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6 is not None:
-            payload_dict["dstaddr6"] = dstaddr6
-        if dstaddr6_negate is not None:
-            payload_dict["dstaddr6-negate"] = dstaddr6_negate
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if enforce_default_app_port is not None:
-            payload_dict["enforce-default-app-port"] = enforce_default_app_port
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if fsso_groups is not None:
-            payload_dict["fsso-groups"] = fsso_groups
-        if groups is not None:
-            payload_dict["groups"] = groups
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if internet_service is not None:
-            payload_dict["internet-service"] = internet_service
-        if internet_service_custom is not None:
-            payload_dict["internet-service-custom"] = internet_service_custom
-        if internet_service_custom_group is not None:
-            payload_dict["internet-service-custom-group"] = internet_service_custom_group
-        if internet_service_fortiguard is not None:
-            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
-        if internet_service_group is not None:
-            payload_dict["internet-service-group"] = internet_service_group
-        if internet_service_name is not None:
-            payload_dict["internet-service-name"] = internet_service_name
-        if internet_service_negate is not None:
-            payload_dict["internet-service-negate"] = internet_service_negate
-        if internet_service_src is not None:
-            payload_dict["internet-service-src"] = internet_service_src
-        if internet_service_src_custom is not None:
-            payload_dict["internet-service-src-custom"] = internet_service_src_custom
-        if internet_service_src_custom_group is not None:
-            payload_dict["internet-service-src-custom-group"] = internet_service_src_custom_group
-        if internet_service_src_fortiguard is not None:
-            payload_dict["internet-service-src-fortiguard"] = internet_service_src_fortiguard
-        if internet_service_src_group is not None:
-            payload_dict["internet-service-src-group"] = internet_service_src_group
-        if internet_service_src_name is not None:
-            payload_dict["internet-service-src-name"] = internet_service_src_name
-        if internet_service_src_negate is not None:
-            payload_dict["internet-service-src-negate"] = internet_service_src_negate
-        if internet_service6 is not None:
-            payload_dict["internet-service6"] = internet_service6
-        if internet_service6_custom is not None:
-            payload_dict["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
-        if internet_service6_fortiguard is not None:
-            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
-        if internet_service6_group is not None:
-            payload_dict["internet-service6-group"] = internet_service6_group
-        if internet_service6_name is not None:
-            payload_dict["internet-service6-name"] = internet_service6_name
-        if internet_service6_negate is not None:
-            payload_dict["internet-service6-negate"] = internet_service6_negate
-        if internet_service6_src is not None:
-            payload_dict["internet-service6-src"] = internet_service6_src
-        if internet_service6_src_custom is not None:
-            payload_dict["internet-service6-src-custom"] = internet_service6_src_custom
-        if internet_service6_src_custom_group is not None:
-            payload_dict["internet-service6-src-custom-group"] = internet_service6_src_custom_group
-        if internet_service6_src_fortiguard is not None:
-            payload_dict["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
-        if internet_service6_src_group is not None:
-            payload_dict["internet-service6-src-group"] = internet_service6_src_group
-        if internet_service6_src_name is not None:
-            payload_dict["internet-service6-src-name"] = internet_service6_src_name
-        if internet_service6_src_negate is not None:
-            payload_dict["internet-service6-src-negate"] = internet_service6_src_negate
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if learning_mode is not None:
-            payload_dict["learning-mode"] = learning_mode
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if name is not None:
-            payload_dict["name"] = name
-        if nat46 is not None:
-            payload_dict["nat46"] = nat46
-        if nat64 is not None:
-            payload_dict["nat64"] = nat64
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if profile_group is not None:
-            payload_dict["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if profile_type is not None:
-            payload_dict["profile-type"] = profile_type
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if send_deny_packet is not None:
-            payload_dict["send-deny-packet"] = send_deny_packet
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6 is not None:
-            payload_dict["srcaddr6"] = srcaddr6
-        if srcaddr6_negate is not None:
-            payload_dict["srcaddr6-negate"] = srcaddr6_negate
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if status is not None:
-            payload_dict["status"] = status
-        if url_category is not None:
-            payload_dict["url-category"] = url_category
-        if users is not None:
-            payload_dict["users"] = users
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if virtual_patch_profile is not None:
-            payload_dict["virtual-patch-profile"] = virtual_patch_profile
-        if voip_profile is not None:
-            payload_dict["voip-profile"] = voip_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for put()")
+        endpoint = f"/firewall/security-policy/{policyid}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if srcaddr6_negate is not None:
+            data_payload['srcaddr6-negate'] = srcaddr6_negate
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if dstaddr6_negate is not None:
+            data_payload['dstaddr6-negate'] = dstaddr6_negate
+        if internet_service is not None:
+            data_payload['internet-service'] = internet_service
+        if internet_service_name is not None:
+            data_payload['internet-service-name'] = internet_service_name
+        if internet_service_negate is not None:
+            data_payload['internet-service-negate'] = internet_service_negate
+        if internet_service_group is not None:
+            data_payload['internet-service-group'] = internet_service_group
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_custom_group is not None:
+            data_payload['internet-service-custom-group'] = internet_service_custom_group
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if internet_service_src is not None:
+            data_payload['internet-service-src'] = internet_service_src
+        if internet_service_src_name is not None:
+            data_payload['internet-service-src-name'] = internet_service_src_name
+        if internet_service_src_negate is not None:
+            data_payload['internet-service-src-negate'] = internet_service_src_negate
+        if internet_service_src_group is not None:
+            data_payload['internet-service-src-group'] = internet_service_src_group
+        if internet_service_src_custom is not None:
+            data_payload['internet-service-src-custom'] = internet_service_src_custom
+        if internet_service_src_custom_group is not None:
+            data_payload['internet-service-src-custom-group'] = internet_service_src_custom_group
+        if internet_service_src_fortiguard is not None:
+            data_payload['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+        if internet_service6 is not None:
+            data_payload['internet-service6'] = internet_service6
+        if internet_service6_name is not None:
+            data_payload['internet-service6-name'] = internet_service6_name
+        if internet_service6_negate is not None:
+            data_payload['internet-service6-negate'] = internet_service6_negate
+        if internet_service6_group is not None:
+            data_payload['internet-service6-group'] = internet_service6_group
+        if internet_service6_custom is not None:
+            data_payload['internet-service6-custom'] = internet_service6_custom
+        if internet_service6_custom_group is not None:
+            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+        if internet_service6_fortiguard is not None:
+            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+        if internet_service6_src is not None:
+            data_payload['internet-service6-src'] = internet_service6_src
+        if internet_service6_src_name is not None:
+            data_payload['internet-service6-src-name'] = internet_service6_src_name
+        if internet_service6_src_negate is not None:
+            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+        if internet_service6_src_group is not None:
+            data_payload['internet-service6-src-group'] = internet_service6_src_group
+        if internet_service6_src_custom is not None:
+            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+        if internet_service6_src_custom_group is not None:
+            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+        if internet_service6_src_fortiguard is not None:
+            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+        if enforce_default_app_port is not None:
+            data_payload['enforce-default-app-port'] = enforce_default_app_port
+        if service is not None:
+            data_payload['service'] = service
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if send_deny_packet is not None:
+            data_payload['send-deny-packet'] = send_deny_packet
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if status is not None:
+            data_payload['status'] = status
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if learning_mode is not None:
+            data_payload['learning-mode'] = learning_mode
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if nat64 is not None:
+            data_payload['nat64'] = nat64
+        if profile_type is not None:
+            data_payload['profile-type'] = profile_type
+        if profile_group is not None:
+            data_payload['profile-group'] = profile_group
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if voip_profile is not None:
+            data_payload['voip-profile'] = voip_profile
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if diameter_filter_profile is not None:
+            data_payload['diameter-filter-profile'] = diameter_filter_profile
+        if virtual_patch_profile is not None:
+            data_payload['virtual-patch-profile'] = virtual_patch_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        if application is not None:
+            data_payload['application'] = application
+        if app_category is not None:
+            data_payload['app-category'] = app_category
+        if url_category is not None:
+            data_payload['url-category'] = url_category
+        if app_group is not None:
+            data_payload['app-group'] = app_group
+        if groups is not None:
+            data_payload['groups'] = groups
+        if users is not None:
+            data_payload['users'] = users
+        if fsso_groups is not None:
+            data_payload['fsso-groups'] = fsso_groups
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a security-policy entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            policyid: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for delete()")
+        endpoint = f"/firewall/security-policy/{policyid}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        uuid: str | None = None,
+        policyid: int | None = None,
+        name: str | None = None,
+        comments: str | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        srcaddr: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr: list | None = None,
+        dstaddr_negate: str | None = None,
+        srcaddr6: list | None = None,
+        srcaddr6_negate: str | None = None,
+        dstaddr6: list | None = None,
+        dstaddr6_negate: str | None = None,
+        internet_service: str | None = None,
+        internet_service_name: list | None = None,
+        internet_service_negate: str | None = None,
+        internet_service_group: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_custom_group: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        internet_service_src: str | None = None,
+        internet_service_src_name: list | None = None,
+        internet_service_src_negate: str | None = None,
+        internet_service_src_group: list | None = None,
+        internet_service_src_custom: list | None = None,
+        internet_service_src_custom_group: list | None = None,
+        internet_service_src_fortiguard: list | None = None,
+        internet_service6: str | None = None,
+        internet_service6_name: list | None = None,
+        internet_service6_negate: str | None = None,
+        internet_service6_group: list | None = None,
+        internet_service6_custom: list | None = None,
+        internet_service6_custom_group: list | None = None,
+        internet_service6_fortiguard: list | None = None,
+        internet_service6_src: str | None = None,
+        internet_service6_src_name: list | None = None,
+        internet_service6_src_negate: str | None = None,
+        internet_service6_src_group: list | None = None,
+        internet_service6_src_custom: list | None = None,
+        internet_service6_src_custom_group: list | None = None,
+        internet_service6_src_fortiguard: list | None = None,
+        enforce_default_app_port: str | None = None,
+        service: list | None = None,
+        service_negate: str | None = None,
+        send_deny_packet: str | None = None,
+        schedule: str | None = None,
+        status: str | None = None,
+        logtraffic: str | None = None,
+        learning_mode: str | None = None,
+        nat46: str | None = None,
+        nat64: str | None = None,
+        profile_type: str | None = None,
+        profile_group: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        voip_profile: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        diameter_filter_profile: str | None = None,
+        virtual_patch_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        application: list | None = None,
+        app_category: list | None = None,
+        url_category: str | None = None,
+        app_group: list | None = None,
+        groups: list | None = None,
+        users: list | None = None,
+        fsso_groups: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            policyid: Policy ID. (optional)
+            name: Policy name. (optional)
+            comments: Comment. (optional)
+            srcintf: Incoming (ingress) interface. (optional)
+            dstintf: Outgoing (egress) interface. (optional)
+            srcaddr: Source IPv4 address name and address group names. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
+            dstaddr: Destination IPv4 address name and address group names. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
+            srcaddr6: Source IPv6 address name and address group names. (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
+            dstaddr6: Destination IPv6 address name and address group names. (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
+            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service_name: Internet Service name. (optional)
+            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
+            internet_service_group: Internet Service group name. (optional)
+            internet_service_custom: Custom Internet Service name. (optional)
+            internet_service_custom_group: Custom Internet Service group name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
+            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_src_name: Internet Service source name. (optional)
+            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
+            internet_service_src_group: Internet Service source group name. (optional)
+            internet_service_src_custom: Custom Internet Service source name. (optional)
+            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service6_name: IPv6 Internet Service name. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
+            internet_service6_group: Internet Service group name. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
+            internet_service6_custom_group: Custom IPv6 Internet Service group name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service6_src_name: IPv6 Internet Service source name. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
+            internet_service6_src_group: Internet Service6 source group name. (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            service: Service and service group names. (optional)
+            service_negate: When enabled service specifies what the service must NOT be. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
+            schedule: Schedule name. (optional)
+            status: Enable or disable this policy. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            nat64: Enable/disable NAT64. (optional)
+            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_group: Name of profile group. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            voip_profile: Name of an existing VoIP (voipd) profile. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            application: Application ID list. (optional)
+            app_category: Application category ID list. (optional)
+            url_category: URL categories or groups. (optional)
+            app_group: Application group names. (optional)
+            groups: Names of user groups that can authenticate with this policy. (optional)
+            users: Names of individual users that can authenticate with this policy. (optional)
+            fsso_groups: Names of FSSO groups. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/security-policy"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if name is not None:
+            data_payload['name'] = name
+        if comments is not None:
+            data_payload['comments'] = comments
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if srcaddr6_negate is not None:
+            data_payload['srcaddr6-negate'] = srcaddr6_negate
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if dstaddr6_negate is not None:
+            data_payload['dstaddr6-negate'] = dstaddr6_negate
+        if internet_service is not None:
+            data_payload['internet-service'] = internet_service
+        if internet_service_name is not None:
+            data_payload['internet-service-name'] = internet_service_name
+        if internet_service_negate is not None:
+            data_payload['internet-service-negate'] = internet_service_negate
+        if internet_service_group is not None:
+            data_payload['internet-service-group'] = internet_service_group
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_custom_group is not None:
+            data_payload['internet-service-custom-group'] = internet_service_custom_group
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if internet_service_src is not None:
+            data_payload['internet-service-src'] = internet_service_src
+        if internet_service_src_name is not None:
+            data_payload['internet-service-src-name'] = internet_service_src_name
+        if internet_service_src_negate is not None:
+            data_payload['internet-service-src-negate'] = internet_service_src_negate
+        if internet_service_src_group is not None:
+            data_payload['internet-service-src-group'] = internet_service_src_group
+        if internet_service_src_custom is not None:
+            data_payload['internet-service-src-custom'] = internet_service_src_custom
+        if internet_service_src_custom_group is not None:
+            data_payload['internet-service-src-custom-group'] = internet_service_src_custom_group
+        if internet_service_src_fortiguard is not None:
+            data_payload['internet-service-src-fortiguard'] = internet_service_src_fortiguard
+        if internet_service6 is not None:
+            data_payload['internet-service6'] = internet_service6
+        if internet_service6_name is not None:
+            data_payload['internet-service6-name'] = internet_service6_name
+        if internet_service6_negate is not None:
+            data_payload['internet-service6-negate'] = internet_service6_negate
+        if internet_service6_group is not None:
+            data_payload['internet-service6-group'] = internet_service6_group
+        if internet_service6_custom is not None:
+            data_payload['internet-service6-custom'] = internet_service6_custom
+        if internet_service6_custom_group is not None:
+            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+        if internet_service6_fortiguard is not None:
+            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+        if internet_service6_src is not None:
+            data_payload['internet-service6-src'] = internet_service6_src
+        if internet_service6_src_name is not None:
+            data_payload['internet-service6-src-name'] = internet_service6_src_name
+        if internet_service6_src_negate is not None:
+            data_payload['internet-service6-src-negate'] = internet_service6_src_negate
+        if internet_service6_src_group is not None:
+            data_payload['internet-service6-src-group'] = internet_service6_src_group
+        if internet_service6_src_custom is not None:
+            data_payload['internet-service6-src-custom'] = internet_service6_src_custom
+        if internet_service6_src_custom_group is not None:
+            data_payload['internet-service6-src-custom-group'] = internet_service6_src_custom_group
+        if internet_service6_src_fortiguard is not None:
+            data_payload['internet-service6-src-fortiguard'] = internet_service6_src_fortiguard
+        if enforce_default_app_port is not None:
+            data_payload['enforce-default-app-port'] = enforce_default_app_port
+        if service is not None:
+            data_payload['service'] = service
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if send_deny_packet is not None:
+            data_payload['send-deny-packet'] = send_deny_packet
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if status is not None:
+            data_payload['status'] = status
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if learning_mode is not None:
+            data_payload['learning-mode'] = learning_mode
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if nat64 is not None:
+            data_payload['nat64'] = nat64
+        if profile_type is not None:
+            data_payload['profile-type'] = profile_type
+        if profile_group is not None:
+            data_payload['profile-group'] = profile_group
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if voip_profile is not None:
+            data_payload['voip-profile'] = voip_profile
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if diameter_filter_profile is not None:
+            data_payload['diameter-filter-profile'] = diameter_filter_profile
+        if virtual_patch_profile is not None:
+            data_payload['virtual-patch-profile'] = virtual_patch_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        if application is not None:
+            data_payload['application'] = application
+        if app_category is not None:
+            data_payload['app-category'] = app_category
+        if url_category is not None:
+            data_payload['url-category'] = url_category
+        if app_group is not None:
+            data_payload['app-group'] = app_group
+        if groups is not None:
+            data_payload['groups'] = groups
+        if users is not None:
+            data_payload['users'] = users
+        if fsso_groups is not None:
+            data_payload['fsso-groups'] = fsso_groups
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

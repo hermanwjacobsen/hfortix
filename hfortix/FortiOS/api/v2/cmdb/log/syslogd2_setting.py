@@ -1,202 +1,169 @@
 """
-FortiOS CMDB - Log Syslogd2 Setting
-
-Global settings for remote syslog server.
+FortiOS CMDB - Log Syslogd2Setting
 
 API Endpoints:
-    GET  /api/v2/cmdb/log.syslogd2/setting  - Get configuration
-    PUT  /api/v2/cmdb/log.syslogd2/setting  - Update configuration
+    GET    /log.syslogd2/setting
+    PUT    /log.syslogd2/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class Syslogd2Setting:
-    """Log Syslogd2 Setting endpoint (singleton)"""
+    """Syslogd2Setting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Syslogd2Setting endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get syslogd2 settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Enable CLI skip operator
-            action: Special actions (default, schema, revision)
-            vdom: Virtual domain
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Syslogd settings configuration
-
-        Examples:
-            >>> # Get syslogd2 settings
-            >>> result = fgt.api.cmdb.log.syslogd.setting.get()
-
-            >>> # Get with metadata
-            >>> result = fgt.api.cmdb.log.syslogd.setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.syslogd2/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        path = "log.syslogd2/setting"
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        server: Optional[str] = None,
-        mode: Optional[str] = None,
-        port: Optional[int] = None,
-        facility: Optional[str] = None,
-        source_ip: Optional[str] = None,
-        format: Optional[str] = None,
-        priority: Optional[str] = None,
-        max_log_rate: Optional[int] = None,
-        enc_algorithm: Optional[str] = None,
-        ssl_min_proto_version: Optional[str] = None,
-        certificate: Optional[str] = None,
-        custom_field_name: Optional[list[dict[str, Any]]] = None,
-        interface_select_method: Optional[str] = None,
-        interface: Optional[str] = None,
-        source_ip_interface: Optional[str] = None,
-        vrf_select: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        server: str | None = None,
+        mode: str | None = None,
+        port: int | None = None,
+        facility: str | None = None,
+        source_ip_interface: str | None = None,
+        source_ip: str | None = None,
+        priority: str | None = None,
+        max_log_rate: int | None = None,
+        enc_algorithm: str | None = None,
+        ssl_min_proto_version: str | None = None,
+        certificate: str | None = None,
+        custom_field_name: list | None = None,
+        interface_select_method: str | None = None,
+        interface: str | None = None,
+        vrf_select: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update syslogd2 settings.
-
-        Supports three usage patterns:
-        1. Dictionary: update(data_dict={'status': 'enable'})
-        2. Keywords: update(status='enable', server='192.168.1.100')
-        3. Mixed: update(data_dict={...}, status='enable')
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            status: Enable/disable remote syslog logging
-            server: Address of remote syslog server
-            mode: Remote syslog logging over UDP/Reliable TCP
-            port: Server listen port
-            facility: Remote syslog facility
-            source_ip: Source IP address of syslog
-            format: Log format
-            priority: Set log transmission priority
-            max_log_rate: Syslog maximum log rate in MBps (0 = unlimited)
-            enc_algorithm: Enable/disable reliable syslogging with TLS encryption
-            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections
-            certificate: Certificate used to communicate with syslog server
-            custom_field_name: Custom field name for CEF format logging
-            interface_select_method: Specify how to select outgoing interface to reach server
-            interface: Specify outgoing interface to reach server
-            source_ip_interface: Source IP interface name
-            vrf_select: Select VRF
-            vdom: Virtual domain
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Enable/disable remote syslog logging. (optional)
+            server: Address of remote syslog server. (optional)
+            mode: Remote syslog logging over UDP/Reliable TCP. (optional)
+            port: Server listen port. (optional)
+            facility: Remote syslog facility. (optional)
+            source_ip_interface: Source interface of syslog. (optional)
+            source_ip: Source IP address of syslog. (optional)
+            priority: Set log transmission priority. (optional)
+            max_log_rate: Syslog maximum log rate in MBps (0 = unlimited). (optional)
+            enc_algorithm: Enable/disable reliable syslogging with TLS encryption. (optional)
+            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
+            certificate: Certificate used to communicate with Syslog server. (optional)
+            custom_field_name: Custom field name for CEF format logging. (optional)
+            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface: Specify outgoing interface to reach server. (optional)
+            vrf_select: VRF ID used for connection to server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Update result
-
-        Examples:
-            >>> # Enable syslog with server
-            >>> fgt.api.cmdb.log.syslogd.setting.update(
-            ...     status='enable',
-            ...     server='192.168.1.100'
-            ... )
-
-            >>> # Configure syslog server settings
-            >>> fgt.api.cmdb.log.syslogd.setting.update(
-            ...     server='syslog.example.com',
-            ...     port=514,
-            ...     mode='udp',
-            ...     facility='local7'
-            ... )
-
-            >>> # PUT - Update with dictionary
-            >>> config = {
-            ...     'status': 'enable',
-            ...     'server': '192.168.1.100',
-            ...     'port': 514,
-            ...     'facility': 'local7'
-            ... }
-            >>> fgt.api.cmdb.log.syslogd.setting.update(data_dict=config)
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "status": status,
-            "server": server,
-            "mode": mode,
-            "port": port,
-            "facility": facility,
-            "source_ip": source_ip,
-            "format": format,
-            "priority": priority,
-            "max_log_rate": max_log_rate,
-            "enc_algorithm": enc_algorithm,
-            "ssl_min_proto_version": ssl_min_proto_version,
-            "certificate": certificate,
-            "custom_field_name": custom_field_name,
-            "interface_select_method": interface_select_method,
-            "interface": interface,
-            "source_ip_interface": source_ip_interface,
-            "vrf_select": vrf_select,
-        }
-
-        api_field_map = {
-            "status": "status",
-            "server": "server",
-            "mode": "mode",
-            "port": "port",
-            "facility": "facility",
-            "source_ip": "source-ip",
-            "format": "format",
-            "priority": "priority",
-            "max_log_rate": "max-log-rate",
-            "enc_algorithm": "enc-algorithm",
-            "ssl_min_proto_version": "ssl-min-proto-version",
-            "certificate": "certificate",
-            "custom_field_name": "custom-field-name",
-            "interface_select_method": "interface-select-method",
-            "interface": "interface",
-            "source_ip_interface": "source-ip-interface",
-            "vrf_select": "vrf-select",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = "log.syslogd2/setting"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.syslogd2/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if server is not None:
+            data_payload['server'] = server
+        if mode is not None:
+            data_payload['mode'] = mode
+        if port is not None:
+            data_payload['port'] = port
+        if facility is not None:
+            data_payload['facility'] = facility
+        if source_ip_interface is not None:
+            data_payload['source-ip-interface'] = source_ip_interface
+        if source_ip is not None:
+            data_payload['source-ip'] = source_ip
+        if priority is not None:
+            data_payload['priority'] = priority
+        if max_log_rate is not None:
+            data_payload['max-log-rate'] = max_log_rate
+        if enc_algorithm is not None:
+            data_payload['enc-algorithm'] = enc_algorithm
+        if ssl_min_proto_version is not None:
+            data_payload['ssl-min-proto-version'] = ssl_min_proto_version
+        if certificate is not None:
+            data_payload['certificate'] = certificate
+        if custom_field_name is not None:
+            data_payload['custom-field-name'] = custom_field_name
+        if interface_select_method is not None:
+            data_payload['interface-select-method'] = interface_select_method
+        if interface is not None:
+            data_payload['interface'] = interface
+        if vrf_select is not None:
+            data_payload['vrf-select'] = vrf_select
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

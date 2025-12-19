@@ -1,91 +1,109 @@
-"""FortiOS CMDB DLP Settings API module.
+"""
+FortiOS CMDB - Dlp Settings
 
-This module provides methods for managing global DLP settings configuration.
-
-Note: This is a singleton endpoint - settings exist globally and cannot be created or deleted.
-Only GET and UPDATE operations are supported.
+API Endpoints:
+    GET    /dlp/settings
+    PUT    /dlp/settings
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient, HTTPResponse
-
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class Settings:
-    """Manage global DLP settings.
+    """Settings operations."""
 
-    This class provides methods to retrieve and update global DLP settings configuration.
-    Settings are singleton resources (only one instance exists globally).
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
-        """Initialize Settings API module.
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Settings endpoint.
 
         Args:
-            client: The FortiOS API client instance.
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
-    def get(self, vdom=None, raw_json: bool = False, **kwargs) -> HTTPResponse:
-        """Retrieve current DLP settings.
-
-        Args:
-            vdom (str, optional): Virtual domain name. Defaults to 'root' if not specified.
-            **kwargs: Additional parameters to pass to the API:
-                - format (list): List of property names to include in results
-                - with_meta (bool): Include meta information
-                - datasource (bool): Include datasource information
-
-        Returns:
-            dict: API response containing current DLP settings:
-                - config_builder_timeout (int): Maximum time allowed for building
-                    a single DLP profile (10-100000 seconds, default 60)
-
-        Example:
-            >>> settings = client.cmdb.dlp.settings.get()
-            >>> print(f"Timeout: {settings['results']['config-builder-timeout']}")
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        return self._client.get("cmdb", "dlp/settings", vdom=vdom, params=kwargs, raw_json=raw_json)
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/dlp/settings"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        config_builder_timeout: int | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        config_builder_timeout=None,
-        vdom=None,
-        **kwargs,
-    ) -> HTTPResponse:
-        """Update DLP settings.
-
-        Args:
-            config_builder_timeout (int, optional): Maximum time allowed for building
-                a single DLP profile in seconds. Valid range: 10-100000 (default 60).
-            vdom (str, optional): Virtual domain name. Defaults to 'root' if not specified.
-            **kwargs: Additional parameters (not commonly used for settings).
-
-        Returns:
-            dict: API response containing operation results.
-
-        Raises:
-            ValueError: If config_builder_timeout is outside valid range.
-
-        Example:
-            >>> # Increase profile build timeout to 120 seconds
-            >>> client.cmdb.dlp.settings.update(config_builder_timeout=120)
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        data = {}
-
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            config_builder_timeout: Maximum time allowed for building a single DLP profile (default 60 seconds). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/settings"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if config_builder_timeout is not None:
-            if not isinstance(config_builder_timeout, int):
-                raise ValueError("config_builder_timeout must be an integer")
-            if not (10 <= config_builder_timeout <= 100000):
-                raise ValueError("config_builder_timeout must be between 10 and 100000")
-            data["config-builder-timeout"] = config_builder_timeout
-
-        return self._client.put("cmdb", "dlp/settings", data, vdom, raw_json=raw_json)
+            data_payload['config-builder-timeout'] = config_builder_timeout
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

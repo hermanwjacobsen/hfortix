@@ -1,0 +1,67 @@
+"""Monitor API - Remote operations."""
+
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from hfortix.FortiOS.http_client import HTTPClient
+
+
+class ImportRemote:
+    """ImportRemote operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ImportRemote endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        scope: str | None = None,
+        file_content: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Import remote certificate.
+        
+        Args:
+            scope: Scope of CRL [vdom*|global]. Global scope is only accessible for global administrators (optional)
+            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.vpn_certificate.remote.import.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if scope is not None:
+            data['scope'] = scope
+        if file_content is not None:
+            data['file_content'] = file_content
+        data.update(kwargs)
+        return self._client.post("monitor", "/vpn-certificate/remote/import", data=data)
+
+
+class Remote:
+    """Remote operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Remote endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+        # Initialize nested resources
+        self.import_remote = ImportRemote(client)

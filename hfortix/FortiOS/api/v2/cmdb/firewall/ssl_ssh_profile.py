@@ -1,562 +1,434 @@
 """
-FortiOS ssl-ssh-profile API wrapper.
-Provides access to /api/v2/cmdb/firewall/ssl-ssh-profile endpoint.
+FortiOS CMDB - Firewall SslSshProfile
+
+API Endpoints:
+    GET    /firewall/ssl-ssh-profile
+    POST   /firewall/ssl-ssh-profile
+    GET    /firewall/ssl-ssh-profile/{name}
+    PUT    /firewall/ssl-ssh-profile/{name}
+    DELETE /firewall/ssl-ssh-profile/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class SslSshProfile:
-    """
-    Wrapper for firewall ssl-ssh-profile API endpoint.
+    """SslSshProfile operations."""
 
-    Manages ssl-ssh-profile configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the SslSshProfile wrapper.
+        Initialize SslSshProfile endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/ssl-ssh-profile"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific ssl-ssh-profile entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        allowlist: Optional[str] = None,
-        block_blocklisted_certificates: Optional[str] = None,
-        caname: Optional[str] = None,
-        comment: Optional[str] = None,
-        dot: Optional[list] = None,
-        ech_outer_sni: Optional[list] = None,
-        ftps: Optional[list] = None,
-        https: Optional[list] = None,
-        imaps: Optional[list] = None,
-        mapi_over_https: Optional[str] = None,
-        name: Optional[str] = None,
-        pop3s: Optional[list] = None,
-        rpc_over_https: Optional[str] = None,
-        server_cert: Optional[list] = None,
-        server_cert_mode: Optional[str] = None,
-        smtps: Optional[list] = None,
-        ssh: Optional[list] = None,
-        ssl: Optional[list] = None,
-        ssl_anomaly_log: Optional[str] = None,
-        ssl_exempt: Optional[list] = None,
-        ssl_exemption_ip_rating: Optional[str] = None,
-        ssl_exemption_log: Optional[str] = None,
-        ssl_handshake_log: Optional[str] = None,
-        ssl_negotiation_log: Optional[str] = None,
-        ssl_server: Optional[list] = None,
-        ssl_server_cert_log: Optional[str] = None,
-        supported_alpn: Optional[str] = None,
-        untrusted_caname: Optional[str] = None,
-        use_ssl_server: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create ssl-ssh-profile entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            allowlist (string) (enum: ['enable', 'disable']):
-                Enable/disable exempting servers by FortiGuard allowlist.
-            block-blocklisted-certificates (string) (enum: ['disable', 'enable']):
-                Enable/disable blocking SSL-based botnet communication by Fo...
-            caname (string) (max_len: 35):
-                CA certificate used by SSL Inspection.
-            comment (string) (max_len: 255):
-                Optional comments.
-            dot (list[object]):
-                Configure DNS over TLS options.
-            ech-outer-sni (list[object]):
-                ClientHelloOuter SNIs to be blocked.
-            ftps (list[object]):
-                Configure FTPS options.
-            https (list[object]):
-                Configure HTTPS options.
-            imaps (list[object]):
-                Configure IMAPS options.
-            mapi-over-https (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of MAPI over HTTPS.
-            name (string) (max_len: 47):
-                Name.
-            pop3s (list[object]):
-                Configure POP3S options.
-            rpc-over-https (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of RPC over HTTPS.
-            server-cert (list[object]):
-                Certificate used by SSL Inspection to replace server certifi...
-            server-cert-mode (string) (enum: ['re-sign', 'replace']):
-                Re-sign or replace the server's certificate.
-            smtps (list[object]):
-                Configure SMTPS options.
-            ssh (list[object]):
-                Configure SSH options.
-            ssl (list[object]):
-                Configure SSL options.
-            ssl-anomaly-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL anomalies.
-            ssl-exempt (list[object]):
-                Servers to exempt from SSL inspection.
-            ssl-exemption-ip-rating (string) (enum: ['enable', 'disable']):
-                Enable/disable IP based URL rating.
-            ssl-exemption-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL exemptions.
-            ssl-handshake-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of TLS handshakes.
-            ssl-negotiation-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL negotiation events.
-            ssl-server (list[object]):
-                SSL server settings used for client certificate request.
-            ssl-server-cert-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of server certificate information.
-            supported-alpn (string) (enum: ['http1-1', 'http2', 'all']):
-                Configure ALPN option.
-            untrusted-caname (string) (max_len: 35):
-                Untrusted CA certificate used by SSL Inspection.
-            use-ssl-server (string) (enum: ['disable', 'enable']):
-                Enable/disable the use of SSL server table for SSL offloadin...
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if allowlist is not None:
-            payload_dict["allowlist"] = allowlist
-        if block_blocklisted_certificates is not None:
-            payload_dict["block-blocklisted-certificates"] = block_blocklisted_certificates
-        if caname is not None:
-            payload_dict["caname"] = caname
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dot is not None:
-            payload_dict["dot"] = dot
-        if ech_outer_sni is not None:
-            payload_dict["ech-outer-sni"] = ech_outer_sni
-        if ftps is not None:
-            payload_dict["ftps"] = ftps
-        if https is not None:
-            payload_dict["https"] = https
-        if imaps is not None:
-            payload_dict["imaps"] = imaps
-        if mapi_over_https is not None:
-            payload_dict["mapi-over-https"] = mapi_over_https
-        if name is not None:
-            payload_dict["name"] = name
-        if pop3s is not None:
-            payload_dict["pop3s"] = pop3s
-        if rpc_over_https is not None:
-            payload_dict["rpc-over-https"] = rpc_over_https
-        if server_cert is not None:
-            payload_dict["server-cert"] = server_cert
-        if server_cert_mode is not None:
-            payload_dict["server-cert-mode"] = server_cert_mode
-        if smtps is not None:
-            payload_dict["smtps"] = smtps
-        if ssh is not None:
-            payload_dict["ssh"] = ssh
-        if ssl is not None:
-            payload_dict["ssl"] = ssl
-        if ssl_anomaly_log is not None:
-            payload_dict["ssl-anomaly-log"] = ssl_anomaly_log
-        if ssl_exempt is not None:
-            payload_dict["ssl-exempt"] = ssl_exempt
-        if ssl_exemption_ip_rating is not None:
-            payload_dict["ssl-exemption-ip-rating"] = ssl_exemption_ip_rating
-        if ssl_exemption_log is not None:
-            payload_dict["ssl-exemption-log"] = ssl_exemption_log
-        if ssl_handshake_log is not None:
-            payload_dict["ssl-handshake-log"] = ssl_handshake_log
-        if ssl_negotiation_log is not None:
-            payload_dict["ssl-negotiation-log"] = ssl_negotiation_log
-        if ssl_server is not None:
-            payload_dict["ssl-server"] = ssl_server
-        if ssl_server_cert_log is not None:
-            payload_dict["ssl-server-cert-log"] = ssl_server_cert_log
-        if supported_alpn is not None:
-            payload_dict["supported-alpn"] = supported_alpn
-        if untrusted_caname is not None:
-            payload_dict["untrusted-caname"] = untrusted_caname
-        if use_ssl_server is not None:
-            payload_dict["use-ssl-server"] = use_ssl_server
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/ssl-ssh-profile/{name}"
+        else:
+            endpoint = "/firewall/ssl-ssh-profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        allowlist: Optional[str] = None,
-        block_blocklisted_certificates: Optional[str] = None,
-        caname: Optional[str] = None,
-        comment: Optional[str] = None,
-        dot: Optional[list] = None,
-        ech_outer_sni: Optional[list] = None,
-        ftps: Optional[list] = None,
-        https: Optional[list] = None,
-        imaps: Optional[list] = None,
-        mapi_over_https: Optional[str] = None,
-        name: Optional[str] = None,
-        pop3s: Optional[list] = None,
-        rpc_over_https: Optional[str] = None,
-        server_cert: Optional[list] = None,
-        server_cert_mode: Optional[str] = None,
-        smtps: Optional[list] = None,
-        ssh: Optional[list] = None,
-        ssl: Optional[list] = None,
-        ssl_anomaly_log: Optional[str] = None,
-        ssl_exempt: Optional[list] = None,
-        ssl_exemption_ip_rating: Optional[str] = None,
-        ssl_exemption_log: Optional[str] = None,
-        ssl_handshake_log: Optional[str] = None,
-        ssl_negotiation_log: Optional[str] = None,
-        ssl_server: Optional[list] = None,
-        ssl_server_cert_log: Optional[str] = None,
-        supported_alpn: Optional[str] = None,
-        untrusted_caname: Optional[str] = None,
-        use_ssl_server: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        ssl: list | None = None,
+        https: list | None = None,
+        ftps: list | None = None,
+        imaps: list | None = None,
+        pop3s: list | None = None,
+        smtps: list | None = None,
+        ssh: list | None = None,
+        dot: list | None = None,
+        allowlist: str | None = None,
+        block_blocklisted_certificates: str | None = None,
+        ssl_exempt: list | None = None,
+        ech_outer_sni: list | None = None,
+        server_cert_mode: str | None = None,
+        use_ssl_server: str | None = None,
+        caname: str | None = None,
+        untrusted_caname: str | None = None,
+        server_cert: list | None = None,
+        ssl_server: list | None = None,
+        ssl_exemption_ip_rating: str | None = None,
+        ssl_exemption_log: str | None = None,
+        ssl_anomaly_log: str | None = None,
+        ssl_negotiation_log: str | None = None,
+        ssl_server_cert_log: str | None = None,
+        ssl_handshake_log: str | None = None,
+        rpc_over_https: str | None = None,
+        mapi_over_https: str | None = None,
+        supported_alpn: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update ssl-ssh-profile entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            allowlist (string) (enum: ['enable', 'disable']):
-                Enable/disable exempting servers by FortiGuard allowlist.
-            block-blocklisted-certificates (string) (enum: ['disable', 'enable']):
-                Enable/disable blocking SSL-based botnet communication by Fo...
-            caname (string) (max_len: 35):
-                CA certificate used by SSL Inspection.
-            comment (string) (max_len: 255):
-                Optional comments.
-            dot (list[object]):
-                Configure DNS over TLS options.
-            ech-outer-sni (list[object]):
-                ClientHelloOuter SNIs to be blocked.
-            ftps (list[object]):
-                Configure FTPS options.
-            https (list[object]):
-                Configure HTTPS options.
-            imaps (list[object]):
-                Configure IMAPS options.
-            mapi-over-https (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of MAPI over HTTPS.
-            name (string) (max_len: 47):
-                Name.
-            pop3s (list[object]):
-                Configure POP3S options.
-            rpc-over-https (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of RPC over HTTPS.
-            server-cert (list[object]):
-                Certificate used by SSL Inspection to replace server certifi...
-            server-cert-mode (string) (enum: ['re-sign', 'replace']):
-                Re-sign or replace the server's certificate.
-            smtps (list[object]):
-                Configure SMTPS options.
-            ssh (list[object]):
-                Configure SSH options.
-            ssl (list[object]):
-                Configure SSL options.
-            ssl-anomaly-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL anomalies.
-            ssl-exempt (list[object]):
-                Servers to exempt from SSL inspection.
-            ssl-exemption-ip-rating (string) (enum: ['enable', 'disable']):
-                Enable/disable IP based URL rating.
-            ssl-exemption-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL exemptions.
-            ssl-handshake-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of TLS handshakes.
-            ssl-negotiation-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of SSL negotiation events.
-            ssl-server (list[object]):
-                SSL server settings used for client certificate request.
-            ssl-server-cert-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging of server certificate information.
-            supported-alpn (string) (enum: ['http1-1', 'http2', 'all']):
-                Configure ALPN option.
-            untrusted-caname (string) (max_len: 35):
-                Untrusted CA certificate used by SSL Inspection.
-            use-ssl-server (string) (enum: ['disable', 'enable']):
-                Enable/disable the use of SSL server table for SSL offloadin...
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name. (optional)
+            comment: Optional comments. (optional)
+            ssl: Configure SSL options. (optional)
+            https: Configure HTTPS options. (optional)
+            ftps: Configure FTPS options. (optional)
+            imaps: Configure IMAPS options. (optional)
+            pop3s: Configure POP3S options. (optional)
+            smtps: Configure SMTPS options. (optional)
+            ssh: Configure SSH options. (optional)
+            dot: Configure DNS over TLS options. (optional)
+            allowlist: Enable/disable exempting servers by FortiGuard allowlist. (optional)
+            block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. (optional)
+            ssl_exempt: Servers to exempt from SSL inspection. (optional)
+            ech_outer_sni: ClientHelloOuter SNIs to be blocked. (optional)
+            server_cert_mode: Re-sign or replace the server's certificate. (optional)
+            use_ssl_server: Enable/disable the use of SSL server table for SSL offloading. (optional)
+            caname: CA certificate used by SSL Inspection. (optional)
+            untrusted_caname: Untrusted CA certificate used by SSL Inspection. (optional)
+            server_cert: Certificate used by SSL Inspection to replace server certificate. (optional)
+            ssl_server: SSL server settings used for client certificate request. (optional)
+            ssl_exemption_ip_rating: Enable/disable IP based URL rating. (optional)
+            ssl_exemption_log: Enable/disable logging of SSL exemptions. (optional)
+            ssl_anomaly_log: Enable/disable logging of SSL anomalies. (optional)
+            ssl_negotiation_log: Enable/disable logging of SSL negotiation events. (optional)
+            ssl_server_cert_log: Enable/disable logging of server certificate information. (optional)
+            ssl_handshake_log: Enable/disable logging of TLS handshakes. (optional)
+            rpc_over_https: Enable/disable inspection of RPC over HTTPS. (optional)
+            mapi_over_https: Enable/disable inspection of MAPI over HTTPS. (optional)
+            supported_alpn: Configure ALPN option. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if allowlist is not None:
-            payload_dict["allowlist"] = allowlist
-        if block_blocklisted_certificates is not None:
-            payload_dict["block-blocklisted-certificates"] = block_blocklisted_certificates
-        if caname is not None:
-            payload_dict["caname"] = caname
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dot is not None:
-            payload_dict["dot"] = dot
-        if ech_outer_sni is not None:
-            payload_dict["ech-outer-sni"] = ech_outer_sni
-        if ftps is not None:
-            payload_dict["ftps"] = ftps
-        if https is not None:
-            payload_dict["https"] = https
-        if imaps is not None:
-            payload_dict["imaps"] = imaps
-        if mapi_over_https is not None:
-            payload_dict["mapi-over-https"] = mapi_over_https
-        if name is not None:
-            payload_dict["name"] = name
-        if pop3s is not None:
-            payload_dict["pop3s"] = pop3s
-        if rpc_over_https is not None:
-            payload_dict["rpc-over-https"] = rpc_over_https
-        if server_cert is not None:
-            payload_dict["server-cert"] = server_cert
-        if server_cert_mode is not None:
-            payload_dict["server-cert-mode"] = server_cert_mode
-        if smtps is not None:
-            payload_dict["smtps"] = smtps
-        if ssh is not None:
-            payload_dict["ssh"] = ssh
-        if ssl is not None:
-            payload_dict["ssl"] = ssl
-        if ssl_anomaly_log is not None:
-            payload_dict["ssl-anomaly-log"] = ssl_anomaly_log
-        if ssl_exempt is not None:
-            payload_dict["ssl-exempt"] = ssl_exempt
-        if ssl_exemption_ip_rating is not None:
-            payload_dict["ssl-exemption-ip-rating"] = ssl_exemption_ip_rating
-        if ssl_exemption_log is not None:
-            payload_dict["ssl-exemption-log"] = ssl_exemption_log
-        if ssl_handshake_log is not None:
-            payload_dict["ssl-handshake-log"] = ssl_handshake_log
-        if ssl_negotiation_log is not None:
-            payload_dict["ssl-negotiation-log"] = ssl_negotiation_log
-        if ssl_server is not None:
-            payload_dict["ssl-server"] = ssl_server
-        if ssl_server_cert_log is not None:
-            payload_dict["ssl-server-cert-log"] = ssl_server_cert_log
-        if supported_alpn is not None:
-            payload_dict["supported-alpn"] = supported_alpn
-        if untrusted_caname is not None:
-            payload_dict["untrusted-caname"] = untrusted_caname
-        if use_ssl_server is not None:
-            payload_dict["use-ssl-server"] = use_ssl_server
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/ssl-ssh-profile/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if ssl is not None:
+            data_payload['ssl'] = ssl
+        if https is not None:
+            data_payload['https'] = https
+        if ftps is not None:
+            data_payload['ftps'] = ftps
+        if imaps is not None:
+            data_payload['imaps'] = imaps
+        if pop3s is not None:
+            data_payload['pop3s'] = pop3s
+        if smtps is not None:
+            data_payload['smtps'] = smtps
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if dot is not None:
+            data_payload['dot'] = dot
+        if allowlist is not None:
+            data_payload['allowlist'] = allowlist
+        if block_blocklisted_certificates is not None:
+            data_payload['block-blocklisted-certificates'] = block_blocklisted_certificates
+        if ssl_exempt is not None:
+            data_payload['ssl-exempt'] = ssl_exempt
+        if ech_outer_sni is not None:
+            data_payload['ech-outer-sni'] = ech_outer_sni
+        if server_cert_mode is not None:
+            data_payload['server-cert-mode'] = server_cert_mode
+        if use_ssl_server is not None:
+            data_payload['use-ssl-server'] = use_ssl_server
+        if caname is not None:
+            data_payload['caname'] = caname
+        if untrusted_caname is not None:
+            data_payload['untrusted-caname'] = untrusted_caname
+        if server_cert is not None:
+            data_payload['server-cert'] = server_cert
+        if ssl_server is not None:
+            data_payload['ssl-server'] = ssl_server
+        if ssl_exemption_ip_rating is not None:
+            data_payload['ssl-exemption-ip-rating'] = ssl_exemption_ip_rating
+        if ssl_exemption_log is not None:
+            data_payload['ssl-exemption-log'] = ssl_exemption_log
+        if ssl_anomaly_log is not None:
+            data_payload['ssl-anomaly-log'] = ssl_anomaly_log
+        if ssl_negotiation_log is not None:
+            data_payload['ssl-negotiation-log'] = ssl_negotiation_log
+        if ssl_server_cert_log is not None:
+            data_payload['ssl-server-cert-log'] = ssl_server_cert_log
+        if ssl_handshake_log is not None:
+            data_payload['ssl-handshake-log'] = ssl_handshake_log
+        if rpc_over_https is not None:
+            data_payload['rpc-over-https'] = rpc_over_https
+        if mapi_over_https is not None:
+            data_payload['mapi-over-https'] = mapi_over_https
+        if supported_alpn is not None:
+            data_payload['supported-alpn'] = supported_alpn
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a ssl-ssh-profile entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/ssl-ssh-profile/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        ssl: list | None = None,
+        https: list | None = None,
+        ftps: list | None = None,
+        imaps: list | None = None,
+        pop3s: list | None = None,
+        smtps: list | None = None,
+        ssh: list | None = None,
+        dot: list | None = None,
+        allowlist: str | None = None,
+        block_blocklisted_certificates: str | None = None,
+        ssl_exempt: list | None = None,
+        ech_outer_sni: list | None = None,
+        server_cert_mode: str | None = None,
+        use_ssl_server: str | None = None,
+        caname: str | None = None,
+        untrusted_caname: str | None = None,
+        server_cert: list | None = None,
+        ssl_server: list | None = None,
+        ssl_exemption_ip_rating: str | None = None,
+        ssl_exemption_log: str | None = None,
+        ssl_anomaly_log: str | None = None,
+        ssl_negotiation_log: str | None = None,
+        ssl_server_cert_log: str | None = None,
+        ssl_handshake_log: str | None = None,
+        rpc_over_https: str | None = None,
+        mapi_over_https: str | None = None,
+        supported_alpn: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name. (optional)
+            comment: Optional comments. (optional)
+            ssl: Configure SSL options. (optional)
+            https: Configure HTTPS options. (optional)
+            ftps: Configure FTPS options. (optional)
+            imaps: Configure IMAPS options. (optional)
+            pop3s: Configure POP3S options. (optional)
+            smtps: Configure SMTPS options. (optional)
+            ssh: Configure SSH options. (optional)
+            dot: Configure DNS over TLS options. (optional)
+            allowlist: Enable/disable exempting servers by FortiGuard allowlist. (optional)
+            block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. (optional)
+            ssl_exempt: Servers to exempt from SSL inspection. (optional)
+            ech_outer_sni: ClientHelloOuter SNIs to be blocked. (optional)
+            server_cert_mode: Re-sign or replace the server's certificate. (optional)
+            use_ssl_server: Enable/disable the use of SSL server table for SSL offloading. (optional)
+            caname: CA certificate used by SSL Inspection. (optional)
+            untrusted_caname: Untrusted CA certificate used by SSL Inspection. (optional)
+            server_cert: Certificate used by SSL Inspection to replace server certificate. (optional)
+            ssl_server: SSL server settings used for client certificate request. (optional)
+            ssl_exemption_ip_rating: Enable/disable IP based URL rating. (optional)
+            ssl_exemption_log: Enable/disable logging of SSL exemptions. (optional)
+            ssl_anomaly_log: Enable/disable logging of SSL anomalies. (optional)
+            ssl_negotiation_log: Enable/disable logging of SSL negotiation events. (optional)
+            ssl_server_cert_log: Enable/disable logging of server certificate information. (optional)
+            ssl_handshake_log: Enable/disable logging of TLS handshakes. (optional)
+            rpc_over_https: Enable/disable inspection of RPC over HTTPS. (optional)
+            mapi_over_https: Enable/disable inspection of MAPI over HTTPS. (optional)
+            supported_alpn: Configure ALPN option. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/ssl-ssh-profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if ssl is not None:
+            data_payload['ssl'] = ssl
+        if https is not None:
+            data_payload['https'] = https
+        if ftps is not None:
+            data_payload['ftps'] = ftps
+        if imaps is not None:
+            data_payload['imaps'] = imaps
+        if pop3s is not None:
+            data_payload['pop3s'] = pop3s
+        if smtps is not None:
+            data_payload['smtps'] = smtps
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if dot is not None:
+            data_payload['dot'] = dot
+        if allowlist is not None:
+            data_payload['allowlist'] = allowlist
+        if block_blocklisted_certificates is not None:
+            data_payload['block-blocklisted-certificates'] = block_blocklisted_certificates
+        if ssl_exempt is not None:
+            data_payload['ssl-exempt'] = ssl_exempt
+        if ech_outer_sni is not None:
+            data_payload['ech-outer-sni'] = ech_outer_sni
+        if server_cert_mode is not None:
+            data_payload['server-cert-mode'] = server_cert_mode
+        if use_ssl_server is not None:
+            data_payload['use-ssl-server'] = use_ssl_server
+        if caname is not None:
+            data_payload['caname'] = caname
+        if untrusted_caname is not None:
+            data_payload['untrusted-caname'] = untrusted_caname
+        if server_cert is not None:
+            data_payload['server-cert'] = server_cert
+        if ssl_server is not None:
+            data_payload['ssl-server'] = ssl_server
+        if ssl_exemption_ip_rating is not None:
+            data_payload['ssl-exemption-ip-rating'] = ssl_exemption_ip_rating
+        if ssl_exemption_log is not None:
+            data_payload['ssl-exemption-log'] = ssl_exemption_log
+        if ssl_anomaly_log is not None:
+            data_payload['ssl-anomaly-log'] = ssl_anomaly_log
+        if ssl_negotiation_log is not None:
+            data_payload['ssl-negotiation-log'] = ssl_negotiation_log
+        if ssl_server_cert_log is not None:
+            data_payload['ssl-server-cert-log'] = ssl_server_cert_log
+        if ssl_handshake_log is not None:
+            data_payload['ssl-handshake-log'] = ssl_handshake_log
+        if rpc_over_https is not None:
+            data_payload['rpc-over-https'] = rpc_over_https
+        if mapi_over_https is not None:
+            data_payload['mapi-over-https'] = mapi_over_https
+        if supported_alpn is not None:
+            data_payload['supported-alpn'] = supported_alpn
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,175 +1,125 @@
 """
 FortiOS CMDB - Antivirus Settings
-Configure AntiVirus settings
 
 API Endpoints:
-    GET  /antivirus/settings  - Get configuration
-    PUT  /antivirus/settings  - Update configuration
+    GET    /antivirus/settings
+    PUT    /antivirus/settings
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Settings:
-    """Antivirus Settings endpoint"""
+    """Settings operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Settings endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        vdom: Optional[Union[str, bool]] = None,
-        # Query parameters
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        GET /antivirus/settings
-        Get antivirus settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            vdom: Virtual domain (optional)
-
-            Query parameters (all optional):
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information about each object
-            skip: Enable CLI skip operator to hide skipped properties
-            action: Special actions (default, schema, revision)
-            **kwargs: Any additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Antivirus settings configuration
-
-        Examples:
-            >>> # Get antivirus settings
-            >>> settings = fgt.cmdb.antivirus.settings.get()
-
-            >>> # Get with meta information
-            >>> settings = fgt.cmdb.antivirus.settings.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build params dict from provided parameters
-        params = {}
-
-        # Map parameters
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        # Add non-None parameters
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any extra kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/antivirus/settings"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "antivirus/settings",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        default_db: Optional[str] = None,
-        grayware: Optional[str] = None,
-        override_timeout: Optional[int] = None,
-        cache_infected_result: Optional[str] = None,
-        cache_clean_result: Optional[str] = None,
-        machine_learning_detection: Optional[str] = None,
-        use_extreme_db: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        machine_learning_detection: str | None = None,
+        use_extreme_db: str | None = None,
+        grayware: str | None = None,
+        override_timeout: int | None = None,
+        cache_infected_result: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        PUT /antivirus/settings
-        Update antivirus settings
-
+        Update this specific resource.
+        
         Args:
-            default_db: Default antivirus database - 'normal', 'extended', 'extreme'
-            grayware: Enable/disable grayware detection - 'enable' or 'disable'
-            override_timeout: Override timeout in seconds (10-3600, 0=use recommended)
-            cache_infected_result: Enable/disable caching of infected file results - 'enable' or 'disable'
-            cache_clean_result: Enable/disable caching of clean file results - 'enable' or 'disable'
-            machine_learning_detection: Enable/disable machine learning detection - 'enable' or 'disable'
-            use_extreme_db: Enable/disable extreme database - 'enable' or 'disable'
-            vdom: Virtual domain (optional)
-            **kwargs: Any additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            machine_learning_detection: Use machine learning based malware detection. (optional)
+            use_extreme_db: Enable/disable the use of Extreme AVDB. (optional)
+            grayware: Enable/disable grayware detection when an AntiVirus profile is applied to traffic. (optional)
+            override_timeout: Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size. (optional)
+            cache_infected_result: Enable/disable cache of infected scan results (default = enable). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Response dict with status
-
-        Examples:
-            >>> # Enable grayware detection
-            >>> fgt.cmdb.antivirus.settings.update(
-            ...     grayware='enable',
-            ...     default_db='extended'
-            ... )
-
-            >>> # Configure caching
-            >>> fgt.cmdb.antivirus.settings.update(
-            ...     cache_infected_result='enable',
-            ...     cache_clean_result='enable',
-            ...     override_timeout=300
-            ... )
-
-            >>> # Enable machine learning
-            >>> fgt.cmdb.antivirus.settings.update(
-            ...     machine_learning_detection='enable',
-            ...     use_extreme_db='enable'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dict from provided parameters
-        payload_dict = {}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "default_db": default_db,
-            "grayware": grayware,
-            "override_timeout": override_timeout,
-            "cache_infected_result": cache_infected_result,
-            "cache_clean_result": cache_clean_result,
-            "machine_learning_detection": machine_learning_detection,
-            "use_extreme_db": use_extreme_db,
-        }
-
-        # API field name mapping
-        api_field_map = {
-            "default_db": "default-db",
-            "grayware": "grayware",
-            "override_timeout": "override-timeout",
-            "cache_infected_result": "cache-infected-result",
-            "cache_clean_result": "cache-clean-result",
-            "machine_learning_detection": "machine-learning-detection",
-            "use_extreme_db": "use-extreme-db",
-        }
-
-        # Add non-None parameters
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        # Add any extra kwargs
-        payload_dict.update(kwargs)
-
-        return self._client.put("cmdb", "antivirus/settings", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/antivirus/settings"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if machine_learning_detection is not None:
+            data_payload['machine-learning-detection'] = machine_learning_detection
+        if use_extreme_db is not None:
+            data_payload['use-extreme-db'] = use_extreme_db
+        if grayware is not None:
+            data_payload['grayware'] = grayware
+        if override_timeout is not None:
+            data_payload['override-timeout'] = override_timeout
+        if cache_infected_result is not None:
+            data_payload['cache-infected-result'] = cache_infected_result
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

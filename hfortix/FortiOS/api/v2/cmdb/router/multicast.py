@@ -1,38 +1,129 @@
-"""FortiOS CMDB - Router Multicast - IPv4 multicast routing configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Multicast
+
+API Endpoints:
+    GET    /router/multicast
+    PUT    /router/multicast
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Multicast:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Multicast operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Multicast endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/multicast"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/multicast", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, route_threshold: Optional[int] = None, route_limit: Optional[int] = None, multicast_routing: Optional[str] = None, pim_sm_global: Optional[dict] = None, interface: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"route_threshold": "route-threshold", "route_limit": "route-limit", "multicast_routing": "multicast-routing", "pim_sm_global": "pim-sm-global"}
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        route_threshold: int | None = None,
+        route_limit: int | None = None,
+        multicast_routing: str | None = None,
+        pim_sm_global: list | None = None,
+        pim_sm_global_vrf: list | None = None,
+        interface: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            route_threshold: Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit. (optional)
+            route_limit: Maximum number of multicast routes. (optional)
+            multicast_routing: Enable/disable IP multicast routing. (optional)
+            pim_sm_global: PIM sparse-mode global settings. (optional)
+            pim_sm_global_vrf: per-VRF PIM sparse-mode global settings. (optional)
+            interface: PIM interfaces. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/multicast"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if route_threshold is not None:
-            data[param_map["route_threshold"]] = route_threshold
+            data_payload['route-threshold'] = route_threshold
         if route_limit is not None:
-            data[param_map["route_limit"]] = route_limit
+            data_payload['route-limit'] = route_limit
         if multicast_routing is not None:
-            data[param_map["multicast_routing"]] = multicast_routing
+            data_payload['multicast-routing'] = multicast_routing
         if pim_sm_global is not None:
-            data[param_map["pim_sm_global"]] = pim_sm_global
+            data_payload['pim-sm-global'] = pim_sm_global
+        if pim_sm_global_vrf is not None:
+            data_payload['pim-sm-global-vrf'] = pim_sm_global_vrf
         if interface is not None:
-            data["interface"] = interface
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/multicast", data=data, vdom=vdom)
+            data_payload['interface'] = interface
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

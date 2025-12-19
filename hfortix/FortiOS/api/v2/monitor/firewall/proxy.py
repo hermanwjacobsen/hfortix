@@ -1,113 +1,139 @@
-"""Proxy session monitoring."""
+"""Monitor API - Proxy operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class ProxySessions:
-    """Proxy session monitoring."""
+class Sessions:
+    """Sessions operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize ProxySessions endpoint.
+        Initialize Sessions endpoint.
 
         Args:
-            client: HTTPClient instance for API communication
+            client: HTTPClient instance
         """
         self._client = client
 
-    def list(
+    def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        srcintf: Optional[str] = None,
-        dstintf: Optional[str] = None,
-        srcaddr: Optional[str] = None,
-        dstaddr: Optional[str] = None,
-        srcport: Optional[int] = None,
-        dstport: Optional[int] = None,
-        protocol: Optional[str] = None,
-        policyid: Optional[int] = None,
-        username: Optional[str] = None,
-        count: Optional[int] = None,
-        start: Optional[int] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        count: int,
+        ip_version: str | None = None,
+        summary: bool | None = None,
+        srcaddr: str | None = None,
+        dstaddr: str | None = None,
+        srcaddr6: str | None = None,
+        dstaddr6: str | None = None,
+        srcport: str | None = None,
+        dstport: str | None = None,
+        srcintf: str | None = None,
+        dstintf: str | None = None,
+        policyid: str | None = None,
+        proxy_policyid: str | None = None,
+        protocol: str | None = None,
+        application: str | None = None,
+        country: str | None = None,
+        seconds: str | None = None,
+        since: str | None = None,
+        owner: str | None = None,
+        username: str | None = None,
+        src_uuid: str | None = None,
+        dst_uuid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        List all active proxy sessions.
-
+        List all active proxy sessions (optionally filtered).
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            srcintf: Filter by source interface
-            dstintf: Filter by destination interface
-            srcaddr: Filter by source address
-            dstaddr: Filter by destination address
-            srcport: Filter by source port
-            dstport: Filter by destination port
-            protocol: Filter by protocol
-            policyid: Filter by policy ID
-            username: Filter by username
-            count: Maximum number of results
-            start: Starting entry index
+            count: Maximum number of entries to return. Valid range is [20, 1000]; if a value is specified out of that range, it will be rounded up or down. (required)
+            ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
+            summary: Enable/disable inclusion of session summary (setup rate, total sessions, etc). (optional)
+            srcaddr: Source IPv4 address. (optional)
+            dstaddr: Destination IPv4 address. (optional)
+            srcaddr6: Source IPv6 address. (optional)
+            dstaddr6: Destination IPv6 address. (optional)
+            srcport: Source TCP port number. (optional)
+            dstport: Destination TCP port number. (optional)
+            srcintf: Source interface name. (optional)
+            dstintf: Destination interface name. (optional)
+            policyid: Firewall policy ID. (optional)
+            proxy_policyid: Explicit proxy policy ID. (optional)
+            protocol: Protocol type. (optional)
+            application: Web application type. (optional)
+            country: Geographic location. (optional)
+            seconds: Time in seconds, since the session is established. (optional)
+            since: Time when the session is established. (optional)
+            owner: Owner. (optional)
+            username: Session login user name. (optional)
+            src_uuid: UUID of source. (optional)
+            dst_uuid: UUID of destination. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing active proxy sessions
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.proxy.sessions.list()
-            >>> fgt.api.monitor.firewall.proxy.sessions.list(username='jdoe')
+            >>> fgt.api.monitor.firewall.proxy.sessions.get(count=1)
         """
-        params = data_dict.copy() if data_dict else {}
-        if srcintf is not None:
-            params["srcintf"] = srcintf
-        if dstintf is not None:
-            params["dstintf"] = dstintf
+        params = payload_dict.copy() if payload_dict else {}
+        params['count'] = count
+        if ip_version is not None:
+            params['ip_version'] = ip_version
+        if summary is not None:
+            params['summary'] = summary
         if srcaddr is not None:
-            params["srcaddr"] = srcaddr
+            params['srcaddr'] = srcaddr
         if dstaddr is not None:
-            params["dstaddr"] = dstaddr
+            params['dstaddr'] = dstaddr
+        if srcaddr6 is not None:
+            params['srcaddr6'] = srcaddr6
+        if dstaddr6 is not None:
+            params['dstaddr6'] = dstaddr6
         if srcport is not None:
-            params["srcport"] = srcport
+            params['srcport'] = srcport
         if dstport is not None:
-            params["dstport"] = dstport
-        if protocol is not None:
-            params["protocol"] = protocol
+            params['dstport'] = dstport
+        if srcintf is not None:
+            params['srcintf'] = srcintf
+        if dstintf is not None:
+            params['dstintf'] = dstintf
         if policyid is not None:
-            params["policyid"] = policyid
+            params['policyid'] = policyid
+        if proxy_policyid is not None:
+            params['proxy-policyid'] = proxy_policyid
+        if protocol is not None:
+            params['protocol'] = protocol
+        if application is not None:
+            params['application'] = application
+        if country is not None:
+            params['country'] = country
+        if seconds is not None:
+            params['seconds'] = seconds
+        if since is not None:
+            params['since'] = since
+        if owner is not None:
+            params['owner'] = owner
         if username is not None:
-            params["username"] = username
-        if count is not None:
-            params["count"] = count
-        if start is not None:
-            params["start"] = start
+            params['username'] = username
+        if src_uuid is not None:
+            params['src_uuid'] = src_uuid
+        if dst_uuid is not None:
+            params['dst_uuid'] = dst_uuid
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/proxy/sessions", params=params)
 
-    def get(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Get active proxy sessions with specific filters.
-
-        This is an alias for list() that allows filtering sessions.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            **kwargs: Additional parameters as keyword arguments (same as list())
-
-        Returns:
-            Dictionary containing filtered proxy sessions
-
-        Example:
-            >>> fgt.api.monitor.firewall.proxy.sessions.get(username='jdoe', policyid=5)
-        """
-        return self.list(data_dict=data_dict, **kwargs)
-
 
 class Proxy:
-    """Proxy monitoring sub-endpoints."""
+    """Proxy operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Proxy endpoint.
 
@@ -115,9 +141,6 @@ class Proxy:
             client: HTTPClient instance for API communication
         """
         self._client = client
-        self._sessions = ProxySessions(client)
 
-    @property
-    def sessions(self):
-        """Active proxy session monitoring."""
-        return self._sessions
+        # Initialize nested resources
+        self.sessions = Sessions(client)

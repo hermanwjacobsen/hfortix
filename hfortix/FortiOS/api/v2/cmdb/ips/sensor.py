@@ -1,155 +1,258 @@
 """
-FortiOS CMDB - IPS Sensor
-
-Configure IPS sensor profiles.
+FortiOS CMDB - Ips Sensor
 
 API Endpoints:
-    GET    /api/v2/cmdb/ips/sensor           - List all / Get specific
-    POST   /api/v2/cmdb/ips/sensor           - Create
-    PUT    /api/v2/cmdb/ips/sensor/{name}   - Update
-    DELETE /api/v2/cmdb/ips/sensor/{name}   - Delete
+    GET    /ips/sensor
+    POST   /ips/sensor
+    GET    /ips/sensor/{name}
+    PUT    /ips/sensor/{name}
+    DELETE /ips/sensor/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class Sensor:
-    """IPS Sensor endpoint"""
+    """Sensor operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Sensor endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
-        self, name: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Get IPS sensor(s) - List all or get specific.
-        
-        Args:
-            name: Sensor name (if specified, gets single sensor)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-            
-        Returns:
-            Dictionary containing sensor configuration(s)
-            
-        Examples:
-            >>> # List all sensors
-            >>> sensors = fgt.api.cmdb.ips.sensor.get()
-            
-            >>> # Get specific sensor
-            >>> sensor = fgt.api.cmdb.ips.sensor.get('default')
-        """
-        path = "ips/sensor"
-        if name is not None:
-            path = f"{path}/{encode_path_component(name)}"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        block_malicious_url: Optional[str] = None,
-        scan_botnet_connections: Optional[str] = None,
-        extended_log: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create IPS sensor.
-
-        Args:
-            name: Sensor name (max 47 chars)
-            comment: Comment (max 255 chars)
-            replacemsg_group: Replacement message group (max 35 chars)
-            block_malicious_url: Enable/disable malicious URL blocking (disable|enable)
-            scan_botnet_connections: Block/monitor connections to Botnet servers (disable|block|monitor)
-            extended_log: Enable/disable extended logging (enable|disable)
-            entries: IPS sensor filter entries (list of filter objects)
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "name": name,
-            "comment": comment,
-            "replacemsg-group": replacemsg_group,
-            "block-malicious-url": block_malicious_url,
-            "scan-botnet-connections": scan_botnet_connections,
-            "extended-log": extended_log,
-            "entries": entries,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = "ips/sensor"
-        return self._client.post("cmdb", path, data=data, vdom=vdom)
+        Select a specific entry from a CLI table.
+        
+        Args:
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/ips/sensor/{name}"
+        else:
+            endpoint = "/ips/sensor"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        comment: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        block_malicious_url: Optional[str] = None,
-        scan_botnet_connections: Optional[str] = None,
-        extended_log: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        block_malicious_url: str | None = None,
+        scan_botnet_connections: str | None = None,
+        extended_log: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update IPS sensor.
-
-        Args:
-            name: Sensor name to update
-            comment: Comment (max 255 chars)
-            replacemsg_group: Replacement message group (max 35 chars)
-            block_malicious_url: Enable/disable malicious URL blocking (disable|enable)
-            scan_botnet_connections: Block/monitor connections to Botnet servers (disable|block|monitor)
-            extended_log: Enable/disable extended logging (enable|disable)
-            entries: IPS sensor filter entries (list of filter objects)
         """
-        data = data_dict.copy() if data_dict else {}
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Sensor name. (optional)
+            comment: Comment. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            block_malicious_url: Enable/disable malicious URL blocking. (optional)
+            scan_botnet_connections: Block or monitor connections to Botnet servers, or disable Botnet scanning. (optional)
+            extended_log: Enable/disable extended logging. (optional)
+            entries: IPS sensor filter. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/ips/sensor/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if block_malicious_url is not None:
+            data_payload['block-malicious-url'] = block_malicious_url
+        if scan_botnet_connections is not None:
+            data_payload['scan-botnet-connections'] = scan_botnet_connections
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "comment": comment,
-            "replacemsg-group": replacemsg_group,
-            "block-malicious-url": block_malicious_url,
-            "scan-botnet-connections": scan_botnet_connections,
-            "extended-log": extended_log,
-            "entries": entries,
-        }
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Delete this specific resource.
+        
+        Args:
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/ips/sensor/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = f"ips/sensor/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
-
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
-        """Delete IPS sensor."""
-        path = f"ips/sensor/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
-
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
-        """Check if IPS sensor exists."""
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        block_malicious_url: str | None = None,
+        scan_botnet_connections: str | None = None,
+        extended_log: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Sensor name. (optional)
+            comment: Comment. (optional)
+            replacemsg_group: Replacement message group. (optional)
+            block_malicious_url: Enable/disable malicious URL blocking. (optional)
+            scan_botnet_connections: Block or monitor connections to Botnet servers, or disable Botnet scanning. (optional)
+            extended_log: Enable/disable extended logging. (optional)
+            entries: IPS sensor filter. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/ips/sensor"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if block_malicious_url is not None:
+            data_payload['block-malicious-url'] = block_malicious_url
+        if scan_botnet_connections is not None:
+            data_payload['scan-botnet-connections'] = scan_botnet_connections
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

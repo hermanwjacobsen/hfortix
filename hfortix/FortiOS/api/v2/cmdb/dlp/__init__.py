@@ -1,14 +1,4 @@
-"""
-FortiOS CMDB DLP API
-Data Loss Prevention configuration endpoints
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
+"""FortiOS CMDB - Dlp category"""
 
 from .data_type import DataType
 from .dictionary import Dictionary
@@ -19,23 +9,24 @@ from .profile import Profile
 from .sensor import Sensor
 from .settings import Settings
 
-__all__ = ["DLP"]
+__all__ = ['DataType', 'Dictionary', 'ExactDataMatch', 'Filepattern', 'Label', 'Profile', 'Sensor', 'Settings']
 
 
-class DLP:
+
+class Dlp:
     """
-    DLP API helper class
-    Provides access to Data Loss Prevention configuration endpoints
+    Dlp category wrapper.
+    
+    This class provides access to all dlp CMDB endpoints.
     """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    
+    def __init__(self, client):
         """
-        Initialize DLP helper
-
+        Initialize Dlp with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
         self.data_type = DataType(client)
         self.dictionary = Dictionary(client)
         self.exact_data_match = ExactDataMatch(client)
@@ -44,16 +35,3 @@ class DLP:
         self.profile = Profile(client)
         self.sensor = Sensor(client)
         self.settings = Settings(client)
-
-    def __dir__(self):
-        """Control autocomplete to show only public attributes"""
-        return [
-            "data_type",
-            "dictionary",
-            "exact_data_match",
-            "filepattern",
-            "label",
-            "profile",
-            "sensor",
-            "settings",
-        ]

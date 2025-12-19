@@ -1,15 +1,15 @@
-"""Policy lookup operations."""
+"""Monitor API - PolicyLookup operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class PolicyLookup:
-    """Policy lookup by creating dummy packet."""
+    """PolicyLookup operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize PolicyLookup endpoint.
 
@@ -18,68 +18,82 @@ class PolicyLookup:
         """
         self._client = client
 
-    def __call__(
+    def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        srcintf: Optional[str] = None,
-        ipv6: Optional[bool] = None,
-        protocol: Optional[int] = None,
-        sourceip: Optional[str] = None,
-        dest: Optional[str] = None,
-        sourceport: Optional[int] = None,
-        dest_port: Optional[int] = None,
-        icmptype: Optional[int] = None,
-        icmpcode: Optional[int] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        srcintf: str,
+        sourceip: str,
+        protocol: str,
+        dest: str,
+        ipv6: bool | None = None,
+        sourceport: int | None = None,
+        destport: int | None = None,
+        icmptype: int | None = None,
+        icmpcode: int | None = None,
+        policy_type: str | None = None,
+        auth_type: str | None = None,
+        user_group: Any | None = None,
+        server_name: str | None = None,
+        user_db: str | None = None,
+        group_attr_type: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Performs a policy lookup by creating a dummy packet and asking the kernel which policy would be hit.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            srcintf: Source interface name (required)
-            ipv6: Whether lookup is for IPv6 (required)
-            protocol: Protocol number (required)
-            sourceip: Source IP address (required)
-            dest: Destination IP address (required)
-            sourceport: Source port (required)
-            dest_port: Destination port (required)
-            icmptype: ICMP type (for ICMP protocol)
-            icmpcode: ICMP code (for ICMP protocol)
+            srcintf: Source interface. (required)
+            sourceip: Source IP. (required)
+            protocol: Protocol. (required)
+            dest: Destination IP/FQDN. (required)
+            ipv6: Perform an IPv6 lookup? (optional)
+            sourceport: Source port. (optional)
+            destport: Destination port. (optional)
+            icmptype: ICMP type. (optional)
+            icmpcode: ICMP code. (optional)
+            policy_type: Policy type. [*policy | proxy] (optional)
+            auth_type: Authentication type. [user | group | saml | ldap] Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
+            user_group: Name of local user. Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
+            server_name: Remote user/group server name. Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
+            user_db: Authentication server to contain user information. (optional)
+            group_attr_type: Remote user group attribute type. [*name | id] (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing matched policy information
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.policy_lookup(
-            ...     srcintf='port1',
-            ...     ipv6=False,
-            ...     protocol=6,
-            ...     sourceip='10.1.1.100',
-            ...     dest='8.8.8.8',
-            ...     sourceport=45678,
-            ...     dest_port=443
-            ... )
+            >>> fgt.api.monitor.firewall.policy_lookup.get(srcintf='value', sourceip='value', protocol='value', dest='value')
         """
-        params = data_dict.copy() if data_dict else {}
-        if srcintf is not None:
-            params["srcintf"] = srcintf
+        params = payload_dict.copy() if payload_dict else {}
+        params['srcintf'] = srcintf
+        params['sourceip'] = sourceip
+        params['protocol'] = protocol
+        params['dest'] = dest
         if ipv6 is not None:
-            params["ipv6"] = ipv6
-        if protocol is not None:
-            params["protocol"] = protocol
-        if sourceip is not None:
-            params["sourceip"] = sourceip
-        if dest is not None:
-            params["dest"] = dest
+            params['ipv6'] = ipv6
         if sourceport is not None:
-            params["sourceport"] = sourceport
-        if dest_port is not None:
-            params["dest_port"] = dest_port
+            params['sourceport'] = sourceport
+        if destport is not None:
+            params['destport'] = destport
         if icmptype is not None:
-            params["icmptype"] = icmptype
+            params['icmptype'] = icmptype
         if icmpcode is not None:
-            params["icmpcode"] = icmpcode
+            params['icmpcode'] = icmpcode
+        if policy_type is not None:
+            params['policy_type'] = policy_type
+        if auth_type is not None:
+            params['auth_type'] = auth_type
+        if user_group is not None:
+            params['user_group'] = user_group
+        if server_name is not None:
+            params['server_name'] = server_name
+        if user_db is not None:
+            params['user_db'] = user_db
+        if group_attr_type is not None:
+            params['group_attr_type'] = group_attr_type
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/policy-lookup", params=params)

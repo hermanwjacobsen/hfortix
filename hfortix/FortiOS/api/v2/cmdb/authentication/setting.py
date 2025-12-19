@@ -1,261 +1,189 @@
 """
-FortiOS CMDB - Authentication Settings
-
-Configure global authentication settings.
+FortiOS CMDB - Authentication Setting
 
 API Endpoints:
-    GET  /api/v2/cmdb/authentication/setting  - Get configuration
-    PUT  /api/v2/cmdb/authentication/setting  - Update configuration
+    GET    /authentication/setting
+    PUT    /authentication/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Setting:
-    """Authentication setting endpoint"""
+    """Setting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    @staticmethod
-    def _format_name_list(
-        items: Optional[list[Union[str, dict[str, Any]]]],
-    ) -> Optional[list[dict[str, Any]]]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Convert simple list of strings to FortiOS format [{'name': 'item'}]
+        Initialize Setting endpoint.
 
         Args:
-            items: List of strings or dicts or None
-
-        Returns:
-            List of dicts with 'name' key, or None if input is None
+            client: HTTPClient instance for API communication
         """
-        if items is None:
-            return None
-
-        formatted = []
-        for item in items:
-            if isinstance(item, str):
-                formatted.append({"name": item})
-            elif isinstance(item, dict):
-                formatted.append(item)
-            else:
-                formatted.append({"name": str(item)})
-
-        return formatted
+        self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = False,
-        with_meta: Optional[bool] = False,
-        skip: Optional[bool] = False,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get authentication settings
-
-        Retrieve global authentication settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable skip operator
-            action (str, optional): Action type - 'default' or 'schema'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with authentication settings
-
-        Examples:
-            >>> # Get authentication settings
-            >>> settings = fgt.cmdb.authentication.setting.get()
-
-            >>> # Get with meta information
-            >>> settings = fgt.cmdb.authentication.setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/authentication/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb",
-            "authentication/setting",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        active_auth_scheme: Optional[str] = None,
-        sso_auth_scheme: Optional[str] = None,
-        update_time: Optional[str] = None,
-        persistent_cookie: Optional[str] = None,
-        ip_auth_cookie: Optional[str] = None,
-        cookie_max_age: Optional[int] = None,
-        cookie_refresh_div: Optional[int] = None,
-        captive_portal_type: Optional[str] = None,
-        captive_portal_ip: Optional[str] = None,
-        captive_portal_ip6: Optional[str] = None,
-        captive_portal: Optional[str] = None,
-        captive_portal6: Optional[str] = None,
-        cert_auth: Optional[str] = None,
-        cert_captive_portal: Optional[str] = None,
-        cert_captive_portal_ip: Optional[str] = None,
-        cert_captive_portal_port: Optional[int] = None,
-        captive_portal_port: Optional[int] = None,
-        auth_https: Optional[str] = None,
-        captive_portal_ssl_port: Optional[int] = None,
-        user_cert_ca: Optional[list[Union[str, dict[str, Any]]]] = None,
-        dev_range: Optional[list[Union[str, dict[str, Any]]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        active_auth_scheme: str | None = None,
+        sso_auth_scheme: str | None = None,
+        update_time: str | None = None,
+        persistent_cookie: str | None = None,
+        ip_auth_cookie: str | None = None,
+        cookie_max_age: int | None = None,
+        cookie_refresh_div: int | None = None,
+        captive_portal_type: str | None = None,
+        captive_portal_ip: str | None = None,
+        captive_portal_ip6: str | None = None,
+        captive_portal: str | None = None,
+        captive_portal6: str | None = None,
+        cert_auth: str | None = None,
+        cert_captive_portal: str | None = None,
+        cert_captive_portal_ip: str | None = None,
+        cert_captive_portal_port: int | None = None,
+        captive_portal_port: int | None = None,
+        auth_https: str | None = None,
+        captive_portal_ssl_port: int | None = None,
+        user_cert_ca: list | None = None,
+        dev_range: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update authentication settings
-
-        Update global authentication configuration settings.
-
+        Update this specific resource.
+        
         Args:
-            active_auth_scheme (str, optional): Active authentication method (scheme name, max 35 chars)
-            sso_auth_scheme (str, optional): Single-Sign-On authentication method (scheme name, max 35 chars)
-            update_time (str, optional): Time of the last update
-            persistent_cookie (str, optional): Enable/disable persistent cookie on web portal auth -
-                'enable' or 'disable' (default: enable)
-            ip_auth_cookie (str, optional): Enable/disable persistent cookie on IP based web portal auth -
-                'enable' or 'disable' (default: disable)
-            cookie_max_age (int, optional): Persistent web portal cookie max age in minutes
-                (30-10080, default: 480)
-            cookie_refresh_div (int, optional): Refresh rate divider of persistent cookie
-                (2-4, default: 2)
-            captive_portal_type (str, optional): Captive portal type - 'fqdn' or 'ip'
-            captive_portal_ip (str, optional): Captive portal IPv4 address
-            captive_portal_ip6 (str, optional): Captive portal IPv6 address
-            captive_portal (str, optional): Captive portal host name (max 255 chars)
-            captive_portal6 (str, optional): IPv6 captive portal host name (max 255 chars)
-            cert_auth (str, optional): Enable/disable redirecting cert auth to HTTPS portal -
-                'enable' or 'disable'
-            cert_captive_portal (str, optional): Certificate captive portal host name (max 255 chars)
-            cert_captive_portal_ip (str, optional): Certificate captive portal IP address
-            cert_captive_portal_port (int, optional): Certificate captive portal port (1-65535, default: 7832)
-            captive_portal_port (int, optional): Captive portal port number (1-65535, default: 7830)
-            auth_https (str, optional): Enable/disable redirecting HTTP auth to HTTPS -
-                'enable' or 'disable'
-            captive_portal_ssl_port (int, optional): Captive portal SSL port (1-65535, default: 7831)
-            user_cert_ca (list, optional): CA certificates for client cert verification
-                (list of strings or dicts with 'name' key)
-            dev_range (list, optional): Address range for IP based device query
-                (list of strings or dicts with 'name' key)
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            active_auth_scheme: Active authentication method (scheme name). (optional)
+            sso_auth_scheme: Single-Sign-On authentication method (scheme name). (optional)
+            update_time: Time of the last update. (optional)
+            persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). (optional)
+            ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). (optional)
+            cookie_max_age: Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), default = 480 (8 hours)). (optional)
+            cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div. (optional)
+            captive_portal_type: Captive portal type. (optional)
+            captive_portal_ip: Captive portal IP address. (optional)
+            captive_portal_ip6: Captive portal IPv6 address. (optional)
+            captive_portal: Captive portal host name. (optional)
+            captive_portal6: IPv6 captive portal host name. (optional)
+            cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. (optional)
+            cert_captive_portal: Certificate captive portal host name. (optional)
+            cert_captive_portal_ip: Certificate captive portal IP address. (optional)
+            cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832). (optional)
+            captive_portal_port: Captive portal port number (1 - 65535, default = 7830). (optional)
+            auth_https: Enable/disable redirecting HTTP user authentication to HTTPS. (optional)
+            captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831). (optional)
+            user_cert_ca: CA certificate used for client certificate verification. (optional)
+            dev_range: Address range for the IP based device query. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Enable persistent cookie
-            >>> result = fgt.cmdb.authentication.setting.update(
-            ...     persistent_cookie='enable',
-            ...     cookie_max_age=1440
-            ... )
-
-            >>> # Configure captive portal
-            >>> result = fgt.cmdb.authentication.setting.update(
-            ...     captive_portal_type='fqdn',
-            ...     captive_portal='portal.example.com',
-            ...     captive_portal_port=8080
-            ... )
-
-            >>> # Set authentication schemes
-            >>> result = fgt.cmdb.authentication.setting.update(
-            ...     active_auth_scheme='form-auth',
-            ...     sso_auth_scheme='saml-sso'
-            ... )
+            Dictionary containing API response
         """
-        # Convert simple lists to FortiOS format
-        user_cert_ca = self._format_name_list(user_cert_ca)
-        dev_range = self._format_name_list(dev_range)
-
-        param_map = {
-            "active_auth_scheme": active_auth_scheme,
-            "sso_auth_scheme": sso_auth_scheme,
-            "update_time": update_time,
-            "persistent_cookie": persistent_cookie,
-            "ip_auth_cookie": ip_auth_cookie,
-            "cookie_max_age": cookie_max_age,
-            "cookie_refresh_div": cookie_refresh_div,
-            "captive_portal_type": captive_portal_type,
-            "captive_portal_ip": captive_portal_ip,
-            "captive_portal_ip6": captive_portal_ip6,
-            "captive_portal": captive_portal,
-            "captive_portal6": captive_portal6,
-            "cert_auth": cert_auth,
-            "cert_captive_portal": cert_captive_portal,
-            "cert_captive_portal_ip": cert_captive_portal_ip,
-            "cert_captive_portal_port": cert_captive_portal_port,
-            "captive_portal_port": captive_portal_port,
-            "auth_https": auth_https,
-            "captive_portal_ssl_port": captive_portal_ssl_port,
-            "user_cert_ca": user_cert_ca,
-            "dev_range": dev_range,
-        }
-
-        api_field_map = {
-            "active_auth_scheme": "active-auth-scheme",
-            "sso_auth_scheme": "sso-auth-scheme",
-            "update_time": "update-time",
-            "persistent_cookie": "persistent-cookie",
-            "ip_auth_cookie": "ip-auth-cookie",
-            "cookie_max_age": "cookie-max-age",
-            "cookie_refresh_div": "cookie-refresh-div",
-            "captive_portal_type": "captive-portal-type",
-            "captive_portal_ip": "captive-portal-ip",
-            "captive_portal_ip6": "captive-portal-ip6",
-            "captive_portal": "captive-portal",
-            "captive_portal6": "captive-portal6",
-            "cert_auth": "cert-auth",
-            "cert_captive_portal": "cert-captive-portal",
-            "cert_captive_portal_ip": "cert-captive-portal-ip",
-            "cert_captive_portal_port": "cert-captive-portal-port",
-            "captive_portal_port": "captive-portal-port",
-            "auth_https": "auth-https",
-            "captive_portal_ssl_port": "captive-portal-ssl-port",
-            "user_cert_ca": "user-cert-ca",
-            "dev_range": "dev-range",
-        }
-
-        data = {}
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", "authentication/setting", data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/authentication/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if active_auth_scheme is not None:
+            data_payload['active-auth-scheme'] = active_auth_scheme
+        if sso_auth_scheme is not None:
+            data_payload['sso-auth-scheme'] = sso_auth_scheme
+        if update_time is not None:
+            data_payload['update-time'] = update_time
+        if persistent_cookie is not None:
+            data_payload['persistent-cookie'] = persistent_cookie
+        if ip_auth_cookie is not None:
+            data_payload['ip-auth-cookie'] = ip_auth_cookie
+        if cookie_max_age is not None:
+            data_payload['cookie-max-age'] = cookie_max_age
+        if cookie_refresh_div is not None:
+            data_payload['cookie-refresh-div'] = cookie_refresh_div
+        if captive_portal_type is not None:
+            data_payload['captive-portal-type'] = captive_portal_type
+        if captive_portal_ip is not None:
+            data_payload['captive-portal-ip'] = captive_portal_ip
+        if captive_portal_ip6 is not None:
+            data_payload['captive-portal-ip6'] = captive_portal_ip6
+        if captive_portal is not None:
+            data_payload['captive-portal'] = captive_portal
+        if captive_portal6 is not None:
+            data_payload['captive-portal6'] = captive_portal6
+        if cert_auth is not None:
+            data_payload['cert-auth'] = cert_auth
+        if cert_captive_portal is not None:
+            data_payload['cert-captive-portal'] = cert_captive_portal
+        if cert_captive_portal_ip is not None:
+            data_payload['cert-captive-portal-ip'] = cert_captive_portal_ip
+        if cert_captive_portal_port is not None:
+            data_payload['cert-captive-portal-port'] = cert_captive_portal_port
+        if captive_portal_port is not None:
+            data_payload['captive-portal-port'] = captive_portal_port
+        if auth_https is not None:
+            data_payload['auth-https'] = auth_https
+        if captive_portal_ssl_port is not None:
+            data_payload['captive-portal-ssl-port'] = captive_portal_ssl_port
+        if user_cert_ca is not None:
+            data_payload['user-cert-ca'] = user_cert_ca
+        if dev_range is not None:
+            data_payload['dev-range'] = dev_range
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

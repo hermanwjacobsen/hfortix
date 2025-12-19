@@ -1,15 +1,15 @@
-"""SDN Fabric Connector filter operations."""
+"""Monitor API - SdnConnectorFilters operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class SdnConnectorFilters:
-    """SDN Fabric Connector available filters."""
+    """SdnConnectorFilters operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize SdnConnectorFilters endpoint.
 
@@ -18,49 +18,29 @@ class SdnConnectorFilters:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, connector: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        List all available filters for all SDN Fabric Connectors.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            connector: Filter by connector name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing SDN connector filters
-
-        Example:
-            >>> fgt.api.monitor.firewall.sdn_connector_filters.list()
-            >>> fgt.api.monitor.firewall.sdn_connector_filters.list(connector='aws_connector')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if connector is not None:
-            params["connector"] = connector
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/sdn-connector-filters", params=params)
-
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, connector: Optional[str] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        connector: str,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get available filters for a specific SDN Fabric Connector.
-
+        List all available filters for a specified SDN Fabric Connector.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            connector: Connector name to retrieve
+            connector: Name of the SDN Fabric Connector to get the filters from. (required)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing SDN connector filters
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.sdn_connector_filters.get(connector='aws_connector')
+            >>> fgt.api.monitor.firewall.sdn_connector_filters.get(connector='value')
         """
-        params = data_dict.copy() if data_dict else {}
-        if connector is not None:
-            params["connector"] = connector
+        params = payload_dict.copy() if payload_dict else {}
+        params['connector'] = connector
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/sdn-connector-filters", params=params)

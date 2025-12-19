@@ -1,15 +1,15 @@
-"""IPv4 local-in firewall policy operations."""
+"""Monitor API - LocalIn operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
 class LocalIn:
-    """Implicit and explicit local-in firewall policies."""
+    """LocalIn operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize LocalIn endpoint.
 
@@ -18,48 +18,30 @@ class LocalIn:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, policyid: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
-        """
-        List all implicit and explicit local-in firewall policies.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Filter by policy ID
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing local-in policies
-
-        Example:
-            >>> fgt.api.monitor.firewall.local_in.list()
-        """
-        params = data_dict.copy() if data_dict else {}
-        if policyid is not None:
-            params["policyid"] = policyid
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/local-in", params=params)
-
     def get(
-        self, data_dict: Optional[Dict[str, Any]] = None, policyid: Optional[int] = None, **kwargs
-    ) -> Dict[str, Any]:
+        self,
+        include_ttl: bool | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get a specific local-in firewall policy.
-
+        List implicit and explicit local-in firewall policies.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            policyid: Policy ID to retrieve
+            include_ttl: Include TTL local-in policies. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing policy information
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.local_in.get(policyid=1)
+            >>> fgt.api.monitor.firewall.local_in.get()
         """
-        params = data_dict.copy() if data_dict else {}
-        if policyid is not None:
-            params["policyid"] = policyid
+        params = payload_dict.copy() if payload_dict else {}
+        if include_ttl is not None:
+            params['include_ttl'] = include_ttl
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/local-in", params=params)

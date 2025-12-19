@@ -1,114 +1,149 @@
 """
-FortiOS CMDB - Log FortiGuard Filter
-
-Filters for FortiCloud logging.
+FortiOS CMDB - Log FortiguardFilter
 
 API Endpoints:
-    GET  /api/v2/cmdb/log.fortiguard/filter  - Get configuration
-    PUT  /api/v2/cmdb/log.fortiguard/filter  - Update configuration
+    GET    /log.fortiguard/filter
+    PUT    /log.fortiguard/filter
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class FortiguardFilter:
-    """Log FortiGuard Filter endpoint (singleton)"""
+    """FortiguardFilter operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    def get(self, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Get FortiGuard filter settings.
+        Initialize FortiguardFilter endpoint.
 
         Args:
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing FortiGuard filter settings
-
-        Examples:
-            >>> settings = fgt.api.cmdb.log.fortiguard_filter.get()
+            client: HTTPClient instance for API communication
         """
-        path = "log.fortiguard/filter"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
+        self._client = client
 
-    def put(
+    def get(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        severity: Optional[str] = None,
-        forward_traffic: Optional[str] = None,
-        local_traffic: Optional[str] = None,
-        multicast_traffic: Optional[str] = None,
-        sniffer_traffic: Optional[str] = None,
-        ztna_traffic: Optional[str] = None,
-        anomaly: Optional[str] = None,
-        voip: Optional[str] = None,
-        forti_switch: Optional[str] = None,
-        http_transaction: Optional[str] = None,
-        free_style: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update FortiGuard filter settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            data_dict: Complete configuration dictionary
-            severity: Lowest severity level to log (emergency|alert|critical|error|warning|notification|information|debug)
-            forward_traffic: Enable/disable forward traffic logging (enable|disable)
-            local_traffic: Enable/disable local traffic logging (enable|disable)
-            multicast_traffic: Enable/disable multicast traffic logging (enable|disable)
-            sniffer_traffic: Enable/disable sniffer traffic logging (enable|disable)
-            ztna_traffic: Enable/disable ZTNA traffic logging (enable|disable)
-            anomaly: Enable/disable anomaly logging (enable|disable)
-            voip: Enable/disable VoIP logging (enable|disable)
-            forti_switch: Enable/disable FortiSwitch logging (enable|disable)
-            http_transaction: Enable/disable HTTP transaction logging (enable|disable)
-            free_style: Free-style log filters (list of filter objects)
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> # PUT - Update severity level
-            >>> fgt.api.cmdb.log.fortiguard_filter.update(severity='warning')
-
-            >>> # Enable specific traffic types
-            >>> fgt.api.cmdb.log.fortiguard_filter.update(
-            ...     forward_traffic='enable',
-            ...     anomaly='enable'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log.fortiguard/filter"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "severity": severity,
-            "forward-traffic": forward_traffic,
-            "local-traffic": local_traffic,
-            "multicast-traffic": multicast_traffic,
-            "sniffer-traffic": sniffer_traffic,
-            "ztna-traffic": ztna_traffic,
-            "anomaly": anomaly,
-            "voip": voip,
-            "forti-switch": forti_switch,
-            "http-transaction": http_transaction,
-            "free-style": free_style,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-
-        path = "log.fortiguard/filter"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        severity: str | None = None,
+        forward_traffic: str | None = None,
+        local_traffic: str | None = None,
+        multicast_traffic: str | None = None,
+        sniffer_traffic: str | None = None,
+        ztna_traffic: str | None = None,
+        http_transaction: str | None = None,
+        anomaly: str | None = None,
+        voip: str | None = None,
+        forti_switch: str | None = None,
+        free_style: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            severity: Lowest severity level to log. (optional)
+            forward_traffic: Enable/disable forward traffic logging. (optional)
+            local_traffic: Enable/disable local in or out traffic logging. (optional)
+            multicast_traffic: Enable/disable multicast traffic logging. (optional)
+            sniffer_traffic: Enable/disable sniffer traffic logging. (optional)
+            ztna_traffic: Enable/disable ztna traffic logging. (optional)
+            http_transaction: Enable/disable log HTTP transaction messages. (optional)
+            anomaly: Enable/disable anomaly logging. (optional)
+            voip: Enable/disable VoIP logging. (optional)
+            forti_switch: Enable/disable Forti-Switch logging. (optional)
+            free_style: Free style filters. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log.fortiguard/filter"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if severity is not None:
+            data_payload['severity'] = severity
+        if forward_traffic is not None:
+            data_payload['forward-traffic'] = forward_traffic
+        if local_traffic is not None:
+            data_payload['local-traffic'] = local_traffic
+        if multicast_traffic is not None:
+            data_payload['multicast-traffic'] = multicast_traffic
+        if sniffer_traffic is not None:
+            data_payload['sniffer-traffic'] = sniffer_traffic
+        if ztna_traffic is not None:
+            data_payload['ztna-traffic'] = ztna_traffic
+        if http_transaction is not None:
+            data_payload['http-transaction'] = http_transaction
+        if anomaly is not None:
+            data_payload['anomaly'] = anomaly
+        if voip is not None:
+            data_payload['voip'] = voip
+        if forti_switch is not None:
+            data_payload['forti-switch'] = forti_switch
+        if free_style is not None:
+            data_payload['free-style'] = free_style
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

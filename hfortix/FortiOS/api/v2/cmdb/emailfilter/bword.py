@@ -1,280 +1,234 @@
 """
-FortiOS CMDB - Email Filter Banned Word List
-
-Configure AntiSpam banned word list.
+FortiOS CMDB - Emailfilter Bword
 
 API Endpoints:
-    GET    /api/v2/cmdb/emailfilter/bword           - List all / Get specific
-    POST   /api/v2/cmdb/emailfilter/bword           - Create
-    PUT    /api/v2/cmdb/emailfilter/bword/{id}   - Update
-    DELETE /api/v2/cmdb/emailfilter/bword/{id}   - Delete
+    GET    /emailfilter/bword
+    POST   /emailfilter/bword
+    GET    /emailfilter/bword/{id}
+    PUT    /emailfilter/bword/{id}
+    DELETE /emailfilter/bword/{id}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Bword:
-    """Email filter banned word list endpoint"""
+    """Bword operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Bword endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        list_id: Optional[int] = None,
-        # Query parameters
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get email filter banned word list(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            list_id (int, optional): List ID to retrieve. If None, retrieves all lists
-            attr (str, optional): Attribute name that references other table
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (int, optional): Skip to provided table's Nth entry
-            acs (bool, optional): If true, returned results are in ascending order
-            search (str, optional): Filter objects by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable CLI skip operator
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing banned word list data
-
-        Examples:
-            >>> # List all banned word lists
-            >>> lists = fgt.cmdb.emailfilter.bword.list()
-
-            >>> # Get a specific list by ID
-            >>> list_data = fgt.cmdb.emailfilter.bword.get(1)
-
-            >>> # Get with filtering
-            >>> lists = fgt.cmdb.emailfilter.bword.get(
-            ...     format='id|name|comment',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/emailfilter/bword/{id}"
+        else:
+            endpoint = "/emailfilter/bword"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        path = "emailfilter/bword"
-        if list_id is not None:
-            path = f"{path}/{list_id}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # List configuration
-        comment: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create email filter banned word list.
-
-        Args:
-            name (str): Banned word list name
-            comment (str, optional): Optional comment
-            entries (list, optional): List entries with pattern (banned word/phrase),
-                                     status (enable/disable), where (subject/body/all),
-                                     language (western/simch/trch/japanese/korean/french/thai/spanish),
-                                     action (spam/clear/mark/tag), score (1-99999)
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create banned word list
-            >>> result = fgt.cmdb.emailfilter.bword.create(
-            ...     name='profanity-filter',
-            ...     comment='Block profanity in emails',
-            ...     entries=[
-            ...         {'pattern': 'badword', 'where': 'all', 'action': 'spam'},
-            ...         {'pattern': 'inappropriate', 'where': 'subject', 'action': 'mark'}
-            ...     ]
-            ... )
-        """
-        data = {"name": name}
-
-        if comment is not None:
-            data["comment"] = comment
-        if entries is not None:
-            converted_entries = []
-            for entry in entries:
-                converted = {}
-                for key, value in entry.items():
-                    converted[key.replace("_", "-")] = value
-                converted_entries.append(converted)
-            data["entries"] = converted_entries
-
-        data.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "emailfilter/bword", data=data, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        list_id: Optional[int] = None,
-        # List configuration
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        entries: Optional[list[dict[str, Any]]] = None,
-        # PUT - Update parameters
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update an email filter banned word list.
-
+        Update this specific resource.
+        
         Args:
-            list_id (int): List ID to update
-            name (str, optional): Banned word list name
-            comment (str, optional): Optional comment
-            entries (list, optional): List entries with pattern, where, action, status
-            action (str, optional): 'add-members', 'replace-members', 'remove-members'
-            before (str, optional): Place new object before given object ID
-            after (str, optional): Place new object after given object ID
-            scope (str, optional): Scope level - 'global' or 'vdom'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: ID. (optional)
+            name: Name of table. (optional)
+            comment: Optional comments. (optional)
+            entries: Spam filter banned word. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update banned word list
-            >>> result = fgt.cmdb.emailfilter.bword.update(
-            ...     list_id=1,
-            ...     entries=[
-            ...         {'pattern': 'newbadword', 'where': 'body', 'action': 'spam'}
-            ...     ]
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-
-        if name is not None:
-            data["name"] = name
-        if comment is not None:
-            data["comment"] = comment
-        if entries is not None:
-            converted_entries = []
-            for entry in entries:
-                converted = {}
-                for key, value in entry.items():
-                    converted[key.replace("_", "-")] = value
-                converted_entries.append(converted)
-            data["entries"] = converted_entries
-        if action is not None:
-            data["action"] = action
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/emailfilter/bword/{id}"
         if before is not None:
-            data["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            data["after"] = after
-        if scope is not None:
-            data["scope"] = scope
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"emailfilter/bword/{list_id}", data=data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        list_id: int,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete an email filter banned word list.
-
+        Delete this specific resource.
+        
         Args:
-            list_id (int): List ID to delete
-            scope (str, optional): Scope level - 'global' or 'vdom'
-            vdom (str, optional): Virtual Domain name
-
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.cmdb.emailfilter.bword.delete(1)
+            Dictionary containing API response
         """
-        params = {}
-        if scope is not None:
-            params["scope"] = scope
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/emailfilter/bword/{id}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        return self._client.delete(
-            "cmdb",
-            f"emailfilter/bword/{list_id}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: ID. (optional)
+            name: Name of table. (optional)
+            comment: Optional comments. (optional)
+            entries: Spam filter banned word. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/emailfilter/bword"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

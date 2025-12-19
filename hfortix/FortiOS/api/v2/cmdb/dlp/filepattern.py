@@ -1,322 +1,234 @@
 """
-FortiOS CMDB - DLP File Pattern
-
-Configure file patterns used by DLP blocking.
+FortiOS CMDB - Dlp Filepattern
 
 API Endpoints:
-    GET    /dlp/filepattern           - List all / Get specific
-    POST   /dlp/filepattern           - Create
-    PUT    /dlp/filepattern/{id}   - Update
-    DELETE /dlp/filepattern/{id}   - Delete
+    GET    /dlp/filepattern
+    POST   /dlp/filepattern
+    GET    /dlp/filepattern/{id}
+    PUT    /dlp/filepattern/{id}
+    DELETE /dlp/filepattern/{id}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Filepattern:
-    """DLP filepattern endpoint"""
+    """Filepattern operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Filepattern endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        id: int | None = None,
-        # Query parameters
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
         attr: str | None = None,
-        count: int | None = None,
-        skip_to_datasource: dict[str, Any] | None = None,
+        skip_to_datasource: dict | None = None,
         acs: int | None = None,
         search: str | None = None,
-        scope: str | None = None,
-        datasource: bool | None = None,
-        with_meta: bool | None = None,
-        skip: bool | None = None,
-        format: str | None = None,
-        action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get DLP file pattern(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            id: File pattern ID. If provided, gets specific file pattern.
-            attr: Attribute name that references other table
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned results are in ascending order
-            search: Filter objects by search value
-            scope: Scope - 'global', 'vdom', or 'both'
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (pipe-separated)
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary with file pattern configuration(s)
-
-        Examples:
-            >>> # Get all file patterns
-            >>> result = fgt.cmdb.dlp.filepattern.get()
-            >>> print(f"Total patterns: {len(result['results'])}")
-
-            >>> # Get specific file pattern
-            >>> result = fgt.cmdb.dlp.filepattern.get(1)
-            >>> print(f"Name: {result['results']['name']}")
-
-            >>> # Get with metadata
-            >>> result = fgt.cmdb.dlp.filepattern.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build path
-        path = "dlp/filepattern"
-        if id is not None:
-            path = f"dlp/filepattern/{id}"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/dlp/filepattern/{id}"
+        else:
+            endpoint = "/dlp/filepattern"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # File pattern configuration
-        id: int | None = None,
-        comment: str | None = None,
-        entries: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> dict[str, Any]:
-        """
-        Create DLP file pattern.
-
-        Args:
-            name: Name of the file pattern list (max 63 chars)
-            id: ID (0-4294967295)
-            comment: Optional comments (max 255 chars)
-            entries: List of file pattern entries. Each entry is a dict with:
-                - filter_type (str): Filter by - 'pattern' (file name) or 'type' (file type)
-                - pattern (str): File name pattern (max 79 chars, required if filter_type='pattern')
-                - file_type (str): File type (required if filter_type='type')
-                  Valid types: '7z', 'zip', 'rar', 'tar', 'pdf', 'exe', 'msoffice', 'msofficex', etc.
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create pattern for executable files
-            >>> result = fgt.cmdb.dlp.filepattern.create(
-            ...     name='block-executables',
-            ...     comment='Block executable file types',
-            ...     entries=[
-            ...         {'filter_type': 'type', 'file_type': 'exe'},
-            ...         {'filter_type': 'type', 'file_type': 'dll'},
-            ...         {'filter_type': 'type', 'file_type': 'bat'}
-            ...     ]
-            ... )
-
-            >>> # POST - Create pattern for file names
-            >>> result = fgt.cmdb.dlp.filepattern.create(
-            ...     name='confidential-docs',
-            ...     entries=[
-            ...         {'filter_type': 'pattern', 'pattern': '*confidential*'},
-            ...         {'filter_type': 'pattern', 'pattern': '*secret*'}
-            ...     ]
-            ... )
-        """
-        data = {}
-        param_map = {
-            "id": id,
-            "name": name,
-            "comment": comment,
-            "entries": entries,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "id": "id",
-            "name": "name",
-            "comment": "comment",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == "entries" and isinstance(value, list):
-                    converted_entries = []
-                    for entry in value:
-                        converted_entry = {}
-                        for k, v in entry.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_entry[api_key] = v
-
-                        # If filter-type is 'type', set pattern to file-type value
-                        if (
-                            converted_entry.get("filter-type") == "type"
-                            and "file-type" in converted_entry
-                        ):
-                            converted_entry["pattern"] = converted_entry["file-type"]
-
-                        converted_entries.append(converted_entry)
-                    data[api_name] = converted_entries
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "dlp/filepattern", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        id: Optional[int] = None,
-        # File pattern configuration
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
         name: str | None = None,
         comment: str | None = None,
-        entries: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update DLP file pattern.
-
+        Update this specific resource.
+        
         Args:
-            id: ID of the file pattern to update
-            name: Name of the file pattern list (max 63 chars)
-            comment: Optional comments (max 255 chars)
-            entries: List of file pattern entries. Each entry is a dict with:
-                - filter_type (str): Filter by - 'pattern' (file name) or 'type' (file type)
-                - pattern (str): File name pattern (max 79 chars, required if filter_type='pattern')
-                - file_type (str): File type (required if filter_type='type')
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: ID. (optional)
+            name: Name of table containing the file pattern list. (optional)
+            comment: Optional comments. (optional)
+            entries: Configure file patterns used by DLP blocking. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update comment
-            >>> result = fgt.cmdb.dlp.filepattern.update(
-            ...     id=1,
-            ...     comment='Updated block list'
-            ... )
-
-            >>> # PUT - Update entries
-            >>> result = fgt.cmdb.dlp.filepattern.update(
-            ...     id=1,
-            ...     entries=[
-            ...         {'filter_type': 'type', 'file_type': 'exe'},
-            ...         {'filter_type': 'type', 'file_type': 'dll'},
-            ...         {'filter_type': 'type', 'file_type': 'msi'}
-            ...     ]
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-        param_map = {
-            "id": id,
-            "name": name,
-            "comment": comment,
-            "entries": entries,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "id": "id",
-            "name": "name",
-            "comment": "comment",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == "entries" and isinstance(value, list):
-                    converted_entries = []
-                    for entry in value:
-                        converted_entry = {}
-                        for k, v in entry.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_entry[api_key] = v
-
-                        # If filter-type is 'type', set pattern to file-type value
-                        if (
-                            converted_entry.get("filter-type") == "type"
-                            and "file-type" in converted_entry
-                        ):
-                            converted_entry["pattern"] = converted_entry["file-type"]
-
-                        converted_entries.append(converted_entry)
-                    data[api_name] = converted_entries
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put("cmdb", f"dlp/filepattern/{id}", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/dlp/filepattern/{id}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        id: int,
-        vdom: str | None = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a DLP file pattern.
-
+        Delete this specific resource.
+        
         Args:
-            id: ID of the file pattern to delete
-            vdom: Virtual Domain(s)
-
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete file pattern
-            >>> result = fgt.cmdb.dlp.filepattern.delete(1)
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"dlp/filepattern/{id}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/dlp/filepattern/{id}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: ID. (optional)
+            name: Name of table containing the file pattern list. (optional)
+            comment: Optional comments. (optional)
+            entries: Configure file patterns used by DLP blocking. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/filepattern"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

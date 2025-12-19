@@ -4,7 +4,7 @@ FortiGate LAN Extension VDOM Monitor API
 Provides access to FortiGate LAN Extension VDOM status.
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
@@ -19,12 +19,7 @@ class LanExtensionVdom:
 
     Example usage:
         # Get VDOM status
-        status = fgt.api.monitor.extension_controller.lan_extension_vdom.status()
-
-        # Get VDOM status (dict)
-        status = fgt.api.monitor.extension_controller.lan_extension_vdom.status(
-            data_dict={}
-        )
+        status = fgt.api.monitor.extension_controller.lan_extension_vdom.get()
     """
 
     def __init__(self, client: "HTTPClient") -> None:
@@ -35,9 +30,13 @@ class LanExtensionVdom:
             client: HTTPClient instance for API communication
         """
         self._client = client
-        self._base_path = "/extension-controller/lan-extension-vdom-status"
 
-    def status(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs: Any) -> Any:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Get FortiGate LAN Extension VDOM status.
 
@@ -45,7 +44,8 @@ class LanExtensionVdom:
         connection status, uptime, and uplink information.
 
         Args:
-            data_dict: Dictionary containing parameters (alternative to kwargs)
+            payload_dict: Dictionary containing parameters (alternative to kwargs)
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
 
         Returns:
@@ -53,11 +53,11 @@ class LanExtensionVdom:
 
         Examples:
             # Get VDOM status
-            status = fgt.api.monitor.extension_controller.lan_extension_vdom.status()
+            status = fgt.api.monitor.extension_controller.lan_extension_vdom.get()
 
-            # Get VDOM status (dict)
-            status = fgt.api.monitor.extension_controller.lan_extension_vdom.status(
-                data_dict={}
+            # Get VDOM status with payload_dict
+            status = fgt.api.monitor.extension_controller.lan_extension_vdom.get(
+                payload_dict={}
             )
 
             # Response format:
@@ -78,11 +78,7 @@ class LanExtensionVdom:
             # - EXTWS_DTLS_SETUP: DTLS Setup
             # - EXTWS_IDLE: Idle
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
 
-        return self._client.get("monitor", self._base_path, params=params)
-
-    def __dir__(self):
-        """Return list of available attributes."""
-        return ["status"]
+        return self._client.get("monitor", "/extension-controller/lan-extension-vdom-status", params=params)

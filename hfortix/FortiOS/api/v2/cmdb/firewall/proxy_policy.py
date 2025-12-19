@@ -1,1080 +1,842 @@
 """
-FortiOS proxy-policy API wrapper.
-Provides access to /api/v2/cmdb/firewall/proxy-policy endpoint.
+FortiOS CMDB - Firewall ProxyPolicy
+
+API Endpoints:
+    GET    /firewall/proxy-policy
+    POST   /firewall/proxy-policy
+    GET    /firewall/proxy-policy/{policyid}
+    PUT    /firewall/proxy-policy/{policyid}
+    DELETE /firewall/proxy-policy/{policyid}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class ProxyPolicy:
-    """
-    Wrapper for firewall proxy-policy API endpoint.
+    """ProxyPolicy operations."""
 
-    Manages proxy-policy configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the ProxyPolicy wrapper.
+        Initialize ProxyPolicy endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/proxy-policy"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific proxy-policy entry by its policyid.
-
-        Args:
-            mkey: The policyid (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        access_proxy: Optional[list] = None,
-        access_proxy6: Optional[list] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        block_notification: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        comments: Optional[str] = None,
-        decrypted_traffic_mirror: Optional[str] = None,
-        detect_https_in_http_request: Optional[str] = None,
-        device_ownership: Optional[str] = None,
-        disclaimer: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        dstaddr6: Optional[list] = None,
-        dstintf: Optional[list] = None,
-        emailfilter_profile: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        groups: Optional[list] = None,
-        http_tunnel_auth: Optional[str] = None,
-        https_sub_category: Optional[str] = None,
-        icap_profile: Optional[str] = None,
-        internet_service: Optional[str] = None,
-        internet_service_custom: Optional[list] = None,
-        internet_service_custom_group: Optional[list] = None,
-        internet_service_fortiguard: Optional[list] = None,
-        internet_service_group: Optional[list] = None,
-        internet_service_name: Optional[list] = None,
-        internet_service_negate: Optional[str] = None,
-        internet_service6: Optional[str] = None,
-        internet_service6_custom: Optional[list] = None,
-        internet_service6_custom_group: Optional[list] = None,
-        internet_service6_fortiguard: Optional[list] = None,
-        internet_service6_group: Optional[list] = None,
-        internet_service6_name: Optional[list] = None,
-        internet_service6_negate: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        isolator_server: Optional[str] = None,
-        log_http_transaction: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        logtraffic_start: Optional[str] = None,
-        name: Optional[str] = None,
-        policyid: Optional[int] = None,
-        poolname: Optional[list] = None,
-        poolname6: Optional[list] = None,
-        profile_group: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        profile_type: Optional[str] = None,
-        proxy: Optional[str] = None,
-        redirect_url: Optional[str] = None,
-        replacemsg_override_group: Optional[str] = None,
-        schedule: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        session_ttl: Optional[int] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        srcaddr6: Optional[list] = None,
-        srcintf: Optional[list] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssh_policy_redirect: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        status: Optional[str] = None,
-        transparent: Optional[str] = None,
-        url_risk: Optional[list] = None,
-        users: Optional[list] = None,
-        utm_status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        waf_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        webproxy_forward_server: Optional[str] = None,
-        webproxy_profile: Optional[str] = None,
-        ztna_ems_tag: Optional[list] = None,
-        ztna_ems_tag_negate: Optional[str] = None,
-        ztna_proxy: Optional[list] = None,
-        ztna_tags_match_logic: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create proxy-policy entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            access-proxy (list[object]):
-                IPv4 access proxy.
-            access-proxy6 (list[object]):
-                IPv6 access proxy.
-            action (string) (enum: ['accept', 'deny', 'redirect']):
-                Accept or deny traffic matching the policy parameters.
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            block-notification (string) (enum: ['enable', 'disable']):
-                Enable/disable block notification.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            comments (string) (max_len: 1023):
-                Optional comments.
-            decrypted-traffic-mirror (string) (max_len: 35):
-                Decrypted traffic mirror.
-            detect-https-in-http-request (string) (enum: ['enable', 'disable']):
-                Enable/disable detection of HTTPS in HTTP request.
-            device-ownership (string) (enum: ['enable', 'disable']):
-                When enabled, the ownership enforcement will be done at poli...
-            disclaimer (string) (enum: ['disable', 'domain', 'policy']):
-                Web proxy disclaimer setting: by domain, policy, or user.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            dstaddr (list[object]):
-                Destination address objects.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled, destination addresses match against any addres...
-            dstaddr6 (list[object]):
-                IPv6 destination address objects.
-            dstintf (list[object]):
-                Destination interface names.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            groups (list[object]):
-                Names of group objects.
-            http-tunnel-auth (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP tunnel authentication.
-            https-sub-category (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTPS sub-category policy matching.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            internet-service (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services for this policy. If ...
-            internet-service-custom (list[object]):
-                Custom Internet Service name.
-            internet-service-custom-group (list[object]):
-                Custom Internet Service group name.
-            internet-service-fortiguard (list[object]):
-                FortiGuard Internet Service name.
-            internet-service-group (list[object]):
-                Internet Service group name.
-            internet-service-name (list[object]):
-                Internet Service name.
-            internet-service-negate (string) (enum: ['enable', 'disable']):
-                When enabled, Internet Services match against any internet s...
-            internet-service6 (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services IPv6 for this policy...
-            internet-service6-custom (list[object]):
-                Custom Internet Service IPv6 name.
-            internet-service6-custom-group (list[object]):
-                Custom Internet Service IPv6 group name.
-            internet-service6-fortiguard (list[object]):
-                FortiGuard Internet Service IPv6 name.
-            internet-service6-group (list[object]):
-                Internet Service IPv6 group name.
-            internet-service6-name (list[object]):
-                Internet Service IPv6 name.
-            internet-service6-negate (string) (enum: ['enable', 'disable']):
-                When enabled, Internet Services match against any internet s...
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            isolator-server (string) (max_len: 63):
-                Isolator server name.
-            log-http-transaction (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP transaction log.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable/disable logging traffic through the policy.
-            logtraffic-start (string) (enum: ['enable', 'disable']):
-                Enable/disable policy log traffic start.
-            name (string) (max_len: 35):
-                Policy name.
-            policyid (integer) (range: 0-4294967295):
-                Policy ID.
-            poolname (list[object]):
-                Name of IP pool object.
-            poolname6 (list[object]):
-                Name of IPv6 pool object.
-            profile-group (string) (max_len: 47):
-                Name of profile group.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            profile-type (string) (enum: ['single', 'group']):
-                Determine whether the firewall policy allows security profil...
-            proxy (string) (enum: ['explicit-web', 'transparent-web', 'ftp']):
-                Type of explicit proxy.
-            redirect-url (string) (max_len: 1023):
-                Redirect URL for further explicit web proxy processing.
-            replacemsg-override-group (string) (max_len: 35):
-                Authentication replacement message override group.
-            schedule (string) (max_len: 35):
-                Name of schedule object.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            service (list[object]):
-                Name of service objects.
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled, services match against any service EXCEPT the ...
-            session-ttl (integer) (range: 300-2764800):
-                TTL in seconds for sessions accepted by this policy (0 means...
-            srcaddr (list[object]):
-                Source address objects.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled, source addresses match against any address EXC...
-            srcaddr6 (list[object]):
-                IPv6 source address objects.
-            srcintf (list[object]):
-                Source interface names.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssh-policy-redirect (string) (enum: ['enable', 'disable']):
-                Redirect SSH traffic to matching transparent proxy policy.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable the active status of the policy.
-            transparent (string) (enum: ['enable', 'disable']):
-                Enable to use the IP address of the client to connect to the...
-            url-risk (list[object]):
-                URL risk level name.
-            users (list[object]):
-                Names of user objects.
-            utm-status (string) (enum: ['enable', 'disable']):
-                Enable the use of UTM profiles/sensors/lists.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            waf-profile (string) (max_len: 47):
-                Name of an existing Web application firewall profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-            webproxy-forward-server (string) (max_len: 63):
-                Web proxy forward server name.
-            webproxy-profile (string) (max_len: 63):
-                Name of web proxy profile.
-            ztna-ems-tag (list[object]):
-                ZTNA EMS Tag names.
-            ztna-ems-tag-negate (string) (enum: ['enable', 'disable']):
-                When enabled, ZTNA EMS tags match against any tag EXCEPT the...
-            ztna-proxy (list[object]):
-                ZTNA proxies.
-            ztna-tags-match-logic (string) (enum: ['or', 'and']):
-                ZTNA tag matching logic.
-
+            policyid: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if access_proxy is not None:
-            payload_dict["access-proxy"] = access_proxy
-        if access_proxy6 is not None:
-            payload_dict["access-proxy6"] = access_proxy6
-        if action is not None:
-            payload_dict["action"] = action
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if block_notification is not None:
-            payload_dict["block-notification"] = block_notification
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if decrypted_traffic_mirror is not None:
-            payload_dict["decrypted-traffic-mirror"] = decrypted_traffic_mirror
-        if detect_https_in_http_request is not None:
-            payload_dict["detect-https-in-http-request"] = detect_https_in_http_request
-        if device_ownership is not None:
-            payload_dict["device-ownership"] = device_ownership
-        if disclaimer is not None:
-            payload_dict["disclaimer"] = disclaimer
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6 is not None:
-            payload_dict["dstaddr6"] = dstaddr6
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if groups is not None:
-            payload_dict["groups"] = groups
-        if http_tunnel_auth is not None:
-            payload_dict["http-tunnel-auth"] = http_tunnel_auth
-        if https_sub_category is not None:
-            payload_dict["https-sub-category"] = https_sub_category
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if internet_service is not None:
-            payload_dict["internet-service"] = internet_service
-        if internet_service_custom is not None:
-            payload_dict["internet-service-custom"] = internet_service_custom
-        if internet_service_custom_group is not None:
-            payload_dict["internet-service-custom-group"] = internet_service_custom_group
-        if internet_service_fortiguard is not None:
-            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
-        if internet_service_group is not None:
-            payload_dict["internet-service-group"] = internet_service_group
-        if internet_service_name is not None:
-            payload_dict["internet-service-name"] = internet_service_name
-        if internet_service_negate is not None:
-            payload_dict["internet-service-negate"] = internet_service_negate
-        if internet_service6 is not None:
-            payload_dict["internet-service6"] = internet_service6
-        if internet_service6_custom is not None:
-            payload_dict["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
-        if internet_service6_fortiguard is not None:
-            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
-        if internet_service6_group is not None:
-            payload_dict["internet-service6-group"] = internet_service6_group
-        if internet_service6_name is not None:
-            payload_dict["internet-service6-name"] = internet_service6_name
-        if internet_service6_negate is not None:
-            payload_dict["internet-service6-negate"] = internet_service6_negate
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if isolator_server is not None:
-            payload_dict["isolator-server"] = isolator_server
-        if log_http_transaction is not None:
-            payload_dict["log-http-transaction"] = log_http_transaction
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if logtraffic_start is not None:
-            payload_dict["logtraffic-start"] = logtraffic_start
-        if name is not None:
-            payload_dict["name"] = name
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if poolname is not None:
-            payload_dict["poolname"] = poolname
-        if poolname6 is not None:
-            payload_dict["poolname6"] = poolname6
-        if profile_group is not None:
-            payload_dict["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if profile_type is not None:
-            payload_dict["profile-type"] = profile_type
-        if proxy is not None:
-            payload_dict["proxy"] = proxy
-        if redirect_url is not None:
-            payload_dict["redirect-url"] = redirect_url
-        if replacemsg_override_group is not None:
-            payload_dict["replacemsg-override-group"] = replacemsg_override_group
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if session_ttl is not None:
-            payload_dict["session-ttl"] = session_ttl
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6 is not None:
-            payload_dict["srcaddr6"] = srcaddr6
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssh_policy_redirect is not None:
-            payload_dict["ssh-policy-redirect"] = ssh_policy_redirect
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if status is not None:
-            payload_dict["status"] = status
-        if transparent is not None:
-            payload_dict["transparent"] = transparent
-        if url_risk is not None:
-            payload_dict["url-risk"] = url_risk
-        if users is not None:
-            payload_dict["users"] = users
-        if utm_status is not None:
-            payload_dict["utm-status"] = utm_status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if waf_profile is not None:
-            payload_dict["waf-profile"] = waf_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-        if webproxy_forward_server is not None:
-            payload_dict["webproxy-forward-server"] = webproxy_forward_server
-        if webproxy_profile is not None:
-            payload_dict["webproxy-profile"] = webproxy_profile
-        if ztna_ems_tag is not None:
-            payload_dict["ztna-ems-tag"] = ztna_ems_tag
-        if ztna_ems_tag_negate is not None:
-            payload_dict["ztna-ems-tag-negate"] = ztna_ems_tag_negate
-        if ztna_proxy is not None:
-            payload_dict["ztna-proxy"] = ztna_proxy
-        if ztna_tags_match_logic is not None:
-            payload_dict["ztna-tags-match-logic"] = ztna_tags_match_logic
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if policyid:
+            endpoint = f"/firewall/proxy-policy/{policyid}"
+        else:
+            endpoint = "/firewall/proxy-policy"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        access_proxy: Optional[list] = None,
-        access_proxy6: Optional[list] = None,
-        application_list: Optional[str] = None,
-        av_profile: Optional[str] = None,
-        block_notification: Optional[str] = None,
-        casb_profile: Optional[str] = None,
-        comments: Optional[str] = None,
-        decrypted_traffic_mirror: Optional[str] = None,
-        detect_https_in_http_request: Optional[str] = None,
-        device_ownership: Optional[str] = None,
-        disclaimer: Optional[str] = None,
-        dlp_profile: Optional[str] = None,
-        dnsfilter_profile: Optional[str] = None,
-        dstaddr: Optional[list] = None,
-        dstaddr_negate: Optional[str] = None,
-        dstaddr6: Optional[list] = None,
-        dstintf: Optional[list] = None,
-        emailfilter_profile: Optional[str] = None,
-        file_filter_profile: Optional[str] = None,
-        groups: Optional[list] = None,
-        http_tunnel_auth: Optional[str] = None,
-        https_sub_category: Optional[str] = None,
-        icap_profile: Optional[str] = None,
-        internet_service: Optional[str] = None,
-        internet_service_custom: Optional[list] = None,
-        internet_service_custom_group: Optional[list] = None,
-        internet_service_fortiguard: Optional[list] = None,
-        internet_service_group: Optional[list] = None,
-        internet_service_name: Optional[list] = None,
-        internet_service_negate: Optional[str] = None,
-        internet_service6: Optional[str] = None,
-        internet_service6_custom: Optional[list] = None,
-        internet_service6_custom_group: Optional[list] = None,
-        internet_service6_fortiguard: Optional[list] = None,
-        internet_service6_group: Optional[list] = None,
-        internet_service6_name: Optional[list] = None,
-        internet_service6_negate: Optional[str] = None,
-        ips_sensor: Optional[str] = None,
-        ips_voip_filter: Optional[str] = None,
-        isolator_server: Optional[str] = None,
-        log_http_transaction: Optional[str] = None,
-        logtraffic: Optional[str] = None,
-        logtraffic_start: Optional[str] = None,
-        name: Optional[str] = None,
-        policyid: Optional[int] = None,
-        poolname: Optional[list] = None,
-        poolname6: Optional[list] = None,
-        profile_group: Optional[str] = None,
-        profile_protocol_options: Optional[str] = None,
-        profile_type: Optional[str] = None,
-        proxy: Optional[str] = None,
-        redirect_url: Optional[str] = None,
-        replacemsg_override_group: Optional[str] = None,
-        schedule: Optional[str] = None,
-        sctp_filter_profile: Optional[str] = None,
-        service: Optional[list] = None,
-        service_negate: Optional[str] = None,
-        session_ttl: Optional[int] = None,
-        srcaddr: Optional[list] = None,
-        srcaddr_negate: Optional[str] = None,
-        srcaddr6: Optional[list] = None,
-        srcintf: Optional[list] = None,
-        ssh_filter_profile: Optional[str] = None,
-        ssh_policy_redirect: Optional[str] = None,
-        ssl_ssh_profile: Optional[str] = None,
-        status: Optional[str] = None,
-        transparent: Optional[str] = None,
-        url_risk: Optional[list] = None,
-        users: Optional[list] = None,
-        utm_status: Optional[str] = None,
-        uuid: Optional[str] = None,
-        videofilter_profile: Optional[str] = None,
-        waf_profile: Optional[str] = None,
-        webfilter_profile: Optional[str] = None,
-        webproxy_forward_server: Optional[str] = None,
-        webproxy_profile: Optional[str] = None,
-        ztna_ems_tag: Optional[list] = None,
-        ztna_ems_tag_negate: Optional[str] = None,
-        ztna_proxy: Optional[list] = None,
-        ztna_tags_match_logic: Optional[str] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        name: str | None = None,
+        proxy: str | None = None,
+        access_proxy: list | None = None,
+        access_proxy6: list | None = None,
+        ztna_proxy: list | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        srcaddr: list | None = None,
+        poolname: list | None = None,
+        poolname6: list | None = None,
+        dstaddr: list | None = None,
+        ztna_ems_tag: list | None = None,
+        ztna_tags_match_logic: str | None = None,
+        device_ownership: str | None = None,
+        url_risk: list | None = None,
+        internet_service: str | None = None,
+        internet_service_negate: str | None = None,
+        internet_service_name: list | None = None,
+        internet_service_group: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_custom_group: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        internet_service6: str | None = None,
+        internet_service6_negate: str | None = None,
+        internet_service6_name: list | None = None,
+        internet_service6_group: list | None = None,
+        internet_service6_custom: list | None = None,
+        internet_service6_custom_group: list | None = None,
+        internet_service6_fortiguard: list | None = None,
+        service: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr_negate: str | None = None,
+        ztna_ems_tag_negate: str | None = None,
+        service_negate: str | None = None,
+        status: str | None = None,
+        schedule: str | None = None,
+        logtraffic: str | None = None,
+        session_ttl: int | None = None,
+        srcaddr6: list | None = None,
+        dstaddr6: list | None = None,
+        groups: list | None = None,
+        users: list | None = None,
+        http_tunnel_auth: str | None = None,
+        ssh_policy_redirect: str | None = None,
+        webproxy_forward_server: str | None = None,
+        isolator_server: str | None = None,
+        webproxy_profile: str | None = None,
+        transparent: str | None = None,
+        disclaimer: str | None = None,
+        utm_status: str | None = None,
+        profile_type: str | None = None,
+        profile_group: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        waf_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        replacemsg_override_group: str | None = None,
+        logtraffic_start: str | None = None,
+        log_http_transaction: str | None = None,
+        comments: str | None = None,
+        block_notification: str | None = None,
+        redirect_url: str | None = None,
+        https_sub_category: str | None = None,
+        decrypted_traffic_mirror: str | None = None,
+        detect_https_in_http_request: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update proxy-policy entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            access-proxy (list[object]):
-                IPv4 access proxy.
-            access-proxy6 (list[object]):
-                IPv6 access proxy.
-            action (string) (enum: ['accept', 'deny', 'redirect']):
-                Accept or deny traffic matching the policy parameters.
-            application-list (string) (max_len: 47):
-                Name of an existing Application list.
-            av-profile (string) (max_len: 47):
-                Name of an existing Antivirus profile.
-            block-notification (string) (enum: ['enable', 'disable']):
-                Enable/disable block notification.
-            casb-profile (string) (max_len: 47):
-                Name of an existing CASB profile.
-            comments (string) (max_len: 1023):
-                Optional comments.
-            decrypted-traffic-mirror (string) (max_len: 35):
-                Decrypted traffic mirror.
-            detect-https-in-http-request (string) (enum: ['enable', 'disable']):
-                Enable/disable detection of HTTPS in HTTP request.
-            device-ownership (string) (enum: ['enable', 'disable']):
-                When enabled, the ownership enforcement will be done at poli...
-            disclaimer (string) (enum: ['disable', 'domain', 'policy']):
-                Web proxy disclaimer setting: by domain, policy, or user.
-            dlp-profile (string) (max_len: 47):
-                Name of an existing DLP profile.
-            dnsfilter-profile (string) (max_len: 47):
-                Name of an existing DNS filter profile.
-            dstaddr (list[object]):
-                Destination address objects.
-            dstaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled, destination addresses match against any addres...
-            dstaddr6 (list[object]):
-                IPv6 destination address objects.
-            dstintf (list[object]):
-                Destination interface names.
-            emailfilter-profile (string) (max_len: 47):
-                Name of an existing email filter profile.
-            file-filter-profile (string) (max_len: 47):
-                Name of an existing file-filter profile.
-            groups (list[object]):
-                Names of group objects.
-            http-tunnel-auth (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP tunnel authentication.
-            https-sub-category (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTPS sub-category policy matching.
-            icap-profile (string) (max_len: 47):
-                Name of an existing ICAP profile.
-            internet-service (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services for this policy. If ...
-            internet-service-custom (list[object]):
-                Custom Internet Service name.
-            internet-service-custom-group (list[object]):
-                Custom Internet Service group name.
-            internet-service-fortiguard (list[object]):
-                FortiGuard Internet Service name.
-            internet-service-group (list[object]):
-                Internet Service group name.
-            internet-service-name (list[object]):
-                Internet Service name.
-            internet-service-negate (string) (enum: ['enable', 'disable']):
-                When enabled, Internet Services match against any internet s...
-            internet-service6 (string) (enum: ['enable', 'disable']):
-                Enable/disable use of Internet Services IPv6 for this policy...
-            internet-service6-custom (list[object]):
-                Custom Internet Service IPv6 name.
-            internet-service6-custom-group (list[object]):
-                Custom Internet Service IPv6 group name.
-            internet-service6-fortiguard (list[object]):
-                FortiGuard Internet Service IPv6 name.
-            internet-service6-group (list[object]):
-                Internet Service IPv6 group name.
-            internet-service6-name (list[object]):
-                Internet Service IPv6 name.
-            internet-service6-negate (string) (enum: ['enable', 'disable']):
-                When enabled, Internet Services match against any internet s...
-            ips-sensor (string) (max_len: 47):
-                Name of an existing IPS sensor.
-            ips-voip-filter (string) (max_len: 47):
-                Name of an existing VoIP (ips) profile.
-            isolator-server (string) (max_len: 63):
-                Isolator server name.
-            log-http-transaction (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP transaction log.
-            logtraffic (string) (enum: ['all', 'utm', 'disable']):
-                Enable/disable logging traffic through the policy.
-            logtraffic-start (string) (enum: ['enable', 'disable']):
-                Enable/disable policy log traffic start.
-            name (string) (max_len: 35):
-                Policy name.
-            policyid (integer) (range: 0-4294967295):
-                Policy ID.
-            poolname (list[object]):
-                Name of IP pool object.
-            poolname6 (list[object]):
-                Name of IPv6 pool object.
-            profile-group (string) (max_len: 47):
-                Name of profile group.
-            profile-protocol-options (string) (max_len: 47):
-                Name of an existing Protocol options profile.
-            profile-type (string) (enum: ['single', 'group']):
-                Determine whether the firewall policy allows security profil...
-            proxy (string) (enum: ['explicit-web', 'transparent-web', 'ftp']):
-                Type of explicit proxy.
-            redirect-url (string) (max_len: 1023):
-                Redirect URL for further explicit web proxy processing.
-            replacemsg-override-group (string) (max_len: 35):
-                Authentication replacement message override group.
-            schedule (string) (max_len: 35):
-                Name of schedule object.
-            sctp-filter-profile (string) (max_len: 47):
-                Name of an existing SCTP filter profile.
-            service (list[object]):
-                Name of service objects.
-            service-negate (string) (enum: ['enable', 'disable']):
-                When enabled, services match against any service EXCEPT the ...
-            session-ttl (integer) (range: 300-2764800):
-                TTL in seconds for sessions accepted by this policy (0 means...
-            srcaddr (list[object]):
-                Source address objects.
-            srcaddr-negate (string) (enum: ['enable', 'disable']):
-                When enabled, source addresses match against any address EXC...
-            srcaddr6 (list[object]):
-                IPv6 source address objects.
-            srcintf (list[object]):
-                Source interface names.
-            ssh-filter-profile (string) (max_len: 47):
-                Name of an existing SSH filter profile.
-            ssh-policy-redirect (string) (enum: ['enable', 'disable']):
-                Redirect SSH traffic to matching transparent proxy policy.
-            ssl-ssh-profile (string) (max_len: 47):
-                Name of an existing SSL SSH profile.
-            status (string) (enum: ['enable', 'disable']):
-                Enable/disable the active status of the policy.
-            transparent (string) (enum: ['enable', 'disable']):
-                Enable to use the IP address of the client to connect to the...
-            url-risk (list[object]):
-                URL risk level name.
-            users (list[object]):
-                Names of user objects.
-            utm-status (string) (enum: ['enable', 'disable']):
-                Enable the use of UTM profiles/sensors/lists.
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            videofilter-profile (string) (max_len: 47):
-                Name of an existing VideoFilter profile.
-            waf-profile (string) (max_len: 47):
-                Name of an existing Web application firewall profile.
-            webfilter-profile (string) (max_len: 47):
-                Name of an existing Web filter profile.
-            webproxy-forward-server (string) (max_len: 63):
-                Web proxy forward server name.
-            webproxy-profile (string) (max_len: 63):
-                Name of web proxy profile.
-            ztna-ems-tag (list[object]):
-                ZTNA EMS Tag names.
-            ztna-ems-tag-negate (string) (enum: ['enable', 'disable']):
-                When enabled, ZTNA EMS tags match against any tag EXCEPT the...
-            ztna-proxy (list[object]):
-                ZTNA proxies.
-            ztna-tags-match-logic (string) (enum: ['or', 'and']):
-                ZTNA tag matching logic.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            policyid: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            policyid: Policy ID. (optional)
+            name: Policy name. (optional)
+            proxy: Type of explicit proxy. (optional)
+            access_proxy: IPv4 access proxy. (optional)
+            access_proxy6: IPv6 access proxy. (optional)
+            ztna_proxy: ZTNA proxies. (optional)
+            srcintf: Source interface names. (optional)
+            dstintf: Destination interface names. (optional)
+            srcaddr: Source address objects. (optional)
+            poolname: Name of IP pool object. (optional)
+            poolname6: Name of IPv6 pool object. (optional)
+            dstaddr: Destination address objects. (optional)
+            ztna_ems_tag: ZTNA EMS Tag names. (optional)
+            ztna_tags_match_logic: ZTNA tag matching logic. (optional)
+            device_ownership: When enabled, the ownership enforcement will be done at policy level. (optional)
+            url_risk: URL risk level name. (optional)
+            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. (optional)
+            internet_service_name: Internet Service name. (optional)
+            internet_service_group: Internet Service group name. (optional)
+            internet_service_custom: Custom Internet Service name. (optional)
+            internet_service_custom_group: Custom Internet Service group name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
+            internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. (optional)
+            internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. (optional)
+            internet_service6_name: Internet Service IPv6 name. (optional)
+            internet_service6_group: Internet Service IPv6 group name. (optional)
+            internet_service6_custom: Custom Internet Service IPv6 name. (optional)
+            internet_service6_custom_group: Custom Internet Service IPv6 group name. (optional)
+            internet_service6_fortiguard: FortiGuard Internet Service IPv6 name. (optional)
+            service: Name of service objects. (optional)
+            srcaddr_negate: When enabled, source addresses match against any address EXCEPT the specified source addresses. (optional)
+            dstaddr_negate: When enabled, destination addresses match against any address EXCEPT the specified destination addresses. (optional)
+            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. (optional)
+            service_negate: When enabled, services match against any service EXCEPT the specified destination services. (optional)
+            status: Enable/disable the active status of the policy. (optional)
+            schedule: Name of schedule object. (optional)
+            logtraffic: Enable/disable logging traffic through the policy. (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
+            srcaddr6: IPv6 source address objects. (optional)
+            dstaddr6: IPv6 destination address objects. (optional)
+            groups: Names of group objects. (optional)
+            users: Names of user objects. (optional)
+            http_tunnel_auth: Enable/disable HTTP tunnel authentication. (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
+            webproxy_forward_server: Web proxy forward server name. (optional)
+            isolator_server: Isolator server name. (optional)
+            webproxy_profile: Name of web proxy profile. (optional)
+            transparent: Enable to use the IP address of the client to connect to the server. (optional)
+            disclaimer: Web proxy disclaimer setting: by domain, policy, or user. (optional)
+            utm_status: Enable the use of UTM profiles/sensors/lists. (optional)
+            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_group: Name of profile group. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            waf_profile: Name of an existing Web application firewall profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            replacemsg_override_group: Authentication replacement message override group. (optional)
+            logtraffic_start: Enable/disable policy log traffic start. (optional)
+            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            comments: Optional comments. (optional)
+            block_notification: Enable/disable block notification. (optional)
+            redirect_url: Redirect URL for further explicit web proxy processing. (optional)
+            https_sub_category: Enable/disable HTTPS sub-category policy matching. (optional)
+            decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
+            detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if access_proxy is not None:
-            payload_dict["access-proxy"] = access_proxy
-        if access_proxy6 is not None:
-            payload_dict["access-proxy6"] = access_proxy6
-        if action is not None:
-            payload_dict["action"] = action
-        if application_list is not None:
-            payload_dict["application-list"] = application_list
-        if av_profile is not None:
-            payload_dict["av-profile"] = av_profile
-        if block_notification is not None:
-            payload_dict["block-notification"] = block_notification
-        if casb_profile is not None:
-            payload_dict["casb-profile"] = casb_profile
-        if comments is not None:
-            payload_dict["comments"] = comments
-        if decrypted_traffic_mirror is not None:
-            payload_dict["decrypted-traffic-mirror"] = decrypted_traffic_mirror
-        if detect_https_in_http_request is not None:
-            payload_dict["detect-https-in-http-request"] = detect_https_in_http_request
-        if device_ownership is not None:
-            payload_dict["device-ownership"] = device_ownership
-        if disclaimer is not None:
-            payload_dict["disclaimer"] = disclaimer
-        if dlp_profile is not None:
-            payload_dict["dlp-profile"] = dlp_profile
-        if dnsfilter_profile is not None:
-            payload_dict["dnsfilter-profile"] = dnsfilter_profile
-        if dstaddr is not None:
-            payload_dict["dstaddr"] = dstaddr
-        if dstaddr_negate is not None:
-            payload_dict["dstaddr-negate"] = dstaddr_negate
-        if dstaddr6 is not None:
-            payload_dict["dstaddr6"] = dstaddr6
-        if dstintf is not None:
-            payload_dict["dstintf"] = dstintf
-        if emailfilter_profile is not None:
-            payload_dict["emailfilter-profile"] = emailfilter_profile
-        if file_filter_profile is not None:
-            payload_dict["file-filter-profile"] = file_filter_profile
-        if groups is not None:
-            payload_dict["groups"] = groups
-        if http_tunnel_auth is not None:
-            payload_dict["http-tunnel-auth"] = http_tunnel_auth
-        if https_sub_category is not None:
-            payload_dict["https-sub-category"] = https_sub_category
-        if icap_profile is not None:
-            payload_dict["icap-profile"] = icap_profile
-        if internet_service is not None:
-            payload_dict["internet-service"] = internet_service
-        if internet_service_custom is not None:
-            payload_dict["internet-service-custom"] = internet_service_custom
-        if internet_service_custom_group is not None:
-            payload_dict["internet-service-custom-group"] = internet_service_custom_group
-        if internet_service_fortiguard is not None:
-            payload_dict["internet-service-fortiguard"] = internet_service_fortiguard
-        if internet_service_group is not None:
-            payload_dict["internet-service-group"] = internet_service_group
-        if internet_service_name is not None:
-            payload_dict["internet-service-name"] = internet_service_name
-        if internet_service_negate is not None:
-            payload_dict["internet-service-negate"] = internet_service_negate
-        if internet_service6 is not None:
-            payload_dict["internet-service6"] = internet_service6
-        if internet_service6_custom is not None:
-            payload_dict["internet-service6-custom"] = internet_service6_custom
-        if internet_service6_custom_group is not None:
-            payload_dict["internet-service6-custom-group"] = internet_service6_custom_group
-        if internet_service6_fortiguard is not None:
-            payload_dict["internet-service6-fortiguard"] = internet_service6_fortiguard
-        if internet_service6_group is not None:
-            payload_dict["internet-service6-group"] = internet_service6_group
-        if internet_service6_name is not None:
-            payload_dict["internet-service6-name"] = internet_service6_name
-        if internet_service6_negate is not None:
-            payload_dict["internet-service6-negate"] = internet_service6_negate
-        if ips_sensor is not None:
-            payload_dict["ips-sensor"] = ips_sensor
-        if ips_voip_filter is not None:
-            payload_dict["ips-voip-filter"] = ips_voip_filter
-        if isolator_server is not None:
-            payload_dict["isolator-server"] = isolator_server
-        if log_http_transaction is not None:
-            payload_dict["log-http-transaction"] = log_http_transaction
-        if logtraffic is not None:
-            payload_dict["logtraffic"] = logtraffic
-        if logtraffic_start is not None:
-            payload_dict["logtraffic-start"] = logtraffic_start
-        if name is not None:
-            payload_dict["name"] = name
-        if policyid is not None:
-            payload_dict["policyid"] = policyid
-        if poolname is not None:
-            payload_dict["poolname"] = poolname
-        if poolname6 is not None:
-            payload_dict["poolname6"] = poolname6
-        if profile_group is not None:
-            payload_dict["profile-group"] = profile_group
-        if profile_protocol_options is not None:
-            payload_dict["profile-protocol-options"] = profile_protocol_options
-        if profile_type is not None:
-            payload_dict["profile-type"] = profile_type
-        if proxy is not None:
-            payload_dict["proxy"] = proxy
-        if redirect_url is not None:
-            payload_dict["redirect-url"] = redirect_url
-        if replacemsg_override_group is not None:
-            payload_dict["replacemsg-override-group"] = replacemsg_override_group
-        if schedule is not None:
-            payload_dict["schedule"] = schedule
-        if sctp_filter_profile is not None:
-            payload_dict["sctp-filter-profile"] = sctp_filter_profile
-        if service is not None:
-            payload_dict["service"] = service
-        if service_negate is not None:
-            payload_dict["service-negate"] = service_negate
-        if session_ttl is not None:
-            payload_dict["session-ttl"] = session_ttl
-        if srcaddr is not None:
-            payload_dict["srcaddr"] = srcaddr
-        if srcaddr_negate is not None:
-            payload_dict["srcaddr-negate"] = srcaddr_negate
-        if srcaddr6 is not None:
-            payload_dict["srcaddr6"] = srcaddr6
-        if srcintf is not None:
-            payload_dict["srcintf"] = srcintf
-        if ssh_filter_profile is not None:
-            payload_dict["ssh-filter-profile"] = ssh_filter_profile
-        if ssh_policy_redirect is not None:
-            payload_dict["ssh-policy-redirect"] = ssh_policy_redirect
-        if ssl_ssh_profile is not None:
-            payload_dict["ssl-ssh-profile"] = ssl_ssh_profile
-        if status is not None:
-            payload_dict["status"] = status
-        if transparent is not None:
-            payload_dict["transparent"] = transparent
-        if url_risk is not None:
-            payload_dict["url-risk"] = url_risk
-        if users is not None:
-            payload_dict["users"] = users
-        if utm_status is not None:
-            payload_dict["utm-status"] = utm_status
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if videofilter_profile is not None:
-            payload_dict["videofilter-profile"] = videofilter_profile
-        if waf_profile is not None:
-            payload_dict["waf-profile"] = waf_profile
-        if webfilter_profile is not None:
-            payload_dict["webfilter-profile"] = webfilter_profile
-        if webproxy_forward_server is not None:
-            payload_dict["webproxy-forward-server"] = webproxy_forward_server
-        if webproxy_profile is not None:
-            payload_dict["webproxy-profile"] = webproxy_profile
-        if ztna_ems_tag is not None:
-            payload_dict["ztna-ems-tag"] = ztna_ems_tag
-        if ztna_ems_tag_negate is not None:
-            payload_dict["ztna-ems-tag-negate"] = ztna_ems_tag_negate
-        if ztna_proxy is not None:
-            payload_dict["ztna-proxy"] = ztna_proxy
-        if ztna_tags_match_logic is not None:
-            payload_dict["ztna-tags-match-logic"] = ztna_tags_match_logic
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for put()")
+        endpoint = f"/firewall/proxy-policy/{policyid}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if name is not None:
+            data_payload['name'] = name
+        if proxy is not None:
+            data_payload['proxy'] = proxy
+        if access_proxy is not None:
+            data_payload['access-proxy'] = access_proxy
+        if access_proxy6 is not None:
+            data_payload['access-proxy6'] = access_proxy6
+        if ztna_proxy is not None:
+            data_payload['ztna-proxy'] = ztna_proxy
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if poolname is not None:
+            data_payload['poolname'] = poolname
+        if poolname6 is not None:
+            data_payload['poolname6'] = poolname6
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if ztna_ems_tag is not None:
+            data_payload['ztna-ems-tag'] = ztna_ems_tag
+        if ztna_tags_match_logic is not None:
+            data_payload['ztna-tags-match-logic'] = ztna_tags_match_logic
+        if device_ownership is not None:
+            data_payload['device-ownership'] = device_ownership
+        if url_risk is not None:
+            data_payload['url-risk'] = url_risk
+        if internet_service is not None:
+            data_payload['internet-service'] = internet_service
+        if internet_service_negate is not None:
+            data_payload['internet-service-negate'] = internet_service_negate
+        if internet_service_name is not None:
+            data_payload['internet-service-name'] = internet_service_name
+        if internet_service_group is not None:
+            data_payload['internet-service-group'] = internet_service_group
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_custom_group is not None:
+            data_payload['internet-service-custom-group'] = internet_service_custom_group
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if internet_service6 is not None:
+            data_payload['internet-service6'] = internet_service6
+        if internet_service6_negate is not None:
+            data_payload['internet-service6-negate'] = internet_service6_negate
+        if internet_service6_name is not None:
+            data_payload['internet-service6-name'] = internet_service6_name
+        if internet_service6_group is not None:
+            data_payload['internet-service6-group'] = internet_service6_group
+        if internet_service6_custom is not None:
+            data_payload['internet-service6-custom'] = internet_service6_custom
+        if internet_service6_custom_group is not None:
+            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+        if internet_service6_fortiguard is not None:
+            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+        if service is not None:
+            data_payload['service'] = service
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if ztna_ems_tag_negate is not None:
+            data_payload['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if status is not None:
+            data_payload['status'] = status
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if session_ttl is not None:
+            data_payload['session-ttl'] = session_ttl
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if groups is not None:
+            data_payload['groups'] = groups
+        if users is not None:
+            data_payload['users'] = users
+        if http_tunnel_auth is not None:
+            data_payload['http-tunnel-auth'] = http_tunnel_auth
+        if ssh_policy_redirect is not None:
+            data_payload['ssh-policy-redirect'] = ssh_policy_redirect
+        if webproxy_forward_server is not None:
+            data_payload['webproxy-forward-server'] = webproxy_forward_server
+        if isolator_server is not None:
+            data_payload['isolator-server'] = isolator_server
+        if webproxy_profile is not None:
+            data_payload['webproxy-profile'] = webproxy_profile
+        if transparent is not None:
+            data_payload['transparent'] = transparent
+        if disclaimer is not None:
+            data_payload['disclaimer'] = disclaimer
+        if utm_status is not None:
+            data_payload['utm-status'] = utm_status
+        if profile_type is not None:
+            data_payload['profile-type'] = profile_type
+        if profile_group is not None:
+            data_payload['profile-group'] = profile_group
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if waf_profile is not None:
+            data_payload['waf-profile'] = waf_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        if replacemsg_override_group is not None:
+            data_payload['replacemsg-override-group'] = replacemsg_override_group
+        if logtraffic_start is not None:
+            data_payload['logtraffic-start'] = logtraffic_start
+        if log_http_transaction is not None:
+            data_payload['log-http-transaction'] = log_http_transaction
+        if comments is not None:
+            data_payload['comments'] = comments
+        if block_notification is not None:
+            data_payload['block-notification'] = block_notification
+        if redirect_url is not None:
+            data_payload['redirect-url'] = redirect_url
+        if https_sub_category is not None:
+            data_payload['https-sub-category'] = https_sub_category
+        if decrypted_traffic_mirror is not None:
+            data_payload['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+        if detect_https_in_http_request is not None:
+            data_payload['detect-https-in-http-request'] = detect_https_in_http_request
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        policyid: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a proxy-policy entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The policyid (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            policyid: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not policyid:
+            raise ValueError("policyid is required for delete()")
+        endpoint = f"/firewall/proxy-policy/{policyid}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        uuid: str | None = None,
+        policyid: int | None = None,
+        name: str | None = None,
+        proxy: str | None = None,
+        access_proxy: list | None = None,
+        access_proxy6: list | None = None,
+        ztna_proxy: list | None = None,
+        srcintf: list | None = None,
+        dstintf: list | None = None,
+        srcaddr: list | None = None,
+        poolname: list | None = None,
+        poolname6: list | None = None,
+        dstaddr: list | None = None,
+        ztna_ems_tag: list | None = None,
+        ztna_tags_match_logic: str | None = None,
+        device_ownership: str | None = None,
+        url_risk: list | None = None,
+        internet_service: str | None = None,
+        internet_service_negate: str | None = None,
+        internet_service_name: list | None = None,
+        internet_service_group: list | None = None,
+        internet_service_custom: list | None = None,
+        internet_service_custom_group: list | None = None,
+        internet_service_fortiguard: list | None = None,
+        internet_service6: str | None = None,
+        internet_service6_negate: str | None = None,
+        internet_service6_name: list | None = None,
+        internet_service6_group: list | None = None,
+        internet_service6_custom: list | None = None,
+        internet_service6_custom_group: list | None = None,
+        internet_service6_fortiguard: list | None = None,
+        service: list | None = None,
+        srcaddr_negate: str | None = None,
+        dstaddr_negate: str | None = None,
+        ztna_ems_tag_negate: str | None = None,
+        service_negate: str | None = None,
+        status: str | None = None,
+        schedule: str | None = None,
+        logtraffic: str | None = None,
+        session_ttl: int | None = None,
+        srcaddr6: list | None = None,
+        dstaddr6: list | None = None,
+        groups: list | None = None,
+        users: list | None = None,
+        http_tunnel_auth: str | None = None,
+        ssh_policy_redirect: str | None = None,
+        webproxy_forward_server: str | None = None,
+        isolator_server: str | None = None,
+        webproxy_profile: str | None = None,
+        transparent: str | None = None,
+        disclaimer: str | None = None,
+        utm_status: str | None = None,
+        profile_type: str | None = None,
+        profile_group: str | None = None,
+        profile_protocol_options: str | None = None,
+        ssl_ssh_profile: str | None = None,
+        av_profile: str | None = None,
+        webfilter_profile: str | None = None,
+        dnsfilter_profile: str | None = None,
+        emailfilter_profile: str | None = None,
+        dlp_profile: str | None = None,
+        file_filter_profile: str | None = None,
+        ips_sensor: str | None = None,
+        application_list: str | None = None,
+        ips_voip_filter: str | None = None,
+        sctp_filter_profile: str | None = None,
+        icap_profile: str | None = None,
+        videofilter_profile: str | None = None,
+        waf_profile: str | None = None,
+        ssh_filter_profile: str | None = None,
+        casb_profile: str | None = None,
+        replacemsg_override_group: str | None = None,
+        logtraffic_start: str | None = None,
+        log_http_transaction: str | None = None,
+        comments: str | None = None,
+        block_notification: str | None = None,
+        redirect_url: str | None = None,
+        https_sub_category: str | None = None,
+        decrypted_traffic_mirror: str | None = None,
+        detect_https_in_http_request: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            policyid: Policy ID. (optional)
+            name: Policy name. (optional)
+            proxy: Type of explicit proxy. (optional)
+            access_proxy: IPv4 access proxy. (optional)
+            access_proxy6: IPv6 access proxy. (optional)
+            ztna_proxy: ZTNA proxies. (optional)
+            srcintf: Source interface names. (optional)
+            dstintf: Destination interface names. (optional)
+            srcaddr: Source address objects. (optional)
+            poolname: Name of IP pool object. (optional)
+            poolname6: Name of IPv6 pool object. (optional)
+            dstaddr: Destination address objects. (optional)
+            ztna_ems_tag: ZTNA EMS Tag names. (optional)
+            ztna_tags_match_logic: ZTNA tag matching logic. (optional)
+            device_ownership: When enabled, the ownership enforcement will be done at policy level. (optional)
+            url_risk: URL risk level name. (optional)
+            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. (optional)
+            internet_service_name: Internet Service name. (optional)
+            internet_service_group: Internet Service group name. (optional)
+            internet_service_custom: Custom Internet Service name. (optional)
+            internet_service_custom_group: Custom Internet Service group name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
+            internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. (optional)
+            internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. (optional)
+            internet_service6_name: Internet Service IPv6 name. (optional)
+            internet_service6_group: Internet Service IPv6 group name. (optional)
+            internet_service6_custom: Custom Internet Service IPv6 name. (optional)
+            internet_service6_custom_group: Custom Internet Service IPv6 group name. (optional)
+            internet_service6_fortiguard: FortiGuard Internet Service IPv6 name. (optional)
+            service: Name of service objects. (optional)
+            srcaddr_negate: When enabled, source addresses match against any address EXCEPT the specified source addresses. (optional)
+            dstaddr_negate: When enabled, destination addresses match against any address EXCEPT the specified destination addresses. (optional)
+            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. (optional)
+            service_negate: When enabled, services match against any service EXCEPT the specified destination services. (optional)
+            status: Enable/disable the active status of the policy. (optional)
+            schedule: Name of schedule object. (optional)
+            logtraffic: Enable/disable logging traffic through the policy. (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
+            srcaddr6: IPv6 source address objects. (optional)
+            dstaddr6: IPv6 destination address objects. (optional)
+            groups: Names of group objects. (optional)
+            users: Names of user objects. (optional)
+            http_tunnel_auth: Enable/disable HTTP tunnel authentication. (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
+            webproxy_forward_server: Web proxy forward server name. (optional)
+            isolator_server: Isolator server name. (optional)
+            webproxy_profile: Name of web proxy profile. (optional)
+            transparent: Enable to use the IP address of the client to connect to the server. (optional)
+            disclaimer: Web proxy disclaimer setting: by domain, policy, or user. (optional)
+            utm_status: Enable the use of UTM profiles/sensors/lists. (optional)
+            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_group: Name of profile group. (optional)
+            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
+            av_profile: Name of an existing Antivirus profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile. (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile. (optional)
+            dlp_profile: Name of an existing DLP profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile. (optional)
+            ips_sensor: Name of an existing IPS sensor. (optional)
+            application_list: Name of an existing Application list. (optional)
+            ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            icap_profile: Name of an existing ICAP profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile. (optional)
+            waf_profile: Name of an existing Web application firewall profile. (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            casb_profile: Name of an existing CASB profile. (optional)
+            replacemsg_override_group: Authentication replacement message override group. (optional)
+            logtraffic_start: Enable/disable policy log traffic start. (optional)
+            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            comments: Optional comments. (optional)
+            block_notification: Enable/disable block notification. (optional)
+            redirect_url: Redirect URL for further explicit web proxy processing. (optional)
+            https_sub_category: Enable/disable HTTPS sub-category policy matching. (optional)
+            decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
+            detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/proxy-policy"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if policyid is not None:
+            data_payload['policyid'] = policyid
+        if name is not None:
+            data_payload['name'] = name
+        if proxy is not None:
+            data_payload['proxy'] = proxy
+        if access_proxy is not None:
+            data_payload['access-proxy'] = access_proxy
+        if access_proxy6 is not None:
+            data_payload['access-proxy6'] = access_proxy6
+        if ztna_proxy is not None:
+            data_payload['ztna-proxy'] = ztna_proxy
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if dstintf is not None:
+            data_payload['dstintf'] = dstintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if poolname is not None:
+            data_payload['poolname'] = poolname
+        if poolname6 is not None:
+            data_payload['poolname6'] = poolname6
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if ztna_ems_tag is not None:
+            data_payload['ztna-ems-tag'] = ztna_ems_tag
+        if ztna_tags_match_logic is not None:
+            data_payload['ztna-tags-match-logic'] = ztna_tags_match_logic
+        if device_ownership is not None:
+            data_payload['device-ownership'] = device_ownership
+        if url_risk is not None:
+            data_payload['url-risk'] = url_risk
+        if internet_service is not None:
+            data_payload['internet-service'] = internet_service
+        if internet_service_negate is not None:
+            data_payload['internet-service-negate'] = internet_service_negate
+        if internet_service_name is not None:
+            data_payload['internet-service-name'] = internet_service_name
+        if internet_service_group is not None:
+            data_payload['internet-service-group'] = internet_service_group
+        if internet_service_custom is not None:
+            data_payload['internet-service-custom'] = internet_service_custom
+        if internet_service_custom_group is not None:
+            data_payload['internet-service-custom-group'] = internet_service_custom_group
+        if internet_service_fortiguard is not None:
+            data_payload['internet-service-fortiguard'] = internet_service_fortiguard
+        if internet_service6 is not None:
+            data_payload['internet-service6'] = internet_service6
+        if internet_service6_negate is not None:
+            data_payload['internet-service6-negate'] = internet_service6_negate
+        if internet_service6_name is not None:
+            data_payload['internet-service6-name'] = internet_service6_name
+        if internet_service6_group is not None:
+            data_payload['internet-service6-group'] = internet_service6_group
+        if internet_service6_custom is not None:
+            data_payload['internet-service6-custom'] = internet_service6_custom
+        if internet_service6_custom_group is not None:
+            data_payload['internet-service6-custom-group'] = internet_service6_custom_group
+        if internet_service6_fortiguard is not None:
+            data_payload['internet-service6-fortiguard'] = internet_service6_fortiguard
+        if service is not None:
+            data_payload['service'] = service
+        if srcaddr_negate is not None:
+            data_payload['srcaddr-negate'] = srcaddr_negate
+        if dstaddr_negate is not None:
+            data_payload['dstaddr-negate'] = dstaddr_negate
+        if ztna_ems_tag_negate is not None:
+            data_payload['ztna-ems-tag-negate'] = ztna_ems_tag_negate
+        if service_negate is not None:
+            data_payload['service-negate'] = service_negate
+        if status is not None:
+            data_payload['status'] = status
+        if schedule is not None:
+            data_payload['schedule'] = schedule
+        if logtraffic is not None:
+            data_payload['logtraffic'] = logtraffic
+        if session_ttl is not None:
+            data_payload['session-ttl'] = session_ttl
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if groups is not None:
+            data_payload['groups'] = groups
+        if users is not None:
+            data_payload['users'] = users
+        if http_tunnel_auth is not None:
+            data_payload['http-tunnel-auth'] = http_tunnel_auth
+        if ssh_policy_redirect is not None:
+            data_payload['ssh-policy-redirect'] = ssh_policy_redirect
+        if webproxy_forward_server is not None:
+            data_payload['webproxy-forward-server'] = webproxy_forward_server
+        if isolator_server is not None:
+            data_payload['isolator-server'] = isolator_server
+        if webproxy_profile is not None:
+            data_payload['webproxy-profile'] = webproxy_profile
+        if transparent is not None:
+            data_payload['transparent'] = transparent
+        if disclaimer is not None:
+            data_payload['disclaimer'] = disclaimer
+        if utm_status is not None:
+            data_payload['utm-status'] = utm_status
+        if profile_type is not None:
+            data_payload['profile-type'] = profile_type
+        if profile_group is not None:
+            data_payload['profile-group'] = profile_group
+        if profile_protocol_options is not None:
+            data_payload['profile-protocol-options'] = profile_protocol_options
+        if ssl_ssh_profile is not None:
+            data_payload['ssl-ssh-profile'] = ssl_ssh_profile
+        if av_profile is not None:
+            data_payload['av-profile'] = av_profile
+        if webfilter_profile is not None:
+            data_payload['webfilter-profile'] = webfilter_profile
+        if dnsfilter_profile is not None:
+            data_payload['dnsfilter-profile'] = dnsfilter_profile
+        if emailfilter_profile is not None:
+            data_payload['emailfilter-profile'] = emailfilter_profile
+        if dlp_profile is not None:
+            data_payload['dlp-profile'] = dlp_profile
+        if file_filter_profile is not None:
+            data_payload['file-filter-profile'] = file_filter_profile
+        if ips_sensor is not None:
+            data_payload['ips-sensor'] = ips_sensor
+        if application_list is not None:
+            data_payload['application-list'] = application_list
+        if ips_voip_filter is not None:
+            data_payload['ips-voip-filter'] = ips_voip_filter
+        if sctp_filter_profile is not None:
+            data_payload['sctp-filter-profile'] = sctp_filter_profile
+        if icap_profile is not None:
+            data_payload['icap-profile'] = icap_profile
+        if videofilter_profile is not None:
+            data_payload['videofilter-profile'] = videofilter_profile
+        if waf_profile is not None:
+            data_payload['waf-profile'] = waf_profile
+        if ssh_filter_profile is not None:
+            data_payload['ssh-filter-profile'] = ssh_filter_profile
+        if casb_profile is not None:
+            data_payload['casb-profile'] = casb_profile
+        if replacemsg_override_group is not None:
+            data_payload['replacemsg-override-group'] = replacemsg_override_group
+        if logtraffic_start is not None:
+            data_payload['logtraffic-start'] = logtraffic_start
+        if log_http_transaction is not None:
+            data_payload['log-http-transaction'] = log_http_transaction
+        if comments is not None:
+            data_payload['comments'] = comments
+        if block_notification is not None:
+            data_payload['block-notification'] = block_notification
+        if redirect_url is not None:
+            data_payload['redirect-url'] = redirect_url
+        if https_sub_category is not None:
+            data_payload['https-sub-category'] = https_sub_category
+        if decrypted_traffic_mirror is not None:
+            data_payload['decrypted-traffic-mirror'] = decrypted_traffic_mirror
+        if detect_https_in_http_request is not None:
+            data_payload['detect-https-in-http-request'] = detect_https_in_http_request
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

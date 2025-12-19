@@ -1,37 +1,43 @@
-"""GTP statistics operations."""
+"""Monitor API - GtpStatistics operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class GTPStatistics:
-    """GTP statistics."""
+class GtpStatistics:
+    """GtpStatistics operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize GTPStatistics endpoint.
+        Initialize GtpStatistics endpoint.
 
         Args:
             client: HTTPClient instance for API communication
         """
         self._client = client
 
-    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Retrieve statistics for GTP.
-
+        
         Args:
-            data_dict: Optional dictionary of parameters
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing GTP statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.gtp_statistics.list()
+            >>> fgt.api.monitor.firewall.gtp_statistics.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/gtp-statistics", params=params)

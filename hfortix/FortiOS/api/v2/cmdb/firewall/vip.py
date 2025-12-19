@@ -1,1256 +1,986 @@
 """
-FortiOS vip API wrapper.
-Provides access to /api/v2/cmdb/firewall/vip endpoint.
+FortiOS CMDB - Firewall Vip
+
+API Endpoints:
+    GET    /firewall/vip
+    POST   /firewall/vip
+    GET    /firewall/vip/{name}
+    PUT    /firewall/vip/{name}
+    DELETE /firewall/vip/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class Vip:
-    """
-    Wrapper for firewall vip API endpoint.
+    """Vip operations."""
 
-    Manages vip configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Vip wrapper.
+        Initialize Vip endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/vip"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific vip entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        add_nat46_route: Optional[str] = None,
-        arp_reply: Optional[str] = None,
-        client_cert: Optional[str] = None,
-        color: Optional[int] = None,
-        comment: Optional[str] = None,
-        dns_mapping_ttl: Optional[int] = None,
-        empty_cert_action: Optional[str] = None,
-        extaddr: Optional[list] = None,
-        extintf: Optional[str] = None,
-        extip: Optional[str] = None,
-        extport: Optional[str] = None,
-        gratuitous_arp_interval: Optional[int] = None,
-        gslb_domain_name: Optional[str] = None,
-        gslb_hostname: Optional[str] = None,
-        gslb_public_ips: Optional[list] = None,
-        h2_support: Optional[str] = None,
-        h3_support: Optional[str] = None,
-        http_cookie_age: Optional[int] = None,
-        http_cookie_domain: Optional[str] = None,
-        http_cookie_domain_from_host: Optional[str] = None,
-        http_cookie_generation: Optional[int] = None,
-        http_cookie_path: Optional[str] = None,
-        http_cookie_share: Optional[str] = None,
-        http_ip_header: Optional[str] = None,
-        http_ip_header_name: Optional[str] = None,
-        http_multiplex: Optional[str] = None,
-        http_multiplex_max_concurrent_request: Optional[int] = None,
-        http_multiplex_max_request: Optional[int] = None,
-        http_multiplex_ttl: Optional[int] = None,
-        http_redirect: Optional[str] = None,
-        https_cookie_secure: Optional[str] = None,
-        id: Optional[int] = None,
-        ipv6_mappedip: Optional[str] = None,
-        ipv6_mappedport: Optional[str] = None,
-        ldb_method: Optional[str] = None,
-        mapped_addr: Optional[str] = None,
-        mappedip: Optional[list] = None,
-        mappedport: Optional[str] = None,
-        max_embryonic_connections: Optional[int] = None,
-        monitor: Optional[list] = None,
-        name: Optional[str] = None,
-        nat_source_vip: Optional[str] = None,
-        nat44: Optional[str] = None,
-        nat46: Optional[str] = None,
-        one_click_gslb_server: Optional[str] = None,
-        outlook_web_access: Optional[str] = None,
-        persistence: Optional[str] = None,
-        portforward: Optional[str] = None,
-        portmapping_type: Optional[str] = None,
-        protocol: Optional[str] = None,
-        quic: Optional[list] = None,
-        realservers: Optional[list] = None,
-        server_type: Optional[str] = None,
-        service: Optional[list] = None,
-        src_filter: Optional[list] = None,
-        src_vip_filter: Optional[str] = None,
-        srcintf_filter: Optional[list] = None,
-        ssl_accept_ffdhe_groups: Optional[str] = None,
-        ssl_algorithm: Optional[str] = None,
-        ssl_certificate: Optional[list] = None,
-        ssl_cipher_suites: Optional[list] = None,
-        ssl_client_fallback: Optional[str] = None,
-        ssl_client_rekey_count: Optional[int] = None,
-        ssl_client_renegotiation: Optional[str] = None,
-        ssl_client_session_state_max: Optional[int] = None,
-        ssl_client_session_state_timeout: Optional[int] = None,
-        ssl_client_session_state_type: Optional[str] = None,
-        ssl_dh_bits: Optional[str] = None,
-        ssl_hpkp: Optional[str] = None,
-        ssl_hpkp_age: Optional[int] = None,
-        ssl_hpkp_backup: Optional[str] = None,
-        ssl_hpkp_include_subdomains: Optional[str] = None,
-        ssl_hpkp_primary: Optional[str] = None,
-        ssl_hpkp_report_uri: Optional[str] = None,
-        ssl_hsts: Optional[str] = None,
-        ssl_hsts_age: Optional[int] = None,
-        ssl_hsts_include_subdomains: Optional[str] = None,
-        ssl_http_location_conversion: Optional[str] = None,
-        ssl_http_match_host: Optional[str] = None,
-        ssl_max_version: Optional[str] = None,
-        ssl_min_version: Optional[str] = None,
-        ssl_mode: Optional[str] = None,
-        ssl_pfs: Optional[str] = None,
-        ssl_send_empty_frags: Optional[str] = None,
-        ssl_server_algorithm: Optional[str] = None,
-        ssl_server_cipher_suites: Optional[list] = None,
-        ssl_server_max_version: Optional[str] = None,
-        ssl_server_min_version: Optional[str] = None,
-        ssl_server_renegotiation: Optional[str] = None,
-        ssl_server_session_state_max: Optional[int] = None,
-        ssl_server_session_state_timeout: Optional[int] = None,
-        ssl_server_session_state_type: Optional[str] = None,
-        status: Optional[str] = None,
-        type: Optional[str] = None,
-        user_agent_detect: Optional[str] = None,
-        uuid: Optional[str] = None,
-        weblogic_server: Optional[str] = None,
-        websphere_server: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create vip entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            add-nat46-route (string) (enum: ['disable', 'enable']):
-                Enable/disable adding NAT46 route.
-            arp-reply (string) (enum: ['disable', 'enable']):
-                Enable to respond to ARP requests for this virtual IP addres...
-            client-cert (string) (enum: ['disable', 'enable']):
-                Enable/disable requesting client certificate.
-            color (integer) (range: 0-32):
-                Color of icon on the GUI.
-            comment (string) (max_len: 255):
-                Comment.
-            dns-mapping-ttl (integer) (range: 0-604800):
-                DNS mapping TTL (Set to zero to use TTL in DNS response, def...
-            empty-cert-action (string) (enum: ['accept', 'block', 'accept-unmanageable']):
-                Action for an empty client certificate.
-            extaddr (list[object]):
-                External FQDN address name.
-            extintf (string) (max_len: 35):
-                Interface connected to the source network that receives the ...
-            extip (string):
-                IP address or address range on the external interface that y...
-            extport (string):
-                Incoming port number range that you want to map to a port nu...
-            gratuitous-arp-interval (integer) (range: 5-8640000):
-                Enable to have the VIP send gratuitous ARPs. 0=disabled. Set...
-            gslb-domain-name (string) (max_len: 255):
-                Domain to use when integrating with FortiGSLB.
-            gslb-hostname (string) (max_len: 35):
-                Hostname to use within the configured FortiGSLB domain.
-            gslb-public-ips (list[object]):
-                Publicly accessible IP addresses for the FortiGSLB service.
-            h2-support (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP2 support (default = enable).
-            h3-support (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP3/QUIC support (default = disable).
-            http-cookie-age (integer) (range: 0-525600):
-                Time in minutes that client web browsers should keep a cooki...
-            http-cookie-domain (string) (max_len: 35):
-                Domain that HTTP cookie persistence should apply to.
-            http-cookie-domain-from-host (string) (enum: ['disable', 'enable']):
-                Enable/disable use of HTTP cookie domain from host field in ...
-            http-cookie-generation (integer) (range: 0-4294967295):
-                Generation of HTTP cookie to be accepted. Changing invalidat...
-            http-cookie-path (string) (max_len: 35):
-                Limit HTTP cookie persistence to the specified path.
-            http-cookie-share (string) (enum: ['disable', 'same-ip']):
-                Control sharing of cookies across virtual servers. Use of sa...
-            http-ip-header (string) (enum: ['enable', 'disable']):
-                For HTTP multiplexing, enable to add the original client IP ...
-            http-ip-header-name (string) (max_len: 35):
-                For HTTP multiplexing, enter a custom HTTPS header name. The...
-            http-multiplex (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP multiplexing.
-            http-multiplex-max-concurrent-request (integer) (range: 0-2147483647):
-                Maximum number of concurrent requests that a multiplex serve...
-            http-multiplex-max-request (integer) (range: 0-2147483647):
-                Maximum number of requests that a multiplex server can handl...
-            http-multiplex-ttl (integer) (range: 0-2147483647):
-                Time-to-live for idle connections to servers.
-            http-redirect (string) (enum: ['enable', 'disable']):
-                Enable/disable redirection of HTTP to HTTPS.
-            https-cookie-secure (string) (enum: ['disable', 'enable']):
-                Enable/disable verification that inserted HTTPS cookies are ...
-            id (integer) (range: 0-65535):
-                Custom defined ID.
-            ipv6-mappedip (string):
-                Range of mapped IPv6 addresses. Specify the start IPv6 addre...
-            ipv6-mappedport (string):
-                IPv6 port number range on the destination network to which t...
-            ldb-method (string) (enum: ['static', 'round-robin', 'weighted']):
-                Method used to distribute sessions to real servers.
-            mapped-addr (string) (max_len: 79):
-                Mapped FQDN address name.
-            mappedip (list[object]):
-                IP address or address range on the destination network to wh...
-            mappedport (string):
-                Port number range on the destination network to which the ex...
-            max-embryonic-connections (integer) (range: 0-100000):
-                Maximum number of incomplete connections.
-            monitor (list[object]):
-                Name of the health check monitor to use when polling to dete...
-            name (string) (max_len: 79):
-                Virtual IP name.
-            nat-source-vip (string) (enum: ['disable', 'enable']):
-                Enable/disable forcing the source NAT mapped IP to the exter...
-            nat44 (string) (enum: ['disable', 'enable']):
-                Enable/disable NAT44.
-            nat46 (string) (enum: ['disable', 'enable']):
-                Enable/disable NAT46.
-            one-click-gslb-server (string) (enum: ['disable', 'enable']):
-                Enable/disable one click GSLB server integration with FortiG...
-            outlook-web-access (string) (enum: ['disable', 'enable']):
-                Enable to add the Front-End-Https header for Microsoft Outlo...
-            persistence (string) (enum: ['none', 'http-cookie', 'ssl-session-id']):
-                Configure how to make sure that clients connect to the same ...
-            portforward (string) (enum: ['disable', 'enable']):
-                Enable/disable port forwarding.
-            portmapping-type (string) (enum: ['1-to-1', 'm-to-n']):
-                Port mapping type.
-            protocol (string) (enum: ['tcp', 'udp', 'sctp']):
-                Protocol to use when forwarding packets.
-            quic (list[object]):
-                QUIC setting.
-            realservers (list[object]):
-                Select the real servers that this server load balancing VIP ...
-            server-type (string) (enum: ['http', 'https', 'tcp']):
-                Protocol to be load balanced by the virtual server (also cal...
-            service (list[object]):
-                Service name.
-            src-filter (list[object]):
-                Source address filter. Each address must be either an IP/sub...
-            src-vip-filter (string) (enum: ['disable', 'enable']):
-                Enable/disable use of 'src-filter' to match destinations for...
-            srcintf-filter (list[object]):
-                Interfaces to which the VIP applies. Separate the names with...
-            ssl-accept-ffdhe-groups (string) (enum: ['enable', 'disable']):
-                Enable/disable FFDHE cipher suite for SSL key exchange.
-            ssl-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Permitted encryption algorithms for SSL sessions according t...
-            ssl-certificate (list[object]):
-                Name of the certificate to use for SSL handshake.
-            ssl-cipher-suites (list[object]):
-                SSL/TLS cipher suites acceptable from a client, ordered by p...
-            ssl-client-fallback (string) (enum: ['disable', 'enable']):
-                Enable/disable support for preventing Downgrade Attacks on c...
-            ssl-client-rekey-count (integer) (range: 200-1048576):
-                Maximum length of data in MB before triggering a client reke...
-            ssl-client-renegotiation (string) (enum: ['allow', 'deny', 'secure']):
-                Allow, deny, or require secure renegotiation of client sessi...
-            ssl-client-session-state-max (integer) (range: 1-10000):
-                Maximum number of client to FortiGate SSL session states to ...
-            ssl-client-session-state-timeout (integer) (range: 1-14400):
-                Number of minutes to keep client to FortiGate SSL session st...
-            ssl-client-session-state-type (string) (enum: ['disable', 'time', 'count']):
-                How to expire SSL sessions for the segment of the SSL connec...
-            ssl-dh-bits (string) (enum: ['768', '1024', '1536']):
-                Number of bits to use in the Diffie-Hellman exchange for RSA...
-            ssl-hpkp (string) (enum: ['disable', 'enable', 'report-only']):
-                Enable/disable including HPKP header in response.
-            ssl-hpkp-age (integer) (range: 60-157680000):
-                Number of seconds the client should honor the HPKP setting.
-            ssl-hpkp-backup (string) (max_len: 79):
-                Certificate to generate backup HPKP pin from.
-            ssl-hpkp-include-subdomains (string) (enum: ['disable', 'enable']):
-                Indicate that HPKP header applies to all subdomains.
-            ssl-hpkp-primary (string) (max_len: 79):
-                Certificate to generate primary HPKP pin from.
-            ssl-hpkp-report-uri (string) (max_len: 255):
-                URL to report HPKP violations to.
-            ssl-hsts (string) (enum: ['disable', 'enable']):
-                Enable/disable including HSTS header in response.
-            ssl-hsts-age (integer) (range: 60-157680000):
-                Number of seconds the client should honor the HSTS setting.
-            ssl-hsts-include-subdomains (string) (enum: ['disable', 'enable']):
-                Indicate that HSTS header applies to all subdomains.
-            ssl-http-location-conversion (string) (enum: ['enable', 'disable']):
-                Enable to replace HTTP with HTTPS in the reply's Location HT...
-            ssl-http-match-host (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP host matching for location conversion.
-            ssl-max-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Highest SSL/TLS version acceptable from a client.
-            ssl-min-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Lowest SSL/TLS version acceptable from a client.
-            ssl-mode (string) (enum: ['half', 'full']):
-                Apply SSL offloading between the client and the FortiGate (h...
-            ssl-pfs (string) (enum: ['require', 'deny', 'allow']):
-                Select the cipher suites that can be used for SSL perfect fo...
-            ssl-send-empty-frags (string) (enum: ['enable', 'disable']):
-                Enable/disable sending empty fragments to avoid CBC IV attac...
-            ssl-server-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Permitted encryption algorithms for the server side of SSL f...
-            ssl-server-cipher-suites (list[object]):
-                SSL/TLS cipher suites to offer to a server, ordered by prior...
-            ssl-server-max-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Highest SSL/TLS version acceptable from a server. Use the cl...
-            ssl-server-min-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Lowest SSL/TLS version acceptable from a server. Use the cli...
-            ssl-server-renegotiation (string) (enum: ['enable', 'disable']):
-                Enable/disable secure renegotiation to comply with RFC 5746.
-            ssl-server-session-state-max (integer) (range: 1-10000):
-                Maximum number of FortiGate to Server SSL session states to ...
-            ssl-server-session-state-timeout (integer) (range: 1-14400):
-                Number of minutes to keep FortiGate to Server SSL session st...
-            ssl-server-session-state-type (string) (enum: ['disable', 'time', 'count']):
-                How to expire SSL sessions for the segment of the SSL connec...
-            status (string) (enum: ['disable', 'enable']):
-                Enable/disable VIP.
-            type (string) (enum: ['static-nat', 'load-balance', 'server-load-balance']):
-                Configure a static NAT, load balance, server load balance, a...
-            user-agent-detect (string) (enum: ['disable', 'enable']):
-                Enable/disable detecting device type by HTTP user-agent if n...
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            weblogic-server (string) (enum: ['disable', 'enable']):
-                Enable to add an HTTP header to indicate SSL offloading for ...
-            websphere-server (string) (enum: ['disable', 'enable']):
-                Enable to add an HTTP header to indicate SSL offloading for ...
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if add_nat46_route is not None:
-            payload_dict["add-nat46-route"] = add_nat46_route
-        if arp_reply is not None:
-            payload_dict["arp-reply"] = arp_reply
-        if client_cert is not None:
-            payload_dict["client-cert"] = client_cert
-        if color is not None:
-            payload_dict["color"] = color
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dns_mapping_ttl is not None:
-            payload_dict["dns-mapping-ttl"] = dns_mapping_ttl
-        if empty_cert_action is not None:
-            payload_dict["empty-cert-action"] = empty_cert_action
-        if extaddr is not None:
-            payload_dict["extaddr"] = extaddr
-        if extintf is not None:
-            payload_dict["extintf"] = extintf
-        if extip is not None:
-            payload_dict["extip"] = extip
-        if extport is not None:
-            payload_dict["extport"] = extport
-        if gratuitous_arp_interval is not None:
-            payload_dict["gratuitous-arp-interval"] = gratuitous_arp_interval
-        if gslb_domain_name is not None:
-            payload_dict["gslb-domain-name"] = gslb_domain_name
-        if gslb_hostname is not None:
-            payload_dict["gslb-hostname"] = gslb_hostname
-        if gslb_public_ips is not None:
-            payload_dict["gslb-public-ips"] = gslb_public_ips
-        if h2_support is not None:
-            payload_dict["h2-support"] = h2_support
-        if h3_support is not None:
-            payload_dict["h3-support"] = h3_support
-        if http_cookie_age is not None:
-            payload_dict["http-cookie-age"] = http_cookie_age
-        if http_cookie_domain is not None:
-            payload_dict["http-cookie-domain"] = http_cookie_domain
-        if http_cookie_domain_from_host is not None:
-            payload_dict["http-cookie-domain-from-host"] = http_cookie_domain_from_host
-        if http_cookie_generation is not None:
-            payload_dict["http-cookie-generation"] = http_cookie_generation
-        if http_cookie_path is not None:
-            payload_dict["http-cookie-path"] = http_cookie_path
-        if http_cookie_share is not None:
-            payload_dict["http-cookie-share"] = http_cookie_share
-        if http_ip_header is not None:
-            payload_dict["http-ip-header"] = http_ip_header
-        if http_ip_header_name is not None:
-            payload_dict["http-ip-header-name"] = http_ip_header_name
-        if http_multiplex is not None:
-            payload_dict["http-multiplex"] = http_multiplex
-        if http_multiplex_max_concurrent_request is not None:
-            payload_dict["http-multiplex-max-concurrent-request"] = (
-                http_multiplex_max_concurrent_request
-            )
-        if http_multiplex_max_request is not None:
-            payload_dict["http-multiplex-max-request"] = http_multiplex_max_request
-        if http_multiplex_ttl is not None:
-            payload_dict["http-multiplex-ttl"] = http_multiplex_ttl
-        if http_redirect is not None:
-            payload_dict["http-redirect"] = http_redirect
-        if https_cookie_secure is not None:
-            payload_dict["https-cookie-secure"] = https_cookie_secure
-        if id is not None:
-            payload_dict["id"] = id
-        if ipv6_mappedip is not None:
-            payload_dict["ipv6-mappedip"] = ipv6_mappedip
-        if ipv6_mappedport is not None:
-            payload_dict["ipv6-mappedport"] = ipv6_mappedport
-        if ldb_method is not None:
-            payload_dict["ldb-method"] = ldb_method
-        if mapped_addr is not None:
-            payload_dict["mapped-addr"] = mapped_addr
-        if mappedip is not None:
-            payload_dict["mappedip"] = mappedip
-        if mappedport is not None:
-            payload_dict["mappedport"] = mappedport
-        if max_embryonic_connections is not None:
-            payload_dict["max-embryonic-connections"] = max_embryonic_connections
-        if monitor is not None:
-            payload_dict["monitor"] = monitor
-        if name is not None:
-            payload_dict["name"] = name
-        if nat_source_vip is not None:
-            payload_dict["nat-source-vip"] = nat_source_vip
-        if nat44 is not None:
-            payload_dict["nat44"] = nat44
-        if nat46 is not None:
-            payload_dict["nat46"] = nat46
-        if one_click_gslb_server is not None:
-            payload_dict["one-click-gslb-server"] = one_click_gslb_server
-        if outlook_web_access is not None:
-            payload_dict["outlook-web-access"] = outlook_web_access
-        if persistence is not None:
-            payload_dict["persistence"] = persistence
-        if portforward is not None:
-            payload_dict["portforward"] = portforward
-        if portmapping_type is not None:
-            payload_dict["portmapping-type"] = portmapping_type
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if quic is not None:
-            payload_dict["quic"] = quic
-        if realservers is not None:
-            payload_dict["realservers"] = realservers
-        if server_type is not None:
-            payload_dict["server-type"] = server_type
-        if service is not None:
-            payload_dict["service"] = service
-        if src_filter is not None:
-            payload_dict["src-filter"] = src_filter
-        if src_vip_filter is not None:
-            payload_dict["src-vip-filter"] = src_vip_filter
-        if srcintf_filter is not None:
-            payload_dict["srcintf-filter"] = srcintf_filter
-        if ssl_accept_ffdhe_groups is not None:
-            payload_dict["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
-        if ssl_algorithm is not None:
-            payload_dict["ssl-algorithm"] = ssl_algorithm
-        if ssl_certificate is not None:
-            payload_dict["ssl-certificate"] = ssl_certificate
-        if ssl_cipher_suites is not None:
-            payload_dict["ssl-cipher-suites"] = ssl_cipher_suites
-        if ssl_client_fallback is not None:
-            payload_dict["ssl-client-fallback"] = ssl_client_fallback
-        if ssl_client_rekey_count is not None:
-            payload_dict["ssl-client-rekey-count"] = ssl_client_rekey_count
-        if ssl_client_renegotiation is not None:
-            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
-        if ssl_client_session_state_max is not None:
-            payload_dict["ssl-client-session-state-max"] = ssl_client_session_state_max
-        if ssl_client_session_state_timeout is not None:
-            payload_dict["ssl-client-session-state-timeout"] = ssl_client_session_state_timeout
-        if ssl_client_session_state_type is not None:
-            payload_dict["ssl-client-session-state-type"] = ssl_client_session_state_type
-        if ssl_dh_bits is not None:
-            payload_dict["ssl-dh-bits"] = ssl_dh_bits
-        if ssl_hpkp is not None:
-            payload_dict["ssl-hpkp"] = ssl_hpkp
-        if ssl_hpkp_age is not None:
-            payload_dict["ssl-hpkp-age"] = ssl_hpkp_age
-        if ssl_hpkp_backup is not None:
-            payload_dict["ssl-hpkp-backup"] = ssl_hpkp_backup
-        if ssl_hpkp_include_subdomains is not None:
-            payload_dict["ssl-hpkp-include-subdomains"] = ssl_hpkp_include_subdomains
-        if ssl_hpkp_primary is not None:
-            payload_dict["ssl-hpkp-primary"] = ssl_hpkp_primary
-        if ssl_hpkp_report_uri is not None:
-            payload_dict["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
-        if ssl_hsts is not None:
-            payload_dict["ssl-hsts"] = ssl_hsts
-        if ssl_hsts_age is not None:
-            payload_dict["ssl-hsts-age"] = ssl_hsts_age
-        if ssl_hsts_include_subdomains is not None:
-            payload_dict["ssl-hsts-include-subdomains"] = ssl_hsts_include_subdomains
-        if ssl_http_location_conversion is not None:
-            payload_dict["ssl-http-location-conversion"] = ssl_http_location_conversion
-        if ssl_http_match_host is not None:
-            payload_dict["ssl-http-match-host"] = ssl_http_match_host
-        if ssl_max_version is not None:
-            payload_dict["ssl-max-version"] = ssl_max_version
-        if ssl_min_version is not None:
-            payload_dict["ssl-min-version"] = ssl_min_version
-        if ssl_mode is not None:
-            payload_dict["ssl-mode"] = ssl_mode
-        if ssl_pfs is not None:
-            payload_dict["ssl-pfs"] = ssl_pfs
-        if ssl_send_empty_frags is not None:
-            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
-        if ssl_server_algorithm is not None:
-            payload_dict["ssl-server-algorithm"] = ssl_server_algorithm
-        if ssl_server_cipher_suites is not None:
-            payload_dict["ssl-server-cipher-suites"] = ssl_server_cipher_suites
-        if ssl_server_max_version is not None:
-            payload_dict["ssl-server-max-version"] = ssl_server_max_version
-        if ssl_server_min_version is not None:
-            payload_dict["ssl-server-min-version"] = ssl_server_min_version
-        if ssl_server_renegotiation is not None:
-            payload_dict["ssl-server-renegotiation"] = ssl_server_renegotiation
-        if ssl_server_session_state_max is not None:
-            payload_dict["ssl-server-session-state-max"] = ssl_server_session_state_max
-        if ssl_server_session_state_timeout is not None:
-            payload_dict["ssl-server-session-state-timeout"] = ssl_server_session_state_timeout
-        if ssl_server_session_state_type is not None:
-            payload_dict["ssl-server-session-state-type"] = ssl_server_session_state_type
-        if status is not None:
-            payload_dict["status"] = status
-        if type is not None:
-            payload_dict["type"] = type
-        if user_agent_detect is not None:
-            payload_dict["user-agent-detect"] = user_agent_detect
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if weblogic_server is not None:
-            payload_dict["weblogic-server"] = weblogic_server
-        if websphere_server is not None:
-            payload_dict["websphere-server"] = websphere_server
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/vip/{name}"
+        else:
+            endpoint = "/firewall/vip"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        add_nat46_route: Optional[str] = None,
-        arp_reply: Optional[str] = None,
-        client_cert: Optional[str] = None,
-        color: Optional[int] = None,
-        comment: Optional[str] = None,
-        dns_mapping_ttl: Optional[int] = None,
-        empty_cert_action: Optional[str] = None,
-        extaddr: Optional[list] = None,
-        extintf: Optional[str] = None,
-        extip: Optional[str] = None,
-        extport: Optional[str] = None,
-        gratuitous_arp_interval: Optional[int] = None,
-        gslb_domain_name: Optional[str] = None,
-        gslb_hostname: Optional[str] = None,
-        gslb_public_ips: Optional[list] = None,
-        h2_support: Optional[str] = None,
-        h3_support: Optional[str] = None,
-        http_cookie_age: Optional[int] = None,
-        http_cookie_domain: Optional[str] = None,
-        http_cookie_domain_from_host: Optional[str] = None,
-        http_cookie_generation: Optional[int] = None,
-        http_cookie_path: Optional[str] = None,
-        http_cookie_share: Optional[str] = None,
-        http_ip_header: Optional[str] = None,
-        http_ip_header_name: Optional[str] = None,
-        http_multiplex: Optional[str] = None,
-        http_multiplex_max_concurrent_request: Optional[int] = None,
-        http_multiplex_max_request: Optional[int] = None,
-        http_multiplex_ttl: Optional[int] = None,
-        http_redirect: Optional[str] = None,
-        https_cookie_secure: Optional[str] = None,
-        id: Optional[int] = None,
-        ipv6_mappedip: Optional[str] = None,
-        ipv6_mappedport: Optional[str] = None,
-        ldb_method: Optional[str] = None,
-        mapped_addr: Optional[str] = None,
-        mappedip: Optional[list] = None,
-        mappedport: Optional[str] = None,
-        max_embryonic_connections: Optional[int] = None,
-        monitor: Optional[list] = None,
-        name: Optional[str] = None,
-        nat_source_vip: Optional[str] = None,
-        nat44: Optional[str] = None,
-        nat46: Optional[str] = None,
-        one_click_gslb_server: Optional[str] = None,
-        outlook_web_access: Optional[str] = None,
-        persistence: Optional[str] = None,
-        portforward: Optional[str] = None,
-        portmapping_type: Optional[str] = None,
-        protocol: Optional[str] = None,
-        quic: Optional[list] = None,
-        realservers: Optional[list] = None,
-        server_type: Optional[str] = None,
-        service: Optional[list] = None,
-        src_filter: Optional[list] = None,
-        src_vip_filter: Optional[str] = None,
-        srcintf_filter: Optional[list] = None,
-        ssl_accept_ffdhe_groups: Optional[str] = None,
-        ssl_algorithm: Optional[str] = None,
-        ssl_certificate: Optional[list] = None,
-        ssl_cipher_suites: Optional[list] = None,
-        ssl_client_fallback: Optional[str] = None,
-        ssl_client_rekey_count: Optional[int] = None,
-        ssl_client_renegotiation: Optional[str] = None,
-        ssl_client_session_state_max: Optional[int] = None,
-        ssl_client_session_state_timeout: Optional[int] = None,
-        ssl_client_session_state_type: Optional[str] = None,
-        ssl_dh_bits: Optional[str] = None,
-        ssl_hpkp: Optional[str] = None,
-        ssl_hpkp_age: Optional[int] = None,
-        ssl_hpkp_backup: Optional[str] = None,
-        ssl_hpkp_include_subdomains: Optional[str] = None,
-        ssl_hpkp_primary: Optional[str] = None,
-        ssl_hpkp_report_uri: Optional[str] = None,
-        ssl_hsts: Optional[str] = None,
-        ssl_hsts_age: Optional[int] = None,
-        ssl_hsts_include_subdomains: Optional[str] = None,
-        ssl_http_location_conversion: Optional[str] = None,
-        ssl_http_match_host: Optional[str] = None,
-        ssl_max_version: Optional[str] = None,
-        ssl_min_version: Optional[str] = None,
-        ssl_mode: Optional[str] = None,
-        ssl_pfs: Optional[str] = None,
-        ssl_send_empty_frags: Optional[str] = None,
-        ssl_server_algorithm: Optional[str] = None,
-        ssl_server_cipher_suites: Optional[list] = None,
-        ssl_server_max_version: Optional[str] = None,
-        ssl_server_min_version: Optional[str] = None,
-        ssl_server_renegotiation: Optional[str] = None,
-        ssl_server_session_state_max: Optional[int] = None,
-        ssl_server_session_state_timeout: Optional[int] = None,
-        ssl_server_session_state_type: Optional[str] = None,
-        status: Optional[str] = None,
-        type: Optional[str] = None,
-        user_agent_detect: Optional[str] = None,
-        uuid: Optional[str] = None,
-        weblogic_server: Optional[str] = None,
-        websphere_server: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        id: int | None = None,
+        uuid: str | None = None,
+        comment: str | None = None,
+        type: str | None = None,
+        server_type: str | None = None,
+        dns_mapping_ttl: int | None = None,
+        ldb_method: str | None = None,
+        src_filter: list | None = None,
+        src_vip_filter: str | None = None,
+        service: list | None = None,
+        extip: str | None = None,
+        extaddr: list | None = None,
+        h2_support: str | None = None,
+        h3_support: str | None = None,
+        quic: list | None = None,
+        nat44: str | None = None,
+        nat46: str | None = None,
+        add_nat46_route: str | None = None,
+        mappedip: list | None = None,
+        mapped_addr: str | None = None,
+        extintf: str | None = None,
+        arp_reply: str | None = None,
+        http_redirect: str | None = None,
+        persistence: str | None = None,
+        nat_source_vip: str | None = None,
+        portforward: str | None = None,
+        status: str | None = None,
+        protocol: str | None = None,
+        extport: str | None = None,
+        mappedport: str | None = None,
+        gratuitous_arp_interval: int | None = None,
+        srcintf_filter: list | None = None,
+        portmapping_type: str | None = None,
+        empty_cert_action: str | None = None,
+        user_agent_detect: str | None = None,
+        client_cert: str | None = None,
+        realservers: list | None = None,
+        http_cookie_domain_from_host: str | None = None,
+        http_cookie_domain: str | None = None,
+        http_cookie_path: str | None = None,
+        http_cookie_generation: int | None = None,
+        http_cookie_age: int | None = None,
+        http_cookie_share: str | None = None,
+        https_cookie_secure: str | None = None,
+        http_multiplex: str | None = None,
+        http_multiplex_ttl: int | None = None,
+        http_multiplex_max_request: int | None = None,
+        http_multiplex_max_concurrent_request: int | None = None,
+        http_ip_header: str | None = None,
+        http_ip_header_name: str | None = None,
+        outlook_web_access: str | None = None,
+        weblogic_server: str | None = None,
+        websphere_server: str | None = None,
+        ssl_mode: str | None = None,
+        ssl_certificate: list | None = None,
+        ssl_dh_bits: str | None = None,
+        ssl_algorithm: str | None = None,
+        ssl_cipher_suites: list | None = None,
+        ssl_server_algorithm: str | None = None,
+        ssl_server_cipher_suites: list | None = None,
+        ssl_pfs: str | None = None,
+        ssl_min_version: str | None = None,
+        ssl_max_version: str | None = None,
+        ssl_server_min_version: str | None = None,
+        ssl_server_max_version: str | None = None,
+        ssl_accept_ffdhe_groups: str | None = None,
+        ssl_send_empty_frags: str | None = None,
+        ssl_client_fallback: str | None = None,
+        ssl_client_renegotiation: str | None = None,
+        ssl_client_session_state_type: str | None = None,
+        ssl_client_session_state_timeout: int | None = None,
+        ssl_client_session_state_max: int | None = None,
+        ssl_client_rekey_count: int | None = None,
+        ssl_server_renegotiation: str | None = None,
+        ssl_server_session_state_type: str | None = None,
+        ssl_server_session_state_timeout: int | None = None,
+        ssl_server_session_state_max: int | None = None,
+        ssl_http_location_conversion: str | None = None,
+        ssl_http_match_host: str | None = None,
+        ssl_hpkp: str | None = None,
+        ssl_hpkp_primary: str | None = None,
+        ssl_hpkp_backup: str | None = None,
+        ssl_hpkp_age: int | None = None,
+        ssl_hpkp_report_uri: str | None = None,
+        ssl_hpkp_include_subdomains: str | None = None,
+        ssl_hsts: str | None = None,
+        ssl_hsts_age: int | None = None,
+        ssl_hsts_include_subdomains: str | None = None,
+        monitor: list | None = None,
+        max_embryonic_connections: int | None = None,
+        color: int | None = None,
+        ipv6_mappedip: str | None = None,
+        ipv6_mappedport: str | None = None,
+        one_click_gslb_server: str | None = None,
+        gslb_hostname: str | None = None,
+        gslb_domain_name: str | None = None,
+        gslb_public_ips: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update vip entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            add-nat46-route (string) (enum: ['disable', 'enable']):
-                Enable/disable adding NAT46 route.
-            arp-reply (string) (enum: ['disable', 'enable']):
-                Enable to respond to ARP requests for this virtual IP addres...
-            client-cert (string) (enum: ['disable', 'enable']):
-                Enable/disable requesting client certificate.
-            color (integer) (range: 0-32):
-                Color of icon on the GUI.
-            comment (string) (max_len: 255):
-                Comment.
-            dns-mapping-ttl (integer) (range: 0-604800):
-                DNS mapping TTL (Set to zero to use TTL in DNS response, def...
-            empty-cert-action (string) (enum: ['accept', 'block', 'accept-unmanageable']):
-                Action for an empty client certificate.
-            extaddr (list[object]):
-                External FQDN address name.
-            extintf (string) (max_len: 35):
-                Interface connected to the source network that receives the ...
-            extip (string):
-                IP address or address range on the external interface that y...
-            extport (string):
-                Incoming port number range that you want to map to a port nu...
-            gratuitous-arp-interval (integer) (range: 5-8640000):
-                Enable to have the VIP send gratuitous ARPs. 0=disabled. Set...
-            gslb-domain-name (string) (max_len: 255):
-                Domain to use when integrating with FortiGSLB.
-            gslb-hostname (string) (max_len: 35):
-                Hostname to use within the configured FortiGSLB domain.
-            gslb-public-ips (list[object]):
-                Publicly accessible IP addresses for the FortiGSLB service.
-            h2-support (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP2 support (default = enable).
-            h3-support (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP3/QUIC support (default = disable).
-            http-cookie-age (integer) (range: 0-525600):
-                Time in minutes that client web browsers should keep a cooki...
-            http-cookie-domain (string) (max_len: 35):
-                Domain that HTTP cookie persistence should apply to.
-            http-cookie-domain-from-host (string) (enum: ['disable', 'enable']):
-                Enable/disable use of HTTP cookie domain from host field in ...
-            http-cookie-generation (integer) (range: 0-4294967295):
-                Generation of HTTP cookie to be accepted. Changing invalidat...
-            http-cookie-path (string) (max_len: 35):
-                Limit HTTP cookie persistence to the specified path.
-            http-cookie-share (string) (enum: ['disable', 'same-ip']):
-                Control sharing of cookies across virtual servers. Use of sa...
-            http-ip-header (string) (enum: ['enable', 'disable']):
-                For HTTP multiplexing, enable to add the original client IP ...
-            http-ip-header-name (string) (max_len: 35):
-                For HTTP multiplexing, enter a custom HTTPS header name. The...
-            http-multiplex (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP multiplexing.
-            http-multiplex-max-concurrent-request (integer) (range: 0-2147483647):
-                Maximum number of concurrent requests that a multiplex serve...
-            http-multiplex-max-request (integer) (range: 0-2147483647):
-                Maximum number of requests that a multiplex server can handl...
-            http-multiplex-ttl (integer) (range: 0-2147483647):
-                Time-to-live for idle connections to servers.
-            http-redirect (string) (enum: ['enable', 'disable']):
-                Enable/disable redirection of HTTP to HTTPS.
-            https-cookie-secure (string) (enum: ['disable', 'enable']):
-                Enable/disable verification that inserted HTTPS cookies are ...
-            id (integer) (range: 0-65535):
-                Custom defined ID.
-            ipv6-mappedip (string):
-                Range of mapped IPv6 addresses. Specify the start IPv6 addre...
-            ipv6-mappedport (string):
-                IPv6 port number range on the destination network to which t...
-            ldb-method (string) (enum: ['static', 'round-robin', 'weighted']):
-                Method used to distribute sessions to real servers.
-            mapped-addr (string) (max_len: 79):
-                Mapped FQDN address name.
-            mappedip (list[object]):
-                IP address or address range on the destination network to wh...
-            mappedport (string):
-                Port number range on the destination network to which the ex...
-            max-embryonic-connections (integer) (range: 0-100000):
-                Maximum number of incomplete connections.
-            monitor (list[object]):
-                Name of the health check monitor to use when polling to dete...
-            name (string) (max_len: 79):
-                Virtual IP name.
-            nat-source-vip (string) (enum: ['disable', 'enable']):
-                Enable/disable forcing the source NAT mapped IP to the exter...
-            nat44 (string) (enum: ['disable', 'enable']):
-                Enable/disable NAT44.
-            nat46 (string) (enum: ['disable', 'enable']):
-                Enable/disable NAT46.
-            one-click-gslb-server (string) (enum: ['disable', 'enable']):
-                Enable/disable one click GSLB server integration with FortiG...
-            outlook-web-access (string) (enum: ['disable', 'enable']):
-                Enable to add the Front-End-Https header for Microsoft Outlo...
-            persistence (string) (enum: ['none', 'http-cookie', 'ssl-session-id']):
-                Configure how to make sure that clients connect to the same ...
-            portforward (string) (enum: ['disable', 'enable']):
-                Enable/disable port forwarding.
-            portmapping-type (string) (enum: ['1-to-1', 'm-to-n']):
-                Port mapping type.
-            protocol (string) (enum: ['tcp', 'udp', 'sctp']):
-                Protocol to use when forwarding packets.
-            quic (list[object]):
-                QUIC setting.
-            realservers (list[object]):
-                Select the real servers that this server load balancing VIP ...
-            server-type (string) (enum: ['http', 'https', 'tcp']):
-                Protocol to be load balanced by the virtual server (also cal...
-            service (list[object]):
-                Service name.
-            src-filter (list[object]):
-                Source address filter. Each address must be either an IP/sub...
-            src-vip-filter (string) (enum: ['disable', 'enable']):
-                Enable/disable use of 'src-filter' to match destinations for...
-            srcintf-filter (list[object]):
-                Interfaces to which the VIP applies. Separate the names with...
-            ssl-accept-ffdhe-groups (string) (enum: ['enable', 'disable']):
-                Enable/disable FFDHE cipher suite for SSL key exchange.
-            ssl-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Permitted encryption algorithms for SSL sessions according t...
-            ssl-certificate (list[object]):
-                Name of the certificate to use for SSL handshake.
-            ssl-cipher-suites (list[object]):
-                SSL/TLS cipher suites acceptable from a client, ordered by p...
-            ssl-client-fallback (string) (enum: ['disable', 'enable']):
-                Enable/disable support for preventing Downgrade Attacks on c...
-            ssl-client-rekey-count (integer) (range: 200-1048576):
-                Maximum length of data in MB before triggering a client reke...
-            ssl-client-renegotiation (string) (enum: ['allow', 'deny', 'secure']):
-                Allow, deny, or require secure renegotiation of client sessi...
-            ssl-client-session-state-max (integer) (range: 1-10000):
-                Maximum number of client to FortiGate SSL session states to ...
-            ssl-client-session-state-timeout (integer) (range: 1-14400):
-                Number of minutes to keep client to FortiGate SSL session st...
-            ssl-client-session-state-type (string) (enum: ['disable', 'time', 'count']):
-                How to expire SSL sessions for the segment of the SSL connec...
-            ssl-dh-bits (string) (enum: ['768', '1024', '1536']):
-                Number of bits to use in the Diffie-Hellman exchange for RSA...
-            ssl-hpkp (string) (enum: ['disable', 'enable', 'report-only']):
-                Enable/disable including HPKP header in response.
-            ssl-hpkp-age (integer) (range: 60-157680000):
-                Number of seconds the client should honor the HPKP setting.
-            ssl-hpkp-backup (string) (max_len: 79):
-                Certificate to generate backup HPKP pin from.
-            ssl-hpkp-include-subdomains (string) (enum: ['disable', 'enable']):
-                Indicate that HPKP header applies to all subdomains.
-            ssl-hpkp-primary (string) (max_len: 79):
-                Certificate to generate primary HPKP pin from.
-            ssl-hpkp-report-uri (string) (max_len: 255):
-                URL to report HPKP violations to.
-            ssl-hsts (string) (enum: ['disable', 'enable']):
-                Enable/disable including HSTS header in response.
-            ssl-hsts-age (integer) (range: 60-157680000):
-                Number of seconds the client should honor the HSTS setting.
-            ssl-hsts-include-subdomains (string) (enum: ['disable', 'enable']):
-                Indicate that HSTS header applies to all subdomains.
-            ssl-http-location-conversion (string) (enum: ['enable', 'disable']):
-                Enable to replace HTTP with HTTPS in the reply's Location HT...
-            ssl-http-match-host (string) (enum: ['enable', 'disable']):
-                Enable/disable HTTP host matching for location conversion.
-            ssl-max-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Highest SSL/TLS version acceptable from a client.
-            ssl-min-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Lowest SSL/TLS version acceptable from a client.
-            ssl-mode (string) (enum: ['half', 'full']):
-                Apply SSL offloading between the client and the FortiGate (h...
-            ssl-pfs (string) (enum: ['require', 'deny', 'allow']):
-                Select the cipher suites that can be used for SSL perfect fo...
-            ssl-send-empty-frags (string) (enum: ['enable', 'disable']):
-                Enable/disable sending empty fragments to avoid CBC IV attac...
-            ssl-server-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Permitted encryption algorithms for the server side of SSL f...
-            ssl-server-cipher-suites (list[object]):
-                SSL/TLS cipher suites to offer to a server, ordered by prior...
-            ssl-server-max-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Highest SSL/TLS version acceptable from a server. Use the cl...
-            ssl-server-min-version (string) (enum: ['ssl-3.0', 'tls-1.0', 'tls-1.1']):
-                Lowest SSL/TLS version acceptable from a server. Use the cli...
-            ssl-server-renegotiation (string) (enum: ['enable', 'disable']):
-                Enable/disable secure renegotiation to comply with RFC 5746.
-            ssl-server-session-state-max (integer) (range: 1-10000):
-                Maximum number of FortiGate to Server SSL session states to ...
-            ssl-server-session-state-timeout (integer) (range: 1-14400):
-                Number of minutes to keep FortiGate to Server SSL session st...
-            ssl-server-session-state-type (string) (enum: ['disable', 'time', 'count']):
-                How to expire SSL sessions for the segment of the SSL connec...
-            status (string) (enum: ['disable', 'enable']):
-                Enable/disable VIP.
-            type (string) (enum: ['static-nat', 'load-balance', 'server-load-balance']):
-                Configure a static NAT, load balance, server load balance, a...
-            user-agent-detect (string) (enum: ['disable', 'enable']):
-                Enable/disable detecting device type by HTTP user-agent if n...
-            uuid (string):
-                Universally Unique Identifier (UUID; automatically assigned ...
-            weblogic-server (string) (enum: ['disable', 'enable']):
-                Enable to add an HTTP header to indicate SSL offloading for ...
-            websphere-server (string) (enum: ['disable', 'enable']):
-                Enable to add an HTTP header to indicate SSL offloading for ...
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Virtual IP name. (optional)
+            id: Custom defined ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            comment: Comment. (optional)
+            type: Configure a static NAT, load balance, server load balance, access proxy, DNS translation, or FQDN VIP. (optional)
+            server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). (optional)
+            dns_mapping_ttl: DNS mapping TTL (Set to zero to use TTL in DNS response, default = 0). (optional)
+            ldb_method: Method used to distribute sessions to real servers. (optional)
+            src_filter: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. (optional)
+            src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. (optional)
+            service: Service name. (optional)
+            extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network. (optional)
+            extaddr: External FQDN address name. (optional)
+            h2_support: Enable/disable HTTP2 support (default = enable). (optional)
+            h3_support: Enable/disable HTTP3/QUIC support (default = disable). (optional)
+            quic: QUIC setting. (optional)
+            nat44: Enable/disable NAT44. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            add_nat46_route: Enable/disable adding NAT46 route. (optional)
+            mappedip: IP address or address range on the destination network to which the external IP address is mapped. (optional)
+            mapped_addr: Mapped FQDN address name. (optional)
+            extintf: Interface connected to the source network that receives the packets that will be forwarded to the destination network. (optional)
+            arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. (optional)
+            http_redirect: Enable/disable redirection of HTTP to HTTPS. (optional)
+            persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. (optional)
+            nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. (optional)
+            portforward: Enable/disable port forwarding. (optional)
+            status: Enable/disable VIP. (optional)
+            protocol: Protocol to use when forwarding packets. (optional)
+            extport: Incoming port number range that you want to map to a port number range on the destination network. (optional)
+            mappedport: Port number range on the destination network to which the external port number range is mapped. (optional)
+            gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable. (optional)
+            srcintf_filter: Interfaces to which the VIP applies. Separate the names with spaces. (optional)
+            portmapping_type: Port mapping type. (optional)
+            empty_cert_action: Action for an empty client certificate. (optional)
+            user_agent_detect: Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. (optional)
+            client_cert: Enable/disable requesting client certificate. (optional)
+            realservers: Select the real servers that this server load balancing VIP will distribute traffic to. (optional)
+            http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. (optional)
+            http_cookie_domain: Domain that HTTP cookie persistence should apply to. (optional)
+            http_cookie_path: Limit HTTP cookie persistence to the specified path. (optional)
+            http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies. (optional)
+            http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            http_cookie_share: Control sharing of cookies across virtual servers. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. (optional)
+            https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. (optional)
+            http_multiplex: Enable/disable HTTP multiplexing. (optional)
+            http_multiplex_ttl: Time-to-live for idle connections to servers. (optional)
+            http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited). (optional)
+            http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited). (optional)
+            http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the X-Forwarded-For HTTP header. (optional)
+            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used. (optional)
+            outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. (optional)
+            weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. (optional)
+            websphere_server: Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. (optional)
+            ssl_mode: Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). (optional)
+            ssl_certificate: Name of the certificate to use for SSL handshake. (optional)
+            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. (optional)
+            ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. (optional)
+            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. (optional)
+            ssl_server_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. (optional)
+            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. (optional)
+            ssl_pfs: Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. (optional)
+            ssl_min_version: Lowest SSL/TLS version acceptable from a client. (optional)
+            ssl_max_version: Highest SSL/TLS version acceptable from a client. (optional)
+            ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
+            ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
+            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. (optional)
+            ssl_client_fallback: Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). (optional)
+            ssl_client_renegotiation: Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. (optional)
+            ssl_client_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. (optional)
+            ssl_client_session_state_timeout: Number of minutes to keep client to FortiGate SSL session state. (optional)
+            ssl_client_session_state_max: Maximum number of client to FortiGate SSL session states to keep. (optional)
+            ssl_client_rekey_count: Maximum length of data in MB before triggering a client rekey (0 = disable). (optional)
+            ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. (optional)
+            ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. (optional)
+            ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state. (optional)
+            ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep. (optional)
+            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. (optional)
+            ssl_http_match_host: Enable/disable HTTP host matching for location conversion. (optional)
+            ssl_hpkp: Enable/disable including HPKP header in response. (optional)
+            ssl_hpkp_primary: Certificate to generate primary HPKP pin from. (optional)
+            ssl_hpkp_backup: Certificate to generate backup HPKP pin from. (optional)
+            ssl_hpkp_age: Number of seconds the client should honor the HPKP setting. (optional)
+            ssl_hpkp_report_uri: URL to report HPKP violations to. (optional)
+            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to all subdomains. (optional)
+            ssl_hsts: Enable/disable including HSTS header in response. (optional)
+            ssl_hsts_age: Number of seconds the client should honor the HSTS setting. (optional)
+            ssl_hsts_include_subdomains: Indicate that HSTS header applies to all subdomains. (optional)
+            monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status. (optional)
+            max_embryonic_connections: Maximum number of incomplete connections. (optional)
+            color: Color of icon on the GUI. (optional)
+            ipv6_mappedip: Range of mapped IPv6 addresses. Specify the start IPv6 address followed by a space and the end IPv6 address. (optional)
+            ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped. (optional)
+            one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. (optional)
+            gslb_hostname: Hostname to use within the configured FortiGSLB domain. (optional)
+            gslb_domain_name: Domain to use when integrating with FortiGSLB. (optional)
+            gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if add_nat46_route is not None:
-            payload_dict["add-nat46-route"] = add_nat46_route
-        if arp_reply is not None:
-            payload_dict["arp-reply"] = arp_reply
-        if client_cert is not None:
-            payload_dict["client-cert"] = client_cert
-        if color is not None:
-            payload_dict["color"] = color
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dns_mapping_ttl is not None:
-            payload_dict["dns-mapping-ttl"] = dns_mapping_ttl
-        if empty_cert_action is not None:
-            payload_dict["empty-cert-action"] = empty_cert_action
-        if extaddr is not None:
-            payload_dict["extaddr"] = extaddr
-        if extintf is not None:
-            payload_dict["extintf"] = extintf
-        if extip is not None:
-            payload_dict["extip"] = extip
-        if extport is not None:
-            payload_dict["extport"] = extport
-        if gratuitous_arp_interval is not None:
-            payload_dict["gratuitous-arp-interval"] = gratuitous_arp_interval
-        if gslb_domain_name is not None:
-            payload_dict["gslb-domain-name"] = gslb_domain_name
-        if gslb_hostname is not None:
-            payload_dict["gslb-hostname"] = gslb_hostname
-        if gslb_public_ips is not None:
-            payload_dict["gslb-public-ips"] = gslb_public_ips
-        if h2_support is not None:
-            payload_dict["h2-support"] = h2_support
-        if h3_support is not None:
-            payload_dict["h3-support"] = h3_support
-        if http_cookie_age is not None:
-            payload_dict["http-cookie-age"] = http_cookie_age
-        if http_cookie_domain is not None:
-            payload_dict["http-cookie-domain"] = http_cookie_domain
-        if http_cookie_domain_from_host is not None:
-            payload_dict["http-cookie-domain-from-host"] = http_cookie_domain_from_host
-        if http_cookie_generation is not None:
-            payload_dict["http-cookie-generation"] = http_cookie_generation
-        if http_cookie_path is not None:
-            payload_dict["http-cookie-path"] = http_cookie_path
-        if http_cookie_share is not None:
-            payload_dict["http-cookie-share"] = http_cookie_share
-        if http_ip_header is not None:
-            payload_dict["http-ip-header"] = http_ip_header
-        if http_ip_header_name is not None:
-            payload_dict["http-ip-header-name"] = http_ip_header_name
-        if http_multiplex is not None:
-            payload_dict["http-multiplex"] = http_multiplex
-        if http_multiplex_max_concurrent_request is not None:
-            payload_dict["http-multiplex-max-concurrent-request"] = (
-                http_multiplex_max_concurrent_request
-            )
-        if http_multiplex_max_request is not None:
-            payload_dict["http-multiplex-max-request"] = http_multiplex_max_request
-        if http_multiplex_ttl is not None:
-            payload_dict["http-multiplex-ttl"] = http_multiplex_ttl
-        if http_redirect is not None:
-            payload_dict["http-redirect"] = http_redirect
-        if https_cookie_secure is not None:
-            payload_dict["https-cookie-secure"] = https_cookie_secure
-        if id is not None:
-            payload_dict["id"] = id
-        if ipv6_mappedip is not None:
-            payload_dict["ipv6-mappedip"] = ipv6_mappedip
-        if ipv6_mappedport is not None:
-            payload_dict["ipv6-mappedport"] = ipv6_mappedport
-        if ldb_method is not None:
-            payload_dict["ldb-method"] = ldb_method
-        if mapped_addr is not None:
-            payload_dict["mapped-addr"] = mapped_addr
-        if mappedip is not None:
-            payload_dict["mappedip"] = mappedip
-        if mappedport is not None:
-            payload_dict["mappedport"] = mappedport
-        if max_embryonic_connections is not None:
-            payload_dict["max-embryonic-connections"] = max_embryonic_connections
-        if monitor is not None:
-            payload_dict["monitor"] = monitor
-        if name is not None:
-            payload_dict["name"] = name
-        if nat_source_vip is not None:
-            payload_dict["nat-source-vip"] = nat_source_vip
-        if nat44 is not None:
-            payload_dict["nat44"] = nat44
-        if nat46 is not None:
-            payload_dict["nat46"] = nat46
-        if one_click_gslb_server is not None:
-            payload_dict["one-click-gslb-server"] = one_click_gslb_server
-        if outlook_web_access is not None:
-            payload_dict["outlook-web-access"] = outlook_web_access
-        if persistence is not None:
-            payload_dict["persistence"] = persistence
-        if portforward is not None:
-            payload_dict["portforward"] = portforward
-        if portmapping_type is not None:
-            payload_dict["portmapping-type"] = portmapping_type
-        if protocol is not None:
-            payload_dict["protocol"] = protocol
-        if quic is not None:
-            payload_dict["quic"] = quic
-        if realservers is not None:
-            payload_dict["realservers"] = realservers
-        if server_type is not None:
-            payload_dict["server-type"] = server_type
-        if service is not None:
-            payload_dict["service"] = service
-        if src_filter is not None:
-            payload_dict["src-filter"] = src_filter
-        if src_vip_filter is not None:
-            payload_dict["src-vip-filter"] = src_vip_filter
-        if srcintf_filter is not None:
-            payload_dict["srcintf-filter"] = srcintf_filter
-        if ssl_accept_ffdhe_groups is not None:
-            payload_dict["ssl-accept-ffdhe-groups"] = ssl_accept_ffdhe_groups
-        if ssl_algorithm is not None:
-            payload_dict["ssl-algorithm"] = ssl_algorithm
-        if ssl_certificate is not None:
-            payload_dict["ssl-certificate"] = ssl_certificate
-        if ssl_cipher_suites is not None:
-            payload_dict["ssl-cipher-suites"] = ssl_cipher_suites
-        if ssl_client_fallback is not None:
-            payload_dict["ssl-client-fallback"] = ssl_client_fallback
-        if ssl_client_rekey_count is not None:
-            payload_dict["ssl-client-rekey-count"] = ssl_client_rekey_count
-        if ssl_client_renegotiation is not None:
-            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
-        if ssl_client_session_state_max is not None:
-            payload_dict["ssl-client-session-state-max"] = ssl_client_session_state_max
-        if ssl_client_session_state_timeout is not None:
-            payload_dict["ssl-client-session-state-timeout"] = ssl_client_session_state_timeout
-        if ssl_client_session_state_type is not None:
-            payload_dict["ssl-client-session-state-type"] = ssl_client_session_state_type
-        if ssl_dh_bits is not None:
-            payload_dict["ssl-dh-bits"] = ssl_dh_bits
-        if ssl_hpkp is not None:
-            payload_dict["ssl-hpkp"] = ssl_hpkp
-        if ssl_hpkp_age is not None:
-            payload_dict["ssl-hpkp-age"] = ssl_hpkp_age
-        if ssl_hpkp_backup is not None:
-            payload_dict["ssl-hpkp-backup"] = ssl_hpkp_backup
-        if ssl_hpkp_include_subdomains is not None:
-            payload_dict["ssl-hpkp-include-subdomains"] = ssl_hpkp_include_subdomains
-        if ssl_hpkp_primary is not None:
-            payload_dict["ssl-hpkp-primary"] = ssl_hpkp_primary
-        if ssl_hpkp_report_uri is not None:
-            payload_dict["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
-        if ssl_hsts is not None:
-            payload_dict["ssl-hsts"] = ssl_hsts
-        if ssl_hsts_age is not None:
-            payload_dict["ssl-hsts-age"] = ssl_hsts_age
-        if ssl_hsts_include_subdomains is not None:
-            payload_dict["ssl-hsts-include-subdomains"] = ssl_hsts_include_subdomains
-        if ssl_http_location_conversion is not None:
-            payload_dict["ssl-http-location-conversion"] = ssl_http_location_conversion
-        if ssl_http_match_host is not None:
-            payload_dict["ssl-http-match-host"] = ssl_http_match_host
-        if ssl_max_version is not None:
-            payload_dict["ssl-max-version"] = ssl_max_version
-        if ssl_min_version is not None:
-            payload_dict["ssl-min-version"] = ssl_min_version
-        if ssl_mode is not None:
-            payload_dict["ssl-mode"] = ssl_mode
-        if ssl_pfs is not None:
-            payload_dict["ssl-pfs"] = ssl_pfs
-        if ssl_send_empty_frags is not None:
-            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
-        if ssl_server_algorithm is not None:
-            payload_dict["ssl-server-algorithm"] = ssl_server_algorithm
-        if ssl_server_cipher_suites is not None:
-            payload_dict["ssl-server-cipher-suites"] = ssl_server_cipher_suites
-        if ssl_server_max_version is not None:
-            payload_dict["ssl-server-max-version"] = ssl_server_max_version
-        if ssl_server_min_version is not None:
-            payload_dict["ssl-server-min-version"] = ssl_server_min_version
-        if ssl_server_renegotiation is not None:
-            payload_dict["ssl-server-renegotiation"] = ssl_server_renegotiation
-        if ssl_server_session_state_max is not None:
-            payload_dict["ssl-server-session-state-max"] = ssl_server_session_state_max
-        if ssl_server_session_state_timeout is not None:
-            payload_dict["ssl-server-session-state-timeout"] = ssl_server_session_state_timeout
-        if ssl_server_session_state_type is not None:
-            payload_dict["ssl-server-session-state-type"] = ssl_server_session_state_type
-        if status is not None:
-            payload_dict["status"] = status
-        if type is not None:
-            payload_dict["type"] = type
-        if user_agent_detect is not None:
-            payload_dict["user-agent-detect"] = user_agent_detect
-        if uuid is not None:
-            payload_dict["uuid"] = uuid
-        if weblogic_server is not None:
-            payload_dict["weblogic-server"] = weblogic_server
-        if websphere_server is not None:
-            payload_dict["websphere-server"] = websphere_server
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/vip/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if comment is not None:
+            data_payload['comment'] = comment
+        if type is not None:
+            data_payload['type'] = type
+        if server_type is not None:
+            data_payload['server-type'] = server_type
+        if dns_mapping_ttl is not None:
+            data_payload['dns-mapping-ttl'] = dns_mapping_ttl
+        if ldb_method is not None:
+            data_payload['ldb-method'] = ldb_method
+        if src_filter is not None:
+            data_payload['src-filter'] = src_filter
+        if src_vip_filter is not None:
+            data_payload['src-vip-filter'] = src_vip_filter
+        if service is not None:
+            data_payload['service'] = service
+        if extip is not None:
+            data_payload['extip'] = extip
+        if extaddr is not None:
+            data_payload['extaddr'] = extaddr
+        if h2_support is not None:
+            data_payload['h2-support'] = h2_support
+        if h3_support is not None:
+            data_payload['h3-support'] = h3_support
+        if quic is not None:
+            data_payload['quic'] = quic
+        if nat44 is not None:
+            data_payload['nat44'] = nat44
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if add_nat46_route is not None:
+            data_payload['add-nat46-route'] = add_nat46_route
+        if mappedip is not None:
+            data_payload['mappedip'] = mappedip
+        if mapped_addr is not None:
+            data_payload['mapped-addr'] = mapped_addr
+        if extintf is not None:
+            data_payload['extintf'] = extintf
+        if arp_reply is not None:
+            data_payload['arp-reply'] = arp_reply
+        if http_redirect is not None:
+            data_payload['http-redirect'] = http_redirect
+        if persistence is not None:
+            data_payload['persistence'] = persistence
+        if nat_source_vip is not None:
+            data_payload['nat-source-vip'] = nat_source_vip
+        if portforward is not None:
+            data_payload['portforward'] = portforward
+        if status is not None:
+            data_payload['status'] = status
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if extport is not None:
+            data_payload['extport'] = extport
+        if mappedport is not None:
+            data_payload['mappedport'] = mappedport
+        if gratuitous_arp_interval is not None:
+            data_payload['gratuitous-arp-interval'] = gratuitous_arp_interval
+        if srcintf_filter is not None:
+            data_payload['srcintf-filter'] = srcintf_filter
+        if portmapping_type is not None:
+            data_payload['portmapping-type'] = portmapping_type
+        if empty_cert_action is not None:
+            data_payload['empty-cert-action'] = empty_cert_action
+        if user_agent_detect is not None:
+            data_payload['user-agent-detect'] = user_agent_detect
+        if client_cert is not None:
+            data_payload['client-cert'] = client_cert
+        if realservers is not None:
+            data_payload['realservers'] = realservers
+        if http_cookie_domain_from_host is not None:
+            data_payload['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+        if http_cookie_domain is not None:
+            data_payload['http-cookie-domain'] = http_cookie_domain
+        if http_cookie_path is not None:
+            data_payload['http-cookie-path'] = http_cookie_path
+        if http_cookie_generation is not None:
+            data_payload['http-cookie-generation'] = http_cookie_generation
+        if http_cookie_age is not None:
+            data_payload['http-cookie-age'] = http_cookie_age
+        if http_cookie_share is not None:
+            data_payload['http-cookie-share'] = http_cookie_share
+        if https_cookie_secure is not None:
+            data_payload['https-cookie-secure'] = https_cookie_secure
+        if http_multiplex is not None:
+            data_payload['http-multiplex'] = http_multiplex
+        if http_multiplex_ttl is not None:
+            data_payload['http-multiplex-ttl'] = http_multiplex_ttl
+        if http_multiplex_max_request is not None:
+            data_payload['http-multiplex-max-request'] = http_multiplex_max_request
+        if http_multiplex_max_concurrent_request is not None:
+            data_payload['http-multiplex-max-concurrent-request'] = http_multiplex_max_concurrent_request
+        if http_ip_header is not None:
+            data_payload['http-ip-header'] = http_ip_header
+        if http_ip_header_name is not None:
+            data_payload['http-ip-header-name'] = http_ip_header_name
+        if outlook_web_access is not None:
+            data_payload['outlook-web-access'] = outlook_web_access
+        if weblogic_server is not None:
+            data_payload['weblogic-server'] = weblogic_server
+        if websphere_server is not None:
+            data_payload['websphere-server'] = websphere_server
+        if ssl_mode is not None:
+            data_payload['ssl-mode'] = ssl_mode
+        if ssl_certificate is not None:
+            data_payload['ssl-certificate'] = ssl_certificate
+        if ssl_dh_bits is not None:
+            data_payload['ssl-dh-bits'] = ssl_dh_bits
+        if ssl_algorithm is not None:
+            data_payload['ssl-algorithm'] = ssl_algorithm
+        if ssl_cipher_suites is not None:
+            data_payload['ssl-cipher-suites'] = ssl_cipher_suites
+        if ssl_server_algorithm is not None:
+            data_payload['ssl-server-algorithm'] = ssl_server_algorithm
+        if ssl_server_cipher_suites is not None:
+            data_payload['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+        if ssl_pfs is not None:
+            data_payload['ssl-pfs'] = ssl_pfs
+        if ssl_min_version is not None:
+            data_payload['ssl-min-version'] = ssl_min_version
+        if ssl_max_version is not None:
+            data_payload['ssl-max-version'] = ssl_max_version
+        if ssl_server_min_version is not None:
+            data_payload['ssl-server-min-version'] = ssl_server_min_version
+        if ssl_server_max_version is not None:
+            data_payload['ssl-server-max-version'] = ssl_server_max_version
+        if ssl_accept_ffdhe_groups is not None:
+            data_payload['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+        if ssl_send_empty_frags is not None:
+            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+        if ssl_client_fallback is not None:
+            data_payload['ssl-client-fallback'] = ssl_client_fallback
+        if ssl_client_renegotiation is not None:
+            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+        if ssl_client_session_state_type is not None:
+            data_payload['ssl-client-session-state-type'] = ssl_client_session_state_type
+        if ssl_client_session_state_timeout is not None:
+            data_payload['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+        if ssl_client_session_state_max is not None:
+            data_payload['ssl-client-session-state-max'] = ssl_client_session_state_max
+        if ssl_client_rekey_count is not None:
+            data_payload['ssl-client-rekey-count'] = ssl_client_rekey_count
+        if ssl_server_renegotiation is not None:
+            data_payload['ssl-server-renegotiation'] = ssl_server_renegotiation
+        if ssl_server_session_state_type is not None:
+            data_payload['ssl-server-session-state-type'] = ssl_server_session_state_type
+        if ssl_server_session_state_timeout is not None:
+            data_payload['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+        if ssl_server_session_state_max is not None:
+            data_payload['ssl-server-session-state-max'] = ssl_server_session_state_max
+        if ssl_http_location_conversion is not None:
+            data_payload['ssl-http-location-conversion'] = ssl_http_location_conversion
+        if ssl_http_match_host is not None:
+            data_payload['ssl-http-match-host'] = ssl_http_match_host
+        if ssl_hpkp is not None:
+            data_payload['ssl-hpkp'] = ssl_hpkp
+        if ssl_hpkp_primary is not None:
+            data_payload['ssl-hpkp-primary'] = ssl_hpkp_primary
+        if ssl_hpkp_backup is not None:
+            data_payload['ssl-hpkp-backup'] = ssl_hpkp_backup
+        if ssl_hpkp_age is not None:
+            data_payload['ssl-hpkp-age'] = ssl_hpkp_age
+        if ssl_hpkp_report_uri is not None:
+            data_payload['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+        if ssl_hpkp_include_subdomains is not None:
+            data_payload['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+        if ssl_hsts is not None:
+            data_payload['ssl-hsts'] = ssl_hsts
+        if ssl_hsts_age is not None:
+            data_payload['ssl-hsts-age'] = ssl_hsts_age
+        if ssl_hsts_include_subdomains is not None:
+            data_payload['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+        if monitor is not None:
+            data_payload['monitor'] = monitor
+        if max_embryonic_connections is not None:
+            data_payload['max-embryonic-connections'] = max_embryonic_connections
+        if color is not None:
+            data_payload['color'] = color
+        if ipv6_mappedip is not None:
+            data_payload['ipv6-mappedip'] = ipv6_mappedip
+        if ipv6_mappedport is not None:
+            data_payload['ipv6-mappedport'] = ipv6_mappedport
+        if one_click_gslb_server is not None:
+            data_payload['one-click-gslb-server'] = one_click_gslb_server
+        if gslb_hostname is not None:
+            data_payload['gslb-hostname'] = gslb_hostname
+        if gslb_domain_name is not None:
+            data_payload['gslb-domain-name'] = gslb_domain_name
+        if gslb_public_ips is not None:
+            data_payload['gslb-public-ips'] = gslb_public_ips
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a vip entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/vip/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        id: int | None = None,
+        uuid: str | None = None,
+        comment: str | None = None,
+        type: str | None = None,
+        server_type: str | None = None,
+        dns_mapping_ttl: int | None = None,
+        ldb_method: str | None = None,
+        src_filter: list | None = None,
+        src_vip_filter: str | None = None,
+        service: list | None = None,
+        extip: str | None = None,
+        extaddr: list | None = None,
+        h2_support: str | None = None,
+        h3_support: str | None = None,
+        quic: list | None = None,
+        nat44: str | None = None,
+        nat46: str | None = None,
+        add_nat46_route: str | None = None,
+        mappedip: list | None = None,
+        mapped_addr: str | None = None,
+        extintf: str | None = None,
+        arp_reply: str | None = None,
+        http_redirect: str | None = None,
+        persistence: str | None = None,
+        nat_source_vip: str | None = None,
+        portforward: str | None = None,
+        status: str | None = None,
+        protocol: str | None = None,
+        extport: str | None = None,
+        mappedport: str | None = None,
+        gratuitous_arp_interval: int | None = None,
+        srcintf_filter: list | None = None,
+        portmapping_type: str | None = None,
+        empty_cert_action: str | None = None,
+        user_agent_detect: str | None = None,
+        client_cert: str | None = None,
+        realservers: list | None = None,
+        http_cookie_domain_from_host: str | None = None,
+        http_cookie_domain: str | None = None,
+        http_cookie_path: str | None = None,
+        http_cookie_generation: int | None = None,
+        http_cookie_age: int | None = None,
+        http_cookie_share: str | None = None,
+        https_cookie_secure: str | None = None,
+        http_multiplex: str | None = None,
+        http_multiplex_ttl: int | None = None,
+        http_multiplex_max_request: int | None = None,
+        http_multiplex_max_concurrent_request: int | None = None,
+        http_ip_header: str | None = None,
+        http_ip_header_name: str | None = None,
+        outlook_web_access: str | None = None,
+        weblogic_server: str | None = None,
+        websphere_server: str | None = None,
+        ssl_mode: str | None = None,
+        ssl_certificate: list | None = None,
+        ssl_dh_bits: str | None = None,
+        ssl_algorithm: str | None = None,
+        ssl_cipher_suites: list | None = None,
+        ssl_server_algorithm: str | None = None,
+        ssl_server_cipher_suites: list | None = None,
+        ssl_pfs: str | None = None,
+        ssl_min_version: str | None = None,
+        ssl_max_version: str | None = None,
+        ssl_server_min_version: str | None = None,
+        ssl_server_max_version: str | None = None,
+        ssl_accept_ffdhe_groups: str | None = None,
+        ssl_send_empty_frags: str | None = None,
+        ssl_client_fallback: str | None = None,
+        ssl_client_renegotiation: str | None = None,
+        ssl_client_session_state_type: str | None = None,
+        ssl_client_session_state_timeout: int | None = None,
+        ssl_client_session_state_max: int | None = None,
+        ssl_client_rekey_count: int | None = None,
+        ssl_server_renegotiation: str | None = None,
+        ssl_server_session_state_type: str | None = None,
+        ssl_server_session_state_timeout: int | None = None,
+        ssl_server_session_state_max: int | None = None,
+        ssl_http_location_conversion: str | None = None,
+        ssl_http_match_host: str | None = None,
+        ssl_hpkp: str | None = None,
+        ssl_hpkp_primary: str | None = None,
+        ssl_hpkp_backup: str | None = None,
+        ssl_hpkp_age: int | None = None,
+        ssl_hpkp_report_uri: str | None = None,
+        ssl_hpkp_include_subdomains: str | None = None,
+        ssl_hsts: str | None = None,
+        ssl_hsts_age: int | None = None,
+        ssl_hsts_include_subdomains: str | None = None,
+        monitor: list | None = None,
+        max_embryonic_connections: int | None = None,
+        color: int | None = None,
+        ipv6_mappedip: str | None = None,
+        ipv6_mappedport: str | None = None,
+        one_click_gslb_server: str | None = None,
+        gslb_hostname: str | None = None,
+        gslb_domain_name: str | None = None,
+        gslb_public_ips: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Virtual IP name. (optional)
+            id: Custom defined ID. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            comment: Comment. (optional)
+            type: Configure a static NAT, load balance, server load balance, access proxy, DNS translation, or FQDN VIP. (optional)
+            server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). (optional)
+            dns_mapping_ttl: DNS mapping TTL (Set to zero to use TTL in DNS response, default = 0). (optional)
+            ldb_method: Method used to distribute sessions to real servers. (optional)
+            src_filter: Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces. (optional)
+            src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. (optional)
+            service: Service name. (optional)
+            extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network. (optional)
+            extaddr: External FQDN address name. (optional)
+            h2_support: Enable/disable HTTP2 support (default = enable). (optional)
+            h3_support: Enable/disable HTTP3/QUIC support (default = disable). (optional)
+            quic: QUIC setting. (optional)
+            nat44: Enable/disable NAT44. (optional)
+            nat46: Enable/disable NAT46. (optional)
+            add_nat46_route: Enable/disable adding NAT46 route. (optional)
+            mappedip: IP address or address range on the destination network to which the external IP address is mapped. (optional)
+            mapped_addr: Mapped FQDN address name. (optional)
+            extintf: Interface connected to the source network that receives the packets that will be forwarded to the destination network. (optional)
+            arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. (optional)
+            http_redirect: Enable/disable redirection of HTTP to HTTPS. (optional)
+            persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. (optional)
+            nat_source_vip: Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. (optional)
+            portforward: Enable/disable port forwarding. (optional)
+            status: Enable/disable VIP. (optional)
+            protocol: Protocol to use when forwarding packets. (optional)
+            extport: Incoming port number range that you want to map to a port number range on the destination network. (optional)
+            mappedport: Port number range on the destination network to which the external port number range is mapped. (optional)
+            gratuitous_arp_interval: Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable. (optional)
+            srcintf_filter: Interfaces to which the VIP applies. Separate the names with spaces. (optional)
+            portmapping_type: Port mapping type. (optional)
+            empty_cert_action: Action for an empty client certificate. (optional)
+            user_agent_detect: Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. (optional)
+            client_cert: Enable/disable requesting client certificate. (optional)
+            realservers: Select the real servers that this server load balancing VIP will distribute traffic to. (optional)
+            http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. (optional)
+            http_cookie_domain: Domain that HTTP cookie persistence should apply to. (optional)
+            http_cookie_path: Limit HTTP cookie persistence to the specified path. (optional)
+            http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies. (optional)
+            http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            http_cookie_share: Control sharing of cookies across virtual servers. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. (optional)
+            https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. (optional)
+            http_multiplex: Enable/disable HTTP multiplexing. (optional)
+            http_multiplex_ttl: Time-to-live for idle connections to servers. (optional)
+            http_multiplex_max_request: Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited). (optional)
+            http_multiplex_max_concurrent_request: Maximum number of concurrent requests that a multiplex server can handle (default = unlimited). (optional)
+            http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the X-Forwarded-For HTTP header. (optional)
+            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used. (optional)
+            outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. (optional)
+            weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. (optional)
+            websphere_server: Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. (optional)
+            ssl_mode: Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). (optional)
+            ssl_certificate: Name of the certificate to use for SSL handshake. (optional)
+            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. (optional)
+            ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. (optional)
+            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. (optional)
+            ssl_server_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. (optional)
+            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. (optional)
+            ssl_pfs: Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. (optional)
+            ssl_min_version: Lowest SSL/TLS version acceptable from a client. (optional)
+            ssl_max_version: Highest SSL/TLS version acceptable from a client. (optional)
+            ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
+            ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
+            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. (optional)
+            ssl_client_fallback: Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). (optional)
+            ssl_client_renegotiation: Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. (optional)
+            ssl_client_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. (optional)
+            ssl_client_session_state_timeout: Number of minutes to keep client to FortiGate SSL session state. (optional)
+            ssl_client_session_state_max: Maximum number of client to FortiGate SSL session states to keep. (optional)
+            ssl_client_rekey_count: Maximum length of data in MB before triggering a client rekey (0 = disable). (optional)
+            ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. (optional)
+            ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. (optional)
+            ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state. (optional)
+            ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep. (optional)
+            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. (optional)
+            ssl_http_match_host: Enable/disable HTTP host matching for location conversion. (optional)
+            ssl_hpkp: Enable/disable including HPKP header in response. (optional)
+            ssl_hpkp_primary: Certificate to generate primary HPKP pin from. (optional)
+            ssl_hpkp_backup: Certificate to generate backup HPKP pin from. (optional)
+            ssl_hpkp_age: Number of seconds the client should honor the HPKP setting. (optional)
+            ssl_hpkp_report_uri: URL to report HPKP violations to. (optional)
+            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to all subdomains. (optional)
+            ssl_hsts: Enable/disable including HSTS header in response. (optional)
+            ssl_hsts_age: Number of seconds the client should honor the HSTS setting. (optional)
+            ssl_hsts_include_subdomains: Indicate that HSTS header applies to all subdomains. (optional)
+            monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status. (optional)
+            max_embryonic_connections: Maximum number of incomplete connections. (optional)
+            color: Color of icon on the GUI. (optional)
+            ipv6_mappedip: Range of mapped IPv6 addresses. Specify the start IPv6 address followed by a space and the end IPv6 address. (optional)
+            ipv6_mappedport: IPv6 port number range on the destination network to which the external port number range is mapped. (optional)
+            one_click_gslb_server: Enable/disable one click GSLB server integration with FortiGSLB. (optional)
+            gslb_hostname: Hostname to use within the configured FortiGSLB domain. (optional)
+            gslb_domain_name: Domain to use when integrating with FortiGSLB. (optional)
+            gslb_public_ips: Publicly accessible IP addresses for the FortiGSLB service. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/vip"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if id is not None:
+            data_payload['id'] = id
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if comment is not None:
+            data_payload['comment'] = comment
+        if type is not None:
+            data_payload['type'] = type
+        if server_type is not None:
+            data_payload['server-type'] = server_type
+        if dns_mapping_ttl is not None:
+            data_payload['dns-mapping-ttl'] = dns_mapping_ttl
+        if ldb_method is not None:
+            data_payload['ldb-method'] = ldb_method
+        if src_filter is not None:
+            data_payload['src-filter'] = src_filter
+        if src_vip_filter is not None:
+            data_payload['src-vip-filter'] = src_vip_filter
+        if service is not None:
+            data_payload['service'] = service
+        if extip is not None:
+            data_payload['extip'] = extip
+        if extaddr is not None:
+            data_payload['extaddr'] = extaddr
+        if h2_support is not None:
+            data_payload['h2-support'] = h2_support
+        if h3_support is not None:
+            data_payload['h3-support'] = h3_support
+        if quic is not None:
+            data_payload['quic'] = quic
+        if nat44 is not None:
+            data_payload['nat44'] = nat44
+        if nat46 is not None:
+            data_payload['nat46'] = nat46
+        if add_nat46_route is not None:
+            data_payload['add-nat46-route'] = add_nat46_route
+        if mappedip is not None:
+            data_payload['mappedip'] = mappedip
+        if mapped_addr is not None:
+            data_payload['mapped-addr'] = mapped_addr
+        if extintf is not None:
+            data_payload['extintf'] = extintf
+        if arp_reply is not None:
+            data_payload['arp-reply'] = arp_reply
+        if http_redirect is not None:
+            data_payload['http-redirect'] = http_redirect
+        if persistence is not None:
+            data_payload['persistence'] = persistence
+        if nat_source_vip is not None:
+            data_payload['nat-source-vip'] = nat_source_vip
+        if portforward is not None:
+            data_payload['portforward'] = portforward
+        if status is not None:
+            data_payload['status'] = status
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if extport is not None:
+            data_payload['extport'] = extport
+        if mappedport is not None:
+            data_payload['mappedport'] = mappedport
+        if gratuitous_arp_interval is not None:
+            data_payload['gratuitous-arp-interval'] = gratuitous_arp_interval
+        if srcintf_filter is not None:
+            data_payload['srcintf-filter'] = srcintf_filter
+        if portmapping_type is not None:
+            data_payload['portmapping-type'] = portmapping_type
+        if empty_cert_action is not None:
+            data_payload['empty-cert-action'] = empty_cert_action
+        if user_agent_detect is not None:
+            data_payload['user-agent-detect'] = user_agent_detect
+        if client_cert is not None:
+            data_payload['client-cert'] = client_cert
+        if realservers is not None:
+            data_payload['realservers'] = realservers
+        if http_cookie_domain_from_host is not None:
+            data_payload['http-cookie-domain-from-host'] = http_cookie_domain_from_host
+        if http_cookie_domain is not None:
+            data_payload['http-cookie-domain'] = http_cookie_domain
+        if http_cookie_path is not None:
+            data_payload['http-cookie-path'] = http_cookie_path
+        if http_cookie_generation is not None:
+            data_payload['http-cookie-generation'] = http_cookie_generation
+        if http_cookie_age is not None:
+            data_payload['http-cookie-age'] = http_cookie_age
+        if http_cookie_share is not None:
+            data_payload['http-cookie-share'] = http_cookie_share
+        if https_cookie_secure is not None:
+            data_payload['https-cookie-secure'] = https_cookie_secure
+        if http_multiplex is not None:
+            data_payload['http-multiplex'] = http_multiplex
+        if http_multiplex_ttl is not None:
+            data_payload['http-multiplex-ttl'] = http_multiplex_ttl
+        if http_multiplex_max_request is not None:
+            data_payload['http-multiplex-max-request'] = http_multiplex_max_request
+        if http_multiplex_max_concurrent_request is not None:
+            data_payload['http-multiplex-max-concurrent-request'] = http_multiplex_max_concurrent_request
+        if http_ip_header is not None:
+            data_payload['http-ip-header'] = http_ip_header
+        if http_ip_header_name is not None:
+            data_payload['http-ip-header-name'] = http_ip_header_name
+        if outlook_web_access is not None:
+            data_payload['outlook-web-access'] = outlook_web_access
+        if weblogic_server is not None:
+            data_payload['weblogic-server'] = weblogic_server
+        if websphere_server is not None:
+            data_payload['websphere-server'] = websphere_server
+        if ssl_mode is not None:
+            data_payload['ssl-mode'] = ssl_mode
+        if ssl_certificate is not None:
+            data_payload['ssl-certificate'] = ssl_certificate
+        if ssl_dh_bits is not None:
+            data_payload['ssl-dh-bits'] = ssl_dh_bits
+        if ssl_algorithm is not None:
+            data_payload['ssl-algorithm'] = ssl_algorithm
+        if ssl_cipher_suites is not None:
+            data_payload['ssl-cipher-suites'] = ssl_cipher_suites
+        if ssl_server_algorithm is not None:
+            data_payload['ssl-server-algorithm'] = ssl_server_algorithm
+        if ssl_server_cipher_suites is not None:
+            data_payload['ssl-server-cipher-suites'] = ssl_server_cipher_suites
+        if ssl_pfs is not None:
+            data_payload['ssl-pfs'] = ssl_pfs
+        if ssl_min_version is not None:
+            data_payload['ssl-min-version'] = ssl_min_version
+        if ssl_max_version is not None:
+            data_payload['ssl-max-version'] = ssl_max_version
+        if ssl_server_min_version is not None:
+            data_payload['ssl-server-min-version'] = ssl_server_min_version
+        if ssl_server_max_version is not None:
+            data_payload['ssl-server-max-version'] = ssl_server_max_version
+        if ssl_accept_ffdhe_groups is not None:
+            data_payload['ssl-accept-ffdhe-groups'] = ssl_accept_ffdhe_groups
+        if ssl_send_empty_frags is not None:
+            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+        if ssl_client_fallback is not None:
+            data_payload['ssl-client-fallback'] = ssl_client_fallback
+        if ssl_client_renegotiation is not None:
+            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+        if ssl_client_session_state_type is not None:
+            data_payload['ssl-client-session-state-type'] = ssl_client_session_state_type
+        if ssl_client_session_state_timeout is not None:
+            data_payload['ssl-client-session-state-timeout'] = ssl_client_session_state_timeout
+        if ssl_client_session_state_max is not None:
+            data_payload['ssl-client-session-state-max'] = ssl_client_session_state_max
+        if ssl_client_rekey_count is not None:
+            data_payload['ssl-client-rekey-count'] = ssl_client_rekey_count
+        if ssl_server_renegotiation is not None:
+            data_payload['ssl-server-renegotiation'] = ssl_server_renegotiation
+        if ssl_server_session_state_type is not None:
+            data_payload['ssl-server-session-state-type'] = ssl_server_session_state_type
+        if ssl_server_session_state_timeout is not None:
+            data_payload['ssl-server-session-state-timeout'] = ssl_server_session_state_timeout
+        if ssl_server_session_state_max is not None:
+            data_payload['ssl-server-session-state-max'] = ssl_server_session_state_max
+        if ssl_http_location_conversion is not None:
+            data_payload['ssl-http-location-conversion'] = ssl_http_location_conversion
+        if ssl_http_match_host is not None:
+            data_payload['ssl-http-match-host'] = ssl_http_match_host
+        if ssl_hpkp is not None:
+            data_payload['ssl-hpkp'] = ssl_hpkp
+        if ssl_hpkp_primary is not None:
+            data_payload['ssl-hpkp-primary'] = ssl_hpkp_primary
+        if ssl_hpkp_backup is not None:
+            data_payload['ssl-hpkp-backup'] = ssl_hpkp_backup
+        if ssl_hpkp_age is not None:
+            data_payload['ssl-hpkp-age'] = ssl_hpkp_age
+        if ssl_hpkp_report_uri is not None:
+            data_payload['ssl-hpkp-report-uri'] = ssl_hpkp_report_uri
+        if ssl_hpkp_include_subdomains is not None:
+            data_payload['ssl-hpkp-include-subdomains'] = ssl_hpkp_include_subdomains
+        if ssl_hsts is not None:
+            data_payload['ssl-hsts'] = ssl_hsts
+        if ssl_hsts_age is not None:
+            data_payload['ssl-hsts-age'] = ssl_hsts_age
+        if ssl_hsts_include_subdomains is not None:
+            data_payload['ssl-hsts-include-subdomains'] = ssl_hsts_include_subdomains
+        if monitor is not None:
+            data_payload['monitor'] = monitor
+        if max_embryonic_connections is not None:
+            data_payload['max-embryonic-connections'] = max_embryonic_connections
+        if color is not None:
+            data_payload['color'] = color
+        if ipv6_mappedip is not None:
+            data_payload['ipv6-mappedip'] = ipv6_mappedip
+        if ipv6_mappedport is not None:
+            data_payload['ipv6-mappedport'] = ipv6_mappedport
+        if one_click_gslb_server is not None:
+            data_payload['one-click-gslb-server'] = one_click_gslb_server
+        if gslb_hostname is not None:
+            data_payload['gslb-hostname'] = gslb_hostname
+        if gslb_domain_name is not None:
+            data_payload['gslb-domain-name'] = gslb_domain_name
+        if gslb_public_ips is not None:
+            data_payload['gslb-public-ips'] = gslb_public_ips
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

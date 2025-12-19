@@ -1,211 +1,73 @@
-"""
-FortiOS CMDB - Router Category
+"""FortiOS CMDB - Router category"""
 
-Router configuration endpoints for routing protocols and settings.
+from .access_list import AccessList
+from .access_list6 import AccessList6
+from .aspath_list import AspathList
+from .auth_path import AuthPath
+from .bfd import Bfd
+from .bfd6 import Bfd6
+from .bgp import Bgp
+from .community_list import CommunityList
+from .extcommunity_list import ExtcommunityList
+from .isis import Isis
+from .key_chain import KeyChain
+from .multicast import Multicast
+from .multicast6 import Multicast6
+from .multicast_flow import MulticastFlow
+from .ospf import Ospf
+from .ospf6 import Ospf6
+from .policy import Policy
+from .policy6 import Policy6
+from .prefix_list import PrefixList
+from .prefix_list6 import PrefixList6
+from .rip import Rip
+from .ripng import Ripng
+from .route_map import RouteMap
+from .setting import Setting
+from .static import Static
+from .static6 import Static6
 
-Endpoints:
-    - access_list: IPv4 access lists
-    - access_list6: IPv6 access lists
-    - aspath_list: AS path lists
-    - auth_path: Authentication-based routing
-    - bfd: BFD configuration
-    - bfd6: IPv6 BFD configuration
-    - bgp: BGP configuration
-    - community_list: BGP community lists
-    - extcommunity_list: Extended community lists
-    - isis: IS-IS configuration
-    - key_chain: Key chain configuration
-    - multicast: Multicast routing
-    - multicast_flow: Multicast flow
-    - multicast6: IPv6 multicast routing
-    - ospf: OSPF configuration
-    - ospf6: IPv6 OSPF configuration
-    - policy: IPv4 routing policies
-    - policy6: IPv6 routing policies
-    - prefix_list: IPv4 prefix lists
-    - prefix_list6: IPv6 prefix lists
-    - rip: RIP configuration
-    - ripng: RIPng configuration
-    - route_map: Route maps
-    - setting: Router settings
-    - static: IPv4 static routes
-    - static6: IPv6 static routes
-"""
+__all__ = ['AccessList', 'AccessList6', 'AspathList', 'AuthPath', 'Bfd', 'Bfd6', 'Bgp', 'CommunityList', 'ExtcommunityList', 'Isis', 'KeyChain', 'Multicast', 'Multicast6', 'MulticastFlow', 'Ospf', 'Ospf6', 'Policy', 'Policy6', 'PrefixList', 'PrefixList6', 'Rip', 'Ripng', 'RouteMap', 'Setting', 'Static', 'Static6']
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["Router"]
 
 
 class Router:
-    """Router category endpoint class"""
-
-    def __init__(self, client: "HTTPClient") -> None:
+    """
+    Router category wrapper.
+    
+    This class provides access to all router CMDB endpoints.
+    """
+    
+    def __init__(self, client):
         """
-        Initialize Router category
-
+        Initialize Router with all endpoint classes.
+        
         Args:
             client: HTTPClient instance
         """
-        self._client = client
-
-    @property
-    def access_list(self):
-        """Access IPv4 access lists endpoint"""
-        from .access_list import AccessList
-        return AccessList(self._client)
-
-    @property
-    def access_list6(self):
-        """Access IPv6 access lists endpoint"""
-        from .access_list6 import AccessList6
-        return AccessList6(self._client)
-
-    @property
-    def aspath_list(self):
-        """Access AS path lists endpoint"""
-        from .aspath_list import AspathList
-        return AspathList(self._client)
-
-    @property
-    def auth_path(self):
-        """Access authentication-based routing endpoint"""
-        from .auth_path import AuthPath
-        return AuthPath(self._client)
-
-    @property
-    def bfd(self):
-        """Access BFD configuration endpoint"""
-        from .bfd import Bfd
-        return Bfd(self._client)
-
-    @property
-    def bfd6(self):
-        """Access IPv6 BFD configuration endpoint"""
-        from .bfd6 import Bfd6
-        return Bfd6(self._client)
-
-    @property
-    def bgp(self):
-        """Access BGP configuration endpoint"""
-        from .bgp import Bgp
-        return Bgp(self._client)
-
-    @property
-    def community_list(self):
-        """Access BGP community lists endpoint"""
-        from .community_list import CommunityList
-        return CommunityList(self._client)
-
-    @property
-    def extcommunity_list(self):
-        """Access extended community lists endpoint"""
-        from .extcommunity_list import ExtcommunityList
-        return ExtcommunityList(self._client)
-
-    @property
-    def isis(self):
-        """Access IS-IS configuration endpoint"""
-        from .isis import Isis
-        return Isis(self._client)
-
-    @property
-    def key_chain(self):
-        """Access key chain configuration endpoint"""
-        from .key_chain import KeyChain
-        return KeyChain(self._client)
-
-    @property
-    def multicast(self):
-        """Access multicast routing endpoint"""
-        from .multicast import Multicast
-        return Multicast(self._client)
-
-    @property
-    def multicast_flow(self):
-        """Access multicast flow endpoint"""
-        from .multicast_flow import MulticastFlow
-        return MulticastFlow(self._client)
-
-    @property
-    def multicast6(self):
-        """Access IPv6 multicast routing endpoint"""
-        from .multicast6 import Multicast6
-        return Multicast6(self._client)
-
-    @property
-    def ospf(self):
-        """Access OSPF configuration endpoint"""
-        from .ospf import Ospf
-        return Ospf(self._client)
-
-    @property
-    def ospf6(self):
-        """Access OSPFv3 configuration endpoint"""
-        from .ospf6 import Ospf6
-        return Ospf6(self._client)
-
-    @property
-    def policy(self):
-        """Access IPv4 routing policies endpoint"""
-        from .policy import Policy
-        return Policy(self._client)
-
-    @property
-    def policy6(self):
-        """Access IPv6 routing policies endpoint"""
-        from .policy6 import Policy6
-        return Policy6(self._client)
-
-    @property
-    def prefix_list(self):
-        """Access IPv4 prefix lists endpoint"""
-        from .prefix_list import PrefixList
-        return PrefixList(self._client)
-
-    @property
-    def prefix_list6(self):
-        """Access IPv6 prefix lists endpoint"""
-        from .prefix_list6 import PrefixList6
-        return PrefixList6(self._client)
-
-    @property
-    def rip(self):
-        """Access RIP configuration endpoint"""
-        from .rip import Rip
-        return Rip(self._client)
-
-    @property
-    def ripng(self):
-        """Access RIPng configuration endpoint"""
-        from .ripng import Ripng
-        return Ripng(self._client)
-
-    @property
-    def route_map(self):
-        """Access route maps endpoint"""
-        from .route_map import RouteMap
-        return RouteMap(self._client)
-
-    @property
-    def setting(self):
-        """Access router settings endpoint"""
-        from .setting import Setting
-        return Setting(self._client)
-
-    @property
-    def static(self):
-        """Access IPv4 static routes endpoint"""
-        from .static import Static
-        return Static(self._client)
-
-    @property
-    def static6(self):
-        """Access IPv6 static routes endpoint"""
-        from .static6 import Static6
-        return Static6(self._client)
+        self.access_list = AccessList(client)
+        self.access_list6 = AccessList6(client)
+        self.aspath_list = AspathList(client)
+        self.auth_path = AuthPath(client)
+        self.bfd = Bfd(client)
+        self.bfd6 = Bfd6(client)
+        self.bgp = Bgp(client)
+        self.community_list = CommunityList(client)
+        self.extcommunity_list = ExtcommunityList(client)
+        self.isis = Isis(client)
+        self.key_chain = KeyChain(client)
+        self.multicast = Multicast(client)
+        self.multicast6 = Multicast6(client)
+        self.multicast_flow = MulticastFlow(client)
+        self.ospf = Ospf(client)
+        self.ospf6 = Ospf6(client)
+        self.policy = Policy(client)
+        self.policy6 = Policy6(client)
+        self.prefix_list = PrefixList(client)
+        self.prefix_list6 = PrefixList6(client)
+        self.rip = Rip(client)
+        self.ripng = Ripng(client)
+        self.route_map = RouteMap(client)
+        self.setting = Setting(client)
+        self.static = Static(client)
+        self.static6 = Static6(client)

@@ -1,412 +1,314 @@
 """
-FortiOS ssl-server API wrapper.
-Provides access to /api/v2/cmdb/firewall/ssl-server endpoint.
+FortiOS CMDB - Firewall SslServer
+
+API Endpoints:
+    GET    /firewall/ssl-server
+    POST   /firewall/ssl-server
+    GET    /firewall/ssl-server/{name}
+    PUT    /firewall/ssl-server/{name}
+    DELETE /firewall/ssl-server/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class SslServer:
-    """
-    Wrapper for firewall ssl-server API endpoint.
+    """SslServer operations."""
 
-    Manages ssl-server configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the SslServer wrapper.
+        Initialize SslServer endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/ssl-server"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific ssl-server entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        add_header_x_forwarded_proto: Optional[str] = None,
-        ip: Optional[str] = None,
-        mapped_port: Optional[int] = None,
-        name: Optional[str] = None,
-        port: Optional[int] = None,
-        ssl_algorithm: Optional[str] = None,
-        ssl_cert: Optional[list] = None,
-        ssl_client_renegotiation: Optional[str] = None,
-        ssl_dh_bits: Optional[str] = None,
-        ssl_max_version: Optional[str] = None,
-        ssl_min_version: Optional[str] = None,
-        ssl_mode: Optional[str] = None,
-        ssl_send_empty_frags: Optional[str] = None,
-        url_rewrite: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create ssl-server entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            add-header-x-forwarded-proto (string) (enum: ['enable', 'disable']):
-                Enable/disable adding an X-Forwarded-Proto header to forward...
-            ip (string):
-                IPv4 address of the SSL server.
-            mapped-port (integer) (range: 1-65535):
-                Mapped server service port (1 - 65535, default = 80).
-            name (string) (max_len: 35):
-                Server name.
-            port (integer) (range: 1-65535):
-                Server service port (1 - 65535, default = 443).
-            ssl-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Relative strength of encryption algorithms accepted in negot...
-            ssl-cert (list[object]):
-                List of certificate names to use for SSL connections to this...
-            ssl-client-renegotiation (string) (enum: ['allow', 'deny', 'secure']):
-                Allow or block client renegotiation by server.
-            ssl-dh-bits (string) (enum: ['768', '1024', '1536']):
-                Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti...
-            ssl-max-version (string) (enum: ['tls-1.0', 'tls-1.1', 'tls-1.2']):
-                Highest SSL/TLS version to negotiate.
-            ssl-min-version (string) (enum: ['tls-1.0', 'tls-1.1', 'tls-1.2']):
-                Lowest SSL/TLS version to negotiate.
-            ssl-mode (string) (enum: ['half', 'full']):
-                SSL/TLS mode for encryption and decryption of traffic.
-            ssl-send-empty-frags (string) (enum: ['enable', 'disable']):
-                Enable/disable sending empty fragments to avoid attack on CB...
-            url-rewrite (string) (enum: ['enable', 'disable']):
-                Enable/disable rewriting the URL.
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if add_header_x_forwarded_proto is not None:
-            payload_dict["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
-        if ip is not None:
-            payload_dict["ip"] = ip
-        if mapped_port is not None:
-            payload_dict["mapped-port"] = mapped_port
-        if name is not None:
-            payload_dict["name"] = name
-        if port is not None:
-            payload_dict["port"] = port
-        if ssl_algorithm is not None:
-            payload_dict["ssl-algorithm"] = ssl_algorithm
-        if ssl_cert is not None:
-            payload_dict["ssl-cert"] = ssl_cert
-        if ssl_client_renegotiation is not None:
-            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
-        if ssl_dh_bits is not None:
-            payload_dict["ssl-dh-bits"] = ssl_dh_bits
-        if ssl_max_version is not None:
-            payload_dict["ssl-max-version"] = ssl_max_version
-        if ssl_min_version is not None:
-            payload_dict["ssl-min-version"] = ssl_min_version
-        if ssl_mode is not None:
-            payload_dict["ssl-mode"] = ssl_mode
-        if ssl_send_empty_frags is not None:
-            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
-        if url_rewrite is not None:
-            payload_dict["url-rewrite"] = url_rewrite
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/ssl-server/{name}"
+        else:
+            endpoint = "/firewall/ssl-server"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        add_header_x_forwarded_proto: Optional[str] = None,
-        ip: Optional[str] = None,
-        mapped_port: Optional[int] = None,
-        name: Optional[str] = None,
-        port: Optional[int] = None,
-        ssl_algorithm: Optional[str] = None,
-        ssl_cert: Optional[list] = None,
-        ssl_client_renegotiation: Optional[str] = None,
-        ssl_dh_bits: Optional[str] = None,
-        ssl_max_version: Optional[str] = None,
-        ssl_min_version: Optional[str] = None,
-        ssl_mode: Optional[str] = None,
-        ssl_send_empty_frags: Optional[str] = None,
-        url_rewrite: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        ip: str | None = None,
+        port: int | None = None,
+        ssl_mode: str | None = None,
+        add_header_x_forwarded_proto: str | None = None,
+        mapped_port: int | None = None,
+        ssl_cert: list | None = None,
+        ssl_dh_bits: str | None = None,
+        ssl_algorithm: str | None = None,
+        ssl_client_renegotiation: str | None = None,
+        ssl_min_version: str | None = None,
+        ssl_max_version: str | None = None,
+        ssl_send_empty_frags: str | None = None,
+        url_rewrite: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update ssl-server entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            add-header-x-forwarded-proto (string) (enum: ['enable', 'disable']):
-                Enable/disable adding an X-Forwarded-Proto header to forward...
-            ip (string):
-                IPv4 address of the SSL server.
-            mapped-port (integer) (range: 1-65535):
-                Mapped server service port (1 - 65535, default = 80).
-            name (string) (max_len: 35):
-                Server name.
-            port (integer) (range: 1-65535):
-                Server service port (1 - 65535, default = 443).
-            ssl-algorithm (string) (enum: ['high', 'medium', 'low']):
-                Relative strength of encryption algorithms accepted in negot...
-            ssl-cert (list[object]):
-                List of certificate names to use for SSL connections to this...
-            ssl-client-renegotiation (string) (enum: ['allow', 'deny', 'secure']):
-                Allow or block client renegotiation by server.
-            ssl-dh-bits (string) (enum: ['768', '1024', '1536']):
-                Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negoti...
-            ssl-max-version (string) (enum: ['tls-1.0', 'tls-1.1', 'tls-1.2']):
-                Highest SSL/TLS version to negotiate.
-            ssl-min-version (string) (enum: ['tls-1.0', 'tls-1.1', 'tls-1.2']):
-                Lowest SSL/TLS version to negotiate.
-            ssl-mode (string) (enum: ['half', 'full']):
-                SSL/TLS mode for encryption and decryption of traffic.
-            ssl-send-empty-frags (string) (enum: ['enable', 'disable']):
-                Enable/disable sending empty fragments to avoid attack on CB...
-            url-rewrite (string) (enum: ['enable', 'disable']):
-                Enable/disable rewriting the URL.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Server name. (optional)
+            ip: IPv4 address of the SSL server. (optional)
+            port: Server service port (1 - 65535, default = 443). (optional)
+            ssl_mode: SSL/TLS mode for encryption and decryption of traffic. (optional)
+            add_header_x_forwarded_proto: Enable/disable adding an X-Forwarded-Proto header to forwarded requests. (optional)
+            mapped_port: Mapped server service port (1 - 65535, default = 80). (optional)
+            ssl_cert: List of certificate names to use for SSL connections to this server. (default = "Fortinet_SSL"). (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
+            ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. (optional)
+            ssl_client_renegotiation: Allow or block client renegotiation by server. (optional)
+            ssl_min_version: Lowest SSL/TLS version to negotiate. (optional)
+            ssl_max_version: Highest SSL/TLS version to negotiate. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. (optional)
+            url_rewrite: Enable/disable rewriting the URL. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if add_header_x_forwarded_proto is not None:
-            payload_dict["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
-        if ip is not None:
-            payload_dict["ip"] = ip
-        if mapped_port is not None:
-            payload_dict["mapped-port"] = mapped_port
-        if name is not None:
-            payload_dict["name"] = name
-        if port is not None:
-            payload_dict["port"] = port
-        if ssl_algorithm is not None:
-            payload_dict["ssl-algorithm"] = ssl_algorithm
-        if ssl_cert is not None:
-            payload_dict["ssl-cert"] = ssl_cert
-        if ssl_client_renegotiation is not None:
-            payload_dict["ssl-client-renegotiation"] = ssl_client_renegotiation
-        if ssl_dh_bits is not None:
-            payload_dict["ssl-dh-bits"] = ssl_dh_bits
-        if ssl_max_version is not None:
-            payload_dict["ssl-max-version"] = ssl_max_version
-        if ssl_min_version is not None:
-            payload_dict["ssl-min-version"] = ssl_min_version
-        if ssl_mode is not None:
-            payload_dict["ssl-mode"] = ssl_mode
-        if ssl_send_empty_frags is not None:
-            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
-        if url_rewrite is not None:
-            payload_dict["url-rewrite"] = url_rewrite
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/ssl-server/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if ip is not None:
+            data_payload['ip'] = ip
+        if port is not None:
+            data_payload['port'] = port
+        if ssl_mode is not None:
+            data_payload['ssl-mode'] = ssl_mode
+        if add_header_x_forwarded_proto is not None:
+            data_payload['add-header-x-forwarded-proto'] = add_header_x_forwarded_proto
+        if mapped_port is not None:
+            data_payload['mapped-port'] = mapped_port
+        if ssl_cert is not None:
+            data_payload['ssl-cert'] = ssl_cert
+        if ssl_dh_bits is not None:
+            data_payload['ssl-dh-bits'] = ssl_dh_bits
+        if ssl_algorithm is not None:
+            data_payload['ssl-algorithm'] = ssl_algorithm
+        if ssl_client_renegotiation is not None:
+            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+        if ssl_min_version is not None:
+            data_payload['ssl-min-version'] = ssl_min_version
+        if ssl_max_version is not None:
+            data_payload['ssl-max-version'] = ssl_max_version
+        if ssl_send_empty_frags is not None:
+            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+        if url_rewrite is not None:
+            data_payload['url-rewrite'] = url_rewrite
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a ssl-server entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/ssl-server/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        ip: str | None = None,
+        port: int | None = None,
+        ssl_mode: str | None = None,
+        add_header_x_forwarded_proto: str | None = None,
+        mapped_port: int | None = None,
+        ssl_cert: list | None = None,
+        ssl_dh_bits: str | None = None,
+        ssl_algorithm: str | None = None,
+        ssl_client_renegotiation: str | None = None,
+        ssl_min_version: str | None = None,
+        ssl_max_version: str | None = None,
+        ssl_send_empty_frags: str | None = None,
+        url_rewrite: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Server name. (optional)
+            ip: IPv4 address of the SSL server. (optional)
+            port: Server service port (1 - 65535, default = 443). (optional)
+            ssl_mode: SSL/TLS mode for encryption and decryption of traffic. (optional)
+            add_header_x_forwarded_proto: Enable/disable adding an X-Forwarded-Proto header to forwarded requests. (optional)
+            mapped_port: Mapped server service port (1 - 65535, default = 80). (optional)
+            ssl_cert: List of certificate names to use for SSL connections to this server. (default = "Fortinet_SSL"). (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
+            ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. (optional)
+            ssl_client_renegotiation: Allow or block client renegotiation by server. (optional)
+            ssl_min_version: Lowest SSL/TLS version to negotiate. (optional)
+            ssl_max_version: Highest SSL/TLS version to negotiate. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. (optional)
+            url_rewrite: Enable/disable rewriting the URL. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/ssl-server"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if ip is not None:
+            data_payload['ip'] = ip
+        if port is not None:
+            data_payload['port'] = port
+        if ssl_mode is not None:
+            data_payload['ssl-mode'] = ssl_mode
+        if add_header_x_forwarded_proto is not None:
+            data_payload['add-header-x-forwarded-proto'] = add_header_x_forwarded_proto
+        if mapped_port is not None:
+            data_payload['mapped-port'] = mapped_port
+        if ssl_cert is not None:
+            data_payload['ssl-cert'] = ssl_cert
+        if ssl_dh_bits is not None:
+            data_payload['ssl-dh-bits'] = ssl_dh_bits
+        if ssl_algorithm is not None:
+            data_payload['ssl-algorithm'] = ssl_algorithm
+        if ssl_client_renegotiation is not None:
+            data_payload['ssl-client-renegotiation'] = ssl_client_renegotiation
+        if ssl_min_version is not None:
+            data_payload['ssl-min-version'] = ssl_min_version
+        if ssl_max_version is not None:
+            data_payload['ssl-max-version'] = ssl_max_version
+        if ssl_send_empty_frags is not None:
+            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
+        if url_rewrite is not None:
+            data_payload['url-rewrite'] = url_rewrite
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

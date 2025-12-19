@@ -1,172 +1,157 @@
 """
-FortiOS API endpoint: firewall.ssl/setting
+FortiOS CMDB - Firewall SslSetting
 
-SSL proxy settings (singleton).
+API Endpoints:
+    GET    /firewall.ssl/setting
+    PUT    /firewall.ssl/setting
 """
 
-from typing import Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
-from .....http_client import HTTPResponse
 
+class SslSetting:
+    """SslSetting operations."""
 
-class Setting:
-    """
-    Manage SSL proxy settings.
-
-    This is a singleton endpoint - there is only one SSL proxy settings object.
-    Only GET and UPDATE operations are supported.
-
-    API Path: firewall.ssl/setting
-    """
-
-    def __init__(self, client):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the Setting endpoint.
+        Initialize SslSetting endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        vdom=None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **params,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get SSL proxy settings.
-
+        Select all entries in a CLI table.
+        
         Args:
-            vdom (str, optional): Virtual domain name
-            **params: Additional query parameters (filter, format, etc.)
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing SSL proxy settings
-
-        Example:
-            # Get all settings
-            result = fgt.cmdb.firewall.ssl.setting.get()
-
-            # Get with metadata
-            result = fgt.cmdb.firewall.ssl.setting.get(meta=True)
+            Dictionary containing API response
         """
-        return self._client.get(
-            "cmdb", "firewall.ssl/setting", vdom=vdom, params=params, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/firewall.ssl/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        proxy_connect_timeout: int = None,
-        ssl_dh_bits: str = None,
-        ssl_send_empty_frags: str = None,
-        no_matching_cipher_action: str = None,
-        cert_cache_capacity: int = None,
-        cert_cache_timeout: int = None,
-        session_cache_capacity: int = None,
-        session_cache_timeout: int = None,
-        kxp_queue_threshold: int = None,
-        ssl_queue_threshold: int = None,
-        abbreviate_handshake: str = None,
-        vdom=None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        proxy_connect_timeout: int | None = None,
+        ssl_dh_bits: str | None = None,
+        ssl_send_empty_frags: str | None = None,
+        no_matching_cipher_action: str | None = None,
+        cert_manager_cache_timeout: int | None = None,
+        resigned_short_lived_certificate: str | None = None,
+        cert_cache_capacity: int | None = None,
+        cert_cache_timeout: int | None = None,
+        session_cache_capacity: int | None = None,
+        session_cache_timeout: int | None = None,
+        kxp_queue_threshold: int | None = None,
+        ssl_queue_threshold: int | None = None,
+        abbreviate_handshake: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-    ) -> HTTPResponse:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update SSL proxy settings.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            proxy_connect_timeout (int): Time limit to detect proxy connection timeout (1-3600 sec)
-            ssl_dh_bits (str): Bit-size of Diffie-Hellman prime: 768, 1024, 1536, 2048, 3072, 4096
-            ssl_send_empty_frags (str): Enable/disable sending empty fragments: enable, disable
-            no_matching_cipher_action (str): Bypass or drop the connection on no matching cipher: bypass, drop
-            cert_cache_capacity (int): Maximum capacity of certificate cache (0 for unlimited)
-            cert_cache_timeout (int): Time limit to cache certificate (1-120 min)
-            session_cache_capacity (int): Capacity of SSL session cache (1-1000)
-            session_cache_timeout (int): Time limit for SSL session cache (1-60 min)
-            kxp_queue_threshold (int): Maximum queue depth for key exchange protocol
-            ssl_queue_threshold (int): Maximum queue depth for SSL
-            abbreviate_handshake (str): Enable/disable abbreviated handshake: enable, disable
-            vdom (str, optional): Virtual domain name
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            proxy_connect_timeout: Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30). (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). (optional)
+            no_matching_cipher_action: Bypass or drop the connection when no matching cipher is found. (optional)
+            cert_manager_cache_timeout: Time limit for certificate manager to keep FortiGate re-signed server certificate (24 - 720 hours, default = 72). (optional)
+            resigned_short_lived_certificate: Enable/disable short-lived certificate. (optional)
+            cert_cache_capacity: Maximum capacity of the host certificate cache (0 - 500, default = 200). (optional)
+            cert_cache_timeout: Time limit to keep certificate cache (1 - 120 min, default = 10). (optional)
+            session_cache_capacity: Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500). (optional)
+            session_cache_timeout: Time limit to keep SSL session state (1 - 60 min, default = 20). (optional)
+            kxp_queue_threshold: Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16). (optional)
+            ssl_queue_threshold: Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32). (optional)
+            abbreviate_handshake: Enable/disable use of SSL abbreviated handshake. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Example:
-            # PUT - Update timeout settings
-            result = fgt.cmdb.firewall.ssl.setting.update(
-                proxy_connect_timeout=30,
-                cert_cache_timeout=60
-            )
-
-            # PUT - Update SSL settings
-            result = fgt.cmdb.firewall.ssl.setting.update(
-                ssl_dh_bits='2048',
-                ssl_send_empty_frags='enable',
-                abbreviate_handshake='enable'
-            )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if proxy_connect_timeout is not None:
-                payload_dict["proxy-connect-timeout"] = proxy_connect_timeout
-            if ssl_dh_bits is not None:
-                payload_dict["ssl-dh-bits"] = ssl_dh_bits
-            if ssl_send_empty_frags is not None:
-                payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
-            if no_matching_cipher_action is not None:
-                payload_dict["no-matching-cipher-action"] = no_matching_cipher_action
-            if cert_cache_capacity is not None:
-                payload_dict["cert-cache-capacity"] = cert_cache_capacity
-            if cert_cache_timeout is not None:
-                payload_dict["cert-cache-timeout"] = cert_cache_timeout
-            if session_cache_capacity is not None:
-                payload_dict["session-cache-capacity"] = session_cache_capacity
-            if session_cache_timeout is not None:
-                payload_dict["session-cache-timeout"] = session_cache_timeout
-            if kxp_queue_threshold is not None:
-                payload_dict["kxp-queue-threshold"] = kxp_queue_threshold
-            if ssl_queue_threshold is not None:
-                payload_dict["ssl-queue-threshold"] = ssl_queue_threshold
-            if abbreviate_handshake is not None:
-                payload_dict["abbreviate-handshake"] = abbreviate_handshake
-
-        payload_dict = {}
-
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.ssl/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if proxy_connect_timeout is not None:
-            payload_dict["proxy-connect-timeout"] = proxy_connect_timeout
+            data_payload['proxy-connect-timeout'] = proxy_connect_timeout
         if ssl_dh_bits is not None:
-            payload_dict["ssl-dh-bits"] = ssl_dh_bits
+            data_payload['ssl-dh-bits'] = ssl_dh_bits
         if ssl_send_empty_frags is not None:
-            payload_dict["ssl-send-empty-frags"] = ssl_send_empty_frags
+            data_payload['ssl-send-empty-frags'] = ssl_send_empty_frags
         if no_matching_cipher_action is not None:
-            payload_dict["no-matching-cipher-action"] = no_matching_cipher_action
+            data_payload['no-matching-cipher-action'] = no_matching_cipher_action
+        if cert_manager_cache_timeout is not None:
+            data_payload['cert-manager-cache-timeout'] = cert_manager_cache_timeout
+        if resigned_short_lived_certificate is not None:
+            data_payload['resigned-short-lived-certificate'] = resigned_short_lived_certificate
         if cert_cache_capacity is not None:
-            payload_dict["cert-cache-capacity"] = cert_cache_capacity
+            data_payload['cert-cache-capacity'] = cert_cache_capacity
         if cert_cache_timeout is not None:
-            payload_dict["cert-cache-timeout"] = cert_cache_timeout
+            data_payload['cert-cache-timeout'] = cert_cache_timeout
         if session_cache_capacity is not None:
-            payload_dict["session-cache-capacity"] = session_cache_capacity
+            data_payload['session-cache-capacity'] = session_cache_capacity
         if session_cache_timeout is not None:
-            payload_dict["session-cache-timeout"] = session_cache_timeout
+            data_payload['session-cache-timeout'] = session_cache_timeout
         if kxp_queue_threshold is not None:
-            payload_dict["kxp-queue-threshold"] = kxp_queue_threshold
+            data_payload['kxp-queue-threshold'] = kxp_queue_threshold
         if ssl_queue_threshold is not None:
-            payload_dict["ssl-queue-threshold"] = ssl_queue_threshold
+            data_payload['ssl-queue-threshold'] = ssl_queue_threshold
         if abbreviate_handshake is not None:
-            payload_dict["abbreviate-handshake"] = abbreviate_handshake
-
-        return self._client.put(
-            "cmdb", "firewall.ssl/setting", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['abbreviate-handshake'] = abbreviate_handshake
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

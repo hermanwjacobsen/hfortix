@@ -1,219 +1,322 @@
 """
 FortiOS CMDB - System DeviceUpgrade
 
-Independent upgrades for managed devices.
-
 API Endpoints:
-    GET    /system/device-upgrade           - List all / Get specific
-    POST   /system/device-upgrade           - Create
-    PUT    /system/device-upgrade/{name}   - Update
-    DELETE /system/device-upgrade/{name}   - Delete
+    GET    /system/device-upgrade
+    POST   /system/device-upgrade
+    GET    /system/device-upgrade/{serial}
+    PUT    /system/device-upgrade/{serial}
+    DELETE /system/device-upgrade/{serial}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class DeviceUpgrade:
-    """device-upgrade endpoint"""
+    """DeviceUpgrade operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize DeviceUpgrade endpoint
+        Initialize DeviceUpgrade endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        serial: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get device-upgrade
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            serial: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.device_upgrade.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.device_upgrade.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        # Build endpoint path
+        if serial:
+            endpoint = f"/system/device-upgrade/{serial}"
+        else:
+            endpoint = "/system/device-upgrade"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-        
-        path = "system/device-upgrade"
-        if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create device-upgrade
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.device_upgrade.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.device_upgrade.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/device-upgrade", data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        serial: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        ha_reboot_controller: str | None = None,
+        next_path_index: int | None = None,
+        known_ha_members: list | None = None,
+        initial_version: str | None = None,
+        starter_admin: str | None = None,
+        timing: str | None = None,
+        maximum_minutes: int | None = None,
+        time: str | None = None,
+        setup_time: str | None = None,
+        upgrade_path: str | None = None,
+        device_type: str | None = None,
+        allow_download: str | None = None,
+        failure_reason: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update device-upgrade
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            serial: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Current status of the upgrade. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
+            next_path_index: The index of the next image to upgrade to. (optional)
+            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up. (optional)
+            starter_admin: Admin that started the upgrade. (optional)
+            serial: Serial number of the node to include. (optional)
+            timing: Run immediately or at a scheduled time. (optional)
+            maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation. (optional)
+            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
+            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
+            upgrade_path: Fortinet OS image versions to upgrade through in major-minor-patch format, such as 7-0-4. (optional)
+            device_type: Fortinet device type. (optional)
+            allow_download: Enable/disable download firmware images. (optional)
+            failure_reason: Upgrade failure reason. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.device_upgrade.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.device_upgrade.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/device-upgrade/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not serial:
+            raise ValueError("serial is required for put()")
+        endpoint = f"/system/device-upgrade/{serial}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if ha_reboot_controller is not None:
+            data_payload['ha-reboot-controller'] = ha_reboot_controller
+        if next_path_index is not None:
+            data_payload['next-path-index'] = next_path_index
+        if known_ha_members is not None:
+            data_payload['known-ha-members'] = known_ha_members
+        if initial_version is not None:
+            data_payload['initial-version'] = initial_version
+        if starter_admin is not None:
+            data_payload['starter-admin'] = starter_admin
+        if serial is not None:
+            data_payload['serial'] = serial
+        if timing is not None:
+            data_payload['timing'] = timing
+        if maximum_minutes is not None:
+            data_payload['maximum-minutes'] = maximum_minutes
+        if time is not None:
+            data_payload['time'] = time
+        if setup_time is not None:
+            data_payload['setup-time'] = setup_time
+        if upgrade_path is not None:
+            data_payload['upgrade-path'] = upgrade_path
+        if device_type is not None:
+            data_payload['device-type'] = device_type
+        if allow_download is not None:
+            data_payload['allow-download'] = allow_download
+        if failure_reason is not None:
+            data_payload['failure-reason'] = failure_reason
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        serial: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete device-upgrade
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            serial: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.device_upgrade.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/device-upgrade/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not serial:
+            raise ValueError("serial is required for delete()")
+        endpoint = f"/system/device-upgrade/{serial}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        status: str | None = None,
+        ha_reboot_controller: str | None = None,
+        next_path_index: int | None = None,
+        known_ha_members: list | None = None,
+        initial_version: str | None = None,
+        starter_admin: str | None = None,
+        serial: str | None = None,
+        timing: str | None = None,
+        maximum_minutes: int | None = None,
+        time: str | None = None,
+        setup_time: str | None = None,
+        upgrade_path: str | None = None,
+        device_type: str | None = None,
+        allow_download: str | None = None,
+        failure_reason: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if device-upgrade exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            status: Current status of the upgrade. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
+            next_path_index: The index of the next image to upgrade to. (optional)
+            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up. (optional)
+            starter_admin: Admin that started the upgrade. (optional)
+            serial: Serial number of the node to include. (optional)
+            timing: Run immediately or at a scheduled time. (optional)
+            maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation. (optional)
+            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
+            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
+            upgrade_path: Fortinet OS image versions to upgrade through in major-minor-patch format, such as 7-0-4. (optional)
+            device_type: Fortinet device type. (optional)
+            allow_download: Enable/disable download firmware images. (optional)
+            failure_reason: Upgrade failure reason. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.device_upgrade.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/device-upgrade"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if status is not None:
+            data_payload['status'] = status
+        if ha_reboot_controller is not None:
+            data_payload['ha-reboot-controller'] = ha_reboot_controller
+        if next_path_index is not None:
+            data_payload['next-path-index'] = next_path_index
+        if known_ha_members is not None:
+            data_payload['known-ha-members'] = known_ha_members
+        if initial_version is not None:
+            data_payload['initial-version'] = initial_version
+        if starter_admin is not None:
+            data_payload['starter-admin'] = starter_admin
+        if serial is not None:
+            data_payload['serial'] = serial
+        if timing is not None:
+            data_payload['timing'] = timing
+        if maximum_minutes is not None:
+            data_payload['maximum-minutes'] = maximum_minutes
+        if time is not None:
+            data_payload['time'] = time
+        if setup_time is not None:
+            data_payload['setup-time'] = setup_time
+        if upgrade_path is not None:
+            data_payload['upgrade-path'] = upgrade_path
+        if device_type is not None:
+            data_payload['device-type'] = device_type
+        if allow_download is not None:
+            data_payload['allow-download'] = allow_download
+        if failure_reason is not None:
+            data_payload['failure-reason'] = failure_reason
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

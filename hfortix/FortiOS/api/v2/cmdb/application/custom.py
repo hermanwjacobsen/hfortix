@@ -1,356 +1,274 @@
 """
-FortiOS CMDB - Application Custom Signatures
-
-Configure custom application signatures.
+FortiOS CMDB - Application Custom
 
 API Endpoints:
-    GET    /api/v2/cmdb/application/custom       - List all custom application signatures
-    GET    /api/v2/cmdb/application/custom/{tag} - Get a specific custom application signature
-    POST   /api/v2/cmdb/application/custom       - Create custom application signature
-    PUT    /api/v2/cmdb/application/custom/{tag} - Update a custom application signature
-    DELETE /api/v2/cmdb/application/custom/{tag} - Delete a custom application signature
+    GET    /application/custom
+    POST   /application/custom
+    GET    /application/custom/{tag}
+    PUT    /application/custom/{tag}
+    DELETE /application/custom/{tag}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Custom:
-    """Application custom signatures endpoint"""
+    """Custom operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize Custom endpoint.
 
         Args:
-            client: FortiOS API client instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        tag: Optional[str] = None,
-        # Query parameters
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get custom application signature(s) - List all or get specific.
-
-        Retrieves either a specific custom application signature by tag, or lists
-        all custom application signatures with optional filtering.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            tag (str, optional): Signature tag to retrieve. If None, retrieves all signatures
-            attr (str, optional): Attribute name that references other table
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (dict, optional): Skip to provided table's Nth entry
-            acs (int, optional): If true, returned results are in ascending order
-            search (str, optional): Filter objects by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            datasource (bool, optional): Include datasource information for each linked object
-            with_meta (bool, optional): Include meta information about each object
-            skip (bool, optional): Enable CLI skip operator to hide skipped properties
-            format (str, optional): List of property names to include, separated by |
-            action (str, optional): Special action - 'default', 'schema', 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            tag: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing custom application signature data
-
-        Examples:
-            >>> # List all custom signatures
-            >>> signatures = fgt.cmdb.application.custom.list()
-            >>> for sig in signatures['results']:
-            ...     print(sig['tag'], sig.get('comment', ''))
-
-            >>> # Get a specific signature
-            >>> sig = fgt.cmdb.application.custom.get('MyCustomApp')
-            >>> print(sig['results']['signature'])
-
-            >>> # Get with filtering
-            >>> signatures = fgt.cmdb.application.custom.get(
-            ...     format='tag|comment|protocol',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        params.update(kwargs)
-
-        # Build path
-        path = "application/custom"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if tag:
-            path = f"{path}/{tag}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        tag: Optional[str] = None,
-        # Signature parameters
-        id: Optional[int] = None,
-        comment: Optional[str] = None,
-        signature: Optional[str] = None,
-        category: Optional[int] = None,
-        protocol: Optional[str] = None,
-        technology: Optional[str] = None,
-        behavior: Optional[str] = None,
-        vendor: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create custom application signature.
-
-        Args:
-            tag (str, required): Signature tag (max 63 chars)
-            id (int, optional): Custom application category ID (0-4294967295)
-            comment (str, optional): Comment (max 63 chars)
-            signature (str, optional): The actual custom application signature text (max 4095 chars)
-            category (int, required): Custom application category ID (0-4294967295) - REQUIRED field!
-            protocol (str, optional): Custom application signature protocol
-            technology (str, optional): Custom application signature technology
-            behavior (str, optional): Custom application signature behavior
-            vendor (str, optional): Custom application signature vendor
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters to pass to the API
-
-        Returns:
-            dict: API response containing creation status
-
-        Examples:
-            >>> # POST - Create a simple custom signature (category is required!)
-            >>> result = fgt.cmdb.application.custom.create(
-            ...     tag='MyCustomApp',
-            ...     comment='Custom web application',
-            ...     signature='F-SBID( --protocol tcp; --service HTTP; --pattern "mycustomapp"; )',
-            ...     category=15,  # Required!
-            ...     protocol='HTTP'
-            ... )
-
-            >>> # POST - Create with full details
-            >>> result = fgt.cmdb.application.custom.create(
-            ...     tag='CustomDatabase',
-            ...     comment='Custom database protocol',
-            ...     signature='F-SBID( --protocol tcp; --dst_port 5432; )',
-            ...     protocol='TCP',
-            ...     category=15,
-            ...     technology='Client-Server',
-            ...     behavior='Business'
-            ... )
-        """
-        # Build data dictionary
-        payload_dict = {}
-        param_map = {
-            "tag": tag,
-            "id": id,
-            "comment": comment,
-            "signature": signature,
-            "category": category,
-            "protocol": protocol,
-            "technology": technology,
-            "behavior": behavior,
-            "vendor": vendor,
-        }
-
-        # No special field mapping needed - all fields use same name
-        for param_name, value in param_map.items():
-            if value is not None:
-                payload_dict[param_name] = value
-
-        payload_dict.update(kwargs)
-
-        return self._client.post("cmdb", "application/custom", data, vdom=vdom, raw_json=raw_json)
+            endpoint = f"/application/custom/{tag}"
+        else:
+            endpoint = "/application/custom"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        tag: Optional[str] = None,
-        # Signature parameters
-        id: Optional[int] = None,
-        comment: Optional[str] = None,
-        signature: Optional[str] = None,
-        category: Optional[int] = None,
-        protocol: Optional[str] = None,
-        technology: Optional[str] = None,
-        behavior: Optional[str] = None,
-        vendor: Optional[str] = None,
-        # Action parameters
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        id: int | None = None,
+        comment: str | None = None,
+        signature: str | None = None,
+        category: int | None = None,
+        protocol: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        vendor: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update custom application signature.
-
+        Update this specific resource.
+        
         Args:
-            tag (str, required): Signature tag to update
-            id (int, optional): Custom application category ID (0-4294967295)
-            comment (str, optional): Comment (max 63 chars)
-            signature (str, optional): The actual custom application signature text (max 4095 chars)
-            category (int, optional): Custom application category ID (0-4294967295)
-            protocol (str, optional): Custom application signature protocol
-            technology (str, optional): Custom application signature technology
-            behavior (str, optional): Custom application signature behavior
-            vendor (str, optional): Custom application signature vendor
-            action (str, optional): Action to perform - 'move'
-            before (str, optional): Move before this tag (requires action='move')
-            after (str, optional): Move after this tag (requires action='move')
-            scope (str, optional): Scope level - 'vdom'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters to pass to the API
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            tag: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            tag: Signature tag. (optional)
+            id: Custom application category ID (use ? to view available options). (optional)
+            comment: Comment. (optional)
+            signature: The text that makes up the actual custom application signature. (optional)
+            category: Custom application category ID (use ? to view available options). (optional)
+            protocol: Custom application signature protocol. (optional)
+            technology: Custom application signature technology. (optional)
+            behavior: Custom application signature behavior. (optional)
+            vendor: Custom application signature vendor. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing update status
-
-        Examples:
-            >>> # PUT - Update signature text
-            >>> result = fgt.cmdb.application.custom.update(
-            ...     tag='MyCustomApp',
-            ...     signature='F-SBID( --protocol tcp; --service HTTPS; --pattern "newpattern"; )'
-            ... )
-
-            >>> # PUT - Update comment and protocol
-            >>> result = fgt.cmdb.application.custom.update(
-            ...     tag='CustomDatabase',
-            ...     comment='Updated database protocol',
-            ...     protocol='TCP/UDP'
-            ... )
-
-            >>> # Move signature in list
-            >>> result = fgt.cmdb.application.custom.update(
-            ...     tag='MyCustomApp',
-            ...     action='move',
-            ...     after='AnotherApp'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dictionary
-        payload_dict = {}
-        param_map = {
-            "tag": tag,
-            "id": id,
-            "comment": comment,
-            "signature": signature,
-            "category": category,
-            "protocol": protocol,
-            "technology": technology,
-            "behavior": behavior,
-            "vendor": vendor,
-        }
-
-        # No special field mapping needed
-        for param_name, value in param_map.items():
-            if value is not None:
-                payload_dict[param_name] = value
-
-        payload_dict.update(kwargs)
-
-        # Build query parameters for action/move
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-        query_param_map = {
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }
-
-        for key, value in query_param_map.items():
-            if value is not None:
-                params[key] = value
-
-        return self._client.put(
-            "cmdb",
-            f"application/custom/{tag}",
-            data,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        
+        # Build endpoint path
+        if not tag:
+            raise ValueError("tag is required for put()")
+        endpoint = f"/application/custom/{tag}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if tag is not None:
+            data_payload['tag'] = tag
+        if id is not None:
+            data_payload['id'] = id
+        if comment is not None:
+            data_payload['comment'] = comment
+        if signature is not None:
+            data_payload['signature'] = signature
+        if category is not None:
+            data_payload['category'] = category
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        tag: str,
-        scope: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        tag: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a custom application signature.
-
+        Delete this specific resource.
+        
         Args:
-            tag (str, required): Signature tag to delete
-            scope (str, optional): Scope level - 'vdom'
-            vdom (str, optional): Virtual Domain name
-
+            tag: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response containing deletion status
-
-        Examples:
-            >>> # Delete a custom signature
-            >>> result = fgt.cmdb.application.custom.delete('MyCustomApp')
-            >>> print(result['status'])
-
-            >>> # Delete with specific scope
-            >>> result = fgt.cmdb.application.custom.delete(
-            ...     tag='CustomDatabase',
-            ...     scope='vdom'
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        if scope is not None:
-            params["scope"] = scope
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not tag:
+            raise ValueError("tag is required for delete()")
+        endpoint = f"/application/custom/{tag}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        return self._client.delete(
-            "cmdb",
-            f"application/custom/{tag}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        tag: str | None = None,
+        id: int | None = None,
+        comment: str | None = None,
+        signature: str | None = None,
+        category: int | None = None,
+        protocol: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        vendor: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            tag: Signature tag. (optional)
+            id: Custom application category ID (use ? to view available options). (optional)
+            comment: Comment. (optional)
+            signature: The text that makes up the actual custom application signature. (optional)
+            category: Custom application category ID (use ? to view available options). (optional)
+            protocol: Custom application signature protocol. (optional)
+            technology: Custom application signature technology. (optional)
+            behavior: Custom application signature behavior. (optional)
+            vendor: Custom application signature vendor. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/application/custom"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if tag is not None:
+            data_payload['tag'] = tag
+        if id is not None:
+            data_payload['id'] = id
+        if comment is not None:
+            data_payload['comment'] = comment
+        if signature is not None:
+            data_payload['signature'] = signature
+        if category is not None:
+            data_payload['category'] = category
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,12 +1,42 @@
 """
-FortiOS FortiCloud Log API
+FortiOS Log - FortiCloud Storage
 
-This module provides methods to retrieve logs from FortiCloud storage.
+Main orchestrator for forticloud log API endpoints.
+
+API Endpoints:
+    GET /forticloud/virus/archive                - Get quarantined virus file metadata
+    GET /forticloud/{type}/archive               - Get archived items (ips, app-ctrl only)
+    GET /forticloud/{type}/archive-download      - Download archived file (ips, app-ctrl only)
+    GET /forticloud/{type}/raw                   - Get raw log data (all types)
+    GET /forticloud/traffic/{subtype}/raw        - Get raw traffic logs by subtype
+    GET /forticloud/event/{subtype}/raw          - Get raw event logs by subtype
+    GET /forticloud/{type}                       - Get formatted log data for type
+    GET /forticloud/traffic/{subtype}            - Get formatted traffic logs by subtype
+    GET /forticloud/event/{subtype}              - Get formatted event logs by subtype
 """
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING
+
+# Import all the shared log types - they work for FortiCloud too!
+from ..anomaly import Anomaly
+from ..app_ctrl import AppCtrl
+from ..cifs import CIFS
+from ..dlp import DLP
+from ..dns import DNS
+from ..emailfilter import EmailFilter
+from ..event import Event
+from ..file_filter import FileFilter
+from ..gtp import GTP
+from ..ips import IPS
+from ..ssh import SSH
+from ..ssl import SSL
+from ..traffic import Traffic
+from ..virus import Virus, VirusArchive
+from ..voip import VoIP
+from ..waf import WAF
+from ..webfilter import Webfilter
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
@@ -14,499 +44,60 @@ if TYPE_CHECKING:
 
 class FortiCloud:
     """
-    FortiCloud Log API for FortiOS.
-
-    Provides methods to retrieve and manage logs stored in FortiCloud.
+    FortiCloud log endpoint
+    
+    Examples:
+        # IPS archive
+        fgt.api.log.forticloud.ips.archive.get()
+        
+        # IPS logs
+        fgt.api.log.forticloud.ips.get(rows=100, filter='srcip==192.168.1.1')
+        fgt.api.log.forticloud.ips.raw()
+        
+        # Virus archive
+        fgt.api.log.forticloud.virus_archive.get(mkey='checksum123')
+        
+        # Traffic logs
+        fgt.api.log.forticloud.traffic.forward.get(rows=50)
+        fgt.api.log.forticloud.traffic.forward.raw()
+        
+        # Event logs  
+        fgt.api.log.forticloud.event.system.get(rows=25)
+        fgt.api.log.forticloud.event.system.raw()
     """
 
     def __init__(self, client: "HTTPClient") -> None:
-        """Initialize FortiCloud log API with FortiOS client."""
-        self._client = client
-
-    # Archive Operations
-
-    def virus_archive(
-        self, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
         """
-        Return a description of the quarantined virus file.
-
+        Initialize FortiCloud log endpoint
+        
         Args:
-            mkey (str, optional): Checksum of the virus archive
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: Virus archive metadata or list of all archives
-
-        Example:
-            >>> # List all virus archives
-            >>> archives = fgt.log.forticloud.virus_archive()
-
-            >>> # Get specific archive by checksum
-            >>> archive = fgt.log.forticloud.virus_archive(mkey='abc123...')
+            client: HTTP client for API requests
         """
-        endpoint = "forticloud/virus/archive"
-        if mkey is not None:
-            endpoint += f"/{mkey}"
-        return self._client.get(
-            "log", endpoint, params=kwargs if kwargs else None, raw_json=raw_json
-        )
+        # Individual log types
+        self.virus = Virus(client, "forticloud")
+        self.webfilter = Webfilter(client, "forticloud")
+        self.waf = WAF(client, "forticloud")
+        self.ips = IPS(client, "forticloud")
+        self.anomaly = Anomaly(client, "forticloud")
+        self.app_ctrl = AppCtrl(client, "forticloud")
+        self.emailfilter = EmailFilter(client, "forticloud")
+        self.dlp = DLP(client, "forticloud")
+        self.voip = VoIP(client, "forticloud")
+        self.gtp = GTP(client, "forticloud")
+        self.dns = DNS(client, "forticloud")
+        self.ssh = SSH(client, "forticloud")
+        self.ssl = SSL(client, "forticloud")
+        self.cifs = CIFS(client, "forticloud")
+        self.file_filter = FileFilter(client, "forticloud")
 
-    def archive(
-        self, log_type: str, mkey: Optional[int] = None, raw_json: bool = False, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Return a list of archived items for the desired type.
+        # Virus archive (special case)
+        self.virus_archive = VirusArchive(client, "forticloud")
 
-        Args:
-            log_type (str): Type of archive ('app-ctrl', 'ips')
-            mkey (str, optional): ID of specific archive entry
-            **kwargs: Additional parameters to pass
+        # Traffic subtypes
+        self.traffic = Traffic(client, "forticloud")
 
-        Returns:
-            dict: Archive list or specific archive details
+        # Event subtypes
+        self.event = Event(client, "forticloud")
 
-        Example:
-            >>> # List all IPS archives
-            >>> archives = fgt.log.forticloud.archive('ips')
-
-            >>> # Get specific app-ctrl archive
-            >>> archive = fgt.log.forticloud.archive('app-ctrl', mkey='12345')
-        """
-        endpoint = f"forticloud/{log_type}/archive"
-        if mkey is not None:
-            endpoint += f"/{mkey}"
-        return self._client.get(
-            "log", endpoint, params=kwargs if kwargs else None, raw_json=raw_json
-        )
-
-    def archive_download(
-        self, log_type: str, mkey: Optional[int] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """
-        Download an archived file.
-
-        Args:
-            log_type (str): Type of archive ('virus', 'app-ctrl', 'ips')
-            mkey (str, optional): ID of the archive to download
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            bytes: Binary file content
-
-        Example:
-            >>> # Download virus archive
-            >>> file_data = fgt.log.forticloud.archive_download('virus', mkey='abc123...')
-            >>> with open('virus.bin', 'wb') as f:
-            ...     f.write(file_data)
-
-            >>> # Download IPS archive
-            >>> file_data = fgt.log.forticloud.archive_download('ips', mkey='12345')
-        """
-        endpoint = f"forticloud/{log_type}/archive-download"
-        if mkey is not None:
-            endpoint += f"/{mkey}"
-        return self._client.get_binary("log", endpoint, params=kwargs if kwargs else None)
-
-    # Raw Log Retrieval
-
-    def raw(
-        self,
-        log_type: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve raw log data for the given log type.
-
-        Args:
-            log_type (str): Type of log to retrieve
-                Valid values: 'virus', 'webfilter', 'waf', 'ips', 'anomaly',
-                'app-ctrl', 'emailfilter', 'dlp', 'voip', 'gtp', 'dns', 'ssh',
-                'ssl', 'cifs', 'file-filter'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID for log streaming
-            serial_no (str, optional): Serial number of FortiGate
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: Raw log data
-
-        Example:
-            >>> # Get last 100 virus logs
-            >>> logs = fgt.log.forticloud.raw('virus', rows=100)
-
-            >>> # Get IPS logs with time range
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 3600
-            >>> logs = fgt.log.forticloud.raw(
-            ...     log_type='ips',
-            ...     rows=50,
-            ...     start=start_time,
-            ...     end=end_time
-            ... )
-        """
-        endpoint = f"forticloud/{log_type}/raw"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "session_id": session_id,
-            "serial_no": serial_no,
-            "start": start,
-            "end": end,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def traffic_raw(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve raw traffic log data for the given subtype.
-
-        Args:
-            subtype (str): Traffic log subtype
-                Valid values: 'forward', 'local', 'multicast', 'sniffer'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID for log streaming
-            serial_no (str, optional): Serial number of FortiGate
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: Raw traffic log data
-
-        Example:
-            >>> # Get last 100 forward traffic logs
-            >>> logs = fgt.log.forticloud.traffic_raw('forward', rows=100)
-
-            >>> # Get sniffer logs with time range
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 1800  # Last 30 minutes
-            >>> logs = fgt.log.forticloud.traffic_raw(
-            ...     subtype='sniffer',
-            ...     rows=50,
-            ...     start=start_time,
-            ...     end=end_time
-            ... )
-        """
-        endpoint = f"forticloud/traffic/{subtype}/raw"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "session_id": session_id,
-            "serial_no": serial_no,
-            "start": start,
-            "end": end,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def event_raw(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        session_id: Optional[int] = None,
-        serial_no: Optional[str] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve raw event log data for the given subtype.
-
-        Args:
-            subtype (str): Event log subtype
-                Valid values: 'vpn', 'user', 'router', 'wireless', 'wad', 'endpoint',
-                'ha', 'compliance-check', 'security-rating', 'fortiextender',
-                'connector', 'system'
-            rows (int, optional): Number of rows to return
-            session_id (int, optional): Session ID for log streaming
-            serial_no (str, optional): Serial number of FortiGate
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: Raw event log data
-
-        Example:
-            >>> # Get last 50 system event logs
-            >>> logs = fgt.log.forticloud.event_raw('system', rows=50)
-
-            >>> # Get VPN logs with time range
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 3600  # Last hour
-            >>> logs = fgt.log.forticloud.event_raw(
-            ...     subtype='vpn',
-            ...     rows=100,
-            ...     start=start_time,
-            ...     end=end_time
-            ... )
-        """
-        endpoint = f"forticloud/event/{subtype}/raw"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "session_id": session_id,
-            "serial_no": serial_no,
-            "start": start,
-            "end": end,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    # Formatted Log Retrieval
-
-    def get(
-        self,
-        log_type: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        vdom: str = "root",
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve formatted log data for the given log type.
-
-        Args:
-            log_type (str): Type of log to retrieve
-                Valid values: 'virus', 'webfilter', 'waf', 'ips', 'anomaly',
-                'app-ctrl', 'emailfilter', 'dlp', 'voip', 'gtp', 'dns', 'ssh',
-                'ssl', 'cifs', 'file-filter'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str, optional): Filter expression
-            vdom (str, optional): Virtual domain name (default: 'root')
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: Formatted log entries
-
-        Example:
-            >>> # Get virus logs
-            >>> logs = fgt.log.forticloud.get('virus', rows=100)
-
-            >>> # Get IPS logs with time range and filter
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 3600
-            >>> logs = fgt.log.forticloud.get(
-            ...     log_type='ips',
-            ...     rows=100,
-            ...     start=start_time,
-            ...     end=end_time,
-            ...     filter='severity==critical'
-            ... )
-
-            >>> # Get app-ctrl logs with filter
-            >>> result = fgt.log.forticloud.get(
-            ...     log_type='app-ctrl',
-            ...     rows=100,
-            ...     filter='app==Facebook'
-            ... )
-        """
-        endpoint = f"forticloud/{log_type}"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "start": start,
-            "end": end,
-            "filter": filter,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def traffic(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        vdom: str = "root",
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get formatted traffic logs from FortiCloud (JSON format).
-
-        Args:
-            subtype (str): Traffic log subtype
-                Valid values: 'forward', 'local', 'multicast', 'sniffer'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str, optional): Filter expression
-            vdom (str, optional): Virtual domain name (default: 'root')
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: FortiCloud traffic log entries
-
-        Example:
-            >>> # Get forward traffic logs
-            >>> logs = fgt.log.forticloud.traffic('forward', rows=100)
-
-            >>> # Get local traffic logs with filter
-            >>> logs = fgt.log.forticloud.traffic(
-            ...     subtype='local',
-            ...     rows=50,
-            ...     filter='dstport==443'
-            ... )
-
-            >>> # Get traffic logs with time range
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 3600
-            >>> result = fgt.log.forticloud.traffic(
-            ...     subtype='forward',
-            ...     rows=100,
-            ...     start=start_time,
-            ...     end=end_time
-            ... )
-        """
-        endpoint = f"forticloud/traffic/{subtype}"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "start": start,
-            "end": end,
-            "filter": filter,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, raw_json=raw_json
-        )
-
-    def event(
-        self,
-        subtype: str,
-        rows: Optional[int] = None,
-        start: Optional[int] = None,
-        end: Optional[int] = None,
-        filter: Optional[str] = None,
-        vdom: str = "root",
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Get formatted event logs from FortiCloud (JSON format).
-
-        Args:
-            subtype (str): Event log subtype
-                Valid values: 'vpn', 'user', 'router', 'wireless', 'wad', 'endpoint',
-                'ha', 'compliance-check', 'security-rating', 'fortiextender',
-                'connector', 'system'
-            rows (int, optional): Number of rows to return
-            start (int, optional): Start time (Unix timestamp)
-            end (int, optional): End time (Unix timestamp)
-            filter (str, optional): Filter expression
-            vdom (str, optional): Virtual domain name (default: 'root')
-            **kwargs: Additional parameters to pass
-
-        Returns:
-            dict: FortiCloud event log entries
-
-        Example:
-            >>> # Get system event logs
-            >>> logs = fgt.log.forticloud.event('system', rows=100)
-
-            >>> # Get VPN event logs with filter
-            >>> logs = fgt.log.forticloud.event(
-            ...     subtype='vpn',
-            ...     rows=50,
-            ...     filter='status==down'
-            ... )
-
-            >>> # Get user event logs with time range
-            >>> import time
-            >>> end_time = int(time.time())
-            >>> start_time = end_time - 3600  # Last hour
-            >>> result = fgt.log.forticloud.event(
-            ...     subtype='user',
-            ...     rows=100,
-            ...     start=start_time,
-            ...     end=end_time
-            ... )
-        """
-        endpoint = f"forticloud/event/{subtype}"
-
-        params = {}
-        param_map = {
-            "rows": rows,
-            "start": start,
-            "end": end,
-            "filter": filter,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        params.update(kwargs)
-
-        return self._client.get(
-            "log", endpoint, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
+    def __repr__(self) -> str:
+        return "<FortiCloud Log API>"

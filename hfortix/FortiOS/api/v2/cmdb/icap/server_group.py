@@ -1,284 +1,226 @@
 """
-FortiOS CMDB - ICAP Server Group
-
-Configure ICAP server groups consisting of multiple forward servers with failover and load balancing.
+FortiOS CMDB - Icap ServerGroup
 
 API Endpoints:
-    GET    /api/v2/cmdb/icap/server-group           - List all / Get specific
-    POST   /api/v2/cmdb/icap/server-group           - Create
-    PUT    /api/v2/cmdb/icap/server-group/{name}   - Update
-    DELETE /api/v2/cmdb/icap/server-group/{name}   - Delete
+    GET    /icap/server-group
+    POST   /icap/server-group
+    GET    /icap/server-group/{name}
+    PUT    /icap/server-group/{name}
+    DELETE /icap/server-group/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class ServerGroup:
-    """ICAP Server Group endpoint"""
+    """ServerGroup operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ServerGroup endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get ICAP server group(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Server group name (if specified, gets single group)
-            datasource: Include datasource information
-            with_meta: Include metadata
-            skip: Skip hidden properties
-            action: Additional action to perform
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing server group configuration(s)
-
-        Examples:
-            >>> # List all server groups
-            >>> groups = fgt.api.cmdb.icap.server_group.get()
-            
-            >>> # Get specific server group
-            >>> group = fgt.api.cmdb.icap.server_group.get('icap-group1')
-            >>> print(group['ldb-method'], group['server-list'])
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with-meta": with_meta,
-            "skip": skip,
-            "action": action,
-        }
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/icap/server-group/{name}"
+        else:
+            endpoint = "/icap/server-group"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        path = "icap/server-group"
-        if name is not None:
-            path = f"{path}/{encode_path_component(name)}"
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        ldb_method: Optional[str] = None,
-        server_list: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create ICAP server group.
-
-        Supports three usage patterns:
-
-        1. Dictionary pattern (template-based):
-           >>> config = {
-           ...     'name': 'icap-group1',
-           ...     'ldb-method': 'weighted',
-           ...     'server-list': [{'name': 'icap-server1'}]
-           ... }
-           >>> fgt.api.cmdb.icap.server_group.create(data_dict=config)
-
-        2. Keyword pattern (explicit parameters):
-           >>> fgt.api.cmdb.icap.server_group.create(
-           ...     name='icap-group1',
-           ...     ldb_method='weighted',
-           ...     server_list=[{'name': 'icap-server1'}]
-           ... )
-
-        3. Mixed pattern (template + overrides):
-           >>> base = {'ldb-method': 'weighted'}
-           >>> fgt.api.cmdb.icap.server_group.create(data_dict=base, name='icap-group1')
-
-        Args:
-            data_dict: Complete configuration dictionary (pattern 1 & 3)
-            name: Server group name
-            ldb_method: Load balancing method (weighted, least-session, active-passive)
-            server_list: List of ICAP servers in group [{'name': 'server1'}, ...]
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
-        Returns:
-            Dictionary containing creation result
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> config = {
-            ...     'name': 'icap-group1',
-            ...     'ldb-method': 'weighted',
-            ...     'server-list': [
-            ...         {'name': 'icap-server1'},
-            ...         {'name': 'icap-server2'}
-            ...     ]
-            ... }
-            >>> result = fgt.api.cmdb.icap.server_group.create(data_dict=config)
-
-            >>> # POST - Create with keywords
-            >>> result = fgt.api.cmdb.icap.server_group.create(
-            ...     name='icap-group2',
-            ...     ldb_method='least-session',
-            ...     server_list=[{'name': 'icap-server1'}]
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "name": name,
-            "ldb_method": ldb_method,
-            "server_list": server_list,
-        }
-
-        api_field_map = {
-            "name": "name",
-            "ldb_method": "ldb-method",
-            "server_list": "server-list",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = "icap/server-group"
-        return self._client.post("cmdb", path, data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        ldb_method: Optional[str] = None,
-        server_list: Optional[list[dict[str, Any]]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        ldb_method: str | None = None,
+        server_list: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update ICAP server group.
-
-        Supports three usage patterns:
-
-        1. Dictionary pattern (template-based):
-           >>> config = {'ldb-method': 'least-session'}
-           >>> fgt.api.cmdb.icap.server_group.update('icap-group1', data_dict=config)
-
-        2. Keyword pattern (explicit parameters):
-           >>> fgt.api.cmdb.icap.server_group.update(
-           ...     'icap-group1',
-           ...     ldb_method='active-passive'
-           ... )
-
-        3. Mixed pattern (template + overrides):
-           >>> base = {'ldb-method': 'weighted'}
-           >>> fgt.api.cmdb.icap.server_group.update('icap-group1', data_dict=base)
-
+        Update this specific resource.
+        
         Args:
-            name: Server group name
-            data_dict: Complete configuration dictionary (pattern 1 & 3)
-            ldb_method: Load balancing method (weighted, least-session, active-passive)
-            server_list: List of ICAP servers in group [{'name': 'server1'}, ...]
-            vdom: Virtual domain name or False for global
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Configure an ICAP server group consisting one or multiple forward servers. Supports failover and load balancing. (optional)
+            ldb_method: Load balance method. (optional)
+            server_list: Add ICAP servers to a list to form a server group. Optionally assign weights to each server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing update result
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> config = {
-            ...     'ldb-method': 'least-session',
-            ...     'server-list': [
-            ...         {'name': 'icap-server1'},
-            ...         {'name': 'icap-server2'},
-            ...         {'name': 'icap-server3'}
-            ...     ]
-            ... }
-            >>> result = fgt.api.cmdb.icap.server_group.update('icap-group1', data_dict=config)
-
-            >>> # PUT - Update with keywords
-            >>> result = fgt.api.cmdb.icap.server_group.update(
-            ...     'icap-group1',
-            ...     ldb_method='weighted'
-            ... )
+            Dictionary containing API response
         """
-        data = data_dict.copy() if data_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/icap/server-group/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if ldb_method is not None:
+            data_payload['ldb-method'] = ldb_method
+        if server_list is not None:
+            data_payload['server-list'] = server_list
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "ldb_method": ldb_method,
-            "server_list": server_list,
-        }
-
-        api_field_map = {
-            "ldb_method": "ldb-method",
-            "server_list": "server-list",
-        }
-
-        for python_key, value in param_map.items():
-            if value is not None:
-                api_key = api_field_map[python_key]
-                data[api_key] = value
-
-        data.update(kwargs)
-
-        path = f"icap/server-group/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
-
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete ICAP server group.
-
+        Delete this specific resource.
+        
         Args:
-            name: Server group name
-            vdom: Virtual domain name or False for global
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing deletion result
-
-        Examples:
-            >>> # Delete server group
-            >>> result = fgt.api.cmdb.icap.server_group.delete('old-group')
-            >>> print(result['status'])
+            Dictionary containing API response
         """
-        path = f"icap/server-group/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/icap/server-group/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        ldb_method: str | None = None,
+        server_list: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if ICAP server group exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Server group name
-            vdom: Virtual domain name or False for global
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Configure an ICAP server group consisting one or multiple forward servers. Supports failover and load balancing. (optional)
+            ldb_method: Load balance method. (optional)
+            server_list: Add ICAP servers to a list to form a server group. Optionally assign weights to each server. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if server group exists, False otherwise
-
-        Examples:
-            >>> # Check if server group exists
-            >>> if fgt.api.cmdb.icap.server_group.exists('icap-group1'):
-            ...     print("Server group exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/icap/server-group"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if ldb_method is not None:
+            data_payload['ldb-method'] = ldb_method
+        if server_list is not None:
+            data_payload['server-list'] = server_list
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

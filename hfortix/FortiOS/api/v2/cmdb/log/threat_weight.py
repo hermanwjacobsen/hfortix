@@ -1,130 +1,149 @@
 """
-Log threat weight endpoint module.
+FortiOS CMDB - Log ThreatWeight
 
-This module provides access to the log/threat-weight endpoint
-for configuring threat weight settings.
-
-API Path: log/threat-weight
+API Endpoints:
+    GET    /log/threat-weight
+    PUT    /log/threat-weight
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    from ....http_client import HTTPClient
 
 
 class ThreatWeight:
-    """
-    Interface for configuring threat weight settings.
+    """ThreatWeight operations."""
 
-    This class provides methods to manage threat weight configuration,
-    which controls how different threat types are weighted in security ratings.
-    This is a singleton endpoint (GET/PUT only).
-
-    Example usage:
-        # Get current threat weight settings
-        settings = fgt.api.cmdb.log.threat_weight.get()
-
-        # PUT - Update threat weight settings
-        fgt.api.cmdb.log.threat_weight.update(
-            status='enable',
-            level={'low': 1, 'medium': 2, 'high': 3, 'critical': 4}
-        )
-    """
-
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the ThreatWeight instance.
+        Initialize ThreatWeight endpoint.
 
         Args:
-            client: The HTTP client used to communicate with the FortiOS device
+            client: HTTPClient instance for API communication
         """
         self._client = client
-        self._endpoint = "log/threat-weight"
 
-    def get(self) -> Dict[str, Any]:
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve current threat weight settings.
-
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Dictionary containing threat weight settings
-
-        Example:
-            >>> result = fgt.api.cmdb.log.threat_weight.get()
-            >>> print(result['status'])
-            'enable'
+            Dictionary containing API response
         """
-        return self._client.get("cmdb", self._endpoint)
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/log/threat-weight"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        application: Optional[list] = None,
-        blocked_connection: Optional[dict] = None,
-        botnet_connection_detected: Optional[dict] = None,
-        failed_connection: Optional[dict] = None,
-        geolocation: Optional[list] = None,
-        ips: Optional[dict] = None,
-        level: Optional[dict] = None,
-        malware: Optional[dict] = None,
-        status: Optional[str] = None,
-        url_block_detected: Optional[dict] = None,
-        web: Optional[list] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        level: list | None = None,
+        blocked_connection: str | None = None,
+        failed_connection: str | None = None,
+        url_block_detected: str | None = None,
+        botnet_connection_detected: str | None = None,
+        malware: list | None = None,
+        ips: list | None = None,
+        web: list | None = None,
+        geolocation: list | None = None,
+        application: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         """
-        Update threat weight settings.
-
+        Update this specific resource.
+        
         Args:
-            data_dict: Dictionary with API format parameters
-            application: Application-based threat weight settings
-            blocked_connection: Blocked connection threat weight
-            botnet_connection_detected: Botnet connection detected threat weight
-            failed_connection: Failed connection threat weight
-            geolocation: Geolocation-based threat weight settings
-            ips: IPS threat weight settings
-            level: Threat level weights (low, medium, high, critical)
-            malware: Malware threat weight settings
-            status: Enable/disable threat weight (enable | disable)
-            url_block_detected: URL block detected threat weight
-            web: Web-based threat weight settings
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            status: Enable/disable the threat weight feature. (optional)
+            level: Score mapping for threat weight levels. (optional)
+            blocked_connection: Threat weight score for blocked connections. (optional)
+            failed_connection: Threat weight score for failed connections. (optional)
+            url_block_detected: Threat weight score for URL blocking. (optional)
+            botnet_connection_detected: Threat weight score for detected botnet connections. (optional)
+            malware: Anti-virus malware threat weight settings. (optional)
+            ips: IPS threat weight settings. (optional)
+            web: Web filtering threat weight settings. (optional)
+            geolocation: Geolocation-based threat weight settings. (optional)
+            application: Application-control threat weight settings. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
             Dictionary containing API response
-
-        Example:
-            >>> fgt.api.cmdb.log.threat_weight.update(
-            ...     status='enable',
-            ...     level={
-            ...         'low': 1,
-            ...         'medium': 2,
-            ...         'high': 3,
-            ...         'critical': 4
-            ...     }
-            ... )
         """
-        payload = dict(data_dict) if data_dict else {}
-
-        param_map = {
-            "application": "application",
-            "blocked_connection": "blocked-connection",
-            "botnet_connection_detected": "botnet-connection-detected",
-            "failed_connection": "failed-connection",
-            "geolocation": "geolocation",
-            "ips": "ips",
-            "level": "level",
-            "malware": "malware",
-            "status": "status",
-            "url_block_detected": "url-block-detected",
-            "web": "web",
-        }
-
-        for py_name, api_name in param_map.items():
-            value = locals().get(py_name)
-            if value is not None:
-                payload[api_name] = value
-
-        payload.update(kwargs)
-
-        return self._client.put("cmdb", self._endpoint, data=payload)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/log/threat-weight"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if status is not None:
+            data_payload['status'] = status
+        if level is not None:
+            data_payload['level'] = level
+        if blocked_connection is not None:
+            data_payload['blocked-connection'] = blocked_connection
+        if failed_connection is not None:
+            data_payload['failed-connection'] = failed_connection
+        if url_block_detected is not None:
+            data_payload['url-block-detected'] = url_block_detected
+        if botnet_connection_detected is not None:
+            data_payload['botnet-connection-detected'] = botnet_connection_detected
+        if malware is not None:
+            data_payload['malware'] = malware
+        if ips is not None:
+            data_payload['ips'] = ips
+        if web is not None:
+            data_payload['web'] = web
+        if geolocation is not None:
+            data_payload['geolocation'] = geolocation
+        if application is not None:
+            data_payload['application'] = application
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

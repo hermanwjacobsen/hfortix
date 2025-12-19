@@ -1,219 +1,386 @@
 """
 FortiOS CMDB - System SpeedTestSchedule
 
-Speed test schedule for each interface.
-
 API Endpoints:
-    GET    /system/speed-test-schedule           - List all / Get specific
-    POST   /system/speed-test-schedule           - Create
-    PUT    /system/speed-test-schedule/{name}   - Update
-    DELETE /system/speed-test-schedule/{name}   - Delete
+    GET    /system/speed-test-schedule
+    POST   /system/speed-test-schedule
+    GET    /system/speed-test-schedule/{interface}
+    PUT    /system/speed-test-schedule/{interface}
+    DELETE /system/speed-test-schedule/{interface}
 """
-from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
-from hfortix.FortiOS.http_client import encode_path_component
-
 
 class SpeedTestSchedule:
-    """speed-test-schedule endpoint"""
+    """SpeedTestSchedule operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize SpeedTestSchedule endpoint
+        Initialize SpeedTestSchedule endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        format: Optional[str] = None,
-        filter: Optional[str] = None,
-        count: Optional[int] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        interface: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get speed-test-schedule
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Object name (get specific object)
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions
-            format (str, optional): Field list to return
-            filter (str, optional): Filter expression
-            count (int, optional): Maximum number of entries
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            interface: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Get all
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.get()
-            
-            >>> # Get specific by name
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.get(name='obj1')
+            Dictionary containing API response
         """
-        params = {}
+        params = payload_dict.copy() if payload_dict else {}
         
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "action": action,
-            "format": format,
-            "filter": filter,
-            "count": count,
-        }
-        
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-        
+        # Build endpoint path
+        if interface:
+            endpoint = f"/system/speed-test-schedule/{interface}"
+        else:
+            endpoint = "/system/speed-test-schedule"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-        
-        path = "system/speed-test-schedule"
-        if name:
-            path = f"{path}/{encode_path_component(name)}"
-        
-        return self._client.get("cmdb", path, params=params if params else None, vdom=vdom)
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create speed-test-schedule
-
-        Args:
-            payload_dict (dict, optional): Complete configuration as dictionary
-            name (str, optional): Object name
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create with dictionary
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.create(
-            ...     payload_dict={'name': 'obj1', 'comment': 'Test'}
-            ... )
-            
-            >>> # POST - Create with parameters
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.create(
-            ...     name='obj1',
-            ...     comment='Test'
-            ... )
-        """
-        data = payload_dict.copy() if payload_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.post("cmdb", "system/speed-test-schedule", data=data, vdom=vdom)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        interface: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        diffserv: str | None = None,
+        server_name: str | None = None,
+        mode: str | None = None,
+        schedules: list | None = None,
+        dynamic_server: str | None = None,
+        ctrl_port: int | None = None,
+        server_port: int | None = None,
+        update_shaper: str | None = None,
+        update_inbandwidth: str | None = None,
+        update_outbandwidth: str | None = None,
+        update_interface_shaping: str | None = None,
+        update_inbandwidth_maximum: int | None = None,
+        update_inbandwidth_minimum: int | None = None,
+        update_outbandwidth_maximum: int | None = None,
+        update_outbandwidth_minimum: int | None = None,
+        expected_inbandwidth_minimum: int | None = None,
+        expected_inbandwidth_maximum: int | None = None,
+        expected_outbandwidth_minimum: int | None = None,
+        expected_outbandwidth_maximum: int | None = None,
+        retries: int | None = None,
+        retry_pause: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update speed-test-schedule
-
+        Update this specific resource.
+        
         Args:
-            name (str): Object name (required)
-            payload_dict (dict, optional): Complete configuration as dictionary
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters to update
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            interface: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            interface: Interface name. (optional)
+            status: Enable/disable scheduled speed test. (optional)
+            diffserv: DSCP used for speed test. (optional)
+            server_name: Speed test server name in system.speed-test-server list or leave it as empty to choose default server "FTNT_Auto". (optional)
+            mode: Protocol Auto(default), TCP or UDP used for speed test. (optional)
+            schedules: Schedules for the interface. (optional)
+            dynamic_server: Enable/disable dynamic server option. (optional)
+            ctrl_port: Port of the controller to get access token. (optional)
+            server_port: Port of the server to run speed test. (optional)
+            update_shaper: Set egress shaper based on the test result. (optional)
+            update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. (optional)
+            update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. (optional)
+            update_interface_shaping: Enable/disable using the speedtest results as reference for interface shaping (overriding configured in/outbandwidth). (optional)
+            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test. (optional)
+            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to be considered effective. (optional)
+            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test. (optional)
+            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective. (optional)
+            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_minimum: Set the minimum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_maximum: Set the maximum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            retries: Maximum number of times the FortiGate unit will attempt to contact the same server before considering the speed test has failed (1 - 10, default = 5). (optional)
+            retry_pause: Number of seconds the FortiGate pauses between successive speed tests before trying a different server (60 - 3600, default = 300). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update with dictionary
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.update(
-            ...     name='obj1',
-            ...     payload_dict={'comment': 'Updated'}
-            ... )
-            
-            >>> # PUT - Update with parameters
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.update(
-            ...     name='obj1',
-            ...     comment='Updated'
-            ... )
+            Dictionary containing API response
         """
-        data = payload_dict.copy() if payload_dict else {}
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
         
-        for key, value in kwargs.items():
-            if value is not None:
-                api_key = key.replace("_", "-")
-                data[api_key] = value
-        
-        return self._client.put("cmdb", f"system/speed-test-schedule/{encode_path_component(name)}", data=data, vdom=vdom)
+        # Build endpoint path
+        if not interface:
+            raise ValueError("interface is required for put()")
+        endpoint = f"/system/speed-test-schedule/{interface}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if interface is not None:
+            data_payload['interface'] = interface
+        if status is not None:
+            data_payload['status'] = status
+        if diffserv is not None:
+            data_payload['diffserv'] = diffserv
+        if server_name is not None:
+            data_payload['server-name'] = server_name
+        if mode is not None:
+            data_payload['mode'] = mode
+        if schedules is not None:
+            data_payload['schedules'] = schedules
+        if dynamic_server is not None:
+            data_payload['dynamic-server'] = dynamic_server
+        if ctrl_port is not None:
+            data_payload['ctrl-port'] = ctrl_port
+        if server_port is not None:
+            data_payload['server-port'] = server_port
+        if update_shaper is not None:
+            data_payload['update-shaper'] = update_shaper
+        if update_inbandwidth is not None:
+            data_payload['update-inbandwidth'] = update_inbandwidth
+        if update_outbandwidth is not None:
+            data_payload['update-outbandwidth'] = update_outbandwidth
+        if update_interface_shaping is not None:
+            data_payload['update-interface-shaping'] = update_interface_shaping
+        if update_inbandwidth_maximum is not None:
+            data_payload['update-inbandwidth-maximum'] = update_inbandwidth_maximum
+        if update_inbandwidth_minimum is not None:
+            data_payload['update-inbandwidth-minimum'] = update_inbandwidth_minimum
+        if update_outbandwidth_maximum is not None:
+            data_payload['update-outbandwidth-maximum'] = update_outbandwidth_maximum
+        if update_outbandwidth_minimum is not None:
+            data_payload['update-outbandwidth-minimum'] = update_outbandwidth_minimum
+        if expected_inbandwidth_minimum is not None:
+            data_payload['expected-inbandwidth-minimum'] = expected_inbandwidth_minimum
+        if expected_inbandwidth_maximum is not None:
+            data_payload['expected-inbandwidth-maximum'] = expected_inbandwidth_maximum
+        if expected_outbandwidth_minimum is not None:
+            data_payload['expected-outbandwidth-minimum'] = expected_outbandwidth_minimum
+        if expected_outbandwidth_maximum is not None:
+            data_payload['expected-outbandwidth-maximum'] = expected_outbandwidth_maximum
+        if retries is not None:
+            data_payload['retries'] = retries
+        if retry_pause is not None:
+            data_payload['retry-pause'] = retry_pause
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        interface: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete speed-test-schedule
-
+        Delete this specific resource.
+        
         Args:
-            name (str): Object name to delete
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            interface: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> result = fgt.api.cmdb.system.speed_test_schedule.delete('obj1')
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"system/speed-test-schedule/{encode_path_component(name)}", vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not interface:
+            raise ValueError("interface is required for delete()")
+        endpoint = f"/system/speed-test-schedule/{interface}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        interface: str | None = None,
+        status: str | None = None,
+        diffserv: str | None = None,
+        server_name: str | None = None,
+        mode: str | None = None,
+        schedules: list | None = None,
+        dynamic_server: str | None = None,
+        ctrl_port: int | None = None,
+        server_port: int | None = None,
+        update_shaper: str | None = None,
+        update_inbandwidth: str | None = None,
+        update_outbandwidth: str | None = None,
+        update_interface_shaping: str | None = None,
+        update_inbandwidth_maximum: int | None = None,
+        update_inbandwidth_minimum: int | None = None,
+        update_outbandwidth_maximum: int | None = None,
+        update_outbandwidth_minimum: int | None = None,
+        expected_inbandwidth_minimum: int | None = None,
+        expected_inbandwidth_maximum: int | None = None,
+        expected_outbandwidth_minimum: int | None = None,
+        expected_outbandwidth_maximum: int | None = None,
+        retries: int | None = None,
+        retry_pause: int | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if speed-test-schedule exists
-
+        Create object(s) in this table.
+        
         Args:
-            name (str): Object name to check
-            vdom (str/bool, optional): Virtual domain, False to skip
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            interface: Interface name. (optional)
+            status: Enable/disable scheduled speed test. (optional)
+            diffserv: DSCP used for speed test. (optional)
+            server_name: Speed test server name in system.speed-test-server list or leave it as empty to choose default server "FTNT_Auto". (optional)
+            mode: Protocol Auto(default), TCP or UDP used for speed test. (optional)
+            schedules: Schedules for the interface. (optional)
+            dynamic_server: Enable/disable dynamic server option. (optional)
+            ctrl_port: Port of the controller to get access token. (optional)
+            server_port: Port of the server to run speed test. (optional)
+            update_shaper: Set egress shaper based on the test result. (optional)
+            update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. (optional)
+            update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. (optional)
+            update_interface_shaping: Enable/disable using the speedtest results as reference for interface shaping (overriding configured in/outbandwidth). (optional)
+            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test. (optional)
+            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to be considered effective. (optional)
+            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test. (optional)
+            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective. (optional)
+            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_minimum: Set the minimum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_maximum: Set the maximum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
+            retries: Maximum number of times the FortiGate unit will attempt to contact the same server before considering the speed test has failed (1 - 10, default = 5). (optional)
+            retry_pause: Number of seconds the FortiGate pauses between successive speed tests before trying a different server (60 - 3600, default = 300). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            bool: True if exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.system.speed_test_schedule.exists('obj1'):
-            ...     print("Exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name=name, vdom=vdom)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/system/speed-test-schedule"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if interface is not None:
+            data_payload['interface'] = interface
+        if status is not None:
+            data_payload['status'] = status
+        if diffserv is not None:
+            data_payload['diffserv'] = diffserv
+        if server_name is not None:
+            data_payload['server-name'] = server_name
+        if mode is not None:
+            data_payload['mode'] = mode
+        if schedules is not None:
+            data_payload['schedules'] = schedules
+        if dynamic_server is not None:
+            data_payload['dynamic-server'] = dynamic_server
+        if ctrl_port is not None:
+            data_payload['ctrl-port'] = ctrl_port
+        if server_port is not None:
+            data_payload['server-port'] = server_port
+        if update_shaper is not None:
+            data_payload['update-shaper'] = update_shaper
+        if update_inbandwidth is not None:
+            data_payload['update-inbandwidth'] = update_inbandwidth
+        if update_outbandwidth is not None:
+            data_payload['update-outbandwidth'] = update_outbandwidth
+        if update_interface_shaping is not None:
+            data_payload['update-interface-shaping'] = update_interface_shaping
+        if update_inbandwidth_maximum is not None:
+            data_payload['update-inbandwidth-maximum'] = update_inbandwidth_maximum
+        if update_inbandwidth_minimum is not None:
+            data_payload['update-inbandwidth-minimum'] = update_inbandwidth_minimum
+        if update_outbandwidth_maximum is not None:
+            data_payload['update-outbandwidth-maximum'] = update_outbandwidth_maximum
+        if update_outbandwidth_minimum is not None:
+            data_payload['update-outbandwidth-minimum'] = update_outbandwidth_minimum
+        if expected_inbandwidth_minimum is not None:
+            data_payload['expected-inbandwidth-minimum'] = expected_inbandwidth_minimum
+        if expected_inbandwidth_maximum is not None:
+            data_payload['expected-inbandwidth-maximum'] = expected_inbandwidth_maximum
+        if expected_outbandwidth_minimum is not None:
+            data_payload['expected-outbandwidth-minimum'] = expected_outbandwidth_minimum
+        if expected_outbandwidth_maximum is not None:
+            data_payload['expected-outbandwidth-maximum'] = expected_outbandwidth_maximum
+        if retries is not None:
+            data_payload['retries'] = retries
+        if retry_pause is not None:
+            data_payload['retry-pause'] = retry_pause
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

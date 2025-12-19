@@ -1,426 +1,354 @@
 """
-FortiOS CMDB - Authentication Rules
-
-Configure authentication rules for controlling user authentication requirements.
+FortiOS CMDB - Authentication Rule
 
 API Endpoints:
-    GET    /api/v2/cmdb/authentication/rule       - Get all authentication rules
-    GET    /api/v2/cmdb/authentication/rule/{name} - Get specific authentication rule
-    POST   /api/v2/cmdb/authentication/rule       - Create authentication rule
-    PUT    /api/v2/cmdb/authentication/rule/{name} - Update authentication rule
-    DELETE /api/v2/cmdb/authentication/rule/{name} - Delete authentication rule
+    GET    /authentication/rule
+    POST   /authentication/rule
+    GET    /authentication/rule/{name}
+    PUT    /authentication/rule/{name}
+    DELETE /authentication/rule/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Rule:
-    """Authentication rule endpoint"""
+    """Rule operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-    @staticmethod
-    def _format_name_list(
-        items: Optional[list[Union[str, dict[str, Any]]]],
-    ) -> Optional[list[dict[str, Any]]]:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Convert simple list of strings to FortiOS format [{'name': 'item'}]
+        Initialize Rule endpoint.
 
         Args:
-            items: List of strings or dicts or None
-
-        Returns:
-            List of dicts with 'name' key, or None if input is None
+            client: HTTPClient instance for API communication
         """
-        if items is None:
-            return None
-
-        formatted = []
-        for item in items:
-            if isinstance(item, str):
-                formatted.append({"name": item})
-            elif isinstance(item, dict):
-                formatted.append(item)
-            else:
-                formatted.append({"name": str(item)})
-
-        return formatted
+        self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        attr: Optional[str] = None,
-        datasource: Optional[bool] = False,
-        with_meta: Optional[bool] = False,
-        skip: Optional[bool] = False,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[str] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get authentication rule(s) - List all or get specific
-
-        Retrieve authentication rules with filtering and query options.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name (str, optional): Rule name. If provided, get specific rule.
-            attr (str, optional): Attribute name that references other table
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include meta information
-            skip (bool, optional): Enable skip operator
-            count (int, optional): Maximum number of entries to return
-            skip_to_datasource (str, optional): Skip to datasource entry
-            acs (bool, optional): If true, return in ascending order
-            search (str, optional): Filter by search value
-            scope (str, optional): Scope level - 'global', 'vdom', or 'both'
-            format (str, optional): Return specific fields (e.g., 'name|status')
-            action (str, optional): Action type - 'default', 'schema', or 'revision'
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with rule data
-
-        Examples:
-            >>> # Get all authentication rules
-            >>> rules = fgt.cmdb.authentication.rule.list()
-
-            >>> # Get specific rule by name
-            >>> rule = fgt.cmdb.authentication.rule.get('rule1')
-
-            >>> # Get with filtering
-            >>> filtered = fgt.cmdb.authentication.rule.get(
-            ...     format='name|status',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "attr": attr,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/authentication/rule/{name}"
+        else:
+            endpoint = "/authentication/rule"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Build path
-        path = "authentication/rule"
-        if name is not None:
-            path = f"{path}/{encode_path_component(name)}"
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        protocol: Optional[str] = None,
-        srcintf: Optional[list[Union[str, dict[str, Any]]]] = None,
-        srcaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
-        srcaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
-        dstaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
-        dstaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
-        ip_based: Optional[str] = None,
-        active_auth_method: Optional[str] = None,
-        sso_auth_method: Optional[str] = None,
-        web_auth_cookie: Optional[str] = None,
-        web_portal: Optional[str] = None,
-        cert_auth_cookie: Optional[str] = None,
-        transaction_based: Optional[str] = None,
-        cors_stateful: Optional[str] = None,
-        cors_depth: Optional[int] = None,
-        comments: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create authentication rule
-
-        Create authentication rule to control user authentication requirements.
-        Note: Either srcaddr or srcaddr6 is required by FortiOS.
-
-        Args:
-            name (str, required): Authentication rule name
-            status (str, optional): Enable/disable rule - 'enable' or 'disable'
-            protocol (str, optional): Protocol - 'http', 'ftp', 'socks', 'ssh', 'ztna-portal'
-            srcintf (list, optional): List of source interface names or dicts with 'name' key
-            srcaddr (list, required): List of IPv4 source addresses (strings or dicts with 'name' key)
-            srcaddr6 (list, optional): List of IPv6 source addresses (strings or dicts with 'name' key)
-            dstaddr (list, optional): List of IPv4 destination addresses (strings or dicts with 'name' key)
-            dstaddr6 (list, optional): List of IPv6 destination addresses (strings or dicts with 'name' key)
-            ip_based (str, optional): Enable/disable IP-based auth - 'enable' or 'disable'
-            active_auth_method (str, optional): Active authentication method (scheme name)
-            sso_auth_method (str, optional): SSO authentication method (scheme name)
-            web_auth_cookie (str, optional): Enable/disable web auth cookies - 'enable' or 'disable'
-            web_portal (str, optional): Enable/disable web portal - 'enable' or 'disable'
-            cert_auth_cookie (str, optional): Enable/disable cert auth cookie - 'enable' or 'disable'
-            transaction_based (str, optional): Enable/disable transaction-based auth - 'enable' or 'disable'
-            cors_stateful (str, optional): Enable/disable CORS access - 'enable' or 'disable'
-            cors_depth (int, optional): CORS depth (default: 3)
-            comments (str, optional): Comment
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: API response
-
-        Examples:
-            >>> # POST - Create basic authentication rule (simple format)
-            >>> result = fgt.cmdb.authentication.rule.create(
-            ...     name='web-auth-rule',
-            ...     status='enable',
-            ...     protocol='http',
-            ...     srcaddr=['all'],  # Simple string format
-            ...     active_auth_method='form-based'
-            ... )
-
-            >>> # POST - Create rule with source addresses (dict format also works)
-            >>> result = fgt.cmdb.authentication.rule.create(
-            ...     name='lan-auth-rule',
-            ...     status='enable',
-            ...     srcintf=['port2'],
-            ...     srcaddr=[{'name': 'LAN-subnet'}],  # Dict format
-            ...     active_auth_method='basic-auth'
-            ... )
-        """
-        # Convert simple lists to FortiOS format
-        srcintf = self._format_name_list(srcintf)
-        srcaddr = self._format_name_list(srcaddr)
-        srcaddr6 = self._format_name_list(srcaddr6)
-        dstaddr = self._format_name_list(dstaddr)
-        dstaddr6 = self._format_name_list(dstaddr6)
-
-        param_map = {
-            "name": name,
-            "status": status,
-            "protocol": protocol,
-            "srcintf": srcintf,
-            "srcaddr": srcaddr,
-            "srcaddr6": srcaddr6,
-            "dstaddr": dstaddr,
-            "dstaddr6": dstaddr6,
-            "ip_based": ip_based,
-            "active_auth_method": active_auth_method,
-            "sso_auth_method": sso_auth_method,
-            "web_auth_cookie": web_auth_cookie,
-            "web_portal": web_portal,
-            "cert_auth_cookie": cert_auth_cookie,
-            "transaction_based": transaction_based,
-            "cors_stateful": cors_stateful,
-            "cors_depth": cors_depth,
-            "comments": comments,
-        }
-
-        api_field_map = {
-            "name": "name",
-            "status": "status",
-            "protocol": "protocol",
-            "srcintf": "srcintf",
-            "srcaddr": "srcaddr",
-            "srcaddr6": "srcaddr6",
-            "dstaddr": "dstaddr",
-            "dstaddr6": "dstaddr6",
-            "ip_based": "ip-based",
-            "active_auth_method": "active-auth-method",
-            "sso_auth_method": "sso-auth-method",
-            "web_auth_cookie": "web-auth-cookie",
-            "web_portal": "web-portal",
-            "cert_auth_cookie": "cert-auth-cookie",
-            "transaction_based": "transaction-based",
-            "cors_stateful": "cors-stateful",
-            "cors_depth": "cors-depth",
-            "comments": "comments",
-        }
-
-        data = {}
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "authentication/rule", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        protocol: Optional[str] = None,
-        srcintf: Optional[list[Union[str, dict[str, Any]]]] = None,
-        srcaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
-        srcaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
-        dstaddr: Optional[list[Union[str, dict[str, Any]]]] = None,
-        dstaddr6: Optional[list[Union[str, dict[str, Any]]]] = None,
-        ip_based: Optional[str] = None,
-        active_auth_method: Optional[str] = None,
-        sso_auth_method: Optional[str] = None,
-        web_auth_cookie: Optional[str] = None,
-        web_portal: Optional[str] = None,
-        cert_auth_cookie: Optional[str] = None,
-        transaction_based: Optional[str] = None,
-        cors_stateful: Optional[str] = None,
-        cors_depth: Optional[int] = None,
-        comments: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        status: str | None = None,
+        protocol: str | None = None,
+        srcintf: list | None = None,
+        srcaddr: list | None = None,
+        dstaddr: list | None = None,
+        srcaddr6: list | None = None,
+        dstaddr6: list | None = None,
+        ip_based: str | None = None,
+        active_auth_method: str | None = None,
+        sso_auth_method: str | None = None,
+        web_auth_cookie: str | None = None,
+        cors_stateful: str | None = None,
+        cors_depth: int | None = None,
+        cert_auth_cookie: str | None = None,
+        transaction_based: str | None = None,
+        web_portal: str | None = None,
+        comments: str | None = None,
+        session_logout: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update authentication rule
-
-        Update authentication rule configuration.
-
+        Update this specific resource.
+        
         Args:
-            name (str, required): Authentication rule name
-            status (str, optional): Enable/disable rule - 'enable' or 'disable'
-            protocol (str, optional): Protocol - 'http', 'ftp', 'socks', 'ssh', 'ztna-portal'
-            srcintf (list, optional): List of source interface names
-            srcaddr (list, optional): List of IPv4 source addresses
-            srcaddr6 (list, optional): List of IPv6 source addresses
-            dstaddr (list, optional): List of IPv4 destination addresses
-            dstaddr6 (list, optional): List of IPv6 destination addresses
-            ip_based (str, optional): Enable/disable IP-based auth - 'enable' or 'disable'
-            active_auth_method (str, optional): Active authentication method
-            sso_auth_method (str, optional): SSO authentication method
-            web_auth_cookie (str, optional): Enable/disable web auth cookies - 'enable' or 'disable'
-            web_portal (str, optional): Enable/disable web portal - 'enable' or 'disable'
-            cert_auth_cookie (str, optional): Enable/disable cert auth cookie - 'enable' or 'disable'
-            transaction_based (str, optional): Enable/disable transaction-based auth - 'enable' or 'disable'
-            cors_stateful (str, optional): Enable/disable CORS access - 'enable' or 'disable'
-            cors_depth (int, optional): CORS depth
-            comments (str, optional): Comment
-            vdom (str, optional): Virtual Domain name
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Authentication rule name. (optional)
+            status: Enable/disable this authentication rule. (optional)
+            protocol: Authentication is required for the selected protocol (default = HTTP). (optional)
+            srcintf: Incoming (ingress) interface. (optional)
+            srcaddr: Authentication is required for the selected IPv4 source address. (optional)
+            dstaddr: Select an IPv4 destination address from available options. Required for web proxy authentication. (optional)
+            srcaddr6: Authentication is required for the selected IPv6 source address. (optional)
+            dstaddr6: Select an IPv6 destination address from available options. Required for web proxy authentication. (optional)
+            ip_based: Enable/disable IP-based authentication. When enabled, previously authenticated users from the same IP address will be exempted. (optional)
+            active_auth_method: Select an active authentication method. (optional)
+            sso_auth_method: Select a single-sign on (SSO) authentication method. (optional)
+            web_auth_cookie: Enable/disable Web authentication cookies (default = disable). (optional)
+            cors_stateful: Enable/disable allowance of CORS access (default = disable). (optional)
+            cors_depth: Depth to allow CORS access (default = 3). (optional)
+            cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). (optional)
+            transaction_based: Enable/disable transaction based authentication (default = disable). (optional)
+            web_portal: Enable/disable web portal for proxy transparent policy (default = enable). (optional)
+            comments: Comment. (optional)
+            session_logout: Enable/disable logout of a user from the current session. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update rule status
-            >>> result = fgt.cmdb.authentication.rule.update(
-            ...     name='web-auth-rule',
-            ...     status='disable'
-            ... )
-
-            >>> # PUT - Update authentication method
-            >>> result = fgt.cmdb.authentication.rule.update(
-            ...     name='web-auth-rule',
-            ...     active_auth_method='ldap-auth'
-            ... )
+            Dictionary containing API response
         """
-        # Convert simple lists to FortiOS format
-        srcintf = self._format_name_list(srcintf)
-        srcaddr = self._format_name_list(srcaddr)
-        srcaddr6 = self._format_name_list(srcaddr6)
-        dstaddr = self._format_name_list(dstaddr)
-        dstaddr6 = self._format_name_list(dstaddr6)
-
-        param_map = {
-            "status": status,
-            "protocol": protocol,
-            "srcintf": srcintf,
-            "srcaddr": srcaddr,
-            "srcaddr6": srcaddr6,
-            "dstaddr": dstaddr,
-            "dstaddr6": dstaddr6,
-            "ip_based": ip_based,
-            "active_auth_method": active_auth_method,
-            "sso_auth_method": sso_auth_method,
-            "web_auth_cookie": web_auth_cookie,
-            "web_portal": web_portal,
-            "cert_auth_cookie": cert_auth_cookie,
-            "transaction_based": transaction_based,
-            "cors_stateful": cors_stateful,
-            "cors_depth": cors_depth,
-            "comments": comments,
-        }
-
-        api_field_map = {
-            "status": "status",
-            "protocol": "protocol",
-            "srcintf": "srcintf",
-            "srcaddr": "srcaddr",
-            "srcaddr6": "srcaddr6",
-            "dstaddr": "dstaddr",
-            "dstaddr6": "dstaddr6",
-            "ip_based": "ip-based",
-            "active_auth_method": "active-auth-method",
-            "sso_auth_method": "sso-auth-method",
-            "web_auth_cookie": "web-auth-cookie",
-            "web_portal": "web-portal",
-            "cert_auth_cookie": "cert-auth-cookie",
-            "transaction_based": "transaction-based",
-            "cors_stateful": "cors-stateful",
-            "cors_depth": "cors-depth",
-            "comments": "comments",
-        }
-
-        data = {}
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"authentication/rule/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/authentication/rule/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if ip_based is not None:
+            data_payload['ip-based'] = ip_based
+        if active_auth_method is not None:
+            data_payload['active-auth-method'] = active_auth_method
+        if sso_auth_method is not None:
+            data_payload['sso-auth-method'] = sso_auth_method
+        if web_auth_cookie is not None:
+            data_payload['web-auth-cookie'] = web_auth_cookie
+        if cors_stateful is not None:
+            data_payload['cors-stateful'] = cors_stateful
+        if cors_depth is not None:
+            data_payload['cors-depth'] = cors_depth
+        if cert_auth_cookie is not None:
+            data_payload['cert-auth-cookie'] = cert_auth_cookie
+        if transaction_based is not None:
+            data_payload['transaction-based'] = transaction_based
+        if web_portal is not None:
+            data_payload['web-portal'] = web_portal
+        if comments is not None:
+            data_payload['comments'] = comments
+        if session_logout is not None:
+            data_payload['session-logout'] = session_logout
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete authentication rule
-
+        Delete this specific resource.
+        
         Args:
-            name (str, required): Authentication rule name
-            vdom (str, optional): Virtual Domain name
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # Delete authentication rule
-            >>> result = fgt.cmdb.authentication.rule.delete('web-auth-rule')
+            Dictionary containing API response
         """
-        return self._client.delete(
-            "cmdb", f"authentication/rule/{name}", vdom=vdom, raw_json=raw_json
-        )
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/authentication/rule/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        status: str | None = None,
+        protocol: str | None = None,
+        srcintf: list | None = None,
+        srcaddr: list | None = None,
+        dstaddr: list | None = None,
+        srcaddr6: list | None = None,
+        dstaddr6: list | None = None,
+        ip_based: str | None = None,
+        active_auth_method: str | None = None,
+        sso_auth_method: str | None = None,
+        web_auth_cookie: str | None = None,
+        cors_stateful: str | None = None,
+        cors_depth: int | None = None,
+        cert_auth_cookie: str | None = None,
+        transaction_based: str | None = None,
+        web_portal: str | None = None,
+        comments: str | None = None,
+        session_logout: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Authentication rule name. (optional)
+            status: Enable/disable this authentication rule. (optional)
+            protocol: Authentication is required for the selected protocol (default = HTTP). (optional)
+            srcintf: Incoming (ingress) interface. (optional)
+            srcaddr: Authentication is required for the selected IPv4 source address. (optional)
+            dstaddr: Select an IPv4 destination address from available options. Required for web proxy authentication. (optional)
+            srcaddr6: Authentication is required for the selected IPv6 source address. (optional)
+            dstaddr6: Select an IPv6 destination address from available options. Required for web proxy authentication. (optional)
+            ip_based: Enable/disable IP-based authentication. When enabled, previously authenticated users from the same IP address will be exempted. (optional)
+            active_auth_method: Select an active authentication method. (optional)
+            sso_auth_method: Select a single-sign on (SSO) authentication method. (optional)
+            web_auth_cookie: Enable/disable Web authentication cookies (default = disable). (optional)
+            cors_stateful: Enable/disable allowance of CORS access (default = disable). (optional)
+            cors_depth: Depth to allow CORS access (default = 3). (optional)
+            cert_auth_cookie: Enable/disable to use device certificate as authentication cookie (default = enable). (optional)
+            transaction_based: Enable/disable transaction based authentication (default = disable). (optional)
+            web_portal: Enable/disable web portal for proxy transparent policy (default = enable). (optional)
+            comments: Comment. (optional)
+            session_logout: Enable/disable logout of a user from the current session. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/authentication/rule"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if status is not None:
+            data_payload['status'] = status
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if srcintf is not None:
+            data_payload['srcintf'] = srcintf
+        if srcaddr is not None:
+            data_payload['srcaddr'] = srcaddr
+        if dstaddr is not None:
+            data_payload['dstaddr'] = dstaddr
+        if srcaddr6 is not None:
+            data_payload['srcaddr6'] = srcaddr6
+        if dstaddr6 is not None:
+            data_payload['dstaddr6'] = dstaddr6
+        if ip_based is not None:
+            data_payload['ip-based'] = ip_based
+        if active_auth_method is not None:
+            data_payload['active-auth-method'] = active_auth_method
+        if sso_auth_method is not None:
+            data_payload['sso-auth-method'] = sso_auth_method
+        if web_auth_cookie is not None:
+            data_payload['web-auth-cookie'] = web_auth_cookie
+        if cors_stateful is not None:
+            data_payload['cors-stateful'] = cors_stateful
+        if cors_depth is not None:
+            data_payload['cors-depth'] = cors_depth
+        if cert_auth_cookie is not None:
+            data_payload['cert-auth-cookie'] = cert_auth_cookie
+        if transaction_based is not None:
+            data_payload['transaction-based'] = transaction_based
+        if web_portal is not None:
+            data_payload['web-portal'] = web_portal
+        if comments is not None:
+            data_payload['comments'] = comments
+        if session_logout is not None:
+            data_payload['session-logout'] = session_logout
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

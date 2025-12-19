@@ -1,0 +1,62 @@
+"""Monitor API - GlobalSearch operations."""
+
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from hfortix.FortiOS.http_client import HTTPClient
+
+
+class GlobalSearch:
+    """GlobalSearch operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize GlobalSearch endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
+        self._client = client
+
+    def get(
+        self,
+        search: str,
+        scope: str | None = None,
+        search_tables: list | None = None,
+        skip_tables: list | None = None,
+        exact: bool | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Search for CMDB table objects based on search phrase.
+        
+        Args:
+            search: Phrase used for searching. (required)
+            scope: Search scope [vdom|global]. (optional)
+            search_tables: Array of CMDB tables to search on. If not defined, global search function will do a search on all tables that the current user has read permission on. E.g ['firewall.address', 'firewall.address6']. (optional)
+            skip_tables: Array of CMDB tables to be skipped when doing global search. E.g. ['firewall.address', 'firewall.address6']. (optional)
+            exact: If true, only entries with exact match will be returned. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.system.global_search.get(search='value')
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params['search'] = search
+        if scope is not None:
+            params['scope'] = scope
+        if search_tables is not None:
+            params['search_tables'] = search_tables
+        if skip_tables is not None:
+            params['skip_tables'] = skip_tables
+        if exact is not None:
+            params['exact'] = exact
+        params.update(kwargs)
+        return self._client.get("monitor", "/system/global-search", params=params)

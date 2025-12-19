@@ -1,144 +1,117 @@
 """
-FortiOS CMDB - Automation Settings
-
-Automation stitch configuration settings.
+FortiOS CMDB - Automation Setting
 
 API Endpoints:
-    GET  /automation/setting  - Get configuration
-    PUT  /automation/setting  - Update configuration
+    GET    /automation/setting
+    PUT    /automation/setting
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Setting:
-    """Automation setting endpoint"""
+    """Setting operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Automation Setting endpoint
+        Initialize Setting endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get automation settings
-
+        Select all entries in a CLI table.
+        
         Args:
-            datasource (bool, optional): Include datasource information
-            with_meta (bool, optional): Include metadata
-            skip (bool, optional): Enable CLI skip operator
-            action (str, optional): Special actions (default, schema, revision)
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional query parameters
-
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response with automation settings
-
-        Examples:
-            >>> # Get automation settings
-            >>> settings = fgt.cmdb.automation.setting.get()
-            >>> print(f"Status: {settings['http_status']}")
-
-            >>> # Get with metadata
-            >>> settings = fgt.cmdb.automation.setting.get(with_meta=True)
+            Dictionary containing API response
         """
-        # Build query parameters
-        params = {}
-
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if action is not None:
-            params["action"] = action
-
-        # Add any additional parameters
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/automation/setting"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", "automation/setting", params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        max_concurrent_stitches: Optional[int] = None,
-        fabric_sync: Optional[str] = None,
-        secure_mode: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        max_concurrent_stitches: int | None = None,
+        fabric_sync: str | None = None,
+        secure_mode: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update automation settings
-
+        Update this specific resource.
+        
         Args:
-            max_concurrent_stitches (int, optional): Maximum number of concurrent automation stitches (32-1024, default: 512)
-            fabric_sync (str, optional): Enable/disable sync with security fabric - 'enable' or 'disable' (default: 'enable')
-            secure_mode (str, optional): Enable/disable secure running mode - 'enable' or 'disable' (default: 'disable')
-            vdom (str/bool, optional): Virtual domain, False to skip
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            max_concurrent_stitches: Maximum number of automation stitches that are allowed to run concurrently. (optional)
+            fabric_sync: Enable/disable synchronization of automation settings with security fabric. (optional)
+            secure_mode: Enable/disable secure running mode for automation. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            dict: API response
-
-        Examples:
-            >>> # PUT - Update max concurrent stitches
-            >>> result = fgt.cmdb.automation.setting.update(
-            ...     max_concurrent_stitches=100
-            ... )
-            >>> print(f"Status: {result['status']}")
-
-            >>> # Enable fabric sync and secure mode
-            >>> result = fgt.cmdb.automation.setting.update(
-            ...     fabric_sync='enable',
-            ...     secure_mode='enable'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dictionary
-        data = {}
-
-        # Map parameters (Python snake_case to API hyphenated-case)
-        param_map = {
-            "max_concurrent_stitches": "max-concurrent-stitches",
-            "fabric_sync": "fabric-sync",
-            "secure_mode": "secure-mode",
-        }
-
-        # Add parameters to data
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/automation/setting"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if max_concurrent_stitches is not None:
-            data[param_map["max_concurrent_stitches"]] = max_concurrent_stitches
+            data_payload['max-concurrent-stitches'] = max_concurrent_stitches
         if fabric_sync is not None:
-            data[param_map["fabric_sync"]] = fabric_sync
+            data_payload['fabric-sync'] = fabric_sync
         if secure_mode is not None:
-            data[param_map["secure_mode"]] = secure_mode
-
-        # Add any additional parameters
-        data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", "automation/setting", data=data, vdom=vdom, raw_json=raw_json
-        )
+            data_payload['secure-mode'] = secure_mode
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -1,297 +1,306 @@
 """
-FortiOS CMDB - Rule IOTD
-
-Show IOT detection signatures.
+FortiOS CMDB - Rule Iotd
 
 API Endpoints:
-    GET    /api/v2/cmdb/rule/iotd           - List all / Get specific
-    POST   /api/v2/cmdb/rule/iotd           - Create
-    PUT    /api/v2/cmdb/rule/iotd/{name}   - Update
-    DELETE /api/v2/cmdb/rule/iotd/{name}   - Delete
+    GET    /rule/iotd
+    POST   /rule/iotd
+    GET    /rule/iotd/{name}
+    PUT    /rule/iotd/{name}
+    DELETE /rule/iotd/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional, Union
-
-from hfortix.FortiOS.http_client import encode_path_component
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
 class Iotd:
-    """Rule IOTD endpoint"""
+    """Iotd operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Rule IOTD endpoint
+        Initialize Iotd endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get IOT detection signature(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Signature name (if specified, gets single signature)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.iotd.get()
-            >>> result = fgt.api.cmdb.rule.iotd.get(name='signature1')
+            Dictionary containing API response
         """
-        path = "rule/iotd"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"{path}/{encode_path_component(name)}"
-        return self._client.get("cmdb", path, params=kwargs if kwargs else None, vdom=vdom)
-
-    # NOTE: IOT detection signatures are READ-ONLY (managed by FortiGuard Services)
-    # The create/update/delete methods are included for API completeness but will
-    # return HTTP 500 errors as these signatures cannot be manually created/modified.
-    
-    def post(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        name: Optional[str] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        service: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        rev: Optional[int] = None,
-        date: Optional[int] = None,
-        metadata: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create IOT detection signature.
-        
-        NOTE: This operation is not supported. IOT detection signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
-        Args:
-            data_dict: Complete signature configuration dictionary
-            name: Rule name (max 63 chars)
-            status: Enable/disable rule. Options: 'disable', 'enable'
-            log: Enable/disable logging. Options: 'disable', 'enable'
-            log_packet: Enable/disable packet logging. Options: 'disable', 'enable'
-            action: Action for matching traffic. Options: 'pass', 'block'
-            severity: Severity level
-            location: Vulnerable location
-            os: Vulnerable operating systems
-            application: Vulnerable applications
-            service: Vulnerable service
-            rule_id: Rule ID (0-4294967295)
-            rev: Revision number (0-4294967295)
-            date: Date (0-4294967295)
-            metadata: List of metadata dicts
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # Using data_dict
-            >>> data = {
-            ...     'name': 'iot-sig1',
-            ...     'status': 'enable',
-            ...     'action': 'block',
-            ...     'log': 'enable'
-            ... }
-            >>> result = fgt.api.cmdb.rule.iotd.create(data_dict=data)
-            >>> 
-            >>> # Using explicit parameters
-            >>> result = fgt.api.cmdb.rule.iotd.create(
-            ...     name='iot-sig1',
-            ...     status='enable',
-            ...     action='block',
-            ...     severity='critical'
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
-        
-        if name is not None:
-            data["name"] = name
-        if status is not None:
-            data["status"] = status
-        if log is not None:
-            data["log"] = log
-        if log_packet is not None:
-            data["log-packet"] = log_packet
-        if action is not None:
-            data["action"] = action
-        if severity is not None:
-            data["severity"] = severity
-        if location is not None:
-            data["location"] = location
-        if os is not None:
-            data["os"] = os
-        if application is not None:
-            data["application"] = application
-        if service is not None:
-            data["service"] = service
-        if rule_id is not None:
-            data["rule-id"] = rule_id
-        if rev is not None:
-            data["rev"] = rev
-        if date is not None:
-            data["date"] = date
-        if metadata is not None:
-            data["metadata"] = metadata
-            
-        data.update(kwargs)
-        return self._client.post("cmdb", "rule/iotd", data=data, vdom=vdom)
+            endpoint = f"/rule/iotd/{name}"
+        else:
+            endpoint = "/rule/iotd"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        data_dict: Optional[dict[str, Any]] = None,
-        status: Optional[str] = None,
-        log: Optional[str] = None,
-        log_packet: Optional[str] = None,
-        action: Optional[str] = None,
-        severity: Optional[str] = None,
-        location: Optional[str] = None,
-        os: Optional[str] = None,
-        application: Optional[str] = None,
-        service: Optional[str] = None,
-        rule_id: Optional[int] = None,
-        rev: Optional[int] = None,
-        date: Optional[int] = None,
-        metadata: Optional[list] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        id: int | None = None,
+        category: int | None = None,
+        popularity: int | None = None,
+        risk: int | None = None,
+        weight: int | None = None,
+        protocol: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        vendor: str | None = None,
+        parameters: list | None = None,
+        metadata: list | None = None,
+        status: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update IOT detection signature.
+        Update this specific resource.
         
-        NOTE: This operation is not supported. IOT detection signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
         Args:
-            name: Signature name (required)
-            data_dict: Complete signature configuration dictionary
-            status: Enable/disable rule. Options: 'disable', 'enable'
-            log: Enable/disable logging. Options: 'disable', 'enable'
-            log_packet: Enable/disable packet logging. Options: 'disable', 'enable'
-            action: Action for matching traffic. Options: 'pass', 'block'
-            severity: Severity level
-            location: Vulnerable location
-            os: Vulnerable operating systems
-            application: Vulnerable applications
-            service: Vulnerable service
-            rule_id: Rule ID (0-4294967295)
-            rev: Revision number (0-4294967295)
-            date: Date (0-4294967295)
-            metadata: List of metadata dicts
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters to update
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # Using data_dict
-            >>> data = {'status': 'disable'}
-            >>> result = fgt.api.cmdb.rule.iotd.update(name='iot-sig1', data_dict=data)
-            >>> 
-            >>> # Using explicit parameters
-            >>> result = fgt.api.cmdb.rule.iotd.update(
-            ...     name='iot-sig1',
-            ...     status='enable',
-            ...     action='pass'
-            ... )
-        """
-        data = data_dict.copy() if data_dict else {}
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Application name. (optional)
+            id: Application ID. (optional)
+            category: Application category ID. (optional)
+            popularity: Application popularity. (optional)
+            risk: Application risk. (optional)
+            weight: Application weight. (optional)
+            protocol: Application protocol. (optional)
+            technology: Application technology. (optional)
+            behavior: Application behavior. (optional)
+            vendor: Application vendor. (optional)
+            parameters: Application parameters. (optional)
+            metadata: Meta data. (optional)
+            status: Print all IOT detection rules information. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
         
-        if status is not None:
-            data["status"] = status
-        if log is not None:
-            data["log"] = log
-        if log_packet is not None:
-            data["log-packet"] = log_packet
-        if action is not None:
-            data["action"] = action
-        if severity is not None:
-            data["severity"] = severity
-        if location is not None:
-            data["location"] = location
-        if os is not None:
-            data["os"] = os
-        if application is not None:
-            data["application"] = application
-        if service is not None:
-            data["service"] = service
-        if rule_id is not None:
-            data["rule-id"] = rule_id
-        if rev is not None:
-            data["rev"] = rev
-        if date is not None:
-            data["date"] = date
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/rule/iotd/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if id is not None:
+            data_payload['id'] = id
+        if category is not None:
+            data_payload['category'] = category
+        if popularity is not None:
+            data_payload['popularity'] = popularity
+        if risk is not None:
+            data_payload['risk'] = risk
+        if weight is not None:
+            data_payload['weight'] = weight
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if parameters is not None:
+            data_payload['parameters'] = parameters
         if metadata is not None:
-            data["metadata"] = metadata
-            
-        data.update(kwargs)
-        path = f"rule/iotd/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=data, vdom=vdom)
+            data_payload['metadata'] = metadata
+        if status is not None:
+            data_payload['status'] = status
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-    def delete(self, name: str, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
+    def delete(
+        self,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete IOT detection signature.
+        Delete this specific resource.
         
-        NOTE: This operation is not supported. IOT detection signatures are read-only and 
-        managed by FortiGuard Services. This method will return an error.
-
         Args:
-            name: Signature name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> result = fgt.api.cmdb.rule.iotd.delete(name='iot-sig1')
+            Dictionary containing API response
         """
-        path = f"rule/iotd/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/rule/iotd/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        id: int | None = None,
+        category: int | None = None,
+        popularity: int | None = None,
+        risk: int | None = None,
+        weight: int | None = None,
+        protocol: str | None = None,
+        technology: str | None = None,
+        behavior: str | None = None,
+        vendor: str | None = None,
+        parameters: list | None = None,
+        metadata: list | None = None,
+        status: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if IOT detection signature exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Signature name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Application name. (optional)
+            id: Application ID. (optional)
+            category: Application category ID. (optional)
+            popularity: Application popularity. (optional)
+            risk: Application risk. (optional)
+            weight: Application weight. (optional)
+            protocol: Application protocol. (optional)
+            technology: Application technology. (optional)
+            behavior: Application behavior. (optional)
+            vendor: Application vendor. (optional)
+            parameters: Application parameters. (optional)
+            metadata: Meta data. (optional)
+            status: Print all IOT detection rules information. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if signature exists, False otherwise
-
-        Examples:
-            >>> if fgt.api.cmdb.rule.iotd.exists(name='iot-sig1'):
-            ...     print("Signature exists")
+            Dictionary containing API response
         """
-        try:
-            self.get(name=name, vdom=vdom)
-            return True
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/rule/iotd"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if id is not None:
+            data_payload['id'] = id
+        if category is not None:
+            data_payload['category'] = category
+        if popularity is not None:
+            data_payload['popularity'] = popularity
+        if risk is not None:
+            data_payload['risk'] = risk
+        if weight is not None:
+            data_payload['weight'] = weight
+        if protocol is not None:
+            data_payload['protocol'] = protocol
+        if technology is not None:
+            data_payload['technology'] = technology
+        if behavior is not None:
+            data_payload['behavior'] = behavior
+        if vendor is not None:
+            data_payload['vendor'] = vendor
+        if parameters is not None:
+            data_payload['parameters'] = parameters
+        if metadata is not None:
+            data_payload['metadata'] = metadata
+        if status is not None:
+            data_payload['status'] = status
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

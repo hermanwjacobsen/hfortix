@@ -1,84 +1,63 @@
-"""
-CASB SaaS Application endpoint
+"""Monitor API - SaasApplication operations."""
 
-GET    /api/v2/monitor/casb/saas-application/details
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["SaasApplication"]
+    from hfortix.FortiOS.http_client import HTTPClient
 
 
-class SaasApplication:
-    """
-    CASB SaaS Application operations.
+class Details:
+    """Details operations."""
 
-    Retrieve details about predefined SaaS applications.
-    """
-
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize SaasApplication endpoint.
+        Initialize Details endpoint.
 
         Args:
             client: HTTPClient instance
         """
         self._client = client
-        self._base_path = "casb/saas-application"
 
-    def details(
-        self, data_dict: Optional[dict[str, Any]] = None, mkey: Optional[str] = None, **kwargs: Any
+    def get(
+        self,
+        mkey: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve details for CASB SaaS applications.
+        
+        Args:
+            mkey: Filter: Key of the application to be fetched (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.casb.saas_application.details.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if mkey is not None:
+            params['mkey'] = mkey
+        params.update(kwargs)
+        return self._client.get("monitor", "/casb/saas-application/details", params=params)
 
-        Get details about predefined SaaS applications with matching domains,
-        icons, and other metadata. Can filter by specific application key.
+
+class SaasApplication:
+    """SaasApplication operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize SaasApplication endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            mkey: Optional application key to filter results. If not provided,
-                  returns all SaaS applications.
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: Response containing SaaS application details. Returns a list
-                  of applications with name, domains, icon_id, casb_display_name,
-                  and other metadata.
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Get all SaaS applications
-            >>> apps = fgt.api.monitor.casb.saas_application.details()
-            >>> for app in apps.get("results", []):
-            ...     print(f"{app['casb_display_name']}: {app['name']}")
-            ...     print(f"  Domains: {', '.join(app['domains'])}")
-
-            >>> # Get specific application using dict
-            >>> salesforce = fgt.api.monitor.casb.saas_application.details(
-            ...     data_dict={'mkey': 'Salesforce'}
-            ... )
-
-            >>> # Get specific application using keyword
-            >>> salesforce = fgt.api.monitor.casb.saas_application.details(
-            ...     mkey='Salesforce'
-            ... )
-            >>> print(f"Icon ID: {salesforce['results'][0]['icon_id']}")
+            client: HTTPClient instance for API communication
         """
-        params = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        # Map parameters
-        if mkey is not None:
-            params["mkey"] = mkey
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/details", params=params)
+        # Initialize nested resources
+        self.details = Details(client)

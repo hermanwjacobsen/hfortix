@@ -1,367 +1,338 @@
-"""FortiOS CMDB DNS Filter Profile API module.
+"""
+FortiOS CMDB - Dnsfilter Profile
 
-This module provides methods for managing DNS filter profiles.
+API Endpoints:
+    GET    /dnsfilter/profile
+    POST   /dnsfilter/profile
+    GET    /dnsfilter/profile/{name}
+    PUT    /dnsfilter/profile/{name}
+    DELETE /dnsfilter/profile/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Profile:
-    """Manage DNS filter profile objects.
+    """Profile operations."""
 
-    This class provides methods to create, read, update, and delete DNS filter profiles
-    that configure DNS filtering policies.
-    """
-
-    def __init__(self, client: Any) -> None:
-        """Initialize Profile API module.
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Profile endpoint.
 
         Args:
-            client: The FortiOS API client instance.
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Retrieve DNS filter profile configuration.
-
-        Args:
-            name (str, optional): Profile name. If provided, retrieves specific profile.
-                If not provided, retrieves all profiles.
-            vdom (str, optional): Virtual domain name. Defaults to 'root' if not specified.
-            **kwargs: Additional parameters to pass to the API:
-                - datasource (bool): Include datasource information
-                - with_meta (bool): Include meta information
-                - skip (bool): Enable skip operator
-                - format (list): List of property names to include
-                - filter (str): Filter expression
-                - count (int): Maximum number of entries to return
-                - start (int): Starting entry index
-
-        Returns:
-            dict: API response containing DNS filter profile configuration.
-
-        Example:
-            >>> # Get all profiles
-            >>> profiles = client.cmdb.dnsfilter.profile.list()
-
-            >>> # Get specific profile
-            >>> profile = client.cmdb.dnsfilter.profile.get(name='default')
         """
-        if name is not None:
-            path = f"dnsfilter/profile/{encode_path_component(name)}"
+        Select a specific entry from a CLI table.
+        
+        Args:
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/dnsfilter/profile/{name}"
         else:
-            path = "dnsfilter/profile"
-
-        params = {}
-        if kwargs:
-            params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        domain_filter: Optional[list[dict[str, Any]]] = None,
-        ftgd_dns: Optional[list[dict[str, Any]]] = None,
-        log_all_domain: Optional[str] = None,
-        sdns_ftgd_err_log: Optional[str] = None,
-        sdns_domain_log: Optional[str] = None,
-        block_action: Optional[str] = None,
-        redirect_portal: Optional[str] = None,
-        redirect_portal6: Optional[str] = None,
-        block_botnet: Optional[str] = None,
-        safe_search: Optional[str] = None,
-        youtube_restrict: Optional[str] = None,
-        external_ip_blocklist: Optional[list[dict[str, Any]]] = None,
-        dns_translation: Optional[list[dict[str, Any]]] = None,
-        transparent_dns_database: Optional[list[dict[str, Any]]] = None,
-        strip_ech: Optional[str] = None,
-        vdom: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """Create DNS filter profile.
-
-        Args:
-            name (str): Profile name (max 47 chars, required).
-            comment (str, optional): Comment (max 255 chars).
-            domain_filter (list, optional): List of domain filter settings. Each is a dict with:
-                - domain_filter_table (int): DNS domain filter table ID
-            ftgd_dns (list, optional): FortiGuard DNS Filter settings. Each is a dict with:
-                - options (str): 'error-allow' or 'ftgd-disable'
-                - filters (list): List of FortiGuard DNS domain filters with:
-                    - id (int): ID number (0-255)
-                    - category (int): Category number (0-255)
-                    - action (str): 'block' or 'monitor'
-                    - log (str): 'enable' or 'disable'
-            log_all_domain (str, optional): Enable/disable logging all domains - 'enable' or 'disable'.
-            sdns_ftgd_err_log (str, optional): Enable/disable FortiGuard SDNS rating error logging.
-            sdns_domain_log (str, optional): Enable/disable domain filtering and botnet domain logging.
-            block_action (str, optional): Action for blocked domains - 'block', 'redirect', 'block-sevrfail'.
-            redirect_portal (str, optional): IPv4 address of SDNS redirect portal.
-            redirect_portal6 (str, optional): IPv6 address of SDNS redirect portal.
-            block_botnet (str, optional): Enable/disable blocking botnet C&C DNS lookups.
-            safe_search (str, optional): Enable/disable Google, Bing, YouTube safe search.
-            youtube_restrict (str, optional): YouTube restriction level - 'strict', 'moderate', 'none'.
-            external_ip_blocklist (list, optional): External IP block lists. Each is a dict with:
-                - name (str): External domain block list name
-            dns_translation (list, optional): DNS translation settings. Each is a dict with:
-                - id (int): ID
-                - addr_type (str): 'ipv4' or 'ipv6'
-                - src (str): IPv4 source address/subnet
-                - dst (str): IPv4 destination address/subnet
-                - netmask (str): Netmask for src and dst
-                - status (str): 'enable' or 'disable'
-                - src6 (str): IPv6 source address/subnet
-                - dst6 (str): IPv6 destination address/subnet
-                - prefix (int): Prefix for src6/dst6 (1-128)
-            transparent_dns_database (list, optional): Transparent DNS database zones. Each is a dict with:
-                - name (str): DNS database zone name
-            strip_ech (str, optional): Enable/disable removal of encrypted client hello parameter.
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional parameters.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> # POST - Create profile with domain filter
-            >>> client.cmdb.dnsfilter.profile.create(
-            ...     name='corporate-filter',
-            ...     comment='Corporate DNS filtering policy',
-            ...     domain_filter=[
-            ...         {'domain_filter_table': 10}
-            ...     ],
-            ...     block_action='redirect',
-            ...     safe_search='enable'
-            ... )
-        """
-        data = {"name": name}
-
-        param_map = {
-            "comment": comment,
-            "domain_filter": domain_filter,
-            "ftgd_dns": ftgd_dns,
-            "log_all_domain": log_all_domain,
-            "sdns_ftgd_err_log": sdns_ftgd_err_log,
-            "sdns_domain_log": sdns_domain_log,
-            "block_action": block_action,
-            "redirect_portal": redirect_portal,
-            "redirect_portal6": redirect_portal6,
-            "block_botnet": block_botnet,
-            "safe_search": safe_search,
-            "youtube_restrict": youtube_restrict,
-            "external_ip_blocklist": external_ip_blocklist,
-            "dns_translation": dns_translation,
-            "transparent_dns_database": transparent_dns_database,
-            "strip_ech": strip_ech,
-        }
-
-        api_field_map = {
-            "comment": "comment",
-            "domain_filter": "domain-filter",
-            "ftgd_dns": "ftgd-dns",
-            "log_all_domain": "log-all-domain",
-            "sdns_ftgd_err_log": "sdns-ftgd-err-log",
-            "sdns_domain_log": "sdns-domain-log",
-            "block_action": "block-action",
-            "redirect_portal": "redirect-portal",
-            "redirect_portal6": "redirect-portal6",
-            "block_botnet": "block-botnet",
-            "safe_search": "safe-search",
-            "youtube_restrict": "youtube-restrict",
-            "external_ip_blocklist": "external-ip-blocklist",
-            "dns_translation": "dns-translation",
-            "transparent_dns_database": "transparent-dns-database",
-            "strip_ech": "strip-ech",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle nested objects with snake_case conversion
-                if isinstance(value, list):
-                    converted_list = []
-                    for item in value:
-                        if isinstance(item, dict):
-                            converted_item = {}
-                            for k, v in item.items():
-                                # Convert snake_case to hyphen-case
-                                api_key = k.replace("_", "-")
-                                converted_item[api_key] = v
-                            converted_list.append(converted_item)
-                        else:
-                            converted_list.append(item)
-                    data[api_name] = converted_list
-                else:
-                    data[api_name] = value
-
-        if kwargs:
-            data.update(kwargs)
-
-        return self._client.post("cmdb", "dnsfilter/profile", data, vdom=vdom, raw_json=raw_json)
+            endpoint = "/dnsfilter/profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        domain_filter: Optional[list[dict[str, Any]]] = None,
-        ftgd_dns: Optional[list[dict[str, Any]]] = None,
-        log_all_domain: Optional[str] = None,
-        sdns_ftgd_err_log: Optional[str] = None,
-        sdns_domain_log: Optional[str] = None,
-        block_action: Optional[str] = None,
-        redirect_portal: Optional[str] = None,
-        redirect_portal6: Optional[str] = None,
-        block_botnet: Optional[str] = None,
-        safe_search: Optional[str] = None,
-        youtube_restrict: Optional[str] = None,
-        external_ip_blocklist: Optional[list[dict[str, Any]]] = None,
-        dns_translation: Optional[list[dict[str, Any]]] = None,
-        transparent_dns_database: Optional[list[dict[str, Any]]] = None,
-        strip_ech: Optional[str] = None,
-        vdom: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        domain_filter: list | None = None,
+        ftgd_dns: list | None = None,
+        log_all_domain: str | None = None,
+        sdns_ftgd_err_log: str | None = None,
+        sdns_domain_log: str | None = None,
+        block_action: str | None = None,
+        redirect_portal: str | None = None,
+        redirect_portal6: str | None = None,
+        block_botnet: str | None = None,
+        safe_search: str | None = None,
+        youtube_restrict: str | None = None,
+        external_ip_blocklist: list | None = None,
+        dns_translation: list | None = None,
+        transparent_dns_database: list | None = None,
+        strip_ech: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update DNS filter profile.
-
-        Args:
-            name (str): Profile name to update.
-            comment (str, optional): Updated comment.
-            domain_filter (list, optional): Updated domain filter settings.
-            ftgd_dns (list, optional): Updated FortiGuard DNS Filter settings.
-            log_all_domain (str, optional): Updated logging setting.
-            sdns_ftgd_err_log (str, optional): Updated SDNS error logging.
-            sdns_domain_log (str, optional): Updated domain logging.
-            block_action (str, optional): Updated block action.
-            redirect_portal (str, optional): Updated IPv4 redirect portal.
-            redirect_portal6 (str, optional): Updated IPv6 redirect portal.
-            block_botnet (str, optional): Updated botnet blocking.
-            safe_search (str, optional): Updated safe search.
-            youtube_restrict (str, optional): Updated YouTube restriction.
-            external_ip_blocklist (list, optional): Updated external IP blocklists.
-            dns_translation (list, optional): Updated DNS translation settings.
-            transparent_dns_database (list, optional): Updated transparent DNS database zones.
-            strip_ech (str, optional): Updated ECH stripping setting.
-            vdom (str, optional): Virtual domain name.
-            **kwargs: Additional parameters.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> # PUT - Update profile to enable safe search
-            >>> client.cmdb.dnsfilter.profile.update(
-            ...     name='corporate-filter',
-            ...     safe_search='enable',
-            ...     youtube_restrict='strict'
-            ... )
         """
-        data = {}
-
-        param_map = {
-            "comment": comment,
-            "domain_filter": domain_filter,
-            "ftgd_dns": ftgd_dns,
-            "log_all_domain": log_all_domain,
-            "sdns_ftgd_err_log": sdns_ftgd_err_log,
-            "sdns_domain_log": sdns_domain_log,
-            "block_action": block_action,
-            "redirect_portal": redirect_portal,
-            "redirect_portal6": redirect_portal6,
-            "block_botnet": block_botnet,
-            "safe_search": safe_search,
-            "youtube_restrict": youtube_restrict,
-            "external_ip_blocklist": external_ip_blocklist,
-            "dns_translation": dns_translation,
-            "transparent_dns_database": transparent_dns_database,
-            "strip_ech": strip_ech,
-        }
-
-        api_field_map = {
-            "comment": "comment",
-            "domain_filter": "domain-filter",
-            "ftgd_dns": "ftgd-dns",
-            "log_all_domain": "log-all-domain",
-            "sdns_ftgd_err_log": "sdns-ftgd-err-log",
-            "sdns_domain_log": "sdns-domain-log",
-            "block_action": "block-action",
-            "redirect_portal": "redirect-portal",
-            "redirect_portal6": "redirect-portal6",
-            "block_botnet": "block-botnet",
-            "safe_search": "safe-search",
-            "youtube_restrict": "youtube-restrict",
-            "external_ip_blocklist": "external-ip-blocklist",
-            "dns_translation": "dns-translation",
-            "transparent_dns_database": "transparent-dns-database",
-            "strip_ech": "strip-ech",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle nested objects with snake_case conversion
-                if isinstance(value, list):
-                    converted_list = []
-                    for item in value:
-                        if isinstance(item, dict):
-                            converted_item = {}
-                            for k, v in item.items():
-                                # Convert snake_case to hyphen-case
-                                api_key = k.replace("_", "-")
-                                converted_item[api_key] = v
-                            converted_list.append(converted_item)
-                        else:
-                            converted_list.append(item)
-                    data[api_name] = converted_list
-                else:
-                    data[api_name] = value
-
-        if kwargs:
-            data.update(kwargs)
-
-        return self._client.put(
-            "cmdb", f"dnsfilter/profile/{name}", data, vdom=vdom, raw_json=raw_json
-        )
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            domain_filter: Domain filter settings. (optional)
+            ftgd_dns: FortiGuard DNS Filter settings. (optional)
+            log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). (optional)
+            sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. (optional)
+            sdns_domain_log: Enable/disable domain filtering and botnet domain logging. (optional)
+            block_action: Action to take for blocked domains. (optional)
+            redirect_portal: IPv4 address of the SDNS redirect portal. (optional)
+            redirect_portal6: IPv6 address of the SDNS redirect portal. (optional)
+            block_botnet: Enable/disable blocking botnet C&C DNS lookups. (optional)
+            safe_search: Enable/disable Google, Bing, YouTube, Qwant, DuckDuckGo safe search. (optional)
+            youtube_restrict: Set safe search for YouTube restriction level. (optional)
+            external_ip_blocklist: One or more external IP block lists. (optional)
+            dns_translation: DNS translation settings. (optional)
+            transparent_dns_database: Transparent DNS database zones. (optional)
+            strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/dnsfilter/profile/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if domain_filter is not None:
+            data_payload['domain-filter'] = domain_filter
+        if ftgd_dns is not None:
+            data_payload['ftgd-dns'] = ftgd_dns
+        if log_all_domain is not None:
+            data_payload['log-all-domain'] = log_all_domain
+        if sdns_ftgd_err_log is not None:
+            data_payload['sdns-ftgd-err-log'] = sdns_ftgd_err_log
+        if sdns_domain_log is not None:
+            data_payload['sdns-domain-log'] = sdns_domain_log
+        if block_action is not None:
+            data_payload['block-action'] = block_action
+        if redirect_portal is not None:
+            data_payload['redirect-portal'] = redirect_portal
+        if redirect_portal6 is not None:
+            data_payload['redirect-portal6'] = redirect_portal6
+        if block_botnet is not None:
+            data_payload['block-botnet'] = block_botnet
+        if safe_search is not None:
+            data_payload['safe-search'] = safe_search
+        if youtube_restrict is not None:
+            data_payload['youtube-restrict'] = youtube_restrict
+        if external_ip_blocklist is not None:
+            data_payload['external-ip-blocklist'] = external_ip_blocklist
+        if dns_translation is not None:
+            data_payload['dns-translation'] = dns_translation
+        if transparent_dns_database is not None:
+            data_payload['transparent-dns-database'] = transparent_dns_database
+        if strip_ech is not None:
+            data_payload['strip-ech'] = strip_ech
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
-        """Delete a DNS filter profile.
-
-        Args:
-            name (str): Profile name to delete.
-            vdom (str, optional): Virtual domain name.
-
-        Returns:
-            dict: API response containing operation results.
-
-        Example:
-            >>> client.cmdb.dnsfilter.profile.delete(name='corporate-filter')
         """
-        return self._client.delete(
-            "cmdb", f"dnsfilter/profile/{name}", vdom=vdom, raw_json=raw_json
-        )
+        Delete this specific resource.
+        
+        Args:
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/dnsfilter/profile/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        domain_filter: list | None = None,
+        ftgd_dns: list | None = None,
+        log_all_domain: str | None = None,
+        sdns_ftgd_err_log: str | None = None,
+        sdns_domain_log: str | None = None,
+        block_action: str | None = None,
+        redirect_portal: str | None = None,
+        redirect_portal6: str | None = None,
+        block_botnet: str | None = None,
+        safe_search: str | None = None,
+        youtube_restrict: str | None = None,
+        external_ip_blocklist: list | None = None,
+        dns_translation: list | None = None,
+        transparent_dns_database: list | None = None,
+        strip_ech: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            domain_filter: Domain filter settings. (optional)
+            ftgd_dns: FortiGuard DNS Filter settings. (optional)
+            log_all_domain: Enable/disable logging of all domains visited (detailed DNS logging). (optional)
+            sdns_ftgd_err_log: Enable/disable FortiGuard SDNS rating error logging. (optional)
+            sdns_domain_log: Enable/disable domain filtering and botnet domain logging. (optional)
+            block_action: Action to take for blocked domains. (optional)
+            redirect_portal: IPv4 address of the SDNS redirect portal. (optional)
+            redirect_portal6: IPv6 address of the SDNS redirect portal. (optional)
+            block_botnet: Enable/disable blocking botnet C&C DNS lookups. (optional)
+            safe_search: Enable/disable Google, Bing, YouTube, Qwant, DuckDuckGo safe search. (optional)
+            youtube_restrict: Set safe search for YouTube restriction level. (optional)
+            external_ip_blocklist: One or more external IP block lists. (optional)
+            dns_translation: DNS translation settings. (optional)
+            transparent_dns_database: Transparent DNS database zones. (optional)
+            strip_ech: Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dnsfilter/profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if domain_filter is not None:
+            data_payload['domain-filter'] = domain_filter
+        if ftgd_dns is not None:
+            data_payload['ftgd-dns'] = ftgd_dns
+        if log_all_domain is not None:
+            data_payload['log-all-domain'] = log_all_domain
+        if sdns_ftgd_err_log is not None:
+            data_payload['sdns-ftgd-err-log'] = sdns_ftgd_err_log
+        if sdns_domain_log is not None:
+            data_payload['sdns-domain-log'] = sdns_domain_log
+        if block_action is not None:
+            data_payload['block-action'] = block_action
+        if redirect_portal is not None:
+            data_payload['redirect-portal'] = redirect_portal
+        if redirect_portal6 is not None:
+            data_payload['redirect-portal6'] = redirect_portal6
+        if block_botnet is not None:
+            data_payload['block-botnet'] = block_botnet
+        if safe_search is not None:
+            data_payload['safe-search'] = safe_search
+        if youtube_restrict is not None:
+            data_payload['youtube-restrict'] = youtube_restrict
+        if external_ip_blocklist is not None:
+            data_payload['external-ip-blocklist'] = external_ip_blocklist
+        if dns_translation is not None:
+            data_payload['dns-translation'] = dns_translation
+        if transparent_dns_database is not None:
+            data_payload['transparent-dns-database'] = transparent_dns_database
+        if strip_ech is not None:
+            data_payload['strip-ech'] = strip_ech
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

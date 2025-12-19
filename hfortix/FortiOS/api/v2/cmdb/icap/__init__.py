@@ -1,27 +1,27 @@
-"""
-FortiOS ICAP API
+"""FortiOS CMDB - Icap category"""
 
-Internet Content Adaptation Protocol (ICAP) configuration for content inspection.
-"""
+from .profile import Profile
+from .server import Server
+from .server_group import ServerGroup
 
-from __future__ import annotations
+__all__ = ['Profile', 'Server', 'ServerGroup']
 
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from ...http_client import HTTPClient
 
 
 class Icap:
-    """ICAP API endpoints"""
-
-    def __init__(self, client: "HTTPClient") -> None:
-        self._client = client
-
-        from .profile import Profile
-        from .server import Server
-        from .server_group import ServerGroup
-
+    """
+    Icap category wrapper.
+    
+    This class provides access to all icap CMDB endpoints.
+    """
+    
+    def __init__(self, client):
+        """
+        Initialize Icap with all endpoint classes.
+        
+        Args:
+            client: HTTPClient instance
+        """
         self.profile = Profile(client)
         self.server = Server(client)
         self.server_group = ServerGroup(client)

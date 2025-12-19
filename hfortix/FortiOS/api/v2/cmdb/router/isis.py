@@ -1,110 +1,269 @@
-"""FortiOS CMDB - Router ISIS - IS-IS configuration"""
-from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional, Union
+"""
+FortiOS CMDB - Router Isis
+
+API Endpoints:
+    GET    /router/isis
+    PUT    /router/isis
+"""
+
+from typing import TYPE_CHECKING, Any
+
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
+
 class Isis:
-    def __init__(self, client: "HTTPClient") -> None:
+    """Isis operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Isis endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
-    def get(self, datasource: Optional[bool] = None, with_meta: Optional[bool] = None, skip: Optional[bool] = None, format: Optional[str] = None, action: Optional[str] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        params = {}
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        exclude_default_values: bool | None = None,
+        stat_items: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Select all entries in a CLI table.
+        
+        Args:
+            exclude_default_values: Exclude properties/objects with default value (optional)
+            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        endpoint = "/router/isis"
+        if exclude_default_values is not None:
+            params['exclude-default-values'] = exclude_default_values
+        if stat_items is not None:
+            params['stat-items'] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", "router/isis", params=params if params else None, vdom=vdom)
-    def put(self, data_dict: Optional[dict[str, Any]] = None, is_type: Optional[str] = None, adv_passive_only: Optional[str] = None, adv_passive_only6: Optional[str] = None, auth_mode_l1: Optional[str] = None, auth_mode_l2: Optional[str] = None, auth_password_l1: Optional[str] = None, auth_password_l2: Optional[str] = None, auth_keychain_l1: Optional[str] = None, auth_keychain_l2: Optional[str] = None, auth_sendonly_l1: Optional[str] = None, auth_sendonly_l2: Optional[str] = None, ignore_lsp_errors: Optional[str] = None, lsp_gen_interval_l1: Optional[int] = None, lsp_gen_interval_l2: Optional[int] = None, lsp_refresh_interval: Optional[int] = None, max_lsp_lifetime: Optional[int] = None, spf_interval_exp_l1: Optional[str] = None, spf_interval_exp_l2: Optional[str] = None, dynamic_hostname: Optional[str] = None, adjacency_check: Optional[str] = None, adjacency_check6: Optional[str] = None, overload_bit: Optional[str] = None, overload_bit_suppress: Optional[str] = None, overload_bit_on_startup: Optional[int] = None, default_originate: Optional[str] = None, default_originate6: Optional[str] = None, metric_style: Optional[str] = None, redistribute_l1: Optional[str] = None, redistribute_l1_list: Optional[str] = None, redistribute_l2: Optional[str] = None, redistribute_l2_list: Optional[str] = None, redistribute6_l1: Optional[str] = None, redistribute6_l1_list: Optional[str] = None, redistribute6_l2: Optional[str] = None, redistribute6_l2_list: Optional[str] = None, isis_net: Optional[list] = None, isis_interface: Optional[list] = None, summary_address: Optional[list] = None, summary_address6: Optional[list] = None, redistribute: Optional[list] = None, redistribute6: Optional[list] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any) -> dict[str, Any]:
-        data = data_dict.copy() if data_dict else {}
-        param_map = {"is_type": "is-type", "adv_passive_only": "adv-passive-only", "adv_passive_only6": "adv-passive-only6", "auth_mode_l1": "auth-mode-l1", "auth_mode_l2": "auth-mode-l2", "auth_password_l1": "auth-password-l1", "auth_password_l2": "auth-password-l2", "auth_keychain_l1": "auth-keychain-l1", "auth_keychain_l2": "auth-keychain-l2", "auth_sendonly_l1": "auth-sendonly-l1", "auth_sendonly_l2": "auth-sendonly-l2", "ignore_lsp_errors": "ignore-lsp-errors", "lsp_gen_interval_l1": "lsp-gen-interval-l1", "lsp_gen_interval_l2": "lsp-gen-interval-l2", "lsp_refresh_interval": "lsp-refresh-interval", "max_lsp_lifetime": "max-lsp-lifetime", "spf_interval_exp_l1": "spf-interval-exp-l1", "spf_interval_exp_l2": "spf-interval-exp-l2", "dynamic_hostname": "dynamic-hostname", "adjacency_check": "adjacency-check", "adjacency_check6": "adjacency-check6", "overload_bit": "overload-bit", "overload_bit_suppress": "overload-bit-suppress", "overload_bit_on_startup": "overload-bit-on-startup", "default_originate": "default-originate", "default_originate6": "default-originate6", "metric_style": "metric-style", "redistribute_l1": "redistribute-l1", "redistribute_l1_list": "redistribute-l1-list", "redistribute_l2": "redistribute-l2", "redistribute_l2_list": "redistribute-l2-list", "redistribute6_l1": "redistribute6-l1", "redistribute6_l1_list": "redistribute6-l1-list", "redistribute6_l2": "redistribute6-l2", "redistribute6_l2_list": "redistribute6-l2-list", "isis_net": "isis-net", "isis_interface": "isis-interface", "summary_address": "summary-address", "summary_address6": "summary-address6"}
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def put(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        is_type: str | None = None,
+        adv_passive_only: str | None = None,
+        adv_passive_only6: str | None = None,
+        auth_mode_l1: str | None = None,
+        auth_mode_l2: str | None = None,
+        auth_password_l1: str | None = None,
+        auth_password_l2: str | None = None,
+        auth_keychain_l1: str | None = None,
+        auth_keychain_l2: str | None = None,
+        auth_sendonly_l1: str | None = None,
+        auth_sendonly_l2: str | None = None,
+        ignore_lsp_errors: str | None = None,
+        lsp_gen_interval_l1: int | None = None,
+        lsp_gen_interval_l2: int | None = None,
+        lsp_refresh_interval: int | None = None,
+        max_lsp_lifetime: int | None = None,
+        spf_interval_exp_l1: str | None = None,
+        spf_interval_exp_l2: str | None = None,
+        dynamic_hostname: str | None = None,
+        adjacency_check: str | None = None,
+        adjacency_check6: str | None = None,
+        overload_bit: str | None = None,
+        overload_bit_suppress: str | None = None,
+        overload_bit_on_startup: int | None = None,
+        default_originate: str | None = None,
+        default_originate6: str | None = None,
+        metric_style: str | None = None,
+        redistribute_l1: str | None = None,
+        redistribute_l1_list: str | None = None,
+        redistribute_l2: str | None = None,
+        redistribute_l2_list: str | None = None,
+        redistribute6_l1: str | None = None,
+        redistribute6_l1_list: str | None = None,
+        redistribute6_l2: str | None = None,
+        redistribute6_l2_list: str | None = None,
+        isis_net: list | None = None,
+        isis_interface: list | None = None,
+        summary_address: list | None = None,
+        summary_address6: list | None = None,
+        redistribute: list | None = None,
+        redistribute6: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            is_type: IS type. (optional)
+            adv_passive_only: Enable/disable IS-IS advertisement of passive interfaces only. (optional)
+            adv_passive_only6: Enable/disable IPv6 IS-IS advertisement of passive interfaces only. (optional)
+            auth_mode_l1: Level 1 authentication mode. (optional)
+            auth_mode_l2: Level 2 authentication mode. (optional)
+            auth_password_l1: Authentication password for level 1 PDUs. (optional)
+            auth_password_l2: Authentication password for level 2 PDUs. (optional)
+            auth_keychain_l1: Authentication key-chain for level 1 PDUs. (optional)
+            auth_keychain_l2: Authentication key-chain for level 2 PDUs. (optional)
+            auth_sendonly_l1: Enable/disable level 1 authentication send-only. (optional)
+            auth_sendonly_l2: Enable/disable level 2 authentication send-only. (optional)
+            ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. (optional)
+            lsp_gen_interval_l1: Minimum interval for level 1 LSP regenerating. (optional)
+            lsp_gen_interval_l2: Minimum interval for level 2 LSP regenerating. (optional)
+            lsp_refresh_interval: LSP refresh time in seconds. (optional)
+            max_lsp_lifetime: Maximum LSP lifetime in seconds. (optional)
+            spf_interval_exp_l1: Level 1 SPF calculation delay. (optional)
+            spf_interval_exp_l2: Level 2 SPF calculation delay. (optional)
+            dynamic_hostname: Enable/disable dynamic hostname. (optional)
+            adjacency_check: Enable/disable adjacency check. (optional)
+            adjacency_check6: Enable/disable IPv6 adjacency check. (optional)
+            overload_bit: Enable/disable signal other routers not to use us in SPF. (optional)
+            overload_bit_suppress: Suppress overload-bit for the specific prefixes. (optional)
+            overload_bit_on_startup: Overload-bit only temporarily after reboot. (optional)
+            default_originate: Enable/disable distribution of default route information. (optional)
+            default_originate6: Enable/disable distribution of default IPv6 route information. (optional)
+            metric_style: Use old-style (ISO 10589) or new-style packet formats. (optional)
+            redistribute_l1: Enable/disable redistribution of level 1 routes into level 2. (optional)
+            redistribute_l1_list: Access-list for route redistribution from l1 to l2. (optional)
+            redistribute_l2: Enable/disable redistribution of level 2 routes into level 1. (optional)
+            redistribute_l2_list: Access-list for route redistribution from l2 to l1. (optional)
+            redistribute6_l1: Enable/disable redistribution of level 1 IPv6 routes into level 2. (optional)
+            redistribute6_l1_list: Access-list for IPv6 route redistribution from l1 to l2. (optional)
+            redistribute6_l2: Enable/disable redistribution of level 2 IPv6 routes into level 1. (optional)
+            redistribute6_l2_list: Access-list for IPv6 route redistribution from l2 to l1. (optional)
+            isis_net: IS-IS net configuration. (optional)
+            isis_interface: IS-IS interface configuration. (optional)
+            summary_address: IS-IS summary addresses. (optional)
+            summary_address6: IS-IS IPv6 summary address. (optional)
+            redistribute: IS-IS redistribute protocols. (optional)
+            redistribute6: IS-IS IPv6 redistribution for routing protocols. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/router/isis"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
         if is_type is not None:
-            data[param_map["is_type"]] = is_type
+            data_payload['is-type'] = is_type
         if adv_passive_only is not None:
-            data[param_map["adv_passive_only"]] = adv_passive_only
+            data_payload['adv-passive-only'] = adv_passive_only
         if adv_passive_only6 is not None:
-            data[param_map["adv_passive_only6"]] = adv_passive_only6
+            data_payload['adv-passive-only6'] = adv_passive_only6
         if auth_mode_l1 is not None:
-            data[param_map["auth_mode_l1"]] = auth_mode_l1
+            data_payload['auth-mode-l1'] = auth_mode_l1
         if auth_mode_l2 is not None:
-            data[param_map["auth_mode_l2"]] = auth_mode_l2
+            data_payload['auth-mode-l2'] = auth_mode_l2
         if auth_password_l1 is not None:
-            data[param_map["auth_password_l1"]] = auth_password_l1
+            data_payload['auth-password-l1'] = auth_password_l1
         if auth_password_l2 is not None:
-            data[param_map["auth_password_l2"]] = auth_password_l2
+            data_payload['auth-password-l2'] = auth_password_l2
         if auth_keychain_l1 is not None:
-            data[param_map["auth_keychain_l1"]] = auth_keychain_l1
+            data_payload['auth-keychain-l1'] = auth_keychain_l1
         if auth_keychain_l2 is not None:
-            data[param_map["auth_keychain_l2"]] = auth_keychain_l2
+            data_payload['auth-keychain-l2'] = auth_keychain_l2
         if auth_sendonly_l1 is not None:
-            data[param_map["auth_sendonly_l1"]] = auth_sendonly_l1
+            data_payload['auth-sendonly-l1'] = auth_sendonly_l1
         if auth_sendonly_l2 is not None:
-            data[param_map["auth_sendonly_l2"]] = auth_sendonly_l2
+            data_payload['auth-sendonly-l2'] = auth_sendonly_l2
         if ignore_lsp_errors is not None:
-            data[param_map["ignore_lsp_errors"]] = ignore_lsp_errors
+            data_payload['ignore-lsp-errors'] = ignore_lsp_errors
         if lsp_gen_interval_l1 is not None:
-            data[param_map["lsp_gen_interval_l1"]] = lsp_gen_interval_l1
+            data_payload['lsp-gen-interval-l1'] = lsp_gen_interval_l1
         if lsp_gen_interval_l2 is not None:
-            data[param_map["lsp_gen_interval_l2"]] = lsp_gen_interval_l2
+            data_payload['lsp-gen-interval-l2'] = lsp_gen_interval_l2
         if lsp_refresh_interval is not None:
-            data[param_map["lsp_refresh_interval"]] = lsp_refresh_interval
+            data_payload['lsp-refresh-interval'] = lsp_refresh_interval
         if max_lsp_lifetime is not None:
-            data[param_map["max_lsp_lifetime"]] = max_lsp_lifetime
+            data_payload['max-lsp-lifetime'] = max_lsp_lifetime
         if spf_interval_exp_l1 is not None:
-            data[param_map["spf_interval_exp_l1"]] = spf_interval_exp_l1
+            data_payload['spf-interval-exp-l1'] = spf_interval_exp_l1
         if spf_interval_exp_l2 is not None:
-            data[param_map["spf_interval_exp_l2"]] = spf_interval_exp_l2
+            data_payload['spf-interval-exp-l2'] = spf_interval_exp_l2
         if dynamic_hostname is not None:
-            data[param_map["dynamic_hostname"]] = dynamic_hostname
+            data_payload['dynamic-hostname'] = dynamic_hostname
         if adjacency_check is not None:
-            data[param_map["adjacency_check"]] = adjacency_check
+            data_payload['adjacency-check'] = adjacency_check
         if adjacency_check6 is not None:
-            data[param_map["adjacency_check6"]] = adjacency_check6
+            data_payload['adjacency-check6'] = adjacency_check6
         if overload_bit is not None:
-            data[param_map["overload_bit"]] = overload_bit
+            data_payload['overload-bit'] = overload_bit
         if overload_bit_suppress is not None:
-            data[param_map["overload_bit_suppress"]] = overload_bit_suppress
+            data_payload['overload-bit-suppress'] = overload_bit_suppress
         if overload_bit_on_startup is not None:
-            data[param_map["overload_bit_on_startup"]] = overload_bit_on_startup
+            data_payload['overload-bit-on-startup'] = overload_bit_on_startup
         if default_originate is not None:
-            data[param_map["default_originate"]] = default_originate
+            data_payload['default-originate'] = default_originate
         if default_originate6 is not None:
-            data[param_map["default_originate6"]] = default_originate6
+            data_payload['default-originate6'] = default_originate6
         if metric_style is not None:
-            data[param_map["metric_style"]] = metric_style
+            data_payload['metric-style'] = metric_style
         if redistribute_l1 is not None:
-            data[param_map["redistribute_l1"]] = redistribute_l1
+            data_payload['redistribute-l1'] = redistribute_l1
         if redistribute_l1_list is not None:
-            data[param_map["redistribute_l1_list"]] = redistribute_l1_list
+            data_payload['redistribute-l1-list'] = redistribute_l1_list
         if redistribute_l2 is not None:
-            data[param_map["redistribute_l2"]] = redistribute_l2
+            data_payload['redistribute-l2'] = redistribute_l2
         if redistribute_l2_list is not None:
-            data[param_map["redistribute_l2_list"]] = redistribute_l2_list
+            data_payload['redistribute-l2-list'] = redistribute_l2_list
         if redistribute6_l1 is not None:
-            data[param_map["redistribute6_l1"]] = redistribute6_l1
+            data_payload['redistribute6-l1'] = redistribute6_l1
         if redistribute6_l1_list is not None:
-            data[param_map["redistribute6_l1_list"]] = redistribute6_l1_list
+            data_payload['redistribute6-l1-list'] = redistribute6_l1_list
         if redistribute6_l2 is not None:
-            data[param_map["redistribute6_l2"]] = redistribute6_l2
+            data_payload['redistribute6-l2'] = redistribute6_l2
         if redistribute6_l2_list is not None:
-            data[param_map["redistribute6_l2_list"]] = redistribute6_l2_list
+            data_payload['redistribute6-l2-list'] = redistribute6_l2_list
         if isis_net is not None:
-            data[param_map["isis_net"]] = isis_net
+            data_payload['isis-net'] = isis_net
         if isis_interface is not None:
-            data[param_map["isis_interface"]] = isis_interface
+            data_payload['isis-interface'] = isis_interface
         if summary_address is not None:
-            data[param_map["summary_address"]] = summary_address
+            data_payload['summary-address'] = summary_address
         if summary_address6 is not None:
-            data[param_map["summary_address6"]] = summary_address6
+            data_payload['summary-address6'] = summary_address6
         if redistribute is not None:
-            data["redistribute"] = redistribute
+            data_payload['redistribute'] = redistribute
         if redistribute6 is not None:
-            data["redistribute6"] = redistribute6
-        data.update(kwargs)
-        return self._client.put("cmdb", "router/isis", data=data, vdom=vdom)
+            data_payload['redistribute6'] = redistribute6
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

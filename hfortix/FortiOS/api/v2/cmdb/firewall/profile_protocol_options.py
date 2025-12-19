@@ -1,442 +1,338 @@
 """
-FortiOS profile-protocol-options API wrapper.
-Provides access to /api/v2/cmdb/firewall/profile-protocol-options endpoint.
+FortiOS CMDB - Firewall ProfileProtocolOptions
+
+API Endpoints:
+    GET    /firewall/profile-protocol-options
+    POST   /firewall/profile-protocol-options
+    GET    /firewall/profile-protocol-options/{name}
+    PUT    /firewall/profile-protocol-options/{name}
+    DELETE /firewall/profile-protocol-options/{name}
 """
 
-from typing import Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any
 
-from hfortix.FortiOS.http_client import encode_path_component
+if TYPE_CHECKING:
+    from ....http_client import HTTPClient
 
 
 class ProfileProtocolOptions:
-    """
-    Wrapper for firewall profile-protocol-options API endpoint.
+    """ProfileProtocolOptions operations."""
 
-    Manages profile-protocol-options configuration with full Swagger-spec parameter support.
-    """
-
-    def __init__(self, http_client: Any):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize the ProfileProtocolOptions wrapper.
+        Initialize ProfileProtocolOptions endpoint.
 
         Args:
-            http_client: The HTTP client for API communication
+            client: HTTPClient instance for API communication
         """
-        self._client = http_client
-        self.path = "firewall/profile-protocol-options"
-
+        self._client = client
 
     def get(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        attr: Optional[Any] = None,
-        count: Optional[Any] = None,
-        skip_to_datasource: Optional[Any] = None,
-        acs: Optional[Any] = None,
-        search: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        datasource: Optional[Any] = None,
-        with_meta: Optional[Any] = None,
-        skip: Optional[Any] = None,
-        format: Optional[Any] = None,
-        action: Optional[Any] = None,
-        vdom: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Retrieve a specific profile-protocol-options entry by its name.
-
-        Args:
-            mkey: The name (primary key)
-            attr: Attribute name that references other table
-            count: Maximum number of entries to return.
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address
-            acs: If true, returned result are in ascending order.
-            search: If present, the objects will be filtered by the search value.
-            scope: Scope [global|vdom|both*]
-            datasource: Enable to include datasource information for each linked object.
-            with_meta: Enable to include meta information about each object (type id, referen
-            skip: Enable to call CLI skip operator to hide skipped properties.
-            format: List of property names to include in results, separated by | (i.e. pol
-            action: datasource: Return all applicable datasource entries for a specific at
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dictionary with entry details
-        """
-        params = {}
-
-        if attr is not None:
-            params["attr"] = attr
-        if count is not None:
-            params["count"] = count
-        if skip_to_datasource is not None:
-            params["skip_to_datasource"] = skip_to_datasource
-        if acs is not None:
-            params["acs"] = acs
-        if search is not None:
-            params["search"] = search
-        if scope is not None:
-            params["scope"] = scope
-        if datasource is not None:
-            params["datasource"] = datasource
-        if with_meta is not None:
-            params["with_meta"] = with_meta
-        if skip is not None:
-            params["skip"] = skip
-        if format is not None:
-            params["format"] = format
-        if action is not None:
-            params["action"] = action
-        if vdom is not None:
-            params["vdom"] = vdom
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
+        Select a specific entry from a CLI table.
         
-        # Conditional path: list all if mkey is None, get specific otherwise
-        if mkey is not None:
-            mkey_str = self._client.validate_mkey(mkey, "mkey")
-            path = f"{self.path}/{mkey_str}"
-        else:
-            path = self.path
-
-        return self._client.get(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        nkey: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        cifs: Optional[list] = None,
-        comment: Optional[str] = None,
-        dns: Optional[list] = None,
-        ftp: Optional[list] = None,
-        http: Optional[list] = None,
-        imap: Optional[list] = None,
-        mail_signature: Optional[list] = None,
-        mapi: Optional[list] = None,
-        name: Optional[str] = None,
-        nntp: Optional[list] = None,
-        oversize_log: Optional[str] = None,
-        pop3: Optional[list] = None,
-        replacemsg_group: Optional[str] = None,
-        rpc_over_http: Optional[str] = None,
-        smtp: Optional[list] = None,
-        ssh: Optional[list] = None,
-        switching_protocols_log: Optional[str] = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        Create profile-protocol-options entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: create(key="value", vdom="root")
-
         Args:
-            payload_dict: The configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            cifs (list[object]):
-                Configure CIFS protocol options.
-            comment (string) (max_len: 255):
-                Optional comments.
-            dns (list[object]):
-                Configure DNS protocol options.
-            ftp (list[object]):
-                Configure FTP protocol options.
-            http (list[object]):
-                Configure HTTP protocol options.
-            imap (list[object]):
-                Configure IMAP protocol options.
-            mail-signature (list[object]):
-                Configure Mail signature.
-            mapi (list[object]):
-                Configure MAPI protocol options.
-            name (string) (max_len: 47):
-                Name.
-            nntp (list[object]):
-                Configure NNTP protocol options.
-            oversize-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging for antivirus oversize file blocking.
-            pop3 (list[object]):
-                Configure POP3 protocol options.
-            replacemsg-group (string) (max_len: 35):
-                Name of the replacement message group to be used.
-            rpc-over-http (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of RPC over HTTP.
-            smtp (list[object]):
-                Configure SMTP protocol options.
-            ssh (list[object]):
-                Configure SFTP and SCP protocol options.
-            switching-protocols-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging for HTTP/HTTPS switching protocols.
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if cifs is not None:
-            payload_dict["cifs"] = cifs
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dns is not None:
-            payload_dict["dns"] = dns
-        if ftp is not None:
-            payload_dict["ftp"] = ftp
-        if http is not None:
-            payload_dict["http"] = http
-        if imap is not None:
-            payload_dict["imap"] = imap
-        if mail_signature is not None:
-            payload_dict["mail-signature"] = mail_signature
-        if mapi is not None:
-            payload_dict["mapi"] = mapi
-        if name is not None:
-            payload_dict["name"] = name
-        if nntp is not None:
-            payload_dict["nntp"] = nntp
-        if oversize_log is not None:
-            payload_dict["oversize-log"] = oversize_log
-        if pop3 is not None:
-            payload_dict["pop3"] = pop3
-        if replacemsg_group is not None:
-            payload_dict["replacemsg-group"] = replacemsg_group
-        if rpc_over_http is not None:
-            payload_dict["rpc-over-http"] = rpc_over_http
-        if smtp is not None:
-            payload_dict["smtp"] = smtp
-        if ssh is not None:
-            payload_dict["ssh"] = ssh
-        if switching_protocols_log is not None:
-            payload_dict["switching-protocols-log"] = switching_protocols_log
-
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
-        if nkey is not None:
-            params["nkey"] = nkey
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall/profile-protocol-options/{name}"
+        else:
+            endpoint = "/firewall/profile-protocol-options"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.post(
-            "cmdb", self.path, data=payload_dict, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        vdom: Optional[Any] = None,
-        action: Optional[Any] = None,
-        before: Optional[Any] = None,
-        after: Optional[Any] = None,
-        scope: Optional[Any] = None,
-        cifs: Optional[list] = None,
-        comment: Optional[str] = None,
-        dns: Optional[list] = None,
-        ftp: Optional[list] = None,
-        http: Optional[list] = None,
-        imap: Optional[list] = None,
-        mail_signature: Optional[list] = None,
-        mapi: Optional[list] = None,
-        name: Optional[str] = None,
-        nntp: Optional[list] = None,
-        oversize_log: Optional[str] = None,
-        pop3: Optional[list] = None,
-        replacemsg_group: Optional[str] = None,
-        rpc_over_http: Optional[str] = None,
-        smtp: Optional[list] = None,
-        ssh: Optional[list] = None,
-        switching_protocols_log: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        oversize_log: str | None = None,
+        switching_protocols_log: str | None = None,
+        http: list | None = None,
+        ftp: list | None = None,
+        imap: list | None = None,
+        mapi: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        nntp: list | None = None,
+        ssh: list | None = None,
+        dns: list | None = None,
+        cifs: list | None = None,
+        mail_signature: list | None = None,
+        rpc_over_http: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Update profile-protocol-options entry.
-
-        Supports two usage patterns:
-        1. Pass data dict: update(mkey=123, payload_dict={"key": "value"}, vdom="root")
-        2. Pass kwargs: update(mkey=123, key="value", vdom="root")
-
+        Update this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            payload_dict: The updated configuration data (optional if using kwargs)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            action: If supported, an action can be specified.
-            before: If *action=move*, use *before* to specify the ID of the resource that
-            after: If *action=move*, use *after* to specify the ID of the resource that t
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
-        Body schema properties (can pass via data dict or as kwargs):
-
-            cifs (list[object]):
-                Configure CIFS protocol options.
-            comment (string) (max_len: 255):
-                Optional comments.
-            dns (list[object]):
-                Configure DNS protocol options.
-            ftp (list[object]):
-                Configure FTP protocol options.
-            http (list[object]):
-                Configure HTTP protocol options.
-            imap (list[object]):
-                Configure IMAP protocol options.
-            mail-signature (list[object]):
-                Configure Mail signature.
-            mapi (list[object]):
-                Configure MAPI protocol options.
-            name (string) (max_len: 47):
-                Name.
-            nntp (list[object]):
-                Configure NNTP protocol options.
-            oversize-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging for antivirus oversize file blocking.
-            pop3 (list[object]):
-                Configure POP3 protocol options.
-            replacemsg-group (string) (max_len: 35):
-                Name of the replacement message group to be used.
-            rpc-over-http (string) (enum: ['enable', 'disable']):
-                Enable/disable inspection of RPC over HTTP.
-            smtp (list[object]):
-                Configure SMTP protocol options.
-            ssh (list[object]):
-                Configure SFTP and SCP protocol options.
-            switching-protocols-log (string) (enum: ['disable', 'enable']):
-                Enable/disable logging for HTTP/HTTPS switching protocols.
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name. (optional)
+            comment: Optional comments. (optional)
+            replacemsg_group: Name of the replacement message group to be used. (optional)
+            oversize_log: Enable/disable logging for antivirus oversize file blocking. (optional)
+            switching_protocols_log: Enable/disable logging for HTTP/HTTPS switching protocols. (optional)
+            http: Configure HTTP protocol options. (optional)
+            ftp: Configure FTP protocol options. (optional)
+            imap: Configure IMAP protocol options. (optional)
+            mapi: Configure MAPI protocol options. (optional)
+            pop3: Configure POP3 protocol options. (optional)
+            smtp: Configure SMTP protocol options. (optional)
+            nntp: Configure NNTP protocol options. (optional)
+            ssh: Configure SFTP and SCP protocol options. (optional)
+            dns: Configure DNS protocol options. (optional)
+            cifs: Configure CIFS protocol options. (optional)
+            mail_signature: Configure Mail signature. (optional)
+            rpc_over_http: Enable/disable inspection of RPC over HTTP. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        # Build data from kwargs if not provided
-        if payload_dict is None:
-            payload_dict = {}
-        if cifs is not None:
-            payload_dict["cifs"] = cifs
-        if comment is not None:
-            payload_dict["comment"] = comment
-        if dns is not None:
-            payload_dict["dns"] = dns
-        if ftp is not None:
-            payload_dict["ftp"] = ftp
-        if http is not None:
-            payload_dict["http"] = http
-        if imap is not None:
-            payload_dict["imap"] = imap
-        if mail_signature is not None:
-            payload_dict["mail-signature"] = mail_signature
-        if mapi is not None:
-            payload_dict["mapi"] = mapi
-        if name is not None:
-            payload_dict["name"] = name
-        if nntp is not None:
-            payload_dict["nntp"] = nntp
-        if oversize_log is not None:
-            payload_dict["oversize-log"] = oversize_log
-        if pop3 is not None:
-            payload_dict["pop3"] = pop3
-        if replacemsg_group is not None:
-            payload_dict["replacemsg-group"] = replacemsg_group
-        if rpc_over_http is not None:
-            payload_dict["rpc-over-http"] = rpc_over_http
-        if smtp is not None:
-            payload_dict["smtp"] = smtp
-        if ssh is not None:
-            payload_dict["ssh"] = ssh
-        if switching_protocols_log is not None:
-            payload_dict["switching-protocols-log"] = switching_protocols_log
-
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if action is not None:
-            params["action"] = action
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall/profile-protocol-options/{name}"
         if before is not None:
-            params["before"] = before
+            data_payload['before'] = before
         if after is not None:
-            params["after"] = after
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
-        params.update(kwargs)
-
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.put(
-            "cmdb",
-            f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path,
-            data=payload_dict,
-            params=params,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if oversize_log is not None:
+            data_payload['oversize-log'] = oversize_log
+        if switching_protocols_log is not None:
+            data_payload['switching-protocols-log'] = switching_protocols_log
+        if http is not None:
+            data_payload['http'] = http
+        if ftp is not None:
+            data_payload['ftp'] = ftp
+        if imap is not None:
+            data_payload['imap'] = imap
+        if mapi is not None:
+            data_payload['mapi'] = mapi
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if nntp is not None:
+            data_payload['nntp'] = nntp
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if dns is not None:
+            data_payload['dns'] = dns
+        if cifs is not None:
+            data_payload['cifs'] = cifs
+        if mail_signature is not None:
+            data_payload['mail-signature'] = mail_signature
+        if rpc_over_http is not None:
+            data_payload['rpc-over-http'] = rpc_over_http
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        mkey: Optional[Union[str, int]] = None,
-        vdom: Optional[Any] = None,
-        scope: Optional[Any] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Delete a profile-protocol-options entry.
-
+        Delete this specific resource.
+        
         Args:
-            mkey: The name (primary key)
-            vdom: Specify the Virtual Domain(s) from which results are returned or chang
-            scope: Specify the Scope from which results are returned or changes are appli
-            **kwargs: Additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
+            Dictionary containing API response
         """
-        params = {}
-
-        if vdom is not None:
-            params["vdom"] = vdom
-        if scope is not None:
-            params["scope"] = scope
-
-        # Add any additional kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall/profile-protocol-options/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        # Extract vdom if present
-        vdom = params.pop("vdom", None)
-
-        return self._client.delete(
-            "cmdb", f"{self.path}/{encode_path_component(mkey)}" if mkey is not None else self.path, params=params, vdom=vdom, raw_json=raw_json
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        oversize_log: str | None = None,
+        switching_protocols_log: str | None = None,
+        http: list | None = None,
+        ftp: list | None = None,
+        imap: list | None = None,
+        mapi: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        nntp: list | None = None,
+        ssh: list | None = None,
+        dns: list | None = None,
+        cifs: list | None = None,
+        mail_signature: list | None = None,
+        rpc_over_http: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name. (optional)
+            comment: Optional comments. (optional)
+            replacemsg_group: Name of the replacement message group to be used. (optional)
+            oversize_log: Enable/disable logging for antivirus oversize file blocking. (optional)
+            switching_protocols_log: Enable/disable logging for HTTP/HTTPS switching protocols. (optional)
+            http: Configure HTTP protocol options. (optional)
+            ftp: Configure FTP protocol options. (optional)
+            imap: Configure IMAP protocol options. (optional)
+            mapi: Configure MAPI protocol options. (optional)
+            pop3: Configure POP3 protocol options. (optional)
+            smtp: Configure SMTP protocol options. (optional)
+            nntp: Configure NNTP protocol options. (optional)
+            ssh: Configure SFTP and SCP protocol options. (optional)
+            dns: Configure DNS protocol options. (optional)
+            cifs: Configure CIFS protocol options. (optional)
+            mail_signature: Configure Mail signature. (optional)
+            rpc_over_http: Enable/disable inspection of RPC over HTTP. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall/profile-protocol-options"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if oversize_log is not None:
+            data_payload['oversize-log'] = oversize_log
+        if switching_protocols_log is not None:
+            data_payload['switching-protocols-log'] = switching_protocols_log
+        if http is not None:
+            data_payload['http'] = http
+        if ftp is not None:
+            data_payload['ftp'] = ftp
+        if imap is not None:
+            data_payload['imap'] = imap
+        if mapi is not None:
+            data_payload['mapi'] = mapi
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if nntp is not None:
+            data_payload['nntp'] = nntp
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if dns is not None:
+            data_payload['dns'] = dns
+        if cifs is not None:
+            data_payload['cifs'] = cifs
+        if mail_signature is not None:
+            data_payload['mail-signature'] = mail_signature
+        if rpc_over_http is not None:
+            data_payload['rpc-over-http'] = rpc_over_http
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

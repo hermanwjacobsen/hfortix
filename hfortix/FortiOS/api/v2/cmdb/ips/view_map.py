@@ -1,116 +1,242 @@
-"""FortiOS CMDB - IPS View Map"""
+"""
+FortiOS CMDB - Ips ViewMap
 
-from __future__ import annotations
+API Endpoints:
+    GET    /ips/view-map
+    POST   /ips/view-map
+    GET    /ips/view-map/{id}
+    PUT    /ips/view-map/{id}
+    DELETE /ips/view-map/{id}
+"""
 
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ...http_client import HTTPClient
-
-from hfortix.FortiOS.http_client import encode_path_component
+    from ....http_client import HTTPClient
 
 
 class ViewMap:
-    def __init__(self, client: "HTTPClient") -> None:
+    """ViewMap operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize ViewMap endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
-        self, id: Optional[int] = None, vdom: Optional[Union[str, bool]] = None, **kwargs: Any
-    ) -> dict[str, Any]:
-        """Get IPS view map(s) - List all or get specific."""
-        path = "ips/view-map"
-        if id is not None:
-            path = f"{path}/{encode_path_component(str(id))}"
-        return self._client.get(
-            "cmdb",
-            path,
-            params=kwargs if kwargs else None,
-            vdom=vdom,
-        )
-
-    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        id: Optional[int] = None,
-        vdom_id: Optional[int] = None,
-        policy_id: Optional[int] = None,
-        id_policy_id: Optional[int] = None,
-        which: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Create IPS view map.
-
-        Args:
-            id: Map ID
-            vdom_id: VDOM ID
-            policy_id: Policy ID
-            id_policy_id: ID policy ID
-            which: Which (before|after)
         """
-        data = data_dict.copy() if data_dict else {}
-
-        param_map = {
-            "id": id,
-            "vdom-id": vdom_id,
-            "policy-id": policy_id,
-            "id-policy-id": id_policy_id,
-            "which": which,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-        return self._client.post("cmdb", "ips/view-map", data=data, vdom=vdom)
+        Select a specific entry from a CLI table.
+        
+        Args:
+            id: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if id:
+            endpoint = f"/ips/view-map/{id}"
+        else:
+            endpoint = "/ips/view-map"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
+        params.update(kwargs)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        id: int,
-        data_dict: Optional[dict[str, Any]] = None,
-        vdom_id: Optional[int] = None,
-        policy_id: Optional[int] = None,
-        id_policy_id: Optional[int] = None,
-        which: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        vdom_id: int | None = None,
+        policy_id: int | None = None,
+        id_policy_id: int | None = None,
+        which: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
-        """Update IPS view map.
-
-        Args:
-            id: Map ID to update
-            vdom_id: VDOM ID
-            policy_id: Policy ID
-            id_policy_id: ID policy ID
-            which: Which (before|after)
         """
-        data = data_dict.copy() if data_dict else {}
+        Update this specific resource.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            id: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            id: View ID. (optional)
+            vdom_id: VDOM ID. (optional)
+            policy_id: Policy ID. (optional)
+            id_policy_id: ID-based policy ID. (optional)
+            which: Policy. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for put()")
+        endpoint = f"/ips/view-map/{id}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if id is not None:
+            data_payload['id'] = id
+        if vdom_id is not None:
+            data_payload['vdom-id'] = vdom_id
+        if policy_id is not None:
+            data_payload['policy-id'] = policy_id
+        if id_policy_id is not None:
+            data_payload['id-policy-id'] = id_policy_id
+        if which is not None:
+            data_payload['which'] = which
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
-        param_map = {
-            "vdom-id": vdom_id,
-            "policy-id": policy_id,
-            "id-policy-id": id_policy_id,
-            "which": which,
-        }
+    def delete(
+        self,
+        id: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Delete this specific resource.
+        
+        Args:
+            id: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not id:
+            raise ValueError("id is required for delete()")
+        endpoint = f"/ips/view-map/{id}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        for key, value in param_map.items():
-            if value is not None:
-                data[key] = value
-
-        data.update(kwargs)
-        return self._client.put(
-            "cmdb", f"ips/view-map/{encode_path_component(str(id))}", data=data, vdom=vdom
-        )
-
-    def delete(self, id: int, vdom: Optional[Union[str, bool]] = None) -> dict[str, Any]:
-        return self._client.delete(
-            "cmdb", f"ips/view-map/{encode_path_component(str(id))}", vdom=vdom
-        )
-
-    def exists(self, id: int, vdom: Optional[Union[str, bool]] = None) -> bool:
-        try:
-            self.get(id, vdom=vdom)
-            return True
-        except Exception:
-            return False
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        id: int | None = None,
+        vdom_id: int | None = None,
+        policy_id: int | None = None,
+        id_policy_id: int | None = None,
+        which: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            id: View ID. (optional)
+            vdom_id: VDOM ID. (optional)
+            policy_id: Policy ID. (optional)
+            id_policy_id: ID-based policy ID. (optional)
+            which: Policy. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/ips/view-map"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if id is not None:
+            data_payload['id'] = id
+        if vdom_id is not None:
+            data_payload['vdom-id'] = vdom_id
+        if policy_id is not None:
+            data_payload['policy-id'] = policy_id
+        if id_policy_id is not None:
+            data_payload['id-policy-id'] = id_policy_id
+        if which is not None:
+            data_payload['which'] = which
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

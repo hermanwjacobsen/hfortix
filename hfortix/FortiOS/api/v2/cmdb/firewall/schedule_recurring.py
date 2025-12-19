@@ -1,319 +1,258 @@
 """
-FortiOS CMDB - Firewall Schedule Recurring
-
-Recurring schedule configuration.
+FortiOS CMDB - Firewall ScheduleRecurring
 
 API Endpoints:
-    GET    /api/v2/cmdb/firewall.schedule/recurring           - List all / Get specific
-    POST   /api/v2/cmdb/firewall.schedule/recurring           - Create
-    PUT    /api/v2/cmdb/firewall.schedule/recurring/{name}   - Update
-    DELETE /api/v2/cmdb/firewall.schedule/recurring/{name}   - Delete
+    GET    /firewall.schedule/recurring
+    POST   /firewall.schedule/recurring
+    GET    /firewall.schedule/recurring/{name}
+    PUT    /firewall.schedule/recurring/{name}
+    DELETE /firewall.schedule/recurring/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class ScheduleRecurring:
-    """Firewall recurring schedule endpoint"""
+    """ScheduleRecurring operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize ScheduleRecurring endpoint
+        Initialize ScheduleRecurring endpoint.
 
         Args:
-            client: HTTPClient instance
+            client: HTTPClient instance for API communication
         """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        action: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get a specific recurring schedule by name, or list all if name is not provided.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Schedule name (optional - if None, lists all schedules)
-            datasource: Include datasource information
-            with_meta: Include metadata
-            action: Special actions (default, schema)
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional query parameters
-
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # List all schedules
-            >>> result = fgt.cmdb.firewall.schedule.recurring.get()
-            >>> # Get recurring schedule
-            >>> result = fgt.cmdb.firewall.schedule.recurring.get('weekday-business-hours')
-            >>> print(f"Days: {result['results']['day']}")
+            Dictionary containing API response
         """
-        params = {}
-        param_map = {
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/firewall.schedule/recurring/{name}"
+        else:
+            endpoint = "/firewall.schedule/recurring"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        if name is not None:
-            path = f"firewall.schedule/recurring/{encode_path_component(name)}"
-        else:
-            path = "firewall.schedule/recurring"
-            
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        start: Optional[str] = None,
-        end: Optional[str] = None,
-        day: Optional[list[str]] = None,
-        color: Optional[int] = None,
-        fabric_object: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Create recurring schedule.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: create(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: create(key='value', vdom='root')
-        Args:
-            name: Schedule name
-            start: Start time (format: hh:mm, e.g., '08:00')
-            end: End time (format: hh:mm, e.g., '18:00')
-            day: Days of week (list of: 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday')
-            color: Color (0-32, default=0)
-            fabric_object: Security Fabric global object setting ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
-        Returns:
-            API response dict
-
-        Examples:
-            >>> # POST - Create weekday business hours
-            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
-            ...     name='weekday-business-hours',
-            ...     start='08:00',
-            ...     end='18:00',
-            ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-            ... )
-
-            >>> # POST - Create weekend schedule
-            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
-            ...     name='weekend-morning',
-            ...     start='08:00',
-            ...     end='12:00',
-            ...     day=['saturday', 'sunday']
-            ... )
-
-            >>> # POST - Create 24/7 schedule
-            >>> result = fgt.cmdb.firewall.schedule.recurring.create(
-            ...     name='always',
-            ...     start='00:00',
-            ...     end='23:59',
-            ...     day=['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-            ... )
-        """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if name is not None:
-                payload_dict["name"] = name
-            if start is not None:
-                payload_dict["start"] = start
-            if end is not None:
-                payload_dict["end"] = end
-            if day is not None:
-                payload_dict["day"] = day
-            if color is not None:
-                payload_dict["color"] = color
-            if fabric_object is not None:
-                payload_dict["fabric-object"] = fabric_object
-
-        payload_dict = {
-            "name": name,
-            "start": start,
-            "end": end,
-        }
-
-        param_map = {
-            "day": day,
-            "color": color,
-            "fabric-object": fabric_object,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = "firewall.schedule/recurring"
-        return self._client.post("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        name: str,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        start: Optional[str] = None,
-        end: Optional[str] = None,
-        day: Optional[list[str]] = None,
-        color: Optional[int] = None,
-        fabric_object: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        uuid: str | None = None,
+        end: str | None = None,
+        day: str | None = None,
+        label_day: str | None = None,
+        color: int | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update recurring schedule.
-
-
-        Supports two usage patterns:
-        1. Pass data dict: update(payload_dict={'key': 'value'}, vdom='root')
-        2. Pass kwargs: update(key='value', vdom='root')
+        Update this specific resource.
+        
         Args:
-            name: Schedule name
-            start: Start time (format: hh:mm)
-            end: End time (format: hh:mm)
-            day: Days of week (list of: 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday')
-            color: Color (0-32, default=0)
-            fabric_object: Security Fabric global object setting ('enable' or 'disable')
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-            **kwargs: Additional parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Recurring schedule name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            end: Time of day to end the schedule, format hh:mm. (optional)
+            day: One or more days of the week on which the schedule is valid. Separate the names of the days with a space. (optional)
+            label_day: Configure a window during the time of day in which the schedule job is executed. (optional)
+            color: Color of icon on the GUI. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Extend business hours
-            >>> result = fgt.cmdb.firewall.schedule.recurring.update(
-            ...     name='weekday-business-hours',
-            ...     end='20:00'
-            ... )
-
-            >>> # Add Saturday to workdays
-            >>> result = fgt.cmdb.firewall.schedule.recurring.update(
-            ...     name='weekday-business-hours',
-            ...     day=['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-            ... )
+            Dictionary containing API response
         """
-        # Pattern 1: data dict provided
-        if payload_dict is not None:
-            # Use provided data dict
-            pass
-        # Pattern 2: kwargs pattern - build data dict
-        else:
-            payload_dict = {}
-            if start is not None:
-                payload_dict["start"] = start
-            if end is not None:
-                payload_dict["end"] = end
-            if day is not None:
-                payload_dict["day"] = day
-            if color is not None:
-                payload_dict["color"] = color
-            if fabric_object is not None:
-                payload_dict["fabric-object"] = fabric_object
-
-        payload_dict = {}
-
-        param_map = {
-            "start": start,
-            "end": end,
-            "day": day,
-            "color": color,
-            "fabric-object": fabric_object,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        # Add any additional kwargs
-        for key, value in kwargs.items():
-            if value is not None:
-                payload_dict[key] = value
-
-        path = f"firewall.schedule/recurring/{encode_path_component(name)}"
-        return self._client.put("cmdb", path, data=payload_dict, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/firewall.schedule/recurring/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if end is not None:
+            data_payload['end'] = end
+        if day is not None:
+            data_payload['day'] = day
+        if label_day is not None:
+            data_payload['label-day'] = label_day
+        if color is not None:
+            data_payload['color'] = color
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a recurring schedule.
-
+        Delete this specific resource.
+        
         Args:
-            name: Schedule name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dict
-
-        Examples:
-            >>> # Delete schedule
-            >>> result = fgt.cmdb.firewall.schedule.recurring.delete('old-schedule')
+            Dictionary containing API response
         """
-        path = f"firewall.schedule/recurring/{encode_path_component(name)}"
-        return self._client.delete("cmdb", path, vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/firewall.schedule/recurring/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-    def exists(self, name: str, vdom: Optional[Union[str, bool]] = None) -> bool:
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        uuid: str | None = None,
+        end: str | None = None,
+        day: str | None = None,
+        label_day: str | None = None,
+        color: int | None = None,
+        fabric_object: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Check if a recurring schedule exists.
-
+        Create object(s) in this table.
+        
         Args:
-            name: Schedule name
-            vdom: Virtual domain (None=use default, False=skip vdom, or specific vdom)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Recurring schedule name. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            end: Time of day to end the schedule, format hh:mm. (optional)
+            day: One or more days of the week on which the schedule is valid. Separate the names of the days with a space. (optional)
+            label_day: Configure a window during the time of day in which the schedule job is executed. (optional)
+            color: Color of icon on the GUI. (optional)
+            fabric_object: Security Fabric global object setting. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            True if schedule exists, False otherwise
-
-        Examples:
-            >>> if fgt.cmdb.firewall.schedule.recurring.exists('weekday-business-hours'):
-            ...     print("Schedule exists")
+            Dictionary containing API response
         """
-        try:
-            result = self.get(name, vdom=vdom, raw_json=True)
-            return result.get("status") == "success"
-        except Exception:
-            return False
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/firewall.schedule/recurring"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if uuid is not None:
+            data_payload['uuid'] = uuid
+        if end is not None:
+            data_payload['end'] = end
+        if day is not None:
+            data_payload['day'] = day
+        if label_day is not None:
+            data_payload['label-day'] = label_day
+        if color is not None:
+            data_payload['color'] = color
+        if fabric_object is not None:
+            data_payload['fabric-object'] = fabric_object
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

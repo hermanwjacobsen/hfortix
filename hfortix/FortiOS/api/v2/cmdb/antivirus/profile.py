@@ -1,519 +1,426 @@
 """
 FortiOS CMDB - Antivirus Profile
-Configure AntiVirus profiles
 
 API Endpoints:
-    GET    /antivirus/profile       - Get all antivirus profiles
-    GET    /antivirus/profile/{name} - Get specific antivirus profile
-    POST   /antivirus/profile       - Create antivirus profile
-    PUT    /antivirus/profile/{name} - Update antivirus profile
-    DELETE /antivirus/profile/{name} - Delete antivirus profile
+    GET    /antivirus/profile
+    POST   /antivirus/profile
+    GET    /antivirus/profile/{name}
+    PUT    /antivirus/profile/{name}
+    DELETE /antivirus/profile/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Profile:
-    """Antivirus Profile endpoint"""
+    """Profile operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Profile endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
-        name: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        # Query parameters
-        attr: Optional[str] = None,
-        count: Optional[int] = None,
-        skip_to_datasource: Optional[int] = None,
-        acs: Optional[bool] = None,
-        search: Optional[str] = None,
-        scope: Optional[str] = None,
-        datasource: Optional[bool] = None,
-        with_meta: Optional[bool] = None,
-        skip: Optional[bool] = None,
-        format: Optional[str] = None,
-        action: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        attr: str | None = None,
+        skip_to_datasource: dict | None = None,
+        acs: int | None = None,
+        search: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        GET /antivirus/profile or /antivirus/profile/{name}
-        Get antivirus profiles
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Profile name (if None, returns all profiles)
-            vdom: Virtual domain (optional)
-
-            Query parameters (all optional):
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned result are in ascending order
-            search: Filter objects by search value
-            scope: Scope (global|vdom|both)
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information about each object (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (e.g., 'name|comment|scan-mode')
-            action: Special actions (default, schema, revision)
-            **kwargs: Any additional parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Antivirus profile or list of profiles
-
-        Examples:
-            >>> # Get all profiles
-            >>> profiles = fgt.cmdb.antivirus.profile.get()
-
-            >>> # Get specific profile
-            >>> profile = fgt.cmdb.antivirus.profile.get('default')
-
-            >>> # Get with meta information
-            >>> profiles = fgt.cmdb.antivirus.profile.get(with_meta=True)
-
-            >>> # Get with filters and format
-            >>> profiles = fgt.cmdb.antivirus.profile.get(
-            ...     format='name|comment|scan-mode',
-            ...     search='corporate',
-            ...     count=10
-            ... )
+            Dictionary containing API response
         """
-        # Build params dict from provided parameters
-        params = {}
-
-        # Map parameters
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        # Add non-None parameters
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any extra kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if name:
+            endpoint = f"/antivirus/profile/{name}"
+        else:
+            endpoint = "/antivirus/profile"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        path = f"antivirus/profile/{encode_path_component(name)}" if name else "antivirus/profile"
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        scan_mode: Optional[str] = None,
-        mobile_malware_db: Optional[str] = None,
-        analytics_max_upload: Optional[int] = None,
-        analytics_ignore_filetype: Optional[int] = None,
-        analytics_accept_filetype: Optional[int] = None,
-        analytics_wl_filetype: Optional[int] = None,
-        analytics_bl_filetype: Optional[int] = None,
-        analytics_db: Optional[str] = None,
-        feature_set: Optional[str] = None,
-        fortindr_error_action: Optional[str] = None,
-        fortindr_timeout_action: Optional[str] = None,
-        fortisandbox_mode: Optional[str] = None,
-        fortisandbox_max_upload: Optional[int] = None,
-        fortisandbox_error_action: Optional[str] = None,
-        fortisandbox_timeout_action: Optional[str] = None,
-        outbreak_prevention_mode: Optional[str] = None,
-        outbreak_prevention_archive_scan: Optional[str] = None,
-        external_blocklist_enable_all: Optional[str] = None,
-        external_blocklist_archive_scan: Optional[str] = None,
-        ems_threat_feed: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        raw_json: bool = False,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        POST /antivirus/profile
-        Create antivirus profile
-
-        Args:
-            name: Profile name (required, max 35 chars)
-            comment: Comment (max 255 chars)
-            replacemsg_group: Replacement message group
-            scan_mode: Scan mode - 'quick', 'full', 'legacy', 'default'
-            mobile_malware_db: Enable/disable mobile malware database - 'disable' or 'enable'
-            analytics_max_upload: Maximum size of files uploaded to FortiSandbox (1-395 MB)
-            analytics_ignore_filetype: File types to ignore for FortiSandbox inspection
-            analytics_accept_filetype: File types to submit for FortiSandbox inspection
-            analytics_wl_filetype: Whitelist file types
-            analytics_bl_filetype: Blacklist file types
-            analytics_db: Enable/disable using FortiSandbox signature database - 'disable' or 'enable'
-            feature_set: Flow/proxy feature set - 'flow' or 'proxy'
-            fortindr_error_action: Action on FortiNDR error - 'pass' or 'block'
-            fortindr_timeout_action: Action on FortiNDR timeout - 'pass' or 'block'
-            fortisandbox_mode: FortiSandbox inline mode - 'inline' or 'analytics-suspicious'
-            fortisandbox_max_upload: Maximum size for FortiSandbox upload (1-395 MB)
-            fortisandbox_error_action: Action on FortiSandbox error - 'pass' or 'block'
-            fortisandbox_timeout_action: Action on FortiSandbox timeout - 'pass' or 'block'
-            outbreak_prevention_mode: Outbreak prevention mode - 'disabled', 'files', 'full-archive', 'pass', 'block'
-            outbreak_prevention_archive_scan: Archive scan setting - 'disable' or 'enable'
-            external_blocklist_enable_all: Enable/disable all external blocklists - 'disable' or 'enable'
-            external_blocklist_archive_scan: External blocklist archive scan - 'disable' or 'enable'
-            ems_threat_feed: Enable/disable EMS threat feed - 'disable' or 'enable'
-            vdom: Virtual domain (optional)
-            **kwargs: Any additional parameters (http, ftp, imap, pop3, smtp, mapi, nntp, cifs, ssh)
-
-        Returns:
-            Response dict with status
-
-        Examples:
-            >>> # POST - Create basic profile
-            >>> fgt.cmdb.antivirus.profile.create(
-            ...     name='corporate_av',
-            ...     comment='Corporate antivirus policy',
-            ...     scan_mode='full',
-            ...     analytics_db='enable'
-            ... )
-
-            >>> # POST - Create with FortiSandbox
-            >>> fgt.cmdb.antivirus.profile.create(
-            ...     name='strict_av',
-            ...     scan_mode='full',
-            ...     fortisandbox_mode='inline',
-            ...     fortisandbox_max_upload=50,
-            ...     fortisandbox_error_action='block'
-            ... )
-        """
-        # Build data dict from provided parameters
-        payload_dict = {"name": name}
-
-        # Map Python parameter names to API field names
-        param_map = {
-            "comment": comment,
-            "replacemsg_group": replacemsg_group,
-            "scan_mode": scan_mode,
-            "mobile_malware_db": mobile_malware_db,
-            "analytics_max_upload": analytics_max_upload,
-            "analytics_ignore_filetype": analytics_ignore_filetype,
-            "analytics_accept_filetype": analytics_accept_filetype,
-            "analytics_wl_filetype": analytics_wl_filetype,
-            "analytics_bl_filetype": analytics_bl_filetype,
-            "analytics_db": analytics_db,
-            "feature_set": feature_set,
-            "fortindr_error_action": fortindr_error_action,
-            "fortindr_timeout_action": fortindr_timeout_action,
-            "fortisandbox_mode": fortisandbox_mode,
-            "fortisandbox_max_upload": fortisandbox_max_upload,
-            "fortisandbox_error_action": fortisandbox_error_action,
-            "fortisandbox_timeout_action": fortisandbox_timeout_action,
-            "outbreak_prevention_mode": outbreak_prevention_mode,
-            "outbreak_prevention_archive_scan": outbreak_prevention_archive_scan,
-            "external_blocklist_enable_all": external_blocklist_enable_all,
-            "external_blocklist_archive_scan": external_blocklist_archive_scan,
-            "ems_threat_feed": ems_threat_feed,
-        }
-
-        # API field name mapping
-        api_field_map = {
-            "comment": "comment",
-            "replacemsg_group": "replacemsg-group",
-            "scan_mode": "scan-mode",
-            "mobile_malware_db": "mobile-malware-db",
-            "analytics_max_upload": "analytics-max-upload",
-            "analytics_ignore_filetype": "analytics-ignore-filetype",
-            "analytics_accept_filetype": "analytics-accept-filetype",
-            "analytics_wl_filetype": "analytics-wl-filetype",
-            "analytics_bl_filetype": "analytics-bl-filetype",
-            "analytics_db": "analytics-db",
-            "feature_set": "feature-set",
-            "fortindr_error_action": "fortindr-error-action",
-            "fortindr_timeout_action": "fortindr-timeout-action",
-            "fortisandbox_mode": "fortisandbox-mode",
-            "fortisandbox_max_upload": "fortisandbox-max-upload",
-            "fortisandbox_error_action": "fortisandbox-error-action",
-            "fortisandbox_timeout_action": "fortisandbox-timeout-action",
-            "outbreak_prevention_mode": "outbreak-prevention-mode",
-            "outbreak_prevention_archive_scan": "outbreak-prevention-archive-scan",
-            "external_blocklist_enable_all": "external-blocklist-enable-all",
-            "external_blocklist_archive_scan": "external-blocklist-archive-scan",
-            "ems_threat_feed": "ems-threat-feed",
-        }
-
-        # Add non-None parameters
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        # Add any extra kwargs (protocol settings like http, ftp, etc.)
-        payload_dict.update(kwargs)
-
-        return self._client.post(
-            "cmdb", "antivirus/profile", payload_dict, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        comment: Optional[str] = None,
-        replacemsg_group: Optional[str] = None,
-        scan_mode: Optional[str] = None,
-        mobile_malware_db: Optional[str] = None,
-        analytics_max_upload: Optional[int] = None,
-        analytics_ignore_filetype: Optional[int] = None,
-        analytics_accept_filetype: Optional[int] = None,
-        analytics_wl_filetype: Optional[int] = None,
-        analytics_bl_filetype: Optional[int] = None,
-        analytics_db: Optional[str] = None,
-        feature_set: Optional[str] = None,
-        fortindr_error_action: Optional[str] = None,
-        fortindr_timeout_action: Optional[str] = None,
-        fortisandbox_mode: Optional[str] = None,
-        fortisandbox_max_upload: Optional[int] = None,
-        fortisandbox_error_action: Optional[str] = None,
-        fortisandbox_timeout_action: Optional[str] = None,
-        outbreak_prevention_mode: Optional[str] = None,
-        outbreak_prevention_archive_scan: Optional[str] = None,
-        external_blocklist_enable_all: Optional[str] = None,
-        external_blocklist_archive_scan: Optional[str] = None,
-        ems_threat_feed: Optional[str] = None,
-        vdom: Optional[Union[str, bool]] = None,
-        # Query parameters for actions
-        action: Optional[str] = None,
-        before: Optional[str] = None,
-        after: Optional[str] = None,
-        scope: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        feature_set: str | None = None,
+        fortisandbox_mode: str | None = None,
+        fortisandbox_max_upload: int | None = None,
+        analytics_ignore_filetype: int | None = None,
+        analytics_accept_filetype: int | None = None,
+        analytics_db: str | None = None,
+        mobile_malware_db: str | None = None,
+        http: list | None = None,
+        ftp: list | None = None,
+        imap: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        mapi: list | None = None,
+        nntp: list | None = None,
+        cifs: list | None = None,
+        ssh: list | None = None,
+        nac_quar: list | None = None,
+        content_disarm: list | None = None,
+        outbreak_prevention_archive_scan: str | None = None,
+        external_blocklist_enable_all: str | None = None,
+        external_blocklist: list | None = None,
+        ems_threat_feed: str | None = None,
+        av_virus_log: str | None = None,
+        extended_log: str | None = None,
+        scan_mode: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        PUT /antivirus/profile/{name}
-        Update antivirus profile
-
+        Update this specific resource.
+        
         Args:
-            name: Profile name (required)
-            comment: Comment (max 255 chars)
-            replacemsg_group: Replacement message group
-            scan_mode: Scan mode - 'quick', 'full', 'legacy', 'default'
-            mobile_malware_db: Enable/disable mobile malware database - 'disable' or 'enable'
-            analytics_max_upload: Maximum size of files uploaded to FortiSandbox (1-395 MB)
-            analytics_ignore_filetype: File types to ignore for FortiSandbox inspection
-            analytics_accept_filetype: File types to submit for FortiSandbox inspection
-            analytics_wl_filetype: Whitelist file types
-            analytics_bl_filetype: Blacklist file types
-            analytics_db: Enable/disable using FortiSandbox signature database - 'disable' or 'enable'
-            feature_set: Flow/proxy feature set - 'flow' or 'proxy'
-            fortindr_error_action: Action on FortiNDR error - 'pass' or 'block'
-            fortindr_timeout_action: Action on FortiNDR timeout - 'pass' or 'block'
-            fortisandbox_mode: FortiSandbox inline mode - 'inline' or 'analytics-suspicious'
-            fortisandbox_max_upload: Maximum size for FortiSandbox upload (1-395 MB)
-            fortisandbox_error_action: Action on FortiSandbox error - 'pass' or 'block'
-            fortisandbox_timeout_action: Action on FortiSandbox timeout - 'pass' or 'block'
-            outbreak_prevention_mode: Outbreak prevention mode - 'disabled', 'files', 'full-archive', 'pass', 'block'
-            outbreak_prevention_archive_scan: Archive scan setting - 'disable' or 'enable'
-            external_blocklist_enable_all: Enable/disable all external blocklists - 'disable' or 'enable'
-            external_blocklist_archive_scan: External blocklist archive scan - 'disable' or 'enable'
-            ems_threat_feed: Enable/disable EMS threat feed - 'disable' or 'enable'
-            vdom: Virtual domain (optional)
-
-            Action parameters (optional):
-            action: Action to perform - 'move' to reorder entries
-            before: If action=move, move before this entry ID
-            after: If action=move, move after this entry ID
-            scope: Scope (vdom)
-            **kwargs: Any additional parameters (http, ftp, imap, pop3, smtp, mapi, nntp, cifs, ssh)
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            replacemsg_group: Replacement message group customized for this profile. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            fortisandbox_mode: FortiSandbox scan modes. (optional)
+            fortisandbox_max_upload: Maximum size of files that can be uploaded to FortiSandbox in Mbytes. (optional)
+            analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only). (optional)
+            analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only). (optional)
+            analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. (optional)
+            mobile_malware_db: Enable/disable using the mobile malware signature database. (optional)
+            http: Configure HTTP AntiVirus options. (optional)
+            ftp: Configure FTP AntiVirus options. (optional)
+            imap: Configure IMAP AntiVirus options. (optional)
+            pop3: Configure POP3 AntiVirus options. (optional)
+            smtp: Configure SMTP AntiVirus options. (optional)
+            mapi: Configure MAPI AntiVirus options. (optional)
+            nntp: Configure NNTP AntiVirus options. (optional)
+            cifs: Configure CIFS AntiVirus options. (optional)
+            ssh: Configure SFTP and SCP AntiVirus options. (optional)
+            nac_quar: Configure AntiVirus quarantine settings. (optional)
+            content_disarm: AV Content Disarm and Reconstruction settings. (optional)
+            outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. (optional)
+            external_blocklist_enable_all: Enable/disable all external blocklists. (optional)
+            external_blocklist: One or more external malware block lists. (optional)
+            ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. (optional)
+            av_virus_log: Enable/disable AntiVirus logging. (optional)
+            extended_log: Enable/disable extended logging for antivirus. (optional)
+            scan_mode: Configure scan mode (default or legacy). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Response dict with status
-
-        Examples:
-            >>> # PUT - Update scan mode
-            >>> fgt.cmdb.antivirus.profile.update(
-            ...     name='default',
-            ...     scan_mode='full'
-            ... )
-
-            >>> # PUT - Update FortiSandbox settings
-            >>> fgt.cmdb.antivirus.profile.update(
-            ...     name='corporate_av',
-            ...     fortisandbox_mode='inline',
-            ...     fortisandbox_error_action='block',
-            ...     comment='Updated FortiSandbox settings'
-            ... )
-
-            >>> # Enable outbreak prevention
-            >>> fgt.cmdb.antivirus.profile.update(
-            ...     name='strict_av',
-            ...     outbreak_prevention_mode='full-archive',
-            ...     outbreak_prevention_archive_scan='enable'
-            ... )
+            Dictionary containing API response
         """
-        # Build data dict from provided parameters
-        payload_dict = {}
-
-        # Map data parameters
-        data_param_map = {
-            "comment": comment,
-            "replacemsg_group": replacemsg_group,
-            "scan_mode": scan_mode,
-            "mobile_malware_db": mobile_malware_db,
-            "analytics_max_upload": analytics_max_upload,
-            "analytics_ignore_filetype": analytics_ignore_filetype,
-            "analytics_accept_filetype": analytics_accept_filetype,
-            "analytics_wl_filetype": analytics_wl_filetype,
-            "analytics_bl_filetype": analytics_bl_filetype,
-            "analytics_db": analytics_db,
-            "feature_set": feature_set,
-            "fortindr_error_action": fortindr_error_action,
-            "fortindr_timeout_action": fortindr_timeout_action,
-            "fortisandbox_mode": fortisandbox_mode,
-            "fortisandbox_max_upload": fortisandbox_max_upload,
-            "fortisandbox_error_action": fortisandbox_error_action,
-            "fortisandbox_timeout_action": fortisandbox_timeout_action,
-            "outbreak_prevention_mode": outbreak_prevention_mode,
-            "outbreak_prevention_archive_scan": outbreak_prevention_archive_scan,
-            "external_blocklist_enable_all": external_blocklist_enable_all,
-            "external_blocklist_archive_scan": external_blocklist_archive_scan,
-            "ems_threat_feed": ems_threat_feed,
-        }
-
-        # API field name mapping for data
-        api_field_map = {
-            "comment": "comment",
-            "replacemsg_group": "replacemsg-group",
-            "scan_mode": "scan-mode",
-            "mobile_malware_db": "mobile-malware-db",
-            "analytics_max_upload": "analytics-max-upload",
-            "analytics_ignore_filetype": "analytics-ignore-filetype",
-            "analytics_accept_filetype": "analytics-accept-filetype",
-            "analytics_wl_filetype": "analytics-wl-filetype",
-            "analytics_bl_filetype": "analytics-bl-filetype",
-            "analytics_db": "analytics-db",
-            "feature_set": "feature-set",
-            "fortindr_error_action": "fortindr-error-action",
-            "fortindr_timeout_action": "fortindr-timeout-action",
-            "fortisandbox_mode": "fortisandbox-mode",
-            "fortisandbox_max_upload": "fortisandbox-max-upload",
-            "fortisandbox_error_action": "fortisandbox-error-action",
-            "fortisandbox_timeout_action": "fortisandbox-timeout-action",
-            "outbreak_prevention_mode": "outbreak-prevention-mode",
-            "outbreak_prevention_archive_scan": "outbreak-prevention-archive-scan",
-            "external_blocklist_enable_all": "external-blocklist-enable-all",
-            "external_blocklist_archive_scan": "external-blocklist-archive-scan",
-            "ems_threat_feed": "ems-threat-feed",
-        }
-
-        # Add non-None data parameters
-        for param_name, value in data_param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                payload_dict[api_name] = value
-
-        # Add any extra data kwargs
-        for key, value in kwargs.items():
-            if key not in ["action", "before", "after", "scope"]:
-                payload_dict[key] = value
-
-        # Build query params dict
+        data_payload = payload_dict.copy() if payload_dict else {}
         params = {}
-
-        # Map query parameters
-        query_param_map = {
-            "action": action,
-            "before": before,
-            "after": after,
-            "scope": scope,
-        }
-
-        # Add non-None query parameters
-        for param_name, value in query_param_map.items():
-            if value is not None:
-                params[param_name] = value
-
-        return self._client.put(
-            "cmdb",
-            f"antivirus/profile/{name}",
-            payload_dict,
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/antivirus/profile/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if fortisandbox_mode is not None:
+            data_payload['fortisandbox-mode'] = fortisandbox_mode
+        if fortisandbox_max_upload is not None:
+            data_payload['fortisandbox-max-upload'] = fortisandbox_max_upload
+        if analytics_ignore_filetype is not None:
+            data_payload['analytics-ignore-filetype'] = analytics_ignore_filetype
+        if analytics_accept_filetype is not None:
+            data_payload['analytics-accept-filetype'] = analytics_accept_filetype
+        if analytics_db is not None:
+            data_payload['analytics-db'] = analytics_db
+        if mobile_malware_db is not None:
+            data_payload['mobile-malware-db'] = mobile_malware_db
+        if http is not None:
+            data_payload['http'] = http
+        if ftp is not None:
+            data_payload['ftp'] = ftp
+        if imap is not None:
+            data_payload['imap'] = imap
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if mapi is not None:
+            data_payload['mapi'] = mapi
+        if nntp is not None:
+            data_payload['nntp'] = nntp
+        if cifs is not None:
+            data_payload['cifs'] = cifs
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if nac_quar is not None:
+            data_payload['nac-quar'] = nac_quar
+        if content_disarm is not None:
+            data_payload['content-disarm'] = content_disarm
+        if outbreak_prevention_archive_scan is not None:
+            data_payload['outbreak-prevention-archive-scan'] = outbreak_prevention_archive_scan
+        if external_blocklist_enable_all is not None:
+            data_payload['external-blocklist-enable-all'] = external_blocklist_enable_all
+        if external_blocklist is not None:
+            data_payload['external-blocklist'] = external_blocklist
+        if ems_threat_feed is not None:
+            data_payload['ems-threat-feed'] = ems_threat_feed
+        if av_virus_log is not None:
+            data_payload['av-virus-log'] = av_virus_log
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if scan_mode is not None:
+            data_payload['scan-mode'] = scan_mode
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: Optional[Union[str, bool]] = None,
-        # Action parameters
-        mkey: Optional[str] = None,
-        scope: Optional[str] = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        DELETE /antivirus/profile/{name}
-        Delete antivirus profile
-
+        Delete this specific resource.
+        
         Args:
-            name: Profile name (required) - the MKEY identifier
-            vdom: Virtual domain (optional)
-
-            Action parameters (optional):
-            mkey: Filter matching mkey attribute value (if different from name)
-            scope: Scope (vdom)
-            **kwargs: Any additional parameters
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            Response dict with status
-
-        Examples:
-            >>> # Simple delete
-            >>> fgt.cmdb.antivirus.profile.delete('old_profile')
-
-            >>> # Delete with specific vdom
-            >>> fgt.cmdb.antivirus.profile.delete(
-            ...     name='old_profile',
-            ...     vdom='root'
-            ... )
+            Dictionary containing API response
         """
-        # Build params dict
-        params = {}
-
-        # Map parameters
-        param_map = {
-            "mkey": mkey,
-            "scope": scope,
-        }
-
-        # Add non-None parameters
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
-        # Add any extra kwargs
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/antivirus/profile/{name}"
         params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
-        return self._client.delete(
-            "cmdb",
-            f"antivirus/profile/{name}",
-            params=params if params else None,
-            vdom=vdom,
-            raw_json=raw_json,
-        )
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        comment: str | None = None,
+        replacemsg_group: str | None = None,
+        feature_set: str | None = None,
+        fortisandbox_mode: str | None = None,
+        fortisandbox_max_upload: int | None = None,
+        analytics_ignore_filetype: int | None = None,
+        analytics_accept_filetype: int | None = None,
+        analytics_db: str | None = None,
+        mobile_malware_db: str | None = None,
+        http: list | None = None,
+        ftp: list | None = None,
+        imap: list | None = None,
+        pop3: list | None = None,
+        smtp: list | None = None,
+        mapi: list | None = None,
+        nntp: list | None = None,
+        cifs: list | None = None,
+        ssh: list | None = None,
+        nac_quar: list | None = None,
+        content_disarm: list | None = None,
+        outbreak_prevention_archive_scan: str | None = None,
+        external_blocklist_enable_all: str | None = None,
+        external_blocklist: list | None = None,
+        ems_threat_feed: str | None = None,
+        av_virus_log: str | None = None,
+        extended_log: str | None = None,
+        scan_mode: str | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Profile name. (optional)
+            comment: Comment. (optional)
+            replacemsg_group: Replacement message group customized for this profile. (optional)
+            feature_set: Flow/proxy feature set. (optional)
+            fortisandbox_mode: FortiSandbox scan modes. (optional)
+            fortisandbox_max_upload: Maximum size of files that can be uploaded to FortiSandbox in Mbytes. (optional)
+            analytics_ignore_filetype: Do not submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only). (optional)
+            analytics_accept_filetype: Only submit files matching this DLP file-pattern to FortiSandbox (post-transfer scan only). (optional)
+            analytics_db: Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. (optional)
+            mobile_malware_db: Enable/disable using the mobile malware signature database. (optional)
+            http: Configure HTTP AntiVirus options. (optional)
+            ftp: Configure FTP AntiVirus options. (optional)
+            imap: Configure IMAP AntiVirus options. (optional)
+            pop3: Configure POP3 AntiVirus options. (optional)
+            smtp: Configure SMTP AntiVirus options. (optional)
+            mapi: Configure MAPI AntiVirus options. (optional)
+            nntp: Configure NNTP AntiVirus options. (optional)
+            cifs: Configure CIFS AntiVirus options. (optional)
+            ssh: Configure SFTP and SCP AntiVirus options. (optional)
+            nac_quar: Configure AntiVirus quarantine settings. (optional)
+            content_disarm: AV Content Disarm and Reconstruction settings. (optional)
+            outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. (optional)
+            external_blocklist_enable_all: Enable/disable all external blocklists. (optional)
+            external_blocklist: One or more external malware block lists. (optional)
+            ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. (optional)
+            av_virus_log: Enable/disable AntiVirus logging. (optional)
+            extended_log: Enable/disable extended logging for antivirus. (optional)
+            scan_mode: Configure scan mode (default or legacy). (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/antivirus/profile"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if comment is not None:
+            data_payload['comment'] = comment
+        if replacemsg_group is not None:
+            data_payload['replacemsg-group'] = replacemsg_group
+        if feature_set is not None:
+            data_payload['feature-set'] = feature_set
+        if fortisandbox_mode is not None:
+            data_payload['fortisandbox-mode'] = fortisandbox_mode
+        if fortisandbox_max_upload is not None:
+            data_payload['fortisandbox-max-upload'] = fortisandbox_max_upload
+        if analytics_ignore_filetype is not None:
+            data_payload['analytics-ignore-filetype'] = analytics_ignore_filetype
+        if analytics_accept_filetype is not None:
+            data_payload['analytics-accept-filetype'] = analytics_accept_filetype
+        if analytics_db is not None:
+            data_payload['analytics-db'] = analytics_db
+        if mobile_malware_db is not None:
+            data_payload['mobile-malware-db'] = mobile_malware_db
+        if http is not None:
+            data_payload['http'] = http
+        if ftp is not None:
+            data_payload['ftp'] = ftp
+        if imap is not None:
+            data_payload['imap'] = imap
+        if pop3 is not None:
+            data_payload['pop3'] = pop3
+        if smtp is not None:
+            data_payload['smtp'] = smtp
+        if mapi is not None:
+            data_payload['mapi'] = mapi
+        if nntp is not None:
+            data_payload['nntp'] = nntp
+        if cifs is not None:
+            data_payload['cifs'] = cifs
+        if ssh is not None:
+            data_payload['ssh'] = ssh
+        if nac_quar is not None:
+            data_payload['nac-quar'] = nac_quar
+        if content_disarm is not None:
+            data_payload['content-disarm'] = content_disarm
+        if outbreak_prevention_archive_scan is not None:
+            data_payload['outbreak-prevention-archive-scan'] = outbreak_prevention_archive_scan
+        if external_blocklist_enable_all is not None:
+            data_payload['external-blocklist-enable-all'] = external_blocklist_enable_all
+        if external_blocklist is not None:
+            data_payload['external-blocklist'] = external_blocklist
+        if ems_threat_feed is not None:
+            data_payload['ems-threat-feed'] = ems_threat_feed
+        if av_virus_log is not None:
+            data_payload['av-virus-log'] = av_virus_log
+        if extended_log is not None:
+            data_payload['extended-log'] = extended_log
+        if scan_mode is not None:
+            data_payload['scan-mode'] = scan_mode
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

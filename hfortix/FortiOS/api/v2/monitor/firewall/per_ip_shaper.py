@@ -1,15 +1,52 @@
-"""Per-IP traffic shaper statistics operations."""
+"""Monitor API - PerIpShaper operations."""
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client import HTTPClient
 
 
-class PerIpShaper:
-    """Per-IP traffic shaper statistics."""
+class Reset:
+    """Reset operations."""
 
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Reset endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Reset statistics for all configured firewall per-IP traffic shapers.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.firewall.per_ip_shaper.reset.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        data.update(kwargs)
+        return self._client.post("monitor", "/firewall/per-ip-shaper/reset", data=data)
+
+
+class PerIpShaper:
+    """PerIpShaper operations."""
+
+    def __init__(self, client: 'HTTPClient'):
         """
         Initialize PerIpShaper endpoint.
 
@@ -18,73 +55,33 @@ class PerIpShaper:
         """
         self._client = client
 
-    def list(
-        self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        shaper_name: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
-        """
-        List of statistics for all configured firewall per-IP traffic shapers.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            shaper_name: Filter by shaper name
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing per-IP shaper statistics
-
-        Example:
-            >>> fgt.api.monitor.firewall.per_ip_shaper.list()
-            >>> fgt.api.monitor.firewall.per_ip_shaper.list(shaper_name='per_ip_shaper1')
-        """
-        params = data_dict.copy() if data_dict else {}
-        if shaper_name is not None:
-            params["shaper_name"] = shaper_name
-        params.update(kwargs)
-        return self._client.get("monitor", "/firewall/per-ip-shaper", params=params)
+        # Initialize nested resources
+        self.reset = Reset(client)
 
     def get(
         self,
-        data_dict: Optional[Dict[str, Any]] = None,
-        shaper_name: Optional[str] = None,
-        **kwargs,
-    ) -> Dict[str, Any]:
+        shaper_name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
-        Get statistics for a specific per-IP traffic shaper.
-
+        List of statistics for configured firewall per-IP traffic shapers.
+        
         Args:
-            data_dict: Optional dictionary of parameters
-            shaper_name: Shaper name to retrieve
+            shaper_name: Filter the results by per-IP shaper name. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
-
+        
         Returns:
-            Dictionary containing per-IP shaper statistics
-
+            Dictionary containing API response
+        
         Example:
-            >>> fgt.api.monitor.firewall.per_ip_shaper.get(shaper_name='per_ip_shaper1')
+            >>> fgt.api.monitor.firewall.per_ip_shaper.get()
         """
-        params = data_dict.copy() if data_dict else {}
+        params = payload_dict.copy() if payload_dict else {}
         if shaper_name is not None:
-            params["shaper_name"] = shaper_name
+            params['shaper_name'] = shaper_name
         params.update(kwargs)
         return self._client.get("monitor", "/firewall/per-ip-shaper", params=params)
-
-    def reset(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
-        """
-        Reset statistics for all configured firewall per-IP traffic shapers.
-
-        Args:
-            data_dict: Optional dictionary of parameters
-            **kwargs: Additional parameters as keyword arguments
-
-        Returns:
-            Dictionary containing operation result
-
-        Example:
-            >>> fgt.api.monitor.firewall.per_ip_shaper.reset()
-        """
-        data = data_dict.copy() if data_dict else {}
-        data.update(kwargs)
-        return self._client.post("monitor", "/firewall/per-ip-shaper/reset", data=data)

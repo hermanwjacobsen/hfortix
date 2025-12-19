@@ -1,117 +1,90 @@
-"""
-Endpoint Control Installer endpoint
+"""Monitor API - Installer operations."""
 
-GET /api/v2/monitor/endpoint-control/installer
-GET /api/v2/monitor/endpoint-control/installer/download
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["Installer"]
+    from hfortix.FortiOS.http_client import HTTPClient
 
 
-class Installer:
-    """
-    Endpoint Control Installer operations.
+class Download:
+    """Download operations."""
 
-    List and download FortiClient installers via FortiGuard.
-    """
-
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize Installer endpoint.
+        Initialize Download endpoint.
 
         Args:
             client: HTTPClient instance
         """
         self._client = client
-        self._base_path = "endpoint-control/installer"
 
-    def list(
-        self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any
-    ) -> dict[str, Any] | list[dict]:
-        """
-        List available FortiClient installers.
-
-        Retrieve list of FortiClient installers available for download
-        from FortiGuard, including version information and platform details.
-
-        Args:
-            data_dict: Dictionary containing query parameters
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict or list: Available FortiClient installers
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # List all available installers
-            >>> installers = fgt.api.monitor.endpoint_control.installer.list()
-            >>> for installer in installers:
-            ...     print(f"{installer.get('platform')}: {installer.get('version')}")
-
-            >>> # List with filters using dict
-            >>> installers = fgt.api.monitor.endpoint_control.installer.list(
-            ...     data_dict={'platform': 'windows'}
-            ... )
-
-        Note:
-            Requires FortiGuard connection to retrieve installer list.
-        """
-        params = data_dict.copy() if data_dict else {}
-        params.update(kwargs)
-
-        return self._client.get("monitor", self._base_path, params=params)
-
-    def download(
-        self, data_dict: Optional[dict[str, Any]] = None, id: Optional[str] = None, **kwargs: Any
-    ) -> bytes:
+    def get(
+        self,
+        mkey: str,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
         """
         Download a FortiClient installer via FortiGuard.
+        
+        Args:
+            mkey: Name of installer (image_id). (required)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.installer.download.get(mkey='value')
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params['mkey'] = mkey
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/installer/download", params=params)
 
-        Download a specific FortiClient installer package from FortiGuard.
+
+class Installer:
+    """Installer operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Installer endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            id: Installer ID to download
-            **kwargs: Additional query parameters
-
-        Returns:
-            bytes: Installer file content
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Download specific installer using dict
-            >>> installer_data = fgt.api.monitor.endpoint_control.installer.download(
-            ...     data_dict={'id': 'FCT_7.0.1_WIN_x64'}
-            ... )
-            >>> with open('forticlient.exe', 'wb') as f:
-            ...     f.write(installer_data)
-
-            >>> # Download using keyword argument
-            >>> installer_data = fgt.api.monitor.endpoint_control.installer.download(
-            ...     id='FCT_7.0.1_WIN_x64'
-            ... )
-
-        Note:
-            - Requires FortiGuard connection
-            - Large file download - may take time
-            - Returns binary data, not JSON
+            client: HTTPClient instance for API communication
         """
-        params = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        if id is not None:
-            params["id"] = id
+        # Initialize nested resources
+        self.download = Download(client)
 
+    def get(
+        self,
+        min_version: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        List available FortiClient installers.
+        
+        Args:
+            min_version: Filter: Minimum installer version. (String of the format n[.n[.n]]). (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.installer.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if min_version is not None:
+            params['min_version'] = min_version
         params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/download", params=params)
+        return self._client.get("monitor", "/endpoint-control/installer", params=params)

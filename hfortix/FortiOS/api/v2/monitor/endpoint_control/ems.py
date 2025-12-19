@@ -1,300 +1,292 @@
-"""
-Endpoint Control EMS endpoint
+"""Monitor API - Ems operations."""
 
-GET  /api/v2/monitor/endpoint-control/ems/status
-GET  /api/v2/monitor/endpoint-control/ems/cert-status
-POST /api/v2/monitor/endpoint-control/ems/unverify-cert
-POST /api/v2/monitor/endpoint-control/ems/verify-cert
-GET  /api/v2/monitor/endpoint-control/ems/status-summary
-GET  /api/v2/monitor/endpoint-control/ems/malware-hash
-"""
-
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from ....http_client import HTTPClient
-
-__all__ = ["Ems"]
+    from hfortix.FortiOS.http_client import HTTPClient
 
 
-class Ems:
-    """
-    Endpoint Control EMS operations.
+class CertStatus:
+    """CertStatus operations."""
 
-    Monitor and manage FortiClient EMS server connections.
-    """
-
-    def __init__(self, client: "HTTPClient"):
+    def __init__(self, client: 'HTTPClient'):
         """
-        Initialize EMS endpoint.
+        Initialize CertStatus endpoint.
 
         Args:
             client: HTTPClient instance
         """
         self._client = client
-        self._base_path = "endpoint-control/ems"
 
-    def status(
+    def get(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        ems_name: Optional[str] = None,
+        ems_id: int,
+        scope: str | None = None,
+        with_cert: bool | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Retrieve authentication status of the EMS server certificate for a specific EMS.
+        
+        Args:
+            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (required)
+            scope: Scope from which to retrieve EMS certificate status [vdom*|global]. (optional)
+            with_cert: Return detailed certificate information. Available when the certificate is authenticated by installed CA certificates.  (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.cert_status.get(ems_id=1)
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params['ems_id'] = ems_id
+        if scope is not None:
+            params['scope'] = scope
+        if with_cert is not None:
+            params['with_cert'] = with_cert
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/ems/cert-status", params=params)
+
+
+class MalwareHash:
+    """MalwareHash operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize MalwareHash endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def get(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Retrieve malware hash from EMS.
+        
+        Args:
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.malware_hash.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/ems/malware-hash", params=params)
+
+
+class Status:
+    """Status operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Status endpoint.
+
+        Args:
+            client: HTTPClient instance
+        """
+        self._client = client
+
+    def get(
+        self,
+        ems_id: int | None = None,
+        scope: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Retrieve EMS connection status for a specific EMS.
+        
+        Args:
+            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
+            scope: Scope from which to retrieve EMS connection status [vdom*|global]. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.status.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if ems_id is not None:
+            params['ems_id'] = ems_id
+        if scope is not None:
+            params['scope'] = scope
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/ems/status", params=params)
 
-        Get detailed connection status including connectivity state,
-        last communication time, and synchronization status.
+
+class StatusSummary:
+    """StatusSummary operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize StatusSummary endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            ems_name: Name of the EMS server to query
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: EMS connection status information
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Get EMS status using dict
-            >>> status = fgt.api.monitor.endpoint_control.ems.status(
-            ...     data_dict={'ems_name': 'ems-server1'}
-            ... )
-            >>> print(f"Status: {status.get('status')}")
-            >>> print(f"Last sync: {status.get('last_sync')}")
-
-            >>> # Get EMS status using keyword
-            >>> status = fgt.api.monitor.endpoint_control.ems.status(
-            ...     ems_name='ems-server1'
-            ... )
+            client: HTTPClient instance
         """
-        params = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        if ems_name is not None:
-            params["ems_name"] = ems_name
-
-        params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/status", params=params)
-
-    def cert_status(
+    def get(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        ems_name: Optional[str] = None,
+        scope: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Retrieve authentication status of the EMS server certificate.
+        Retrieve status summary for all configured EMS.
+        
+        Args:
+            scope: Scope from which to retrieve EMS status summary [vdom*|global]. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.status_summary.get()
+        """
+        params = payload_dict.copy() if payload_dict else {}
+        if scope is not None:
+            params['scope'] = scope
+        params.update(kwargs)
+        return self._client.get("monitor", "/endpoint-control/ems/status-summary", params=params)
 
-        Get certificate validation status for a specific EMS server,
-        including verification state and certificate details.
+
+class UnverifyCert:
+    """UnverifyCert operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize UnverifyCert endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            ems_name: Name of the EMS server to query
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: EMS certificate status information
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Get cert status using dict
-            >>> cert_status = fgt.api.monitor.endpoint_control.ems.cert_status(
-            ...     data_dict={'ems_name': 'ems-server1'}
-            ... )
-            >>> print(f"Verified: {cert_status.get('verified')}")
-
-            >>> # Get cert status using keyword
-            >>> cert_status = fgt.api.monitor.endpoint_control.ems.cert_status(
-            ...     ems_name='ems-server1'
-            ... )
+            client: HTTPClient instance
         """
-        params = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        if ems_name is not None:
-            params["ems_name"] = ems_name
-
-        params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/cert-status", params=params)
-
-    def unverify_cert(
+    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        ems_name: Optional[str] = None,
+        ems_id: int | None = None,
+        scope: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Unverify EMS server certificate for a specific EMS.
+        
+        Args:
+            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
+            scope: Scope from which to retrieve EMS certificate status [vdom*|global]. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
+        Returns:
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.unverify_cert.post()
+        """
+        data = payload_dict.copy() if payload_dict else {}
+        if ems_id is not None:
+            data['ems_id'] = ems_id
+        if scope is not None:
+            data['scope'] = scope
+        data.update(kwargs)
+        return self._client.post("monitor", "/endpoint-control/ems/unverify-cert", data=data)
 
-        Mark the EMS server certificate as unverified, requiring
-        manual verification before connection can proceed.
+
+class VerifyCert:
+    """VerifyCert operations."""
+
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize VerifyCert endpoint.
 
         Args:
-            data_dict: Dictionary containing body parameters
-            ems_name: Name of the EMS server
-            **kwargs: Additional parameters
-
-        Returns:
-            dict: Operation result
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Unverify cert using dict
-            >>> result = fgt.api.monitor.endpoint_control.ems.unverify_cert(
-            ...     data_dict={'ems_name': 'ems-server1'}
-            ... )
-
-            >>> # Unverify cert using keyword
-            >>> result = fgt.api.monitor.endpoint_control.ems.unverify_cert(
-            ...     ems_name='ems-server1'
-            ... )
+            client: HTTPClient instance
         """
-        data = data_dict.copy() if data_dict else {}
+        self._client = client
 
-        if ems_name is not None:
-            data["ems_name"] = ems_name
-
-        data.update(kwargs)
-
-        return self._client.post("monitor", f"{self._base_path}/unverify-cert", data=data)
-
-    def verify_cert(
+    def post(
         self,
-        data_dict: Optional[dict[str, Any]] = None,
-        ems_name: Optional[str] = None,
+        ems_id: int | None = None,
+        scope: str | None = None,
+        fingerprint: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        raw_json: bool = False,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
         Verify EMS server certificate for a specific EMS.
-
-        Mark the EMS server certificate as verified, allowing
-        connection to proceed with the certificate.
-
+        
         Args:
-            data_dict: Dictionary containing body parameters
-            ems_name: Name of the EMS server
-            **kwargs: Additional parameters
-
+            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
+            scope: Scope from which to verify EMS [vdom*|global]. (optional)
+            fingerprint: EMS server certificate fingerprint to check with. (optional)
+            payload_dict: Optional dictionary of parameters
+            raw_json: Return raw JSON response if True
+            **kwargs: Additional parameters as keyword arguments
+        
         Returns:
-            dict: Operation result
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Verify cert using dict
-            >>> result = fgt.api.monitor.endpoint_control.ems.verify_cert(
-            ...     data_dict={'ems_name': 'ems-server1'}
-            ... )
-
-            >>> # Verify cert using keyword
-            >>> result = fgt.api.monitor.endpoint_control.ems.verify_cert(
-            ...     ems_name='ems-server1'
-            ... )
+            Dictionary containing API response
+        
+        Example:
+            >>> fgt.api.monitor.endpoint_control.ems.verify_cert.post()
         """
-        data = data_dict.copy() if data_dict else {}
-
-        if ems_name is not None:
-            data["ems_name"] = ems_name
-
+        data = payload_dict.copy() if payload_dict else {}
+        if ems_id is not None:
+            data['ems_id'] = ems_id
+        if scope is not None:
+            data['scope'] = scope
+        if fingerprint is not None:
+            data['fingerprint'] = fingerprint
         data.update(kwargs)
+        return self._client.post("monitor", "/endpoint-control/ems/verify-cert", data=data)
 
-        return self._client.post("monitor", f"{self._base_path}/verify-cert", data=data)
 
-    def status_summary(
-        self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any
-    ) -> dict[str, Any] | list[dict]:
+class Ems:
+    """Ems operations."""
+
+    def __init__(self, client: 'HTTPClient'):
         """
-        Retrieve status summary for all configured EMS.
-
-        Get connection status summary for all configured EMS servers,
-        including overall health and individual server states.
+        Initialize Ems endpoint.
 
         Args:
-            data_dict: Dictionary containing query parameters
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict or list: Status summary for all EMS servers
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Get status summary
-            >>> summary = fgt.api.monitor.endpoint_control.ems.status_summary()
-            >>> for ems in summary:
-            ...     print(f"{ems.get('name')}: {ems.get('status')}")
-
-            >>> # With filters using dict
-            >>> summary = fgt.api.monitor.endpoint_control.ems.status_summary(
-            ...     data_dict={'filter': 'online'}
-            ... )
+            client: HTTPClient instance for API communication
         """
-        params = data_dict.copy() if data_dict else {}
-        params.update(kwargs)
+        self._client = client
 
-        return self._client.get("monitor", f"{self._base_path}/status-summary", params=params)
-
-    def malware_hash(
-        self,
-        data_dict: Optional[dict[str, Any]] = None,
-        ems_name: Optional[str] = None,
-        hash_value: Optional[str] = None,
-        **kwargs: Any,
-    ) -> dict[str, Any]:
-        """
-        Retrieve malware hash information from EMS.
-
-        Query EMS for details about a specific malware hash,
-        including threat intelligence and detection information.
-
-        Args:
-            data_dict: Dictionary containing query parameters
-            ems_name: Name of the EMS server to query
-            hash_value: Malware hash to lookup
-            **kwargs: Additional query parameters
-
-        Returns:
-            dict: Malware hash information
-
-        Raises:
-            FortinetError: If the API request fails
-
-        Examples:
-            >>> # Query malware hash using dict
-            >>> info = fgt.api.monitor.endpoint_control.ems.malware_hash(
-            ...     data_dict={
-            ...         'ems_name': 'ems-server1',
-            ...         'hash': 'abc123def456...'
-            ...     }
-            ... )
-
-            >>> # Query malware hash using keywords
-            >>> info = fgt.api.monitor.endpoint_control.ems.malware_hash(
-            ...     ems_name='ems-server1',
-            ...     hash_value='abc123def456...'
-            ... )
-            >>> print(f"Threat: {info.get('threat_name')}")
-        """
-        params = data_dict.copy() if data_dict else {}
-
-        if ems_name is not None:
-            params["ems_name"] = ems_name
-
-        if hash_value is not None:
-            params["hash"] = hash_value
-
-        params.update(kwargs)
-
-        return self._client.get("monitor", f"{self._base_path}/malware-hash", params=params)
+        # Initialize nested resources
+        self.cert_status = CertStatus(client)
+        self.malware_hash = MalwareHash(client)
+        self.status = Status(client)
+        self.status_summary = StatusSummary(client)
+        self.unverify_cert = UnverifyCert(client)
+        self.verify_cert = VerifyCert(client)

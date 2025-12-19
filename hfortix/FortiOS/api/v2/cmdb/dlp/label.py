@@ -1,329 +1,250 @@
 """
-FortiOS CMDB - DLP Label
-
-Configure labels used by DLP blocking.
+FortiOS CMDB - Dlp Label
 
 API Endpoints:
-    GET    /dlp/label           - List all / Get specific
-    POST   /dlp/label           - Create
-    PUT    /dlp/label/{name}   - Update
-    DELETE /dlp/label/{name}   - Delete
+    GET    /dlp/label
+    POST   /dlp/label
+    GET    /dlp/label/{name}
+    PUT    /dlp/label/{name}
+    DELETE /dlp/label/{name}
 """
 
-from __future__ import annotations
-
-from typing import TYPE_CHECKING, Any, Dict, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from ....http_client import HTTPClient
 
 
-from hfortix.FortiOS.http_client import encode_path_component
-
-
 class Label:
-    """DLP label endpoint"""
+    """Label operations."""
 
-    def __init__(self, client: "HTTPClient") -> None:
+    def __init__(self, client: 'HTTPClient'):
+        """
+        Initialize Label endpoint.
+
+        Args:
+            client: HTTPClient instance for API communication
+        """
         self._client = client
 
     def get(
         self,
         name: str | None = None,
-        # Query parameters
+        payload_dict: dict[str, Any] | None = None,
         attr: str | None = None,
-        count: int | None = None,
-        skip_to_datasource: dict[str, Any] | None = None,
+        skip_to_datasource: dict | None = None,
         acs: int | None = None,
         search: str | None = None,
-        scope: str | None = None,
-        datasource: bool | None = None,
-        with_meta: bool | None = None,
-        skip: bool | None = None,
-        format: str | None = None,
-        action: str | None = None,
-        vdom: str | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Get DLP label(s) - List all or get specific.
-
+        Select a specific entry from a CLI table.
+        
         Args:
-            name: Name of specific label to retrieve
-            attr: Attribute name that references other table
+            name: Object identifier (optional for list, required for specific)
+            attr: Attribute name that references other table (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            acs: If true, returned result are in ascending order. (optional)
+            search: If present, the objects will be filtered by the search value. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
             count: Maximum number of entries to return
-            skip_to_datasource: Skip to provided table's Nth entry
-            acs: If true, returned results are in ascending order
-            search: Filter objects by search value
-            scope: Scope - 'global', 'vdom', or 'both'
-            datasource: Include datasource information for each linked object
-            with_meta: Include meta information (type id, references, etc)
-            skip: Enable CLI skip operator to hide skipped properties
-            format: List of property names to include (pipe-separated)
-            action: Special actions - 'default', 'schema', 'revision'
-            vdom: Virtual Domain(s). Use 'root' for single VDOM, or '*' for all
-            **kwargs: Additional query parameters
-
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary with label configuration(s)
-
-        Examples:
-            >>> # Get all labels
-            >>> result = fgt.cmdb.dlp.label.get()
-            >>> print(f"Total labels: {len(result['results'])}")
-
-            >>> # Get specific label
-            >>> result = fgt.cmdb.dlp.label.get('mpip-label1')
-            >>> print(f"Type: {result['results']['type']}")
+            Dictionary containing API response
         """
-        # Build path
-        path = "dlp/label"
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
         if name:
-            path = f"dlp/label/{encode_path_component(name)}"
-
-        # Build query parameters
-        params = {}
-        param_map = {
-            "attr": attr,
-            "count": count,
-            "skip_to_datasource": skip_to_datasource,
-            "acs": acs,
-            "search": search,
-            "scope": scope,
-            "datasource": datasource,
-            "with_meta": with_meta,
-            "skip": skip,
-            "format": format,
-            "action": action,
-        }
-
-        for key, value in param_map.items():
-            if value is not None:
-                params[key] = value
-
+            endpoint = f"/dlp/label/{name}"
+        else:
+            endpoint = "/dlp/label"
+        if attr is not None:
+            params['attr'] = attr
+        if skip_to_datasource is not None:
+            params['skip_to_datasource'] = skip_to_datasource
+        if acs is not None:
+            params['acs'] = acs
+        if search is not None:
+            params['search'] = search
         params.update(kwargs)
-
-        return self._client.get(
-            "cmdb", path, params=params if params else None, vdom=vdom, raw_json=raw_json
-        )
-
-    def post(
-        self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Label configuration
-        type: str = "mpip",
-        mpip_type: str | None = None,
-        connector: str | None = None,
-        comment: str | None = None,
-        entries: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
-        raw_json: bool = False,
-        **kwargs,
-    ) -> dict[str, Any]:
-        """
-        Create DLP label.
-
-        Args:
-            name: Name of the label (max 35 chars)
-            type: Label type - 'mpip' (Microsoft Purview Information Protection)
-            mpip_type: MPIP label type - 'remote' (remotely fetched) or 'local' (locally configured)
-            connector: Name of SDN connector (max 35 chars)
-            comment: Optional comments (max 255 chars)
-            entries: List of label entries. Each entry is a dict with:
-                - id (int): Entry ID (1-32)
-                - fortidata_label_name (str): Name of FortiData label (max 127 chars)
-                - mpip_label_name (str): Name of MPIP label (max 127 chars)
-                - guid (str): MPIP label guid (max 36 chars)
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
-        Returns:
-            API response dictionary
-
-        Examples:
-            >>> # POST - Create local MPIP label
-            >>> result = fgt.cmdb.dlp.label.create(
-            ...     name='mpip-label1',
-            ...     type='mpip',
-            ...     mpip_type='local',
-            ...     comment='Local MPIP labels',
-            ...     entries=[
-            ...         {
-            ...             'id': 1,
-            ...             'mpip_label_name': 'Confidential',
-            ...             'guid': '12345678-1234-1234-1234-123456789abc'
-            ...         }
-            ...     ]
-            ... )
-
-            >>> # POST - Create remote MPIP label with connector
-            >>> result = fgt.cmdb.dlp.label.create(
-            ...     name='mpip-remote',
-            ...     type='mpip',
-            ...     mpip_type='remote',
-            ...     connector='azure-connector1',
-            ...     comment='Remote Azure labels'
-            ... )
-        """
-        data = {}
-        param_map = {
-            "name": name,
-            "type": type,
-            "mpip_type": mpip_type,
-            "connector": connector,
-            "comment": comment,
-            "entries": entries,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "name": "name",
-            "type": "type",
-            "mpip_type": "mpip-type",
-            "connector": "connector",
-            "comment": "comment",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == "entries" and isinstance(value, list):
-                    converted_entries = []
-                    for entry in value:
-                        converted_entry = {}
-                        for k, v in entry.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_entry[api_key] = v
-                        converted_entries.append(converted_entry)
-                    data[api_name] = converted_entries
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.post("cmdb", "dlp/label", data, vdom=vdom, raw_json=raw_json)
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
-        payload_dict: Optional[Dict[str, Any]] = None,
-        name: Optional[str] = None,
-        # Label configuration
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        before: str | None = None,
+        after: str | None = None,
         type: str | None = None,
         mpip_type: str | None = None,
         connector: str | None = None,
         comment: str | None = None,
-        entries: list[dict[str, Any]] | None = None,
-        vdom: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Update DLP label.
-
+        Update this specific resource.
+        
         Args:
-            name: Name of the label to update
-            type: Label type - 'mpip' (Microsoft Purview Information Protection)
-            mpip_type: MPIP label type - 'remote' or 'local'
-            connector: Name of SDN connector (max 35 chars)
-            comment: Optional comments (max 255 chars)
-            entries: List of label entries. Each entry is a dict with:
-                - id (int): Entry ID (1-32)
-                - fortidata_label_name (str): Name of FortiData label (max 127 chars)
-                - mpip_label_name (str): Name of MPIP label (max 127 chars)
-                - guid (str): MPIP label guid (max 36 chars)
-            vdom: Virtual Domain(s)
-            **kwargs: Additional data parameters
-
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            name: Object identifier (required)
+            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            name: Name of table containing the label. (optional)
+            type: Label type. (optional)
+            mpip_type: MPIP label type. (optional)
+            connector: Name of SDN connector. (optional)
+            comment: Optional comments. (optional)
+            entries: DLP label entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # PUT - Update comment
-            >>> result = fgt.cmdb.dlp.label.update(
-            ...     name='mpip-label1',
-            ...     comment='Updated comment'
-            ... )
-
-            >>> # PUT - Update entries
-            >>> result = fgt.cmdb.dlp.label.update(
-            ...     name='mpip-label1',
-            ...     entries=[
-            ...         {
-            ...             'id': 1,
-            ...             'mpip_label_name': 'Confidential',
-            ...             'guid': '12345678-1234-1234-1234-123456789abc'
-            ...         },
-            ...         {
-            ...             'id': 2,
-            ...             'mpip_label_name': 'Secret',
-            ...             'guid': '87654321-4321-4321-4321-cba987654321'
-            ...         }
-            ...     ]
-            ... )
+            Dictionary containing API response
         """
-        data = {}
-        param_map = {
-            "type": type,
-            "mpip_type": mpip_type,
-            "connector": connector,
-            "comment": comment,
-            "entries": entries,
-        }
-
-        # Map to API field names
-        api_field_map = {
-            "type": "type",
-            "mpip_type": "mpip-type",
-            "connector": "connector",
-            "comment": "comment",
-            "entries": "entries",
-        }
-
-        for param_name, value in param_map.items():
-            if value is not None:
-                api_name = api_field_map[param_name]
-                # Handle entries list - convert snake_case keys to hyphen-case
-                if param_name == "entries" and isinstance(value, list):
-                    converted_entries = []
-                    for entry in value:
-                        converted_entry = {}
-                        for k, v in entry.items():
-                            # Convert snake_case to hyphen-case
-                            api_key = k.replace("_", "-")
-                            converted_entry[api_key] = v
-                        converted_entries.append(converted_entry)
-                    data[api_name] = converted_entries
-                else:
-                    data[api_name] = value
-
-        data.update(kwargs)
-
-        return self._client.put("cmdb", f"dlp/label/{name}", data, vdom=vdom, raw_json=raw_json)
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for put()")
+        endpoint = f"/dlp/label/{name}"
+        if before is not None:
+            data_payload['before'] = before
+        if after is not None:
+            data_payload['after'] = after
+        if name is not None:
+            data_payload['name'] = name
+        if type is not None:
+            data_payload['type'] = type
+        if mpip_type is not None:
+            data_payload['mpip-type'] = mpip_type
+        if connector is not None:
+            data_payload['connector'] = connector
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
-        name: str,
-        vdom: str | None = None,
+        name: str | None = None,
+        payload_dict: dict[str, Any] | None = None,
+        vdom: str | bool | None = None,
         raw_json: bool = False,
+        **kwargs: Any,
     ) -> dict[str, Any]:
         """
-        Delete a DLP label.
-
+        Delete this specific resource.
+        
         Args:
-            name: Name of the label to delete
-            vdom: Virtual Domain(s)
-
+            name: Object identifier (required)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
         Returns:
-            API response dictionary
-
-        Examples:
-            >>> # Delete a label
-            >>> result = fgt.cmdb.dlp.label.delete('mpip-label1')
-            >>> print(f"Status: {result['status']}")
+            Dictionary containing API response
         """
-        return self._client.delete("cmdb", f"dlp/label/{name}", vdom=vdom, raw_json=raw_json)
+        params = payload_dict.copy() if payload_dict else {}
+        
+        # Build endpoint path
+        if not name:
+            raise ValueError("name is required for delete()")
+        endpoint = f"/dlp/label/{name}"
+        params.update(kwargs)
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+
+    def post(
+        self,
+        payload_dict: dict[str, Any] | None = None,
+        nkey: str | None = None,
+        name: str | None = None,
+        type: str | None = None,
+        mpip_type: str | None = None,
+        connector: str | None = None,
+        comment: str | None = None,
+        entries: list | None = None,
+        vdom: str | bool | None = None,
+        raw_json: bool = False,
+        **kwargs: Any,
+    ) -> dict[str, Any]:
+        """
+        Create object(s) in this table.
+        
+        Args:
+            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            name: Name of table containing the label. (optional)
+            type: Label type. (optional)
+            mpip_type: MPIP label type. (optional)
+            connector: Name of SDN connector. (optional)
+            comment: Optional comments. (optional)
+            entries: DLP label entries. (optional)
+            vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
+            raw_json: If True, return full API response with metadata. If False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+        
+        Common Query Parameters (via **kwargs):
+            filter: Filter results (e.g., filter='name==value')
+            sort: Sort results (e.g., sort='name,asc')
+            start: Starting entry index for paging
+            count: Maximum number of entries to return
+            format: Fields to return (e.g., format='name|type')
+            See FortiOS REST API documentation for full list of query parameters
+        
+        Returns:
+            Dictionary containing API response
+        """
+        data_payload = payload_dict.copy() if payload_dict else {}
+        params = {}
+        endpoint = "/dlp/label"
+        if nkey is not None:
+            data_payload['nkey'] = nkey
+        if name is not None:
+            data_payload['name'] = name
+        if type is not None:
+            data_payload['type'] = type
+        if mpip_type is not None:
+            data_payload['mpip-type'] = mpip_type
+        if connector is not None:
+            data_payload['connector'] = connector
+        if comment is not None:
+            data_payload['comment'] = comment
+        if entries is not None:
+            data_payload['entries'] = entries
+        data_payload.update(kwargs)
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
