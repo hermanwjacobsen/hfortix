@@ -68,6 +68,8 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         client: Optional[IHTTPClient] = None,
         mode: Literal["sync"] = "sync",
         verify: bool = True,
@@ -82,6 +84,7 @@ class FortiOS:
         circuit_breaker_timeout: float = 60.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
+        session_idle_timeout: Optional[float] = 300.0,
     ) -> None:
         """Synchronous FortiOS client (default)"""
         ...
@@ -92,6 +95,8 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         client: Optional[IHTTPClient] = None,
         mode: Literal["async"],
         verify: bool = True,
@@ -106,6 +111,7 @@ class FortiOS:
         circuit_breaker_timeout: float = 60.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
+        session_idle_timeout: Optional[float] = 300.0,
     ) -> None:
         """Asynchronous FortiOS client"""
         ...
@@ -115,6 +121,8 @@ class FortiOS:
         host: Optional[str] = None,
         token: Optional[str] = None,
         *,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         client: Optional[IHTTPClient] = None,
         mode: Literal["sync", "async"] = "sync",
         verify: bool = True,
@@ -129,18 +137,24 @@ class FortiOS:
         circuit_breaker_timeout: float = 60.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
+        session_idle_timeout: Optional[float] = 300.0,
     ) -> None:
         """
         Initialize FortiOS API client (sync or async mode)
 
-        With token authentication, everything is stateless - just provide credentials
-        and start making API calls. No login/logout needed.
+        Supports two authentication methods:
+        1. API Token authentication (stateless, recommended for production)
+        2. Username/Password authentication (session-based, requires login/logout)
 
         Args:
             host: FortiGate IP/hostname (e.g., "192.0.2.10" or "fortigate.example.com")
                   Not required if providing a custom client
-            token: API token for authentication
-                   Not required if providing a custom client
+            token: API token for authentication (mutually exclusive with username/password)
+                   Not required if providing a custom client or using username/password
+            username: Username for password authentication (must be used with password)
+                      Mutually exclusive with token
+            password: Password for username authentication (must be used with username)
+                      Mutually exclusive with token
             client: Optional custom HTTP client implementing IHTTPClient protocol
                    If provided, host/token/verify/etc. are ignored and the custom client is used
                    Allows for custom authentication, proxying, caching, etc.
@@ -162,19 +176,37 @@ class FortiOS:
             circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
             max_connections: Maximum number of connections in the pool (default: 100)
             max_keepalive_connections: Maximum number of keepalive connections (default: 20)
+            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
+                       proactively re-authenticating (default: 300 = 5 minutes). This should match
+                       your FortiGate's 'config system global' -> 'remoteauthtimeout' setting.
+                       Set to None or False to disable proactive re-authentication.
+                       Note: The idle timer resets on each API request. Proactive re-auth triggers
+                       when time since *last request* exceeds threshold (not time since login).
+                       API token authentication is stateless and doesn't use sessions.
+                       
+        Important:
+            Username/password authentication still works in FortiOS 7.4.x but is removed in
+            FortiOS 7.6.x and later. Use API token authentication for production deployments.
 
         Examples:
-            # Synchronous mode (default)
+            # Token authentication (recommended)
             fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
             addresses = fgt.api.cmdb.firewall.address.get("test-host")
 
-            # Asynchronous mode
+            # Username/Password authentication with context manager (sync)
+            with FortiOS("192.0.2.10", username="admin", password="password", verify=False) as fgt:
+                addresses = fgt.api.cmdb.firewall.address.get("test-host")
+                # Auto-logout on exit
+
+            # Username/Password authentication with context manager (async)
+            async with FortiOS("192.0.2.10", username="admin", password="password", 
+                              mode="async", verify=False) as fgt:
+                status = await fgt.api.monitor.system.status.get()
+                # Auto-logout on exit
+
+            # Asynchronous mode with token
             fgt = FortiOS("fortigate.example.com", token="your_token_here", mode="async")
             addresses = await fgt.api.cmdb.firewall.address.get("test-host")
-
-            # Async with context manager
-            async with FortiOS("192.0.2.10", token="token", mode="async", verify=False) as fgt:
-                status = await fgt.api.monitor.system.status.get()
 
             # Custom HTTP client
             class MyHTTPClient:
@@ -247,6 +279,8 @@ class FortiOS:
                     url=url,
                     verify=verify,
                     token=token,
+                    username=username,
+                    password=password,
                     vdom=vdom,
                     max_retries=max_retries,
                     connect_timeout=connect_timeout,
@@ -256,12 +290,15 @@ class FortiOS:
                     circuit_breaker_timeout=circuit_breaker_timeout,
                     max_connections=max_connections,
                     max_keepalive_connections=max_keepalive_connections,
+                    session_idle_timeout=session_idle_timeout,
                 )
             else:
                 self._client = HTTPClient(
                     url=url,
                     verify=verify,
                     token=token,
+                    username=username,
+                    password=password,
                     vdom=vdom,
                     max_retries=max_retries,
                     connect_timeout=connect_timeout,
@@ -271,6 +308,7 @@ class FortiOS:
                     circuit_breaker_timeout=circuit_breaker_timeout,
                     max_connections=max_connections,
                     max_keepalive_connections=max_keepalive_connections,
+                    session_idle_timeout=session_idle_timeout,
                 )
 
         # Initialize API namespace.

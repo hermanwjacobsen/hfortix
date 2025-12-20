@@ -7,6 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Username/Password Authentication**: Alternative authentication method for FortiOS devices
+  - Session-based authentication using username and password (alternative to API tokens)
+  - Automatic login on initialization, automatic logout on context manager exit
+  - Context manager support for automatic session cleanup: `with FortiOS(username="admin", password="***") as fgt:`
+  - Proactive session refresh to prevent idle timeout expiration
+  - Configurable session idle timeout (default: 5 minutes, matching FortiGate defaults)
+  - Automatic re-authentication on 401 errors if session expires
+  - Session tracking with last activity timestamps
+  - **⚠️ Deprecation Notice**: Username/password authentication **still works in FortiOS 7.4.x** but is **removed in FortiOS 7.6.x and later**. Fortinet recommends using API token authentication for all new deployments. See [FortiOS 7.4 Release Notes](https://docs.fortinet.com/document/fortigate/7.4.0/fortios-release-notes).
+  - **Important**: Proactive re-authentication only works with context manager (`with` statement). Without context manager, you must manually manage login/logout.
+  - **Note**: The idle timer resets on each API request. Proactive re-auth triggers when time since *last request* exceeds the threshold (not time since login).
+  - Examples:
+    ```python
+    # Recommended: Context manager (automatic login/logout + proactive re-auth)
+    with FortiOS(host="fw", username="admin", password="***") as fgt:
+        addresses = fgt.api.cmdb.firewall.address.get()
+        # Session automatically refreshed if approaching timeout
+        # Auto-logout on exit
+    
+    # Custom timeout (match your FortiGate's remoteauthtimeout setting)
+    with FortiOS(host="fw", username="admin", password="***", 
+                 session_idle_timeout=120) as fgt:  # 2 minutes
+        # Proactive re-auth at 96 seconds (80% of 120s)
+        status = fgt.api.monitor.system.status.get()
+    
+    # Disable proactive re-authentication
+    with FortiOS(host="fw", username="admin", password="***",
+                 session_idle_timeout=None) as fgt:
+        # Will only re-auth on 401 errors
+        addresses = fgt.api.cmdb.firewall.address.get()
+    ```
+  - Implementation details:
+    - Login via POST to `/logincheck` with `secretkey` parameter (FortiOS convention)
+    - CSRF token extracted from `ccsrftoken` cookie
+    - Session cookies managed automatically by httpx client
+    - Logout via POST to `/logout` (clears session, sets cookies to expire in 1976)
+    - Proactive re-auth triggered at 80% of idle timeout (before expiration)
+    - Fallback re-auth on 401 Unauthorized responses
+    - Session timestamps: `_session_created_at`, `_session_last_activity`
+
 ## [0.3.15] - 2025-12-20
 
 ### Added

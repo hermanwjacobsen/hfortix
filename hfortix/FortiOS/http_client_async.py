@@ -59,6 +59,8 @@ class AsyncHTTPClient(BaseHTTPClient):
         url: str,
         verify: bool = True,
         token: Optional[str] = None,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         vdom: Optional[str] = None,
         max_retries: int = 3,
         connect_timeout: float = 10.0,
@@ -68,6 +70,7 @@ class AsyncHTTPClient(BaseHTTPClient):
         circuit_breaker_timeout: float = 60.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
+        session_idle_timeout: Optional[float] = 300.0,
     ) -> None:
         """
         Initialize async HTTP client
@@ -75,7 +78,9 @@ class AsyncHTTPClient(BaseHTTPClient):
         Args:
             url: Base URL for API (e.g., "https://192.0.2.10")
             verify: Verify SSL certificates
-            token: API authentication token
+            token: API authentication token (if using token auth)
+            username: Username for authentication (if using username/password auth)
+            password: Password for authentication (if using username/password auth)
             vdom: Default virtual domain
             max_retries: Maximum number of retry attempts on transient failures (default: 3)
             connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
@@ -85,10 +90,20 @@ class AsyncHTTPClient(BaseHTTPClient):
             circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
             max_connections: Maximum number of connections in the pool (default: 100)
             max_keepalive_connections: Maximum number of keepalive connections (default: 20)
+            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
+                       proactively re-authenticating (default: 300 = 5 minutes). Set to None or
+                       False to disable. Note: Async client does not yet implement proactive
+                       re-auth; this parameter is accepted for API compatibility.
 
         Raises:
-            ValueError: If parameters are invalid
+            ValueError: If parameters are invalid or both token and username/password provided
         """
+        # Validate authentication parameters
+        if token and (username or password):
+            raise ValueError("Cannot specify both token and username/password authentication")
+        if (username and not password) or (password and not username):
+            raise ValueError("Both username and password must be provided together")
+        
         # Call parent class constructor (handles validation and common initialization)
         super().__init__(
             url=url,
@@ -125,9 +140,20 @@ class AsyncHTTPClient(BaseHTTPClient):
             ),
         )
 
+        # Store authentication credentials
+        self._token = token
+        self._username = username
+        self._password = password
+        self._session_token: Optional[str] = None  # For username/password auth
+        self._using_token_auth = token is not None
+        self._login_task: Optional[asyncio.Task] = None  # Track login task
+
         # Set token if provided
         if token:
             self._client.headers["Authorization"] = f"Bearer {token}"
+        
+        # Note: For async, we can't login in __init__ because it's not async
+        # User should call await client.login() or use async context manager
 
         logger.debug(
             "Async HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "
@@ -140,6 +166,97 @@ class AsyncHTTPClient(BaseHTTPClient):
             circuit_breaker_threshold,
             max_connections,
         )
+
+    async def login(self) -> None:
+        """
+        Authenticate using username/password and obtain session token (async)
+        
+        Must be called manually for async clients (cannot be called in __init__).
+        Alternatively, use async context manager which handles login/logout automatically.
+        
+        Raises:
+            ValueError: If username/password not configured
+            AuthenticationError: If login fails
+        
+        Example:
+            >>> client = AsyncHTTPClient(url, username="admin", password="password")
+            >>> await client.login()
+        """
+        if not self._username or not self._password:
+            raise ValueError("Username and password required for login")
+        
+        logger.debug("Authenticating with username/password for %s (async)", self._url)
+        
+        try:
+            # FortiOS login endpoint
+            login_url = f"{self._url}/logincheck"
+            login_data = {
+                "username": self._username,
+                "password": self._password,
+            }
+            
+            # Make login request
+            response = await self._client.post(
+                login_url,
+                data=login_data,
+                follow_redirects=False,
+            )
+            
+            # Check for successful login
+            if response.status_code == 200:
+                # Extract CSRF token from cookies
+                csrf_token = None
+                for cookie_name, cookie_value in response.cookies.items():
+                    if "ccsrftoken" in cookie_name.lower():
+                        csrf_token = cookie_value
+                        break
+                
+                if csrf_token:
+                    self._session_token = csrf_token
+                    self._client.headers["X-CSRFTOKEN"] = csrf_token
+                    logger.info("Successfully authenticated via username/password (async)")
+                else:
+                    raise ValueError("Login succeeded but no CSRF token found in response")
+            else:
+                raise ValueError(f"Login failed with status code {response.status_code}")
+                
+        except httpx.HTTPError as e:
+            logger.error("Login failed (async): %s", str(e))
+            raise ValueError(f"Login failed: {str(e)}") from e
+
+    async def logout(self) -> None:
+        """
+        Logout and invalidate session token (async)
+        
+        This method is called automatically when using async context manager.
+        Can also be called manually to explicitly logout.
+        
+        Note:
+            Only applicable when using username/password authentication.
+            Token-based authentication doesn't require logout.
+        """
+        if not self._session_token:
+            logger.debug("No active session to logout (using token auth or not logged in) (async)")
+            return
+        
+        logger.debug("Logging out from %s (async)", self._url)
+        
+        try:
+            logout_url = f"{self._url}/logout"
+            response = await self._client.post(logout_url)
+            
+            if response.status_code == 200:
+                logger.info("Successfully logged out (async)")
+            else:
+                logger.warning("Logout returned status code %d (async)", response.status_code)
+                
+        except httpx.HTTPError as e:
+            logger.warning("Logout failed (async): %s", str(e))
+        finally:
+            # Clear session token and header regardless of logout result
+            self._session_token = None
+            if "X-CSRFTOKEN" in self._client.headers:
+                del self._client.headers["X-CSRFTOKEN"]
 
     def get_connection_stats(self) -> dict[str, Any]:
         """Get connection statistics (placeholder for async)"""
@@ -489,7 +606,10 @@ class AsyncHTTPClient(BaseHTTPClient):
         return {k: v for k, v in kwargs.items() if v is not None}
 
     async def __aenter__(self) -> "AsyncHTTPClient":
-        """Async context manager entry"""
+        """Async context manager entry - auto-login if using username/password"""
+        # Auto-login for username/password authentication
+        if self._username and self._password and not self._session_token:
+            await self.login()
         return self
 
     async def __aexit__(
@@ -503,6 +623,10 @@ class AsyncHTTPClient(BaseHTTPClient):
 
     async def close(self) -> None:
         """Close the async HTTP session and release resources"""
+        # Logout if using username/password authentication
+        if self._session_token:
+            await self.logout()
+        
         if self._client:
             await self._client.aclose()
             logger.debug("Async HTTP client session closed")

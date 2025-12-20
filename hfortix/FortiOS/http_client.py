@@ -14,7 +14,7 @@ import logging
 import time
 import uuid
 from typing import Any, Callable, Optional, TypeAlias, Union
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 import httpx
 
@@ -92,6 +92,8 @@ class HTTPClient(BaseHTTPClient):
         url: str,
         verify: bool = True,
         token: Optional[str] = None,
+        username: Optional[str] = None,
+        password: Optional[str] = None,
         vdom: Optional[str] = None,
         max_retries: int = 3,
         connect_timeout: float = 10.0,
@@ -101,6 +103,7 @@ class HTTPClient(BaseHTTPClient):
         circuit_breaker_timeout: float = 60.0,
         max_connections: int = 100,
         max_keepalive_connections: int = 20,
+        session_idle_timeout: Optional[float] = 300.0,
     ) -> None:
         """
         Initialize HTTP client
@@ -108,7 +111,9 @@ class HTTPClient(BaseHTTPClient):
         Args:
             url: Base URL for API (e.g., "https://192.0.2.10")
             verify: Verify SSL certificates
-            token: API authentication token
+            token: API authentication token (if using token auth)
+            username: Username for authentication (if using username/password auth)
+            password: Password for authentication (if using username/password auth)
             vdom: Default virtual domain
             max_retries: Maximum number of retry attempts on transient failures (default: 3)
             connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
@@ -120,10 +125,21 @@ class HTTPClient(BaseHTTPClient):
             circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
             max_connections: Maximum number of connections in the pool (default: 100)
             max_keepalive_connections: Maximum number of keepalive connections (default: 20)
+            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
+                       proactively re-authenticating (default: 300 = 5 minutes). This should match
+                       your FortiGate's 'config system global' -> 'remoteauthtimeout' setting.
+                       Set to None or False to disable proactive re-authentication.
+                       Note: API token authentication is stateless and doesn't use sessions.
 
         Raises:
-            ValueError: If parameters are invalid
+            ValueError: If parameters are invalid or both token and username/password provided
         """
+        # Validate authentication parameters
+        if token and (username or password):
+            raise ValueError("Cannot specify both token and username/password authentication")
+        if (username and not password) or (password and not username):
+            raise ValueError("Both username and password must be provided together")
+        
         # Call parent class constructor (handles validation and common initialization)
         super().__init__(
             url=url,
@@ -161,9 +177,33 @@ class HTTPClient(BaseHTTPClient):
             ),
         )
 
+        # Store authentication credentials
+        self._token = token
+        self._username = username
+        self._password = password
+        self._session_token: Optional[str] = None  # For username/password auth
+        self._session_created_at: Optional[float] = None  # Track when session was created
+        self._session_last_activity: Optional[float] = None  # Track last request time
+        self._using_token_auth = token is not None
+        
+        # Session timeout settings (in seconds) - only for username/password auth
+        # If session_idle_timeout is None or False, disable proactive re-authentication
+        if session_idle_timeout:
+            self._session_idle_timeout = float(session_idle_timeout)
+            # Re-authenticate at 80% of idle timeout to avoid session expiration
+            self._session_proactive_refresh = self._session_idle_timeout * 0.8
+        else:
+            # Disable proactive re-authentication
+            self._session_idle_timeout = None
+            self._session_proactive_refresh = None
+
         # Set token if provided
         if token:
             self._client.headers["Authorization"] = f"Bearer {token}"
+        
+        # If using username/password, login automatically
+        if username and password:
+            self.login()
 
         logger.debug(
             "HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "
@@ -176,6 +216,141 @@ class HTTPClient(BaseHTTPClient):
             circuit_breaker_threshold,
             max_connections,
         )
+
+    def login(self) -> None:
+        """
+        Authenticate using username/password and obtain session token
+        
+        This method is called automatically if username/password are provided
+        during initialization. Can also be called manually to re-authenticate.
+        
+        Raises:
+            ValueError: If username/password not configured
+            AuthenticationError: If login fails
+        """
+        if not self._username or not self._password:
+            raise ValueError("Username and password required for login")
+        
+        logger.debug("Authenticating with username/password for %s", self._url)
+        
+        try:
+            # FortiOS login endpoint - note: parameter name is "secretkey" not "password"
+            login_url = f"{self._url}/logincheck"
+            
+            # URL-encode the form data (FortiOS expects application/x-www-form-urlencoded)
+            login_data = urlencode([("username", self._username), ("secretkey", self._password)])
+            
+            # Make login request with proper content type
+            # Note: FortiOS may redirect after login, so we follow redirects
+            response = self._client.post(
+                login_url,
+                content=login_data,
+                headers={"Content-Type": "application/x-www-form-urlencoded"},
+                follow_redirects=True,  # Changed to True to handle FortiOS redirects
+            )
+            
+            # Debug: Log response details
+            logger.debug(f"Login response status: {response.status_code}")
+            logger.debug(f"Login response headers: {dict(response.headers)}")
+            logger.debug(f"Login response cookies: {dict(response.cookies)}")
+            logger.debug(f"Login response history: {response.history}")
+            logger.debug(f"Login response text (first 500 chars): {response.text[:500]}")
+            
+            # Check for successful login (FortiOS returns 200 with CSRF token in cookies)
+            response.raise_for_status()
+            
+            # Extract CSRF token from cookies (may be in the client's cookie jar after redirects)
+            csrf_token = None
+            
+            # Check response cookies first
+            for cookie_name, cookie_value in response.cookies.items():
+                logger.debug(f"Response cookie: {cookie_name} = {cookie_value}")
+                if "ccsrftoken" in cookie_name.lower():
+                    csrf_token = cookie_value
+                    break
+            
+            # If not found, check the client's cookie jar
+            if not csrf_token:
+                for cookie_name, cookie_value in self._client.cookies.items():
+                    logger.debug(f"Client cookie: {cookie_name} = {cookie_value}")
+                    if "ccsrftoken" in cookie_name.lower():
+                        csrf_token = cookie_value
+                        break
+            
+            if csrf_token:
+                self._session_token = csrf_token
+                self._client.headers["X-CSRFTOKEN"] = csrf_token
+                # Track session creation time
+                self._session_created_at = time.time()
+                self._session_last_activity = time.time()
+                logger.info("Successfully authenticated via username/password")
+            else:
+                # If still HTML in response, authentication likely failed
+                if "<!doctype html>" in response.text.lower() or "<html" in response.text.lower():
+                    raise ValueError(
+                        "Login failed: FortiGate returned login page. "
+                        "Please verify username and password are correct."
+                    )
+                raise ValueError("Login succeeded but no CSRF token found in response")
+                
+        except httpx.HTTPError as e:
+            logger.error("Login failed: %s", str(e))
+            raise ValueError(f"Login failed: {str(e)}") from e
+
+    def _should_refresh_session(self) -> bool:
+        """
+        Check if the session should be proactively refreshed
+        
+        Returns:
+            True if session needs refresh (approaching idle timeout), False otherwise
+        """
+        # Only applicable for username/password auth with idle timeout enabled
+        if (
+            self._using_token_auth
+            or not self._session_last_activity
+            or self._session_proactive_refresh is None
+        ):
+            return False
+        
+        # Check if we're approaching the idle timeout threshold
+        time_since_last_activity = time.time() - self._session_last_activity
+        return time_since_last_activity >= self._session_proactive_refresh
+
+    def logout(self) -> None:
+        """
+        Logout and invalidate session token
+        
+        This method is called automatically when using context manager (with statement).
+        Can also be called manually to explicitly logout.
+        
+        Note:
+            Only applicable when using username/password authentication.
+            Token-based authentication doesn't require logout.
+        """
+        if not self._session_token:
+            logger.debug("No active session to logout (using token auth or not logged in)")
+            return
+        
+        logger.debug("Logging out from %s", self._url)
+        
+        try:
+            logout_url = f"{self._url}/logout"
+            response = self._client.post(logout_url)
+            
+            if response.status_code == 200:
+                logger.info("Successfully logged out")
+            else:
+                logger.warning("Logout returned status code %d", response.status_code)
+                
+        except httpx.HTTPError as e:
+            logger.warning("Logout failed: %s", str(e))
+        finally:
+            # Clear session token, timestamps, and header regardless of logout result
+            self._session_token = None
+            self._session_created_at = None
+            self._session_last_activity = None
+            if "X-CSRFTOKEN" in self._client.headers:
+                del self._client.headers["X-CSRFTOKEN"]
 
     def get_connection_stats(self) -> dict[str, Any]:
         """
@@ -368,10 +543,35 @@ class HTTPClient(BaseHTTPClient):
         # Track total requests
         self._retry_stats["total_requests"] += 1
 
+        # Proactively check if session needs refresh (username/password auth only)
+        if self._should_refresh_session():
+            logger.info(
+                "Session approaching idle timeout, proactively re-authenticating",
+                extra={
+                    "request_id": request_id,
+                    "time_since_last_activity": round(
+                        time.time() - (self._session_last_activity or 0), 1
+                    ),
+                },
+            )
+            try:
+                self.login()
+                logger.info("Proactive re-authentication successful")
+            except Exception as e:
+                logger.warning(
+                    "Proactive re-authentication failed, will retry on 401: %s", str(e)
+                )
+
         # Retry loop with exponential backoff
         last_error = None
+        session_retry_attempted = False  # Track if we've tried re-authenticating
+        
         for attempt in range(self._max_retries + 1):
             try:
+                # Update last activity time (for idle timeout tracking)
+                if not self._using_token_auth and self._session_last_activity is not None:
+                    self._session_last_activity = time.time()
+                
                 # Make request with httpx client
                 res = self._client.request(
                     method=method,
@@ -433,6 +633,42 @@ class HTTPClient(BaseHTTPClient):
 
             except Exception as e:
                 last_error = e
+
+                # Special handling for 401 Unauthorized with username/password auth
+                # Session may have expired - try to re-authenticate once
+                is_401_error = False
+                if isinstance(e, httpx.HTTPStatusError):
+                    is_401_error = e.response.status_code == 401
+                
+                if (
+                    not self._using_token_auth
+                    and not session_retry_attempted
+                    and is_401_error
+                    and self._username
+                    and self._password
+                ):
+                    logger.warning(
+                        "Session expired (401), attempting to re-authenticate",
+                        extra={
+                            "request_id": request_id,
+                            "method": method.upper(),
+                            "endpoint": full_path,
+                        },
+                    )
+                    session_retry_attempted = True
+                    try:
+                        # Try to login again
+                        self.login()
+                        logger.info("Re-authentication successful, retrying request")
+                        # Continue to retry the request with new session
+                        continue
+                    except Exception as login_error:
+                        logger.error(
+                            "Re-authentication failed: %s",
+                            str(login_error),
+                            extra={"request_id": request_id},
+                        )
+                        # Fall through to normal retry logic
 
                 # Record failure in circuit breaker
                 self._record_circuit_breaker_failure(endpoint_key)
@@ -715,7 +951,16 @@ class HTTPClient(BaseHTTPClient):
         self.close()
 
     def close(self) -> None:
-        """Close the HTTP session and release resources"""
+        """
+        Close the HTTP session and release resources
+        
+        If using username/password authentication, this will also logout
+        to properly clean up the session.
+        """
+        # Logout if using username/password auth
+        if self._session_token:
+            self.logout()
+        
         if self._client:
             self._client.close()
             logger.debug("HTTP client session closed")
