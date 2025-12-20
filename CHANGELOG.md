@@ -7,29 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-
-- **Code Refactoring**: Eliminated code duplication in HTTP client implementation
-  - Created `BaseHTTPClient` base class with shared logic for sync and async clients
-  - `HTTPClient` and `AsyncHTTPClient` now inherit from `BaseHTTPClient`
-  - Removed 744 lines of duplicated code (35% reduction in HTTP client code)
-  - Zero duplication between sync and async implementations
-  - Improved maintainability: bug fixes now apply to both sync and async modes automatically
-  - Better consistency: retry logic, circuit breaker, and validation identical across modes
-  - Enhanced testability: shared logic tested once in base class
-  - Implementation:
-    - `BaseHTTPClient`: Parameter validation, URL building, retry logic, circuit breaker, statistics
-    - `HTTPClient`: Sync-specific HTTP operations (httpx.Client)
-    - `AsyncHTTPClient`: Async-specific HTTP operations (httpx.AsyncClient)
-  - Created `IHTTPClient` Protocol interface for extensibility
-  - Updated 863 endpoint files to use Protocol-based type hints
-  - Enables users to provide custom HTTP client implementations
-
-### Fixed
-
-- **Test Fixes**: Fixed certificate/local test helper methods to properly filter by source
-
-## [0.3.15] - 2025-12-19
+## [0.3.15] - 2025-12-20
 
 ### Added
 
@@ -55,6 +33,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Example (sync): `if fgt.api.cmdb.firewall.address.exists("test-host"): ...`
   - Example (async): `if await fgt.api.cmdb.firewall.address.exists("test-host"): ...`
   - See [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) for complete documentation and usage examples
+
+### Changed
+
+- **Code Refactoring**: Eliminated code duplication in HTTP client implementation
+  - Created `BaseHTTPClient` base class with shared logic for sync and async clients
+  - `HTTPClient` and `AsyncHTTPClient` now inherit from `BaseHTTPClient`
+  - Removed 744 lines of duplicated code (35% reduction in HTTP client code)
+  - Zero duplication between sync and async implementations
+  - Improved maintainability: bug fixes now apply to both sync and async modes automatically
+  - Better consistency: retry logic, circuit breaker, and validation identical across modes
+  - Enhanced testability: shared logic tested once in base class
+  - Implementation:
+    - `BaseHTTPClient`: Parameter validation, URL building, retry logic, circuit breaker, statistics
+    - `HTTPClient`: Sync-specific HTTP operations (httpx.Client)
+    - `AsyncHTTPClient`: Async-specific HTTP operations (httpx.AsyncClient)
+  - Created `IHTTPClient` Protocol interface for extensibility
+  - Updated 863 endpoint files to use Protocol-based type hints
+  - Enables users to provide custom HTTP client implementations
+
+### Fixed
+
+- **Test Fixes**: Fixed certificate/local test helper methods to properly filter by source
+  - Updated `test_get_factory_helper()` and `test_get_user_helper()` to use correct filters
+  - Added `filter='source==factory'` and `filter='source==user'` parameters
+  - All 9 certificate/local tests now pass correctly
 
 ### Documentation
 
@@ -86,6 +89,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Quick example of async mode usage
   - Link to comprehensive ASYNC_GUIDE.md
   - Updated tips section to mention async for concurrent operations
+- **Project Cleanup**: Cleaned up root folder and updated documentation
+  - Moved `REFACTORING_PROGRESS.md` and `REFACTORING_RECOMMENDATIONS.md` to `X/docs/project/`
+  - Removed `update_endpoints.py` (one-time migration script)
+  - Updated `CHANGELOG.md` with comprehensive refactoring details
+  - Updated `README.md` to highlight refactored architecture
 
 ## [0.3.14] - 2025-12-19
 

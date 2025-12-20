@@ -57,7 +57,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Enhanced testability and consistency across sync/async modes
   - Users can now provide custom HTTP client implementations
 
-**Previous Release (v0.3.14):**
+**Also in v0.3.15:**
 - ✨ **Request ID / Correlation Tracking**: Auto-generated or custom request IDs for distributed tracing
 - ✨ **Circuit Breaker Pattern**: Automatic fail-fast to prevent cascading failures (opens after 5 failures, auto-recovers)
 - ✨ **Connection Pool Metrics**: Monitor HTTP client health with `get_connection_stats()` method
@@ -236,7 +236,7 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 - Request/response logging with timing
 - Hierarchical loggers for fine-grained control
 
-### Advanced HTTP Features ✨ NEW in v0.3.14
+### Advanced HTTP Features ✨ NEW in v0.3.15
 
 Enterprise-grade reliability and observability features:
 
