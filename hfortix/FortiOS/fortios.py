@@ -13,6 +13,16 @@ if TYPE_CHECKING:
 __all__ = ["FortiOS"]
 
 
+class FirewallNamespace:
+    """Namespace for firewall convenience wrappers."""
+    
+    def __init__(self, fortios_instance: "FortiOS"):
+        """Initialize with reference to FortiOS instance."""
+        from .firewall import FirewallPolicy
+        
+        self.policy = FirewallPolicy(fortios_instance)
+
+
 class FortiOS:
     """
     FortiOS REST API Client
@@ -388,7 +398,7 @@ class FortiOS:
         return self._api
 
     @property
-    def firewall(self) -> "FirewallNamespace":
+    def firewall(self) -> FirewallNamespace:
         """
         Convenience wrappers for firewall operations.
         
@@ -408,13 +418,6 @@ class FortiOS:
             ... )
         """
         if not hasattr(self, "_firewall"):
-            from .firewall import FirewallPolicy
-            
-            # Create a namespace object to hold firewall conveniences
-            class FirewallNamespace:
-                def __init__(self, fortios_instance: "FortiOS"):
-                    self.policy = FirewallPolicy(fortios_instance)
-            
             self._firewall = FirewallNamespace(self)
         return self._firewall
 
