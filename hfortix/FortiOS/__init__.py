@@ -32,6 +32,7 @@ VERSION = tuple(map(int, __version__.split(".")))
 from .exceptions import APIError, AuthenticationError, FortinetError
 # Public API
 from .fortios import FortiOS
+from .performance_test import quick_test, run_performance_test
 
 __all__ = [
     # Main client
@@ -40,6 +41,9 @@ __all__ = [
     "FortinetError",
     "AuthenticationError",
     "APIError",
+    # Performance testing
+    "run_performance_test",
+    "quick_test",
     # Version info
     "__version__",
     "__author__",

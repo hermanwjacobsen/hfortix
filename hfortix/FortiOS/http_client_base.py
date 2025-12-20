@@ -78,11 +78,17 @@ class BaseHTTPClient:
             raise ValueError("max_connections must be > 0")
         if max_keepalive_connections < 0:
             raise ValueError("max_keepalive_connections must be >= 0")
+        
+        # Auto-adjust keepalive connections if needed (don't error)
+        # httpx and other libraries allow these to be independent, but we'll adjust
+        # to be safe while not blocking legitimate configurations
         if max_keepalive_connections > max_connections:
-            raise ValueError(
-                f"max_keepalive_connections ({max_keepalive_connections}) "
-                f"cannot exceed max_connections ({max_connections})"
+            logger.warning(
+                f"max_keepalive_connections ({max_keepalive_connections}) > "
+                f"max_connections ({max_connections}). "
+                f"Adjusting max_keepalive_connections to {max_connections}."
             )
+            max_keepalive_connections = max_connections
 
         # Store configuration
         self._url = url.rstrip("/")

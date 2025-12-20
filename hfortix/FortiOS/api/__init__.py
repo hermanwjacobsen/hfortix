@@ -37,6 +37,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from ..http_client import HTTPClient
+    from .utils import Utils
     from .v2.cmdb import CMDB
     from .v2.log import Log
     from .v2.monitor import Monitor
@@ -74,6 +75,12 @@ class API:
             - Special service endpoints
             - Example: fgt.api.service.system.get()
 
+        utils: Utility functions for testing and diagnostics
+            - Performance testing and benchmarking
+            - Connection pool validation
+            - Device profiling and recommendations
+            - Example: fgt.api.utils.performance_test()
+
     HTTP Method Guidelines:
         - **POST**: Create new configuration objects (returns 404 if already exists)
         - **PUT**: Update existing configuration objects (returns 404 if not found)
@@ -101,6 +108,7 @@ class API:
     log: "Log"
     monitor: "Monitor"
     service: "Service"
+    utils: "Utils"
 
     def __init__(self, client: "HTTPClient") -> None:
         """Initialize API namespace"""
@@ -112,12 +120,14 @@ class API:
         from .v2.log import Log
         from .v2.monitor import Monitor
         from .v2.service import Service
+        from .utils import Utils
 
         self.cmdb = CMDB(client)
         self.log = Log(client)
         self.monitor = Monitor(client)
         self.service = Service(client)
+        self.utils = Utils(client)
 
     def __dir__(self):
         """Control autocomplete to show only public attributes"""
-        return ["cmdb", "log", "monitor", "service"]
+        return ["cmdb", "log", "monitor", "service", "utils"]

@@ -84,8 +84,6 @@ raw_json*.log
 test_*
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
 
-docs/
-Docs/
 examples/
 Examples/
 .github/prompts/

@@ -5,7 +5,72 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.3.17] - 2025-12-20
+
+### Added
+
+- **Performance Testing API**: Built-in performance testing and optimization
+  - New `fgt.api.utils.performance_test()` method for integrated testing
+  - Validates connection pool settings automatically
+  - Tests real-world API endpoints (status, policies, addresses, interfaces, resources)
+  - Identifies device performance profile (high-performance, fast-lan, remote-wan)
+  - Provides device-specific recommendations for optimal settings
+  - Accessible via `fgt.api.utils` namespace
+  - Standalone functions also available: `quick_test()`, `run_performance_test()`
+  - Command-line interface: `python -m hfortix.FortiOS.performance_test`
+  - Comprehensive documentation in `docs/PERFORMANCE_TESTING.md`
+
+- **Read-Only Mode**: Protect production environments by blocking write operations
+  - Add `read_only=True` flag to FortiOS constructor
+  - Blocks all POST, PUT, and DELETE requests with `ReadOnlyModeError`
+  - GET requests execute normally for queries and monitoring
+  - Perfect for testing, CI/CD pipelines, dry-run previews, and training
+  - Works with both sync and async modes
+
+- **Operation Tracking**: Complete audit log of all API operations
+  - Add `track_operations=True` flag to enable operation logging
+  - Records timestamp, method, URL, request data, response status, and VDOM
+  - Access via `get_operations()` or `get_write_operations()`
+  - Tracks both successful operations and those blocked by read-only mode
+  - Perfect for debugging, auditing, change logs, and documentation
+  - Works with both sync and async modes
+
+- **Extended Filter Documentation**: Comprehensive guide to FortiOS filtering
+  - New `docs/FILTERING_GUIDE.md` with complete operator documentation
+  - Covers all FortiOS native filter operators: `==`, `!=`, `=@`, `!@`, `<`, `<=`, `>`, `>=`
+  - 50+ practical examples for common use cases
+  - Field-specific examples for addresses, policies, interfaces, routes
+  - Advanced patterns: range queries, combined filters, exclusions
+
+- **Username/Password Authentication**: Alternative to API token authentication
+  - Session-based authentication using username and password
+  - Automatic session management and renewal
+  - Useful when API tokens are not available or for temporary access
+  - Example: `FortiOS(host='...', username='admin', password='...')`
+
+- **Firewall Policy Convenience Wrapper**: Intuitive interface for policy management
+  - Access via `fgt.firewall.policy` namespace
+  - Methods: `create()`, `update()`, `get()`, `delete()`, `exists()`, `enable()`, `disable()`, `move()`, `clone()`
+  - 150+ explicit parameters matching FortiOS terminology
+  - Comprehensive documentation in `docs/FIREWALL_POLICY_WRAPPER.md`
+
+### Changed
+
+- **Connection Pool Defaults Optimized**: Based on multi-device performance testing
+  - `max_connections`: Reduced from 100 → 30 → **10** (conservative default)
+  - `max_keepalive_connections`: Reduced from 20 → 15 → **5** (conservative default)
+  - Defaults set 50% below lowest-performing device tested
+  - Tested across 3 FortiGate models with varying performance characteristics
+  - Use `fgt.api.utils.performance_test()` to get device-specific recommendations
+  - Performance testing shows most FortiGates serialize API requests internally
+  - Sequential requests recommended for most deployments
+
+### Fixed
+
+- **Connection Pool Validation**: Auto-adjust instead of error
+  - Changed from hard error to auto-adjust when `max_keepalive_connections > max_connections`
+  - Logs warning and adjusts `max_keepalive_connections` to match `max_connections`
+  - Allows testing different concurrency levels without configuration errors
 
 ## [0.3.16] - 2025-12-20
 

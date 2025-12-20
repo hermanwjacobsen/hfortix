@@ -50,6 +50,8 @@ fgt = FortiOS(
     token='your-api-token',
     verify=True  # Recommended: Verify SSL certificates
 )
+# Uses conservative defaults: max_connections=10, max_keepalive=5
+# Run fgt.api.utils.performance_test() to get optimal settings for YOUR device!
 
 # Development/Testing - with self-signed certificate
 fgt_dev = FortiOS(
@@ -72,6 +74,19 @@ fgt_fast = FortiOS(
     token='your-api-token',
     connect_timeout=5.0,   # 5 seconds to connect
     read_timeout=60.0      # 1 minute to read
+)
+
+# Optimized settings based on performance testing (NEW in v0.3.17!)
+# Run performance test first to get device-specific recommendations
+results = fgt_dev.api.utils.performance_test()
+
+# Apply recommended settings for high-performance device
+fgt_optimized = FortiOS(
+    host='192.168.1.99',
+    token='your-api-token',
+    verify=False,
+    max_connections=60,           # From performance test results
+    max_keepalive_connections=30  # From performance test results
 )
 
 # Basic operations

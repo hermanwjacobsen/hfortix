@@ -11,7 +11,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **⚠️ BETA STATUS**: All implementations are functional but in beta. APIs work correctly but may have incomplete parameter coverage or undiscovered edge cases.
 
-**FortiOS 7.6.5 Coverage (December 19, 2025):**
+**FortiOS 7.6.5 Coverage (December 20, 2025):**
 
 - **CMDB API**: 37 of 37 categories (100% coverage) - 500+ endpoints 🔷 Beta
 - **Monitor API**: 32 of 32 categories (100% coverage) - 200+ endpoints 🔷 Beta
@@ -35,79 +35,46 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
 
 **📖 Documentation:**
-- **User Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
-- **Async Guide**: [ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ASYNC_GUIDE.md) - Async/await support documentation
-- **API Method Reference**: [ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ENDPOINT_METHODS.md) - All 857 endpoints with available methods
-- **Helper Methods Guide**: [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) - Safe existence checking and best practices
-- **API Coverage**: [API_COVERAGE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/API_COVERAGE.md) - Implementation status by category
-- **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
+- **Quick Start Guide**: [QUICKSTART.md](QUICKSTART.md) - Getting started guide
+- **Full Changelog**: [CHANGELOG.md](CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.16):**
+**Latest Features (v0.3.17):**
+- ✨ **Performance Testing API**: Built-in performance testing and optimization
+  - New `fgt.api.utils.performance_test()` method for testing your device
+  - Validates connection pool settings automatically
+  - Tests real-world API endpoints and identifies device performance profile
+  - Provides device-specific recommendations for optimal settings
+  - See `docs/PERFORMANCE_TESTING.md` for complete guide
+- 🔧 **Optimized Connection Pool Defaults**: Conservative defaults based on real-world testing
+  - `max_connections`: 10 (down from 100)
+  - `max_keepalive_connections`: 5 (down from 20)
+  - Run `fgt.api.utils.performance_test()` to get device-specific recommendations
 - ✨ **Read-Only Mode**: Block all write operations for safe testing and CI/CD
   - Enable with `read_only=True` parameter
-  - Raises `ReadOnlyModeError` on POST/PUT/DELETE attempts
-  - GET requests execute normally
-  - Perfect for testing, dry-run, training environments
+  - Perfect for testing automation scripts without making changes
 - ✨ **Operation Tracking**: Complete audit logging of all API calls
   - Enable with `track_operations=True` parameter
-  - Records timestamp, method, URL, data, status code, VDOM
-  - Access via `get_operations()` and `get_write_operations()` methods
-  - Useful for debugging, auditing, change logs, documentation
+  - Get detailed logs via `fgt.get_operations()`
 - ✨ **Comprehensive Filter Documentation**: Complete guide to FortiOS filtering
-  - New [FILTERING_GUIDE.md](FILTERING_GUIDE.md) with 8 operators
-  - 50+ practical examples for addresses, policies, interfaces, routes
-  - Advanced patterns: ranges, exclusions, combined filters, pagination
-- ✨ **Username/Password Authentication**: Session-based authentication support
-  - Alternative to API token authentication
-  - Automatic session management with proactive re-authentication
-  - Configurable idle timeout (default: 5 minutes)
-  - Context manager support for auto-logout
-  - ⚠️ Works in FortiOS ≤7.4.x, removed in 7.6.x+ (use API tokens for new deployments)
-- ✨ **Firewall Policy Convenience Wrapper**: Intuitive interface for policy management
-  - Access via `fgt.firewall.policy` with explicit parameters
-  - Simplified syntax instead of complex REST API calls
-  - Full CRUD + `.enable()`, `.disable()`, `.move()`, `.clone()`
+  - New `docs/FILTERING_GUIDE.md` with 50+ examples
+  - All FortiOS filter operators documented: `==`, `!=`, `=@`, `!@`, `<`, `<=`, `>`, `>=`
+- ✨ **Username/Password Authentication**: Alternative to API tokens
+  - Session-based authentication for temporary access
+- ✨ **Firewall Policy Wrapper**: Intuitive interface with 150+ parameters
+  - Access via `fgt.firewall.policy` namespace
+  - See `docs/FIREWALL_POLICY_WRAPPER.md` for complete guide
 
-**Also in v0.3.16:**
+**Also in v0.3.17:**
 - ✨ **Async/Await Support**: Full dual-mode support for async operations
   - Single `FortiOS` class works in both sync and async modes
   - All 750+ API methods support async with `mode="async"` parameter
   - All helper methods (`.exists()`) work transparently in both modes
-  - Async context manager support with `async with`
-  - Zero breaking changes - existing sync code continues to work
-- ✨ **288 Endpoints Updated**: All `.exists()` helper methods now async-aware
-- 🏗️ **Refactored Architecture**: Improved code quality and maintainability
-  - Protocol-based HTTP client interface (`IHTTPClient`) for extensibility
-  - Eliminated 744 lines of duplicated code (35% reduction)
-  - Shared base class (`BaseHTTPClient`) for sync and async clients
-  - Enhanced testability and consistency across sync/async modes
-  - Users can now provide custom HTTP client implementations
+  - See `docs/ASYNC_GUIDE.md` for complete guide
+- ✨ **288 Helper Methods**: `.exists()` methods on CMDB endpoints
+  - Check object existence without exceptions
+  - See `docs/HELPER_METHODS.md` for complete guide
 
-**Also in v0.3.15:**
-- ✨ **Request ID / Correlation Tracking**: Auto-generated or custom request IDs for distributed tracing
-- ✨ **Circuit Breaker Pattern**: Automatic fail-fast to prevent cascading failures (opens after 5 failures, auto-recovers)
-- ✨ **Connection Pool Metrics**: Monitor HTTP client health with `get_connection_stats()` method
-- ✨ **Per-Endpoint Timeouts**: Configure custom timeouts per endpoint with wildcard pattern support
-- ✨ **Structured Logging**: Machine-readable logs with extra fields (request_id, endpoint, method, status_code, duration)
-- ✨ **100% Backwards Compatible**: All existing code works unchanged
-
-
-**Previous Release (v0.3.12):**
-- ✨ **HTTP/2 Support**: Modern httpx library with connection multiplexing for improved performance
-- ✨ **Automatic Retry Logic**: Exponential backoff (1s, 2s, 4s, 8s, 30s max) for transient failures
-- ✨ **Enhanced Reliability**: Retries on connection errors, timeouts, rate limits (429), server errors (500-504)
-- ✨ **Context Manager Support**: Use `with HTTPClient(...) as client:` for automatic cleanup
-- ✨ **Retry Statistics**: Track retry attempts by reason and endpoint
-- ✨ **Better Error Handling**: Graceful fallback for non-JSON responses, improved logging
-
-**Previous Release (v0.3.11):**
-- ✨ **FTP Proxy Category**: FTP proxy configuration (1 endpoint)
-  - **explicit**: FTP proxy explicit configuration with SSL/TLS support
-  - FTPS support, SSL certificate management, custom encryption
-  - 10 parameters: status, ports, IPs, security actions, SSL settings
-  - Test coverage: 5 test sections with comprehensive validation
-- ✨ **Monitor API Categories**: 6 categories implemented (18% coverage)
-  - **firewall/**: 39 endpoints for firewall monitoring
+**Previous Features:**
   - Policy statistics, session monitoring, ACL counters
   - Address objects, traffic shapers, GTP stats
   - Special endpoints: policy-lookup (callable), clearpass-address (actions)
@@ -164,8 +131,68 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **HTTP/2 Support**: Modern HTTP client with connection multiplexing for improved performance
 - **Circuit Breaker**: Prevents cascade failures with automatic recovery
 - **Simplified APIs**: Auto-conversion for common patterns (e.g., address group members)
+- **Performance Testing**: Built-in utility to test and optimize your FortiGate performance
 - **Well-Documented**: Extensive API documentation and examples
 - **Modern Python**: Type hints, PEP 585 compliance, Python 3.10+
+
+## 🧪 Performance Testing
+
+Test your FortiGate's performance and get optimal configuration recommendations:
+
+```python
+from hfortix import FortiOS
+
+# Initialize your FortiGate client
+fgt = FortiOS("192.168.1.99", token="your_token", verify=False)
+
+# Run performance test via API (recommended - new in v0.3.17!)
+results = fgt.api.utils.performance_test()
+
+# Automatically provides:
+# ✅ Connection pool validation
+# ✅ API endpoint performance metrics
+# ✅ Device performance profile (high-performance/fast-lan/remote-wan)
+# ✅ Recommended settings for YOUR specific device
+# ✅ Expected throughput estimates
+
+# Example output:
+# Device profile: high-performance
+# Throughput: 70.54 req/s
+# Recommended settings: {
+#     'max_connections': 60,
+#     'max_keepalive_connections': 30,
+#     'recommended_concurrency': '20-30',
+#     'expected_throughput': '~30 req/s'
+# }
+```
+
+**Real-World Test Results (December 2025):**
+- **FGT 70F** (10.37.95.1): 70.54 req/s - high-performance profile ⚡
+- **FGT 200F** (212.55.57.170): 11.11 req/s - fast-lan profile
+- **Remote VM** (fw.wjacobsen.fo): 4.75 req/s - remote-wan profile
+
+**Alternative: Standalone function**
+
+```python
+from hfortix.FortiOS.performance_test import quick_test
+
+results = quick_test("192.168.1.99", "your_token", verify=False)
+```
+
+**Features:**
+- ✅ Validates connection pool configuration
+- ✅ Tests real-world API endpoints (status, policies, addresses, etc.)
+- ✅ Identifies device profile (high-performance, fast-lan, or remote-wan)
+- ✅ Provides specific recommendations for your device
+- ✅ Determines optimal concurrency settings
+- ✅ Command-line interface available: `python -m hfortix.FortiOS.performance_test`
+
+**Key Finding:** Most FortiGate devices serialize API requests internally, meaning concurrent requests don't improve throughput and can actually make things 10-15x slower! The performance test helps you identify if your device benefits from concurrency or should use sequential requests.
+
+**New Default Settings (v0.3.17):**
+- `max_connections`: **10** (conservative - should work for most devices)
+- `max_keepalive_connections`: **5** (50% below slowest device tested)
+- Run performance test to get device-specific optimal settings!
 
 ## 📦 Available Modules
 
@@ -185,6 +212,7 @@ pip install hfortix
 ## 📖 Quick Start
 
 ### Basic Usage
+
 ```python
 from hfortix import FortiOS
 
@@ -194,6 +222,8 @@ fgt = FortiOS(
     token='your-api-token',
     verify=False  # Use True in production with valid SSL cert
 )
+# Uses conservative defaults: max_connections=10, max_keepalive=5
+# Run fgt.api.utils.performance_test() to get device-specific optimal settings!
 
 # List firewall addresses
 addresses = fgt.api.cmdb.firewall.address.list()
@@ -262,7 +292,7 @@ fgt = FortiOS('192.168.1.99', token='your-token', debug='info')
 - Request/response logging with timing
 - Hierarchical loggers for fine-grained control
 
-### Read-Only Mode & Operation Tracking ✨ NEW in v0.3.16
+### Read-Only Mode & Operation Tracking ✨ NEW in v0.3.17
 
 Safe testing and comprehensive audit logging:
 
@@ -327,7 +357,7 @@ print(f"Would have executed {len(blocked_ops)} write operations")
 - **Debugging**: See exact API call sequence
 - **Training**: Safe environment for learning
 
-### Advanced Filtering ✨ Enhanced in v0.3.16
+### Advanced Filtering ✨ Enhanced in v0.3.17
 
 Complete guide to FortiOS native filter operators:
 
@@ -356,12 +386,10 @@ addresses = fgt.api.cmdb.firewall.address.get(
     filter="subnet=@10.&comment=@production"
 )
 
-# See FILTERING_GUIDE.md for 50+ examples
+# Supports 8 filtering operators
 ```
 
-**Documentation**: [FILTERING_GUIDE.md](FILTERING_GUIDE.md)
-
-### Username/Password Authentication ✨ NEW in v0.3.16
+### Username/Password Authentication ✨ NEW in v0.3.17
 
 Session-based authentication with automatic session management:
 

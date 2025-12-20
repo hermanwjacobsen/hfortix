@@ -3,7 +3,7 @@
 This document tracks the implementation status of FortiOS API endpoints in the Fortinet Python SDK.
 
 **Last Updated:** 2025-12-20  
-**SDK Version:** 0.3.16  
+**SDK Version:** 0.3.17  
 **FortiOS Version:** 7.6.5
 
 ## 🎯 Key Features
@@ -12,15 +12,15 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 **All API methods support raw_json parameter for full response access:**
 - **Default Behavior**: `get('name')` → returns just the results
 - **Full Response**: `get('name', raw_json=True)` → returns complete API response with status codes
-- **Coverage**: 100% of all implemented methods (45+ endpoints)
+- **Coverage**: 100% of all implemented methods across all 863 endpoints
 
 ### Dual-Pattern Interface ✨
 **All create/update methods support flexible syntax:**
-- **Dictionary Pattern**: `create(data_dict={'name': 'x', 'subnet': '10.0.0.0/24'})`
+- **Dictionary Pattern**: `create(payload_dict={'name': 'x', 'subnet': '10.0.0.0/24'})`
 - **Keyword Pattern**: `create(name='x', subnet='10.0.0.0/24')`
-- **Mixed Pattern**: `create(data_dict=base, name='override')`
+- **Mixed Pattern**: `create(payload_dict=base, name='override')`
 
-**Coverage**: 43 methods (38 CMDB + 5 Service) - 100% of implemented operations
+**Coverage**: All POST and PUT methods across 863 endpoint modules
 
 ---
 

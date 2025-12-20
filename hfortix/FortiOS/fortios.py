@@ -92,8 +92,8 @@ class FortiOS:
         user_agent: Optional[str] = None,
         circuit_breaker_threshold: int = 5,
         circuit_breaker_timeout: float = 60.0,
-        max_connections: int = 100,
-        max_keepalive_connections: int = 20,
+        max_connections: int = 10,
+        max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
         read_only: bool = False,
         track_operations: bool = False,
@@ -121,8 +121,8 @@ class FortiOS:
         user_agent: Optional[str] = None,
         circuit_breaker_threshold: int = 5,
         circuit_breaker_timeout: float = 60.0,
-        max_connections: int = 100,
-        max_keepalive_connections: int = 20,
+        max_connections: int = 10,
+        max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
         read_only: bool = False,
         track_operations: bool = False,
@@ -149,8 +149,8 @@ class FortiOS:
         user_agent: Optional[str] = None,
         circuit_breaker_threshold: int = 5,
         circuit_breaker_timeout: float = 60.0,
-        max_connections: int = 100,
-        max_keepalive_connections: int = 20,
+        max_connections: int = 10,
+        max_keepalive_connections: int = 5,
         session_idle_timeout: Union[int, float, None] = 300,
         read_only: bool = False,
         track_operations: bool = False,
@@ -191,8 +191,16 @@ class FortiOS:
                        Useful for identifying different applications/teams in FortiGate logs
             circuit_breaker_threshold: Number of consecutive failures before opening circuit (default: 5)
             circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
-            max_connections: Maximum number of connections in the pool (default: 100)
-            max_keepalive_connections: Maximum number of keepalive connections (default: 20)
+            max_connections: Maximum number of connections in the pool (default: 10)
+                           Conservative default (50% below lowest-performing device tested).
+                           Should work for most FortiGate models and network conditions. Most devices
+                           serialize API requests internally, so high concurrency doesn't improve
+                           throughput. Increase based on performance testing: 20 for remote-wan,
+                           30 for fast-lan, 60+ for high-performance local deployments.
+            max_keepalive_connections: Maximum number of keepalive connections (default: 5)
+                           Conservative default for connection reuse. If max_keepalive_connections
+                           exceeds max_connections, it will be automatically adjusted with a warning.
+                           Increase proportionally with max_connections based on your device profile.
             session_idle_timeout: For username/password auth only. Idle timeout in seconds before
                        proactively re-authenticating (default: 300 = 5 minutes). This should match
                        your FortiGate's 'config system global' -> 'remoteauthtimeout' setting.
@@ -218,6 +226,14 @@ class FortiOS:
         Important:
             Username/password authentication still works in FortiOS 7.4.x but is removed in
             FortiOS 7.6.x and later. Use API token authentication for production deployments.
+
+        Performance Note:
+            Most FortiGate devices serialize API requests internally, meaning concurrent requests
+            don't improve throughput and actually increase response times (10-15x slower).
+            **Sequential requests are recommended** for most deployments. Use async mode only when
+            integrating with async frameworks or managing multiple devices in parallel.
+            Performance testing shows ~5 req/s for most devices, ~30 req/s for high-performance
+            local deployments. See COMPARATIVE_ANALYSIS.md for detailed performance profiles.
 
         Examples:
             # Token authentication (recommended)
