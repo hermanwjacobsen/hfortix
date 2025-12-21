@@ -35,8 +35,8 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✨ **Firewall Expansion** (v0.3.11): FTP proxy, ICAP, IPS, DoS policies, access-proxy (WAF)
 
 **📖 Documentation:**
-- **Quick Start Guide**: [QUICKSTART.md](QUICKSTART.md) - Getting started guide
-- **Full Changelog**: [CHANGELOG.md](CHANGELOG.md) - Complete version history
+- **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
+- **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
 **Latest Features (v0.3.17):**
 - ✨ **Performance Testing API**: Built-in performance testing and optimization
@@ -44,7 +44,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Validates connection pool settings automatically
   - Tests real-world API endpoints and identifies device performance profile
   - Provides device-specific recommendations for optimal settings
-  - See `docs/PERFORMANCE_TESTING.md` for complete guide
+  - See [docs/PERFORMANCE_TESTING.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/PERFORMANCE_TESTING.md) for complete guide
 - 🔧 **Optimized Connection Pool Defaults**: Conservative defaults based on real-world testing
   - `max_connections`: 10 (down from 100)
   - `max_keepalive_connections`: 5 (down from 20)
@@ -56,23 +56,23 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
   - Enable with `track_operations=True` parameter
   - Get detailed logs via `fgt.get_operations()`
 - ✨ **Comprehensive Filter Documentation**: Complete guide to FortiOS filtering
-  - New `docs/FILTERING_GUIDE.md` with 50+ examples
+  - New [docs/FILTERING_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/FILTERING_GUIDE.md) with 50+ examples
   - All FortiOS filter operators documented: `==`, `!=`, `=@`, `!@`, `<`, `<=`, `>`, `>=`
 - ✨ **Username/Password Authentication**: Alternative to API tokens
   - Session-based authentication for temporary access
 - ✨ **Firewall Policy Wrapper**: Intuitive interface with 150+ parameters
   - Access via `fgt.firewall.policy` namespace
-  - See `docs/FIREWALL_POLICY_WRAPPER.md` for complete guide
+  - See [docs/FIREWALL_POLICY_WRAPPER.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/FIREWALL_POLICY_WRAPPER.md) for complete guide
 
 **Also in v0.3.17:**
 - ✨ **Async/Await Support**: Full dual-mode support for async operations
   - Single `FortiOS` class works in both sync and async modes
   - All 750+ API methods support async with `mode="async"` parameter
   - All helper methods (`.exists()`) work transparently in both modes
-  - See `docs/ASYNC_GUIDE.md` for complete guide
+  - See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for complete guide
 - ✨ **288 Helper Methods**: `.exists()` methods on CMDB endpoints
   - Check object existence without exceptions
-  - See `docs/HELPER_METHODS.md` for complete guide
+  - Returns `True`/`False` instead of raising exceptions
 
 **Previous Features:**
   - Policy statistics, session monitoring, ACL counters
@@ -508,6 +508,108 @@ fgt = FortiOS('192.168.1.99', username='admin', password='password',
 - ⏱️ Idle timer resets on each API request
 - 🔄 Proactive re-auth at 80% of idle timeout
 - 📌 Context manager required for proactive re-auth
+
+### Extensibility: Custom HTTP Clients ✨ v0.3.18
+
+HFortix uses the `IHTTPClient` Protocol interface (PEP 544), making it extensible for custom requirements. Create custom HTTP clients to add:
+
+- **Audit logging** to external systems (SIEM, syslog, databases)
+- **Response caching** to reduce API load
+- **Custom authentication schemes** (OAuth, mutual TLS, corporate SSO)
+- **Request proxying** through corporate infrastructure
+- **Rate limiting** for custom policies
+- **Metrics collection** to monitoring systems
+- **Testing with fake data** without a real FortiGate
+
+**Basic Example:**
+
+```python
+from hfortix import FortiOS
+from hfortix.FortiOS.http_client import HTTPClient
+
+# Create a custom client wrapper
+class AuditLoggingHTTPClient:
+    """Wraps real client to log all API calls to external audit system."""
+    
+    def __init__(self, real_client, audit_logger):
+        self._client = real_client
+        self._logger = audit_logger
+    
+    def get(self, api_type, path, **kwargs):
+        self._logger.info(f"API Call: GET {api_type}/{path}")
+        return self._client.get(api_type, path, **kwargs)
+    
+    def post(self, api_type, path, data, **kwargs):
+        self._logger.info(f"API Call: POST {api_type}/{path}", extra={'data': data})
+        return self._client.post(api_type, path, data, **kwargs)
+    
+    def put(self, api_type, path, data, **kwargs):
+        self._logger.info(f"API Call: PUT {api_type}/{path}", extra={'data': data})
+        return self._client.put(api_type, path, data, **kwargs)
+    
+    def delete(self, api_type, path, **kwargs):
+        self._logger.info(f"API Call: DELETE {api_type}/{path}")
+        return self._client.delete(api_type, path, **kwargs)
+    
+    def close(self):
+        return self._client.close()
+
+# Use custom client with FortiOS
+real_client = HTTPClient(url="https://192.0.2.10", token="your-token", verify=False)
+audit_client = AuditLoggingHTTPClient(real_client, my_audit_logger)
+
+# FortiOS uses your custom client
+fgt = FortiOS(client=audit_client)
+
+# All API calls are now logged to your audit system
+fgt.api.cmdb.firewall.address.create(name="web-server", subnet="10.0.0.1/32")
+```
+
+**Protocol Interface:**
+
+```python
+from typing import Protocol, Any, Optional, Union
+
+class IHTTPClient(Protocol):
+    """Protocol defining HTTP client interface for extensibility."""
+    
+    def get(
+        self,
+        api_type: str,
+        path: str,
+        params: Optional[dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]: ...
+    
+    def post(
+        self,
+        api_type: str,
+        path: str,
+        data: dict[str, Any],
+        params: Optional[dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+        raw_json: bool = False,
+    ) -> dict[str, Any]: ...
+    
+    def put(self, api_type: str, path: str, data: dict[str, Any], ...) -> dict[str, Any]: ...
+    
+    def delete(self, api_type: str, path: str, ...) -> dict[str, Any]: ...
+```
+
+**Complete Examples:**
+
+See `examples/custom_http_client_example.py` for production-ready implementations:
+- `AuditLoggingHTTPClient` - Log all API calls to syslog/SIEM for compliance
+- `CachingHTTPClient` - Cache GET responses to reduce API load
+- `FakeHTTPClient` - Return fake data for testing without a real FortiGate
+
+**Use Cases:**
+- **Enterprise Compliance**: Log all FortiGate changes to SIEM for SOX/HIPAA/PCI-DSS
+- **Development/Testing**: Use fake client in CI/CD pipelines without FortiGate hardware
+- **Performance Optimization**: Cache frequently-read data (address objects, service definitions)
+- **Custom Authentication**: Integrate with corporate SSO or vault systems
+- **Request Debugging**: Log detailed request/response data for troubleshooting
 
 ### Advanced HTTP Features ✨ v0.3.15
 
@@ -996,8 +1098,9 @@ for user in users:
 **Available on:** 288 endpoints with full CRUD operations (firewall addresses, policies, users, VPN configs, etc.)
 
 **📚 Complete Documentation:**
-- See [HELPER_METHODS.md](HELPER_METHODS.md) for detailed guide with examples
-- See [ENDPOINT_METHODS.md](ENDPOINT_METHODS.md) for complete API method reference
+
+- See [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) for complete API method reference
+- See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for async/await usage patterns
 
 ### Exception Hierarchy
 ```
@@ -1028,7 +1131,7 @@ Exception
 
 ## 📝 Version
 
-Current version: **0.3.16** (See [CHANGELOG.md](CHANGELOG.md) for release notes)
+Current version: **0.3.16** (See [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) for release notes)
 
 ```python
 from hfortix import get_version
@@ -1062,7 +1165,7 @@ Proprietary License - Free for personal, educational, and business use.
 - Sell the software itself as a standalone product
 - Redistribute as your own product
 
-See [CHANGELOG.md](CHANGELOG.md) v0.2.0 for details.
+See [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) v0.2.0 for details.
 
 ## 🔗 Links
 

@@ -11,7 +11,6 @@ Complete reference documentation for the HFortix FortiOS Python SDK.
 
 ### Feature Guides
 - **[FIREWALL_POLICY_WRAPPER.md](FIREWALL_POLICY_WRAPPER.md)** - Intuitive interface for firewall policy management (150+ parameters)
-- **[HELPER_METHODS.md](HELPER_METHODS.md)** - Helper methods like `.exists()` for safer operations
 
 ## Reference Documentation
 

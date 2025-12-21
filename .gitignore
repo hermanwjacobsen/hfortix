@@ -81,7 +81,10 @@ test_error_handling.py
 *_update.log
 test_results*.log
 raw_json*.log
-test_*
+
+# Development cache
+.mypy_cache/
+
 # NOTE: Do NOT ignore .github/ (workflows, templates, etc.)
 
 examples/

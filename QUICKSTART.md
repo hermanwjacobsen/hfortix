@@ -388,11 +388,12 @@ async def main():
 asyncio.run(main())
 ```
 
-**See [ASYNC_GUIDE.md](ASYNC_GUIDE.md) for complete async documentation.**
+**See [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) for complete async documentation.**
 
 ## Support
 
-- 📖 [Full Documentation](README.md)
-- 🚀 [Async/Await Guide](ASYNC_GUIDE.md)
-- 🐛 [Report Issues](issues)
-- 💬 [Discussions](discussions)
+- 📖 [Full Documentation](https://github.com/hermanwjacobsen/hfortix/blob/main/README.md)
+- 🚀 [Async/Await Guide](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md)
+- 🐛 [Report Issues](https://github.com/hermanwjacobsen/hfortix/issues)
+- 💬 [Discussions](https://github.com/hermanwjacobsen/hfortix/discussions)
+

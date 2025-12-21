@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Extensibility: Custom HTTP Clients**: Library now supports custom HTTP client implementations
+  - `IHTTPClient` Protocol interface (PEP 544) for type-safe extensibility
+  - All 750+ endpoint files use TYPE_CHECKING pattern for protocol imports
+  - `FortiOS.__init__()` accepts custom clients via `client` parameter
+  - Enables audit logging, response caching, fake clients for testing, custom authentication
+  - Complete example file: `examples/custom_http_client_example.py`
+  - Three production-ready examples: AuditLoggingHTTPClient, CachingHTTPClient, FakeHTTPClient
+  - Documentation in README.md "Extensibility" section
+  - Use cases: SOX/HIPAA/PCI-DSS compliance, CI/CD testing, performance optimization
+
 - **Environment Variables Support**: Load credentials from environment variables
   - Support for `FORTIOS_HOST`, `FORTIOS_TOKEN`, `FORTIOS_USERNAME`, `FORTIOS_PASSWORD`
   - Explicit parameters take priority over environment variables
@@ -16,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Perfect for CI/CD pipelines, Docker containers, and security best practices
   - Example: `export FORTIOS_TOKEN="..." && python script.py`
   - No hardcoded credentials needed in scripts
+  - Comprehensive documentation in README.md and QUICKSTART.md
 
 - **Credential Validation**: Comprehensive validation for authentication credentials
   - Validates token format (25+ characters minimum, alphanumeric with hyphens/underscores)
@@ -328,7 +339,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Available on all endpoints that support full CRUD operations
   - Example (sync): `if fgt.api.cmdb.firewall.address.exists("test-host"): ...`
   - Example (async): `if await fgt.api.cmdb.firewall.address.exists("test-host"): ...`
-  - See [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) for complete documentation and usage examples
+  - See [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) for complete API reference
 
 ### Changed
 
@@ -364,20 +375,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Performance comparisons and best practices
   - Advanced usage: rate limiting, timeouts, multiple FortiGates
   - Troubleshooting common async errors
-- **API Reference**: Created comprehensive [ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/ENDPOINT_METHODS.md) documentation
+- **API Reference**: Created comprehensive [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) documentation
   - Complete listing of all 857 FortiOS API endpoints
   - Shows available methods (`.get()`, `.post()`, `.put()`, `.delete()`, `.exists()`) for each endpoint
   - Organized by API category (CMDB, LOG, MONITOR, SERVICE)
   - Quick navigation with anchor links to all subcategories
   - Coverage: 561 CMDB endpoints, 19 LOG endpoints, 274 MONITOR endpoints, 3 SERVICE endpoints
-- **Helper Methods Guide**: Created detailed [HELPER_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/HELPER_METHODS.md) documentation
+- **Helper Methods**: Added `.exists()` helper method documentation in [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md)
   - In-depth guide to the `.exists()` helper method
   - Practical usage examples for common scenarios (idempotent operations, safe deletion, batch processing)
   - Reference table of identifier types for all 288 endpoints with `.exists()`
   - Organized by category with example code snippets
-- **README Updates**: Added GitHub links to all documentation references
-  - Updated documentation links to point to GitHub repository
-  - Added ASYNC_GUIDE.md, ENDPOINT_METHODS.md and HELPER_METHODS.md to main documentation section
+- **README Updates**: Improved documentation organization
+  - Updated documentation links to use GitHub URLs for PyPI compatibility
+  - Added [docs/ASYNC_GUIDE.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md) and [docs/ENDPOINT_METHODS.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ENDPOINT_METHODS.md) to main documentation section
   - Updated roadmap to mark async support as completed (v0.3.15)
   - Added async/await to features list
   - Improved discoverability for PyPI users
@@ -386,7 +397,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Link to comprehensive ASYNC_GUIDE.md
   - Updated tips section to mention async for concurrent operations
 - **Project Cleanup**: Cleaned up root folder and updated documentation
-  - Moved `REFACTORING_PROGRESS.md` and `REFACTORING_RECOMMENDATIONS.md` to `X/docs/project/`
+  - Moved refactoring documentation to internal development workspace
   - Removed `update_endpoints.py` (one-time migration script)
   - Updated `CHANGELOG.md` with comprehensive refactoring details
   - Updated `README.md` to highlight refactored architecture

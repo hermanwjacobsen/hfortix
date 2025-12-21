@@ -378,9 +378,9 @@ else:
 
 ## See Also
 
-- **Detailed Analysis:** `X/tests/FortiOS/performance_results/COMPARATIVE_ANALYSIS.md`
 - **Example Code:** `examples/performance_test_examples.py`
-- **Test Script:** `X/tests/FortiOS/test_performance.py`
+- **Performance Testing Module:** `hfortix.FortiOS.performance_test`
+- **API Integration:** `fgt.api.utils.performance_test()`
 
 ## Tips
 

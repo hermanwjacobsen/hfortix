@@ -13,6 +13,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 if TYPE_CHECKING:
     from ..http_client import HTTPClient
+    from ..performance_test import PerformanceTestResults
 
 logger = logging.getLogger(__name__)
 
