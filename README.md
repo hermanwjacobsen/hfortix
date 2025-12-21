@@ -38,11 +38,11 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.19 - Unreleased):**
+**Latest Features (v0.3.19 - December 21, 2025):**
 - 🔧 **Type Checking Improvements**: Enhanced type safety and IDE support
-  - Cleaned up mypy configuration (removed unnecessary overrides)
-  - Enhanced type checking roadmap with v1.0.0 milestones
+  - Cleaned up mypy configuration (removed unnecessary overrides for httpx and requests)
   - Better IDE autocomplete and type checking
+  - Zero breaking changes - purely internal improvements
 
 **Features from v0.3.18:**
 - ✨ **Extensibility: Custom HTTP Clients**: Support for custom HTTP client implementations

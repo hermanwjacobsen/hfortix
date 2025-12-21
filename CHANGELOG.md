@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 0.3.19
+## [0.3.19] - 2025-12-21
 
 ### Changed
 
@@ -15,15 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enables better IDE autocomplete and type checking for HTTP client usage
   - Verified: Zero new mypy errors after cleanup
 
-### Documentation
+### Improved
 
-- **Type Checking Roadmap**: Enhanced roadmap with v1.0.0 milestones
-  - Added release milestone table linking phases to v0.4.0, v0.5.0, v1.0.0 (Q1-Q2 2026)
-  - Phase 2 (v0.4.0): Core module improvements with specific targets (http_client_base, exceptions, fortios)
-  - Phase 3 (v0.5.0): Global strict settings with 95%+ type coverage goal
-  - Phase 4 (v1.0.0): Full strict mode with comprehensive type checking
-  - Total effort estimate: 16-22 hours across 3 releases
-  - Clear acceptance criteria and configuration examples for each phase
+- **Build Configuration**: Updated .gitignore to exclude GitHub templates
+  - Excludes `.github/ISSUE_TEMPLATE/` and `.github/PULL_REQUEST_TEMPLATE.md`
+  - Prevents inclusion of work-in-progress templates in releases
 
 ## [0.3.18] - 2025-12-21
 
