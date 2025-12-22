@@ -467,7 +467,7 @@ class FortiOS:
             )
 
         # Check for invalid token format (common mistakes)
-        if has_token:
+        if has_token and token is not None:
             # Token should not contain spaces (common copy-paste error)
             if " " in token:
                 raise ValueError(

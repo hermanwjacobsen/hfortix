@@ -320,7 +320,8 @@ def test_endpoint_performance(
                 for i in range(count):
                     start = time.time()
                     try:
-                        api_obj.get()
+                        if hasattr(api_obj, 'get'):
+                            api_obj.get()  # type: ignore[attr-defined]
                         elapsed = (time.time() - start) * 1000  # ms
                         times.append(elapsed)
                         successes += 1
@@ -356,7 +357,8 @@ def test_endpoint_performance(
         # Close client if using username/password
         if username:
             try:
-                fgt.logout()
+                if hasattr(fgt, 'close'):
+                    fgt.close()  # type: ignore[attr-defined]
             except:
                 pass
 

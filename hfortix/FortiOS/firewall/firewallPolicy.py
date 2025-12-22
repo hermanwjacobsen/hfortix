@@ -6,7 +6,7 @@ Instead of: fgt.api.cmdb.firewall.policy.post(data)
 Use: fgt.firewall.policy.create(name='MyPolicy', srcintf=['port1'], ...)
 """
 
-from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Coroutine, Dict, List, Optional, Union
 
 # Import shared helpers from the API layer
 from ..api._helpers import (
@@ -730,7 +730,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.post(payload_dict=policy_data, **api_params)
+        return self._api.post(payload_dict=policy_data, **api_params)  # type: ignore[return-value]
 
     def get(
         self,
@@ -774,7 +774,7 @@ class FirewallPolicy:
         # Merge any additional kwargs
         api_params.update(kwargs)
 
-        return self._api.get(**api_params)
+        return self._api.get(**api_params)  # type: ignore[return-value]
 
     def update(
         self,
@@ -1217,7 +1217,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.put(policyid=str(policy_id), payload_dict=policy_data, **api_params)
+        return self._api.put(policyid=str(policy_id), payload_dict=policy_data, **api_params)  # type: ignore[return-value]
 
     def delete(
         self,
@@ -1243,7 +1243,7 @@ class FirewallPolicy:
             api_params["vdom"] = vdom
         if raw_json is not None:
             api_params["raw_json"] = raw_json
-        return self._api.delete(policyid=str(policy_id), **api_params)
+        return self._api.delete(policyid=str(policy_id), **api_params)  # type: ignore[return-value]
 
     def exists(
         self,
@@ -1452,7 +1452,29 @@ class FirewallPolicy:
         api_params = {}
         if vdom:
             api_params["vdom"] = vdom
-        return self._api.post(data=clone_data, **api_params)
+        return self._api.post(data=clone_data, **api_params)  # type: ignore[return-value]
+
+    def rename(
+        self,
+        policy_id: Union[str, int],
+        new_name: str,
+        vdom: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """
+        Rename a firewall policy.
+
+        Args:
+            policy_id: Policy ID to rename
+            new_name: New name for the policy
+            vdom: Virtual domain name (optional)
+
+        Returns:
+            API response dictionary
+
+        Example:
+            >>> result = fgt.firewall.policy.rename(policy_id=1, new_name='Updated-Policy-Name')
+        """
+        return self.update(policy_id=policy_id, name=new_name, vdom=vdom)
 
     def enable(
         self,
