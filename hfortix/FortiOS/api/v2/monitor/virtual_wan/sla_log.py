@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class SlaLog:
@@ -109,6 +109,4 @@ class SlaLog:
         if include_sla_targets_met is not None:
             params["include_sla_targets_met"] = include_sla_targets_met
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/virtual-wan/sla-log", params=params
-        )
+        return self._client.get("monitor", "/virtual-wan/sla-log", params=params)

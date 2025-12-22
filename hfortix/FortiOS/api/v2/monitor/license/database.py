@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Upgrade:
@@ -93,9 +93,7 @@ class Upgrade:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/license/database/upgrade", data=data
-        )
+        return self._client.post("monitor", "/license/database/upgrade", data=data)
 
 
 class Database:

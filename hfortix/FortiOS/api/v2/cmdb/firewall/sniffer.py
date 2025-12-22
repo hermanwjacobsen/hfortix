@@ -128,9 +128,7 @@ class Sniffer:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -225,7 +223,6 @@ class Sniffer:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not id:
@@ -276,9 +273,7 @@ class Sniffer:
         if webfilter_profile is not None:
             data_payload["webfilter-profile"] = webfilter_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -290,9 +285,7 @@ class Sniffer:
         if ip_threatfeed is not None:
             data_payload["ip-threatfeed"] = ip_threatfeed
         if file_filter_profile_status is not None:
-            data_payload["file-filter-profile-status"] = (
-                file_filter_profile_status
-            )
+            data_payload["file-filter-profile-status"] = file_filter_profile_status
         if file_filter_profile is not None:
             data_payload["file-filter-profile"] = file_filter_profile
         if ips_dos_status is not None:
@@ -300,9 +293,7 @@ class Sniffer:
         if anomaly is not None:
             data_payload["anomaly"] = anomaly
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -339,9 +330,7 @@ class Sniffer:
             raise ValueError("id is required for delete()")
         endpoint = f"/firewall/sniffer/{id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -477,7 +466,6 @@ class Sniffer:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/sniffer"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -522,9 +510,7 @@ class Sniffer:
         if webfilter_profile is not None:
             data_payload["webfilter-profile"] = webfilter_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -536,9 +522,7 @@ class Sniffer:
         if ip_threatfeed is not None:
             data_payload["ip-threatfeed"] = ip_threatfeed
         if file_filter_profile_status is not None:
-            data_payload["file-filter-profile-status"] = (
-                file_filter_profile_status
-            )
+            data_payload["file-filter-profile-status"] = file_filter_profile_status
         if file_filter_profile is not None:
             data_payload["file-filter-profile"] = file_filter_profile
         if ips_dos_status is not None:
@@ -546,6 +530,4 @@ class Sniffer:
         if anomaly is not None:
             data_payload["anomaly"] = anomaly
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Usage:
@@ -85,9 +85,7 @@ class Usage:
         if interval is not None:
             params["interval"] = interval
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/resource/usage", params=params
-        )
+        return self._client.get("monitor", "/system/resource/usage", params=params)
 
 
 class Resource:

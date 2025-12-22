@@ -9,41 +9,45 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_custom_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -51,25 +55,26 @@ def validate_custom_get(
 # POST Validation
 # ============================================================================
 
+
 def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating custom.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate tag if present
-    if 'tag' in payload:
-        value = payload.get('tag')
+    if "tag" in payload:
+        value = payload.get("tag")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"tag cannot exceed 63 characters")
-    
+
     # Validate id if present
-    if 'id' in payload:
-        value = payload.get('id')
+    if "id" in payload:
+        value = payload.get("id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -77,30 +82,31 @@ def validate_custom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                     return (False, f"id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
-    
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"comment cannot exceed 63 characters")
-    
+
     # Validate signature if present
-    if 'signature' in payload:
-        value = payload.get('signature')
+    if "signature" in payload:
+        value = payload.get("signature")
         if value and isinstance(value, str) and len(value) > 4095:
             return (False, f"signature cannot exceed 4095 characters")
-    
+
     # Validate category if present
-    if 'category' in payload:
-        value = payload.get('category')
+    if "category" in payload:
+        value = payload.get("category")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"category must be between 0 and 4294967295")
+                    return (
+                        False,
+                        f"category must be between 0 and 4294967295",
+                    )
             except (ValueError, TypeError):
                 return (False, f"category must be numeric, got: {value}")
-    
+
     return (True, None)
-
-

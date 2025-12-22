@@ -108,9 +108,7 @@ class SnmpSysinfo:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -170,7 +168,6 @@ class SnmpSysinfo:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system.snmp/sysinfo"
         if before is not None:
             data_payload["before"] = before
@@ -191,24 +188,16 @@ class SnmpSysinfo:
         if trap_high_cpu_threshold is not None:
             data_payload["trap-high-cpu-threshold"] = trap_high_cpu_threshold
         if trap_low_memory_threshold is not None:
-            data_payload["trap-low-memory-threshold"] = (
-                trap_low_memory_threshold
-            )
+            data_payload["trap-low-memory-threshold"] = trap_low_memory_threshold
         if trap_log_full_threshold is not None:
             data_payload["trap-log-full-threshold"] = trap_log_full_threshold
         if trap_free_memory_threshold is not None:
-            data_payload["trap-free-memory-threshold"] = (
-                trap_free_memory_threshold
-            )
+            data_payload["trap-free-memory-threshold"] = trap_free_memory_threshold
         if trap_freeable_memory_threshold is not None:
-            data_payload["trap-freeable-memory-threshold"] = (
-                trap_freeable_memory_threshold
-            )
+            data_payload["trap-freeable-memory-threshold"] = trap_freeable_memory_threshold
         if append_index is not None:
             data_payload["append-index"] = append_index
         if non_mgmt_vdom_query is not None:
             data_payload["non-mgmt-vdom-query"] = non_mgmt_vdom_query
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

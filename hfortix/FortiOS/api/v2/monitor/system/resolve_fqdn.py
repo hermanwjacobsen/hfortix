@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ResolveFqdn:
@@ -80,6 +80,4 @@ class ResolveFqdn:
         if ipv6 is not None:
             params["ipv6"] = ipv6
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/resolve-fqdn", params=params
-        )
+        return self._client.get("monitor", "/system/resolve-fqdn", params=params)

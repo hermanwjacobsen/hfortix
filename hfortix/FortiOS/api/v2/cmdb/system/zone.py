@@ -128,9 +128,7 @@ class Zone:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -175,7 +173,6 @@ class Zone:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -196,9 +193,7 @@ class Zone:
         if interface is not None:
             data_payload["interface"] = interface
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -235,9 +230,7 @@ class Zone:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/zone/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -323,7 +316,6 @@ class Zone:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/zone"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -338,6 +330,4 @@ class Zone:
         if interface is not None:
             data_payload["interface"] = interface
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

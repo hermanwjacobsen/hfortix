@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Cancel:
@@ -89,9 +89,7 @@ class Cancel:
         if view_level is not None:
             data["view_level"] = view_level
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/fortiview/session/cancel", data=data
-        )
+        return self._client.post("monitor", "/fortiview/session/cancel", data=data)
 
 
 class Session:

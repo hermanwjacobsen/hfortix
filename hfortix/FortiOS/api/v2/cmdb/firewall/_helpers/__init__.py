@@ -17,8 +17,8 @@ firewall-specific functionality on top.
 # Import from central API helpers
 from ...._helpers import (
     build_cmdb_payload,
-    normalize_to_name_list,
     normalize_member_list,
+    normalize_to_name_list,
 )
 
 __all__ = [

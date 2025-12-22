@@ -128,9 +128,7 @@ class VlanPolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -181,7 +179,6 @@ class VlanPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -208,9 +205,7 @@ class VlanPolicy:
         if discard_mode is not None:
             data_payload["discard-mode"] = discard_mode
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -247,9 +242,7 @@ class VlanPolicy:
             raise ValueError("name is required for delete()")
         endpoint = f"/switch-controller/vlan-policy/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -341,7 +334,6 @@ class VlanPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/switch-controller/vlan-policy"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -362,6 +354,4 @@ class VlanPolicy:
         if discard_mode is not None:
             data_payload["discard-mode"] = discard_mode
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

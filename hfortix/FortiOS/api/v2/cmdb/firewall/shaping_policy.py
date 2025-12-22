@@ -128,9 +128,7 @@ class ShapingPolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -257,7 +255,6 @@ class ShapingPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not id:
@@ -298,35 +295,21 @@ class ShapingPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload["internet-service-custom-group"] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if service is not None:
             data_payload["service"] = service
         if schedule is not None:
@@ -374,9 +357,7 @@ class ShapingPolicy:
         if cos is not None:
             data_payload["cos"] = cos
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -413,9 +394,7 @@ class ShapingPolicy:
             raise ValueError("id is required for delete()")
         endpoint = f"/firewall/shaping-policy/{id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -583,7 +562,6 @@ class ShapingPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/shaping-policy"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -618,35 +596,21 @@ class ShapingPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload["internet-service-custom-group"] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if service is not None:
             data_payload["service"] = service
         if schedule is not None:
@@ -694,6 +658,4 @@ class ShapingPolicy:
         if cos is not None:
             data_payload["cos"] = cos
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

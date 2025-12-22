@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Delete:
@@ -77,9 +77,7 @@ class Delete:
         if config_ids is not None:
             data["config_ids"] = config_ids
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/config-revision/delete", data=data
-        )
+        return self._client.post("monitor", "/system/config-revision/delete", data=data)
 
 
 class File:
@@ -120,9 +118,7 @@ class File:
         if config_id is not None:
             params["config_id"] = config_id
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/config-revision/file", params=params
-        )
+        return self._client.get("monitor", "/system/config-revision/file", params=params)
 
 
 class Info:
@@ -163,9 +159,7 @@ class Info:
         if config_id is not None:
             params["config_id"] = config_id
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/config-revision/info", params=params
-        )
+        return self._client.get("monitor", "/system/config-revision/info", params=params)
 
 
 class Save:
@@ -206,9 +200,7 @@ class Save:
         if comments is not None:
             data["comments"] = comments
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/config-revision/save", data=data
-        )
+        return self._client.post("monitor", "/system/config-revision/save", data=data)
 
 
 class UpdateComments:
@@ -253,9 +245,7 @@ class UpdateComments:
         if comments is not None:
             data["comments"] = comments
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/config-revision/update-comments", data=data
-        )
+        return self._client.post("monitor", "/system/config-revision/update-comments", data=data)
 
 
 class ConfigRevision:
@@ -299,6 +289,4 @@ class ConfigRevision:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/config-revision", params=params
-        )
+        return self._client.get("monitor", "/system/config-revision", params=params)

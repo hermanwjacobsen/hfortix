@@ -108,13 +108,9 @@ class AsyncHTTPClient(BaseHTTPClient):
         """
         # Validate authentication parameters
         if token and (username or password):
-            raise ValueError(
-                "Cannot specify both token and username/password authentication"
-            )
+            raise ValueError("Cannot specify both token and username/password authentication")
         if (username and not password) or (password and not username):
-            raise ValueError(
-                "Both username and password must be provided together"
-            )
+            raise ValueError("Both username and password must be provided together")
 
         # Call parent class constructor (handles validation and common initialization)
         super().__init__(
@@ -204,9 +200,7 @@ class AsyncHTTPClient(BaseHTTPClient):
         if not self._username or not self._password:
             raise ValueError("Username and password required for login")
 
-        logger.debug(
-            "Authenticating with username/password for %s (async)", self._url
-        )
+        logger.debug("Authenticating with username/password for %s (async)", self._url)
 
         try:
             # FortiOS login endpoint
@@ -235,17 +229,11 @@ class AsyncHTTPClient(BaseHTTPClient):
                 if csrf_token:
                     self._session_token = csrf_token
                     self._client.headers["X-CSRFTOKEN"] = csrf_token
-                    logger.info(
-                        "Successfully authenticated via username/password (async)"
-                    )
+                    logger.info("Successfully authenticated via username/password (async)")
                 else:
-                    raise ValueError(
-                        "Login succeeded but no CSRF token found in response"
-                    )
+                    raise ValueError("Login succeeded but no CSRF token found in response")
             else:
-                raise ValueError(
-                    f"Login failed with status code {response.status_code}"
-                )
+                raise ValueError(f"Login failed with status code {response.status_code}")
 
         except httpx.HTTPError as e:
             logger.error("Login failed (async): %s", str(e))
@@ -263,9 +251,7 @@ class AsyncHTTPClient(BaseHTTPClient):
             Token-based authentication doesn't require logout.
         """
         if not self._session_token:
-            logger.debug(
-                "No active session to logout (using token auth or not logged in) (async)"
-            )
+            logger.debug("No active session to logout (using token auth or not logged in) (async)")
             return
 
         logger.debug("Logging out from %s (async)", self._url)
@@ -311,18 +297,12 @@ class AsyncHTTPClient(BaseHTTPClient):
                 # Add error description if error code present
                 error_code = json_response.get("error")
                 if error_code and "error_description" not in json_response:
-                    json_response["error_description"] = get_error_description(
-                        error_code
-                    )
+                    json_response["error_description"] = get_error_description(error_code)
 
                 # Log the error
                 status = json_response.get("status")
-                http_status = json_response.get(
-                    "http_status", response.status_code
-                )
-                error_desc = json_response.get(
-                    "error_description", "Unknown error"
-                )
+                http_status = json_response.get("http_status", response.status_code)
+                error_desc = json_response.get("error_description", "Unknown error")
 
                 logger.error(
                     "Request failed: HTTP %d, status=%s, error=%s, description='%s'",
@@ -376,9 +356,7 @@ class AsyncHTTPClient(BaseHTTPClient):
 
         # Normalize and encode path
         path = self._normalize_path(path)
-        encoded_path = (
-            quote(str(path), safe="/%") if isinstance(path, str) else path
-        )
+        encoded_path = quote(str(path), safe="/%") if isinstance(path, str) else path
         url = f"{self._url}/api/v2/{api_type}/{encoded_path}"
         params = params or {}
 
@@ -395,7 +373,7 @@ class AsyncHTTPClient(BaseHTTPClient):
         # Check circuit breaker
         try:
             self._check_circuit_breaker(endpoint_key)
-        except RuntimeError as e:
+        except RuntimeError:
             logger.error(
                 "Circuit breaker blocked request",
                 extra={
@@ -489,9 +467,7 @@ class AsyncHTTPClient(BaseHTTPClient):
                         if isinstance(e, httpx.HTTPStatusError)
                         else None
                     )
-                    delay = self._get_retry_delay(
-                        attempt, response_obj, endpoint_key
-                    )
+                    delay = self._get_retry_delay(attempt, response_obj, endpoint_key)
 
                     logger.info(
                         "Retrying async request after delay",
@@ -632,34 +608,22 @@ class AsyncHTTPClient(BaseHTTPClient):
     def validate_mkey(mkey: Any, parameter_name: str = "mkey") -> str:
         """Validate and convert mkey to string"""
         if mkey is None:
-            raise ValueError(
-                f"{parameter_name} is required and cannot be None"
-            )
+            raise ValueError(f"{parameter_name} is required and cannot be None")
         mkey_str = str(mkey).strip()
         if not mkey_str:
             raise ValueError(f"{parameter_name} cannot be empty")
         return mkey_str
 
     @staticmethod
-    def validate_required_params(
-        params: dict[str, Any], required: list[str]
-    ) -> None:
+    def validate_required_params(params: dict[str, Any], required: list[str]) -> None:
         """Validate that required parameters are present"""
         if not params:
             if required:
-                raise ValueError(
-                    f"Missing required parameters: {', '.join(required)}"
-                )
+                raise ValueError(f"Missing required parameters: {', '.join(required)}")
             return
-        missing = [
-            param
-            for param in required
-            if param not in params or params[param] is None
-        ]
+        missing = [param for param in required if param not in params or params[param] is None]
         if missing:
-            raise ValueError(
-                f"Missing required parameters: {', '.join(missing)}"
-            )
+            raise ValueError(f"Missing required parameters: {', '.join(missing)}")
 
     @staticmethod
     def validate_range(
@@ -677,14 +641,10 @@ class AsyncHTTPClient(BaseHTTPClient):
             )
 
     @staticmethod
-    def validate_choice(
-        value: Any, choices: list[Any], parameter_name: str = "value"
-    ) -> None:
+    def validate_choice(value: Any, choices: list[Any], parameter_name: str = "value") -> None:
         """Validate that a value is one of the allowed choices"""
         if value not in choices:
-            raise ValueError(
-                f"{parameter_name} must be one of {choices}, got '{value}'"
-            )
+            raise ValueError(f"{parameter_name} must be one of {choices}, got '{value}'")
 
     @staticmethod
     def build_params(**kwargs: Any) -> dict[str, Any]:
@@ -704,11 +664,37 @@ class AsyncHTTPClient(BaseHTTPClient):
         exc_val: Optional[BaseException],
         exc_tb: Optional[Any],
     ) -> None:
-        """Async context manager exit - ensures session is closed"""
+        """
+        Async context manager exit - ensures session is closed
+
+        This method is called automatically when exiting an async with block.
+        It ensures that all network connections and sessions are properly closed.
+
+        Example:
+            async with AsyncHTTPClient(...) as client:
+                ...
+            # Session is closed automatically here
+        """
         await self.close()
 
     async def close(self) -> None:
-        """Close the async HTTP session and release resources"""
+        """
+        Close the async HTTP session and release resources
+
+        This method should be called to properly clean up resources when using AsyncHTTPClient.
+        It ensures that all network connections and sessions are closed.
+
+        Usage:
+            - Call `await client.close()` when you are done with the client in async mode.
+            - Prefer using the async context manager (`async with`) for automatic cleanup.
+
+        Example:
+            client = AsyncHTTPClient(...)
+            try:
+                ...
+            finally:
+                await client.close()
+        """
         # Logout if using username/password authentication
         if self._session_token:
             await self.logout()
@@ -738,11 +724,7 @@ class AsyncHTTPClient(BaseHTTPClient):
         Returns:
             List of write operation dictionaries (same format as HTTPClient.get_write_operations())
         """
-        return [
-            op
-            for op in self._operations
-            if op["method"] in ("POST", "PUT", "DELETE")
-        ]
+        return [op for op in self._operations if op["method"] in ("POST", "PUT", "DELETE")]
 
     @staticmethod
     def make_exists_method(

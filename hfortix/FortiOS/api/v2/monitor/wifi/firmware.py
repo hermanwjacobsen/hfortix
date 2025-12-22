@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Download:
@@ -77,9 +77,7 @@ class Download:
         if image_id is not None:
             data["image_id"] = image_id
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/firmware/download", data=data
-        )
+        return self._client.post("monitor", "/wifi/firmware/download", data=data)
 
 
 class Push:

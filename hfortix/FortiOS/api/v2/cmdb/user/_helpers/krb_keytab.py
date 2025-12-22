@@ -9,42 +9,46 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_PAC_DATA = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_PAC_DATA = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_krb_keytab_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -52,40 +56,46 @@ def validate_krb_keytab_get(
 # POST Validation
 # ============================================================================
 
-def validate_krb_keytab_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_krb_keytab_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating krb_keytab.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate pac-data if present
-    if 'pac-data' in payload:
-        value = payload.get('pac-data')
+    if "pac-data" in payload:
+        value = payload.get("pac-data")
         if value and value not in VALID_BODY_PAC_DATA:
-            return (False, f"Invalid pac-data '{value}'. Must be one of: {', '.join(VALID_BODY_PAC_DATA)}")
-    
+            return (
+                False,
+                f"Invalid pac-data '{value}'. Must be one of: {', '.join(VALID_BODY_PAC_DATA)}",
+            )
+
     # Validate principal if present
-    if 'principal' in payload:
-        value = payload.get('principal')
+    if "principal" in payload:
+        value = payload.get("principal")
         if value and isinstance(value, str) and len(value) > 511:
             return (False, f"principal cannot exceed 511 characters")
-    
+
     # Validate keytab if present
-    if 'keytab' in payload:
-        value = payload.get('keytab')
+    if "keytab" in payload:
+        value = payload.get("keytab")
         if value and isinstance(value, str) and len(value) > 8191:
             return (False, f"keytab cannot exceed 8191 characters")
-    
+
     return (True, None)
 
 
@@ -93,52 +103,55 @@ def validate_krb_keytab_post(payload: dict[str, Any]) -> tuple[bool, str | None]
 # PUT Validation
 # ============================================================================
 
+
 def validate_krb_keytab_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate pac-data if present
-    if 'pac-data' in payload:
-        value = payload.get('pac-data')
+    if "pac-data" in payload:
+        value = payload.get("pac-data")
         if value and value not in VALID_BODY_PAC_DATA:
-            return (False, f"Invalid pac-data '{value}'. Must be one of: {', '.join(VALID_BODY_PAC_DATA)}")
-    
+            return (
+                False,
+                f"Invalid pac-data '{value}'. Must be one of: {', '.join(VALID_BODY_PAC_DATA)}",
+            )
+
     # Validate principal if present
-    if 'principal' in payload:
-        value = payload.get('principal')
+    if "principal" in payload:
+        value = payload.get("principal")
         if value and isinstance(value, str) and len(value) > 511:
             return (False, f"principal cannot exceed 511 characters")
-    
+
     # Validate keytab if present
-    if 'keytab' in payload:
-        value = payload.get('keytab')
+    if "keytab" in payload:
+        value = payload.get("keytab")
         if value and isinstance(value, str) and len(value) > 8191:
             return (False, f"keytab cannot exceed 8191 characters")
-    
+
     return (True, None)
 
 
@@ -146,17 +159,20 @@ def validate_krb_keytab_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_krb_keytab_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_krb_keytab_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

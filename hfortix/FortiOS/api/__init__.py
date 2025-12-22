@@ -110,9 +110,7 @@ class API:
     log: "Log"
     monitor: "Monitor"
     service: "Service"
-    utils: (
-        "Optional[Utils]"  # None when using custom IHTTPClient implementations
-    )
+    utils: "Optional[Utils]"  # None when using custom IHTTPClient implementations
 
     def __init__(self, client: "IHTTPClient") -> None:
         """
@@ -147,6 +145,6 @@ class API:
             # Custom protocol implementations won't have utils
             self.utils = None
 
-    def __dir__(self):
+    def __dir__(self) -> list[str]:
         """Control autocomplete to show only public attributes"""
         return ["cmdb", "log", "monitor", "service", "utils"]

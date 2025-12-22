@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class AddLicense:
@@ -77,9 +77,7 @@ class AddLicense:
         if license is not None:
             data["license"] = license
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/vdom/add-license", data=data
-        )
+        return self._client.post("monitor", "/registration/vdom/add-license", data=data)
 
 
 class Vdom:

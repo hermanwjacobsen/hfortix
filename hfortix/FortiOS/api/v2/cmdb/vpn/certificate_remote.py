@@ -124,9 +124,7 @@ class CertificateRemote:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -166,7 +164,6 @@ class CertificateRemote:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/vpn.certificate/remote"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -179,6 +176,4 @@ class CertificateRemote:
         if source is not None:
             data_payload["source"] = source
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

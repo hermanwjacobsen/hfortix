@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class AddLicense:
@@ -77,9 +77,7 @@ class AddLicense:
         if registration_code is not None:
             data["registration_code"] = registration_code
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticare/add-license", data=data
-        )
+        return self._client.post("monitor", "/registration/forticare/add-license", data=data)
 
 
 class CheckConnectivity:
@@ -233,9 +231,7 @@ class Create:
         if is_government is not None:
             data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticare/create", data=data
-        )
+        return self._client.post("monitor", "/registration/forticare/create", data=data)
 
 
 class DeregisterDevice:
@@ -280,9 +276,7 @@ class DeregisterDevice:
         if password is not None:
             data["password"] = password
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticare/deregister-device", data=data
-        )
+        return self._client.post("monitor", "/registration/forticare/deregister-device", data=data)
 
 
 class Login:
@@ -347,9 +341,7 @@ class Login:
         if is_government is not None:
             data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticare/login", data=data
-        )
+        return self._client.post("monitor", "/registration/forticare/login", data=data)
 
 
 class Transfer:
@@ -406,9 +398,7 @@ class Transfer:
         if is_government is not None:
             data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticare/transfer", data=data
-        )
+        return self._client.post("monitor", "/registration/forticare/transfer", data=data)
 
 
 class Forticare:

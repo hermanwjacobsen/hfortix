@@ -124,9 +124,7 @@ class CertificateLocal:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -240,7 +238,6 @@ class CertificateLocal:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/vpn.certificate/local"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -267,9 +264,7 @@ class CertificateLocal:
         if auto_regenerate_days is not None:
             data_payload["auto-regenerate-days"] = auto_regenerate_days
         if auto_regenerate_days_warning is not None:
-            data_payload["auto-regenerate-days-warning"] = (
-                auto_regenerate_days_warning
-            )
+            data_payload["auto-regenerate-days-warning"] = auto_regenerate_days_warning
         if scep_password is not None:
             data_payload["scep-password"] = scep_password
         if ca_identifier is not None:
@@ -329,6 +324,4 @@ class CertificateLocal:
         if details is not None:
             data_payload["details"] = details
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

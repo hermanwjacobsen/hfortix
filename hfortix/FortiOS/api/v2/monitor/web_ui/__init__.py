@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 __all__ = ["WebUi"]
 
 from .custom_language import CustomLanguage
-from .language import ImportLanguage, Language
+from .language import Language
 
 
 class WebUi:

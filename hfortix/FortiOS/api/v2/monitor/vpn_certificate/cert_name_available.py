@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class CertNameAvailable:
@@ -80,6 +80,4 @@ class CertNameAvailable:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/vpn-certificate/cert-name-available", params=params
-        )
+        return self._client.get("monitor", "/vpn-certificate/cert-name-available", params=params)

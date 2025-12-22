@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Disconnect:
@@ -89,9 +89,7 @@ class Disconnect:
         if mask is not None:
             data["mask"] = mask
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/ha-peer/disconnect", data=data
-        )
+        return self._client.post("monitor", "/system/ha-peer/disconnect", data=data)
 
 
 class Update:
@@ -144,9 +142,7 @@ class Update:
         if hostname is not None:
             data["hostname"] = hostname
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/ha-peer/update", data=data
-        )
+        return self._client.post("monitor", "/system/ha-peer/update", data=data)
 
 
 class HaPeer:

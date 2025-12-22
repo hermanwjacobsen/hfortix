@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ExtensionDevice:
@@ -84,6 +84,4 @@ class ExtensionDevice:
         if version is not None:
             params["version"] = version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firmware/extension-device", params=params
-        )
+        return self._client.get("monitor", "/firmware/extension-device", params=params)

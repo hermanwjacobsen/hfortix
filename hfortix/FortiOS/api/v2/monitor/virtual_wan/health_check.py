@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class HealthCheck:
@@ -77,6 +77,4 @@ class HealthCheck:
         if health_check_name is not None:
             params["health_check_name"] = health_check_name
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/virtual-wan/health-check", params=params
-        )
+        return self._client.get("monitor", "/virtual-wan/health-check", params=params)

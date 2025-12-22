@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class LinkMonitor:
@@ -77,6 +77,4 @@ class LinkMonitor:
         if mkey is not None:
             params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/link-monitor", params=params
-        )
+        return self._client.get("monitor", "/system/link-monitor", params=params)

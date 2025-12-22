@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Reset:
@@ -73,9 +73,7 @@ class Reset:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/per-ip-shaper/reset", data=data
-        )
+        return self._client.post("monitor", "/firewall/per-ip-shaper/reset", data=data)
 
 
 class PerIpShaper:
@@ -119,6 +117,4 @@ class PerIpShaper:
         if shaper_name is not None:
             params["shaper_name"] = shaper_name
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/per-ip-shaper", params=params
-        )
+        return self._client.get("monitor", "/firewall/per-ip-shaper", params=params)

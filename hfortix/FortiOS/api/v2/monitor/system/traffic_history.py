@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class EnableAppBandwidthTracking:
@@ -120,9 +120,7 @@ class Interface:
         params["interface"] = interface
         params["time_period"] = time_period
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/traffic-history/interface", params=params
-        )
+        return self._client.get("monitor", "/system/traffic-history/interface", params=params)
 
 
 class TopApplications:

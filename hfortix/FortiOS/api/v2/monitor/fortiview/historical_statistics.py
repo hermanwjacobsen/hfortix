@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class HistoricalStatistics:
@@ -105,6 +105,4 @@ class HistoricalStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/fortiview/historical-statistics", params=params
-        )
+        return self._client.get("monitor", "/fortiview/historical-statistics", params=params)

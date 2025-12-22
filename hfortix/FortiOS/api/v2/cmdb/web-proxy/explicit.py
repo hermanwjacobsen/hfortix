@@ -108,9 +108,7 @@ class Explicit:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -220,7 +218,6 @@ class Explicit:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/web-proxy/explicit"
         if before is not None:
             data_payload["before"] = before
@@ -281,13 +278,9 @@ class Explicit:
         if sec_default_action is not None:
             data_payload["sec-default-action"] = sec_default_action
         if https_replacement_message is not None:
-            data_payload["https-replacement-message"] = (
-                https_replacement_message
-            )
+            data_payload["https-replacement-message"] = https_replacement_message
         if message_upon_server_error is not None:
-            data_payload["message-upon-server-error"] = (
-                message_upon_server_error
-            )
+            data_payload["message-upon-server-error"] = message_upon_server_error
         if pac_file_server_status is not None:
             data_payload["pac-file-server-status"] = pac_file_server_status
         if pac_file_url is not None:
@@ -307,6 +300,4 @@ class Explicit:
         if trace_auth_no_rsp is not None:
             data_payload["trace-auth-no-rsp"] = trace_auth_no_rsp
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

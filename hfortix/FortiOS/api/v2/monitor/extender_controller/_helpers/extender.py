@@ -9,23 +9,22 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
 # ============================================================================
 # POST Validation
 # ============================================================================
 
+
 def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating extender.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     return (True, None)
-
-

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InternetServiceReputation:
@@ -80,6 +80,4 @@ class InternetServiceReputation:
         if is_ipv6 is not None:
             params["is_ipv6"] = is_ipv6
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-reputation", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-reputation", params=params)

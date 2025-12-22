@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Members:
@@ -89,6 +89,4 @@ class Members:
         if skip_vpn_child is not None:
             params["skip_vpn_child"] = skip_vpn_child
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/virtual-wan/members", params=params
-        )
+        return self._client.get("monitor", "/virtual-wan/members", params=params)

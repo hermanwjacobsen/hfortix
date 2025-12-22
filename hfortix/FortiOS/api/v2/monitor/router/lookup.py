@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class HaPeer:
@@ -83,9 +83,7 @@ class HaPeer:
         if ipv6 is not None:
             params["ipv6"] = ipv6
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/lookup/ha-peer", params=params
-        )
+        return self._client.get("monitor", "/router/lookup/ha-peer", params=params)
 
 
 class Lookup:

@@ -44,9 +44,7 @@ class ArchiveResource:
         This is a read-only endpoint. Configuration changes are not supported.
     """
 
-    def __init__(
-        self, client: "IHTTPClient", log_type: str, storage: str
-    ) -> None:
+    def __init__(self, client: "IHTTPClient", log_type: str, storage: str) -> None:
         self._client = client
         self._log_type = log_type
         self._storage = storage
@@ -98,9 +96,7 @@ class ArchiveResource:
 class ArchiveDownloadResource:
     """Archive download resource (IPS and App-Ctrl only)"""
 
-    def __init__(
-        self, client: "IHTTPClient", log_type: str, storage: str
-    ) -> None:
+    def __init__(self, client: "IHTTPClient", log_type: str, storage: str) -> None:
         self._client = client
         self._log_type = log_type
         self._storage = storage
@@ -135,17 +131,13 @@ class ArchiveDownloadResource:
                 params["mkey"] = mkey
 
         params.update(kwargs)
-        return self._client.get_binary(
-            "log", endpoint, params=params if params else None
-        )
+        return self._client.get_binary("log", endpoint, params=params if params else None)
 
 
 class RawResource:
     """Raw log resource - supports all log types"""
 
-    def __init__(
-        self, client: "IHTTPClient", log_type: str, storage: str
-    ) -> None:
+    def __init__(self, client: "IHTTPClient", log_type: str, storage: str) -> None:
         self._client = client
         self._log_type = log_type
         self._storage = storage
@@ -212,9 +204,7 @@ class RawResource:
         params.update(kwargs)
 
         # Raw endpoints return plain text, not JSON - use get_binary and decode
-        binary_data = self._client.get_binary(
-            "log", endpoint, params=params if params else None
-        )
+        binary_data = self._client.get_binary("log", endpoint, params=params if params else None)
 
         if raw_json:
             # If raw_json is requested, we need to return the response object
@@ -231,9 +221,7 @@ class RawResource:
 class LogResource:
     """Formatted log resource"""
 
-    def __init__(
-        self, client: "IHTTPClient", log_type: str, storage: str
-    ) -> None:
+    def __init__(self, client: "IHTTPClient", log_type: str, storage: str) -> None:
         self._client = client
         self._log_type = log_type
         self._storage = storage

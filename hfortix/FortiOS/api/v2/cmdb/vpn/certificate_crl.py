@@ -124,9 +124,7 @@ class CertificateCrl:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -184,7 +182,6 @@ class CertificateCrl:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/vpn.certificate/crl"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -215,6 +212,4 @@ class CertificateCrl:
         if source_ip is not None:
             data_payload["source-ip"] = source_ip
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

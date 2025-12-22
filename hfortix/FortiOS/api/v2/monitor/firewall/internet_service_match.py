@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InternetServiceMatch:
@@ -88,6 +88,4 @@ class InternetServiceMatch:
         if ipv6_prefix is not None:
             params["ipv6_prefix"] = ipv6_prefix
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-match", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-match", params=params)

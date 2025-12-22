@@ -108,9 +108,7 @@ class Settings:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -156,7 +154,6 @@ class Settings:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/ips/settings"
         if before is not None:
             data_payload["before"] = before
@@ -175,6 +172,4 @@ class Settings:
         if ha_session_pickup is not None:
             data_payload["ha-session-pickup"] = ha_session_pickup
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class CollectedEmail:
@@ -77,6 +77,4 @@ class CollectedEmail:
         if ipv6 is not None:
             params["ipv6"] = ipv6
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/user/collected-email", params=params
-        )
+        return self._client.get("monitor", "/user/collected-email", params=params)

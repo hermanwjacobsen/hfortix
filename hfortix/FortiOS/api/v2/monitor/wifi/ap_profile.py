@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class CreateDefault:
@@ -77,9 +77,7 @@ class CreateDefault:
         if platform is not None:
             data["platform"] = platform
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/ap-profile/create-default", data=data
-        )
+        return self._client.post("monitor", "/wifi/ap-profile/create-default", data=data)
 
 
 class ApProfile:

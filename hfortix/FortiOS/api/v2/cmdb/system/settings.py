@@ -108,9 +108,7 @@ class Settings:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -418,7 +416,6 @@ class Settings:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/settings"
         if before is not None:
             data_payload["before"] = before
@@ -429,13 +426,9 @@ class Settings:
         if vdom_type is not None:
             data_payload["vdom-type"] = vdom_type
         if lan_extension_controller_addr is not None:
-            data_payload["lan-extension-controller-addr"] = (
-                lan_extension_controller_addr
-            )
+            data_payload["lan-extension-controller-addr"] = lan_extension_controller_addr
         if lan_extension_controller_port is not None:
-            data_payload["lan-extension-controller-port"] = (
-                lan_extension_controller_port
-            )
+            data_payload["lan-extension-controller-port"] = lan_extension_controller_port
         if opmode is not None:
             data_payload["opmode"] = opmode
         if ngfw_mode is not None:
@@ -467,9 +460,7 @@ class Settings:
         if bfd_detect_mult is not None:
             data_payload["bfd-detect-mult"] = bfd_detect_mult
         if bfd_dont_enforce_src_port is not None:
-            data_payload["bfd-dont-enforce-src-port"] = (
-                bfd_dont_enforce_src_port
-            )
+            data_payload["bfd-dont-enforce-src-port"] = bfd_dont_enforce_src_port
         if utf8_spam_tagging is not None:
             data_payload["utf8-spam-tagging"] = utf8_spam_tagging
         if wccp_cache_engine is not None:
@@ -491,9 +482,7 @@ class Settings:
         if dhcp_proxy is not None:
             data_payload["dhcp-proxy"] = dhcp_proxy
         if dhcp_proxy_interface_select_method is not None:
-            data_payload["dhcp-proxy-interface-select-method"] = (
-                dhcp_proxy_interface_select_method
-            )
+            data_payload["dhcp-proxy-interface-select-method"] = dhcp_proxy_interface_select_method
         if dhcp_proxy_interface is not None:
             data_payload["dhcp-proxy-interface"] = dhcp_proxy_interface
         if dhcp_proxy_vrf_select is not None:
@@ -505,9 +494,7 @@ class Settings:
         if central_nat is not None:
             data_payload["central-nat"] = central_nat
         if gui_default_policy_columns is not None:
-            data_payload["gui-default-policy-columns"] = (
-                gui_default_policy_columns
-            )
+            data_payload["gui-default-policy-columns"] = gui_default_policy_columns
         if lldp_reception is not None:
             data_payload["lldp-reception"] = lldp_reception
         if lldp_transmission is not None:
@@ -519,13 +506,9 @@ class Settings:
                 nat46_generate_ipv6_fragment_header
             )
         if nat46_force_ipv4_packet_forwarding is not None:
-            data_payload["nat46-force-ipv4-packet-forwarding"] = (
-                nat46_force_ipv4_packet_forwarding
-            )
+            data_payload["nat46-force-ipv4-packet-forwarding"] = nat46_force_ipv4_packet_forwarding
         if nat64_force_ipv6_packet_forwarding is not None:
-            data_payload["nat64-force-ipv6-packet-forwarding"] = (
-                nat64_force_ipv6_packet_forwarding
-            )
+            data_payload["nat64-force-ipv6-packet-forwarding"] = nat64_force_ipv6_packet_forwarding
         if detect_unknown_esp is not None:
             data_payload["detect-unknown-esp"] = detect_unknown_esp
         if intree_ses_best_route is not None:
@@ -541,9 +524,7 @@ class Settings:
         if ses_denied_traffic is not None:
             data_payload["ses-denied-traffic"] = ses_denied_traffic
         if ses_denied_multicast_traffic is not None:
-            data_payload["ses-denied-multicast-traffic"] = (
-                ses_denied_multicast_traffic
-            )
+            data_payload["ses-denied-multicast-traffic"] = ses_denied_multicast_traffic
         if strict_src_check is not None:
             data_payload["strict-src-check"] = strict_src_check
         if allow_linkdown_path is not None:
@@ -553,9 +534,7 @@ class Settings:
         if asymroute6_icmp is not None:
             data_payload["asymroute6-icmp"] = asymroute6_icmp
         if sctp_session_without_init is not None:
-            data_payload["sctp-session-without-init"] = (
-                sctp_session_without_init
-            )
+            data_payload["sctp-session-without-init"] = sctp_session_without_init
         if sip_expectation is not None:
             data_payload["sip-expectation"] = sip_expectation
         if sip_nat_trace is not None:
@@ -585,9 +564,7 @@ class Settings:
         if ecmp_max_paths is not None:
             data_payload["ecmp-max-paths"] = ecmp_max_paths
         if discovered_device_timeout is not None:
-            data_payload["discovered-device-timeout"] = (
-                discovered_device_timeout
-            )
+            data_payload["discovered-device-timeout"] = discovered_device_timeout
         if email_portal_check_dns is not None:
             data_payload["email-portal-check-dns"] = email_portal_check_dns
         if default_voip_alg_mode is not None:
@@ -607,17 +584,13 @@ class Settings:
         if gui_object_colors is not None:
             data_payload["gui-object-colors"] = gui_object_colors
         if gui_route_tag_address_creation is not None:
-            data_payload["gui-route-tag-address-creation"] = (
-                gui_route_tag_address_creation
-            )
+            data_payload["gui-route-tag-address-creation"] = gui_route_tag_address_creation
         if gui_voip_profile is not None:
             data_payload["gui-voip-profile"] = gui_voip_profile
         if gui_ap_profile is not None:
             data_payload["gui-ap-profile"] = gui_ap_profile
         if gui_security_profile_group is not None:
-            data_payload["gui-security-profile-group"] = (
-                gui_security_profile_group
-            )
+            data_payload["gui-security-profile-group"] = gui_security_profile_group
         if gui_local_in_policy is not None:
             data_payload["gui-local-in-policy"] = gui_local_in_policy
         if gui_explicit_proxy is not None:
@@ -643,15 +616,11 @@ class Settings:
         if gui_wireless_controller is not None:
             data_payload["gui-wireless-controller"] = gui_wireless_controller
         if gui_advanced_wireless_features is not None:
-            data_payload["gui-advanced-wireless-features"] = (
-                gui_advanced_wireless_features
-            )
+            data_payload["gui-advanced-wireless-features"] = gui_advanced_wireless_features
         if gui_switch_controller is not None:
             data_payload["gui-switch-controller"] = gui_switch_controller
         if gui_fortiap_split_tunneling is not None:
-            data_payload["gui-fortiap-split-tunneling"] = (
-                gui_fortiap_split_tunneling
-            )
+            data_payload["gui-fortiap-split-tunneling"] = gui_fortiap_split_tunneling
         if gui_webfilter_advanced is not None:
             data_payload["gui-webfilter-advanced"] = gui_webfilter_advanced
         if gui_traffic_shaping is not None:
@@ -673,15 +642,11 @@ class Settings:
         if gui_dlp_advanced is not None:
             data_payload["gui-dlp-advanced"] = gui_dlp_advanced
         if gui_virtual_patch_profile is not None:
-            data_payload["gui-virtual-patch-profile"] = (
-                gui_virtual_patch_profile
-            )
+            data_payload["gui-virtual-patch-profile"] = gui_virtual_patch_profile
         if gui_casb is not None:
             data_payload["gui-casb"] = gui_casb
         if gui_fortiextender_controller is not None:
-            data_payload["gui-fortiextender-controller"] = (
-                gui_fortiextender_controller
-            )
+            data_payload["gui-fortiextender-controller"] = gui_fortiextender_controller
         if gui_advanced_policy is not None:
             data_payload["gui-advanced-policy"] = gui_advanced_policy
         if gui_allow_unnamed_policy is not None:
@@ -689,9 +654,7 @@ class Settings:
         if gui_email_collection is not None:
             data_payload["gui-email-collection"] = gui_email_collection
         if gui_multiple_interface_policy is not None:
-            data_payload["gui-multiple-interface-policy"] = (
-                gui_multiple_interface_policy
-            )
+            data_payload["gui-multiple-interface-policy"] = gui_multiple_interface_policy
         if gui_policy_disclaimer is not None:
             data_payload["gui-policy-disclaimer"] = gui_policy_disclaimer
         if gui_ztna is not None:
@@ -719,34 +682,20 @@ class Settings:
         if block_land_attack is not None:
             data_payload["block-land-attack"] = block_land_attack
         if default_app_port_as_service is not None:
-            data_payload["default-app-port-as-service"] = (
-                default_app_port_as_service
-            )
+            data_payload["default-app-port-as-service"] = default_app_port_as_service
         if fqdn_session_check is not None:
             data_payload["fqdn-session-check"] = fqdn_session_check
         if ext_resource_session_check is not None:
-            data_payload["ext-resource-session-check"] = (
-                ext_resource_session_check
-            )
+            data_payload["ext-resource-session-check"] = ext_resource_session_check
         if dyn_addr_session_check is not None:
             data_payload["dyn-addr-session-check"] = dyn_addr_session_check
         if default_policy_expiry_days is not None:
-            data_payload["default-policy-expiry-days"] = (
-                default_policy_expiry_days
-            )
+            data_payload["default-policy-expiry-days"] = default_policy_expiry_days
         if gui_enforce_change_summary is not None:
-            data_payload["gui-enforce-change-summary"] = (
-                gui_enforce_change_summary
-            )
+            data_payload["gui-enforce-change-summary"] = gui_enforce_change_summary
         if internet_service_database_cache is not None:
-            data_payload["internet-service-database-cache"] = (
-                internet_service_database_cache
-            )
+            data_payload["internet-service-database-cache"] = internet_service_database_cache
         if internet_service_app_ctrl_size is not None:
-            data_payload["internet-service-app-ctrl-size"] = (
-                internet_service_app_ctrl_size
-            )
+            data_payload["internet-service-app-ctrl-size"] = internet_service_app_ctrl_size
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -108,9 +108,7 @@ class FortianalyzerOverrideSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -202,7 +200,6 @@ class FortianalyzerOverrideSetting:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/log.fortianalyzer/override-setting"
         if before is not None:
             data_payload["before"] = before
@@ -241,9 +238,7 @@ class FortianalyzerOverrideSetting:
         if monitor_keepalive_period is not None:
             data_payload["monitor-keepalive-period"] = monitor_keepalive_period
         if monitor_failure_retry_period is not None:
-            data_payload["monitor-failure-retry-period"] = (
-                monitor_failure_retry_period
-            )
+            data_payload["monitor-failure-retry-period"] = monitor_failure_retry_period
         if certificate is not None:
             data_payload["certificate"] = certificate
         if source_ip is not None:
@@ -269,6 +264,4 @@ class FortianalyzerOverrideSetting:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

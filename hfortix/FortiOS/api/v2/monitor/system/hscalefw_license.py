@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Upload:
@@ -77,9 +77,7 @@ class Upload:
         if license_key is not None:
             data["license_key"] = license_key
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/hscalefw-license/upload", data=data
-        )
+        return self._client.post("monitor", "/system/hscalefw-license/upload", data=data)
 
 
 class HscalefwLicense:

@@ -9,44 +9,56 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_STATUS = ['enable', 'disable']
-VALID_BODY_FREQUENCY = ['every', 'daily', 'weekly', 'automatic']
-VALID_BODY_DAY = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_STATUS = ["enable", "disable"]
+VALID_BODY_FREQUENCY = ["every", "daily", "weekly", "automatic"]
+VALID_BODY_DAY = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_autoupdate_schedule_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -54,40 +66,48 @@ def validate_autoupdate_schedule_get(
 # PUT Validation
 # ============================================================================
 
+
 def validate_autoupdate_schedule_put(
-    payload: dict[str, Any] | None = None
+    payload: dict[str, Any] | None = None,
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate status if present
-    if 'status' in payload:
-        value = payload.get('status')
+    if "status" in payload:
+        value = payload.get("status")
         if value and value not in VALID_BODY_STATUS:
-            return (False, f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}")
-    
+            return (
+                False,
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+            )
+
     # Validate frequency if present
-    if 'frequency' in payload:
-        value = payload.get('frequency')
+    if "frequency" in payload:
+        value = payload.get("frequency")
         if value and value not in VALID_BODY_FREQUENCY:
-            return (False, f"Invalid frequency '{value}'. Must be one of: {', '.join(VALID_BODY_FREQUENCY)}")
-    
+            return (
+                False,
+                f"Invalid frequency '{value}'. Must be one of: {', '.join(VALID_BODY_FREQUENCY)}",
+            )
+
     # Validate day if present
-    if 'day' in payload:
-        value = payload.get('day')
+    if "day" in payload:
+        value = payload.get("day")
         if value and value not in VALID_BODY_DAY:
-            return (False, f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}")
-    
+            return (
+                False,
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
+            )
+
     return (True, None)
-
-

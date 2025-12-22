@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Status:
@@ -73,9 +73,7 @@ class Status:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/lte-modem/status", params=params
-        )
+        return self._client.get("monitor", "/system/lte-modem/status", params=params)
 
 
 class Upgrade:
@@ -112,9 +110,7 @@ class Upgrade:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/lte-modem/upgrade", data=data
-        )
+        return self._client.post("monitor", "/system/lte-modem/upgrade", data=data)
 
 
 class Upload:
@@ -159,9 +155,7 @@ class Upload:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/lte-modem/upload", data=data
-        )
+        return self._client.post("monitor", "/system/lte-modem/upload", data=data)
 
 
 class LteModem:

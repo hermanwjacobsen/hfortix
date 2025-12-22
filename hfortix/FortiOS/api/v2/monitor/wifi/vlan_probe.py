@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Start:
@@ -97,9 +97,7 @@ class Start:
         if timeout is not None:
             data["timeout"] = timeout
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/vlan-probe/start", data=data
-        )
+        return self._client.post("monitor", "/wifi/vlan-probe/start", data=data)
 
 
 class Stop:

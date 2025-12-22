@@ -108,9 +108,7 @@ class Syslogd2OverrideSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -178,7 +176,6 @@ class Syslogd2OverrideSetting:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/log.syslogd2/override-setting"
         if before is not None:
             data_payload["before"] = before
@@ -219,6 +216,4 @@ class Syslogd2OverrideSetting:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

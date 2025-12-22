@@ -11,11 +11,11 @@ from typing import TYPE_CHECKING, Any, Dict, List, Optional, Union
 # Import shared helpers from the API layer
 from ..api._helpers import (
     build_cmdb_payload_normalized,
-    normalize_to_name_list,
 )
 
 if TYPE_CHECKING:
     from ..fortios import FortiOS
+
 
 class FirewallPolicy:
     """Convenience wrapper for firewall policy operations."""
@@ -60,13 +60,9 @@ class FirewallPolicy:
         internet_service_src_name: Optional[Union[str, List[str]]] = None,
         internet_service_src_group: Optional[Union[str, List[str]]] = None,
         internet_service_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service_src_custom_group: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service_src_custom_group: Optional[Union[str, List[str]]] = None,
         network_service_src_dynamic: Optional[Union[str, List[str]]] = None,
-        internet_service_src_fortiguard: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service_src_fortiguard: Optional[Union[str, List[str]]] = None,
         internet_service_src_negate: Optional[str] = None,
         # Internet Services (IPv6) - destination
         internet_service6: Optional[str] = None,
@@ -81,12 +77,8 @@ class FirewallPolicy:
         internet_service6_src_name: Optional[Union[str, List[str]]] = None,
         internet_service6_src_group: Optional[Union[str, List[str]]] = None,
         internet_service6_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_custom_group: Optional[
-            Union[str, List[str]]
-        ] = None,
-        internet_service6_src_fortiguard: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service6_src_custom_group: Optional[Union[str, List[str]]] = None,
+        internet_service6_src_fortiguard: Optional[Union[str, List[str]]] = None,
         internet_service6_src_negate: Optional[str] = None,
         # Reputation
         reputation_minimum: Optional[int] = None,
@@ -781,7 +773,7 @@ class FirewallPolicy:
             api_params["raw_json"] = raw_json
         # Merge any additional kwargs
         api_params.update(kwargs)
-        
+
         return self._api.get(**api_params)
 
     def update(
@@ -814,13 +806,9 @@ class FirewallPolicy:
         internet_service_src_name: Optional[Union[str, List[str]]] = None,
         internet_service_src_group: Optional[Union[str, List[str]]] = None,
         internet_service_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service_src_custom_group: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service_src_custom_group: Optional[Union[str, List[str]]] = None,
         network_service_src_dynamic: Optional[Union[str, List[str]]] = None,
-        internet_service_src_fortiguard: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service_src_fortiguard: Optional[Union[str, List[str]]] = None,
         internet_service_src_negate: Optional[str] = None,
         # Internet Services (IPv6) - destination
         internet_service6: Optional[str] = None,
@@ -835,12 +823,8 @@ class FirewallPolicy:
         internet_service6_src_name: Optional[Union[str, List[str]]] = None,
         internet_service6_src_group: Optional[Union[str, List[str]]] = None,
         internet_service6_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_custom_group: Optional[
-            Union[str, List[str]]
-        ] = None,
-        internet_service6_src_fortiguard: Optional[
-            Union[str, List[str]]
-        ] = None,
+        internet_service6_src_custom_group: Optional[Union[str, List[str]]] = None,
+        internet_service6_src_fortiguard: Optional[Union[str, List[str]]] = None,
         internet_service6_src_negate: Optional[str] = None,
         # Reputation
         reputation_minimum: Optional[int] = None,
@@ -1233,9 +1217,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.put(
-            policyid=str(policy_id), payload_dict=policy_data, **api_params
-        )
+        return self._api.put(policyid=str(policy_id), payload_dict=policy_data, **api_params)
 
     def delete(
         self,
@@ -1320,9 +1302,7 @@ class FirewallPolicy:
         # Add the position parameter
         if position in ("before", "after"):
             if reference_id is None:
-                raise ValueError(
-                    f"reference_id is required when position is '{position}'"
-                )
+                raise ValueError(f"reference_id is required when position is '{position}'")
             move_kwargs[position] = str(reference_id)
         elif position == "top":
             # To move to top, we need to find the first policy and use 'before'
@@ -1335,15 +1315,21 @@ class FirewallPolicy:
             # Get the first policy ID (policies are returned in order)
             # Exclude the policy being moved from consideration
             for policy in policies:
-                first_policy_id = policy['policyid']
+                first_policy_id = policy["policyid"]
                 if str(first_policy_id) != str(policy_id):
                     break
             else:
                 # All policies are the same ID? Already at top if only one policy
-                return {"status": "success", "message": "Policy already at top"}
+                return {
+                    "status": "success",
+                    "message": "Policy already at top",
+                }
             # Don't move if already at the top
-            if str(policies[0]['policyid']) == str(policy_id):
-                return {"status": "success", "message": "Policy already at top"}
+            if str(policies[0]["policyid"]) == str(policy_id):
+                return {
+                    "status": "success",
+                    "message": "Policy already at top",
+                }
             move_kwargs["before"] = str(first_policy_id)
         elif position == "bottom":
             # To move to bottom, we need to find the last policy and use 'after'
@@ -1355,15 +1341,21 @@ class FirewallPolicy:
                 raise ValueError("Cannot move to bottom: no policies found")
             # Get the last policy ID, excluding the policy being moved
             for policy in reversed(policies):
-                last_policy_id = policy['policyid']
+                last_policy_id = policy["policyid"]
                 if str(last_policy_id) != str(policy_id):
                     break
             else:
                 # All policies are the same ID? Already at bottom if only one policy
-                return {"status": "success", "message": "Policy already at bottom"}
+                return {
+                    "status": "success",
+                    "message": "Policy already at bottom",
+                }
             # Don't move if already at the bottom
-            if str(policies[-1]['policyid']) == str(policy_id):
-                return {"status": "success", "message": "Policy already at bottom"}
+            if str(policies[-1]["policyid"]) == str(policy_id):
+                return {
+                    "status": "success",
+                    "message": "Policy already at bottom",
+                }
             move_kwargs["after"] = str(last_policy_id)
         else:
             raise ValueError(
@@ -1374,7 +1366,7 @@ class FirewallPolicy:
         # We need to use the HTTP client directly because move uses query params,
         # not data payload
         endpoint = f"firewall/policy/{policy_id}"
-        
+
         # Build the call parameters
         call_params = {
             "data": {},
@@ -1384,7 +1376,7 @@ class FirewallPolicy:
             call_params["vdom"] = vdom
         if raw_json is not None:
             call_params["raw_json"] = raw_json
-        
+
         # Type ignore: client can be sync or async, runtime returns Dict[str, Any]
         return self._fgt._client.put("cmdb", endpoint, **call_params)  # type: ignore
 
@@ -1428,15 +1420,8 @@ class FirewallPolicy:
         original_response = self.get(policy_id=policy_id, vdom=vdom)
 
         # Handle response format
-        if (
-            isinstance(original_response, dict)
-            and "results" in original_response
-        ):
-            original = (
-                original_response["results"][0]
-                if original_response["results"]
-                else {}
-            )
+        if isinstance(original_response, dict) and "results" in original_response:
+            original = original_response["results"][0] if original_response["results"] else {}
         elif isinstance(original_response, list):
             original = original_response[0] if original_response else {}
         else:
@@ -1444,9 +1429,7 @@ class FirewallPolicy:
 
         # Remove fields that shouldn't be copied
         clone_data = {
-            k: v
-            for k, v in original.items()
-            if k not in ("policyid", "uuid", "q_origin_key")
+            k: v for k, v in original.items() if k not in ("policyid", "uuid", "q_origin_key")
         }
 
         # Apply name change

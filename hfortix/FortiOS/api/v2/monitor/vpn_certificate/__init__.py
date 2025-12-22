@@ -10,12 +10,12 @@ if TYPE_CHECKING:
 
 __all__ = ["VpnCertificate"]
 
-from .ca import Ca, ImportCa
+from .ca import Ca
 from .cert_name_available import CertNameAvailable
-from .crl import Crl, ImportCrl
+from .crl import Crl
 from .csr import Csr
-from .local import ImportLocal, Local
-from .remote import ImportRemote, Remote
+from .local import Local
+from .remote import Remote
 
 
 class VpnCertificate:

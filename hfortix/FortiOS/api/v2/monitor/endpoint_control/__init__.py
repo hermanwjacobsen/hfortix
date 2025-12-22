@@ -84,13 +84,9 @@ class EndpointControl:
 
         params.update(kwargs)
 
-        return self._client.get(
-            "monitor", "endpoint-control/record-list", params=params
-        )
+        return self._client.get("monitor", "endpoint-control/record-list", params=params)
 
-    def summary(
-        self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any
-    ) -> dict[str, Any]:
+    def summary(self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any) -> dict[str, Any]:
         """
         Get summary of FortiClient endpoint records.
 
@@ -125,9 +121,7 @@ class EndpointControl:
         params = data_dict.copy() if data_dict else {}
         params.update(kwargs)
 
-        return self._client.get(
-            "monitor", "endpoint-control/summary", params=params
-        )
+        return self._client.get("monitor", "endpoint-control/summary", params=params)
 
     @property
     def installer(self):

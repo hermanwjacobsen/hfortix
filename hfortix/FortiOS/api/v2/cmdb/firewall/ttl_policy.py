@@ -128,9 +128,7 @@ class TtlPolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -179,7 +177,6 @@ class TtlPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not id:
@@ -204,9 +201,7 @@ class TtlPolicy:
         if ttl is not None:
             data_payload["ttl"] = ttl
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -243,9 +238,7 @@ class TtlPolicy:
             raise ValueError("id is required for delete()")
         endpoint = f"/firewall/ttl-policy/{id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -335,7 +328,6 @@ class TtlPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/ttl-policy"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -354,6 +346,4 @@ class TtlPolicy:
         if ttl is not None:
             data_payload["ttl"] = ttl
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

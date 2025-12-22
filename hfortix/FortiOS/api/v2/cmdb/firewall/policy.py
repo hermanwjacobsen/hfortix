@@ -131,9 +131,7 @@ class Policy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -528,7 +526,7 @@ class Policy:
         if not policyid:
             raise ValueError("policyid is required for put()")
         endpoint = f"/firewall/policy/{policyid}"
-        
+
         # Build payload from all parameters using helper function
         policy_params = build_cmdb_payload(
             before=before,
@@ -711,14 +709,12 @@ class Policy:
             internet_service6_fortiguard=internet_service6_fortiguard,
             internet_service6_src_fortiguard=internet_service6_src_fortiguard,
         )
-        
+
         # Merge with data_payload and kwargs
         data_payload.update(policy_params)
         data_payload.update(kwargs)
-        
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -755,9 +751,7 @@ class Policy:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -1189,8 +1183,8 @@ class Policy:
         # Start with payload_dict or empty
         data_payload = payload_dict.copy() if payload_dict else {}
         endpoint = "/firewall/policy"
-        
-        # Build payload from all parameters using helper function  
+
+        # Build payload from all parameters using helper function
         policy_params = build_cmdb_payload(
             nkey=nkey,
             policyid=policyid,
@@ -1371,11 +1365,9 @@ class Policy:
             internet_service6_fortiguard=internet_service6_fortiguard,
             internet_service6_src_fortiguard=internet_service6_src_fortiguard,
         )
-        
+
         # Merge with data_payload and kwargs
         data_payload.update(policy_params)
         data_payload.update(kwargs)
-        
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

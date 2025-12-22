@@ -123,9 +123,7 @@ class BaseHTTPClient:
 
         # Adaptive retry configuration
         self._adaptive_retry = adaptive_retry
-        self._response_times: dict[str, deque] = (
-            {}
-        )  # endpoint -> deque of response times
+        self._response_times: dict[str, deque] = {}  # endpoint -> deque of response times
         self._baseline_response_time = 0.5  # 500ms baseline
         self._slowdown_multiplier = 3.0  # Endpoint is slow if 3x baseline
 
@@ -269,9 +267,7 @@ class BaseHTTPClient:
     def _check_circuit_breaker(self, endpoint: str) -> None:
         """Check circuit breaker state before making request"""
         if self._circuit_breaker["state"] == "open":
-            elapsed = time.time() - (
-                self._circuit_breaker["last_failure_time"] or 0
-            )
+            elapsed = time.time() - (self._circuit_breaker["last_failure_time"] or 0)
             if elapsed < self._circuit_breaker["timeout"]:
                 remaining = self._circuit_breaker["timeout"] - elapsed
                 logger.error(
@@ -324,9 +320,7 @@ class BaseHTTPClient:
     # Retry Logic
     # ========================================================================
 
-    def _should_retry(
-        self, error: Exception, attempt: int, endpoint: str = ""
-    ) -> bool:
+    def _should_retry(self, error: Exception, attempt: int, endpoint: str = "") -> bool:
         """Determine if a request should be retried"""
         if attempt >= self._max_retries:
             return False
@@ -343,9 +337,7 @@ class BaseHTTPClient:
             )
             return True
 
-        if isinstance(
-            error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)
-        ):
+        if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
             self._record_retry("timeout", endpoint)
             logger.warning(
                 "Timeout on attempt %d/%d for %s: %s",
@@ -410,9 +402,7 @@ class BaseHTTPClient:
 
         # Apply adaptive backpressure if enabled
         if self._adaptive_retry and endpoint:
-            delay = self._apply_adaptive_backpressure(
-                delay, response, endpoint
-            )
+            delay = self._apply_adaptive_backpressure(delay, response, endpoint)
 
         return delay
 
@@ -520,9 +510,7 @@ class BaseHTTPClient:
         metrics = {
             "circuit_breaker": {
                 "state": self._circuit_breaker["state"],
-                "consecutive_failures": self._circuit_breaker[
-                    "consecutive_failures"
-                ],
+                "consecutive_failures": self._circuit_breaker["consecutive_failures"],
                 "threshold": self._circuit_breaker["failure_threshold"],
             },
             "retry_stats": self._retry_stats.copy(),
@@ -543,9 +531,7 @@ class BaseHTTPClient:
                         "max_ms": round(max(sorted_times) * 1000, 2),
                         "p50_ms": round(sorted_times[count // 2] * 1000, 2),
                         "p95_ms": (
-                            round(sorted_times[int(count * 0.95)] * 1000, 2)
-                            if count > 20
-                            else None
+                            round(sorted_times[int(count * 0.95)] * 1000, 2) if count > 20 else None
                         ),
                         "is_slow": self._is_endpoint_slow(endpoint),
                     }
@@ -575,22 +561,16 @@ class BaseHTTPClient:
     def _validate_data(data: Any) -> None:
         """Validate data parameter for POST/PUT"""
         if not isinstance(data, dict):
-            raise TypeError(
-                f"data must be a dictionary, got {type(data).__name__}"
-            )
+            raise TypeError(f"data must be a dictionary, got {type(data).__name__}")
 
     @staticmethod
     def _validate_vdom(vdom: Optional[Union[str, bool]]) -> None:
         """Validate vdom parameter"""
         if vdom is not None and not isinstance(vdom, (str, bool)):
-            raise TypeError(
-                f"vdom must be str, bool, or None, got {type(vdom).__name__}"
-            )
+            raise TypeError(f"vdom must be str, bool, or None, got {type(vdom).__name__}")
 
     @staticmethod
     def _validate_params(params: Optional[dict[str, Any]]) -> None:
         """Validate params parameter"""
         if params is not None and not isinstance(params, dict):
-            raise TypeError(
-                f"params must be a dictionary or None, got {type(params).__name__}"
-            )
+            raise TypeError(f"params must be a dictionary or None, got {type(params).__name__}")

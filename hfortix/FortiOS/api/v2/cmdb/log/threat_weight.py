@@ -108,9 +108,7 @@ class ThreatWeight:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -166,7 +164,6 @@ class ThreatWeight:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/log/threat-weight"
         if before is not None:
             data_payload["before"] = before
@@ -183,9 +180,7 @@ class ThreatWeight:
         if url_block_detected is not None:
             data_payload["url-block-detected"] = url_block_detected
         if botnet_connection_detected is not None:
-            data_payload["botnet-connection-detected"] = (
-                botnet_connection_detected
-            )
+            data_payload["botnet-connection-detected"] = botnet_connection_detected
         if malware is not None:
             data_payload["malware"] = malware
         if ips is not None:
@@ -197,6 +192,4 @@ class ThreatWeight:
         if application is not None:
             data_payload["application"] = application
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

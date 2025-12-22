@@ -35,7 +35,7 @@ import asyncio
 import logging
 import statistics
 import time
-from typing import Any, Literal, Optional
+from typing import Any, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -58,36 +58,40 @@ class PerformanceTestResults:
         lines = []
         lines.append("FortiGate Performance Test Results")
         lines.append("=" * 50)
-        
+
         # Validation
         status = "PASSED" if self.validation_passed else "FAILED"
         lines.append(f"Validation: {status}")
-        
+
         # Throughput
         if self.sequential_throughput:
             lines.append(f"Sequential Throughput: {self.sequential_throughput:.2f} req/s")
         if self.concurrent_throughput:
             lines.append(f"Concurrent Throughput: {self.concurrent_throughput:.2f} req/s")
-        
+
         # Device profile
         if self.device_profile:
             lines.append(f"Device Profile: {self.device_profile}")
-        
+
         # Endpoints tested
         if self.endpoint_results:
             lines.append(f"Endpoints Tested: {len(self.endpoint_results)}")
-        
+
         # Errors
         if self.errors:
             lines.append(f"Errors: {len(self.errors)}")
-        
+
         return "\n".join(lines)
-    
+
     def __repr__(self) -> str:
         """Return detailed representation"""
-        return f"PerformanceTestResults(profile={self.device_profile}, throughput={self.sequential_throughput:.2f} req/s)" if self.sequential_throughput else "PerformanceTestResults(no data)"
+        return (
+            f"PerformanceTestResults(profile={self.device_profile}, throughput={self.sequential_throughput:.2f} req/s)"
+            if self.sequential_throughput
+            else "PerformanceTestResults(no data)"
+        )
 
-    def print_summary(self):
+    def print_summary(self) -> None:
         """Print formatted test results"""
         print("\n" + "=" * 70)
         print("FortiGate Performance Test Results")
@@ -113,17 +117,13 @@ class PerformanceTestResults:
                 else:
                     print(f"  Requests:     {metrics.get('count', 0)}")
                     print(f"  Avg Time:     {metrics.get('avg_ms', 0):.1f}ms")
-                    print(
-                        f"  Median Time:  {metrics.get('median_ms', 0):.1f}ms"
-                    )
+                    print(f"  Median Time:  {metrics.get('median_ms', 0):.1f}ms")
                     print(
                         f"  Min/Max:      {metrics.get('min_ms', 0):.1f}ms / {metrics.get('max_ms', 0):.1f}ms"
                     )
                     if "p95_ms" in metrics:
                         print(f"  P95:          {metrics['p95_ms']:.1f}ms")
-                    print(
-                        f"  Success Rate: {metrics.get('success_rate', 0):.1f}%"
-                    )
+                    print(f"  Success Rate: {metrics.get('success_rate', 0):.1f}%")
 
         # Throughput results
         if self.sequential_throughput:
@@ -139,9 +139,7 @@ class PerformanceTestResults:
                 if improvement > 10:
                     print(f"  → Concurrency helps! (+{improvement:.0f}%)")
                 elif improvement < -10:
-                    print(
-                        f"  → Concurrency hurts! ({improvement:.0f}%) - Use sequential!"
-                    )
+                    print(f"  → Concurrency hurts! ({improvement:.0f}%) - Use sequential!")
                 else:
                     print(f"  → Concurrency neutral ({improvement:+.0f}%)")
 
@@ -208,9 +206,7 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
                 max_connections=5,
                 max_keepalive_connections=20,
             )
-            warnings.append(
-                "Auto-adjusted max_keepalive_connections from 20 to 5"
-            )
+            warnings.append("Auto-adjusted max_keepalive_connections from 20 to 5")
             logger.info("✓ Test 2 passed: Auto-adjustment working")
         except Exception as e:
             return False, [f"Auto-adjustment failed: {e}"]
@@ -280,9 +276,7 @@ def test_endpoint_performance(
     try:
         # Initialize client
         if token:
-            fgt = FortiOS(
-                host, token=token, verify=verify, vdom=vdom, port=port
-            )
+            fgt = FortiOS(host, token=token, verify=verify, vdom=vdom, port=port)
         else:
             fgt = FortiOS(
                 host,
@@ -303,13 +297,9 @@ def test_endpoint_performance(
             # Determine API type and method
             parts = endpoint_path.split("/")
             if parts[0] == "monitor":
-                api_type = "monitor"
                 path = "/".join(parts[1:])
-                method = "get"
             elif parts[0] == "cmdb":
-                api_type = "cmdb"
                 path = "/".join(parts[1:])
-                method = "get"
             else:
                 results[endpoint_name] = {"error": "Unknown API type"}
                 continue
@@ -324,15 +314,13 @@ def test_endpoint_performance(
                     if hasattr(api_obj, part):
                         api_obj = getattr(api_obj, part)
                     else:
-                        raise AttributeError(
-                            f"Path component '{part}' not found"
-                        )
+                        raise AttributeError(f"Path component '{part}' not found")
 
                 # Make test requests
                 for i in range(count):
                     start = time.time()
                     try:
-                        result = api_obj.get()
+                        api_obj.get()
                         elapsed = (time.time() - start) * 1000  # ms
                         times.append(elapsed)
                         successes += 1
@@ -356,9 +344,7 @@ def test_endpoint_performance(
                     if len(valid_times) >= 3:
                         sorted_times = sorted(valid_times)
                         p95_idx = int(len(sorted_times) * 0.95)
-                        results[endpoint_name]["p95_ms"] = sorted_times[
-                            p95_idx
-                        ]
+                        results[endpoint_name]["p95_ms"] = sorted_times[p95_idx]
                 else:
                     results[endpoint_name] = {"error": "All requests failed"}
 
@@ -523,9 +509,7 @@ def run_performance_test(
 
             # Calculate average response time across all endpoints
             valid_avgs = [
-                metrics["avg_ms"]
-                for metrics in endpoint_results.values()
-                if "avg_ms" in metrics
+                metrics["avg_ms"] for metrics in endpoint_results.values() if "avg_ms" in metrics
             ]
 
             if valid_avgs:
@@ -540,9 +524,7 @@ def run_performance_test(
 
                 # Estimate throughput
                 results.sequential_throughput = 1000 / overall_avg
-                print(
-                    f"  Estimated throughput: {results.sequential_throughput:.2f} req/s"
-                )
+                print(f"  Estimated throughput: {results.sequential_throughput:.2f} req/s")
             else:
                 print("✗ No valid endpoint results")
                 results.errors.append("No valid endpoint results")
@@ -553,9 +535,7 @@ def run_performance_test(
 
     # Test 3: Concurrent performance (optional)
     if test_concurrency:
-        print(
-            "\n[3/3] Testing concurrent performance (this may take a while)..."
-        )
+        print("\n[3/3] Testing concurrent performance (this may take a while)...")
         try:
             # Use async mode for concurrency test
             async def concurrent_test():
@@ -606,7 +586,7 @@ def run_performance_test(
 
 
 # Convenience function for interactive use
-def quick_test(host: str, token: str, verify: bool = False):
+def quick_test(host: str, token: str, verify: bool = False) -> PerformanceTestResults:
     """
     Quick performance test - validates settings and tests basic endpoints
 
@@ -614,6 +594,9 @@ def quick_test(host: str, token: str, verify: bool = False):
         host: FortiGate hostname/IP
         token: API token
         verify: SSL verification (default: False for self-signed certs)
+
+    Returns:
+        PerformanceTestResults: Test results object
 
     Example:
         from hfortix.FortiOS.performance_test import quick_test
@@ -637,15 +620,11 @@ if __name__ == "__main__":
 
     # Allow running from command line
     if len(sys.argv) < 3:
-        print(
-            "Usage: python performance_test.py <host> <token> [--verify] [--full]"
-        )
+        print("Usage: python performance_test.py <host> <token> [--verify] [--full]")
         print("\nExamples:")
         print("  python performance_test.py 192.168.1.99 mytoken")
         print("  python performance_test.py fw.example.com mytoken --verify")
-        print(
-            "  python performance_test.py fw.example.com mytoken --verify --full"
-        )
+        print("  python performance_test.py fw.example.com mytoken --verify --full")
         sys.exit(1)
 
     host = sys.argv[1]

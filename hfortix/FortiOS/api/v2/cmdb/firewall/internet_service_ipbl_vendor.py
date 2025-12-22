@@ -128,9 +128,7 @@ class InternetServiceIpblVendor:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -169,7 +167,6 @@ class InternetServiceIpblVendor:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not id:
@@ -184,9 +181,7 @@ class InternetServiceIpblVendor:
         if name is not None:
             data_payload["name"] = name
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -223,9 +218,7 @@ class InternetServiceIpblVendor:
             raise ValueError("id is required for delete()")
         endpoint = f"/firewall/internet-service-ipbl-vendor/{id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -261,7 +254,6 @@ class InternetServiceIpblVendor:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/internet-service-ipbl-vendor"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -270,6 +262,4 @@ class InternetServiceIpblVendor:
         if name is not None:
             data_payload["name"] = name
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

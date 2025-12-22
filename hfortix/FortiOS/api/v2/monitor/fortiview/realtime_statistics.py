@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class RealtimeStatistics:
@@ -185,6 +185,4 @@ class RealtimeStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/fortiview/realtime-statistics", params=params
-        )
+        return self._client.get("monitor", "/fortiview/realtime-statistics", params=params)

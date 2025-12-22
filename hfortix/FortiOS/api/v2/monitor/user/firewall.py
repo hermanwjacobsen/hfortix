@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Auth:
@@ -134,9 +134,7 @@ class Count:
         if include_fsso is not None:
             params["include_fsso"] = include_fsso
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/user/firewall/count", params=params
-        )
+        return self._client.get("monitor", "/user/firewall/count", params=params)
 
 
 class Deauth:

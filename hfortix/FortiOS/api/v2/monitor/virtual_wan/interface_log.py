@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InterfaceLog:
@@ -85,6 +85,4 @@ class InterfaceLog:
         if seconds is not None:
             params["seconds"] = seconds
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/virtual-wan/interface-log", params=params
-        )
+        return self._client.get("monitor", "/virtual-wan/interface-log", params=params)

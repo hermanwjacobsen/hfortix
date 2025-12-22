@@ -9,42 +9,46 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_ROUND_ROBIN = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_ROUND_ROBIN = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_affinity_packet_redistribution_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -52,19 +56,22 @@ def validate_affinity_packet_redistribution_get(
 # POST Validation
 # ============================================================================
 
-def validate_affinity_packet_redistribution_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_affinity_packet_redistribution_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating affinity_packet_redistribution.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate id if present
-    if 'id' in payload:
-        value = payload.get('id')
+    if "id" in payload:
+        value = payload.get("id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -72,16 +79,16 @@ def validate_affinity_packet_redistribution_post(payload: dict[str, Any]) -> tup
                     return (False, f"id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
-    
+
     # Validate interface if present
-    if 'interface' in payload:
-        value = payload.get('interface')
+    if "interface" in payload:
+        value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"interface cannot exceed 15 characters")
-    
+
     # Validate rxqid if present
-    if 'rxqid' in payload:
-        value = payload.get('rxqid')
+    if "rxqid" in payload:
+        value = payload.get("rxqid")
         if value is not None:
             try:
                 int_val = int(value)
@@ -89,19 +96,22 @@ def validate_affinity_packet_redistribution_post(payload: dict[str, Any]) -> tup
                     return (False, f"rxqid must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"rxqid must be numeric, got: {value}")
-    
+
     # Validate round-robin if present
-    if 'round-robin' in payload:
-        value = payload.get('round-robin')
+    if "round-robin" in payload:
+        value = payload.get("round-robin")
         if value and value not in VALID_BODY_ROUND_ROBIN:
-            return (False, f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}")
-    
+            return (
+                False,
+                f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}",
+            )
+
     # Validate affinity-cpumask if present
-    if 'affinity-cpumask' in payload:
-        value = payload.get('affinity-cpumask')
+    if "affinity-cpumask" in payload:
+        value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
             return (False, f"affinity-cpumask cannot exceed 127 characters")
-    
+
     return (True, None)
 
 
@@ -109,31 +119,31 @@ def validate_affinity_packet_redistribution_post(payload: dict[str, Any]) -> tup
 # PUT Validation
 # ============================================================================
 
+
 def validate_affinity_packet_redistribution_put(
-    id: str | None = None,
-    payload: dict[str, Any] | None = None
+    id: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         id: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # id is required for updates
     if not id:
         return (False, "id is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate id if present
-    if 'id' in payload:
-        value = payload.get('id')
+    if "id" in payload:
+        value = payload.get("id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -141,16 +151,16 @@ def validate_affinity_packet_redistribution_put(
                     return (False, f"id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
-    
+
     # Validate interface if present
-    if 'interface' in payload:
-        value = payload.get('interface')
+    if "interface" in payload:
+        value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"interface cannot exceed 15 characters")
-    
+
     # Validate rxqid if present
-    if 'rxqid' in payload:
-        value = payload.get('rxqid')
+    if "rxqid" in payload:
+        value = payload.get("rxqid")
         if value is not None:
             try:
                 int_val = int(value)
@@ -158,19 +168,22 @@ def validate_affinity_packet_redistribution_put(
                     return (False, f"rxqid must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"rxqid must be numeric, got: {value}")
-    
+
     # Validate round-robin if present
-    if 'round-robin' in payload:
-        value = payload.get('round-robin')
+    if "round-robin" in payload:
+        value = payload.get("round-robin")
         if value and value not in VALID_BODY_ROUND_ROBIN:
-            return (False, f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}")
-    
+            return (
+                False,
+                f"Invalid round-robin '{value}'. Must be one of: {', '.join(VALID_BODY_ROUND_ROBIN)}",
+            )
+
     # Validate affinity-cpumask if present
-    if 'affinity-cpumask' in payload:
-        value = payload.get('affinity-cpumask')
+    if "affinity-cpumask" in payload:
+        value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
             return (False, f"affinity-cpumask cannot exceed 127 characters")
-    
+
     return (True, None)
 
 
@@ -178,17 +191,20 @@ def validate_affinity_packet_redistribution_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_affinity_packet_redistribution_delete(id: str | None = None) -> tuple[bool, str | None]:
+
+def validate_affinity_packet_redistribution_delete(
+    id: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         id: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not id:
         return (False, "id is required for DELETE operation")
-    
+
     return (True, None)

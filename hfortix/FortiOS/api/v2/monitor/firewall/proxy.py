@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Sessions:
@@ -160,9 +160,7 @@ class Sessions:
         if dst_uuid is not None:
             params["dst_uuid"] = dst_uuid
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/proxy/sessions", params=params
-        )
+        return self._client.get("monitor", "/firewall/proxy/sessions", params=params)
 
 
 class Proxy:

@@ -4,7 +4,7 @@ FortiGate LAN Extension Controller Monitor API
 This module provides access to FortiGate LAN Extension monitoring endpoints.
 """
 
-from typing import TYPE_CHECKING, Any, Dict, Optional
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .....http_client_interface import IHTTPClient

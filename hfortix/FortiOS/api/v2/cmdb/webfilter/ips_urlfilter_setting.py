@@ -108,9 +108,7 @@ class IpsUrlfilterSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -152,7 +150,6 @@ class IpsUrlfilterSetting:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/webfilter/ips-urlfilter-setting"
         if before is not None:
             data_payload["before"] = before
@@ -167,6 +164,4 @@ class IpsUrlfilterSetting:
         if geo_filter is not None:
             data_payload["geo-filter"] = geo_filter
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

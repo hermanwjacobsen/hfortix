@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Hits:
@@ -73,9 +73,7 @@ class Hits:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/botnet-domains/hits", params=params
-        )
+        return self._client.get("monitor", "/system/botnet-domains/hits", params=params)
 
 
 class Stat:
@@ -112,9 +110,7 @@ class Stat:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/botnet-domains/stat", params=params
-        )
+        return self._client.get("monitor", "/system/botnet-domains/stat", params=params)
 
 
 class BotnetDomains:
@@ -155,6 +151,4 @@ class BotnetDomains:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/botnet-domains", params=params
-        )
+        return self._client.get("monitor", "/system/botnet-domains", params=params)

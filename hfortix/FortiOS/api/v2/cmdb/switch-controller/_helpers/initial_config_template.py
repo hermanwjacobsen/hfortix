@@ -9,44 +9,60 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_ALLOWACCESS = ['ping', 'https', 'ssh', 'snmp', 'http', 'telnet', 'fgfm', 'radius-acct', 'probe-response', 'fabric', 'ftm']
-VALID_BODY_AUTO_IP = ['enable', 'disable']
-VALID_BODY_DHCP_SERVER = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_ALLOWACCESS = [
+    "ping",
+    "https",
+    "ssh",
+    "snmp",
+    "http",
+    "telnet",
+    "fgfm",
+    "radius-acct",
+    "probe-response",
+    "fabric",
+    "ftm",
+]
+VALID_BODY_AUTO_IP = ["enable", "disable"]
+VALID_BODY_DHCP_SERVER = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_initial_config_template_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -54,25 +70,28 @@ def validate_initial_config_template_get(
 # POST Validation
 # ============================================================================
 
-def validate_initial_config_template_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_initial_config_template_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating initial_config_template.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"name cannot exceed 63 characters")
-    
+
     # Validate vlanid if present
-    if 'vlanid' in payload:
-        value = payload.get('vlanid')
+    if "vlanid" in payload:
+        value = payload.get("vlanid")
         if value is not None:
             try:
                 int_val = int(value)
@@ -80,25 +99,34 @@ def validate_initial_config_template_post(payload: dict[str, Any]) -> tuple[bool
                     return (False, f"vlanid must be between 1 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
-    
+
     # Validate allowaccess if present
-    if 'allowaccess' in payload:
-        value = payload.get('allowaccess')
+    if "allowaccess" in payload:
+        value = payload.get("allowaccess")
         if value and value not in VALID_BODY_ALLOWACCESS:
-            return (False, f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}")
-    
+            return (
+                False,
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+            )
+
     # Validate auto-ip if present
-    if 'auto-ip' in payload:
-        value = payload.get('auto-ip')
+    if "auto-ip" in payload:
+        value = payload.get("auto-ip")
         if value and value not in VALID_BODY_AUTO_IP:
-            return (False, f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}")
-    
+            return (
+                False,
+                f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}",
+            )
+
     # Validate dhcp-server if present
-    if 'dhcp-server' in payload:
-        value = payload.get('dhcp-server')
+    if "dhcp-server" in payload:
+        value = payload.get("dhcp-server")
         if value and value not in VALID_BODY_DHCP_SERVER:
-            return (False, f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}")
-    
+            return (
+                False,
+                f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}",
+            )
+
     return (True, None)
 
 
@@ -106,37 +134,37 @@ def validate_initial_config_template_post(payload: dict[str, Any]) -> tuple[bool
 # PUT Validation
 # ============================================================================
 
+
 def validate_initial_config_template_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"name cannot exceed 63 characters")
-    
+
     # Validate vlanid if present
-    if 'vlanid' in payload:
-        value = payload.get('vlanid')
+    if "vlanid" in payload:
+        value = payload.get("vlanid")
         if value is not None:
             try:
                 int_val = int(value)
@@ -144,25 +172,34 @@ def validate_initial_config_template_put(
                     return (False, f"vlanid must be between 1 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
-    
+
     # Validate allowaccess if present
-    if 'allowaccess' in payload:
-        value = payload.get('allowaccess')
+    if "allowaccess" in payload:
+        value = payload.get("allowaccess")
         if value and value not in VALID_BODY_ALLOWACCESS:
-            return (False, f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}")
-    
+            return (
+                False,
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
+            )
+
     # Validate auto-ip if present
-    if 'auto-ip' in payload:
-        value = payload.get('auto-ip')
+    if "auto-ip" in payload:
+        value = payload.get("auto-ip")
         if value and value not in VALID_BODY_AUTO_IP:
-            return (False, f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}")
-    
+            return (
+                False,
+                f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}",
+            )
+
     # Validate dhcp-server if present
-    if 'dhcp-server' in payload:
-        value = payload.get('dhcp-server')
+    if "dhcp-server" in payload:
+        value = payload.get("dhcp-server")
         if value and value not in VALID_BODY_DHCP_SERVER:
-            return (False, f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}")
-    
+            return (
+                False,
+                f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}",
+            )
+
     return (True, None)
 
 
@@ -170,17 +207,20 @@ def validate_initial_config_template_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_initial_config_template_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_initial_config_template_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

@@ -128,9 +128,7 @@ class SitTunnel:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -179,7 +177,6 @@ class SitTunnel:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -204,9 +201,7 @@ class SitTunnel:
         if auto_asic_offload is not None:
             data_payload["auto-asic-offload"] = auto_asic_offload
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -243,9 +238,7 @@ class SitTunnel:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/sit-tunnel/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -335,7 +328,6 @@ class SitTunnel:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/sit-tunnel"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -354,6 +346,4 @@ class SitTunnel:
         if auto_asic_offload is not None:
             data_payload["auto-asic-offload"] = auto_asic_offload
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

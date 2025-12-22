@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Query:
@@ -149,9 +149,7 @@ class Thumbnail:
         params = payload_dict.copy() if payload_dict else {}
         params["filters"] = filters
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/user/info/thumbnail", params=params
-        )
+        return self._client.get("monitor", "/user/info/thumbnail", params=params)
 
 
 class ThumbnailFile:
@@ -191,9 +189,7 @@ class ThumbnailFile:
         params = payload_dict.copy() if payload_dict else {}
         params["filename"] = filename
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/user/info/thumbnail-file", params=params
-        )
+        return self._client.get("monitor", "/user/info/thumbnail-file", params=params)
 
 
 class Info:

@@ -364,6 +364,145 @@ See `exceptions_forti.py` for complete list of 387 error codes.
 
 ## Advanced Features
 
+### Firewall Policy Convenience Wrappers (NEW in v0.3.21!)
+
+Simplified interface for common firewall policy operations:
+
+```python
+from hfortix import FortiOS
+
+fgt = FortiOS(host='192.168.1.1', token='your-api-token')
+
+# Create policy with flexible input formats
+fgt.firewall.policy.create(
+    name="Allow-Web-Traffic",
+    srcintf="port1",                    # ✅ String works (normalized to list)
+    dstintf=["port2"],                  # ✅ List works
+    srcaddr="Internal-Network",         # ✅ String works
+    dstaddr=["all"],                    # ✅ List works
+    action="accept",
+    schedule="always",
+    service=["HTTP", "HTTPS"],          # ✅ List of strings works
+    logtraffic="all",
+    status="enable"
+)
+
+# Update policy (same flexible format)
+fgt.firewall.policy.update(
+    policyid="1",
+    comment="Updated via API",
+    status="disable"
+)
+
+# Move policy to top
+fgt.firewall.policy.move(policyid="5", position="top")
+
+# Move policy before another
+fgt.firewall.policy.move(policyid="5", before="3")
+
+# Get specific policy
+policy = fgt.firewall.policy.get(policyid="1")
+
+# List all policies
+policies = fgt.firewall.policy.list()
+
+# Delete policy
+fgt.firewall.policy.delete(policyid="1")
+```
+
+**Benefits:**
+- Automatic input normalization (strings → lists where needed)
+- More Pythonic interface
+- Fewer lines of code
+- Same functionality as API layer
+
+**See [docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md) for complete wrapper documentation.**
+
+### Validation Framework (NEW in v0.3.21!)
+
+832 auto-generated validators for all API endpoints:
+
+```python
+from hfortix import FortiOS
+from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import policy as policy_helpers
+
+# Check valid values before creating resources
+print("Valid actions:", policy_helpers.VALID_BODY_ACTION)
+# Output: ['accept', 'deny', 'ipsec']
+
+print("Valid log traffic options:", policy_helpers.VALID_BODY_LOGTRAFFIC)
+# Output: ['all', 'utm', 'disable']
+
+# Validate before API call
+def create_policy_validated(action, logtraffic, **kwargs):
+    if action not in policy_helpers.VALID_BODY_ACTION:
+        raise ValueError(f"Invalid action. Valid: {policy_helpers.VALID_BODY_ACTION}")
+    
+    if logtraffic not in policy_helpers.VALID_BODY_LOGTRAFFIC:
+        raise ValueError(f"Invalid logtraffic. Valid: {policy_helpers.VALID_BODY_LOGTRAFFIC}")
+    
+    return fgt.firewall.policy.create(action=action, logtraffic=logtraffic, **kwargs)
+
+# Create with validation
+create_policy_validated(
+    action="accept",      # ✅ Valid
+    logtraffic="all",     # ✅ Valid
+    name="Test-Policy",
+    srcintf="port1",
+    dstintf="port2",
+    srcaddr="all",
+    dstaddr="all",
+    service=["ALL"],
+    schedule="always"
+)
+```
+
+**Coverage:**
+- 832 validation modules across 77 categories
+- CMDB, Monitor, Log, Service APIs
+- Enum, length, range, pattern validation
+- Body and query parameter constants
+
+**See [docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md) for complete validation documentation.**
+
+### Builder Pattern (NEW in v0.3.21!)
+
+Eliminates code duplication with reusable payload builders:
+
+```python
+from hfortix.FortiOS.api.v2.cmdb.firewall._helpers.policy_helpers import (
+    build_policy_payload,
+    build_policy_payload_normalized
+)
+
+# API layer: Build exact payload
+payload = build_policy_payload(
+    name="Test",
+    srcintf=["port1"],
+    dstintf=["port2"],
+    action="accept"
+)
+
+# Wrapper layer: Build with normalization
+payload = build_policy_payload_normalized(
+    name="Test",
+    srcintf="port1",     # Normalized to [{"name": "port1"}]
+    dstintf=["port2"],   # Normalized to [{"name": "port2"}]
+    action="accept"
+)
+
+# Use in your code
+result = fgt.api.cmdb.firewall.policy.create(payload_dict=payload)
+```
+
+**Benefits:**
+- 13% code reduction (454 lines removed from policy endpoints)
+- Consistent behavior across methods
+- Easier maintenance
+- Better testing
+
+**See [docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md) for implementation details.**
+
 ### Async/Await Support
 
 For high-performance concurrent operations, use async mode:

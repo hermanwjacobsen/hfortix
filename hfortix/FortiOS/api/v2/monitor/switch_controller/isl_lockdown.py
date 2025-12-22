@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Status:
@@ -76,9 +76,7 @@ class Status:
         params = payload_dict.copy() if payload_dict else {}
         params["fortilink"] = fortilink
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/switch-controller/isl-lockdown/status", params=params
-        )
+        return self._client.get("monitor", "/switch-controller/isl-lockdown/status", params=params)
 
 
 class Update:
@@ -123,9 +121,7 @@ class Update:
         if status is not None:
             data["status"] = status
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/switch-controller/isl-lockdown/update", data=data
-        )
+        return self._client.post("monitor", "/switch-controller/isl-lockdown/update", data=data)
 
 
 class IslLockdown:

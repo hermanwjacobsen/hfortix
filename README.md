@@ -11,7 +11,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **⚠️ BETA STATUS**: All implementations are functional but in beta. APIs work correctly but may have incomplete parameter coverage or undiscovered edge cases.
 
-**FortiOS 7.6.5 Coverage (December 20, 2025):**
+**FortiOS 7.6.5 Coverage (December 22, 2025):**
 
 - **CMDB API**: 37 of 37 categories (100% coverage) - 500+ endpoints 🔷 Beta
 - **Monitor API**: 32 of 32 categories (100% coverage) - 200+ endpoints 🔷 Beta
@@ -19,9 +19,17 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
 - **Overall**: 77 of 77 categories (100% coverage) - 750+ API methods 🎉
 
+**Validation Coverage (v0.3.21):**
+- 832 validation helper modules auto-generated for all API types (CMDB, Monitor, Log, Service)
+- Enum, length, range, pattern, and type validation implemented
+- **Required field validation is NOT yet implemented**
+
 **Test Coverage:** 226 test files (145 CMDB, 81 Monitor) with 75%+ pass rate (~50% of generated endpoints tested)
 
+
 **Note:** All implementations remain in beta until version 1.0.0 with comprehensive unit test coverage.
+
+**Note:** Documentation in the `X/` folder is for internal development only, is not referenced outside `X`, and is not included in git or releases.
 
 **🔥 Recent Highlights (December 2025):**
 - 🎉 **100% API COVERAGE**: Complete implementation of ALL documented FortiOS 7.6.5 API categories!
@@ -152,6 +160,25 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Performance Testing**: Built-in utility to test and optimize your FortiGate performance
 - **Well-Documented**: Extensive API documentation and examples
 - **Modern Python**: Type hints, PEP 585 compliance, Python 3.10+
+
+## 📚 Documentation
+
+### Getting Started
+- **[QUICKSTART.md](QUICKSTART.md)** - Quick reference guide with examples
+- **[docs/SECURITY.md](docs/SECURITY.md)** - Security best practices and audit results
+
+### Feature Guides
+- **[docs/VALIDATION_GUIDE.md](docs/VALIDATION_GUIDE.md)** - Using the validation framework (832 validators)
+- **[docs/BUILDER_PATTERN_GUIDE.md](docs/BUILDER_PATTERN_GUIDE.md)** - Builder pattern implementation details
+- **[docs/FIREWALL_POLICY_WRAPPER.md](docs/FIREWALL_POLICY_WRAPPER.md)** - Firewall policy convenience wrappers
+- **[docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md)** - Async/await patterns and best practices
+- **[docs/FILTERING_GUIDE.md](docs/FILTERING_GUIDE.md)** - FortiOS filtering with 50+ examples
+- **[docs/PERFORMANCE_TESTING.md](docs/PERFORMANCE_TESTING.md)** - Performance testing and optimization
+
+### API Reference
+- **[docs/ENDPOINT_METHODS.md](docs/ENDPOINT_METHODS.md)** - Complete API method reference
+- **[API_COVERAGE.md](API_COVERAGE.md)** - Detailed API implementation status
+- **[CHANGELOG.md](CHANGELOG.md)** - Complete version history
 
 ## 🧪 Performance Testing
 
@@ -808,6 +835,38 @@ print(modules)
 ```
 
 ## 🎓 Examples
+# Async/Await Usage ✨
+
+HFortix provides full async/await support for all FortiOS API operations. To use async mode, simply pass `mode="async"` to the `FortiOS` constructor. All API methods and helpers support async/await, enabling high-performance concurrent automation.
+
+**Quick Example:**
+
+```python
+import asyncio
+from hfortix import FortiOS
+
+async def main():
+    # Enable async mode
+    async with FortiOS(host='192.168.1.99', token='your-token', mode="async") as fgt:
+        addresses = await fgt.api.cmdb.firewall.address.list()
+        print(f"Found {len(addresses)} addresses")
+
+asyncio.run(main())
+```
+
+**Key Points:**
+- Use `mode="async"` to enable async mode
+- Use `async with` for automatic cleanup, or call `await fgt.aclose()` manually
+- All API methods and helpers (like `.exists()`) must be awaited
+- Use `asyncio.gather()` for concurrent requests
+
+**Best Practices:**
+- Use async mode for bulk operations or high concurrency
+- Always use context managers for resource cleanup
+- Limit concurrency with semaphores if needed
+- See [docs/ASYNC_GUIDE.md](docs/ASYNC_GUIDE.md) for advanced patterns, migration tips, and troubleshooting
+
+---
 
 ### FortiOS - Firewall Address Management
 ```python

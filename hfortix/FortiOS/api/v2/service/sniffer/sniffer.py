@@ -265,7 +265,6 @@ class Meta:
             params = payload_dict.copy()
         else:
             params = {}
-        pass
 
         params.update(kwargs)
 

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Create:
@@ -85,9 +85,7 @@ class Create:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/web-ui/custom-language/create", data=data
-        )
+        return self._client.post("monitor", "/web-ui/custom-language/create", data=data)
 
 
 class Download:
@@ -127,9 +125,7 @@ class Download:
         params = payload_dict.copy() if payload_dict else {}
         params["lang_name"] = lang_name
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/web-ui/custom-language/download", params=params
-        )
+        return self._client.get("monitor", "/web-ui/custom-language/download", params=params)
 
 
 class Update:
@@ -182,9 +178,7 @@ class Update:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/web-ui/custom-language/update", data=data
-        )
+        return self._client.post("monitor", "/web-ui/custom-language/update", data=data)
 
 
 class CustomLanguage:

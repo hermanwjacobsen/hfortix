@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ClearAll:
@@ -73,9 +73,7 @@ class ClearAll:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/rogue_ap/clear_all", data=data
-        )
+        return self._client.post("monitor", "/wifi/rogue_ap/clear_all", data=data)
 
 
 class SetStatus:
@@ -124,9 +122,7 @@ class SetStatus:
         if status is not None:
             data["status"] = status
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/rogue_ap/set_status", data=data
-        )
+        return self._client.post("monitor", "/wifi/rogue_ap/set_status", data=data)
 
 
 class RogueAp:

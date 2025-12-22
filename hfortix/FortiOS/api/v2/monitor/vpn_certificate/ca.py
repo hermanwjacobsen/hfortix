@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ImportCa:
@@ -93,9 +93,7 @@ class ImportCa:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/vpn-certificate/ca/import", data=data
-        )
+        return self._client.post("monitor", "/vpn-certificate/ca/import", data=data)
 
 
 class Ca:

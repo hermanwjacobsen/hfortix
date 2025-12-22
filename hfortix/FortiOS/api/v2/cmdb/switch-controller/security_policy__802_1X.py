@@ -128,9 +128,7 @@ class SecurityPolicyEight02OneX:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -211,7 +209,6 @@ class SecurityPolicyEight02OneX:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -256,29 +253,19 @@ class SecurityPolicyEight02OneX:
         if policy_type is not None:
             data_payload["policy-type"] = policy_type
         if authserver_timeout_period is not None:
-            data_payload["authserver-timeout-period"] = (
-                authserver_timeout_period
-            )
+            data_payload["authserver-timeout-period"] = authserver_timeout_period
         if authserver_timeout_vlan is not None:
             data_payload["authserver-timeout-vlan"] = authserver_timeout_vlan
         if authserver_timeout_vlanid is not None:
-            data_payload["authserver-timeout-vlanid"] = (
-                authserver_timeout_vlanid
-            )
+            data_payload["authserver-timeout-vlanid"] = authserver_timeout_vlanid
         if authserver_timeout_tagged is not None:
-            data_payload["authserver-timeout-tagged"] = (
-                authserver_timeout_tagged
-            )
+            data_payload["authserver-timeout-tagged"] = authserver_timeout_tagged
         if authserver_timeout_tagged_vlanid is not None:
-            data_payload["authserver-timeout-tagged-vlanid"] = (
-                authserver_timeout_tagged_vlanid
-            )
+            data_payload["authserver-timeout-tagged-vlanid"] = authserver_timeout_tagged_vlanid
         if dacl is not None:
             data_payload["dacl"] = dacl
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -315,9 +302,7 @@ class SecurityPolicyEight02OneX:
             raise ValueError("name is required for delete()")
         endpoint = f"/switch-controller.security-policy/802-1X/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -395,7 +380,6 @@ class SecurityPolicyEight02OneX:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/switch-controller.security-policy/802-1X"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -434,26 +418,16 @@ class SecurityPolicyEight02OneX:
         if policy_type is not None:
             data_payload["policy-type"] = policy_type
         if authserver_timeout_period is not None:
-            data_payload["authserver-timeout-period"] = (
-                authserver_timeout_period
-            )
+            data_payload["authserver-timeout-period"] = authserver_timeout_period
         if authserver_timeout_vlan is not None:
             data_payload["authserver-timeout-vlan"] = authserver_timeout_vlan
         if authserver_timeout_vlanid is not None:
-            data_payload["authserver-timeout-vlanid"] = (
-                authserver_timeout_vlanid
-            )
+            data_payload["authserver-timeout-vlanid"] = authserver_timeout_vlanid
         if authserver_timeout_tagged is not None:
-            data_payload["authserver-timeout-tagged"] = (
-                authserver_timeout_tagged
-            )
+            data_payload["authserver-timeout-tagged"] = authserver_timeout_tagged
         if authserver_timeout_tagged_vlanid is not None:
-            data_payload["authserver-timeout-tagged-vlanid"] = (
-                authserver_timeout_tagged_vlanid
-            )
+            data_payload["authserver-timeout-tagged-vlanid"] = authserver_timeout_tagged_vlanid
         if dacl is not None:
             data_payload["dacl"] = dacl
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

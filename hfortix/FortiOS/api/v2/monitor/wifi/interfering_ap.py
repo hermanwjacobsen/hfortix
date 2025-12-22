@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InterferingAp:
@@ -81,6 +81,4 @@ class InterferingAp:
         if radio is not None:
             params["radio"] = radio
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/wifi/interfering_ap", params=params
-        )
+        return self._client.get("monitor", "/wifi/interfering_ap", params=params)

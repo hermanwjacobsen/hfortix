@@ -108,9 +108,7 @@ class Ips:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -148,7 +146,6 @@ class Ips:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/ips"
         if before is not None:
             data_payload["before"] = before
@@ -157,10 +154,6 @@ class Ips:
         if signature_hold_time is not None:
             data_payload["signature-hold-time"] = signature_hold_time
         if override_signature_hold_by_id is not None:
-            data_payload["override-signature-hold-by-id"] = (
-                override_signature_hold_by_id
-            )
+            data_payload["override-signature-hold-by-id"] = override_signature_hold_by_id
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

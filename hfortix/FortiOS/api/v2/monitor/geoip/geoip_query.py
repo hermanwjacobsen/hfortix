@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Select:
@@ -77,9 +77,7 @@ class Select:
         if ip_addresses is not None:
             data["ip_addresses"] = ip_addresses
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/geoip/geoip-query/select", data=data
-        )
+        return self._client.post("monitor", "/geoip/geoip-query/select", data=data)
 
 
 class GeoipQuery:

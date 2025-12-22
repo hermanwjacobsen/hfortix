@@ -128,9 +128,7 @@ class ManagedSwitch:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -301,7 +299,6 @@ class ManagedSwitch:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not switch_id:
@@ -328,9 +325,7 @@ class ManagedSwitch:
         if fsw_wan1_admin is not None:
             data_payload["fsw-wan1-admin"] = fsw_wan1_admin
         if poe_pre_standard_detection is not None:
-            data_payload["poe-pre-standard-detection"] = (
-                poe_pre_standard_detection
-            )
+            data_payload["poe-pre-standard-detection"] = poe_pre_standard_detection
         if dhcp_server_access_list is not None:
             data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if poe_detection_type is not None:
@@ -342,9 +337,7 @@ class ManagedSwitch:
         if version is not None:
             data_payload["version"] = version
         if max_allowed_trunk_members is not None:
-            data_payload["max-allowed-trunk-members"] = (
-                max_allowed_trunk_members
-            )
+            data_payload["max-allowed-trunk-members"] = max_allowed_trunk_members
         if pre_provisioned is not None:
             data_payload["pre-provisioned"] = pre_provisioned
         if l3_discovered is not None:
@@ -362,9 +355,7 @@ class ManagedSwitch:
         if switch_dhcp_opt43_key is not None:
             data_payload["switch-dhcp_opt43_key"] = switch_dhcp_opt43_key
         if mclag_igmp_snooping_aware is not None:
-            data_payload["mclag-igmp-snooping-aware"] = (
-                mclag_igmp_snooping_aware
-            )
+            data_payload["mclag-igmp-snooping-aware"] = mclag_igmp_snooping_aware
         if dynamically_discovered is not None:
             data_payload["dynamically-discovered"] = dynamically_discovered
         if ptp_status is not None:
@@ -396,13 +387,9 @@ class ManagedSwitch:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_version is not None:
-            data_payload["firmware-provision-version"] = (
-                firmware_provision_version
-            )
+            data_payload["firmware-provision-version"] = firmware_provision_version
         if firmware_provision_latest is not None:
-            data_payload["firmware-provision-latest"] = (
-                firmware_provision_latest
-            )
+            data_payload["firmware-provision-latest"] = firmware_provision_latest
         if ports is not None:
             data_payload["ports"] = ports
         if ip_source_guard is not None:
@@ -416,9 +403,7 @@ class ManagedSwitch:
         if snmp_sysinfo is not None:
             data_payload["snmp-sysinfo"] = snmp_sysinfo
         if override_snmp_trap_threshold is not None:
-            data_payload["override-snmp-trap-threshold"] = (
-                override_snmp_trap_threshold
-            )
+            data_payload["override-snmp-trap-threshold"] = override_snmp_trap_threshold
         if snmp_trap_threshold is not None:
             data_payload["snmp-trap-threshold"] = snmp_trap_threshold
         if override_snmp_community is not None:
@@ -446,9 +431,7 @@ class ManagedSwitch:
         if custom_command is not None:
             data_payload["custom-command"] = custom_command
         if dhcp_snooping_static_client is not None:
-            data_payload["dhcp-snooping-static-client"] = (
-                dhcp_snooping_static_client
-            )
+            data_payload["dhcp-snooping-static-client"] = dhcp_snooping_static_client
         if igmp_snooping is not None:
             data_payload["igmp-snooping"] = igmp_snooping
         if _802_1X_settings is not None:
@@ -462,9 +445,7 @@ class ManagedSwitch:
         if system_dhcp_server is not None:
             data_payload["system-dhcp-server"] = system_dhcp_server
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -501,9 +482,7 @@ class ManagedSwitch:
             raise ValueError("switch_id is required for delete()")
         endpoint = f"/switch-controller/managed-switch/{switch_id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -715,7 +694,6 @@ class ManagedSwitch:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/switch-controller/managed-switch"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -736,9 +714,7 @@ class ManagedSwitch:
         if fsw_wan1_admin is not None:
             data_payload["fsw-wan1-admin"] = fsw_wan1_admin
         if poe_pre_standard_detection is not None:
-            data_payload["poe-pre-standard-detection"] = (
-                poe_pre_standard_detection
-            )
+            data_payload["poe-pre-standard-detection"] = poe_pre_standard_detection
         if dhcp_server_access_list is not None:
             data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if poe_detection_type is not None:
@@ -750,9 +726,7 @@ class ManagedSwitch:
         if version is not None:
             data_payload["version"] = version
         if max_allowed_trunk_members is not None:
-            data_payload["max-allowed-trunk-members"] = (
-                max_allowed_trunk_members
-            )
+            data_payload["max-allowed-trunk-members"] = max_allowed_trunk_members
         if pre_provisioned is not None:
             data_payload["pre-provisioned"] = pre_provisioned
         if l3_discovered is not None:
@@ -770,9 +744,7 @@ class ManagedSwitch:
         if switch_dhcp_opt43_key is not None:
             data_payload["switch-dhcp_opt43_key"] = switch_dhcp_opt43_key
         if mclag_igmp_snooping_aware is not None:
-            data_payload["mclag-igmp-snooping-aware"] = (
-                mclag_igmp_snooping_aware
-            )
+            data_payload["mclag-igmp-snooping-aware"] = mclag_igmp_snooping_aware
         if dynamically_discovered is not None:
             data_payload["dynamically-discovered"] = dynamically_discovered
         if ptp_status is not None:
@@ -804,13 +776,9 @@ class ManagedSwitch:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_version is not None:
-            data_payload["firmware-provision-version"] = (
-                firmware_provision_version
-            )
+            data_payload["firmware-provision-version"] = firmware_provision_version
         if firmware_provision_latest is not None:
-            data_payload["firmware-provision-latest"] = (
-                firmware_provision_latest
-            )
+            data_payload["firmware-provision-latest"] = firmware_provision_latest
         if ports is not None:
             data_payload["ports"] = ports
         if ip_source_guard is not None:
@@ -824,9 +792,7 @@ class ManagedSwitch:
         if snmp_sysinfo is not None:
             data_payload["snmp-sysinfo"] = snmp_sysinfo
         if override_snmp_trap_threshold is not None:
-            data_payload["override-snmp-trap-threshold"] = (
-                override_snmp_trap_threshold
-            )
+            data_payload["override-snmp-trap-threshold"] = override_snmp_trap_threshold
         if snmp_trap_threshold is not None:
             data_payload["snmp-trap-threshold"] = snmp_trap_threshold
         if override_snmp_community is not None:
@@ -854,9 +820,7 @@ class ManagedSwitch:
         if custom_command is not None:
             data_payload["custom-command"] = custom_command
         if dhcp_snooping_static_client is not None:
-            data_payload["dhcp-snooping-static-client"] = (
-                dhcp_snooping_static_client
-            )
+            data_payload["dhcp-snooping-static-client"] = dhcp_snooping_static_client
         if igmp_snooping is not None:
             data_payload["igmp-snooping"] = igmp_snooping
         if _802_1X_settings is not None:
@@ -870,6 +834,4 @@ class ManagedSwitch:
         if system_dhcp_server is not None:
             data_payload["system-dhcp-server"] = system_dhcp_server
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

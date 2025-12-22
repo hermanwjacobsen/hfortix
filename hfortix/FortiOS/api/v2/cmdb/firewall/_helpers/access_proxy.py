@@ -9,45 +9,49 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_AUTH_PORTAL = ['disable', 'enable']
-VALID_BODY_LOG_BLOCKED_TRAFFIC = ['enable', 'disable']
-VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB = ['enable', 'disable']
-VALID_BODY_SVR_POOL_MULTIPLEX = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_AUTH_PORTAL = ["disable", "enable"]
+VALID_BODY_LOG_BLOCKED_TRAFFIC = ["enable", "disable"]
+VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB = ["enable", "disable"]
+VALID_BODY_SVR_POOL_MULTIPLEX = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_access_proxy_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -55,97 +59,130 @@ def validate_access_proxy_get(
 # POST Validation
 # ============================================================================
 
-def validate_access_proxy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_access_proxy_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating access_proxy.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"name cannot exceed 79 characters")
-    
+
     # Validate vip if present
-    if 'vip' in payload:
-        value = payload.get('vip')
+    if "vip" in payload:
+        value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"vip cannot exceed 79 characters")
-    
+
     # Validate auth-portal if present
-    if 'auth-portal' in payload:
-        value = payload.get('auth-portal')
+    if "auth-portal" in payload:
+        value = payload.get("auth-portal")
         if value and value not in VALID_BODY_AUTH_PORTAL:
-            return (False, f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}")
-    
+            return (
+                False,
+                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
+            )
+
     # Validate auth-virtual-host if present
-    if 'auth-virtual-host' in payload:
-        value = payload.get('auth-virtual-host')
+    if "auth-virtual-host" in payload:
+        value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"auth-virtual-host cannot exceed 79 characters")
-    
+
     # Validate log-blocked-traffic if present
-    if 'log-blocked-traffic' in payload:
-        value = payload.get('log-blocked-traffic')
+    if "log-blocked-traffic" in payload:
+        value = payload.get("log-blocked-traffic")
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
-            return (False, f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}")
-    
+            return (
+                False,
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+            )
+
     # Validate add-vhost-domain-to-dnsdb if present
-    if 'add-vhost-domain-to-dnsdb' in payload:
-        value = payload.get('add-vhost-domain-to-dnsdb')
+    if "add-vhost-domain-to-dnsdb" in payload:
+        value = payload.get("add-vhost-domain-to-dnsdb")
         if value and value not in VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB:
-            return (False, f"Invalid add-vhost-domain-to-dnsdb '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB)}")
-    
+            return (
+                False,
+                f"Invalid add-vhost-domain-to-dnsdb '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB)}",
+            )
+
     # Validate svr-pool-multiplex if present
-    if 'svr-pool-multiplex' in payload:
-        value = payload.get('svr-pool-multiplex')
+    if "svr-pool-multiplex" in payload:
+        value = payload.get("svr-pool-multiplex")
         if value and value not in VALID_BODY_SVR_POOL_MULTIPLEX:
-            return (False, f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}")
-    
+            return (
+                False,
+                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
+            )
+
     # Validate svr-pool-ttl if present
-    if 'svr-pool-ttl' in payload:
-        value = payload.get('svr-pool-ttl')
+    if "svr-pool-ttl" in payload:
+        value = payload.get("svr-pool-ttl")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-ttl must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-ttl must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
                 return (False, f"svr-pool-ttl must be numeric, got: {value}")
-    
+
     # Validate svr-pool-server-max-request if present
-    if 'svr-pool-server-max-request' in payload:
-        value = payload.get('svr-pool-server-max-request')
+    if "svr-pool-server-max-request" in payload:
+        value = payload.get("svr-pool-server-max-request")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-server-max-request must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-server-max-request must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
-                return (False, f"svr-pool-server-max-request must be numeric, got: {value}")
-    
+                return (
+                    False,
+                    f"svr-pool-server-max-request must be numeric, got: {value}",
+                )
+
     # Validate svr-pool-server-max-concurrent-request if present
-    if 'svr-pool-server-max-concurrent-request' in payload:
-        value = payload.get('svr-pool-server-max-concurrent-request')
+    if "svr-pool-server-max-concurrent-request" in payload:
+        value = payload.get("svr-pool-server-max-concurrent-request")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
-                return (False, f"svr-pool-server-max-concurrent-request must be numeric, got: {value}")
-    
+                return (
+                    False,
+                    f"svr-pool-server-max-concurrent-request must be numeric, got: {value}",
+                )
+
     # Validate decrypted-traffic-mirror if present
-    if 'decrypted-traffic-mirror' in payload:
-        value = payload.get('decrypted-traffic-mirror')
+    if "decrypted-traffic-mirror" in payload:
+        value = payload.get("decrypted-traffic-mirror")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"decrypted-traffic-mirror cannot exceed 35 characters")
-    
+            return (
+                False,
+                f"decrypted-traffic-mirror cannot exceed 35 characters",
+            )
+
     return (True, None)
 
 
@@ -153,109 +190,139 @@ def validate_access_proxy_post(payload: dict[str, Any]) -> tuple[bool, str | Non
 # PUT Validation
 # ============================================================================
 
+
 def validate_access_proxy_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"name cannot exceed 79 characters")
-    
+
     # Validate vip if present
-    if 'vip' in payload:
-        value = payload.get('vip')
+    if "vip" in payload:
+        value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"vip cannot exceed 79 characters")
-    
+
     # Validate auth-portal if present
-    if 'auth-portal' in payload:
-        value = payload.get('auth-portal')
+    if "auth-portal" in payload:
+        value = payload.get("auth-portal")
         if value and value not in VALID_BODY_AUTH_PORTAL:
-            return (False, f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}")
-    
+            return (
+                False,
+                f"Invalid auth-portal '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_PORTAL)}",
+            )
+
     # Validate auth-virtual-host if present
-    if 'auth-virtual-host' in payload:
-        value = payload.get('auth-virtual-host')
+    if "auth-virtual-host" in payload:
+        value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
             return (False, f"auth-virtual-host cannot exceed 79 characters")
-    
+
     # Validate log-blocked-traffic if present
-    if 'log-blocked-traffic' in payload:
-        value = payload.get('log-blocked-traffic')
+    if "log-blocked-traffic" in payload:
+        value = payload.get("log-blocked-traffic")
         if value and value not in VALID_BODY_LOG_BLOCKED_TRAFFIC:
-            return (False, f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}")
-    
+            return (
+                False,
+                f"Invalid log-blocked-traffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_BLOCKED_TRAFFIC)}",
+            )
+
     # Validate add-vhost-domain-to-dnsdb if present
-    if 'add-vhost-domain-to-dnsdb' in payload:
-        value = payload.get('add-vhost-domain-to-dnsdb')
+    if "add-vhost-domain-to-dnsdb" in payload:
+        value = payload.get("add-vhost-domain-to-dnsdb")
         if value and value not in VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB:
-            return (False, f"Invalid add-vhost-domain-to-dnsdb '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB)}")
-    
+            return (
+                False,
+                f"Invalid add-vhost-domain-to-dnsdb '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_VHOST_DOMAIN_TO_DNSDB)}",
+            )
+
     # Validate svr-pool-multiplex if present
-    if 'svr-pool-multiplex' in payload:
-        value = payload.get('svr-pool-multiplex')
+    if "svr-pool-multiplex" in payload:
+        value = payload.get("svr-pool-multiplex")
         if value and value not in VALID_BODY_SVR_POOL_MULTIPLEX:
-            return (False, f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}")
-    
+            return (
+                False,
+                f"Invalid svr-pool-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_SVR_POOL_MULTIPLEX)}",
+            )
+
     # Validate svr-pool-ttl if present
-    if 'svr-pool-ttl' in payload:
-        value = payload.get('svr-pool-ttl')
+    if "svr-pool-ttl" in payload:
+        value = payload.get("svr-pool-ttl")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-ttl must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-ttl must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
                 return (False, f"svr-pool-ttl must be numeric, got: {value}")
-    
+
     # Validate svr-pool-server-max-request if present
-    if 'svr-pool-server-max-request' in payload:
-        value = payload.get('svr-pool-server-max-request')
+    if "svr-pool-server-max-request" in payload:
+        value = payload.get("svr-pool-server-max-request")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-server-max-request must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-server-max-request must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
-                return (False, f"svr-pool-server-max-request must be numeric, got: {value}")
-    
+                return (
+                    False,
+                    f"svr-pool-server-max-request must be numeric, got: {value}",
+                )
+
     # Validate svr-pool-server-max-concurrent-request if present
-    if 'svr-pool-server-max-concurrent-request' in payload:
-        value = payload.get('svr-pool-server-max-concurrent-request')
+    if "svr-pool-server-max-concurrent-request" in payload:
+        value = payload.get("svr-pool-server-max-concurrent-request")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2147483647:
-                    return (False, f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647")
+                    return (
+                        False,
+                        f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
+                    )
             except (ValueError, TypeError):
-                return (False, f"svr-pool-server-max-concurrent-request must be numeric, got: {value}")
-    
+                return (
+                    False,
+                    f"svr-pool-server-max-concurrent-request must be numeric, got: {value}",
+                )
+
     # Validate decrypted-traffic-mirror if present
-    if 'decrypted-traffic-mirror' in payload:
-        value = payload.get('decrypted-traffic-mirror')
+    if "decrypted-traffic-mirror" in payload:
+        value = payload.get("decrypted-traffic-mirror")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"decrypted-traffic-mirror cannot exceed 35 characters")
-    
+            return (
+                False,
+                f"decrypted-traffic-mirror cannot exceed 35 characters",
+            )
+
     return (True, None)
 
 
@@ -263,17 +330,20 @@ def validate_access_proxy_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_access_proxy_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_access_proxy_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

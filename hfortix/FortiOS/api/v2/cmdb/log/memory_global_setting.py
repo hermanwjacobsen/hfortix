@@ -108,9 +108,7 @@ class MemoryGlobalSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -152,7 +150,6 @@ class MemoryGlobalSetting:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/log.memory/global-setting"
         if before is not None:
             data_payload["before"] = before
@@ -161,18 +158,10 @@ class MemoryGlobalSetting:
         if max_size is not None:
             data_payload["max-size"] = max_size
         if full_first_warning_threshold is not None:
-            data_payload["full-first-warning-threshold"] = (
-                full_first_warning_threshold
-            )
+            data_payload["full-first-warning-threshold"] = full_first_warning_threshold
         if full_second_warning_threshold is not None:
-            data_payload["full-second-warning-threshold"] = (
-                full_second_warning_threshold
-            )
+            data_payload["full-second-warning-threshold"] = full_second_warning_threshold
         if full_final_warning_threshold is not None:
-            data_payload["full-final-warning-threshold"] = (
-                full_final_warning_threshold
-            )
+            data_payload["full-final-warning-threshold"] = full_final_warning_threshold
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

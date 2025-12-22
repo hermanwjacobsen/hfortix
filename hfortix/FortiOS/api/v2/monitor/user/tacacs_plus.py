@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Test:
@@ -97,9 +97,7 @@ class Test:
         if source_ip is not None:
             data["source_ip"] = source_ip
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/user/tacacs-plus/test", data=data
-        )
+        return self._client.post("monitor", "/user/tacacs-plus/test", data=data)
 
 
 class TacacsPlus:

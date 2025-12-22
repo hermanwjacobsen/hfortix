@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class GenerateKey:
@@ -81,9 +81,7 @@ class GenerateKey:
         if expiry is not None:
             data["expiry"] = expiry
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/api-user/generate-key", data=data
-        )
+        return self._client.post("monitor", "/system/api-user/generate-key", data=data)
 
 
 class ApiUser:

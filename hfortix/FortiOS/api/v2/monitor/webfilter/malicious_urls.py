@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Stat:
@@ -73,9 +73,7 @@ class Stat:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/webfilter/malicious-urls/stat", params=params
-        )
+        return self._client.get("monitor", "/webfilter/malicious-urls/stat", params=params)
 
 
 class MaliciousUrls:
@@ -115,6 +113,4 @@ class MaliciousUrls:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/webfilter/malicious-urls", params=params
-        )
+        return self._client.get("monitor", "/webfilter/malicious-urls", params=params)

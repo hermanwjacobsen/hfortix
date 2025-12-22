@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class AvailableCertificates:
@@ -97,6 +97,4 @@ class AvailableCertificates:
         if find_all_references is not None:
             params["find_all_references"] = find_all_references
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/available-certificates", params=params
-        )
+        return self._client.get("monitor", "/system/available-certificates", params=params)

@@ -9,15 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **CMDB Validators - Complete Coverage**: Generated validation helpers for all 37 CMDB categories
-  - Generated 548 validation helper modules across all CMDB categories
+- **API Validators - Complete Coverage**: Generated validation helpers for all FortiOS API types
+  - Generated 832 validation helper modules across 77 categories (4 API types)
+  - **CMDB API**: 37 categories, 548 validators
+  - **LOG API**: 5 categories, 5 validators
+  - **MONITOR API**: 32 categories, 276 validators
+  - **SERVICE API**: 3 categories, 3 validators
+  - Extended validator generator to support all API types (cmdb, log, monitor, service)
+  - Implemented API-type-specific path matching (CMDB uses `/cmdb/` prefix, others don't)
+  - Enhanced fuzzy path matching for complex endpoint structures (0 endpoints skipped)
   - Consistent `VALID_BODY_*` and `VALID_QUERY_*` naming convention for parameter constants
   - Body parameter validation: Payload field validation with `VALID_BODY_ACTION`, `VALID_BODY_STATUS`, etc.
   - Query parameter validation: URL parameter validation with `VALID_QUERY_ACTION`, etc.
   - Handles parameter name collisions (e.g., `action` in both body and query contexts)
-  - Validation coverage: enum values, maxLength, numeric ranges, required fields
+  - **Validation coverage**:
+    - ✅ Enum validation (predefined allowed values)
+    - ✅ Length validation (minLength/maxLength for strings)
+    - ✅ Range validation (min/max for numeric values)
+    - ✅ Pattern validation (regex patterns)
+    - ✅ Type validation (implicit via type coercion with error handling)
+    - ⚠️ **Required field validation NOT YET IMPLEMENTED** - needs to be added
   - All validators auto-generated from FortiOS 7.6.5 OpenAPI specifications
-  - Categories: alertemail, antivirus, application, authentication, automation, casb, certificate,
+  - CMDB Categories: alertemail, antivirus, application, authentication, automation, casb, certificate,
     diameter-filter, dlp, dnsfilter, emailfilter, endpoint-control, ethernet-oam, extension-controller,
     file-filter, firewall, ftp-proxy, icap, ips, log, monitoring, report, router, rule, sctp-filter,
     switch-controller, system, user, videofilter, virtual-patch, voip, vpn, waf, web-proxy, webfilter,
@@ -33,6 +46,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Total: 454 lines removed, 13% reduction across both files
   - All 226 integration tests passing - Zero breaking changes
   - Proper architectural separation: API layer (no normalization) vs Wrapper layer (with normalization)
+
+- **Code Quality Improvements**: Comprehensive codebase quality audit and improvements
+  - **Code Formatting**: Applied `isort` and `black` to all 823 files in `hfortix/`
+    - Fixed syntax error in `lldp_profile.py` (renamed variables with dots to underscores)
+    - All files now follow consistent PEP 8 formatting standards
+    - Consistent import ordering across entire codebase
+  - **Type Hints**: Added missing type hints to 7 functions
+    - `performance_test.py`: Added return types to `print_summary()`, `quick_test()`
+    - `exceptions_forti.py`: Added type hints to 5 functions (error handling utilities)
+    - `api/__init__.py`: Added return type to `__dir__()`
+    - Added `Optional` import where needed
+  - **Docstring Audit**: Verified Google-style docstrings across all public APIs
+    - Core classes: `FortiOS`, `AsyncHTTPClient`, `HTTPClient`, `BaseHTTPClient` - all comprehensive
+    - Exception classes: All have proper descriptions, args, and examples
+    - API endpoint classes: All have complete method documentation
+    - Helper functions: All utility functions properly documented
+  - **Legacy Code Review**: Scanned for deprecated patterns and legacy implementations
+    - No actual legacy code found (only config options with "legacy" in names)
+    - Codebase is clean and modern
 
 ### Changed
 

@@ -9,43 +9,47 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_STATUS = ['enable', 'disable']
-VALID_BODY_IPV6_CAPABILITY = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_STATUS = ["enable", "disable"]
+VALID_BODY_IPV6_CAPABILITY = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_ips_urlfilter_dns_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -53,28 +57,35 @@ def validate_ips_urlfilter_dns_get(
 # POST Validation
 # ============================================================================
 
-def validate_ips_urlfilter_dns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_ips_urlfilter_dns_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating ips_urlfilter_dns.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate status if present
-    if 'status' in payload:
-        value = payload.get('status')
+    if "status" in payload:
+        value = payload.get("status")
         if value and value not in VALID_BODY_STATUS:
-            return (False, f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}")
-    
+            return (
+                False,
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
+            )
+
     # Validate ipv6-capability if present
-    if 'ipv6-capability' in payload:
-        value = payload.get('ipv6-capability')
+    if "ipv6-capability" in payload:
+        value = payload.get("ipv6-capability")
         if value and value not in VALID_BODY_IPV6_CAPABILITY:
-            return (False, f"Invalid ipv6-capability '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_CAPABILITY)}")
-    
+            return (
+                False,
+                f"Invalid ipv6-capability '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_CAPABILITY)}",
+            )
+
     return (True, None)
-
-

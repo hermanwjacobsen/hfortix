@@ -128,9 +128,7 @@ class DataType:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -187,7 +185,6 @@ class DataType:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -216,15 +213,11 @@ class DataType:
         if transform is not None:
             data_payload["transform"] = transform
         if verify_transformed_pattern is not None:
-            data_payload["verify-transformed-pattern"] = (
-                verify_transformed_pattern
-            )
+            data_payload["verify-transformed-pattern"] = verify_transformed_pattern
         if comment is not None:
             data_payload["comment"] = comment
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -261,9 +254,7 @@ class DataType:
             raise ValueError("name is required for delete()")
         endpoint = f"/dlp/data-type/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -361,7 +352,6 @@ class DataType:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/dlp/data-type"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -384,12 +374,8 @@ class DataType:
         if transform is not None:
             data_payload["transform"] = transform
         if verify_transformed_pattern is not None:
-            data_payload["verify-transformed-pattern"] = (
-                verify_transformed_pattern
-            )
+            data_payload["verify-transformed-pattern"] = verify_transformed_pattern
         if comment is not None:
             data_payload["comment"] = comment
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

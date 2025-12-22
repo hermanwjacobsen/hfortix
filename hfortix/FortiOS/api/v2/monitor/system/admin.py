@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ChangeVdomMode:
@@ -77,9 +77,7 @@ class ChangeVdomMode:
         if vdom_mode is not None:
             data["vdom-mode"] = vdom_mode
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/admin/change-vdom-mode", data=data
-        )
+        return self._client.post("monitor", "/system/admin/change-vdom-mode", data=data)
 
 
 class Admin:

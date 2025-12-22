@@ -128,9 +128,7 @@ class CloudService:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -179,7 +177,6 @@ class CloudService:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -202,13 +199,9 @@ class CloudService:
         if gck_keyid is not None:
             data_payload["gck-keyid"] = gck_keyid
         if gck_access_token_lifetime is not None:
-            data_payload["gck-access-token-lifetime"] = (
-                gck_access_token_lifetime
-            )
+            data_payload["gck-access-token-lifetime"] = gck_access_token_lifetime
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -245,9 +238,7 @@ class CloudService:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/cloud-service/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -293,7 +284,6 @@ class CloudService:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/cloud-service"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -310,10 +300,6 @@ class CloudService:
         if gck_keyid is not None:
             data_payload["gck-keyid"] = gck_keyid
         if gck_access_token_lifetime is not None:
-            data_payload["gck-access-token-lifetime"] = (
-                gck_access_token_lifetime
-            )
+            data_payload["gck-access-token-lifetime"] = gck_access_token_lifetime
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

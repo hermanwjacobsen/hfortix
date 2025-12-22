@@ -108,9 +108,7 @@ class Bgp:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -276,7 +274,6 @@ class Bgp:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/router/bgp"
         if before is not None:
             data_payload["before"] = before
@@ -295,21 +292,15 @@ class Bgp:
         if bestpath_as_path_ignore is not None:
             data_payload["bestpath-as-path-ignore"] = bestpath_as_path_ignore
         if bestpath_cmp_confed_aspath is not None:
-            data_payload["bestpath-cmp-confed-aspath"] = (
-                bestpath_cmp_confed_aspath
-            )
+            data_payload["bestpath-cmp-confed-aspath"] = bestpath_cmp_confed_aspath
         if bestpath_cmp_routerid is not None:
             data_payload["bestpath-cmp-routerid"] = bestpath_cmp_routerid
         if bestpath_med_confed is not None:
             data_payload["bestpath-med-confed"] = bestpath_med_confed
         if bestpath_med_missing_as_worst is not None:
-            data_payload["bestpath-med-missing-as-worst"] = (
-                bestpath_med_missing_as_worst
-            )
+            data_payload["bestpath-med-missing-as-worst"] = bestpath_med_missing_as_worst
         if client_to_client_reflection is not None:
-            data_payload["client-to-client-reflection"] = (
-                client_to_client_reflection
-            )
+            data_payload["client-to-client-reflection"] = client_to_client_reflection
         if dampening is not None:
             data_payload["dampening"] = dampening
         if deterministic_med is not None:
@@ -327,9 +318,7 @@ class Bgp:
         if network_import_check is not None:
             data_payload["network-import-check"] = network_import_check
         if ignore_optional_capability is not None:
-            data_payload["ignore-optional-capability"] = (
-                ignore_optional_capability
-            )
+            data_payload["ignore-optional-capability"] = ignore_optional_capability
         if additional_path is not None:
             data_payload["additional-path"] = additional_path
         if additional_path6 is not None:
@@ -339,15 +328,11 @@ class Bgp:
         if additional_path_vpnv6 is not None:
             data_payload["additional-path-vpnv6"] = additional_path_vpnv6
         if multipath_recursive_distance is not None:
-            data_payload["multipath-recursive-distance"] = (
-                multipath_recursive_distance
-            )
+            data_payload["multipath-recursive-distance"] = multipath_recursive_distance
         if recursive_next_hop is not None:
             data_payload["recursive-next-hop"] = recursive_next_hop
         if recursive_inherit_priority is not None:
-            data_payload["recursive-inherit-priority"] = (
-                recursive_inherit_priority
-            )
+            data_payload["recursive-inherit-priority"] = recursive_inherit_priority
         if tag_resolve_mode is not None:
             data_payload["tag-resolve-mode"] = tag_resolve_mode
         if cluster_id is not None:
@@ -359,21 +344,15 @@ class Bgp:
         if dampening_route_map is not None:
             data_payload["dampening-route-map"] = dampening_route_map
         if dampening_reachability_half_life is not None:
-            data_payload["dampening-reachability-half-life"] = (
-                dampening_reachability_half_life
-            )
+            data_payload["dampening-reachability-half-life"] = dampening_reachability_half_life
         if dampening_reuse is not None:
             data_payload["dampening-reuse"] = dampening_reuse
         if dampening_suppress is not None:
             data_payload["dampening-suppress"] = dampening_suppress
         if dampening_max_suppress_time is not None:
-            data_payload["dampening-max-suppress-time"] = (
-                dampening_max_suppress_time
-            )
+            data_payload["dampening-max-suppress-time"] = dampening_max_suppress_time
         if dampening_unreachability_half_life is not None:
-            data_payload["dampening-unreachability-half-life"] = (
-                dampening_unreachability_half_life
-            )
+            data_payload["dampening-unreachability-half-life"] = dampening_unreachability_half_life
         if default_local_preference is not None:
             data_payload["default-local-preference"] = default_local_preference
         if scan_time is not None:
@@ -401,17 +380,11 @@ class Bgp:
         if additional_path_select6 is not None:
             data_payload["additional-path-select6"] = additional_path_select6
         if additional_path_select_vpnv4 is not None:
-            data_payload["additional-path-select-vpnv4"] = (
-                additional_path_select_vpnv4
-            )
+            data_payload["additional-path-select-vpnv4"] = additional_path_select_vpnv4
         if additional_path_select_vpnv6 is not None:
-            data_payload["additional-path-select-vpnv6"] = (
-                additional_path_select_vpnv6
-            )
+            data_payload["additional-path-select-vpnv6"] = additional_path_select_vpnv6
         if cross_family_conditional_adv is not None:
-            data_payload["cross-family-conditional-adv"] = (
-                cross_family_conditional_adv
-            )
+            data_payload["cross-family-conditional-adv"] = cross_family_conditional_adv
         if aggregate_address is not None:
             data_payload["aggregate-address"] = aggregate_address
         if aggregate_address6 is not None:
@@ -439,6 +412,4 @@ class Bgp:
         if vrf6 is not None:
             data_payload["vrf6"] = vrf6
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

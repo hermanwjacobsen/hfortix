@@ -108,9 +108,7 @@ class TacacsPlusAccounting3Filter:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -150,7 +148,6 @@ class TacacsPlusAccounting3Filter:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/log.tacacs+accounting3/filter"
         if before is not None:
             data_payload["before"] = before
@@ -163,6 +160,4 @@ class TacacsPlusAccounting3Filter:
         if cli_cmd_audit is not None:
             data_payload["cli-cmd-audit"] = cli_cmd_audit
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

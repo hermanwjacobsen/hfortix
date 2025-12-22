@@ -128,9 +128,7 @@ class WtpProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -321,7 +319,6 @@ class WtpProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -362,9 +359,7 @@ class WtpProfile:
         if lan is not None:
             data_payload["lan"] = lan
         if energy_efficient_ethernet is not None:
-            data_payload["energy-efficient-ethernet"] = (
-                energy_efficient_ethernet
-            )
+            data_payload["energy-efficient-ethernet"] = energy_efficient_ethernet
         if led_state is not None:
             data_payload["led-state"] = led_state
         if led_schedules is not None:
@@ -430,9 +425,7 @@ class WtpProfile:
         if ext_info_enable is not None:
             data_payload["ext-info-enable"] = ext_info_enable
         if indoor_outdoor_deployment is not None:
-            data_payload["indoor-outdoor-deployment"] = (
-                indoor_outdoor_deployment
-            )
+            data_payload["indoor-outdoor-deployment"] = indoor_outdoor_deployment
         if esl_ses_dongle is not None:
             data_payload["esl-ses-dongle"] = esl_ses_dongle
         if console_login is not None:
@@ -450,79 +443,47 @@ class WtpProfile:
         if apcfg_auto_cert is not None:
             data_payload["apcfg-auto-cert"] = apcfg_auto_cert
         if apcfg_auto_cert_enroll_protocol is not None:
-            data_payload["apcfg-auto-cert-enroll-protocol"] = (
-                apcfg_auto_cert_enroll_protocol
-            )
+            data_payload["apcfg-auto-cert-enroll-protocol"] = apcfg_auto_cert_enroll_protocol
         if apcfg_auto_cert_crypto_algo is not None:
-            data_payload["apcfg-auto-cert-crypto-algo"] = (
-                apcfg_auto_cert_crypto_algo
-            )
+            data_payload["apcfg-auto-cert-crypto-algo"] = apcfg_auto_cert_crypto_algo
         if apcfg_auto_cert_est_server is not None:
-            data_payload["apcfg-auto-cert-est-server"] = (
-                apcfg_auto_cert_est_server
-            )
+            data_payload["apcfg-auto-cert-est-server"] = apcfg_auto_cert_est_server
         if apcfg_auto_cert_est_ca_id is not None:
-            data_payload["apcfg-auto-cert-est-ca-id"] = (
-                apcfg_auto_cert_est_ca_id
-            )
+            data_payload["apcfg-auto-cert-est-ca-id"] = apcfg_auto_cert_est_ca_id
         if apcfg_auto_cert_est_http_username is not None:
-            data_payload["apcfg-auto-cert-est-http-username"] = (
-                apcfg_auto_cert_est_http_username
-            )
+            data_payload["apcfg-auto-cert-est-http-username"] = apcfg_auto_cert_est_http_username
         if apcfg_auto_cert_est_http_password is not None:
-            data_payload["apcfg-auto-cert-est-http-password"] = (
-                apcfg_auto_cert_est_http_password
-            )
+            data_payload["apcfg-auto-cert-est-http-password"] = apcfg_auto_cert_est_http_password
         if apcfg_auto_cert_est_subject is not None:
-            data_payload["apcfg-auto-cert-est-subject"] = (
-                apcfg_auto_cert_est_subject
-            )
+            data_payload["apcfg-auto-cert-est-subject"] = apcfg_auto_cert_est_subject
         if apcfg_auto_cert_est_subject_alt_name is not None:
             data_payload["apcfg-auto-cert-est-subject-alt-name"] = (
                 apcfg_auto_cert_est_subject_alt_name
             )
         if apcfg_auto_cert_auto_regen_days is not None:
-            data_payload["apcfg-auto-cert-auto-regen-days"] = (
-                apcfg_auto_cert_auto_regen_days
-            )
+            data_payload["apcfg-auto-cert-auto-regen-days"] = apcfg_auto_cert_auto_regen_days
         if apcfg_auto_cert_est_https_ca is not None:
-            data_payload["apcfg-auto-cert-est-https-ca"] = (
-                apcfg_auto_cert_est_https_ca
-            )
+            data_payload["apcfg-auto-cert-est-https-ca"] = apcfg_auto_cert_est_https_ca
         if apcfg_auto_cert_scep_keytype is not None:
-            data_payload["apcfg-auto-cert-scep-keytype"] = (
-                apcfg_auto_cert_scep_keytype
-            )
+            data_payload["apcfg-auto-cert-scep-keytype"] = apcfg_auto_cert_scep_keytype
         if apcfg_auto_cert_scep_keysize is not None:
-            data_payload["apcfg-auto-cert-scep-keysize"] = (
-                apcfg_auto_cert_scep_keysize
-            )
+            data_payload["apcfg-auto-cert-scep-keysize"] = apcfg_auto_cert_scep_keysize
         if apcfg_auto_cert_scep_ec_name is not None:
-            data_payload["apcfg-auto-cert-scep-ec-name"] = (
-                apcfg_auto_cert_scep_ec_name
-            )
+            data_payload["apcfg-auto-cert-scep-ec-name"] = apcfg_auto_cert_scep_ec_name
         if apcfg_auto_cert_scep_sub_fully_dn is not None:
-            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = (
-                apcfg_auto_cert_scep_sub_fully_dn
-            )
+            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = apcfg_auto_cert_scep_sub_fully_dn
         if apcfg_auto_cert_scep_url is not None:
             data_payload["apcfg-auto-cert-scep-url"] = apcfg_auto_cert_scep_url
         if apcfg_auto_cert_scep_password is not None:
-            data_payload["apcfg-auto-cert-scep-password"] = (
-                apcfg_auto_cert_scep_password
-            )
+            data_payload["apcfg-auto-cert-scep-password"] = apcfg_auto_cert_scep_password
         if apcfg_auto_cert_scep_ca_id is not None:
-            data_payload["apcfg-auto-cert-scep-ca-id"] = (
-                apcfg_auto_cert_scep_ca_id
-            )
+            data_payload["apcfg-auto-cert-scep-ca-id"] = apcfg_auto_cert_scep_ca_id
         if apcfg_auto_cert_scep_subject_alt_name is not None:
             data_payload["apcfg-auto-cert-scep-subject-alt-name"] = (
                 apcfg_auto_cert_scep_subject_alt_name
             )
         if apcfg_auto_cert_scep_https_ca is not None:
-            data_payload["apcfg-auto-cert-scep-https-ca"] = (
-                apcfg_auto_cert_scep_https_ca
-            )
+            data_payload["apcfg-auto-cert-scep-https-ca"] = apcfg_auto_cert_scep_https_ca
         if unii_4_5ghz_band is not None:
             data_payload["unii-4-5ghz-band"] = unii_4_5ghz_band
         if admin_auth_tacacs_plus_ is not None:
@@ -530,9 +491,7 @@ class WtpProfile:
         if admin_restrict_local is not None:
             data_payload["admin-restrict-local"] = admin_restrict_local
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -569,9 +528,7 @@ class WtpProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/wtp-profile/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -803,7 +760,6 @@ class WtpProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller/wtp-profile"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -838,9 +794,7 @@ class WtpProfile:
         if lan is not None:
             data_payload["lan"] = lan
         if energy_efficient_ethernet is not None:
-            data_payload["energy-efficient-ethernet"] = (
-                energy_efficient_ethernet
-            )
+            data_payload["energy-efficient-ethernet"] = energy_efficient_ethernet
         if led_state is not None:
             data_payload["led-state"] = led_state
         if led_schedules is not None:
@@ -906,9 +860,7 @@ class WtpProfile:
         if ext_info_enable is not None:
             data_payload["ext-info-enable"] = ext_info_enable
         if indoor_outdoor_deployment is not None:
-            data_payload["indoor-outdoor-deployment"] = (
-                indoor_outdoor_deployment
-            )
+            data_payload["indoor-outdoor-deployment"] = indoor_outdoor_deployment
         if esl_ses_dongle is not None:
             data_payload["esl-ses-dongle"] = esl_ses_dongle
         if console_login is not None:
@@ -926,79 +878,47 @@ class WtpProfile:
         if apcfg_auto_cert is not None:
             data_payload["apcfg-auto-cert"] = apcfg_auto_cert
         if apcfg_auto_cert_enroll_protocol is not None:
-            data_payload["apcfg-auto-cert-enroll-protocol"] = (
-                apcfg_auto_cert_enroll_protocol
-            )
+            data_payload["apcfg-auto-cert-enroll-protocol"] = apcfg_auto_cert_enroll_protocol
         if apcfg_auto_cert_crypto_algo is not None:
-            data_payload["apcfg-auto-cert-crypto-algo"] = (
-                apcfg_auto_cert_crypto_algo
-            )
+            data_payload["apcfg-auto-cert-crypto-algo"] = apcfg_auto_cert_crypto_algo
         if apcfg_auto_cert_est_server is not None:
-            data_payload["apcfg-auto-cert-est-server"] = (
-                apcfg_auto_cert_est_server
-            )
+            data_payload["apcfg-auto-cert-est-server"] = apcfg_auto_cert_est_server
         if apcfg_auto_cert_est_ca_id is not None:
-            data_payload["apcfg-auto-cert-est-ca-id"] = (
-                apcfg_auto_cert_est_ca_id
-            )
+            data_payload["apcfg-auto-cert-est-ca-id"] = apcfg_auto_cert_est_ca_id
         if apcfg_auto_cert_est_http_username is not None:
-            data_payload["apcfg-auto-cert-est-http-username"] = (
-                apcfg_auto_cert_est_http_username
-            )
+            data_payload["apcfg-auto-cert-est-http-username"] = apcfg_auto_cert_est_http_username
         if apcfg_auto_cert_est_http_password is not None:
-            data_payload["apcfg-auto-cert-est-http-password"] = (
-                apcfg_auto_cert_est_http_password
-            )
+            data_payload["apcfg-auto-cert-est-http-password"] = apcfg_auto_cert_est_http_password
         if apcfg_auto_cert_est_subject is not None:
-            data_payload["apcfg-auto-cert-est-subject"] = (
-                apcfg_auto_cert_est_subject
-            )
+            data_payload["apcfg-auto-cert-est-subject"] = apcfg_auto_cert_est_subject
         if apcfg_auto_cert_est_subject_alt_name is not None:
             data_payload["apcfg-auto-cert-est-subject-alt-name"] = (
                 apcfg_auto_cert_est_subject_alt_name
             )
         if apcfg_auto_cert_auto_regen_days is not None:
-            data_payload["apcfg-auto-cert-auto-regen-days"] = (
-                apcfg_auto_cert_auto_regen_days
-            )
+            data_payload["apcfg-auto-cert-auto-regen-days"] = apcfg_auto_cert_auto_regen_days
         if apcfg_auto_cert_est_https_ca is not None:
-            data_payload["apcfg-auto-cert-est-https-ca"] = (
-                apcfg_auto_cert_est_https_ca
-            )
+            data_payload["apcfg-auto-cert-est-https-ca"] = apcfg_auto_cert_est_https_ca
         if apcfg_auto_cert_scep_keytype is not None:
-            data_payload["apcfg-auto-cert-scep-keytype"] = (
-                apcfg_auto_cert_scep_keytype
-            )
+            data_payload["apcfg-auto-cert-scep-keytype"] = apcfg_auto_cert_scep_keytype
         if apcfg_auto_cert_scep_keysize is not None:
-            data_payload["apcfg-auto-cert-scep-keysize"] = (
-                apcfg_auto_cert_scep_keysize
-            )
+            data_payload["apcfg-auto-cert-scep-keysize"] = apcfg_auto_cert_scep_keysize
         if apcfg_auto_cert_scep_ec_name is not None:
-            data_payload["apcfg-auto-cert-scep-ec-name"] = (
-                apcfg_auto_cert_scep_ec_name
-            )
+            data_payload["apcfg-auto-cert-scep-ec-name"] = apcfg_auto_cert_scep_ec_name
         if apcfg_auto_cert_scep_sub_fully_dn is not None:
-            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = (
-                apcfg_auto_cert_scep_sub_fully_dn
-            )
+            data_payload["apcfg-auto-cert-scep-sub-fully-dn"] = apcfg_auto_cert_scep_sub_fully_dn
         if apcfg_auto_cert_scep_url is not None:
             data_payload["apcfg-auto-cert-scep-url"] = apcfg_auto_cert_scep_url
         if apcfg_auto_cert_scep_password is not None:
-            data_payload["apcfg-auto-cert-scep-password"] = (
-                apcfg_auto_cert_scep_password
-            )
+            data_payload["apcfg-auto-cert-scep-password"] = apcfg_auto_cert_scep_password
         if apcfg_auto_cert_scep_ca_id is not None:
-            data_payload["apcfg-auto-cert-scep-ca-id"] = (
-                apcfg_auto_cert_scep_ca_id
-            )
+            data_payload["apcfg-auto-cert-scep-ca-id"] = apcfg_auto_cert_scep_ca_id
         if apcfg_auto_cert_scep_subject_alt_name is not None:
             data_payload["apcfg-auto-cert-scep-subject-alt-name"] = (
                 apcfg_auto_cert_scep_subject_alt_name
             )
         if apcfg_auto_cert_scep_https_ca is not None:
-            data_payload["apcfg-auto-cert-scep-https-ca"] = (
-                apcfg_auto_cert_scep_https_ca
-            )
+            data_payload["apcfg-auto-cert-scep-https-ca"] = apcfg_auto_cert_scep_https_ca
         if unii_4_5ghz_band is not None:
             data_payload["unii-4-5ghz-band"] = unii_4_5ghz_band
         if admin_auth_tacacs_plus_ is not None:
@@ -1006,6 +926,4 @@ class WtpProfile:
         if admin_restrict_local is not None:
             data_payload["admin-restrict-local"] = admin_restrict_local
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

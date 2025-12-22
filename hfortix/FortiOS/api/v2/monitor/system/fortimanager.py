@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class BackupAction:
@@ -81,9 +81,7 @@ class BackupAction:
         if objects is not None:
             data["objects"] = objects
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/fortimanager/backup-action", data=data
-        )
+        return self._client.post("monitor", "/system/fortimanager/backup-action", data=data)
 
 
 class BackupDetails:
@@ -126,9 +124,7 @@ class BackupDetails:
         params["mkey"] = mkey
         params["datasource"] = datasource
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/fortimanager/backup-details", params=params
-        )
+        return self._client.get("monitor", "/system/fortimanager/backup-details", params=params)
 
 
 class BackupSummary:
@@ -165,9 +161,7 @@ class BackupSummary:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/fortimanager/backup-summary", params=params
-        )
+        return self._client.get("monitor", "/system/fortimanager/backup-summary", params=params)
 
 
 class Fortimanager:

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class PolicyLookup:
@@ -129,6 +129,4 @@ class PolicyLookup:
         if group_attr_type is not None:
             params["group_attr_type"] = group_attr_type
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/policy-lookup", params=params
-        )
+        return self._client.get("monitor", "/firewall/policy-lookup", params=params)

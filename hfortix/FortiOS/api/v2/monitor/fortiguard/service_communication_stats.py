@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ServiceCommunicationStats:
@@ -81,6 +81,4 @@ class ServiceCommunicationStats:
         if timeslot is not None:
             params["timeslot"] = timeslot
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/fortiguard/service-communication-stats", params=params
-        )
+        return self._client.get("monitor", "/fortiguard/service-communication-stats", params=params)

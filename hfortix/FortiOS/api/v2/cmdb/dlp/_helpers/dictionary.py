@@ -9,43 +9,47 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_MATCH_TYPE = ['match-all', 'match-any']
-VALID_BODY_MATCH_AROUND = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_MATCH_TYPE = ["match-all", "match-any"]
+VALID_BODY_MATCH_AROUND = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_dictionary_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -53,40 +57,49 @@ def validate_dictionary_get(
 # POST Validation
 # ============================================================================
 
-def validate_dictionary_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_dictionary_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating dictionary.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate match-type if present
-    if 'match-type' in payload:
-        value = payload.get('match-type')
+    if "match-type" in payload:
+        value = payload.get("match-type")
         if value and value not in VALID_BODY_MATCH_TYPE:
-            return (False, f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}")
-    
+            return (
+                False,
+                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+            )
+
     # Validate match-around if present
-    if 'match-around' in payload:
-        value = payload.get('match-around')
+    if "match-around" in payload:
+        value = payload.get("match-around")
         if value and value not in VALID_BODY_MATCH_AROUND:
-            return (False, f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}")
-    
+            return (
+                False,
+                f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}",
+            )
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     return (True, None)
 
 
@@ -94,52 +107,58 @@ def validate_dictionary_post(payload: dict[str, Any]) -> tuple[bool, str | None]
 # PUT Validation
 # ============================================================================
 
+
 def validate_dictionary_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate match-type if present
-    if 'match-type' in payload:
-        value = payload.get('match-type')
+    if "match-type" in payload:
+        value = payload.get("match-type")
         if value and value not in VALID_BODY_MATCH_TYPE:
-            return (False, f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}")
-    
+            return (
+                False,
+                f"Invalid match-type '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_TYPE)}",
+            )
+
     # Validate match-around if present
-    if 'match-around' in payload:
-        value = payload.get('match-around')
+    if "match-around" in payload:
+        value = payload.get("match-around")
         if value and value not in VALID_BODY_MATCH_AROUND:
-            return (False, f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}")
-    
+            return (
+                False,
+                f"Invalid match-around '{value}'. Must be one of: {', '.join(VALID_BODY_MATCH_AROUND)}",
+            )
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     return (True, None)
 
 
@@ -147,17 +166,20 @@ def validate_dictionary_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_dictionary_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_dictionary_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

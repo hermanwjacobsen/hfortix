@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Upload:
@@ -85,9 +85,7 @@ class Upload:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/region-image/upload", data=data
-        )
+        return self._client.post("monitor", "/wifi/region-image/upload", data=data)
 
 
 class RegionImage:

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Mapping:
@@ -76,9 +76,7 @@ class Mapping:
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/ippool/mapping", params=params
-        )
+        return self._client.get("monitor", "/firewall/ippool/mapping", params=params)
 
 
 class Ippool:

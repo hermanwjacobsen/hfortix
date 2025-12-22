@@ -128,9 +128,7 @@ class InterfacePolicy6:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -213,7 +211,6 @@ class InterfacePolicy6:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not policyid:
@@ -264,9 +261,7 @@ class InterfacePolicy6:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -274,9 +269,7 @@ class InterfacePolicy6:
         if dlp_profile is not None:
             data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -313,9 +306,7 @@ class InterfacePolicy6:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/interface-policy6/{policyid}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -395,7 +386,6 @@ class InterfacePolicy6:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/interface-policy6"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -440,9 +430,7 @@ class InterfacePolicy6:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -450,6 +438,4 @@ class InterfacePolicy6:
         if dlp_profile is not None:
             data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

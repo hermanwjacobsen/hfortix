@@ -128,9 +128,7 @@ class LocalInPolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -209,7 +207,6 @@ class LocalInPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not policyid:
@@ -236,25 +233,15 @@ class LocalInPolicy:
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if dstaddr_negate is not None:
             data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
@@ -262,9 +249,7 @@ class LocalInPolicy:
         if service_negate is not None:
             data_payload["service-negate"] = service_negate
         if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
+            data_payload["internet-service-src-negate"] = internet_service_src_negate
         if schedule is not None:
             data_payload["schedule"] = schedule
         if status is not None:
@@ -276,9 +261,7 @@ class LocalInPolicy:
         if comments is not None:
             data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -315,9 +298,7 @@ class LocalInPolicy:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/local-in-policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -437,7 +418,6 @@ class LocalInPolicy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/local-in-policy"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -458,25 +438,15 @@ class LocalInPolicy:
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload["internet-service-src-name"] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload["internet-service-src-group"] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload["internet-service-src-custom"] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload["internet-service-src-custom-group"] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload["internet-service-src-fortiguard"] = internet_service_src_fortiguard
         if dstaddr_negate is not None:
             data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
@@ -484,9 +454,7 @@ class LocalInPolicy:
         if service_negate is not None:
             data_payload["service-negate"] = service_negate
         if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
+            data_payload["internet-service-src-negate"] = internet_service_src_negate
         if schedule is not None:
             data_payload["schedule"] = schedule
         if status is not None:
@@ -498,6 +466,4 @@ class LocalInPolicy:
         if comments is not None:
             data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

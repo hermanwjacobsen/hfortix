@@ -108,9 +108,7 @@ class Setting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -174,7 +172,6 @@ class Setting:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller/setting"
         if before is not None:
             data_payload["before"] = before
@@ -213,6 +210,4 @@ class Setting:
         if darrp_optimize_schedules is not None:
             data_payload["darrp-optimize-schedules"] = darrp_optimize_schedules
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class UnassociatedDevices:
@@ -78,6 +78,4 @@ class UnassociatedDevices:
         if with_triangulation is not None:
             params["with_triangulation"] = with_triangulation
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/wifi/unassociated-devices", params=params
-        )
+        return self._client.get("monitor", "/wifi/unassociated-devices", params=params)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class RefreshServer:
@@ -73,9 +73,7 @@ class RefreshServer:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/user/fsso/refresh-server", data=data
-        )
+        return self._client.post("monitor", "/user/fsso/refresh-server", data=data)
 
 
 class Fsso:

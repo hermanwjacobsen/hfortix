@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class MatchedDevices:
@@ -85,6 +85,4 @@ class MatchedDevices:
         if mac is not None:
             params["mac"] = mac
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/switch-controller/matched-devices", params=params
-        )
+        return self._client.get("monitor", "/switch-controller/matched-devices", params=params)

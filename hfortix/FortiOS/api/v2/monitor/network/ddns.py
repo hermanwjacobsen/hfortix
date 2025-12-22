@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Lookup:
@@ -76,9 +76,7 @@ class Lookup:
         params = payload_dict.copy() if payload_dict else {}
         params["domain"] = domain
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/network/ddns/lookup", params=params
-        )
+        return self._client.get("monitor", "/network/ddns/lookup", params=params)
 
 
 class Servers:
@@ -115,9 +113,7 @@ class Servers:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/network/ddns/servers", params=params
-        )
+        return self._client.get("monitor", "/network/ddns/servers", params=params)
 
 
 class Ddns:

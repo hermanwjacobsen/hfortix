@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Statistics:
@@ -123,6 +123,4 @@ class BlacklistedCertificates:
         params["start"] = start
         params["count"] = count
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/utm/blacklisted-certificates", params=params
-        )
+        return self._client.get("monitor", "/utm/blacklisted-certificates", params=params)

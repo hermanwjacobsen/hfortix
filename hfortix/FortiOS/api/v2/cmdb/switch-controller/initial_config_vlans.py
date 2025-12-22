@@ -108,9 +108,7 @@ class InitialConfigVlans:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -160,7 +158,6 @@ class InitialConfigVlans:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/switch-controller.initial-config/vlans"
         if before is not None:
             data_payload["before"] = before
@@ -183,6 +180,4 @@ class InitialConfigVlans:
         if nac_segment is not None:
             data_payload["nac-segment"] = nac_segment
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

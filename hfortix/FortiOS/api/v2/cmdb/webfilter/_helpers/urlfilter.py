@@ -9,45 +9,49 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_ONE_ARM_IPS_URLFILTER = ['enable', 'disable']
-VALID_BODY_IP_ADDR_BLOCK = ['enable', 'disable']
-VALID_BODY_IP4_MAPPED_IP6 = ['enable', 'disable']
-VALID_BODY_INCLUDE_SUBDOMAINS = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_ONE_ARM_IPS_URLFILTER = ["enable", "disable"]
+VALID_BODY_IP_ADDR_BLOCK = ["enable", "disable"]
+VALID_BODY_IP4_MAPPED_IP6 = ["enable", "disable"]
+VALID_BODY_INCLUDE_SUBDOMAINS = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_urlfilter_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -55,19 +59,22 @@ def validate_urlfilter_get(
 # POST Validation
 # ============================================================================
 
-def validate_urlfilter_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_urlfilter_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating urlfilter.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate id if present
-    if 'id' in payload:
-        value = payload.get('id')
+    if "id" in payload:
+        value = payload.get("id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -75,43 +82,55 @@ def validate_urlfilter_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                     return (False, f"id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"name cannot exceed 63 characters")
-    
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate one-arm-ips-urlfilter if present
-    if 'one-arm-ips-urlfilter' in payload:
-        value = payload.get('one-arm-ips-urlfilter')
+    if "one-arm-ips-urlfilter" in payload:
+        value = payload.get("one-arm-ips-urlfilter")
         if value and value not in VALID_BODY_ONE_ARM_IPS_URLFILTER:
-            return (False, f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}")
-    
+            return (
+                False,
+                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
+            )
+
     # Validate ip-addr-block if present
-    if 'ip-addr-block' in payload:
-        value = payload.get('ip-addr-block')
+    if "ip-addr-block" in payload:
+        value = payload.get("ip-addr-block")
         if value and value not in VALID_BODY_IP_ADDR_BLOCK:
-            return (False, f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}")
-    
+            return (
+                False,
+                f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
+            )
+
     # Validate ip4-mapped-ip6 if present
-    if 'ip4-mapped-ip6' in payload:
-        value = payload.get('ip4-mapped-ip6')
+    if "ip4-mapped-ip6" in payload:
+        value = payload.get("ip4-mapped-ip6")
         if value and value not in VALID_BODY_IP4_MAPPED_IP6:
-            return (False, f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}")
-    
+            return (
+                False,
+                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
+            )
+
     # Validate include-subdomains if present
-    if 'include-subdomains' in payload:
-        value = payload.get('include-subdomains')
+    if "include-subdomains" in payload:
+        value = payload.get("include-subdomains")
         if value and value not in VALID_BODY_INCLUDE_SUBDOMAINS:
-            return (False, f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}")
-    
+            return (
+                False,
+                f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
+            )
+
     return (True, None)
 
 
@@ -119,31 +138,31 @@ def validate_urlfilter_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
 # PUT Validation
 # ============================================================================
 
+
 def validate_urlfilter_put(
-    id: str | None = None,
-    payload: dict[str, Any] | None = None
+    id: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         id: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # id is required for updates
     if not id:
         return (False, "id is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate id if present
-    if 'id' in payload:
-        value = payload.get('id')
+    if "id" in payload:
+        value = payload.get("id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -151,43 +170,55 @@ def validate_urlfilter_put(
                     return (False, f"id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
             return (False, f"name cannot exceed 63 characters")
-    
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate one-arm-ips-urlfilter if present
-    if 'one-arm-ips-urlfilter' in payload:
-        value = payload.get('one-arm-ips-urlfilter')
+    if "one-arm-ips-urlfilter" in payload:
+        value = payload.get("one-arm-ips-urlfilter")
         if value and value not in VALID_BODY_ONE_ARM_IPS_URLFILTER:
-            return (False, f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}")
-    
+            return (
+                False,
+                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
+            )
+
     # Validate ip-addr-block if present
-    if 'ip-addr-block' in payload:
-        value = payload.get('ip-addr-block')
+    if "ip-addr-block" in payload:
+        value = payload.get("ip-addr-block")
         if value and value not in VALID_BODY_IP_ADDR_BLOCK:
-            return (False, f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}")
-    
+            return (
+                False,
+                f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
+            )
+
     # Validate ip4-mapped-ip6 if present
-    if 'ip4-mapped-ip6' in payload:
-        value = payload.get('ip4-mapped-ip6')
+    if "ip4-mapped-ip6" in payload:
+        value = payload.get("ip4-mapped-ip6")
         if value and value not in VALID_BODY_IP4_MAPPED_IP6:
-            return (False, f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}")
-    
+            return (
+                False,
+                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
+            )
+
     # Validate include-subdomains if present
-    if 'include-subdomains' in payload:
-        value = payload.get('include-subdomains')
+    if "include-subdomains" in payload:
+        value = payload.get("include-subdomains")
         if value and value not in VALID_BODY_INCLUDE_SUBDOMAINS:
-            return (False, f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}")
-    
+            return (
+                False,
+                f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
+            )
+
     return (True, None)
 
 
@@ -195,17 +226,20 @@ def validate_urlfilter_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_urlfilter_delete(id: str | None = None) -> tuple[bool, str | None]:
+
+def validate_urlfilter_delete(
+    id: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         id: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not id:
         return (False, "id is required for DELETE operation")
-    
+
     return (True, None)

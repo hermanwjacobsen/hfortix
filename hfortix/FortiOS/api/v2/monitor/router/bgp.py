@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ClearSoftIn:
@@ -73,9 +73,7 @@ class ClearSoftIn:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/router/bgp/clear-soft-in", data=data
-        )
+        return self._client.post("monitor", "/router/bgp/clear-soft-in", data=data)
 
 
 class ClearSoftOut:
@@ -112,9 +110,7 @@ class ClearSoftOut:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/router/bgp/clear-soft-out", data=data
-        )
+        return self._client.post("monitor", "/router/bgp/clear-soft-out", data=data)
 
 
 class Neighbors:
@@ -151,9 +147,7 @@ class Neighbors:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/bgp/neighbors", params=params
-        )
+        return self._client.get("monitor", "/router/bgp/neighbors", params=params)
 
 
 class NeighborsStatistics:
@@ -194,9 +188,7 @@ class NeighborsStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/bgp/neighbors-statistics", params=params
-        )
+        return self._client.get("monitor", "/router/bgp/neighbors-statistics", params=params)
 
 
 class Neighbors6:
@@ -233,9 +225,7 @@ class Neighbors6:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/bgp/neighbors6", params=params
-        )
+        return self._client.get("monitor", "/router/bgp/neighbors6", params=params)
 
 
 class Paths:
@@ -313,9 +303,7 @@ class PathsStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/bgp/paths-statistics", params=params
-        )
+        return self._client.get("monitor", "/router/bgp/paths-statistics", params=params)
 
 
 class Paths6:
@@ -393,9 +381,7 @@ class SoftResetNeighbor:
         if ip is not None:
             data["ip"] = ip
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/router/bgp/soft-reset-neighbor", data=data
-        )
+        return self._client.post("monitor", "/router/bgp/soft-reset-neighbor", data=data)
 
 
 class Bgp:

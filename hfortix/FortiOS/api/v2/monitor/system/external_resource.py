@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Dynamic:
@@ -77,9 +77,7 @@ class Dynamic:
         if commands is not None:
             data["commands"] = commands
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/external-resource/dynamic", data=data
-        )
+        return self._client.post("monitor", "/system/external-resource/dynamic", data=data)
 
 
 class EntryList:
@@ -135,9 +133,7 @@ class EntryList:
         if entry is not None:
             params["entry"] = entry
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/external-resource/entry-list", params=params
-        )
+        return self._client.get("monitor", "/system/external-resource/entry-list", params=params)
 
 
 class GenericAddress:
@@ -182,9 +178,7 @@ class GenericAddress:
         if data is not None:
             data["data"] = data
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/external-resource/generic-address", data=data
-        )
+        return self._client.post("monitor", "/system/external-resource/generic-address", data=data)
 
 
 class Refresh:
@@ -233,9 +227,7 @@ class Refresh:
         if last_connection_time is not None:
             data["last_connection_time"] = last_connection_time
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/external-resource/refresh", data=data
-        )
+        return self._client.post("monitor", "/system/external-resource/refresh", data=data)
 
 
 class ValidateJsonpath:

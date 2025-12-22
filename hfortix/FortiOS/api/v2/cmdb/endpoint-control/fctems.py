@@ -128,9 +128,7 @@ class Fctems:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -213,7 +211,6 @@ class Fctems:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not ems_id:
@@ -232,13 +229,9 @@ class Fctems:
         if dirty_reason is not None:
             data_payload["dirty-reason"] = dirty_reason
         if fortinetone_cloud_authentication is not None:
-            data_payload["fortinetone-cloud-authentication"] = (
-                fortinetone_cloud_authentication
-            )
+            data_payload["fortinetone-cloud-authentication"] = fortinetone_cloud_authentication
         if cloud_authentication_access_key is not None:
-            data_payload["cloud-authentication-access-key"] = (
-                cloud_authentication_access_key
-            )
+            data_payload["cloud-authentication-access-key"] = cloud_authentication_access_key
         if server is not None:
             data_payload["server"] = server
         if https_port is not None:
@@ -276,9 +269,7 @@ class Fctems:
         if verifying_ca is not None:
             data_payload["verifying-ca"] = verifying_ca
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -315,9 +306,7 @@ class Fctems:
             raise ValueError("ems_id is required for delete()")
         endpoint = f"/endpoint-control/fctems/{ems_id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -441,7 +430,6 @@ class Fctems:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/endpoint-control/fctems"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -454,13 +442,9 @@ class Fctems:
         if dirty_reason is not None:
             data_payload["dirty-reason"] = dirty_reason
         if fortinetone_cloud_authentication is not None:
-            data_payload["fortinetone-cloud-authentication"] = (
-                fortinetone_cloud_authentication
-            )
+            data_payload["fortinetone-cloud-authentication"] = fortinetone_cloud_authentication
         if cloud_authentication_access_key is not None:
-            data_payload["cloud-authentication-access-key"] = (
-                cloud_authentication_access_key
-            )
+            data_payload["cloud-authentication-access-key"] = cloud_authentication_access_key
         if server is not None:
             data_payload["server"] = server
         if https_port is not None:
@@ -498,6 +482,4 @@ class Fctems:
         if verifying_ca is not None:
             data_payload["verifying-ca"] = verifying_ca
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

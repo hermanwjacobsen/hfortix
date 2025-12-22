@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class HoldSignatures:
@@ -77,6 +77,4 @@ class HoldSignatures:
         if ips_sensor is not None:
             params["ips_sensor"] = ips_sensor
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/ips/hold-signatures", params=params
-        )
+        return self._client.get("monitor", "/ips/hold-signatures", params=params)

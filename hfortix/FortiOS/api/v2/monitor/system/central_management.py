@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Status:
@@ -77,9 +77,7 @@ class Status:
         if skip_detect is not None:
             params["skip_detect"] = skip_detect
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/central-management/status", params=params
-        )
+        return self._client.get("monitor", "/system/central-management/status", params=params)
 
 
 class CentralManagement:

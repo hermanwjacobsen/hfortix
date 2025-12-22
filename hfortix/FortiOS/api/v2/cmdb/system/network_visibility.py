@@ -108,9 +108,7 @@ class NetworkVisibility:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -152,7 +150,6 @@ class NetworkVisibility:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/network-visibility"
         if before is not None:
             data_payload["before"] = before
@@ -163,12 +160,8 @@ class NetworkVisibility:
         if source_location is not None:
             data_payload["source-location"] = source_location
         if destination_hostname_visibility is not None:
-            data_payload["destination-hostname-visibility"] = (
-                destination_hostname_visibility
-            )
+            data_payload["destination-hostname-visibility"] = destination_hostname_visibility
         if destination_location is not None:
             data_payload["destination-location"] = destination_location
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

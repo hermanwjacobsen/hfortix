@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class DeviceStatus:
@@ -80,9 +80,7 @@ class DeviceStatus:
         if update_cache is not None:
             params["update_cache"] = update_cache
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/registration/forticloud/device-status", params=params
-        )
+        return self._client.get("monitor", "/registration/forticloud/device-status", params=params)
 
 
 class Disclaimer:
@@ -119,9 +117,7 @@ class Disclaimer:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/registration/forticloud/disclaimer", params=params
-        )
+        return self._client.get("monitor", "/registration/forticloud/disclaimer", params=params)
 
 
 class Domains:
@@ -158,9 +154,7 @@ class Domains:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/registration/forticloud/domains", params=params
-        )
+        return self._client.get("monitor", "/registration/forticloud/domains", params=params)
 
 
 class Login:
@@ -213,9 +207,7 @@ class Login:
         if domain is not None:
             data["domain"] = domain
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticloud/login", data=data
-        )
+        return self._client.post("monitor", "/registration/forticloud/login", data=data)
 
 
 class Logout:
@@ -252,9 +244,7 @@ class Logout:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticloud/logout", data=data
-        )
+        return self._client.post("monitor", "/registration/forticloud/logout", data=data)
 
 
 class Migrate:
@@ -299,9 +289,7 @@ class Migrate:
         if password is not None:
             data["password"] = password
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticloud/migrate", data=data
-        )
+        return self._client.post("monitor", "/registration/forticloud/migrate", data=data)
 
 
 class RegisterDevice:
@@ -370,9 +358,7 @@ class RegisterDevice:
         if agreement_accepted is not None:
             data["agreement_accepted"] = agreement_accepted
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/registration/forticloud/register-device", data=data
-        )
+        return self._client.post("monitor", "/registration/forticloud/register-device", data=data)
 
 
 class Forticloud:

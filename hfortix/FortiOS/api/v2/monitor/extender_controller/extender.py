@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Diagnose:
@@ -81,9 +81,7 @@ class Diagnose:
         if cmd is not None:
             data["cmd"] = cmd
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/extender-controller/extender/diagnose", data=data
-        )
+        return self._client.post("monitor", "/extender-controller/extender/diagnose", data=data)
 
 
 class ModemFirmware:
@@ -168,9 +166,7 @@ class Reset:
         if id is not None:
             data["id"] = id
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/extender-controller/extender/reset", data=data
-        )
+        return self._client.post("monitor", "/extender-controller/extender/reset", data=data)
 
 
 class Upgrade:
@@ -215,9 +211,7 @@ class Upgrade:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/extender-controller/extender/upgrade", data=data
-        )
+        return self._client.post("monitor", "/extender-controller/extender/upgrade", data=data)
 
 
 class Extender:
@@ -268,6 +262,4 @@ class Extender:
         if type is not None:
             params["type"] = type
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/extender-controller/extender", params=params
-        )
+        return self._client.get("monitor", "/extender-controller/extender", params=params)

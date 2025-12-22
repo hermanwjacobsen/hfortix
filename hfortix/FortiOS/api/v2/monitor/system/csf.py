@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class PendingAuthorizations:
@@ -73,9 +73,7 @@ class PendingAuthorizations:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/csf/pending-authorizations", params=params
-        )
+        return self._client.get("monitor", "/system/csf/pending-authorizations", params=params)
 
 
 class RegisterAppliance:
@@ -136,9 +134,7 @@ class RegisterAppliance:
         if hostname is not None:
             data["hostname"] = hostname
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/csf/register-appliance", data=data
-        )
+        return self._client.post("monitor", "/system/csf/register-appliance", data=data)
 
 
 class Csf:

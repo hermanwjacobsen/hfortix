@@ -128,9 +128,7 @@ class ProfileProtocolOptions:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -199,7 +197,6 @@ class ProfileProtocolOptions:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -244,9 +241,7 @@ class ProfileProtocolOptions:
         if rpc_over_http is not None:
             data_payload["rpc-over-http"] = rpc_over_http
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -283,9 +278,7 @@ class ProfileProtocolOptions:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/profile-protocol-options/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -395,7 +388,6 @@ class ProfileProtocolOptions:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/profile-protocol-options"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -434,6 +426,4 @@ class ProfileProtocolOptions:
         if rpc_over_http is not None:
             data_payload["rpc-over-http"] = rpc_over_http
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

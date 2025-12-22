@@ -108,9 +108,7 @@ class Fortiguard:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -168,7 +166,6 @@ class Fortiguard:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/webfilter/fortiguard"
         if before is not None:
             data_payload["before"] = before
@@ -185,9 +182,7 @@ class Fortiguard:
         if ovrd_auth_port_https is not None:
             data_payload["ovrd-auth-port-https"] = ovrd_auth_port_https
         if ovrd_auth_port_https_flow is not None:
-            data_payload["ovrd-auth-port-https-flow"] = (
-                ovrd_auth_port_https_flow
-            )
+            data_payload["ovrd-auth-port-https-flow"] = ovrd_auth_port_https_flow
         if ovrd_auth_port_warning is not None:
             data_payload["ovrd-auth-port-warning"] = ovrd_auth_port_warning
         if ovrd_auth_https is not None:
@@ -197,12 +192,8 @@ class Fortiguard:
         if close_ports is not None:
             data_payload["close-ports"] = close_ports
         if request_packet_size_limit is not None:
-            data_payload["request-packet-size-limit"] = (
-                request_packet_size_limit
-            )
+            data_payload["request-packet-size-limit"] = request_packet_size_limit
         if embed_image is not None:
             data_payload["embed-image"] = embed_image
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

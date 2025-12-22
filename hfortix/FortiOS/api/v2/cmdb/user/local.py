@@ -128,9 +128,7 @@ class Local:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -219,7 +217,6 @@ class Local:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -250,9 +247,7 @@ class Local:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload["two-factor-authentication"] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
@@ -286,9 +281,7 @@ class Local:
         if username_sensitivity is not None:
             data_payload["username-sensitivity"] = username_sensitivity
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -325,9 +318,7 @@ class Local:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/local/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -457,7 +448,6 @@ class Local:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/user/local"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -482,9 +472,7 @@ class Local:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload["two-factor-authentication"] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
@@ -518,6 +506,4 @@ class Local:
         if username_sensitivity is not None:
             data_payload["username-sensitivity"] = username_sensitivity
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

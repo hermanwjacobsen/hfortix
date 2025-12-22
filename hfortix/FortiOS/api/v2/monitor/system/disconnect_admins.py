@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Select:
@@ -85,9 +85,7 @@ class Select:
         if admins is not None:
             data["admins"] = admins
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/disconnect-admins/select", data=data
-        )
+        return self._client.post("monitor", "/system/disconnect-admins/select", data=data)
 
 
 class DisconnectAdmins:

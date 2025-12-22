@@ -108,9 +108,7 @@ class Settings:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -154,16 +152,13 @@ class Settings:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/antivirus/settings"
         if before is not None:
             data_payload["before"] = before
         if after is not None:
             data_payload["after"] = after
         if machine_learning_detection is not None:
-            data_payload["machine-learning-detection"] = (
-                machine_learning_detection
-            )
+            data_payload["machine-learning-detection"] = machine_learning_detection
         if use_extreme_db is not None:
             data_payload["use-extreme-db"] = use_extreme_db
         if grayware is not None:
@@ -173,6 +168,4 @@ class Settings:
         if cache_infected_result is not None:
             data_payload["cache-infected-result"] = cache_infected_result
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -141,9 +141,7 @@ class Status:
         params.update(kwargs)
 
         endpoint = f"search/status/{session_id}"
-        return self._client.get(
-            "log", endpoint, params=params, raw_json=raw_json
-        )
+        return self._client.get("log", endpoint, params=params, raw_json=raw_json)
 
 
 class Search:

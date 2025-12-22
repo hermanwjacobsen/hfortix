@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Neighbors:
@@ -81,9 +81,7 @@ class Neighbors:
         if port is not None:
             params["port"] = port
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/network/lldp/neighbors", params=params
-        )
+        return self._client.get("monitor", "/network/lldp/neighbors", params=params)
 
 
 class Ports:
@@ -128,9 +126,7 @@ class Ports:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/network/lldp/ports", params=params
-        )
+        return self._client.get("monitor", "/network/lldp/ports", params=params)
 
 
 class Lldp:

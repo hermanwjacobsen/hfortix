@@ -9,41 +9,45 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_traffic_class_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -51,19 +55,22 @@ def validate_traffic_class_get(
 # POST Validation
 # ============================================================================
 
-def validate_traffic_class_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_traffic_class_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating traffic_class.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate class-id if present
-    if 'class-id' in payload:
-        value = payload.get('class-id')
+    if "class-id" in payload:
+        value = payload.get("class-id")
         if value is not None:
             try:
                 int_val = int(value)
@@ -71,13 +78,11 @@ def validate_traffic_class_post(payload: dict[str, Any]) -> tuple[bool, str | No
                     return (False, f"class-id must be between 2 and 31")
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")
-    
+
     # Validate class-name if present
-    if 'class-name' in payload:
-        value = payload.get('class-name')
+    if "class-name" in payload:
+        value = payload.get("class-name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"class-name cannot exceed 35 characters")
-    
+
     return (True, None)
-
-

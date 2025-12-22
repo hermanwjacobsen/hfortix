@@ -37,9 +37,7 @@ class SwitchController:
         self.detected_device = DetectedDevice(client)
         self.fsw_firmware = FswFirmware(client)
         self.isl_lockdown = IslLockdown(client)
-        self.known_nac_device_criteria_list = KnownNacDeviceCriteriaList(
-            client
-        )
+        self.known_nac_device_criteria_list = KnownNacDeviceCriteriaList(client)
         self.managed_switch = ManagedSwitch(client)
         self.matched_devices = MatchedDevices(client)
         self.mclag_icl = MclagIcl(client)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Disassociate:
@@ -77,9 +77,7 @@ class Disassociate:
         if mac is not None:
             data["mac"] = mac
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/client/disassociate", data=data
-        )
+        return self._client.post("monitor", "/wifi/client/disassociate", data=data)
 
 
 class Client:

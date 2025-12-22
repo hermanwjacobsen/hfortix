@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class LookupPolicy:
@@ -100,6 +100,4 @@ class LookupPolicy:
         if protocol_number is not None:
             params["protocol_number"] = protocol_number
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/lookup-policy", params=params
-        )
+        return self._client.get("monitor", "/router/lookup-policy", params=params)

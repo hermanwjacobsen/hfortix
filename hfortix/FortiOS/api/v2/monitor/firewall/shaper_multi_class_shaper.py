@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ShaperMultiClassShaper:
@@ -51,9 +51,7 @@ class ShaperMultiClassShaper:
         """
         self._client = client
 
-    def list(
-        self, data_dict: Optional[Dict[str, Any]] = None, **kwargs
-    ) -> Dict[str, Any]:
+    def list(self, data_dict: Optional[Dict[str, Any]] = None, **kwargs) -> Dict[str, Any]:
         """
         List of statistics for multi-class shapers.
 
@@ -69,6 +67,4 @@ class ShaperMultiClassShaper:
         """
         params = data_dict.copy() if data_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/shaper/multi-class-shaper", params=params
-        )
+        return self._client.get("monitor", "/firewall/shaper/multi-class-shaper", params=params)

@@ -128,9 +128,7 @@ class Policy6:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -215,7 +213,6 @@ class Policy6:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not seq_num:
@@ -270,17 +267,13 @@ class Policy6:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if users is not None:
             data_payload["users"] = users
         if groups is not None:
             data_payload["groups"] = groups
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -317,9 +310,7 @@ class Policy6:
             raise ValueError("seq_num is required for delete()")
         endpoint = f"/router/policy6/{seq_num}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -445,7 +436,6 @@ class Policy6:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/router/policy6"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -494,14 +484,10 @@ class Policy6:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if users is not None:
             data_payload["users"] = users
         if groups is not None:
             data_payload["groups"] = groups
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

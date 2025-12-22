@@ -9,43 +9,47 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_FABRIC_SYNC = ['enable', 'disable']
-VALID_BODY_SECURE_MODE = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_FABRIC_SYNC = ["enable", "disable"]
+VALID_BODY_SECURE_MODE = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_setting_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -53,45 +57,56 @@ def validate_setting_get(
 # PUT Validation
 # ============================================================================
 
+
 def validate_setting_put(
-    payload: dict[str, Any] | None = None
+    payload: dict[str, Any] | None = None,
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate max-concurrent-stitches if present
-    if 'max-concurrent-stitches' in payload:
-        value = payload.get('max-concurrent-stitches')
+    if "max-concurrent-stitches" in payload:
+        value = payload.get("max-concurrent-stitches")
         if value is not None:
             try:
                 int_val = int(value)
                 if int_val < 32 or int_val > 256:
-                    return (False, f"max-concurrent-stitches must be between 32 and 256")
+                    return (
+                        False,
+                        f"max-concurrent-stitches must be between 32 and 256",
+                    )
             except (ValueError, TypeError):
-                return (False, f"max-concurrent-stitches must be numeric, got: {value}")
-    
+                return (
+                    False,
+                    f"max-concurrent-stitches must be numeric, got: {value}",
+                )
+
     # Validate fabric-sync if present
-    if 'fabric-sync' in payload:
-        value = payload.get('fabric-sync')
+    if "fabric-sync" in payload:
+        value = payload.get("fabric-sync")
         if value and value not in VALID_BODY_FABRIC_SYNC:
-            return (False, f"Invalid fabric-sync '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_SYNC)}")
-    
+            return (
+                False,
+                f"Invalid fabric-sync '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_SYNC)}",
+            )
+
     # Validate secure-mode if present
-    if 'secure-mode' in payload:
-        value = payload.get('secure-mode')
+    if "secure-mode" in payload:
+        value = payload.get("secure-mode")
         if value and value not in VALID_BODY_SECURE_MODE:
-            return (False, f"Invalid secure-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE_MODE)}")
-    
+            return (
+                False,
+                f"Invalid secure-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE_MODE)}",
+            )
+
     return (True, None)
-
-

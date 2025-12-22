@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class CertStatus:
@@ -84,9 +84,7 @@ class CertStatus:
         if with_cert is not None:
             params["with_cert"] = with_cert
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/ems/cert-status", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/ems/cert-status", params=params)
 
 
 class MalwareHash:
@@ -123,9 +121,7 @@ class MalwareHash:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/ems/malware-hash", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/ems/malware-hash", params=params)
 
 
 class Status:
@@ -170,9 +166,7 @@ class Status:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/ems/status", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/ems/status", params=params)
 
 
 class StatusSummary:
@@ -213,9 +207,7 @@ class StatusSummary:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/ems/status-summary", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/ems/status-summary", params=params)
 
 
 class UnverifyCert:
@@ -260,9 +252,7 @@ class UnverifyCert:
         if scope is not None:
             data["scope"] = scope
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/endpoint-control/ems/unverify-cert", data=data
-        )
+        return self._client.post("monitor", "/endpoint-control/ems/unverify-cert", data=data)
 
 
 class VerifyCert:
@@ -311,9 +301,7 @@ class VerifyCert:
         if fingerprint is not None:
             data["fingerprint"] = fingerprint
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/endpoint-control/ems/verify-cert", data=data
-        )
+        return self._client.post("monitor", "/endpoint-control/ems/verify-cert", data=data)
 
 
 class Ems:

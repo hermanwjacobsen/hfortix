@@ -9,44 +9,48 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_OVERSIZE_LOG = ['disable', 'enable']
-VALID_BODY_SWITCHING_PROTOCOLS_LOG = ['disable', 'enable']
-VALID_BODY_RPC_OVER_HTTP = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_OVERSIZE_LOG = ["disable", "enable"]
+VALID_BODY_SWITCHING_PROTOCOLS_LOG = ["disable", "enable"]
+VALID_BODY_RPC_OVER_HTTP = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_profile_protocol_options_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -54,52 +58,64 @@ def validate_profile_protocol_options_get(
 # POST Validation
 # ============================================================================
 
-def validate_profile_protocol_options_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_profile_protocol_options_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating profile_protocol_options.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
             return (False, f"name cannot exceed 47 characters")
-    
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate replacemsg-group if present
-    if 'replacemsg-group' in payload:
-        value = payload.get('replacemsg-group')
+    if "replacemsg-group" in payload:
+        value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"replacemsg-group cannot exceed 35 characters")
-    
+
     # Validate oversize-log if present
-    if 'oversize-log' in payload:
-        value = payload.get('oversize-log')
+    if "oversize-log" in payload:
+        value = payload.get("oversize-log")
         if value and value not in VALID_BODY_OVERSIZE_LOG:
-            return (False, f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}")
-    
+            return (
+                False,
+                f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}",
+            )
+
     # Validate switching-protocols-log if present
-    if 'switching-protocols-log' in payload:
-        value = payload.get('switching-protocols-log')
+    if "switching-protocols-log" in payload:
+        value = payload.get("switching-protocols-log")
         if value and value not in VALID_BODY_SWITCHING_PROTOCOLS_LOG:
-            return (False, f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}")
-    
+            return (
+                False,
+                f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
+            )
+
     # Validate rpc-over-http if present
-    if 'rpc-over-http' in payload:
-        value = payload.get('rpc-over-http')
+    if "rpc-over-http" in payload:
+        value = payload.get("rpc-over-http")
         if value and value not in VALID_BODY_RPC_OVER_HTTP:
-            return (False, f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}")
-    
+            return (
+                False,
+                f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}",
+            )
+
     return (True, None)
 
 
@@ -107,64 +123,73 @@ def validate_profile_protocol_options_post(payload: dict[str, Any]) -> tuple[boo
 # PUT Validation
 # ============================================================================
 
+
 def validate_profile_protocol_options_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
             return (False, f"name cannot exceed 47 characters")
-    
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate replacemsg-group if present
-    if 'replacemsg-group' in payload:
-        value = payload.get('replacemsg-group')
+    if "replacemsg-group" in payload:
+        value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"replacemsg-group cannot exceed 35 characters")
-    
+
     # Validate oversize-log if present
-    if 'oversize-log' in payload:
-        value = payload.get('oversize-log')
+    if "oversize-log" in payload:
+        value = payload.get("oversize-log")
         if value and value not in VALID_BODY_OVERSIZE_LOG:
-            return (False, f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}")
-    
+            return (
+                False,
+                f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}",
+            )
+
     # Validate switching-protocols-log if present
-    if 'switching-protocols-log' in payload:
-        value = payload.get('switching-protocols-log')
+    if "switching-protocols-log" in payload:
+        value = payload.get("switching-protocols-log")
         if value and value not in VALID_BODY_SWITCHING_PROTOCOLS_LOG:
-            return (False, f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}")
-    
+            return (
+                False,
+                f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
+            )
+
     # Validate rpc-over-http if present
-    if 'rpc-over-http' in payload:
-        value = payload.get('rpc-over-http')
+    if "rpc-over-http" in payload:
+        value = payload.get("rpc-over-http")
         if value and value not in VALID_BODY_RPC_OVER_HTTP:
-            return (False, f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}")
-    
+            return (
+                False,
+                f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}",
+            )
+
     return (True, None)
 
 
@@ -172,17 +197,20 @@ def validate_profile_protocol_options_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_profile_protocol_options_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_profile_protocol_options_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

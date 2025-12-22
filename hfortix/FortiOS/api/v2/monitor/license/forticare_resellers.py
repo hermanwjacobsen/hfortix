@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ForticareResellers:
@@ -77,6 +77,4 @@ class ForticareResellers:
         if country_code is not None:
             params["country_code"] = country_code
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/license/forticare-resellers", params=params
-        )
+        return self._client.get("monitor", "/license/forticare-resellers", params=params)

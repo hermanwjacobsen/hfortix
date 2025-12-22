@@ -116,9 +116,7 @@ class Hotspot20AnqpThreeGppCellular:
 
         # Build endpoint path
         if name:
-            endpoint = (
-                f"/wireless-controller.hotspot20/anqp-3gpp-cellular/{name}"
-            )
+            endpoint = f"/wireless-controller.hotspot20/anqp-3gpp-cellular/{name}"
         else:
             endpoint = "/wireless-controller.hotspot20/anqp-3gpp-cellular"
         if attr is not None:
@@ -130,9 +128,7 @@ class Hotspot20AnqpThreeGppCellular:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -171,7 +167,6 @@ class Hotspot20AnqpThreeGppCellular:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -186,9 +181,7 @@ class Hotspot20AnqpThreeGppCellular:
         if mcc_mnc_list is not None:
             data_payload["mcc-mnc-list"] = mcc_mnc_list
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -225,9 +218,7 @@ class Hotspot20AnqpThreeGppCellular:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller.hotspot20/anqp-3gpp-cellular/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -263,7 +254,6 @@ class Hotspot20AnqpThreeGppCellular:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller.hotspot20/anqp-3gpp-cellular"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -272,6 +262,4 @@ class Hotspot20AnqpThreeGppCellular:
         if mcc_mnc_list is not None:
             data_payload["mcc-mnc-list"] = mcc_mnc_list
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

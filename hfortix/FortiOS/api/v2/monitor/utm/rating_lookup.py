@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Select:
@@ -81,9 +81,7 @@ class Select:
         if lang is not None:
             data["lang"] = lang
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/utm/rating-lookup/select", data=data
-        )
+        return self._client.post("monitor", "/utm/rating-lookup/select", data=data)
 
 
 class RatingLookup:

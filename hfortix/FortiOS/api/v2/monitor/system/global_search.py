@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class GlobalSearch:
@@ -92,6 +92,4 @@ class GlobalSearch:
         if exact is not None:
             params["exact"] = exact
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/global-search", params=params
-        )
+        return self._client.get("monitor", "/system/global-search", params=params)

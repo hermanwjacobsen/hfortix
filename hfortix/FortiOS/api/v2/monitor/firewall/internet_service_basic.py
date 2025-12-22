@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InternetServiceBasic:
@@ -77,6 +77,4 @@ class InternetServiceBasic:
         if ipv6_only is not None:
             params["ipv6_only"] = ipv6_only
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-basic", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-basic", params=params)

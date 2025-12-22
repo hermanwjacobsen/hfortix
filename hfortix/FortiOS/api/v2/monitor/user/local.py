@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ChangePassword:
@@ -81,9 +81,7 @@ class ChangePassword:
         if new_password is not None:
             data["new_password"] = new_password
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/user/local/change-password", data=data
-        )
+        return self._client.post("monitor", "/user/local/change-password", data=data)
 
 
 class Local:

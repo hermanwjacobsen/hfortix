@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Bios:
@@ -77,9 +77,7 @@ class Bios:
         if mkey is not None:
             params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/switch-controller/managed-switch/bios", params=params
-        )
+        return self._client.get("monitor", "/switch-controller/managed-switch/bios", params=params)
 
 
 class BouncePort:
@@ -630,9 +628,7 @@ class Restart:
         if mkey is not None:
             data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/switch-controller/managed-switch/restart", data=data
-        )
+        return self._client.post("monitor", "/switch-controller/managed-switch/restart", data=data)
 
 
 class Status:
@@ -761,9 +757,7 @@ class TxRx:
         params["mkey"] = mkey
         params["port"] = port
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/switch-controller/managed-switch/tx-rx", params=params
-        )
+        return self._client.get("monitor", "/switch-controller/managed-switch/tx-rx", params=params)
 
 
 class Update:
@@ -808,9 +802,7 @@ class Update:
         if admin is not None:
             data["admin"] = admin
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/switch-controller/managed-switch/update", data=data
-        )
+        return self._client.post("monitor", "/switch-controller/managed-switch/update", data=data)
 
 
 class ManagedSwitch:

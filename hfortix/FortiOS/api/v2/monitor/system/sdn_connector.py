@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class NsxSecurityTags:
@@ -77,9 +77,7 @@ class NsxSecurityTags:
         if mkey is not None:
             params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/sdn-connector/nsx-security-tags", params=params
-        )
+        return self._client.get("monitor", "/system/sdn-connector/nsx-security-tags", params=params)
 
 
 class Status:
@@ -124,9 +122,7 @@ class Status:
         if type is not None:
             params["type"] = type
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/sdn-connector/status", params=params
-        )
+        return self._client.get("monitor", "/system/sdn-connector/status", params=params)
 
 
 class Update:
@@ -167,9 +163,7 @@ class Update:
         if mkey is not None:
             data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/sdn-connector/update", data=data
-        )
+        return self._client.post("monitor", "/system/sdn-connector/update", data=data)
 
 
 class ValidateGcpKey:
@@ -210,9 +204,7 @@ class ValidateGcpKey:
         if private_key is not None:
             data["private-key"] = private_key
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/system/sdn-connector/validate-gcp-key", data=data
-        )
+        return self._client.post("monitor", "/system/sdn-connector/validate-gcp-key", data=data)
 
 
 class SdnConnector:

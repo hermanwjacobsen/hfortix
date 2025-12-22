@@ -9,44 +9,67 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_DAY = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'none']
-VALID_BODY_LABEL_DAY = ['none', 'over-night', 'early-morning', 'morning', 'midday', 'afternoon', 'evening', 'night', 'late-night']
-VALID_BODY_FABRIC_OBJECT = ['enable', 'disable']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_DAY = [
+    "sunday",
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "none",
+]
+VALID_BODY_LABEL_DAY = [
+    "none",
+    "over-night",
+    "early-morning",
+    "morning",
+    "midday",
+    "afternoon",
+    "evening",
+    "night",
+    "late-night",
+]
+VALID_BODY_FABRIC_OBJECT = ["enable", "disable"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_schedule_recurring_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -54,37 +77,46 @@ def validate_schedule_recurring_get(
 # POST Validation
 # ============================================================================
 
-def validate_schedule_recurring_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_schedule_recurring_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating schedule_recurring.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
             return (False, f"name cannot exceed 31 characters")
-    
+
     # Validate day if present
-    if 'day' in payload:
-        value = payload.get('day')
+    if "day" in payload:
+        value = payload.get("day")
         if value and value not in VALID_BODY_DAY:
-            return (False, f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}")
-    
+            return (
+                False,
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
+            )
+
     # Validate label-day if present
-    if 'label-day' in payload:
-        value = payload.get('label-day')
+    if "label-day" in payload:
+        value = payload.get("label-day")
         if value and value not in VALID_BODY_LABEL_DAY:
-            return (False, f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}")
-    
+            return (
+                False,
+                f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}",
+            )
+
     # Validate color if present
-    if 'color' in payload:
-        value = payload.get('color')
+    if "color" in payload:
+        value = payload.get("color")
         if value is not None:
             try:
                 int_val = int(value)
@@ -92,13 +124,16 @@ def validate_schedule_recurring_post(payload: dict[str, Any]) -> tuple[bool, str
                     return (False, f"color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
-    
+
     # Validate fabric-object if present
-    if 'fabric-object' in payload:
-        value = payload.get('fabric-object')
+    if "fabric-object" in payload:
+        value = payload.get("fabric-object")
         if value and value not in VALID_BODY_FABRIC_OBJECT:
-            return (False, f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}")
-    
+            return (
+                False,
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
+            )
+
     return (True, None)
 
 
@@ -106,49 +141,55 @@ def validate_schedule_recurring_post(payload: dict[str, Any]) -> tuple[bool, str
 # PUT Validation
 # ============================================================================
 
+
 def validate_schedule_recurring_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
             return (False, f"name cannot exceed 31 characters")
-    
+
     # Validate day if present
-    if 'day' in payload:
-        value = payload.get('day')
+    if "day" in payload:
+        value = payload.get("day")
         if value and value not in VALID_BODY_DAY:
-            return (False, f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}")
-    
+            return (
+                False,
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
+            )
+
     # Validate label-day if present
-    if 'label-day' in payload:
-        value = payload.get('label-day')
+    if "label-day" in payload:
+        value = payload.get("label-day")
         if value and value not in VALID_BODY_LABEL_DAY:
-            return (False, f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}")
-    
+            return (
+                False,
+                f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}",
+            )
+
     # Validate color if present
-    if 'color' in payload:
-        value = payload.get('color')
+    if "color" in payload:
+        value = payload.get("color")
         if value is not None:
             try:
                 int_val = int(value)
@@ -156,13 +197,16 @@ def validate_schedule_recurring_put(
                     return (False, f"color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
-    
+
     # Validate fabric-object if present
-    if 'fabric-object' in payload:
-        value = payload.get('fabric-object')
+    if "fabric-object" in payload:
+        value = payload.get("fabric-object")
         if value and value not in VALID_BODY_FABRIC_OBJECT:
-            return (False, f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}")
-    
+            return (
+                False,
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
+            )
+
     return (True, None)
 
 
@@ -170,17 +214,20 @@ def validate_schedule_recurring_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_schedule_recurring_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_schedule_recurring_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

@@ -108,9 +108,7 @@ class Npu:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -160,7 +158,6 @@ class Npu:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/npu"
         if before is not None:
             data_payload["before"] = before
@@ -169,9 +166,7 @@ class Npu:
         if dedicated_management_cpu is not None:
             data_payload["dedicated-management-cpu"] = dedicated_management_cpu
         if dedicated_management_affinity is not None:
-            data_payload["dedicated-management-affinity"] = (
-                dedicated_management_affinity
-            )
+            data_payload["dedicated-management-affinity"] = dedicated_management_affinity
         if capwap_offload is not None:
             data_payload["capwap-offload"] = capwap_offload
         if ipsec_mtu_override is not None:
@@ -185,6 +180,4 @@ class Npu:
         if priority_protocol is not None:
             data_payload["priority-protocol"] = priority_protocol
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

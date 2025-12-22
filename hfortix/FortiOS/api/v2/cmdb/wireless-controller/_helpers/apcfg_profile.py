@@ -9,43 +9,47 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
-VALID_BODY_AP_FAMILY = ['fap', 'fap-u', 'fap-c']
-VALID_BODY_AC_TYPE = ['default', 'specify', 'apcfg']
-VALID_QUERY_ACTION = ['default', 'schema']
+VALID_BODY_AP_FAMILY = ["fap", "fap-u", "fap-c"]
+VALID_BODY_AC_TYPE = ["default", "specify", "apcfg"]
+VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_apcfg_profile_get(
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
     """
     # Validate query parameters if present
-    if 'action' in params:
-        value = params.get('action')
+    if "action" in params:
+        value = params.get("action")
         if value and value not in VALID_QUERY_ACTION:
-            return (False, f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}")
-    
+            return (
+                False,
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
+            )
+
     return (True, None)
 
 
@@ -53,43 +57,52 @@ def validate_apcfg_profile_get(
 # POST Validation
 # ============================================================================
 
-def validate_apcfg_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_apcfg_profile_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating apcfg_profile.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate ap-family if present
-    if 'ap-family' in payload:
-        value = payload.get('ap-family')
+    if "ap-family" in payload:
+        value = payload.get("ap-family")
         if value and value not in VALID_BODY_AP_FAMILY:
-            return (False, f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}")
-    
+            return (
+                False,
+                f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}",
+            )
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate ac-type if present
-    if 'ac-type' in payload:
-        value = payload.get('ac-type')
+    if "ac-type" in payload:
+        value = payload.get("ac-type")
         if value and value not in VALID_BODY_AC_TYPE:
-            return (False, f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}")
-    
+            return (
+                False,
+                f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}",
+            )
+
     # Validate ac-timer if present
-    if 'ac-timer' in payload:
-        value = payload.get('ac-timer')
+    if "ac-timer" in payload:
+        value = payload.get("ac-timer")
         if value is not None:
             try:
                 int_val = int(value)
@@ -97,10 +110,10 @@ def validate_apcfg_profile_post(payload: dict[str, Any]) -> tuple[bool, str | No
                     return (False, f"ac-timer must be between 3 and 30")
             except (ValueError, TypeError):
                 return (False, f"ac-timer must be numeric, got: {value}")
-    
+
     # Validate ac-port if present
-    if 'ac-port' in payload:
-        value = payload.get('ac-port')
+    if "ac-port" in payload:
+        value = payload.get("ac-port")
         if value is not None:
             try:
                 int_val = int(value)
@@ -108,7 +121,7 @@ def validate_apcfg_profile_post(payload: dict[str, Any]) -> tuple[bool, str | No
                     return (False, f"ac-port must be between 1024 and 49150")
             except (ValueError, TypeError):
                 return (False, f"ac-port must be numeric, got: {value}")
-    
+
     return (True, None)
 
 
@@ -116,55 +129,61 @@ def validate_apcfg_profile_post(payload: dict[str, Any]) -> tuple[bool, str | No
 # PUT Validation
 # ============================================================================
 
+
 def validate_apcfg_profile_put(
-    name: str | None = None,
-    payload: dict[str, Any] | None = None
+    name: str | None = None, payload: dict[str, Any] | None = None
 ) -> tuple[bool, str | None]:
     """
     Validate PUT request payload for updating {endpoint_name}.
-    
+
     Args:
         name: Object identifier (required)
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     # name is required for updates
     if not name:
         return (False, "name is required for PUT operation")
-    
+
     # If no payload provided, nothing to validate
     if not payload:
         return (True, None)
-    
+
     # Validate name if present
-    if 'name' in payload:
-        value = payload.get('name')
+    if "name" in payload:
+        value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"name cannot exceed 35 characters")
-    
+
     # Validate ap-family if present
-    if 'ap-family' in payload:
-        value = payload.get('ap-family')
+    if "ap-family" in payload:
+        value = payload.get("ap-family")
         if value and value not in VALID_BODY_AP_FAMILY:
-            return (False, f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}")
-    
+            return (
+                False,
+                f"Invalid ap-family '{value}'. Must be one of: {', '.join(VALID_BODY_AP_FAMILY)}",
+            )
+
     # Validate comment if present
-    if 'comment' in payload:
-        value = payload.get('comment')
+    if "comment" in payload:
+        value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
             return (False, f"comment cannot exceed 255 characters")
-    
+
     # Validate ac-type if present
-    if 'ac-type' in payload:
-        value = payload.get('ac-type')
+    if "ac-type" in payload:
+        value = payload.get("ac-type")
         if value and value not in VALID_BODY_AC_TYPE:
-            return (False, f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}")
-    
+            return (
+                False,
+                f"Invalid ac-type '{value}'. Must be one of: {', '.join(VALID_BODY_AC_TYPE)}",
+            )
+
     # Validate ac-timer if present
-    if 'ac-timer' in payload:
-        value = payload.get('ac-timer')
+    if "ac-timer" in payload:
+        value = payload.get("ac-timer")
         if value is not None:
             try:
                 int_val = int(value)
@@ -172,10 +191,10 @@ def validate_apcfg_profile_put(
                     return (False, f"ac-timer must be between 3 and 30")
             except (ValueError, TypeError):
                 return (False, f"ac-timer must be numeric, got: {value}")
-    
+
     # Validate ac-port if present
-    if 'ac-port' in payload:
-        value = payload.get('ac-port')
+    if "ac-port" in payload:
+        value = payload.get("ac-port")
         if value is not None:
             try:
                 int_val = int(value)
@@ -183,7 +202,7 @@ def validate_apcfg_profile_put(
                     return (False, f"ac-port must be between 1024 and 49150")
             except (ValueError, TypeError):
                 return (False, f"ac-port must be numeric, got: {value}")
-    
+
     return (True, None)
 
 
@@ -191,17 +210,20 @@ def validate_apcfg_profile_put(
 # DELETE Validation
 # ============================================================================
 
-def validate_apcfg_profile_delete(name: str | None = None) -> tuple[bool, str | None]:
+
+def validate_apcfg_profile_delete(
+    name: str | None = None,
+) -> tuple[bool, str | None]:
     """
     Validate DELETE request parameters.
-    
+
     Args:
         name: Object identifier (required)
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     if not name:
         return (False, "name is required for DELETE operation")
-    
+
     return (True, None)

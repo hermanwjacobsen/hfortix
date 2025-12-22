@@ -3,6 +3,8 @@ FortiOS-Specific Exceptions
 FortiOS error codes and product-specific exception handling
 """
 
+from typing import Optional
+
 # ============================================================================
 # Base Exception Classes
 # ============================================================================
@@ -11,7 +13,6 @@ FortiOS error codes and product-specific exception handling
 class FortinetError(Exception):
     """Base exception for all Fortinet API errors"""
 
-    pass
 
 
 class APIError(FortinetError):
@@ -25,9 +26,7 @@ class APIError(FortinetError):
         response: Full API response dict
     """
 
-    def __init__(
-        self, message, http_status=None, error_code=None, response=None
-    ):
+    def __init__(self, message, http_status=None, error_code=None, response=None):
         super().__init__(message)
         self.http_status = http_status
         self.error_code = error_code
@@ -46,13 +45,11 @@ class BadRequestError(APIError):
 class AuthenticationError(FortinetError):
     """HTTP 401 - Authentication failed (invalid credentials)"""
 
-    pass
 
 
 class AuthorizationError(FortinetError):
     """HTTP 403 - Authorization failed (insufficient permissions)"""
 
-    pass
 
 
 class ReadOnlyModeError(FortinetError):
@@ -63,7 +60,6 @@ class ReadOnlyModeError(FortinetError):
     This is a client-side block to prevent accidental writes in safe mode.
     """
 
-    pass
 
 
 class ResourceNotFoundError(APIError):
@@ -148,7 +144,7 @@ HTTP_STATUS_CODES = {
 }
 
 
-def get_http_status_description(status_code):
+def get_http_status_description(status_code: int) -> str:
     """
     Get human-readable description for HTTP status code
 
@@ -158,9 +154,7 @@ def get_http_status_description(status_code):
     Returns:
         str: Status description or "Unknown status code"
     """
-    return HTTP_STATUS_CODES.get(
-        status_code, f"Unknown status code: {status_code}"
-    )
+    return HTTP_STATUS_CODES.get(status_code, f"Unknown status code: {status_code}")
 
 
 # ============================================================================
@@ -180,9 +174,7 @@ class DuplicateEntryError(APIError):
 class EntryInUseError(APIError):
     """Entry cannot be deleted because it's in use (error code -23, -94, -95, etc.)"""
 
-    def __init__(
-        self, message="Entry is in use and cannot be deleted", **kwargs
-    ):
+    def __init__(self, message="Entry is in use and cannot be deleted", **kwargs):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -23
         super().__init__(message, **kwargs)
@@ -200,9 +192,7 @@ class InvalidValueError(APIError):
 class PermissionDeniedError(APIError):
     """Permission denied, insufficient privileges (error code -14, -37)"""
 
-    def __init__(
-        self, message="Permission denied. Insufficient privileges.", **kwargs
-    ):
+    def __init__(self, message="Permission denied. Insufficient privileges.", **kwargs):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -14
         super().__init__(message, **kwargs)
@@ -619,7 +609,7 @@ FORTIOS_ERROR_CODES = {
 # ============================================================================
 
 
-def get_error_description(error_code):
+def get_error_description(error_code: int) -> str:
     """
     Get human-readable description for FortiOS error code
 
@@ -638,7 +628,9 @@ def get_error_description(error_code):
     return FORTIOS_ERROR_CODES.get(error_code, "Unknown error")
 
 
-def _get_suggestion_for_error(error_code, http_status, endpoint=None):
+def _get_suggestion_for_error(
+    error_code: Optional[int], http_status: Optional[int], endpoint: Optional[str] = None
+) -> str:
     """
     Get helpful suggestion based on error type
 
@@ -685,7 +677,7 @@ def _get_suggestion_for_error(error_code, http_status, endpoint=None):
     return ""
 
 
-def raise_for_status(response, endpoint=None):
+def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
     """
     Raise appropriate exception based on FortiOS API response
 
@@ -724,12 +716,7 @@ def raise_for_status(response, endpoint=None):
             error_code=error_code,
             response=response,
         )
-    elif (
-        error_code == -23
-        or error_code == -94
-        or error_code == -95
-        or error_code == -96
-    ):
+    elif error_code == -23 or error_code == -94 or error_code == -95 or error_code == -96:
         raise EntryInUseError(
             message,
             http_status=http_status,
@@ -760,29 +747,21 @@ def raise_for_status(response, endpoint=None):
 
     # Priority 2: Check HTTP status codes
     elif http_status == 404:
-        raise ResourceNotFoundError(
-            message, error_code=error_code, response=response
-        )
+        raise ResourceNotFoundError(message, error_code=error_code, response=response)
     elif http_status == 400:
-        raise BadRequestError(
-            message, error_code=error_code, response=response
-        )
+        raise BadRequestError(message, error_code=error_code, response=response)
     elif http_status == 401:
         raise AuthenticationError(message)
     elif http_status == 403:
         raise AuthorizationError(message)
     elif http_status == 405:
-        raise MethodNotAllowedError(
-            message, error_code=error_code, response=response
-        )
+        raise MethodNotAllowedError(message, error_code=error_code, response=response)
     elif http_status == 429:
         raise RateLimitError(message, error_code=error_code, response=response)
     elif http_status == 500:
         raise ServerError(message, error_code=error_code, response=response)
     elif http_status == 503:
-        raise ServiceUnavailableError(
-            message, error_code=error_code, response=response
-        )
+        raise ServiceUnavailableError(message, error_code=error_code, response=response)
 
     # Default: Generic APIError
     else:

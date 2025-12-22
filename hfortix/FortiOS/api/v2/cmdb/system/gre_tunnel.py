@@ -128,9 +128,7 @@ class GreTunnel:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -201,7 +199,6 @@ class GreTunnel:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -228,13 +225,9 @@ class GreTunnel:
         if use_sdwan is not None:
             data_payload["use-sdwan"] = use_sdwan
         if sequence_number_transmission is not None:
-            data_payload["sequence-number-transmission"] = (
-                sequence_number_transmission
-            )
+            data_payload["sequence-number-transmission"] = sequence_number_transmission
         if sequence_number_reception is not None:
-            data_payload["sequence-number-reception"] = (
-                sequence_number_reception
-            )
+            data_payload["sequence-number-reception"] = sequence_number_reception
         if checksum_transmission is not None:
             data_payload["checksum-transmission"] = checksum_transmission
         if checksum_reception is not None:
@@ -252,9 +245,7 @@ class GreTunnel:
         if keepalive_failtimes is not None:
             data_payload["keepalive-failtimes"] = keepalive_failtimes
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -291,9 +282,7 @@ class GreTunnel:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/gre-tunnel/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -405,7 +394,6 @@ class GreTunnel:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/gre-tunnel"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -426,13 +414,9 @@ class GreTunnel:
         if use_sdwan is not None:
             data_payload["use-sdwan"] = use_sdwan
         if sequence_number_transmission is not None:
-            data_payload["sequence-number-transmission"] = (
-                sequence_number_transmission
-            )
+            data_payload["sequence-number-transmission"] = sequence_number_transmission
         if sequence_number_reception is not None:
-            data_payload["sequence-number-reception"] = (
-                sequence_number_reception
-            )
+            data_payload["sequence-number-reception"] = sequence_number_reception
         if checksum_transmission is not None:
             data_payload["checksum-transmission"] = checksum_transmission
         if checksum_reception is not None:
@@ -450,6 +434,4 @@ class GreTunnel:
         if keepalive_failtimes is not None:
             data_payload["keepalive-failtimes"] = keepalive_failtimes
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

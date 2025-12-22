@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Add:
@@ -81,9 +81,7 @@ class Add:
         if spt is not None:
             data["spt"] = spt
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/clearpass-address/add", data=data
-        )
+        return self._client.post("monitor", "/firewall/clearpass-address/add", data=data)
 
 
 class Delete:
@@ -128,9 +126,7 @@ class Delete:
         if spt is not None:
             data["spt"] = spt
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/clearpass-address/delete", data=data
-        )
+        return self._client.post("monitor", "/firewall/clearpass-address/delete", data=data)
 
 
 class ClearpassAddress:

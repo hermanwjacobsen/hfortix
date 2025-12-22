@@ -128,9 +128,7 @@ class AccessProxy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -191,7 +189,6 @@ class AccessProxy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -212,17 +209,13 @@ class AccessProxy:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = (
-                add_vhost_domain_to_dnsdb
-            )
+            data_payload["add-vhost-domain-to-dnsdb"] = add_vhost_domain_to_dnsdb
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = (
-                svr_pool_server_max_request
-            )
+            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -234,9 +227,7 @@ class AccessProxy:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -273,9 +264,7 @@ class AccessProxy:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/access-proxy/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -377,7 +366,6 @@ class AccessProxy:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/access-proxy"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -392,17 +380,13 @@ class AccessProxy:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = (
-                add_vhost_domain_to_dnsdb
-            )
+            data_payload["add-vhost-domain-to-dnsdb"] = add_vhost_domain_to_dnsdb
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = (
-                svr_pool_server_max_request
-            )
+            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -414,6 +398,4 @@ class AccessProxy:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

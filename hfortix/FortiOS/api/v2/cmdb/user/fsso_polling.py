@@ -128,9 +128,7 @@ class FssoPolling:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -191,7 +189,6 @@ class FssoPolling:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not id:
@@ -228,9 +225,7 @@ class FssoPolling:
         if smb_ntlmv1_auth is not None:
             data_payload["smb-ntlmv1-auth"] = smb_ntlmv1_auth
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -267,9 +262,7 @@ class FssoPolling:
             raise ValueError("id is required for delete()")
         endpoint = f"/user/fsso-polling/{id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -371,7 +364,6 @@ class FssoPolling:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/user/fsso-polling"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -402,6 +394,4 @@ class FssoPolling:
         if smb_ntlmv1_auth is not None:
             data_payload["smb-ntlmv1-auth"] = smb_ntlmv1_auth
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

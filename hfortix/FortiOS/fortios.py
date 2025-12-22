@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import logging
 import os
-from typing import TYPE_CHECKING, Any, Literal, Optional, Union, cast, overload
+from typing import TYPE_CHECKING, Any, Literal, Optional, Union, overload
 
 from .api import API
 from .http_client import HTTPClient
 from .http_client_interface import IHTTPClient
 
 if TYPE_CHECKING:
-    from .http_client_async import AsyncHTTPClient
+    pass
 
 __all__ = ["FortiOS"]
 
@@ -349,9 +349,7 @@ class FortiOS:
                 else:
                     url = f"https://{host}"
             else:
-                raise ValueError(
-                    "host parameter is required when not providing a custom client"
-                )
+                raise ValueError("host parameter is required when not providing a custom client")
 
             # Create default client based on mode
             if mode == "async":
@@ -412,9 +410,7 @@ class FortiOS:
             mode,
         )
         if not verify:
-            logger.warning(
-                "SSL verification disabled - not recommended for production"
-            )
+            logger.warning("SSL verification disabled - not recommended for production")
         if vdom:
             logger.debug("Using VDOM: %s", vdom)
 
@@ -758,7 +754,12 @@ class FortiOS:
         """
         Close the async HTTP session and release resources (async mode only)
 
-        Use this method when working in async mode to properly clean up resources.
+        This method should be called to properly clean up resources when using FortiOS in async mode.
+        It ensures that all network connections and sessions are closed.
+
+        Usage:
+            - Call `await fgt.aclose()` when you are done with the client in async mode.
+            - Prefer using the async context manager (`async with`) for automatic cleanup.
 
         Example:
             >>> fgt = FortiOS("192.0.2.10", token="...", mode="async")
@@ -774,9 +775,6 @@ class FortiOS:
         """
         if self._mode != "async":
             raise RuntimeError("aclose() is only available in async mode")
-        # Type ignore justified: IHTTPClient.close() returns Union[None, Coroutine[Any, Any, None]]
-        # to support both sync and async modes. In async mode, we know it's awaitable but mypy
-        # cannot narrow the Union type. Runtime check (_mode == "async") ensures correctness.
         await self._client.close()  # type: ignore[misc]
 
     def __enter__(self) -> "FortiOS":
@@ -797,17 +795,33 @@ class FortiOS:
         return False
 
     async def __aenter__(self) -> "FortiOS":
-        """Async context manager entry (async mode only)"""
+        """
+        Async context manager entry (async mode only)
+
+        Enters the async context for FortiOS. Use with `async with` to ensure proper resource management.
+
+        Returns:
+            FortiOS: The async client instance.
+
+        Example:
+            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as fgt:
+            ...     addresses = await fgt.api.cmdb.firewall.address.list()
+        """
         if self._mode != "async":
             raise RuntimeError(
                 "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."
             )
         return self
 
-    async def __aexit__(
-        self, exc_type: Any, exc_val: Any, exc_tb: Any
-    ) -> bool:
-        """Async context manager exit - automatically closes session (async mode only)"""
+    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
+        """
+        Async context manager exit - automatically closes session (async mode only)
+
+        Ensures that all resources are cleaned up when exiting the async context.
+
+        Returns:
+            bool: False (exceptions are not suppressed)
+        """
         if self._mode != "async":
             raise RuntimeError(
                 "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."

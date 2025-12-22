@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class NetworkServiceDynamic:
@@ -76,6 +76,4 @@ class NetworkServiceDynamic:
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/network-service-dynamic", params=params
-        )
+        return self._client.get("monitor", "/firewall/network-service-dynamic", params=params)

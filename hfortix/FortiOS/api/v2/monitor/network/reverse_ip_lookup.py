@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ReverseIpLookup:
@@ -76,6 +76,4 @@ class ReverseIpLookup:
         params = payload_dict.copy() if payload_dict else {}
         params["ip"] = ip
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/network/reverse-ip-lookup", params=params
-        )
+        return self._client.get("monitor", "/network/reverse-ip-lookup", params=params)

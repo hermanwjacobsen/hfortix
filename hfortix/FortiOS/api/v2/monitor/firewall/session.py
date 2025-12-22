@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Close:
@@ -93,9 +93,7 @@ class Close:
         if dport is not None:
             data["dport"] = dport
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/session/close", data=data
-        )
+        return self._client.post("monitor", "/firewall/session/close", data=data)
 
 
 class CloseAll:
@@ -132,9 +130,7 @@ class CloseAll:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/session/close-all", data=data
-        )
+        return self._client.post("monitor", "/firewall/session/close-all", data=data)
 
 
 class CloseMultiple:
@@ -203,9 +199,7 @@ class CloseMultiple:
         if policy is not None:
             data["policy"] = policy
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/session/close-multiple", data=data
-        )
+        return self._client.post("monitor", "/firewall/session/close-multiple", data=data)
 
 
 class Session:

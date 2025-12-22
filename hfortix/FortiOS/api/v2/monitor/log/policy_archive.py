@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Download:
@@ -82,9 +82,7 @@ class Download:
         params["srcip"] = srcip
         params["dstip"] = dstip
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/log/policy-archive/download", params=params
-        )
+        return self._client.get("monitor", "/log/policy-archive/download", params=params)
 
 
 class PolicyArchive:

@@ -128,9 +128,7 @@ class Wtp:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -259,7 +257,6 @@ class Wtp:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not wtp_id:
@@ -292,9 +289,7 @@ class Wtp:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload["firmware-provision-latest"] = (
-                firmware_provision_latest
-            )
+            data_payload["firmware-provision-latest"] = firmware_provision_latest
         if wtp_profile is not None:
             data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
@@ -340,17 +335,13 @@ class Wtp:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload["override-login-passwd-change"] = (
-                override_login_passwd_change
-            )
+            data_payload["override-login-passwd-change"] = override_login_passwd_change
         if login_passwd_change is not None:
             data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
             data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload["override-default-mesh-root"] = (
-                override_default_mesh_root
-            )
+            data_payload["override-default-mesh-root"] = override_default_mesh_root
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
@@ -372,9 +363,7 @@ class Wtp:
         if coordinate_longitude is not None:
             data_payload["coordinate-longitude"] = coordinate_longitude
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -411,9 +400,7 @@ class Wtp:
             raise ValueError("wtp_id is required for delete()")
         endpoint = f"/wireless-controller/wtp/{wtp_id}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -583,7 +570,6 @@ class Wtp:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller/wtp"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -610,9 +596,7 @@ class Wtp:
         if firmware_provision is not None:
             data_payload["firmware-provision"] = firmware_provision
         if firmware_provision_latest is not None:
-            data_payload["firmware-provision-latest"] = (
-                firmware_provision_latest
-            )
+            data_payload["firmware-provision-latest"] = firmware_provision_latest
         if wtp_profile is not None:
             data_payload["wtp-profile"] = wtp_profile
         if apcfg_profile is not None:
@@ -658,17 +642,13 @@ class Wtp:
         if allowaccess is not None:
             data_payload["allowaccess"] = allowaccess
         if override_login_passwd_change is not None:
-            data_payload["override-login-passwd-change"] = (
-                override_login_passwd_change
-            )
+            data_payload["override-login-passwd-change"] = override_login_passwd_change
         if login_passwd_change is not None:
             data_payload["login-passwd-change"] = login_passwd_change
         if login_passwd is not None:
             data_payload["login-passwd"] = login_passwd
         if override_default_mesh_root is not None:
-            data_payload["override-default-mesh-root"] = (
-                override_default_mesh_root
-            )
+            data_payload["override-default-mesh-root"] = override_default_mesh_root
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
@@ -690,6 +670,4 @@ class Wtp:
         if coordinate_longitude is not None:
             data_payload["coordinate-longitude"] = coordinate_longitude
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

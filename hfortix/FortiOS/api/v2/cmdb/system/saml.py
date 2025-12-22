@@ -108,9 +108,7 @@ class Saml:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -182,7 +180,6 @@ class Saml:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/saml"
         if before is not None:
             data_payload["before"] = before
@@ -219,9 +216,7 @@ class Saml:
         if server_address is not None:
             data_payload["server-address"] = server_address
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = (
-                require_signed_resp_and_asrt
-            )
+            data_payload["require-signed-resp-and-asrt"] = require_signed_resp_and_asrt
         if tolerance is not None:
             data_payload["tolerance"] = tolerance
         if life is not None:
@@ -229,6 +224,4 @@ class Saml:
         if service_providers is not None:
             data_payload["service-providers"] = service_providers
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

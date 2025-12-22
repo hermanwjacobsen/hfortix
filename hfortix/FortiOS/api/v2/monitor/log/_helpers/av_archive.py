@@ -9,35 +9,36 @@ Customize as needed for endpoint-specific business logic.
 """
 
 from typing import Any
-from ...._helpers import validate_required_fields
+
 
 # Valid enum values from API documentation
 # ============================================================================
 # GET Validation
 # ============================================================================
 
+
 def validate_av_archive_get(
     mkey: str | None = None,
     attr: str | None = None,
     filters: dict[str, Any] | None = None,
-    **params: Any
+    **params: Any,
 ) -> tuple[bool, str | None]:
     """
     Validate GET request parameters.
-    
+
     Args:
         mkey: Object identifier (optional for list, required for specific)
         attr: Attribute filter (optional)
         filters: Additional filter parameters
         **params: Other query parameters
-        
+
     Returns:
         Tuple of (is_valid, error_message)
-        
+
     Example:
         >>> # List all objects
         >>> is_valid, error = {func_name}()
-        >>> 
+        >>>
         >>> # Get specific object
         >>> is_valid, error = validate_av_archive_get(mkey="value")
         >>> if not is_valid:
@@ -48,7 +49,7 @@ def validate_av_archive_get(
     if mkey is not None and str(mkey).strip():
         if not isinstance(mkey, (str, int)):
             return (False, f"mkey must be a string or integer")
-    
+
     return (True, None)
 
 
@@ -56,16 +57,17 @@ def validate_av_archive_get(
 # POST Validation
 # ============================================================================
 
-def validate_av_archive_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
+
+def validate_av_archive_post(
+    payload: dict[str, Any],
+) -> tuple[bool, str | None]:
     """
     Validate POST request payload for creating av_archive.
-    
+
     Args:
         payload: The payload to validate
-        
+
     Returns:
         Tuple of (is_valid, error_message)
     """
     return (True, None)
-
-

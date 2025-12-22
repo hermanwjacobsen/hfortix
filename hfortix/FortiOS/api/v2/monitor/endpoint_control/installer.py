@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Download:
@@ -76,9 +76,7 @@ class Download:
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/installer/download", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/installer/download", params=params)
 
 
 class Installer:
@@ -122,6 +120,4 @@ class Installer:
         if min_version is not None:
             params["min_version"] = min_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/endpoint-control/installer", params=params
-        )
+        return self._client.get("monitor", "/endpoint-control/installer", params=params)

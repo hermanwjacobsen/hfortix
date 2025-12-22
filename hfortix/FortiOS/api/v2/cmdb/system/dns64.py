@@ -108,9 +108,7 @@ class Dns64:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -150,7 +148,6 @@ class Dns64:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/dns64"
         if before is not None:
             data_payload["before"] = before
@@ -161,10 +158,6 @@ class Dns64:
         if dns64_prefix is not None:
             data_payload["dns64-prefix"] = dns64_prefix
         if always_synthesize_aaaa_record is not None:
-            data_payload["always-synthesize-aaaa-record"] = (
-                always_synthesize_aaaa_record
-            )
+            data_payload["always-synthesize-aaaa-record"] = always_synthesize_aaaa_record
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class HaTableChecksums:
@@ -80,6 +80,4 @@ class HaTableChecksums:
         if vdom_name is not None:
             params["vdom_name"] = vdom_name
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/ha-table-checksums", params=params
-        )
+        return self._client.get("monitor", "/system/ha-table-checksums", params=params)

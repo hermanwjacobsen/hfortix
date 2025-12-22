@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any, Dict, Optional
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class InternetService:
@@ -84,9 +84,7 @@ class InternetService:
         if country is not None:
             params["country"] = country
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-match", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-match", params=params)
 
     def details(
         self,
@@ -124,9 +122,7 @@ class InternetService:
         if country is not None:
             params["country"] = country
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-details", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-details", params=params)
 
     def reputation(
         self,
@@ -152,6 +148,4 @@ class InternetService:
         if ip is not None:
             params["ip"] = ip
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/internet-service-reputation", params=params
-        )
+        return self._client.get("monitor", "/firewall/internet-service-reputation", params=params)

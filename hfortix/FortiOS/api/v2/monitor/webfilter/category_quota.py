@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Reset:
@@ -81,9 +81,7 @@ class Reset:
         if user is not None:
             data["user"] = user
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/webfilter/category-quota/reset", data=data
-        )
+        return self._client.post("monitor", "/webfilter/category-quota/reset", data=data)
 
 
 class CategoryQuota:
@@ -131,6 +129,4 @@ class CategoryQuota:
         if user is not None:
             params["user"] = user
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/webfilter/category-quota", params=params
-        )
+        return self._client.get("monitor", "/webfilter/category-quota", params=params)

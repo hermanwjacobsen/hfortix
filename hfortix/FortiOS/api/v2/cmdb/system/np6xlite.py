@@ -128,9 +128,7 @@ class Np6xlite:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -183,7 +181,6 @@ class Np6xlite:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -204,9 +201,7 @@ class Np6xlite:
         if ipsec_inner_fragment is not None:
             data_payload["ipsec-inner-fragment"] = ipsec_inner_fragment
         if ipsec_throughput_msg_frequency is not None:
-            data_payload["ipsec-throughput-msg-frequency"] = (
-                ipsec_throughput_msg_frequency
-            )
+            data_payload["ipsec-throughput-msg-frequency"] = ipsec_throughput_msg_frequency
         if ipsec_sts_timeout is not None:
             data_payload["ipsec-sts-timeout"] = ipsec_sts_timeout
         if hpe is not None:
@@ -214,9 +209,7 @@ class Np6xlite:
         if fp_anomaly is not None:
             data_payload["fp-anomaly"] = fp_anomaly
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -253,9 +246,7 @@ class Np6xlite:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/np6xlite/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -305,7 +296,6 @@ class Np6xlite:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/np6xlite"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -320,9 +310,7 @@ class Np6xlite:
         if ipsec_inner_fragment is not None:
             data_payload["ipsec-inner-fragment"] = ipsec_inner_fragment
         if ipsec_throughput_msg_frequency is not None:
-            data_payload["ipsec-throughput-msg-frequency"] = (
-                ipsec_throughput_msg_frequency
-            )
+            data_payload["ipsec-throughput-msg-frequency"] = ipsec_throughput_msg_frequency
         if ipsec_sts_timeout is not None:
             data_payload["ipsec-sts-timeout"] = ipsec_sts_timeout
         if hpe is not None:
@@ -330,6 +318,4 @@ class Np6xlite:
         if fp_anomaly is not None:
             data_payload["fp-anomaly"] = fp_anomaly
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

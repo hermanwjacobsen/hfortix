@@ -88,7 +88,6 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
             params = payload_dict.copy()
         else:
             params = {}
-        pass
 
         params.update(kwargs)
 
@@ -204,7 +203,6 @@ class PsirtVulnerabilities:
             params = payload_dict.copy()
         else:
             params = {}
-        pass
 
         params.update(kwargs)
 

@@ -116,9 +116,7 @@ class Hotspot20AnqpIpAddressType:
 
         # Build endpoint path
         if name:
-            endpoint = (
-                f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
-            )
+            endpoint = f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
         else:
             endpoint = "/wireless-controller.hotspot20/anqp-ip-address-type"
         if attr is not None:
@@ -130,9 +128,7 @@ class Hotspot20AnqpIpAddressType:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -173,14 +169,11 @@ class Hotspot20AnqpIpAddressType:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
             raise ValueError("name is required for put()")
-        endpoint = (
-            f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
-        )
+        endpoint = f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
         if before is not None:
             data_payload["before"] = before
         if after is not None:
@@ -192,9 +185,7 @@ class Hotspot20AnqpIpAddressType:
         if ipv4_address_type is not None:
             data_payload["ipv4-address-type"] = ipv4_address_type
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -229,13 +220,9 @@ class Hotspot20AnqpIpAddressType:
         # Build endpoint path
         if not name:
             raise ValueError("name is required for delete()")
-        endpoint = (
-            f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
-        )
+        endpoint = f"/wireless-controller.hotspot20/anqp-ip-address-type/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def post(
         self,
@@ -273,7 +260,6 @@ class Hotspot20AnqpIpAddressType:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller.hotspot20/anqp-ip-address-type"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -284,6 +270,4 @@ class Hotspot20AnqpIpAddressType:
         if ipv4_address_type is not None:
             data_payload["ipv4-address-type"] = ipv4_address_type
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

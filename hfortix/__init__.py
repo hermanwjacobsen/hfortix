@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import logging
 
-from .FortiOS import FortiOS, __author__, __version__
+from .FortiOS import __author__, __version__
 from .FortiOS.exceptions import (
     FORTIOS_ERROR_CODES,
     HTTP_STATUS_CODES,

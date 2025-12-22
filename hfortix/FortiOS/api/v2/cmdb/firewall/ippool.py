@@ -128,9 +128,7 @@ class Ippool:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -219,7 +217,6 @@ class Ippool:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -282,13 +279,9 @@ class Ippool:
         if privileged_port_use_pba is not None:
             data_payload["privileged-port-use-pba"] = privileged_port_use_pba
         if subnet_broadcast_in_ippool is not None:
-            data_payload["subnet-broadcast-in-ippool"] = (
-                subnet_broadcast_in_ippool
-            )
+            data_payload["subnet-broadcast-in-ippool"] = subnet_broadcast_in_ippool
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -325,9 +318,7 @@ class Ippool:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/ippool/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -457,7 +448,6 @@ class Ippool:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/firewall/ippool"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -514,10 +504,6 @@ class Ippool:
         if privileged_port_use_pba is not None:
             data_payload["privileged-port-use-pba"] = privileged_port_use_pba
         if subnet_broadcast_in_ippool is not None:
-            data_payload["subnet-broadcast-in-ippool"] = (
-                subnet_broadcast_in_ippool
-            )
+            data_payload["subnet-broadcast-in-ippool"] = subnet_broadcast_in_ippool
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

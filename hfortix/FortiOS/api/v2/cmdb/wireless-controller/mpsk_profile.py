@@ -128,9 +128,7 @@ class MpskProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -177,7 +175,6 @@ class MpskProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -192,9 +189,7 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload["mpsk-external-server-auth"] = (
-                mpsk_external_server_auth
-            )
+            data_payload["mpsk-external-server-auth"] = mpsk_external_server_auth
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:
@@ -202,9 +197,7 @@ class MpskProfile:
         if mpsk_group is not None:
             data_payload["mpsk-group"] = mpsk_group
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -241,9 +234,7 @@ class MpskProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/mpsk-profile/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -331,7 +322,6 @@ class MpskProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/wireless-controller/mpsk-profile"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -340,9 +330,7 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload["mpsk-external-server-auth"] = (
-                mpsk_external_server_auth
-            )
+            data_payload["mpsk-external-server-auth"] = mpsk_external_server_auth
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:
@@ -350,6 +338,4 @@ class MpskProfile:
         if mpsk_group is not None:
             data_payload["mpsk-group"] = mpsk_group
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

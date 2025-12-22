@@ -128,9 +128,7 @@ class List:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -199,7 +197,6 @@ class List:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -226,13 +223,9 @@ class List:
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload["force-inclusion-ssl-di-sigs"] = (
-                force_inclusion_ssl_di_sigs
-            )
+            data_payload["force-inclusion-ssl-di-sigs"] = force_inclusion_ssl_di_sigs
         if unknown_application_action is not None:
-            data_payload["unknown-application-action"] = (
-                unknown_application_action
-            )
+            data_payload["unknown-application-action"] = unknown_application_action
         if unknown_application_log is not None:
             data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
@@ -244,15 +237,11 @@ class List:
         if entries is not None:
             data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload["control-default-network-services"] = (
-                control_default_network_services
-            )
+            data_payload["control-default-network-services"] = control_default_network_services
         if default_network_services is not None:
             data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -289,9 +278,7 @@ class List:
             raise ValueError("name is required for delete()")
         endpoint = f"/application/list/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -401,7 +388,6 @@ class List:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/application/list"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -422,13 +408,9 @@ class List:
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload["force-inclusion-ssl-di-sigs"] = (
-                force_inclusion_ssl_di_sigs
-            )
+            data_payload["force-inclusion-ssl-di-sigs"] = force_inclusion_ssl_di_sigs
         if unknown_application_action is not None:
-            data_payload["unknown-application-action"] = (
-                unknown_application_action
-            )
+            data_payload["unknown-application-action"] = unknown_application_action
         if unknown_application_log is not None:
             data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
@@ -440,12 +422,8 @@ class List:
         if entries is not None:
             data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload["control-default-network-services"] = (
-                control_default_network_services
-            )
+            data_payload["control-default-network-services"] = control_default_network_services
         if default_network_services is not None:
             data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class FortianalyzerQueue:
@@ -77,6 +77,4 @@ class FortianalyzerQueue:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/log/fortianalyzer-queue", params=params
-        )
+        return self._client.get("monitor", "/log/fortianalyzer-queue", params=params)

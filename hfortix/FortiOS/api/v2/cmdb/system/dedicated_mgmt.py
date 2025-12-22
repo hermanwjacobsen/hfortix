@@ -108,9 +108,7 @@ class DedicatedMgmt:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -158,7 +156,6 @@ class DedicatedMgmt:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/system/dedicated-mgmt"
         if before is not None:
             data_payload["before"] = before
@@ -179,6 +176,4 @@ class DedicatedMgmt:
         if dhcp_end_ip is not None:
             data_payload["dhcp-end-ip"] = dhcp_end_ip
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

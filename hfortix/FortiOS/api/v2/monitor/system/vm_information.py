@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class VmInformation:
@@ -73,6 +73,4 @@ class VmInformation:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/system/vm-information", params=params
-        )
+        return self._client.get("monitor", "/system/vm-information", params=params)

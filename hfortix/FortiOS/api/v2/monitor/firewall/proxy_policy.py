@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class ClearCounters:
@@ -77,9 +77,7 @@ class ClearCounters:
         if policy is not None:
             data["policy"] = policy
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/firewall/proxy-policy/clear_counters", data=data
-        )
+        return self._client.post("monitor", "/firewall/proxy-policy/clear_counters", data=data)
 
 
 class ProxyPolicy:
@@ -123,6 +121,4 @@ class ProxyPolicy:
         if policyid is not None:
             params["policyid"] = policyid
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/firewall/proxy-policy", params=params
-        )
+        return self._client.get("monitor", "/firewall/proxy-policy", params=params)

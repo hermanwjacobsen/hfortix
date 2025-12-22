@@ -128,9 +128,7 @@ class LldpProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -201,7 +199,6 @@ class LldpProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -240,9 +237,7 @@ class LldpProfile:
         if auto_isl_auth_encrypt is not None:
             data_payload["auto-isl-auth-encrypt"] = auto_isl_auth_encrypt
         if auto_isl_auth_macsec_profile is not None:
-            data_payload["auto-isl-auth-macsec-profile"] = (
-                auto_isl_auth_macsec_profile
-            )
+            data_payload["auto-isl-auth-macsec-profile"] = auto_isl_auth_macsec_profile
         if med_network_policy is not None:
             data_payload["med-network-policy"] = med_network_policy
         if med_location_service is not None:
@@ -250,9 +245,7 @@ class LldpProfile:
         if custom_tlvs is not None:
             data_payload["custom-tlvs"] = custom_tlvs
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -289,9 +282,7 @@ class LldpProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/switch-controller/lldp-profile/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -403,7 +394,6 @@ class LldpProfile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/switch-controller/lldp-profile"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -436,9 +426,7 @@ class LldpProfile:
         if auto_isl_auth_encrypt is not None:
             data_payload["auto-isl-auth-encrypt"] = auto_isl_auth_encrypt
         if auto_isl_auth_macsec_profile is not None:
-            data_payload["auto-isl-auth-macsec-profile"] = (
-                auto_isl_auth_macsec_profile
-            )
+            data_payload["auto-isl-auth-macsec-profile"] = auto_isl_auth_macsec_profile
         if med_network_policy is not None:
             data_payload["med-network-policy"] = med_network_policy
         if med_location_service is not None:
@@ -446,6 +434,4 @@ class LldpProfile:
         if custom_tlvs is not None:
             data_payload["custom-tlvs"] = custom_tlvs
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

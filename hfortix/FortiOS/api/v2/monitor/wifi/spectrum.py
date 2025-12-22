@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class KeepAlive:
@@ -85,9 +85,7 @@ class KeepAlive:
         if duration is not None:
             data["duration"] = duration
         data.update(kwargs)
-        return self._client.post(
-            "monitor", "/wifi/spectrum/keep-alive", data=data
-        )
+        return self._client.post("monitor", "/wifi/spectrum/keep-alive", data=data)
 
 
 class Start:

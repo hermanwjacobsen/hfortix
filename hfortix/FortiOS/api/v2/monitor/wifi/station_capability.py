@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class StationCapability:
@@ -85,6 +85,4 @@ class StationCapability:
         if max_age is not None:
             params["max_age"] = max_age
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/wifi/station-capability", params=params
-        )
+        return self._client.get("monitor", "/wifi/station-capability", params=params)

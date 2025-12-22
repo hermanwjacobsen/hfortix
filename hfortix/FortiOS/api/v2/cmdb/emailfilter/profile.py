@@ -128,9 +128,7 @@ class Profile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -203,7 +201,6 @@ class Profile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not name:
@@ -224,9 +221,7 @@ class Profile:
         if spam_log is not None:
             data_payload["spam-log"] = spam_log
         if spam_log_fortiguard_response is not None:
-            data_payload["spam-log-fortiguard-response"] = (
-                spam_log_fortiguard_response
-            )
+            data_payload["spam-log-fortiguard-response"] = spam_log_fortiguard_response
         if spam_filtering is not None:
             data_payload["spam-filtering"] = spam_filtering
         if external is not None:
@@ -254,9 +249,7 @@ class Profile:
         if spam_iptrust_table is not None:
             data_payload["spam-iptrust-table"] = spam_iptrust_table
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -293,9 +286,7 @@ class Profile:
             raise ValueError("name is required for delete()")
         endpoint = f"/emailfilter/profile/{name}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -409,7 +400,6 @@ class Profile:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/emailfilter/profile"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -424,9 +414,7 @@ class Profile:
         if spam_log is not None:
             data_payload["spam-log"] = spam_log
         if spam_log_fortiguard_response is not None:
-            data_payload["spam-log-fortiguard-response"] = (
-                spam_log_fortiguard_response
-            )
+            data_payload["spam-log-fortiguard-response"] = spam_log_fortiguard_response
         if spam_filtering is not None:
             data_payload["spam-filtering"] = spam_filtering
         if external is not None:
@@ -454,6 +442,4 @@ class Profile:
         if spam_iptrust_table is not None:
             data_payload["spam-iptrust-table"] = spam_iptrust_table
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class Routes:
@@ -73,9 +73,7 @@ class Routes:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/sdwan/routes", params=params
-        )
+        return self._client.get("monitor", "/router/sdwan/routes", params=params)
 
 
 class RoutesStatistics:
@@ -116,9 +114,7 @@ class RoutesStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/sdwan/routes-statistics", params=params
-        )
+        return self._client.get("monitor", "/router/sdwan/routes-statistics", params=params)
 
 
 class Routes6:
@@ -155,9 +151,7 @@ class Routes6:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/router/sdwan/routes6", params=params
-        )
+        return self._client.get("monitor", "/router/sdwan/routes6", params=params)
 
 
 class Sdwan:

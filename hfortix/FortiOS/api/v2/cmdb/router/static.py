@@ -128,9 +128,7 @@ class Static:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def put(
         self,
@@ -209,7 +207,6 @@ class Static:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
 
         # Build endpoint path
         if not seq_num:
@@ -254,9 +251,7 @@ class Static:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if link_monitor_exempt is not None:
             data_payload["link-monitor-exempt"] = link_monitor_exempt
         if tag is not None:
@@ -266,9 +261,7 @@ class Static:
         if bfd is not None:
             data_payload["bfd"] = bfd
         data_payload.update(kwargs)
-        return self._client.put(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
 
     def delete(
         self,
@@ -305,9 +298,7 @@ class Static:
             raise ValueError("seq_num is required for delete()")
         endpoint = f"/router/static/{seq_num}"
         params.update(kwargs)
-        return self._client.delete(
-            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
 
     def exists(
         self,
@@ -427,7 +418,6 @@ class Static:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        params = {}
         endpoint = "/router/static"
         if nkey is not None:
             data_payload["nkey"] = nkey
@@ -466,9 +456,7 @@ class Static:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
         if link_monitor_exempt is not None:
             data_payload["link-monitor-exempt"] = link_monitor_exempt
         if tag is not None:
@@ -478,6 +466,4 @@ class Static:
         if bfd is not None:
             data_payload["bfd"] = bfd
         data_payload.update(kwargs)
-        return self._client.post(
-            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
-        )
+        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)

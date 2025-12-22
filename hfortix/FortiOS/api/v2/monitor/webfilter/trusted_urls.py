@@ -26,7 +26,7 @@ Note:
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
-    from hfortix.FortiOS.http_client import HTTPClient
+    pass
 
 
 class TrustedUrls:
@@ -73,6 +73,4 @@ class TrustedUrls:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get(
-            "monitor", "/webfilter/trusted-urls", params=params
-        )
+        return self._client.get("monitor", "/webfilter/trusted-urls", params=params)

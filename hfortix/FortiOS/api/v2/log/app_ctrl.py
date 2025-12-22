@@ -55,9 +55,7 @@ class AppCtrl:
         self._client = client
         self._storage = storage
         self.archive = ArchiveResource(client, "app-ctrl", storage)
-        self.archive_download = ArchiveDownloadResource(
-            client, "app-ctrl", storage
-        )
+        self.archive_download = ArchiveDownloadResource(client, "app-ctrl", storage)
         self.raw = RawResource(client, "app-ctrl", storage)
         self._resource = LogResource(client, "app-ctrl", storage)
 
