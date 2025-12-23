@@ -186,6 +186,7 @@ class Monitor:
         """Azure SDN connector operations."""
         if self._azure is None:
             from .azure import Azure
+
             self._azure = Azure(self._client)
         return self._azure
 
@@ -194,6 +195,7 @@ class Monitor:
         """CASB operations."""
         if self._casb is None:
             from .casb import Casb
+
             self._casb = Casb(self._client)
         return self._casb
 
@@ -203,6 +205,7 @@ class Monitor:
         if self._endpoint_control is None:
 
             from .endpoint_control import EndpointControl
+
             self._endpoint_control = EndpointControl(self._client)
         return self._endpoint_control
 
@@ -212,6 +215,7 @@ class Monitor:
         if self._extender_controller is None:
 
             from .extender_controller import ExtenderController
+
             self._extender_controller = ExtenderController(self._client)
         return self._extender_controller
 
@@ -221,6 +225,7 @@ class Monitor:
         if self._extension_controller is None:
 
             from .extension_controller import ExtensionController
+
             self._extension_controller = ExtensionController(self._client)
         return self._extension_controller
 
@@ -230,6 +235,7 @@ class Monitor:
         if self._firewall is None:
 
             from .firewall import Firewall
+
             self._firewall = Firewall(self._client)
         return self._firewall
 
@@ -239,6 +245,7 @@ class Monitor:
         if self._firmware is None:
 
             from .firmware import Firmware
+
             self._firmware = Firmware(self._client)
         return self._firmware
 
@@ -248,6 +255,7 @@ class Monitor:
         if self._fortiguard is None:
 
             from .fortiguard import Fortiguard
+
             self._fortiguard = Fortiguard(self._client)
         return self._fortiguard
 
@@ -257,6 +265,7 @@ class Monitor:
         if self._fortiview is None:
 
             from .fortiview import Fortiview
+
             self._fortiview = Fortiview(self._client)
         return self._fortiview
 
@@ -266,6 +275,7 @@ class Monitor:
         if self._geoip is None:
 
             from .geoip import Geoip
+
             self._geoip = Geoip(self._client)
         return self._geoip
 
@@ -275,6 +285,7 @@ class Monitor:
         if self._ips is None:
 
             from .ips import Ips
+
             self._ips = Ips(self._client)
         return self._ips
 
@@ -284,6 +295,7 @@ class Monitor:
         if self._license is None:
 
             from .license import License
+
             self._license = License(self._client)
         return self._license
 
@@ -293,6 +305,7 @@ class Monitor:
         if self._log is None:
 
             from .log import Log
+
             self._log = Log(self._client)
         return self._log
 
@@ -302,6 +315,7 @@ class Monitor:
         if self._network is None:
 
             from .network import Network
+
             self._network = Network(self._client)
         return self._network
 
@@ -311,6 +325,7 @@ class Monitor:
         if self._registration is None:
 
             from .registration import Registration
+
             self._registration = Registration(self._client)
         return self._registration
 
@@ -320,6 +335,7 @@ class Monitor:
         if self._router is None:
 
             from .router import Router
+
             self._router = Router(self._client)
         return self._router
 
@@ -329,6 +345,7 @@ class Monitor:
         if self._sdwan is None:
 
             from .sdwan import Sdwan
+
             self._sdwan = Sdwan(self._client)
         return self._sdwan
 
@@ -338,6 +355,7 @@ class Monitor:
         if self._service is None:
 
             from .service import Service
+
             self._service = Service(self._client)
         return self._service
 
@@ -347,6 +365,7 @@ class Monitor:
         if self._switch_controller is None:
 
             from .switch_controller import SwitchController
+
             self._switch_controller = SwitchController(self._client)
         return self._switch_controller
 
@@ -356,6 +375,7 @@ class Monitor:
         if self._system is None:
 
             from .system import System
+
             self._system = System(self._client)
         return self._system
 
@@ -365,6 +385,7 @@ class Monitor:
         if self._user is None:
 
             from .user import User
+
             self._user = User(self._client)
         return self._user
 
@@ -374,6 +395,7 @@ class Monitor:
         if self._utm is None:
 
             from .utm import Utm
+
             self._utm = Utm(self._client)
         return self._utm
 
@@ -383,6 +405,7 @@ class Monitor:
         if self._videofilter is None:
 
             from .videofilter import Videofilter
+
             self._videofilter = Videofilter(self._client)
         return self._videofilter
 
@@ -392,6 +415,7 @@ class Monitor:
         if self._virtual_wan is None:
 
             from .virtual_wan import VirtualWan
+
             self._virtual_wan = VirtualWan(self._client)
         return self._virtual_wan
 
@@ -401,6 +425,7 @@ class Monitor:
         if self._vpn is None:
 
             from .vpn import Vpn
+
             self._vpn = Vpn(self._client)
         return self._vpn
 
@@ -410,6 +435,7 @@ class Monitor:
         if self._vpn_certificate is None:
 
             from .vpn_certificate import VpnCertificate
+
             self._vpn_certificate = VpnCertificate(self._client)
         return self._vpn_certificate
 
@@ -419,6 +445,7 @@ class Monitor:
         if self._wanopt is None:
 
             from .wanopt import Wanopt
+
             self._wanopt = Wanopt(self._client)
         return self._wanopt
 
@@ -428,6 +455,7 @@ class Monitor:
         if self._web_ui is None:
 
             from .web_ui import WebUi
+
             self._web_ui = WebUi(self._client)
         return self._web_ui
 
@@ -437,6 +465,7 @@ class Monitor:
         if self._webcache is None:
 
             from .webcache import Webcache
+
             self._webcache = Webcache(self._client)
         return self._webcache
 
@@ -446,6 +475,7 @@ class Monitor:
         if self._webfilter is None:
 
             from .webfilter import Webfilter
+
             self._webfilter = Webfilter(self._client)
         return self._webfilter
 
@@ -455,6 +485,7 @@ class Monitor:
         if self._webproxy is None:
 
             from .webproxy import Webproxy
+
             self._webproxy = Webproxy(self._client)
         return self._webproxy
 
@@ -464,6 +495,7 @@ class Monitor:
         if self._wifi is None:
 
             from .wifi import Wifi
+
             self._wifi = Wifi(self._client)
         return self._wifi
 

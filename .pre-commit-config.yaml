@@ -34,7 +34,7 @@ repos:
 
   # Import sorting with isort (compatible with Black)
   - repo: https://github.com/PyCQA/isort
-    rev: 5.13.5
+    rev: 5.13.2
     hooks:
       - id: isort
         args: [--profile=black, --line-length=79]

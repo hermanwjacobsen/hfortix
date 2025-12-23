@@ -229,9 +229,12 @@ class RawResource:
 
         # Check if async mode
         import inspect
+
         if inspect.iscoroutine(binary_data):
+
             async def _async():
                 from typing import cast
+
                 data = await cast(Coroutine[Any, Any, bytes], binary_data)
                 if raw_json:
                     return {
@@ -240,6 +243,7 @@ class RawResource:
                     }
                 else:
                     return data.decode("utf-8")
+
             return _async()
 
         # Sync mode - binary_data is bytes
@@ -248,6 +252,7 @@ class RawResource:
             # This is a limitation - we already got binary data
             # For now, return the text in a dict that mimics a response
             from typing import cast
+
             data = cast(bytes, binary_data)
             return {
                 "text": data.decode("utf-8"),
@@ -255,6 +260,7 @@ class RawResource:
             }
         else:
             from typing import cast
+
             data = cast(bytes, binary_data)
             return data.decode("utf-8")
 

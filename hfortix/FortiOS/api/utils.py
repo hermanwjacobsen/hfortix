@@ -149,8 +149,8 @@ class Utils:
                     # Estimate throughput
                     results.sequential_throughput = 1000 / overall_avg
                     print(
-                        f"  Estimated throughput: {
-                            results.sequential_throughput:.2f} req/s"
+                        f"  Estimated throughput: "
+                        f"{results.sequential_throughput:.2f} req/s"
                     )
                 else:
                     print("✗ No valid endpoint results")
