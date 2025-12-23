@@ -110,7 +110,7 @@ def validate_inter_controller_put(
                 if int_val < 3 or int_val > 64:
                     return (
                         False,
-                        f"fast-failover-max must be between 3 and 64",
+                        "fast-failover-max must be between 3 and 64",
                     )
             except (ValueError, TypeError):
                 return (
@@ -127,7 +127,7 @@ def validate_inter_controller_put(
                 if int_val < 10 or int_val > 86400:
                     return (
                         False,
-                        f"fast-failover-wait must be between 10 and 86400",
+                        "fast-failover-wait must be between 10 and 86400",
                     )
             except (ValueError, TypeError):
                 return (

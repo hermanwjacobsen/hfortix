@@ -82,7 +82,7 @@ def validate_setting_put(
                 if int_val < 32 or int_val > 256:
                     return (
                         False,
-                        f"max-concurrent-stitches must be between 32 and 256",
+                        "max-concurrent-stitches must be between 32 and 256",
                     )
             except (ValueError, TypeError):
                 return (

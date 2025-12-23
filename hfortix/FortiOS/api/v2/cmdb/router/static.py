@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class Static:
         Select a specific entry from a CLI table.
 
         Args:
-            seq_num: Object identifier (optional for list, required for specific)
+            seq_num: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class Static:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -171,10 +178,13 @@ class Static:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             seq_num: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             seq_num: Sequence number. (optional)
             status: Enable/disable this static route. (optional)
             dst: Destination IP and mask for this route. (optional)
@@ -187,19 +197,27 @@ class Static:
             device: Gateway out interface or tunnel. (optional)
             comment: Optional comments. (optional)
             blackhole: Enable/disable black hole. (optional)
-            dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. (optional)
+            dynamic_gateway: Enable use of dynamic gateway retrieved from a
+            DHCP or PPP server. (optional)
             sdwan_zone: Choose SD-WAN Zone. (optional)
             dstaddr: Name of firewall address or address group. (optional)
-            internet_service: Application ID in the Internet service database. (optional)
-            internet_service_custom: Application name in the Internet service custom database. (optional)
-            internet_service_fortiguard: Application name in the Internet service fortiguard database. (optional)
-            link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. (optional)
+            internet_service: Application ID in the Internet service database.
+            (optional)
+            internet_service_custom: Application name in the Internet service
+            custom database. (optional)
+            internet_service_fortiguard: Application name in the Internet
+            service fortiguard database. (optional)
+            link_monitor_exempt: Enable/disable withdrawal of this static route
+            when link monitor or health check is down. (optional)
             tag: Route tag. (optional)
             vrf: Virtual Routing Forwarding ID. (optional)
-            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -207,7 +225,8 @@ class Static:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -265,7 +284,7 @@ class Static:
         if tag is not None:
             data_payload["tag"] = tag
         if vrf is not None:
-            data_payload["vrf"] = vrf
+            data_payload["vr"] = vrf
         if bfd is not None:
             data_payload["bfd"] = bfd
         data_payload.update(kwargs)
@@ -287,8 +306,10 @@ class Static:
         Args:
             seq_num: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -296,7 +317,8 @@ class Static:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -389,8 +411,10 @@ class Static:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             seq_num: Sequence number. (optional)
             status: Enable/disable this static route. (optional)
             dst: Destination IP and mask for this route. (optional)
@@ -403,19 +427,27 @@ class Static:
             device: Gateway out interface or tunnel. (optional)
             comment: Optional comments. (optional)
             blackhole: Enable/disable black hole. (optional)
-            dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. (optional)
+            dynamic_gateway: Enable use of dynamic gateway retrieved from a
+            DHCP or PPP server. (optional)
             sdwan_zone: Choose SD-WAN Zone. (optional)
             dstaddr: Name of firewall address or address group. (optional)
-            internet_service: Application ID in the Internet service database. (optional)
-            internet_service_custom: Application name in the Internet service custom database. (optional)
-            internet_service_fortiguard: Application name in the Internet service fortiguard database. (optional)
-            link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. (optional)
+            internet_service: Application ID in the Internet service database.
+            (optional)
+            internet_service_custom: Application name in the Internet service
+            custom database. (optional)
+            internet_service_fortiguard: Application name in the Internet
+            service fortiguard database. (optional)
+            link_monitor_exempt: Enable/disable withdrawal of this static route
+            when link monitor or health check is down. (optional)
             tag: Route tag. (optional)
             vrf: Virtual Routing Forwarding ID. (optional)
-            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -423,7 +455,8 @@ class Static:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -475,7 +508,7 @@ class Static:
         if tag is not None:
             data_payload["tag"] = tag
         if vrf is not None:
-            data_payload["vrf"] = vrf
+            data_payload["vr"] = vrf
         if bfd is not None:
             data_payload["bfd"] = bfd
         data_payload.update(kwargs)

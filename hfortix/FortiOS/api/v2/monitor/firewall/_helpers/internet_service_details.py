@@ -47,7 +47,7 @@ def validate_internet_service_details_get(
     # Validate format only if provided and not empty
     if id is not None and str(id).strip():
         if not isinstance(id, (str, int)):
-            return (False, f"id must be a string or integer")
+            return (False, "id must be a string or integer")
 
     return (True, None)
 

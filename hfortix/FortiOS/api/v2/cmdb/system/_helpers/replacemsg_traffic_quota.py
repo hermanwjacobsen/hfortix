@@ -73,13 +73,13 @@ def validate_replacemsg_traffic_quota_post(
     if "msg-type" in payload:
         value = payload.get("msg-type")
         if value and isinstance(value, str) and len(value) > 28:
-            return (False, f"msg-type cannot exceed 28 characters")
+            return (False, "msg-type cannot exceed 28 characters")
 
     # Validate buffer if present
     if "buffer" in payload:
         value = payload.get("buffer")
         if value and isinstance(value, str) and len(value) > 32768:
-            return (False, f"buffer cannot exceed 32768 characters")
+            return (False, "buffer cannot exceed 32768 characters")
 
     # Validate header if present
     if "header" in payload:

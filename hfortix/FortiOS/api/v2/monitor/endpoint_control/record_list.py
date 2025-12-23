@@ -66,7 +66,8 @@ class RecordList:
         List endpoint records.
 
         Args:
-            intf_name: Filter: Name of interface where the endpoint was detected. (optional)
+            intf_name: Filter: Name of interface where the endpoint was
+            detected. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

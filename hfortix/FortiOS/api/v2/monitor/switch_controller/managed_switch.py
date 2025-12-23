@@ -114,7 +114,8 @@ class BouncePort:
         Args:
             mkey: FortiSwitch ID. (optional)
             port: FortiSwitch Port ID. (optional)
-            duration: Duration in seconds from 1 to 5 for port to be down. Defaults to 1 second if not provided. (optional)
+            duration: Duration in seconds from 1 to 5 for port to be down.
+            Defaults to 1 second if not provided. (optional)
             stop: Stop a bounce in progress. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
@@ -124,7 +125,8 @@ class BouncePort:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.bounce_port.post()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.bounce_port.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -177,7 +179,9 @@ class CableStatus:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.cable_status.get(mkey='value', port='value')
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.cable_status.get(mkey='value',
+            port='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
@@ -220,7 +224,8 @@ class DhcpSnooping:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.dhcp_snooping.get()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.dhcp_snooping.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
@@ -263,7 +268,8 @@ class FaceplateXml:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.faceplate_xml.get(mkey='value')
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.faceplate_xml.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
@@ -307,7 +313,8 @@ class FactoryReset:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.factory_reset.post()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.factory_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -354,7 +361,8 @@ class HealthStatus:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.health_status.get()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.health_status.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -444,7 +452,8 @@ class PoeReset:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.poe_reset.post()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.poe_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -489,7 +498,8 @@ class PortHealth:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.port_health.get()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.port_health.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -534,7 +544,8 @@ class PortStats:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.port_stats.get()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.port_stats.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -581,7 +592,8 @@ class PortStatsReset:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.port_stats_reset.post()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.port_stats_reset.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if mkey is not None:
@@ -714,7 +726,8 @@ class Transceivers:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.transceivers.get()
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.transceivers.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
@@ -759,7 +772,9 @@ class TxRx:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.managed_switch.tx_rx.get(mkey='value', port='value')
+            >>>
+            fgt.api.monitor.switch_controller.managed_switch.tx_rx.get(mkey='value',
+            port='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
@@ -791,11 +806,13 @@ class Update:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Update administrative state for a given FortiSwitch (enable or disable authorization).
+        Update administrative state for a given FortiSwitch (enable or disable
+        authorization).
 
         Args:
             mkey: FortiSwitch name. (optional)
-            admin: New FortiSwitch administrative state [enable|disable|discovered]. (optional)
+            admin: New FortiSwitch administrative state
+            [enable|disable|discovered]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

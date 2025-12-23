@@ -95,19 +95,19 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate request if present
     if "request" in payload:
@@ -161,7 +161,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"204-size-limit must be between 1 and 10")
+                    return (False, "204-size-limit must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"204-size-limit must be numeric, got: {value}")
 
@@ -192,7 +192,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4096:
                     return (
                         False,
-                        f"preview-data-length must be between 0 and 4096",
+                        "preview-data-length must be between 0 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -204,19 +204,19 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "request-server" in payload:
         value = payload.get("request-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"request-server cannot exceed 63 characters")
+            return (False, "request-server cannot exceed 63 characters")
 
     # Validate response-server if present
     if "response-server" in payload:
         value = payload.get("response-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"response-server cannot exceed 63 characters")
+            return (False, "response-server cannot exceed 63 characters")
 
     # Validate file-transfer-server if present
     if "file-transfer-server" in payload:
         value = payload.get("file-transfer-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"file-transfer-server cannot exceed 63 characters")
+            return (False, "file-transfer-server cannot exceed 63 characters")
 
     # Validate request-failure if present
     if "request-failure" in payload:
@@ -249,19 +249,19 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "request-path" in payload:
         value = payload.get("request-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"request-path cannot exceed 127 characters")
+            return (False, "request-path cannot exceed 127 characters")
 
     # Validate response-path if present
     if "response-path" in payload:
         value = payload.get("response-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"response-path cannot exceed 127 characters")
+            return (False, "response-path cannot exceed 127 characters")
 
     # Validate file-transfer-path if present
     if "file-transfer-path" in payload:
         value = payload.get("file-transfer-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"file-transfer-path cannot exceed 127 characters")
+            return (False, "file-transfer-path cannot exceed 127 characters")
 
     # Validate methods if present
     if "methods" in payload:
@@ -326,7 +326,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 5 or int_val > 30:
                     return (
                         False,
-                        f"scan-progress-interval must be between 5 and 30",
+                        "scan-progress-interval must be between 5 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -341,7 +341,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 30 or int_val > 3600:
-                    return (False, f"timeout must be between 30 and 3600")
+                    return (False, "timeout must be between 30 and 3600")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -378,19 +378,19 @@ def validate_profile_put(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate request if present
     if "request" in payload:
@@ -444,7 +444,7 @@ def validate_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"204-size-limit must be between 1 and 10")
+                    return (False, "204-size-limit must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"204-size-limit must be numeric, got: {value}")
 
@@ -475,7 +475,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4096:
                     return (
                         False,
-                        f"preview-data-length must be between 0 and 4096",
+                        "preview-data-length must be between 0 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -487,19 +487,19 @@ def validate_profile_put(
     if "request-server" in payload:
         value = payload.get("request-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"request-server cannot exceed 63 characters")
+            return (False, "request-server cannot exceed 63 characters")
 
     # Validate response-server if present
     if "response-server" in payload:
         value = payload.get("response-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"response-server cannot exceed 63 characters")
+            return (False, "response-server cannot exceed 63 characters")
 
     # Validate file-transfer-server if present
     if "file-transfer-server" in payload:
         value = payload.get("file-transfer-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"file-transfer-server cannot exceed 63 characters")
+            return (False, "file-transfer-server cannot exceed 63 characters")
 
     # Validate request-failure if present
     if "request-failure" in payload:
@@ -532,19 +532,19 @@ def validate_profile_put(
     if "request-path" in payload:
         value = payload.get("request-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"request-path cannot exceed 127 characters")
+            return (False, "request-path cannot exceed 127 characters")
 
     # Validate response-path if present
     if "response-path" in payload:
         value = payload.get("response-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"response-path cannot exceed 127 characters")
+            return (False, "response-path cannot exceed 127 characters")
 
     # Validate file-transfer-path if present
     if "file-transfer-path" in payload:
         value = payload.get("file-transfer-path")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"file-transfer-path cannot exceed 127 characters")
+            return (False, "file-transfer-path cannot exceed 127 characters")
 
     # Validate methods if present
     if "methods" in payload:
@@ -609,7 +609,7 @@ def validate_profile_put(
                 if int_val < 5 or int_val > 30:
                     return (
                         False,
-                        f"scan-progress-interval must be between 5 and 30",
+                        "scan-progress-interval must be between 5 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -624,7 +624,7 @@ def validate_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 30 or int_val > 3600:
-                    return (False, f"timeout must be between 30 and 3600")
+                    return (False, "timeout must be between 30 and 3600")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 

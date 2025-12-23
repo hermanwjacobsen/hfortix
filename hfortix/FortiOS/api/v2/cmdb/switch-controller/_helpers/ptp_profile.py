@@ -82,13 +82,13 @@ def validate_ptp_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -124,7 +124,7 @@ def validate_ptp_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"domain must be between 0 and 255")
+                    return (False, "domain must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"domain must be numeric, got: {value}")
 
@@ -170,13 +170,13 @@ def validate_ptp_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -212,7 +212,7 @@ def validate_ptp_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"domain must be between 0 and 255")
+                    return (False, "domain must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"domain must be numeric, got: {value}")
 

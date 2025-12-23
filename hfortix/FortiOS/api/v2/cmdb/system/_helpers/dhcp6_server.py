@@ -81,7 +81,7 @@ def validate_dhcp6_server_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -112,7 +112,7 @@ def validate_dhcp6_server_post(
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"lease-time must be between 300 and 8640000",
+                        "lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (False, f"lease-time must be numeric, got: {value}")
@@ -139,13 +139,13 @@ def validate_dhcp6_server_post(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain cannot exceed 35 characters")
+            return (False, "domain cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate delegated-prefix-route if present
     if "delegated-prefix-route" in payload:
@@ -160,7 +160,7 @@ def validate_dhcp6_server_post(
     if "upstream-interface" in payload:
         value = payload.get("upstream-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"upstream-interface cannot exceed 15 characters")
+            return (False, "upstream-interface cannot exceed 15 characters")
 
     # Validate delegated-prefix-iaid if present
     if "delegated-prefix-iaid" in payload:
@@ -171,7 +171,7 @@ def validate_dhcp6_server_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"delegated-prefix-iaid must be between 0 and 4294967295",
+                        "delegated-prefix-iaid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -233,7 +233,7 @@ def validate_dhcp6_server_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -264,7 +264,7 @@ def validate_dhcp6_server_put(
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"lease-time must be between 300 and 8640000",
+                        "lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (False, f"lease-time must be numeric, got: {value}")
@@ -291,13 +291,13 @@ def validate_dhcp6_server_put(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain cannot exceed 35 characters")
+            return (False, "domain cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate delegated-prefix-route if present
     if "delegated-prefix-route" in payload:
@@ -312,7 +312,7 @@ def validate_dhcp6_server_put(
     if "upstream-interface" in payload:
         value = payload.get("upstream-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"upstream-interface cannot exceed 15 characters")
+            return (False, "upstream-interface cannot exceed 15 characters")
 
     # Validate delegated-prefix-iaid if present
     if "delegated-prefix-iaid" in payload:
@@ -323,7 +323,7 @@ def validate_dhcp6_server_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"delegated-prefix-iaid must be between 0 and 4294967295",
+                        "delegated-prefix-iaid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

@@ -86,13 +86,13 @@ def validate_ftm_push_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate server-port if present
     if "server-port" in payload:
@@ -101,7 +101,7 @@ def validate_ftm_push_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"server-port must be between 1 and 65535")
+                    return (False, "server-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"server-port must be numeric, got: {value}")
 
@@ -109,7 +109,7 @@ def validate_ftm_push_put(
     if "server-cert" in payload:
         value = payload.get("server-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"server-cert cannot exceed 35 characters")
+            return (False, "server-cert cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:

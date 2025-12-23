@@ -104,7 +104,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 150:
                     return (
                         False,
-                        f"cache-mem-permille must be between 1 and 150",
+                        "cache-mem-permille must be between 1 and 150",
                     )
             except (ValueError, TypeError):
                 return (
@@ -121,7 +121,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"ovrd-auth-port-http must be between 0 and 65535",
+                        "ovrd-auth-port-http must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -138,7 +138,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"ovrd-auth-port-https must be between 0 and 65535",
+                        "ovrd-auth-port-https must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -155,7 +155,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"ovrd-auth-port-https-flow must be between 0 and 65535",
+                        "ovrd-auth-port-https-flow must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -172,7 +172,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"ovrd-auth-port-warning must be between 0 and 65535",
+                        "ovrd-auth-port-warning must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -216,7 +216,7 @@ def validate_fortiguard_put(
                 if int_val < 576 or int_val > 10000:
                     return (
                         False,
-                        f"request-packet-size-limit must be between 576 and 10000",
+                        "request-packet-size-limit must be between 576 and 10000",
                     )
             except (ValueError, TypeError):
                 return (

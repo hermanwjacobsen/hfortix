@@ -87,25 +87,25 @@ def validate_exchange_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server-name if present
     if "server-name" in payload:
         value = payload.get("server-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server-name cannot exceed 63 characters")
+            return (False, "server-name cannot exceed 63 characters")
 
     # Validate domain-name if present
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"domain-name cannot exceed 79 characters")
+            return (False, "domain-name cannot exceed 79 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate connect-protocol if present
     if "connect-protocol" in payload:
@@ -203,25 +203,25 @@ def validate_exchange_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server-name if present
     if "server-name" in payload:
         value = payload.get("server-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server-name cannot exceed 63 characters")
+            return (False, "server-name cannot exceed 63 characters")
 
     # Validate domain-name if present
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"domain-name cannot exceed 79 characters")
+            return (False, "domain-name cannot exceed 79 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate connect-protocol if present
     if "connect-protocol" in payload:

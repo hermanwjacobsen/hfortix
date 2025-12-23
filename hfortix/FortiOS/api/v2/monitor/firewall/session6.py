@@ -68,7 +68,8 @@ class CloseMultiple:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Close multiple IPv6 firewall sessions which match the provided criteria.
+        Close multiple IPv6 firewall sessions which match the provided
+        criteria.
 
         Args:
             proto: Protocol name [tcp|udp|icmp|...] or number. (optional)

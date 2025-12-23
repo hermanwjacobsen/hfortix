@@ -30,7 +30,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.global_.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.global_.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +89,15 @@ class Global:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +105,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -156,39 +162,73 @@ class Global:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable). (optional)
-            https_image_push: Enable/disable image push to FortiSwitch using HTTPS. (optional)
-            vlan_all_mode: VLAN configuration mode, user-defined-vlans or all-possible-vlans. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            mac_aging_interval: Time after which an inactive MAC is aged out
+            (10 - 1000000 sec, default = 300, 0 = disable). (optional)
+            https_image_push: Enable/disable image push to FortiSwitch using
+            HTTPS. (optional)
+            vlan_all_mode: VLAN configuration mode, user-defined-vlans or
+            all-possible-vlans. (optional)
             vlan_optimization: FortiLink VLAN optimization. (optional)
-            vlan_identity: Identity of the VLAN. Commonly used for RADIUS Tunnel-Private-Group-Id. (optional)
-            disable_discovery: Prevent this FortiSwitch from discovering. (optional)
-            mac_retention_period: Time in hours after which an inactive MAC is removed from client DB (0 = aged out based on mac-aging-interval). (optional)
-            default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch. (optional)
-            dhcp_server_access_list: Enable/disable DHCP snooping server access list. (optional)
+            vlan_identity: Identity of the VLAN. Commonly used for RADIUS
+            Tunnel-Private-Group-Id. (optional)
+            disable_discovery: Prevent this FortiSwitch from discovering.
+            (optional)
+            mac_retention_period: Time in hours after which an inactive MAC is
+            removed from client DB (0 = aged out based on mac-aging-interval).
+            (optional)
+            default_virtual_switch_vlan: Default VLAN for ports when added to
+            the virtual-switch. (optional)
+            dhcp_server_access_list: Enable/disable DHCP snooping server access
+            list. (optional)
             dhcp_option82_format: DHCP option-82 format string. (optional)
-            dhcp_option82_circuit_id: List the parameters to be included to inform about client identification. (optional)
-            dhcp_option82_remote_id: List the parameters to be included to inform about client identification. (optional)
-            dhcp_snoop_client_req: Client DHCP packet broadcast mode. (optional)
-            dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server database entries (300 - 259200 sec, default = 86400 sec). (optional)
-            dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server entries learn limit (0 - 1024, default = 64). (optional)
-            log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. (optional)
-            mac_violation_timer: Set timeout for Learning Limit Violations (0 = disabled). (optional)
-            sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch unit's IP address with switch name. (optional)
-            mac_event_logging: Enable/disable MAC address event logging. (optional)
-            bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. (optional)
+            dhcp_option82_circuit_id: List the parameters to be included to
+            inform about client identification. (optional)
+            dhcp_option82_remote_id: List the parameters to be included to
+            inform about client identification. (optional)
+            dhcp_snoop_client_req: Client DHCP packet broadcast mode.
+            (optional)
+            dhcp_snoop_client_db_exp: Expiry time for DHCP snooping server
+            database entries (300 - 259200 sec, default = 86400 sec).
+            (optional)
+            dhcp_snoop_db_per_port_learn_limit: Per Interface dhcp-server
+            entries learn limit (0 - 1024, default = 64). (optional)
+            log_mac_limit_violations: Enable/disable logs for Learning Limit
+            Violations. (optional)
+            mac_violation_timer: Set timeout for Learning Limit Violations (0 =
+            disabled). (optional)
+            sn_dns_resolution: Enable/disable DNS resolution of the FortiSwitch
+            unit's IP address with switch name. (optional)
+            mac_event_logging: Enable/disable MAC address event logging.
+            (optional)
+            bounce_quarantined_link: Enable/disable bouncing (administratively
+            bring the link down, up) of a switch port where a quarantined
+            device was seen last. Helps to re-initiate the DHCP process for a
+            device. (optional)
             quarantine_mode: Quarantine mode. (optional)
-            update_user_device: Control which sources update the device user list. (optional)
-            custom_command: List of custom commands to be pushed to all FortiSwitches in the VDOM. (optional)
-            fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. (optional)
-            firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. (optional)
-            switch_on_deauth: No-operation/Factory-reset the managed FortiSwitch on deauthorization. (optional)
-            firewall_auth_user_hold_period: Time period in minutes to hold firewall authenticated MAC users (5 - 1440, default = 5, disable = 0). (optional)
+            update_user_device: Control which sources update the device user
+            list. (optional)
+            custom_command: List of custom commands to be pushed to all
+            FortiSwitches in the VDOM. (optional)
+            fips_enforce: Enable/disable enforcement of FIPS on managed
+            FortiSwitch devices. (optional)
+            firmware_provision_on_authorization: Enable/disable automatic
+            provisioning of latest firmware on authorization. (optional)
+            switch_on_deauth: No-operation/Factory-reset the managed
+            FortiSwitch on deauthorization. (optional)
+            firewall_auth_user_hold_period: Time period in minutes to hold
+            firewall authenticated MAC users (5 - 1440, default = 5, disable =
+            0). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -196,7 +236,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

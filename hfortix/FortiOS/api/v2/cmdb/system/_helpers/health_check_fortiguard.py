@@ -82,13 +82,13 @@ def validate_health_check_fortiguard_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate obsolete if present
     if "obsolete" in payload:
@@ -97,7 +97,7 @@ def validate_health_check_fortiguard_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"obsolete must be between 0 and 255")
+                    return (False, "obsolete must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"obsolete must be numeric, got: {value}")
 
@@ -143,13 +143,13 @@ def validate_health_check_fortiguard_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate obsolete if present
     if "obsolete" in payload:
@@ -158,7 +158,7 @@ def validate_health_check_fortiguard_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"obsolete must be between 0 and 255")
+                    return (False, "obsolete must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"obsolete must be numeric, got: {value}")
 

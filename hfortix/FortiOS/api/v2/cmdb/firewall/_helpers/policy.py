@@ -155,7 +155,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967294:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967294",
+                        "policyid must be between 0 and 4294967294",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -173,7 +173,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate action if present
     if "action" in payload:
@@ -256,7 +256,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation-minimum must be between 0 and 4294967295",
+                        "reputation-minimum must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -300,7 +300,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation-minimum6 must be between 0 and 4294967295",
+                        "reputation-minimum6 must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -348,7 +348,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate schedule-timeout if present
     if "schedule-timeout" in payload:
@@ -489,7 +489,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "webproxy-profile" in payload:
         value = payload.get("webproxy-profile")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"webproxy-profile cannot exceed 63 characters")
+            return (False, "webproxy-profile cannot exceed 63 characters")
 
     # Validate profile-type if present
     if "profile-type" in payload:
@@ -504,7 +504,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "profile-group" in payload:
         value = payload.get("profile-group")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"profile-group cannot exceed 47 characters")
+            return (False, "profile-group cannot exceed 47 characters")
 
     # Validate profile-protocol-options if present
     if "profile-protocol-options" in payload:
@@ -512,80 +512,80 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"profile-protocol-options cannot exceed 47 characters",
+                "profile-protocol-options cannot exceed 47 characters",
             )
 
     # Validate ssl-ssh-profile if present
     if "ssl-ssh-profile" in payload:
         value = payload.get("ssl-ssh-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssl-ssh-profile cannot exceed 47 characters")
+            return (False, "ssl-ssh-profile cannot exceed 47 characters")
 
     # Validate av-profile if present
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate dnsfilter-profile if present
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile if present
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile if present
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate file-filter-profile if present
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-sensor if present
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate voip-profile if present
     if "voip-profile" in payload:
         value = payload.get("voip-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"voip-profile cannot exceed 47 characters")
+            return (False, "voip-profile cannot exceed 47 characters")
 
     # Validate ips-voip-filter if present
     if "ips-voip-filter" in payload:
         value = payload.get("ips-voip-filter")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-voip-filter cannot exceed 47 characters")
+            return (False, "ips-voip-filter cannot exceed 47 characters")
 
     # Validate sctp-filter-profile if present
     if "sctp-filter-profile" in payload:
         value = payload.get("sctp-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"sctp-filter-profile cannot exceed 47 characters")
+            return (False, "sctp-filter-profile cannot exceed 47 characters")
 
     # Validate diameter-filter-profile if present
     if "diameter-filter-profile" in payload:
@@ -593,7 +593,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"diameter-filter-profile cannot exceed 47 characters",
+                "diameter-filter-profile cannot exceed 47 characters",
             )
 
     # Validate virtual-patch-profile if present
@@ -602,38 +602,38 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"virtual-patch-profile cannot exceed 47 characters",
+                "virtual-patch-profile cannot exceed 47 characters",
             )
 
     # Validate icap-profile if present
     if "icap-profile" in payload:
         value = payload.get("icap-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"icap-profile cannot exceed 47 characters")
+            return (False, "icap-profile cannot exceed 47 characters")
 
     # Validate videofilter-profile if present
     if "videofilter-profile" in payload:
         value = payload.get("videofilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"videofilter-profile cannot exceed 47 characters")
+            return (False, "videofilter-profile cannot exceed 47 characters")
 
     # Validate waf-profile if present
     if "waf-profile" in payload:
         value = payload.get("waf-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"waf-profile cannot exceed 47 characters")
+            return (False, "waf-profile cannot exceed 47 characters")
 
     # Validate ssh-filter-profile if present
     if "ssh-filter-profile" in payload:
         value = payload.get("ssh-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssh-filter-profile cannot exceed 47 characters")
+            return (False, "ssh-filter-profile cannot exceed 47 characters")
 
     # Validate casb-profile if present
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -695,14 +695,14 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"webproxy-forward-server cannot exceed 63 characters",
+                "webproxy-forward-server cannot exceed 63 characters",
             )
 
     # Validate traffic-shaper if present
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     # Validate traffic-shaper-reverse if present
     if "traffic-shaper-reverse" in payload:
@@ -710,14 +710,14 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"traffic-shaper-reverse cannot exceed 35 characters",
+                "traffic-shaper-reverse cannot exceed 35 characters",
             )
 
     # Validate per-ip-shaper if present
     if "per-ip-shaper" in payload:
         value = payload.get("per-ip-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"per-ip-shaper cannot exceed 35 characters")
+            return (False, "per-ip-shaper cannot exceed 35 characters")
 
     # Validate nat if present
     if "nat" in payload:
@@ -807,7 +807,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"vlan-cos-fwd must be between 0 and 7")
+                    return (False, "vlan-cos-fwd must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"vlan-cos-fwd must be numeric, got: {value}")
 
@@ -818,7 +818,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"vlan-cos-rev must be between 0 and 7")
+                    return (False, "vlan-cos-rev must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"vlan-cos-rev must be numeric, got: {value}")
 
@@ -898,7 +898,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "fsso-agent-for-ntlm" in payload:
         value = payload.get("fsso-agent-for-ntlm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fsso-agent-for-ntlm cannot exceed 35 characters")
+            return (False, "fsso-agent-for-ntlm cannot exceed 35 characters")
 
     # Validate auth-path if present
     if "auth-path" in payload:
@@ -931,7 +931,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "vpntunnel" in payload:
         value = payload.get("vpntunnel")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"vpntunnel cannot exceed 35 characters")
+            return (False, "vpntunnel cannot exceed 35 characters")
 
     # Validate match-vip if present
     if "match-vip" in payload:
@@ -987,7 +987,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tcp-mss-sender must be between 0 and 65535",
+                        "tcp-mss-sender must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"tcp-mss-sender must be numeric, got: {value}")
@@ -1001,7 +1001,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tcp-mss-receiver must be between 0 and 65535",
+                        "tcp-mss-receiver must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1013,31 +1013,31 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-redirect-addr if present
     if "auth-redirect-addr" in payload:
         value = payload.get("auth-redirect-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-redirect-addr cannot exceed 63 characters")
+            return (False, "auth-redirect-addr cannot exceed 63 characters")
 
     # Validate redirect-url if present
     if "redirect-url" in payload:
         value = payload.get("redirect-url")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"redirect-url cannot exceed 1023 characters")
+            return (False, "redirect-url cannot exceed 1023 characters")
 
     # Validate identity-based-route if present
     if "identity-based-route" in payload:
         value = payload.get("identity-based-route")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"identity-based-route cannot exceed 35 characters")
+            return (False, "identity-based-route cannot exceed 35 characters")
 
     # Validate block-notification if present
     if "block-notification" in payload:
@@ -1054,7 +1054,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"replacemsg-override-group cannot exceed 35 characters",
+                "replacemsg-override-group cannot exceed 35 characters",
             )
 
     # Validate srcaddr-negate if present
@@ -1171,7 +1171,7 @@ def validate_policy_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate dsri if present
@@ -1257,7 +1257,7 @@ def validate_policy_put(
                 if int_val < 0 or int_val > 4294967294:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967294",
+                        "policyid must be between 0 and 4294967294",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -1275,7 +1275,7 @@ def validate_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate action if present
     if "action" in payload:
@@ -1358,7 +1358,7 @@ def validate_policy_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation-minimum must be between 0 and 4294967295",
+                        "reputation-minimum must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1402,7 +1402,7 @@ def validate_policy_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation-minimum6 must be between 0 and 4294967295",
+                        "reputation-minimum6 must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1450,7 +1450,7 @@ def validate_policy_put(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate schedule-timeout if present
     if "schedule-timeout" in payload:
@@ -1591,7 +1591,7 @@ def validate_policy_put(
     if "webproxy-profile" in payload:
         value = payload.get("webproxy-profile")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"webproxy-profile cannot exceed 63 characters")
+            return (False, "webproxy-profile cannot exceed 63 characters")
 
     # Validate profile-type if present
     if "profile-type" in payload:
@@ -1606,7 +1606,7 @@ def validate_policy_put(
     if "profile-group" in payload:
         value = payload.get("profile-group")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"profile-group cannot exceed 47 characters")
+            return (False, "profile-group cannot exceed 47 characters")
 
     # Validate profile-protocol-options if present
     if "profile-protocol-options" in payload:
@@ -1614,80 +1614,80 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"profile-protocol-options cannot exceed 47 characters",
+                "profile-protocol-options cannot exceed 47 characters",
             )
 
     # Validate ssl-ssh-profile if present
     if "ssl-ssh-profile" in payload:
         value = payload.get("ssl-ssh-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssl-ssh-profile cannot exceed 47 characters")
+            return (False, "ssl-ssh-profile cannot exceed 47 characters")
 
     # Validate av-profile if present
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate dnsfilter-profile if present
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile if present
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile if present
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate file-filter-profile if present
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-sensor if present
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate voip-profile if present
     if "voip-profile" in payload:
         value = payload.get("voip-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"voip-profile cannot exceed 47 characters")
+            return (False, "voip-profile cannot exceed 47 characters")
 
     # Validate ips-voip-filter if present
     if "ips-voip-filter" in payload:
         value = payload.get("ips-voip-filter")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-voip-filter cannot exceed 47 characters")
+            return (False, "ips-voip-filter cannot exceed 47 characters")
 
     # Validate sctp-filter-profile if present
     if "sctp-filter-profile" in payload:
         value = payload.get("sctp-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"sctp-filter-profile cannot exceed 47 characters")
+            return (False, "sctp-filter-profile cannot exceed 47 characters")
 
     # Validate diameter-filter-profile if present
     if "diameter-filter-profile" in payload:
@@ -1695,7 +1695,7 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"diameter-filter-profile cannot exceed 47 characters",
+                "diameter-filter-profile cannot exceed 47 characters",
             )
 
     # Validate virtual-patch-profile if present
@@ -1704,38 +1704,38 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"virtual-patch-profile cannot exceed 47 characters",
+                "virtual-patch-profile cannot exceed 47 characters",
             )
 
     # Validate icap-profile if present
     if "icap-profile" in payload:
         value = payload.get("icap-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"icap-profile cannot exceed 47 characters")
+            return (False, "icap-profile cannot exceed 47 characters")
 
     # Validate videofilter-profile if present
     if "videofilter-profile" in payload:
         value = payload.get("videofilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"videofilter-profile cannot exceed 47 characters")
+            return (False, "videofilter-profile cannot exceed 47 characters")
 
     # Validate waf-profile if present
     if "waf-profile" in payload:
         value = payload.get("waf-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"waf-profile cannot exceed 47 characters")
+            return (False, "waf-profile cannot exceed 47 characters")
 
     # Validate ssh-filter-profile if present
     if "ssh-filter-profile" in payload:
         value = payload.get("ssh-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssh-filter-profile cannot exceed 47 characters")
+            return (False, "ssh-filter-profile cannot exceed 47 characters")
 
     # Validate casb-profile if present
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -1797,14 +1797,14 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"webproxy-forward-server cannot exceed 63 characters",
+                "webproxy-forward-server cannot exceed 63 characters",
             )
 
     # Validate traffic-shaper if present
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     # Validate traffic-shaper-reverse if present
     if "traffic-shaper-reverse" in payload:
@@ -1812,14 +1812,14 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"traffic-shaper-reverse cannot exceed 35 characters",
+                "traffic-shaper-reverse cannot exceed 35 characters",
             )
 
     # Validate per-ip-shaper if present
     if "per-ip-shaper" in payload:
         value = payload.get("per-ip-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"per-ip-shaper cannot exceed 35 characters")
+            return (False, "per-ip-shaper cannot exceed 35 characters")
 
     # Validate nat if present
     if "nat" in payload:
@@ -1909,7 +1909,7 @@ def validate_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"vlan-cos-fwd must be between 0 and 7")
+                    return (False, "vlan-cos-fwd must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"vlan-cos-fwd must be numeric, got: {value}")
 
@@ -1920,7 +1920,7 @@ def validate_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"vlan-cos-rev must be between 0 and 7")
+                    return (False, "vlan-cos-rev must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"vlan-cos-rev must be numeric, got: {value}")
 
@@ -2000,7 +2000,7 @@ def validate_policy_put(
     if "fsso-agent-for-ntlm" in payload:
         value = payload.get("fsso-agent-for-ntlm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fsso-agent-for-ntlm cannot exceed 35 characters")
+            return (False, "fsso-agent-for-ntlm cannot exceed 35 characters")
 
     # Validate auth-path if present
     if "auth-path" in payload:
@@ -2033,7 +2033,7 @@ def validate_policy_put(
     if "vpntunnel" in payload:
         value = payload.get("vpntunnel")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"vpntunnel cannot exceed 35 characters")
+            return (False, "vpntunnel cannot exceed 35 characters")
 
     # Validate match-vip if present
     if "match-vip" in payload:
@@ -2089,7 +2089,7 @@ def validate_policy_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tcp-mss-sender must be between 0 and 65535",
+                        "tcp-mss-sender must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"tcp-mss-sender must be numeric, got: {value}")
@@ -2103,7 +2103,7 @@ def validate_policy_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tcp-mss-receiver must be between 0 and 65535",
+                        "tcp-mss-receiver must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2115,31 +2115,31 @@ def validate_policy_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-redirect-addr if present
     if "auth-redirect-addr" in payload:
         value = payload.get("auth-redirect-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-redirect-addr cannot exceed 63 characters")
+            return (False, "auth-redirect-addr cannot exceed 63 characters")
 
     # Validate redirect-url if present
     if "redirect-url" in payload:
         value = payload.get("redirect-url")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"redirect-url cannot exceed 1023 characters")
+            return (False, "redirect-url cannot exceed 1023 characters")
 
     # Validate identity-based-route if present
     if "identity-based-route" in payload:
         value = payload.get("identity-based-route")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"identity-based-route cannot exceed 35 characters")
+            return (False, "identity-based-route cannot exceed 35 characters")
 
     # Validate block-notification if present
     if "block-notification" in payload:
@@ -2156,7 +2156,7 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"replacemsg-override-group cannot exceed 35 characters",
+                "replacemsg-override-group cannot exceed 35 characters",
             )
 
     # Validate srcaddr-negate if present
@@ -2273,7 +2273,7 @@ def validate_policy_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate dsri if present

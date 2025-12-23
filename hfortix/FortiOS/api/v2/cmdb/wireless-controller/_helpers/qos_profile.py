@@ -78,13 +78,13 @@ def validate_qos_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate uplink if present
     if "uplink" in payload:
@@ -93,7 +93,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"uplink must be between 0 and 2097152")
+                    return (False, "uplink must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"uplink must be numeric, got: {value}")
 
@@ -104,7 +104,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"downlink must be between 0 and 2097152")
+                    return (False, "downlink must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"downlink must be numeric, got: {value}")
 
@@ -115,7 +115,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"uplink-sta must be between 0 and 2097152")
+                    return (False, "uplink-sta must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"uplink-sta must be numeric, got: {value}")
 
@@ -128,7 +128,7 @@ def validate_qos_profile_post(
                 if int_val < 0 or int_val > 2097152:
                     return (
                         False,
-                        f"downlink-sta must be between 0 and 2097152",
+                        "downlink-sta must be between 0 and 2097152",
                     )
             except (ValueError, TypeError):
                 return (False, f"downlink-sta must be numeric, got: {value}")
@@ -176,7 +176,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 60:
-                    return (False, f"call-capacity must be between 0 and 60")
+                    return (False, "call-capacity must be between 0 and 60")
             except (ValueError, TypeError):
                 return (False, f"call-capacity must be numeric, got: {value}")
 
@@ -198,7 +198,7 @@ def validate_qos_profile_post(
                 if int_val < 1 or int_val > 600000:
                     return (
                         False,
-                        f"bandwidth-capacity must be between 1 and 600000",
+                        "bandwidth-capacity must be between 1 and 600000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -231,7 +231,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-vo-dscp must be between 0 and 63")
+                    return (False, "wmm-vo-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-vo-dscp must be numeric, got: {value}")
 
@@ -242,7 +242,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-vi-dscp must be between 0 and 63")
+                    return (False, "wmm-vi-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-vi-dscp must be numeric, got: {value}")
 
@@ -253,7 +253,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-be-dscp must be between 0 and 63")
+                    return (False, "wmm-be-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-be-dscp must be numeric, got: {value}")
 
@@ -264,7 +264,7 @@ def validate_qos_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-bk-dscp must be between 0 and 63")
+                    return (False, "wmm-bk-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-bk-dscp must be numeric, got: {value}")
 
@@ -301,13 +301,13 @@ def validate_qos_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate uplink if present
     if "uplink" in payload:
@@ -316,7 +316,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"uplink must be between 0 and 2097152")
+                    return (False, "uplink must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"uplink must be numeric, got: {value}")
 
@@ -327,7 +327,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"downlink must be between 0 and 2097152")
+                    return (False, "downlink must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"downlink must be numeric, got: {value}")
 
@@ -338,7 +338,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2097152:
-                    return (False, f"uplink-sta must be between 0 and 2097152")
+                    return (False, "uplink-sta must be between 0 and 2097152")
             except (ValueError, TypeError):
                 return (False, f"uplink-sta must be numeric, got: {value}")
 
@@ -351,7 +351,7 @@ def validate_qos_profile_put(
                 if int_val < 0 or int_val > 2097152:
                     return (
                         False,
-                        f"downlink-sta must be between 0 and 2097152",
+                        "downlink-sta must be between 0 and 2097152",
                     )
             except (ValueError, TypeError):
                 return (False, f"downlink-sta must be numeric, got: {value}")
@@ -399,7 +399,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 60:
-                    return (False, f"call-capacity must be between 0 and 60")
+                    return (False, "call-capacity must be between 0 and 60")
             except (ValueError, TypeError):
                 return (False, f"call-capacity must be numeric, got: {value}")
 
@@ -421,7 +421,7 @@ def validate_qos_profile_put(
                 if int_val < 1 or int_val > 600000:
                     return (
                         False,
-                        f"bandwidth-capacity must be between 1 and 600000",
+                        "bandwidth-capacity must be between 1 and 600000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -454,7 +454,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-vo-dscp must be between 0 and 63")
+                    return (False, "wmm-vo-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-vo-dscp must be numeric, got: {value}")
 
@@ -465,7 +465,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-vi-dscp must be between 0 and 63")
+                    return (False, "wmm-vi-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-vi-dscp must be numeric, got: {value}")
 
@@ -476,7 +476,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-be-dscp must be between 0 and 63")
+                    return (False, "wmm-be-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-be-dscp must be numeric, got: {value}")
 
@@ -487,7 +487,7 @@ def validate_qos_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"wmm-bk-dscp must be between 0 and 63")
+                    return (False, "wmm-bk-dscp must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"wmm-bk-dscp must be numeric, got: {value}")
 

@@ -87,13 +87,13 @@ def validate_ipsec_manualkey_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:
@@ -173,13 +173,13 @@ def validate_ipsec_manualkey_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:

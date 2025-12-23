@@ -83,7 +83,7 @@ def validate_central_snat_map_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -113,7 +113,7 @@ def validate_central_snat_map_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -166,7 +166,7 @@ def validate_central_snat_map_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     return (True, None)
 
@@ -206,7 +206,7 @@ def validate_central_snat_map_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -236,7 +236,7 @@ def validate_central_snat_map_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -289,7 +289,7 @@ def validate_central_snat_map_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     return (True, None)
 

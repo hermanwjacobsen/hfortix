@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Admin:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Admin:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -201,65 +207,135 @@ class Admin:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: User name. (optional)
-            remote_auth: Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server. (optional)
+            remote_auth: Enable/disable authentication using a remote RADIUS,
+            LDAP, or TACACS+ server. (optional)
             remote_group: User group name used for remote auth. (optional)
             wildcard: Enable/disable wildcard RADIUS authentication. (optional)
             password: Admin user password. (optional)
-            peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). (optional)
-            peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access). (optional)
-            trusthost1: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost2: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost3: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost4: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost5: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost6: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost7: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost8: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost9: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost10: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            ip6_trusthost1: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost2: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost3: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost4: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost5: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost6: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost7: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost8: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost10: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            accprofile: Access profile for this administrator. Access profiles control administrator access to FortiGate features. (optional)
-            allow_remove_admin_session: Enable/disable allow admin session to be removed by privileged admin users. (optional)
+            peer_auth: Set to enable peer certificate authentication (for HTTPS
+            admin access). (optional)
+            peer_group: Name of peer group defined under config user group
+            which has PKI members. Used for peer certificate authentication
+            (for HTTPS admin access). (optional)
+            trusthost1: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost2: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost3: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost4: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost5: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost6: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost7: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost8: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost9: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost10: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            ip6_trusthost1: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost2: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost3: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost4: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost5: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost6: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost7: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost8: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost9: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost10: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            accprofile: Access profile for this administrator. Access profiles
+            control administrator access to FortiGate features. (optional)
+            allow_remove_admin_session: Enable/disable allow admin session to
+            be removed by privileged admin users. (optional)
             comments: Comment. (optional)
-            ssh_public_key1: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_public_key2: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_public_key3: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_certificate: Select the certificate to be used by the FortiGate for authentication with an SSH client. (optional)
-            schedule: Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions. (optional)
-            accprofile_override: Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access. (optional)
-            vdom_override: Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. (optional)
+            ssh_public_key1: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_public_key2: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_public_key3: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_certificate: Select the certificate to be used by the FortiGate
+            for authentication with an SSH client. (optional)
+            schedule: Firewall schedule used to restrict when the administrator
+            can log in. No schedule means no restrictions. (optional)
+            accprofile_override: Enable to use the name of an access profile
+            provided by the remote authentication server to control the
+            FortiGate features that this administrator can access. (optional)
+            vdom_override: Enable to use the names of VDOMs provided by the
+            remote authentication server to control the VDOMs that this
+            administrator can access. (optional)
             password_expire: Password expire time. (optional)
-            force_password_change: Enable/disable force password change on next login. (optional)
+            force_password_change: Enable/disable force password change on next
+            login. (optional)
             two_factor: Enable/disable two-factor authentication. (optional)
-            two_factor_authentication: Authentication method by FortiToken Cloud. (optional)
-            two_factor_notification: Notification method for user activation by FortiToken Cloud. (optional)
-            fortitoken: This administrator's FortiToken serial number. (optional)
+            two_factor_authentication: Authentication method by FortiToken
+            Cloud. (optional)
+            two_factor_notification: Notification method for user activation by
+            FortiToken Cloud. (optional)
+            fortitoken: This administrator's FortiToken serial number.
+            (optional)
             email_to: This administrator's email address. (optional)
-            sms_server: Send SMS messages using the FortiGuard SMS server or a custom server. (optional)
-            sms_custom_server: Custom SMS server to send SMS messages to. (optional)
-            sms_phone: Phone number on which the administrator receives SMS messages. (optional)
+            sms_server: Send SMS messages using the FortiGuard SMS server or a
+            custom server. (optional)
+            sms_custom_server: Custom SMS server to send SMS messages to.
+            (optional)
+            sms_phone: Phone number on which the administrator receives SMS
+            messages. (optional)
             guest_auth: Enable/disable guest authentication. (optional)
             guest_usergroups: Select guest user groups. (optional)
             guest_lang: Guest management portal language. (optional)
             status: print admin status information (optional)
             list: print admin list information (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -267,7 +343,8 @@ class Admin:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -409,8 +486,10 @@ class Admin:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -418,7 +497,8 @@ class Admin:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -541,63 +621,132 @@ class Admin:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: User name. (optional)
-            remote_auth: Enable/disable authentication using a remote RADIUS, LDAP, or TACACS+ server. (optional)
+            remote_auth: Enable/disable authentication using a remote RADIUS,
+            LDAP, or TACACS+ server. (optional)
             remote_group: User group name used for remote auth. (optional)
             wildcard: Enable/disable wildcard RADIUS authentication. (optional)
             password: Admin user password. (optional)
-            peer_auth: Set to enable peer certificate authentication (for HTTPS admin access). (optional)
-            peer_group: Name of peer group defined under config user group which has PKI members. Used for peer certificate authentication (for HTTPS admin access). (optional)
-            trusthost1: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost2: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost3: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost4: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost5: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost6: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost7: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost8: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost9: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            trusthost10: Any IPv4 address or subnet address and netmask from which the administrator can connect to the FortiGate unit. Default allows access from any IPv4 address. (optional)
-            ip6_trusthost1: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost2: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost3: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost4: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost5: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost6: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost7: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost8: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost9: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            ip6_trusthost10: Any IPv6 address from which the administrator can connect to the FortiGate unit. Default allows access from any IPv6 address. (optional)
-            accprofile: Access profile for this administrator. Access profiles control administrator access to FortiGate features. (optional)
-            allow_remove_admin_session: Enable/disable allow admin session to be removed by privileged admin users. (optional)
+            peer_auth: Set to enable peer certificate authentication (for HTTPS
+            admin access). (optional)
+            peer_group: Name of peer group defined under config user group
+            which has PKI members. Used for peer certificate authentication
+            (for HTTPS admin access). (optional)
+            trusthost1: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost2: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost3: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost4: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost5: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost6: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost7: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost8: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost9: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            trusthost10: Any IPv4 address or subnet address and netmask from
+            which the administrator can connect to the FortiGate unit. Default
+            allows access from any IPv4 address. (optional)
+            ip6_trusthost1: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost2: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost3: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost4: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost5: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost6: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost7: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost8: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost9: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            ip6_trusthost10: Any IPv6 address from which the administrator can
+            connect to the FortiGate unit. Default allows access from any IPv6
+            address. (optional)
+            accprofile: Access profile for this administrator. Access profiles
+            control administrator access to FortiGate features. (optional)
+            allow_remove_admin_session: Enable/disable allow admin session to
+            be removed by privileged admin users. (optional)
             comments: Comment. (optional)
-            ssh_public_key1: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_public_key2: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_public_key3: Public key of an SSH client. The client is authenticated without being asked for credentials. Create the public-private key pair in the SSH client application. (optional)
-            ssh_certificate: Select the certificate to be used by the FortiGate for authentication with an SSH client. (optional)
-            schedule: Firewall schedule used to restrict when the administrator can log in. No schedule means no restrictions. (optional)
-            accprofile_override: Enable to use the name of an access profile provided by the remote authentication server to control the FortiGate features that this administrator can access. (optional)
-            vdom_override: Enable to use the names of VDOMs provided by the remote authentication server to control the VDOMs that this administrator can access. (optional)
+            ssh_public_key1: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_public_key2: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_public_key3: Public key of an SSH client. The client is
+            authenticated without being asked for credentials. Create the
+            public-private key pair in the SSH client application. (optional)
+            ssh_certificate: Select the certificate to be used by the FortiGate
+            for authentication with an SSH client. (optional)
+            schedule: Firewall schedule used to restrict when the administrator
+            can log in. No schedule means no restrictions. (optional)
+            accprofile_override: Enable to use the name of an access profile
+            provided by the remote authentication server to control the
+            FortiGate features that this administrator can access. (optional)
+            vdom_override: Enable to use the names of VDOMs provided by the
+            remote authentication server to control the VDOMs that this
+            administrator can access. (optional)
             password_expire: Password expire time. (optional)
-            force_password_change: Enable/disable force password change on next login. (optional)
+            force_password_change: Enable/disable force password change on next
+            login. (optional)
             two_factor: Enable/disable two-factor authentication. (optional)
-            two_factor_authentication: Authentication method by FortiToken Cloud. (optional)
-            two_factor_notification: Notification method for user activation by FortiToken Cloud. (optional)
-            fortitoken: This administrator's FortiToken serial number. (optional)
+            two_factor_authentication: Authentication method by FortiToken
+            Cloud. (optional)
+            two_factor_notification: Notification method for user activation by
+            FortiToken Cloud. (optional)
+            fortitoken: This administrator's FortiToken serial number.
+            (optional)
             email_to: This administrator's email address. (optional)
-            sms_server: Send SMS messages using the FortiGuard SMS server or a custom server. (optional)
-            sms_custom_server: Custom SMS server to send SMS messages to. (optional)
-            sms_phone: Phone number on which the administrator receives SMS messages. (optional)
+            sms_server: Send SMS messages using the FortiGuard SMS server or a
+            custom server. (optional)
+            sms_custom_server: Custom SMS server to send SMS messages to.
+            (optional)
+            sms_phone: Phone number on which the administrator receives SMS
+            messages. (optional)
             guest_auth: Enable/disable guest authentication. (optional)
             guest_usergroups: Select guest user groups. (optional)
             guest_lang: Guest management portal language. (optional)
             status: print admin status information (optional)
             list: print admin list information (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -605,7 +754,8 @@ class Admin:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

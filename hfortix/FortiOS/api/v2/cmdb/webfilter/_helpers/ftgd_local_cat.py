@@ -84,7 +84,7 @@ def validate_ftgd_local_cat_post(
             try:
                 int_val = int(value)
                 if int_val < 140 or int_val > 191:
-                    return (False, f"id must be between 140 and 191")
+                    return (False, "id must be between 140 and 191")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -92,6 +92,6 @@ def validate_ftgd_local_cat_post(
     if "desc" in payload:
         value = payload.get("desc")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"desc cannot exceed 79 characters")
+            return (False, "desc cannot exceed 79 characters")
 
     return (True, None)

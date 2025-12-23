@@ -71,19 +71,19 @@ def validate_custom_language_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"filename cannot exceed 63 characters")
+            return (False, "filename cannot exceed 63 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 
@@ -118,19 +118,19 @@ def validate_custom_language_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"filename cannot exceed 63 characters")
+            return (False, "filename cannot exceed 63 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 

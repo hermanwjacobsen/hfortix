@@ -69,13 +69,13 @@ def validate_alias_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate command if present
     if "command" in payload:
         value = payload.get("command")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"command cannot exceed 255 characters")
+            return (False, "command cannot exceed 255 characters")
 
     return (True, None)
 
@@ -110,13 +110,13 @@ def validate_alias_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate command if present
     if "command" in payload:
         value = payload.get("command")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"command cannot exceed 255 characters")
+            return (False, "command cannot exceed 255 characters")
 
     return (True, None)
 

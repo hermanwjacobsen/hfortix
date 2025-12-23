@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class Fctems:
         Select a specific entry from a CLI table.
 
         Args:
-            ems_id: Object identifier (optional for list, required for specific)
+            ems_id: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class Fctems:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -173,37 +180,57 @@ class Fctems:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             ems_id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             ems_id: EMS ID in order (1 - 7). (optional)
             status: Enable or disable this EMS configuration. (optional)
-            name: FortiClient Enterprise Management Server (EMS) name. (optional)
+            name: FortiClient Enterprise Management Server (EMS) name.
+            (optional)
             dirty_reason: Dirty Reason for FortiClient EMS. (optional)
-            fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. (optional)
-            cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key (optional)
+            fortinetone_cloud_authentication: Enable/disable authentication of
+            FortiClient EMS Cloud through FortiCloud account. (optional)
+            cloud_authentication_access_key: FortiClient EMS Cloud multitenancy
+            access key (optional)
             server: FortiClient EMS FQDN or IPv4 address. (optional)
-            https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443). (optional)
+            https_port: FortiClient EMS HTTPS access port number. (1 - 65535,
+            default: 443). (optional)
             serial_number: EMS Serial Number. (optional)
             tenant_id: EMS Tenant ID. (optional)
             source_ip: REST API call source IP. (optional)
             pull_sysinfo: Enable/disable pulling SysInfo from EMS. (optional)
-            pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. (optional)
-            pull_tags: Enable/disable pulling FortiClient user tags from EMS. (optional)
-            pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. (optional)
+            pull_vulnerabilities: Enable/disable pulling vulnerabilities from
+            EMS. (optional)
+            pull_tags: Enable/disable pulling FortiClient user tags from EMS.
+            (optional)
+            pull_malware_hash: Enable/disable pulling FortiClient malware hash
+            from EMS. (optional)
             capabilities: List of EMS capabilities. (optional)
-            call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30). (optional)
-            out_of_sync_threshold: Outdated resource threshold in seconds (10 - 3600, default = 180). (optional)
-            send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs (optional)
-            websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            call_timeout: FortiClient EMS call timeout in seconds (1 - 180
+            seconds, default = 30). (optional)
+            out_of_sync_threshold: Outdated resource threshold in seconds (10 -
+            3600, default = 180). (optional)
+            send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS
+            tags to all VDOMs (optional)
+            websocket_override: Enable/disable override behavior for how this
+            FortiGate unit connects to EMS using a WebSocket connection.
+            (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
-            trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. (optional)
-            verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain. (optional)
+            trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA)
+            and common name(CN) for certificate auto-renewal. (optional)
+            verifying_ca: Lowest CA cert on Fortigate in verified EMS cert
+            chain. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -211,7 +238,8 @@ class Fctems:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -297,8 +325,10 @@ class Fctems:
         Args:
             ems_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -306,7 +336,8 @@ class Fctems:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -401,35 +432,54 @@ class Fctems:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             ems_id: EMS ID in order (1 - 7). (optional)
             status: Enable or disable this EMS configuration. (optional)
-            name: FortiClient Enterprise Management Server (EMS) name. (optional)
+            name: FortiClient Enterprise Management Server (EMS) name.
+            (optional)
             dirty_reason: Dirty Reason for FortiClient EMS. (optional)
-            fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. (optional)
-            cloud_authentication_access_key: FortiClient EMS Cloud multitenancy access key (optional)
+            fortinetone_cloud_authentication: Enable/disable authentication of
+            FortiClient EMS Cloud through FortiCloud account. (optional)
+            cloud_authentication_access_key: FortiClient EMS Cloud multitenancy
+            access key (optional)
             server: FortiClient EMS FQDN or IPv4 address. (optional)
-            https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443). (optional)
+            https_port: FortiClient EMS HTTPS access port number. (1 - 65535,
+            default: 443). (optional)
             serial_number: EMS Serial Number. (optional)
             tenant_id: EMS Tenant ID. (optional)
             source_ip: REST API call source IP. (optional)
             pull_sysinfo: Enable/disable pulling SysInfo from EMS. (optional)
-            pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. (optional)
-            pull_tags: Enable/disable pulling FortiClient user tags from EMS. (optional)
-            pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. (optional)
+            pull_vulnerabilities: Enable/disable pulling vulnerabilities from
+            EMS. (optional)
+            pull_tags: Enable/disable pulling FortiClient user tags from EMS.
+            (optional)
+            pull_malware_hash: Enable/disable pulling FortiClient malware hash
+            from EMS. (optional)
             capabilities: List of EMS capabilities. (optional)
-            call_timeout: FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30). (optional)
-            out_of_sync_threshold: Outdated resource threshold in seconds (10 - 3600, default = 180). (optional)
-            send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS tags to all VDOMs (optional)
-            websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            call_timeout: FortiClient EMS call timeout in seconds (1 - 180
+            seconds, default = 30). (optional)
+            out_of_sync_threshold: Outdated resource threshold in seconds (10 -
+            3600, default = 180). (optional)
+            send_tags_to_all_vdoms: Relax restrictions on tags to send all EMS
+            tags to all VDOMs (optional)
+            websocket_override: Enable/disable override behavior for how this
+            FortiGate unit connects to EMS using a WebSocket connection.
+            (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
-            trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA) and common name(CN) for certificate auto-renewal. (optional)
-            verifying_ca: Lowest CA cert on Fortigate in verified EMS cert chain. (optional)
+            trust_ca_cn: Enable/disable trust of the EMS certificate issuer(CA)
+            and common name(CN) for certificate auto-renewal. (optional)
+            verifying_ca: Lowest CA cert on Fortigate in verified EMS cert
+            chain. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -437,7 +487,8 @@ class Fctems:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -63,7 +63,8 @@ class UuidTypeLookup:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a mapping of UUIDs to their firewall object type for given UUIDs.
+        Retrieve a mapping of UUIDs to their firewall object type for given
+        UUIDs.
 
         Args:
             uuids: UUID to be resolved. (required)

@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller 802 1x Settings
 
-Configuration endpoint for managing cmdb switch controller 802 1x settings objects.
+Configuration endpoint for managing cmdb switch controller 802 1x settings
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/_802_1X_settings
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller._802_1X_settings.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller._802_1X_settings.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller._802_1X_settings.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller._802_1X_settings.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller._802_1X_settings.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller._802_1X_settings.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +91,15 @@ class Eight02OneXSettings:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +107,8 @@ class Eight02OneXSettings:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -139,22 +147,34 @@ class Eight02OneXSettings:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            link_down_auth: Interface-reauthentication state to set if a link is down. (optional)
-            reauth_period: Period of time to allow for reauthentication (1 - 1440 sec, default = 60, 0 = disable reauthentication). (optional)
-            max_reauth_attempt: Maximum number of authentication attempts (0 - 15, default = 3). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            link_down_auth: Interface-reauthentication state to set if a link
+            is down. (optional)
+            reauth_period: Period of time to allow for reauthentication (1 -
+            1440 sec, default = 60, 0 = disable reauthentication). (optional)
+            max_reauth_attempt: Maximum number of authentication attempts (0 -
+            15, default = 3). (optional)
             tx_period: 802.1X Tx period (seconds, default=30). (optional)
             mab_reauth: Enable/disable MAB re-authentication. (optional)
-            mac_username_delimiter: MAC authentication username delimiter (default = hyphen). (optional)
-            mac_password_delimiter: MAC authentication password delimiter (default = hyphen). (optional)
-            mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). (optional)
-            mac_called_station_delimiter: MAC called station delimiter (default = hyphen). (optional)
+            mac_username_delimiter: MAC authentication username delimiter
+            (default = hyphen). (optional)
+            mac_password_delimiter: MAC authentication password delimiter
+            (default = hyphen). (optional)
+            mac_calling_station_delimiter: MAC calling station delimiter
+            (default = hyphen). (optional)
+            mac_called_station_delimiter: MAC called station delimiter (default
+            = hyphen). (optional)
             mac_case: MAC case (default = lowercase). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -162,7 +182,8 @@ class Eight02OneXSettings:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

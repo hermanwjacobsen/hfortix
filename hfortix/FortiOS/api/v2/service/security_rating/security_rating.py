@@ -70,10 +70,12 @@ class Recommendations:
                2. Payload dict: get(payload_dict={'param': 'value'})
 
                Args:
-                   checks: Retrieve the recommendations for the given Security Rating checks.
+                   checks: Retrieve the recommendations for the given Security
+                   Rating checks.
                    scope: Scope of the request [global | vdom*].
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -82,10 +84,12 @@ class Recommendations:
 
                Examples:
                    # Using individual parameters
-                   result = fgt.api.service.security-rating.recommendations.get()
+                   result =
+                   fgt.api.service.security-rating.recommendations.get()
 
                    # Using payload_dict
-                   result = fgt.api.service.security-rating.recommendations.get(
+                   result =
+                   fgt.api.service.security-rating.recommendations.get(
                        payload_dict={'param': 'value'}
                    )
         """
@@ -138,11 +142,15 @@ class Report:
                Args:
                    type: The report sub-type to fetch ['psirt', 'insight'].
                    scope: Scope of the request [global | vdom*].
-                   standalone: If enabled this will only return a report with checks for the current FortiGate.
-                   checks: Retrieve a report with only the given Security Rating checks.
-                   show_hidden: Show hidden Security Rating controls in the report.
+                   standalone: If enabled this will only return a report with
+                   checks for the current FortiGate.
+                   checks: Retrieve a report with only the given Security
+                   Rating checks.
+                   show_hidden: Show hidden Security Rating controls in the
+                   report.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 

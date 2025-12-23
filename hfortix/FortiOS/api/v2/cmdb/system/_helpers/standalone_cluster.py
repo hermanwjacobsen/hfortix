@@ -85,7 +85,7 @@ def validate_standalone_cluster_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"standalone-group-id must be between 0 and 255",
+                        "standalone-group-id must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -100,7 +100,7 @@ def validate_standalone_cluster_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 15:
-                    return (False, f"group-member-id must be between 0 and 15")
+                    return (False, "group-member-id must be between 0 and 15")
             except (ValueError, TypeError):
                 return (
                     False,

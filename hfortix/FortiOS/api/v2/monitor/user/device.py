@@ -77,7 +77,8 @@ class IotQuery:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.user.device.iot_query.get(mac='value', ip='value')
+            >>> fgt.api.monitor.user.device.iot_query.get(mac='value',
+            ip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mac"] = mac
@@ -115,7 +116,8 @@ class PurdueLevel:
         Args:
             mac: Main MAC address of the device. (optional)
             ip: IP address of the device. (optional)
-            level: Purdue level of the device [1|1.5|2|2.5|3|3.5|4|5|5.5]. (optional)
+            level: Purdue level of the device [1|1.5|2|2.5|3|3.5|4|5|5.5].
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -171,16 +173,30 @@ class Query:
         Retrieve user devices from user device store.
 
         Args:
-            timestamp_from: To get entries since the timestamp for unified historical query. (optional)
-            timestamp_to: To get entries before the timestamp for unified historical query. (optional)
-            filters: A list of filters. Type:{"type": string, "value": string, "op": string}. Op: filter operator [exact|contains|greaterThanEqualTo|lessThanEqualTo]. Default is exact. (optional)
-            query_type: Query type [latest|unified_latest|unified_history]. Default is latest. (optional)
-            view_type: View type [device|fortiswitch_client|forticlient|iot_vuln_info]. Default is device. (optional)
-            query_id: Provide a query ID to continue getting data for that unified request. Only available for unified query types. (optional)
-            cache_query: Cache query result for 5 mins and return query ID. Only available for unified query types. Default is false. (optional)
-            key_only: Return primary key fields only. Default is false. (optional)
-            filter_logic: The logic between filters [and|or]). Default is and. (optional)
-            total_only: Whether the query should return just the total number of devices present. (optional)
+            timestamp_from: To get entries since the timestamp for unified
+            historical query. (optional)
+            timestamp_to: To get entries before the timestamp for unified
+            historical query. (optional)
+            filters: A list of filters. Type:{"type": string, "value": string,
+            "op": string}. Op: filter operator
+            [exact|contains|greaterThanEqualTo|lessThanEqualTo]. Default is
+            exact. (optional)
+            query_type: Query type [latest|unified_latest|unified_history].
+            Default is latest. (optional)
+            view_type: View type
+            [device|fortiswitch_client|forticlient|iot_vuln_info]. Default is
+            device. (optional)
+            query_id: Provide a query ID to continue getting data for that
+            unified request. Only available for unified query types. (optional)
+            cache_query: Cache query result for 5 mins and return query ID.
+            Only available for unified query types. Default is false.
+            (optional)
+            key_only: Return primary key fields only. Default is false.
+            (optional)
+            filter_logic: The logic between filters [and|or]). Default is and.
+            (optional)
+            total_only: Whether the query should return just the total number
+            of devices present. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -244,12 +260,22 @@ class Stats:
         Retrieve user devices stats from device store by given stat item.
 
         Args:
-            stat_key: key of the stats count on [os_name|hardware_type|detected_interface|is_online|max_vuln_level|fortiswitch_id|fortiswitch_port_name]. fortiswitch_id and fortiswitch_port_name only for fortiswitch_client stats query type (required)
-            timestamp_to: To get entries before the timestamp for stats query. (required)
-            stat_query_type: Stat query type [device|fortiswitch_client|forticlient]. Default is device. (optional)
-            timestamp_from: To get entries since the timestamp for stats query. (optional)
-            filters: A list of filters. Type:{"type": string, "value": string, "op": string}. Only is_online type is supported. Op: filter operator [exact|contains]. Default is exact. (optional)
-            filter_logic: The logic between filters [and|or]). Default is and. (optional)
+            stat_key: key of the stats count on
+            [os_name|hardware_type|detected_interface|is_online|max_vuln_level|fortiswitch_id|fortiswitch_port_name].
+            fortiswitch_id and fortiswitch_port_name only for
+            fortiswitch_client stats query type (required)
+            timestamp_to: To get entries before the timestamp for stats query.
+            (required)
+            stat_query_type: Stat query type
+            [device|fortiswitch_client|forticlient]. Default is device.
+            (optional)
+            timestamp_from: To get entries since the timestamp for stats query.
+            (optional)
+            filters: A list of filters. Type:{"type": string, "value": string,
+            "op": string}. Only is_online type is supported. Op: filter
+            operator [exact|contains]. Default is exact. (optional)
+            filter_logic: The logic between filters [and|or]). Default is and.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -258,7 +284,8 @@ class Stats:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.user.device.stats.get(stat_key='value', timestamp_to=1)
+            >>> fgt.api.monitor.user.device.stats.get(stat_key='value',
+            timestamp_to=1)
         """
         params = payload_dict.copy() if payload_dict else {}
         params["stat-key"] = stat_key

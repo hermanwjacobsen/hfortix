@@ -63,7 +63,8 @@ class Disassociate:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Disassociate a WiFi client from the FortiAP it's currently connected to.
+        Disassociate a WiFi client from the FortiAP it's currently connected
+        to.
 
         Args:
             mac: MAC address. (optional)
@@ -116,8 +117,10 @@ class Client:
 
         Args:
             type: Request type [all*|fail-login]. (optional)
-            with_triangulation: Enable to include regions of FortiAP detecting the client. (optional)
-            with_stats: Enable to include statistics of FortiAP client. (optional)
+            with_triangulation: Enable to include regions of FortiAP detecting
+            the client. (optional)
+            with_stats: Enable to include statistics of FortiAP client.
+            (optional)
             mac: WiFi client MAC address. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True

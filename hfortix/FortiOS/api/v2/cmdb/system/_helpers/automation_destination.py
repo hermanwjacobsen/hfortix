@@ -72,7 +72,7 @@ def validate_automation_destination_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -90,7 +90,7 @@ def validate_automation_destination_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"ha-group-id must be between 0 and 255")
+                    return (False, "ha-group-id must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"ha-group-id must be numeric, got: {value}")
 
@@ -127,7 +127,7 @@ def validate_automation_destination_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -145,7 +145,7 @@ def validate_automation_destination_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"ha-group-id must be between 0 and 255")
+                    return (False, "ha-group-id must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"ha-group-id must be numeric, got: {value}")
 

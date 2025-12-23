@@ -88,11 +88,15 @@ class Setting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -153,36 +158,71 @@ class Setting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            auth_type: Supported firewall policy authentication protocols/methods. (optional)
-            auth_cert: HTTPS server certificate for policy authentication. (optional)
-            auth_ca_cert: HTTPS CA certificate for policy authentication. (optional)
-            auth_secure_http: Enable/disable redirecting HTTP user authentication to more secure HTTPS. (optional)
-            auth_http_basic: Enable/disable use of HTTP basic authentication for identity-based firewall policies. (optional)
-            auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. (optional)
-            auth_src_mac: Enable/disable source MAC for user identity. (optional)
-            auth_on_demand: Always/implicitly trigger firewall authentication on demand. (optional)
-            auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate. (optional)
-            auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. (optional)
-            auth_portal_timeout: Time in minutes before captive portal user have to re-authenticate (1 - 30 min, default 3 min). (optional)
-            radius_ses_timeout_act: Set the RADIUS session timeout to a hard timeout or to ignore RADIUS server session timeouts. (optional)
-            auth_blackout_time: Time in seconds an IP address is denied access after failing to authenticate five times within one minute. (optional)
-            auth_invalid_max: Maximum number of failed authentication attempts before the user is blocked. (optional)
-            auth_lockout_threshold: Maximum number of failed login attempts before login lockout is triggered. (optional)
-            auth_lockout_duration: Lockout period in seconds after too many login failures. (optional)
-            per_policy_disclaimer: Enable/disable per policy disclaimer. (optional)
-            auth_ports: Set up non-standard ports for authentication with HTTP, HTTPS, FTP, and TELNET. (optional)
-            auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
-            auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). (optional)
-            auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). (optional)
-            default_user_password_policy: Default password policy to apply to all local users unless otherwise specified, as defined in config user password-policy. (optional)
-            cors: Enable/disable allowed origins white list for CORS. (optional)
-            cors_allowed_origins: Allowed origins white list for CORS. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            auth_type: Supported firewall policy authentication
+            protocols/methods. (optional)
+            auth_cert: HTTPS server certificate for policy authentication.
+            (optional)
+            auth_ca_cert: HTTPS CA certificate for policy authentication.
+            (optional)
+            auth_secure_http: Enable/disable redirecting HTTP user
+            authentication to more secure HTTPS. (optional)
+            auth_http_basic: Enable/disable use of HTTP basic authentication
+            for identity-based firewall policies. (optional)
+            auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for
+            HTTPS authentication. (optional)
+            auth_src_mac: Enable/disable source MAC for user identity.
+            (optional)
+            auth_on_demand: Always/implicitly trigger firewall authentication
+            on demand. (optional)
+            auth_timeout: Time in minutes before the firewall user
+            authentication timeout requires the user to re-authenticate.
+            (optional)
+            auth_timeout_type: Control if authenticated users have to login
+            again after a hard timeout, after an idle timeout, or after a
+            session timeout. (optional)
+            auth_portal_timeout: Time in minutes before captive portal user
+            have to re-authenticate (1 - 30 min, default 3 min). (optional)
+            radius_ses_timeout_act: Set the RADIUS session timeout to a hard
+            timeout or to ignore RADIUS server session timeouts. (optional)
+            auth_blackout_time: Time in seconds an IP address is denied access
+            after failing to authenticate five times within one minute.
+            (optional)
+            auth_invalid_max: Maximum number of failed authentication attempts
+            before the user is blocked. (optional)
+            auth_lockout_threshold: Maximum number of failed login attempts
+            before login lockout is triggered. (optional)
+            auth_lockout_duration: Lockout period in seconds after too many
+            login failures. (optional)
+            per_policy_disclaimer: Enable/disable per policy disclaimer.
+            (optional)
+            auth_ports: Set up non-standard ports for authentication with HTTP,
+            HTTPS, FTP, and TELNET. (optional)
+            auth_ssl_min_proto_version: Minimum supported protocol version for
+            SSL/TLS connections (default is to follow system global setting).
+            (optional)
+            auth_ssl_max_proto_version: Maximum supported protocol version for
+            SSL/TLS connections (default is no limit). (optional)
+            auth_ssl_sigalgs: Set signature algorithms related to HTTPS
+            authentication (affects TLS version <= 1.2 only, default is to
+            enable all). (optional)
+            default_user_password_policy: Default password policy to apply to
+            all local users unless otherwise specified, as defined in config
+            user password-policy. (optional)
+            cors: Enable/disable allowed origins white list for CORS.
+            (optional)
+            cors_allowed_origins: Allowed origins white list for CORS.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -190,7 +230,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

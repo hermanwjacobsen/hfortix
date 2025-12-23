@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Log Tacacs Plus Accounting Filter
 
-Configuration endpoint for managing cmdb log tacacs plus accounting filter objects.
+Configuration endpoint for managing cmdb log tacacs plus accounting filter
+objects.
 
 API Endpoints:
     GET    /cmdb/log/tacacs_plus_accounting_filter
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.log.tacacs_plus_accounting_filter.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.log.tacacs_plus_accounting_filter.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.log.tacacs_plus_accounting_filter.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.tacacs_plus_accounting_filter.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.log.tacacs_plus_accounting_filter.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.log.tacacs_plus_accounting_filter.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -53,7 +56,8 @@ class TacacsPlusAccountingFilter:
     """
     Tacacsplusaccountingfilter Operations.
 
-    Provides CRUD operations for FortiOS tacacsplusaccountingfilter configuration.
+    Provides CRUD operations for FortiOS tacacsplusaccountingfilter
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -88,11 +92,15 @@ class TacacsPlusAccountingFilter:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +108,8 @@ class TacacsPlusAccountingFilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -132,15 +141,23 @@ class TacacsPlusAccountingFilter:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            login_audit: Enable/disable TACACS+ accounting for login events audit. (optional)
-            config_change_audit: Enable/disable TACACS+ accounting for configuration change events audit. (optional)
-            cli_cmd_audit: Enable/disable TACACS+ accounting for CLI commands audit. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            login_audit: Enable/disable TACACS+ accounting for login events
+            audit. (optional)
+            config_change_audit: Enable/disable TACACS+ accounting for
+            configuration change events audit. (optional)
+            cli_cmd_audit: Enable/disable TACACS+ accounting for CLI commands
+            audit. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -148,7 +165,8 @@ class TacacsPlusAccountingFilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

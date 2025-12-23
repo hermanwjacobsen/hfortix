@@ -42,7 +42,7 @@ __all__ = [
     "Multicast",
     "Multicast6",
     "MulticastFlow",
-    "Ospf",
+    "Osp",
     "Ospf6",
     "Policy",
     "Policy6",

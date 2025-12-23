@@ -69,13 +69,13 @@ def validate_vdom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate short-name if present
     if "short-name" in payload:
         value = payload.get("short-name")
         if value and isinstance(value, str) and len(value) > 11:
-            return (False, f"short-name cannot exceed 11 characters")
+            return (False, "short-name cannot exceed 11 characters")
 
     # Validate vcluster-id if present
     if "vcluster-id" in payload:
@@ -86,7 +86,7 @@ def validate_vdom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"vcluster-id must be between 0 and 4294967295",
+                        "vcluster-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"vcluster-id must be numeric, got: {value}")
@@ -98,7 +98,7 @@ def validate_vdom_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"flag must be between 0 and 4294967295")
+                    return (False, "flag must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"flag must be numeric, got: {value}")
 
@@ -135,13 +135,13 @@ def validate_vdom_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate short-name if present
     if "short-name" in payload:
         value = payload.get("short-name")
         if value and isinstance(value, str) and len(value) > 11:
-            return (False, f"short-name cannot exceed 11 characters")
+            return (False, "short-name cannot exceed 11 characters")
 
     # Validate vcluster-id if present
     if "vcluster-id" in payload:
@@ -152,7 +152,7 @@ def validate_vdom_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"vcluster-id must be between 0 and 4294967295",
+                        "vcluster-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"vcluster-id must be numeric, got: {value}")
@@ -164,7 +164,7 @@ def validate_vdom_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"flag must be between 0 and 4294967295")
+                    return (False, "flag must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"flag must be numeric, got: {value}")
 

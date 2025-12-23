@@ -81,13 +81,13 @@ def validate_nac_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate category if present
     if "category" in payload:
@@ -123,7 +123,7 @@ def validate_nac_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 120:
-                    return (False, f"match-period must be between 0 and 120")
+                    return (False, "match-period must be between 0 and 120")
             except (ValueError, TypeError):
                 return (False, f"match-period must be numeric, got: {value}")
 
@@ -140,103 +140,103 @@ def validate_nac_policy_post(
     if "mac" in payload:
         value = payload.get("mac")
         if value and isinstance(value, str) and len(value) > 17:
-            return (False, f"mac cannot exceed 17 characters")
+            return (False, "mac cannot exceed 17 characters")
 
     # Validate hw-vendor if present
     if "hw-vendor" in payload:
         value = payload.get("hw-vendor")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"hw-vendor cannot exceed 15 characters")
+            return (False, "hw-vendor cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
         value = payload.get("type")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"type cannot exceed 15 characters")
+            return (False, "type cannot exceed 15 characters")
 
     # Validate family if present
     if "family" in payload:
         value = payload.get("family")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"family cannot exceed 31 characters")
+            return (False, "family cannot exceed 31 characters")
 
     # Validate os if present
     if "os" in payload:
         value = payload.get("os")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"os cannot exceed 31 characters")
+            return (False, "os cannot exceed 31 characters")
 
     # Validate hw-version if present
     if "hw-version" in payload:
         value = payload.get("hw-version")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"hw-version cannot exceed 15 characters")
+            return (False, "hw-version cannot exceed 15 characters")
 
     # Validate sw-version if present
     if "sw-version" in payload:
         value = payload.get("sw-version")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sw-version cannot exceed 15 characters")
+            return (False, "sw-version cannot exceed 15 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"host cannot exceed 64 characters")
+            return (False, "host cannot exceed 64 characters")
 
     # Validate user if present
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"user cannot exceed 64 characters")
+            return (False, "user cannot exceed 64 characters")
 
     # Validate src if present
     if "src" in payload:
         value = payload.get("src")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"src cannot exceed 15 characters")
+            return (False, "src cannot exceed 15 characters")
 
     # Validate user-group if present
     if "user-group" in payload:
         value = payload.get("user-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user-group cannot exceed 35 characters")
+            return (False, "user-group cannot exceed 35 characters")
 
     # Validate ems-tag if present
     if "ems-tag" in payload:
         value = payload.get("ems-tag")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ems-tag cannot exceed 79 characters")
+            return (False, "ems-tag cannot exceed 79 characters")
 
     # Validate fortivoice-tag if present
     if "fortivoice-tag" in payload:
         value = payload.get("fortivoice-tag")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"fortivoice-tag cannot exceed 79 characters")
+            return (False, "fortivoice-tag cannot exceed 79 characters")
 
     # Validate switch-fortilink if present
     if "switch-fortilink" in payload:
         value = payload.get("switch-fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"switch-fortilink cannot exceed 15 characters")
+            return (False, "switch-fortilink cannot exceed 15 characters")
 
     # Validate switch-mac-policy if present
     if "switch-mac-policy" in payload:
         value = payload.get("switch-mac-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"switch-mac-policy cannot exceed 63 characters")
+            return (False, "switch-mac-policy cannot exceed 63 characters")
 
     # Validate firewall-address if present
     if "firewall-address" in payload:
         value = payload.get("firewall-address")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"firewall-address cannot exceed 79 characters")
+            return (False, "firewall-address cannot exceed 79 characters")
 
     # Validate ssid-policy if present
     if "ssid-policy" in payload:
         value = payload.get("ssid-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssid-policy cannot exceed 35 characters")
+            return (False, "ssid-policy cannot exceed 35 characters")
 
     return (True, None)
 
@@ -271,13 +271,13 @@ def validate_nac_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate category if present
     if "category" in payload:
@@ -313,7 +313,7 @@ def validate_nac_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 120:
-                    return (False, f"match-period must be between 0 and 120")
+                    return (False, "match-period must be between 0 and 120")
             except (ValueError, TypeError):
                 return (False, f"match-period must be numeric, got: {value}")
 
@@ -330,103 +330,103 @@ def validate_nac_policy_put(
     if "mac" in payload:
         value = payload.get("mac")
         if value and isinstance(value, str) and len(value) > 17:
-            return (False, f"mac cannot exceed 17 characters")
+            return (False, "mac cannot exceed 17 characters")
 
     # Validate hw-vendor if present
     if "hw-vendor" in payload:
         value = payload.get("hw-vendor")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"hw-vendor cannot exceed 15 characters")
+            return (False, "hw-vendor cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
         value = payload.get("type")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"type cannot exceed 15 characters")
+            return (False, "type cannot exceed 15 characters")
 
     # Validate family if present
     if "family" in payload:
         value = payload.get("family")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"family cannot exceed 31 characters")
+            return (False, "family cannot exceed 31 characters")
 
     # Validate os if present
     if "os" in payload:
         value = payload.get("os")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"os cannot exceed 31 characters")
+            return (False, "os cannot exceed 31 characters")
 
     # Validate hw-version if present
     if "hw-version" in payload:
         value = payload.get("hw-version")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"hw-version cannot exceed 15 characters")
+            return (False, "hw-version cannot exceed 15 characters")
 
     # Validate sw-version if present
     if "sw-version" in payload:
         value = payload.get("sw-version")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sw-version cannot exceed 15 characters")
+            return (False, "sw-version cannot exceed 15 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"host cannot exceed 64 characters")
+            return (False, "host cannot exceed 64 characters")
 
     # Validate user if present
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"user cannot exceed 64 characters")
+            return (False, "user cannot exceed 64 characters")
 
     # Validate src if present
     if "src" in payload:
         value = payload.get("src")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"src cannot exceed 15 characters")
+            return (False, "src cannot exceed 15 characters")
 
     # Validate user-group if present
     if "user-group" in payload:
         value = payload.get("user-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user-group cannot exceed 35 characters")
+            return (False, "user-group cannot exceed 35 characters")
 
     # Validate ems-tag if present
     if "ems-tag" in payload:
         value = payload.get("ems-tag")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ems-tag cannot exceed 79 characters")
+            return (False, "ems-tag cannot exceed 79 characters")
 
     # Validate fortivoice-tag if present
     if "fortivoice-tag" in payload:
         value = payload.get("fortivoice-tag")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"fortivoice-tag cannot exceed 79 characters")
+            return (False, "fortivoice-tag cannot exceed 79 characters")
 
     # Validate switch-fortilink if present
     if "switch-fortilink" in payload:
         value = payload.get("switch-fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"switch-fortilink cannot exceed 15 characters")
+            return (False, "switch-fortilink cannot exceed 15 characters")
 
     # Validate switch-mac-policy if present
     if "switch-mac-policy" in payload:
         value = payload.get("switch-mac-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"switch-mac-policy cannot exceed 63 characters")
+            return (False, "switch-mac-policy cannot exceed 63 characters")
 
     # Validate firewall-address if present
     if "firewall-address" in payload:
         value = payload.get("firewall-address")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"firewall-address cannot exceed 79 characters")
+            return (False, "firewall-address cannot exceed 79 characters")
 
     # Validate ssid-policy if present
     if "ssid-policy" in payload:
         value = payload.get("ssid-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssid-policy cannot exceed 35 characters")
+            return (False, "ssid-policy cannot exceed 35 characters")
 
     return (True, None)
 

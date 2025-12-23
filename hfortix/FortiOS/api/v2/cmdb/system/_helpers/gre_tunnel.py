@@ -78,13 +78,13 @@ def validate_gre_tunnel_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:
@@ -149,7 +149,7 @@ def validate_gre_tunnel_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"key-outbound must be between 0 and 4294967295",
+                        "key-outbound must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"key-outbound must be numeric, got: {value}")
@@ -163,7 +163,7 @@ def validate_gre_tunnel_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"key-inbound must be between 0 and 4294967295",
+                        "key-inbound must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"key-inbound must be numeric, got: {value}")
@@ -186,7 +186,7 @@ def validate_gre_tunnel_post(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"keepalive-interval must be between 0 and 32767",
+                        "keepalive-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -203,7 +203,7 @@ def validate_gre_tunnel_post(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"keepalive-failtimes must be between 1 and 255",
+                        "keepalive-failtimes must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -244,13 +244,13 @@ def validate_gre_tunnel_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:
@@ -315,7 +315,7 @@ def validate_gre_tunnel_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"key-outbound must be between 0 and 4294967295",
+                        "key-outbound must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"key-outbound must be numeric, got: {value}")
@@ -329,7 +329,7 @@ def validate_gre_tunnel_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"key-inbound must be between 0 and 4294967295",
+                        "key-inbound must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"key-inbound must be numeric, got: {value}")
@@ -352,7 +352,7 @@ def validate_gre_tunnel_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"keepalive-interval must be between 0 and 32767",
+                        "keepalive-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -369,7 +369,7 @@ def validate_gre_tunnel_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"keepalive-failtimes must be between 1 and 255",
+                        "keepalive-failtimes must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (

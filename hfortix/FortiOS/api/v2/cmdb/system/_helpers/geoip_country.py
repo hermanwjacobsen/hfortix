@@ -71,13 +71,13 @@ def validate_geoip_country_post(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"id cannot exceed 2 characters")
+            return (False, "id cannot exceed 2 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     return (True, None)
 
@@ -112,13 +112,13 @@ def validate_geoip_country_put(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"id cannot exceed 2 characters")
+            return (False, "id cannot exceed 2 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     return (True, None)
 

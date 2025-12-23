@@ -79,17 +79,21 @@ class Flush:
         Flush GTP tunnels.
 
         Args:
-            scope: Scope from which to flush tunnels from [global|*vdom]. (optional)
+            scope: Scope from which to flush tunnels from [global|*vdom].
+            (optional)
             gtp_profile: Filter: GTP profile. (optional)
             version: Filter: GTP version. (optional)
             imsi: Filter: International mobile subscriber identity. (optional)
-            msisdn: Filter: Mobile station international subscriber directory number (optional)
+            msisdn: Filter: Mobile station international subscriber directory
+            number (optional)
             ms_addr: Filter: Mobile user IP address. (optional)
             ms_addr6: Filter: Mobile user IPv6 address. (optional)
-            cteid: Filter: Control plane fully qualified tunnel endpoint identifier. (optional)
+            cteid: Filter: Control plane fully qualified tunnel endpoint
+            identifier. (optional)
             cteid_addr: Filter: Control plane TEID IP address. (optional)
             cteid_addr6: Filter: Control plane TEID IPv6 address. (optional)
-            fteid: Filter: Data plane fully qualified tunnel endpoint identifier. (optional)
+            fteid: Filter: Data plane fully qualified tunnel endpoint
+            identifier. (optional)
             fteid_addr: Filter: Data plane TEID IP address. (optional)
             fteid_addr6: Filter: Data plane TEID IPv6 address. (optional)
             apn: Filter: Access point name. (optional)

@@ -399,7 +399,7 @@ def validate_ipsec_phase1_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -414,7 +414,7 @@ def validate_ipsec_phase1_interface_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:
@@ -438,7 +438,7 @@ def validate_ipsec_phase1_interface_post(
     if "remotegw-ddns" in payload:
         value = payload.get("remotegw-ddns")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"remotegw-ddns cannot exceed 63 characters")
+            return (False, "remotegw-ddns cannot exceed 63 characters")
 
     # Validate keylife if present
     if "keylife" in payload:
@@ -447,7 +447,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 120 or int_val > 172800:
-                    return (False, f"keylife must be between 120 and 172800")
+                    return (False, "keylife must be between 120 and 172800")
             except (ValueError, TypeError):
                 return (False, f"keylife must be numeric, got: {value}")
 
@@ -491,7 +491,7 @@ def validate_ipsec_phase1_interface_post(
     if "peerid" in payload:
         value = payload.get("peerid")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"peerid cannot exceed 255 characters")
+            return (False, "peerid cannot exceed 255 characters")
 
     # Validate default-gw-priority if present
     if "default-gw-priority" in payload:
@@ -502,7 +502,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"default-gw-priority must be between 0 and 4294967295",
+                        "default-gw-priority must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -514,19 +514,19 @@ def validate_ipsec_phase1_interface_post(
     if "usrgrp" in payload:
         value = payload.get("usrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"usrgrp cannot exceed 35 characters")
+            return (False, "usrgrp cannot exceed 35 characters")
 
     # Validate peer if present
     if "peer" in payload:
         value = payload.get("peer")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer cannot exceed 35 characters")
+            return (False, "peer cannot exceed 35 characters")
 
     # Validate peergrp if present
     if "peergrp" in payload:
         value = payload.get("peergrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peergrp cannot exceed 35 characters")
+            return (False, "peergrp cannot exceed 35 characters")
 
     # Validate monitor-min if present
     if "monitor-min" in payload:
@@ -537,7 +537,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"monitor-min must be between 0 and 4294967295",
+                        "monitor-min must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"monitor-min must be numeric, got: {value}")
@@ -560,7 +560,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 0 or int_val > 31536000:
                     return (
                         False,
-                        f"monitor-hold-down-delay must be between 0 and 31536000",
+                        "monitor-hold-down-delay must be between 0 and 31536000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -622,7 +622,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"aggregate-weight must be between 1 and 100",
+                        "aggregate-weight must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -657,7 +657,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"peer-egress-shaping-value must be between 0 and 80000000",
+                        "peer-egress-shaping-value must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -714,7 +714,7 @@ def validate_ipsec_phase1_interface_post(
     if "ipv4-split-include" in payload:
         value = payload.get("ipv4-split-include")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-split-include cannot exceed 79 characters")
+            return (False, "ipv4-split-include cannot exceed 79 characters")
 
     # Validate split-include-service if present
     if "split-include-service" in payload:
@@ -722,14 +722,14 @@ def validate_ipsec_phase1_interface_post(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"split-include-service cannot exceed 79 characters",
+                "split-include-service cannot exceed 79 characters",
             )
 
     # Validate ipv4-name if present
     if "ipv4-name" in payload:
         value = payload.get("ipv4-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-name cannot exceed 79 characters")
+            return (False, "ipv4-name cannot exceed 79 characters")
 
     # Validate ipv6-prefix if present
     if "ipv6-prefix" in payload:
@@ -738,7 +738,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 128:
-                    return (False, f"ipv6-prefix must be between 1 and 128")
+                    return (False, "ipv6-prefix must be between 1 and 128")
             except (ValueError, TypeError):
                 return (False, f"ipv6-prefix must be numeric, got: {value}")
 
@@ -746,13 +746,13 @@ def validate_ipsec_phase1_interface_post(
     if "ipv6-split-include" in payload:
         value = payload.get("ipv6-split-include")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-split-include cannot exceed 79 characters")
+            return (False, "ipv6-split-include cannot exceed 79 characters")
 
     # Validate ipv6-name if present
     if "ipv6-name" in payload:
         value = payload.get("ipv6-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-name cannot exceed 79 characters")
+            return (False, "ipv6-name cannot exceed 79 characters")
 
     # Validate ip-delay-interval if present
     if "ip-delay-interval" in payload:
@@ -763,7 +763,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 0 or int_val > 28800:
                     return (
                         False,
-                        f"ip-delay-interval must be between 0 and 28800",
+                        "ip-delay-interval must be between 0 and 28800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -784,13 +784,13 @@ def validate_ipsec_phase1_interface_post(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"domain cannot exceed 63 characters")
+            return (False, "domain cannot exceed 63 characters")
 
     # Validate banner if present
     if "banner" in payload:
         value = payload.get("banner")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"banner cannot exceed 1024 characters")
+            return (False, "banner cannot exceed 1024 characters")
 
     # Validate include-local-lan if present
     if "include-local-lan" in payload:
@@ -805,13 +805,13 @@ def validate_ipsec_phase1_interface_post(
     if "ipv4-split-exclude" in payload:
         value = payload.get("ipv4-split-exclude")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-split-exclude cannot exceed 79 characters")
+            return (False, "ipv4-split-exclude cannot exceed 79 characters")
 
     # Validate ipv6-split-exclude if present
     if "ipv6-split-exclude" in payload:
         value = payload.get("ipv6-split-exclude")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-split-exclude cannot exceed 79 characters")
+            return (False, "ipv6-split-exclude cannot exceed 79 characters")
 
     # Validate save-password if present
     if "save-password" in payload:
@@ -874,7 +874,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 900:
-                    return (False, f"keepalive must be between 5 and 900")
+                    return (False, "keepalive must be between 5 and 900")
             except (ValueError, TypeError):
                 return (False, f"keepalive must be numeric, got: {value}")
 
@@ -885,7 +885,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -896,7 +896,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -904,7 +904,7 @@ def validate_ipsec_phase1_interface_post(
     if "localid" in payload:
         value = payload.get("localid")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"localid cannot exceed 63 characters")
+            return (False, "localid cannot exceed 63 characters")
 
     # Validate localid-type if present
     if "localid-type" in payload:
@@ -933,7 +933,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"negotiate-timeout must be between 1 and 300",
+                        "negotiate-timeout must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -975,7 +975,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"dpd-retrycount must be between 1 and 10")
+                    return (False, "dpd-retrycount must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"dpd-retrycount must be numeric, got: {value}")
 
@@ -983,7 +983,7 @@ def validate_ipsec_phase1_interface_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate npu-offload if present
     if "npu-offload" in payload:
@@ -1106,7 +1106,7 @@ def validate_ipsec_phase1_interface_post(
     if "eap-exclude-peergrp" in payload:
         value = payload.get("eap-exclude-peergrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-exclude-peergrp cannot exceed 35 characters")
+            return (False, "eap-exclude-peergrp cannot exceed 35 characters")
 
     # Validate eap-cert-auth if present
     if "eap-cert-auth" in payload:
@@ -1139,7 +1139,7 @@ def validate_ipsec_phase1_interface_post(
     if "ppk-identity" in payload:
         value = payload.get("ppk-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ppk-identity cannot exceed 35 characters")
+            return (False, "ppk-identity cannot exceed 35 characters")
 
     # Validate wizard-type if present
     if "wizard-type" in payload:
@@ -1172,7 +1172,7 @@ def validate_ipsec_phase1_interface_post(
     if "authusr" in payload:
         value = payload.get("authusr")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"authusr cannot exceed 64 characters")
+            return (False, "authusr cannot exceed 64 characters")
 
     # Validate group-authentication if present
     if "group-authentication" in payload:
@@ -1187,7 +1187,7 @@ def validate_ipsec_phase1_interface_post(
     if "authusrgrp" in payload:
         value = payload.get("authusrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"authusrgrp cannot exceed 35 characters")
+            return (False, "authusrgrp cannot exceed 35 characters")
 
     # Validate mesh-selector-type if present
     if "mesh-selector-type" in payload:
@@ -1225,7 +1225,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 5 or int_val > 43200:
                     return (
                         False,
-                        f"idle-timeoutinterval must be between 5 and 43200",
+                        "idle-timeoutinterval must be between 5 and 43200",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1323,7 +1323,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"auto-discovery-offer-interval must be between 1 and 300",
+                        "auto-discovery-offer-interval must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1365,7 +1365,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 16777215:
-                    return (False, f"vni must be between 1 and 16777215")
+                    return (False, "vni must be between 1 and 16777215")
             except (ValueError, TypeError):
                 return (False, f"vni must be numeric, got: {value}")
 
@@ -1387,7 +1387,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 500 or int_val > 16000:
                     return (
                         False,
-                        f"fragmentation-mtu must be between 500 and 16000",
+                        "fragmentation-mtu must be between 500 and 16000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1431,7 +1431,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 120 or int_val > 172800:
                     return (
                         False,
-                        f"client-resume-interval must be between 120 and 172800",
+                        "client-resume-interval must be between 120 and 172800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1520,7 +1520,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 1000:
                     return (
                         False,
-                        f"fec-send-timeout must be between 1 and 1000",
+                        "fec-send-timeout must be between 1 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1535,7 +1535,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 20:
-                    return (False, f"fec-base must be between 1 and 20")
+                    return (False, "fec-base must be between 1 and 20")
             except (ValueError, TypeError):
                 return (False, f"fec-base must be numeric, got: {value}")
 
@@ -1555,7 +1555,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 5:
-                    return (False, f"fec-redundant must be between 1 and 5")
+                    return (False, "fec-redundant must be between 1 and 5")
             except (ValueError, TypeError):
                 return (False, f"fec-redundant must be numeric, got: {value}")
 
@@ -1577,7 +1577,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 1000:
                     return (
                         False,
-                        f"fec-receive-timeout must be between 1 and 1000",
+                        "fec-receive-timeout must be between 1 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1589,13 +1589,13 @@ def validate_ipsec_phase1_interface_post(
     if "fec-health-check" in payload:
         value = payload.get("fec-health-check")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fec-health-check cannot exceed 35 characters")
+            return (False, "fec-health-check cannot exceed 35 characters")
 
     # Validate fec-mapping-profile if present
     if "fec-mapping-profile" in payload:
         value = payload.get("fec-mapping-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fec-mapping-profile cannot exceed 35 characters")
+            return (False, "fec-mapping-profile cannot exceed 35 characters")
 
     # Validate network-overlay if present
     if "network-overlay" in payload:
@@ -1613,7 +1613,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"network-id must be between 0 and 255")
+                    return (False, "network-id must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"network-id must be numeric, got: {value}")
 
@@ -1630,7 +1630,7 @@ def validate_ipsec_phase1_interface_post(
     if "dev-id" in payload:
         value = payload.get("dev-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"dev-id cannot exceed 63 characters")
+            return (False, "dev-id cannot exceed 63 characters")
 
     # Validate loopback-asymroute if present
     if "loopback-asymroute" in payload:
@@ -1648,7 +1648,7 @@ def validate_ipsec_phase1_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"link-cost must be between 0 and 255")
+                    return (False, "link-cost must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"link-cost must be numeric, got: {value}")
 
@@ -1656,7 +1656,7 @@ def validate_ipsec_phase1_interface_post(
     if "kms" in payload:
         value = payload.get("kms")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"kms cannot exceed 35 characters")
+            return (False, "kms cannot exceed 35 characters")
 
     # Validate exchange-fgt-device-id if present
     if "exchange-fgt-device-id" in payload:
@@ -1716,7 +1716,7 @@ def validate_ipsec_phase1_interface_post(
     if "qkd-profile" in payload:
         value = payload.get("qkd-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qkd-profile cannot exceed 35 characters")
+            return (False, "qkd-profile cannot exceed 35 characters")
 
     # Validate transport if present
     if "transport" in payload:
@@ -1745,7 +1745,7 @@ def validate_ipsec_phase1_interface_post(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"auto-transport-threshold must be between 1 and 300",
+                        "auto-transport-threshold must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1766,7 +1766,7 @@ def validate_ipsec_phase1_interface_post(
     if "remote-gw-country" in payload:
         value = payload.get("remote-gw-country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"remote-gw-country cannot exceed 2 characters")
+            return (False, "remote-gw-country cannot exceed 2 characters")
 
     # Validate remote-gw6-match if present
     if "remote-gw6-match" in payload:
@@ -1781,7 +1781,7 @@ def validate_ipsec_phase1_interface_post(
     if "remote-gw6-country" in payload:
         value = payload.get("remote-gw6-country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"remote-gw6-country cannot exceed 2 characters")
+            return (False, "remote-gw6-country cannot exceed 2 characters")
 
     # Validate cert-peer-username-validation if present
     if "cert-peer-username-validation" in payload:
@@ -1834,7 +1834,7 @@ def validate_ipsec_phase1_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -1849,7 +1849,7 @@ def validate_ipsec_phase1_interface_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate ip-version if present
     if "ip-version" in payload:
@@ -1873,7 +1873,7 @@ def validate_ipsec_phase1_interface_put(
     if "remotegw-ddns" in payload:
         value = payload.get("remotegw-ddns")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"remotegw-ddns cannot exceed 63 characters")
+            return (False, "remotegw-ddns cannot exceed 63 characters")
 
     # Validate keylife if present
     if "keylife" in payload:
@@ -1882,7 +1882,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 120 or int_val > 172800:
-                    return (False, f"keylife must be between 120 and 172800")
+                    return (False, "keylife must be between 120 and 172800")
             except (ValueError, TypeError):
                 return (False, f"keylife must be numeric, got: {value}")
 
@@ -1926,7 +1926,7 @@ def validate_ipsec_phase1_interface_put(
     if "peerid" in payload:
         value = payload.get("peerid")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"peerid cannot exceed 255 characters")
+            return (False, "peerid cannot exceed 255 characters")
 
     # Validate default-gw-priority if present
     if "default-gw-priority" in payload:
@@ -1937,7 +1937,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"default-gw-priority must be between 0 and 4294967295",
+                        "default-gw-priority must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1949,19 +1949,19 @@ def validate_ipsec_phase1_interface_put(
     if "usrgrp" in payload:
         value = payload.get("usrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"usrgrp cannot exceed 35 characters")
+            return (False, "usrgrp cannot exceed 35 characters")
 
     # Validate peer if present
     if "peer" in payload:
         value = payload.get("peer")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer cannot exceed 35 characters")
+            return (False, "peer cannot exceed 35 characters")
 
     # Validate peergrp if present
     if "peergrp" in payload:
         value = payload.get("peergrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peergrp cannot exceed 35 characters")
+            return (False, "peergrp cannot exceed 35 characters")
 
     # Validate monitor-min if present
     if "monitor-min" in payload:
@@ -1972,7 +1972,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"monitor-min must be between 0 and 4294967295",
+                        "monitor-min must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"monitor-min must be numeric, got: {value}")
@@ -1995,7 +1995,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 0 or int_val > 31536000:
                     return (
                         False,
-                        f"monitor-hold-down-delay must be between 0 and 31536000",
+                        "monitor-hold-down-delay must be between 0 and 31536000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2057,7 +2057,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"aggregate-weight must be between 1 and 100",
+                        "aggregate-weight must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2092,7 +2092,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"peer-egress-shaping-value must be between 0 and 80000000",
+                        "peer-egress-shaping-value must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2149,7 +2149,7 @@ def validate_ipsec_phase1_interface_put(
     if "ipv4-split-include" in payload:
         value = payload.get("ipv4-split-include")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-split-include cannot exceed 79 characters")
+            return (False, "ipv4-split-include cannot exceed 79 characters")
 
     # Validate split-include-service if present
     if "split-include-service" in payload:
@@ -2157,14 +2157,14 @@ def validate_ipsec_phase1_interface_put(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"split-include-service cannot exceed 79 characters",
+                "split-include-service cannot exceed 79 characters",
             )
 
     # Validate ipv4-name if present
     if "ipv4-name" in payload:
         value = payload.get("ipv4-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-name cannot exceed 79 characters")
+            return (False, "ipv4-name cannot exceed 79 characters")
 
     # Validate ipv6-prefix if present
     if "ipv6-prefix" in payload:
@@ -2173,7 +2173,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 128:
-                    return (False, f"ipv6-prefix must be between 1 and 128")
+                    return (False, "ipv6-prefix must be between 1 and 128")
             except (ValueError, TypeError):
                 return (False, f"ipv6-prefix must be numeric, got: {value}")
 
@@ -2181,13 +2181,13 @@ def validate_ipsec_phase1_interface_put(
     if "ipv6-split-include" in payload:
         value = payload.get("ipv6-split-include")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-split-include cannot exceed 79 characters")
+            return (False, "ipv6-split-include cannot exceed 79 characters")
 
     # Validate ipv6-name if present
     if "ipv6-name" in payload:
         value = payload.get("ipv6-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-name cannot exceed 79 characters")
+            return (False, "ipv6-name cannot exceed 79 characters")
 
     # Validate ip-delay-interval if present
     if "ip-delay-interval" in payload:
@@ -2198,7 +2198,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 0 or int_val > 28800:
                     return (
                         False,
-                        f"ip-delay-interval must be between 0 and 28800",
+                        "ip-delay-interval must be between 0 and 28800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2219,13 +2219,13 @@ def validate_ipsec_phase1_interface_put(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"domain cannot exceed 63 characters")
+            return (False, "domain cannot exceed 63 characters")
 
     # Validate banner if present
     if "banner" in payload:
         value = payload.get("banner")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"banner cannot exceed 1024 characters")
+            return (False, "banner cannot exceed 1024 characters")
 
     # Validate include-local-lan if present
     if "include-local-lan" in payload:
@@ -2240,13 +2240,13 @@ def validate_ipsec_phase1_interface_put(
     if "ipv4-split-exclude" in payload:
         value = payload.get("ipv4-split-exclude")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv4-split-exclude cannot exceed 79 characters")
+            return (False, "ipv4-split-exclude cannot exceed 79 characters")
 
     # Validate ipv6-split-exclude if present
     if "ipv6-split-exclude" in payload:
         value = payload.get("ipv6-split-exclude")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ipv6-split-exclude cannot exceed 79 characters")
+            return (False, "ipv6-split-exclude cannot exceed 79 characters")
 
     # Validate save-password if present
     if "save-password" in payload:
@@ -2309,7 +2309,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 900:
-                    return (False, f"keepalive must be between 5 and 900")
+                    return (False, "keepalive must be between 5 and 900")
             except (ValueError, TypeError):
                 return (False, f"keepalive must be numeric, got: {value}")
 
@@ -2320,7 +2320,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -2331,7 +2331,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -2339,7 +2339,7 @@ def validate_ipsec_phase1_interface_put(
     if "localid" in payload:
         value = payload.get("localid")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"localid cannot exceed 63 characters")
+            return (False, "localid cannot exceed 63 characters")
 
     # Validate localid-type if present
     if "localid-type" in payload:
@@ -2368,7 +2368,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"negotiate-timeout must be between 1 and 300",
+                        "negotiate-timeout must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2410,7 +2410,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"dpd-retrycount must be between 1 and 10")
+                    return (False, "dpd-retrycount must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"dpd-retrycount must be numeric, got: {value}")
 
@@ -2418,7 +2418,7 @@ def validate_ipsec_phase1_interface_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate npu-offload if present
     if "npu-offload" in payload:
@@ -2541,7 +2541,7 @@ def validate_ipsec_phase1_interface_put(
     if "eap-exclude-peergrp" in payload:
         value = payload.get("eap-exclude-peergrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-exclude-peergrp cannot exceed 35 characters")
+            return (False, "eap-exclude-peergrp cannot exceed 35 characters")
 
     # Validate eap-cert-auth if present
     if "eap-cert-auth" in payload:
@@ -2574,7 +2574,7 @@ def validate_ipsec_phase1_interface_put(
     if "ppk-identity" in payload:
         value = payload.get("ppk-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ppk-identity cannot exceed 35 characters")
+            return (False, "ppk-identity cannot exceed 35 characters")
 
     # Validate wizard-type if present
     if "wizard-type" in payload:
@@ -2607,7 +2607,7 @@ def validate_ipsec_phase1_interface_put(
     if "authusr" in payload:
         value = payload.get("authusr")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"authusr cannot exceed 64 characters")
+            return (False, "authusr cannot exceed 64 characters")
 
     # Validate group-authentication if present
     if "group-authentication" in payload:
@@ -2622,7 +2622,7 @@ def validate_ipsec_phase1_interface_put(
     if "authusrgrp" in payload:
         value = payload.get("authusrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"authusrgrp cannot exceed 35 characters")
+            return (False, "authusrgrp cannot exceed 35 characters")
 
     # Validate mesh-selector-type if present
     if "mesh-selector-type" in payload:
@@ -2660,7 +2660,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 5 or int_val > 43200:
                     return (
                         False,
-                        f"idle-timeoutinterval must be between 5 and 43200",
+                        "idle-timeoutinterval must be between 5 and 43200",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2758,7 +2758,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"auto-discovery-offer-interval must be between 1 and 300",
+                        "auto-discovery-offer-interval must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2800,7 +2800,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 16777215:
-                    return (False, f"vni must be between 1 and 16777215")
+                    return (False, "vni must be between 1 and 16777215")
             except (ValueError, TypeError):
                 return (False, f"vni must be numeric, got: {value}")
 
@@ -2822,7 +2822,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 500 or int_val > 16000:
                     return (
                         False,
-                        f"fragmentation-mtu must be between 500 and 16000",
+                        "fragmentation-mtu must be between 500 and 16000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2866,7 +2866,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 120 or int_val > 172800:
                     return (
                         False,
-                        f"client-resume-interval must be between 120 and 172800",
+                        "client-resume-interval must be between 120 and 172800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2955,7 +2955,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 1000:
                     return (
                         False,
-                        f"fec-send-timeout must be between 1 and 1000",
+                        "fec-send-timeout must be between 1 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2970,7 +2970,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 20:
-                    return (False, f"fec-base must be between 1 and 20")
+                    return (False, "fec-base must be between 1 and 20")
             except (ValueError, TypeError):
                 return (False, f"fec-base must be numeric, got: {value}")
 
@@ -2990,7 +2990,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 5:
-                    return (False, f"fec-redundant must be between 1 and 5")
+                    return (False, "fec-redundant must be between 1 and 5")
             except (ValueError, TypeError):
                 return (False, f"fec-redundant must be numeric, got: {value}")
 
@@ -3012,7 +3012,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 1000:
                     return (
                         False,
-                        f"fec-receive-timeout must be between 1 and 1000",
+                        "fec-receive-timeout must be between 1 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3024,13 +3024,13 @@ def validate_ipsec_phase1_interface_put(
     if "fec-health-check" in payload:
         value = payload.get("fec-health-check")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fec-health-check cannot exceed 35 characters")
+            return (False, "fec-health-check cannot exceed 35 characters")
 
     # Validate fec-mapping-profile if present
     if "fec-mapping-profile" in payload:
         value = payload.get("fec-mapping-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fec-mapping-profile cannot exceed 35 characters")
+            return (False, "fec-mapping-profile cannot exceed 35 characters")
 
     # Validate network-overlay if present
     if "network-overlay" in payload:
@@ -3048,7 +3048,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"network-id must be between 0 and 255")
+                    return (False, "network-id must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"network-id must be numeric, got: {value}")
 
@@ -3065,7 +3065,7 @@ def validate_ipsec_phase1_interface_put(
     if "dev-id" in payload:
         value = payload.get("dev-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"dev-id cannot exceed 63 characters")
+            return (False, "dev-id cannot exceed 63 characters")
 
     # Validate loopback-asymroute if present
     if "loopback-asymroute" in payload:
@@ -3083,7 +3083,7 @@ def validate_ipsec_phase1_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"link-cost must be between 0 and 255")
+                    return (False, "link-cost must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"link-cost must be numeric, got: {value}")
 
@@ -3091,7 +3091,7 @@ def validate_ipsec_phase1_interface_put(
     if "kms" in payload:
         value = payload.get("kms")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"kms cannot exceed 35 characters")
+            return (False, "kms cannot exceed 35 characters")
 
     # Validate exchange-fgt-device-id if present
     if "exchange-fgt-device-id" in payload:
@@ -3151,7 +3151,7 @@ def validate_ipsec_phase1_interface_put(
     if "qkd-profile" in payload:
         value = payload.get("qkd-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qkd-profile cannot exceed 35 characters")
+            return (False, "qkd-profile cannot exceed 35 characters")
 
     # Validate transport if present
     if "transport" in payload:
@@ -3180,7 +3180,7 @@ def validate_ipsec_phase1_interface_put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"auto-transport-threshold must be between 1 and 300",
+                        "auto-transport-threshold must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3201,7 +3201,7 @@ def validate_ipsec_phase1_interface_put(
     if "remote-gw-country" in payload:
         value = payload.get("remote-gw-country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"remote-gw-country cannot exceed 2 characters")
+            return (False, "remote-gw-country cannot exceed 2 characters")
 
     # Validate remote-gw6-match if present
     if "remote-gw6-match" in payload:
@@ -3216,7 +3216,7 @@ def validate_ipsec_phase1_interface_put(
     if "remote-gw6-country" in payload:
         value = payload.get("remote-gw6-country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"remote-gw6-country cannot exceed 2 characters")
+            return (False, "remote-gw6-country cannot exceed 2 characters")
 
     # Validate cert-peer-username-validation if present
     if "cert-peer-username-validation" in payload:

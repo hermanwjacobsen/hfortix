@@ -63,10 +63,12 @@ class Select:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve location details for IPs queried against FortiGuard's geoip service.
+        Retrieve location details for IPs queried against FortiGuard's geoip
+        service.
 
         Args:
-            ip_addresses: One or more IP address strings to query for location details. (optional)
+            ip_addresses: One or more IP address strings to query for location
+            details. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -90,7 +90,7 @@ def validate_ip_source_guard_log_put(
                 if int_val < 0 or int_val > 1500:
                     return (
                         False,
-                        f"violation-timer must be between 0 and 1500",
+                        "violation-timer must be between 0 and 1500",
                     )
             except (ValueError, TypeError):
                 return (

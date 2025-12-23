@@ -75,7 +75,8 @@ class HistoricalStatistics:
         Args:
             filter: A map of filter keys to arrays of values. (optional)
             sessionid: FortiView request Session ID. (optional)
-            device: FortiView source device [disk|fortianalyzer|forticloud]. (optional)
+            device: FortiView source device [disk|fortianalyzer|forticloud].
+            (optional)
             report_by: Report by field. (optional)
             sort_by: Sort by field. (optional)
             chart_only: Only return graph values in results. (optional)

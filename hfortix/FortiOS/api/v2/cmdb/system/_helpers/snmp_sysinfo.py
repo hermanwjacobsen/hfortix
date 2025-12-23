@@ -97,25 +97,25 @@ def validate_snmp_sysinfo_put(
     if "engine-id" in payload:
         value = payload.get("engine-id")
         if value and isinstance(value, str) and len(value) > 54:
-            return (False, f"engine-id cannot exceed 54 characters")
+            return (False, "engine-id cannot exceed 54 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate contact-info if present
     if "contact-info" in payload:
         value = payload.get("contact-info")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"contact-info cannot exceed 255 characters")
+            return (False, "contact-info cannot exceed 255 characters")
 
     # Validate location if present
     if "location" in payload:
         value = payload.get("location")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"location cannot exceed 255 characters")
+            return (False, "location cannot exceed 255 characters")
 
     # Validate trap-high-cpu-threshold if present
     if "trap-high-cpu-threshold" in payload:
@@ -126,7 +126,7 @@ def validate_snmp_sysinfo_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"trap-high-cpu-threshold must be between 1 and 100",
+                        "trap-high-cpu-threshold must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -143,7 +143,7 @@ def validate_snmp_sysinfo_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"trap-low-memory-threshold must be between 1 and 100",
+                        "trap-low-memory-threshold must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -160,7 +160,7 @@ def validate_snmp_sysinfo_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"trap-log-full-threshold must be between 1 and 100",
+                        "trap-log-full-threshold must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -177,7 +177,7 @@ def validate_snmp_sysinfo_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"trap-free-memory-threshold must be between 1 and 100",
+                        "trap-free-memory-threshold must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -194,7 +194,7 @@ def validate_snmp_sysinfo_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"trap-freeable-memory-threshold must be between 1 and 100",
+                        "trap-freeable-memory-threshold must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (

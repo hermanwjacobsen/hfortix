@@ -75,7 +75,8 @@ class NetworkServiceDynamic:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.network_service_dynamic.get(mkey='value')
+            >>>
+            fgt.api.monitor.firewall.network_service_dynamic.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

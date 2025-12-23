@@ -85,7 +85,7 @@ def validate_local_in_policy6_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -148,7 +148,7 @@ def validate_local_in_policy6_post(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -181,7 +181,7 @@ def validate_local_in_policy6_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     return (True, None)
 
@@ -221,7 +221,7 @@ def validate_local_in_policy6_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -284,7 +284,7 @@ def validate_local_in_policy6_put(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -317,7 +317,7 @@ def validate_local_in_policy6_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     return (True, None)
 

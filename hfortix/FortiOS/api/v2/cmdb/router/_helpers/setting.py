@@ -75,13 +75,13 @@ def validate_setting_put(
     if "show-filter" in payload:
         value = payload.get("show-filter")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"show-filter cannot exceed 35 characters")
+            return (False, "show-filter cannot exceed 35 characters")
 
     # Validate hostname if present
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 14:
-            return (False, f"hostname cannot exceed 14 characters")
+            return (False, "hostname cannot exceed 14 characters")
 
     # Validate kernel-route-distance if present
     if "kernel-route-distance" in payload:
@@ -92,7 +92,7 @@ def validate_setting_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"kernel-route-distance must be between 0 and 255",
+                        "kernel-route-distance must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (

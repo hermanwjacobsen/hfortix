@@ -69,11 +69,13 @@ class Charts:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve routing chart statistics, including a map of interfaces and route types.
+        Retrieve routing chart statistics, including a map of interfaces and
+        route types.
 
         Args:
             operator: Filter logic [*and|or]. (optional)
-            ip_version: IP version (4|6). If not present, IPv4 and IPv6 will be returned. (optional)
+            ip_version: IP version (4|6). If not present, IPv4 and IPv6 will be
+            returned. (optional)
             ip_mask: Filter: IP/netmask. (optional)
             gateway: Filter: gateway. (optional)
             type: Filter: route type. (optional)

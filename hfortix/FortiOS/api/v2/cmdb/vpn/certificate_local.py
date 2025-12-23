@@ -94,12 +94,17 @@ class CertificateLocal:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -107,7 +112,8 @@ class CertificateLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -185,8 +191,10 @@ class CertificateLocal:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             password: Password as a PEM file. (optional)
             comments: Comment. (optional)
@@ -195,42 +203,67 @@ class CertificateLocal:
             csr: Certificate Signing Request. (optional)
             state: Certificate Signing Request State. (optional)
             scep_url: SCEP server URL. (optional)
-            range: Either a global or VDOM IP address range for the certificate. (optional)
+            range: Either a global or VDOM IP address range for the
+            certificate. (optional)
             source: Certificate source type. (optional)
-            auto_regenerate_days: Number of days to wait before expiry of an updated local certificate is requested (0 = disabled). (optional)
-            auto_regenerate_days_warning: Number of days to wait before an expiry warning message is generated (0 = disabled). (optional)
-            scep_password: SCEP server challenge password for auto-regeneration. (optional)
-            ca_identifier: CA identifier of the CA server for signing via SCEP. (optional)
-            name_encoding: Name encoding method for auto-regeneration. (optional)
-            source_ip: Source IP address for communications to the SCEP server. (optional)
-            ike_localid: Local ID the FortiGate uses for authentication as a VPN client. (optional)
+            auto_regenerate_days: Number of days to wait before expiry of an
+            updated local certificate is requested (0 = disabled). (optional)
+            auto_regenerate_days_warning: Number of days to wait before an
+            expiry warning message is generated (0 = disabled). (optional)
+            scep_password: SCEP server challenge password for
+            auto-regeneration. (optional)
+            ca_identifier: CA identifier of the CA server for signing via SCEP.
+            (optional)
+            name_encoding: Name encoding method for auto-regeneration.
+            (optional)
+            source_ip: Source IP address for communications to the SCEP server.
+            (optional)
+            ike_localid: Local ID the FortiGate uses for authentication as a
+            VPN client. (optional)
             ike_localid_type: IKE local ID type. (optional)
             enroll_protocol: Certificate enrollment protocol. (optional)
-            private_key_retain: Enable/disable retention of private key during SCEP renewal (default = disable). (optional)
-            cmp_server: Address and port for CMP server (format = address:port). (optional)
+            private_key_retain: Enable/disable retention of private key during
+            SCEP renewal (default = disable). (optional)
+            cmp_server: Address and port for CMP server (format =
+            address:port). (optional)
             cmp_path: Path location inside CMP server. (optional)
             cmp_server_cert: CMP server certificate. (optional)
             cmp_regeneration_method: CMP auto-regeneration method. (optional)
-            acme_ca_url: The URL for the ACME CA server (Let's Encrypt is the default provider). (optional)
-            acme_domain: A valid domain that resolves to this FortiGate unit. (optional)
-            acme_email: Contact email address that is required by some CAs like LetsEncrypt. (optional)
-            acme_eab_key_id: External Account Binding Key ID (optional setting). (optional)
-            acme_eab_key_hmac: External Account Binding HMAC Key (URL-encoded base64). (optional)
-            acme_rsa_key_size: Length of the RSA private key of the generated cert (Minimum 2048 bits). (optional)
-            acme_renew_window: Beginning of the renewal window (in days before certificate expiration, 30 by default). (optional)
+            acme_ca_url: The URL for the ACME CA server (Let's Encrypt is the
+            default provider). (optional)
+            acme_domain: A valid domain that resolves to this FortiGate unit.
+            (optional)
+            acme_email: Contact email address that is required by some CAs like
+            LetsEncrypt. (optional)
+            acme_eab_key_id: External Account Binding Key ID (optional
+            setting). (optional)
+            acme_eab_key_hmac: External Account Binding HMAC Key (URL-encoded
+            base64). (optional)
+            acme_rsa_key_size: Length of the RSA private key of the generated
+            cert (Minimum 2048 bits). (optional)
+            acme_renew_window: Beginning of the renewal window (in days before
+            certificate expiration, 30 by default). (optional)
             est_server: Address and port for EST server (e.g. https://example.com:1234). (optional)
-            est_ca_id: CA identifier of the CA server for signing via EST. (optional)
-            est_http_username: HTTP Authentication username for signing via EST. (optional)
-            est_http_password: HTTP Authentication password for signing via EST. (optional)
-            est_client_cert: Certificate used to authenticate this FortiGate to EST server. (optional)
-            est_server_cert: EST server's certificate must be verifiable by this certificate to be authenticated. (optional)
+            est_ca_id: CA identifier of the CA server for signing via EST.
+            (optional)
+            est_http_username: HTTP Authentication username for signing via
+            EST. (optional)
+            est_http_password: HTTP Authentication password for signing via
+            EST. (optional)
+            est_client_cert: Certificate used to authenticate this FortiGate to
+            EST server. (optional)
+            est_server_cert: EST server's certificate must be verifiable by
+            this certificate to be authenticated. (optional)
             est_srp_username: EST SRP authentication username. (optional)
             est_srp_password: EST SRP authentication password. (optional)
-            est_regeneration_method: EST behavioral options during re-enrollment. (optional)
+            est_regeneration_method: EST behavioral options during
+            re-enrollment. (optional)
             details: Print local certificate detailed information. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -238,7 +271,8 @@ class CertificateLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

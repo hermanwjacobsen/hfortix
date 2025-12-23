@@ -73,13 +73,13 @@ def validate_shaping_profile_post(
     if "profile-name" in payload:
         value = payload.get("profile-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"profile-name cannot exceed 35 characters")
+            return (False, "profile-name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comment cannot exceed 1023 characters")
+            return (False, "comment cannot exceed 1023 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -108,7 +108,7 @@ def validate_shaping_profile_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"default-class-id must be between 0 and 4294967295",
+                        "default-class-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

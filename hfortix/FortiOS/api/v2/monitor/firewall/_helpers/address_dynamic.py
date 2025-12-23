@@ -47,7 +47,7 @@ def validate_address_dynamic_get(
     # Validate format only if provided and not empty
     if mkey is not None and str(mkey).strip():
         if not isinstance(mkey, (str, int)):
-            return (False, f"mkey must be a string or integer")
+            return (False, "mkey must be a string or integer")
 
     return (True, None)
 

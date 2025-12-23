@@ -70,7 +70,9 @@ class Auth:
         Args:
             username: User name. (optional)
             ip: User IP address. (optional)
-            server: Name of an existing LDAP server entry. If supplied, authenticate that user against any matched groups on that LDAP server. (optional)
+            server: Name of an existing LDAP server entry. If supplied,
+            authenticate that user against any matched groups on that LDAP
+            server. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -172,13 +174,21 @@ class Deauth:
         Deauthenticate single, multiple, or all firewall users.
 
         Args:
-            user_type: User type [proxy|firewall]. Required for both proxy and firewall users. (optional)
+            user_type: User type [proxy|firewall]. Required for both proxy and
+            firewall users. (optional)
             id: User ID. Required for both proxy and firewall users. (optional)
-            ip: User IP address. Required for both proxy and firewall users. (optional)
-            ip_version: IP version [ip4|ip6]. Only required if user_type is firewall. (optional)
-            method: Authentication method [fsso|rsso|ntlm|firewall|wsso|fsso_citrix|sso_guest]. Only required if user_type is firewall. (optional)
-            all: Set to true to deauthenticate all users. Other parameters will be ignored. (optional)
-            users: Array of user objects to deauthenticate. Use this to deauthenticate multiple users at once. Each object should include the above properties. (optional)
+            ip: User IP address. Required for both proxy and firewall users.
+            (optional)
+            ip_version: IP version [ip4|ip6]. Only required if user_type is
+            firewall. (optional)
+            method: Authentication method
+            [fsso|rsso|ntlm|firewall|wsso|fsso_citrix|sso_guest]. Only required
+            if user_type is firewall. (optional)
+            all: Set to true to deauthenticate all users. Other parameters will
+            be ignored. (optional)
+            users: Array of user objects to deauthenticate. Use this to
+            deauthenticate multiple users at once. Each object should include
+            the above properties. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

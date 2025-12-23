@@ -69,8 +69,10 @@ class InterfaceLog:
 
         Args:
             interface: Filter: Interface name. (optional)
-            since: Filter: Only return SLA logs generated since this Unix timestamp. (optional)
-            seconds: Filter: Only return SLA logs generated in the last N seconds. (optional)
+            since: Filter: Only return SLA logs generated since this Unix
+            timestamp. (optional)
+            seconds: Filter: Only return SLA logs generated in the last N
+            seconds. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

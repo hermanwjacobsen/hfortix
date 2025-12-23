@@ -1,7 +1,8 @@
 """
 FortiOS CMDB (Configuration Management Database) API
 
-The CMDB API provides access to FortiOS configuration objects. Use these endpoints
+The CMDB API provides access to FortiOS configuration objects. Use these
+endpoints
 to create, read, update, and delete (CRUD) configuration items.
 
 Key HTTP Methods:
@@ -48,7 +49,8 @@ class CMDB:
     """
     FortiOS CMDB (Configuration Management Database) API.
 
-    Provides access to FortiOS configuration endpoints for managing firewall policies,
+    Provides access to FortiOS configuration endpoints for managing firewall
+    policies,
     system settings, routing, VPN, logging, and more.
 
     Common Operations:
@@ -88,12 +90,15 @@ class CMDB:
         log: Logging configuration (disk, FortiAnalyzer, syslog, memory)
         monitoring: Monitoring and NPU HPE configuration
         report: Report configuration and layouts
-        router: Routing configuration (BGP, OSPF, static routes, RIP, IS-IS, multicast)
+        router: Routing configuration (BGP, OSPF, static routes, RIP, IS-IS,
+        multicast)
         rule: Detection rules (FMWP, IoT, OT device detection)
-        sctp_filter: SCTP (Stream Control Transmission Protocol) filter profiles
+        sctp_filter: SCTP (Stream Control Transmission Protocol) filter
+        profiles
         switch_controller: Managed switch configuration
         system: System settings (interfaces, admins, DNS, NTP, HA, SNMP, VDOM)
-        user: User authentication (local, LDAP, RADIUS, TACACS+, SAML, certificates)
+        user: User authentication (local, LDAP, RADIUS, TACACS+, SAML,
+        certificates)
         videofilter: Video filtering (YouTube, Vimeo categories)
         virtual_patch: Virtual patching profiles for vulnerability protection
         voip: VoIP profiles (SIP, SCCP)

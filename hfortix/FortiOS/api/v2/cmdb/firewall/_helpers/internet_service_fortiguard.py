@@ -71,13 +71,13 @@ def validate_internet_service_fortiguard_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 
@@ -112,13 +112,13 @@ def validate_internet_service_fortiguard_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 

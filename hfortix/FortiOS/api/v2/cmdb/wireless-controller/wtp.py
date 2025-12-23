@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class Wtp:
         Select a specific entry from a CLI table.
 
         Args:
-            wtp_id: Object identifier (optional for list, required for specific)
+            wtp_id: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class Wtp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -196,60 +203,101 @@ class Wtp:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             wtp_id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             wtp_id: WTP ID. (optional)
             index: Index (0 - 4294967295). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
-            admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
+            admin: Configure how the FortiGate operating as a wireless
+            controller discovers and manages this WTP, AP or FortiAP.
+            (optional)
             name: WTP, AP or FortiAP configuration name. (optional)
-            location: Field for describing the physical location of the WTP, AP or FortiAP. (optional)
+            location: Field for describing the physical location of the WTP, AP
+            or FortiAP. (optional)
             comment: Comment. (optional)
             region: Region name WTP is associated with. (optional)
-            region_x: Relative horizontal region coordinate (between 0 and 1). (optional)
-            region_y: Relative vertical region coordinate (between 0 and 1). (optional)
-            firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234). (optional)
-            firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. (optional)
-            wtp_profile: WTP profile name to apply to this WTP, AP or FortiAP. (optional)
+            region_x: Relative horizontal region coordinate (between 0 and 1).
+            (optional)
+            region_y: Relative vertical region coordinate (between 0 and 1).
+            (optional)
+            firmware_provision: Firmware version to provision to this FortiAP
+            on bootup (major.minor.build, i.e. 6.2.1234). (optional)
+            firmware_provision_latest: Enable/disable one-time automatic
+            provisioning of the latest firmware version. (optional)
+            wtp_profile: WTP profile name to apply to this WTP, AP or FortiAP.
+            (optional)
             apcfg_profile: AP local configuration profile name. (optional)
             bonjour_profile: Bonjour profile name. (optional)
             ble_major_id: Override BLE Major ID. (optional)
             ble_minor_id: Override BLE Minor ID. (optional)
-            override_led_state: Enable to override the profile LED state setting for this FortiAP. You must enable this option to use the led-state command to turn off the FortiAP's LEDs. (optional)
-            led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. (optional)
-            override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. (optional)
-            wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. (optional)
-            override_ip_fragment: Enable/disable overriding the WTP profile IP fragment prevention setting. (optional)
-            ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). (optional)
-            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. (optional)
-            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. (optional)
-            split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). (optional)
+            override_led_state: Enable to override the profile LED state
+            setting for this FortiAP. You must enable this option to use the
+            led-state command to turn off the FortiAP's LEDs. (optional)
+            led_state: Enable to allow the FortiAPs LEDs to light. Disable to
+            keep the LEDs off. You may want to keep the LEDs off so they are
+            not distracting in low light areas etc. (optional)
+            override_wan_port_mode: Enable/disable overriding the wan-port-mode
+            in the WTP profile. (optional)
+            wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN
+            port. (optional)
+            override_ip_fragment: Enable/disable overriding the WTP profile IP
+            fragment prevention setting. (optional)
+            ip_fragment_preventing: Method(s) by which IP fragmentation is
+            prevented for control and data packets through CAPWAP tunnel
+            (default = tcp-mss-adjust). (optional)
+            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink
+            CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of
+            FortiAP; default = 0). (optional)
+            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500
+            bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+            (optional)
+            override_split_tunnel: Enable/disable overriding the WTP profile
+            split tunneling setting. (optional)
+            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel.
+            (optional)
+            split_tunneling_acl_local_ap_subnet: Enable/disable automatically
+            adding local subnetwork of FortiAP to split-tunneling ACL (default
+            = disable). (optional)
             split_tunneling_acl: Split tunneling ACL filter list. (optional)
-            override_lan: Enable to override the WTP profile LAN port setting. (optional)
+            override_lan: Enable to override the WTP profile LAN port setting.
+            (optional)
             lan: WTP LAN port mapping. (optional)
-            override_allowaccess: Enable to override the WTP profile management access configuration. (optional)
-            allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. (optional)
-            override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. (optional)
-            login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). (optional)
-            login_passwd: Set the managed WTP, FortiAP, or AP's administrator password. (optional)
-            override_default_mesh_root: Enable to override the WTP profile default mesh root SSID setting. (optional)
-            default_mesh_root: Configure default mesh root SSID when it is not included by radio's SSID configuration. (optional)
+            override_allowaccess: Enable to override the WTP profile management
+            access configuration. (optional)
+            allowaccess: Control management access to the managed WTP, FortiAP,
+            or AP. Separate entries with a space. (optional)
+            override_login_passwd_change: Enable to override the WTP profile
+            login-password (administrator password) setting. (optional)
+            login_passwd_change: Change or reset the administrator password of
+            a managed WTP, FortiAP or AP (yes, default, or no, default = no).
+            (optional)
+            login_passwd: Set the managed WTP, FortiAP, or AP's administrator
+            password. (optional)
+            override_default_mesh_root: Enable to override the WTP profile
+            default mesh root SSID setting. (optional)
+            default_mesh_root: Configure default mesh root SSID when it is not
+            included by radio's SSID configuration. (optional)
             radio_1: Configuration options for radio 1. (optional)
             radio_2: Configuration options for radio 2. (optional)
             radio_3: Configuration options for radio 3. (optional)
             radio_4: Configuration options for radio 4. (optional)
             image_download: Enable/disable WTP image download. (optional)
-            mesh_bridge_enable: Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf AP. (optional)
+            mesh_bridge_enable: Enable/disable mesh Ethernet bridge when WTP is
+            configured as a mesh branch/leaf AP. (optional)
             purdue_level: Purdue Level of this WTP. (optional)
             coordinate_latitude: WTP latitude coordinate. (optional)
             coordinate_longitude: WTP longitude coordinate. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -257,7 +305,8 @@ class Wtp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -393,8 +442,10 @@ class Wtp:
         Args:
             wtp_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -402,7 +453,8 @@ class Wtp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -520,58 +572,98 @@ class Wtp:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             wtp_id: WTP ID. (optional)
             index: Index (0 - 4294967295). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
-            admin: Configure how the FortiGate operating as a wireless controller discovers and manages this WTP, AP or FortiAP. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
+            admin: Configure how the FortiGate operating as a wireless
+            controller discovers and manages this WTP, AP or FortiAP.
+            (optional)
             name: WTP, AP or FortiAP configuration name. (optional)
-            location: Field for describing the physical location of the WTP, AP or FortiAP. (optional)
+            location: Field for describing the physical location of the WTP, AP
+            or FortiAP. (optional)
             comment: Comment. (optional)
             region: Region name WTP is associated with. (optional)
-            region_x: Relative horizontal region coordinate (between 0 and 1). (optional)
-            region_y: Relative vertical region coordinate (between 0 and 1). (optional)
-            firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234). (optional)
-            firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. (optional)
-            wtp_profile: WTP profile name to apply to this WTP, AP or FortiAP. (optional)
+            region_x: Relative horizontal region coordinate (between 0 and 1).
+            (optional)
+            region_y: Relative vertical region coordinate (between 0 and 1).
+            (optional)
+            firmware_provision: Firmware version to provision to this FortiAP
+            on bootup (major.minor.build, i.e. 6.2.1234). (optional)
+            firmware_provision_latest: Enable/disable one-time automatic
+            provisioning of the latest firmware version. (optional)
+            wtp_profile: WTP profile name to apply to this WTP, AP or FortiAP.
+            (optional)
             apcfg_profile: AP local configuration profile name. (optional)
             bonjour_profile: Bonjour profile name. (optional)
             ble_major_id: Override BLE Major ID. (optional)
             ble_minor_id: Override BLE Minor ID. (optional)
-            override_led_state: Enable to override the profile LED state setting for this FortiAP. You must enable this option to use the led-state command to turn off the FortiAP's LEDs. (optional)
-            led_state: Enable to allow the FortiAPs LEDs to light. Disable to keep the LEDs off. You may want to keep the LEDs off so they are not distracting in low light areas etc. (optional)
-            override_wan_port_mode: Enable/disable overriding the wan-port-mode in the WTP profile. (optional)
-            wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN port. (optional)
-            override_ip_fragment: Enable/disable overriding the WTP profile IP fragment prevention setting. (optional)
-            ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). (optional)
-            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            override_split_tunnel: Enable/disable overriding the WTP profile split tunneling setting. (optional)
-            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. (optional)
-            split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). (optional)
+            override_led_state: Enable to override the profile LED state
+            setting for this FortiAP. You must enable this option to use the
+            led-state command to turn off the FortiAP's LEDs. (optional)
+            led_state: Enable to allow the FortiAPs LEDs to light. Disable to
+            keep the LEDs off. You may want to keep the LEDs off so they are
+            not distracting in low light areas etc. (optional)
+            override_wan_port_mode: Enable/disable overriding the wan-port-mode
+            in the WTP profile. (optional)
+            wan_port_mode: Enable/disable using the FortiAP WAN port as a LAN
+            port. (optional)
+            override_ip_fragment: Enable/disable overriding the WTP profile IP
+            fragment prevention setting. (optional)
+            ip_fragment_preventing: Method(s) by which IP fragmentation is
+            prevented for control and data packets through CAPWAP tunnel
+            (default = tcp-mss-adjust). (optional)
+            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink
+            CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of
+            FortiAP; default = 0). (optional)
+            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500
+            bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+            (optional)
+            override_split_tunnel: Enable/disable overriding the WTP profile
+            split tunneling setting. (optional)
+            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel.
+            (optional)
+            split_tunneling_acl_local_ap_subnet: Enable/disable automatically
+            adding local subnetwork of FortiAP to split-tunneling ACL (default
+            = disable). (optional)
             split_tunneling_acl: Split tunneling ACL filter list. (optional)
-            override_lan: Enable to override the WTP profile LAN port setting. (optional)
+            override_lan: Enable to override the WTP profile LAN port setting.
+            (optional)
             lan: WTP LAN port mapping. (optional)
-            override_allowaccess: Enable to override the WTP profile management access configuration. (optional)
-            allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. (optional)
-            override_login_passwd_change: Enable to override the WTP profile login-password (administrator password) setting. (optional)
-            login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). (optional)
-            login_passwd: Set the managed WTP, FortiAP, or AP's administrator password. (optional)
-            override_default_mesh_root: Enable to override the WTP profile default mesh root SSID setting. (optional)
-            default_mesh_root: Configure default mesh root SSID when it is not included by radio's SSID configuration. (optional)
+            override_allowaccess: Enable to override the WTP profile management
+            access configuration. (optional)
+            allowaccess: Control management access to the managed WTP, FortiAP,
+            or AP. Separate entries with a space. (optional)
+            override_login_passwd_change: Enable to override the WTP profile
+            login-password (administrator password) setting. (optional)
+            login_passwd_change: Change or reset the administrator password of
+            a managed WTP, FortiAP or AP (yes, default, or no, default = no).
+            (optional)
+            login_passwd: Set the managed WTP, FortiAP, or AP's administrator
+            password. (optional)
+            override_default_mesh_root: Enable to override the WTP profile
+            default mesh root SSID setting. (optional)
+            default_mesh_root: Configure default mesh root SSID when it is not
+            included by radio's SSID configuration. (optional)
             radio_1: Configuration options for radio 1. (optional)
             radio_2: Configuration options for radio 2. (optional)
             radio_3: Configuration options for radio 3. (optional)
             radio_4: Configuration options for radio 4. (optional)
             image_download: Enable/disable WTP image download. (optional)
-            mesh_bridge_enable: Enable/disable mesh Ethernet bridge when WTP is configured as a mesh branch/leaf AP. (optional)
+            mesh_bridge_enable: Enable/disable mesh Ethernet bridge when WTP is
+            configured as a mesh branch/leaf AP. (optional)
             purdue_level: Purdue Level of this WTP. (optional)
             coordinate_latitude: WTP latitude coordinate. (optional)
             coordinate_longitude: WTP longitude coordinate. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -579,7 +671,8 @@ class Wtp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -107,13 +107,13 @@ def validate_saml_put(
     if "default-profile" in payload:
         value = payload.get("default-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"default-profile cannot exceed 35 characters")
+            return (False, "default-profile cannot exceed 35 characters")
 
     # Validate cert if present
     if "cert" in payload:
         value = payload.get("cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"cert cannot exceed 35 characters")
+            return (False, "cert cannot exceed 35 characters")
 
     # Validate binding-protocol if present
     if "binding-protocol" in payload:
@@ -128,31 +128,31 @@ def validate_saml_put(
     if "portal-url" in payload:
         value = payload.get("portal-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"portal-url cannot exceed 255 characters")
+            return (False, "portal-url cannot exceed 255 characters")
 
     # Validate entity-id if present
     if "entity-id" in payload:
         value = payload.get("entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"entity-id cannot exceed 255 characters")
+            return (False, "entity-id cannot exceed 255 characters")
 
     # Validate single-sign-on-url if present
     if "single-sign-on-url" in payload:
         value = payload.get("single-sign-on-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-sign-on-url cannot exceed 255 characters")
+            return (False, "single-sign-on-url cannot exceed 255 characters")
 
     # Validate single-logout-url if present
     if "single-logout-url" in payload:
         value = payload.get("single-logout-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-logout-url cannot exceed 255 characters")
+            return (False, "single-logout-url cannot exceed 255 characters")
 
     # Validate idp-entity-id if present
     if "idp-entity-id" in payload:
         value = payload.get("idp-entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"idp-entity-id cannot exceed 255 characters")
+            return (False, "idp-entity-id cannot exceed 255 characters")
 
     # Validate idp-single-sign-on-url if present
     if "idp-single-sign-on-url" in payload:
@@ -160,7 +160,7 @@ def validate_saml_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-sign-on-url cannot exceed 255 characters",
+                "idp-single-sign-on-url cannot exceed 255 characters",
             )
 
     # Validate idp-single-logout-url if present
@@ -169,20 +169,20 @@ def validate_saml_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-logout-url cannot exceed 255 characters",
+                "idp-single-logout-url cannot exceed 255 characters",
             )
 
     # Validate idp-cert if present
     if "idp-cert" in payload:
         value = payload.get("idp-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"idp-cert cannot exceed 35 characters")
+            return (False, "idp-cert cannot exceed 35 characters")
 
     # Validate server-address if present
     if "server-address" in payload:
         value = payload.get("server-address")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server-address cannot exceed 63 characters")
+            return (False, "server-address cannot exceed 63 characters")
 
     # Validate require-signed-resp-and-asrt if present
     if "require-signed-resp-and-asrt" in payload:
@@ -202,7 +202,7 @@ def validate_saml_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"tolerance must be between 0 and 4294967295",
+                        "tolerance must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"tolerance must be numeric, got: {value}")
@@ -214,7 +214,7 @@ def validate_saml_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"life must be between 0 and 4294967295")
+                    return (False, "life must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"life must be numeric, got: {value}")
 

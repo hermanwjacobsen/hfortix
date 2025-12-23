@@ -68,9 +68,18 @@ class Usage:
         Retreive current and historical usage data for a provided resource.
 
         Args:
-            scope: Scope of resource [vdom|global]. This parameter is only applicable if the FGT is in VDOM mode. (optional)
-            resource: Resource to get usage data for [cpu|mem|disk|session|session6|setuprate|setuprate6|disk_lograte|faz_lograte|forticloud_lograte|gtp_tunnel|gtp_tunnel_setup_rate]. Defaults to all resources if not provided. Additionally, [npu_session|npu_session6] data is available for devices that have an NPU and [nturbo_session|nturbo_session6] data is available for NP6 devices that support NTurbo. [gtp_tunnel|gtp_tunnel_setup_rate] data is available for carrier platforms only. (optional)
-            interval: Time interval of resource usage [1-min|10-min|30-min|1-hour|12-hour|24-hour]. Defaults to all intervals if not provided. (optional)
+            scope: Scope of resource [vdom|global]. This parameter is only
+            applicable if the FGT is in VDOM mode. (optional)
+            resource: Resource to get usage data for
+            [cpu|mem|disk|session|session6|setuprate|setuprate6|disk_lograte|faz_lograte|forticloud_lograte|gtp_tunnel|gtp_tunnel_setup_rate].
+            Defaults to all resources if not provided. Additionally,
+            [npu_session|npu_session6] data is available for devices that have
+            an NPU and [nturbo_session|nturbo_session6] data is available for
+            NP6 devices that support NTurbo. [gtp_tunnel|gtp_tunnel_setup_rate]
+            data is available for carrier platforms only. (optional)
+            interval: Time interval of resource usage
+            [1-min|10-min|30-min|1-hour|12-hour|24-hour]. Defaults to all
+            intervals if not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

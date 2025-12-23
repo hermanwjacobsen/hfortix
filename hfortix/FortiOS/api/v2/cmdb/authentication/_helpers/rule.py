@@ -78,7 +78,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -111,13 +111,13 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "active-auth-method" in payload:
         value = payload.get("active-auth-method")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"active-auth-method cannot exceed 35 characters")
+            return (False, "active-auth-method cannot exceed 35 characters")
 
     # Validate sso-auth-method if present
     if "sso-auth-method" in payload:
         value = payload.get("sso-auth-method")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sso-auth-method cannot exceed 35 characters")
+            return (False, "sso-auth-method cannot exceed 35 characters")
 
     # Validate web-auth-cookie if present
     if "web-auth-cookie" in payload:
@@ -144,7 +144,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 8:
-                    return (False, f"cors-depth must be between 1 and 8")
+                    return (False, "cors-depth must be between 1 and 8")
             except (ValueError, TypeError):
                 return (False, f"cors-depth must be numeric, got: {value}")
 
@@ -179,7 +179,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate session-logout if present
     if "session-logout" in payload:
@@ -223,7 +223,7 @@ def validate_rule_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -256,13 +256,13 @@ def validate_rule_put(
     if "active-auth-method" in payload:
         value = payload.get("active-auth-method")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"active-auth-method cannot exceed 35 characters")
+            return (False, "active-auth-method cannot exceed 35 characters")
 
     # Validate sso-auth-method if present
     if "sso-auth-method" in payload:
         value = payload.get("sso-auth-method")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sso-auth-method cannot exceed 35 characters")
+            return (False, "sso-auth-method cannot exceed 35 characters")
 
     # Validate web-auth-cookie if present
     if "web-auth-cookie" in payload:
@@ -289,7 +289,7 @@ def validate_rule_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 8:
-                    return (False, f"cors-depth must be between 1 and 8")
+                    return (False, "cors-depth must be between 1 and 8")
             except (ValueError, TypeError):
                 return (False, f"cors-depth must be numeric, got: {value}")
 
@@ -324,7 +324,7 @@ def validate_rule_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate session-logout if present
     if "session-logout" in payload:

@@ -40,7 +40,7 @@ VALID_BODY_FACILITY = [
     "local6",
     "local7",
 ]
-VALID_BODY_FORMAT = ["default", "csv", "cef", "rfc5424", "json"]
+VALID_BODY_FORMAT = ["default", "csv", "ce", "rfc5424", "json"]
 VALID_BODY_PRIORITY = ["default", "low"]
 VALID_BODY_ENC_ALGORITHM = ["high-medium", "high", "low", "disable"]
 VALID_BODY_SSL_MIN_PROTO_VERSION = [
@@ -125,7 +125,7 @@ def validate_syslogd3_override_setting_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -152,7 +152,7 @@ def validate_syslogd3_override_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -169,13 +169,13 @@ def validate_syslogd3_override_setting_put(
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate source-ip if present
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate format if present
     if "format" in payload:
@@ -204,7 +204,7 @@ def validate_syslogd3_override_setting_put(
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-log-rate must be between 0 and 100000",
+                        "max-log-rate must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-log-rate must be numeric, got: {value}")
@@ -231,7 +231,7 @@ def validate_syslogd3_override_setting_put(
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certificate cannot exceed 35 characters")
+            return (False, "certificate cannot exceed 35 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -246,7 +246,7 @@ def validate_syslogd3_override_setting_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -255,7 +255,7 @@ def validate_syslogd3_override_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

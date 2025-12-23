@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class AutomationAction:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class AutomationAction:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -189,24 +195,31 @@ class AutomationAction:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Name. (optional)
             description: Description. (optional)
             action_type: Action type. (optional)
             system_action: System action type. (optional)
             tls_certificate: Custom TLS certificate for API request. (optional)
-            forticare_email: Enable/disable use of your FortiCare email address as the email-to address. (optional)
+            forticare_email: Enable/disable use of your FortiCare email address
+            as the email-to address. (optional)
             email_to: Email addresses. (optional)
             email_from: Email sender name. (optional)
             email_subject: Email subject. (optional)
-            minimum_interval: Limit execution to no more than once in this interval (in seconds). (optional)
+            minimum_interval: Limit execution to no more than once in this
+            interval (in seconds). (optional)
             aws_api_key: AWS API Gateway API key. (optional)
-            azure_function_authorization: Azure function authorization level. (optional)
+            azure_function_authorization: Azure function authorization level.
+            (optional)
             azure_api_key: Azure function API key. (optional)
-            alicloud_function_authorization: AliCloud function authorization type. (optional)
+            alicloud_function_authorization: AliCloud function authorization
+            type. (optional)
             alicloud_access_key_id: AliCloud AccessKey ID. (optional)
             alicloud_access_key_secret: AliCloud AccessKey secret. (optional)
             message_type: Message type. (optional)
@@ -214,28 +227,41 @@ class AutomationAction:
             replacement_message: Enable/disable replacement message. (optional)
             replacemsg_group: Replacement message group. (optional)
             protocol: Request protocol. (optional)
-            method: Request method (POST, PUT, GET, PATCH or DELETE). (optional)
+            method: Request method (POST, PUT, GET, PATCH or DELETE).
+            (optional)
             uri: Request API URI. (optional)
-            http_body: Request body (if necessary). Should be serialized json string. (optional)
+            http_body: Request body (if necessary). Should be serialized json
+            string. (optional)
             port: Protocol port. (optional)
             http_headers: Request headers. (optional)
-            form_data: Form data parts for content type multipart/form-data. (optional)
-            verify_host_cert: Enable/disable verification of the remote host certificate. (optional)
+            form_data: Form data parts for content type multipart/form-data.
+            (optional)
+            verify_host_cert: Enable/disable verification of the remote host
+            certificate. (optional)
             script: CLI script. (optional)
-            output_size: Number of megabytes to limit script output to (1 - 1024, default = 10). (optional)
-            timeout: Maximum running time for this script in seconds (0 = no timeout). (optional)
-            duration: Maximum running time for this script in seconds. (optional)
-            output_interval: Collect the outputs for each output-interval in seconds (0 = no intermediate output). (optional)
+            output_size: Number of megabytes to limit script output to (1 -
+            1024, default = 10). (optional)
+            timeout: Maximum running time for this script in seconds (0 = no
+            timeout). (optional)
+            duration: Maximum running time for this script in seconds.
+            (optional)
+            output_interval: Collect the outputs for each output-interval in
+            seconds (0 = no intermediate output). (optional)
             file_only: Enable/disable the output in files only. (optional)
-            execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. (optional)
-            accprofile: Access profile for CLI script action to access FortiGate features. (optional)
+            execute_security_fabric: Enable/disable execution of CLI script on
+            all or only one FortiGate unit in the Security Fabric. (optional)
+            accprofile: Access profile for CLI script action to access
+            FortiGate features. (optional)
             regular_expression: Regular expression string. (optional)
-            log_debug_print: Enable/disable logging debug print output from diagnose action. (optional)
+            log_debug_print: Enable/disable logging debug print output from
+            diagnose action. (optional)
             security_tag: NSX security tag. (optional)
             sdn_connector: NSX SDN connector names. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -243,7 +269,8 @@ class AutomationAction:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -363,8 +390,10 @@ class AutomationAction:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -372,7 +401,8 @@ class AutomationAction:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -483,22 +513,28 @@ class AutomationAction:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             description: Description. (optional)
             action_type: Action type. (optional)
             system_action: System action type. (optional)
             tls_certificate: Custom TLS certificate for API request. (optional)
-            forticare_email: Enable/disable use of your FortiCare email address as the email-to address. (optional)
+            forticare_email: Enable/disable use of your FortiCare email address
+            as the email-to address. (optional)
             email_to: Email addresses. (optional)
             email_from: Email sender name. (optional)
             email_subject: Email subject. (optional)
-            minimum_interval: Limit execution to no more than once in this interval (in seconds). (optional)
+            minimum_interval: Limit execution to no more than once in this
+            interval (in seconds). (optional)
             aws_api_key: AWS API Gateway API key. (optional)
-            azure_function_authorization: Azure function authorization level. (optional)
+            azure_function_authorization: Azure function authorization level.
+            (optional)
             azure_api_key: Azure function API key. (optional)
-            alicloud_function_authorization: AliCloud function authorization type. (optional)
+            alicloud_function_authorization: AliCloud function authorization
+            type. (optional)
             alicloud_access_key_id: AliCloud AccessKey ID. (optional)
             alicloud_access_key_secret: AliCloud AccessKey secret. (optional)
             message_type: Message type. (optional)
@@ -506,28 +542,41 @@ class AutomationAction:
             replacement_message: Enable/disable replacement message. (optional)
             replacemsg_group: Replacement message group. (optional)
             protocol: Request protocol. (optional)
-            method: Request method (POST, PUT, GET, PATCH or DELETE). (optional)
+            method: Request method (POST, PUT, GET, PATCH or DELETE).
+            (optional)
             uri: Request API URI. (optional)
-            http_body: Request body (if necessary). Should be serialized json string. (optional)
+            http_body: Request body (if necessary). Should be serialized json
+            string. (optional)
             port: Protocol port. (optional)
             http_headers: Request headers. (optional)
-            form_data: Form data parts for content type multipart/form-data. (optional)
-            verify_host_cert: Enable/disable verification of the remote host certificate. (optional)
+            form_data: Form data parts for content type multipart/form-data.
+            (optional)
+            verify_host_cert: Enable/disable verification of the remote host
+            certificate. (optional)
             script: CLI script. (optional)
-            output_size: Number of megabytes to limit script output to (1 - 1024, default = 10). (optional)
-            timeout: Maximum running time for this script in seconds (0 = no timeout). (optional)
-            duration: Maximum running time for this script in seconds. (optional)
-            output_interval: Collect the outputs for each output-interval in seconds (0 = no intermediate output). (optional)
+            output_size: Number of megabytes to limit script output to (1 -
+            1024, default = 10). (optional)
+            timeout: Maximum running time for this script in seconds (0 = no
+            timeout). (optional)
+            duration: Maximum running time for this script in seconds.
+            (optional)
+            output_interval: Collect the outputs for each output-interval in
+            seconds (0 = no intermediate output). (optional)
             file_only: Enable/disable the output in files only. (optional)
-            execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. (optional)
-            accprofile: Access profile for CLI script action to access FortiGate features. (optional)
+            execute_security_fabric: Enable/disable execution of CLI script on
+            all or only one FortiGate unit in the Security Fabric. (optional)
+            accprofile: Access profile for CLI script action to access
+            FortiGate features. (optional)
             regular_expression: Regular expression string. (optional)
-            log_debug_print: Enable/disable logging debug print output from diagnose action. (optional)
+            log_debug_print: Enable/disable logging debug print output from
+            diagnose action. (optional)
             security_tag: NSX security tag. (optional)
             sdn_connector: NSX SDN connector names. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -535,7 +584,8 @@ class AutomationAction:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

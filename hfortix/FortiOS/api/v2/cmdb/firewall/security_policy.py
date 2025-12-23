@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class SecurityPolicy:
         Select a specific entry from a CLI table.
 
         Args:
-            policyid: Object identifier (optional for list, required for specific)
+            policyid: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class SecurityPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -229,93 +236,152 @@ class SecurityPolicy:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             policyid: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             policyid: Policy ID. (optional)
             name: Policy name. (optional)
             comments: Comment. (optional)
             srcintf: Incoming (ingress) interface. (optional)
             dstintf: Outgoing (egress) interface. (optional)
-            srcaddr: Source IPv4 address name and address group names. (optional)
-            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
-            dstaddr: Destination IPv4 address name and address group names. (optional)
-            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
-            srcaddr6: Source IPv6 address name and address group names. (optional)
-            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
-            dstaddr6: Destination IPv6 address name and address group names. (optional)
-            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            srcaddr: Source IPv4 address name and address group names.
+            (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source
+            address must NOT be. (optional)
+            dstaddr: Destination IPv4 address name and address group names.
+            (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination
+            address must NOT be. (optional)
+            srcaddr6: Source IPv6 address name and address group names.
+            (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source
+            address must NOT be. (optional)
+            dstaddr6: Destination IPv6 address name and address group names.
+            (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the
+            destination address must NOT be. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address, service and default
+            application port enforcement are not used. (optional)
             internet_service_name: Internet Service name. (optional)
-            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
+            internet_service_negate: When enabled internet-service specifies
+            what the service must NOT be. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service_src: Enable/disable use of Internet Services in
+            source for this policy. If enabled, source address is not used.
+            (optional)
             internet_service_src_name: Internet Service source name. (optional)
-            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
-            internet_service_src_group: Internet Service source group name. (optional)
-            internet_service_src_custom: Custom Internet Service source name. (optional)
-            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
-            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
-            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service_src_negate: When enabled internet-service-src
+            specifies what the service must NOT be. (optional)
+            internet_service_src_group: Internet Service source group name.
+            (optional)
+            internet_service_src_custom: Custom Internet Service source name.
+            (optional)
+            internet_service_src_custom_group: Custom Internet Service source
+            group name. (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source
+            name. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for
+            this policy. If enabled, destination address, service and default
+            application port enforcement are not used. (optional)
             internet_service6_name: IPv6 Internet Service name. (optional)
-            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies
+            what the service must NOT be. (optional)
             internet_service6_group: Internet Service group name. (optional)
-            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
-            internet_service6_custom_group: Custom IPv6 Internet Service group name. (optional)
-            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
-            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
-            internet_service6_src_name: IPv6 Internet Service source name. (optional)
-            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
-            internet_service6_src_group: Internet Service6 source group name. (optional)
-            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
-            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
-            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
-            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name.
+            (optional)
+            internet_service6_custom_group: Custom IPv6 Internet Service group
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service
+            name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services
+            in source for this policy. If enabled, source address is not used.
+            (optional)
+            internet_service6_src_name: IPv6 Internet Service source name.
+            (optional)
+            internet_service6_src_negate: When enabled internet-service6-src
+            specifies what the service must NOT be. (optional)
+            internet_service6_src_group: Internet Service6 source group name.
+            (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source
+            name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source
+            group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service
+            source name. (optional)
+            enforce_default_app_port: Enable/disable default application port
+            enforcement for allowed applications. (optional)
             service: Service and service group names. (optional)
-            service_negate: When enabled service specifies what the service must NOT be. (optional)
-            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
+            service_negate: When enabled service specifies what the service
+            must NOT be. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied
+            or blocked by a firewall policy. (optional)
             schedule: Schedule name. (optional)
             status: Enable or disable this policy. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
-            learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
+            learning_mode: Enable to allow everything, but log all of the
+            meaningful data for security information gathering. A learning
+            report will be generated. (optional)
             nat46: Enable/disable NAT46. (optional)
             nat64: Enable/disable NAT64. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
             application: Application ID list. (optional)
             app_category: Application category ID list. (optional)
             url_category: URL categories or groups. (optional)
             app_group: Application group names. (optional)
-            groups: Names of user groups that can authenticate with this policy. (optional)
-            users: Names of individual users that can authenticate with this policy. (optional)
+            groups: Names of user groups that can authenticate with this
+            policy. (optional)
+            users: Names of individual users that can authenticate with this
+            policy. (optional)
             fsso_groups: Names of FSSO groups. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -323,7 +389,8 @@ class SecurityPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -347,9 +414,9 @@ class SecurityPolicy:
         if comments is not None:
             data_payload["comments"] = comments
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if srcaddr_negate is not None:
@@ -549,8 +616,10 @@ class SecurityPolicy:
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -558,7 +627,8 @@ class SecurityPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -709,91 +779,149 @@ class SecurityPolicy:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             policyid: Policy ID. (optional)
             name: Policy name. (optional)
             comments: Comment. (optional)
             srcintf: Incoming (ingress) interface. (optional)
             dstintf: Outgoing (egress) interface. (optional)
-            srcaddr: Source IPv4 address name and address group names. (optional)
-            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
-            dstaddr: Destination IPv4 address name and address group names. (optional)
-            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
-            srcaddr6: Source IPv6 address name and address group names. (optional)
-            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
-            dstaddr6: Destination IPv6 address name and address group names. (optional)
-            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            srcaddr: Source IPv4 address name and address group names.
+            (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source
+            address must NOT be. (optional)
+            dstaddr: Destination IPv4 address name and address group names.
+            (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination
+            address must NOT be. (optional)
+            srcaddr6: Source IPv6 address name and address group names.
+            (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source
+            address must NOT be. (optional)
+            dstaddr6: Destination IPv6 address name and address group names.
+            (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the
+            destination address must NOT be. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address, service and default
+            application port enforcement are not used. (optional)
             internet_service_name: Internet Service name. (optional)
-            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
+            internet_service_negate: When enabled internet-service specifies
+            what the service must NOT be. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service_src: Enable/disable use of Internet Services in
+            source for this policy. If enabled, source address is not used.
+            (optional)
             internet_service_src_name: Internet Service source name. (optional)
-            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
-            internet_service_src_group: Internet Service source group name. (optional)
-            internet_service_src_custom: Custom Internet Service source name. (optional)
-            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
-            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
-            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. (optional)
+            internet_service_src_negate: When enabled internet-service-src
+            specifies what the service must NOT be. (optional)
+            internet_service_src_group: Internet Service source group name.
+            (optional)
+            internet_service_src_custom: Custom Internet Service source name.
+            (optional)
+            internet_service_src_custom_group: Custom Internet Service source
+            group name. (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source
+            name. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for
+            this policy. If enabled, destination address, service and default
+            application port enforcement are not used. (optional)
             internet_service6_name: IPv6 Internet Service name. (optional)
-            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies
+            what the service must NOT be. (optional)
             internet_service6_group: Internet Service group name. (optional)
-            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
-            internet_service6_custom_group: Custom IPv6 Internet Service group name. (optional)
-            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
-            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
-            internet_service6_src_name: IPv6 Internet Service source name. (optional)
-            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
-            internet_service6_src_group: Internet Service6 source group name. (optional)
-            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
-            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
-            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
-            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name.
+            (optional)
+            internet_service6_custom_group: Custom IPv6 Internet Service group
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service
+            name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services
+            in source for this policy. If enabled, source address is not used.
+            (optional)
+            internet_service6_src_name: IPv6 Internet Service source name.
+            (optional)
+            internet_service6_src_negate: When enabled internet-service6-src
+            specifies what the service must NOT be. (optional)
+            internet_service6_src_group: Internet Service6 source group name.
+            (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source
+            name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source
+            group name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service
+            source name. (optional)
+            enforce_default_app_port: Enable/disable default application port
+            enforcement for allowed applications. (optional)
             service: Service and service group names. (optional)
-            service_negate: When enabled service specifies what the service must NOT be. (optional)
-            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
+            service_negate: When enabled service specifies what the service
+            must NOT be. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied
+            or blocked by a firewall policy. (optional)
             schedule: Schedule name. (optional)
             status: Enable or disable this policy. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
-            learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
+            learning_mode: Enable to allow everything, but log all of the
+            meaningful data for security information gathering. A learning
+            report will be generated. (optional)
             nat46: Enable/disable NAT46. (optional)
             nat64: Enable/disable NAT64. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
             application: Application ID list. (optional)
             app_category: Application category ID list. (optional)
             url_category: URL categories or groups. (optional)
             app_group: Application group names. (optional)
-            groups: Names of user groups that can authenticate with this policy. (optional)
-            users: Names of individual users that can authenticate with this policy. (optional)
+            groups: Names of user groups that can authenticate with this
+            policy. (optional)
+            users: Names of individual users that can authenticate with this
+            policy. (optional)
             fsso_groups: Names of FSSO groups. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -801,7 +929,8 @@ class SecurityPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -819,9 +948,9 @@ class SecurityPolicy:
         if comments is not None:
             data_payload["comments"] = comments
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if srcaddr_negate is not None:

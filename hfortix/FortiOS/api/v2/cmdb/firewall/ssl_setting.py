@@ -88,11 +88,15 @@ class SslSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class SslSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -142,25 +147,47 @@ class SslSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            proxy_connect_timeout: Time limit to make an internal connection to the appropriate proxy process (1 - 60 sec, default = 30). (optional)
-            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
-            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). (optional)
-            no_matching_cipher_action: Bypass or drop the connection when no matching cipher is found. (optional)
-            cert_manager_cache_timeout: Time limit for certificate manager to keep FortiGate re-signed server certificate (24 - 720 hours, default = 72). (optional)
-            resigned_short_lived_certificate: Enable/disable short-lived certificate. (optional)
-            cert_cache_capacity: Maximum capacity of the host certificate cache (0 - 500, default = 200). (optional)
-            cert_cache_timeout: Time limit to keep certificate cache (1 - 120 min, default = 10). (optional)
-            session_cache_capacity: Capacity of the SSL session cache (--Obsolete--) (1 - 1000, default = 500). (optional)
-            session_cache_timeout: Time limit to keep SSL session state (1 - 60 min, default = 20). (optional)
-            kxp_queue_threshold: Maximum length of the CP KXP queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 16). (optional)
-            ssl_queue_threshold: Maximum length of the CP SSL queue. When the queue becomes full, the proxy switches cipher functions to the main CPU (0 - 512, default = 32). (optional)
-            abbreviate_handshake: Enable/disable use of SSL abbreviated handshake. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            proxy_connect_timeout: Time limit to make an internal connection to
+            the appropriate proxy process (1 - 60 sec, default = 30).
+            (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA
+            negotiation (default = 2048). (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to
+            avoid attack on CBC IV (for SSL 3.0 and TLS 1.0 only). (optional)
+            no_matching_cipher_action: Bypass or drop the connection when no
+            matching cipher is found. (optional)
+            cert_manager_cache_timeout: Time limit for certificate manager to
+            keep FortiGate re-signed server certificate (24 - 720 hours,
+            default = 72). (optional)
+            resigned_short_lived_certificate: Enable/disable short-lived
+            certificate. (optional)
+            cert_cache_capacity: Maximum capacity of the host certificate cache
+            (0 - 500, default = 200). (optional)
+            cert_cache_timeout: Time limit to keep certificate cache (1 - 120
+            min, default = 10). (optional)
+            session_cache_capacity: Capacity of the SSL session cache
+            (--Obsolete--) (1 - 1000, default = 500). (optional)
+            session_cache_timeout: Time limit to keep SSL session state (1 - 60
+            min, default = 20). (optional)
+            kxp_queue_threshold: Maximum length of the CP KXP queue. When the
+            queue becomes full, the proxy switches cipher functions to the main
+            CPU (0 - 512, default = 16). (optional)
+            ssl_queue_threshold: Maximum length of the CP SSL queue. When the
+            queue becomes full, the proxy switches cipher functions to the main
+            CPU (0 - 512, default = 32). (optional)
+            abbreviate_handshake: Enable/disable use of SSL abbreviated
+            handshake. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -168,7 +195,8 @@ class SslSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

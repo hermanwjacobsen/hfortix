@@ -142,7 +142,7 @@ def validate_fortiguard_put(
     if "service-account-id" in payload:
         value = payload.get("service-account-id")
         if value and isinstance(value, str) and len(value) > 50:
-            return (False, f"service-account-id cannot exceed 50 characters")
+            return (False, "service-account-id cannot exceed 50 characters")
 
     # Validate load-balance-servers if present
     if "load-balance-servers" in payload:
@@ -153,7 +153,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 266:
                     return (
                         False,
-                        f"load-balance-servers must be between 1 and 266",
+                        "load-balance-servers must be between 1 and 266",
                     )
             except (ValueError, TypeError):
                 return (
@@ -183,7 +183,7 @@ def validate_fortiguard_put(
     if "sandbox-region" in payload:
         value = payload.get("sandbox-region")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"sandbox-region cannot exceed 63 characters")
+            return (False, "sandbox-region cannot exceed 63 characters")
 
     # Validate update-ffdb if present
     if "update-ffdb" in payload:
@@ -243,7 +243,7 @@ def validate_fortiguard_put(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate auto-firmware-upgrade if present
     if "auto-firmware-upgrade" in payload:
@@ -272,7 +272,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 14:
                     return (
                         False,
-                        f"auto-firmware-upgrade-delay must be between 0 and 14",
+                        "auto-firmware-upgrade-delay must be between 0 and 14",
                     )
             except (ValueError, TypeError):
                 return (
@@ -289,7 +289,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 23:
                     return (
                         False,
-                        f"auto-firmware-upgrade-start-hour must be between 0 and 23",
+                        "auto-firmware-upgrade-start-hour must be between 0 and 23",
                     )
             except (ValueError, TypeError):
                 return (
@@ -306,7 +306,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 23:
                     return (
                         False,
-                        f"auto-firmware-upgrade-end-hour must be between 0 and 23",
+                        "auto-firmware-upgrade-end-hour must be between 0 and 23",
                     )
             except (ValueError, TypeError):
                 return (
@@ -323,7 +323,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"FDS-license-expiring-days must be between 1 and 100",
+                        "FDS-license-expiring-days must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -341,8 +341,8 @@ def validate_fortiguard_put(
             )
 
     # Validate antispam-force-off if present
-    if "antispam-force-off" in payload:
-        value = payload.get("antispam-force-off")
+    if "antispam-force-of" in payload:
+        value = payload.get("antispam-force-of")
         if value and value not in VALID_BODY_ANTISPAM_FORCE_OFF:
             return (
                 False,
@@ -367,7 +367,7 @@ def validate_fortiguard_put(
                 if int_val < 300 or int_val > 86400:
                     return (
                         False,
-                        f"antispam-cache-ttl must be between 300 and 86400",
+                        "antispam-cache-ttl must be between 300 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -384,7 +384,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 150:
                     return (
                         False,
-                        f"antispam-cache-mpermille must be between 1 and 150",
+                        "antispam-cache-mpermille must be between 1 and 150",
                     )
             except (ValueError, TypeError):
                 return (
@@ -401,7 +401,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"antispam-license must be between 0 and 4294967295",
+                        "antispam-license must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -418,7 +418,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"antispam-expiration must be between 0 and 4294967295",
+                        "antispam-expiration must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -435,7 +435,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"antispam-timeout must be between 1 and 30",
+                        "antispam-timeout must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -444,8 +444,8 @@ def validate_fortiguard_put(
                 )
 
     # Validate outbreak-prevention-force-off if present
-    if "outbreak-prevention-force-off" in payload:
-        value = payload.get("outbreak-prevention-force-off")
+    if "outbreak-prevention-force-of" in payload:
+        value = payload.get("outbreak-prevention-force-of")
         if value and value not in VALID_BODY_OUTBREAK_PREVENTION_FORCE_OFF:
             return (
                 False,
@@ -470,7 +470,7 @@ def validate_fortiguard_put(
                 if int_val < 300 or int_val > 86400:
                     return (
                         False,
-                        f"outbreak-prevention-cache-ttl must be between 300 and 86400",
+                        "outbreak-prevention-cache-ttl must be between 300 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -487,7 +487,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 150:
                     return (
                         False,
-                        f"outbreak-prevention-cache-mpermille must be between 1 and 150",
+                        "outbreak-prevention-cache-mpermille must be between 1 and 150",
                     )
             except (ValueError, TypeError):
                 return (
@@ -504,7 +504,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"outbreak-prevention-license must be between 0 and 4294967295",
+                        "outbreak-prevention-license must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -521,7 +521,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"outbreak-prevention-expiration must be between 0 and 4294967295",
+                        "outbreak-prevention-expiration must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -538,7 +538,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"outbreak-prevention-timeout must be between 1 and 30",
+                        "outbreak-prevention-timeout must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -547,8 +547,8 @@ def validate_fortiguard_put(
                 )
 
     # Validate webfilter-force-off if present
-    if "webfilter-force-off" in payload:
-        value = payload.get("webfilter-force-off")
+    if "webfilter-force-of" in payload:
+        value = payload.get("webfilter-force-of")
         if value and value not in VALID_BODY_WEBFILTER_FORCE_OFF:
             return (
                 False,
@@ -573,7 +573,7 @@ def validate_fortiguard_put(
                 if int_val < 300 or int_val > 86400:
                     return (
                         False,
-                        f"webfilter-cache-ttl must be between 300 and 86400",
+                        "webfilter-cache-ttl must be between 300 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -590,7 +590,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"webfilter-license must be between 0 and 4294967295",
+                        "webfilter-license must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -607,7 +607,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"webfilter-expiration must be between 0 and 4294967295",
+                        "webfilter-expiration must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -624,7 +624,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"webfilter-timeout must be between 1 and 30",
+                        "webfilter-timeout must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -641,7 +641,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"sdns-server-port must be between 1 and 65535",
+                        "sdns-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -658,7 +658,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"anycast-sdns-server-port must be between 1 and 65535",
+                        "anycast-sdns-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -679,7 +679,7 @@ def validate_fortiguard_put(
     if "proxy-server-ip" in payload:
         value = payload.get("proxy-server-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"proxy-server-ip cannot exceed 63 characters")
+            return (False, "proxy-server-ip cannot exceed 63 characters")
 
     # Validate proxy-server-port if present
     if "proxy-server-port" in payload:
@@ -690,7 +690,7 @@ def validate_fortiguard_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"proxy-server-port must be between 0 and 65535",
+                        "proxy-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -702,7 +702,7 @@ def validate_fortiguard_put(
     if "proxy-username" in payload:
         value = payload.get("proxy-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"proxy-username cannot exceed 64 characters")
+            return (False, "proxy-username cannot exceed 64 characters")
 
     # Validate ddns-server-port if present
     if "ddns-server-port" in payload:
@@ -713,7 +713,7 @@ def validate_fortiguard_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ddns-server-port must be between 1 and 65535",
+                        "ddns-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -734,7 +734,7 @@ def validate_fortiguard_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -743,7 +743,7 @@ def validate_fortiguard_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

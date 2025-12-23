@@ -90,7 +90,7 @@ def validate_npu_put(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"dedicated-management-affinity cannot exceed 79 characters",
+                "dedicated-management-affinity cannot exceed 79 characters",
             )
 
     # Validate capwap-offload if present

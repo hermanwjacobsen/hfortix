@@ -71,13 +71,13 @@ def validate_prefix_list_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"comments cannot exceed 127 characters")
+            return (False, "comments cannot exceed 127 characters")
 
     return (True, None)
 
@@ -112,13 +112,13 @@ def validate_prefix_list_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"comments cannot exceed 127 characters")
+            return (False, "comments cannot exceed 127 characters")
 
     return (True, None)
 

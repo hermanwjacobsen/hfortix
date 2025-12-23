@@ -37,7 +37,8 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
     """
     Fabricadminlockoutexistsonfirmwareupdate Operations.
 
-    Provides CRUD operations for FortiOS fabricadminlockoutexistsonfirmwareupdate configuration.
+    Provides CRUD operations for FortiOS
+    fabricadminlockoutexistsonfirmwareupdate configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -60,7 +61,9 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-               Check if there exists a FortiGate in the Fabric that has an administrative user that will get locked out if firmware is updated to a version that does not support safer passwords.
+               Check if there exists a FortiGate in the Fabric that has an
+               administrative user that will get locked out if firmware is
+               updated to a version that does not support safer passwords.
         Access Group: any
 
                Supports dual approach:
@@ -70,7 +73,8 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
                Args:
                    No parameters
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -79,10 +83,12 @@ class FabricAdminLockoutExistsOnFirmwareUpdate:
 
                Examples:
                    # Using individual parameters
-                   result = fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get()
+                   result =
+                   fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get()
 
                    # Using payload_dict
-                   result = fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get(
+                   result =
+                   fgt.api.service.system.fabric-admin-lockout-exists-on-firmware-update.get(
                        payload_dict={'param': 'value'}
                    )
         """
@@ -117,7 +123,8 @@ class FabricTimeInSync:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-               Checks whether the other FortiGate device's time in the Security Fabric is in sync with the specified utc timestamp (in seconds)
+               Checks whether the other FortiGate device's time in the Security
+               Fabric is in sync with the specified utc timestamp (in seconds)
         Access Group: any
 
                Supports dual approach:
@@ -125,9 +132,11 @@ class FabricTimeInSync:
                2. Payload dict: get(payload_dict={'param': 'value'})
 
                Args:
-                   utc: UTC, in seconds, to check against to see if the device's current time is syncronized with.
+                   utc: UTC, in seconds, to check against to see if the
+                   device's current time is syncronized with.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -175,7 +184,8 @@ class PsirtVulnerabilities:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-               Retrieve a list of N number of PSIRT advisories that the Security Fabric is vulnerable to for a given severity.
+               Retrieve a list of N number of PSIRT advisories that the
+               Security Fabric is vulnerable to for a given severity.
         Access Group: sysgrp.mnt
 
                Supports dual approach:
@@ -185,7 +195,8 @@ class PsirtVulnerabilities:
                Args:
                    No parameters
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 

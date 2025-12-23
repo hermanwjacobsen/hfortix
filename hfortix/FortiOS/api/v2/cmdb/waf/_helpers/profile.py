@@ -71,7 +71,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate external if present
     if "external" in payload:
@@ -95,7 +95,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comment cannot exceed 1023 characters")
+            return (False, "comment cannot exceed 1023 characters")
 
     return (True, None)
 
@@ -130,7 +130,7 @@ def validate_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate external if present
     if "external" in payload:
@@ -154,7 +154,7 @@ def validate_profile_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comment cannot exceed 1023 characters")
+            return (False, "comment cannot exceed 1023 characters")
 
     return (True, None)
 

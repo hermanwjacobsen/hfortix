@@ -66,7 +66,8 @@ class Abort:
         Abort a running user device unified query.
 
         Args:
-            query_id: Provide a query ID to abort an unified type query. (optional)
+            query_id: Provide a query ID to abort an unified type query.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

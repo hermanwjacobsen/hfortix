@@ -33,7 +33,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.system.speed_test_schedule.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.system.speed_test_schedule.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -94,14 +95,20 @@ class SpeedTestSchedule:
         Select a specific entry from a CLI table.
 
         Args:
-            interface: Object identifier (optional for list, required for specific)
+            interface: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -109,7 +116,8 @@ class SpeedTestSchedule:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,36 +178,63 @@ class SpeedTestSchedule:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             interface: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             interface: Interface name. (optional)
             status: Enable/disable scheduled speed test. (optional)
             diffserv: DSCP used for speed test. (optional)
-            server_name: Speed test server name in system.speed-test-server list or leave it as empty to choose default server "FTNT_Auto". (optional)
-            mode: Protocol Auto(default), TCP or UDP used for speed test. (optional)
+            server_name: Speed test server name in system.speed-test-server
+            list or leave it as empty to choose default server "FTNT_Auto".
+            (optional)
+            mode: Protocol Auto(default), TCP or UDP used for speed test.
+            (optional)
             schedules: Schedules for the interface. (optional)
             dynamic_server: Enable/disable dynamic server option. (optional)
             ctrl_port: Port of the controller to get access token. (optional)
             server_port: Port of the server to run speed test. (optional)
-            update_shaper: Set egress shaper based on the test result. (optional)
-            update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. (optional)
-            update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. (optional)
-            update_interface_shaping: Enable/disable using the speedtest results as reference for interface shaping (overriding configured in/outbandwidth). (optional)
-            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test. (optional)
-            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to be considered effective. (optional)
-            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test. (optional)
-            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective. (optional)
-            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_outbandwidth_minimum: Set the minimum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_outbandwidth_maximum: Set the maximum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            retries: Maximum number of times the FortiGate unit will attempt to contact the same server before considering the speed test has failed (1 - 10, default = 5). (optional)
-            retry_pause: Number of seconds the FortiGate pauses between successive speed tests before trying a different server (60 - 3600, default = 300). (optional)
+            update_shaper: Set egress shaper based on the test result.
+            (optional)
+            update_inbandwidth: Enable/disable bypassing interface's inbound
+            bandwidth setting. (optional)
+            update_outbandwidth: Enable/disable bypassing interface's outbound
+            bandwidth setting. (optional)
+            update_interface_shaping: Enable/disable using the speedtest
+            results as reference for interface shaping (overriding configured
+            in/outbandwidth). (optional)
+            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to
+            be used in a speed test. (optional)
+            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to
+            be considered effective. (optional)
+            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to
+            be used in a speed test. (optional)
+            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to
+            be considered effective. (optional)
+            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold
+            for applying speedtest results on shaping-profile. (optional)
+            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold
+            for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_minimum: Set the minimum outbandwidth
+            threshold for applying speedtest results on shaping-profile.
+            (optional)
+            expected_outbandwidth_maximum: Set the maximum outbandwidth
+            threshold for applying speedtest results on shaping-profile.
+            (optional)
+            retries: Maximum number of times the FortiGate unit will attempt to
+            contact the same server before considering the speed test has
+            failed (1 - 10, default = 5). (optional)
+            retry_pause: Number of seconds the FortiGate pauses between
+            successive speed tests before trying a different server (60 - 3600,
+            default = 300). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -207,7 +242,8 @@ class SpeedTestSchedule:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -303,8 +339,10 @@ class SpeedTestSchedule:
         Args:
             interface: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -312,7 +350,8 @@ class SpeedTestSchedule:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -406,34 +445,60 @@ class SpeedTestSchedule:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             interface: Interface name. (optional)
             status: Enable/disable scheduled speed test. (optional)
             diffserv: DSCP used for speed test. (optional)
-            server_name: Speed test server name in system.speed-test-server list or leave it as empty to choose default server "FTNT_Auto". (optional)
-            mode: Protocol Auto(default), TCP or UDP used for speed test. (optional)
+            server_name: Speed test server name in system.speed-test-server
+            list or leave it as empty to choose default server "FTNT_Auto".
+            (optional)
+            mode: Protocol Auto(default), TCP or UDP used for speed test.
+            (optional)
             schedules: Schedules for the interface. (optional)
             dynamic_server: Enable/disable dynamic server option. (optional)
             ctrl_port: Port of the controller to get access token. (optional)
             server_port: Port of the server to run speed test. (optional)
-            update_shaper: Set egress shaper based on the test result. (optional)
-            update_inbandwidth: Enable/disable bypassing interface's inbound bandwidth setting. (optional)
-            update_outbandwidth: Enable/disable bypassing interface's outbound bandwidth setting. (optional)
-            update_interface_shaping: Enable/disable using the speedtest results as reference for interface shaping (overriding configured in/outbandwidth). (optional)
-            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to be used in a speed test. (optional)
-            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to be considered effective. (optional)
-            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to be used in a speed test. (optional)
-            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to be considered effective. (optional)
-            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_outbandwidth_minimum: Set the minimum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            expected_outbandwidth_maximum: Set the maximum outbandwidth threshold for applying speedtest results on shaping-profile. (optional)
-            retries: Maximum number of times the FortiGate unit will attempt to contact the same server before considering the speed test has failed (1 - 10, default = 5). (optional)
-            retry_pause: Number of seconds the FortiGate pauses between successive speed tests before trying a different server (60 - 3600, default = 300). (optional)
+            update_shaper: Set egress shaper based on the test result.
+            (optional)
+            update_inbandwidth: Enable/disable bypassing interface's inbound
+            bandwidth setting. (optional)
+            update_outbandwidth: Enable/disable bypassing interface's outbound
+            bandwidth setting. (optional)
+            update_interface_shaping: Enable/disable using the speedtest
+            results as reference for interface shaping (overriding configured
+            in/outbandwidth). (optional)
+            update_inbandwidth_maximum: Maximum downloading bandwidth (kbps) to
+            be used in a speed test. (optional)
+            update_inbandwidth_minimum: Minimum downloading bandwidth (kbps) to
+            be considered effective. (optional)
+            update_outbandwidth_maximum: Maximum uploading bandwidth (kbps) to
+            be used in a speed test. (optional)
+            update_outbandwidth_minimum: Minimum uploading bandwidth (kbps) to
+            be considered effective. (optional)
+            expected_inbandwidth_minimum: Set the minimum inbandwidth threshold
+            for applying speedtest results on shaping-profile. (optional)
+            expected_inbandwidth_maximum: Set the maximum inbandwidth threshold
+            for applying speedtest results on shaping-profile. (optional)
+            expected_outbandwidth_minimum: Set the minimum outbandwidth
+            threshold for applying speedtest results on shaping-profile.
+            (optional)
+            expected_outbandwidth_maximum: Set the maximum outbandwidth
+            threshold for applying speedtest results on shaping-profile.
+            (optional)
+            retries: Maximum number of times the FortiGate unit will attempt to
+            contact the same server before considering the speed test has
+            failed (1 - 10, default = 5). (optional)
+            retry_pause: Number of seconds the FortiGate pauses between
+            successive speed tests before trying a different server (60 - 3600,
+            default = 300). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -441,7 +506,8 @@ class SpeedTestSchedule:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -18,7 +18,7 @@ VALID_BODY_OPTIONS = [
     "show-html-navbar-before-heading",
     "dummy-option",
 ]
-VALID_BODY_FORMAT = ["pdf"]
+VALID_BODY_FORMAT = ["pd"]
 VALID_BODY_SCHEDULE_TYPE = ["demand", "daily", "weekly"]
 VALID_BODY_DAY = [
     "sunday",
@@ -89,31 +89,31 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate title if present
     if "title" in payload:
         value = payload.get("title")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"title cannot exceed 127 characters")
+            return (False, "title cannot exceed 127 characters")
 
     # Validate subtitle if present
     if "subtitle" in payload:
         value = payload.get("subtitle")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"subtitle cannot exceed 127 characters")
+            return (False, "subtitle cannot exceed 127 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate style-theme if present
     if "style-theme" in payload:
         value = payload.get("style-theme")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"style-theme cannot exceed 35 characters")
+            return (False, "style-theme cannot exceed 35 characters")
 
     # Validate options if present
     if "options" in payload:
@@ -173,7 +173,7 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "email-recipients" in payload:
         value = payload.get("email-recipients")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"email-recipients cannot exceed 511 characters")
+            return (False, "email-recipients cannot exceed 511 characters")
 
     # Validate max-pdf-report if present
     if "max-pdf-report" in payload:
@@ -182,7 +182,7 @@ def validate_layout_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 365:
-                    return (False, f"max-pdf-report must be between 1 and 365")
+                    return (False, "max-pdf-report must be between 1 and 365")
             except (ValueError, TypeError):
                 return (False, f"max-pdf-report must be numeric, got: {value}")
 
@@ -219,31 +219,31 @@ def validate_layout_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate title if present
     if "title" in payload:
         value = payload.get("title")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"title cannot exceed 127 characters")
+            return (False, "title cannot exceed 127 characters")
 
     # Validate subtitle if present
     if "subtitle" in payload:
         value = payload.get("subtitle")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"subtitle cannot exceed 127 characters")
+            return (False, "subtitle cannot exceed 127 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate style-theme if present
     if "style-theme" in payload:
         value = payload.get("style-theme")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"style-theme cannot exceed 35 characters")
+            return (False, "style-theme cannot exceed 35 characters")
 
     # Validate options if present
     if "options" in payload:
@@ -303,7 +303,7 @@ def validate_layout_put(
     if "email-recipients" in payload:
         value = payload.get("email-recipients")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"email-recipients cannot exceed 511 characters")
+            return (False, "email-recipients cannot exceed 511 characters")
 
     # Validate max-pdf-report if present
     if "max-pdf-report" in payload:
@@ -312,7 +312,7 @@ def validate_layout_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 365:
-                    return (False, f"max-pdf-report must be between 1 and 365")
+                    return (False, "max-pdf-report must be between 1 and 365")
             except (ValueError, TypeError):
                 return (False, f"max-pdf-report must be numeric, got: {value}")
 

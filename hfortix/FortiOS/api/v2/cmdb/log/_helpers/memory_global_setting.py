@@ -80,7 +80,7 @@ def validate_memory_global_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-size must be between 0 and 4294967295",
+                        "max-size must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-size must be numeric, got: {value}")
@@ -94,7 +94,7 @@ def validate_memory_global_setting_put(
                 if int_val < 1 or int_val > 98:
                     return (
                         False,
-                        f"full-first-warning-threshold must be between 1 and 98",
+                        "full-first-warning-threshold must be between 1 and 98",
                     )
             except (ValueError, TypeError):
                 return (
@@ -111,7 +111,7 @@ def validate_memory_global_setting_put(
                 if int_val < 2 or int_val > 99:
                     return (
                         False,
-                        f"full-second-warning-threshold must be between 2 and 99",
+                        "full-second-warning-threshold must be between 2 and 99",
                     )
             except (ValueError, TypeError):
                 return (
@@ -128,7 +128,7 @@ def validate_memory_global_setting_put(
                 if int_val < 3 or int_val > 100:
                     return (
                         False,
-                        f"full-final-warning-threshold must be between 3 and 100",
+                        "full-final-warning-threshold must be between 3 and 100",
                     )
             except (ValueError, TypeError):
                 return (

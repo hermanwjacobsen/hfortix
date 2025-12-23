@@ -84,7 +84,7 @@ def validate_ssh_host_key_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -129,7 +129,7 @@ def validate_ssh_host_key_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"port must be between 0 and 4294967295")
+                    return (False, "port must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -137,13 +137,13 @@ def validate_ssh_host_key_post(
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"hostname cannot exceed 255 characters")
+            return (False, "hostname cannot exceed 255 characters")
 
     # Validate public-key if present
     if "public-key" in payload:
         value = payload.get("public-key")
         if value and isinstance(value, str) and len(value) > 32768:
-            return (False, f"public-key cannot exceed 32768 characters")
+            return (False, "public-key cannot exceed 32768 characters")
 
     return (True, None)
 
@@ -178,7 +178,7 @@ def validate_ssh_host_key_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -223,7 +223,7 @@ def validate_ssh_host_key_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"port must be between 0 and 4294967295")
+                    return (False, "port must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -231,13 +231,13 @@ def validate_ssh_host_key_put(
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"hostname cannot exceed 255 characters")
+            return (False, "hostname cannot exceed 255 characters")
 
     # Validate public-key if present
     if "public-key" in payload:
         value = payload.get("public-key")
         if value and isinstance(value, str) and len(value) > 32768:
-            return (False, f"public-key cannot exceed 32768 characters")
+            return (False, "public-key cannot exceed 32768 characters")
 
     return (True, None)
 

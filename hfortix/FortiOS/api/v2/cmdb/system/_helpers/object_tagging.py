@@ -75,7 +75,7 @@ def validate_object_tagging_post(
     if "category" in payload:
         value = payload.get("category")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"category cannot exceed 63 characters")
+            return (False, "category cannot exceed 63 characters")
 
     # Validate address if present
     if "address" in payload:
@@ -120,7 +120,7 @@ def validate_object_tagging_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 

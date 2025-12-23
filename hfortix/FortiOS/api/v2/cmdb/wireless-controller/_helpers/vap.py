@@ -322,7 +322,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate pre-auth if present
     if "pre-auth" in payload:
@@ -358,7 +358,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 100:
-                    return (False, f"atf-weight must be between 0 and 100")
+                    return (False, "atf-weight must be between 0 and 100")
             except (ValueError, TypeError):
                 return (False, f"atf-weight must be numeric, got: {value}")
 
@@ -371,7 +371,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients must be between 0 and 4294967295",
+                        "max-clients must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
@@ -385,7 +385,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients-ap must be between 0 and 4294967295",
+                        "max-clients-ap must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients-ap must be numeric, got: {value}")
@@ -394,7 +394,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate broadcast-ssid if present
     if "broadcast-ssid" in payload:
@@ -415,8 +415,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             )
 
     # Validate pmf if present
-    if "pmf" in payload:
-        value = payload.get("pmf")
+    if "pm" in payload:
+        value = payload.get("pm")
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
@@ -432,7 +432,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 20:
                     return (
                         False,
-                        f"pmf-assoc-comeback-timeout must be between 1 and 20",
+                        "pmf-assoc-comeback-timeout must be between 1 and 20",
                     )
             except (ValueError, TypeError):
                 return (
@@ -449,7 +449,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 5:
                     return (
                         False,
-                        f"pmf-sa-query-retry-timeout must be between 1 and 5",
+                        "pmf-sa-query-retry-timeout must be between 1 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -493,7 +493,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 100 or int_val > 10000:
                     return (
                         False,
-                        f"gas-comeback-delay must be between 100 and 10000",
+                        "gas-comeback-delay must be between 100 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -510,7 +510,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 512 or int_val > 4096:
                     return (
                         False,
-                        f"gas-fragmentation-limit must be between 512 and 4096",
+                        "gas-fragmentation-limit must be between 512 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -519,8 +519,8 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 )
 
     # Validate mbo-cell-data-conn-pref if present
-    if "mbo-cell-data-conn-pref" in payload:
-        value = payload.get("mbo-cell-data-conn-pref")
+    if "mbo-cell-data-conn-pre" in payload:
+        value = payload.get("mbo-cell-data-conn-pre")
         if value and value not in VALID_BODY_MBO_CELL_DATA_CONN_PREF:
             return (
                 False,
@@ -572,7 +572,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ft-mobility-domain must be between 1 and 65535",
+                        "ft-mobility-domain must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -589,7 +589,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ft-r0-key-lifetime must be between 1 and 65535",
+                        "ft-r0-key-lifetime must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -637,7 +637,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "owe-transition-ssid" in payload:
         value = payload.get("owe-transition-ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"owe-transition-ssid cannot exceed 32 characters")
+            return (False, "owe-transition-ssid cannot exceed 32 characters")
 
     # Validate additional-akms if present
     if "additional-akms" in payload:
@@ -670,7 +670,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "external-web" in payload:
         value = payload.get("external-web")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"external-web cannot exceed 1023 characters")
+            return (False, "external-web cannot exceed 1023 characters")
 
     # Validate external-web-format if present
     if "external-web-format" in payload:
@@ -685,7 +685,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "external-logout" in payload:
         value = payload.get("external-logout")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"external-logout cannot exceed 127 characters")
+            return (False, "external-logout cannot exceed 127 characters")
 
     # Validate mac-username-delimiter if present
     if "mac-username-delimiter" in payload:
@@ -765,7 +765,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"radius-mac-auth-server cannot exceed 35 characters",
+                "radius-mac-auth-server cannot exceed 35 characters",
             )
 
     # Validate radius-mac-auth-block-interval if present
@@ -777,7 +777,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 30 or int_val > 864000:
                     return (
                         False,
-                        f"radius-mac-auth-block-interval must be between 30 and 864000",
+                        "radius-mac-auth-block-interval must be between 30 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -803,7 +803,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 300 or int_val > 864000:
                     return (
                         False,
-                        f"radius-mac-mpsk-timeout must be between 300 and 864000",
+                        "radius-mac-mpsk-timeout must be between 300 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -836,7 +836,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4:
-                    return (False, f"keyindex must be between 1 and 4")
+                    return (False, "keyindex must be between 1 and 4")
             except (ValueError, TypeError):
                 return (False, f"keyindex must be numeric, got: {value}")
 
@@ -871,7 +871,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sae-private-key" in payload:
         value = payload.get("sae-private-key")
         if value and isinstance(value, str) and len(value) > 359:
-            return (False, f"sae-private-key cannot exceed 359 characters")
+            return (False, "sae-private-key cannot exceed 359 characters")
 
     # Validate akm24-only if present
     if "akm24-only" in payload:
@@ -886,7 +886,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "radius-server" in payload:
         value = payload.get("radius-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"radius-server cannot exceed 35 characters")
+            return (False, "radius-server cannot exceed 35 characters")
 
     # Validate nas-filter-rule if present
     if "nas-filter-rule" in payload:
@@ -942,7 +942,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"dhcp-lease-time must be between 300 and 8640000",
+                        "dhcp-lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1019,7 +1019,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"portal-message-override-group cannot exceed 35 characters",
+                "portal-message-override-group cannot exceed 35 characters",
             )
 
     # Validate portal-type if present
@@ -1035,7 +1035,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "security-exempt-list" in payload:
         value = payload.get("security-exempt-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"security-exempt-list cannot exceed 35 characters")
+            return (False, "security-exempt-list cannot exceed 35 characters")
 
     # Validate security-redirect-url if present
     if "security-redirect-url" in payload:
@@ -1043,20 +1043,20 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-redirect-url cannot exceed 1023 characters",
+                "security-redirect-url cannot exceed 1023 characters",
             )
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-portal-addr if present
     if "auth-portal-addr" in payload:
         value = payload.get("auth-portal-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-portal-addr cannot exceed 63 characters")
+            return (False, "auth-portal-addr cannot exceed 63 characters")
 
     # Validate intra-vap-privacy if present
     if "intra-vap-privacy" in payload:
@@ -1112,7 +1112,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 60 or int_val > 65535:
                     return (
                         False,
-                        f"port-macauth-timeout must be between 60 and 65535",
+                        "port-macauth-timeout must be between 60 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1129,7 +1129,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 120 or int_val > 65535:
                     return (
                         False,
-                        f"port-macauth-reauth-timeout must be between 120 and 65535",
+                        "port-macauth-reauth-timeout must be between 120 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1150,7 +1150,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "mpsk-profile" in payload:
         value = payload.get("mpsk-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mpsk-profile cannot exceed 35 characters")
+            return (False, "mpsk-profile cannot exceed 35 characters")
 
     # Validate split-tunneling if present
     if "split-tunneling" in payload:
@@ -1174,7 +1174,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "nac-profile" in payload:
         value = payload.get("nac-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"nac-profile cannot exceed 35 characters")
+            return (False, "nac-profile cannot exceed 35 characters")
 
     # Validate vlanid if present
     if "vlanid" in payload:
@@ -1183,7 +1183,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4094:
-                    return (False, f"vlanid must be between 0 and 4094")
+                    return (False, "vlanid must be between 0 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
 
@@ -1220,7 +1220,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"captive-portal-ac-name cannot exceed 35 characters",
+                "captive-portal-ac-name cannot exceed 35 characters",
             )
 
     # Validate captive-portal-auth-timeout if present
@@ -1232,7 +1232,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 864000:
                     return (
                         False,
-                        f"captive-portal-auth-timeout must be between 0 and 864000",
+                        "captive-portal-auth-timeout must be between 0 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1303,7 +1303,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 2 or int_val > 256:
                     return (
                         False,
-                        f"me-disable-thresh must be between 2 and 256",
+                        "me-disable-thresh must be between 2 and 256",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1333,7 +1333,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "probe-resp-threshold" in payload:
         value = payload.get("probe-resp-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"probe-resp-threshold cannot exceed 7 characters")
+            return (False, "probe-resp-threshold cannot exceed 7 characters")
 
     # Validate radio-sensitivity if present
     if "radio-sensitivity" in payload:
@@ -1357,13 +1357,13 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "radio-5g-threshold" in payload:
         value = payload.get("radio-5g-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"radio-5g-threshold cannot exceed 7 characters")
+            return (False, "radio-5g-threshold cannot exceed 7 characters")
 
     # Validate radio-2g-threshold if present
     if "radio-2g-threshold" in payload:
         value = payload.get("radio-2g-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"radio-2g-threshold cannot exceed 7 characters")
+            return (False, "radio-2g-threshold cannot exceed 7 characters")
 
     # Validate vlan-pooling if present
     if "vlan-pooling" in payload:
@@ -1431,7 +1431,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 600 or int_val > 864000:
                     return (
                         False,
-                        f"ptk-rekey-intv must be between 600 and 864000",
+                        "ptk-rekey-intv must be between 600 and 864000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ptk-rekey-intv must be numeric, got: {value}")
@@ -1454,7 +1454,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 600 or int_val > 864000:
                     return (
                         False,
-                        f"gtk-rekey-intv must be between 600 and 864000",
+                        "gtk-rekey-intv must be between 600 and 864000",
                     )
             except (ValueError, TypeError):
                 return (False, f"gtk-rekey-intv must be numeric, got: {value}")
@@ -1477,7 +1477,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1800 or int_val > 864000:
                     return (
                         False,
-                        f"eap-reauth-intv must be between 1800 and 864000",
+                        "eap-reauth-intv must be between 1800 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1498,25 +1498,25 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "qos-profile" in payload:
         value = payload.get("qos-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qos-profile cannot exceed 35 characters")
+            return (False, "qos-profile cannot exceed 35 characters")
 
     # Validate hotspot20-profile if present
     if "hotspot20-profile" in payload:
         value = payload.get("hotspot20-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hotspot20-profile cannot exceed 35 characters")
+            return (False, "hotspot20-profile cannot exceed 35 characters")
 
     # Validate access-control-list if present
     if "access-control-list" in payload:
         value = payload.get("access-control-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"access-control-list cannot exceed 35 characters")
+            return (False, "access-control-list cannot exceed 35 characters")
 
     # Validate primary-wag-profile if present
     if "primary-wag-profile" in payload:
         value = payload.get("primary-wag-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"primary-wag-profile cannot exceed 35 characters")
+            return (False, "primary-wag-profile cannot exceed 35 characters")
 
     # Validate secondary-wag-profile if present
     if "secondary-wag-profile" in payload:
@@ -1524,7 +1524,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"secondary-wag-profile cannot exceed 35 characters",
+                "secondary-wag-profile cannot exceed 35 characters",
             )
 
     # Validate tunnel-echo-interval if present
@@ -1536,7 +1536,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"tunnel-echo-interval must be between 1 and 65535",
+                        "tunnel-echo-interval must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1553,7 +1553,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tunnel-fallback-interval must be between 0 and 65535",
+                        "tunnel-fallback-interval must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1601,19 +1601,19 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "rates-11ac-mcs-map" in payload:
         value = payload.get("rates-11ac-mcs-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"rates-11ac-mcs-map cannot exceed 63 characters")
+            return (False, "rates-11ac-mcs-map cannot exceed 63 characters")
 
     # Validate rates-11ax-mcs-map if present
     if "rates-11ax-mcs-map" in payload:
         value = payload.get("rates-11ax-mcs-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"rates-11ax-mcs-map cannot exceed 63 characters")
+            return (False, "rates-11ax-mcs-map cannot exceed 63 characters")
 
     # Validate rates-11be-mcs-map if present
     if "rates-11be-mcs-map" in payload:
         value = payload.get("rates-11be-mcs-map")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"rates-11be-mcs-map cannot exceed 15 characters")
+            return (False, "rates-11be-mcs-map cannot exceed 15 characters")
 
     # Validate rates-11be-mcs-map-160 if present
     if "rates-11be-mcs-map-160" in payload:
@@ -1621,7 +1621,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"rates-11be-mcs-map-160 cannot exceed 15 characters",
+                "rates-11be-mcs-map-160 cannot exceed 15 characters",
             )
 
     # Validate rates-11be-mcs-map-320 if present
@@ -1630,14 +1630,14 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"rates-11be-mcs-map-320 cannot exceed 15 characters",
+                "rates-11be-mcs-map-320 cannot exceed 15 characters",
             )
 
     # Validate utm-profile if present
     if "utm-profile" in payload:
         value = payload.get("utm-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"utm-profile cannot exceed 35 characters")
+            return (False, "utm-profile cannot exceed 35 characters")
 
     # Validate utm-status if present
     if "utm-status" in payload:
@@ -1661,25 +1661,25 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate antivirus-profile if present
     if "antivirus-profile" in payload:
         value = payload.get("antivirus-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"antivirus-profile cannot exceed 47 characters")
+            return (False, "antivirus-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate scan-botnet-connections if present
     if "scan-botnet-connections" in payload:
@@ -1694,7 +1694,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "address-group" in payload:
         value = payload.get("address-group")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"address-group cannot exceed 79 characters")
+            return (False, "address-group cannot exceed 79 characters")
 
     # Validate address-group-policy if present
     if "address-group-policy" in payload:
@@ -1720,7 +1720,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-5g cannot exceed 7 characters",
+                "sticky-client-threshold-5g cannot exceed 7 characters",
             )
 
     # Validate sticky-client-threshold-2g if present
@@ -1729,7 +1729,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-2g cannot exceed 7 characters",
+                "sticky-client-threshold-2g cannot exceed 7 characters",
             )
 
     # Validate sticky-client-threshold-6g if present
@@ -1738,7 +1738,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-6g cannot exceed 7 characters",
+                "sticky-client-threshold-6g cannot exceed 7 characters",
             )
 
     # Validate bstm-rssi-disassoc-timer if present
@@ -1750,7 +1750,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 2000:
                     return (
                         False,
-                        f"bstm-rssi-disassoc-timer must be between 1 and 2000",
+                        "bstm-rssi-disassoc-timer must be between 1 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1767,7 +1767,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"bstm-load-balancing-disassoc-timer must be between 1 and 30",
+                        "bstm-load-balancing-disassoc-timer must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1829,7 +1829,7 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 30 or int_val > 864000:
                     return (
                         False,
-                        f"application-report-intv must be between 30 and 864000",
+                        "application-report-intv must be between 30 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1888,7 +1888,7 @@ def validate_vap_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate pre-auth if present
     if "pre-auth" in payload:
@@ -1924,7 +1924,7 @@ def validate_vap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 100:
-                    return (False, f"atf-weight must be between 0 and 100")
+                    return (False, "atf-weight must be between 0 and 100")
             except (ValueError, TypeError):
                 return (False, f"atf-weight must be numeric, got: {value}")
 
@@ -1937,7 +1937,7 @@ def validate_vap_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients must be between 0 and 4294967295",
+                        "max-clients must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
@@ -1951,7 +1951,7 @@ def validate_vap_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients-ap must be between 0 and 4294967295",
+                        "max-clients-ap must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients-ap must be numeric, got: {value}")
@@ -1960,7 +1960,7 @@ def validate_vap_put(
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate broadcast-ssid if present
     if "broadcast-ssid" in payload:
@@ -1981,8 +1981,8 @@ def validate_vap_put(
             )
 
     # Validate pmf if present
-    if "pmf" in payload:
-        value = payload.get("pmf")
+    if "pm" in payload:
+        value = payload.get("pm")
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
@@ -1998,7 +1998,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 20:
                     return (
                         False,
-                        f"pmf-assoc-comeback-timeout must be between 1 and 20",
+                        "pmf-assoc-comeback-timeout must be between 1 and 20",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2015,7 +2015,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 5:
                     return (
                         False,
-                        f"pmf-sa-query-retry-timeout must be between 1 and 5",
+                        "pmf-sa-query-retry-timeout must be between 1 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2059,7 +2059,7 @@ def validate_vap_put(
                 if int_val < 100 or int_val > 10000:
                     return (
                         False,
-                        f"gas-comeback-delay must be between 100 and 10000",
+                        "gas-comeback-delay must be between 100 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2076,7 +2076,7 @@ def validate_vap_put(
                 if int_val < 512 or int_val > 4096:
                     return (
                         False,
-                        f"gas-fragmentation-limit must be between 512 and 4096",
+                        "gas-fragmentation-limit must be between 512 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2085,8 +2085,8 @@ def validate_vap_put(
                 )
 
     # Validate mbo-cell-data-conn-pref if present
-    if "mbo-cell-data-conn-pref" in payload:
-        value = payload.get("mbo-cell-data-conn-pref")
+    if "mbo-cell-data-conn-pre" in payload:
+        value = payload.get("mbo-cell-data-conn-pre")
         if value and value not in VALID_BODY_MBO_CELL_DATA_CONN_PREF:
             return (
                 False,
@@ -2138,7 +2138,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ft-mobility-domain must be between 1 and 65535",
+                        "ft-mobility-domain must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2155,7 +2155,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ft-r0-key-lifetime must be between 1 and 65535",
+                        "ft-r0-key-lifetime must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2203,7 +2203,7 @@ def validate_vap_put(
     if "owe-transition-ssid" in payload:
         value = payload.get("owe-transition-ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"owe-transition-ssid cannot exceed 32 characters")
+            return (False, "owe-transition-ssid cannot exceed 32 characters")
 
     # Validate additional-akms if present
     if "additional-akms" in payload:
@@ -2236,7 +2236,7 @@ def validate_vap_put(
     if "external-web" in payload:
         value = payload.get("external-web")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"external-web cannot exceed 1023 characters")
+            return (False, "external-web cannot exceed 1023 characters")
 
     # Validate external-web-format if present
     if "external-web-format" in payload:
@@ -2251,7 +2251,7 @@ def validate_vap_put(
     if "external-logout" in payload:
         value = payload.get("external-logout")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"external-logout cannot exceed 127 characters")
+            return (False, "external-logout cannot exceed 127 characters")
 
     # Validate mac-username-delimiter if present
     if "mac-username-delimiter" in payload:
@@ -2331,7 +2331,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"radius-mac-auth-server cannot exceed 35 characters",
+                "radius-mac-auth-server cannot exceed 35 characters",
             )
 
     # Validate radius-mac-auth-block-interval if present
@@ -2343,7 +2343,7 @@ def validate_vap_put(
                 if int_val < 30 or int_val > 864000:
                     return (
                         False,
-                        f"radius-mac-auth-block-interval must be between 30 and 864000",
+                        "radius-mac-auth-block-interval must be between 30 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2369,7 +2369,7 @@ def validate_vap_put(
                 if int_val < 300 or int_val > 864000:
                     return (
                         False,
-                        f"radius-mac-mpsk-timeout must be between 300 and 864000",
+                        "radius-mac-mpsk-timeout must be between 300 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2402,7 +2402,7 @@ def validate_vap_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4:
-                    return (False, f"keyindex must be between 1 and 4")
+                    return (False, "keyindex must be between 1 and 4")
             except (ValueError, TypeError):
                 return (False, f"keyindex must be numeric, got: {value}")
 
@@ -2437,7 +2437,7 @@ def validate_vap_put(
     if "sae-private-key" in payload:
         value = payload.get("sae-private-key")
         if value and isinstance(value, str) and len(value) > 359:
-            return (False, f"sae-private-key cannot exceed 359 characters")
+            return (False, "sae-private-key cannot exceed 359 characters")
 
     # Validate akm24-only if present
     if "akm24-only" in payload:
@@ -2452,7 +2452,7 @@ def validate_vap_put(
     if "radius-server" in payload:
         value = payload.get("radius-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"radius-server cannot exceed 35 characters")
+            return (False, "radius-server cannot exceed 35 characters")
 
     # Validate nas-filter-rule if present
     if "nas-filter-rule" in payload:
@@ -2508,7 +2508,7 @@ def validate_vap_put(
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"dhcp-lease-time must be between 300 and 8640000",
+                        "dhcp-lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2585,7 +2585,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"portal-message-override-group cannot exceed 35 characters",
+                "portal-message-override-group cannot exceed 35 characters",
             )
 
     # Validate portal-type if present
@@ -2601,7 +2601,7 @@ def validate_vap_put(
     if "security-exempt-list" in payload:
         value = payload.get("security-exempt-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"security-exempt-list cannot exceed 35 characters")
+            return (False, "security-exempt-list cannot exceed 35 characters")
 
     # Validate security-redirect-url if present
     if "security-redirect-url" in payload:
@@ -2609,20 +2609,20 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-redirect-url cannot exceed 1023 characters",
+                "security-redirect-url cannot exceed 1023 characters",
             )
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-portal-addr if present
     if "auth-portal-addr" in payload:
         value = payload.get("auth-portal-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-portal-addr cannot exceed 63 characters")
+            return (False, "auth-portal-addr cannot exceed 63 characters")
 
     # Validate intra-vap-privacy if present
     if "intra-vap-privacy" in payload:
@@ -2678,7 +2678,7 @@ def validate_vap_put(
                 if int_val < 60 or int_val > 65535:
                     return (
                         False,
-                        f"port-macauth-timeout must be between 60 and 65535",
+                        "port-macauth-timeout must be between 60 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2695,7 +2695,7 @@ def validate_vap_put(
                 if int_val < 120 or int_val > 65535:
                     return (
                         False,
-                        f"port-macauth-reauth-timeout must be between 120 and 65535",
+                        "port-macauth-reauth-timeout must be between 120 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2716,7 +2716,7 @@ def validate_vap_put(
     if "mpsk-profile" in payload:
         value = payload.get("mpsk-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mpsk-profile cannot exceed 35 characters")
+            return (False, "mpsk-profile cannot exceed 35 characters")
 
     # Validate split-tunneling if present
     if "split-tunneling" in payload:
@@ -2740,7 +2740,7 @@ def validate_vap_put(
     if "nac-profile" in payload:
         value = payload.get("nac-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"nac-profile cannot exceed 35 characters")
+            return (False, "nac-profile cannot exceed 35 characters")
 
     # Validate vlanid if present
     if "vlanid" in payload:
@@ -2749,7 +2749,7 @@ def validate_vap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4094:
-                    return (False, f"vlanid must be between 0 and 4094")
+                    return (False, "vlanid must be between 0 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
 
@@ -2786,7 +2786,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"captive-portal-ac-name cannot exceed 35 characters",
+                "captive-portal-ac-name cannot exceed 35 characters",
             )
 
     # Validate captive-portal-auth-timeout if present
@@ -2798,7 +2798,7 @@ def validate_vap_put(
                 if int_val < 0 or int_val > 864000:
                     return (
                         False,
-                        f"captive-portal-auth-timeout must be between 0 and 864000",
+                        "captive-portal-auth-timeout must be between 0 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2869,7 +2869,7 @@ def validate_vap_put(
                 if int_val < 2 or int_val > 256:
                     return (
                         False,
-                        f"me-disable-thresh must be between 2 and 256",
+                        "me-disable-thresh must be between 2 and 256",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2899,7 +2899,7 @@ def validate_vap_put(
     if "probe-resp-threshold" in payload:
         value = payload.get("probe-resp-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"probe-resp-threshold cannot exceed 7 characters")
+            return (False, "probe-resp-threshold cannot exceed 7 characters")
 
     # Validate radio-sensitivity if present
     if "radio-sensitivity" in payload:
@@ -2923,13 +2923,13 @@ def validate_vap_put(
     if "radio-5g-threshold" in payload:
         value = payload.get("radio-5g-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"radio-5g-threshold cannot exceed 7 characters")
+            return (False, "radio-5g-threshold cannot exceed 7 characters")
 
     # Validate radio-2g-threshold if present
     if "radio-2g-threshold" in payload:
         value = payload.get("radio-2g-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"radio-2g-threshold cannot exceed 7 characters")
+            return (False, "radio-2g-threshold cannot exceed 7 characters")
 
     # Validate vlan-pooling if present
     if "vlan-pooling" in payload:
@@ -2997,7 +2997,7 @@ def validate_vap_put(
                 if int_val < 600 or int_val > 864000:
                     return (
                         False,
-                        f"ptk-rekey-intv must be between 600 and 864000",
+                        "ptk-rekey-intv must be between 600 and 864000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ptk-rekey-intv must be numeric, got: {value}")
@@ -3020,7 +3020,7 @@ def validate_vap_put(
                 if int_val < 600 or int_val > 864000:
                     return (
                         False,
-                        f"gtk-rekey-intv must be between 600 and 864000",
+                        "gtk-rekey-intv must be between 600 and 864000",
                     )
             except (ValueError, TypeError):
                 return (False, f"gtk-rekey-intv must be numeric, got: {value}")
@@ -3043,7 +3043,7 @@ def validate_vap_put(
                 if int_val < 1800 or int_val > 864000:
                     return (
                         False,
-                        f"eap-reauth-intv must be between 1800 and 864000",
+                        "eap-reauth-intv must be between 1800 and 864000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3064,25 +3064,25 @@ def validate_vap_put(
     if "qos-profile" in payload:
         value = payload.get("qos-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qos-profile cannot exceed 35 characters")
+            return (False, "qos-profile cannot exceed 35 characters")
 
     # Validate hotspot20-profile if present
     if "hotspot20-profile" in payload:
         value = payload.get("hotspot20-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hotspot20-profile cannot exceed 35 characters")
+            return (False, "hotspot20-profile cannot exceed 35 characters")
 
     # Validate access-control-list if present
     if "access-control-list" in payload:
         value = payload.get("access-control-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"access-control-list cannot exceed 35 characters")
+            return (False, "access-control-list cannot exceed 35 characters")
 
     # Validate primary-wag-profile if present
     if "primary-wag-profile" in payload:
         value = payload.get("primary-wag-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"primary-wag-profile cannot exceed 35 characters")
+            return (False, "primary-wag-profile cannot exceed 35 characters")
 
     # Validate secondary-wag-profile if present
     if "secondary-wag-profile" in payload:
@@ -3090,7 +3090,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"secondary-wag-profile cannot exceed 35 characters",
+                "secondary-wag-profile cannot exceed 35 characters",
             )
 
     # Validate tunnel-echo-interval if present
@@ -3102,7 +3102,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"tunnel-echo-interval must be between 1 and 65535",
+                        "tunnel-echo-interval must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3119,7 +3119,7 @@ def validate_vap_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tunnel-fallback-interval must be between 0 and 65535",
+                        "tunnel-fallback-interval must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3167,19 +3167,19 @@ def validate_vap_put(
     if "rates-11ac-mcs-map" in payload:
         value = payload.get("rates-11ac-mcs-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"rates-11ac-mcs-map cannot exceed 63 characters")
+            return (False, "rates-11ac-mcs-map cannot exceed 63 characters")
 
     # Validate rates-11ax-mcs-map if present
     if "rates-11ax-mcs-map" in payload:
         value = payload.get("rates-11ax-mcs-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"rates-11ax-mcs-map cannot exceed 63 characters")
+            return (False, "rates-11ax-mcs-map cannot exceed 63 characters")
 
     # Validate rates-11be-mcs-map if present
     if "rates-11be-mcs-map" in payload:
         value = payload.get("rates-11be-mcs-map")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"rates-11be-mcs-map cannot exceed 15 characters")
+            return (False, "rates-11be-mcs-map cannot exceed 15 characters")
 
     # Validate rates-11be-mcs-map-160 if present
     if "rates-11be-mcs-map-160" in payload:
@@ -3187,7 +3187,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"rates-11be-mcs-map-160 cannot exceed 15 characters",
+                "rates-11be-mcs-map-160 cannot exceed 15 characters",
             )
 
     # Validate rates-11be-mcs-map-320 if present
@@ -3196,14 +3196,14 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"rates-11be-mcs-map-320 cannot exceed 15 characters",
+                "rates-11be-mcs-map-320 cannot exceed 15 characters",
             )
 
     # Validate utm-profile if present
     if "utm-profile" in payload:
         value = payload.get("utm-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"utm-profile cannot exceed 35 characters")
+            return (False, "utm-profile cannot exceed 35 characters")
 
     # Validate utm-status if present
     if "utm-status" in payload:
@@ -3227,25 +3227,25 @@ def validate_vap_put(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate antivirus-profile if present
     if "antivirus-profile" in payload:
         value = payload.get("antivirus-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"antivirus-profile cannot exceed 47 characters")
+            return (False, "antivirus-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate scan-botnet-connections if present
     if "scan-botnet-connections" in payload:
@@ -3260,7 +3260,7 @@ def validate_vap_put(
     if "address-group" in payload:
         value = payload.get("address-group")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"address-group cannot exceed 79 characters")
+            return (False, "address-group cannot exceed 79 characters")
 
     # Validate address-group-policy if present
     if "address-group-policy" in payload:
@@ -3286,7 +3286,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-5g cannot exceed 7 characters",
+                "sticky-client-threshold-5g cannot exceed 7 characters",
             )
 
     # Validate sticky-client-threshold-2g if present
@@ -3295,7 +3295,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-2g cannot exceed 7 characters",
+                "sticky-client-threshold-2g cannot exceed 7 characters",
             )
 
     # Validate sticky-client-threshold-6g if present
@@ -3304,7 +3304,7 @@ def validate_vap_put(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"sticky-client-threshold-6g cannot exceed 7 characters",
+                "sticky-client-threshold-6g cannot exceed 7 characters",
             )
 
     # Validate bstm-rssi-disassoc-timer if present
@@ -3316,7 +3316,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 2000:
                     return (
                         False,
-                        f"bstm-rssi-disassoc-timer must be between 1 and 2000",
+                        "bstm-rssi-disassoc-timer must be between 1 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3333,7 +3333,7 @@ def validate_vap_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"bstm-load-balancing-disassoc-timer must be between 1 and 30",
+                        "bstm-load-balancing-disassoc-timer must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3395,7 +3395,7 @@ def validate_vap_put(
                 if int_val < 30 or int_val > 864000:
                     return (
                         False,
-                        f"application-report-intv must be between 30 and 864000",
+                        "application-report-intv must be between 30 and 864000",
                     )
             except (ValueError, TypeError):
                 return (

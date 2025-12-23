@@ -74,7 +74,7 @@ def validate_fast_fallback_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -112,7 +112,7 @@ def validate_fast_fallback_post(
                 if int_val < 200 or int_val > 1800000:
                     return (
                         False,
-                        f"connection-timeout must be between 200 and 1800000",
+                        "connection-timeout must be between 200 and 1800000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -153,7 +153,7 @@ def validate_fast_fallback_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -191,7 +191,7 @@ def validate_fast_fallback_put(
                 if int_val < 200 or int_val > 1800000:
                     return (
                         False,
-                        f"connection-timeout must be between 200 and 1800000",
+                        "connection-timeout must be between 200 and 1800000",
                     )
             except (ValueError, TypeError):
                 return (

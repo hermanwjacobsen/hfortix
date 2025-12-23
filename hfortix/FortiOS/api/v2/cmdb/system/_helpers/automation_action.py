@@ -105,13 +105,13 @@ def validate_automation_action_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate action-type if present
     if "action-type" in payload:
@@ -135,7 +135,7 @@ def validate_automation_action_post(
     if "tls-certificate" in payload:
         value = payload.get("tls-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tls-certificate cannot exceed 35 characters")
+            return (False, "tls-certificate cannot exceed 35 characters")
 
     # Validate forticare-email if present
     if "forticare-email" in payload:
@@ -150,13 +150,13 @@ def validate_automation_action_post(
     if "email-from" in payload:
         value = payload.get("email-from")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"email-from cannot exceed 127 characters")
+            return (False, "email-from cannot exceed 127 characters")
 
     # Validate email-subject if present
     if "email-subject" in payload:
         value = payload.get("email-subject")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"email-subject cannot exceed 511 characters")
+            return (False, "email-subject cannot exceed 511 characters")
 
     # Validate minimum-interval if present
     if "minimum-interval" in payload:
@@ -167,7 +167,7 @@ def validate_automation_action_post(
                 if int_val < 0 or int_val > 2592000:
                     return (
                         False,
-                        f"minimum-interval must be between 0 and 2592000",
+                        "minimum-interval must be between 0 and 2592000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -199,7 +199,7 @@ def validate_automation_action_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"alicloud-access-key-id cannot exceed 35 characters",
+                "alicloud-access-key-id cannot exceed 35 characters",
             )
 
     # Validate message-type if present
@@ -215,7 +215,7 @@ def validate_automation_action_post(
     if "message" in payload:
         value = payload.get("message")
         if value and isinstance(value, str) and len(value) > 4095:
-            return (False, f"message cannot exceed 4095 characters")
+            return (False, "message cannot exceed 4095 characters")
 
     # Validate replacement-message if present
     if "replacement-message" in payload:
@@ -230,7 +230,7 @@ def validate_automation_action_post(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
@@ -254,13 +254,13 @@ def validate_automation_action_post(
     if "uri" in payload:
         value = payload.get("uri")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"uri cannot exceed 1023 characters")
+            return (False, "uri cannot exceed 1023 characters")
 
     # Validate http-body if present
     if "http-body" in payload:
         value = payload.get("http-body")
         if value and isinstance(value, str) and len(value) > 4095:
-            return (False, f"http-body cannot exceed 4095 characters")
+            return (False, "http-body cannot exceed 4095 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -269,7 +269,7 @@ def validate_automation_action_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -286,7 +286,7 @@ def validate_automation_action_post(
     if "script" in payload:
         value = payload.get("script")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"script cannot exceed 1023 characters")
+            return (False, "script cannot exceed 1023 characters")
 
     # Validate output-size if present
     if "output-size" in payload:
@@ -295,7 +295,7 @@ def validate_automation_action_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1024:
-                    return (False, f"output-size must be between 1 and 1024")
+                    return (False, "output-size must be between 1 and 1024")
             except (ValueError, TypeError):
                 return (False, f"output-size must be numeric, got: {value}")
 
@@ -306,7 +306,7 @@ def validate_automation_action_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 300:
-                    return (False, f"timeout must be between 0 and 300")
+                    return (False, "timeout must be between 0 and 300")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -317,7 +317,7 @@ def validate_automation_action_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 36000:
-                    return (False, f"duration must be between 1 and 36000")
+                    return (False, "duration must be between 1 and 36000")
             except (ValueError, TypeError):
                 return (False, f"duration must be numeric, got: {value}")
 
@@ -330,7 +330,7 @@ def validate_automation_action_post(
                 if int_val < 0 or int_val > 36000:
                     return (
                         False,
-                        f"output-interval must be between 0 and 36000",
+                        "output-interval must be between 0 and 36000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -360,13 +360,13 @@ def validate_automation_action_post(
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate regular-expression if present
     if "regular-expression" in payload:
         value = payload.get("regular-expression")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"regular-expression cannot exceed 1023 characters")
+            return (False, "regular-expression cannot exceed 1023 characters")
 
     # Validate log-debug-print if present
     if "log-debug-print" in payload:
@@ -381,7 +381,7 @@ def validate_automation_action_post(
     if "security-tag" in payload:
         value = payload.get("security-tag")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"security-tag cannot exceed 255 characters")
+            return (False, "security-tag cannot exceed 255 characters")
 
     return (True, None)
 
@@ -416,13 +416,13 @@ def validate_automation_action_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate action-type if present
     if "action-type" in payload:
@@ -446,7 +446,7 @@ def validate_automation_action_put(
     if "tls-certificate" in payload:
         value = payload.get("tls-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tls-certificate cannot exceed 35 characters")
+            return (False, "tls-certificate cannot exceed 35 characters")
 
     # Validate forticare-email if present
     if "forticare-email" in payload:
@@ -461,13 +461,13 @@ def validate_automation_action_put(
     if "email-from" in payload:
         value = payload.get("email-from")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"email-from cannot exceed 127 characters")
+            return (False, "email-from cannot exceed 127 characters")
 
     # Validate email-subject if present
     if "email-subject" in payload:
         value = payload.get("email-subject")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"email-subject cannot exceed 511 characters")
+            return (False, "email-subject cannot exceed 511 characters")
 
     # Validate minimum-interval if present
     if "minimum-interval" in payload:
@@ -478,7 +478,7 @@ def validate_automation_action_put(
                 if int_val < 0 or int_val > 2592000:
                     return (
                         False,
-                        f"minimum-interval must be between 0 and 2592000",
+                        "minimum-interval must be between 0 and 2592000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -510,7 +510,7 @@ def validate_automation_action_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"alicloud-access-key-id cannot exceed 35 characters",
+                "alicloud-access-key-id cannot exceed 35 characters",
             )
 
     # Validate message-type if present
@@ -526,7 +526,7 @@ def validate_automation_action_put(
     if "message" in payload:
         value = payload.get("message")
         if value and isinstance(value, str) and len(value) > 4095:
-            return (False, f"message cannot exceed 4095 characters")
+            return (False, "message cannot exceed 4095 characters")
 
     # Validate replacement-message if present
     if "replacement-message" in payload:
@@ -541,7 +541,7 @@ def validate_automation_action_put(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
@@ -565,13 +565,13 @@ def validate_automation_action_put(
     if "uri" in payload:
         value = payload.get("uri")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"uri cannot exceed 1023 characters")
+            return (False, "uri cannot exceed 1023 characters")
 
     # Validate http-body if present
     if "http-body" in payload:
         value = payload.get("http-body")
         if value and isinstance(value, str) and len(value) > 4095:
-            return (False, f"http-body cannot exceed 4095 characters")
+            return (False, "http-body cannot exceed 4095 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -580,7 +580,7 @@ def validate_automation_action_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -597,7 +597,7 @@ def validate_automation_action_put(
     if "script" in payload:
         value = payload.get("script")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"script cannot exceed 1023 characters")
+            return (False, "script cannot exceed 1023 characters")
 
     # Validate output-size if present
     if "output-size" in payload:
@@ -606,7 +606,7 @@ def validate_automation_action_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1024:
-                    return (False, f"output-size must be between 1 and 1024")
+                    return (False, "output-size must be between 1 and 1024")
             except (ValueError, TypeError):
                 return (False, f"output-size must be numeric, got: {value}")
 
@@ -617,7 +617,7 @@ def validate_automation_action_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 300:
-                    return (False, f"timeout must be between 0 and 300")
+                    return (False, "timeout must be between 0 and 300")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -628,7 +628,7 @@ def validate_automation_action_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 36000:
-                    return (False, f"duration must be between 1 and 36000")
+                    return (False, "duration must be between 1 and 36000")
             except (ValueError, TypeError):
                 return (False, f"duration must be numeric, got: {value}")
 
@@ -641,7 +641,7 @@ def validate_automation_action_put(
                 if int_val < 0 or int_val > 36000:
                     return (
                         False,
-                        f"output-interval must be between 0 and 36000",
+                        "output-interval must be between 0 and 36000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -671,13 +671,13 @@ def validate_automation_action_put(
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate regular-expression if present
     if "regular-expression" in payload:
         value = payload.get("regular-expression")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"regular-expression cannot exceed 1023 characters")
+            return (False, "regular-expression cannot exceed 1023 characters")
 
     # Validate log-debug-print if present
     if "log-debug-print" in payload:
@@ -692,7 +692,7 @@ def validate_automation_action_put(
     if "security-tag" in payload:
         value = payload.get("security-tag")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"security-tag cannot exceed 255 characters")
+            return (False, "security-tag cannot exceed 255 characters")
 
     return (True, None)
 

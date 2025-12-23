@@ -81,7 +81,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -99,7 +99,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 65535:
-                    return (False, f"startport must be between 1024 and 65535")
+                    return (False, "startport must be between 1024 and 65535")
             except (ValueError, TypeError):
                 return (False, f"startport must be numeric, got: {value}")
 
@@ -110,7 +110,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 65535:
-                    return (False, f"endport must be between 1024 and 65535")
+                    return (False, "endport must be between 1024 and 65535")
             except (ValueError, TypeError):
                 return (False, f"endport must be numeric, got: {value}")
 
@@ -121,7 +121,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 64 or int_val > 4096:
-                    return (False, f"block-size must be between 64 and 4096")
+                    return (False, "block-size must be between 64 and 4096")
             except (ValueError, TypeError):
                 return (False, f"block-size must be numeric, got: {value}")
 
@@ -134,7 +134,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 32 or int_val > 60417:
                     return (
                         False,
-                        f"port-per-user must be between 32 and 60417",
+                        "port-per-user must be between 32 and 60417",
                     )
             except (ValueError, TypeError):
                 return (False, f"port-per-user must be numeric, got: {value}")
@@ -148,7 +148,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 128:
                     return (
                         False,
-                        f"num-blocks-per-user must be between 1 and 128",
+                        "num-blocks-per-user must be between 1 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -163,7 +163,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 3 or int_val > 86400:
-                    return (False, f"pba-timeout must be between 3 and 86400")
+                    return (False, "pba-timeout must be between 3 and 86400")
             except (ValueError, TypeError):
                 return (False, f"pba-timeout must be numeric, got: {value}")
 
@@ -176,7 +176,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 600 or int_val > 86400:
                     return (
                         False,
-                        f"pba-interim-log must be between 600 and 86400",
+                        "pba-interim-log must be between 600 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -203,8 +203,8 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             )
 
     # Validate arp-intf if present
-    if "arp-intf" in payload:
-        value = payload.get("arp-intf")
+    if "arp-int" in payload:
+        value = payload.get("arp-int")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"arp-intf cannot exceed 15 characters")
 
@@ -212,13 +212,13 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "associated-interface" in payload:
         value = payload.get("associated-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"associated-interface cannot exceed 15 characters")
+            return (False, "associated-interface cannot exceed 15 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate nat64 if present
     if "nat64" in payload:
@@ -247,7 +247,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 128:
                     return (
                         False,
-                        f"client-prefix-length must be between 1 and 128",
+                        "client-prefix-length must be between 1 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -264,7 +264,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"tcp-session-quota must be between 0 and 2097000",
+                        "tcp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -281,7 +281,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"udp-session-quota must be between 0 and 2097000",
+                        "udp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -298,7 +298,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"icmp-session-quota must be between 0 and 2097000",
+                        "icmp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -357,7 +357,7 @@ def validate_ippool_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -375,7 +375,7 @@ def validate_ippool_put(
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 65535:
-                    return (False, f"startport must be between 1024 and 65535")
+                    return (False, "startport must be between 1024 and 65535")
             except (ValueError, TypeError):
                 return (False, f"startport must be numeric, got: {value}")
 
@@ -386,7 +386,7 @@ def validate_ippool_put(
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 65535:
-                    return (False, f"endport must be between 1024 and 65535")
+                    return (False, "endport must be between 1024 and 65535")
             except (ValueError, TypeError):
                 return (False, f"endport must be numeric, got: {value}")
 
@@ -397,7 +397,7 @@ def validate_ippool_put(
             try:
                 int_val = int(value)
                 if int_val < 64 or int_val > 4096:
-                    return (False, f"block-size must be between 64 and 4096")
+                    return (False, "block-size must be between 64 and 4096")
             except (ValueError, TypeError):
                 return (False, f"block-size must be numeric, got: {value}")
 
@@ -410,7 +410,7 @@ def validate_ippool_put(
                 if int_val < 32 or int_val > 60417:
                     return (
                         False,
-                        f"port-per-user must be between 32 and 60417",
+                        "port-per-user must be between 32 and 60417",
                     )
             except (ValueError, TypeError):
                 return (False, f"port-per-user must be numeric, got: {value}")
@@ -424,7 +424,7 @@ def validate_ippool_put(
                 if int_val < 1 or int_val > 128:
                     return (
                         False,
-                        f"num-blocks-per-user must be between 1 and 128",
+                        "num-blocks-per-user must be between 1 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -439,7 +439,7 @@ def validate_ippool_put(
             try:
                 int_val = int(value)
                 if int_val < 3 or int_val > 86400:
-                    return (False, f"pba-timeout must be between 3 and 86400")
+                    return (False, "pba-timeout must be between 3 and 86400")
             except (ValueError, TypeError):
                 return (False, f"pba-timeout must be numeric, got: {value}")
 
@@ -452,7 +452,7 @@ def validate_ippool_put(
                 if int_val < 600 or int_val > 86400:
                     return (
                         False,
-                        f"pba-interim-log must be between 600 and 86400",
+                        "pba-interim-log must be between 600 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -479,8 +479,8 @@ def validate_ippool_put(
             )
 
     # Validate arp-intf if present
-    if "arp-intf" in payload:
-        value = payload.get("arp-intf")
+    if "arp-int" in payload:
+        value = payload.get("arp-int")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"arp-intf cannot exceed 15 characters")
 
@@ -488,13 +488,13 @@ def validate_ippool_put(
     if "associated-interface" in payload:
         value = payload.get("associated-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"associated-interface cannot exceed 15 characters")
+            return (False, "associated-interface cannot exceed 15 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate nat64 if present
     if "nat64" in payload:
@@ -523,7 +523,7 @@ def validate_ippool_put(
                 if int_val < 1 or int_val > 128:
                     return (
                         False,
-                        f"client-prefix-length must be between 1 and 128",
+                        "client-prefix-length must be between 1 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -540,7 +540,7 @@ def validate_ippool_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"tcp-session-quota must be between 0 and 2097000",
+                        "tcp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -557,7 +557,7 @@ def validate_ippool_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"udp-session-quota must be between 0 and 2097000",
+                        "udp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -574,7 +574,7 @@ def validate_ippool_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"icmp-session-quota must be between 0 and 2097000",
+                        "icmp-session-quota must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (

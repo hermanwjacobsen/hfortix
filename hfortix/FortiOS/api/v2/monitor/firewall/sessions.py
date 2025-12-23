@@ -94,13 +94,17 @@ class Sessions:
         List all active firewall sessions (optionally filtered).
 
         Args:
-            count: Maximum number of entries to return. Valid range is [20, 1000]; if a value is specified out of that range, it will be rounded up or down. (required)
+            count: Maximum number of entries to return. Valid range is [20,
+            1000]; if a value is specified out of that range, it will be
+            rounded up or down. (required)
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
-            summary: Enable/disable inclusion of session summary (setup rate, total sessions, etc). (optional)
+            summary: Enable/disable inclusion of session summary (setup rate,
+            total sessions, etc). (optional)
             srcport: Source port. (optional)
             policyid: Policy ID. (optional)
             security_policyid: Filter: Security Policy ID. (optional)
-            application: Application ID, or application PROTO/PORT pair. (e.g. "TCP/443") (optional)
+            application: Application ID, or application PROTO/PORT pair. (e.g.
+            "TCP/443") (optional)
             protocol: Protocol name [all|igmp|tcp|udp|icmp|etc]. (optional)
             dstport: Destination port. (optional)
             srcintf: Source interface name. (optional)
@@ -119,10 +123,14 @@ class Sessions:
             owner: Destination owner. (optional)
             natsourceaddress: NAT source address. (optional)
             natsourceport: NAT source port. (optional)
-            since: Only return sessions generated since this Unix timestamp. (optional)
-            seconds: Only return sessions generated in the last N seconds. (optional)
-            fortiasic: "true" to show NPU accelerated sessions only, false to exclude. (optional)
-            nturbo: "true" to include nTurbo sessions, false to exclude. (optional)
+            since: Only return sessions generated since this Unix timestamp.
+            (optional)
+            seconds: Only return sessions generated in the last N seconds.
+            (optional)
+            fortiasic: "true" to show NPU accelerated sessions only, false to
+            exclude. (optional)
+            nturbo: "true" to include nTurbo sessions, false to exclude.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -152,9 +160,9 @@ class Sessions:
         if dstport is not None:
             params["dstport"] = dstport
         if srcintf is not None:
-            params["srcintf"] = srcintf
+            params["srcint"] = srcintf
         if dstintf is not None:
-            params["dstintf"] = dstintf
+            params["dstint"] = dstintf
         if srcintfrole is not None:
             params["srcintfrole"] = srcintfrole
         if dstintfrole is not None:

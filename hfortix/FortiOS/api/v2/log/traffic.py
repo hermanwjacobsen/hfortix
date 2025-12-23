@@ -71,7 +71,8 @@ class TrafficForward:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -80,7 +81,8 @@ class TrafficForward:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -154,7 +156,8 @@ class TrafficLocal:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -163,7 +166,8 @@ class TrafficLocal:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -237,7 +241,8 @@ class TrafficMulticast:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -246,7 +251,8 @@ class TrafficMulticast:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -320,7 +326,8 @@ class TrafficSniffer:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -329,7 +336,8 @@ class TrafficSniffer:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -403,7 +411,8 @@ class TrafficFortiview:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -412,7 +421,8 @@ class TrafficFortiview:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -486,7 +496,8 @@ class TrafficThreat:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='srcip==192.168.1.1')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'srcip==192.168.1.1'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -495,7 +506,8 @@ class TrafficThreat:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 

@@ -95,6 +95,6 @@ def validate_pptp_put(
     if "usrgrp" in payload:
         value = payload.get("usrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"usrgrp cannot exceed 35 characters")
+            return (False, "usrgrp cannot exceed 35 characters")
 
     return (True, None)

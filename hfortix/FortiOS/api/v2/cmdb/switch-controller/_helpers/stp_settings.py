@@ -80,7 +80,7 @@ def validate_stp_settings_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate revision if present
     if "revision" in payload:
@@ -89,7 +89,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"revision must be between 0 and 65535")
+                    return (False, "revision must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"revision must be numeric, got: {value}")
 
@@ -100,7 +100,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"hello-time must be between 1 and 10")
+                    return (False, "hello-time must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"hello-time must be numeric, got: {value}")
 
@@ -111,7 +111,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 4 or int_val > 30:
-                    return (False, f"forward-time must be between 4 and 30")
+                    return (False, "forward-time must be between 4 and 30")
             except (ValueError, TypeError):
                 return (False, f"forward-time must be numeric, got: {value}")
 
@@ -122,7 +122,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 6 or int_val > 40:
-                    return (False, f"max-age must be between 6 and 40")
+                    return (False, "max-age must be between 6 and 40")
             except (ValueError, TypeError):
                 return (False, f"max-age must be numeric, got: {value}")
 
@@ -133,7 +133,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 40:
-                    return (False, f"max-hops must be between 1 and 40")
+                    return (False, "max-hops must be between 1 and 40")
             except (ValueError, TypeError):
                 return (False, f"max-hops must be numeric, got: {value}")
 
@@ -144,7 +144,7 @@ def validate_stp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 15:
-                    return (False, f"pending-timer must be between 1 and 15")
+                    return (False, "pending-timer must be between 1 and 15")
             except (ValueError, TypeError):
                 return (False, f"pending-timer must be numeric, got: {value}")
 

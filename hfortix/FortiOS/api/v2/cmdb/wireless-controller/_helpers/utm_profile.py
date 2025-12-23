@@ -73,13 +73,13 @@ def validate_utm_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate utm-log if present
     if "utm-log" in payload:
@@ -94,25 +94,25 @@ def validate_utm_profile_post(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate antivirus-profile if present
     if "antivirus-profile" in payload:
         value = payload.get("antivirus-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"antivirus-profile cannot exceed 47 characters")
+            return (False, "antivirus-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate scan-botnet-connections if present
     if "scan-botnet-connections" in payload:
@@ -156,13 +156,13 @@ def validate_utm_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate utm-log if present
     if "utm-log" in payload:
@@ -177,25 +177,25 @@ def validate_utm_profile_put(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate antivirus-profile if present
     if "antivirus-profile" in payload:
         value = payload.get("antivirus-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"antivirus-profile cannot exceed 47 characters")
+            return (False, "antivirus-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate scan-botnet-connections if present
     if "scan-botnet-connections" in payload:

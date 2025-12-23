@@ -63,7 +63,8 @@ class TypeLookup:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a mapping of UUIDs to their firewall object type for given UUIDs.
+        Retrieve a mapping of UUIDs to their firewall object type for given
+        UUIDs.
 
         Args:
             uuids: UUID or list of UUIDs to lookup (required)
@@ -76,7 +77,8 @@ class TypeLookup:
 
         Example:
             >>> fgt.api.monitor.firewall.uuid.type_lookup.get(uuids='uuid1')
-            >>> fgt.api.monitor.firewall.uuid.type_lookup.get(uuids=['uuid1', 'uuid2'])
+            >>> fgt.api.monitor.firewall.uuid.type_lookup.get(uuids=['uuid1',
+            'uuid2'])
         """
         params = payload_dict.copy() if payload_dict else {}
         params["uuids"] = uuids

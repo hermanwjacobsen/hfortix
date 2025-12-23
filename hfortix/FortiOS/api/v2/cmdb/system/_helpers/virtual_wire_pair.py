@@ -72,7 +72,7 @@ def validate_virtual_wire_pair_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 11:
-            return (False, f"name cannot exceed 11 characters")
+            return (False, "name cannot exceed 11 characters")
 
     # Validate wildcard-vlan if present
     if "wildcard-vlan" in payload:
@@ -116,7 +116,7 @@ def validate_virtual_wire_pair_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 11:
-            return (False, f"name cannot exceed 11 characters")
+            return (False, "name cannot exceed 11 characters")
 
     # Validate wildcard-vlan if present
     if "wildcard-vlan" in payload:

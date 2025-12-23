@@ -65,12 +65,17 @@ class CertStatus:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve authentication status of the EMS server certificate for a specific EMS.
+        Retrieve authentication status of the EMS server certificate for a
+        specific EMS.
 
         Args:
-            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (required)
-            scope: Scope from which to retrieve EMS certificate status [vdom*|global]. (optional)
-            with_cert: Return detailed certificate information. Available when the certificate is authenticated by installed CA certificates.  (optional)
+            ems_id: EMS server ID (as defined in CLI table
+            endpoint-control.fctems). (required)
+            scope: Scope from which to retrieve EMS certificate status
+            [vdom*|global]. (optional)
+            with_cert: Return detailed certificate information. Available when
+            the certificate is authenticated by installed CA certificates.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -156,8 +161,10 @@ class Status:
         Retrieve EMS connection status for a specific EMS.
 
         Args:
-            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
-            scope: Scope from which to retrieve EMS connection status [vdom*|global]. (optional)
+            ems_id: EMS server ID (as defined in CLI table
+            endpoint-control.fctems). (optional)
+            scope: Scope from which to retrieve EMS connection status
+            [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -202,7 +209,8 @@ class StatusSummary:
         Retrieve status summary for all configured EMS.
 
         Args:
-            scope: Scope from which to retrieve EMS status summary [vdom*|global]. (optional)
+            scope: Scope from which to retrieve EMS status summary
+            [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -246,8 +254,10 @@ class UnverifyCert:
         Unverify EMS server certificate for a specific EMS.
 
         Args:
-            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
-            scope: Scope from which to retrieve EMS certificate status [vdom*|global]. (optional)
+            ems_id: EMS server ID (as defined in CLI table
+            endpoint-control.fctems). (optional)
+            scope: Scope from which to retrieve EMS certificate status
+            [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -294,9 +304,11 @@ class VerifyCert:
         Verify EMS server certificate for a specific EMS.
 
         Args:
-            ems_id: EMS server ID (as defined in CLI table endpoint-control.fctems). (optional)
+            ems_id: EMS server ID (as defined in CLI table
+            endpoint-control.fctems). (optional)
             scope: Scope from which to verify EMS [vdom*|global]. (optional)
-            fingerprint: EMS server certificate fingerprint to check with. (optional)
+            fingerprint: EMS server certificate fingerprint to check with.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

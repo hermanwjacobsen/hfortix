@@ -68,19 +68,23 @@ class LanExtensionVdom:
         connection status, uptime, and uplink information.
 
         Args:
-            payload_dict: Dictionary containing parameters (alternative to kwargs)
+            payload_dict: Dictionary containing parameters (alternative to
+            kwargs)
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
 
         Returns:
-            VDOM status information with name, ip, status, uptime, port, and uplink fields
+            VDOM status information with name, ip, status, uptime, port, and
+            uplink fields
 
         Examples:
             # Get VDOM status
-            status = fgt.api.monitor.extension_controller.lan_extension_vdom.get()
+            status =
+            fgt.api.monitor.extension_controller.lan_extension_vdom.get()
 
             # Get VDOM status with payload_dict
-            status = fgt.api.monitor.extension_controller.lan_extension_vdom.get(
+            status =
+            fgt.api.monitor.extension_controller.lan_extension_vdom.get(
                 payload_dict={}
             )
 

@@ -83,13 +83,13 @@ def validate_syslog_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate server-status if present
     if "server-status" in payload:
@@ -104,7 +104,7 @@ def validate_syslog_profile_post(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate server-port if present
     if "server-port" in payload:
@@ -113,7 +113,7 @@ def validate_syslog_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"server-port must be between 0 and 65535")
+                    return (False, "server-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"server-port must be numeric, got: {value}")
 
@@ -168,13 +168,13 @@ def validate_syslog_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate server-status if present
     if "server-status" in payload:
@@ -189,7 +189,7 @@ def validate_syslog_profile_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate server-port if present
     if "server-port" in payload:
@@ -198,7 +198,7 @@ def validate_syslog_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"server-port must be between 0 and 65535")
+                    return (False, "server-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"server-port must be numeric, got: {value}")
 

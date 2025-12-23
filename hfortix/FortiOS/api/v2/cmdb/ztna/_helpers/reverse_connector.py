@@ -73,7 +73,7 @@ def validate_reverse_connector_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -88,7 +88,7 @@ def validate_reverse_connector_post(
     if "address" in payload:
         value = payload.get("address")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"address cannot exceed 255 characters")
+            return (False, "address cannot exceed 255 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -97,7 +97,7 @@ def validate_reverse_connector_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -110,7 +110,7 @@ def validate_reverse_connector_post(
                 if int_val < 0 or int_val > 600:
                     return (
                         False,
-                        f"health-check-interval must be between 0 and 600",
+                        "health-check-interval must be between 0 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -131,13 +131,13 @@ def validate_reverse_connector_post(
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certificate cannot exceed 35 characters")
+            return (False, "certificate cannot exceed 35 characters")
 
     # Validate trusted-server-ca if present
     if "trusted-server-ca" in payload:
         value = payload.get("trusted-server-ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"trusted-server-ca cannot exceed 79 characters")
+            return (False, "trusted-server-ca cannot exceed 79 characters")
 
     return (True, None)
 
@@ -172,7 +172,7 @@ def validate_reverse_connector_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -187,7 +187,7 @@ def validate_reverse_connector_put(
     if "address" in payload:
         value = payload.get("address")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"address cannot exceed 255 characters")
+            return (False, "address cannot exceed 255 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -196,7 +196,7 @@ def validate_reverse_connector_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -209,7 +209,7 @@ def validate_reverse_connector_put(
                 if int_val < 0 or int_val > 600:
                     return (
                         False,
-                        f"health-check-interval must be between 0 and 600",
+                        "health-check-interval must be between 0 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -230,13 +230,13 @@ def validate_reverse_connector_put(
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certificate cannot exceed 35 characters")
+            return (False, "certificate cannot exceed 35 characters")
 
     # Validate trusted-server-ca if present
     if "trusted-server-ca" in payload:
         value = payload.get("trusted-server-ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"trusted-server-ca cannot exceed 79 characters")
+            return (False, "trusted-server-ca cannot exceed 79 characters")
 
     return (True, None)
 

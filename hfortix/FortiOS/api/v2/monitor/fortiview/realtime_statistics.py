@@ -108,9 +108,11 @@ class RealtimeStatistics:
             protocol: Protocol type. (optional)
             web_category: Web category ID. (optional)
             web_domain: Web domain name. (optional)
-            application: Web application type. It can be ID, or protocol/port pair. (optional)
+            application: Web application type. It can be ID, or protocol/port
+            pair. (optional)
             country: Geographic location. (optional)
-            seconds: Time in seconds, since the session is established. (optional)
+            seconds: Time in seconds, since the session is established.
+            (optional)
             since: Time when the session is established. (optional)
             owner: Owner. (optional)
             username: Session login user name. (optional)
@@ -145,11 +147,11 @@ class RealtimeStatistics:
         if dstport is not None:
             params["dstport"] = dstport
         if srcintf is not None:
-            params["srcintf"] = srcintf
+            params["srcint"] = srcintf
         if srcintfrole is not None:
             params["srcintfrole"] = srcintfrole
         if dstintf is not None:
-            params["dstintf"] = dstintf
+            params["dstint"] = dstintf
         if dstintfrole is not None:
             params["dstintfrole"] = dstintfrole
         if policyid is not None:

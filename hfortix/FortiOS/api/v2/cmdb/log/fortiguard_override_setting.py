@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Log Fortiguard Override Setting
 
-Configuration endpoint for managing cmdb log fortiguard override setting objects.
+Configuration endpoint for managing cmdb log fortiguard override setting
+objects.
 
 API Endpoints:
     GET    /cmdb/log/fortiguard_override_setting
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.log.fortiguard_override_setting.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.log.fortiguard_override_setting.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.log.fortiguard_override_setting.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.fortiguard_override_setting.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.log.fortiguard_override_setting.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.log.fortiguard_override_setting.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -53,7 +56,8 @@ class FortiguardOverrideSetting:
     """
     Fortiguardoverridesetting Operations.
 
-    Provides CRUD operations for FortiOS fortiguardoverridesetting configuration.
+    Provides CRUD operations for FortiOS fortiguardoverridesetting
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -88,11 +92,15 @@ class FortiguardOverrideSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +108,8 @@ class FortiguardOverrideSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -138,21 +147,31 @@ class FortiguardOverrideSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            override: Overriding FortiCloud settings for this VDOM or use global settings. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            override: Overriding FortiCloud settings for this VDOM or use
+            global settings. (optional)
             status: Enable/disable logging to FortiCloud. (optional)
-            upload_option: Configure how log messages are sent to FortiCloud. (optional)
-            upload_interval: Frequency of uploading log files to FortiCloud. (optional)
+            upload_option: Configure how log messages are sent to FortiCloud.
+            (optional)
+            upload_interval: Frequency of uploading log files to FortiCloud.
+            (optional)
             upload_day: Day of week to roll logs. (optional)
             upload_time: Time of day to roll logs (hh:mm). (optional)
             priority: Set log transmission priority. (optional)
-            max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited). (optional)
-            access_config: Enable/disable FortiCloud access to configuration and data. (optional)
+            max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
+            (optional)
+            access_config: Enable/disable FortiCloud access to configuration
+            and data. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -160,7 +179,8 @@ class FortiguardOverrideSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

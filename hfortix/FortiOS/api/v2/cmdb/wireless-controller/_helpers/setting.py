@@ -281,7 +281,7 @@ def validate_setting_put(
     if "account-id" in payload:
         value = payload.get("account-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"account-id cannot exceed 63 characters")
+            return (False, "account-id cannot exceed 63 characters")
 
     # Validate country if present
     if "country" in payload:
@@ -344,13 +344,13 @@ def validate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"device-weight must be between 0 and 255")
+                    return (False, "device-weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"device-weight must be numeric, got: {value}")
 
     # Validate device-holdoff if present
-    if "device-holdoff" in payload:
-        value = payload.get("device-holdoff")
+    if "device-holdof" in payload:
+        value = payload.get("device-holdof")
         if value is not None:
             try:
                 int_val = int(value)
@@ -366,7 +366,7 @@ def validate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 14400:
-                    return (False, f"device-idle must be between 0 and 14400")
+                    return (False, "device-idle must be between 0 and 14400")
             except (ValueError, TypeError):
                 return (False, f"device-idle must be numeric, got: {value}")
 
@@ -400,7 +400,7 @@ def validate_setting_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"darrp-optimize must be between 0 and 86400",
+                        "darrp-optimize must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"darrp-optimize must be numeric, got: {value}")

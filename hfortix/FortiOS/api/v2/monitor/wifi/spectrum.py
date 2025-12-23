@@ -65,7 +65,8 @@ class KeepAlive:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Extend duration of an existing spectrum analysis for a specific FortiAP.
+        Extend duration of an existing spectrum analysis for a specific
+        FortiAP.
 
         Args:
             wtp_id: FortiAP ID. (optional)

@@ -71,7 +71,7 @@ def validate_profile_group_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate profile-protocol-options if present
     if "profile-protocol-options" in payload:
@@ -79,80 +79,80 @@ def validate_profile_group_post(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"profile-protocol-options cannot exceed 47 characters",
+                "profile-protocol-options cannot exceed 47 characters",
             )
 
     # Validate ssl-ssh-profile if present
     if "ssl-ssh-profile" in payload:
         value = payload.get("ssl-ssh-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssl-ssh-profile cannot exceed 47 characters")
+            return (False, "ssl-ssh-profile cannot exceed 47 characters")
 
     # Validate av-profile if present
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate dnsfilter-profile if present
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile if present
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile if present
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate file-filter-profile if present
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-sensor if present
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate voip-profile if present
     if "voip-profile" in payload:
         value = payload.get("voip-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"voip-profile cannot exceed 47 characters")
+            return (False, "voip-profile cannot exceed 47 characters")
 
     # Validate ips-voip-filter if present
     if "ips-voip-filter" in payload:
         value = payload.get("ips-voip-filter")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-voip-filter cannot exceed 47 characters")
+            return (False, "ips-voip-filter cannot exceed 47 characters")
 
     # Validate sctp-filter-profile if present
     if "sctp-filter-profile" in payload:
         value = payload.get("sctp-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"sctp-filter-profile cannot exceed 47 characters")
+            return (False, "sctp-filter-profile cannot exceed 47 characters")
 
     # Validate diameter-filter-profile if present
     if "diameter-filter-profile" in payload:
@@ -160,7 +160,7 @@ def validate_profile_group_post(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"diameter-filter-profile cannot exceed 47 characters",
+                "diameter-filter-profile cannot exceed 47 characters",
             )
 
     # Validate virtual-patch-profile if present
@@ -169,38 +169,38 @@ def validate_profile_group_post(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"virtual-patch-profile cannot exceed 47 characters",
+                "virtual-patch-profile cannot exceed 47 characters",
             )
 
     # Validate icap-profile if present
     if "icap-profile" in payload:
         value = payload.get("icap-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"icap-profile cannot exceed 47 characters")
+            return (False, "icap-profile cannot exceed 47 characters")
 
     # Validate videofilter-profile if present
     if "videofilter-profile" in payload:
         value = payload.get("videofilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"videofilter-profile cannot exceed 47 characters")
+            return (False, "videofilter-profile cannot exceed 47 characters")
 
     # Validate waf-profile if present
     if "waf-profile" in payload:
         value = payload.get("waf-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"waf-profile cannot exceed 47 characters")
+            return (False, "waf-profile cannot exceed 47 characters")
 
     # Validate ssh-filter-profile if present
     if "ssh-filter-profile" in payload:
         value = payload.get("ssh-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssh-filter-profile cannot exceed 47 characters")
+            return (False, "ssh-filter-profile cannot exceed 47 characters")
 
     # Validate casb-profile if present
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     return (True, None)
 
@@ -235,7 +235,7 @@ def validate_profile_group_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate profile-protocol-options if present
     if "profile-protocol-options" in payload:
@@ -243,80 +243,80 @@ def validate_profile_group_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"profile-protocol-options cannot exceed 47 characters",
+                "profile-protocol-options cannot exceed 47 characters",
             )
 
     # Validate ssl-ssh-profile if present
     if "ssl-ssh-profile" in payload:
         value = payload.get("ssl-ssh-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssl-ssh-profile cannot exceed 47 characters")
+            return (False, "ssl-ssh-profile cannot exceed 47 characters")
 
     # Validate av-profile if present
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile if present
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate dnsfilter-profile if present
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile if present
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile if present
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate file-filter-profile if present
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-sensor if present
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate application-list if present
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate voip-profile if present
     if "voip-profile" in payload:
         value = payload.get("voip-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"voip-profile cannot exceed 47 characters")
+            return (False, "voip-profile cannot exceed 47 characters")
 
     # Validate ips-voip-filter if present
     if "ips-voip-filter" in payload:
         value = payload.get("ips-voip-filter")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-voip-filter cannot exceed 47 characters")
+            return (False, "ips-voip-filter cannot exceed 47 characters")
 
     # Validate sctp-filter-profile if present
     if "sctp-filter-profile" in payload:
         value = payload.get("sctp-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"sctp-filter-profile cannot exceed 47 characters")
+            return (False, "sctp-filter-profile cannot exceed 47 characters")
 
     # Validate diameter-filter-profile if present
     if "diameter-filter-profile" in payload:
@@ -324,7 +324,7 @@ def validate_profile_group_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"diameter-filter-profile cannot exceed 47 characters",
+                "diameter-filter-profile cannot exceed 47 characters",
             )
 
     # Validate virtual-patch-profile if present
@@ -333,38 +333,38 @@ def validate_profile_group_put(
         if value and isinstance(value, str) and len(value) > 47:
             return (
                 False,
-                f"virtual-patch-profile cannot exceed 47 characters",
+                "virtual-patch-profile cannot exceed 47 characters",
             )
 
     # Validate icap-profile if present
     if "icap-profile" in payload:
         value = payload.get("icap-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"icap-profile cannot exceed 47 characters")
+            return (False, "icap-profile cannot exceed 47 characters")
 
     # Validate videofilter-profile if present
     if "videofilter-profile" in payload:
         value = payload.get("videofilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"videofilter-profile cannot exceed 47 characters")
+            return (False, "videofilter-profile cannot exceed 47 characters")
 
     # Validate waf-profile if present
     if "waf-profile" in payload:
         value = payload.get("waf-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"waf-profile cannot exceed 47 characters")
+            return (False, "waf-profile cannot exceed 47 characters")
 
     # Validate ssh-filter-profile if present
     if "ssh-filter-profile" in payload:
         value = payload.get("ssh-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ssh-filter-profile cannot exceed 47 characters")
+            return (False, "ssh-filter-profile cannot exceed 47 characters")
 
     # Validate casb-profile if present
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     return (True, None)
 

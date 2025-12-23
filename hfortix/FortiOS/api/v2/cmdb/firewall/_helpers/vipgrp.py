@@ -69,13 +69,13 @@ def validate_vipgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -84,7 +84,7 @@ def validate_vipgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -92,7 +92,7 @@ def validate_vipgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 
@@ -127,13 +127,13 @@ def validate_vipgrp_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -142,7 +142,7 @@ def validate_vipgrp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -150,7 +150,7 @@ def validate_vipgrp_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 

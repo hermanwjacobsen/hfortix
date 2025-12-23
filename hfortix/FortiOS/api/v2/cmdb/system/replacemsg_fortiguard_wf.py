@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb System Replacemsg Fortiguard Wf
 
-Configuration endpoint for managing cmdb system replacemsg fortiguard wf objects.
+Configuration endpoint for managing cmdb system replacemsg fortiguard wf
+objects.
 
 API Endpoints:
     GET    /cmdb/system/replacemsg_fortiguard_wf
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.system.replacemsg_fortiguard_wf.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.system.replacemsg_fortiguard_wf.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.system.replacemsg_fortiguard_wf.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.system.replacemsg_fortiguard_wf.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.system.replacemsg_fortiguard_wf.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.system.replacemsg_fortiguard_wf.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -96,14 +99,20 @@ class ReplacemsgFortiguardWf:
         Select a specific entry from a CLI table.
 
         Args:
-            msg_type: Object identifier (optional for list, required for specific)
+            msg_type: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +120,8 @@ class ReplacemsgFortiguardWf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -122,7 +132,7 @@ class ReplacemsgFortiguardWf:
         if msg_type:
             endpoint = f"/system.replacemsg/fortiguard-wf/{msg_type}"
         else:
-            endpoint = "/system.replacemsg/fortiguard-wf"
+            endpoint = "/system.replacemsg/fortiguard-w"
         if attr is not None:
             params["attr"] = attr
         if skip_to_datasource is not None:
@@ -152,16 +162,21 @@ class ReplacemsgFortiguardWf:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             msg_type: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             msg_type: Message type. (optional)
             buffer: Message string. (optional)
             header: Header flag. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -169,7 +184,8 @@ class ReplacemsgFortiguardWf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -209,8 +225,10 @@ class ReplacemsgFortiguardWf:
         Args:
             msg_type: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -218,7 +236,8 @@ class ReplacemsgFortiguardWf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -249,14 +268,18 @@ class ReplacemsgFortiguardWf:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             msg_type: Message type. (optional)
             buffer: Message string. (optional)
             header: Header flag. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -264,13 +287,14 @@ class ReplacemsgFortiguardWf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        endpoint = "/system.replacemsg/fortiguard-wf"
+        endpoint = "/system.replacemsg/fortiguard-w"
         if nkey is not None:
             data_payload["nkey"] = nkey
         if msg_type is not None:

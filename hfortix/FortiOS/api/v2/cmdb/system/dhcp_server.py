@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class DhcpServer:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class DhcpServer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -201,65 +207,98 @@ class DhcpServer:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             id: ID. (optional)
             status: Enable/disable this DHCP configuration. (optional)
             lease_time: Lease time in seconds, 0 means unlimited. (optional)
-            mac_acl_default_action: MAC access control default action (allow or block assigning IP settings). (optional)
-            forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. (optional)
-            dns_service: Options for assigning DNS servers to DHCP clients. (optional)
+            mac_acl_default_action: MAC access control default action (allow or
+            block assigning IP settings). (optional)
+            forticlient_on_net_status: Enable/disable FortiClient-On-Net
+            service for this DHCP server. (optional)
+            dns_service: Options for assigning DNS servers to DHCP clients.
+            (optional)
             dns_server1: DNS server 1. (optional)
             dns_server2: DNS server 2. (optional)
             dns_server3: DNS server 3. (optional)
             dns_server4: DNS server 4. (optional)
-            wifi_ac_service: Options for assigning WiFi access controllers to DHCP clients. (optional)
-            wifi_ac1: WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417). (optional)
-            wifi_ac2: WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417). (optional)
-            wifi_ac3: WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417). (optional)
-            ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. (optional)
+            wifi_ac_service: Options for assigning WiFi access controllers to
+            DHCP clients. (optional)
+            wifi_ac1: WiFi Access Controller 1 IP address (DHCP option 138, RFC
+            5417). (optional)
+            wifi_ac2: WiFi Access Controller 2 IP address (DHCP option 138, RFC
+            5417). (optional)
+            wifi_ac3: WiFi Access Controller 3 IP address (DHCP option 138, RFC
+            5417). (optional)
+            ntp_service: Options for assigning Network Time Protocol (NTP)
+            servers to DHCP clients. (optional)
             ntp_server1: NTP server 1. (optional)
             ntp_server2: NTP server 2. (optional)
             ntp_server3: NTP server 3. (optional)
-            domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients. (optional)
+            domain: Domain name suffix for the IP addresses that the DHCP
+            server assigns to clients. (optional)
             wins_server1: WINS server 1. (optional)
             wins_server2: WINS server 2. (optional)
-            default_gateway: Default gateway IP address assigned by the DHCP server. (optional)
-            next_server: IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from. (optional)
+            default_gateway: Default gateway IP address assigned by the DHCP
+            server. (optional)
+            next_server: IP address of a server (for example, a TFTP sever)
+            that DHCP clients can download a boot file from. (optional)
             netmask: Netmask assigned by the DHCP server. (optional)
-            interface: DHCP server can assign IP configurations to clients connected to this interface. (optional)
+            interface: DHCP server can assign IP configurations to clients
+            connected to this interface. (optional)
             ip_range: DHCP IP range configuration. (optional)
-            timezone_option: Options for the DHCP server to set the client's time zone. (optional)
-            timezone: Select the time zone to be assigned to DHCP clients. (optional)
-            tftp_server: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. (optional)
+            timezone_option: Options for the DHCP server to set the client's
+            time zone. (optional)
+            timezone: Select the time zone to be assigned to DHCP clients.
+            (optional)
+            tftp_server: One or more hostnames or IP addresses of the TFTP
+            servers in quotes separated by spaces. (optional)
             filename: Name of the boot file on the TFTP server. (optional)
             options: DHCP options. (optional)
-            server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. (optional)
+            server_type: DHCP server can be a normal DHCP server or an IPsec
+            DHCP server. (optional)
             ip_mode: Method used to assign client IP. (optional)
-            conflicted_ip_timeout: Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused. (optional)
-            ipsec_lease_hold: DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry). (optional)
+            conflicted_ip_timeout: Time in seconds to wait after a conflicted
+            IP address is removed from the DHCP range before it can be reused.
+            (optional)
+            ipsec_lease_hold: DHCP over IPsec leases expire this many seconds
+            after tunnel down (0 to disable forced-expiry). (optional)
             auto_configuration: Enable/disable auto configuration. (optional)
-            dhcp_settings_from_fortiipam: Enable/disable populating of DHCP server settings from FortiIPAM. (optional)
-            auto_managed_status: Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. (optional)
+            dhcp_settings_from_fortiipam: Enable/disable populating of DHCP
+            server settings from FortiIPAM. (optional)
+            auto_managed_status: Enable/disable use of this DHCP server once
+            this interface has been assigned an IP address from FortiIPAM.
+            (optional)
             ddns_update: Enable/disable DDNS update for DHCP. (optional)
-            ddns_update_override: Enable/disable DDNS update override for DHCP. (optional)
+            ddns_update_override: Enable/disable DDNS update override for DHCP.
+            (optional)
             ddns_server_ip: DDNS server IP. (optional)
             ddns_zone: Zone of your domain name (ex. DDNS.com). (optional)
             ddns_auth: DDNS authentication mode. (optional)
             ddns_keyname: DDNS update key name. (optional)
             ddns_key: DDNS update key (base 64 encoding). (optional)
             ddns_ttl: TTL. (optional)
-            vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. (optional)
-            vci_string: One or more VCI strings in quotes separated by spaces. (optional)
-            exclude_range: Exclude one or more ranges of IP addresses from being assigned to clients. (optional)
+            vci_match: Enable/disable vendor class identifier (VCI) matching.
+            When enabled only DHCP requests with a matching VCI are served.
+            (optional)
+            vci_string: One or more VCI strings in quotes separated by spaces.
+            (optional)
+            exclude_range: Exclude one or more ranges of IP addresses from
+            being assigned to clients. (optional)
             shared_subnet: Enable/disable shared subnet. (optional)
             relay_agent: Relay agent IP. (optional)
-            reserved_address: Options for the DHCP server to assign IP settings to specific MAC addresses. (optional)
+            reserved_address: Options for the DHCP server to assign IP settings
+            to specific MAC addresses. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -267,7 +306,8 @@ class DhcpServer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -409,8 +449,10 @@ class DhcpServer:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -418,7 +460,8 @@ class DhcpServer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -541,63 +584,95 @@ class DhcpServer:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             id: ID. (optional)
             status: Enable/disable this DHCP configuration. (optional)
             lease_time: Lease time in seconds, 0 means unlimited. (optional)
-            mac_acl_default_action: MAC access control default action (allow or block assigning IP settings). (optional)
-            forticlient_on_net_status: Enable/disable FortiClient-On-Net service for this DHCP server. (optional)
-            dns_service: Options for assigning DNS servers to DHCP clients. (optional)
+            mac_acl_default_action: MAC access control default action (allow or
+            block assigning IP settings). (optional)
+            forticlient_on_net_status: Enable/disable FortiClient-On-Net
+            service for this DHCP server. (optional)
+            dns_service: Options for assigning DNS servers to DHCP clients.
+            (optional)
             dns_server1: DNS server 1. (optional)
             dns_server2: DNS server 2. (optional)
             dns_server3: DNS server 3. (optional)
             dns_server4: DNS server 4. (optional)
-            wifi_ac_service: Options for assigning WiFi access controllers to DHCP clients. (optional)
-            wifi_ac1: WiFi Access Controller 1 IP address (DHCP option 138, RFC 5417). (optional)
-            wifi_ac2: WiFi Access Controller 2 IP address (DHCP option 138, RFC 5417). (optional)
-            wifi_ac3: WiFi Access Controller 3 IP address (DHCP option 138, RFC 5417). (optional)
-            ntp_service: Options for assigning Network Time Protocol (NTP) servers to DHCP clients. (optional)
+            wifi_ac_service: Options for assigning WiFi access controllers to
+            DHCP clients. (optional)
+            wifi_ac1: WiFi Access Controller 1 IP address (DHCP option 138, RFC
+            5417). (optional)
+            wifi_ac2: WiFi Access Controller 2 IP address (DHCP option 138, RFC
+            5417). (optional)
+            wifi_ac3: WiFi Access Controller 3 IP address (DHCP option 138, RFC
+            5417). (optional)
+            ntp_service: Options for assigning Network Time Protocol (NTP)
+            servers to DHCP clients. (optional)
             ntp_server1: NTP server 1. (optional)
             ntp_server2: NTP server 2. (optional)
             ntp_server3: NTP server 3. (optional)
-            domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients. (optional)
+            domain: Domain name suffix for the IP addresses that the DHCP
+            server assigns to clients. (optional)
             wins_server1: WINS server 1. (optional)
             wins_server2: WINS server 2. (optional)
-            default_gateway: Default gateway IP address assigned by the DHCP server. (optional)
-            next_server: IP address of a server (for example, a TFTP sever) that DHCP clients can download a boot file from. (optional)
+            default_gateway: Default gateway IP address assigned by the DHCP
+            server. (optional)
+            next_server: IP address of a server (for example, a TFTP sever)
+            that DHCP clients can download a boot file from. (optional)
             netmask: Netmask assigned by the DHCP server. (optional)
-            interface: DHCP server can assign IP configurations to clients connected to this interface. (optional)
+            interface: DHCP server can assign IP configurations to clients
+            connected to this interface. (optional)
             ip_range: DHCP IP range configuration. (optional)
-            timezone_option: Options for the DHCP server to set the client's time zone. (optional)
-            timezone: Select the time zone to be assigned to DHCP clients. (optional)
-            tftp_server: One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces. (optional)
+            timezone_option: Options for the DHCP server to set the client's
+            time zone. (optional)
+            timezone: Select the time zone to be assigned to DHCP clients.
+            (optional)
+            tftp_server: One or more hostnames or IP addresses of the TFTP
+            servers in quotes separated by spaces. (optional)
             filename: Name of the boot file on the TFTP server. (optional)
             options: DHCP options. (optional)
-            server_type: DHCP server can be a normal DHCP server or an IPsec DHCP server. (optional)
+            server_type: DHCP server can be a normal DHCP server or an IPsec
+            DHCP server. (optional)
             ip_mode: Method used to assign client IP. (optional)
-            conflicted_ip_timeout: Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused. (optional)
-            ipsec_lease_hold: DHCP over IPsec leases expire this many seconds after tunnel down (0 to disable forced-expiry). (optional)
+            conflicted_ip_timeout: Time in seconds to wait after a conflicted
+            IP address is removed from the DHCP range before it can be reused.
+            (optional)
+            ipsec_lease_hold: DHCP over IPsec leases expire this many seconds
+            after tunnel down (0 to disable forced-expiry). (optional)
             auto_configuration: Enable/disable auto configuration. (optional)
-            dhcp_settings_from_fortiipam: Enable/disable populating of DHCP server settings from FortiIPAM. (optional)
-            auto_managed_status: Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. (optional)
+            dhcp_settings_from_fortiipam: Enable/disable populating of DHCP
+            server settings from FortiIPAM. (optional)
+            auto_managed_status: Enable/disable use of this DHCP server once
+            this interface has been assigned an IP address from FortiIPAM.
+            (optional)
             ddns_update: Enable/disable DDNS update for DHCP. (optional)
-            ddns_update_override: Enable/disable DDNS update override for DHCP. (optional)
+            ddns_update_override: Enable/disable DDNS update override for DHCP.
+            (optional)
             ddns_server_ip: DDNS server IP. (optional)
             ddns_zone: Zone of your domain name (ex. DDNS.com). (optional)
             ddns_auth: DDNS authentication mode. (optional)
             ddns_keyname: DDNS update key name. (optional)
             ddns_key: DDNS update key (base 64 encoding). (optional)
             ddns_ttl: TTL. (optional)
-            vci_match: Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served. (optional)
-            vci_string: One or more VCI strings in quotes separated by spaces. (optional)
-            exclude_range: Exclude one or more ranges of IP addresses from being assigned to clients. (optional)
+            vci_match: Enable/disable vendor class identifier (VCI) matching.
+            When enabled only DHCP requests with a matching VCI are served.
+            (optional)
+            vci_string: One or more VCI strings in quotes separated by spaces.
+            (optional)
+            exclude_range: Exclude one or more ranges of IP addresses from
+            being assigned to clients. (optional)
             shared_subnet: Enable/disable shared subnet. (optional)
             relay_agent: Relay agent IP. (optional)
-            reserved_address: Options for the DHCP server to assign IP settings to specific MAC addresses. (optional)
+            reserved_address: Options for the DHCP server to assign IP settings
+            to specific MAC addresses. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -605,7 +680,8 @@ class DhcpServer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

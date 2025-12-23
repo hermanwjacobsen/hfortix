@@ -90,7 +90,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "wtp-id" in payload:
         value = payload.get("wtp-id")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"wtp-id cannot exceed 35 characters")
+            return (False, "wtp-id cannot exceed 35 characters")
 
     # Validate index if present
     if "index" in payload:
@@ -99,7 +99,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"index must be between 0 and 4294967295")
+                    return (False, "index must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"index must be numeric, got: {value}")
 
@@ -116,43 +116,43 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate location if present
     if "location" in payload:
         value = payload.get("location")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"location cannot exceed 35 characters")
+            return (False, "location cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate region if present
     if "region" in payload:
         value = payload.get("region")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"region cannot exceed 35 characters")
+            return (False, "region cannot exceed 35 characters")
 
     # Validate region-x if present
     if "region-x" in payload:
         value = payload.get("region-x")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"region-x cannot exceed 15 characters")
+            return (False, "region-x cannot exceed 15 characters")
 
     # Validate region-y if present
     if "region-y" in payload:
         value = payload.get("region-y")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"region-y cannot exceed 15 characters")
+            return (False, "region-y cannot exceed 15 characters")
 
     # Validate firmware-provision if present
     if "firmware-provision" in payload:
         value = payload.get("firmware-provision")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"firmware-provision cannot exceed 35 characters")
+            return (False, "firmware-provision cannot exceed 35 characters")
 
     # Validate firmware-provision-latest if present
     if "firmware-provision-latest" in payload:
@@ -167,19 +167,19 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "wtp-profile" in payload:
         value = payload.get("wtp-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"wtp-profile cannot exceed 35 characters")
+            return (False, "wtp-profile cannot exceed 35 characters")
 
     # Validate apcfg-profile if present
     if "apcfg-profile" in payload:
         value = payload.get("apcfg-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"apcfg-profile cannot exceed 35 characters")
+            return (False, "apcfg-profile cannot exceed 35 characters")
 
     # Validate bonjour-profile if present
     if "bonjour-profile" in payload:
         value = payload.get("bonjour-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"bonjour-profile cannot exceed 35 characters")
+            return (False, "bonjour-profile cannot exceed 35 characters")
 
     # Validate ble-major-id if present
     if "ble-major-id" in payload:
@@ -188,7 +188,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"ble-major-id must be between 0 and 65535")
+                    return (False, "ble-major-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ble-major-id must be numeric, got: {value}")
 
@@ -199,7 +199,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"ble-minor-id must be between 0 and 65535")
+                    return (False, "ble-minor-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ble-minor-id must be numeric, got: {value}")
 
@@ -266,7 +266,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-uplink must be between 576 and 1500",
+                        "tun-mtu-uplink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (False, f"tun-mtu-uplink must be numeric, got: {value}")
@@ -280,7 +280,7 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-downlink must be between 576 and 1500",
+                        "tun-mtu-downlink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -412,12 +412,12 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "coordinate-latitude" in payload:
         value = payload.get("coordinate-latitude")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"coordinate-latitude cannot exceed 19 characters")
+            return (False, "coordinate-latitude cannot exceed 19 characters")
 
     # Validate coordinate-longitude if present
     if "coordinate-longitude" in payload:
         value = payload.get("coordinate-longitude")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"coordinate-longitude cannot exceed 19 characters")
+            return (False, "coordinate-longitude cannot exceed 19 characters")
 
     return (True, None)

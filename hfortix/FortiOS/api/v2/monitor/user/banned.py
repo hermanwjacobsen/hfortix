@@ -67,8 +67,10 @@ class AddUsers:
         Immediately add one or more users to the banned list.
 
         Args:
-            ip_addresses: List of IP Addresses to ban. IPv4 and IPv6 addresses are allowed. (optional)
-            expiry: Time until expiry in seconds. 0 for indefinite ban. (optional)
+            ip_addresses: List of IP Addresses to ban. IPv4 and IPv6 addresses
+            are allowed. (optional)
+            expiry: Time until expiry in seconds. 0 for indefinite ban.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -192,7 +194,8 @@ class ClearUsers:
         Immediately clear a list of specific banned users by IP.
 
         Args:
-            ip_addresses: List of banned user IPs to clear. IPv4 and IPv6 addresses are allowed. (optional)
+            ip_addresses: List of banned user IPs to clear. IPv4 and IPv6
+            addresses are allowed. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

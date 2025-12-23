@@ -77,7 +77,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"seq-num must be between 1 and 65535")
+                    return (False, "seq-num must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -124,7 +124,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -135,7 +135,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"start-port must be between 1 and 65535")
+                    return (False, "start-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"start-port must be numeric, got: {value}")
 
@@ -146,7 +146,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"end-port must be between 1 and 65535")
+                    return (False, "end-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"end-port must be numeric, got: {value}")
 
@@ -159,7 +159,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"start-source-port must be between 1 and 65535",
+                        "start-source-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -176,7 +176,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"end-source-port must be between 1 and 65535",
+                        "end-source-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -188,7 +188,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "output-device" in payload:
         value = payload.get("output-device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"output-device cannot exceed 35 characters")
+            return (False, "output-device cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -203,7 +203,7 @@ def validate_policy6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 
@@ -236,7 +236,7 @@ def validate_policy6_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"seq-num must be between 1 and 65535")
+                    return (False, "seq-num must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -283,7 +283,7 @@ def validate_policy6_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -294,7 +294,7 @@ def validate_policy6_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"start-port must be between 1 and 65535")
+                    return (False, "start-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"start-port must be numeric, got: {value}")
 
@@ -305,7 +305,7 @@ def validate_policy6_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"end-port must be between 1 and 65535")
+                    return (False, "end-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"end-port must be numeric, got: {value}")
 
@@ -318,7 +318,7 @@ def validate_policy6_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"start-source-port must be between 1 and 65535",
+                        "start-source-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -335,7 +335,7 @@ def validate_policy6_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"end-source-port must be between 1 and 65535",
+                        "end-source-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -347,7 +347,7 @@ def validate_policy6_put(
     if "output-device" in payload:
         value = payload.get("output-device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"output-device cannot exceed 35 characters")
+            return (False, "output-device cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -362,7 +362,7 @@ def validate_policy6_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     return (True, None)
 

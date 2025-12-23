@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class SwitchInterface:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class SwitchInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -158,22 +164,40 @@ class SwitchInterface:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            name: Interface name (name cannot be in use by any other interfaces, VLANs, or inter-VDOM links). (optional)
-            span_dest_port: SPAN destination port name. All traffic on the SPAN source ports is echoed to the SPAN destination port. (optional)
-            span_source_port: Physical interface name. Port spanning echoes all traffic on the SPAN source ports to the SPAN destination port. (optional)
-            member: Names of the interfaces that belong to the virtual switch. (optional)
-            type: Type of switch based on functionality: switch for normal functionality, or hub to duplicate packets to all port members. (optional)
-            intra_switch_policy: Allow any traffic between switch interfaces or require firewall policies to allow traffic between switch interfaces. (optional)
-            mac_ttl: Duration for which MAC addresses are held in the ARP table (300 - 8640000 sec, default = 300). (optional)
-            span: Enable/disable port spanning. Port spanning echoes traffic received by the software switch to the span destination port. (optional)
-            span_direction: The direction in which the SPAN port operates, either: rx, tx, or both. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            name: Interface name (name cannot be in use by any other
+            interfaces, VLANs, or inter-VDOM links). (optional)
+            span_dest_port: SPAN destination port name. All traffic on the SPAN
+            source ports is echoed to the SPAN destination port. (optional)
+            span_source_port: Physical interface name. Port spanning echoes all
+            traffic on the SPAN source ports to the SPAN destination port.
+            (optional)
+            member: Names of the interfaces that belong to the virtual switch.
+            (optional)
+            type: Type of switch based on functionality: switch for normal
+            functionality, or hub to duplicate packets to all port members.
+            (optional)
+            intra_switch_policy: Allow any traffic between switch interfaces or
+            require firewall policies to allow traffic between switch
+            interfaces. (optional)
+            mac_ttl: Duration for which MAC addresses are held in the ARP table
+            (300 - 8640000 sec, default = 300). (optional)
+            span: Enable/disable port spanning. Port spanning echoes traffic
+            received by the software switch to the span destination port.
+            (optional)
+            span_direction: The direction in which the SPAN port operates,
+            either: rx, tx, or both. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -181,7 +205,8 @@ class SwitchInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -233,8 +258,10 @@ class SwitchInterface:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -242,7 +269,8 @@ class SwitchInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -322,20 +350,37 @@ class SwitchInterface:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            name: Interface name (name cannot be in use by any other interfaces, VLANs, or inter-VDOM links). (optional)
-            span_dest_port: SPAN destination port name. All traffic on the SPAN source ports is echoed to the SPAN destination port. (optional)
-            span_source_port: Physical interface name. Port spanning echoes all traffic on the SPAN source ports to the SPAN destination port. (optional)
-            member: Names of the interfaces that belong to the virtual switch. (optional)
-            type: Type of switch based on functionality: switch for normal functionality, or hub to duplicate packets to all port members. (optional)
-            intra_switch_policy: Allow any traffic between switch interfaces or require firewall policies to allow traffic between switch interfaces. (optional)
-            mac_ttl: Duration for which MAC addresses are held in the ARP table (300 - 8640000 sec, default = 300). (optional)
-            span: Enable/disable port spanning. Port spanning echoes traffic received by the software switch to the span destination port. (optional)
-            span_direction: The direction in which the SPAN port operates, either: rx, tx, or both. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            name: Interface name (name cannot be in use by any other
+            interfaces, VLANs, or inter-VDOM links). (optional)
+            span_dest_port: SPAN destination port name. All traffic on the SPAN
+            source ports is echoed to the SPAN destination port. (optional)
+            span_source_port: Physical interface name. Port spanning echoes all
+            traffic on the SPAN source ports to the SPAN destination port.
+            (optional)
+            member: Names of the interfaces that belong to the virtual switch.
+            (optional)
+            type: Type of switch based on functionality: switch for normal
+            functionality, or hub to duplicate packets to all port members.
+            (optional)
+            intra_switch_policy: Allow any traffic between switch interfaces or
+            require firewall policies to allow traffic between switch
+            interfaces. (optional)
+            mac_ttl: Duration for which MAC addresses are held in the ARP table
+            (300 - 8640000 sec, default = 300). (optional)
+            span: Enable/disable port spanning. Port spanning echoes traffic
+            received by the software switch to the span destination port.
+            (optional)
+            span_direction: The direction in which the SPAN port operates,
+            either: rx, tx, or both. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -343,7 +388,8 @@ class SwitchInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

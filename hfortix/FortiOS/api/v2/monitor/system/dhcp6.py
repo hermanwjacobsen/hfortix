@@ -66,7 +66,8 @@ class Revoke:
         Revoke IPv6 DHCP leases.
 
         Args:
-            ip: Optional list of addresses to revoke. Defaults to all addresses if not provided. (optional)
+            ip: Optional list of addresses to revoke. Defaults to all addresses
+            if not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

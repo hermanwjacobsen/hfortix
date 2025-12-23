@@ -74,7 +74,7 @@ def validate_shaper_per_ip_shaper_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate max-bandwidth if present
     if "max-bandwidth" in payload:
@@ -85,7 +85,7 @@ def validate_shaper_per_ip_shaper_post(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"max-bandwidth must be between 0 and 80000000",
+                        "max-bandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-bandwidth must be numeric, got: {value}")
@@ -108,7 +108,7 @@ def validate_shaper_per_ip_shaper_post(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-session must be between 0 and 2097000",
+                        "max-concurrent-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -125,7 +125,7 @@ def validate_shaper_per_ip_shaper_post(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-tcp-session must be between 0 and 2097000",
+                        "max-concurrent-tcp-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -142,7 +142,7 @@ def validate_shaper_per_ip_shaper_post(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-udp-session must be between 0 and 2097000",
+                        "max-concurrent-udp-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -201,7 +201,7 @@ def validate_shaper_per_ip_shaper_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate max-bandwidth if present
     if "max-bandwidth" in payload:
@@ -212,7 +212,7 @@ def validate_shaper_per_ip_shaper_put(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"max-bandwidth must be between 0 and 80000000",
+                        "max-bandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-bandwidth must be numeric, got: {value}")
@@ -235,7 +235,7 @@ def validate_shaper_per_ip_shaper_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-session must be between 0 and 2097000",
+                        "max-concurrent-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -252,7 +252,7 @@ def validate_shaper_per_ip_shaper_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-tcp-session must be between 0 and 2097000",
+                        "max-concurrent-tcp-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -269,7 +269,7 @@ def validate_shaper_per_ip_shaper_put(
                 if int_val < 0 or int_val > 2097000:
                     return (
                         False,
-                        f"max-concurrent-udp-session must be between 0 and 2097000",
+                        "max-concurrent-udp-session must be between 0 and 2097000",
                     )
             except (ValueError, TypeError):
                 return (

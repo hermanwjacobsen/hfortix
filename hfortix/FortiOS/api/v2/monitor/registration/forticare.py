@@ -186,7 +186,8 @@ class Create:
             orgsize_id: Organization size ID. (optional)
             reseller_name: Reseller name. (optional)
             reseller_id: Reseller ID. (optional)
-            is_government: Set to true if the end-user is affiliated with a government. (optional)
+            is_government: Set to true if the end-user is affiliated with a
+            government. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -318,13 +319,17 @@ class Login:
         Login to FortiCare.
 
         Args:
-            serial: Serial number of an HA cluster member to register to login to FortiCare. Current device will be selected if not set. (optional)
+            serial: Serial number of an HA cluster member to register to login
+            to FortiCare. Current device will be selected if not set.
+            (optional)
             email: Account email. (optional)
             password: Account password. (optional)
             reseller_name: Reseller name. (optional)
             reseller_id: Reseller ID. (optional)
-            agreement_accepted: Set to true if the end-user accepted the agreement. (optional)
-            is_government: Set to true if the end-user is affiliated with a government. (optional)
+            agreement_accepted: Set to true if the end-user accepted the
+            agreement. (optional)
+            is_government: Set to true if the end-user is affiliated with a
+            government. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -387,7 +392,8 @@ class Transfer:
             password: Account password. (optional)
             old_email: Old account email. (optional)
             old_password: Old account password. (optional)
-            is_government: Set to true if the end-user is affiliated with a government. (optional)
+            is_government: Set to true if the end-user is affiliated with a
+            government. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

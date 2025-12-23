@@ -125,7 +125,7 @@ def validate_fortianalyzer_cloud_setting_put(
     if "preshared-key" in payload:
         value = payload.get("preshared-key")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"preshared-key cannot exceed 63 characters")
+            return (False, "preshared-key cannot exceed 63 characters")
 
     # Validate access-config if present
     if "access-config" in payload:
@@ -170,7 +170,7 @@ def validate_fortianalyzer_cloud_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"conn-timeout must be between 1 and 3600")
+                    return (False, "conn-timeout must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"conn-timeout must be numeric, got: {value}")
 
@@ -183,7 +183,7 @@ def validate_fortianalyzer_cloud_setting_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"monitor-keepalive-period must be between 1 and 120",
+                        "monitor-keepalive-period must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -200,7 +200,7 @@ def validate_fortianalyzer_cloud_setting_put(
                 if int_val < 1 or int_val > 86400:
                     return (
                         False,
-                        f"monitor-failure-retry-period must be between 1 and 86400",
+                        "monitor-failure-retry-period must be between 1 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -212,13 +212,13 @@ def validate_fortianalyzer_cloud_setting_put(
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certificate cannot exceed 35 characters")
+            return (False, "certificate cannot exceed 35 characters")
 
     # Validate source-ip if present
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate upload-option if present
     if "upload-option" in payload:
@@ -256,7 +256,7 @@ def validate_fortianalyzer_cloud_setting_put(
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-log-rate must be between 0 and 100000",
+                        "max-log-rate must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-log-rate must be numeric, got: {value}")
@@ -274,7 +274,7 @@ def validate_fortianalyzer_cloud_setting_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -283,7 +283,7 @@ def validate_fortianalyzer_cloud_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

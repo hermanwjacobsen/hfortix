@@ -76,7 +76,7 @@ def validate_ttl_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -99,8 +99,8 @@ def validate_ttl_policy_post(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"srcintf cannot exceed 35 characters")
 
@@ -108,7 +108,7 @@ def validate_ttl_policy_post(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     return (True, None)
 
@@ -146,7 +146,7 @@ def validate_ttl_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -169,8 +169,8 @@ def validate_ttl_policy_put(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"srcintf cannot exceed 35 characters")
 
@@ -178,7 +178,7 @@ def validate_ttl_policy_put(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     return (True, None)
 

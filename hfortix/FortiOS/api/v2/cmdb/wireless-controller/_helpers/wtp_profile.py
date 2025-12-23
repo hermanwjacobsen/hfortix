@@ -243,7 +243,7 @@ VALID_BODY_LOGIN_PASSWD_CHANGE = ["yes", "default", "no"]
 VALID_BODY_LLDP = ["enable", "disable"]
 VALID_BODY_POE_MODE = [
     "auto",
-    "8023af",
+    "8023a",
     "8023at",
     "power-adapter",
     "full",
@@ -344,13 +344,13 @@ def validate_wtp_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate control-message-offload if present
     if "control-message-offload" in payload:
@@ -365,13 +365,13 @@ def validate_wtp_profile_post(
     if "bonjour-profile" in payload:
         value = payload.get("bonjour-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"bonjour-profile cannot exceed 35 characters")
+            return (False, "bonjour-profile cannot exceed 35 characters")
 
     # Validate apcfg-profile if present
     if "apcfg-profile" in payload:
         value = payload.get("apcfg-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"apcfg-profile cannot exceed 35 characters")
+            return (False, "apcfg-profile cannot exceed 35 characters")
 
     # Validate apcfg-mesh if present
     if "apcfg-mesh" in payload:
@@ -395,7 +395,7 @@ def validate_wtp_profile_post(
     if "apcfg-mesh-ssid" in payload:
         value = payload.get("apcfg-mesh-ssid")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"apcfg-mesh-ssid cannot exceed 15 characters")
+            return (False, "apcfg-mesh-ssid cannot exceed 15 characters")
 
     # Validate apcfg-mesh-eth-bridge if present
     if "apcfg-mesh-eth-bridge" in payload:
@@ -410,19 +410,19 @@ def validate_wtp_profile_post(
     if "ble-profile" in payload:
         value = payload.get("ble-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ble-profile cannot exceed 35 characters")
+            return (False, "ble-profile cannot exceed 35 characters")
 
     # Validate lw-profile if present
     if "lw-profile" in payload:
         value = payload.get("lw-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"lw-profile cannot exceed 35 characters")
+            return (False, "lw-profile cannot exceed 35 characters")
 
     # Validate syslog-profile if present
     if "syslog-profile" in payload:
         value = payload.get("syslog-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"syslog-profile cannot exceed 35 characters")
+            return (False, "syslog-profile cannot exceed 35 characters")
 
     # Validate wan-port-mode if present
     if "wan-port-mode" in payload:
@@ -478,7 +478,7 @@ def validate_wtp_profile_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients must be between 0 and 4294967295",
+                        "max-clients must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
@@ -490,7 +490,7 @@ def validate_wtp_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 20 or int_val > 30:
-                    return (False, f"handoff-rssi must be between 20 and 30")
+                    return (False, "handoff-rssi must be between 20 and 30")
             except (ValueError, TypeError):
                 return (False, f"handoff-rssi must be numeric, got: {value}")
 
@@ -503,7 +503,7 @@ def validate_wtp_profile_post(
                 if int_val < 5 or int_val > 60:
                     return (
                         False,
-                        f"handoff-sta-thresh must be between 5 and 60",
+                        "handoff-sta-thresh must be between 5 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -547,7 +547,7 @@ def validate_wtp_profile_post(
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-uplink must be between 576 and 1500",
+                        "tun-mtu-uplink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (False, f"tun-mtu-uplink must be numeric, got: {value}")
@@ -561,7 +561,7 @@ def validate_wtp_profile_post(
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-downlink must be between 576 and 1500",
+                        "tun-mtu-downlink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -636,8 +636,8 @@ def validate_wtp_profile_post(
             )
 
     # Validate frequency-handoff if present
-    if "frequency-handoff" in payload:
-        value = payload.get("frequency-handoff")
+    if "frequency-handof" in payload:
+        value = payload.get("frequency-handof")
         if value and value not in VALID_BODY_FREQUENCY_HANDOFF:
             return (
                 False,
@@ -645,8 +645,8 @@ def validate_wtp_profile_post(
             )
 
     # Validate ap-handoff if present
-    if "ap-handoff" in payload:
-        value = payload.get("ap-handoff")
+    if "ap-handof" in payload:
+        value = payload.get("ap-handof")
         if value and value not in VALID_BODY_AP_HANDOFF:
             return (
                 False,
@@ -704,7 +704,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"wan-port-auth-usrname cannot exceed 63 characters",
+                "wan-port-auth-usrname cannot exceed 63 characters",
             )
 
     # Validate wan-port-auth-methods if present
@@ -758,7 +758,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-est-server cannot exceed 255 characters",
+                "apcfg-auto-cert-est-server cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-est-ca-id if present
@@ -767,7 +767,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-est-ca-id cannot exceed 255 characters",
+                "apcfg-auto-cert-est-ca-id cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-est-http-username if present
@@ -776,7 +776,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"apcfg-auto-cert-est-http-username cannot exceed 63 characters",
+                "apcfg-auto-cert-est-http-username cannot exceed 63 characters",
             )
 
     # Validate apcfg-auto-cert-est-subject if present
@@ -785,7 +785,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-est-subject cannot exceed 127 characters",
+                "apcfg-auto-cert-est-subject cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-est-subject-alt-name if present
@@ -794,7 +794,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-est-subject-alt-name cannot exceed 127 characters",
+                "apcfg-auto-cert-est-subject-alt-name cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-auto-regen-days if present
@@ -806,7 +806,7 @@ def validate_wtp_profile_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"apcfg-auto-cert-auto-regen-days must be between 0 and 4294967295",
+                        "apcfg-auto-cert-auto-regen-days must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -820,7 +820,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"apcfg-auto-cert-est-https-ca cannot exceed 79 characters",
+                "apcfg-auto-cert-est-https-ca cannot exceed 79 characters",
             )
 
     # Validate apcfg-auto-cert-scep-keytype if present
@@ -856,7 +856,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-sub-fully-dn cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-sub-fully-dn cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-url if present
@@ -865,7 +865,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-url cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-url cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-ca-id if present
@@ -874,7 +874,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-ca-id cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-ca-id cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-subject-alt-name if present
@@ -883,7 +883,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-scep-subject-alt-name cannot exceed 127 characters",
+                "apcfg-auto-cert-scep-subject-alt-name cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-scep-https-ca if present
@@ -892,7 +892,7 @@ def validate_wtp_profile_post(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"apcfg-auto-cert-scep-https-ca cannot exceed 79 characters",
+                "apcfg-auto-cert-scep-https-ca cannot exceed 79 characters",
             )
 
     # Validate unii-4-5ghz-band if present
@@ -908,7 +908,7 @@ def validate_wtp_profile_post(
     if "admin-auth-tacacs+" in payload:
         value = payload.get("admin-auth-tacacs+")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"admin-auth-tacacs+ cannot exceed 35 characters")
+            return (False, "admin-auth-tacacs+ cannot exceed 35 characters")
 
     # Validate admin-restrict-local if present
     if "admin-restrict-local" in payload:
@@ -952,13 +952,13 @@ def validate_wtp_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate control-message-offload if present
     if "control-message-offload" in payload:
@@ -973,13 +973,13 @@ def validate_wtp_profile_put(
     if "bonjour-profile" in payload:
         value = payload.get("bonjour-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"bonjour-profile cannot exceed 35 characters")
+            return (False, "bonjour-profile cannot exceed 35 characters")
 
     # Validate apcfg-profile if present
     if "apcfg-profile" in payload:
         value = payload.get("apcfg-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"apcfg-profile cannot exceed 35 characters")
+            return (False, "apcfg-profile cannot exceed 35 characters")
 
     # Validate apcfg-mesh if present
     if "apcfg-mesh" in payload:
@@ -1003,7 +1003,7 @@ def validate_wtp_profile_put(
     if "apcfg-mesh-ssid" in payload:
         value = payload.get("apcfg-mesh-ssid")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"apcfg-mesh-ssid cannot exceed 15 characters")
+            return (False, "apcfg-mesh-ssid cannot exceed 15 characters")
 
     # Validate apcfg-mesh-eth-bridge if present
     if "apcfg-mesh-eth-bridge" in payload:
@@ -1018,19 +1018,19 @@ def validate_wtp_profile_put(
     if "ble-profile" in payload:
         value = payload.get("ble-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ble-profile cannot exceed 35 characters")
+            return (False, "ble-profile cannot exceed 35 characters")
 
     # Validate lw-profile if present
     if "lw-profile" in payload:
         value = payload.get("lw-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"lw-profile cannot exceed 35 characters")
+            return (False, "lw-profile cannot exceed 35 characters")
 
     # Validate syslog-profile if present
     if "syslog-profile" in payload:
         value = payload.get("syslog-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"syslog-profile cannot exceed 35 characters")
+            return (False, "syslog-profile cannot exceed 35 characters")
 
     # Validate wan-port-mode if present
     if "wan-port-mode" in payload:
@@ -1086,7 +1086,7 @@ def validate_wtp_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients must be between 0 and 4294967295",
+                        "max-clients must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
@@ -1098,7 +1098,7 @@ def validate_wtp_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 20 or int_val > 30:
-                    return (False, f"handoff-rssi must be between 20 and 30")
+                    return (False, "handoff-rssi must be between 20 and 30")
             except (ValueError, TypeError):
                 return (False, f"handoff-rssi must be numeric, got: {value}")
 
@@ -1111,7 +1111,7 @@ def validate_wtp_profile_put(
                 if int_val < 5 or int_val > 60:
                     return (
                         False,
-                        f"handoff-sta-thresh must be between 5 and 60",
+                        "handoff-sta-thresh must be between 5 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1155,7 +1155,7 @@ def validate_wtp_profile_put(
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-uplink must be between 576 and 1500",
+                        "tun-mtu-uplink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (False, f"tun-mtu-uplink must be numeric, got: {value}")
@@ -1169,7 +1169,7 @@ def validate_wtp_profile_put(
                 if int_val < 576 or int_val > 1500:
                     return (
                         False,
-                        f"tun-mtu-downlink must be between 576 and 1500",
+                        "tun-mtu-downlink must be between 576 and 1500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1244,8 +1244,8 @@ def validate_wtp_profile_put(
             )
 
     # Validate frequency-handoff if present
-    if "frequency-handoff" in payload:
-        value = payload.get("frequency-handoff")
+    if "frequency-handof" in payload:
+        value = payload.get("frequency-handof")
         if value and value not in VALID_BODY_FREQUENCY_HANDOFF:
             return (
                 False,
@@ -1253,8 +1253,8 @@ def validate_wtp_profile_put(
             )
 
     # Validate ap-handoff if present
-    if "ap-handoff" in payload:
-        value = payload.get("ap-handoff")
+    if "ap-handof" in payload:
+        value = payload.get("ap-handof")
         if value and value not in VALID_BODY_AP_HANDOFF:
             return (
                 False,
@@ -1312,7 +1312,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"wan-port-auth-usrname cannot exceed 63 characters",
+                "wan-port-auth-usrname cannot exceed 63 characters",
             )
 
     # Validate wan-port-auth-methods if present
@@ -1366,7 +1366,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-est-server cannot exceed 255 characters",
+                "apcfg-auto-cert-est-server cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-est-ca-id if present
@@ -1375,7 +1375,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-est-ca-id cannot exceed 255 characters",
+                "apcfg-auto-cert-est-ca-id cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-est-http-username if present
@@ -1384,7 +1384,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"apcfg-auto-cert-est-http-username cannot exceed 63 characters",
+                "apcfg-auto-cert-est-http-username cannot exceed 63 characters",
             )
 
     # Validate apcfg-auto-cert-est-subject if present
@@ -1393,7 +1393,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-est-subject cannot exceed 127 characters",
+                "apcfg-auto-cert-est-subject cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-est-subject-alt-name if present
@@ -1402,7 +1402,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-est-subject-alt-name cannot exceed 127 characters",
+                "apcfg-auto-cert-est-subject-alt-name cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-auto-regen-days if present
@@ -1414,7 +1414,7 @@ def validate_wtp_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"apcfg-auto-cert-auto-regen-days must be between 0 and 4294967295",
+                        "apcfg-auto-cert-auto-regen-days must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1428,7 +1428,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"apcfg-auto-cert-est-https-ca cannot exceed 79 characters",
+                "apcfg-auto-cert-est-https-ca cannot exceed 79 characters",
             )
 
     # Validate apcfg-auto-cert-scep-keytype if present
@@ -1464,7 +1464,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-sub-fully-dn cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-sub-fully-dn cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-url if present
@@ -1473,7 +1473,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-url cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-url cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-ca-id if present
@@ -1482,7 +1482,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"apcfg-auto-cert-scep-ca-id cannot exceed 255 characters",
+                "apcfg-auto-cert-scep-ca-id cannot exceed 255 characters",
             )
 
     # Validate apcfg-auto-cert-scep-subject-alt-name if present
@@ -1491,7 +1491,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"apcfg-auto-cert-scep-subject-alt-name cannot exceed 127 characters",
+                "apcfg-auto-cert-scep-subject-alt-name cannot exceed 127 characters",
             )
 
     # Validate apcfg-auto-cert-scep-https-ca if present
@@ -1500,7 +1500,7 @@ def validate_wtp_profile_put(
         if value and isinstance(value, str) and len(value) > 79:
             return (
                 False,
-                f"apcfg-auto-cert-scep-https-ca cannot exceed 79 characters",
+                "apcfg-auto-cert-scep-https-ca cannot exceed 79 characters",
             )
 
     # Validate unii-4-5ghz-band if present
@@ -1516,7 +1516,7 @@ def validate_wtp_profile_put(
     if "admin-auth-tacacs+" in payload:
         value = payload.get("admin-auth-tacacs+")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"admin-auth-tacacs+ cannot exceed 35 characters")
+            return (False, "admin-auth-tacacs+ cannot exceed 35 characters")
 
     # Validate admin-restrict-local if present
     if "admin-restrict-local" in payload:

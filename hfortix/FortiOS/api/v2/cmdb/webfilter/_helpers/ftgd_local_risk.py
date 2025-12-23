@@ -72,7 +72,7 @@ def validate_ftgd_local_risk_post(
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"url cannot exceed 511 characters")
+            return (False, "url cannot exceed 511 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -87,7 +87,7 @@ def validate_ftgd_local_risk_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate risk-score if present
     if "risk-score" in payload:
@@ -96,7 +96,7 @@ def validate_ftgd_local_risk_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 100:
-                    return (False, f"risk-score must be between 0 and 100")
+                    return (False, "risk-score must be between 0 and 100")
             except (ValueError, TypeError):
                 return (False, f"risk-score must be numeric, got: {value}")
 

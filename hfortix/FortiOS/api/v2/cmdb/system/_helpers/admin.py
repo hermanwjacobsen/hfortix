@@ -87,7 +87,7 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate remote-auth if present
     if "remote-auth" in payload:
@@ -102,7 +102,7 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "remote-group" in payload:
         value = payload.get("remote-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"remote-group cannot exceed 35 characters")
+            return (False, "remote-group cannot exceed 35 characters")
 
     # Validate wildcard if present
     if "wildcard" in payload:
@@ -126,13 +126,13 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "peer-group" in payload:
         value = payload.get("peer-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer-group cannot exceed 35 characters")
+            return (False, "peer-group cannot exceed 35 characters")
 
     # Validate accprofile if present
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate allow-remove-admin-session if present
     if "allow-remove-admin-session" in payload:
@@ -147,19 +147,19 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate ssh-certificate if present
     if "ssh-certificate" in payload:
         value = payload.get("ssh-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssh-certificate cannot exceed 35 characters")
+            return (False, "ssh-certificate cannot exceed 35 characters")
 
     # Validate schedule if present
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate accprofile-override if present
     if "accprofile-override" in payload:
@@ -219,13 +219,13 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "fortitoken" in payload:
         value = payload.get("fortitoken")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"fortitoken cannot exceed 16 characters")
+            return (False, "fortitoken cannot exceed 16 characters")
 
     # Validate email-to if present
     if "email-to" in payload:
         value = payload.get("email-to")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"email-to cannot exceed 63 characters")
+            return (False, "email-to cannot exceed 63 characters")
 
     # Validate sms-server if present
     if "sms-server" in payload:
@@ -240,13 +240,13 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate sms-phone if present
     if "sms-phone" in payload:
         value = payload.get("sms-phone")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sms-phone cannot exceed 15 characters")
+            return (False, "sms-phone cannot exceed 15 characters")
 
     # Validate guest-auth if present
     if "guest-auth" in payload:
@@ -261,7 +261,7 @@ def validate_admin_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "guest-lang" in payload:
         value = payload.get("guest-lang")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"guest-lang cannot exceed 35 characters")
+            return (False, "guest-lang cannot exceed 35 characters")
 
     return (True, None)
 
@@ -296,7 +296,7 @@ def validate_admin_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate remote-auth if present
     if "remote-auth" in payload:
@@ -311,7 +311,7 @@ def validate_admin_put(
     if "remote-group" in payload:
         value = payload.get("remote-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"remote-group cannot exceed 35 characters")
+            return (False, "remote-group cannot exceed 35 characters")
 
     # Validate wildcard if present
     if "wildcard" in payload:
@@ -335,13 +335,13 @@ def validate_admin_put(
     if "peer-group" in payload:
         value = payload.get("peer-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer-group cannot exceed 35 characters")
+            return (False, "peer-group cannot exceed 35 characters")
 
     # Validate accprofile if present
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate allow-remove-admin-session if present
     if "allow-remove-admin-session" in payload:
@@ -356,19 +356,19 @@ def validate_admin_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate ssh-certificate if present
     if "ssh-certificate" in payload:
         value = payload.get("ssh-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssh-certificate cannot exceed 35 characters")
+            return (False, "ssh-certificate cannot exceed 35 characters")
 
     # Validate schedule if present
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate accprofile-override if present
     if "accprofile-override" in payload:
@@ -428,13 +428,13 @@ def validate_admin_put(
     if "fortitoken" in payload:
         value = payload.get("fortitoken")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"fortitoken cannot exceed 16 characters")
+            return (False, "fortitoken cannot exceed 16 characters")
 
     # Validate email-to if present
     if "email-to" in payload:
         value = payload.get("email-to")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"email-to cannot exceed 63 characters")
+            return (False, "email-to cannot exceed 63 characters")
 
     # Validate sms-server if present
     if "sms-server" in payload:
@@ -449,13 +449,13 @@ def validate_admin_put(
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate sms-phone if present
     if "sms-phone" in payload:
         value = payload.get("sms-phone")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sms-phone cannot exceed 15 characters")
+            return (False, "sms-phone cannot exceed 15 characters")
 
     # Validate guest-auth if present
     if "guest-auth" in payload:
@@ -470,7 +470,7 @@ def validate_admin_put(
     if "guest-lang" in payload:
         value = payload.get("guest-lang")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"guest-lang cannot exceed 35 characters")
+            return (False, "guest-lang cannot exceed 35 characters")
 
     return (True, None)
 

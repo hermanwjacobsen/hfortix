@@ -75,18 +75,18 @@ def validate_auto_config_default_put(
     if "fgt-policy" in payload:
         value = payload.get("fgt-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"fgt-policy cannot exceed 63 characters")
+            return (False, "fgt-policy cannot exceed 63 characters")
 
     # Validate isl-policy if present
     if "isl-policy" in payload:
         value = payload.get("isl-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"isl-policy cannot exceed 63 characters")
+            return (False, "isl-policy cannot exceed 63 characters")
 
     # Validate icl-policy if present
     if "icl-policy" in payload:
         value = payload.get("icl-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"icl-policy cannot exceed 63 characters")
+            return (False, "icl-policy cannot exceed 63 characters")
 
     return (True, None)

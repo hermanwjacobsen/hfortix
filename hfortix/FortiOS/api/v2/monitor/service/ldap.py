@@ -74,7 +74,8 @@ class Query:
             server_info_only: Only retrieve server information. (optional)
             skip_schema: Explicitly skip schema retrieval. (optional)
             ldap_filter: LDAP filter string. (optional)
-            ldap: Object containing overriden values of the LDAP server setting object. (optional)
+            ldap: Object containing overriden values of the LDAP server setting
+            object. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

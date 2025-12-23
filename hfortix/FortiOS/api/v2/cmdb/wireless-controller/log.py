@@ -88,11 +88,15 @@ class Log:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Log:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -142,25 +147,41 @@ class Log:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable wireless event logging. (optional)
-            addrgrp_log: Lowest severity level to log address group message. (optional)
-            ble_log: Lowest severity level to log BLE detection message. (optional)
-            clb_log: Lowest severity level to log client load balancing message. (optional)
-            dhcp_starv_log: Lowest severity level to log DHCP starvation event message. (optional)
-            led_sched_log: Lowest severity level to log LED schedule event message. (optional)
-            radio_event_log: Lowest severity level to log radio event message. (optional)
-            rogue_event_log: Lowest severity level to log rogue AP event message. (optional)
-            sta_event_log: Lowest severity level to log station event message. (optional)
-            sta_locate_log: Lowest severity level to log station locate message. (optional)
+            addrgrp_log: Lowest severity level to log address group message.
+            (optional)
+            ble_log: Lowest severity level to log BLE detection message.
+            (optional)
+            clb_log: Lowest severity level to log client load balancing
+            message. (optional)
+            dhcp_starv_log: Lowest severity level to log DHCP starvation event
+            message. (optional)
+            led_sched_log: Lowest severity level to log LED schedule event
+            message. (optional)
+            radio_event_log: Lowest severity level to log radio event message.
+            (optional)
+            rogue_event_log: Lowest severity level to log rogue AP event
+            message. (optional)
+            sta_event_log: Lowest severity level to log station event message.
+            (optional)
+            sta_locate_log: Lowest severity level to log station locate
+            message. (optional)
             wids_log: Lowest severity level to log WIDS message. (optional)
-            wtp_event_log: Lowest severity level to log WTP event message. (optional)
-            wtp_fips_event_log: Lowest severity level to log FAP fips event message. (optional)
+            wtp_event_log: Lowest severity level to log WTP event message.
+            (optional)
+            wtp_fips_event_log: Lowest severity level to log FAP fips event
+            message. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -168,7 +189,8 @@ class Log:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

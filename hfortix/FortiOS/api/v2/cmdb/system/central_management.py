@@ -30,7 +30,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.system.central_management.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.system.central_management.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +89,15 @@ class CentralManagement:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +105,8 @@ class CentralManagement:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -152,35 +158,61 @@ class CentralManagement:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             mode: Central management mode. (optional)
             type: Central management type. (optional)
-            fortigate_cloud_sso_default_profile: Override access profile. Permission is set to read-only without a FortiGate Cloud Central Management license. (optional)
-            schedule_config_restore: Enable/disable allowing the central management server to restore the configuration of this FortiGate. (optional)
-            schedule_script_restore: Enable/disable allowing the central management server to restore the scripts stored on this FortiGate. (optional)
-            allow_push_configuration: Enable/disable allowing the central management server to push configuration changes to this FortiGate. (optional)
-            allow_push_firmware: Enable/disable allowing the central management server to push firmware updates to this FortiGate. (optional)
-            allow_remote_firmware_upgrade: Enable/disable remotely upgrading the firmware on this FortiGate from the central management server. (optional)
-            allow_monitor: Enable/disable allowing the central management server to remotely monitor this FortiGate unit. (optional)
+            fortigate_cloud_sso_default_profile: Override access profile.
+            Permission is set to read-only without a FortiGate Cloud Central
+            Management license. (optional)
+            schedule_config_restore: Enable/disable allowing the central
+            management server to restore the configuration of this FortiGate.
+            (optional)
+            schedule_script_restore: Enable/disable allowing the central
+            management server to restore the scripts stored on this FortiGate.
+            (optional)
+            allow_push_configuration: Enable/disable allowing the central
+            management server to push configuration changes to this FortiGate.
+            (optional)
+            allow_push_firmware: Enable/disable allowing the central management
+            server to push firmware updates to this FortiGate. (optional)
+            allow_remote_firmware_upgrade: Enable/disable remotely upgrading
+            the firmware on this FortiGate from the central management server.
+            (optional)
+            allow_monitor: Enable/disable allowing the central management
+            server to remotely monitor this FortiGate unit. (optional)
             serial_number: Serial number. (optional)
             fmg: IP address or FQDN of the FortiManager. (optional)
-            fmg_source_ip: IPv4 source address that this FortiGate uses when communicating with FortiManager. (optional)
-            fmg_source_ip6: IPv6 source address that this FortiGate uses when communicating with FortiManager. (optional)
+            fmg_source_ip: IPv4 source address that this FortiGate uses when
+            communicating with FortiManager. (optional)
+            fmg_source_ip6: IPv6 source address that this FortiGate uses when
+            communicating with FortiManager. (optional)
             local_cert: Certificate to be used by FGFM protocol. (optional)
             ca_cert: CA certificate to be used by FGFM protocol. (optional)
-            server_list: Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. (optional)
-            fmg_update_port: Port used to communicate with FortiManager that is acting as a FortiGuard update server. (optional)
-            fmg_update_http_header: Enable/disable inclusion of HTTP header in update request. (optional)
-            include_default_servers: Enable/disable inclusion of public FortiGuard servers in the override server list. (optional)
-            enc_algorithm: Encryption strength for communications between the FortiGate and central management. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            server_list: Additional severs that the FortiGate can use for
+            updates (for AV, IPS, updates) and ratings (for web filter and
+            antispam ratings) servers. (optional)
+            fmg_update_port: Port used to communicate with FortiManager that is
+            acting as a FortiGuard update server. (optional)
+            fmg_update_http_header: Enable/disable inclusion of HTTP header in
+            update request. (optional)
+            include_default_servers: Enable/disable inclusion of public
+            FortiGuard servers in the override server list. (optional)
+            enc_algorithm: Encryption strength for communications between the
+            FortiGate and central management. (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -188,7 +220,8 @@ class CentralManagement:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

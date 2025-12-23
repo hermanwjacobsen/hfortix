@@ -74,7 +74,9 @@ class InternetService:
 
         Example:
             >>> fgt.api.monitor.firewall.internet_service.match(ip='8.8.8.8')
-            >>> fgt.api.monitor.firewall.internet_service.match(ip='2001:4860:4860::8888', ipv6=True)
+            >>>
+            fgt.api.monitor.firewall.internet_service.match(ip='2001:4860:4860::8888',
+            ipv6=True)
         """
         params = data_dict.copy() if data_dict else {}
         if ip is not None:
@@ -109,7 +111,8 @@ class InternetService:
             **kwargs: Additional parameters as keyword arguments
 
         Returns:
-            Dictionary containing internet service details (IPs, ports, protocols)
+            Dictionary containing internet service details (IPs, ports,
+            protocols)
 
         Example:
             >>> fgt.api.monitor.firewall.internet_service.details(id=65536)
@@ -135,7 +138,8 @@ class InternetService:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        List internet services with reputation information that exist at a given IP.
+        List internet services with reputation information that exist at a
+        given IP.
 
         Args:
             data_dict: Optional dictionary of parameters
@@ -146,7 +150,8 @@ class InternetService:
             Dictionary containing internet services with reputation info
 
         Example:
-            >>> fgt.api.monitor.firewall.internet_service.reputation(ip='8.8.8.8')
+            >>>
+            fgt.api.monitor.firewall.internet_service.reputation(ip='8.8.8.8')
         """
         params = data_dict.copy() if data_dict else {}
         if ip is not None:

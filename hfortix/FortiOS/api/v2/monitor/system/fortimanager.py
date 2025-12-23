@@ -67,7 +67,8 @@ class BackupAction:
         Import or update from FortiManager objects.
 
         Args:
-            operation: Operation to perform on the given CMDB objects [import|update]. (optional)
+            operation: Operation to perform on the given CMDB objects
+            [import|update]. (optional)
             objects: Array of CMDB tables and mkeys. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
@@ -124,7 +125,9 @@ class BackupDetails:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.fortimanager.backup_details.get(mkey='value', datasource='value')
+            >>>
+            fgt.api.monitor.system.fortimanager.backup_details.get(mkey='value',
+            datasource='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

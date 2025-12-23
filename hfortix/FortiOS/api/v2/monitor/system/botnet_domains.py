@@ -101,7 +101,8 @@ class Stat:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        List statistics on domain-based botnet entries in FortiGuard botnet database.
+        List statistics on domain-based botnet entries in FortiGuard botnet
+        database.
 
         Args:
             payload_dict: Optional dictionary of parameters
@@ -144,7 +145,8 @@ class BotnetDomains:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        List all known domain-based botnet entries in FortiGuard botnet database.
+        List all known domain-based botnet entries in FortiGuard botnet
+        database.
 
         Args:
             payload_dict: Optional dictionary of parameters

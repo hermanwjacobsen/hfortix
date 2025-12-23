@@ -73,7 +73,7 @@ def validate_certificate_crl_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate range if present
     if "range" in payload:
@@ -97,37 +97,37 @@ def validate_certificate_crl_post(
     if "update-vdom" in payload:
         value = payload.get("update-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"update-vdom cannot exceed 31 characters")
+            return (False, "update-vdom cannot exceed 31 characters")
 
     # Validate ldap-server if present
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate ldap-username if present
     if "ldap-username" in payload:
         value = payload.get("ldap-username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ldap-username cannot exceed 63 characters")
+            return (False, "ldap-username cannot exceed 63 characters")
 
     # Validate http-url if present
     if "http-url" in payload:
         value = payload.get("http-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"http-url cannot exceed 255 characters")
+            return (False, "http-url cannot exceed 255 characters")
 
     # Validate scep-url if present
     if "scep-url" in payload:
         value = payload.get("scep-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"scep-url cannot exceed 255 characters")
+            return (False, "scep-url cannot exceed 255 characters")
 
     # Validate scep-cert if present
     if "scep-cert" in payload:
         value = payload.get("scep-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"scep-cert cannot exceed 35 characters")
+            return (False, "scep-cert cannot exceed 35 characters")
 
     # Validate update-interval if present
     if "update-interval" in payload:
@@ -138,7 +138,7 @@ def validate_certificate_crl_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"update-interval must be between 0 and 4294967295",
+                        "update-interval must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

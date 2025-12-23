@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Wireless Controller Wtp Profile
 
-Configuration endpoint for managing cmdb wireless controller wtp profile objects.
+Configuration endpoint for managing cmdb wireless controller wtp profile
+objects.
 
 API Endpoints:
     GET    /cmdb/wireless-controller/wtp_profile
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.wireless_controller.wtp_profile.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.wireless_controller.wtp_profile.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.wireless_controller.wtp_profile.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wtp_profile.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.wtp_profile.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.wtp_profile.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class WtpProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class WtpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -227,91 +236,168 @@ class WtpProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: WTP (or FortiAP or AP) profile name. (optional)
             comment: Comment. (optional)
             platform: WTP, FortiAP, or AP platform. (optional)
-            control_message_offload: Enable/disable CAPWAP control message data channel offload. (optional)
+            control_message_offload: Enable/disable CAPWAP control message data
+            channel offload. (optional)
             bonjour_profile: Bonjour profile name. (optional)
             apcfg_profile: AP local configuration profile name. (optional)
-            apcfg_mesh: Enable/disable AP local mesh configuration (default = disable). (optional)
+            apcfg_mesh: Enable/disable AP local mesh configuration (default =
+            disable). (optional)
             apcfg_mesh_ap_type: Mesh AP Type (default = ethernet). (optional)
             apcfg_mesh_ssid: Mesh SSID (default = none). (optional)
-            apcfg_mesh_eth_bridge: Enable/disable mesh ethernet bridge (default = disable). (optional)
+            apcfg_mesh_eth_bridge: Enable/disable mesh ethernet bridge (default
+            = disable). (optional)
             ble_profile: Bluetooth Low Energy profile name. (optional)
             lw_profile: LoRaWAN profile name. (optional)
-            syslog_profile: System log server configuration profile name. (optional)
-            wan_port_mode: Enable/disable using a WAN port as a LAN port. (optional)
+            syslog_profile: System log server configuration profile name.
+            (optional)
+            wan_port_mode: Enable/disable using a WAN port as a LAN port.
+            (optional)
             lan: WTP LAN port mapping. (optional)
-            energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. (optional)
-            led_state: Enable/disable use of LEDs on WTP (default = enable). (optional)
-            led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            dtls_policy: WTP data channel DTLS policy (default = clear-text). (optional)
-            dtls_in_kernel: Enable/disable data channel DTLS in kernel. (optional)
-            max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation). (optional)
-            handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25). (optional)
+            energy_efficient_ethernet: Enable/disable use of energy efficient
+            Ethernet on WTP. (optional)
+            led_state: Enable/disable use of LEDs on WTP (default = enable).
+            (optional)
+            led_schedules: Recurring firewall schedules for illuminating LEDs
+            on the FortiAP. If led-state is enabled, LEDs will be visible when
+            at least one of the schedules is valid. Separate multiple schedule
+            names with a space. (optional)
+            dtls_policy: WTP data channel DTLS policy (default = clear-text).
+            (optional)
+            dtls_in_kernel: Enable/disable data channel DTLS in kernel.
+            (optional)
+            max_clients: Maximum number of stations (STAs) supported by the WTP
+            (default = 0, meaning no client limitation). (optional)
+            handoff_rssi: Minimum received signal strength indicator (RSSI)
+            value for handoff (20 - 30, default = 25). (optional)
             handoff_sta_thresh: Threshold value for AP handoff. (optional)
-            handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = enable). (optional)
-            deny_mac_list: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. (optional)
-            ap_country: Country in which this WTP, FortiAP, or AP will operate (default = NA, automatically use the country configured for the current VDOM). (optional)
-            ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). (optional)
-            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. (optional)
-            split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). (optional)
+            handoff_roaming: Enable/disable client load balancing during
+            roaming to avoid roaming delay (default = enable). (optional)
+            deny_mac_list: List of MAC addresses that are denied access to this
+            WTP, FortiAP, or AP. (optional)
+            ap_country: Country in which this WTP, FortiAP, or AP will operate
+            (default = NA, automatically use the country configured for the
+            current VDOM). (optional)
+            ip_fragment_preventing: Method(s) by which IP fragmentation is
+            prevented for control and data packets through CAPWAP tunnel
+            (default = tcp-mss-adjust). (optional)
+            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink
+            CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of
+            FortiAP; default = 0). (optional)
+            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500
+            bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+            (optional)
+            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel.
+            (optional)
+            split_tunneling_acl_local_ap_subnet: Enable/disable automatically
+            adding local subnetwork of FortiAP to split-tunneling ACL (default
+            = disable). (optional)
             split_tunneling_acl: Split tunneling ACL filter list. (optional)
-            allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. (optional)
-            login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). (optional)
-            login_passwd: Set the managed WTP, FortiAP, or AP's administrator password. (optional)
-            lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = enable). (optional)
+            allowaccess: Control management access to the managed WTP, FortiAP,
+            or AP. Separate entries with a space. (optional)
+            login_passwd_change: Change or reset the administrator password of
+            a managed WTP, FortiAP or AP (yes, default, or no, default = no).
+            (optional)
+            login_passwd: Set the managed WTP, FortiAP, or AP's administrator
+            password. (optional)
+            lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the
+            WTP, FortiAP, or AP (default = enable). (optional)
             poe_mode: Set the WTP, FortiAP, or AP's PoE mode. (optional)
-            usb_port: Enable/disable USB port of the WTP (default = enable). (optional)
-            frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). (optional)
-            ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). (optional)
-            default_mesh_root: Configure default mesh root SSID when it is not included by radio's SSID configuration. (optional)
+            usb_port: Enable/disable USB port of the WTP (default = enable).
+            (optional)
+            frequency_handoff: Enable/disable frequency handoff of clients to
+            other channels (default = disable). (optional)
+            ap_handoff: Enable/disable AP handoff of clients to other APs
+            (default = disable). (optional)
+            default_mesh_root: Configure default mesh root SSID when it is not
+            included by radio's SSID configuration. (optional)
             radio_1: Configuration options for radio 1. (optional)
             radio_2: Configuration options for radio 2. (optional)
             radio_3: Configuration options for radio 3. (optional)
             radio_4: Configuration options for radio 4. (optional)
             lbs: Set various location based service (LBS) options. (optional)
-            ext_info_enable: Enable/disable station/VAP/radio extension information. (optional)
-            indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). (optional)
+            ext_info_enable: Enable/disable station/VAP/radio extension
+            information. (optional)
+            indoor_outdoor_deployment: Set to allow indoor/outdoor-only
+            channels under regulatory rules (default = platform-determined).
+            (optional)
             esl_ses_dongle: ESL SES-imagotag dongle configuration. (optional)
-            console_login: Enable/disable FortiAP console login access (default = enable). (optional)
-            wan_port_auth: Set WAN port authentication mode (default = none). (optional)
-            wan_port_auth_usrname: Set WAN port 802.1x supplicant user name. (optional)
-            wan_port_auth_password: Set WAN port 802.1x supplicant password. (optional)
-            wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). (optional)
-            wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). (optional)
-            apcfg_auto_cert: Enable/disable AP local auto cert configuration (default = disable). (optional)
-            apcfg_auto_cert_enroll_protocol: Certificate enrollment protocol (default = none) (optional)
-            apcfg_auto_cert_crypto_algo: Cryptography algorithm: rsa-1024, rsa-1536, rsa-2048, rsa-4096, ec-secp256r1, ec-secp384r1, ec-secp521r1 (default = ec-secp256r1) (optional)
+            console_login: Enable/disable FortiAP console login access (default
+            = enable). (optional)
+            wan_port_auth: Set WAN port authentication mode (default = none).
+            (optional)
+            wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
+            (optional)
+            wan_port_auth_password: Set WAN port 802.1x supplicant password.
+            (optional)
+            wan_port_auth_methods: WAN port 802.1x supplicant EAP methods
+            (default = all). (optional)
+            wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant
+            MACsec policy (default = disable). (optional)
+            apcfg_auto_cert: Enable/disable AP local auto cert configuration
+            (default = disable). (optional)
+            apcfg_auto_cert_enroll_protocol: Certificate enrollment protocol
+            (default = none) (optional)
+            apcfg_auto_cert_crypto_algo: Cryptography algorithm: rsa-1024,
+            rsa-1536, rsa-2048, rsa-4096, ec-secp256r1, ec-secp384r1,
+            ec-secp521r1 (default = ec-secp256r1) (optional)
             apcfg_auto_cert_est_server: Address and port for EST server (e.g. https://example.com:1234). (optional)
-            apcfg_auto_cert_est_ca_id: CA identifier of the CA server for signing via EST. (optional)
-            apcfg_auto_cert_est_http_username: HTTP Authentication username for signing via EST. (optional)
-            apcfg_auto_cert_est_http_password: HTTP Authentication password for signing via EST. (optional)
-            apcfg_auto_cert_est_subject: Subject e.g. "CN=User,DC=example,DC=COM" (default = CN=FortiAP,DC=local,DC=COM) (optional)
-            apcfg_auto_cert_est_subject_alt_name: Subject alternative name (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
-            apcfg_auto_cert_auto_regen_days: Number of days to wait before expiry of an updated local certificate is requested (0 = disabled) (default = 30). (optional)
-            apcfg_auto_cert_est_https_ca: PEM format https CA Certificate. (optional)
+            apcfg_auto_cert_est_ca_id: CA identifier of the CA server for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_http_username: HTTP Authentication username for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_http_password: HTTP Authentication password for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_subject: Subject e.g.
+            "CN=User,DC=example,DC=COM" (default = CN=FortiAP,DC=local,DC=COM)
+            (optional)
+            apcfg_auto_cert_est_subject_alt_name: Subject alternative name
+            (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
+            apcfg_auto_cert_auto_regen_days: Number of days to wait before
+            expiry of an updated local certificate is requested (0 = disabled)
+            (default = 30). (optional)
+            apcfg_auto_cert_est_https_ca: PEM format https CA Certificate.
+            (optional)
             apcfg_auto_cert_scep_keytype: Key type (default = rsa) (optional)
-            apcfg_auto_cert_scep_keysize: Key size: 1024, 1536, 2048, 4096 (default 2048). (optional)
-            apcfg_auto_cert_scep_ec_name: Elliptic curve name: secp256r1, secp384r1 and secp521r1. (default secp256r1). (optional)
-            apcfg_auto_cert_scep_sub_fully_dn: Full DN of the subject (e.g C=US,ST=CA,L=Sunnyvale,O=Fortinet,OU=Dep1,emailAddress=test@example.com). There should be no space in between the attributes. Supported DN attributes (case-sensitive) are:C,ST,L,O,OU,emailAddress. The CN defaults to the device’s SN and cannot be changed. (optional)
+            apcfg_auto_cert_scep_keysize: Key size: 1024, 1536, 2048, 4096
+            (default 2048). (optional)
+            apcfg_auto_cert_scep_ec_name: Elliptic curve name: secp256r1,
+            secp384r1 and secp521r1. (default secp256r1). (optional)
+            apcfg_auto_cert_scep_sub_fully_dn: Full DN of the subject (e.g
+            C=US,ST=CA,L=Sunnyvale,O=Fortinet,OU=Dep1,emailAddress=test@example.com).
+            There should be no space in between the attributes. Supported DN
+            attributes (case-sensitive) are:C,ST,L,O,OU,emailAddress. The CN
+            defaults to the device’s SN and cannot be changed. (optional)
             apcfg_auto_cert_scep_url: SCEP server URL. (optional)
-            apcfg_auto_cert_scep_password: SCEP server challenge password for auto-regeneration. (optional)
-            apcfg_auto_cert_scep_ca_id: CA identifier of the CA server for signing via SCEP. (optional)
-            apcfg_auto_cert_scep_subject_alt_name: Subject alternative name (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
-            apcfg_auto_cert_scep_https_ca: PEM format https CA Certificate. (optional)
-            unii_4_5ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). (optional)
-            admin_auth_tacacs_plus_: Remote authentication server for admin user. (optional)
-            admin_restrict_local: Enable/disable local admin authentication restriction when remote authenticator is up and running (default = disable). (optional)
+            apcfg_auto_cert_scep_password: SCEP server challenge password for
+            auto-regeneration. (optional)
+            apcfg_auto_cert_scep_ca_id: CA identifier of the CA server for
+            signing via SCEP. (optional)
+            apcfg_auto_cert_scep_subject_alt_name: Subject alternative name
+            (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
+            apcfg_auto_cert_scep_https_ca: PEM format https CA Certificate.
+            (optional)
+            unii_4_5ghz_band: Enable/disable UNII-4 5Ghz band channels (default
+            = disable). (optional)
+            admin_auth_tacacs_plus_: Remote authentication server for admin
+            user. (optional)
+            admin_restrict_local: Enable/disable local admin authentication
+            restriction when remote authenticator is up and running (default =
+            disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -319,7 +405,8 @@ class WtpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -415,9 +502,9 @@ class WtpProfile:
         if usb_port is not None:
             data_payload["usb-port"] = usb_port
         if frequency_handoff is not None:
-            data_payload["frequency-handoff"] = frequency_handoff
+            data_payload["frequency-handof"] = frequency_handoff
         if ap_handoff is not None:
-            data_payload["ap-handoff"] = ap_handoff
+            data_payload["ap-handof"] = ap_handoff
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:
@@ -551,8 +638,10 @@ class WtpProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -560,7 +649,8 @@ class WtpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -709,89 +799,165 @@ class WtpProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: WTP (or FortiAP or AP) profile name. (optional)
             comment: Comment. (optional)
             platform: WTP, FortiAP, or AP platform. (optional)
-            control_message_offload: Enable/disable CAPWAP control message data channel offload. (optional)
+            control_message_offload: Enable/disable CAPWAP control message data
+            channel offload. (optional)
             bonjour_profile: Bonjour profile name. (optional)
             apcfg_profile: AP local configuration profile name. (optional)
-            apcfg_mesh: Enable/disable AP local mesh configuration (default = disable). (optional)
+            apcfg_mesh: Enable/disable AP local mesh configuration (default =
+            disable). (optional)
             apcfg_mesh_ap_type: Mesh AP Type (default = ethernet). (optional)
             apcfg_mesh_ssid: Mesh SSID (default = none). (optional)
-            apcfg_mesh_eth_bridge: Enable/disable mesh ethernet bridge (default = disable). (optional)
+            apcfg_mesh_eth_bridge: Enable/disable mesh ethernet bridge (default
+            = disable). (optional)
             ble_profile: Bluetooth Low Energy profile name. (optional)
             lw_profile: LoRaWAN profile name. (optional)
-            syslog_profile: System log server configuration profile name. (optional)
-            wan_port_mode: Enable/disable using a WAN port as a LAN port. (optional)
+            syslog_profile: System log server configuration profile name.
+            (optional)
+            wan_port_mode: Enable/disable using a WAN port as a LAN port.
+            (optional)
             lan: WTP LAN port mapping. (optional)
-            energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. (optional)
-            led_state: Enable/disable use of LEDs on WTP (default = enable). (optional)
-            led_schedules: Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            dtls_policy: WTP data channel DTLS policy (default = clear-text). (optional)
-            dtls_in_kernel: Enable/disable data channel DTLS in kernel. (optional)
-            max_clients: Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation). (optional)
-            handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25). (optional)
+            energy_efficient_ethernet: Enable/disable use of energy efficient
+            Ethernet on WTP. (optional)
+            led_state: Enable/disable use of LEDs on WTP (default = enable).
+            (optional)
+            led_schedules: Recurring firewall schedules for illuminating LEDs
+            on the FortiAP. If led-state is enabled, LEDs will be visible when
+            at least one of the schedules is valid. Separate multiple schedule
+            names with a space. (optional)
+            dtls_policy: WTP data channel DTLS policy (default = clear-text).
+            (optional)
+            dtls_in_kernel: Enable/disable data channel DTLS in kernel.
+            (optional)
+            max_clients: Maximum number of stations (STAs) supported by the WTP
+            (default = 0, meaning no client limitation). (optional)
+            handoff_rssi: Minimum received signal strength indicator (RSSI)
+            value for handoff (20 - 30, default = 25). (optional)
             handoff_sta_thresh: Threshold value for AP handoff. (optional)
-            handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = enable). (optional)
-            deny_mac_list: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. (optional)
-            ap_country: Country in which this WTP, FortiAP, or AP will operate (default = NA, automatically use the country configured for the current VDOM). (optional)
-            ip_fragment_preventing: Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). (optional)
-            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0). (optional)
-            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. (optional)
-            split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). (optional)
+            handoff_roaming: Enable/disable client load balancing during
+            roaming to avoid roaming delay (default = enable). (optional)
+            deny_mac_list: List of MAC addresses that are denied access to this
+            WTP, FortiAP, or AP. (optional)
+            ap_country: Country in which this WTP, FortiAP, or AP will operate
+            (default = NA, automatically use the country configured for the
+            current VDOM). (optional)
+            ip_fragment_preventing: Method(s) by which IP fragmentation is
+            prevented for control and data packets through CAPWAP tunnel
+            (default = tcp-mss-adjust). (optional)
+            tun_mtu_uplink: The maximum transmission unit (MTU) of uplink
+            CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of
+            FortiAP; default = 0). (optional)
+            tun_mtu_downlink: The MTU of downlink CAPWAP tunnel (576 - 1500
+            bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+            (optional)
+            split_tunneling_acl_path: Split tunneling ACL path is local/tunnel.
+            (optional)
+            split_tunneling_acl_local_ap_subnet: Enable/disable automatically
+            adding local subnetwork of FortiAP to split-tunneling ACL (default
+            = disable). (optional)
             split_tunneling_acl: Split tunneling ACL filter list. (optional)
-            allowaccess: Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. (optional)
-            login_passwd_change: Change or reset the administrator password of a managed WTP, FortiAP or AP (yes, default, or no, default = no). (optional)
-            login_passwd: Set the managed WTP, FortiAP, or AP's administrator password. (optional)
-            lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the WTP, FortiAP, or AP (default = enable). (optional)
+            allowaccess: Control management access to the managed WTP, FortiAP,
+            or AP. Separate entries with a space. (optional)
+            login_passwd_change: Change or reset the administrator password of
+            a managed WTP, FortiAP or AP (yes, default, or no, default = no).
+            (optional)
+            login_passwd: Set the managed WTP, FortiAP, or AP's administrator
+            password. (optional)
+            lldp: Enable/disable Link Layer Discovery Protocol (LLDP) for the
+            WTP, FortiAP, or AP (default = enable). (optional)
             poe_mode: Set the WTP, FortiAP, or AP's PoE mode. (optional)
-            usb_port: Enable/disable USB port of the WTP (default = enable). (optional)
-            frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). (optional)
-            ap_handoff: Enable/disable AP handoff of clients to other APs (default = disable). (optional)
-            default_mesh_root: Configure default mesh root SSID when it is not included by radio's SSID configuration. (optional)
+            usb_port: Enable/disable USB port of the WTP (default = enable).
+            (optional)
+            frequency_handoff: Enable/disable frequency handoff of clients to
+            other channels (default = disable). (optional)
+            ap_handoff: Enable/disable AP handoff of clients to other APs
+            (default = disable). (optional)
+            default_mesh_root: Configure default mesh root SSID when it is not
+            included by radio's SSID configuration. (optional)
             radio_1: Configuration options for radio 1. (optional)
             radio_2: Configuration options for radio 2. (optional)
             radio_3: Configuration options for radio 3. (optional)
             radio_4: Configuration options for radio 4. (optional)
             lbs: Set various location based service (LBS) options. (optional)
-            ext_info_enable: Enable/disable station/VAP/radio extension information. (optional)
-            indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). (optional)
+            ext_info_enable: Enable/disable station/VAP/radio extension
+            information. (optional)
+            indoor_outdoor_deployment: Set to allow indoor/outdoor-only
+            channels under regulatory rules (default = platform-determined).
+            (optional)
             esl_ses_dongle: ESL SES-imagotag dongle configuration. (optional)
-            console_login: Enable/disable FortiAP console login access (default = enable). (optional)
-            wan_port_auth: Set WAN port authentication mode (default = none). (optional)
-            wan_port_auth_usrname: Set WAN port 802.1x supplicant user name. (optional)
-            wan_port_auth_password: Set WAN port 802.1x supplicant password. (optional)
-            wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). (optional)
-            wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant MACsec policy (default = disable). (optional)
-            apcfg_auto_cert: Enable/disable AP local auto cert configuration (default = disable). (optional)
-            apcfg_auto_cert_enroll_protocol: Certificate enrollment protocol (default = none) (optional)
-            apcfg_auto_cert_crypto_algo: Cryptography algorithm: rsa-1024, rsa-1536, rsa-2048, rsa-4096, ec-secp256r1, ec-secp384r1, ec-secp521r1 (default = ec-secp256r1) (optional)
+            console_login: Enable/disable FortiAP console login access (default
+            = enable). (optional)
+            wan_port_auth: Set WAN port authentication mode (default = none).
+            (optional)
+            wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
+            (optional)
+            wan_port_auth_password: Set WAN port 802.1x supplicant password.
+            (optional)
+            wan_port_auth_methods: WAN port 802.1x supplicant EAP methods
+            (default = all). (optional)
+            wan_port_auth_macsec: Enable/disable WAN port 802.1x supplicant
+            MACsec policy (default = disable). (optional)
+            apcfg_auto_cert: Enable/disable AP local auto cert configuration
+            (default = disable). (optional)
+            apcfg_auto_cert_enroll_protocol: Certificate enrollment protocol
+            (default = none) (optional)
+            apcfg_auto_cert_crypto_algo: Cryptography algorithm: rsa-1024,
+            rsa-1536, rsa-2048, rsa-4096, ec-secp256r1, ec-secp384r1,
+            ec-secp521r1 (default = ec-secp256r1) (optional)
             apcfg_auto_cert_est_server: Address and port for EST server (e.g. https://example.com:1234). (optional)
-            apcfg_auto_cert_est_ca_id: CA identifier of the CA server for signing via EST. (optional)
-            apcfg_auto_cert_est_http_username: HTTP Authentication username for signing via EST. (optional)
-            apcfg_auto_cert_est_http_password: HTTP Authentication password for signing via EST. (optional)
-            apcfg_auto_cert_est_subject: Subject e.g. "CN=User,DC=example,DC=COM" (default = CN=FortiAP,DC=local,DC=COM) (optional)
-            apcfg_auto_cert_est_subject_alt_name: Subject alternative name (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
-            apcfg_auto_cert_auto_regen_days: Number of days to wait before expiry of an updated local certificate is requested (0 = disabled) (default = 30). (optional)
-            apcfg_auto_cert_est_https_ca: PEM format https CA Certificate. (optional)
+            apcfg_auto_cert_est_ca_id: CA identifier of the CA server for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_http_username: HTTP Authentication username for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_http_password: HTTP Authentication password for
+            signing via EST. (optional)
+            apcfg_auto_cert_est_subject: Subject e.g.
+            "CN=User,DC=example,DC=COM" (default = CN=FortiAP,DC=local,DC=COM)
+            (optional)
+            apcfg_auto_cert_est_subject_alt_name: Subject alternative name
+            (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
+            apcfg_auto_cert_auto_regen_days: Number of days to wait before
+            expiry of an updated local certificate is requested (0 = disabled)
+            (default = 30). (optional)
+            apcfg_auto_cert_est_https_ca: PEM format https CA Certificate.
+            (optional)
             apcfg_auto_cert_scep_keytype: Key type (default = rsa) (optional)
-            apcfg_auto_cert_scep_keysize: Key size: 1024, 1536, 2048, 4096 (default 2048). (optional)
-            apcfg_auto_cert_scep_ec_name: Elliptic curve name: secp256r1, secp384r1 and secp521r1. (default secp256r1). (optional)
-            apcfg_auto_cert_scep_sub_fully_dn: Full DN of the subject (e.g C=US,ST=CA,L=Sunnyvale,O=Fortinet,OU=Dep1,emailAddress=test@example.com). There should be no space in between the attributes. Supported DN attributes (case-sensitive) are:C,ST,L,O,OU,emailAddress. The CN defaults to the device’s SN and cannot be changed. (optional)
+            apcfg_auto_cert_scep_keysize: Key size: 1024, 1536, 2048, 4096
+            (default 2048). (optional)
+            apcfg_auto_cert_scep_ec_name: Elliptic curve name: secp256r1,
+            secp384r1 and secp521r1. (default secp256r1). (optional)
+            apcfg_auto_cert_scep_sub_fully_dn: Full DN of the subject (e.g
+            C=US,ST=CA,L=Sunnyvale,O=Fortinet,OU=Dep1,emailAddress=test@example.com).
+            There should be no space in between the attributes. Supported DN
+            attributes (case-sensitive) are:C,ST,L,O,OU,emailAddress. The CN
+            defaults to the device’s SN and cannot be changed. (optional)
             apcfg_auto_cert_scep_url: SCEP server URL. (optional)
-            apcfg_auto_cert_scep_password: SCEP server challenge password for auto-regeneration. (optional)
-            apcfg_auto_cert_scep_ca_id: CA identifier of the CA server for signing via SCEP. (optional)
-            apcfg_auto_cert_scep_subject_alt_name: Subject alternative name (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
-            apcfg_auto_cert_scep_https_ca: PEM format https CA Certificate. (optional)
-            unii_4_5ghz_band: Enable/disable UNII-4 5Ghz band channels (default = disable). (optional)
-            admin_auth_tacacs_plus_: Remote authentication server for admin user. (optional)
-            admin_restrict_local: Enable/disable local admin authentication restriction when remote authenticator is up and running (default = disable). (optional)
+            apcfg_auto_cert_scep_password: SCEP server challenge password for
+            auto-regeneration. (optional)
+            apcfg_auto_cert_scep_ca_id: CA identifier of the CA server for
+            signing via SCEP. (optional)
+            apcfg_auto_cert_scep_subject_alt_name: Subject alternative name
+            (optional, e.g. "DNS:dns1.com,IP:192.168.1.99") (optional)
+            apcfg_auto_cert_scep_https_ca: PEM format https CA Certificate.
+            (optional)
+            unii_4_5ghz_band: Enable/disable UNII-4 5Ghz band channels (default
+            = disable). (optional)
+            admin_auth_tacacs_plus_: Remote authentication server for admin
+            user. (optional)
+            admin_restrict_local: Enable/disable local admin authentication
+            restriction when remote authenticator is up and running (default =
+            disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -799,7 +965,8 @@ class WtpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -889,9 +1056,9 @@ class WtpProfile:
         if usb_port is not None:
             data_payload["usb-port"] = usb_port
         if frequency_handoff is not None:
-            data_payload["frequency-handoff"] = frequency_handoff
+            data_payload["frequency-handof"] = frequency_handoff
         if ap_handoff is not None:
-            data_payload["ap-handoff"] = ap_handoff
+            data_payload["ap-handof"] = ap_handoff
         if default_mesh_root is not None:
             data_payload["default-mesh-root"] = default_mesh_root
         if radio_1 is not None:

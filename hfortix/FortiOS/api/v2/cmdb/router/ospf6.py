@@ -88,11 +88,15 @@ class Ospf6:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Ospf6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -148,31 +153,42 @@ class Ospf6:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             abr_type: Area border router type. (optional)
-            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits per second. (optional)
-            default_information_originate: Enable/disable generation of default route. (optional)
+            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits
+            per second. (optional)
+            default_information_originate: Enable/disable generation of default
+            route. (optional)
             log_neighbour_changes: Log OSPFv3 neighbor changes. (optional)
             default_information_metric: Default information metric. (optional)
-            default_information_metric_type: Default information metric type. (optional)
-            default_information_route_map: Default information route map. (optional)
+            default_information_metric_type: Default information metric type.
+            (optional)
+            default_information_route_map: Default information route map.
+            (optional)
             default_metric: Default metric of redistribute routes. (optional)
             router_id: A.B.C.D, in IPv4 address format. (optional)
             spf_timers: SPF calculation frequency. (optional)
-            bfd: Enable/disable Bidirectional Forwarding Detection (BFD). (optional)
+            bfd: Enable/disable Bidirectional Forwarding Detection (BFD).
+            (optional)
             restart_mode: OSPFv3 restart mode (graceful or none). (optional)
             restart_period: Graceful restart period in seconds. (optional)
-            restart_on_topology_change: Enable/disable continuing graceful restart upon topology change. (optional)
+            restart_on_topology_change: Enable/disable continuing graceful
+            restart upon topology change. (optional)
             area: OSPF6 area configuration. (optional)
             ospf6_interface: OSPF6 interface configuration. (optional)
             redistribute: Redistribute configuration. (optional)
             passive_interface: Passive interface configuration. (optional)
             summary_address: IPv6 address summary configuration. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -180,7 +196,8 @@ class Ospf6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

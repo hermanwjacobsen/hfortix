@@ -113,7 +113,7 @@ def validate_certificate_setting_put(
     if "proxy" in payload:
         value = payload.get("proxy")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"proxy cannot exceed 127 characters")
+            return (False, "proxy cannot exceed 127 characters")
 
     # Validate proxy-port if present
     if "proxy-port" in payload:
@@ -122,7 +122,7 @@ def validate_certificate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"proxy-port must be between 1 and 65535")
+                    return (False, "proxy-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"proxy-port must be numeric, got: {value}")
 
@@ -130,19 +130,19 @@ def validate_certificate_setting_put(
     if "proxy-username" in payload:
         value = payload.get("proxy-username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"proxy-username cannot exceed 63 characters")
+            return (False, "proxy-username cannot exceed 63 characters")
 
     # Validate source-ip if present
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate ocsp-default-server if present
     if "ocsp-default-server" in payload:
         value = payload.get("ocsp-default-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ocsp-default-server cannot exceed 35 characters")
+            return (False, "ocsp-default-server cannot exceed 35 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -157,7 +157,7 @@ def validate_certificate_setting_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -166,7 +166,7 @@ def validate_certificate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -269,7 +269,7 @@ def validate_certificate_setting_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"cert-expire-warning must be between 0 and 100",
+                        "cert-expire-warning must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -281,60 +281,60 @@ def validate_certificate_setting_put(
     if "certname-rsa1024" in payload:
         value = payload.get("certname-rsa1024")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-rsa1024 cannot exceed 35 characters")
+            return (False, "certname-rsa1024 cannot exceed 35 characters")
 
     # Validate certname-rsa2048 if present
     if "certname-rsa2048" in payload:
         value = payload.get("certname-rsa2048")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-rsa2048 cannot exceed 35 characters")
+            return (False, "certname-rsa2048 cannot exceed 35 characters")
 
     # Validate certname-rsa4096 if present
     if "certname-rsa4096" in payload:
         value = payload.get("certname-rsa4096")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-rsa4096 cannot exceed 35 characters")
+            return (False, "certname-rsa4096 cannot exceed 35 characters")
 
     # Validate certname-dsa1024 if present
     if "certname-dsa1024" in payload:
         value = payload.get("certname-dsa1024")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-dsa1024 cannot exceed 35 characters")
+            return (False, "certname-dsa1024 cannot exceed 35 characters")
 
     # Validate certname-dsa2048 if present
     if "certname-dsa2048" in payload:
         value = payload.get("certname-dsa2048")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-dsa2048 cannot exceed 35 characters")
+            return (False, "certname-dsa2048 cannot exceed 35 characters")
 
     # Validate certname-ecdsa256 if present
     if "certname-ecdsa256" in payload:
         value = payload.get("certname-ecdsa256")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-ecdsa256 cannot exceed 35 characters")
+            return (False, "certname-ecdsa256 cannot exceed 35 characters")
 
     # Validate certname-ecdsa384 if present
     if "certname-ecdsa384" in payload:
         value = payload.get("certname-ecdsa384")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-ecdsa384 cannot exceed 35 characters")
+            return (False, "certname-ecdsa384 cannot exceed 35 characters")
 
     # Validate certname-ecdsa521 if present
     if "certname-ecdsa521" in payload:
         value = payload.get("certname-ecdsa521")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-ecdsa521 cannot exceed 35 characters")
+            return (False, "certname-ecdsa521 cannot exceed 35 characters")
 
     # Validate certname-ed25519 if present
     if "certname-ed25519" in payload:
         value = payload.get("certname-ed25519")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-ed25519 cannot exceed 35 characters")
+            return (False, "certname-ed25519 cannot exceed 35 characters")
 
     # Validate certname-ed448 if present
     if "certname-ed448" in payload:
         value = payload.get("certname-ed448")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certname-ed448 cannot exceed 35 characters")
+            return (False, "certname-ed448 cannot exceed 35 characters")
 
     return (True, None)

@@ -88,11 +88,15 @@ class Multicast:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Multicast:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -135,18 +140,26 @@ class Multicast:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            route_threshold: Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            route_threshold: Generate warnings when the number of multicast
+            routes exceeds this number, must not be greater than route-limit.
+            (optional)
             route_limit: Maximum number of multicast routes. (optional)
             multicast_routing: Enable/disable IP multicast routing. (optional)
             pim_sm_global: PIM sparse-mode global settings. (optional)
-            pim_sm_global_vrf: per-VRF PIM sparse-mode global settings. (optional)
+            pim_sm_global_vrf: per-VRF PIM sparse-mode global settings.
+            (optional)
             interface: PIM interfaces. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -154,7 +167,8 @@ class Multicast:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -174,7 +188,7 @@ class Multicast:
         if pim_sm_global is not None:
             data_payload["pim-sm-global"] = pim_sm_global
         if pim_sm_global_vrf is not None:
-            data_payload["pim-sm-global-vrf"] = pim_sm_global_vrf
+            data_payload["pim-sm-global-vr"] = pim_sm_global_vrf
         if interface is not None:
             data_payload["interface"] = interface
         data_payload.update(kwargs)

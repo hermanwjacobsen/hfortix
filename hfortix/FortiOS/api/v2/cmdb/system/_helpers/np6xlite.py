@@ -103,7 +103,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate fastpath if present
     if "fastpath" in payload:
@@ -132,7 +132,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"session-timeout-interval must be between 0 and 1000",
+                        "session-timeout-interval must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -200,7 +200,7 @@ def validate_np6xlite_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate fastpath if present
     if "fastpath" in payload:
@@ -229,7 +229,7 @@ def validate_np6xlite_put(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"session-timeout-interval must be between 0 and 1000",
+                        "session-timeout-interval must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (

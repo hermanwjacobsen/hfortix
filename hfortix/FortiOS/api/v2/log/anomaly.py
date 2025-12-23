@@ -71,7 +71,8 @@ class Anomaly:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='type==scan')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'type==scan'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'type==scan'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -80,7 +81,8 @@ class Anomaly:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 

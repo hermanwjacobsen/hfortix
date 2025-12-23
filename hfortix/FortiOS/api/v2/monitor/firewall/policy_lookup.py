@@ -77,7 +77,8 @@ class PolicyLookup:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Performs a policy lookup by creating a dummy packet and asking the kernel which policy would be hit.
+        Performs a policy lookup by creating a dummy packet and asking the
+        kernel which policy would be hit.
 
         Args:
             srcintf: Source interface. (required)
@@ -90,11 +91,20 @@ class PolicyLookup:
             icmptype: ICMP type. (optional)
             icmpcode: ICMP code. (optional)
             policy_type: Policy type. [*policy | proxy] (optional)
-            auth_type: Authentication type. [user | group | saml | ldap] Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
-            user_group: Name of local user. Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
-            server_name: Remote user/group server name. Note: this only works for models that can guarantee WAD workers availability, i.e. those that do not disable proxy features globally. (optional)
-            user_db: Authentication server to contain user information. (optional)
-            group_attr_type: Remote user group attribute type. [*name | id] (optional)
+            auth_type: Authentication type. [user | group | saml | ldap] Note:
+            this only works for models that can guarantee WAD workers
+            availability, i.e. those that do not disable proxy features
+            globally. (optional)
+            user_group: Name of local user. Note: this only works for models
+            that can guarantee WAD workers availability, i.e. those that do not
+            disable proxy features globally. (optional)
+            server_name: Remote user/group server name. Note: this only works
+            for models that can guarantee WAD workers availability, i.e. those
+            that do not disable proxy features globally. (optional)
+            user_db: Authentication server to contain user information.
+            (optional)
+            group_attr_type: Remote user group attribute type. [*name | id]
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -103,10 +113,11 @@ class PolicyLookup:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.policy_lookup.get(srcintf='value', sourceip='value', protocol='value', dest='value')
+            >>> fgt.api.monitor.firewall.policy_lookup.get(srcintf='value',
+            sourceip='value', protocol='value', dest='value')
         """
         params = payload_dict.copy() if payload_dict else {}
-        params["srcintf"] = srcintf
+        params["srcint"] = srcintf
         params["sourceip"] = sourceip
         params["protocol"] = protocol
         params["dest"] = dest

@@ -67,7 +67,8 @@ class UnassociatedDevices:
         Access Group: wifi.
 
                 Args:
-                    with_triangulation: Enable to include regions of FortiAP detecting the device. (optional)
+                    with_triangulation: Enable to include regions of FortiAP
+                    detecting the device. (optional)
                     payload_dict: Optional dictionary of parameters
                     raw_json: Return raw JSON response if True
                     **kwargs: Additional parameters as keyword arguments

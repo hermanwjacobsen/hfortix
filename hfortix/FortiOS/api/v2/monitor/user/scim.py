@@ -66,7 +66,8 @@ class Groups:
         Get SCIM client group-names.
 
         Args:
-            client_name: SCIM client name to be used to retrieve group names. (required)
+            client_name: SCIM client name to be used to retrieve group names.
+            (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -108,9 +109,12 @@ class Users:
         Get SCIM client users.
 
         Args:
-            client_name: SCIM client name to be used to retrieve group names. (required)
-            group_name: SCIM client group name to be used to retrieve users, if left empty, will retrieve users from all groups. (optional)
-            user_name: SCIM client user name to retrieve, if left empty, will retrieve all users from group. (optional)
+            client_name: SCIM client name to be used to retrieve group names.
+            (required)
+            group_name: SCIM client group name to be used to retrieve users, if
+            left empty, will retrieve users from all groups. (optional)
+            user_name: SCIM client user name to retrieve, if left empty, will
+            retrieve all users from group. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

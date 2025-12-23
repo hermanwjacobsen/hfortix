@@ -88,11 +88,15 @@ class Setting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -163,46 +168,76 @@ class Setting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            username: Name that appears in the From: field of alert emails (max. 63 characters). (optional)
-            mailto1: Email address to send alert email to (usually a system administrator) (max. 63 characters). (optional)
-            mailto2: Optional second email address to send alert email to (max. 63 characters). (optional)
-            mailto3: Optional third email address to send alert email to (max. 63 characters). (optional)
-            filter_mode: How to filter log messages that are sent to alert emails. (optional)
-            email_interval: Interval between sending alert emails (1 - 99999 min, default = 5). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            username: Name that appears in the From: field of alert emails
+            (max. 63 characters). (optional)
+            mailto1: Email address to send alert email to (usually a system
+            administrator) (max. 63 characters). (optional)
+            mailto2: Optional second email address to send alert email to (max.
+            63 characters). (optional)
+            mailto3: Optional third email address to send alert email to (max.
+            63 characters). (optional)
+            filter_mode: How to filter log messages that are sent to alert
+            emails. (optional)
+            email_interval: Interval between sending alert emails (1 - 99999
+            min, default = 5). (optional)
             IPS_logs: Enable/disable IPS logs in alert email. (optional)
-            firewall_authentication_failure_logs: Enable/disable firewall authentication failure logs in alert email. (optional)
+            firewall_authentication_failure_logs: Enable/disable firewall
+            authentication failure logs in alert email. (optional)
             HA_logs: Enable/disable HA logs in alert email. (optional)
-            IPsec_errors_logs: Enable/disable IPsec error logs in alert email. (optional)
-            FDS_update_logs: Enable/disable FortiGuard update logs in alert email. (optional)
-            PPP_errors_logs: Enable/disable PPP error logs in alert email. (optional)
-            antivirus_logs: Enable/disable antivirus logs in alert email. (optional)
-            webfilter_logs: Enable/disable web filter logs in alert email. (optional)
-            configuration_changes_logs: Enable/disable configuration change logs in alert email. (optional)
-            violation_traffic_logs: Enable/disable violation traffic logs in alert email. (optional)
-            admin_login_logs: Enable/disable administrator login/logout logs in alert email. (optional)
-            FDS_license_expiring_warning: Enable/disable FortiGuard license expiration warnings in alert email. (optional)
-            log_disk_usage_warning: Enable/disable disk usage warnings in alert email. (optional)
-            fortiguard_log_quota_warning: Enable/disable FortiCloud log quota warnings in alert email. (optional)
-            amc_interface_bypass_mode: Enable/disable Fortinet Advanced Mezzanine Card (AMC) interface bypass mode logs in alert email. (optional)
-            FIPS_CC_errors: Enable/disable FIPS and Common Criteria error logs in alert email. (optional)
-            FSSO_disconnect_logs: Enable/disable logging of FSSO collector agent disconnect. (optional)
+            IPsec_errors_logs: Enable/disable IPsec error logs in alert email.
+            (optional)
+            FDS_update_logs: Enable/disable FortiGuard update logs in alert
+            email. (optional)
+            PPP_errors_logs: Enable/disable PPP error logs in alert email.
+            (optional)
+            antivirus_logs: Enable/disable antivirus logs in alert email.
+            (optional)
+            webfilter_logs: Enable/disable web filter logs in alert email.
+            (optional)
+            configuration_changes_logs: Enable/disable configuration change
+            logs in alert email. (optional)
+            violation_traffic_logs: Enable/disable violation traffic logs in
+            alert email. (optional)
+            admin_login_logs: Enable/disable administrator login/logout logs in
+            alert email. (optional)
+            FDS_license_expiring_warning: Enable/disable FortiGuard license
+            expiration warnings in alert email. (optional)
+            log_disk_usage_warning: Enable/disable disk usage warnings in alert
+            email. (optional)
+            fortiguard_log_quota_warning: Enable/disable FortiCloud log quota
+            warnings in alert email. (optional)
+            amc_interface_bypass_mode: Enable/disable Fortinet Advanced
+            Mezzanine Card (AMC) interface bypass mode logs in alert email.
+            (optional)
+            FIPS_CC_errors: Enable/disable FIPS and Common Criteria error logs
+            in alert email. (optional)
+            FSSO_disconnect_logs: Enable/disable logging of FSSO collector
+            agent disconnect. (optional)
             ssh_logs: Enable/disable SSH logs in alert email. (optional)
-            local_disk_usage: Disk usage percentage at which to send alert email (1 - 99 percent, default = 75). (optional)
+            local_disk_usage: Disk usage percentage at which to send alert
+            email (1 - 99 percent, default = 75). (optional)
             emergency_interval: Emergency alert interval in minutes. (optional)
             alert_interval: Alert alert interval in minutes. (optional)
             critical_interval: Critical alert interval in minutes. (optional)
             error_interval: Error alert interval in minutes. (optional)
             warning_interval: Warning alert interval in minutes. (optional)
-            notification_interval: Notification alert interval in minutes. (optional)
-            information_interval: Information alert interval in minutes. (optional)
+            notification_interval: Notification alert interval in minutes.
+            (optional)
+            information_interval: Information alert interval in minutes.
+            (optional)
             debug_interval: Debug alert interval in minutes. (optional)
             severity: Lowest severity level to log. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -210,7 +245,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

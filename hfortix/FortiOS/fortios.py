@@ -858,7 +858,7 @@ class FortiOS:
             raise RuntimeError(
                 "Cannot use .close() in async mode. Use 'await fgt.aclose()' or 'async with' instead."  # noqa: E501
             )
-        self._client.close()
+        self._client.close()  # type: ignore[func-returns-value]
 
     async def aclose(self) -> None:
         """
@@ -904,7 +904,7 @@ class FortiOS:
             )
         return self
 
-    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
+    def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         """
         Context manager exit - automatically closes session (sync mode only)
         """
@@ -913,7 +913,6 @@ class FortiOS:
                 "Cannot use 'with' statement in async mode. Use 'async with' instead."  # noqa: E501
             )
         self.close()
-        return False
 
     async def __aenter__(self) -> "FortiOS":
         """

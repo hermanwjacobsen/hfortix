@@ -65,7 +65,8 @@ class ArchiveResource:
 
         Args:
             mkey: Archive identifier
-            payload_dict: Dictionary containing all parameters (alternative to individual params)
+            payload_dict: Dictionary containing all parameters (alternative to
+            individual params)
             raw_json: Return raw JSON response
             **kwargs: Additional parameters
 
@@ -77,7 +78,8 @@ class ArchiveResource:
             result = fgt.api.log.disk.ips.archive.get(mkey=123)
 
             # Using payload_dict
-            result = fgt.api.log.disk.ips.archive.get(payload_dict={'mkey': 123})
+            result = fgt.api.log.disk.ips.archive.get(payload_dict={'mkey':
+            123})
         """
         endpoint = f"{self._storage}/{self._log_type}/archive"
 
@@ -172,21 +174,28 @@ class RawResource:
             session_id: Session ID to continue getting data for that request
             serial_no: Retrieve log from the specified device
             is_ha_member: Is the specified device an HA member
-            filter: Filtering key/value pairs (supports operators: ==, !=, =@, !@, <=, <, >=, >)
-            keep_session_alive: Keep the log session alive (must be manually aborted)
-            payload_dict: Dictionary containing all parameters (alternative to individual params)
-            raw_json: If True, return the raw httpx Response object instead of text
+            filter: Filtering key/value pairs (supports operators: ==, !=, =@,
+            !@, <=, <, >=, >)
+            keep_session_alive: Keep the log session alive (must be manually
+            aborted)
+            payload_dict: Dictionary containing all parameters (alternative to
+            individual params)
+            raw_json: If True, return the raw httpx Response object instead of
+            text
             **kwargs: Additional parameters
 
         Returns:
-            Plain text log data (FortiOS log format) or raw Response if raw_json=True
+            Plain text log data (FortiOS log format) or raw Response if
+            raw_json=True
 
         Example:
             # Using individual parameters
-            logs = fgt.api.log.disk.virus.raw.get(rows=100, filter="srcip==192.168.1.1")
+            logs = fgt.api.log.disk.virus.raw.get(rows=100,
+            filter="srcip==192.168.1.1")
 
             # Using payload_dict
-            logs = fgt.api.log.disk.virus.raw.get(payload_dict={'rows': 100, 'filter': 'srcip==192.168.1.1'})
+            logs = fgt.api.log.disk.virus.raw.get(payload_dict={'rows': 100,
+            'filter': 'srcip==192.168.1.1'})
 
             # Get raw Response object
             response = fgt.api.log.disk.virus.raw.get(rows=10, raw_json=True)
@@ -260,9 +269,11 @@ class LogResource:
             session_id: Session ID to continue getting data for that request
             serial_no: Retrieve log from the specified device
             is_ha_member: Is the specified device an HA member
-            filter: Filtering key/value pairs (supports operators: ==, !=, =@, !@, <=, <, >=, >)
+            filter: Filtering key/value pairs (supports operators: ==, !=, =@,
+            !@, <=, <, >=, >)
             extra: Extra data flags (e.g., 'reverse_lookup', 'country_id')
-            payload_dict: Dictionary containing all parameters (alternative to individual params)
+            payload_dict: Dictionary containing all parameters (alternative to
+            individual params)
             raw_json: Return raw JSON response
             **kwargs: Additional parameters
 
@@ -274,7 +285,8 @@ class LogResource:
             logs = fgt.api.log.disk.virus.get(rows=50, extra='reverse_lookup')
 
             # Using payload_dict
-            logs = fgt.api.log.disk.virus.get(payload_dict={'rows': 50, 'extra': 'reverse_lookup'})
+            logs = fgt.api.log.disk.virus.get(payload_dict={'rows': 50,
+            'extra': 'reverse_lookup'})
         """
         endpoint = f"{self._storage}/{self._log_type}"
 

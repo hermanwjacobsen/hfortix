@@ -68,7 +68,8 @@ class CertNameAvailable:
 
         Args:
             mkey: The certificate name to be checked. (required)
-            scope: Scope of certificate name [vdom*|global]. Global scope is only accessible for global administrators (optional)
+            scope: Scope of certificate name [vdom*|global]. Global scope is
+            only accessible for global administrators (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -77,7 +78,8 @@ class CertNameAvailable:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.vpn_certificate.cert_name_available.get(mkey='value')
+            >>>
+            fgt.api.monitor.vpn_certificate.cert_name_available.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

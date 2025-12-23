@@ -94,12 +94,17 @@ class CertificateCrl:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -107,7 +112,8 @@ class CertificateCrl:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -157,11 +163,14 @@ class CertificateCrl:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             crl: Certificate Revocation List as a PEM file. (optional)
-            range: Either global or VDOM IP address range for the certificate. (optional)
+            range: Either global or VDOM IP address range for the certificate.
+            (optional)
             source: Certificate source type. (optional)
             update_vdom: VDOM for CRL update. (optional)
             ldap_server: LDAP server name for CRL auto-update. (optional)
@@ -169,12 +178,17 @@ class CertificateCrl:
             ldap_password: LDAP server user password. (optional)
             http_url: HTTP server URL for CRL auto-update. (optional)
             scep_url: SCEP server URL for CRL auto-update. (optional)
-            scep_cert: Local certificate for SCEP communication for CRL auto-update. (optional)
-            update_interval: Time in seconds before the FortiGate checks for an updated CRL. Set to 0 to update only when it expires. (optional)
-            source_ip: Source IP address for communications to a HTTP or SCEP CA server. (optional)
+            scep_cert: Local certificate for SCEP communication for CRL
+            auto-update. (optional)
+            update_interval: Time in seconds before the FortiGate checks for an
+            updated CRL. Set to 0 to update only when it expires. (optional)
+            source_ip: Source IP address for communications to a HTTP or SCEP
+            CA server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -182,7 +196,8 @@ class CertificateCrl:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

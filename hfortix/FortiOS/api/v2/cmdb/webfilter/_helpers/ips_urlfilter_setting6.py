@@ -75,7 +75,7 @@ def validate_ips_urlfilter_setting6_put(
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     # Validate distance if present
     if "distance" in payload:
@@ -84,7 +84,7 @@ def validate_ips_urlfilter_setting6_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -92,6 +92,6 @@ def validate_ips_urlfilter_setting6_put(
     if "geo-filter" in payload:
         value = payload.get("geo-filter")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"geo-filter cannot exceed 255 characters")
+            return (False, "geo-filter cannot exceed 255 characters")
 
     return (True, None)

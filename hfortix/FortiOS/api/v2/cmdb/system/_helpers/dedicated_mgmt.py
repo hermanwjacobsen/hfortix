@@ -86,7 +86,7 @@ def validate_dedicated_mgmt_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate dhcp-server if present
     if "dhcp-server" in payload:

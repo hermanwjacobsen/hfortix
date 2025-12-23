@@ -71,18 +71,26 @@ class SlaLog:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve logs of SLA probe results for the specified SD-WAN SLA or health check name.
+        Retrieve logs of SLA probe results for the specified SD-WAN SLA or
+        health check name.
 
         Args:
             sla: Filter: SLA name. (optional)
             interface: Filter: Interface name. (optional)
-            since: Filter: Only return SLA logs generated since this Unix timestamp. (optional)
-            seconds: Filter: Only return SLA logs generated in the last N seconds. (optional)
-            latest: If set, will only return the latest log, in the meantime, since, seconds, or sampling_interval will be ignored. (optional)
-            min_sample_interval: Minimum seconds between kept log samples. Returned samples may not be evenly spaced (default: 5). (optional)
-            sampling_interval: Deprecated: Use min_sample_interval instead (optional)
-            skip_vpn_child: If set, will skip all VPN child interfaces. (optional)
-            include_sla_targets_met: If set, will return SLA targets that are met. Can only be used when "latest" is set. (optional)
+            since: Filter: Only return SLA logs generated since this Unix
+            timestamp. (optional)
+            seconds: Filter: Only return SLA logs generated in the last N
+            seconds. (optional)
+            latest: If set, will only return the latest log, in the meantime,
+            since, seconds, or sampling_interval will be ignored. (optional)
+            min_sample_interval: Minimum seconds between kept log samples.
+            Returned samples may not be evenly spaced (default: 5). (optional)
+            sampling_interval: Deprecated: Use min_sample_interval instead
+            (optional)
+            skip_vpn_child: If set, will skip all VPN child interfaces.
+            (optional)
+            include_sla_targets_met: If set, will return SLA targets that are
+            met. Can only be used when "latest" is set. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

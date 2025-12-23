@@ -72,7 +72,10 @@ class Download:
             uid: Single FortiClient UID. (optional)
             user: User name of the endpoint. (optional)
             fingerprint: Avatar fingerprint. (optional)
-            default: Default avatar name ['authuser'|'unauthuser'|'authuser_72'|'unauthuser_72']. Default avatar when endpoint / device avatar is not available. If default is not set, Not found 404 is returned. (optional)
+            default: Default avatar name
+            ['authuser'|'unauthuser'|'authuser_72'|'unauthuser_72']. Default
+            avatar when endpoint / device avatar is not available. If default
+            is not set, Not found 404 is returned. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

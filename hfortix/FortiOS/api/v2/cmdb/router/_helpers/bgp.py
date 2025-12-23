@@ -108,7 +108,7 @@ def validate_bgp_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"keepalive-timer must be between 0 and 65535",
+                        "keepalive-timer must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -125,7 +125,7 @@ def validate_bgp_put(
                 if int_val < 3 or int_val > 65535:
                     return (
                         False,
-                        f"holdtime-timer must be between 3 and 65535",
+                        "holdtime-timer must be between 3 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"holdtime-timer must be numeric, got: {value}")
@@ -355,7 +355,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 4294967295:
                     return (
                         False,
-                        f"confederation-identifier must be between 1 and 4294967295",
+                        "confederation-identifier must be between 1 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -367,7 +367,7 @@ def validate_bgp_put(
     if "dampening-route-map" in payload:
         value = payload.get("dampening-route-map")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"dampening-route-map cannot exceed 35 characters")
+            return (False, "dampening-route-map cannot exceed 35 characters")
 
     # Validate dampening-reachability-half-life if present
     if "dampening-reachability-half-life" in payload:
@@ -378,7 +378,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 45:
                     return (
                         False,
-                        f"dampening-reachability-half-life must be between 1 and 45",
+                        "dampening-reachability-half-life must be between 1 and 45",
                     )
             except (ValueError, TypeError):
                 return (
@@ -395,7 +395,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 20000:
                     return (
                         False,
-                        f"dampening-reuse must be between 1 and 20000",
+                        "dampening-reuse must be between 1 and 20000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -412,7 +412,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 20000:
                     return (
                         False,
-                        f"dampening-suppress must be between 1 and 20000",
+                        "dampening-suppress must be between 1 and 20000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -429,7 +429,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"dampening-max-suppress-time must be between 1 and 255",
+                        "dampening-max-suppress-time must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -446,7 +446,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 45:
                     return (
                         False,
-                        f"dampening-unreachability-half-life must be between 1 and 45",
+                        "dampening-unreachability-half-life must be between 1 and 45",
                     )
             except (ValueError, TypeError):
                 return (
@@ -463,7 +463,7 @@ def validate_bgp_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"default-local-preference must be between 0 and 4294967295",
+                        "default-local-preference must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -478,7 +478,7 @@ def validate_bgp_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 60:
-                    return (False, f"scan-time must be between 5 and 60")
+                    return (False, "scan-time must be between 5 and 60")
             except (ValueError, TypeError):
                 return (False, f"scan-time must be numeric, got: {value}")
 
@@ -491,7 +491,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"distance-external must be between 1 and 255",
+                        "distance-external must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -508,7 +508,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"distance-internal must be between 1 and 255",
+                        "distance-internal must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -523,7 +523,7 @@ def validate_bgp_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance-local must be between 1 and 255")
+                    return (False, "distance-local must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance-local must be numeric, got: {value}")
 
@@ -554,7 +554,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"graceful-restart-time must be between 1 and 3600",
+                        "graceful-restart-time must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -571,7 +571,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"graceful-stalepath-time must be between 1 and 3600",
+                        "graceful-stalepath-time must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -588,7 +588,7 @@ def validate_bgp_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"graceful-update-delay must be between 1 and 3600",
+                        "graceful-update-delay must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -614,7 +614,7 @@ def validate_bgp_put(
                 if int_val < 2 or int_val > 255:
                     return (
                         False,
-                        f"additional-path-select must be between 2 and 255",
+                        "additional-path-select must be between 2 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -631,7 +631,7 @@ def validate_bgp_put(
                 if int_val < 2 or int_val > 255:
                     return (
                         False,
-                        f"additional-path-select6 must be between 2 and 255",
+                        "additional-path-select6 must be between 2 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -648,7 +648,7 @@ def validate_bgp_put(
                 if int_val < 2 or int_val > 255:
                     return (
                         False,
-                        f"additional-path-select-vpnv4 must be between 2 and 255",
+                        "additional-path-select-vpnv4 must be between 2 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -665,7 +665,7 @@ def validate_bgp_put(
                 if int_val < 2 or int_val > 255:
                     return (
                         False,
-                        f"additional-path-select-vpnv6 must be between 2 and 255",
+                        "additional-path-select-vpnv6 must be between 2 and 255",
                     )
             except (ValueError, TypeError):
                 return (

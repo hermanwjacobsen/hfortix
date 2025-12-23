@@ -68,9 +68,12 @@ class Fortianalyzer:
         Return FortiAnalyzer/FortiManager log status.
 
         Args:
-            scope: Scope from which to test the connectivity of the FortiAnalyzer address [vdom|global]. (optional)
+            scope: Scope from which to test the connectivity of the
+            FortiAnalyzer address [vdom|global]. (optional)
             server: FortiAnalyzer/FortiManager address. (optional)
-            srcip: The IP to use to make the request to the FortiAnalyzer [<ip>|auto]. When set to "auto" it will use the FortiGate's routing table to determine the IP to make the request from. (optional)
+            srcip: The IP to use to make the request to the FortiAnalyzer
+            [<ip>|auto]. When set to "auto" it will use the FortiGate's routing
+            table to determine the IP to make the request from. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

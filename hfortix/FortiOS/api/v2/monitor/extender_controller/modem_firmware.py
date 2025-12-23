@@ -70,7 +70,8 @@ class ModemFirmware:
 
         Args:
             serial: FortiExtender serial number (required)
-            payload_dict: Dictionary containing parameters (alternative to kwargs)
+            payload_dict: Dictionary containing parameters (alternative to
+            kwargs)
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
 
@@ -79,12 +80,14 @@ class ModemFirmware:
 
         Examples:
             # Get modem firmware list using serial parameter
-            firmware = fgt.api.monitor.extender_controller.extender.modem_firmware.get(
+            firmware =
+            fgt.api.monitor.extender_controller.extender.modem_firmware.get(
                 serial='FX201E3X16000024'
             )
 
             # Get modem firmware list using payload_dict
-            firmware = fgt.api.monitor.extender_controller.extender.modem_firmware.get(
+            firmware =
+            fgt.api.monitor.extender_controller.extender.modem_firmware.get(
                 payload_dict={'serial': 'FX201E3X16000024'}
             )
 

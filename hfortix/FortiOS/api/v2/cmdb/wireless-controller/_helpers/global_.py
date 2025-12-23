@@ -99,13 +99,13 @@ def validate_global__put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate location if present
     if "location" in payload:
         value = payload.get("location")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"location cannot exceed 35 characters")
+            return (False, "location cannot exceed 35 characters")
 
     # Validate acd-process-count if present
     if "acd-process-count" in payload:
@@ -116,7 +116,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"acd-process-count must be between 0 and 255",
+                        "acd-process-count must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -133,7 +133,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"wpad-process-count must be between 0 and 255",
+                        "wpad-process-count must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -165,7 +165,7 @@ def validate_global__put(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"rolling-wtp-upgrade-threshold cannot exceed 7 characters",
+                "rolling-wtp-upgrade-threshold cannot exceed 7 characters",
             )
 
     # Validate max-retransmit if present
@@ -175,7 +175,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 64:
-                    return (False, f"max-retransmit must be between 0 and 64")
+                    return (False, "max-retransmit must be between 0 and 64")
             except (ValueError, TypeError):
                 return (False, f"max-retransmit must be numeric, got: {value}")
 
@@ -215,7 +215,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"mesh-eth-type must be between 0 and 65535",
+                        "mesh-eth-type must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"mesh-eth-type must be numeric, got: {value}")
@@ -229,7 +229,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"fiapp-eth-type must be between 0 and 65535",
+                        "fiapp-eth-type must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"fiapp-eth-type must be numeric, got: {value}")
@@ -243,7 +243,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-clients must be between 0 and 4294967295",
+                        "max-clients must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
@@ -257,7 +257,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 31:
                     return (
                         False,
-                        f"rogue-scan-mac-adjacency must be between 0 and 31",
+                        "rogue-scan-mac-adjacency must be between 0 and 31",
                     )
             except (ValueError, TypeError):
                 return (
@@ -290,7 +290,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 600:
-                    return (False, f"nac-interval must be between 10 and 600")
+                    return (False, "nac-interval must be between 10 and 600")
             except (ValueError, TypeError):
                 return (False, f"nac-interval must be numeric, got: {value}")
 
@@ -312,7 +312,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"ap-log-server-port must be between 0 and 65535",
+                        "ap-log-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -329,7 +329,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-sta-offline must be between 0 and 4294967295",
+                        "max-sta-offline must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -346,7 +346,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-sta-offline-ip2mac must be between 0 and 4294967295",
+                        "max-sta-offline-ip2mac must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -363,7 +363,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-sta-cap must be between 0 and 4294967295",
+                        "max-sta-cap must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-sta-cap must be numeric, got: {value}")
@@ -375,7 +375,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 8:
-                    return (False, f"max-sta-cap-wtp must be between 1 and 8")
+                    return (False, "max-sta-cap-wtp must be between 1 and 8")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -391,7 +391,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-rogue-ap must be between 0 and 4294967295",
+                        "max-rogue-ap must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-rogue-ap must be numeric, got: {value}")
@@ -405,7 +405,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 16:
                     return (
                         False,
-                        f"max-rogue-ap-wtp must be between 1 and 16",
+                        "max-rogue-ap-wtp must be between 1 and 16",
                     )
             except (ValueError, TypeError):
                 return (
@@ -422,7 +422,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-rogue-sta must be between 0 and 4294967295",
+                        "max-rogue-sta must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-rogue-sta must be numeric, got: {value}")
@@ -436,7 +436,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-wids-entry must be between 0 and 4294967295",
+                        "max-wids-entry must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-wids-entry must be numeric, got: {value}")
@@ -450,7 +450,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-ble-device must be between 0 and 4294967295",
+                        "max-ble-device must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-ble-device must be numeric, got: {value}")

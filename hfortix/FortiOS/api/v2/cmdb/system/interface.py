@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Interface:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -378,66 +384,103 @@ class Interface:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Name. (optional)
             vrf: Virtual Routing Forwarding ID. (optional)
             cli_conn_status: CLI connection status. (optional)
-            fortilink: Enable FortiLink to dedicate this interface to manage other Fortinet devices. (optional)
-            switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. (optional)
+            fortilink: Enable FortiLink to dedicate this interface to manage
+            other Fortinet devices. (optional)
+            switch_controller_source_ip: Source IP address used in FortiLink
+            over L3 connections. (optional)
             mode: Addressing mode (static, DHCP, PPPoE). (optional)
             client_options: DHCP client options. (optional)
-            distance: Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route. (optional)
+            distance: Distance for routes learned through PPPoE or DHCP, lower
+            distance indicates preferred route. (optional)
             priority: Priority of learned routes. (optional)
-            dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. (optional)
-            dhcp_relay_interface: Specify outgoing interface to reach server. (optional)
-            dhcp_relay_vrf_select: VRF ID used for connection to server. (optional)
-            dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). (optional)
-            dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. (optional)
+            dhcp_relay_interface_select_method: Specify how to select outgoing
+            interface to reach server. (optional)
+            dhcp_relay_interface: Specify outgoing interface to reach server.
+            (optional)
+            dhcp_relay_vrf_select: VRF ID used for connection to server.
+            (optional)
+            dhcp_broadcast_flag: Enable/disable setting of the broadcast flag
+            in messages sent by the DHCP client (default = enable). (optional)
+            dhcp_relay_service: Enable/disable allowing this interface to act
+            as a DHCP relay. (optional)
             dhcp_relay_ip: DHCP relay IP address. (optional)
-            dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP. (optional)
+            dhcp_relay_source_ip: IP address used by the DHCP relay as its
+            source IP. (optional)
             dhcp_relay_circuit_id: DHCP relay circuit ID. (optional)
             dhcp_relay_link_selection: DHCP relay link selection. (optional)
-            dhcp_relay_request_all_server: Enable/disable sending of DHCP requests to all servers. (optional)
-            dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. (optional)
+            dhcp_relay_request_all_server: Enable/disable sending of DHCP
+            requests to all servers. (optional)
+            dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP
+            messages with no end option. (optional)
             dhcp_relay_type: DHCP relay type (regular or IPsec). (optional)
             dhcp_smart_relay: Enable/disable DHCP smart relay. (optional)
-            dhcp_relay_agent_option: Enable/disable DHCP relay agent option. (optional)
-            dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. (optional)
-            management_ip: High Availability in-band management IP address of this interface. (optional)
-            ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24. (optional)
-            allowaccess: Permitted types of management access to this interface. (optional)
+            dhcp_relay_agent_option: Enable/disable DHCP relay agent option.
+            (optional)
+            dhcp_classless_route_addition: Enable/disable addition of classless
+            static routes retrieved from DHCP server. (optional)
+            management_ip: High Availability in-band management IP address of
+            this interface. (optional)
+            ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
+            (optional)
+            allowaccess: Permitted types of management access to this
+            interface. (optional)
             gwdetect: Enable/disable detect gateway alive for first. (optional)
             ping_serv_status: PING server status. (optional)
             detectserver: Gateway's ping server for this IP. (optional)
             detectprotocol: Protocols used to detect the server. (optional)
             ha_priority: HA election priority for the PING server. (optional)
-            fail_detect: Enable/disable fail detection features for this interface. (optional)
-            fail_detect_option: Options for detecting that this interface has failed. (optional)
-            fail_alert_method: Select link-failed-signal or link-down method to alert about a failed link. (optional)
-            fail_action_on_extender: Action on FortiExtender when interface fail. (optional)
-            fail_alert_interfaces: Names of the FortiGate interfaces to which the link failure alert is sent. (optional)
+            fail_detect: Enable/disable fail detection features for this
+            interface. (optional)
+            fail_detect_option: Options for detecting that this interface has
+            failed. (optional)
+            fail_alert_method: Select link-failed-signal or link-down method to
+            alert about a failed link. (optional)
+            fail_action_on_extender: Action on FortiExtender when interface
+            fail. (optional)
+            fail_alert_interfaces: Names of the FortiGate interfaces to which
+            the link failure alert is sent. (optional)
             dhcp_client_identifier: DHCP client identifier. (optional)
-            dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server. (optional)
-            ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided. (optional)
-            username: Username of the PPPoE account, provided by your ISP. (optional)
-            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
-            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
+            dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means
+            use the renew time provided by the server. (optional)
+            ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no
+            unique local address is provided. (optional)
+            username: Username of the PPPoE account, provided by your ISP.
+            (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets.
+            (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered
+            negotiation. (optional)
             password: PPPoE account's password. (optional)
-            idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0
+            means no timeout. (optional)
             multilink: Enable/disable PPP multilink support. (optional)
             mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
-            detected_peer_mtu: MTU of detected peer (0 - 4294967295). (optional)
-            disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout. (optional)
-            padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time. (optional)
+            detected_peer_mtu: MTU of detected peer (0 - 4294967295).
+            (optional)
+            disc_retry_timeout: Time in seconds to wait before retrying to
+            start a PPPoE discovery, 0 means no timeout. (optional)
+            padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to
+            terminate sessions after an idle time. (optional)
             service_name: PPPoE service name. (optional)
             ac_name: PPPoE server name. (optional)
-            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
-            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
-            defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. (optional)
-            dns_server_override: Enable/disable use DNS acquired by DHCP or PPPoE. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control
+            Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before
+            disconnect. (optional)
+            defaultgw: Enable to get the gateway IP from the DHCP or PPPoE
+            server. (optional)
+            dns_server_override: Enable/disable use DNS acquired by DHCP or
+            PPPoE. (optional)
             dns_server_protocol: DNS transport protocols. (optional)
             auth_type: PPP authentication type to use. (optional)
             pptp_client: Enable/disable PPTP client. (optional)
@@ -450,156 +493,258 @@ class Interface:
             ndiscforward: Enable/disable NDISC forwarding. (optional)
             broadcast_forward: Enable/disable broadcast forwarding. (optional)
             bfd: Bidirectional Forwarding Detection (BFD) settings. (optional)
-            bfd_desired_min_tx: BFD desired minimal transmit interval. (optional)
+            bfd_desired_min_tx: BFD desired minimal transmit interval.
+            (optional)
             bfd_detect_mult: BFD detection multiplier. (optional)
-            bfd_required_min_rx: BFD required minimal receive interval. (optional)
+            bfd_required_min_rx: BFD required minimal receive interval.
+            (optional)
             l2forward: Enable/disable l2 forwarding. (optional)
-            icmp_send_redirect: Enable/disable sending of ICMP redirects. (optional)
-            icmp_accept_redirect: Enable/disable ICMP accept redirect. (optional)
-            reachable_time: IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000). (optional)
-            vlanforward: Enable/disable traffic forwarding between VLANs on this interface. (optional)
+            icmp_send_redirect: Enable/disable sending of ICMP redirects.
+            (optional)
+            icmp_accept_redirect: Enable/disable ICMP accept redirect.
+            (optional)
+            reachable_time: IPv4 reachable time in milliseconds (30000 -
+            3600000, default = 30000). (optional)
+            vlanforward: Enable/disable traffic forwarding between VLANs on
+            this interface. (optional)
             stpforward: Enable/disable STP forwarding. (optional)
             stpforward_mode: Configure STP forwarding mode. (optional)
-            ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. (optional)
-            ident_accept: Enable/disable authentication for this interface. (optional)
+            ips_sniffer_mode: Enable/disable the use of this interface as a
+            one-armed sniffer. (optional)
+            ident_accept: Enable/disable authentication for this interface.
+            (optional)
             ipmac: Enable/disable IP/MAC binding. (optional)
-            subst: Enable to always send packets from this interface to a destination MAC address. (optional)
+            subst: Enable to always send packets from this interface to a
+            destination MAC address. (optional)
             macaddr: Change the interface's MAC address. (optional)
             virtual_mac: Change the interface's virtual MAC address. (optional)
-            substitute_dst_mac: Destination MAC address that all packets are sent to from this interface. (optional)
-            speed: Interface speed. The default setting and the options available depend on the interface hardware. (optional)
-            status: Bring the interface up or shut the interface down. (optional)
+            substitute_dst_mac: Destination MAC address that all packets are
+            sent to from this interface. (optional)
+            speed: Interface speed. The default setting and the options
+            available depend on the interface hardware. (optional)
+            status: Bring the interface up or shut the interface down.
+            (optional)
             netbios_forward: Enable/disable NETBIOS forwarding. (optional)
             wins_ip: WINS server IP. (optional)
             type: Interface type. (optional)
             dedicated_to: Configure interface for single purpose. (optional)
-            trust_ip_1: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip_2: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip_3: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip6_1: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            trust_ip6_2: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            trust_ip6_3: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            wccp: Enable/disable WCCP on this interface. Used for encapsulated WCCP communication between WCCP clients and servers. (optional)
-            netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). (optional)
-            netflow_sample_rate: NetFlow sample rate.  Sample one packet every configured number of packets (optional)
+            trust_ip_1: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip_2: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip_3: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip6_1: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            trust_ip6_2: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            trust_ip6_3: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            wccp: Enable/disable WCCP on this interface. Used for encapsulated
+            WCCP communication between WCCP clients and servers. (optional)
+            netflow_sampler: Enable/disable NetFlow on this interface and set
+            the data that NetFlow collects (rx, tx, or both). (optional)
+            netflow_sample_rate: NetFlow sample rate. Sample one packet every
+            configured number of packets (optional)
             netflow_sampler_id: Netflow sampler ID. (optional)
             sflow_sampler: Enable/disable sFlow on this interface. (optional)
             drop_fragment: Enable/disable drop fragment packets. (optional)
             src_check: Enable/disable source IP check. (optional)
             sample_rate: sFlow sample rate (10 - 99999). (optional)
-            polling_interval: sFlow polling interval in seconds (1 - 255). (optional)
-            sample_direction: Data that NetFlow collects (rx, tx, or both). (optional)
-            explicit_web_proxy: Enable/disable the explicit web proxy on this interface. (optional)
-            explicit_ftp_proxy: Enable/disable the explicit FTP proxy on this interface. (optional)
-            proxy_captive_portal: Enable/disable proxy captive portal on this interface. (optional)
-            tcp_mss: TCP maximum segment size. 0 means do not change segment size. (optional)
-            inbandwidth: Bandwidth limit for incoming traffic (0 - 80000000 kbps), 0 means unlimited. (optional)
-            outbandwidth: Bandwidth limit for outgoing traffic (0 - 80000000 kbps). (optional)
-            egress_shaping_profile: Outgoing traffic shaping profile. (optional)
-            ingress_shaping_profile: Incoming traffic shaping profile. (optional)
-            spillover_threshold: Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited. (optional)
-            ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited. (optional)
-            weight: Default weight for static routes (if route has no weight configured). (optional)
+            polling_interval: sFlow polling interval in seconds (1 - 255).
+            (optional)
+            sample_direction: Data that NetFlow collects (rx, tx, or both).
+            (optional)
+            explicit_web_proxy: Enable/disable the explicit web proxy on this
+            interface. (optional)
+            explicit_ftp_proxy: Enable/disable the explicit FTP proxy on this
+            interface. (optional)
+            proxy_captive_portal: Enable/disable proxy captive portal on this
+            interface. (optional)
+            tcp_mss: TCP maximum segment size. 0 means do not change segment
+            size. (optional)
+            inbandwidth: Bandwidth limit for incoming traffic (0 - 80000000
+            kbps), 0 means unlimited. (optional)
+            outbandwidth: Bandwidth limit for outgoing traffic (0 - 80000000
+            kbps). (optional)
+            egress_shaping_profile: Outgoing traffic shaping profile.
+            (optional)
+            ingress_shaping_profile: Incoming traffic shaping profile.
+            (optional)
+            spillover_threshold: Egress Spillover threshold (0 - 16776000
+            kbps), 0 means unlimited. (optional)
+            ingress_spillover_threshold: Ingress Spillover threshold (0 -
+            16776000 kbps), 0 means unlimited. (optional)
+            weight: Default weight for static routes (if route has no weight
+            configured). (optional)
             interface: Interface name. (optional)
-            external: Enable/disable identifying the interface as an external interface (which usually means it's connected to the Internet). (optional)
-            mtu_override: Enable to set a custom MTU for this interface. (optional)
+            external: Enable/disable identifying the interface as an external
+            interface (which usually means it's connected to the Internet).
+            (optional)
+            mtu_override: Enable to set a custom MTU for this interface.
+            (optional)
             mtu: MTU value for this interface. (optional)
             vlan_protocol: Ethernet protocol of VLAN. (optional)
             vlanid: VLAN ID (1 - 4094). (optional)
             trunk: Enable/disable VLAN trunk. (optional)
             forward_domain: Transparent mode forward domain. (optional)
             remote_ip: Remote IP address of tunnel. (optional)
-            member: Physical interfaces that belong to the aggregate or redundant interface. (optional)
+            member: Physical interfaces that belong to the aggregate or
+            redundant interface. (optional)
             lacp_mode: LACP mode. (optional)
             lacp_ha_secondary: LACP HA secondary member. (optional)
             system_id_type: Method in which system ID is generated. (optional)
-            system_id: Define a system ID for the aggregate interface. (optional)
+            system_id: Define a system ID for the aggregate interface.
+            (optional)
             lacp_speed: How often the interface sends LACP messages. (optional)
-            min_links: Minimum number of aggregated ports that must be up. (optional)
-            min_links_down: Action to take when less than the configured minimum number of links are active. (optional)
+            min_links: Minimum number of aggregated ports that must be up.
+            (optional)
+            min_links_down: Action to take when less than the configured
+            minimum number of links are active. (optional)
             algorithm: Frame distribution algorithm. (optional)
-            link_up_delay: Number of milliseconds to wait before considering a link is up. (optional)
+            link_up_delay: Number of milliseconds to wait before considering a
+            link is up. (optional)
             aggregate_type: Type of aggregation. (optional)
-            priority_override: Enable/disable fail back to higher priority port once recovered. (optional)
+            priority_override: Enable/disable fail back to higher priority port
+            once recovered. (optional)
             aggregate: Aggregate interface. (optional)
             redundant_interface: Redundant interface. (optional)
             devindex: Device Index. (optional)
             vindex: Switch control interface VLAN ID. (optional)
             switch: Contained in switch. (optional)
             description: Description. (optional)
-            alias: Alias will be displayed with the interface name to make it easier to distinguish. (optional)
-            l2tp_client: Enable/disable this interface as a Layer 2 Tunnelling Protocol (L2TP) client. (optional)
+            alias: Alias will be displayed with the interface name to make it
+            easier to distinguish. (optional)
+            l2tp_client: Enable/disable this interface as a Layer 2 Tunnelling
+            Protocol (L2TP) client. (optional)
             l2tp_client_settings: L2TP client settings. (optional)
-            security_mode: Turn on captive portal authentication for this interface. (optional)
-            security_mac_auth_bypass: Enable/disable MAC authentication bypass. (optional)
-            security_ip_auth_bypass: Enable/disable IP authentication bypass. (optional)
+            security_mode: Turn on captive portal authentication for this
+            interface. (optional)
+            security_mac_auth_bypass: Enable/disable MAC authentication bypass.
+            (optional)
+            security_ip_auth_bypass: Enable/disable IP authentication bypass.
+            (optional)
             security_8021x_mode: 802.1X mode. (optional)
             security_8021x_master: 802.1X master virtual-switch. (optional)
-            security_8021x_dynamic_vlan_id: VLAN ID for virtual switch. (optional)
+            security_8021x_dynamic_vlan_id: VLAN ID for virtual switch.
+            (optional)
             security_8021x_member_mode: 802.1X member mode. (optional)
-            security_external_web: URL of external authentication web server. (optional)
-            security_external_logout: URL of external authentication logout server. (optional)
-            replacemsg_override_group: Replacement message override group. (optional)
-            security_redirect_url: URL redirection after disclaimer/authentication. (optional)
+            security_external_web: URL of external authentication web server.
+            (optional)
+            security_external_logout: URL of external authentication logout
+            server. (optional)
+            replacemsg_override_group: Replacement message override group.
+            (optional)
+            security_redirect_url: URL redirection after
+            disclaimer/authentication. (optional)
             auth_cert: HTTPS server certificate. (optional)
             auth_portal_addr: Address of captive portal. (optional)
             security_exempt_list: Name of security-exempt-list. (optional)
-            security_groups: User groups that can authenticate with the captive portal. (optional)
-            ike_saml_server: Configure IKE authentication SAML server. (optional)
+            security_groups: User groups that can authenticate with the captive
+            portal. (optional)
+            ike_saml_server: Configure IKE authentication SAML server.
+            (optional)
             stp: Enable/disable STP. (optional)
             stp_ha_secondary: Control STP behavior on HA secondary. (optional)
             stp_edge: Enable/disable as STP edge port. (optional)
-            device_identification: Enable/disable passively gathering of device identity information about the devices on the network connected to this interface. (optional)
-            exclude_signatures: Exclude IOT or OT application signatures. (optional)
-            device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. (optional)
-            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception. (optional)
-            lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission. (optional)
+            device_identification: Enable/disable passively gathering of device
+            identity information about the devices on the network connected to
+            this interface. (optional)
+            exclude_signatures: Exclude IOT or OT application signatures.
+            (optional)
+            device_user_identification: Enable/disable passive gathering of
+            user identity information about users on this interface. (optional)
+            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP)
+            reception. (optional)
+            lldp_transmission: Enable/disable Link Layer Discovery Protocol
+            (LLDP) transmission. (optional)
             lldp_network_policy: LLDP-MED network policy profile. (optional)
-            estimated_upstream_bandwidth: Estimated maximum upstream bandwidth (kbps). Used to estimate link utilization. (optional)
-            estimated_downstream_bandwidth: Estimated maximum downstream bandwidth (kbps). Used to estimate link utilization. (optional)
-            measured_upstream_bandwidth: Measured upstream bandwidth (kbps). (optional)
-            measured_downstream_bandwidth: Measured downstream bandwidth (kbps). (optional)
+            estimated_upstream_bandwidth: Estimated maximum upstream bandwidth
+            (kbps). Used to estimate link utilization. (optional)
+            estimated_downstream_bandwidth: Estimated maximum downstream
+            bandwidth (kbps). Used to estimate link utilization. (optional)
+            measured_upstream_bandwidth: Measured upstream bandwidth (kbps).
+            (optional)
+            measured_downstream_bandwidth: Measured downstream bandwidth
+            (kbps). (optional)
             bandwidth_measure_time: Bandwidth measure time. (optional)
-            monitor_bandwidth: Enable monitoring bandwidth on this interface. (optional)
-            vrrp_virtual_mac: Enable/disable use of virtual MAC for VRRP. (optional)
+            monitor_bandwidth: Enable monitoring bandwidth on this interface.
+            (optional)
+            vrrp_virtual_mac: Enable/disable use of virtual MAC for VRRP.
+            (optional)
             vrrp: VRRP configuration. (optional)
             phy_setting: PHY settings (optional)
             role: Interface role. (optional)
             snmp_index: Permanent SNMP Index of the interface. (optional)
-            secondary_IP: Enable/disable adding a secondary IP to this interface. (optional)
+            secondary_IP: Enable/disable adding a secondary IP to this
+            interface. (optional)
             secondaryip: Second IP address of interface. (optional)
-            preserve_session_route: Enable/disable preservation of session route when dirty. (optional)
-            auto_auth_extension_device: Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. (optional)
-            ap_discover: Enable/disable automatic registration of unknown FortiAP devices. (optional)
-            fortilink_neighbor_detect: Protocol for FortiGate neighbor discovery. (optional)
-            ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. (optional)
-            managed_subnetwork_size: Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. (optional)
-            fortilink_split_interface: Enable/disable FortiLink split interface to connect member link to different FortiSwitch in stack for uplink redundancy. (optional)
+            preserve_session_route: Enable/disable preservation of session
+            route when dirty. (optional)
+            auto_auth_extension_device: Enable/disable automatic authorization
+            of dedicated Fortinet extension device on this interface.
+            (optional)
+            ap_discover: Enable/disable automatic registration of unknown
+            FortiAP devices. (optional)
+            fortilink_neighbor_detect: Protocol for FortiGate neighbor
+            discovery. (optional)
+            ip_managed_by_fortiipam: Enable/disable automatic IP address
+            assignment of this interface by FortiIPAM. (optional)
+            managed_subnetwork_size: Number of IP addresses to be allocated by
+            FortiIPAM and used by this FortiGate unit's DHCP server settings.
+            (optional)
+            fortilink_split_interface: Enable/disable FortiLink split interface
+            to connect member link to different FortiSwitch in stack for uplink
+            redundancy. (optional)
             internal: Implicitly created. (optional)
-            fortilink_backup_link: FortiLink split interface backup link. (optional)
-            switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. (optional)
-            switch_controller_traffic_policy: Switch controller traffic policy for the VLAN. (optional)
-            switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. (optional)
-            switch_controller_netflow_collect: NetFlow collection and processing. (optional)
-            switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes. (optional)
-            switch_controller_igmp_snooping: Switch controller IGMP snooping. (optional)
-            switch_controller_igmp_snooping_proxy: Switch controller IGMP snooping proxy. (optional)
-            switch_controller_igmp_snooping_fast_leave: Switch controller IGMP snooping fast-leave. (optional)
-            switch_controller_dhcp_snooping: Switch controller DHCP snooping. (optional)
-            switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. (optional)
-            switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. (optional)
-            dhcp_snooping_server_list: Configure DHCP server access list. (optional)
-            switch_controller_arp_inspection: Enable/disable/Monitor FortiSwitch ARP inspection. (optional)
-            switch_controller_learning_limit: Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, default). (optional)
-            switch_controller_nac: Integrated FortiLink settings for managed FortiSwitch. (optional)
-            switch_controller_dynamic: Integrated FortiLink settings for managed FortiSwitch. (optional)
-            switch_controller_feature: Interface's purpose when assigning traffic (read only). (optional)
-            switch_controller_iot_scanning: Enable/disable managed FortiSwitch IoT scanning. (optional)
-            switch_controller_offload: Enable/disable managed FortiSwitch routing offload. (optional)
-            switch_controller_offload_ip: IP for routing offload on FortiSwitch. (optional)
-            switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. (optional)
+            fortilink_backup_link: FortiLink split interface backup link.
+            (optional)
+            switch_controller_access_vlan: Block FortiSwitch port-to-port
+            traffic. (optional)
+            switch_controller_traffic_policy: Switch controller traffic policy
+            for the VLAN. (optional)
+            switch_controller_rspan_mode: Stop Layer2 MAC learning and
+            interception of BPDUs and other packets on this interface.
+            (optional)
+            switch_controller_netflow_collect: NetFlow collection and
+            processing. (optional)
+            switch_controller_mgmt_vlan: VLAN to use for FortiLink management
+            purposes. (optional)
+            switch_controller_igmp_snooping: Switch controller IGMP snooping.
+            (optional)
+            switch_controller_igmp_snooping_proxy: Switch controller IGMP
+            snooping proxy. (optional)
+            switch_controller_igmp_snooping_fast_leave: Switch controller IGMP
+            snooping fast-leave. (optional)
+            switch_controller_dhcp_snooping: Switch controller DHCP snooping.
+            (optional)
+            switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP
+            snooping verify MAC. (optional)
+            switch_controller_dhcp_snooping_option82: Switch controller DHCP
+            snooping option82. (optional)
+            dhcp_snooping_server_list: Configure DHCP server access list.
+            (optional)
+            switch_controller_arp_inspection: Enable/disable/Monitor
+            FortiSwitch ARP inspection. (optional)
+            switch_controller_learning_limit: Limit the number of dynamic MAC
+            addresses on this VLAN (1 - 128, 0 = no limit, default). (optional)
+            switch_controller_nac: Integrated FortiLink settings for managed
+            FortiSwitch. (optional)
+            switch_controller_dynamic: Integrated FortiLink settings for
+            managed FortiSwitch. (optional)
+            switch_controller_feature: Interface's purpose when assigning
+            traffic (read only). (optional)
+            switch_controller_iot_scanning: Enable/disable managed FortiSwitch
+            IoT scanning. (optional)
+            switch_controller_offload: Enable/disable managed FortiSwitch
+            routing offload. (optional)
+            switch_controller_offload_ip: IP for routing offload on
+            FortiSwitch. (optional)
+            switch_controller_offload_gw: Enable/disable managed FortiSwitch
+            routing offload gateway. (optional)
             swc_vlan: Creation status for switch-controller VLANs. (optional)
-            swc_first_create: Initial create for switch-controller VLANs. (optional)
+            swc_first_create: Initial create for switch-controller VLANs.
+            (optional)
             color: Color of icon on the GUI. (optional)
             tagging: Config object tagging. (optional)
             eap_supplicant: Enable/disable EAP-Supplicant. (optional)
@@ -608,12 +753,15 @@ class Interface:
             eap_password: EAP password. (optional)
             eap_ca_cert: EAP CA certificate name. (optional)
             eap_user_cert: EAP user certificate name. (optional)
-            default_purdue_level: default purdue level of device detected on this interface. (optional)
+            default_purdue_level: default purdue level of device detected on
+            this interface. (optional)
             ipv6: IPv6 of interface. (optional)
             physical: Print physical interface information. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -621,7 +769,8 @@ class Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -639,7 +788,7 @@ class Interface:
         if name is not None:
             data_payload["name"] = name
         if vrf is not None:
-            data_payload["vrf"] = vrf
+            data_payload["vr"] = vrf
         if cli_conn_status is not None:
             data_payload["cli-conn-status"] = cli_conn_status
         if fortilink is not None:
@@ -1191,8 +1340,10 @@ class Interface:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -1200,7 +1351,8 @@ class Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -1500,64 +1652,100 @@ class Interface:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             vrf: Virtual Routing Forwarding ID. (optional)
             cli_conn_status: CLI connection status. (optional)
-            fortilink: Enable FortiLink to dedicate this interface to manage other Fortinet devices. (optional)
-            switch_controller_source_ip: Source IP address used in FortiLink over L3 connections. (optional)
+            fortilink: Enable FortiLink to dedicate this interface to manage
+            other Fortinet devices. (optional)
+            switch_controller_source_ip: Source IP address used in FortiLink
+            over L3 connections. (optional)
             mode: Addressing mode (static, DHCP, PPPoE). (optional)
             client_options: DHCP client options. (optional)
-            distance: Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route. (optional)
+            distance: Distance for routes learned through PPPoE or DHCP, lower
+            distance indicates preferred route. (optional)
             priority: Priority of learned routes. (optional)
-            dhcp_relay_interface_select_method: Specify how to select outgoing interface to reach server. (optional)
-            dhcp_relay_interface: Specify outgoing interface to reach server. (optional)
-            dhcp_relay_vrf_select: VRF ID used for connection to server. (optional)
-            dhcp_broadcast_flag: Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). (optional)
-            dhcp_relay_service: Enable/disable allowing this interface to act as a DHCP relay. (optional)
+            dhcp_relay_interface_select_method: Specify how to select outgoing
+            interface to reach server. (optional)
+            dhcp_relay_interface: Specify outgoing interface to reach server.
+            (optional)
+            dhcp_relay_vrf_select: VRF ID used for connection to server.
+            (optional)
+            dhcp_broadcast_flag: Enable/disable setting of the broadcast flag
+            in messages sent by the DHCP client (default = enable). (optional)
+            dhcp_relay_service: Enable/disable allowing this interface to act
+            as a DHCP relay. (optional)
             dhcp_relay_ip: DHCP relay IP address. (optional)
-            dhcp_relay_source_ip: IP address used by the DHCP relay as its source IP. (optional)
+            dhcp_relay_source_ip: IP address used by the DHCP relay as its
+            source IP. (optional)
             dhcp_relay_circuit_id: DHCP relay circuit ID. (optional)
             dhcp_relay_link_selection: DHCP relay link selection. (optional)
-            dhcp_relay_request_all_server: Enable/disable sending of DHCP requests to all servers. (optional)
-            dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP messages with no end option. (optional)
+            dhcp_relay_request_all_server: Enable/disable sending of DHCP
+            requests to all servers. (optional)
+            dhcp_relay_allow_no_end_option: Enable/disable relaying DHCP
+            messages with no end option. (optional)
             dhcp_relay_type: DHCP relay type (regular or IPsec). (optional)
             dhcp_smart_relay: Enable/disable DHCP smart relay. (optional)
-            dhcp_relay_agent_option: Enable/disable DHCP relay agent option. (optional)
-            dhcp_classless_route_addition: Enable/disable addition of classless static routes retrieved from DHCP server. (optional)
-            management_ip: High Availability in-band management IP address of this interface. (optional)
-            ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24. (optional)
-            allowaccess: Permitted types of management access to this interface. (optional)
+            dhcp_relay_agent_option: Enable/disable DHCP relay agent option.
+            (optional)
+            dhcp_classless_route_addition: Enable/disable addition of classless
+            static routes retrieved from DHCP server. (optional)
+            management_ip: High Availability in-band management IP address of
+            this interface. (optional)
+            ip: Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
+            (optional)
+            allowaccess: Permitted types of management access to this
+            interface. (optional)
             gwdetect: Enable/disable detect gateway alive for first. (optional)
             ping_serv_status: PING server status. (optional)
             detectserver: Gateway's ping server for this IP. (optional)
             detectprotocol: Protocols used to detect the server. (optional)
             ha_priority: HA election priority for the PING server. (optional)
-            fail_detect: Enable/disable fail detection features for this interface. (optional)
-            fail_detect_option: Options for detecting that this interface has failed. (optional)
-            fail_alert_method: Select link-failed-signal or link-down method to alert about a failed link. (optional)
-            fail_action_on_extender: Action on FortiExtender when interface fail. (optional)
-            fail_alert_interfaces: Names of the FortiGate interfaces to which the link failure alert is sent. (optional)
+            fail_detect: Enable/disable fail detection features for this
+            interface. (optional)
+            fail_detect_option: Options for detecting that this interface has
+            failed. (optional)
+            fail_alert_method: Select link-failed-signal or link-down method to
+            alert about a failed link. (optional)
+            fail_action_on_extender: Action on FortiExtender when interface
+            fail. (optional)
+            fail_alert_interfaces: Names of the FortiGate interfaces to which
+            the link failure alert is sent. (optional)
             dhcp_client_identifier: DHCP client identifier. (optional)
-            dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server. (optional)
-            ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no unique local address is provided. (optional)
-            username: Username of the PPPoE account, provided by your ISP. (optional)
-            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
-            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
+            dhcp_renew_time: DHCP renew time in seconds (300-604800), 0 means
+            use the renew time provided by the server. (optional)
+            ipunnumbered: Unnumbered IP used for PPPoE interfaces for which no
+            unique local address is provided. (optional)
+            username: Username of the PPPoE account, provided by your ISP.
+            (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets.
+            (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered
+            negotiation. (optional)
             password: PPPoE account's password. (optional)
-            idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0 means no timeout. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout seconds, 0
+            means no timeout. (optional)
             multilink: Enable/disable PPP multilink support. (optional)
             mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
-            detected_peer_mtu: MTU of detected peer (0 - 4294967295). (optional)
-            disc_retry_timeout: Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout. (optional)
-            padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time. (optional)
+            detected_peer_mtu: MTU of detected peer (0 - 4294967295).
+            (optional)
+            disc_retry_timeout: Time in seconds to wait before retrying to
+            start a PPPoE discovery, 0 means no timeout. (optional)
+            padt_retry_timeout: PPPoE Active Discovery Terminate (PADT) used to
+            terminate sessions after an idle time. (optional)
             service_name: PPPoE service name. (optional)
             ac_name: PPPoE server name. (optional)
-            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
-            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
-            defaultgw: Enable to get the gateway IP from the DHCP or PPPoE server. (optional)
-            dns_server_override: Enable/disable use DNS acquired by DHCP or PPPoE. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control
+            Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before
+            disconnect. (optional)
+            defaultgw: Enable to get the gateway IP from the DHCP or PPPoE
+            server. (optional)
+            dns_server_override: Enable/disable use DNS acquired by DHCP or
+            PPPoE. (optional)
             dns_server_protocol: DNS transport protocols. (optional)
             auth_type: PPP authentication type to use. (optional)
             pptp_client: Enable/disable PPTP client. (optional)
@@ -1570,156 +1758,258 @@ class Interface:
             ndiscforward: Enable/disable NDISC forwarding. (optional)
             broadcast_forward: Enable/disable broadcast forwarding. (optional)
             bfd: Bidirectional Forwarding Detection (BFD) settings. (optional)
-            bfd_desired_min_tx: BFD desired minimal transmit interval. (optional)
+            bfd_desired_min_tx: BFD desired minimal transmit interval.
+            (optional)
             bfd_detect_mult: BFD detection multiplier. (optional)
-            bfd_required_min_rx: BFD required minimal receive interval. (optional)
+            bfd_required_min_rx: BFD required minimal receive interval.
+            (optional)
             l2forward: Enable/disable l2 forwarding. (optional)
-            icmp_send_redirect: Enable/disable sending of ICMP redirects. (optional)
-            icmp_accept_redirect: Enable/disable ICMP accept redirect. (optional)
-            reachable_time: IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000). (optional)
-            vlanforward: Enable/disable traffic forwarding between VLANs on this interface. (optional)
+            icmp_send_redirect: Enable/disable sending of ICMP redirects.
+            (optional)
+            icmp_accept_redirect: Enable/disable ICMP accept redirect.
+            (optional)
+            reachable_time: IPv4 reachable time in milliseconds (30000 -
+            3600000, default = 30000). (optional)
+            vlanforward: Enable/disable traffic forwarding between VLANs on
+            this interface. (optional)
             stpforward: Enable/disable STP forwarding. (optional)
             stpforward_mode: Configure STP forwarding mode. (optional)
-            ips_sniffer_mode: Enable/disable the use of this interface as a one-armed sniffer. (optional)
-            ident_accept: Enable/disable authentication for this interface. (optional)
+            ips_sniffer_mode: Enable/disable the use of this interface as a
+            one-armed sniffer. (optional)
+            ident_accept: Enable/disable authentication for this interface.
+            (optional)
             ipmac: Enable/disable IP/MAC binding. (optional)
-            subst: Enable to always send packets from this interface to a destination MAC address. (optional)
+            subst: Enable to always send packets from this interface to a
+            destination MAC address. (optional)
             macaddr: Change the interface's MAC address. (optional)
             virtual_mac: Change the interface's virtual MAC address. (optional)
-            substitute_dst_mac: Destination MAC address that all packets are sent to from this interface. (optional)
-            speed: Interface speed. The default setting and the options available depend on the interface hardware. (optional)
-            status: Bring the interface up or shut the interface down. (optional)
+            substitute_dst_mac: Destination MAC address that all packets are
+            sent to from this interface. (optional)
+            speed: Interface speed. The default setting and the options
+            available depend on the interface hardware. (optional)
+            status: Bring the interface up or shut the interface down.
+            (optional)
             netbios_forward: Enable/disable NETBIOS forwarding. (optional)
             wins_ip: WINS server IP. (optional)
             type: Interface type. (optional)
             dedicated_to: Configure interface for single purpose. (optional)
-            trust_ip_1: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip_2: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip_3: Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts). (optional)
-            trust_ip6_1: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            trust_ip6_2: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            trust_ip6_3: Trusted IPv6 host for dedicated management traffic (::/0 for all hosts). (optional)
-            wccp: Enable/disable WCCP on this interface. Used for encapsulated WCCP communication between WCCP clients and servers. (optional)
-            netflow_sampler: Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both). (optional)
-            netflow_sample_rate: NetFlow sample rate.  Sample one packet every configured number of packets (optional)
+            trust_ip_1: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip_2: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip_3: Trusted host for dedicated management traffic
+            (0.0.0.0/24 for all hosts). (optional)
+            trust_ip6_1: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            trust_ip6_2: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            trust_ip6_3: Trusted IPv6 host for dedicated management traffic
+            (::/0 for all hosts). (optional)
+            wccp: Enable/disable WCCP on this interface. Used for encapsulated
+            WCCP communication between WCCP clients and servers. (optional)
+            netflow_sampler: Enable/disable NetFlow on this interface and set
+            the data that NetFlow collects (rx, tx, or both). (optional)
+            netflow_sample_rate: NetFlow sample rate. Sample one packet every
+            configured number of packets (optional)
             netflow_sampler_id: Netflow sampler ID. (optional)
             sflow_sampler: Enable/disable sFlow on this interface. (optional)
             drop_fragment: Enable/disable drop fragment packets. (optional)
             src_check: Enable/disable source IP check. (optional)
             sample_rate: sFlow sample rate (10 - 99999). (optional)
-            polling_interval: sFlow polling interval in seconds (1 - 255). (optional)
-            sample_direction: Data that NetFlow collects (rx, tx, or both). (optional)
-            explicit_web_proxy: Enable/disable the explicit web proxy on this interface. (optional)
-            explicit_ftp_proxy: Enable/disable the explicit FTP proxy on this interface. (optional)
-            proxy_captive_portal: Enable/disable proxy captive portal on this interface. (optional)
-            tcp_mss: TCP maximum segment size. 0 means do not change segment size. (optional)
-            inbandwidth: Bandwidth limit for incoming traffic (0 - 80000000 kbps), 0 means unlimited. (optional)
-            outbandwidth: Bandwidth limit for outgoing traffic (0 - 80000000 kbps). (optional)
-            egress_shaping_profile: Outgoing traffic shaping profile. (optional)
-            ingress_shaping_profile: Incoming traffic shaping profile. (optional)
-            spillover_threshold: Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited. (optional)
-            ingress_spillover_threshold: Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited. (optional)
-            weight: Default weight for static routes (if route has no weight configured). (optional)
+            polling_interval: sFlow polling interval in seconds (1 - 255).
+            (optional)
+            sample_direction: Data that NetFlow collects (rx, tx, or both).
+            (optional)
+            explicit_web_proxy: Enable/disable the explicit web proxy on this
+            interface. (optional)
+            explicit_ftp_proxy: Enable/disable the explicit FTP proxy on this
+            interface. (optional)
+            proxy_captive_portal: Enable/disable proxy captive portal on this
+            interface. (optional)
+            tcp_mss: TCP maximum segment size. 0 means do not change segment
+            size. (optional)
+            inbandwidth: Bandwidth limit for incoming traffic (0 - 80000000
+            kbps), 0 means unlimited. (optional)
+            outbandwidth: Bandwidth limit for outgoing traffic (0 - 80000000
+            kbps). (optional)
+            egress_shaping_profile: Outgoing traffic shaping profile.
+            (optional)
+            ingress_shaping_profile: Incoming traffic shaping profile.
+            (optional)
+            spillover_threshold: Egress Spillover threshold (0 - 16776000
+            kbps), 0 means unlimited. (optional)
+            ingress_spillover_threshold: Ingress Spillover threshold (0 -
+            16776000 kbps), 0 means unlimited. (optional)
+            weight: Default weight for static routes (if route has no weight
+            configured). (optional)
             interface: Interface name. (optional)
-            external: Enable/disable identifying the interface as an external interface (which usually means it's connected to the Internet). (optional)
-            mtu_override: Enable to set a custom MTU for this interface. (optional)
+            external: Enable/disable identifying the interface as an external
+            interface (which usually means it's connected to the Internet).
+            (optional)
+            mtu_override: Enable to set a custom MTU for this interface.
+            (optional)
             mtu: MTU value for this interface. (optional)
             vlan_protocol: Ethernet protocol of VLAN. (optional)
             vlanid: VLAN ID (1 - 4094). (optional)
             trunk: Enable/disable VLAN trunk. (optional)
             forward_domain: Transparent mode forward domain. (optional)
             remote_ip: Remote IP address of tunnel. (optional)
-            member: Physical interfaces that belong to the aggregate or redundant interface. (optional)
+            member: Physical interfaces that belong to the aggregate or
+            redundant interface. (optional)
             lacp_mode: LACP mode. (optional)
             lacp_ha_secondary: LACP HA secondary member. (optional)
             system_id_type: Method in which system ID is generated. (optional)
-            system_id: Define a system ID for the aggregate interface. (optional)
+            system_id: Define a system ID for the aggregate interface.
+            (optional)
             lacp_speed: How often the interface sends LACP messages. (optional)
-            min_links: Minimum number of aggregated ports that must be up. (optional)
-            min_links_down: Action to take when less than the configured minimum number of links are active. (optional)
+            min_links: Minimum number of aggregated ports that must be up.
+            (optional)
+            min_links_down: Action to take when less than the configured
+            minimum number of links are active. (optional)
             algorithm: Frame distribution algorithm. (optional)
-            link_up_delay: Number of milliseconds to wait before considering a link is up. (optional)
+            link_up_delay: Number of milliseconds to wait before considering a
+            link is up. (optional)
             aggregate_type: Type of aggregation. (optional)
-            priority_override: Enable/disable fail back to higher priority port once recovered. (optional)
+            priority_override: Enable/disable fail back to higher priority port
+            once recovered. (optional)
             aggregate: Aggregate interface. (optional)
             redundant_interface: Redundant interface. (optional)
             devindex: Device Index. (optional)
             vindex: Switch control interface VLAN ID. (optional)
             switch: Contained in switch. (optional)
             description: Description. (optional)
-            alias: Alias will be displayed with the interface name to make it easier to distinguish. (optional)
-            l2tp_client: Enable/disable this interface as a Layer 2 Tunnelling Protocol (L2TP) client. (optional)
+            alias: Alias will be displayed with the interface name to make it
+            easier to distinguish. (optional)
+            l2tp_client: Enable/disable this interface as a Layer 2 Tunnelling
+            Protocol (L2TP) client. (optional)
             l2tp_client_settings: L2TP client settings. (optional)
-            security_mode: Turn on captive portal authentication for this interface. (optional)
-            security_mac_auth_bypass: Enable/disable MAC authentication bypass. (optional)
-            security_ip_auth_bypass: Enable/disable IP authentication bypass. (optional)
+            security_mode: Turn on captive portal authentication for this
+            interface. (optional)
+            security_mac_auth_bypass: Enable/disable MAC authentication bypass.
+            (optional)
+            security_ip_auth_bypass: Enable/disable IP authentication bypass.
+            (optional)
             security_8021x_mode: 802.1X mode. (optional)
             security_8021x_master: 802.1X master virtual-switch. (optional)
-            security_8021x_dynamic_vlan_id: VLAN ID for virtual switch. (optional)
+            security_8021x_dynamic_vlan_id: VLAN ID for virtual switch.
+            (optional)
             security_8021x_member_mode: 802.1X member mode. (optional)
-            security_external_web: URL of external authentication web server. (optional)
-            security_external_logout: URL of external authentication logout server. (optional)
-            replacemsg_override_group: Replacement message override group. (optional)
-            security_redirect_url: URL redirection after disclaimer/authentication. (optional)
+            security_external_web: URL of external authentication web server.
+            (optional)
+            security_external_logout: URL of external authentication logout
+            server. (optional)
+            replacemsg_override_group: Replacement message override group.
+            (optional)
+            security_redirect_url: URL redirection after
+            disclaimer/authentication. (optional)
             auth_cert: HTTPS server certificate. (optional)
             auth_portal_addr: Address of captive portal. (optional)
             security_exempt_list: Name of security-exempt-list. (optional)
-            security_groups: User groups that can authenticate with the captive portal. (optional)
-            ike_saml_server: Configure IKE authentication SAML server. (optional)
+            security_groups: User groups that can authenticate with the captive
+            portal. (optional)
+            ike_saml_server: Configure IKE authentication SAML server.
+            (optional)
             stp: Enable/disable STP. (optional)
             stp_ha_secondary: Control STP behavior on HA secondary. (optional)
             stp_edge: Enable/disable as STP edge port. (optional)
-            device_identification: Enable/disable passively gathering of device identity information about the devices on the network connected to this interface. (optional)
-            exclude_signatures: Exclude IOT or OT application signatures. (optional)
-            device_user_identification: Enable/disable passive gathering of user identity information about users on this interface. (optional)
-            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception. (optional)
-            lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission. (optional)
+            device_identification: Enable/disable passively gathering of device
+            identity information about the devices on the network connected to
+            this interface. (optional)
+            exclude_signatures: Exclude IOT or OT application signatures.
+            (optional)
+            device_user_identification: Enable/disable passive gathering of
+            user identity information about users on this interface. (optional)
+            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP)
+            reception. (optional)
+            lldp_transmission: Enable/disable Link Layer Discovery Protocol
+            (LLDP) transmission. (optional)
             lldp_network_policy: LLDP-MED network policy profile. (optional)
-            estimated_upstream_bandwidth: Estimated maximum upstream bandwidth (kbps). Used to estimate link utilization. (optional)
-            estimated_downstream_bandwidth: Estimated maximum downstream bandwidth (kbps). Used to estimate link utilization. (optional)
-            measured_upstream_bandwidth: Measured upstream bandwidth (kbps). (optional)
-            measured_downstream_bandwidth: Measured downstream bandwidth (kbps). (optional)
+            estimated_upstream_bandwidth: Estimated maximum upstream bandwidth
+            (kbps). Used to estimate link utilization. (optional)
+            estimated_downstream_bandwidth: Estimated maximum downstream
+            bandwidth (kbps). Used to estimate link utilization. (optional)
+            measured_upstream_bandwidth: Measured upstream bandwidth (kbps).
+            (optional)
+            measured_downstream_bandwidth: Measured downstream bandwidth
+            (kbps). (optional)
             bandwidth_measure_time: Bandwidth measure time. (optional)
-            monitor_bandwidth: Enable monitoring bandwidth on this interface. (optional)
-            vrrp_virtual_mac: Enable/disable use of virtual MAC for VRRP. (optional)
+            monitor_bandwidth: Enable monitoring bandwidth on this interface.
+            (optional)
+            vrrp_virtual_mac: Enable/disable use of virtual MAC for VRRP.
+            (optional)
             vrrp: VRRP configuration. (optional)
             phy_setting: PHY settings (optional)
             role: Interface role. (optional)
             snmp_index: Permanent SNMP Index of the interface. (optional)
-            secondary_IP: Enable/disable adding a secondary IP to this interface. (optional)
+            secondary_IP: Enable/disable adding a secondary IP to this
+            interface. (optional)
             secondaryip: Second IP address of interface. (optional)
-            preserve_session_route: Enable/disable preservation of session route when dirty. (optional)
-            auto_auth_extension_device: Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. (optional)
-            ap_discover: Enable/disable automatic registration of unknown FortiAP devices. (optional)
-            fortilink_neighbor_detect: Protocol for FortiGate neighbor discovery. (optional)
-            ip_managed_by_fortiipam: Enable/disable automatic IP address assignment of this interface by FortiIPAM. (optional)
-            managed_subnetwork_size: Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. (optional)
-            fortilink_split_interface: Enable/disable FortiLink split interface to connect member link to different FortiSwitch in stack for uplink redundancy. (optional)
+            preserve_session_route: Enable/disable preservation of session
+            route when dirty. (optional)
+            auto_auth_extension_device: Enable/disable automatic authorization
+            of dedicated Fortinet extension device on this interface.
+            (optional)
+            ap_discover: Enable/disable automatic registration of unknown
+            FortiAP devices. (optional)
+            fortilink_neighbor_detect: Protocol for FortiGate neighbor
+            discovery. (optional)
+            ip_managed_by_fortiipam: Enable/disable automatic IP address
+            assignment of this interface by FortiIPAM. (optional)
+            managed_subnetwork_size: Number of IP addresses to be allocated by
+            FortiIPAM and used by this FortiGate unit's DHCP server settings.
+            (optional)
+            fortilink_split_interface: Enable/disable FortiLink split interface
+            to connect member link to different FortiSwitch in stack for uplink
+            redundancy. (optional)
             internal: Implicitly created. (optional)
-            fortilink_backup_link: FortiLink split interface backup link. (optional)
-            switch_controller_access_vlan: Block FortiSwitch port-to-port traffic. (optional)
-            switch_controller_traffic_policy: Switch controller traffic policy for the VLAN. (optional)
-            switch_controller_rspan_mode: Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. (optional)
-            switch_controller_netflow_collect: NetFlow collection and processing. (optional)
-            switch_controller_mgmt_vlan: VLAN to use for FortiLink management purposes. (optional)
-            switch_controller_igmp_snooping: Switch controller IGMP snooping. (optional)
-            switch_controller_igmp_snooping_proxy: Switch controller IGMP snooping proxy. (optional)
-            switch_controller_igmp_snooping_fast_leave: Switch controller IGMP snooping fast-leave. (optional)
-            switch_controller_dhcp_snooping: Switch controller DHCP snooping. (optional)
-            switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP snooping verify MAC. (optional)
-            switch_controller_dhcp_snooping_option82: Switch controller DHCP snooping option82. (optional)
-            dhcp_snooping_server_list: Configure DHCP server access list. (optional)
-            switch_controller_arp_inspection: Enable/disable/Monitor FortiSwitch ARP inspection. (optional)
-            switch_controller_learning_limit: Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, default). (optional)
-            switch_controller_nac: Integrated FortiLink settings for managed FortiSwitch. (optional)
-            switch_controller_dynamic: Integrated FortiLink settings for managed FortiSwitch. (optional)
-            switch_controller_feature: Interface's purpose when assigning traffic (read only). (optional)
-            switch_controller_iot_scanning: Enable/disable managed FortiSwitch IoT scanning. (optional)
-            switch_controller_offload: Enable/disable managed FortiSwitch routing offload. (optional)
-            switch_controller_offload_ip: IP for routing offload on FortiSwitch. (optional)
-            switch_controller_offload_gw: Enable/disable managed FortiSwitch routing offload gateway. (optional)
+            fortilink_backup_link: FortiLink split interface backup link.
+            (optional)
+            switch_controller_access_vlan: Block FortiSwitch port-to-port
+            traffic. (optional)
+            switch_controller_traffic_policy: Switch controller traffic policy
+            for the VLAN. (optional)
+            switch_controller_rspan_mode: Stop Layer2 MAC learning and
+            interception of BPDUs and other packets on this interface.
+            (optional)
+            switch_controller_netflow_collect: NetFlow collection and
+            processing. (optional)
+            switch_controller_mgmt_vlan: VLAN to use for FortiLink management
+            purposes. (optional)
+            switch_controller_igmp_snooping: Switch controller IGMP snooping.
+            (optional)
+            switch_controller_igmp_snooping_proxy: Switch controller IGMP
+            snooping proxy. (optional)
+            switch_controller_igmp_snooping_fast_leave: Switch controller IGMP
+            snooping fast-leave. (optional)
+            switch_controller_dhcp_snooping: Switch controller DHCP snooping.
+            (optional)
+            switch_controller_dhcp_snooping_verify_mac: Switch controller DHCP
+            snooping verify MAC. (optional)
+            switch_controller_dhcp_snooping_option82: Switch controller DHCP
+            snooping option82. (optional)
+            dhcp_snooping_server_list: Configure DHCP server access list.
+            (optional)
+            switch_controller_arp_inspection: Enable/disable/Monitor
+            FortiSwitch ARP inspection. (optional)
+            switch_controller_learning_limit: Limit the number of dynamic MAC
+            addresses on this VLAN (1 - 128, 0 = no limit, default). (optional)
+            switch_controller_nac: Integrated FortiLink settings for managed
+            FortiSwitch. (optional)
+            switch_controller_dynamic: Integrated FortiLink settings for
+            managed FortiSwitch. (optional)
+            switch_controller_feature: Interface's purpose when assigning
+            traffic (read only). (optional)
+            switch_controller_iot_scanning: Enable/disable managed FortiSwitch
+            IoT scanning. (optional)
+            switch_controller_offload: Enable/disable managed FortiSwitch
+            routing offload. (optional)
+            switch_controller_offload_ip: IP for routing offload on
+            FortiSwitch. (optional)
+            switch_controller_offload_gw: Enable/disable managed FortiSwitch
+            routing offload gateway. (optional)
             swc_vlan: Creation status for switch-controller VLANs. (optional)
-            swc_first_create: Initial create for switch-controller VLANs. (optional)
+            swc_first_create: Initial create for switch-controller VLANs.
+            (optional)
             color: Color of icon on the GUI. (optional)
             tagging: Config object tagging. (optional)
             eap_supplicant: Enable/disable EAP-Supplicant. (optional)
@@ -1728,12 +2018,15 @@ class Interface:
             eap_password: EAP password. (optional)
             eap_ca_cert: EAP CA certificate name. (optional)
             eap_user_cert: EAP user certificate name. (optional)
-            default_purdue_level: default purdue level of device detected on this interface. (optional)
+            default_purdue_level: default purdue level of device detected on
+            this interface. (optional)
             ipv6: IPv6 of interface. (optional)
             physical: Print physical interface information. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -1741,7 +2034,8 @@ class Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -1753,7 +2047,7 @@ class Interface:
         if name is not None:
             data_payload["name"] = name
         if vrf is not None:
-            data_payload["vrf"] = vrf
+            data_payload["vr"] = vrf
         if cli_conn_status is not None:
             data_payload["cli-conn-status"] = cli_conn_status
         if fortilink is not None:

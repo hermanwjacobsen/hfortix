@@ -131,13 +131,13 @@ def validate_wids_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate sensor-mode if present
     if "sensor-mode" in payload:
@@ -166,7 +166,7 @@ def validate_wids_profile_post(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"ap-bgscan-period must be between 10 and 3600",
+                        "ap-bgscan-period must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -181,7 +181,7 @@ def validate_wids_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 600:
-                    return (False, f"ap-bgscan-intv must be between 1 and 600")
+                    return (False, "ap-bgscan-intv must be between 1 and 600")
             except (ValueError, TypeError):
                 return (False, f"ap-bgscan-intv must be numeric, got: {value}")
 
@@ -194,7 +194,7 @@ def validate_wids_profile_post(
                 if int_val < 10 or int_val > 1000:
                     return (
                         False,
-                        f"ap-bgscan-duration must be between 10 and 1000",
+                        "ap-bgscan-duration must be between 10 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -211,7 +211,7 @@ def validate_wids_profile_post(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"ap-bgscan-idle must be between 0 and 1000",
+                        "ap-bgscan-idle must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ap-bgscan-idle must be numeric, got: {value}")
@@ -225,7 +225,7 @@ def validate_wids_profile_post(
                 if int_val < 15 or int_val > 600:
                     return (
                         False,
-                        f"ap-bgscan-report-intv must be between 15 and 600",
+                        "ap-bgscan-report-intv must be between 15 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -242,7 +242,7 @@ def validate_wids_profile_post(
                 if int_val < 15 or int_val > 600:
                     return (
                         False,
-                        f"ap-fgscan-report-intv must be between 15 and 600",
+                        "ap-fgscan-report-intv must be between 15 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -263,7 +263,7 @@ def validate_wids_profile_post(
     if "ap-scan-threshold" in payload:
         value = payload.get("ap-scan-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"ap-scan-threshold cannot exceed 7 characters")
+            return (False, "ap-scan-threshold cannot exceed 7 characters")
 
     # Validate ap-auto-suppress if present
     if "ap-auto-suppress" in payload:
@@ -319,7 +319,7 @@ def validate_wids_profile_post(
                 if int_val < 1000 or int_val > 32767:
                     return (
                         False,
-                        f"long-duration-thresh must be between 1000 and 32767",
+                        "long-duration-thresh must be between 1000 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -363,7 +363,7 @@ def validate_wids_profile_post(
                 if int_val < 5 or int_val > 120:
                     return (
                         False,
-                        f"auth-flood-time must be between 5 and 120",
+                        "auth-flood-time must be between 5 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -380,7 +380,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"auth-flood-thresh must be between 1 and 100",
+                        "auth-flood-thresh must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -406,7 +406,7 @@ def validate_wids_profile_post(
                 if int_val < 5 or int_val > 120:
                     return (
                         False,
-                        f"assoc-flood-time must be between 5 and 120",
+                        "assoc-flood-time must be between 5 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -423,7 +423,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"assoc-flood-thresh must be between 1 and 100",
+                        "assoc-flood-thresh must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -449,7 +449,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"reassoc-flood-time must be between 1 and 120",
+                        "reassoc-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -466,7 +466,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"reassoc-flood-thresh must be between 1 and 65100",
+                        "reassoc-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -492,7 +492,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"probe-flood-time must be between 1 and 120",
+                        "probe-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -509,7 +509,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"probe-flood-thresh must be between 1 and 65100",
+                        "probe-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -533,7 +533,7 @@ def validate_wids_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"bcn-flood-time must be between 1 and 120")
+                    return (False, "bcn-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"bcn-flood-time must be numeric, got: {value}")
 
@@ -546,7 +546,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"bcn-flood-thresh must be between 1 and 65100",
+                        "bcn-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -570,7 +570,7 @@ def validate_wids_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"rts-flood-time must be between 1 and 120")
+                    return (False, "rts-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"rts-flood-time must be numeric, got: {value}")
 
@@ -583,7 +583,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"rts-flood-thresh must be between 1 and 65100",
+                        "rts-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -607,7 +607,7 @@ def validate_wids_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"cts-flood-time must be between 1 and 120")
+                    return (False, "cts-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"cts-flood-time must be numeric, got: {value}")
 
@@ -620,7 +620,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"cts-flood-thresh must be between 1 and 65100",
+                        "cts-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -646,7 +646,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"client-flood-time must be between 1 and 120",
+                        "client-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -663,7 +663,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"client-flood-thresh must be between 1 and 65100",
+                        "client-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -689,7 +689,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"block_ack-flood-time must be between 1 and 120",
+                        "block_ack-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -706,7 +706,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"block_ack-flood-thresh must be between 1 and 65100",
+                        "block_ack-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -732,7 +732,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"pspoll-flood-time must be between 1 and 120",
+                        "pspoll-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -749,7 +749,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"pspoll-flood-thresh must be between 1 and 65100",
+                        "pspoll-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -775,7 +775,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"netstumbler-time must be between 1 and 120",
+                        "netstumbler-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -792,7 +792,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"netstumbler-thresh must be between 1 and 65100",
+                        "netstumbler-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -818,7 +818,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"wellenreiter-time must be between 1 and 120",
+                        "wellenreiter-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -835,7 +835,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"wellenreiter-thresh must be between 1 and 65100",
+                        "wellenreiter-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -879,7 +879,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-start-thresh must be between 2 and 100",
+                        "eapol-start-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -896,7 +896,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-start-intv must be between 1 and 3600",
+                        "eapol-start-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -922,7 +922,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-logoff-thresh must be between 2 and 100",
+                        "eapol-logoff-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -939,7 +939,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-logoff-intv must be between 1 and 3600",
+                        "eapol-logoff-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -965,7 +965,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-succ-thresh must be between 2 and 100",
+                        "eapol-succ-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -982,7 +982,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-succ-intv must be between 1 and 3600",
+                        "eapol-succ-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1008,7 +1008,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-fail-thresh must be between 2 and 100",
+                        "eapol-fail-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1025,7 +1025,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-fail-intv must be between 1 and 3600",
+                        "eapol-fail-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1051,7 +1051,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-pre-succ-thresh must be between 2 and 100",
+                        "eapol-pre-succ-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1068,7 +1068,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-pre-succ-intv must be between 1 and 3600",
+                        "eapol-pre-succ-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1094,7 +1094,7 @@ def validate_wids_profile_post(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-pre-fail-thresh must be between 2 and 100",
+                        "eapol-pre-fail-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1111,7 +1111,7 @@ def validate_wids_profile_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-pre-fail-intv must be between 1 and 3600",
+                        "eapol-pre-fail-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1128,7 +1128,7 @@ def validate_wids_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"deauth-unknown-src-thresh must be between 0 and 65535",
+                        "deauth-unknown-src-thresh must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1439,13 +1439,13 @@ def validate_wids_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate sensor-mode if present
     if "sensor-mode" in payload:
@@ -1474,7 +1474,7 @@ def validate_wids_profile_put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"ap-bgscan-period must be between 10 and 3600",
+                        "ap-bgscan-period must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1489,7 +1489,7 @@ def validate_wids_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 600:
-                    return (False, f"ap-bgscan-intv must be between 1 and 600")
+                    return (False, "ap-bgscan-intv must be between 1 and 600")
             except (ValueError, TypeError):
                 return (False, f"ap-bgscan-intv must be numeric, got: {value}")
 
@@ -1502,7 +1502,7 @@ def validate_wids_profile_put(
                 if int_val < 10 or int_val > 1000:
                     return (
                         False,
-                        f"ap-bgscan-duration must be between 10 and 1000",
+                        "ap-bgscan-duration must be between 10 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1519,7 +1519,7 @@ def validate_wids_profile_put(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"ap-bgscan-idle must be between 0 and 1000",
+                        "ap-bgscan-idle must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ap-bgscan-idle must be numeric, got: {value}")
@@ -1533,7 +1533,7 @@ def validate_wids_profile_put(
                 if int_val < 15 or int_val > 600:
                     return (
                         False,
-                        f"ap-bgscan-report-intv must be between 15 and 600",
+                        "ap-bgscan-report-intv must be between 15 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1550,7 +1550,7 @@ def validate_wids_profile_put(
                 if int_val < 15 or int_val > 600:
                     return (
                         False,
-                        f"ap-fgscan-report-intv must be between 15 and 600",
+                        "ap-fgscan-report-intv must be between 15 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1571,7 +1571,7 @@ def validate_wids_profile_put(
     if "ap-scan-threshold" in payload:
         value = payload.get("ap-scan-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"ap-scan-threshold cannot exceed 7 characters")
+            return (False, "ap-scan-threshold cannot exceed 7 characters")
 
     # Validate ap-auto-suppress if present
     if "ap-auto-suppress" in payload:
@@ -1627,7 +1627,7 @@ def validate_wids_profile_put(
                 if int_val < 1000 or int_val > 32767:
                     return (
                         False,
-                        f"long-duration-thresh must be between 1000 and 32767",
+                        "long-duration-thresh must be between 1000 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1671,7 +1671,7 @@ def validate_wids_profile_put(
                 if int_val < 5 or int_val > 120:
                     return (
                         False,
-                        f"auth-flood-time must be between 5 and 120",
+                        "auth-flood-time must be between 5 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1688,7 +1688,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"auth-flood-thresh must be between 1 and 100",
+                        "auth-flood-thresh must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1714,7 +1714,7 @@ def validate_wids_profile_put(
                 if int_val < 5 or int_val > 120:
                     return (
                         False,
-                        f"assoc-flood-time must be between 5 and 120",
+                        "assoc-flood-time must be between 5 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1731,7 +1731,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"assoc-flood-thresh must be between 1 and 100",
+                        "assoc-flood-thresh must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1757,7 +1757,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"reassoc-flood-time must be between 1 and 120",
+                        "reassoc-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1774,7 +1774,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"reassoc-flood-thresh must be between 1 and 65100",
+                        "reassoc-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1800,7 +1800,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"probe-flood-time must be between 1 and 120",
+                        "probe-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1817,7 +1817,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"probe-flood-thresh must be between 1 and 65100",
+                        "probe-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1841,7 +1841,7 @@ def validate_wids_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"bcn-flood-time must be between 1 and 120")
+                    return (False, "bcn-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"bcn-flood-time must be numeric, got: {value}")
 
@@ -1854,7 +1854,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"bcn-flood-thresh must be between 1 and 65100",
+                        "bcn-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1878,7 +1878,7 @@ def validate_wids_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"rts-flood-time must be between 1 and 120")
+                    return (False, "rts-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"rts-flood-time must be numeric, got: {value}")
 
@@ -1891,7 +1891,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"rts-flood-thresh must be between 1 and 65100",
+                        "rts-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1915,7 +1915,7 @@ def validate_wids_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 120:
-                    return (False, f"cts-flood-time must be between 1 and 120")
+                    return (False, "cts-flood-time must be between 1 and 120")
             except (ValueError, TypeError):
                 return (False, f"cts-flood-time must be numeric, got: {value}")
 
@@ -1928,7 +1928,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"cts-flood-thresh must be between 1 and 65100",
+                        "cts-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1954,7 +1954,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"client-flood-time must be between 1 and 120",
+                        "client-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1971,7 +1971,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"client-flood-thresh must be between 1 and 65100",
+                        "client-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1997,7 +1997,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"block_ack-flood-time must be between 1 and 120",
+                        "block_ack-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2014,7 +2014,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"block_ack-flood-thresh must be between 1 and 65100",
+                        "block_ack-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2040,7 +2040,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"pspoll-flood-time must be between 1 and 120",
+                        "pspoll-flood-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2057,7 +2057,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"pspoll-flood-thresh must be between 1 and 65100",
+                        "pspoll-flood-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2083,7 +2083,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"netstumbler-time must be between 1 and 120",
+                        "netstumbler-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2100,7 +2100,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"netstumbler-thresh must be between 1 and 65100",
+                        "netstumbler-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2126,7 +2126,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"wellenreiter-time must be between 1 and 120",
+                        "wellenreiter-time must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2143,7 +2143,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 65100:
                     return (
                         False,
-                        f"wellenreiter-thresh must be between 1 and 65100",
+                        "wellenreiter-thresh must be between 1 and 65100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2187,7 +2187,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-start-thresh must be between 2 and 100",
+                        "eapol-start-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2204,7 +2204,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-start-intv must be between 1 and 3600",
+                        "eapol-start-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2230,7 +2230,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-logoff-thresh must be between 2 and 100",
+                        "eapol-logoff-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2247,7 +2247,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-logoff-intv must be between 1 and 3600",
+                        "eapol-logoff-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2273,7 +2273,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-succ-thresh must be between 2 and 100",
+                        "eapol-succ-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2290,7 +2290,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-succ-intv must be between 1 and 3600",
+                        "eapol-succ-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2316,7 +2316,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-fail-thresh must be between 2 and 100",
+                        "eapol-fail-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2333,7 +2333,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-fail-intv must be between 1 and 3600",
+                        "eapol-fail-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2359,7 +2359,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-pre-succ-thresh must be between 2 and 100",
+                        "eapol-pre-succ-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2376,7 +2376,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-pre-succ-intv must be between 1 and 3600",
+                        "eapol-pre-succ-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2402,7 +2402,7 @@ def validate_wids_profile_put(
                 if int_val < 2 or int_val > 100:
                     return (
                         False,
-                        f"eapol-pre-fail-thresh must be between 2 and 100",
+                        "eapol-pre-fail-thresh must be between 2 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2419,7 +2419,7 @@ def validate_wids_profile_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"eapol-pre-fail-intv must be between 1 and 3600",
+                        "eapol-pre-fail-intv must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2436,7 +2436,7 @@ def validate_wids_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"deauth-unknown-src-thresh must be between 0 and 65535",
+                        "deauth-unknown-src-thresh must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (

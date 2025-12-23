@@ -30,7 +30,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.system.standalone_cluster.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.system.standalone_cluster.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +89,15 @@ class StandaloneCluster:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +105,8 @@ class StandaloneCluster:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -142,25 +148,43 @@ class StandaloneCluster:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            standalone_group_id: Cluster group ID (0 - 255). Must be the same for all members. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            standalone_group_id: Cluster group ID (0 - 255). Must be the same
+            for all members. (optional)
             group_member_id: Cluster member ID (0 - 15). (optional)
-            layer2_connection: Indicate whether layer 2 connections are present among FGSP members. (optional)
-            session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly. (optional)
-            encryption: Enable/disable encryption when synchronizing sessions. (optional)
-            psksecret: Pre-shared secret for session synchronization (ASCII string or hexadecimal encoded with a leading 0x). (optional)
-            asymmetric_traffic_control: Asymmetric traffic control mode. (optional)
-            cluster_peer: Configure FortiGate Session Life Support Protocol (FGSP) session synchronization. (optional)
-            monitor_interface: Configure a list of interfaces on which to monitor itself. Monitoring is performed on the status of the interface. (optional)
-            pingsvr_monitor_interface: List of pingsvr monitor interface to check for remote IP monitoring. (optional)
-            monitor_prefix: Configure a list of routing prefixes to monitor. (optional)
-            helper_traffic_bounce: Enable/disable helper related traffic bounce. (optional)
-            utm_traffic_bounce: Enable/disable UTM related traffic bounce. (optional)
+            layer2_connection: Indicate whether layer 2 connections are present
+            among FGSP members. (optional)
+            session_sync_dev: Offload session-sync process to kernel and sync
+            sessions using connected interface(s) directly. (optional)
+            encryption: Enable/disable encryption when synchronizing sessions.
+            (optional)
+            psksecret: Pre-shared secret for session synchronization (ASCII
+            string or hexadecimal encoded with a leading 0x). (optional)
+            asymmetric_traffic_control: Asymmetric traffic control mode.
+            (optional)
+            cluster_peer: Configure FortiGate Session Life Support Protocol
+            (FGSP) session synchronization. (optional)
+            monitor_interface: Configure a list of interfaces on which to
+            monitor itself. Monitoring is performed on the status of the
+            interface. (optional)
+            pingsvr_monitor_interface: List of pingsvr monitor interface to
+            check for remote IP monitoring. (optional)
+            monitor_prefix: Configure a list of routing prefixes to monitor.
+            (optional)
+            helper_traffic_bounce: Enable/disable helper related traffic
+            bounce. (optional)
+            utm_traffic_bounce: Enable/disable UTM related traffic bounce.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -168,7 +192,8 @@ class StandaloneCluster:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

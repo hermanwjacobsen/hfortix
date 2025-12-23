@@ -95,12 +95,12 @@ def validate_auto_install_put(
     if "default-config-file" in payload:
         value = payload.get("default-config-file")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"default-config-file cannot exceed 127 characters")
+            return (False, "default-config-file cannot exceed 127 characters")
 
     # Validate default-image-file if present
     if "default-image-file" in payload:
         value = payload.get("default-image-file")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"default-image-file cannot exceed 127 characters")
+            return (False, "default-image-file cannot exceed 127 characters")
 
     return (True, None)

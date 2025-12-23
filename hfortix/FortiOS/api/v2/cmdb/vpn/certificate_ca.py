@@ -94,12 +94,17 @@ class CertificateCa:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -107,7 +112,8 @@ class CertificateCa:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -158,25 +164,35 @@ class CertificateCa:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             ca: CA certificate as a PEM file. (optional)
-            range: Either global or VDOM IP address range for the CA certificate. (optional)
+            range: Either global or VDOM IP address range for the CA
+            certificate. (optional)
             source: CA certificate source type. (optional)
-            ssl_inspection_trusted: Enable/disable this CA as a trusted CA for SSL inspection. (optional)
+            ssl_inspection_trusted: Enable/disable this CA as a trusted CA for
+            SSL inspection. (optional)
             scep_url: URL of the SCEP server. (optional)
             est_url: URL of the EST server. (optional)
-            auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled). (optional)
-            auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled). (optional)
-            source_ip: Source IP address for communications to the SCEP server. (optional)
+            auto_update_days: Number of days to wait before requesting an
+            updated CA certificate (0 - 4294967295, 0 = disabled). (optional)
+            auto_update_days_warning: Number of days before an expiry-warning
+            message is generated (0 - 4294967295, 0 = disabled). (optional)
+            source_ip: Source IP address for communications to the SCEP server.
+            (optional)
             ca_identifier: CA identifier of the SCEP server. (optional)
             obsolete: Enable/disable this CA as obsoleted. (optional)
-            fabric_ca: Enable/disable synchronization of CA across Security Fabric. (optional)
+            fabric_ca: Enable/disable synchronization of CA across Security
+            Fabric. (optional)
             details: Print CA certificate detailed information. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -184,7 +200,8 @@ class CertificateCa:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

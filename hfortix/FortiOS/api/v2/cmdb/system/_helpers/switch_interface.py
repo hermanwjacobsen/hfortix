@@ -75,19 +75,19 @@ def validate_switch_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate span-dest-port if present
     if "span-dest-port" in payload:
         value = payload.get("span-dest-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-dest-port cannot exceed 15 characters")
+            return (False, "span-dest-port cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -114,7 +114,7 @@ def validate_switch_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 300 or int_val > 8640000:
-                    return (False, f"mac-ttl must be between 300 and 8640000")
+                    return (False, "mac-ttl must be between 300 and 8640000")
             except (ValueError, TypeError):
                 return (False, f"mac-ttl must be numeric, got: {value}")
 
@@ -169,19 +169,19 @@ def validate_switch_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate span-dest-port if present
     if "span-dest-port" in payload:
         value = payload.get("span-dest-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-dest-port cannot exceed 15 characters")
+            return (False, "span-dest-port cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -208,7 +208,7 @@ def validate_switch_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 300 or int_val > 8640000:
-                    return (False, f"mac-ttl must be between 300 and 8640000")
+                    return (False, "mac-ttl must be between 300 and 8640000")
             except (ValueError, TypeError):
                 return (False, f"mac-ttl must be numeric, got: {value}")
 

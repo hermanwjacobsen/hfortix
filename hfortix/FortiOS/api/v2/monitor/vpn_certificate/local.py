@@ -70,7 +70,8 @@ class Create:
         Args:
             certname: Certificate name. (optional)
             common_name: Certificate common name. (optional)
-            scope: Scope of local certificate [vdom*|global]. Global scope is only accessible for global administrators. (optional)
+            scope: Scope of local certificate [vdom*|global]. Global scope is
+            only accessible for global administrators. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -128,16 +129,25 @@ class ImportLocal:
 
         Args:
             type: Type of certificate.[local|pkcs12|regular] (optional)
-            certname: Certificate name for pkcs12 and regular certificate types. (optional)
-            password: Optional password for pkcs12 and regular certificate types. (optional)
-            key_file_content: Key content encoded in BASE64 for regular certificate type. (optional)
-            scope: Scope of local certificate [vdom*|global]. Global scope is only accessible for global administrators (optional)
-            acme_domain: A valid domain that resolves to an IP whose TCP port 443 reaches this FortiGate. (optional)
-            acme_email: Contact email address that is required by some CAs such as LetsEncrypt. (optional)
+            certname: Certificate name for pkcs12 and regular certificate
+            types. (optional)
+            password: Optional password for pkcs12 and regular certificate
+            types. (optional)
+            key_file_content: Key content encoded in BASE64 for regular
+            certificate type. (optional)
+            scope: Scope of local certificate [vdom*|global]. Global scope is
+            only accessible for global administrators (optional)
+            acme_domain: A valid domain that resolves to an IP whose TCP port
+            443 reaches this FortiGate. (optional)
+            acme_email: Contact email address that is required by some CAs such
+            as LetsEncrypt. (optional)
             acme_ca_url: URL for the ACME CA server. (optional)
-            acme_rsa_key_size: Length of the RSA private key for the generated cert. (optional)
+            acme_rsa_key_size: Length of the RSA private key for the generated
+            cert. (optional)
             acme_renew_window: Certificate renewal window in days. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

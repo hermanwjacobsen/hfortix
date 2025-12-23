@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Ippool:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Ippool:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -176,40 +182,76 @@ class Ippool:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: IP pool name. (optional)
-            type: IP pool type: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only) (optional)
-            startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            startport: First port number (inclusive) in the range for the address pool (1024 - 65535, Default: 5117). (optional)
-            endport: Final port number (inclusive) in the range for the address pool (1024 - 65535, Default: 65533). (optional)
-            source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format = xxx.xxx.xxx.xxx, default = 0.0.0.0). (optional)
-            source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            block_size: Number of addresses in a block (64 - 4096, default = 128). (optional)
-            port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto). (optional)
-            num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8). (optional)
+            type: IP pool type: overload, one-to-one, fixed-port-range,
+            port-block-allocation, cgn-resource-allocation (hyperscale vdom
+            only) (optional)
+            startip: First IPv4 address (inclusive) in the range for the
+            address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
+            endip: Final IPv4 address (inclusive) in the range for the address
+            pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
+            startport: First port number (inclusive) in the range for the
+            address pool (1024 - 65535, Default: 5117). (optional)
+            endport: Final port number (inclusive) in the range for the address
+            pool (1024 - 65535, Default: 65533). (optional)
+            source_startip: First IPv4 address (inclusive) in the range of the
+            source addresses to be translated (format = xxx.xxx.xxx.xxx,
+            default = 0.0.0.0). (optional)
+            source_endip: Final IPv4 address (inclusive) in the range of the
+            source addresses to be translated (format xxx.xxx.xxx.xxx, Default:
+            0.0.0.0). (optional)
+            block_size: Number of addresses in a block (64 - 4096, default =
+            128). (optional)
+            port_per_user: Number of port for each user (32 - 60416, default =
+            0, which is auto). (optional)
+            num_blocks_per_user: Number of addresses blocks that can be used by
+            a user (1 to 128, default = 8). (optional)
             pba_timeout: Port block allocation timeout (seconds). (optional)
-            pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging). (optional)
-            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets from any host. (optional)
-            arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). (optional)
-            arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected). (optional)
+            pba_interim_log: Port block allocation interim logging interval
+            (600 - 86400 seconds, default = 0 which disables interim logging).
+            (optional)
+            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets
+            from any host. (optional)
+            arp_reply: Enable/disable replying to ARP requests when an IP Pool
+            is added to a policy (default = enable). (optional)
+            arp_intf: Select an interface from available options that will
+            reply to ARP requests. (If blank, any is selected). (optional)
             associated_interface: Associated interface name. (optional)
             comments: Comment. (optional)
             nat64: Enable/disable NAT64. (optional)
             add_nat64_route: Enable/disable adding NAT64 route. (optional)
-            source_prefix6: Source IPv6 network to be translated (format = xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx, default = ::/0). (optional)
-            client_prefix_length: Subnet length of a single deterministic NAT64 client (1 - 128, default = 64). (optional)
-            tcp_session_quota: Maximum number of concurrent TCP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            udp_session_quota: Maximum number of concurrent UDP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            icmp_session_quota: Maximum number of concurrent ICMP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            privileged_port_use_pba: Enable/disable selection of the external port from the port block allocation for NAT'ing privileged ports (deafult = disable). (optional)
-            subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. (optional)
+            source_prefix6: Source IPv6 network to be translated (format =
+            xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx, default = ::/0).
+            (optional)
+            client_prefix_length: Subnet length of a single deterministic NAT64
+            client (1 - 128, default = 64). (optional)
+            tcp_session_quota: Maximum number of concurrent TCP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            udp_session_quota: Maximum number of concurrent UDP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            icmp_session_quota: Maximum number of concurrent ICMP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            privileged_port_use_pba: Enable/disable selection of the external
+            port from the port block allocation for NAT'ing privileged ports
+            (deafult = disable). (optional)
+            subnet_broadcast_in_ippool: Enable/disable inclusion of the
+            subnetwork address and broadcast IP address in the NAT64 IP pool.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -217,7 +259,8 @@ class Ippool:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -263,7 +306,7 @@ class Ippool:
         if arp_reply is not None:
             data_payload["arp-reply"] = arp_reply
         if arp_intf is not None:
-            data_payload["arp-intf"] = arp_intf
+            data_payload["arp-int"] = arp_intf
         if associated_interface is not None:
             data_payload["associated-interface"] = associated_interface
         if comments is not None:
@@ -307,8 +350,10 @@ class Ippool:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -316,7 +361,8 @@ class Ippool:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -414,38 +460,73 @@ class Ippool:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: IP pool name. (optional)
-            type: IP pool type: overload, one-to-one, fixed-port-range, port-block-allocation, cgn-resource-allocation (hyperscale vdom only) (optional)
-            startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            startport: First port number (inclusive) in the range for the address pool (1024 - 65535, Default: 5117). (optional)
-            endport: Final port number (inclusive) in the range for the address pool (1024 - 65535, Default: 65533). (optional)
-            source_startip: First IPv4 address (inclusive) in the range of the source addresses to be translated (format = xxx.xxx.xxx.xxx, default = 0.0.0.0). (optional)
-            source_endip: Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
-            block_size: Number of addresses in a block (64 - 4096, default = 128). (optional)
-            port_per_user: Number of port for each user (32 - 60416, default = 0, which is auto). (optional)
-            num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8). (optional)
+            type: IP pool type: overload, one-to-one, fixed-port-range,
+            port-block-allocation, cgn-resource-allocation (hyperscale vdom
+            only) (optional)
+            startip: First IPv4 address (inclusive) in the range for the
+            address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
+            endip: Final IPv4 address (inclusive) in the range for the address
+            pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0). (optional)
+            startport: First port number (inclusive) in the range for the
+            address pool (1024 - 65535, Default: 5117). (optional)
+            endport: Final port number (inclusive) in the range for the address
+            pool (1024 - 65535, Default: 65533). (optional)
+            source_startip: First IPv4 address (inclusive) in the range of the
+            source addresses to be translated (format = xxx.xxx.xxx.xxx,
+            default = 0.0.0.0). (optional)
+            source_endip: Final IPv4 address (inclusive) in the range of the
+            source addresses to be translated (format xxx.xxx.xxx.xxx, Default:
+            0.0.0.0). (optional)
+            block_size: Number of addresses in a block (64 - 4096, default =
+            128). (optional)
+            port_per_user: Number of port for each user (32 - 60416, default =
+            0, which is auto). (optional)
+            num_blocks_per_user: Number of addresses blocks that can be used by
+            a user (1 to 128, default = 8). (optional)
             pba_timeout: Port block allocation timeout (seconds). (optional)
-            pba_interim_log: Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging). (optional)
-            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets from any host. (optional)
-            arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). (optional)
-            arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected). (optional)
+            pba_interim_log: Port block allocation interim logging interval
+            (600 - 86400 seconds, default = 0 which disables interim logging).
+            (optional)
+            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets
+            from any host. (optional)
+            arp_reply: Enable/disable replying to ARP requests when an IP Pool
+            is added to a policy (default = enable). (optional)
+            arp_intf: Select an interface from available options that will
+            reply to ARP requests. (If blank, any is selected). (optional)
             associated_interface: Associated interface name. (optional)
             comments: Comment. (optional)
             nat64: Enable/disable NAT64. (optional)
             add_nat64_route: Enable/disable adding NAT64 route. (optional)
-            source_prefix6: Source IPv6 network to be translated (format = xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx, default = ::/0). (optional)
-            client_prefix_length: Subnet length of a single deterministic NAT64 client (1 - 128, default = 64). (optional)
-            tcp_session_quota: Maximum number of concurrent TCP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            udp_session_quota: Maximum number of concurrent UDP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            icmp_session_quota: Maximum number of concurrent ICMP sessions allowed per client (0 - 2097000, default = 0 which means no limit). (optional)
-            privileged_port_use_pba: Enable/disable selection of the external port from the port block allocation for NAT'ing privileged ports (deafult = disable). (optional)
-            subnet_broadcast_in_ippool: Enable/disable inclusion of the subnetwork address and broadcast IP address in the NAT64 IP pool. (optional)
+            source_prefix6: Source IPv6 network to be translated (format =
+            xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx, default = ::/0).
+            (optional)
+            client_prefix_length: Subnet length of a single deterministic NAT64
+            client (1 - 128, default = 64). (optional)
+            tcp_session_quota: Maximum number of concurrent TCP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            udp_session_quota: Maximum number of concurrent UDP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            icmp_session_quota: Maximum number of concurrent ICMP sessions
+            allowed per client (0 - 2097000, default = 0 which means no limit).
+            (optional)
+            privileged_port_use_pba: Enable/disable selection of the external
+            port from the port block allocation for NAT'ing privileged ports
+            (deafult = disable). (optional)
+            subnet_broadcast_in_ippool: Enable/disable inclusion of the
+            subnetwork address and broadcast IP address in the NAT64 IP pool.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -453,7 +534,8 @@ class Ippool:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -493,7 +575,7 @@ class Ippool:
         if arp_reply is not None:
             data_payload["arp-reply"] = arp_reply
         if arp_intf is not None:
-            data_payload["arp-intf"] = arp_intf
+            data_payload["arp-int"] = arp_intf
         if associated_interface is not None:
             data_payload["associated-interface"] = associated_interface
         if comments is not None:

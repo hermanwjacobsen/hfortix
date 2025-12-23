@@ -61,11 +61,13 @@ class Abort:
 
         Supports dual approach:
         1. Individual parameters: post(session_id=12345)
-        2. Payload dict: post(session_id=12345, payload_dict={'extra_param': 'value'})
+        2. Payload dict: post(session_id=12345, payload_dict={'extra_param':
+        'value'})
 
         Args:
             session_id: Session ID of the log search to abort (required)
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -78,7 +80,8 @@ class Abort:
 
             # After starting a search
             search_result = fgt.api.log.disk.virus.raw.get(rows=10000)
-            result = fgt.api.log.search.abort.post(session_id=search_result['session_id'])
+            result =
+            fgt.api.log.search.abort.post(session_id=search_result['session_id'])
         """
         if payload_dict:
             data = payload_dict.copy()
@@ -111,11 +114,13 @@ class Status:
 
         Supports dual approach:
         1. Individual parameters: get(session_id=12345)
-        2. Payload dict: get(session_id=12345, payload_dict={'extra_param': 'value'})
+        2. Payload dict: get(session_id=12345, payload_dict={'extra_param':
+        'value'})
 
         Args:
             session_id: Session ID of the log search to check status (required)
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -129,7 +134,8 @@ class Status:
 
             # After starting a disk search
             search = fgt.api.log.disk.virus.raw.get(rows=10000)
-            status = fgt.api.log.search.status.get(session_id=search['session_id'])
+            status =
+            fgt.api.log.search.status.get(session_id=search['session_id'])
             if status.get('active'):
                 print("Search still running...")
             else:

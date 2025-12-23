@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Local:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Local:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -176,40 +182,63 @@ class Local:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Local user name. (optional)
             id: User ID. (optional)
-            status: Enable/disable allowing the local user to authenticate with the FortiGate unit. (optional)
+            status: Enable/disable allowing the local user to authenticate with
+            the FortiGate unit. (optional)
             type: Authentication method. (optional)
             passwd: User's password. (optional)
-            ldap_server: Name of LDAP server with which the user must authenticate. (optional)
-            radius_server: Name of RADIUS server with which the user must authenticate. (optional)
-            tacacs_plus__server: Name of TACACS+ server with which the user must authenticate. (optional)
-            saml_server: Name of SAML server with which the user must authenticate. (optional)
+            ldap_server: Name of LDAP server with which the user must
+            authenticate. (optional)
+            radius_server: Name of RADIUS server with which the user must
+            authenticate. (optional)
+            tacacs_plus__server: Name of TACACS+ server with which the user
+            must authenticate. (optional)
+            saml_server: Name of SAML server with which the user must
+            authenticate. (optional)
             two_factor: Enable/disable two-factor authentication. (optional)
-            two_factor_authentication: Authentication method by FortiToken Cloud. (optional)
-            two_factor_notification: Notification method for user activation by FortiToken Cloud. (optional)
-            fortitoken: Two-factor recipient's FortiToken serial number. (optional)
+            two_factor_authentication: Authentication method by FortiToken
+            Cloud. (optional)
+            two_factor_notification: Notification method for user activation by
+            FortiToken Cloud. (optional)
+            fortitoken: Two-factor recipient's FortiToken serial number.
+            (optional)
             email_to: Two-factor recipient's email address. (optional)
-            sms_server: Send SMS through FortiGuard or other external server. (optional)
+            sms_server: Send SMS through FortiGuard or other external server.
+            (optional)
             sms_custom_server: Two-factor recipient's SMS server. (optional)
             sms_phone: Two-factor recipient's mobile phone number. (optional)
-            passwd_policy: Password policy to apply to this user, as defined in config user password-policy. (optional)
+            passwd_policy: Password policy to apply to this user, as defined in
+            config user password-policy. (optional)
             passwd_time: Time of the last password update. (optional)
-            authtimeout: Time in minutes before the authentication timeout for a user is reached. (optional)
-            workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation. (optional)
-            auth_concurrent_override: Enable/disable overriding the policy-auth-concurrent under config system global. (optional)
-            auth_concurrent_value: Maximum number of concurrent logins permitted from the same user. (optional)
-            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            authtimeout: Time in minutes before the authentication timeout for
+            a user is reached. (optional)
+            workstation: Name of the remote user workstation, if you want to
+            limit the user to authenticate only from a particular workstation.
+            (optional)
+            auth_concurrent_override: Enable/disable overriding the
+            policy-auth-concurrent under config system global. (optional)
+            auth_concurrent_value: Maximum number of concurrent logins
+            permitted from the same user. (optional)
+            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or
+            hexadecimal encoded with a leading 0x). (optional)
             ppk_identity: IKEv2 Postquantum Preshared Key Identity. (optional)
             qkd_profile: Quantum Key Distribution (QKD) profile. (optional)
-            username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). (optional)
+            username_sensitivity: Enable/disable case and accent sensitivity
+            when performing username matching (accents are stripped and case is
+            ignored when disabled). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -217,7 +246,8 @@ class Local:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -307,8 +337,10 @@ class Local:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -316,7 +348,8 @@ class Local:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -414,38 +447,60 @@ class Local:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Local user name. (optional)
             id: User ID. (optional)
-            status: Enable/disable allowing the local user to authenticate with the FortiGate unit. (optional)
+            status: Enable/disable allowing the local user to authenticate with
+            the FortiGate unit. (optional)
             type: Authentication method. (optional)
             passwd: User's password. (optional)
-            ldap_server: Name of LDAP server with which the user must authenticate. (optional)
-            radius_server: Name of RADIUS server with which the user must authenticate. (optional)
-            tacacs_plus__server: Name of TACACS+ server with which the user must authenticate. (optional)
-            saml_server: Name of SAML server with which the user must authenticate. (optional)
+            ldap_server: Name of LDAP server with which the user must
+            authenticate. (optional)
+            radius_server: Name of RADIUS server with which the user must
+            authenticate. (optional)
+            tacacs_plus__server: Name of TACACS+ server with which the user
+            must authenticate. (optional)
+            saml_server: Name of SAML server with which the user must
+            authenticate. (optional)
             two_factor: Enable/disable two-factor authentication. (optional)
-            two_factor_authentication: Authentication method by FortiToken Cloud. (optional)
-            two_factor_notification: Notification method for user activation by FortiToken Cloud. (optional)
-            fortitoken: Two-factor recipient's FortiToken serial number. (optional)
+            two_factor_authentication: Authentication method by FortiToken
+            Cloud. (optional)
+            two_factor_notification: Notification method for user activation by
+            FortiToken Cloud. (optional)
+            fortitoken: Two-factor recipient's FortiToken serial number.
+            (optional)
             email_to: Two-factor recipient's email address. (optional)
-            sms_server: Send SMS through FortiGuard or other external server. (optional)
+            sms_server: Send SMS through FortiGuard or other external server.
+            (optional)
             sms_custom_server: Two-factor recipient's SMS server. (optional)
             sms_phone: Two-factor recipient's mobile phone number. (optional)
-            passwd_policy: Password policy to apply to this user, as defined in config user password-policy. (optional)
+            passwd_policy: Password policy to apply to this user, as defined in
+            config user password-policy. (optional)
             passwd_time: Time of the last password update. (optional)
-            authtimeout: Time in minutes before the authentication timeout for a user is reached. (optional)
-            workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation. (optional)
-            auth_concurrent_override: Enable/disable overriding the policy-auth-concurrent under config system global. (optional)
-            auth_concurrent_value: Maximum number of concurrent logins permitted from the same user. (optional)
-            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            authtimeout: Time in minutes before the authentication timeout for
+            a user is reached. (optional)
+            workstation: Name of the remote user workstation, if you want to
+            limit the user to authenticate only from a particular workstation.
+            (optional)
+            auth_concurrent_override: Enable/disable overriding the
+            policy-auth-concurrent under config system global. (optional)
+            auth_concurrent_value: Maximum number of concurrent logins
+            permitted from the same user. (optional)
+            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or
+            hexadecimal encoded with a leading 0x). (optional)
             ppk_identity: IKEv2 Postquantum Preshared Key Identity. (optional)
             qkd_profile: Quantum Key Distribution (QKD) profile. (optional)
-            username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). (optional)
+            username_sensitivity: Enable/disable case and accent sensitivity
+            when performing username matching (accents are stripped and case is
+            ignored when disabled). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -453,7 +508,8 @@ class Local:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

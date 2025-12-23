@@ -88,11 +88,15 @@ class FederatedUpgrade:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class FederatedUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -141,24 +146,35 @@ class FederatedUpgrade:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Current status of the upgrade. (optional)
             source: Source that set up the federated upgrade config. (optional)
             failure_reason: Reason for upgrade failure. (optional)
             failure_device: Serial number of the node to include. (optional)
             upgrade_id: Unique identifier for this upgrade. (optional)
-            next_path_index: The index of the next image to upgrade to. (optional)
-            ignore_signing_errors: Allow/reject use of FortiGate firmware images that are unsigned. (optional)
-            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
-            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
-            initial_version: Firmware version when the upgrade was set up. (optional)
+            next_path_index: The index of the next image to upgrade to.
+            (optional)
+            ignore_signing_errors: Allow/reject use of FortiGate firmware
+            images that are unsigned. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will
+            control the reboot process for the federated upgrade of the HA
+            cluster. (optional)
+            known_ha_members: Known members of the HA cluster. If a member is
+            missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up.
+            (optional)
             starter_admin: Admin that started the upgrade. (optional)
             node_list: Nodes which will be included in the upgrade. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -166,7 +182,8 @@ class FederatedUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

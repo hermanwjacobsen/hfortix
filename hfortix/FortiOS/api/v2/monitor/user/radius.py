@@ -69,14 +69,23 @@ class GetTestConnect:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Test the connectivity of the given RADIUS server and, optionally, the validity of a username & password.
+        Test the connectivity of the given RADIUS server and, optionally, the
+        validity of a username & password.
 
         Args:
-            mkey: Name of FortiGate's RADIUS object whose settings to test. (optional)
-            ordinal: If 'mkey' is provided, the server-secret pair to use from the object: 'primary', 'secondary' or 'tertiary'. Defaults to 'primary'. (optional)
-            server: Host name or IP of a RADIUS server. If 'mkey' is provided, this overrides the 'server' value in the object. (optional)
-            secret: Secret password for the RADIUS server. If 'mkey' is provided, this overrides the 'secret' value in the object. (optional)
-            auth_type: Authentication protocol to use [auto|ms_chap_v2|ms_chap|chap|pap]. If 'mkey' is provided, this overrides the 'auth-type' value in the object. (optional)
+            mkey: Name of FortiGate's RADIUS object whose settings to test.
+            (optional)
+            ordinal: If 'mkey' is provided, the server-secret pair to use from
+            the object: 'primary', 'secondary' or 'tertiary'. Defaults to
+            'primary'. (optional)
+            server: Host name or IP of a RADIUS server. If 'mkey' is provided,
+            this overrides the 'server' value in the object. (optional)
+            secret: Secret password for the RADIUS server. If 'mkey' is
+            provided, this overrides the 'secret' value in the object.
+            (optional)
+            auth_type: Authentication protocol to use
+            [auto|ms_chap_v2|ms_chap|chap|pap]. If 'mkey' is provided, this
+            overrides the 'auth-type' value in the object. (optional)
             user: User name whose access to check. (optional)
             password: User's password. (optional)
             payload_dict: Optional dictionary of parameters
@@ -136,14 +145,23 @@ class TestConnect:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Test the connectivity of the given RADIUS server and, optionally, the validity of a username & password.
+        Test the connectivity of the given RADIUS server and, optionally, the
+        validity of a username & password.
 
         Args:
-            mkey: Name of FortiGate's RADIUS object whose settings to test. (optional)
-            ordinal: If 'mkey' is provided, the server-secret pair to use from the object: 'primary', 'secondary' or 'tertiary'. Defaults to 'primary'. (optional)
-            server: Host name or IP of a RADIUS server. If 'mkey' is provided, this overrides the 'server' value in the object. (optional)
-            secret: Secret password for the RADIUS server. If 'mkey' is provided, this overrides the 'secret' value in the object. (optional)
-            auth_type: Authentication protocol to use [auto|ms_chap_v2|ms_chap|chap|pap]. If 'mkey' is provided, this overrides the 'auth-type' value in the object. (optional)
+            mkey: Name of FortiGate's RADIUS object whose settings to test.
+            (optional)
+            ordinal: If 'mkey' is provided, the server-secret pair to use from
+            the object: 'primary', 'secondary' or 'tertiary'. Defaults to
+            'primary'. (optional)
+            server: Host name or IP of a RADIUS server. If 'mkey' is provided,
+            this overrides the 'server' value in the object. (optional)
+            secret: Secret password for the RADIUS server. If 'mkey' is
+            provided, this overrides the 'secret' value in the object.
+            (optional)
+            auth_type: Authentication protocol to use
+            [auto|ms_chap_v2|ms_chap|chap|pap]. If 'mkey' is provided, this
+            overrides the 'auth-type' value in the object. (optional)
             user: User name whose access to check. (optional)
             password: User's password. (optional)
             payload_dict: Optional dictionary of parameters

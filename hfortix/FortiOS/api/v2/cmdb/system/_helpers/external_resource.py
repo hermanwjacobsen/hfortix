@@ -85,7 +85,7 @@ def validate_external_resource_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -109,25 +109,25 @@ def validate_external_resource_post(
     if "namespace" in payload:
         value = payload.get("namespace")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"namespace cannot exceed 15 characters")
+            return (False, "namespace cannot exceed 15 characters")
 
     # Validate object-array-path if present
     if "object-array-path" in payload:
         value = payload.get("object-array-path")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"object-array-path cannot exceed 511 characters")
+            return (False, "object-array-path cannot exceed 511 characters")
 
     # Validate address-name-field if present
     if "address-name-field" in payload:
         value = payload.get("address-name-field")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"address-name-field cannot exceed 511 characters")
+            return (False, "address-name-field cannot exceed 511 characters")
 
     # Validate address-data-field if present
     if "address-data-field" in payload:
         value = payload.get("address-data-field")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"address-data-field cannot exceed 511 characters")
+            return (False, "address-data-field cannot exceed 511 characters")
 
     # Validate address-comment-field if present
     if "address-comment-field" in payload:
@@ -135,7 +135,7 @@ def validate_external_resource_post(
         if value and isinstance(value, str) and len(value) > 511:
             return (
                 False,
-                f"address-comment-field cannot exceed 511 characters",
+                "address-comment-field cannot exceed 511 characters",
             )
 
     # Validate update-method if present
@@ -154,7 +154,7 @@ def validate_external_resource_post(
             try:
                 int_val = int(value)
                 if int_val < 192 or int_val > 221:
-                    return (False, f"category must be between 192 and 221")
+                    return (False, "category must be between 192 and 221")
             except (ValueError, TypeError):
                 return (False, f"category must be numeric, got: {value}")
 
@@ -162,7 +162,7 @@ def validate_external_resource_post(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate client-cert-auth if present
     if "client-cert-auth" in payload:
@@ -177,25 +177,25 @@ def validate_external_resource_post(
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"client-cert cannot exceed 79 characters")
+            return (False, "client-cert cannot exceed 79 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate resource if present
     if "resource" in payload:
         value = payload.get("resource")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"resource cannot exceed 511 characters")
+            return (False, "resource cannot exceed 511 characters")
 
     # Validate user-agent if present
     if "user-agent" in payload:
         value = payload.get("user-agent")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"user-agent cannot exceed 255 characters")
+            return (False, "user-agent cannot exceed 255 characters")
 
     # Validate server-identity-check if present
     if "server-identity-check" in payload:
@@ -213,7 +213,7 @@ def validate_external_resource_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 43200:
-                    return (False, f"refresh-rate must be between 1 and 43200")
+                    return (False, "refresh-rate must be between 1 and 43200")
             except (ValueError, TypeError):
                 return (False, f"refresh-rate must be numeric, got: {value}")
 
@@ -221,7 +221,7 @@ def validate_external_resource_post(
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -236,7 +236,7 @@ def validate_external_resource_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -245,7 +245,7 @@ def validate_external_resource_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -282,7 +282,7 @@ def validate_external_resource_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -306,25 +306,25 @@ def validate_external_resource_put(
     if "namespace" in payload:
         value = payload.get("namespace")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"namespace cannot exceed 15 characters")
+            return (False, "namespace cannot exceed 15 characters")
 
     # Validate object-array-path if present
     if "object-array-path" in payload:
         value = payload.get("object-array-path")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"object-array-path cannot exceed 511 characters")
+            return (False, "object-array-path cannot exceed 511 characters")
 
     # Validate address-name-field if present
     if "address-name-field" in payload:
         value = payload.get("address-name-field")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"address-name-field cannot exceed 511 characters")
+            return (False, "address-name-field cannot exceed 511 characters")
 
     # Validate address-data-field if present
     if "address-data-field" in payload:
         value = payload.get("address-data-field")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"address-data-field cannot exceed 511 characters")
+            return (False, "address-data-field cannot exceed 511 characters")
 
     # Validate address-comment-field if present
     if "address-comment-field" in payload:
@@ -332,7 +332,7 @@ def validate_external_resource_put(
         if value and isinstance(value, str) and len(value) > 511:
             return (
                 False,
-                f"address-comment-field cannot exceed 511 characters",
+                "address-comment-field cannot exceed 511 characters",
             )
 
     # Validate update-method if present
@@ -351,7 +351,7 @@ def validate_external_resource_put(
             try:
                 int_val = int(value)
                 if int_val < 192 or int_val > 221:
-                    return (False, f"category must be between 192 and 221")
+                    return (False, "category must be between 192 and 221")
             except (ValueError, TypeError):
                 return (False, f"category must be numeric, got: {value}")
 
@@ -359,7 +359,7 @@ def validate_external_resource_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate client-cert-auth if present
     if "client-cert-auth" in payload:
@@ -374,25 +374,25 @@ def validate_external_resource_put(
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"client-cert cannot exceed 79 characters")
+            return (False, "client-cert cannot exceed 79 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate resource if present
     if "resource" in payload:
         value = payload.get("resource")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"resource cannot exceed 511 characters")
+            return (False, "resource cannot exceed 511 characters")
 
     # Validate user-agent if present
     if "user-agent" in payload:
         value = payload.get("user-agent")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"user-agent cannot exceed 255 characters")
+            return (False, "user-agent cannot exceed 255 characters")
 
     # Validate server-identity-check if present
     if "server-identity-check" in payload:
@@ -410,7 +410,7 @@ def validate_external_resource_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 43200:
-                    return (False, f"refresh-rate must be between 1 and 43200")
+                    return (False, "refresh-rate must be between 1 and 43200")
             except (ValueError, TypeError):
                 return (False, f"refresh-rate must be numeric, got: {value}")
 
@@ -418,7 +418,7 @@ def validate_external_resource_put(
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -433,7 +433,7 @@ def validate_external_resource_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -442,7 +442,7 @@ def validate_external_resource_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

@@ -109,7 +109,7 @@ def validate_remote_log_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -124,7 +124,7 @@ def validate_remote_log_post(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -133,7 +133,7 @@ def validate_remote_log_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -197,7 +197,7 @@ def validate_remote_log_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -212,7 +212,7 @@ def validate_remote_log_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -221,7 +221,7 @@ def validate_remote_log_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 

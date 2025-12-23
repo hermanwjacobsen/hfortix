@@ -93,19 +93,19 @@ def validate_web_portal_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate decrypted-traffic-mirror if present
     if "decrypted-traffic-mirror" in payload:
@@ -113,7 +113,7 @@ def validate_web_portal_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate log-blocked-traffic if present
@@ -138,19 +138,19 @@ def validate_web_portal_post(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate vip6 if present
     if "vip6" in payload:
         value = payload.get("vip6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip6 cannot exceed 79 characters")
+            return (False, "vip6 cannot exceed 79 characters")
 
     # Validate auth-rule if present
     if "auth-rule" in payload:
         value = payload.get("auth-rule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-rule cannot exceed 35 characters")
+            return (False, "auth-rule cannot exceed 35 characters")
 
     # Validate display-bookmark if present
     if "display-bookmark" in payload:
@@ -201,7 +201,7 @@ def validate_web_portal_post(
     if "heading" in payload:
         value = payload.get("heading")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"heading cannot exceed 31 characters")
+            return (False, "heading cannot exceed 31 characters")
 
     # Validate theme if present
     if "theme" in payload:
@@ -230,7 +230,7 @@ def validate_web_portal_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"default-window-width must be between 0 and 65535",
+                        "default-window-width must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -247,7 +247,7 @@ def validate_web_portal_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"default-window-height must be between 0 and 65535",
+                        "default-window-height must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -262,7 +262,7 @@ def validate_web_portal_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 525600:
-                    return (False, f"cookie-age must be between 0 and 525600")
+                    return (False, "cookie-age must be between 0 and 525600")
             except (ValueError, TypeError):
                 return (False, f"cookie-age must be numeric, got: {value}")
 
@@ -293,7 +293,7 @@ def validate_web_portal_post(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"windows-forticlient-download-url cannot exceed 1023 characters",
+                "windows-forticlient-download-url cannot exceed 1023 characters",
             )
 
     # Validate macos-forticlient-download-url if present
@@ -302,7 +302,7 @@ def validate_web_portal_post(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"macos-forticlient-download-url cannot exceed 1023 characters",
+                "macos-forticlient-download-url cannot exceed 1023 characters",
             )
 
     return (True, None)
@@ -338,19 +338,19 @@ def validate_web_portal_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate decrypted-traffic-mirror if present
     if "decrypted-traffic-mirror" in payload:
@@ -358,7 +358,7 @@ def validate_web_portal_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate log-blocked-traffic if present
@@ -383,19 +383,19 @@ def validate_web_portal_put(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate vip6 if present
     if "vip6" in payload:
         value = payload.get("vip6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip6 cannot exceed 79 characters")
+            return (False, "vip6 cannot exceed 79 characters")
 
     # Validate auth-rule if present
     if "auth-rule" in payload:
         value = payload.get("auth-rule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-rule cannot exceed 35 characters")
+            return (False, "auth-rule cannot exceed 35 characters")
 
     # Validate display-bookmark if present
     if "display-bookmark" in payload:
@@ -446,7 +446,7 @@ def validate_web_portal_put(
     if "heading" in payload:
         value = payload.get("heading")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"heading cannot exceed 31 characters")
+            return (False, "heading cannot exceed 31 characters")
 
     # Validate theme if present
     if "theme" in payload:
@@ -475,7 +475,7 @@ def validate_web_portal_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"default-window-width must be between 0 and 65535",
+                        "default-window-width must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -492,7 +492,7 @@ def validate_web_portal_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"default-window-height must be between 0 and 65535",
+                        "default-window-height must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -507,7 +507,7 @@ def validate_web_portal_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 525600:
-                    return (False, f"cookie-age must be between 0 and 525600")
+                    return (False, "cookie-age must be between 0 and 525600")
             except (ValueError, TypeError):
                 return (False, f"cookie-age must be numeric, got: {value}")
 
@@ -538,7 +538,7 @@ def validate_web_portal_put(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"windows-forticlient-download-url cannot exceed 1023 characters",
+                "windows-forticlient-download-url cannot exceed 1023 characters",
             )
 
     # Validate macos-forticlient-download-url if present
@@ -547,7 +547,7 @@ def validate_web_portal_put(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"macos-forticlient-download-url cannot exceed 1023 characters",
+                "macos-forticlient-download-url cannot exceed 1023 characters",
             )
 
     return (True, None)

@@ -73,13 +73,13 @@ def validate_automation_stitch_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -94,7 +94,7 @@ def validate_automation_stitch_post(
     if "trigger" in payload:
         value = payload.get("trigger")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"trigger cannot exceed 35 characters")
+            return (False, "trigger cannot exceed 35 characters")
 
     # Validate condition-logic if present
     if "condition-logic" in payload:
@@ -138,13 +138,13 @@ def validate_automation_stitch_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -159,7 +159,7 @@ def validate_automation_stitch_put(
     if "trigger" in payload:
         value = payload.get("trigger")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"trigger cannot exceed 35 characters")
+            return (False, "trigger cannot exceed 35 characters")
 
     # Validate condition-logic if present
     if "condition-logic" in payload:

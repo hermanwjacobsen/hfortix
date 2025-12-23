@@ -88,31 +88,31 @@ def validate_managed_switch_post(
     if "switch-id" in payload:
         value = payload.get("switch-id")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"switch-id cannot exceed 35 characters")
+            return (False, "switch-id cannot exceed 35 characters")
 
     # Validate sn if present
     if "sn" in payload:
         value = payload.get("sn")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"sn cannot exceed 16 characters")
+            return (False, "sn cannot exceed 16 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate switch-profile if present
     if "switch-profile" in payload:
         value = payload.get("switch-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"switch-profile cannot exceed 35 characters")
+            return (False, "switch-profile cannot exceed 35 characters")
 
     # Validate access-profile if present
     if "access-profile" in payload:
         value = payload.get("access-profile")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"access-profile cannot exceed 31 characters")
+            return (False, "access-profile cannot exceed 31 characters")
 
     # Validate purdue-level if present
     if "purdue-level" in payload:
@@ -127,7 +127,7 @@ def validate_managed_switch_post(
     if "fsw-wan1-peer" in payload:
         value = payload.get("fsw-wan1-peer")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fsw-wan1-peer cannot exceed 35 characters")
+            return (False, "fsw-wan1-peer cannot exceed 35 characters")
 
     # Validate fsw-wan1-admin if present
     if "fsw-wan1-admin" in payload:
@@ -165,7 +165,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"poe-detection-type must be between 0 and 255",
+                        "poe-detection-type must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -182,7 +182,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"max-poe-budget must be between 0 and 65535",
+                        "max-poe-budget must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-poe-budget must be numeric, got: {value}")
@@ -196,7 +196,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 1:
                     return (
                         False,
-                        f"directly-connected must be between 0 and 1",
+                        "directly-connected must be between 0 and 1",
                     )
             except (ValueError, TypeError):
                 return (
@@ -211,7 +211,7 @@ def validate_managed_switch_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"version must be between 0 and 255")
+                    return (False, "version must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"version must be numeric, got: {value}")
 
@@ -224,7 +224,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"max-allowed-trunk-members must be between 0 and 255",
+                        "max-allowed-trunk-members must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -241,7 +241,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"pre-provisioned must be between 0 and 255",
+                        "pre-provisioned must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -256,7 +256,7 @@ def validate_managed_switch_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1:
-                    return (False, f"l3-discovered must be between 0 and 1")
+                    return (False, "l3-discovered must be between 0 and 1")
             except (ValueError, TypeError):
                 return (False, f"l3-discovered must be numeric, got: {value}")
 
@@ -267,7 +267,7 @@ def validate_managed_switch_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"mgmt-mode must be between 0 and 255")
+                    return (False, "mgmt-mode must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"mgmt-mode must be numeric, got: {value}")
 
@@ -280,7 +280,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 1:
                     return (
                         False,
-                        f"tunnel-discovered must be between 0 and 1",
+                        "tunnel-discovered must be between 0 and 1",
                     )
             except (ValueError, TypeError):
                 return (
@@ -292,13 +292,13 @@ def validate_managed_switch_post(
     if "tdr-supported" in payload:
         value = payload.get("tdr-supported")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"tdr-supported cannot exceed 31 characters")
+            return (False, "tdr-supported cannot exceed 31 characters")
 
     # Validate switch-device-tag if present
     if "switch-device-tag" in payload:
         value = payload.get("switch-device-tag")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"switch-device-tag cannot exceed 32 characters")
+            return (False, "switch-device-tag cannot exceed 32 characters")
 
     # Validate switch-dhcp_opt43_key if present
     if "switch-dhcp_opt43_key" in payload:
@@ -306,7 +306,7 @@ def validate_managed_switch_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"switch-dhcp_opt43_key cannot exceed 63 characters",
+                "switch-dhcp_opt43_key cannot exceed 63 characters",
             )
 
     # Validate mclag-igmp-snooping-aware if present
@@ -327,7 +327,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 1:
                     return (
                         False,
-                        f"dynamically-discovered must be between 0 and 1",
+                        "dynamically-discovered must be between 0 and 1",
                     )
             except (ValueError, TypeError):
                 return (
@@ -348,7 +348,7 @@ def validate_managed_switch_post(
     if "ptp-profile" in payload:
         value = payload.get("ptp-profile")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ptp-profile cannot exceed 63 characters")
+            return (False, "ptp-profile cannot exceed 63 characters")
 
     # Validate radius-nas-ip-override if present
     if "radius-nas-ip-override" in payload:
@@ -390,7 +390,7 @@ def validate_managed_switch_post(
     if "owner-vdom" in payload:
         value = payload.get("owner-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"owner-vdom cannot exceed 31 characters")
+            return (False, "owner-vdom cannot exceed 31 characters")
 
     # Validate staged-image-version if present
     if "staged-image-version" in payload:
@@ -398,7 +398,7 @@ def validate_managed_switch_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"staged-image-version cannot exceed 127 characters",
+                "staged-image-version cannot exceed 127 characters",
             )
 
     # Validate delayed-restart-trigger if present
@@ -410,7 +410,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"delayed-restart-trigger must be between 0 and 255",
+                        "delayed-restart-trigger must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -433,7 +433,7 @@ def validate_managed_switch_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"firmware-provision-version cannot exceed 35 characters",
+                "firmware-provision-version cannot exceed 35 characters",
             )
 
     # Validate firmware-provision-latest if present
@@ -499,7 +499,7 @@ def validate_managed_switch_post(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"qos-red-probability must be between 0 and 100",
+                        "qos-red-probability must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (

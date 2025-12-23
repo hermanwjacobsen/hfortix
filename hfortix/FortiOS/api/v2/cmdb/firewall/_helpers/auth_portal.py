@@ -76,19 +76,19 @@ def validate_auth_portal_put(
     if "portal-addr" in payload:
         value = payload.get("portal-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"portal-addr cannot exceed 63 characters")
+            return (False, "portal-addr cannot exceed 63 characters")
 
     # Validate portal-addr6 if present
     if "portal-addr6" in payload:
         value = payload.get("portal-addr6")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"portal-addr6 cannot exceed 63 characters")
+            return (False, "portal-addr6 cannot exceed 63 characters")
 
     # Validate identity-based-route if present
     if "identity-based-route" in payload:
         value = payload.get("identity-based-route")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"identity-based-route cannot exceed 35 characters")
+            return (False, "identity-based-route cannot exceed 35 characters")
 
     # Validate proxy-auth if present
     if "proxy-auth" in payload:

@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Flow Tracking
 
-Configuration endpoint for managing cmdb switch controller flow tracking objects.
+Configuration endpoint for managing cmdb switch controller flow tracking
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/flow_tracking
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.flow_tracking.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.flow_tracking.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.flow_tracking.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.flow_tracking.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.flow_tracking.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.flow_tracking.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +91,15 @@ class FlowTracking:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +107,8 @@ class FlowTracking:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -143,26 +151,44 @@ class FlowTracking:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            sample_mode: Configure sample mode for the flow tracking. (optional)
-            sample_rate: Configure sample rate for the perimeter and device-ingress sampling(0 - 99999). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            sample_mode: Configure sample mode for the flow tracking.
+            (optional)
+            sample_rate: Configure sample rate for the perimeter and
+            device-ingress sampling(0 - 99999). (optional)
             collectors: Configure collectors for the flow. (optional)
             level: Configure flow tracking level. (optional)
-            max_export_pkt_size: Configure flow max export packet size (512-9216, default=512 bytes). (optional)
-            template_export_period: Configure template export period (1-60, default=5 minutes). (optional)
-            timeout_general: Configure flow session general timeout (60-604800, default=3600 seconds). (optional)
-            timeout_icmp: Configure flow session ICMP timeout (60-604800, default=300 seconds). (optional)
-            timeout_max: Configure flow session max timeout (60-604800, default=604800 seconds). (optional)
-            timeout_tcp: Configure flow session TCP timeout (60-604800, default=3600 seconds). (optional)
-            timeout_tcp_fin: Configure flow session TCP FIN timeout (60-604800, default=300 seconds). (optional)
-            timeout_tcp_rst: Configure flow session TCP RST timeout (60-604800, default=120 seconds). (optional)
-            timeout_udp: Configure flow session UDP timeout (60-604800, default=300 seconds). (optional)
-            aggregates: Configure aggregates in which all traffic sessions matching the IP Address will be grouped into the same flow. (optional)
+            max_export_pkt_size: Configure flow max export packet size
+            (512-9216, default=512 bytes). (optional)
+            template_export_period: Configure template export period (1-60,
+            default=5 minutes). (optional)
+            timeout_general: Configure flow session general timeout (60-604800,
+            default=3600 seconds). (optional)
+            timeout_icmp: Configure flow session ICMP timeout (60-604800,
+            default=300 seconds). (optional)
+            timeout_max: Configure flow session max timeout (60-604800,
+            default=604800 seconds). (optional)
+            timeout_tcp: Configure flow session TCP timeout (60-604800,
+            default=3600 seconds). (optional)
+            timeout_tcp_fin: Configure flow session TCP FIN timeout (60-604800,
+            default=300 seconds). (optional)
+            timeout_tcp_rst: Configure flow session TCP RST timeout (60-604800,
+            default=120 seconds). (optional)
+            timeout_udp: Configure flow session UDP timeout (60-604800,
+            default=300 seconds). (optional)
+            aggregates: Configure aggregates in which all traffic sessions
+            matching the IP Address will be grouped into the same flow.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -170,7 +196,8 @@ class FlowTracking:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

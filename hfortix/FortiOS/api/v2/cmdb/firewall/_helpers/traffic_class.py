@@ -74,7 +74,7 @@ def validate_traffic_class_post(
             try:
                 int_val = int(value)
                 if int_val < 2 or int_val > 31:
-                    return (False, f"class-id must be between 2 and 31")
+                    return (False, "class-id must be between 2 and 31")
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")
 
@@ -82,6 +82,6 @@ def validate_traffic_class_post(
     if "class-name" in payload:
         value = payload.get("class-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"class-name cannot exceed 35 characters")
+            return (False, "class-name cannot exceed 35 characters")
 
     return (True, None)

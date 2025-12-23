@@ -78,13 +78,13 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"name cannot exceed 19 characters")
+            return (False, "name cannot exceed 19 characters")
 
     # Validate id if present
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"id cannot exceed 19 characters")
+            return (False, "id cannot exceed 19 characters")
 
     # Validate authorized if present
     if "authorized" in payload:
@@ -99,13 +99,13 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ext-name" in payload:
         value = payload.get("ext-name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"ext-name cannot exceed 31 characters")
+            return (False, "ext-name cannot exceed 31 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
@@ -114,7 +114,7 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"vdom must be between 0 and 4294967295")
+                    return (False, "vdom must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"vdom must be numeric, got: {value}")
 
@@ -127,7 +127,7 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"device-id must be between 0 and 4294967295",
+                        "device-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"device-id must be numeric, got: {value}")
@@ -145,7 +145,7 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "profile" in payload:
         value = payload.get("profile")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"profile cannot exceed 31 characters")
+            return (False, "profile cannot exceed 31 characters")
 
     # Validate override-allowaccess if present
     if "override-allowaccess" in payload:
@@ -210,7 +210,7 @@ def validate_extender_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 16776000:
                     return (
                         False,
-                        f"bandwidth-limit must be between 1 and 16776000",
+                        "bandwidth-limit must be between 1 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -260,13 +260,13 @@ def validate_extender_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"name cannot exceed 19 characters")
+            return (False, "name cannot exceed 19 characters")
 
     # Validate id if present
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"id cannot exceed 19 characters")
+            return (False, "id cannot exceed 19 characters")
 
     # Validate authorized if present
     if "authorized" in payload:
@@ -281,13 +281,13 @@ def validate_extender_put(
     if "ext-name" in payload:
         value = payload.get("ext-name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"ext-name cannot exceed 31 characters")
+            return (False, "ext-name cannot exceed 31 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
@@ -296,7 +296,7 @@ def validate_extender_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"vdom must be between 0 and 4294967295")
+                    return (False, "vdom must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"vdom must be numeric, got: {value}")
 
@@ -309,7 +309,7 @@ def validate_extender_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"device-id must be between 0 and 4294967295",
+                        "device-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"device-id must be numeric, got: {value}")
@@ -327,7 +327,7 @@ def validate_extender_put(
     if "profile" in payload:
         value = payload.get("profile")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"profile cannot exceed 31 characters")
+            return (False, "profile cannot exceed 31 characters")
 
     # Validate override-allowaccess if present
     if "override-allowaccess" in payload:
@@ -392,7 +392,7 @@ def validate_extender_put(
                 if int_val < 1 or int_val > 16776000:
                     return (
                         False,
-                        f"bandwidth-limit must be between 1 and 16776000",
+                        "bandwidth-limit must be between 1 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (

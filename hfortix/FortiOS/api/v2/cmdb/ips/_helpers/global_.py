@@ -134,7 +134,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 128:
-                    return (False, f"socket-size must be between 0 and 128")
+                    return (False, "socket-size must be between 0 and 128")
             except (ValueError, TypeError):
                 return (False, f"socket-size must be numeric, got: {value}")
 
@@ -145,7 +145,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"engine-count must be between 0 and 255")
+                    return (False, "engine-count must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"engine-count must be numeric, got: {value}")
 
@@ -194,7 +194,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"deep-app-insp-timeout must be between 0 and 2147483647",
+                        "deep-app-insp-timeout must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -211,7 +211,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"deep-app-insp-db-limit must be between 0 and 2147483647",
+                        "deep-app-insp-db-limit must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -237,7 +237,7 @@ def validate_global__put(
                 if int_val < 128 or int_val > 4096:
                     return (
                         False,
-                        f"packet-log-queue-depth must be between 128 and 4096",
+                        "packet-log-queue-depth must be between 128 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -254,7 +254,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ngfw-max-scan-range must be between 0 and 4294967295",
+                        "ngfw-max-scan-range must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -269,7 +269,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 50:
-                    return (False, f"av-mem-limit must be between 10 and 50")
+                    return (False, "av-mem-limit must be between 10 and 50")
             except (ValueError, TypeError):
                 return (False, f"av-mem-limit must be numeric, got: {value}")
 

@@ -45,7 +45,7 @@ VALID_BODY_HTTP_IP_HEADER = ["enable", "disable"]
 VALID_BODY_OUTLOOK_WEB_ACCESS = ["disable", "enable"]
 VALID_BODY_WEBLOGIC_SERVER = ["disable", "enable"]
 VALID_BODY_WEBSPHERE_SERVER = ["disable", "enable"]
-VALID_BODY_SSL_MODE = ["half", "full"]
+VALID_BODY_SSL_MODE = ["hal", "full"]
 VALID_BODY_SSL_DH_BITS = ["768", "1024", "1536", "2048", "3072", "4096"]
 VALID_BODY_SSL_ALGORITHM = ["high", "medium", "low", "custom"]
 VALID_BODY_SSL_SERVER_RENEGOTIATION = ["enable", "disable"]
@@ -152,7 +152,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -161,7 +161,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"id must be between 0 and 65535")
+                    return (False, "id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -169,7 +169,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -232,7 +232,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -357,13 +357,13 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "http-cookie-domain" in payload:
         value = payload.get("http-cookie-domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-cookie-domain cannot exceed 35 characters")
+            return (False, "http-cookie-domain cannot exceed 35 characters")
 
     # Validate http-cookie-path if present
     if "http-cookie-path" in payload:
         value = payload.get("http-cookie-path")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-cookie-path cannot exceed 35 characters")
+            return (False, "http-cookie-path cannot exceed 35 characters")
 
     # Validate http-cookie-generation if present
     if "http-cookie-generation" in payload:
@@ -374,7 +374,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"http-cookie-generation must be between 0 and 4294967295",
+                        "http-cookie-generation must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -391,7 +391,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 525600:
                     return (
                         False,
-                        f"http-cookie-age must be between 0 and 525600",
+                        "http-cookie-age must be between 0 and 525600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -439,7 +439,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "http-ip-header-name" in payload:
         value = payload.get("http-ip-header-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-ip-header-name cannot exceed 35 characters")
+            return (False, "http-ip-header-name cannot exceed 35 characters")
 
     # Validate outlook-web-access if present
     if "outlook-web-access" in payload:
@@ -612,7 +612,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 14400:
                     return (
                         False,
-                        f"ssl-client-session-state-timeout must be between 1 and 14400",
+                        "ssl-client-session-state-timeout must be between 1 and 14400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -629,7 +629,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 10000:
                     return (
                         False,
-                        f"ssl-client-session-state-max must be between 1 and 10000",
+                        "ssl-client-session-state-max must be between 1 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -646,7 +646,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 200 or int_val > 1048576:
                     return (
                         False,
-                        f"ssl-client-rekey-count must be between 200 and 1048576",
+                        "ssl-client-rekey-count must be between 200 and 1048576",
                     )
             except (ValueError, TypeError):
                 return (
@@ -672,7 +672,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 14400:
                     return (
                         False,
-                        f"ssl-server-session-state-timeout must be between 1 and 14400",
+                        "ssl-server-session-state-timeout must be between 1 and 14400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -689,7 +689,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 10000:
                     return (
                         False,
-                        f"ssl-server-session-state-max must be between 1 and 10000",
+                        "ssl-server-session-state-max must be between 1 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -728,13 +728,13 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssl-hpkp-primary" in payload:
         value = payload.get("ssl-hpkp-primary")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-hpkp-primary cannot exceed 79 characters")
+            return (False, "ssl-hpkp-primary cannot exceed 79 characters")
 
     # Validate ssl-hpkp-backup if present
     if "ssl-hpkp-backup" in payload:
         value = payload.get("ssl-hpkp-backup")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-hpkp-backup cannot exceed 79 characters")
+            return (False, "ssl-hpkp-backup cannot exceed 79 characters")
 
     # Validate ssl-hpkp-age if present
     if "ssl-hpkp-age" in payload:
@@ -745,7 +745,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 60 or int_val > 157680000:
                     return (
                         False,
-                        f"ssl-hpkp-age must be between 60 and 157680000",
+                        "ssl-hpkp-age must be between 60 and 157680000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ssl-hpkp-age must be numeric, got: {value}")
@@ -754,7 +754,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssl-hpkp-report-uri" in payload:
         value = payload.get("ssl-hpkp-report-uri")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"ssl-hpkp-report-uri cannot exceed 255 characters")
+            return (False, "ssl-hpkp-report-uri cannot exceed 255 characters")
 
     # Validate ssl-hpkp-include-subdomains if present
     if "ssl-hpkp-include-subdomains" in payload:
@@ -783,7 +783,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 60 or int_val > 157680000:
                     return (
                         False,
-                        f"ssl-hsts-age must be between 60 and 157680000",
+                        "ssl-hsts-age must be between 60 and 157680000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ssl-hsts-age must be numeric, got: {value}")
@@ -806,7 +806,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-embryonic-connections must be between 0 and 100000",
+                        "max-embryonic-connections must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -856,7 +856,7 @@ def validate_vip6_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -865,7 +865,7 @@ def validate_vip6_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"id must be between 0 and 65535")
+                    return (False, "id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -873,7 +873,7 @@ def validate_vip6_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -936,7 +936,7 @@ def validate_vip6_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -1061,13 +1061,13 @@ def validate_vip6_put(
     if "http-cookie-domain" in payload:
         value = payload.get("http-cookie-domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-cookie-domain cannot exceed 35 characters")
+            return (False, "http-cookie-domain cannot exceed 35 characters")
 
     # Validate http-cookie-path if present
     if "http-cookie-path" in payload:
         value = payload.get("http-cookie-path")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-cookie-path cannot exceed 35 characters")
+            return (False, "http-cookie-path cannot exceed 35 characters")
 
     # Validate http-cookie-generation if present
     if "http-cookie-generation" in payload:
@@ -1078,7 +1078,7 @@ def validate_vip6_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"http-cookie-generation must be between 0 and 4294967295",
+                        "http-cookie-generation must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1095,7 +1095,7 @@ def validate_vip6_put(
                 if int_val < 0 or int_val > 525600:
                     return (
                         False,
-                        f"http-cookie-age must be between 0 and 525600",
+                        "http-cookie-age must be between 0 and 525600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1143,7 +1143,7 @@ def validate_vip6_put(
     if "http-ip-header-name" in payload:
         value = payload.get("http-ip-header-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-ip-header-name cannot exceed 35 characters")
+            return (False, "http-ip-header-name cannot exceed 35 characters")
 
     # Validate outlook-web-access if present
     if "outlook-web-access" in payload:
@@ -1316,7 +1316,7 @@ def validate_vip6_put(
                 if int_val < 1 or int_val > 14400:
                     return (
                         False,
-                        f"ssl-client-session-state-timeout must be between 1 and 14400",
+                        "ssl-client-session-state-timeout must be between 1 and 14400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1333,7 +1333,7 @@ def validate_vip6_put(
                 if int_val < 1 or int_val > 10000:
                     return (
                         False,
-                        f"ssl-client-session-state-max must be between 1 and 10000",
+                        "ssl-client-session-state-max must be between 1 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1350,7 +1350,7 @@ def validate_vip6_put(
                 if int_val < 200 or int_val > 1048576:
                     return (
                         False,
-                        f"ssl-client-rekey-count must be between 200 and 1048576",
+                        "ssl-client-rekey-count must be between 200 and 1048576",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1376,7 +1376,7 @@ def validate_vip6_put(
                 if int_val < 1 or int_val > 14400:
                     return (
                         False,
-                        f"ssl-server-session-state-timeout must be between 1 and 14400",
+                        "ssl-server-session-state-timeout must be between 1 and 14400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1393,7 +1393,7 @@ def validate_vip6_put(
                 if int_val < 1 or int_val > 10000:
                     return (
                         False,
-                        f"ssl-server-session-state-max must be between 1 and 10000",
+                        "ssl-server-session-state-max must be between 1 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1432,13 +1432,13 @@ def validate_vip6_put(
     if "ssl-hpkp-primary" in payload:
         value = payload.get("ssl-hpkp-primary")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-hpkp-primary cannot exceed 79 characters")
+            return (False, "ssl-hpkp-primary cannot exceed 79 characters")
 
     # Validate ssl-hpkp-backup if present
     if "ssl-hpkp-backup" in payload:
         value = payload.get("ssl-hpkp-backup")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-hpkp-backup cannot exceed 79 characters")
+            return (False, "ssl-hpkp-backup cannot exceed 79 characters")
 
     # Validate ssl-hpkp-age if present
     if "ssl-hpkp-age" in payload:
@@ -1449,7 +1449,7 @@ def validate_vip6_put(
                 if int_val < 60 or int_val > 157680000:
                     return (
                         False,
-                        f"ssl-hpkp-age must be between 60 and 157680000",
+                        "ssl-hpkp-age must be between 60 and 157680000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ssl-hpkp-age must be numeric, got: {value}")
@@ -1458,7 +1458,7 @@ def validate_vip6_put(
     if "ssl-hpkp-report-uri" in payload:
         value = payload.get("ssl-hpkp-report-uri")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"ssl-hpkp-report-uri cannot exceed 255 characters")
+            return (False, "ssl-hpkp-report-uri cannot exceed 255 characters")
 
     # Validate ssl-hpkp-include-subdomains if present
     if "ssl-hpkp-include-subdomains" in payload:
@@ -1487,7 +1487,7 @@ def validate_vip6_put(
                 if int_val < 60 or int_val > 157680000:
                     return (
                         False,
-                        f"ssl-hsts-age must be between 60 and 157680000",
+                        "ssl-hsts-age must be between 60 and 157680000",
                     )
             except (ValueError, TypeError):
                 return (False, f"ssl-hsts-age must be numeric, got: {value}")
@@ -1510,7 +1510,7 @@ def validate_vip6_put(
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-embryonic-connections must be between 0 and 100000",
+                        "max-embryonic-connections must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (

@@ -66,7 +66,8 @@ class Policy6:
         Retrieve a list of active IPv6 policy routes.
 
         Args:
-            count_only: Returns the number of IPv6 policy routes only. (optional)
+            count_only: Returns the number of IPv6 policy routes only.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

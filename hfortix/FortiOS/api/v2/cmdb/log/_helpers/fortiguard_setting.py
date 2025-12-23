@@ -136,7 +136,7 @@ def validate_fortiguard_setting_put(
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-log-rate must be between 0 and 100000",
+                        "max-log-rate must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-log-rate must be numeric, got: {value}")
@@ -175,7 +175,7 @@ def validate_fortiguard_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"conn-timeout must be between 1 and 3600")
+                    return (False, "conn-timeout must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"conn-timeout must be numeric, got: {value}")
 
@@ -192,7 +192,7 @@ def validate_fortiguard_setting_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -201,7 +201,7 @@ def validate_fortiguard_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

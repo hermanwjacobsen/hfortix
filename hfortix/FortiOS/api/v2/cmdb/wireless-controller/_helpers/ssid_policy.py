@@ -71,19 +71,19 @@ def validate_ssid_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"vlan cannot exceed 35 characters")
+            return (False, "vlan cannot exceed 35 characters")
 
     return (True, None)
 
@@ -118,19 +118,19 @@ def validate_ssid_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"vlan cannot exceed 35 characters")
+            return (False, "vlan cannot exceed 35 characters")
 
     return (True, None)
 

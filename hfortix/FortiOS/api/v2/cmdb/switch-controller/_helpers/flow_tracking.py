@@ -90,7 +90,7 @@ def validate_flow_tracking_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 99999:
-                    return (False, f"sample-rate must be between 0 and 99999")
+                    return (False, "sample-rate must be between 0 and 99999")
             except (ValueError, TypeError):
                 return (False, f"sample-rate must be numeric, got: {value}")
 
@@ -121,7 +121,7 @@ def validate_flow_tracking_put(
                 if int_val < 512 or int_val > 9216:
                     return (
                         False,
-                        f"max-export-pkt-size must be between 512 and 9216",
+                        "max-export-pkt-size must be between 512 and 9216",
                     )
             except (ValueError, TypeError):
                 return (
@@ -138,7 +138,7 @@ def validate_flow_tracking_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"template-export-period must be between 1 and 60",
+                        "template-export-period must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -155,7 +155,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-general must be between 60 and 604800",
+                        "timeout-general must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -172,7 +172,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-icmp must be between 60 and 604800",
+                        "timeout-icmp must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (False, f"timeout-icmp must be numeric, got: {value}")
@@ -186,7 +186,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-max must be between 60 and 604800",
+                        "timeout-max must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (False, f"timeout-max must be numeric, got: {value}")
@@ -200,7 +200,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-tcp must be between 60 and 604800",
+                        "timeout-tcp must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (False, f"timeout-tcp must be numeric, got: {value}")
@@ -214,7 +214,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-tcp-fin must be between 60 and 604800",
+                        "timeout-tcp-fin must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -231,7 +231,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-tcp-rst must be between 60 and 604800",
+                        "timeout-tcp-rst must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -248,7 +248,7 @@ def validate_flow_tracking_put(
                 if int_val < 60 or int_val > 604800:
                     return (
                         False,
-                        f"timeout-udp must be between 60 and 604800",
+                        "timeout-udp must be between 60 and 604800",
                     )
             except (ValueError, TypeError):
                 return (False, f"timeout-udp must be numeric, got: {value}")

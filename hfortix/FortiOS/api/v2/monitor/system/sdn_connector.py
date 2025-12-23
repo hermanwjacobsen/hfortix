@@ -111,7 +111,8 @@ class Status:
 
         Args:
             mkey: Filter: SDN connector name. (optional)
-            type: Filter: SDN connector type. Ignored if mkey is specified. (optional)
+            type: Filter: SDN connector type. Ignored if mkey is specified.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

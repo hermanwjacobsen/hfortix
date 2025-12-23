@@ -88,11 +88,15 @@ class Eventfilter:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Eventfilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -146,29 +151,37 @@ class Eventfilter:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             event: Enable/disable event logging. (optional)
             system: Enable/disable system event logging. (optional)
             vpn: Enable/disable VPN event logging. (optional)
             user: Enable/disable user authentication event logging. (optional)
             router: Enable/disable router event logging. (optional)
-            wireless_activity: Enable/disable wireless event logging. (optional)
+            wireless_activity: Enable/disable wireless event logging.
+            (optional)
             wan_opt: Enable/disable WAN optimization event logging. (optional)
             endpoint: Enable/disable endpoint event logging. (optional)
             ha: Enable/disable ha event logging. (optional)
-            security_rating: Enable/disable Security Rating result logging. (optional)
+            security_rating: Enable/disable Security Rating result logging.
+            (optional)
             fortiextender: Enable/disable FortiExtender logging. (optional)
             connector: Enable/disable SDN connector logging. (optional)
             sdwan: Enable/disable SD-WAN logging. (optional)
             cifs: Enable/disable CIFS logging. (optional)
-            switch_controller: Enable/disable Switch-Controller logging. (optional)
+            switch_controller: Enable/disable Switch-Controller logging.
+            (optional)
             rest_api: Enable/disable REST API logging. (optional)
             web_svc: Enable/disable web-svc performance logging. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -176,7 +189,8 @@ class Eventfilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

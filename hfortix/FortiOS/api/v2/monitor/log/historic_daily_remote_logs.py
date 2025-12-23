@@ -63,10 +63,12 @@ class HistoricDailyRemoteLogs:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Returns the amount of logs in bytes sent daily to a remote logging service (FortiCloud or FortiAnalyzer).
+        Returns the amount of logs in bytes sent daily to a remote logging
+        service (FortiCloud or FortiAnalyzer).
 
         Args:
-            server: Service name [forticloud | fortianalyzer | fortianalyzercloud | nulldevice]. (required)
+            server: Service name [forticloud | fortianalyzer |
+            fortianalyzercloud | nulldevice]. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -75,7 +77,8 @@ class HistoricDailyRemoteLogs:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.log.historic_daily_remote_logs.get(server='value')
+            >>>
+            fgt.api.monitor.log.historic_daily_remote_logs.get(server='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["server"] = server

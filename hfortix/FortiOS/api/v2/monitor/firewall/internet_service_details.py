@@ -75,7 +75,8 @@ class InternetServiceDetails:
             country_id: Filter: Country ID. (optional)
             region_id: Filter: Region ID. (optional)
             city_id: Filter: City ID. (optional)
-            summary_only: Only return number of entries instead of entries. (optional)
+            summary_only: Only return number of entries instead of entries.
+            (optional)
             ipv6_only: Only returns ipv6 entries. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True

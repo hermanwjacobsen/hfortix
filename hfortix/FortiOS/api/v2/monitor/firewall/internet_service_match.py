@@ -70,9 +70,13 @@ class InternetServiceMatch:
 
         Args:
             ip: IP (in dot-decimal notation). (required)
-            is_ipv6: Whether IP is IPv6. If not provided, will determine IP version based on given IP, but setting is_ipv6 flag is recommended. (optional)
-            ipv4_mask: IPv4 address mask (in dot-decimal notation). Required if is_ipv6 is false. Example: 255.255.255.255 (optional)
-            ipv6_prefix: IPv6 address prefix. Required if is_ipv6 is true. Example: 128 (optional)
+            is_ipv6: Whether IP is IPv6. If not provided, will determine IP
+            version based on given IP, but setting is_ipv6 flag is recommended.
+            (optional)
+            ipv4_mask: IPv4 address mask (in dot-decimal notation). Required if
+            is_ipv6 is false. Example: 255.255.255.255 (optional)
+            ipv6_prefix: IPv6 address prefix. Required if is_ipv6 is true.
+            Example: 128 (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

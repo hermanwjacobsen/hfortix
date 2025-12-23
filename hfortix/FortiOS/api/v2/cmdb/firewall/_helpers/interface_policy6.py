@@ -86,7 +86,7 @@ def validate_interface_policy6_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -104,7 +104,7 @@ def validate_interface_policy6_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -119,7 +119,7 @@ def validate_interface_policy6_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate application-list-status if present
     if "application-list-status" in payload:
@@ -134,7 +134,7 @@ def validate_interface_policy6_post(
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate ips-sensor-status if present
     if "ips-sensor-status" in payload:
@@ -149,7 +149,7 @@ def validate_interface_policy6_post(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate dsri if present
     if "dsri" in payload:
@@ -173,7 +173,7 @@ def validate_interface_policy6_post(
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile-status if present
     if "webfilter-profile-status" in payload:
@@ -188,7 +188,7 @@ def validate_interface_policy6_post(
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate casb-profile-status if present
     if "casb-profile-status" in payload:
@@ -203,7 +203,7 @@ def validate_interface_policy6_post(
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile-status if present
     if "emailfilter-profile-status" in payload:
@@ -218,7 +218,7 @@ def validate_interface_policy6_post(
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile-status if present
     if "dlp-profile-status" in payload:
@@ -233,7 +233,7 @@ def validate_interface_policy6_post(
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     return (True, None)
 
@@ -273,7 +273,7 @@ def validate_interface_policy6_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"policyid must be between 0 and 4294967295",
+                        "policyid must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"policyid must be numeric, got: {value}")
@@ -291,7 +291,7 @@ def validate_interface_policy6_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -306,7 +306,7 @@ def validate_interface_policy6_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate application-list-status if present
     if "application-list-status" in payload:
@@ -321,7 +321,7 @@ def validate_interface_policy6_put(
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate ips-sensor-status if present
     if "ips-sensor-status" in payload:
@@ -336,7 +336,7 @@ def validate_interface_policy6_put(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate dsri if present
     if "dsri" in payload:
@@ -360,7 +360,7 @@ def validate_interface_policy6_put(
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile-status if present
     if "webfilter-profile-status" in payload:
@@ -375,7 +375,7 @@ def validate_interface_policy6_put(
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate casb-profile-status if present
     if "casb-profile-status" in payload:
@@ -390,7 +390,7 @@ def validate_interface_policy6_put(
     if "casb-profile" in payload:
         value = payload.get("casb-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"casb-profile cannot exceed 47 characters")
+            return (False, "casb-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile-status if present
     if "emailfilter-profile-status" in payload:
@@ -405,7 +405,7 @@ def validate_interface_policy6_put(
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile-status if present
     if "dlp-profile-status" in payload:
@@ -420,7 +420,7 @@ def validate_interface_policy6_put(
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     return (True, None)
 

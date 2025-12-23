@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Dhcp6Server:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Dhcp6Server:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,34 +176,47 @@ class Dhcp6Server:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             id: ID. (optional)
             status: Enable/disable this DHCPv6 configuration. (optional)
-            rapid_commit: Enable/disable allow/disallow rapid commit. (optional)
+            rapid_commit: Enable/disable allow/disallow rapid commit.
+            (optional)
             lease_time: Lease time in seconds, 0 means unlimited. (optional)
-            dns_service: Options for assigning DNS servers to DHCPv6 clients. (optional)
+            dns_service: Options for assigning DNS servers to DHCPv6 clients.
+            (optional)
             dns_search_list: DNS search list options. (optional)
             dns_server1: DNS server 1. (optional)
             dns_server2: DNS server 2. (optional)
             dns_server3: DNS server 3. (optional)
             dns_server4: DNS server 4. (optional)
-            domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients. (optional)
+            domain: Domain name suffix for the IP addresses that the DHCP
+            server assigns to clients. (optional)
             subnet: Subnet or subnet-id if the IP mode is delegated. (optional)
-            interface: DHCP server can assign IP configurations to clients connected to this interface. (optional)
-            delegated_prefix_route: Enable/disable automatically adding of routing for delegated prefix. (optional)
+            interface: DHCP server can assign IP configurations to clients
+            connected to this interface. (optional)
+            delegated_prefix_route: Enable/disable automatically adding of
+            routing for delegated prefix. (optional)
             options: DHCPv6 options. (optional)
-            upstream_interface: Interface name from where delegated information is provided. (optional)
-            delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface. (optional)
+            upstream_interface: Interface name from where delegated information
+            is provided. (optional)
+            delegated_prefix_iaid: IAID of obtained delegated-prefix from the
+            upstream interface. (optional)
             ip_mode: Method used to assign client IP. (optional)
-            prefix_mode: Assigning a prefix from a DHCPv6 client or RA. (optional)
+            prefix_mode: Assigning a prefix from a DHCPv6 client or RA.
+            (optional)
             prefix_range: DHCP prefix configuration. (optional)
             ip_range: DHCP IP range configuration. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -205,7 +224,8 @@ class Dhcp6Server:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -281,8 +301,10 @@ class Dhcp6Server:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -290,7 +312,8 @@ class Dhcp6Server:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -382,32 +405,44 @@ class Dhcp6Server:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             id: ID. (optional)
             status: Enable/disable this DHCPv6 configuration. (optional)
-            rapid_commit: Enable/disable allow/disallow rapid commit. (optional)
+            rapid_commit: Enable/disable allow/disallow rapid commit.
+            (optional)
             lease_time: Lease time in seconds, 0 means unlimited. (optional)
-            dns_service: Options for assigning DNS servers to DHCPv6 clients. (optional)
+            dns_service: Options for assigning DNS servers to DHCPv6 clients.
+            (optional)
             dns_search_list: DNS search list options. (optional)
             dns_server1: DNS server 1. (optional)
             dns_server2: DNS server 2. (optional)
             dns_server3: DNS server 3. (optional)
             dns_server4: DNS server 4. (optional)
-            domain: Domain name suffix for the IP addresses that the DHCP server assigns to clients. (optional)
+            domain: Domain name suffix for the IP addresses that the DHCP
+            server assigns to clients. (optional)
             subnet: Subnet or subnet-id if the IP mode is delegated. (optional)
-            interface: DHCP server can assign IP configurations to clients connected to this interface. (optional)
-            delegated_prefix_route: Enable/disable automatically adding of routing for delegated prefix. (optional)
+            interface: DHCP server can assign IP configurations to clients
+            connected to this interface. (optional)
+            delegated_prefix_route: Enable/disable automatically adding of
+            routing for delegated prefix. (optional)
             options: DHCPv6 options. (optional)
-            upstream_interface: Interface name from where delegated information is provided. (optional)
-            delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface. (optional)
+            upstream_interface: Interface name from where delegated information
+            is provided. (optional)
+            delegated_prefix_iaid: IAID of obtained delegated-prefix from the
+            upstream interface. (optional)
             ip_mode: Method used to assign client IP. (optional)
-            prefix_mode: Assigning a prefix from a DHCPv6 client or RA. (optional)
+            prefix_mode: Assigning a prefix from a DHCPv6 client or RA.
+            (optional)
             prefix_range: DHCP prefix configuration. (optional)
             ip_range: DHCP IP range configuration. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -415,7 +450,8 @@ class Dhcp6Server:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -105,7 +105,7 @@ def validate_extender_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -114,7 +114,7 @@ def validate_extender_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 102400000:
-                    return (False, f"id must be between 0 and 102400000")
+                    return (False, "id must be between 0 and 102400000")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -172,7 +172,7 @@ def validate_extender_profile_post(
                 if int_val < 1 or int_val > 16776000:
                     return (
                         False,
-                        f"bandwidth-limit must be between 1 and 16776000",
+                        "bandwidth-limit must be between 1 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -213,7 +213,7 @@ def validate_extender_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -222,7 +222,7 @@ def validate_extender_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 102400000:
-                    return (False, f"id must be between 0 and 102400000")
+                    return (False, "id must be between 0 and 102400000")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -280,7 +280,7 @@ def validate_extender_profile_put(
                 if int_val < 1 or int_val > 16776000:
                     return (
                         False,
-                        f"bandwidth-limit must be between 1 and 16776000",
+                        "bandwidth-limit must be between 1 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (

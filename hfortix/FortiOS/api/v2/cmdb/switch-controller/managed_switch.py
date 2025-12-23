@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Managed Switch
 
-Configuration endpoint for managing cmdb switch controller managed switch objects.
+Configuration endpoint for managing cmdb switch controller managed switch
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/managed_switch
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.managed_switch.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.managed_switch.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.managed_switch.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.managed_switch.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.managed_switch.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.managed_switch.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +99,20 @@ class ManagedSwitch:
         Select a specific entry from a CLI table.
 
         Args:
-            switch_id: Object identifier (optional for list, required for specific)
+            switch_id: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +120,8 @@ class ManagedSwitch:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -217,10 +227,13 @@ class ManagedSwitch:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             switch_id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             switch_id: Managed-switch name. (optional)
             sn: Managed-switch serial number. (optional)
             description: Description. (optional)
@@ -228,70 +241,114 @@ class ManagedSwitch:
             access_profile: FortiSwitch access profile. (optional)
             purdue_level: Purdue Level of this FortiSwitch. (optional)
             fsw_wan1_peer: FortiSwitch WAN1 peer port. (optional)
-            fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. (optional)
-            poe_pre_standard_detection: Enable/disable PoE pre-standard detection. (optional)
-            dhcp_server_access_list: DHCP snooping server access list. (optional)
+            fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize
+            the FortiSwitch as a managed switch. (optional)
+            poe_pre_standard_detection: Enable/disable PoE pre-standard
+            detection. (optional)
+            dhcp_server_access_list: DHCP snooping server access list.
+            (optional)
             poe_detection_type: PoE detection type for FortiSwitch. (optional)
             max_poe_budget: Max PoE budget for FortiSwitch. (optional)
             directly_connected: Directly connected FortiSwitch. (optional)
             version: FortiSwitch version. (optional)
-            max_allowed_trunk_members: FortiSwitch maximum allowed trunk members. (optional)
+            max_allowed_trunk_members: FortiSwitch maximum allowed trunk
+            members. (optional)
             pre_provisioned: Pre-provisioned managed switch. (optional)
             l3_discovered: Layer 3 management discovered. (optional)
             mgmt_mode: FortiLink management mode. (optional)
             tunnel_discovered: SOCKS tunnel management discovered. (optional)
             tdr_supported: TDR supported. (optional)
-            dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device. (optional)
+            dynamic_capability: List of features this FortiSwitch supports (not
+            configurable) that is sent to the FortiGate device for subsequent
+            configuration initiated by the FortiGate device. (optional)
             switch_device_tag: User definable label/tag. (optional)
             switch_dhcp_opt43_key: DHCP option43 key. (optional)
-            mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. (optional)
-            dynamically_discovered: Dynamically discovered FortiSwitch. (optional)
-            ptp_status: Enable/disable PTP profile on this FortiSwitch. (optional)
+            mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping
+            awareness. (optional)
+            dynamically_discovered: Dynamically discovered FortiSwitch.
+            (optional)
+            ptp_status: Enable/disable PTP profile on this FortiSwitch.
+            (optional)
             ptp_profile: PTP profile configuration. (optional)
             radius_nas_ip_override: Use locally defined NAS-IP. (optional)
             radius_nas_ip: NAS-IP address. (optional)
-            route_offload: Enable/disable route offload on this FortiSwitch. (optional)
-            route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. (optional)
-            route_offload_router: Configure route offload MCLAG IP address. (optional)
+            route_offload: Enable/disable route offload on this FortiSwitch.
+            (optional)
+            route_offload_mclag: Enable/disable route offload MCLAG on this
+            FortiSwitch. (optional)
+            route_offload_router: Configure route offload MCLAG IP address.
+            (optional)
             vlan: Configure VLAN assignment priority. (optional)
             type: Indication of switch type, physical or virtual. (optional)
             owner_vdom: VDOM which owner of port belongs to. (optional)
-            flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0). (optional)
-            staged_image_version: Staged image version for FortiSwitch. (optional)
-            delayed_restart_trigger: Delayed restart triggered for this FortiSwitch. (optional)
-            firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. (optional)
-            firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234). (optional)
-            firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. (optional)
+            flow_identity: Flow-tracking netflow ipfix switch identity in hex
+            format(00000000-FFFFFFFF default=0). (optional)
+            staged_image_version: Staged image version for FortiSwitch.
+            (optional)
+            delayed_restart_trigger: Delayed restart triggered for this
+            FortiSwitch. (optional)
+            firmware_provision: Enable/disable provisioning of firmware to
+            FortiSwitches on join connection. (optional)
+            firmware_provision_version: Firmware version to provision to this
+            FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
+            (optional)
+            firmware_provision_latest: Enable/disable one-time automatic
+            provisioning of the latest firmware version. (optional)
             ports: Managed-switch port list. (optional)
             ip_source_guard: IP source guard. (optional)
-            stp_settings: Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. (optional)
-            stp_instance: Configuration method to edit Spanning Tree Protocol (STP) instances. (optional)
-            override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. (optional)
-            snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. (optional)
-            override_snmp_trap_threshold: Enable/disable overriding the global SNMP trap threshold values. (optional)
-            snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. (optional)
-            override_snmp_community: Enable/disable overriding the global SNMP communities. (optional)
-            snmp_community: Configuration method to edit Simple Network Management Protocol (SNMP) communities. (optional)
-            override_snmp_user: Enable/disable overriding the global SNMP users. (optional)
-            snmp_user: Configuration method to edit Simple Network Management Protocol (SNMP) users. (optional)
+            stp_settings: Configuration method to edit Spanning Tree Protocol
+            (STP) settings used to prevent bridge loops. (optional)
+            stp_instance: Configuration method to edit Spanning Tree Protocol
+            (STP) instances. (optional)
+            override_snmp_sysinfo: Enable/disable overriding the global SNMP
+            system information. (optional)
+            snmp_sysinfo: Configuration method to edit Simple Network
+            Management Protocol (SNMP) system info. (optional)
+            override_snmp_trap_threshold: Enable/disable overriding the global
+            SNMP trap threshold values. (optional)
+            snmp_trap_threshold: Configuration method to edit Simple Network
+            Management Protocol (SNMP) trap threshold values. (optional)
+            override_snmp_community: Enable/disable overriding the global SNMP
+            communities. (optional)
+            snmp_community: Configuration method to edit Simple Network
+            Management Protocol (SNMP) communities. (optional)
+            override_snmp_user: Enable/disable overriding the global SNMP
+            users. (optional)
+            snmp_user: Configuration method to edit Simple Network Management
+            Protocol (SNMP) users. (optional)
             qos_drop_policy: Set QoS drop-policy. (optional)
             qos_red_probability: Set QoS RED/WRED drop probability. (optional)
-            switch_log: Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). (optional)
-            remote_log: Configure logging by FortiSwitch device to a remote syslog server. (optional)
-            storm_control: Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. (optional)
-            mirror: Configuration method to edit FortiSwitch packet mirror. (optional)
-            static_mac: Configuration method to edit FortiSwitch Static and Sticky MAC. (optional)
-            custom_command: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. (optional)
-            dhcp_snooping_static_client: Configure FortiSwitch DHCP snooping static clients. (optional)
-            igmp_snooping: Configure FortiSwitch IGMP snooping global settings. (optional)
-            _802_1X_settings: Configuration method to edit FortiSwitch 802.1X global settings. (optional)
+            switch_log: Configuration method to edit FortiSwitch logging
+            settings (logs are transferred to and inserted into the FortiGate
+            event log). (optional)
+            remote_log: Configure logging by FortiSwitch device to a remote
+            syslog server. (optional)
+            storm_control: Configuration method to edit FortiSwitch storm
+            control for measuring traffic activity using data rates to prevent
+            traffic disruption. (optional)
+            mirror: Configuration method to edit FortiSwitch packet mirror.
+            (optional)
+            static_mac: Configuration method to edit FortiSwitch Static and
+            Sticky MAC. (optional)
+            custom_command: Configuration method to edit FortiSwitch commands
+            to be pushed to this FortiSwitch device upon rebooting the
+            FortiGate switch controller or the FortiSwitch. (optional)
+            dhcp_snooping_static_client: Configure FortiSwitch DHCP snooping
+            static clients. (optional)
+            igmp_snooping: Configure FortiSwitch IGMP snooping global settings.
+            (optional)
+            _802_1X_settings: Configuration method to edit FortiSwitch 802.1X
+            global settings. (optional)
             router_vrf: Configure VRF. (optional)
-            system_interface: Configure system interface on FortiSwitch. (optional)
+            system_interface: Configure system interface on FortiSwitch.
+            (optional)
             router_static: Configure static routes. (optional)
             system_dhcp_server: Configure DHCP servers. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -299,7 +356,8 @@ class ManagedSwitch:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -457,7 +515,7 @@ class ManagedSwitch:
         if _802_1X_settings is not None:
             data_payload["802-1X-settings"] = _802_1X_settings
         if router_vrf is not None:
-            data_payload["router-vrf"] = router_vrf
+            data_payload["router-vr"] = router_vrf
         if system_interface is not None:
             data_payload["system-interface"] = system_interface
         if router_static is not None:
@@ -483,8 +541,10 @@ class ManagedSwitch:
         Args:
             switch_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -492,7 +552,8 @@ class ManagedSwitch:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -631,8 +692,10 @@ class ManagedSwitch:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             switch_id: Managed-switch name. (optional)
             sn: Managed-switch serial number. (optional)
             description: Description. (optional)
@@ -640,70 +703,114 @@ class ManagedSwitch:
             access_profile: FortiSwitch access profile. (optional)
             purdue_level: Purdue Level of this FortiSwitch. (optional)
             fsw_wan1_peer: FortiSwitch WAN1 peer port. (optional)
-            fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. (optional)
-            poe_pre_standard_detection: Enable/disable PoE pre-standard detection. (optional)
-            dhcp_server_access_list: DHCP snooping server access list. (optional)
+            fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize
+            the FortiSwitch as a managed switch. (optional)
+            poe_pre_standard_detection: Enable/disable PoE pre-standard
+            detection. (optional)
+            dhcp_server_access_list: DHCP snooping server access list.
+            (optional)
             poe_detection_type: PoE detection type for FortiSwitch. (optional)
             max_poe_budget: Max PoE budget for FortiSwitch. (optional)
             directly_connected: Directly connected FortiSwitch. (optional)
             version: FortiSwitch version. (optional)
-            max_allowed_trunk_members: FortiSwitch maximum allowed trunk members. (optional)
+            max_allowed_trunk_members: FortiSwitch maximum allowed trunk
+            members. (optional)
             pre_provisioned: Pre-provisioned managed switch. (optional)
             l3_discovered: Layer 3 management discovered. (optional)
             mgmt_mode: FortiLink management mode. (optional)
             tunnel_discovered: SOCKS tunnel management discovered. (optional)
             tdr_supported: TDR supported. (optional)
-            dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device. (optional)
+            dynamic_capability: List of features this FortiSwitch supports (not
+            configurable) that is sent to the FortiGate device for subsequent
+            configuration initiated by the FortiGate device. (optional)
             switch_device_tag: User definable label/tag. (optional)
             switch_dhcp_opt43_key: DHCP option43 key. (optional)
-            mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. (optional)
-            dynamically_discovered: Dynamically discovered FortiSwitch. (optional)
-            ptp_status: Enable/disable PTP profile on this FortiSwitch. (optional)
+            mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping
+            awareness. (optional)
+            dynamically_discovered: Dynamically discovered FortiSwitch.
+            (optional)
+            ptp_status: Enable/disable PTP profile on this FortiSwitch.
+            (optional)
             ptp_profile: PTP profile configuration. (optional)
             radius_nas_ip_override: Use locally defined NAS-IP. (optional)
             radius_nas_ip: NAS-IP address. (optional)
-            route_offload: Enable/disable route offload on this FortiSwitch. (optional)
-            route_offload_mclag: Enable/disable route offload MCLAG on this FortiSwitch. (optional)
-            route_offload_router: Configure route offload MCLAG IP address. (optional)
+            route_offload: Enable/disable route offload on this FortiSwitch.
+            (optional)
+            route_offload_mclag: Enable/disable route offload MCLAG on this
+            FortiSwitch. (optional)
+            route_offload_router: Configure route offload MCLAG IP address.
+            (optional)
             vlan: Configure VLAN assignment priority. (optional)
             type: Indication of switch type, physical or virtual. (optional)
             owner_vdom: VDOM which owner of port belongs to. (optional)
-            flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0). (optional)
-            staged_image_version: Staged image version for FortiSwitch. (optional)
-            delayed_restart_trigger: Delayed restart triggered for this FortiSwitch. (optional)
-            firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. (optional)
-            firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234). (optional)
-            firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. (optional)
+            flow_identity: Flow-tracking netflow ipfix switch identity in hex
+            format(00000000-FFFFFFFF default=0). (optional)
+            staged_image_version: Staged image version for FortiSwitch.
+            (optional)
+            delayed_restart_trigger: Delayed restart triggered for this
+            FortiSwitch. (optional)
+            firmware_provision: Enable/disable provisioning of firmware to
+            FortiSwitches on join connection. (optional)
+            firmware_provision_version: Firmware version to provision to this
+            FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
+            (optional)
+            firmware_provision_latest: Enable/disable one-time automatic
+            provisioning of the latest firmware version. (optional)
             ports: Managed-switch port list. (optional)
             ip_source_guard: IP source guard. (optional)
-            stp_settings: Configuration method to edit Spanning Tree Protocol (STP) settings used to prevent bridge loops. (optional)
-            stp_instance: Configuration method to edit Spanning Tree Protocol (STP) instances. (optional)
-            override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. (optional)
-            snmp_sysinfo: Configuration method to edit Simple Network Management Protocol (SNMP) system info. (optional)
-            override_snmp_trap_threshold: Enable/disable overriding the global SNMP trap threshold values. (optional)
-            snmp_trap_threshold: Configuration method to edit Simple Network Management Protocol (SNMP) trap threshold values. (optional)
-            override_snmp_community: Enable/disable overriding the global SNMP communities. (optional)
-            snmp_community: Configuration method to edit Simple Network Management Protocol (SNMP) communities. (optional)
-            override_snmp_user: Enable/disable overriding the global SNMP users. (optional)
-            snmp_user: Configuration method to edit Simple Network Management Protocol (SNMP) users. (optional)
+            stp_settings: Configuration method to edit Spanning Tree Protocol
+            (STP) settings used to prevent bridge loops. (optional)
+            stp_instance: Configuration method to edit Spanning Tree Protocol
+            (STP) instances. (optional)
+            override_snmp_sysinfo: Enable/disable overriding the global SNMP
+            system information. (optional)
+            snmp_sysinfo: Configuration method to edit Simple Network
+            Management Protocol (SNMP) system info. (optional)
+            override_snmp_trap_threshold: Enable/disable overriding the global
+            SNMP trap threshold values. (optional)
+            snmp_trap_threshold: Configuration method to edit Simple Network
+            Management Protocol (SNMP) trap threshold values. (optional)
+            override_snmp_community: Enable/disable overriding the global SNMP
+            communities. (optional)
+            snmp_community: Configuration method to edit Simple Network
+            Management Protocol (SNMP) communities. (optional)
+            override_snmp_user: Enable/disable overriding the global SNMP
+            users. (optional)
+            snmp_user: Configuration method to edit Simple Network Management
+            Protocol (SNMP) users. (optional)
             qos_drop_policy: Set QoS drop-policy. (optional)
             qos_red_probability: Set QoS RED/WRED drop probability. (optional)
-            switch_log: Configuration method to edit FortiSwitch logging settings (logs are transferred to and inserted into the FortiGate event log). (optional)
-            remote_log: Configure logging by FortiSwitch device to a remote syslog server. (optional)
-            storm_control: Configuration method to edit FortiSwitch storm control for measuring traffic activity using data rates to prevent traffic disruption. (optional)
-            mirror: Configuration method to edit FortiSwitch packet mirror. (optional)
-            static_mac: Configuration method to edit FortiSwitch Static and Sticky MAC. (optional)
-            custom_command: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. (optional)
-            dhcp_snooping_static_client: Configure FortiSwitch DHCP snooping static clients. (optional)
-            igmp_snooping: Configure FortiSwitch IGMP snooping global settings. (optional)
-            _802_1X_settings: Configuration method to edit FortiSwitch 802.1X global settings. (optional)
+            switch_log: Configuration method to edit FortiSwitch logging
+            settings (logs are transferred to and inserted into the FortiGate
+            event log). (optional)
+            remote_log: Configure logging by FortiSwitch device to a remote
+            syslog server. (optional)
+            storm_control: Configuration method to edit FortiSwitch storm
+            control for measuring traffic activity using data rates to prevent
+            traffic disruption. (optional)
+            mirror: Configuration method to edit FortiSwitch packet mirror.
+            (optional)
+            static_mac: Configuration method to edit FortiSwitch Static and
+            Sticky MAC. (optional)
+            custom_command: Configuration method to edit FortiSwitch commands
+            to be pushed to this FortiSwitch device upon rebooting the
+            FortiGate switch controller or the FortiSwitch. (optional)
+            dhcp_snooping_static_client: Configure FortiSwitch DHCP snooping
+            static clients. (optional)
+            igmp_snooping: Configure FortiSwitch IGMP snooping global settings.
+            (optional)
+            _802_1X_settings: Configuration method to edit FortiSwitch 802.1X
+            global settings. (optional)
             router_vrf: Configure VRF. (optional)
-            system_interface: Configure system interface on FortiSwitch. (optional)
+            system_interface: Configure system interface on FortiSwitch.
+            (optional)
             router_static: Configure static routes. (optional)
             system_dhcp_server: Configure DHCP servers. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -711,7 +818,8 @@ class ManagedSwitch:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -863,7 +971,7 @@ class ManagedSwitch:
         if _802_1X_settings is not None:
             data_payload["802-1X-settings"] = _802_1X_settings
         if router_vrf is not None:
-            data_payload["router-vrf"] = router_vrf
+            data_payload["router-vr"] = router_vrf
         if system_interface is not None:
             data_payload["system-interface"] = system_interface
         if router_static is not None:

@@ -25,7 +25,8 @@ class Firewall:
         Initialize Firewall Monitor API.
 
         Args:
-            client: HTTP client implementing IHTTPClient protocol for API communication
+            client: HTTP client implementing IHTTPClient protocol for API
+            communication
         """
         self._client = client
 
@@ -68,17 +69,13 @@ class Firewall:
             saas_application,
             sdn_connector_filters,
             security_policy,
-        )
-        from . import sessions as sessions_module
-        from . import (
             shaper,
             shaper_multi_class_shaper,
-        )
-        from . import uuid as uuid_module
-        from . import (
             vip_overlap,
             ztna_firewall_policy,
         )
+        from . import sessions as sessions_module
+        from . import uuid as uuid_module
 
         # Initialize all sub-endpoints
         self._health = health.Health(client)

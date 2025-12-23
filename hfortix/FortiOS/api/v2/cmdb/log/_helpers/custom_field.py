@@ -71,19 +71,19 @@ def validate_custom_field_post(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"id cannot exceed 35 characters")
+            return (False, "id cannot exceed 35 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate value if present
     if "value" in payload:
         value = payload.get("value")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"value cannot exceed 15 characters")
+            return (False, "value cannot exceed 15 characters")
 
     return (True, None)
 
@@ -118,19 +118,19 @@ def validate_custom_field_put(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"id cannot exceed 35 characters")
+            return (False, "id cannot exceed 35 characters")
 
     # Validate name if present
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate value if present
     if "value" in payload:
         value = payload.get("value")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"value cannot exceed 15 characters")
+            return (False, "value cannot exceed 15 characters")
 
     return (True, None)
 

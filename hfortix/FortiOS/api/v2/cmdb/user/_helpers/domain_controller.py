@@ -75,7 +75,7 @@ def validate_domain_controller_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ad-mode if present
     if "ad-mode" in payload:
@@ -90,13 +90,13 @@ def validate_domain_controller_post(
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"hostname cannot exceed 255 characters")
+            return (False, "hostname cannot exceed 255 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -105,7 +105,7 @@ def validate_domain_controller_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -116,7 +116,7 @@ def validate_domain_controller_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"source-port must be between 0 and 65535")
+                    return (False, "source-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"source-port must be numeric, got: {value}")
 
@@ -133,13 +133,13 @@ def validate_domain_controller_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate domain-name if present
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"domain-name cannot exceed 255 characters")
+            return (False, "domain-name cannot exceed 255 characters")
 
     # Validate replication-port if present
     if "replication-port" in payload:
@@ -150,7 +150,7 @@ def validate_domain_controller_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"replication-port must be between 0 and 65535",
+                        "replication-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -176,7 +176,7 @@ def validate_domain_controller_post(
                 if int_val < 5 or int_val > 10080:
                     return (
                         False,
-                        f"change-detection-period must be between 5 and 10080",
+                        "change-detection-period must be between 5 and 10080",
                     )
             except (ValueError, TypeError):
                 return (
@@ -197,7 +197,7 @@ def validate_domain_controller_post(
     if "adlds-dn" in payload:
         value = payload.get("adlds-dn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"adlds-dn cannot exceed 255 characters")
+            return (False, "adlds-dn cannot exceed 255 characters")
 
     # Validate adlds-port if present
     if "adlds-port" in payload:
@@ -206,7 +206,7 @@ def validate_domain_controller_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"adlds-port must be between 0 and 65535")
+                    return (False, "adlds-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"adlds-port must be numeric, got: {value}")
 
@@ -243,7 +243,7 @@ def validate_domain_controller_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ad-mode if present
     if "ad-mode" in payload:
@@ -258,13 +258,13 @@ def validate_domain_controller_put(
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"hostname cannot exceed 255 characters")
+            return (False, "hostname cannot exceed 255 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -273,7 +273,7 @@ def validate_domain_controller_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -284,7 +284,7 @@ def validate_domain_controller_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"source-port must be between 0 and 65535")
+                    return (False, "source-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"source-port must be numeric, got: {value}")
 
@@ -301,13 +301,13 @@ def validate_domain_controller_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate domain-name if present
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"domain-name cannot exceed 255 characters")
+            return (False, "domain-name cannot exceed 255 characters")
 
     # Validate replication-port if present
     if "replication-port" in payload:
@@ -318,7 +318,7 @@ def validate_domain_controller_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"replication-port must be between 0 and 65535",
+                        "replication-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -344,7 +344,7 @@ def validate_domain_controller_put(
                 if int_val < 5 or int_val > 10080:
                     return (
                         False,
-                        f"change-detection-period must be between 5 and 10080",
+                        "change-detection-period must be between 5 and 10080",
                     )
             except (ValueError, TypeError):
                 return (
@@ -365,7 +365,7 @@ def validate_domain_controller_put(
     if "adlds-dn" in payload:
         value = payload.get("adlds-dn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"adlds-dn cannot exceed 255 characters")
+            return (False, "adlds-dn cannot exceed 255 characters")
 
     # Validate adlds-port if present
     if "adlds-port" in payload:
@@ -374,7 +374,7 @@ def validate_domain_controller_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"adlds-port must be between 0 and 65535")
+                    return (False, "adlds-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"adlds-port must be numeric, got: {value}")
 

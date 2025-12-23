@@ -72,7 +72,7 @@ def validate_server_group_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate ldb-method if present
     if "ldb-method" in payload:
@@ -116,7 +116,7 @@ def validate_server_group_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate ldb-method if present
     if "ldb-method" in payload:

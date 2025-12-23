@@ -88,11 +88,15 @@ class DiskSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class DiskSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -160,43 +165,70 @@ class DiskSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable local disk logging. (optional)
-            ips_archive: Enable/disable IPS packet archiving to the local disk. (optional)
-            max_log_file_size: Maximum log file size before rolling (1 - 100 Mbytes). (optional)
-            max_policy_packet_capture_size: Maximum size of policy sniffer in MB (0 means unlimited). (optional)
+            ips_archive: Enable/disable IPS packet archiving to the local disk.
+            (optional)
+            max_log_file_size: Maximum log file size before rolling (1 - 100
+            Mbytes). (optional)
+            max_policy_packet_capture_size: Maximum size of policy sniffer in
+            MB (0 means unlimited). (optional)
             roll_schedule: Frequency to check log file for rolling. (optional)
             roll_day: Day of week on which to roll log file. (optional)
             roll_time: Time of day to roll the log file (hh:mm). (optional)
-            diskfull: Action to take when disk is full. The system can overwrite the oldest log messages or stop logging when the disk is full (default = overwrite). (optional)
+            diskfull: Action to take when disk is full. The system can
+            overwrite the oldest log messages or stop logging when the disk is
+            full (default = overwrite). (optional)
             log_quota: Disk log quota (MB). (optional)
             dlp_archive_quota: DLP archive quota (MB). (optional)
             report_quota: Report db quota (MB). (optional)
             maximum_log_age: Delete log files older than (days). (optional)
-            upload: Enable/disable uploading log files when they are rolled. (optional)
-            upload_destination: The type of server to upload log files to. Only FTP is currently supported. (optional)
-            uploadip: IP address of the FTP server to upload log files to. (optional)
-            uploadport: TCP port to use for communicating with the FTP server (default = 21). (optional)
-            source_ip: Source IP address to use for uploading disk log files. (optional)
-            uploaduser: Username required to log into the FTP server to upload disk log files. (optional)
-            uploadpass: Password required to log into the FTP server to upload disk log files. (optional)
-            uploaddir: The remote directory on the FTP server to upload log files to. (optional)
-            uploadtype: Types of log files to upload. Separate multiple entries with a space. (optional)
-            uploadsched: Set the schedule for uploading log files to the FTP server (default = disable = upload when rolling). (optional)
-            uploadtime: Time of day at which log files are uploaded if uploadsched is enabled (hh:mm or hh). (optional)
-            upload_delete_files: Delete log files after uploading (default = enable). (optional)
-            upload_ssl_conn: Enable/disable encrypted FTPS communication to upload log files. (optional)
-            full_first_warning_threshold: Log full first warning threshold as a percent (1 - 98, default = 75). (optional)
-            full_second_warning_threshold: Log full second warning threshold as a percent (2 - 99, default = 90). (optional)
-            full_final_warning_threshold: Log full final warning threshold as a percent (3 - 100, default = 95). (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            upload: Enable/disable uploading log files when they are rolled.
+            (optional)
+            upload_destination: The type of server to upload log files to. Only
+            FTP is currently supported. (optional)
+            uploadip: IP address of the FTP server to upload log files to.
+            (optional)
+            uploadport: TCP port to use for communicating with the FTP server
+            (default = 21). (optional)
+            source_ip: Source IP address to use for uploading disk log files.
+            (optional)
+            uploaduser: Username required to log into the FTP server to upload
+            disk log files. (optional)
+            uploadpass: Password required to log into the FTP server to upload
+            disk log files. (optional)
+            uploaddir: The remote directory on the FTP server to upload log
+            files to. (optional)
+            uploadtype: Types of log files to upload. Separate multiple entries
+            with a space. (optional)
+            uploadsched: Set the schedule for uploading log files to the FTP
+            server (default = disable = upload when rolling). (optional)
+            uploadtime: Time of day at which log files are uploaded if
+            uploadsched is enabled (hh:mm or hh). (optional)
+            upload_delete_files: Delete log files after uploading (default =
+            enable). (optional)
+            upload_ssl_conn: Enable/disable encrypted FTPS communication to
+            upload log files. (optional)
+            full_first_warning_threshold: Log full first warning threshold as a
+            percent (1 - 98, default = 75). (optional)
+            full_second_warning_threshold: Log full second warning threshold as
+            a percent (2 - 99, default = 90). (optional)
+            full_final_warning_threshold: Log full final warning threshold as a
+            percent (3 - 100, default = 95). (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -204,7 +236,8 @@ class DiskSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

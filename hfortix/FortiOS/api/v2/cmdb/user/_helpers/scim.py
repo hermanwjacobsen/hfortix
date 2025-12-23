@@ -73,7 +73,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -82,7 +82,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -99,7 +99,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "base-url" in payload:
         value = payload.get("base-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"base-url cannot exceed 127 characters")
+            return (False, "base-url cannot exceed 127 characters")
 
     # Validate auth-method if present
     if "auth-method" in payload:
@@ -114,13 +114,13 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "token-certificate" in payload:
         value = payload.get("token-certificate")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"token-certificate cannot exceed 79 characters")
+            return (False, "token-certificate cannot exceed 79 characters")
 
     # Validate certificate if present
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"certificate cannot exceed 79 characters")
+            return (False, "certificate cannot exceed 79 characters")
 
     # Validate client-identity-check if present
     if "client-identity-check" in payload:
@@ -173,7 +173,7 @@ def validate_scim_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -182,7 +182,7 @@ def validate_scim_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -199,7 +199,7 @@ def validate_scim_put(
     if "base-url" in payload:
         value = payload.get("base-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"base-url cannot exceed 127 characters")
+            return (False, "base-url cannot exceed 127 characters")
 
     # Validate auth-method if present
     if "auth-method" in payload:
@@ -214,13 +214,13 @@ def validate_scim_put(
     if "token-certificate" in payload:
         value = payload.get("token-certificate")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"token-certificate cannot exceed 79 characters")
+            return (False, "token-certificate cannot exceed 79 characters")
 
     # Validate certificate if present
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"certificate cannot exceed 79 characters")
+            return (False, "certificate cannot exceed 79 characters")
 
     # Validate client-identity-check if present
     if "client-identity-check" in payload:

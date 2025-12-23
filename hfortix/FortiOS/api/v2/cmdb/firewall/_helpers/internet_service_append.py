@@ -88,7 +88,7 @@ def validate_internet_service_append_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"match-port must be between 0 and 65535")
+                    return (False, "match-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"match-port must be numeric, got: {value}")
 
@@ -99,7 +99,7 @@ def validate_internet_service_append_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"append-port must be between 0 and 65535")
+                    return (False, "append-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"append-port must be numeric, got: {value}")
 

@@ -63,7 +63,8 @@ class Download:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Download FortiAP firmware from FortiGuard to the FortiGate according to FortiAP image ID.
+        Download FortiAP firmware from FortiGuard to the FortiGate according to
+        FortiAP image ID.
 
         Args:
             image_id: FortiAP image ID. (optional)
@@ -152,11 +153,14 @@ class Upload:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Upload FortiAP firmware to the management FortiGate and then push to target FortiAPs.
+        Upload FortiAP firmware to the management FortiGate and then push to
+        target FortiAPs.
 
         Args:
             serials: The target device's serial. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -202,11 +206,14 @@ class Firmware:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of current and recommended firmware for FortiAPs in use.
+        Retrieve a list of current and recommended firmware for FortiAPs in
+        use.
 
         Args:
-            timeout: FortiGuard connection timeout (defaults to 2 seconds). (optional)
-            version: Target firmware version of the parent FortiGate. (optional)
+            timeout: FortiGuard connection timeout (defaults to 2 seconds).
+            (optional)
+            version: Target firmware version of the parent FortiGate.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

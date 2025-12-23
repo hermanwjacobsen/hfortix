@@ -137,7 +137,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1023:
-                    return (False, f"group-id must be between 0 and 1023")
+                    return (False, "group-id must be between 0 and 1023")
             except (ValueError, TypeError):
                 return (False, f"group-id must be numeric, got: {value}")
 
@@ -145,7 +145,7 @@ def validate_ha_put(
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"group-name cannot exceed 32 characters")
+            return (False, "group-name cannot exceed 32 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -172,7 +172,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 3600:
-                    return (False, f"route-ttl must be between 5 and 3600")
+                    return (False, "route-ttl must be between 5 and 3600")
             except (ValueError, TypeError):
                 return (False, f"route-ttl must be numeric, got: {value}")
 
@@ -183,7 +183,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 3600:
-                    return (False, f"route-wait must be between 0 and 3600")
+                    return (False, "route-wait must be between 0 and 3600")
             except (ValueError, TypeError):
                 return (False, f"route-wait must be numeric, got: {value}")
 
@@ -194,7 +194,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 3600:
-                    return (False, f"route-hold must be between 0 and 3600")
+                    return (False, "route-hold must be between 0 and 3600")
             except (ValueError, TypeError):
                 return (False, f"route-hold must be numeric, got: {value}")
 
@@ -205,7 +205,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 3600:
-                    return (False, f"multicast-ttl must be between 5 and 3600")
+                    return (False, "multicast-ttl must be between 5 and 3600")
             except (ValueError, TypeError):
                 return (False, f"multicast-ttl must be numeric, got: {value}")
 
@@ -216,7 +216,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 3600:
-                    return (False, f"evpn-ttl must be between 5 and 3600")
+                    return (False, "evpn-ttl must be between 5 and 3600")
             except (ValueError, TypeError):
                 return (False, f"evpn-ttl must be numeric, got: {value}")
 
@@ -263,7 +263,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 20:
-                    return (False, f"hb-interval must be between 1 and 20")
+                    return (False, "hb-interval must be between 1 and 20")
             except (ValueError, TypeError):
                 return (False, f"hb-interval must be numeric, got: {value}")
 
@@ -285,7 +285,7 @@ def validate_ha_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"hb-lost-threshold must be between 1 and 60",
+                        "hb-lost-threshold must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -300,7 +300,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"hello-holddown must be between 5 and 300")
+                    return (False, "hello-holddown must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"hello-holddown must be numeric, got: {value}")
 
@@ -320,7 +320,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 60:
-                    return (False, f"arps must be between 1 and 60")
+                    return (False, "arps must be between 1 and 60")
             except (ValueError, TypeError):
                 return (False, f"arps must be numeric, got: {value}")
 
@@ -331,7 +331,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 20:
-                    return (False, f"arps-interval must be between 1 and 20")
+                    return (False, "arps-interval must be between 1 and 20")
             except (ValueError, TypeError):
                 return (False, f"arps-interval must be numeric, got: {value}")
 
@@ -407,7 +407,7 @@ def validate_ha_put(
                 if int_val < 15 or int_val > 300:
                     return (
                         False,
-                        f"uninterruptible-primary-wait must be between 15 and 300",
+                        "uninterruptible-primary-wait must be between 15 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -437,19 +437,19 @@ def validate_ha_put(
     if "ha-eth-type" in payload:
         value = payload.get("ha-eth-type")
         if value and isinstance(value, str) and len(value) > 4:
-            return (False, f"ha-eth-type cannot exceed 4 characters")
+            return (False, "ha-eth-type cannot exceed 4 characters")
 
     # Validate hc-eth-type if present
     if "hc-eth-type" in payload:
         value = payload.get("hc-eth-type")
         if value and isinstance(value, str) and len(value) > 4:
-            return (False, f"hc-eth-type cannot exceed 4 characters")
+            return (False, "hc-eth-type cannot exceed 4 characters")
 
     # Validate l2ep-eth-type if present
     if "l2ep-eth-type" in payload:
         value = payload.get("l2ep-eth-type")
         if value and isinstance(value, str) and len(value) > 4:
-            return (False, f"l2ep-eth-type cannot exceed 4 characters")
+            return (False, "l2ep-eth-type cannot exceed 4 characters")
 
     # Validate ha-uptime-diff-margin if present
     if "ha-uptime-diff-margin" in payload:
@@ -460,7 +460,7 @@ def validate_ha_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ha-uptime-diff-margin must be between 1 and 65535",
+                        "ha-uptime-diff-margin must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -511,7 +511,7 @@ def validate_ha_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"priority must be between 0 and 255")
+                    return (False, "priority must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -524,7 +524,7 @@ def validate_ha_put(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"override-wait-time must be between 0 and 3600",
+                        "override-wait-time must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -541,7 +541,7 @@ def validate_ha_put(
                 if int_val < 0 or int_val > 50:
                     return (
                         False,
-                        f"pingserver-failover-threshold must be between 0 and 50",
+                        "pingserver-failover-threshold must be between 0 and 50",
                     )
             except (ValueError, TypeError):
                 return (
@@ -567,7 +567,7 @@ def validate_ha_put(
                 if int_val < 6 or int_val > 2147483647:
                     return (
                         False,
-                        f"pingserver-flip-timeout must be between 6 and 2147483647",
+                        "pingserver-flip-timeout must be between 6 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -629,7 +629,7 @@ def validate_ha_put(
                 if int_val < 0 or int_val > 95:
                     return (
                         False,
-                        f"memory-failover-threshold must be between 0 and 95",
+                        "memory-failover-threshold must be between 0 and 95",
                     )
             except (ValueError, TypeError):
                 return (
@@ -646,7 +646,7 @@ def validate_ha_put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"memory-failover-monitor-period must be between 1 and 300",
+                        "memory-failover-monitor-period must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -663,7 +663,7 @@ def validate_ha_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"memory-failover-sample-rate must be between 1 and 60",
+                        "memory-failover-sample-rate must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -680,7 +680,7 @@ def validate_ha_put(
                 if int_val < 6 or int_val > 2147483647:
                     return (
                         False,
-                        f"memory-failover-flip-timeout must be between 6 and 2147483647",
+                        "memory-failover-flip-timeout must be between 6 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -697,7 +697,7 @@ def validate_ha_put(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"failover-hold-time must be between 0 and 300",
+                        "failover-hold-time must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (

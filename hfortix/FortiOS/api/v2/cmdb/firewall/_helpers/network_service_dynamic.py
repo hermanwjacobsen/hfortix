@@ -71,25 +71,25 @@ def validate_network_service_dynamic_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate sdn if present
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate filter if present
     if "filter" in payload:
         value = payload.get("filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"filter cannot exceed 2047 characters")
+            return (False, "filter cannot exceed 2047 characters")
 
     return (True, None)
 
@@ -124,25 +124,25 @@ def validate_network_service_dynamic_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate sdn if present
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate filter if present
     if "filter" in payload:
         value = payload.get("filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"filter cannot exceed 2047 characters")
+            return (False, "filter cannot exceed 2047 characters")
 
     return (True, None)
 

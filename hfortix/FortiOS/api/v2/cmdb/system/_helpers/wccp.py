@@ -79,7 +79,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "service-id" in payload:
         value = payload.get("service-id")
         if value and isinstance(value, str) and len(value) > 3:
-            return (False, f"service-id cannot exceed 3 characters")
+            return (False, "service-id cannot exceed 3 characters")
 
     # Validate ports-defined if present
     if "ports-defined" in payload:
@@ -151,7 +151,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"priority must be between 0 and 255")
+                    return (False, "priority must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -162,7 +162,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -175,7 +175,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"assignment-weight must be between 0 and 255",
+                        "assignment-weight must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (

@@ -77,7 +77,7 @@ def validate_fortishield_put(
     if "spam-submit-srv" in payload:
         value = payload.get("spam-submit-srv")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"spam-submit-srv cannot exceed 63 characters")
+            return (False, "spam-submit-srv cannot exceed 63 characters")
 
     # Validate spam-submit-force if present
     if "spam-submit-force" in payload:

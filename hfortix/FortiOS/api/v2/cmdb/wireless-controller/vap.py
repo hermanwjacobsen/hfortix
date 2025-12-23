@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Vap:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Vap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -320,184 +326,355 @@ class Vap:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Virtual AP name. (optional)
-            pre_auth: Enable/disable pre-authentication, where supported by clients (default = enable). (optional)
-            external_pre_auth: Enable/disable pre-authentication with external APs not managed by the FortiGate (default = disable). (optional)
-            mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. (optional)
+            pre_auth: Enable/disable pre-authentication, where supported by
+            clients (default = enable). (optional)
+            external_pre_auth: Enable/disable pre-authentication with external
+            APs not managed by the FortiGate (default = disable). (optional)
+            mesh_backhaul: Enable/disable using this VAP as a WiFi mesh
+            backhaul (default = disable). This entry is only available when
+            security is set to a WPA type or open. (optional)
             atf_weight: Airtime weight in percentage (default = 20). (optional)
-            max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation). (optional)
-            max_clients_ap: Maximum number of clients that can connect simultaneously to the VAP per AP radio (default = 0, meaning no limitation). (optional)
-            ssid: IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name. (optional)
-            broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). (optional)
-            security: Security mode for the wireless interface (default = wpa2-only-personal). (optional)
-            pmf: Protected Management Frames (PMF) support (default = disable). (optional)
-            pmf_assoc_comeback_timeout: Protected Management Frames (PMF) comeback maximum timeout (1-20 sec). (optional)
-            pmf_sa_query_retry_timeout: Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec). (optional)
-            beacon_protection: Enable/disable beacon protection support (default = disable). (optional)
-            okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). (optional)
-            mbo: Enable/disable Multiband Operation (default = disable). (optional)
-            gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500). (optional)
-            gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024). (optional)
-            mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). (optional)
-            _80211k: Enable/disable 802.11k assisted roaming (default = enable). (optional)
-            _80211v: Enable/disable 802.11v assisted roaming (default = enable). (optional)
-            neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). (optional)
-            fast_bss_transition: Enable/disable 802.11r Fast BSS Transition (FT) (default = disable). (optional)
-            ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000). (optional)
-            ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes. (optional)
-            ft_over_ds: Enable/disable FT over the Distribution System (DS). (optional)
+            max_clients: Maximum number of clients that can connect
+            simultaneously to the VAP (default = 0, meaning no limitation).
+            (optional)
+            max_clients_ap: Maximum number of clients that can connect
+            simultaneously to the VAP per AP radio (default = 0, meaning no
+            limitation). (optional)
+            ssid: IEEE 802.11 service set identifier (SSID) for the wireless
+            interface. Users who wish to use the wireless network must
+            configure their computers to access this SSID name. (optional)
+            broadcast_ssid: Enable/disable broadcasting the SSID (default =
+            enable). (optional)
+            security: Security mode for the wireless interface (default =
+            wpa2-only-personal). (optional)
+            pmf: Protected Management Frames (PMF) support (default = disable).
+            (optional)
+            pmf_assoc_comeback_timeout: Protected Management Frames (PMF)
+            comeback maximum timeout (1-20 sec). (optional)
+            pmf_sa_query_retry_timeout: Protected Management Frames (PMF) SA
+            query retry timeout interval (1 - 5 100s of msec). (optional)
+            beacon_protection: Enable/disable beacon protection support
+            (default = disable). (optional)
+            okc: Enable/disable Opportunistic Key Caching (OKC) (default =
+            enable). (optional)
+            mbo: Enable/disable Multiband Operation (default = disable).
+            (optional)
+            gas_comeback_delay: GAS comeback delay (0 or 100 - 10000
+            milliseconds, default = 500). (optional)
+            gas_fragmentation_limit: GAS fragmentation limit (512 - 4096,
+            default = 1024). (optional)
+            mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1,
+            or 255, default = 1). (optional)
+            _80211k: Enable/disable 802.11k assisted roaming (default =
+            enable). (optional)
+            _80211v: Enable/disable 802.11v assisted roaming (default =
+            enable). (optional)
+            neighbor_report_dual_band: Enable/disable dual-band neighbor report
+            (default = disable). (optional)
+            fast_bss_transition: Enable/disable 802.11r Fast BSS Transition
+            (FT) (default = disable). (optional)
+            ft_mobility_domain: Mobility domain identifier in FT (1 - 65535,
+            default = 1000). (optional)
+            ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535
+            minutes. (optional)
+            ft_over_ds: Enable/disable FT over the Distribution System (DS).
+            (optional)
             sae_groups: SAE-Groups. (optional)
             owe_groups: OWE-Groups. (optional)
-            owe_transition: Enable/disable OWE transition mode support. (optional)
+            owe_transition: Enable/disable OWE transition mode support.
+            (optional)
             owe_transition_ssid: OWE transition mode peer SSID. (optional)
             additional_akms: Additional AKMs. (optional)
-            eapol_key_retries: Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message 1/2) (default = enable). (optional)
-            tkip_counter_measure: Enable/disable TKIP counter measure. (optional)
+            eapol_key_retries: Enable/disable retransmission of EAPOL-Key
+            frames (message 3/4 and group message 1/2) (default = enable).
+            (optional)
+            tkip_counter_measure: Enable/disable TKIP counter measure.
+            (optional)
             external_web: URL of external authentication web server. (optional)
-            external_web_format: URL query parameter detection (default = auto-detect). (optional)
-            external_logout: URL of external authentication logout server. (optional)
-            mac_username_delimiter: MAC authentication username delimiter (default = hyphen). (optional)
-            mac_password_delimiter: MAC authentication password delimiter (default = hyphen). (optional)
-            mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). (optional)
-            mac_called_station_delimiter: MAC called station delimiter (default = hyphen). (optional)
+            external_web_format: URL query parameter detection (default =
+            auto-detect). (optional)
+            external_logout: URL of external authentication logout server.
+            (optional)
+            mac_username_delimiter: MAC authentication username delimiter
+            (default = hyphen). (optional)
+            mac_password_delimiter: MAC authentication password delimiter
+            (default = hyphen). (optional)
+            mac_calling_station_delimiter: MAC calling station delimiter
+            (default = hyphen). (optional)
+            mac_called_station_delimiter: MAC called station delimiter (default
+            = hyphen). (optional)
             mac_case: MAC case (default = uppercase). (optional)
-            called_station_id_type: The format type of RADIUS attribute Called-Station-Id (default = mac). (optional)
-            mac_auth_bypass: Enable/disable MAC authentication bypass. (optional)
-            radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). (optional)
-            radius_mac_auth_server: RADIUS-based MAC authentication server. (optional)
-            radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking). (optional)
-            radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). (optional)
-            radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (0 or 300 - 864000, default = 86400, 0 to disable caching). (optional)
-            radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. (optional)
+            called_station_id_type: The format type of RADIUS attribute
+            Called-Station-Id (default = mac). (optional)
+            mac_auth_bypass: Enable/disable MAC authentication bypass.
+            (optional)
+            radius_mac_auth: Enable/disable RADIUS-based MAC authentication of
+            clients (default = disable). (optional)
+            radius_mac_auth_server: RADIUS-based MAC authentication server.
+            (optional)
+            radius_mac_auth_block_interval: Don't send RADIUS MAC auth request
+            again if the client has been rejected within specific interval (0
+            or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+            (optional)
+            radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC
+            authentication of clients for MPSK authentication (default =
+            disable). (optional)
+            radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (0
+            or 300 - 864000, default = 86400, 0 to disable caching). (optional)
+            radius_mac_auth_usergroups: Selective user groups that are
+            permitted for RADIUS mac authentication. (optional)
             auth: Authentication protocol. (optional)
-            encrypt: Encryption protocol to use (only available when security is set to a WPA type). (optional)
+            encrypt: Encryption protocol to use (only available when security
+            is set to a WPA type). (optional)
             keyindex: WEP key index (1 - 4). (optional)
-            passphrase: WPA pre-shared key (PSK) to be used to authenticate WiFi users. (optional)
-            sae_password: WPA3 SAE password to be used to authenticate WiFi users. (optional)
-            sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). (optional)
-            sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). (optional)
+            passphrase: WPA pre-shared key (PSK) to be used to authenticate
+            WiFi users. (optional)
+            sae_password: WPA3 SAE password to be used to authenticate WiFi
+            users. (optional)
+            sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation
+            (default = disable). (optional)
+            sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE
+            derivation (default = disable). (optional)
             sae_pk: Enable/disable WPA3 SAE-PK (default = disable). (optional)
-            sae_private_key: Private key used for WPA3 SAE-PK authentication. (optional)
-            akm24_only: WPA3 SAE using group-dependent hash only (default = disable). (optional)
-            radius_server: RADIUS server to be used to authenticate WiFi users. (optional)
-            nas_filter_rule: Enable/disable NAS filter rule support (default = disable). (optional)
-            domain_name_stripping: Enable/disable stripping domain name from identity (default = disable). (optional)
-            mlo: Enable/disable WiFi7 Multi-Link-Operation (default = disable). (optional)
-            local_standalone: Enable/disable AP local standalone (default = disable). (optional)
-            local_standalone_nat: Enable/disable AP local standalone NAT mode. (optional)
-            ip: IP address and subnet mask for the local standalone NAT subnet. (optional)
-            dhcp_lease_time: DHCP lease time in seconds for NAT IP address. (optional)
-            local_standalone_dns: Enable/disable AP local standalone DNS. (optional)
-            local_standalone_dns_ip: IPv4 addresses for the local standalone DNS. (optional)
-            local_lan_partition: Enable/disable segregating client traffic to local LAN side (default = disable). (optional)
-            local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). (optional)
-            local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). (optional)
-            local_authentication: Enable/disable AP local authentication. (optional)
-            usergroup: Firewall user group to be used to authenticate WiFi users. (optional)
+            sae_private_key: Private key used for WPA3 SAE-PK authentication.
+            (optional)
+            akm24_only: WPA3 SAE using group-dependent hash only (default =
+            disable). (optional)
+            radius_server: RADIUS server to be used to authenticate WiFi users.
+            (optional)
+            nas_filter_rule: Enable/disable NAS filter rule support (default =
+            disable). (optional)
+            domain_name_stripping: Enable/disable stripping domain name from
+            identity (default = disable). (optional)
+            mlo: Enable/disable WiFi7 Multi-Link-Operation (default = disable).
+            (optional)
+            local_standalone: Enable/disable AP local standalone (default =
+            disable). (optional)
+            local_standalone_nat: Enable/disable AP local standalone NAT mode.
+            (optional)
+            ip: IP address and subnet mask for the local standalone NAT subnet.
+            (optional)
+            dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
+            (optional)
+            local_standalone_dns: Enable/disable AP local standalone DNS.
+            (optional)
+            local_standalone_dns_ip: IPv4 addresses for the local standalone
+            DNS. (optional)
+            local_lan_partition: Enable/disable segregating client traffic to
+            local LAN side (default = disable). (optional)
+            local_bridging: Enable/disable bridging of wireless and Ethernet
+            interfaces on the FortiAP (default = disable). (optional)
+            local_lan: Allow/deny traffic destined for a Class A, B, or C
+            private IP address (default = allow). (optional)
+            local_authentication: Enable/disable AP local authentication.
+            (optional)
+            usergroup: Firewall user group to be used to authenticate WiFi
+            users. (optional)
             captive_portal: Enable/disable captive portal. (optional)
-            captive_network_assistant_bypass: Enable/disable Captive Network Assistant bypass. (optional)
-            portal_message_override_group: Replacement message group for this VAP (only available when security is set to a captive portal type). (optional)
+            captive_network_assistant_bypass: Enable/disable Captive Network
+            Assistant bypass. (optional)
+            portal_message_override_group: Replacement message group for this
+            VAP (only available when security is set to a captive portal type).
+            (optional)
             portal_message_overrides: Individual message overrides. (optional)
-            portal_type: Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer. (optional)
-            selected_usergroups: Selective user groups that are permitted to authenticate. (optional)
-            security_exempt_list: Optional security exempt list for captive portal authentication. (optional)
-            security_redirect_url: Optional URL for redirecting users after they pass captive portal authentication. (optional)
+            portal_type: Captive portal functionality. Configure how the
+            captive portal authenticates users and whether it includes a
+            disclaimer. (optional)
+            selected_usergroups: Selective user groups that are permitted to
+            authenticate. (optional)
+            security_exempt_list: Optional security exempt list for captive
+            portal authentication. (optional)
+            security_redirect_url: Optional URL for redirecting users after
+            they pass captive portal authentication. (optional)
             auth_cert: HTTPS server certificate. (optional)
             auth_portal_addr: Address of captive portal. (optional)
-            intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). (optional)
-            schedule: Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            ldpc: VAP low-density parity-check (LDPC) coding configuration. (optional)
-            high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). (optional)
-            target_wake_time: Enable/disable 802.11ax target wake time (default = enable). (optional)
-            port_macauth: Enable/disable LAN port MAC authentication (default = disable). (optional)
-            port_macauth_timeout: LAN port MAC authentication idle timeout value (default = 600 sec). (optional)
-            port_macauth_reauth_timeout: LAN port MAC authentication re-authentication timeout value (default = 7200 sec). (optional)
-            bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). (optional)
+            intra_vap_privacy: Enable/disable blocking communication between
+            clients on the same SSID (called intra-SSID privacy) (default =
+            disable). (optional)
+            schedule: Firewall schedules for enabling this VAP on the FortiAP.
+            This VAP will be enabled when at least one of the schedules is
+            valid. Separate multiple schedule names with a space. (optional)
+            ldpc: VAP low-density parity-check (LDPC) coding configuration.
+            (optional)
+            high_efficiency: Enable/disable 802.11ax high efficiency (default =
+            enable). (optional)
+            target_wake_time: Enable/disable 802.11ax target wake time (default
+            = enable). (optional)
+            port_macauth: Enable/disable LAN port MAC authentication (default =
+            disable). (optional)
+            port_macauth_timeout: LAN port MAC authentication idle timeout
+            value (default = 600 sec). (optional)
+            port_macauth_reauth_timeout: LAN port MAC authentication
+            re-authentication timeout value (default = 7200 sec). (optional)
+            bss_color_partial: Enable/disable 802.11ax partial BSS color
+            (default = enable). (optional)
             mpsk_profile: MPSK profile name. (optional)
-            split_tunneling: Enable/disable split tunneling (default = disable). (optional)
+            split_tunneling: Enable/disable split tunneling (default =
+            disable). (optional)
             nac: Enable/disable network access control. (optional)
             nac_profile: NAC profile name. (optional)
             vlanid: Optional VLAN ID. (optional)
-            vlan_auto: Enable/disable automatic management of SSID VLAN interface. (optional)
+            vlan_auto: Enable/disable automatic management of SSID VLAN
+            interface. (optional)
             dynamic_vlan: Enable/disable dynamic VLAN assignment. (optional)
-            captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. (optional)
-            captive_portal_ac_name: Local-bridging captive portal ac-name. (optional)
-            captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0). (optional)
-            multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). (optional)
-            multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). (optional)
+            captive_portal_fw_accounting: Enable/disable RADIUS accounting for
+            captive portal firewall authentication session. (optional)
+            captive_portal_ac_name: Local-bridging captive portal ac-name.
+            (optional)
+            captive_portal_auth_timeout: Hard timeout - AP will always clear
+            the session after timeout regardless of traffic (0 - 864000 sec,
+            default = 0). (optional)
+            multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps,
+            default = 0). (optional)
+            multicast_enhance: Enable/disable converting multicast to unicast
+            to improve performance (default = disable). (optional)
             igmp_snooping: Enable/disable IGMP snooping. (optional)
-            dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). (optional)
-            broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network. (optional)
-            ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. (optional)
-            me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic. (optional)
-            mu_mimo: Enable/disable Multi-user MIMO (default = enable). (optional)
-            probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). (optional)
-            probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80). (optional)
-            radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). (optional)
-            quarantine: Enable/disable station quarantine (default = disable). (optional)
-            radio_5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76). (optional)
-            radio_2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79). (optional)
+            dhcp_address_enforcement: Enable/disable DHCP address enforcement
+            (default = disable). (optional)
+            broadcast_suppression: Optional suppression of broadcast messages.
+            For example, you can keep DHCP messages, ARP broadcasts, and so on
+            off of the wireless network. (optional)
+            ipv6_rules: Optional rules of IPv6 packets. For example, you can
+            keep RA, RS and so on off of the wireless network. (optional)
+            me_disable_thresh: Disable multicast enhancement when this many
+            clients are receiving multicast traffic. (optional)
+            mu_mimo: Enable/disable Multi-user MIMO (default = enable).
+            (optional)
+            probe_resp_suppression: Enable/disable probe response suppression
+            (to ignore weak signals) (default = disable). (optional)
+            probe_resp_threshold: Minimum signal level/threshold in dBm
+            required for the AP response to probe requests (-95 to -20, default
+            = -80). (optional)
+            radio_sensitivity: Enable/disable software radio sensitivity (to
+            ignore weak signals) (default = disable). (optional)
+            quarantine: Enable/disable station quarantine (default = disable).
+            (optional)
+            radio_5g_threshold: Minimum signal level/threshold in dBm required
+            for the AP response to receive a packet in 5G band(-95 to -20,
+            default = -76). (optional)
+            radio_2g_threshold: Minimum signal level/threshold in dBm required
+            for the AP response to receive a packet in 2.4G band (-95 to -20,
+            default = -79). (optional)
             vlan_name: Table for mapping VLAN name to VLAN ID. (optional)
-            vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. (optional)
+            vlan_pooling: Enable/disable VLAN pooling, to allow grouping of
+            multiple wireless controller VLANs into VLAN pools (default =
+            disable). When set to wtp-group, VLAN pooling occurs with VLAN
+            assignment by wtp-group. (optional)
             vlan_pool: VLAN pool. (optional)
-            dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). (optional)
-            dhcp_option82_insertion: Enable/disable DHCP option 82 insert (default = disable). (optional)
-            dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable). (optional)
-            dhcp_option82_remote_id_insertion: Enable/disable DHCP option 82 remote-id insert (default = disable). (optional)
-            ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. (optional)
-            ptk_rekey_intv: PTK rekey interval (600 - 864000 sec, default = 86400). (optional)
+            dhcp_option43_insertion: Enable/disable insertion of DHCP option 43
+            (default = enable). (optional)
+            dhcp_option82_insertion: Enable/disable DHCP option 82 insert
+            (default = disable). (optional)
+            dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82
+            circuit-id insert (default = disable). (optional)
+            dhcp_option82_remote_id_insertion: Enable/disable DHCP option 82
+            remote-id insert (default = disable). (optional)
+            ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security.
+            (optional)
+            ptk_rekey_intv: PTK rekey interval (600 - 864000 sec, default =
+            86400). (optional)
             gtk_rekey: Enable/disable GTK rekey for WPA security. (optional)
-            gtk_rekey_intv: GTK rekey interval (600 - 864000 sec, default = 86400). (optional)
-            eap_reauth: Enable/disable EAP re-authentication for WPA-Enterprise security. (optional)
-            eap_reauth_intv: EAP re-authentication interval (1800 - 864000 sec, default = 86400). (optional)
-            roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. (optional)
+            gtk_rekey_intv: GTK rekey interval (600 - 864000 sec, default =
+            86400). (optional)
+            eap_reauth: Enable/disable EAP re-authentication for WPA-Enterprise
+            security. (optional)
+            eap_reauth_intv: EAP re-authentication interval (1800 - 864000 sec,
+            default = 86400). (optional)
+            roaming_acct_interim_update: Enable/disable using accounting
+            interim update instead of accounting start/stop on roaming for
+            WPA-Enterprise security. (optional)
             qos_profile: Quality of service profile name. (optional)
             hotspot20_profile: Hotspot 2.0 profile name. (optional)
-            access_control_list: Profile name for access-control-list. (optional)
-            primary_wag_profile: Primary wireless access gateway profile name. (optional)
-            secondary_wag_profile: Secondary wireless access gateway profile name. (optional)
-            tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300). (optional)
-            tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200). (optional)
+            access_control_list: Profile name for access-control-list.
+            (optional)
+            primary_wag_profile: Primary wireless access gateway profile name.
+            (optional)
+            secondary_wag_profile: Secondary wireless access gateway profile
+            name. (optional)
+            tunnel_echo_interval: The time interval to send echo to both
+            primary and secondary tunnel peers (1 - 65535 sec, default = 300).
+            (optional)
+            tunnel_fallback_interval: The time interval for secondary tunnel to
+            fall back to primary tunnel (0 - 65535 sec, default = 7200).
+            (optional)
             rates_11a: Allowed data rates for 802.11a. (optional)
             rates_11bg: Allowed data rates for 802.11b/g. (optional)
-            rates_11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. (optional)
-            rates_11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. (optional)
-            rates_11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8. (optional)
-            rates_11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8. (optional)
-            rates_11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth. (optional)
-            rates_11be_mcs_map_160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth. (optional)
-            rates_11be_mcs_map_320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth. (optional)
+            rates_11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial
+            streams. (optional)
+            rates_11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial
+            streams. (optional)
+            rates_11ac_mcs_map: Comma separated list of max supported VHT MCS
+            for spatial streams 1 through 8. (optional)
+            rates_11ax_mcs_map: Comma separated list of max supported HE MCS
+            for spatial streams 1 through 8. (optional)
+            rates_11be_mcs_map: Comma separated list of max nss that supports
+            EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+            (optional)
+            rates_11be_mcs_map_160: Comma separated list of max nss that
+            supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth. (optional)
+            rates_11be_mcs_map_320: Comma separated list of max nss that
+            supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth. (optional)
             utm_profile: UTM profile name. (optional)
-            utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. (optional)
+            utm_status: Enable to add one or more security profiles (AV, IPS,
+            etc.) to the VAP. (optional)
             utm_log: Enable/disable UTM logging. (optional)
             ips_sensor: IPS sensor name. (optional)
             application_list: Application control list name. (optional)
             antivirus_profile: AntiVirus profile name. (optional)
             webfilter_profile: WebFilter profile name. (optional)
-            scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. (optional)
+            scan_botnet_connections: Block or monitor connections to Botnet
+            servers or disable Botnet scanning. (optional)
             address_group: Firewall Address Group Name. (optional)
-            address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. (optional)
-            sticky_client_remove: Enable/disable sticky client remove to maintain good signal level clients in SSID (default = disable). (optional)
-            sticky_client_threshold_5g: Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76). (optional)
-            sticky_client_threshold_2g: Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79). (optional)
-            sticky_client_threshold_6g: Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76). (optional)
-            bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200). (optional)
-            bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10). (optional)
-            bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). (optional)
-            beacon_advertising: Fortinet beacon advertising IE data   (default = empty). (optional)
-            osen: Enable/disable OSEN as part of key management (default = disable). (optional)
-            application_detection_engine: Enable/disable application detection engine (default = disable). (optional)
-            application_dscp_marking: Enable/disable application attribute based DSCP marking (default = disable). (optional)
-            application_report_intv: Application report interval (30 - 864000 sec, default = 120). (optional)
-            l3_roaming: Enable/disable layer 3 roaming (default = disable). (optional)
-            l3_roaming_mode: Select the way that layer 3 roaming traffic is passed (default = direct). (optional)
+            address_group_policy: Configure MAC address filtering policy for
+            MAC addresses that are in the address-group. (optional)
+            sticky_client_remove: Enable/disable sticky client remove to
+            maintain good signal level clients in SSID (default = disable).
+            (optional)
+            sticky_client_threshold_5g: Minimum signal level/threshold in dBm
+            required for the 5G client to be serviced by the AP (-95 to -20,
+            default = -76). (optional)
+            sticky_client_threshold_2g: Minimum signal level/threshold in dBm
+            required for the 2G client to be serviced by the AP (-95 to -20,
+            default = -79). (optional)
+            sticky_client_threshold_6g: Minimum signal level/threshold in dBm
+            required for the 6G client to be serviced by the AP (-95 to -20,
+            default = -76). (optional)
+            bstm_rssi_disassoc_timer: Time interval for client to voluntarily
+            leave AP before forcing a disassociation due to low RSSI (0 to
+            2000, default = 200). (optional)
+            bstm_load_balancing_disassoc_timer: Time interval for client to
+            voluntarily leave AP before forcing a disassociation due to AP
+            load-balancing (0 to 30, default = 10). (optional)
+            bstm_disassociation_imminent: Enable/disable forcing of
+            disassociation after the BSTM request timer has been reached
+            (default = enable). (optional)
+            beacon_advertising: Fortinet beacon advertising IE data (default =
+            empty). (optional)
+            osen: Enable/disable OSEN as part of key management (default =
+            disable). (optional)
+            application_detection_engine: Enable/disable application detection
+            engine (default = disable). (optional)
+            application_dscp_marking: Enable/disable application attribute
+            based DSCP marking (default = disable). (optional)
+            application_report_intv: Application report interval (30 - 864000
+            sec, default = 120). (optional)
+            l3_roaming: Enable/disable layer 3 roaming (default = disable).
+            (optional)
+            l3_roaming_mode: Select the way that layer 3 roaming traffic is
+            passed (default = direct). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -505,7 +682,8 @@ class Vap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -541,7 +719,7 @@ class Vap:
         if security is not None:
             data_payload["security"] = security
         if pmf is not None:
-            data_payload["pmf"] = pmf
+            data_payload["pm"] = pmf
         if pmf_assoc_comeback_timeout is not None:
             data_payload["pmf-assoc-comeback-timeout"] = (
                 pmf_assoc_comeback_timeout
@@ -561,7 +739,7 @@ class Vap:
         if gas_fragmentation_limit is not None:
             data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if mbo_cell_data_conn_pref is not None:
-            data_payload["mbo-cell-data-conn-pref"] = mbo_cell_data_conn_pref
+            data_payload["mbo-cell-data-conn-pre"] = mbo_cell_data_conn_pref
         if _80211k is not None:
             data_payload["80211k"] = _80211k
         if _80211v is not None:
@@ -923,8 +1101,10 @@ class Vap:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -932,7 +1112,8 @@ class Vap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -1174,182 +1355,352 @@ class Vap:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Virtual AP name. (optional)
-            pre_auth: Enable/disable pre-authentication, where supported by clients (default = enable). (optional)
-            external_pre_auth: Enable/disable pre-authentication with external APs not managed by the FortiGate (default = disable). (optional)
-            mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. (optional)
+            pre_auth: Enable/disable pre-authentication, where supported by
+            clients (default = enable). (optional)
+            external_pre_auth: Enable/disable pre-authentication with external
+            APs not managed by the FortiGate (default = disable). (optional)
+            mesh_backhaul: Enable/disable using this VAP as a WiFi mesh
+            backhaul (default = disable). This entry is only available when
+            security is set to a WPA type or open. (optional)
             atf_weight: Airtime weight in percentage (default = 20). (optional)
-            max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation). (optional)
-            max_clients_ap: Maximum number of clients that can connect simultaneously to the VAP per AP radio (default = 0, meaning no limitation). (optional)
-            ssid: IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name. (optional)
-            broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). (optional)
-            security: Security mode for the wireless interface (default = wpa2-only-personal). (optional)
-            pmf: Protected Management Frames (PMF) support (default = disable). (optional)
-            pmf_assoc_comeback_timeout: Protected Management Frames (PMF) comeback maximum timeout (1-20 sec). (optional)
-            pmf_sa_query_retry_timeout: Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec). (optional)
-            beacon_protection: Enable/disable beacon protection support (default = disable). (optional)
-            okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). (optional)
-            mbo: Enable/disable Multiband Operation (default = disable). (optional)
-            gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500). (optional)
-            gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024). (optional)
-            mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). (optional)
-            _80211k: Enable/disable 802.11k assisted roaming (default = enable). (optional)
-            _80211v: Enable/disable 802.11v assisted roaming (default = enable). (optional)
-            neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). (optional)
-            fast_bss_transition: Enable/disable 802.11r Fast BSS Transition (FT) (default = disable). (optional)
-            ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000). (optional)
-            ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes. (optional)
-            ft_over_ds: Enable/disable FT over the Distribution System (DS). (optional)
+            max_clients: Maximum number of clients that can connect
+            simultaneously to the VAP (default = 0, meaning no limitation).
+            (optional)
+            max_clients_ap: Maximum number of clients that can connect
+            simultaneously to the VAP per AP radio (default = 0, meaning no
+            limitation). (optional)
+            ssid: IEEE 802.11 service set identifier (SSID) for the wireless
+            interface. Users who wish to use the wireless network must
+            configure their computers to access this SSID name. (optional)
+            broadcast_ssid: Enable/disable broadcasting the SSID (default =
+            enable). (optional)
+            security: Security mode for the wireless interface (default =
+            wpa2-only-personal). (optional)
+            pmf: Protected Management Frames (PMF) support (default = disable).
+            (optional)
+            pmf_assoc_comeback_timeout: Protected Management Frames (PMF)
+            comeback maximum timeout (1-20 sec). (optional)
+            pmf_sa_query_retry_timeout: Protected Management Frames (PMF) SA
+            query retry timeout interval (1 - 5 100s of msec). (optional)
+            beacon_protection: Enable/disable beacon protection support
+            (default = disable). (optional)
+            okc: Enable/disable Opportunistic Key Caching (OKC) (default =
+            enable). (optional)
+            mbo: Enable/disable Multiband Operation (default = disable).
+            (optional)
+            gas_comeback_delay: GAS comeback delay (0 or 100 - 10000
+            milliseconds, default = 500). (optional)
+            gas_fragmentation_limit: GAS fragmentation limit (512 - 4096,
+            default = 1024). (optional)
+            mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1,
+            or 255, default = 1). (optional)
+            _80211k: Enable/disable 802.11k assisted roaming (default =
+            enable). (optional)
+            _80211v: Enable/disable 802.11v assisted roaming (default =
+            enable). (optional)
+            neighbor_report_dual_band: Enable/disable dual-band neighbor report
+            (default = disable). (optional)
+            fast_bss_transition: Enable/disable 802.11r Fast BSS Transition
+            (FT) (default = disable). (optional)
+            ft_mobility_domain: Mobility domain identifier in FT (1 - 65535,
+            default = 1000). (optional)
+            ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535
+            minutes. (optional)
+            ft_over_ds: Enable/disable FT over the Distribution System (DS).
+            (optional)
             sae_groups: SAE-Groups. (optional)
             owe_groups: OWE-Groups. (optional)
-            owe_transition: Enable/disable OWE transition mode support. (optional)
+            owe_transition: Enable/disable OWE transition mode support.
+            (optional)
             owe_transition_ssid: OWE transition mode peer SSID. (optional)
             additional_akms: Additional AKMs. (optional)
-            eapol_key_retries: Enable/disable retransmission of EAPOL-Key frames (message 3/4 and group message 1/2) (default = enable). (optional)
-            tkip_counter_measure: Enable/disable TKIP counter measure. (optional)
+            eapol_key_retries: Enable/disable retransmission of EAPOL-Key
+            frames (message 3/4 and group message 1/2) (default = enable).
+            (optional)
+            tkip_counter_measure: Enable/disable TKIP counter measure.
+            (optional)
             external_web: URL of external authentication web server. (optional)
-            external_web_format: URL query parameter detection (default = auto-detect). (optional)
-            external_logout: URL of external authentication logout server. (optional)
-            mac_username_delimiter: MAC authentication username delimiter (default = hyphen). (optional)
-            mac_password_delimiter: MAC authentication password delimiter (default = hyphen). (optional)
-            mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). (optional)
-            mac_called_station_delimiter: MAC called station delimiter (default = hyphen). (optional)
+            external_web_format: URL query parameter detection (default =
+            auto-detect). (optional)
+            external_logout: URL of external authentication logout server.
+            (optional)
+            mac_username_delimiter: MAC authentication username delimiter
+            (default = hyphen). (optional)
+            mac_password_delimiter: MAC authentication password delimiter
+            (default = hyphen). (optional)
+            mac_calling_station_delimiter: MAC calling station delimiter
+            (default = hyphen). (optional)
+            mac_called_station_delimiter: MAC called station delimiter (default
+            = hyphen). (optional)
             mac_case: MAC case (default = uppercase). (optional)
-            called_station_id_type: The format type of RADIUS attribute Called-Station-Id (default = mac). (optional)
-            mac_auth_bypass: Enable/disable MAC authentication bypass. (optional)
-            radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). (optional)
-            radius_mac_auth_server: RADIUS-based MAC authentication server. (optional)
-            radius_mac_auth_block_interval: Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking). (optional)
-            radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). (optional)
-            radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (0 or 300 - 864000, default = 86400, 0 to disable caching). (optional)
-            radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. (optional)
+            called_station_id_type: The format type of RADIUS attribute
+            Called-Station-Id (default = mac). (optional)
+            mac_auth_bypass: Enable/disable MAC authentication bypass.
+            (optional)
+            radius_mac_auth: Enable/disable RADIUS-based MAC authentication of
+            clients (default = disable). (optional)
+            radius_mac_auth_server: RADIUS-based MAC authentication server.
+            (optional)
+            radius_mac_auth_block_interval: Don't send RADIUS MAC auth request
+            again if the client has been rejected within specific interval (0
+            or 30 - 864000 seconds, default = 0, 0 to disable blocking).
+            (optional)
+            radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC
+            authentication of clients for MPSK authentication (default =
+            disable). (optional)
+            radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (0
+            or 300 - 864000, default = 86400, 0 to disable caching). (optional)
+            radius_mac_auth_usergroups: Selective user groups that are
+            permitted for RADIUS mac authentication. (optional)
             auth: Authentication protocol. (optional)
-            encrypt: Encryption protocol to use (only available when security is set to a WPA type). (optional)
+            encrypt: Encryption protocol to use (only available when security
+            is set to a WPA type). (optional)
             keyindex: WEP key index (1 - 4). (optional)
-            passphrase: WPA pre-shared key (PSK) to be used to authenticate WiFi users. (optional)
-            sae_password: WPA3 SAE password to be used to authenticate WiFi users. (optional)
-            sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation (default = disable). (optional)
-            sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). (optional)
+            passphrase: WPA pre-shared key (PSK) to be used to authenticate
+            WiFi users. (optional)
+            sae_password: WPA3 SAE password to be used to authenticate WiFi
+            users. (optional)
+            sae_h2e_only: Use hash-to-element-only mechanism for PWE derivation
+            (default = disable). (optional)
+            sae_hnp_only: Use hunting-and-pecking-only mechanism for PWE
+            derivation (default = disable). (optional)
             sae_pk: Enable/disable WPA3 SAE-PK (default = disable). (optional)
-            sae_private_key: Private key used for WPA3 SAE-PK authentication. (optional)
-            akm24_only: WPA3 SAE using group-dependent hash only (default = disable). (optional)
-            radius_server: RADIUS server to be used to authenticate WiFi users. (optional)
-            nas_filter_rule: Enable/disable NAS filter rule support (default = disable). (optional)
-            domain_name_stripping: Enable/disable stripping domain name from identity (default = disable). (optional)
-            mlo: Enable/disable WiFi7 Multi-Link-Operation (default = disable). (optional)
-            local_standalone: Enable/disable AP local standalone (default = disable). (optional)
-            local_standalone_nat: Enable/disable AP local standalone NAT mode. (optional)
-            ip: IP address and subnet mask for the local standalone NAT subnet. (optional)
-            dhcp_lease_time: DHCP lease time in seconds for NAT IP address. (optional)
-            local_standalone_dns: Enable/disable AP local standalone DNS. (optional)
-            local_standalone_dns_ip: IPv4 addresses for the local standalone DNS. (optional)
-            local_lan_partition: Enable/disable segregating client traffic to local LAN side (default = disable). (optional)
-            local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). (optional)
-            local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). (optional)
-            local_authentication: Enable/disable AP local authentication. (optional)
-            usergroup: Firewall user group to be used to authenticate WiFi users. (optional)
+            sae_private_key: Private key used for WPA3 SAE-PK authentication.
+            (optional)
+            akm24_only: WPA3 SAE using group-dependent hash only (default =
+            disable). (optional)
+            radius_server: RADIUS server to be used to authenticate WiFi users.
+            (optional)
+            nas_filter_rule: Enable/disable NAS filter rule support (default =
+            disable). (optional)
+            domain_name_stripping: Enable/disable stripping domain name from
+            identity (default = disable). (optional)
+            mlo: Enable/disable WiFi7 Multi-Link-Operation (default = disable).
+            (optional)
+            local_standalone: Enable/disable AP local standalone (default =
+            disable). (optional)
+            local_standalone_nat: Enable/disable AP local standalone NAT mode.
+            (optional)
+            ip: IP address and subnet mask for the local standalone NAT subnet.
+            (optional)
+            dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
+            (optional)
+            local_standalone_dns: Enable/disable AP local standalone DNS.
+            (optional)
+            local_standalone_dns_ip: IPv4 addresses for the local standalone
+            DNS. (optional)
+            local_lan_partition: Enable/disable segregating client traffic to
+            local LAN side (default = disable). (optional)
+            local_bridging: Enable/disable bridging of wireless and Ethernet
+            interfaces on the FortiAP (default = disable). (optional)
+            local_lan: Allow/deny traffic destined for a Class A, B, or C
+            private IP address (default = allow). (optional)
+            local_authentication: Enable/disable AP local authentication.
+            (optional)
+            usergroup: Firewall user group to be used to authenticate WiFi
+            users. (optional)
             captive_portal: Enable/disable captive portal. (optional)
-            captive_network_assistant_bypass: Enable/disable Captive Network Assistant bypass. (optional)
-            portal_message_override_group: Replacement message group for this VAP (only available when security is set to a captive portal type). (optional)
+            captive_network_assistant_bypass: Enable/disable Captive Network
+            Assistant bypass. (optional)
+            portal_message_override_group: Replacement message group for this
+            VAP (only available when security is set to a captive portal type).
+            (optional)
             portal_message_overrides: Individual message overrides. (optional)
-            portal_type: Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer. (optional)
-            selected_usergroups: Selective user groups that are permitted to authenticate. (optional)
-            security_exempt_list: Optional security exempt list for captive portal authentication. (optional)
-            security_redirect_url: Optional URL for redirecting users after they pass captive portal authentication. (optional)
+            portal_type: Captive portal functionality. Configure how the
+            captive portal authenticates users and whether it includes a
+            disclaimer. (optional)
+            selected_usergroups: Selective user groups that are permitted to
+            authenticate. (optional)
+            security_exempt_list: Optional security exempt list for captive
+            portal authentication. (optional)
+            security_redirect_url: Optional URL for redirecting users after
+            they pass captive portal authentication. (optional)
             auth_cert: HTTPS server certificate. (optional)
             auth_portal_addr: Address of captive portal. (optional)
-            intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). (optional)
-            schedule: Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            ldpc: VAP low-density parity-check (LDPC) coding configuration. (optional)
-            high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). (optional)
-            target_wake_time: Enable/disable 802.11ax target wake time (default = enable). (optional)
-            port_macauth: Enable/disable LAN port MAC authentication (default = disable). (optional)
-            port_macauth_timeout: LAN port MAC authentication idle timeout value (default = 600 sec). (optional)
-            port_macauth_reauth_timeout: LAN port MAC authentication re-authentication timeout value (default = 7200 sec). (optional)
-            bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). (optional)
+            intra_vap_privacy: Enable/disable blocking communication between
+            clients on the same SSID (called intra-SSID privacy) (default =
+            disable). (optional)
+            schedule: Firewall schedules for enabling this VAP on the FortiAP.
+            This VAP will be enabled when at least one of the schedules is
+            valid. Separate multiple schedule names with a space. (optional)
+            ldpc: VAP low-density parity-check (LDPC) coding configuration.
+            (optional)
+            high_efficiency: Enable/disable 802.11ax high efficiency (default =
+            enable). (optional)
+            target_wake_time: Enable/disable 802.11ax target wake time (default
+            = enable). (optional)
+            port_macauth: Enable/disable LAN port MAC authentication (default =
+            disable). (optional)
+            port_macauth_timeout: LAN port MAC authentication idle timeout
+            value (default = 600 sec). (optional)
+            port_macauth_reauth_timeout: LAN port MAC authentication
+            re-authentication timeout value (default = 7200 sec). (optional)
+            bss_color_partial: Enable/disable 802.11ax partial BSS color
+            (default = enable). (optional)
             mpsk_profile: MPSK profile name. (optional)
-            split_tunneling: Enable/disable split tunneling (default = disable). (optional)
+            split_tunneling: Enable/disable split tunneling (default =
+            disable). (optional)
             nac: Enable/disable network access control. (optional)
             nac_profile: NAC profile name. (optional)
             vlanid: Optional VLAN ID. (optional)
-            vlan_auto: Enable/disable automatic management of SSID VLAN interface. (optional)
+            vlan_auto: Enable/disable automatic management of SSID VLAN
+            interface. (optional)
             dynamic_vlan: Enable/disable dynamic VLAN assignment. (optional)
-            captive_portal_fw_accounting: Enable/disable RADIUS accounting for captive portal firewall authentication session. (optional)
-            captive_portal_ac_name: Local-bridging captive portal ac-name. (optional)
-            captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0). (optional)
-            multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). (optional)
-            multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). (optional)
+            captive_portal_fw_accounting: Enable/disable RADIUS accounting for
+            captive portal firewall authentication session. (optional)
+            captive_portal_ac_name: Local-bridging captive portal ac-name.
+            (optional)
+            captive_portal_auth_timeout: Hard timeout - AP will always clear
+            the session after timeout regardless of traffic (0 - 864000 sec,
+            default = 0). (optional)
+            multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps,
+            default = 0). (optional)
+            multicast_enhance: Enable/disable converting multicast to unicast
+            to improve performance (default = disable). (optional)
             igmp_snooping: Enable/disable IGMP snooping. (optional)
-            dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). (optional)
-            broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network. (optional)
-            ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. (optional)
-            me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic. (optional)
-            mu_mimo: Enable/disable Multi-user MIMO (default = enable). (optional)
-            probe_resp_suppression: Enable/disable probe response suppression (to ignore weak signals) (default = disable). (optional)
-            probe_resp_threshold: Minimum signal level/threshold in dBm required for the AP response to probe requests (-95 to -20, default = -80). (optional)
-            radio_sensitivity: Enable/disable software radio sensitivity (to ignore weak signals) (default = disable). (optional)
-            quarantine: Enable/disable station quarantine (default = disable). (optional)
-            radio_5g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 5G band(-95 to -20, default = -76). (optional)
-            radio_2g_threshold: Minimum signal level/threshold in dBm required for the AP response to receive a packet in 2.4G band (-95 to -20, default = -79). (optional)
+            dhcp_address_enforcement: Enable/disable DHCP address enforcement
+            (default = disable). (optional)
+            broadcast_suppression: Optional suppression of broadcast messages.
+            For example, you can keep DHCP messages, ARP broadcasts, and so on
+            off of the wireless network. (optional)
+            ipv6_rules: Optional rules of IPv6 packets. For example, you can
+            keep RA, RS and so on off of the wireless network. (optional)
+            me_disable_thresh: Disable multicast enhancement when this many
+            clients are receiving multicast traffic. (optional)
+            mu_mimo: Enable/disable Multi-user MIMO (default = enable).
+            (optional)
+            probe_resp_suppression: Enable/disable probe response suppression
+            (to ignore weak signals) (default = disable). (optional)
+            probe_resp_threshold: Minimum signal level/threshold in dBm
+            required for the AP response to probe requests (-95 to -20, default
+            = -80). (optional)
+            radio_sensitivity: Enable/disable software radio sensitivity (to
+            ignore weak signals) (default = disable). (optional)
+            quarantine: Enable/disable station quarantine (default = disable).
+            (optional)
+            radio_5g_threshold: Minimum signal level/threshold in dBm required
+            for the AP response to receive a packet in 5G band(-95 to -20,
+            default = -76). (optional)
+            radio_2g_threshold: Minimum signal level/threshold in dBm required
+            for the AP response to receive a packet in 2.4G band (-95 to -20,
+            default = -79). (optional)
             vlan_name: Table for mapping VLAN name to VLAN ID. (optional)
-            vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. (optional)
+            vlan_pooling: Enable/disable VLAN pooling, to allow grouping of
+            multiple wireless controller VLANs into VLAN pools (default =
+            disable). When set to wtp-group, VLAN pooling occurs with VLAN
+            assignment by wtp-group. (optional)
             vlan_pool: VLAN pool. (optional)
-            dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). (optional)
-            dhcp_option82_insertion: Enable/disable DHCP option 82 insert (default = disable). (optional)
-            dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable). (optional)
-            dhcp_option82_remote_id_insertion: Enable/disable DHCP option 82 remote-id insert (default = disable). (optional)
-            ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security. (optional)
-            ptk_rekey_intv: PTK rekey interval (600 - 864000 sec, default = 86400). (optional)
+            dhcp_option43_insertion: Enable/disable insertion of DHCP option 43
+            (default = enable). (optional)
+            dhcp_option82_insertion: Enable/disable DHCP option 82 insert
+            (default = disable). (optional)
+            dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82
+            circuit-id insert (default = disable). (optional)
+            dhcp_option82_remote_id_insertion: Enable/disable DHCP option 82
+            remote-id insert (default = disable). (optional)
+            ptk_rekey: Enable/disable PTK rekey for WPA-Enterprise security.
+            (optional)
+            ptk_rekey_intv: PTK rekey interval (600 - 864000 sec, default =
+            86400). (optional)
             gtk_rekey: Enable/disable GTK rekey for WPA security. (optional)
-            gtk_rekey_intv: GTK rekey interval (600 - 864000 sec, default = 86400). (optional)
-            eap_reauth: Enable/disable EAP re-authentication for WPA-Enterprise security. (optional)
-            eap_reauth_intv: EAP re-authentication interval (1800 - 864000 sec, default = 86400). (optional)
-            roaming_acct_interim_update: Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. (optional)
+            gtk_rekey_intv: GTK rekey interval (600 - 864000 sec, default =
+            86400). (optional)
+            eap_reauth: Enable/disable EAP re-authentication for WPA-Enterprise
+            security. (optional)
+            eap_reauth_intv: EAP re-authentication interval (1800 - 864000 sec,
+            default = 86400). (optional)
+            roaming_acct_interim_update: Enable/disable using accounting
+            interim update instead of accounting start/stop on roaming for
+            WPA-Enterprise security. (optional)
             qos_profile: Quality of service profile name. (optional)
             hotspot20_profile: Hotspot 2.0 profile name. (optional)
-            access_control_list: Profile name for access-control-list. (optional)
-            primary_wag_profile: Primary wireless access gateway profile name. (optional)
-            secondary_wag_profile: Secondary wireless access gateway profile name. (optional)
-            tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300). (optional)
-            tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200). (optional)
+            access_control_list: Profile name for access-control-list.
+            (optional)
+            primary_wag_profile: Primary wireless access gateway profile name.
+            (optional)
+            secondary_wag_profile: Secondary wireless access gateway profile
+            name. (optional)
+            tunnel_echo_interval: The time interval to send echo to both
+            primary and secondary tunnel peers (1 - 65535 sec, default = 300).
+            (optional)
+            tunnel_fallback_interval: The time interval for secondary tunnel to
+            fall back to primary tunnel (0 - 65535 sec, default = 7200).
+            (optional)
             rates_11a: Allowed data rates for 802.11a. (optional)
             rates_11bg: Allowed data rates for 802.11b/g. (optional)
-            rates_11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. (optional)
-            rates_11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. (optional)
-            rates_11ac_mcs_map: Comma separated list of max supported VHT MCS for spatial streams 1 through 8. (optional)
-            rates_11ax_mcs_map: Comma separated list of max supported HE MCS for spatial streams 1 through 8. (optional)
-            rates_11be_mcs_map: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth. (optional)
-            rates_11be_mcs_map_160: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth. (optional)
-            rates_11be_mcs_map_320: Comma separated list of max nss that supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth. (optional)
+            rates_11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial
+            streams. (optional)
+            rates_11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial
+            streams. (optional)
+            rates_11ac_mcs_map: Comma separated list of max supported VHT MCS
+            for spatial streams 1 through 8. (optional)
+            rates_11ax_mcs_map: Comma separated list of max supported HE MCS
+            for spatial streams 1 through 8. (optional)
+            rates_11be_mcs_map: Comma separated list of max nss that supports
+            EHT-MCS 0-9, 10-11, 12-13 for 20MHz/40MHz/80MHz bandwidth.
+            (optional)
+            rates_11be_mcs_map_160: Comma separated list of max nss that
+            supports EHT-MCS 0-9, 10-11, 12-13 for 160MHz bandwidth. (optional)
+            rates_11be_mcs_map_320: Comma separated list of max nss that
+            supports EHT-MCS 0-9, 10-11, 12-13 for 320MHz bandwidth. (optional)
             utm_profile: UTM profile name. (optional)
-            utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. (optional)
+            utm_status: Enable to add one or more security profiles (AV, IPS,
+            etc.) to the VAP. (optional)
             utm_log: Enable/disable UTM logging. (optional)
             ips_sensor: IPS sensor name. (optional)
             application_list: Application control list name. (optional)
             antivirus_profile: AntiVirus profile name. (optional)
             webfilter_profile: WebFilter profile name. (optional)
-            scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. (optional)
+            scan_botnet_connections: Block or monitor connections to Botnet
+            servers or disable Botnet scanning. (optional)
             address_group: Firewall Address Group Name. (optional)
-            address_group_policy: Configure MAC address filtering policy for MAC addresses that are in the address-group. (optional)
-            sticky_client_remove: Enable/disable sticky client remove to maintain good signal level clients in SSID (default = disable). (optional)
-            sticky_client_threshold_5g: Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76). (optional)
-            sticky_client_threshold_2g: Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79). (optional)
-            sticky_client_threshold_6g: Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76). (optional)
-            bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200). (optional)
-            bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10). (optional)
-            bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). (optional)
-            beacon_advertising: Fortinet beacon advertising IE data   (default = empty). (optional)
-            osen: Enable/disable OSEN as part of key management (default = disable). (optional)
-            application_detection_engine: Enable/disable application detection engine (default = disable). (optional)
-            application_dscp_marking: Enable/disable application attribute based DSCP marking (default = disable). (optional)
-            application_report_intv: Application report interval (30 - 864000 sec, default = 120). (optional)
-            l3_roaming: Enable/disable layer 3 roaming (default = disable). (optional)
-            l3_roaming_mode: Select the way that layer 3 roaming traffic is passed (default = direct). (optional)
+            address_group_policy: Configure MAC address filtering policy for
+            MAC addresses that are in the address-group. (optional)
+            sticky_client_remove: Enable/disable sticky client remove to
+            maintain good signal level clients in SSID (default = disable).
+            (optional)
+            sticky_client_threshold_5g: Minimum signal level/threshold in dBm
+            required for the 5G client to be serviced by the AP (-95 to -20,
+            default = -76). (optional)
+            sticky_client_threshold_2g: Minimum signal level/threshold in dBm
+            required for the 2G client to be serviced by the AP (-95 to -20,
+            default = -79). (optional)
+            sticky_client_threshold_6g: Minimum signal level/threshold in dBm
+            required for the 6G client to be serviced by the AP (-95 to -20,
+            default = -76). (optional)
+            bstm_rssi_disassoc_timer: Time interval for client to voluntarily
+            leave AP before forcing a disassociation due to low RSSI (0 to
+            2000, default = 200). (optional)
+            bstm_load_balancing_disassoc_timer: Time interval for client to
+            voluntarily leave AP before forcing a disassociation due to AP
+            load-balancing (0 to 30, default = 10). (optional)
+            bstm_disassociation_imminent: Enable/disable forcing of
+            disassociation after the BSTM request timer has been reached
+            (default = enable). (optional)
+            beacon_advertising: Fortinet beacon advertising IE data (default =
+            empty). (optional)
+            osen: Enable/disable OSEN as part of key management (default =
+            disable). (optional)
+            application_detection_engine: Enable/disable application detection
+            engine (default = disable). (optional)
+            application_dscp_marking: Enable/disable application attribute
+            based DSCP marking (default = disable). (optional)
+            application_report_intv: Application report interval (30 - 864000
+            sec, default = 120). (optional)
+            l3_roaming: Enable/disable layer 3 roaming (default = disable).
+            (optional)
+            l3_roaming_mode: Select the way that layer 3 roaming traffic is
+            passed (default = direct). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -1357,7 +1708,8 @@ class Vap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -1387,7 +1739,7 @@ class Vap:
         if security is not None:
             data_payload["security"] = security
         if pmf is not None:
-            data_payload["pmf"] = pmf
+            data_payload["pm"] = pmf
         if pmf_assoc_comeback_timeout is not None:
             data_payload["pmf-assoc-comeback-timeout"] = (
                 pmf_assoc_comeback_timeout
@@ -1407,7 +1759,7 @@ class Vap:
         if gas_fragmentation_limit is not None:
             data_payload["gas-fragmentation-limit"] = gas_fragmentation_limit
         if mbo_cell_data_conn_pref is not None:
-            data_payload["mbo-cell-data-conn-pref"] = mbo_cell_data_conn_pref
+            data_payload["mbo-cell-data-conn-pre"] = mbo_cell_data_conn_pref
         if _80211k is not None:
             data_payload["80211k"] = _80211k
         if _80211v is not None:

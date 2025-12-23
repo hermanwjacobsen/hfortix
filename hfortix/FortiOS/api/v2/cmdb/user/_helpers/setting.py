@@ -110,13 +110,13 @@ def validate_setting_put(
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-ca-cert if present
     if "auth-ca-cert" in payload:
         value = payload.get("auth-ca-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-ca-cert cannot exceed 35 characters")
+            return (False, "auth-ca-cert cannot exceed 35 characters")
 
     # Validate auth-secure-http if present
     if "auth-secure-http" in payload:
@@ -170,7 +170,7 @@ def validate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1440:
-                    return (False, f"auth-timeout must be between 1 and 1440")
+                    return (False, "auth-timeout must be between 1 and 1440")
             except (ValueError, TypeError):
                 return (False, f"auth-timeout must be numeric, got: {value}")
 
@@ -192,7 +192,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"auth-portal-timeout must be between 1 and 30",
+                        "auth-portal-timeout must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -218,7 +218,7 @@ def validate_setting_put(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"auth-blackout-time must be between 0 and 3600",
+                        "auth-blackout-time must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -235,7 +235,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"auth-invalid-max must be between 1 and 100",
+                        "auth-invalid-max must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -252,7 +252,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 10:
                     return (
                         False,
-                        f"auth-lockout-threshold must be between 1 and 10",
+                        "auth-lockout-threshold must be between 1 and 10",
                     )
             except (ValueError, TypeError):
                 return (
@@ -269,7 +269,7 @@ def validate_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"auth-lockout-duration must be between 0 and 4294967295",
+                        "auth-lockout-duration must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -319,7 +319,7 @@ def validate_setting_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"default-user-password-policy cannot exceed 35 characters",
+                "default-user-password-policy cannot exceed 35 characters",
             )
 
     # Validate cors if present

@@ -73,19 +73,19 @@ def validate_vne_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ssl-certificate if present
     if "ssl-certificate" in payload:
         value = payload.get("ssl-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-certificate cannot exceed 35 characters")
+            return (False, "ssl-certificate cannot exceed 35 characters")
 
     # Validate auto-asic-offload if present
     if "auto-asic-offload" in payload:
@@ -100,13 +100,13 @@ def validate_vne_interface_post(
     if "br" in payload:
         value = payload.get("br")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"br cannot exceed 255 characters")
+            return (False, "br cannot exceed 255 characters")
 
     # Validate update-url if present
     if "update-url" in payload:
         value = payload.get("update-url")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"update-url cannot exceed 511 characters")
+            return (False, "update-url cannot exceed 511 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -121,7 +121,7 @@ def validate_vne_interface_post(
     if "http-username" in payload:
         value = payload.get("http-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"http-username cannot exceed 64 characters")
+            return (False, "http-username cannot exceed 64 characters")
 
     return (True, None)
 
@@ -156,19 +156,19 @@ def validate_vne_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate ssl-certificate if present
     if "ssl-certificate" in payload:
         value = payload.get("ssl-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-certificate cannot exceed 35 characters")
+            return (False, "ssl-certificate cannot exceed 35 characters")
 
     # Validate auto-asic-offload if present
     if "auto-asic-offload" in payload:
@@ -183,13 +183,13 @@ def validate_vne_interface_put(
     if "br" in payload:
         value = payload.get("br")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"br cannot exceed 255 characters")
+            return (False, "br cannot exceed 255 characters")
 
     # Validate update-url if present
     if "update-url" in payload:
         value = payload.get("update-url")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"update-url cannot exceed 511 characters")
+            return (False, "update-url cannot exceed 511 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -204,7 +204,7 @@ def validate_vne_interface_put(
     if "http-username" in payload:
         value = payload.get("http-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"http-username cannot exceed 64 characters")
+            return (False, "http-username cannot exceed 64 characters")
 
     return (True, None)
 

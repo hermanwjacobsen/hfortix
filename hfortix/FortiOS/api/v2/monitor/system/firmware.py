@@ -75,16 +75,26 @@ class Upgrade:
         Upgrade firmware image on this device.
 
         Args:
-            source: Firmware file data source [upload|usb|fortiguard|url]. (optional)
+            source: Firmware file data source [upload|usb|fortiguard|url].
+            (optional)
             url: URL where the image should be retrieved from. (optional)
             passphrase: Image encryption passphrase. (optional)
             force: Bypass signature and validity checking. (optional)
-            filename: Name of file on USB disk to upgrade to, or ID from FortiGuard available firmware. (optional)
-            format_partition: Set to true to format boot partition before upgrade. (optional)
-            ignore_invalid_signature: Set to true to allow upgrade of firmware images with invalid signatures. (optional)
-            file_id: File ID of the uploaded firmware image to allow upgrade of firmware images with invalid signatures. (optional)
-            ignore_admin_lockout_upon_downgrade: Set to true to allow dowgrading if the firmware doesn't support safer password and there is at least 1 admin that will be locked out after upgrade. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            filename: Name of file on USB disk to upgrade to, or ID from
+            FortiGuard available firmware. (optional)
+            format_partition: Set to true to format boot partition before
+            upgrade. (optional)
+            ignore_invalid_signature: Set to true to allow upgrade of firmware
+            images with invalid signatures. (optional)
+            file_id: File ID of the uploaded firmware image to allow upgrade of
+            firmware images with invalid signatures. (optional)
+            ignore_admin_lockout_upon_downgrade: Set to true to allow
+            dowgrading if the firmware doesn't support safer password and there
+            is at least 1 admin that will be locked out after upgrade.
+            (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -186,7 +196,8 @@ class Firmware:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of firmware images available to use for upgrade on this device.
+        Retrieve a list of firmware images available to use for upgrade on this
+        device.
 
         Args:
             payload_dict: Optional dictionary of parameters

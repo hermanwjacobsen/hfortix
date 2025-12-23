@@ -74,31 +74,31 @@ def validate_mac_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"vlan cannot exceed 15 characters")
+            return (False, "vlan cannot exceed 15 characters")
 
     # Validate traffic-policy if present
     if "traffic-policy" in payload:
         value = payload.get("traffic-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"traffic-policy cannot exceed 63 characters")
+            return (False, "traffic-policy cannot exceed 63 characters")
 
     # Validate count if present
     if "count" in payload:
@@ -127,7 +127,7 @@ def validate_mac_policy_post(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"bounce-port-duration must be between 1 and 30",
+                        "bounce-port-duration must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -177,31 +177,31 @@ def validate_mac_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"vlan cannot exceed 15 characters")
+            return (False, "vlan cannot exceed 15 characters")
 
     # Validate traffic-policy if present
     if "traffic-policy" in payload:
         value = payload.get("traffic-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"traffic-policy cannot exceed 63 characters")
+            return (False, "traffic-policy cannot exceed 63 characters")
 
     # Validate count if present
     if "count" in payload:
@@ -230,7 +230,7 @@ def validate_mac_policy_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"bounce-port-duration must be between 1 and 30",
+                        "bounce-port-duration must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (

@@ -65,12 +65,15 @@ class ExtensionDevice:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of recommended firmwares for the specified extension device type.
+        Retrieve a list of recommended firmwares for the specified extension
+        device type.
 
         Args:
-            type: Extension device type to get recommended firmwares for. [fortiswitch|fortiap|fortiextender] (required)
+            type: Extension device type to get recommended firmwares for.
+            [fortiswitch|fortiap|fortiextender] (required)
             timeout: FortiGuard connection timeout. (optional)
-            version: Target firmware version of the parent FortiGate. (optional)
+            version: Target firmware version of the parent FortiGate.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

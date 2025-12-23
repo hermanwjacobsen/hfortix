@@ -73,13 +73,13 @@ def validate_fortilink_settings_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate inactive-timer if present
     if "inactive-timer" in payload:
@@ -90,7 +90,7 @@ def validate_fortilink_settings_post(
                 if int_val < 1 or int_val > 1440:
                     return (
                         False,
-                        f"inactive-timer must be between 1 and 1440",
+                        "inactive-timer must be between 1 and 1440",
                     )
             except (ValueError, TypeError):
                 return (False, f"inactive-timer must be numeric, got: {value}")
@@ -146,13 +146,13 @@ def validate_fortilink_settings_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate inactive-timer if present
     if "inactive-timer" in payload:
@@ -163,7 +163,7 @@ def validate_fortilink_settings_put(
                 if int_val < 1 or int_val > 1440:
                     return (
                         False,
-                        f"inactive-timer must be between 1 and 1440",
+                        "inactive-timer must be between 1 and 1440",
                     )
             except (ValueError, TypeError):
                 return (False, f"inactive-timer must be numeric, got: {value}")

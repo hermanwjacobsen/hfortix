@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class List:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class List:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -166,30 +172,45 @@ class List:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: List name. (optional)
             comment: Comments. (optional)
             replacemsg_group: Replacement message group. (optional)
             extended_log: Enable/disable extended logging. (optional)
             other_application_action: Action for other applications. (optional)
-            app_replacemsg: Enable/disable replacement messages for blocked applications. (optional)
-            other_application_log: Enable/disable logging for other applications. (optional)
-            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
-            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. (optional)
-            unknown_application_action: Pass or block traffic from unknown applications. (optional)
-            unknown_application_log: Enable/disable logging for unknown applications. (optional)
+            app_replacemsg: Enable/disable replacement messages for blocked
+            applications. (optional)
+            other_application_log: Enable/disable logging for other
+            applications. (optional)
+            enforce_default_app_port: Enable/disable default application port
+            enforcement for allowed applications. (optional)
+            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL
+            deep inspection signatures. (optional)
+            unknown_application_action: Pass or block traffic from unknown
+            applications. (optional)
+            unknown_application_log: Enable/disable logging for unknown
+            applications. (optional)
             p2p_block_list: P2P applications to be block listed. (optional)
-            deep_app_inspection: Enable/disable deep application inspection. (optional)
-            options: Basic application protocol signatures allowed by default. (optional)
+            deep_app_inspection: Enable/disable deep application inspection.
+            (optional)
+            options: Basic application protocol signatures allowed by default.
+            (optional)
             entries: Application list entries. (optional)
-            control_default_network_services: Enable/disable enforcement of protocols over selected ports. (optional)
-            default_network_services: Default network service entries. (optional)
+            control_default_network_services: Enable/disable enforcement of
+            protocols over selected ports. (optional)
+            default_network_services: Default network service entries.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -197,7 +218,8 @@ class List:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -271,8 +293,10 @@ class List:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -280,7 +304,8 @@ class List:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -368,28 +393,42 @@ class List:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: List name. (optional)
             comment: Comments. (optional)
             replacemsg_group: Replacement message group. (optional)
             extended_log: Enable/disable extended logging. (optional)
             other_application_action: Action for other applications. (optional)
-            app_replacemsg: Enable/disable replacement messages for blocked applications. (optional)
-            other_application_log: Enable/disable logging for other applications. (optional)
-            enforce_default_app_port: Enable/disable default application port enforcement for allowed applications. (optional)
-            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL deep inspection signatures. (optional)
-            unknown_application_action: Pass or block traffic from unknown applications. (optional)
-            unknown_application_log: Enable/disable logging for unknown applications. (optional)
+            app_replacemsg: Enable/disable replacement messages for blocked
+            applications. (optional)
+            other_application_log: Enable/disable logging for other
+            applications. (optional)
+            enforce_default_app_port: Enable/disable default application port
+            enforcement for allowed applications. (optional)
+            force_inclusion_ssl_di_sigs: Enable/disable forced inclusion of SSL
+            deep inspection signatures. (optional)
+            unknown_application_action: Pass or block traffic from unknown
+            applications. (optional)
+            unknown_application_log: Enable/disable logging for unknown
+            applications. (optional)
             p2p_block_list: P2P applications to be block listed. (optional)
-            deep_app_inspection: Enable/disable deep application inspection. (optional)
-            options: Basic application protocol signatures allowed by default. (optional)
+            deep_app_inspection: Enable/disable deep application inspection.
+            (optional)
+            options: Basic application protocol signatures allowed by default.
+            (optional)
             entries: Application list entries. (optional)
-            control_default_network_services: Enable/disable enforcement of protocols over selected ports. (optional)
-            default_network_services: Default network service entries. (optional)
+            control_default_network_services: Enable/disable enforcement of
+            protocols over selected ports. (optional)
+            default_network_services: Default network service entries.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -397,7 +436,8 @@ class List:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -106,7 +106,7 @@ def validate_service_custom_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate proxy if present
     if "proxy" in payload:
@@ -121,7 +121,7 @@ def validate_service_custom_post(
     if "category" in payload:
         value = payload.get("category")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"category cannot exceed 63 characters")
+            return (False, "category cannot exceed 63 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
@@ -145,7 +145,7 @@ def validate_service_custom_post(
     if "fqdn" in payload:
         value = payload.get("fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fqdn cannot exceed 255 characters")
+            return (False, "fqdn cannot exceed 255 characters")
 
     # Validate protocol-number if present
     if "protocol-number" in payload:
@@ -156,7 +156,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 254:
                     return (
                         False,
-                        f"protocol-number must be between 0 and 254",
+                        "protocol-number must be between 0 and 254",
                     )
             except (ValueError, TypeError):
                 return (
@@ -173,7 +173,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"icmptype must be between 0 and 4294967295",
+                        "icmptype must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"icmptype must be numeric, got: {value}")
@@ -185,7 +185,7 @@ def validate_service_custom_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"icmpcode must be between 0 and 255")
+                    return (False, "icmpcode must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"icmpcode must be numeric, got: {value}")
 
@@ -198,7 +198,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfclose-timer must be between 0 and 86400",
+                        "tcp-halfclose-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -215,7 +215,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfopen-timer must be between 0 and 86400",
+                        "tcp-halfopen-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -232,7 +232,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"tcp-timewait-timer must be between 0 and 300",
+                        "tcp-timewait-timer must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -247,7 +247,7 @@ def validate_service_custom_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"tcp-rst-timer must be between 5 and 300")
+                    return (False, "tcp-rst-timer must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"tcp-rst-timer must be numeric, got: {value}")
 
@@ -260,7 +260,7 @@ def validate_service_custom_post(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"udp-idle-timer must be between 0 and 86400",
+                        "udp-idle-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"udp-idle-timer must be numeric, got: {value}")
@@ -278,7 +278,7 @@ def validate_service_custom_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -287,7 +287,7 @@ def validate_service_custom_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -342,7 +342,7 @@ def validate_service_custom_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate proxy if present
     if "proxy" in payload:
@@ -357,7 +357,7 @@ def validate_service_custom_put(
     if "category" in payload:
         value = payload.get("category")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"category cannot exceed 63 characters")
+            return (False, "category cannot exceed 63 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
@@ -381,7 +381,7 @@ def validate_service_custom_put(
     if "fqdn" in payload:
         value = payload.get("fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fqdn cannot exceed 255 characters")
+            return (False, "fqdn cannot exceed 255 characters")
 
     # Validate protocol-number if present
     if "protocol-number" in payload:
@@ -392,7 +392,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 254:
                     return (
                         False,
-                        f"protocol-number must be between 0 and 254",
+                        "protocol-number must be between 0 and 254",
                     )
             except (ValueError, TypeError):
                 return (
@@ -409,7 +409,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"icmptype must be between 0 and 4294967295",
+                        "icmptype must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"icmptype must be numeric, got: {value}")
@@ -421,7 +421,7 @@ def validate_service_custom_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"icmpcode must be between 0 and 255")
+                    return (False, "icmpcode must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"icmpcode must be numeric, got: {value}")
 
@@ -434,7 +434,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfclose-timer must be between 0 and 86400",
+                        "tcp-halfclose-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -451,7 +451,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfopen-timer must be between 0 and 86400",
+                        "tcp-halfopen-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -468,7 +468,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"tcp-timewait-timer must be between 0 and 300",
+                        "tcp-timewait-timer must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -483,7 +483,7 @@ def validate_service_custom_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"tcp-rst-timer must be between 5 and 300")
+                    return (False, "tcp-rst-timer must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"tcp-rst-timer must be numeric, got: {value}")
 
@@ -496,7 +496,7 @@ def validate_service_custom_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"udp-idle-timer must be between 0 and 86400",
+                        "udp-idle-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"udp-idle-timer must be numeric, got: {value}")
@@ -514,7 +514,7 @@ def validate_service_custom_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -523,7 +523,7 @@ def validate_service_custom_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 

@@ -74,7 +74,7 @@ def validate_affinity_interrupt_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -82,13 +82,13 @@ def validate_affinity_interrupt_post(
     if "interrupt" in payload:
         value = payload.get("interrupt")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"interrupt cannot exceed 127 characters")
+            return (False, "interrupt cannot exceed 127 characters")
 
     # Validate affinity-cpumask if present
     if "affinity-cpumask" in payload:
         value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"affinity-cpumask cannot exceed 127 characters")
+            return (False, "affinity-cpumask cannot exceed 127 characters")
 
     # Validate default-affinity-cpumask if present
     if "default-affinity-cpumask" in payload:
@@ -96,7 +96,7 @@ def validate_affinity_interrupt_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"default-affinity-cpumask cannot exceed 127 characters",
+                "default-affinity-cpumask cannot exceed 127 characters",
             )
 
     return (True, None)
@@ -135,7 +135,7 @@ def validate_affinity_interrupt_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -143,13 +143,13 @@ def validate_affinity_interrupt_put(
     if "interrupt" in payload:
         value = payload.get("interrupt")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"interrupt cannot exceed 127 characters")
+            return (False, "interrupt cannot exceed 127 characters")
 
     # Validate affinity-cpumask if present
     if "affinity-cpumask" in payload:
         value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"affinity-cpumask cannot exceed 127 characters")
+            return (False, "affinity-cpumask cannot exceed 127 characters")
 
     # Validate default-affinity-cpumask if present
     if "default-affinity-cpumask" in payload:
@@ -157,7 +157,7 @@ def validate_affinity_interrupt_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"default-affinity-cpumask cannot exceed 127 characters",
+                "default-affinity-cpumask cannot exceed 127 characters",
             )
 
     return (True, None)

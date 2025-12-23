@@ -88,11 +88,15 @@ class Ipam:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Ipam:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -138,21 +143,31 @@ class Ipam:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable IP address management services. (optional)
             server_type: Configure the type of IPAM server to use. (optional)
-            automatic_conflict_resolution: Enable/disable automatic conflict resolution. (optional)
-            require_subnet_size_match: Enable/disable reassignment of subnets to make requested and actual sizes match. (optional)
-            manage_lan_addresses: Enable/disable default management of LAN interface addresses. (optional)
-            manage_lan_extension_addresses: Enable/disable default management of FortiExtender LAN extension interface addresses. (optional)
-            manage_ssid_addresses: Enable/disable default management of FortiAP SSID addresses. (optional)
+            automatic_conflict_resolution: Enable/disable automatic conflict
+            resolution. (optional)
+            require_subnet_size_match: Enable/disable reassignment of subnets
+            to make requested and actual sizes match. (optional)
+            manage_lan_addresses: Enable/disable default management of LAN
+            interface addresses. (optional)
+            manage_lan_extension_addresses: Enable/disable default management
+            of FortiExtender LAN extension interface addresses. (optional)
+            manage_ssid_addresses: Enable/disable default management of FortiAP
+            SSID addresses. (optional)
             pools: Configure IPAM pools. (optional)
             rules: Configure IPAM allocation rules. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -160,7 +175,8 @@ class Ipam:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Wireless Controller Qos Profile
 
-Configuration endpoint for managing cmdb wireless controller qos profile objects.
+Configuration endpoint for managing cmdb wireless controller qos profile
+objects.
 
 API Endpoints:
     GET    /cmdb/wireless-controller/qos_profile
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.wireless_controller.qos_profile.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.wireless_controller.qos_profile.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.wireless_controller.qos_profile.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.qos_profile.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.qos_profile.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.qos_profile.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class QosProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class QosProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -172,36 +181,61 @@ class QosProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: WiFi QoS profile name. (optional)
             comment: Comment. (optional)
-            uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            downlink: Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            downlink_sta: Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
+            uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs)
+            (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
+            downlink: Maximum downlink bandwidth for Virtual Access Points
+            (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
+            (optional)
+            uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps,
+            default = 0, 0 means no limit). (optional)
+            downlink_sta: Maximum downlink bandwidth for clients (0 - 2097152
+            Kbps, default = 0, 0 means no limit). (optional)
             burst: Enable/disable client rate burst. (optional)
             wmm: Enable/disable WiFi multi-media (WMM) control. (optional)
-            wmm_uapsd: Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. (optional)
-            call_admission_control: Enable/disable WMM call admission control. (optional)
-            call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10). (optional)
-            bandwidth_admission_control: Enable/disable WMM bandwidth admission control. (optional)
-            bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000). (optional)
-            dscp_wmm_mapping: Enable/disable Differentiated Services Code Point (DSCP) mapping. (optional)
-            dscp_wmm_vo: DSCP mapping for voice access (default = 48 56). (optional)
-            dscp_wmm_vi: DSCP mapping for video access (default = 32 40). (optional)
-            dscp_wmm_be: DSCP mapping for best effort access (default = 0 24). (optional)
-            dscp_wmm_bk: DSCP mapping for background access (default = 8 16). (optional)
-            wmm_dscp_marking: Enable/disable WMM Differentiated Services Code Point (DSCP) marking. (optional)
-            wmm_vo_dscp: DSCP marking for voice access (default = 48). (optional)
-            wmm_vi_dscp: DSCP marking for video access (default = 32). (optional)
-            wmm_be_dscp: DSCP marking for best effort access (default = 0). (optional)
-            wmm_bk_dscp: DSCP marking for background access (default = 8). (optional)
+            wmm_uapsd: Enable/disable WMM Unscheduled Automatic Power Save
+            Delivery (U-APSD) power save mode. (optional)
+            call_admission_control: Enable/disable WMM call admission control.
+            (optional)
+            call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones
+            allowed (0 - 60, default = 10). (optional)
+            bandwidth_admission_control: Enable/disable WMM bandwidth admission
+            control. (optional)
+            bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000
+            Kbps, default = 2000). (optional)
+            dscp_wmm_mapping: Enable/disable Differentiated Services Code Point
+            (DSCP) mapping. (optional)
+            dscp_wmm_vo: DSCP mapping for voice access (default = 48 56).
+            (optional)
+            dscp_wmm_vi: DSCP mapping for video access (default = 32 40).
+            (optional)
+            dscp_wmm_be: DSCP mapping for best effort access (default = 0 24).
+            (optional)
+            dscp_wmm_bk: DSCP mapping for background access (default = 8 16).
+            (optional)
+            wmm_dscp_marking: Enable/disable WMM Differentiated Services Code
+            Point (DSCP) marking. (optional)
+            wmm_vo_dscp: DSCP marking for voice access (default = 48).
+            (optional)
+            wmm_vi_dscp: DSCP marking for video access (default = 32).
+            (optional)
+            wmm_be_dscp: DSCP marking for best effort access (default = 0).
+            (optional)
+            wmm_bk_dscp: DSCP marking for background access (default = 8).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -209,7 +243,8 @@ class QosProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -291,8 +326,10 @@ class QosProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -300,7 +337,8 @@ class QosProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -394,34 +432,58 @@ class QosProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: WiFi QoS profile name. (optional)
             comment: Comment. (optional)
-            uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            downlink: Maximum downlink bandwidth for Virtual Access Points (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
-            downlink_sta: Maximum downlink bandwidth for clients (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
+            uplink: Maximum uplink bandwidth for Virtual Access Points (VAPs)
+            (0 - 2097152 Kbps, default = 0, 0 means no limit). (optional)
+            downlink: Maximum downlink bandwidth for Virtual Access Points
+            (VAPs) (0 - 2097152 Kbps, default = 0, 0 means no limit).
+            (optional)
+            uplink_sta: Maximum uplink bandwidth for clients (0 - 2097152 Kbps,
+            default = 0, 0 means no limit). (optional)
+            downlink_sta: Maximum downlink bandwidth for clients (0 - 2097152
+            Kbps, default = 0, 0 means no limit). (optional)
             burst: Enable/disable client rate burst. (optional)
             wmm: Enable/disable WiFi multi-media (WMM) control. (optional)
-            wmm_uapsd: Enable/disable WMM Unscheduled Automatic Power Save Delivery (U-APSD) power save mode. (optional)
-            call_admission_control: Enable/disable WMM call admission control. (optional)
-            call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones allowed (0 - 60, default = 10). (optional)
-            bandwidth_admission_control: Enable/disable WMM bandwidth admission control. (optional)
-            bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000). (optional)
-            dscp_wmm_mapping: Enable/disable Differentiated Services Code Point (DSCP) mapping. (optional)
-            dscp_wmm_vo: DSCP mapping for voice access (default = 48 56). (optional)
-            dscp_wmm_vi: DSCP mapping for video access (default = 32 40). (optional)
-            dscp_wmm_be: DSCP mapping for best effort access (default = 0 24). (optional)
-            dscp_wmm_bk: DSCP mapping for background access (default = 8 16). (optional)
-            wmm_dscp_marking: Enable/disable WMM Differentiated Services Code Point (DSCP) marking. (optional)
-            wmm_vo_dscp: DSCP marking for voice access (default = 48). (optional)
-            wmm_vi_dscp: DSCP marking for video access (default = 32). (optional)
-            wmm_be_dscp: DSCP marking for best effort access (default = 0). (optional)
-            wmm_bk_dscp: DSCP marking for background access (default = 8). (optional)
+            wmm_uapsd: Enable/disable WMM Unscheduled Automatic Power Save
+            Delivery (U-APSD) power save mode. (optional)
+            call_admission_control: Enable/disable WMM call admission control.
+            (optional)
+            call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones
+            allowed (0 - 60, default = 10). (optional)
+            bandwidth_admission_control: Enable/disable WMM bandwidth admission
+            control. (optional)
+            bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000
+            Kbps, default = 2000). (optional)
+            dscp_wmm_mapping: Enable/disable Differentiated Services Code Point
+            (DSCP) mapping. (optional)
+            dscp_wmm_vo: DSCP mapping for voice access (default = 48 56).
+            (optional)
+            dscp_wmm_vi: DSCP mapping for video access (default = 32 40).
+            (optional)
+            dscp_wmm_be: DSCP mapping for best effort access (default = 0 24).
+            (optional)
+            dscp_wmm_bk: DSCP mapping for background access (default = 8 16).
+            (optional)
+            wmm_dscp_marking: Enable/disable WMM Differentiated Services Code
+            Point (DSCP) marking. (optional)
+            wmm_vo_dscp: DSCP marking for voice access (default = 48).
+            (optional)
+            wmm_vi_dscp: DSCP marking for video access (default = 32).
+            (optional)
+            wmm_be_dscp: DSCP marking for best effort access (default = 0).
+            (optional)
+            wmm_bk_dscp: DSCP marking for background access (default = 8).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -429,7 +491,8 @@ class QosProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

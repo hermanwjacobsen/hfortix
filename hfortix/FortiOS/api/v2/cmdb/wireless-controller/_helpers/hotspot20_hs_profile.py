@@ -163,7 +163,7 @@ def validate_hotspot20_hs_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate release if present
     if "release" in payload:
@@ -172,7 +172,7 @@ def validate_hotspot20_hs_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3:
-                    return (False, f"release must be between 1 and 3")
+                    return (False, "release must be between 1 and 3")
             except (ValueError, TypeError):
                 return (False, f"release must be numeric, got: {value}")
 
@@ -249,8 +249,8 @@ def validate_hotspot20_hs_profile_post(
             )
 
     # Validate l2tif if present
-    if "l2tif" in payload:
-        value = payload.get("l2tif")
+    if "l2ti" in payload:
+        value = payload.get("l2ti")
         if value and value not in VALID_BODY_L2TIF:
             return (
                 False,
@@ -275,7 +275,7 @@ def validate_hotspot20_hs_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"anqp-domain-id must be between 0 and 65535",
+                        "anqp-domain-id must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"anqp-domain-id must be numeric, got: {value}")
@@ -284,13 +284,13 @@ def validate_hotspot20_hs_profile_post(
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"domain-name cannot exceed 255 characters")
+            return (False, "domain-name cannot exceed 255 characters")
 
     # Validate osu-ssid if present
     if "osu-ssid" in payload:
         value = payload.get("osu-ssid")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"osu-ssid cannot exceed 255 characters")
+            return (False, "osu-ssid cannot exceed 255 characters")
 
     # Validate gas-comeback-delay if present
     if "gas-comeback-delay" in payload:
@@ -301,7 +301,7 @@ def validate_hotspot20_hs_profile_post(
                 if int_val < 100 or int_val > 10000:
                     return (
                         False,
-                        f"gas-comeback-delay must be between 100 and 10000",
+                        "gas-comeback-delay must be between 100 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -318,7 +318,7 @@ def validate_hotspot20_hs_profile_post(
                 if int_val < 512 or int_val > 4096:
                     return (
                         False,
-                        f"gas-fragmentation-limit must be between 512 and 4096",
+                        "gas-fragmentation-limit must be between 512 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -327,8 +327,8 @@ def validate_hotspot20_hs_profile_post(
                 )
 
     # Validate dgaf if present
-    if "dgaf" in payload:
-        value = payload.get("dgaf")
+    if "dga" in payload:
+        value = payload.get("dga")
         if value and value not in VALID_BODY_DGAF:
             return (
                 False,
@@ -344,7 +344,7 @@ def validate_hotspot20_hs_profile_post(
                 if int_val < 30 or int_val > 120:
                     return (
                         False,
-                        f"deauth-request-timeout must be between 30 and 120",
+                        "deauth-request-timeout must be between 30 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -374,91 +374,91 @@ def validate_hotspot20_hs_profile_post(
     if "venue-name" in payload:
         value = payload.get("venue-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"venue-name cannot exceed 35 characters")
+            return (False, "venue-name cannot exceed 35 characters")
 
     # Validate venue-url if present
     if "venue-url" in payload:
         value = payload.get("venue-url")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"venue-url cannot exceed 35 characters")
+            return (False, "venue-url cannot exceed 35 characters")
 
     # Validate roaming-consortium if present
     if "roaming-consortium" in payload:
         value = payload.get("roaming-consortium")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"roaming-consortium cannot exceed 35 characters")
+            return (False, "roaming-consortium cannot exceed 35 characters")
 
     # Validate nai-realm if present
     if "nai-realm" in payload:
         value = payload.get("nai-realm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"nai-realm cannot exceed 35 characters")
+            return (False, "nai-realm cannot exceed 35 characters")
 
     # Validate oper-friendly-name if present
     if "oper-friendly-name" in payload:
         value = payload.get("oper-friendly-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"oper-friendly-name cannot exceed 35 characters")
+            return (False, "oper-friendly-name cannot exceed 35 characters")
 
     # Validate oper-icon if present
     if "oper-icon" in payload:
         value = payload.get("oper-icon")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"oper-icon cannot exceed 35 characters")
+            return (False, "oper-icon cannot exceed 35 characters")
 
     # Validate advice-of-charge if present
     if "advice-of-charge" in payload:
         value = payload.get("advice-of-charge")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"advice-of-charge cannot exceed 35 characters")
+            return (False, "advice-of-charge cannot exceed 35 characters")
 
     # Validate osu-provider-nai if present
     if "osu-provider-nai" in payload:
         value = payload.get("osu-provider-nai")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"osu-provider-nai cannot exceed 35 characters")
+            return (False, "osu-provider-nai cannot exceed 35 characters")
 
     # Validate terms-and-conditions if present
     if "terms-and-conditions" in payload:
         value = payload.get("terms-and-conditions")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"terms-and-conditions cannot exceed 35 characters")
+            return (False, "terms-and-conditions cannot exceed 35 characters")
 
     # Validate wan-metrics if present
     if "wan-metrics" in payload:
         value = payload.get("wan-metrics")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"wan-metrics cannot exceed 35 characters")
+            return (False, "wan-metrics cannot exceed 35 characters")
 
     # Validate network-auth if present
     if "network-auth" in payload:
         value = payload.get("network-auth")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"network-auth cannot exceed 35 characters")
+            return (False, "network-auth cannot exceed 35 characters")
 
     # Validate 3gpp-plmn if present
     if "3gpp-plmn" in payload:
         value = payload.get("3gpp-plmn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"3gpp-plmn cannot exceed 35 characters")
+            return (False, "3gpp-plmn cannot exceed 35 characters")
 
     # Validate conn-cap if present
     if "conn-cap" in payload:
         value = payload.get("conn-cap")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"conn-cap cannot exceed 35 characters")
+            return (False, "conn-cap cannot exceed 35 characters")
 
     # Validate qos-map if present
     if "qos-map" in payload:
         value = payload.get("qos-map")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qos-map cannot exceed 35 characters")
+            return (False, "qos-map cannot exceed 35 characters")
 
     # Validate ip-addr-type if present
     if "ip-addr-type" in payload:
         value = payload.get("ip-addr-type")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ip-addr-type cannot exceed 35 characters")
+            return (False, "ip-addr-type cannot exceed 35 characters")
 
     # Validate wba-open-roaming if present
     if "wba-open-roaming" in payload:
@@ -475,7 +475,7 @@ def validate_hotspot20_hs_profile_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"wba-financial-clearing-provider cannot exceed 127 characters",
+                "wba-financial-clearing-provider cannot exceed 127 characters",
             )
 
     # Validate wba-data-clearing-provider if present
@@ -484,14 +484,14 @@ def validate_hotspot20_hs_profile_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"wba-data-clearing-provider cannot exceed 127 characters",
+                "wba-data-clearing-provider cannot exceed 127 characters",
             )
 
     # Validate wba-charging-currency if present
     if "wba-charging-currency" in payload:
         value = payload.get("wba-charging-currency")
         if value and isinstance(value, str) and len(value) > 3:
-            return (False, f"wba-charging-currency cannot exceed 3 characters")
+            return (False, "wba-charging-currency cannot exceed 3 characters")
 
     # Validate wba-charging-rate if present
     if "wba-charging-rate" in payload:
@@ -502,7 +502,7 @@ def validate_hotspot20_hs_profile_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"wba-charging-rate must be between 0 and 4294967295",
+                        "wba-charging-rate must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -543,7 +543,7 @@ def validate_hotspot20_hs_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate release if present
     if "release" in payload:
@@ -552,7 +552,7 @@ def validate_hotspot20_hs_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3:
-                    return (False, f"release must be between 1 and 3")
+                    return (False, "release must be between 1 and 3")
             except (ValueError, TypeError):
                 return (False, f"release must be numeric, got: {value}")
 
@@ -629,8 +629,8 @@ def validate_hotspot20_hs_profile_put(
             )
 
     # Validate l2tif if present
-    if "l2tif" in payload:
-        value = payload.get("l2tif")
+    if "l2ti" in payload:
+        value = payload.get("l2ti")
         if value and value not in VALID_BODY_L2TIF:
             return (
                 False,
@@ -655,7 +655,7 @@ def validate_hotspot20_hs_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"anqp-domain-id must be between 0 and 65535",
+                        "anqp-domain-id must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"anqp-domain-id must be numeric, got: {value}")
@@ -664,13 +664,13 @@ def validate_hotspot20_hs_profile_put(
     if "domain-name" in payload:
         value = payload.get("domain-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"domain-name cannot exceed 255 characters")
+            return (False, "domain-name cannot exceed 255 characters")
 
     # Validate osu-ssid if present
     if "osu-ssid" in payload:
         value = payload.get("osu-ssid")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"osu-ssid cannot exceed 255 characters")
+            return (False, "osu-ssid cannot exceed 255 characters")
 
     # Validate gas-comeback-delay if present
     if "gas-comeback-delay" in payload:
@@ -681,7 +681,7 @@ def validate_hotspot20_hs_profile_put(
                 if int_val < 100 or int_val > 10000:
                     return (
                         False,
-                        f"gas-comeback-delay must be between 100 and 10000",
+                        "gas-comeback-delay must be between 100 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -698,7 +698,7 @@ def validate_hotspot20_hs_profile_put(
                 if int_val < 512 or int_val > 4096:
                     return (
                         False,
-                        f"gas-fragmentation-limit must be between 512 and 4096",
+                        "gas-fragmentation-limit must be between 512 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -707,8 +707,8 @@ def validate_hotspot20_hs_profile_put(
                 )
 
     # Validate dgaf if present
-    if "dgaf" in payload:
-        value = payload.get("dgaf")
+    if "dga" in payload:
+        value = payload.get("dga")
         if value and value not in VALID_BODY_DGAF:
             return (
                 False,
@@ -724,7 +724,7 @@ def validate_hotspot20_hs_profile_put(
                 if int_val < 30 or int_val > 120:
                     return (
                         False,
-                        f"deauth-request-timeout must be between 30 and 120",
+                        "deauth-request-timeout must be between 30 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -754,91 +754,91 @@ def validate_hotspot20_hs_profile_put(
     if "venue-name" in payload:
         value = payload.get("venue-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"venue-name cannot exceed 35 characters")
+            return (False, "venue-name cannot exceed 35 characters")
 
     # Validate venue-url if present
     if "venue-url" in payload:
         value = payload.get("venue-url")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"venue-url cannot exceed 35 characters")
+            return (False, "venue-url cannot exceed 35 characters")
 
     # Validate roaming-consortium if present
     if "roaming-consortium" in payload:
         value = payload.get("roaming-consortium")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"roaming-consortium cannot exceed 35 characters")
+            return (False, "roaming-consortium cannot exceed 35 characters")
 
     # Validate nai-realm if present
     if "nai-realm" in payload:
         value = payload.get("nai-realm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"nai-realm cannot exceed 35 characters")
+            return (False, "nai-realm cannot exceed 35 characters")
 
     # Validate oper-friendly-name if present
     if "oper-friendly-name" in payload:
         value = payload.get("oper-friendly-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"oper-friendly-name cannot exceed 35 characters")
+            return (False, "oper-friendly-name cannot exceed 35 characters")
 
     # Validate oper-icon if present
     if "oper-icon" in payload:
         value = payload.get("oper-icon")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"oper-icon cannot exceed 35 characters")
+            return (False, "oper-icon cannot exceed 35 characters")
 
     # Validate advice-of-charge if present
     if "advice-of-charge" in payload:
         value = payload.get("advice-of-charge")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"advice-of-charge cannot exceed 35 characters")
+            return (False, "advice-of-charge cannot exceed 35 characters")
 
     # Validate osu-provider-nai if present
     if "osu-provider-nai" in payload:
         value = payload.get("osu-provider-nai")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"osu-provider-nai cannot exceed 35 characters")
+            return (False, "osu-provider-nai cannot exceed 35 characters")
 
     # Validate terms-and-conditions if present
     if "terms-and-conditions" in payload:
         value = payload.get("terms-and-conditions")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"terms-and-conditions cannot exceed 35 characters")
+            return (False, "terms-and-conditions cannot exceed 35 characters")
 
     # Validate wan-metrics if present
     if "wan-metrics" in payload:
         value = payload.get("wan-metrics")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"wan-metrics cannot exceed 35 characters")
+            return (False, "wan-metrics cannot exceed 35 characters")
 
     # Validate network-auth if present
     if "network-auth" in payload:
         value = payload.get("network-auth")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"network-auth cannot exceed 35 characters")
+            return (False, "network-auth cannot exceed 35 characters")
 
     # Validate 3gpp-plmn if present
     if "3gpp-plmn" in payload:
         value = payload.get("3gpp-plmn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"3gpp-plmn cannot exceed 35 characters")
+            return (False, "3gpp-plmn cannot exceed 35 characters")
 
     # Validate conn-cap if present
     if "conn-cap" in payload:
         value = payload.get("conn-cap")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"conn-cap cannot exceed 35 characters")
+            return (False, "conn-cap cannot exceed 35 characters")
 
     # Validate qos-map if present
     if "qos-map" in payload:
         value = payload.get("qos-map")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qos-map cannot exceed 35 characters")
+            return (False, "qos-map cannot exceed 35 characters")
 
     # Validate ip-addr-type if present
     if "ip-addr-type" in payload:
         value = payload.get("ip-addr-type")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ip-addr-type cannot exceed 35 characters")
+            return (False, "ip-addr-type cannot exceed 35 characters")
 
     # Validate wba-open-roaming if present
     if "wba-open-roaming" in payload:
@@ -855,7 +855,7 @@ def validate_hotspot20_hs_profile_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"wba-financial-clearing-provider cannot exceed 127 characters",
+                "wba-financial-clearing-provider cannot exceed 127 characters",
             )
 
     # Validate wba-data-clearing-provider if present
@@ -864,14 +864,14 @@ def validate_hotspot20_hs_profile_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"wba-data-clearing-provider cannot exceed 127 characters",
+                "wba-data-clearing-provider cannot exceed 127 characters",
             )
 
     # Validate wba-charging-currency if present
     if "wba-charging-currency" in payload:
         value = payload.get("wba-charging-currency")
         if value and isinstance(value, str) and len(value) > 3:
-            return (False, f"wba-charging-currency cannot exceed 3 characters")
+            return (False, "wba-charging-currency cannot exceed 3 characters")
 
     # Validate wba-charging-rate if present
     if "wba-charging-rate" in payload:
@@ -882,7 +882,7 @@ def validate_hotspot20_hs_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"wba-charging-rate must be between 0 and 4294967295",
+                        "wba-charging-rate must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

@@ -78,7 +78,7 @@ def validate_timers_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"echo-interval must be between 1 and 255")
+                    return (False, "echo-interval must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"echo-interval must be numeric, got: {value}")
 
@@ -91,7 +91,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"nat-session-keep-alive must be between 0 and 255",
+                        "nat-session-keep-alive must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -108,7 +108,7 @@ def validate_timers_put(
                 if int_val < 2 or int_val > 180:
                     return (
                         False,
-                        f"discovery-interval must be between 2 and 180",
+                        "discovery-interval must be between 2 and 180",
                     )
             except (ValueError, TypeError):
                 return (
@@ -125,7 +125,7 @@ def validate_timers_put(
                 if int_val < 20 or int_val > 3600:
                     return (
                         False,
-                        f"client-idle-timeout must be between 20 and 3600",
+                        "client-idle-timeout must be between 20 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -142,7 +142,7 @@ def validate_timers_put(
                 if int_val < 2 or int_val > 3600:
                     return (
                         False,
-                        f"client-idle-rehome-timeout must be between 2 and 3600",
+                        "client-idle-rehome-timeout must be between 2 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -157,7 +157,7 @@ def validate_timers_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 30:
-                    return (False, f"auth-timeout must be between 5 and 30")
+                    return (False, "auth-timeout must be between 5 and 30")
             except (ValueError, TypeError):
                 return (False, f"auth-timeout must be numeric, got: {value}")
 
@@ -168,7 +168,7 @@ def validate_timers_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1440:
-                    return (False, f"rogue-ap-log must be between 0 and 1440")
+                    return (False, "rogue-ap-log must be between 0 and 1440")
             except (ValueError, TypeError):
                 return (False, f"rogue-ap-log must be numeric, got: {value}")
 
@@ -179,7 +179,7 @@ def validate_timers_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1440:
-                    return (False, f"fake-ap-log must be between 1 and 1440")
+                    return (False, "fake-ap-log must be between 1 and 1440")
             except (ValueError, TypeError):
                 return (False, f"fake-ap-log must be numeric, got: {value}")
 
@@ -192,7 +192,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"sta-offline-cleanup must be between 0 and 4294967295",
+                        "sta-offline-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -209,7 +209,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"sta-offline-ip2mac-cleanup must be between 0 and 4294967295",
+                        "sta-offline-ip2mac-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -226,7 +226,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"sta-cap-cleanup must be between 0 and 4294967295",
+                        "sta-cap-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -243,7 +243,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rogue-ap-cleanup must be between 0 and 4294967295",
+                        "rogue-ap-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -260,7 +260,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rogue-sta-cleanup must be between 0 and 4294967295",
+                        "rogue-sta-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -277,7 +277,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"wids-entry-cleanup must be between 0 and 4294967295",
+                        "wids-entry-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -294,7 +294,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ble-device-cleanup must be between 0 and 4294967295",
+                        "ble-device-cleanup must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -311,7 +311,7 @@ def validate_timers_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"sta-stats-interval must be between 1 and 255",
+                        "sta-stats-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -328,7 +328,7 @@ def validate_timers_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"vap-stats-interval must be between 1 and 255",
+                        "vap-stats-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -345,7 +345,7 @@ def validate_timers_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"radio-stats-interval must be between 1 and 255",
+                        "radio-stats-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -362,7 +362,7 @@ def validate_timers_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"sta-capability-interval must be between 1 and 255",
+                        "sta-capability-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -379,7 +379,7 @@ def validate_timers_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"sta-locate-timer must be between 0 and 86400",
+                        "sta-locate-timer must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -396,7 +396,7 @@ def validate_timers_put(
                 if int_val < 30 or int_val > 3600:
                     return (
                         False,
-                        f"ipsec-intf-cleanup must be between 30 and 3600",
+                        "ipsec-intf-cleanup must be between 30 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -413,7 +413,7 @@ def validate_timers_put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"ble-scan-report-intv must be between 10 and 3600",
+                        "ble-scan-report-intv must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -428,7 +428,7 @@ def validate_timers_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1440:
-                    return (False, f"drma-interval must be between 1 and 1440")
+                    return (False, "drma-interval must be between 1 and 1440")
             except (ValueError, TypeError):
                 return (False, f"drma-interval must be numeric, got: {value}")
 
@@ -441,7 +441,7 @@ def validate_timers_put(
                 if int_val < 5 or int_val > 65535:
                     return (
                         False,
-                        f"ap-reboot-wait-interval1 must be between 5 and 65535",
+                        "ap-reboot-wait-interval1 must be between 5 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -453,7 +453,7 @@ def validate_timers_put(
     if "ap-reboot-wait-time" in payload:
         value = payload.get("ap-reboot-wait-time")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"ap-reboot-wait-time cannot exceed 7 characters")
+            return (False, "ap-reboot-wait-time cannot exceed 7 characters")
 
     # Validate ap-reboot-wait-interval2 if present
     if "ap-reboot-wait-interval2" in payload:
@@ -464,7 +464,7 @@ def validate_timers_put(
                 if int_val < 5 or int_val > 65535:
                     return (
                         False,
-                        f"ap-reboot-wait-interval2 must be between 5 and 65535",
+                        "ap-reboot-wait-interval2 must be between 5 and 65535",
                     )
             except (ValueError, TypeError):
                 return (

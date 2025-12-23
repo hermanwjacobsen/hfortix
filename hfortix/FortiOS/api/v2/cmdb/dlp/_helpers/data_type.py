@@ -72,31 +72,31 @@ def validate_data_type_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate pattern if present
     if "pattern" in payload:
         value = payload.get("pattern")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"pattern cannot exceed 255 characters")
+            return (False, "pattern cannot exceed 255 characters")
 
     # Validate verify if present
     if "verify" in payload:
         value = payload.get("verify")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"verify cannot exceed 255 characters")
+            return (False, "verify cannot exceed 255 characters")
 
     # Validate verify2 if present
     if "verify2" in payload:
         value = payload.get("verify2")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"verify2 cannot exceed 255 characters")
+            return (False, "verify2 cannot exceed 255 characters")
 
     # Validate match-around if present
     if "match-around" in payload:
         value = payload.get("match-around")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"match-around cannot exceed 35 characters")
+            return (False, "match-around cannot exceed 35 characters")
 
     # Validate look-back if present
     if "look-back" in payload:
@@ -105,7 +105,7 @@ def validate_data_type_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"look-back must be between 1 and 255")
+                    return (False, "look-back must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"look-back must be numeric, got: {value}")
 
@@ -116,7 +116,7 @@ def validate_data_type_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"look-ahead must be between 1 and 255")
+                    return (False, "look-ahead must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"look-ahead must be numeric, got: {value}")
 
@@ -127,7 +127,7 @@ def validate_data_type_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"match-back must be between 1 and 4096")
+                    return (False, "match-back must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"match-back must be numeric, got: {value}")
 
@@ -138,7 +138,7 @@ def validate_data_type_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"match-ahead must be between 1 and 4096")
+                    return (False, "match-ahead must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"match-ahead must be numeric, got: {value}")
 
@@ -146,7 +146,7 @@ def validate_data_type_post(
     if "transform" in payload:
         value = payload.get("transform")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"transform cannot exceed 255 characters")
+            return (False, "transform cannot exceed 255 characters")
 
     # Validate verify-transformed-pattern if present
     if "verify-transformed-pattern" in payload:
@@ -161,7 +161,7 @@ def validate_data_type_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 
@@ -196,31 +196,31 @@ def validate_data_type_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate pattern if present
     if "pattern" in payload:
         value = payload.get("pattern")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"pattern cannot exceed 255 characters")
+            return (False, "pattern cannot exceed 255 characters")
 
     # Validate verify if present
     if "verify" in payload:
         value = payload.get("verify")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"verify cannot exceed 255 characters")
+            return (False, "verify cannot exceed 255 characters")
 
     # Validate verify2 if present
     if "verify2" in payload:
         value = payload.get("verify2")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"verify2 cannot exceed 255 characters")
+            return (False, "verify2 cannot exceed 255 characters")
 
     # Validate match-around if present
     if "match-around" in payload:
         value = payload.get("match-around")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"match-around cannot exceed 35 characters")
+            return (False, "match-around cannot exceed 35 characters")
 
     # Validate look-back if present
     if "look-back" in payload:
@@ -229,7 +229,7 @@ def validate_data_type_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"look-back must be between 1 and 255")
+                    return (False, "look-back must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"look-back must be numeric, got: {value}")
 
@@ -240,7 +240,7 @@ def validate_data_type_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"look-ahead must be between 1 and 255")
+                    return (False, "look-ahead must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"look-ahead must be numeric, got: {value}")
 
@@ -251,7 +251,7 @@ def validate_data_type_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"match-back must be between 1 and 4096")
+                    return (False, "match-back must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"match-back must be numeric, got: {value}")
 
@@ -262,7 +262,7 @@ def validate_data_type_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"match-ahead must be between 1 and 4096")
+                    return (False, "match-ahead must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"match-ahead must be numeric, got: {value}")
 
@@ -270,7 +270,7 @@ def validate_data_type_put(
     if "transform" in payload:
         value = payload.get("transform")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"transform cannot exceed 255 characters")
+            return (False, "transform cannot exceed 255 characters")
 
     # Validate verify-transformed-pattern if present
     if "verify-transformed-pattern" in payload:
@@ -285,7 +285,7 @@ def validate_data_type_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 

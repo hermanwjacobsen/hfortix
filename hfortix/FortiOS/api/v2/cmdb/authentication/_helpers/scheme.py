@@ -90,7 +90,7 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate method if present
     if "method" in payload:
@@ -114,19 +114,19 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "kerberos-keytab" in payload:
         value = payload.get("kerberos-keytab")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"kerberos-keytab cannot exceed 35 characters")
+            return (False, "kerberos-keytab cannot exceed 35 characters")
 
     # Validate domain-controller if present
     if "domain-controller" in payload:
         value = payload.get("domain-controller")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain-controller cannot exceed 35 characters")
+            return (False, "domain-controller cannot exceed 35 characters")
 
     # Validate saml-server if present
     if "saml-server" in payload:
         value = payload.get("saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"saml-server cannot exceed 35 characters")
+            return (False, "saml-server cannot exceed 35 characters")
 
     # Validate saml-timeout if present
     if "saml-timeout" in payload:
@@ -135,7 +135,7 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 30 or int_val > 1200:
-                    return (False, f"saml-timeout must be between 30 and 1200")
+                    return (False, "saml-timeout must be between 30 and 1200")
             except (ValueError, TypeError):
                 return (False, f"saml-timeout must be numeric, got: {value}")
 
@@ -143,7 +143,7 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "fsso-agent-for-ntlm" in payload:
         value = payload.get("fsso-agent-for-ntlm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fsso-agent-for-ntlm cannot exceed 35 characters")
+            return (False, "fsso-agent-for-ntlm cannot exceed 35 characters")
 
     # Validate require-tfa if present
     if "require-tfa" in payload:
@@ -185,13 +185,13 @@ def validate_scheme_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssh-ca" in payload:
         value = payload.get("ssh-ca")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssh-ca cannot exceed 35 characters")
+            return (False, "ssh-ca cannot exceed 35 characters")
 
     # Validate external-idp if present
     if "external-idp" in payload:
         value = payload.get("external-idp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"external-idp cannot exceed 35 characters")
+            return (False, "external-idp cannot exceed 35 characters")
 
     # Validate group-attr-type if present
     if "group-attr-type" in payload:
@@ -253,7 +253,7 @@ def validate_scheme_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate method if present
     if "method" in payload:
@@ -277,19 +277,19 @@ def validate_scheme_put(
     if "kerberos-keytab" in payload:
         value = payload.get("kerberos-keytab")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"kerberos-keytab cannot exceed 35 characters")
+            return (False, "kerberos-keytab cannot exceed 35 characters")
 
     # Validate domain-controller if present
     if "domain-controller" in payload:
         value = payload.get("domain-controller")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain-controller cannot exceed 35 characters")
+            return (False, "domain-controller cannot exceed 35 characters")
 
     # Validate saml-server if present
     if "saml-server" in payload:
         value = payload.get("saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"saml-server cannot exceed 35 characters")
+            return (False, "saml-server cannot exceed 35 characters")
 
     # Validate saml-timeout if present
     if "saml-timeout" in payload:
@@ -298,7 +298,7 @@ def validate_scheme_put(
             try:
                 int_val = int(value)
                 if int_val < 30 or int_val > 1200:
-                    return (False, f"saml-timeout must be between 30 and 1200")
+                    return (False, "saml-timeout must be between 30 and 1200")
             except (ValueError, TypeError):
                 return (False, f"saml-timeout must be numeric, got: {value}")
 
@@ -306,7 +306,7 @@ def validate_scheme_put(
     if "fsso-agent-for-ntlm" in payload:
         value = payload.get("fsso-agent-for-ntlm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fsso-agent-for-ntlm cannot exceed 35 characters")
+            return (False, "fsso-agent-for-ntlm cannot exceed 35 characters")
 
     # Validate require-tfa if present
     if "require-tfa" in payload:
@@ -348,13 +348,13 @@ def validate_scheme_put(
     if "ssh-ca" in payload:
         value = payload.get("ssh-ca")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssh-ca cannot exceed 35 characters")
+            return (False, "ssh-ca cannot exceed 35 characters")
 
     # Validate external-idp if present
     if "external-idp" in payload:
         value = payload.get("external-idp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"external-idp cannot exceed 35 characters")
+            return (False, "external-idp cannot exceed 35 characters")
 
     # Validate group-attr-type if present
     if "group-attr-type" in payload:

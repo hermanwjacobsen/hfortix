@@ -11,7 +11,7 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
-VALID_BODY_SSL_MODE = ["half", "full"]
+VALID_BODY_SSL_MODE = ["hal", "full"]
 VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO = ["enable", "disable"]
 VALID_BODY_SSL_DH_BITS = ["768", "1024", "1536", "2048"]
 VALID_BODY_SSL_ALGORITHM = ["high", "medium", "low"]
@@ -80,7 +80,7 @@ def validate_ssl_server_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -89,7 +89,7 @@ def validate_ssl_server_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -118,7 +118,7 @@ def validate_ssl_server_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"mapped-port must be between 1 and 65535")
+                    return (False, "mapped-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mapped-port must be numeric, got: {value}")
 
@@ -218,7 +218,7 @@ def validate_ssl_server_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -227,7 +227,7 @@ def validate_ssl_server_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -256,7 +256,7 @@ def validate_ssl_server_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"mapped-port must be between 1 and 65535")
+                    return (False, "mapped-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mapped-port must be numeric, got: {value}")
 

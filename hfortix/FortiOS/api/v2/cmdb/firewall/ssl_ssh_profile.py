@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class SslSshProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class SslSshProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -178,10 +184,13 @@ class SslSshProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Name. (optional)
             comment: Optional comments. (optional)
             ssl: Configure SSL options. (optional)
@@ -192,28 +201,46 @@ class SslSshProfile:
             smtps: Configure SMTPS options. (optional)
             ssh: Configure SSH options. (optional)
             dot: Configure DNS over TLS options. (optional)
-            allowlist: Enable/disable exempting servers by FortiGuard allowlist. (optional)
-            block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. (optional)
+            allowlist: Enable/disable exempting servers by FortiGuard
+            allowlist. (optional)
+            block_blocklisted_certificates: Enable/disable blocking SSL-based
+            botnet communication by FortiGuard certificate blocklist.
+            (optional)
             ssl_exempt: Servers to exempt from SSL inspection. (optional)
             ech_outer_sni: ClientHelloOuter SNIs to be blocked. (optional)
-            server_cert_mode: Re-sign or replace the server's certificate. (optional)
-            use_ssl_server: Enable/disable the use of SSL server table for SSL offloading. (optional)
+            server_cert_mode: Re-sign or replace the server's certificate.
+            (optional)
+            use_ssl_server: Enable/disable the use of SSL server table for SSL
+            offloading. (optional)
             caname: CA certificate used by SSL Inspection. (optional)
-            untrusted_caname: Untrusted CA certificate used by SSL Inspection. (optional)
-            server_cert: Certificate used by SSL Inspection to replace server certificate. (optional)
-            ssl_server: SSL server settings used for client certificate request. (optional)
-            ssl_exemption_ip_rating: Enable/disable IP based URL rating. (optional)
-            ssl_exemption_log: Enable/disable logging of SSL exemptions. (optional)
-            ssl_anomaly_log: Enable/disable logging of SSL anomalies. (optional)
-            ssl_negotiation_log: Enable/disable logging of SSL negotiation events. (optional)
-            ssl_server_cert_log: Enable/disable logging of server certificate information. (optional)
-            ssl_handshake_log: Enable/disable logging of TLS handshakes. (optional)
-            rpc_over_https: Enable/disable inspection of RPC over HTTPS. (optional)
-            mapi_over_https: Enable/disable inspection of MAPI over HTTPS. (optional)
+            untrusted_caname: Untrusted CA certificate used by SSL Inspection.
+            (optional)
+            server_cert: Certificate used by SSL Inspection to replace server
+            certificate. (optional)
+            ssl_server: SSL server settings used for client certificate
+            request. (optional)
+            ssl_exemption_ip_rating: Enable/disable IP based URL rating.
+            (optional)
+            ssl_exemption_log: Enable/disable logging of SSL exemptions.
+            (optional)
+            ssl_anomaly_log: Enable/disable logging of SSL anomalies.
+            (optional)
+            ssl_negotiation_log: Enable/disable logging of SSL negotiation
+            events. (optional)
+            ssl_server_cert_log: Enable/disable logging of server certificate
+            information. (optional)
+            ssl_handshake_log: Enable/disable logging of TLS handshakes.
+            (optional)
+            rpc_over_https: Enable/disable inspection of RPC over HTTPS.
+            (optional)
+            mapi_over_https: Enable/disable inspection of MAPI over HTTPS.
+            (optional)
             supported_alpn: Configure ALPN option. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -221,7 +248,8 @@ class SslSshProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -315,8 +343,10 @@ class SslSshProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -324,7 +354,8 @@ class SslSshProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -424,8 +455,10 @@ class SslSshProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             comment: Optional comments. (optional)
             ssl: Configure SSL options. (optional)
@@ -436,28 +469,46 @@ class SslSshProfile:
             smtps: Configure SMTPS options. (optional)
             ssh: Configure SSH options. (optional)
             dot: Configure DNS over TLS options. (optional)
-            allowlist: Enable/disable exempting servers by FortiGuard allowlist. (optional)
-            block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. (optional)
+            allowlist: Enable/disable exempting servers by FortiGuard
+            allowlist. (optional)
+            block_blocklisted_certificates: Enable/disable blocking SSL-based
+            botnet communication by FortiGuard certificate blocklist.
+            (optional)
             ssl_exempt: Servers to exempt from SSL inspection. (optional)
             ech_outer_sni: ClientHelloOuter SNIs to be blocked. (optional)
-            server_cert_mode: Re-sign or replace the server's certificate. (optional)
-            use_ssl_server: Enable/disable the use of SSL server table for SSL offloading. (optional)
+            server_cert_mode: Re-sign or replace the server's certificate.
+            (optional)
+            use_ssl_server: Enable/disable the use of SSL server table for SSL
+            offloading. (optional)
             caname: CA certificate used by SSL Inspection. (optional)
-            untrusted_caname: Untrusted CA certificate used by SSL Inspection. (optional)
-            server_cert: Certificate used by SSL Inspection to replace server certificate. (optional)
-            ssl_server: SSL server settings used for client certificate request. (optional)
-            ssl_exemption_ip_rating: Enable/disable IP based URL rating. (optional)
-            ssl_exemption_log: Enable/disable logging of SSL exemptions. (optional)
-            ssl_anomaly_log: Enable/disable logging of SSL anomalies. (optional)
-            ssl_negotiation_log: Enable/disable logging of SSL negotiation events. (optional)
-            ssl_server_cert_log: Enable/disable logging of server certificate information. (optional)
-            ssl_handshake_log: Enable/disable logging of TLS handshakes. (optional)
-            rpc_over_https: Enable/disable inspection of RPC over HTTPS. (optional)
-            mapi_over_https: Enable/disable inspection of MAPI over HTTPS. (optional)
+            untrusted_caname: Untrusted CA certificate used by SSL Inspection.
+            (optional)
+            server_cert: Certificate used by SSL Inspection to replace server
+            certificate. (optional)
+            ssl_server: SSL server settings used for client certificate
+            request. (optional)
+            ssl_exemption_ip_rating: Enable/disable IP based URL rating.
+            (optional)
+            ssl_exemption_log: Enable/disable logging of SSL exemptions.
+            (optional)
+            ssl_anomaly_log: Enable/disable logging of SSL anomalies.
+            (optional)
+            ssl_negotiation_log: Enable/disable logging of SSL negotiation
+            events. (optional)
+            ssl_server_cert_log: Enable/disable logging of server certificate
+            information. (optional)
+            ssl_handshake_log: Enable/disable logging of TLS handshakes.
+            (optional)
+            rpc_over_https: Enable/disable inspection of RPC over HTTPS.
+            (optional)
+            mapi_over_https: Enable/disable inspection of MAPI over HTTPS.
+            (optional)
             supported_alpn: Configure ALPN option. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -465,7 +516,8 @@ class SslSshProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

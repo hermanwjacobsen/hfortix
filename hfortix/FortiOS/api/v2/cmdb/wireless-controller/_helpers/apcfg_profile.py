@@ -73,7 +73,7 @@ def validate_apcfg_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ap-family if present
     if "ap-family" in payload:
@@ -88,7 +88,7 @@ def validate_apcfg_profile_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate ac-type if present
     if "ac-type" in payload:
@@ -106,7 +106,7 @@ def validate_apcfg_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 3 or int_val > 30:
-                    return (False, f"ac-timer must be between 3 and 30")
+                    return (False, "ac-timer must be between 3 and 30")
             except (ValueError, TypeError):
                 return (False, f"ac-timer must be numeric, got: {value}")
 
@@ -117,7 +117,7 @@ def validate_apcfg_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 49150:
-                    return (False, f"ac-port must be between 1024 and 49150")
+                    return (False, "ac-port must be between 1024 and 49150")
             except (ValueError, TypeError):
                 return (False, f"ac-port must be numeric, got: {value}")
 
@@ -154,7 +154,7 @@ def validate_apcfg_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ap-family if present
     if "ap-family" in payload:
@@ -169,7 +169,7 @@ def validate_apcfg_profile_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate ac-type if present
     if "ac-type" in payload:
@@ -187,7 +187,7 @@ def validate_apcfg_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 3 or int_val > 30:
-                    return (False, f"ac-timer must be between 3 and 30")
+                    return (False, "ac-timer must be between 3 and 30")
             except (ValueError, TypeError):
                 return (False, f"ac-timer must be numeric, got: {value}")
 
@@ -198,7 +198,7 @@ def validate_apcfg_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 49150:
-                    return (False, f"ac-port must be between 1024 and 49150")
+                    return (False, "ac-port must be between 1024 and 49150")
             except (ValueError, TypeError):
                 return (False, f"ac-port must be numeric, got: {value}")
 

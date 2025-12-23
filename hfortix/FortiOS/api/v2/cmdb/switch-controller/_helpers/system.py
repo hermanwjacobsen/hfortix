@@ -91,7 +91,7 @@ def validate_system_put(
                 if int_val < 1 or int_val > 24:
                     return (
                         False,
-                        f"parallel-process must be between 1 and 24",
+                        "parallel-process must be between 1 and 24",
                     )
             except (ValueError, TypeError):
                 return (
@@ -108,7 +108,7 @@ def validate_system_put(
                 if int_val < 30 or int_val > 1800:
                     return (
                         False,
-                        f"data-sync-interval must be between 30 and 1800",
+                        "data-sync-interval must be between 30 and 1800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -125,7 +125,7 @@ def validate_system_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"iot-weight-threshold must be between 0 and 255",
+                        "iot-weight-threshold must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -142,7 +142,7 @@ def validate_system_put(
                 if int_val < 2 or int_val > 10080:
                     return (
                         False,
-                        f"iot-scan-interval must be between 2 and 10080",
+                        "iot-scan-interval must be between 2 and 10080",
                     )
             except (ValueError, TypeError):
                 return (
@@ -151,8 +151,8 @@ def validate_system_put(
                 )
 
     # Validate iot-holdoff if present
-    if "iot-holdoff" in payload:
-        value = payload.get("iot-holdoff")
+    if "iot-holdof" in payload:
+        value = payload.get("iot-holdof")
         if value is not None:
             try:
                 int_val = int(value)
@@ -168,7 +168,7 @@ def validate_system_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 10080:
-                    return (False, f"iot-mac-idle must be between 0 and 10080")
+                    return (False, "iot-mac-idle must be between 0 and 10080")
             except (ValueError, TypeError):
                 return (False, f"iot-mac-idle must be numeric, got: {value}")
 
@@ -181,7 +181,7 @@ def validate_system_put(
                 if int_val < 5 or int_val > 180:
                     return (
                         False,
-                        f"nac-periodic-interval must be between 5 and 180",
+                        "nac-periodic-interval must be between 5 and 180",
                     )
             except (ValueError, TypeError):
                 return (
@@ -198,7 +198,7 @@ def validate_system_put(
                 if int_val < 5 or int_val > 180:
                     return (
                         False,
-                        f"dynamic-periodic-interval must be between 5 and 180",
+                        "dynamic-periodic-interval must be between 5 and 180",
                     )
             except (ValueError, TypeError):
                 return (
@@ -224,7 +224,7 @@ def validate_system_put(
                 if int_val < 8 or int_val > 600:
                     return (
                         False,
-                        f"caputp-echo-interval must be between 8 and 600",
+                        "caputp-echo-interval must be between 8 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -241,7 +241,7 @@ def validate_system_put(
                 if int_val < 0 or int_val > 64:
                     return (
                         False,
-                        f"caputp-max-retransmit must be between 0 and 64",
+                        "caputp-max-retransmit must be between 0 and 64",
                     )
             except (ValueError, TypeError):
                 return (

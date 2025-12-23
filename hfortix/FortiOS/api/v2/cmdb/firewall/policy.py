@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -99,14 +99,20 @@ class Policy:
         Select a specific entry from a CLI table.
 
         Args:
-            policyid: Object identifier (optional for list, required for specific)
+            policyid: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -114,7 +120,8 @@ class Policy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -329,109 +336,175 @@ class Policy:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             policyid: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             policyid: Policy ID (0 - 4294967294). (optional)
             status: Enable or disable this policy. (optional)
             name: Policy name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             srcintf: Incoming (ingress) interface. (optional)
             dstintf: Outgoing (egress) interface. (optional)
             nat64: Enable/disable NAT64. (optional)
             nat46: Enable/disable NAT46. (optional)
             ztna_status: Enable/disable zero trust access. (optional)
-            ztna_device_ownership: Enable/disable zero trust device ownership. (optional)
+            ztna_device_ownership: Enable/disable zero trust device ownership.
+            (optional)
             srcaddr: Source IPv4 address and address group names. (optional)
-            dstaddr: Destination IPv4 address and address group names. (optional)
-            srcaddr6: Source IPv6 address name and address group names. (optional)
-            dstaddr6: Destination IPv6 address name and address group names. (optional)
+            dstaddr: Destination IPv4 address and address group names.
+            (optional)
+            srcaddr6: Source IPv6 address name and address group names.
+            (optional)
+            dstaddr6: Destination IPv6 address name and address group names.
+            (optional)
             ztna_ems_tag: Source ztna-ems-tag names. (optional)
-            ztna_ems_tag_secondary: Source ztna-ems-tag-secondary names. (optional)
+            ztna_ems_tag_secondary: Source ztna-ems-tag-secondary names.
+            (optional)
             ztna_tags_match_logic: ZTNA tag matching logic. (optional)
             ztna_geo_tag: Source ztna-geo-tag names. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address and service are not used.
+            (optional)
             internet_service_name: Internet Service name. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
             network_service_dynamic: Dynamic Network Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_src: Enable/disable use of Internet Services in
+            source for this policy. If enabled, source address is not used.
+            (optional)
             internet_service_src_name: Internet Service source name. (optional)
-            internet_service_src_group: Internet Service source group name. (optional)
-            internet_service_src_custom: Custom Internet Service source name. (optional)
-            network_service_src_dynamic: Dynamic Network Service source name. (optional)
-            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
+            internet_service_src_group: Internet Service source group name.
+            (optional)
+            internet_service_src_custom: Custom Internet Service source name.
+            (optional)
+            network_service_src_dynamic: Dynamic Network Service source name.
+            (optional)
+            internet_service_src_custom_group: Custom Internet Service source
+            group name. (optional)
             reputation_minimum: Minimum Reputation to take action. (optional)
-            reputation_direction: Direction of the initial traffic for reputation to take effect. (optional)
+            reputation_direction: Direction of the initial traffic for
+            reputation to take effect. (optional)
             src_vendor_mac: Vendor MAC source ID. (optional)
-            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for
+            this policy. If enabled, destination address and service are not
+            used. (optional)
             internet_service6_name: IPv6 Internet Service name. (optional)
             internet_service6_group: Internet Service group name. (optional)
-            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
-            internet_service6_custom_group: Custom Internet Service6 group name. (optional)
-            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
-            internet_service6_src_name: IPv6 Internet Service source name. (optional)
-            internet_service6_src_group: Internet Service6 source group name. (optional)
-            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
-            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
-            reputation_minimum6: IPv6 Minimum Reputation to take action. (optional)
-            reputation_direction6: Direction of the initial traffic for IPv6 reputation to take effect. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name.
+            (optional)
+            internet_service6_custom_group: Custom Internet Service6 group
+            name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services
+            in source for this policy. If enabled, source address is not used.
+            (optional)
+            internet_service6_src_name: IPv6 Internet Service source name.
+            (optional)
+            internet_service6_src_group: Internet Service6 source group name.
+            (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source
+            name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source
+            group name. (optional)
+            reputation_minimum6: IPv6 Minimum Reputation to take action.
+            (optional)
+            reputation_direction6: Direction of the initial traffic for IPv6
+            reputation to take effect. (optional)
             rtp_nat: Enable Real Time Protocol (RTP) NAT. (optional)
             rtp_addr: Address names if this is an RTP NAT policy. (optional)
-            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
-            firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied
+            or blocked by a firewall policy. (optional)
+            firewall_session_dirty: How to handle sessions if the configuration
+            of this firewall policy changes. (optional)
             schedule: Schedule name. (optional)
-            schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. (optional)
+            schedule_timeout: Enable to force current sessions to end when the
+            schedule object times out. Disable allows them to end from
+            inactivity. (optional)
             policy_expiry: Enable/disable policy expiry. (optional)
-            policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS). (optional)
-            policy_expiry_date_utc: Policy expiry date and time, in epoch format. (optional)
+            policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+            (optional)
+            policy_expiry_date_utc: Policy expiry date and time, in epoch
+            format. (optional)
             service: Service and service group names. (optional)
-            tos_mask: Non-zero bit positions are used for comparison while zero bit positions are ignored. (optional)
+            tos_mask: Non-zero bit positions are used for comparison while zero
+            bit positions are ignored. (optional)
             tos: ToS (Type of Service) value used for comparison. (optional)
             tos_negate: Enable negated TOS match. (optional)
             anti_replay: Enable/disable anti-replay check. (optional)
-            tcp_session_without_syn: Enable/disable creation of TCP session without SYN flag. (optional)
-            geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. (optional)
-            geoip_match: Match geography address based either on its physical location or registered location. (optional)
-            dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. (optional)
-            passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. (optional)
-            app_monitor: Enable/disable application TCP metrics in session logs.When enabled, auto-asic-offload is disabled. (optional)
-            utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. (optional)
-            inspection_mode: Policy inspection mode (Flow/proxy). Default is Flow mode. (optional)
-            http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. (optional)
-            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
-            ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. (optional)
+            tcp_session_without_syn: Enable/disable creation of TCP session
+            without SYN flag. (optional)
+            geoip_anycast: Enable/disable recognition of anycast IP addresses
+            using the geography IP database. (optional)
+            geoip_match: Match geography address based either on its physical
+            location or registered location. (optional)
+            dynamic_shaping: Enable/disable dynamic RADIUS defined traffic
+            shaping. (optional)
+            passive_wan_health_measurement: Enable/disable passive WAN health
+            measurement. When enabled, auto-asic-offload is disabled.
+            (optional)
+            app_monitor: Enable/disable application TCP metrics in session
+            logs.When enabled, auto-asic-offload is disabled. (optional)
+            utm_status: Enable to add one or more security profiles (AV, IPS,
+            etc.) to the firewall policy. (optional)
+            inspection_mode: Policy inspection mode (Flow/proxy). Default is
+            Flow mode. (optional)
+            http_policy_redirect: Redirect HTTP(S) traffic to matching
+            transparent web proxy policy. (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent
+            proxy policy. (optional)
+            ztna_policy_redirect: Redirect ZTNA traffic to matching
+            Access-Proxy proxy-policy. (optional)
             webproxy_profile: Webproxy profile name. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
             logtraffic_start: Record logs when a session starts. (optional)
-            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            log_http_transaction: Enable/disable HTTP transaction log.
+            (optional)
             capture_packet: Enable/disable capture packets. (optional)
-            auto_asic_offload: Enable/disable policy traffic ASIC offloading. (optional)
-            np_acceleration: Enable/disable UTM Network Processor acceleration. (optional)
+            auto_asic_offload: Enable/disable policy traffic ASIC offloading.
+            (optional)
+            np_acceleration: Enable/disable UTM Network Processor acceleration.
+            (optional)
             webproxy_forward_server: Webproxy forward server name. (optional)
             traffic_shaper: Traffic shaper. (optional)
             traffic_shaper_reverse: Reverse traffic shaper. (optional)
@@ -440,79 +513,137 @@ class Policy:
             pcp_outbound: Enable/disable PCP outbound SNAT. (optional)
             pcp_inbound: Enable/disable PCP inbound DNAT. (optional)
             pcp_poolname: PCP pool names. (optional)
-            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets from any host. (optional)
-            permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. (optional)
-            fixedport: Enable to prevent source NAT from changing a session's source port. (optional)
-            port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. (optional)
-            port_random: Enable/disable random source port selection for source NAT. (optional)
+            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets
+            from any host. (optional)
+            permit_stun_host: Accept UDP packets from any Session Traversal
+            Utilities for NAT (STUN) host. (optional)
+            fixedport: Enable to prevent source NAT from changing a session's
+            source port. (optional)
+            port_preserve: Enable/disable preservation of the original source
+            port from source NAT if it has not been used. (optional)
+            port_random: Enable/disable random source port selection for source
+            NAT. (optional)
             ippool: Enable to use IP Pools for source NAT. (optional)
             poolname: IP Pool names. (optional)
             poolname6: IPv6 pool names. (optional)
-            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
-            vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest. (optional)
-            vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest. (optional)
-            inbound: Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. (optional)
-            outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. (optional)
-            natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. (optional)
-            natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. (optional)
-            fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. (optional)
-            wccp: Enable/disable forwarding traffic matching this policy to a configured WCCP server. (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0
+            means use the system default session TTL). (optional)
+            vlan_cos_fwd: VLAN forward direction user priority: 255
+            passthrough, 0 lowest, 7 highest. (optional)
+            vlan_cos_rev: VLAN reverse direction user priority: 255
+            passthrough, 0 lowest, 7 highest. (optional)
+            inbound: Policy-based IPsec VPN: only traffic from the remote
+            network can initiate a VPN. (optional)
+            outbound: Policy-based IPsec VPN: only traffic from the internal
+            network can initiate a VPN. (optional)
+            natinbound: Policy-based IPsec VPN: apply destination NAT to
+            inbound traffic. (optional)
+            natoutbound: Policy-based IPsec VPN: apply source NAT to outbound
+            traffic. (optional)
+            fec: Enable/disable Forward Error Correction on traffic matching
+            this policy on a FEC device. (optional)
+            wccp: Enable/disable forwarding traffic matching this policy to a
+            configured WCCP server. (optional)
             ntlm: Enable/disable NTLM authentication. (optional)
             ntlm_guest: Enable/disable NTLM guest user access. (optional)
-            ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. (optional)
-            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
-            groups: Names of user groups that can authenticate with this policy. (optional)
-            users: Names of individual users that can authenticate with this policy. (optional)
+            ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers.
+            (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
+            (optional)
+            groups: Names of user groups that can authenticate with this
+            policy. (optional)
+            users: Names of individual users that can authenticate with this
+            policy. (optional)
             fsso_groups: Names of FSSO groups. (optional)
             auth_path: Enable/disable authentication-based routing. (optional)
-            disclaimer: Enable/disable user authentication disclaimer. (optional)
+            disclaimer: Enable/disable user authentication disclaimer.
+            (optional)
             email_collect: Enable/disable email collection. (optional)
-            vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1. (optional)
-            natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic. (optional)
-            match_vip: Enable to match packets that have had their destination addresses changed by a VIP. (optional)
-            match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. (optional)
-            diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. (optional)
-            diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. (optional)
-            diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. (optional)
-            diffservcode_forward: Change packet's DiffServ to this value. (optional)
-            diffservcode_rev: Change packet's reverse (reply) DiffServ to this value. (optional)
+            vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
+            (optional)
+            natip: Policy-based IPsec VPN: source NAT IP address for outgoing
+            traffic. (optional)
+            match_vip: Enable to match packets that have had their destination
+            addresses changed by a VIP. (optional)
+            match_vip_only: Enable/disable matching of only those packets that
+            have had their destination addresses changed by a VIP. (optional)
+            diffserv_copy: Enable to copy packet's DiffServ values from
+            session's original direction to its reply direction. (optional)
+            diffserv_forward: Enable to change packet's DiffServ values to the
+            specified diffservcode-forward value. (optional)
+            diffserv_reverse: Enable to change packet's reverse (reply)
+            DiffServ values to the specified diffservcode-rev value. (optional)
+            diffservcode_forward: Change packet's DiffServ to this value.
+            (optional)
+            diffservcode_rev: Change packet's reverse (reply) DiffServ to this
+            value. (optional)
             tcp_mss_sender: Sender TCP maximum segment size (MSS). (optional)
-            tcp_mss_receiver: Receiver TCP maximum segment size (MSS). (optional)
+            tcp_mss_receiver: Receiver TCP maximum segment size (MSS).
+            (optional)
             comments: Comment. (optional)
-            auth_cert: HTTPS server certificate for policy authentication. (optional)
-            auth_redirect_addr: HTTP-to-HTTPS redirect address for firewall authentication. (optional)
-            redirect_url: URL users are directed to after seeing and accepting the disclaimer or authenticating. (optional)
-            identity_based_route: Name of identity-based routing rule. (optional)
+            auth_cert: HTTPS server certificate for policy authentication.
+            (optional)
+            auth_redirect_addr: HTTP-to-HTTPS redirect address for firewall
+            authentication. (optional)
+            redirect_url: URL users are directed to after seeing and accepting
+            the disclaimer or authenticating. (optional)
+            identity_based_route: Name of identity-based routing rule.
+            (optional)
             block_notification: Enable/disable block notification. (optional)
-            custom_log_fields: Custom fields to append to log messages for this policy. (optional)
-            replacemsg_override_group: Override the default replacement message group for this policy. (optional)
-            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
-            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
-            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
-            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
-            ztna_ems_tag_negate: When enabled ztna-ems-tag specifies what the tags must NOT be. (optional)
-            service_negate: When enabled service specifies what the service must NOT be. (optional)
-            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
-            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
-            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
-            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
-            timeout_send_rst: Enable/disable sending RST packets when TCP sessions expire. (optional)
-            captive_portal_exempt: Enable to exempt some users from the captive portal. (optional)
+            custom_log_fields: Custom fields to append to log messages for this
+            policy. (optional)
+            replacemsg_override_group: Override the default replacement message
+            group for this policy. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source
+            address must NOT be. (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source
+            address must NOT be. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination
+            address must NOT be. (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the
+            destination address must NOT be. (optional)
+            ztna_ems_tag_negate: When enabled ztna-ems-tag specifies what the
+            tags must NOT be. (optional)
+            service_negate: When enabled service specifies what the service
+            must NOT be. (optional)
+            internet_service_negate: When enabled internet-service specifies
+            what the service must NOT be. (optional)
+            internet_service_src_negate: When enabled internet-service-src
+            specifies what the service must NOT be. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies
+            what the service must NOT be. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src
+            specifies what the service must NOT be. (optional)
+            timeout_send_rst: Enable/disable sending RST packets when TCP
+            sessions expire. (optional)
+            captive_portal_exempt: Enable to exempt some users from the captive
+            portal. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
             dsri: Enable DSRI to ignore HTTP server responses. (optional)
-            radius_mac_auth_bypass: Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. (optional)
-            radius_ip_auth_bypass: Enable IP authentication bypass. The bypassed IP address must be received from RADIUS server. (optional)
-            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. (optional)
+            radius_mac_auth_bypass: Enable MAC authentication bypass. The
+            bypassed MAC address must be received from RADIUS server.
+            (optional)
+            radius_ip_auth_bypass: Enable IP authentication bypass. The
+            bypassed IP address must be received from RADIUS server. (optional)
+            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee
+            packet order of 3-way handshake. (optional)
             vlan_filter: VLAN ranges to allow (optional)
-            sgt_check: Enable/disable security group tags (SGT) check. (optional)
+            sgt_check: Enable/disable security group tags (SGT) check.
+            (optional)
             sgt: Security group tags. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
-            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
-            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service
+            name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service
+            source name. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -520,7 +651,8 @@ class Policy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -738,8 +870,10 @@ class Policy:
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -747,7 +881,8 @@ class Policy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -995,107 +1130,172 @@ class Policy:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             policyid: Policy ID (0 - 4294967294). (optional)
             status: Enable or disable this policy. (optional)
             name: Policy name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             srcintf: Incoming (ingress) interface. (optional)
             dstintf: Outgoing (egress) interface. (optional)
             nat64: Enable/disable NAT64. (optional)
             nat46: Enable/disable NAT46. (optional)
             ztna_status: Enable/disable zero trust access. (optional)
-            ztna_device_ownership: Enable/disable zero trust device ownership. (optional)
+            ztna_device_ownership: Enable/disable zero trust device ownership.
+            (optional)
             srcaddr: Source IPv4 address and address group names. (optional)
-            dstaddr: Destination IPv4 address and address group names. (optional)
-            srcaddr6: Source IPv6 address name and address group names. (optional)
-            dstaddr6: Destination IPv6 address name and address group names. (optional)
+            dstaddr: Destination IPv4 address and address group names.
+            (optional)
+            srcaddr6: Source IPv6 address name and address group names.
+            (optional)
+            dstaddr6: Destination IPv6 address name and address group names.
+            (optional)
             ztna_ems_tag: Source ztna-ems-tag names. (optional)
-            ztna_ems_tag_secondary: Source ztna-ems-tag-secondary names. (optional)
+            ztna_ems_tag_secondary: Source ztna-ems-tag-secondary names.
+            (optional)
             ztna_tags_match_logic: ZTNA tag matching logic. (optional)
             ztna_geo_tag: Source ztna-geo-tag names. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address and service are not used.
+            (optional)
             internet_service_name: Internet Service name. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
             network_service_dynamic: Dynamic Network Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_src: Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_src: Enable/disable use of Internet Services in
+            source for this policy. If enabled, source address is not used.
+            (optional)
             internet_service_src_name: Internet Service source name. (optional)
-            internet_service_src_group: Internet Service source group name. (optional)
-            internet_service_src_custom: Custom Internet Service source name. (optional)
-            network_service_src_dynamic: Dynamic Network Service source name. (optional)
-            internet_service_src_custom_group: Custom Internet Service source group name. (optional)
+            internet_service_src_group: Internet Service source group name.
+            (optional)
+            internet_service_src_custom: Custom Internet Service source name.
+            (optional)
+            network_service_src_dynamic: Dynamic Network Service source name.
+            (optional)
+            internet_service_src_custom_group: Custom Internet Service source
+            group name. (optional)
             reputation_minimum: Minimum Reputation to take action. (optional)
-            reputation_direction: Direction of the initial traffic for reputation to take effect. (optional)
+            reputation_direction: Direction of the initial traffic for
+            reputation to take effect. (optional)
             src_vendor_mac: Vendor MAC source ID. (optional)
-            internet_service6: Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. (optional)
+            internet_service6: Enable/disable use of IPv6 Internet Services for
+            this policy. If enabled, destination address and service are not
+            used. (optional)
             internet_service6_name: IPv6 Internet Service name. (optional)
             internet_service6_group: Internet Service group name. (optional)
-            internet_service6_custom: Custom IPv6 Internet Service name. (optional)
-            internet_service6_custom_group: Custom Internet Service6 group name. (optional)
-            internet_service6_src: Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. (optional)
-            internet_service6_src_name: IPv6 Internet Service source name. (optional)
-            internet_service6_src_group: Internet Service6 source group name. (optional)
-            internet_service6_src_custom: Custom IPv6 Internet Service source name. (optional)
-            internet_service6_src_custom_group: Custom Internet Service6 source group name. (optional)
-            reputation_minimum6: IPv6 Minimum Reputation to take action. (optional)
-            reputation_direction6: Direction of the initial traffic for IPv6 reputation to take effect. (optional)
+            internet_service6_custom: Custom IPv6 Internet Service name.
+            (optional)
+            internet_service6_custom_group: Custom Internet Service6 group
+            name. (optional)
+            internet_service6_src: Enable/disable use of IPv6 Internet Services
+            in source for this policy. If enabled, source address is not used.
+            (optional)
+            internet_service6_src_name: IPv6 Internet Service source name.
+            (optional)
+            internet_service6_src_group: Internet Service6 source group name.
+            (optional)
+            internet_service6_src_custom: Custom IPv6 Internet Service source
+            name. (optional)
+            internet_service6_src_custom_group: Custom Internet Service6 source
+            group name. (optional)
+            reputation_minimum6: IPv6 Minimum Reputation to take action.
+            (optional)
+            reputation_direction6: Direction of the initial traffic for IPv6
+            reputation to take effect. (optional)
             rtp_nat: Enable Real Time Protocol (RTP) NAT. (optional)
             rtp_addr: Address names if this is an RTP NAT policy. (optional)
-            send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. (optional)
-            firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. (optional)
+            send_deny_packet: Enable to send a reply when a session is denied
+            or blocked by a firewall policy. (optional)
+            firewall_session_dirty: How to handle sessions if the configuration
+            of this firewall policy changes. (optional)
             schedule: Schedule name. (optional)
-            schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. (optional)
+            schedule_timeout: Enable to force current sessions to end when the
+            schedule object times out. Disable allows them to end from
+            inactivity. (optional)
             policy_expiry: Enable/disable policy expiry. (optional)
-            policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS). (optional)
-            policy_expiry_date_utc: Policy expiry date and time, in epoch format. (optional)
+            policy_expiry_date: Policy expiry date (YYYY-MM-DD HH:MM:SS).
+            (optional)
+            policy_expiry_date_utc: Policy expiry date and time, in epoch
+            format. (optional)
             service: Service and service group names. (optional)
-            tos_mask: Non-zero bit positions are used for comparison while zero bit positions are ignored. (optional)
+            tos_mask: Non-zero bit positions are used for comparison while zero
+            bit positions are ignored. (optional)
             tos: ToS (Type of Service) value used for comparison. (optional)
             tos_negate: Enable negated TOS match. (optional)
             anti_replay: Enable/disable anti-replay check. (optional)
-            tcp_session_without_syn: Enable/disable creation of TCP session without SYN flag. (optional)
-            geoip_anycast: Enable/disable recognition of anycast IP addresses using the geography IP database. (optional)
-            geoip_match: Match geography address based either on its physical location or registered location. (optional)
-            dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. (optional)
-            passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. (optional)
-            app_monitor: Enable/disable application TCP metrics in session logs.When enabled, auto-asic-offload is disabled. (optional)
-            utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. (optional)
-            inspection_mode: Policy inspection mode (Flow/proxy). Default is Flow mode. (optional)
-            http_policy_redirect: Redirect HTTP(S) traffic to matching transparent web proxy policy. (optional)
-            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
-            ztna_policy_redirect: Redirect ZTNA traffic to matching Access-Proxy proxy-policy. (optional)
+            tcp_session_without_syn: Enable/disable creation of TCP session
+            without SYN flag. (optional)
+            geoip_anycast: Enable/disable recognition of anycast IP addresses
+            using the geography IP database. (optional)
+            geoip_match: Match geography address based either on its physical
+            location or registered location. (optional)
+            dynamic_shaping: Enable/disable dynamic RADIUS defined traffic
+            shaping. (optional)
+            passive_wan_health_measurement: Enable/disable passive WAN health
+            measurement. When enabled, auto-asic-offload is disabled.
+            (optional)
+            app_monitor: Enable/disable application TCP metrics in session
+            logs.When enabled, auto-asic-offload is disabled. (optional)
+            utm_status: Enable to add one or more security profiles (AV, IPS,
+            etc.) to the firewall policy. (optional)
+            inspection_mode: Policy inspection mode (Flow/proxy). Default is
+            Flow mode. (optional)
+            http_policy_redirect: Redirect HTTP(S) traffic to matching
+            transparent web proxy policy. (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent
+            proxy policy. (optional)
+            ztna_policy_redirect: Redirect ZTNA traffic to matching
+            Access-Proxy proxy-policy. (optional)
             webproxy_profile: Webproxy profile name. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
             logtraffic_start: Record logs when a session starts. (optional)
-            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            log_http_transaction: Enable/disable HTTP transaction log.
+            (optional)
             capture_packet: Enable/disable capture packets. (optional)
-            auto_asic_offload: Enable/disable policy traffic ASIC offloading. (optional)
-            np_acceleration: Enable/disable UTM Network Processor acceleration. (optional)
+            auto_asic_offload: Enable/disable policy traffic ASIC offloading.
+            (optional)
+            np_acceleration: Enable/disable UTM Network Processor acceleration.
+            (optional)
             webproxy_forward_server: Webproxy forward server name. (optional)
             traffic_shaper: Traffic shaper. (optional)
             traffic_shaper_reverse: Reverse traffic shaper. (optional)
@@ -1104,79 +1304,137 @@ class Policy:
             pcp_outbound: Enable/disable PCP outbound SNAT. (optional)
             pcp_inbound: Enable/disable PCP inbound DNAT. (optional)
             pcp_poolname: PCP pool names. (optional)
-            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets from any host. (optional)
-            permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. (optional)
-            fixedport: Enable to prevent source NAT from changing a session's source port. (optional)
-            port_preserve: Enable/disable preservation of the original source port from source NAT if it has not been used. (optional)
-            port_random: Enable/disable random source port selection for source NAT. (optional)
+            permit_any_host: Enable/disable fullcone NAT. Accept UDP packets
+            from any host. (optional)
+            permit_stun_host: Accept UDP packets from any Session Traversal
+            Utilities for NAT (STUN) host. (optional)
+            fixedport: Enable to prevent source NAT from changing a session's
+            source port. (optional)
+            port_preserve: Enable/disable preservation of the original source
+            port from source NAT if it has not been used. (optional)
+            port_random: Enable/disable random source port selection for source
+            NAT. (optional)
             ippool: Enable to use IP Pools for source NAT. (optional)
             poolname: IP Pool names. (optional)
             poolname6: IPv6 pool names. (optional)
-            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
-            vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest. (optional)
-            vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest. (optional)
-            inbound: Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. (optional)
-            outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. (optional)
-            natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. (optional)
-            natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. (optional)
-            fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. (optional)
-            wccp: Enable/disable forwarding traffic matching this policy to a configured WCCP server. (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0
+            means use the system default session TTL). (optional)
+            vlan_cos_fwd: VLAN forward direction user priority: 255
+            passthrough, 0 lowest, 7 highest. (optional)
+            vlan_cos_rev: VLAN reverse direction user priority: 255
+            passthrough, 0 lowest, 7 highest. (optional)
+            inbound: Policy-based IPsec VPN: only traffic from the remote
+            network can initiate a VPN. (optional)
+            outbound: Policy-based IPsec VPN: only traffic from the internal
+            network can initiate a VPN. (optional)
+            natinbound: Policy-based IPsec VPN: apply destination NAT to
+            inbound traffic. (optional)
+            natoutbound: Policy-based IPsec VPN: apply source NAT to outbound
+            traffic. (optional)
+            fec: Enable/disable Forward Error Correction on traffic matching
+            this policy on a FEC device. (optional)
+            wccp: Enable/disable forwarding traffic matching this policy to a
+            configured WCCP server. (optional)
             ntlm: Enable/disable NTLM authentication. (optional)
             ntlm_guest: Enable/disable NTLM guest user access. (optional)
-            ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. (optional)
-            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
-            groups: Names of user groups that can authenticate with this policy. (optional)
-            users: Names of individual users that can authenticate with this policy. (optional)
+            ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers.
+            (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
+            (optional)
+            groups: Names of user groups that can authenticate with this
+            policy. (optional)
+            users: Names of individual users that can authenticate with this
+            policy. (optional)
             fsso_groups: Names of FSSO groups. (optional)
             auth_path: Enable/disable authentication-based routing. (optional)
-            disclaimer: Enable/disable user authentication disclaimer. (optional)
+            disclaimer: Enable/disable user authentication disclaimer.
+            (optional)
             email_collect: Enable/disable email collection. (optional)
-            vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1. (optional)
-            natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic. (optional)
-            match_vip: Enable to match packets that have had their destination addresses changed by a VIP. (optional)
-            match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. (optional)
-            diffserv_copy: Enable to copy packet's DiffServ values from session's original direction to its reply direction. (optional)
-            diffserv_forward: Enable to change packet's DiffServ values to the specified diffservcode-forward value. (optional)
-            diffserv_reverse: Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. (optional)
-            diffservcode_forward: Change packet's DiffServ to this value. (optional)
-            diffservcode_rev: Change packet's reverse (reply) DiffServ to this value. (optional)
+            vpntunnel: Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
+            (optional)
+            natip: Policy-based IPsec VPN: source NAT IP address for outgoing
+            traffic. (optional)
+            match_vip: Enable to match packets that have had their destination
+            addresses changed by a VIP. (optional)
+            match_vip_only: Enable/disable matching of only those packets that
+            have had their destination addresses changed by a VIP. (optional)
+            diffserv_copy: Enable to copy packet's DiffServ values from
+            session's original direction to its reply direction. (optional)
+            diffserv_forward: Enable to change packet's DiffServ values to the
+            specified diffservcode-forward value. (optional)
+            diffserv_reverse: Enable to change packet's reverse (reply)
+            DiffServ values to the specified diffservcode-rev value. (optional)
+            diffservcode_forward: Change packet's DiffServ to this value.
+            (optional)
+            diffservcode_rev: Change packet's reverse (reply) DiffServ to this
+            value. (optional)
             tcp_mss_sender: Sender TCP maximum segment size (MSS). (optional)
-            tcp_mss_receiver: Receiver TCP maximum segment size (MSS). (optional)
+            tcp_mss_receiver: Receiver TCP maximum segment size (MSS).
+            (optional)
             comments: Comment. (optional)
-            auth_cert: HTTPS server certificate for policy authentication. (optional)
-            auth_redirect_addr: HTTP-to-HTTPS redirect address for firewall authentication. (optional)
-            redirect_url: URL users are directed to after seeing and accepting the disclaimer or authenticating. (optional)
-            identity_based_route: Name of identity-based routing rule. (optional)
+            auth_cert: HTTPS server certificate for policy authentication.
+            (optional)
+            auth_redirect_addr: HTTP-to-HTTPS redirect address for firewall
+            authentication. (optional)
+            redirect_url: URL users are directed to after seeing and accepting
+            the disclaimer or authenticating. (optional)
+            identity_based_route: Name of identity-based routing rule.
+            (optional)
             block_notification: Enable/disable block notification. (optional)
-            custom_log_fields: Custom fields to append to log messages for this policy. (optional)
-            replacemsg_override_group: Override the default replacement message group for this policy. (optional)
-            srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. (optional)
-            srcaddr6_negate: When enabled srcaddr6 specifies what the source address must NOT be. (optional)
-            dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. (optional)
-            dstaddr6_negate: When enabled dstaddr6 specifies what the destination address must NOT be. (optional)
-            ztna_ems_tag_negate: When enabled ztna-ems-tag specifies what the tags must NOT be. (optional)
-            service_negate: When enabled service specifies what the service must NOT be. (optional)
-            internet_service_negate: When enabled internet-service specifies what the service must NOT be. (optional)
-            internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. (optional)
-            internet_service6_negate: When enabled internet-service6 specifies what the service must NOT be. (optional)
-            internet_service6_src_negate: When enabled internet-service6-src specifies what the service must NOT be. (optional)
-            timeout_send_rst: Enable/disable sending RST packets when TCP sessions expire. (optional)
-            captive_portal_exempt: Enable to exempt some users from the captive portal. (optional)
+            custom_log_fields: Custom fields to append to log messages for this
+            policy. (optional)
+            replacemsg_override_group: Override the default replacement message
+            group for this policy. (optional)
+            srcaddr_negate: When enabled srcaddr specifies what the source
+            address must NOT be. (optional)
+            srcaddr6_negate: When enabled srcaddr6 specifies what the source
+            address must NOT be. (optional)
+            dstaddr_negate: When enabled dstaddr specifies what the destination
+            address must NOT be. (optional)
+            dstaddr6_negate: When enabled dstaddr6 specifies what the
+            destination address must NOT be. (optional)
+            ztna_ems_tag_negate: When enabled ztna-ems-tag specifies what the
+            tags must NOT be. (optional)
+            service_negate: When enabled service specifies what the service
+            must NOT be. (optional)
+            internet_service_negate: When enabled internet-service specifies
+            what the service must NOT be. (optional)
+            internet_service_src_negate: When enabled internet-service-src
+            specifies what the service must NOT be. (optional)
+            internet_service6_negate: When enabled internet-service6 specifies
+            what the service must NOT be. (optional)
+            internet_service6_src_negate: When enabled internet-service6-src
+            specifies what the service must NOT be. (optional)
+            timeout_send_rst: Enable/disable sending RST packets when TCP
+            sessions expire. (optional)
+            captive_portal_exempt: Enable to exempt some users from the captive
+            portal. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
             dsri: Enable DSRI to ignore HTTP server responses. (optional)
-            radius_mac_auth_bypass: Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. (optional)
-            radius_ip_auth_bypass: Enable IP authentication bypass. The bypassed IP address must be received from RADIUS server. (optional)
-            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. (optional)
+            radius_mac_auth_bypass: Enable MAC authentication bypass. The
+            bypassed MAC address must be received from RADIUS server.
+            (optional)
+            radius_ip_auth_bypass: Enable IP authentication bypass. The
+            bypassed IP address must be received from RADIUS server. (optional)
+            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee
+            packet order of 3-way handshake. (optional)
             vlan_filter: VLAN ranges to allow (optional)
-            sgt_check: Enable/disable security group tags (SGT) check. (optional)
+            sgt_check: Enable/disable security group tags (SGT) check.
+            (optional)
             sgt: Security group tags. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service_src_fortiguard: FortiGuard Internet Service source name. (optional)
-            internet_service6_fortiguard: FortiGuard IPv6 Internet Service name. (optional)
-            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service source name. (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service_src_fortiguard: FortiGuard Internet Service source
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard IPv6 Internet Service
+            name. (optional)
+            internet_service6_src_fortiguard: FortiGuard IPv6 Internet Service
+            source name. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -1184,7 +1442,8 @@ class Policy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

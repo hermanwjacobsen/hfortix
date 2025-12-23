@@ -81,22 +81,37 @@ class Generate:
         Generate a certificate signing request (CSR) and a private key.
 
         Args:
-            certname: Certicate name. Used to retrieve / download the CSR. Not included in CSR and key content. (optional)
-            subject: Subject (Host IP/Domain Name/E-Mail). Common Name (CN) of the certificate subject. (optional)
-            keytype: Generate a RSA or an elliptic curve certificate request [rsa|ec]. The Elliptic Curve option is unavailable if the FortiGate is a Low Encryption Device (LENC) (optional)
-            keysize: Key size.[1024|1536|2048|4096]. 512 only if the FortiGate is a Low Encryption Device (LENC). Required when keytype is RSA. (optional)
-            curvename: Elliptic curve name. [secp256r1|secp384r1|secp521r1]. Unavailable if the FortiGate is a Low Encryption Device (LENC). Required when keytype is ec. (optional)
-            orgunits: List of organization units. Organization Units (OU) of the certificate subject. (optional)
+            certname: Certicate name. Used to retrieve / download the CSR. Not
+            included in CSR and key content. (optional)
+            subject: Subject (Host IP/Domain Name/E-Mail). Common Name (CN) of
+            the certificate subject. (optional)
+            keytype: Generate a RSA or an elliptic curve certificate request
+            [rsa|ec]. The Elliptic Curve option is unavailable if the FortiGate
+            is a Low Encryption Device (LENC) (optional)
+            keysize: Key size.[1024|1536|2048|4096]. 512 only if the FortiGate
+            is a Low Encryption Device (LENC). Required when keytype is RSA.
+            (optional)
+            curvename: Elliptic curve name. [secp256r1|secp384r1|secp521r1].
+            Unavailable if the FortiGate is a Low Encryption Device (LENC).
+            Required when keytype is ec. (optional)
+            orgunits: List of organization units. Organization Units (OU) of
+            the certificate subject. (optional)
             org: Organization (O) of the certificate subject. (optional)
             city: Locality (L) of the certificate subject. (optional)
             state: State (ST) of the certificate subject. (optional)
             countrycode: Country (C) of the certificate subject. (optional)
             email: Email of the certificate subject. (optional)
-            subject_alt_name: Subject alternative name (SAN) of the certificate. (optional)
-            password: Password / pass phrase for the private key. If not provided, FortiGate generates a random one. (optional)
-            scep_url: SCEP server URL. If provided, use the url to enroll the csr through SCEP. (optional)
-            scep_password: SCEP challenge password. Some SCEP servers may require challege password. Provide it when SCEP server requires. (optional)
-            scope: Scope of CSR [vdom*|global]. Global scope is only accessible for global administrators (optional)
+            subject_alt_name: Subject alternative name (SAN) of the
+            certificate. (optional)
+            password: Password / pass phrase for the private key. If not
+            provided, FortiGate generates a random one. (optional)
+            scep_url: SCEP server URL. If provided, use the url to enroll the
+            csr through SCEP. (optional)
+            scep_password: SCEP challenge password. Some SCEP servers may
+            require challege password. Provide it when SCEP server requires.
+            (optional)
+            scope: Scope of CSR [vdom*|global]. Global scope is only accessible
+            for global administrators (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

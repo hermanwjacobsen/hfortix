@@ -109,7 +109,8 @@ class SetStatus:
         Args:
             bssid: List of rogue AP MAC addresses. (optional)
             ssid: Corresponding list of rogue AP SSIDs. (optional)
-            status: Status to assign matching APs [unclassified|rogue|accepted|suppressed]. (optional)
+            status: Status to assign matching APs
+            [unclassified|rogue|accepted|suppressed]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -160,7 +161,8 @@ class RogueAp:
         Retrieve a list of detected rogue APs.
 
         Args:
-            managed_ssid_only: Filter: True to include only WiFi controller managed SSIDs. (optional)
+            managed_ssid_only: Filter: True to include only WiFi controller
+            managed SSIDs. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -333,8 +333,8 @@ def validate_setting_put(
             )
 
     # Validate web-svc-perf if present
-    if "web-svc-perf" in payload:
-        value = payload.get("web-svc-perf")
+    if "web-svc-per" in payload:
+        value = payload.get("web-svc-per")
         if value and value not in VALID_BODY_WEB_SVC_PERF:
             return (
                 False,
@@ -345,6 +345,6 @@ def validate_setting_put(
     if "anonymization-hash" in payload:
         value = payload.get("anonymization-hash")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"anonymization-hash cannot exceed 32 characters")
+            return (False, "anonymization-hash cannot exceed 32 characters")
 
     return (True, None)

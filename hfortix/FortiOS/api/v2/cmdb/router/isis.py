@@ -88,11 +88,15 @@ class Isis:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Isis:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,23 +175,37 @@ class Isis:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             is_type: IS type. (optional)
-            adv_passive_only: Enable/disable IS-IS advertisement of passive interfaces only. (optional)
-            adv_passive_only6: Enable/disable IPv6 IS-IS advertisement of passive interfaces only. (optional)
+            adv_passive_only: Enable/disable IS-IS advertisement of passive
+            interfaces only. (optional)
+            adv_passive_only6: Enable/disable IPv6 IS-IS advertisement of
+            passive interfaces only. (optional)
             auth_mode_l1: Level 1 authentication mode. (optional)
             auth_mode_l2: Level 2 authentication mode. (optional)
-            auth_password_l1: Authentication password for level 1 PDUs. (optional)
-            auth_password_l2: Authentication password for level 2 PDUs. (optional)
-            auth_keychain_l1: Authentication key-chain for level 1 PDUs. (optional)
-            auth_keychain_l2: Authentication key-chain for level 2 PDUs. (optional)
-            auth_sendonly_l1: Enable/disable level 1 authentication send-only. (optional)
-            auth_sendonly_l2: Enable/disable level 2 authentication send-only. (optional)
-            ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad checksums. (optional)
-            lsp_gen_interval_l1: Minimum interval for level 1 LSP regenerating. (optional)
-            lsp_gen_interval_l2: Minimum interval for level 2 LSP regenerating. (optional)
+            auth_password_l1: Authentication password for level 1 PDUs.
+            (optional)
+            auth_password_l2: Authentication password for level 2 PDUs.
+            (optional)
+            auth_keychain_l1: Authentication key-chain for level 1 PDUs.
+            (optional)
+            auth_keychain_l2: Authentication key-chain for level 2 PDUs.
+            (optional)
+            auth_sendonly_l1: Enable/disable level 1 authentication send-only.
+            (optional)
+            auth_sendonly_l2: Enable/disable level 2 authentication send-only.
+            (optional)
+            ignore_lsp_errors: Enable/disable ignoring of LSP errors with bad
+            checksums. (optional)
+            lsp_gen_interval_l1: Minimum interval for level 1 LSP regenerating.
+            (optional)
+            lsp_gen_interval_l2: Minimum interval for level 2 LSP regenerating.
+            (optional)
             lsp_refresh_interval: LSP refresh time in seconds. (optional)
             max_lsp_lifetime: Maximum LSP lifetime in seconds. (optional)
             spf_interval_exp_l1: Level 1 SPF calculation delay. (optional)
@@ -194,29 +213,46 @@ class Isis:
             dynamic_hostname: Enable/disable dynamic hostname. (optional)
             adjacency_check: Enable/disable adjacency check. (optional)
             adjacency_check6: Enable/disable IPv6 adjacency check. (optional)
-            overload_bit: Enable/disable signal other routers not to use us in SPF. (optional)
-            overload_bit_suppress: Suppress overload-bit for the specific prefixes. (optional)
-            overload_bit_on_startup: Overload-bit only temporarily after reboot. (optional)
-            default_originate: Enable/disable distribution of default route information. (optional)
-            default_originate6: Enable/disable distribution of default IPv6 route information. (optional)
-            metric_style: Use old-style (ISO 10589) or new-style packet formats. (optional)
-            redistribute_l1: Enable/disable redistribution of level 1 routes into level 2. (optional)
-            redistribute_l1_list: Access-list for route redistribution from l1 to l2. (optional)
-            redistribute_l2: Enable/disable redistribution of level 2 routes into level 1. (optional)
-            redistribute_l2_list: Access-list for route redistribution from l2 to l1. (optional)
-            redistribute6_l1: Enable/disable redistribution of level 1 IPv6 routes into level 2. (optional)
-            redistribute6_l1_list: Access-list for IPv6 route redistribution from l1 to l2. (optional)
-            redistribute6_l2: Enable/disable redistribution of level 2 IPv6 routes into level 1. (optional)
-            redistribute6_l2_list: Access-list for IPv6 route redistribution from l2 to l1. (optional)
+            overload_bit: Enable/disable signal other routers not to use us in
+            SPF. (optional)
+            overload_bit_suppress: Suppress overload-bit for the specific
+            prefixes. (optional)
+            overload_bit_on_startup: Overload-bit only temporarily after
+            reboot. (optional)
+            default_originate: Enable/disable distribution of default route
+            information. (optional)
+            default_originate6: Enable/disable distribution of default IPv6
+            route information. (optional)
+            metric_style: Use old-style (ISO 10589) or new-style packet
+            formats. (optional)
+            redistribute_l1: Enable/disable redistribution of level 1 routes
+            into level 2. (optional)
+            redistribute_l1_list: Access-list for route redistribution from l1
+            to l2. (optional)
+            redistribute_l2: Enable/disable redistribution of level 2 routes
+            into level 1. (optional)
+            redistribute_l2_list: Access-list for route redistribution from l2
+            to l1. (optional)
+            redistribute6_l1: Enable/disable redistribution of level 1 IPv6
+            routes into level 2. (optional)
+            redistribute6_l1_list: Access-list for IPv6 route redistribution
+            from l1 to l2. (optional)
+            redistribute6_l2: Enable/disable redistribution of level 2 IPv6
+            routes into level 1. (optional)
+            redistribute6_l2_list: Access-list for IPv6 route redistribution
+            from l2 to l1. (optional)
             isis_net: IS-IS net configuration. (optional)
             isis_interface: IS-IS interface configuration. (optional)
             summary_address: IS-IS summary addresses. (optional)
             summary_address6: IS-IS IPv6 summary address. (optional)
             redistribute: IS-IS redistribute protocols. (optional)
-            redistribute6: IS-IS IPv6 redistribution for routing protocols. (optional)
+            redistribute6: IS-IS IPv6 redistribution for routing protocols.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -224,7 +260,8 @@ class Isis:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

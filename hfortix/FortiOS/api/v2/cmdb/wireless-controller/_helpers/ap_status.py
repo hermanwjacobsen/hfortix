@@ -75,7 +75,7 @@ def validate_ap_status_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -83,7 +83,7 @@ def validate_ap_status_post(
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -130,7 +130,7 @@ def validate_ap_status_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -138,7 +138,7 @@ def validate_ap_status_put(
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate status if present
     if "status" in payload:

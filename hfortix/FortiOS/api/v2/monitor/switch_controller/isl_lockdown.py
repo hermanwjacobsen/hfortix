@@ -75,7 +75,8 @@ class Status:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.isl_lockdown.status.get(fortilink='value')
+            >>>
+            fgt.api.monitor.switch_controller.isl_lockdown.status.get(fortilink='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["fortilink"] = fortilink

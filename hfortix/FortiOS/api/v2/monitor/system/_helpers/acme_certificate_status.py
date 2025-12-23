@@ -39,7 +39,8 @@ def validate_acme_certificate_status_get(
         >>> is_valid, error = {func_name}()
         >>>
         >>> # Get specific object
-        >>> is_valid, error = validate_acme_certificate_status_get(mkey="value")
+        >>> is_valid, error =
+        validate_acme_certificate_status_get(mkey="value")
         >>> if not is_valid:
         ...     raise ValueError(error)
     """
@@ -47,7 +48,7 @@ def validate_acme_certificate_status_get(
     # Validate format only if provided and not empty
     if mkey is not None and str(mkey).strip():
         if not isinstance(mkey, (str, int)):
-            return (False, f"mkey must be a string or integer")
+            return (False, "mkey must be a string or integer")
 
     return (True, None)
 

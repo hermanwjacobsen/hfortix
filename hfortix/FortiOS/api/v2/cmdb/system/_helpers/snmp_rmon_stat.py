@@ -74,7 +74,7 @@ def validate_snmp_rmon_stat_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -82,13 +82,13 @@ def validate_snmp_rmon_stat_post(
     if "source" in payload:
         value = payload.get("source")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source cannot exceed 15 characters")
+            return (False, "source cannot exceed 15 characters")
 
     # Validate owner if present
     if "owner" in payload:
         value = payload.get("owner")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"owner cannot exceed 127 characters")
+            return (False, "owner cannot exceed 127 characters")
 
     return (True, None)
 
@@ -126,7 +126,7 @@ def validate_snmp_rmon_stat_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -134,13 +134,13 @@ def validate_snmp_rmon_stat_put(
     if "source" in payload:
         value = payload.get("source")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source cannot exceed 15 characters")
+            return (False, "source cannot exceed 15 characters")
 
     # Validate owner if present
     if "owner" in payload:
         value = payload.get("owner")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"owner cannot exceed 127 characters")
+            return (False, "owner cannot exceed 127 characters")
 
     return (True, None)
 

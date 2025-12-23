@@ -74,7 +74,7 @@ def validate_youtube_key_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -82,7 +82,7 @@ def validate_youtube_key_post(
     if "key" in payload:
         value = payload.get("key")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"key cannot exceed 47 characters")
+            return (False, "key cannot exceed 47 characters")
 
     return (True, None)
 
@@ -120,7 +120,7 @@ def validate_youtube_key_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -128,7 +128,7 @@ def validate_youtube_key_put(
     if "key" in payload:
         value = payload.get("key")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"key cannot exceed 47 characters")
+            return (False, "key cannot exceed 47 characters")
 
     return (True, None)
 

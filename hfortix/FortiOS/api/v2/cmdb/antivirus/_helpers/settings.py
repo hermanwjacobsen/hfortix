@@ -111,7 +111,7 @@ def validate_settings_put(
                 if int_val < 30 or int_val > 3600:
                     return (
                         False,
-                        f"override-timeout must be between 30 and 3600",
+                        "override-timeout must be between 30 and 3600",
                     )
             except (ValueError, TypeError):
                 return (

@@ -80,7 +80,7 @@ def validate_sflow_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"collector-port must be between 0 and 65535",
+                        "collector-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"collector-port must be numeric, got: {value}")

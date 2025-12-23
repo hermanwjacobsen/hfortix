@@ -66,7 +66,8 @@ class Status:
         Retrieve the 5G modem status.
 
         Args:
-            modem: Modem to query status [all|1|2]. Defaults to all modems if not provided. (optional)
+            modem: Modem to query status [all|1|2]. Defaults to all modems if
+            not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -64,7 +64,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset hit count statistics for one or more firewall virtual IP/server by ID.
+        Reset hit count statistics for one or more firewall virtual IP/server
+        by ID.
 
         Args:
             id: Single IDs to reset. (optional)
@@ -156,7 +157,8 @@ class Dnat:
 
         Args:
             uuid: Filter: Virtual IP UUID. (optional)
-            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left empty, will retrieve data for both IPv4 and IPv6. (optional)
+            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left
+            empty, will retrieve data for both IPv4 and IPv6. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

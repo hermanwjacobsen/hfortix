@@ -66,7 +66,9 @@ class Refresh:
         Update the Azure application list data or get the status of an update.
 
         Args:
-            last_update_time: Timestamp of a previous update request. If this is not provided then it will refresh the Azure application list data. (optional)
+            last_update_time: Timestamp of a previous update request. If this
+            is not provided then it will refresh the Azure application list
+            data. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -108,7 +110,8 @@ class ApplicationList:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of Azure applications that can be used for configuring an Azure SDN connector.
+        Retrieve a list of Azure applications that can be used for configuring
+        an Azure SDN connector.
 
         Args:
             payload_dict: Optional dictionary of parameters

@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Vip6:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Vip6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -232,96 +238,184 @@ class Vip6:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Virtual ip6 name. (optional)
             id: Custom defined ID. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             comment: Comment. (optional)
-            type: Configure a static NAT server load balance VIP or access proxy. (optional)
-            src_filter: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. (optional)
-            src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. (optional)
-            extip: IPv6 address or address range on the external interface that you want to map to an address or address range on the destination network. (optional)
-            mappedip: Mapped IPv6 address range in the format startIP-endIP. (optional)
-            nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. (optional)
-            ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). (optional)
+            type: Configure a static NAT server load balance VIP or access
+            proxy. (optional)
+            src_filter: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate
+            addresses with spaces. (optional)
+            src_vip_filter: Enable/disable use of 'src-filter' to match
+            destinations for the reverse SNAT rule. (optional)
+            extip: IPv6 address or address range on the external interface that
+            you want to map to an address or address range on the destination
+            network. (optional)
+            mappedip: Mapped IPv6 address range in the format startIP-endIP.
+            (optional)
+            nat_source_vip: Enable to perform SNAT on traffic from mappedip to
+            the extip for all egress interfaces. (optional)
+            ndp_reply: Enable/disable this FortiGate unit's ability to respond
+            to NDP requests for this virtual IP address (default = enable).
+            (optional)
             portforward: Enable port forwarding. (optional)
             protocol: Protocol to use when forwarding packets. (optional)
-            extport: Incoming port number range that you want to map to a port number range on the destination network. (optional)
-            mappedport: Port number range on the destination network to which the external port number range is mapped. (optional)
+            extport: Incoming port number range that you want to map to a port
+            number range on the destination network. (optional)
+            mappedport: Port number range on the destination network to which
+            the external port number range is mapped. (optional)
             color: Color of icon on the GUI. (optional)
-            ldb_method: Method used to distribute sessions to real servers. (optional)
-            server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). (optional)
-            http_redirect: Enable/disable redirection of HTTP to HTTPS. (optional)
-            persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. (optional)
-            h2_support: Enable/disable HTTP2 support (default = enable). (optional)
-            h3_support: Enable/disable HTTP3/QUIC support (default = disable). (optional)
+            ldb_method: Method used to distribute sessions to real servers.
+            (optional)
+            server_type: Protocol to be load balanced by the virtual server
+            (also called the server load balance virtual IP). (optional)
+            http_redirect: Enable/disable redirection of HTTP to HTTPS.
+            (optional)
+            persistence: Configure how to make sure that clients connect to the
+            same server every time they make a request that is part of the same
+            session. (optional)
+            h2_support: Enable/disable HTTP2 support (default = enable).
+            (optional)
+            h3_support: Enable/disable HTTP3/QUIC support (default = disable).
+            (optional)
             quic: QUIC setting. (optional)
             nat66: Enable/disable DNAT66. (optional)
             nat64: Enable/disable DNAT64. (optional)
             add_nat64_route: Enable/disable adding NAT64 route. (optional)
-            empty_cert_action: Action for an empty client certificate. (optional)
-            user_agent_detect: Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. (optional)
-            client_cert: Enable/disable requesting client certificate. (optional)
-            realservers: Select the real servers that this server load balancing VIP will distribute traffic to. (optional)
-            http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. (optional)
-            http_cookie_domain: Domain that HTTP cookie persistence should apply to. (optional)
-            http_cookie_path: Limit HTTP cookie persistence to the specified path. (optional)
-            http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies. (optional)
-            http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
-            http_cookie_share: Control sharing of cookies across virtual servers. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. (optional)
-            https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. (optional)
+            empty_cert_action: Action for an empty client certificate.
+            (optional)
+            user_agent_detect: Enable/disable detecting device type by HTTP
+            user-agent if no client certificate is provided. (optional)
+            client_cert: Enable/disable requesting client certificate.
+            (optional)
+            realservers: Select the real servers that this server load
+            balancing VIP will distribute traffic to. (optional)
+            http_cookie_domain_from_host: Enable/disable use of HTTP cookie
+            domain from host field in HTTP. (optional)
+            http_cookie_domain: Domain that HTTP cookie persistence should
+            apply to. (optional)
+            http_cookie_path: Limit HTTP cookie persistence to the specified
+            path. (optional)
+            http_cookie_generation: Generation of HTTP cookie to be accepted.
+            Changing invalidates all existing cookies. (optional)
+            http_cookie_age: Time in minutes that client web browsers should
+            keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            http_cookie_share: Control sharing of cookies across virtual
+            servers. Use of same-ip means a cookie from one virtual server can
+            be used by another. Disable stops cookie sharing. (optional)
+            https_cookie_secure: Enable/disable verification that inserted
+            HTTPS cookies are secure. (optional)
             http_multiplex: Enable/disable HTTP multiplexing. (optional)
-            http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the X-Forwarded-For HTTP header. (optional)
-            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used. (optional)
-            outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. (optional)
-            weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. (optional)
-            websphere_server: Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. (optional)
-            ssl_mode: Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). (optional)
-            ssl_certificate: Name of the certificate to use for SSL handshake. (optional)
-            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. (optional)
-            ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. (optional)
-            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. (optional)
-            ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. (optional)
-            ssl_server_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. (optional)
-            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. (optional)
-            ssl_pfs: Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. (optional)
-            ssl_min_version: Lowest SSL/TLS version acceptable from a client. (optional)
-            ssl_max_version: Highest SSL/TLS version acceptable from a client. (optional)
-            ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
-            ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
-            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. (optional)
-            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. (optional)
-            ssl_client_fallback: Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). (optional)
-            ssl_client_renegotiation: Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. (optional)
-            ssl_client_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. (optional)
-            ssl_client_session_state_timeout: Number of minutes to keep client to FortiGate SSL session state. (optional)
-            ssl_client_session_state_max: Maximum number of client to FortiGate SSL session states to keep. (optional)
-            ssl_client_rekey_count: Maximum length of data in MB before triggering a client rekey (0 = disable). (optional)
-            ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. (optional)
-            ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state. (optional)
-            ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep. (optional)
-            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. (optional)
-            ssl_http_match_host: Enable/disable HTTP host matching for location conversion. (optional)
-            ssl_hpkp: Enable/disable including HPKP header in response. (optional)
-            ssl_hpkp_primary: Certificate to generate primary HPKP pin from. (optional)
-            ssl_hpkp_backup: Certificate to generate backup HPKP pin from. (optional)
-            ssl_hpkp_age: Number of minutes the web browser should keep HPKP. (optional)
+            http_ip_header: For HTTP multiplexing, enable to add the original
+            client IP address in the X-Forwarded-For HTTP header. (optional)
+            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS
+            header name. The original client IP address is added to this
+            header. If empty, X-Forwarded-For is used. (optional)
+            outlook_web_access: Enable to add the Front-End-Https header for
+            Microsoft Outlook Web Access. (optional)
+            weblogic_server: Enable to add an HTTP header to indicate SSL
+            offloading for a WebLogic server. (optional)
+            websphere_server: Enable to add an HTTP header to indicate SSL
+            offloading for a WebSphere server. (optional)
+            ssl_mode: Apply SSL offloading between the client and the FortiGate
+            (half) or from the client to the FortiGate and from the FortiGate
+            to the server (full). (optional)
+            ssl_certificate: Name of the certificate to use for SSL handshake.
+            (optional)
+            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange
+            for RSA encryption of SSL sessions. (optional)
+            ssl_algorithm: Permitted encryption algorithms for SSL sessions
+            according to encryption strength. (optional)
+            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client,
+            ordered by priority. (optional)
+            ssl_server_renegotiation: Enable/disable secure renegotiation to
+            comply with RFC 5746. (optional)
+            ssl_server_algorithm: Permitted encryption algorithms for the
+            server side of SSL full mode sessions according to encryption
+            strength. (optional)
+            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a
+            server, ordered by priority. (optional)
+            ssl_pfs: Select the cipher suites that can be used for SSL perfect
+            forward secrecy (PFS). Applies to both client and server sessions.
+            (optional)
+            ssl_min_version: Lowest SSL/TLS version acceptable from a client.
+            (optional)
+            ssl_max_version: Highest SSL/TLS version acceptable from a client.
+            (optional)
+            ssl_server_min_version: Lowest SSL/TLS version acceptable from a
+            server. Use the client setting by default. (optional)
+            ssl_server_max_version: Highest SSL/TLS version acceptable from a
+            server. Use the client setting by default. (optional)
+            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL
+            key exchange. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to
+            avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be
+            disabled for compatibility with older systems. (optional)
+            ssl_client_fallback: Enable/disable support for preventing
+            Downgrade Attacks on client connections (RFC 7507). (optional)
+            ssl_client_renegotiation: Allow, deny, or require secure
+            renegotiation of client sessions to comply with RFC 5746.
+            (optional)
+            ssl_client_session_state_type: How to expire SSL sessions for the
+            segment of the SSL connection between the client and the FortiGate.
+            (optional)
+            ssl_client_session_state_timeout: Number of minutes to keep client
+            to FortiGate SSL session state. (optional)
+            ssl_client_session_state_max: Maximum number of client to FortiGate
+            SSL session states to keep. (optional)
+            ssl_client_rekey_count: Maximum length of data in MB before
+            triggering a client rekey (0 = disable). (optional)
+            ssl_server_session_state_type: How to expire SSL sessions for the
+            segment of the SSL connection between the server and the FortiGate.
+            (optional)
+            ssl_server_session_state_timeout: Number of minutes to keep
+            FortiGate to Server SSL session state. (optional)
+            ssl_server_session_state_max: Maximum number of FortiGate to Server
+            SSL session states to keep. (optional)
+            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in
+            the reply's Location HTTP header field. (optional)
+            ssl_http_match_host: Enable/disable HTTP host matching for location
+            conversion. (optional)
+            ssl_hpkp: Enable/disable including HPKP header in response.
+            (optional)
+            ssl_hpkp_primary: Certificate to generate primary HPKP pin from.
+            (optional)
+            ssl_hpkp_backup: Certificate to generate backup HPKP pin from.
+            (optional)
+            ssl_hpkp_age: Number of minutes the web browser should keep HPKP.
+            (optional)
             ssl_hpkp_report_uri: URL to report HPKP violations to. (optional)
-            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to all subdomains. (optional)
-            ssl_hsts: Enable/disable including HSTS header in response. (optional)
-            ssl_hsts_age: Number of seconds the client should honor the HSTS setting. (optional)
-            ssl_hsts_include_subdomains: Indicate that HSTS header applies to all subdomains. (optional)
-            monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status. (optional)
-            max_embryonic_connections: Maximum number of incomplete connections. (optional)
-            embedded_ipv4_address: Enable/disable use of the lower 32 bits of the external IPv6 address as mapped IPv4 address. (optional)
-            ipv4_mappedip: Range of mapped IP addresses. Specify the start IP address followed by a space and the end IP address. (optional)
-            ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped. (optional)
+            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to
+            all subdomains. (optional)
+            ssl_hsts: Enable/disable including HSTS header in response.
+            (optional)
+            ssl_hsts_age: Number of seconds the client should honor the HSTS
+            setting. (optional)
+            ssl_hsts_include_subdomains: Indicate that HSTS header applies to
+            all subdomains. (optional)
+            monitor: Name of the health check monitor to use when polling to
+            determine a virtual server's connectivity status. (optional)
+            max_embryonic_connections: Maximum number of incomplete
+            connections. (optional)
+            embedded_ipv4_address: Enable/disable use of the lower 32 bits of
+            the external IPv6 address as mapped IPv4 address. (optional)
+            ipv4_mappedip: Range of mapped IP addresses. Specify the start IP
+            address followed by a space and the end IP address. (optional)
+            ipv4_mappedport: IPv4 port number range on the destination network
+            to which the external port number range is mapped. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -329,7 +423,8 @@ class Vip6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -551,8 +646,10 @@ class Vip6:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -560,7 +657,8 @@ class Vip6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -714,94 +812,181 @@ class Vip6:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Virtual ip6 name. (optional)
             id: Custom defined ID. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             comment: Comment. (optional)
-            type: Configure a static NAT server load balance VIP or access proxy. (optional)
-            src_filter: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. (optional)
-            src_vip_filter: Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. (optional)
-            extip: IPv6 address or address range on the external interface that you want to map to an address or address range on the destination network. (optional)
-            mappedip: Mapped IPv6 address range in the format startIP-endIP. (optional)
-            nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. (optional)
-            ndp_reply: Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). (optional)
+            type: Configure a static NAT server load balance VIP or access
+            proxy. (optional)
+            src_filter: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate
+            addresses with spaces. (optional)
+            src_vip_filter: Enable/disable use of 'src-filter' to match
+            destinations for the reverse SNAT rule. (optional)
+            extip: IPv6 address or address range on the external interface that
+            you want to map to an address or address range on the destination
+            network. (optional)
+            mappedip: Mapped IPv6 address range in the format startIP-endIP.
+            (optional)
+            nat_source_vip: Enable to perform SNAT on traffic from mappedip to
+            the extip for all egress interfaces. (optional)
+            ndp_reply: Enable/disable this FortiGate unit's ability to respond
+            to NDP requests for this virtual IP address (default = enable).
+            (optional)
             portforward: Enable port forwarding. (optional)
             protocol: Protocol to use when forwarding packets. (optional)
-            extport: Incoming port number range that you want to map to a port number range on the destination network. (optional)
-            mappedport: Port number range on the destination network to which the external port number range is mapped. (optional)
+            extport: Incoming port number range that you want to map to a port
+            number range on the destination network. (optional)
+            mappedport: Port number range on the destination network to which
+            the external port number range is mapped. (optional)
             color: Color of icon on the GUI. (optional)
-            ldb_method: Method used to distribute sessions to real servers. (optional)
-            server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). (optional)
-            http_redirect: Enable/disable redirection of HTTP to HTTPS. (optional)
-            persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. (optional)
-            h2_support: Enable/disable HTTP2 support (default = enable). (optional)
-            h3_support: Enable/disable HTTP3/QUIC support (default = disable). (optional)
+            ldb_method: Method used to distribute sessions to real servers.
+            (optional)
+            server_type: Protocol to be load balanced by the virtual server
+            (also called the server load balance virtual IP). (optional)
+            http_redirect: Enable/disable redirection of HTTP to HTTPS.
+            (optional)
+            persistence: Configure how to make sure that clients connect to the
+            same server every time they make a request that is part of the same
+            session. (optional)
+            h2_support: Enable/disable HTTP2 support (default = enable).
+            (optional)
+            h3_support: Enable/disable HTTP3/QUIC support (default = disable).
+            (optional)
             quic: QUIC setting. (optional)
             nat66: Enable/disable DNAT66. (optional)
             nat64: Enable/disable DNAT64. (optional)
             add_nat64_route: Enable/disable adding NAT64 route. (optional)
-            empty_cert_action: Action for an empty client certificate. (optional)
-            user_agent_detect: Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. (optional)
-            client_cert: Enable/disable requesting client certificate. (optional)
-            realservers: Select the real servers that this server load balancing VIP will distribute traffic to. (optional)
-            http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. (optional)
-            http_cookie_domain: Domain that HTTP cookie persistence should apply to. (optional)
-            http_cookie_path: Limit HTTP cookie persistence to the specified path. (optional)
-            http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies. (optional)
-            http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
-            http_cookie_share: Control sharing of cookies across virtual servers. Use of same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. (optional)
-            https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. (optional)
+            empty_cert_action: Action for an empty client certificate.
+            (optional)
+            user_agent_detect: Enable/disable detecting device type by HTTP
+            user-agent if no client certificate is provided. (optional)
+            client_cert: Enable/disable requesting client certificate.
+            (optional)
+            realservers: Select the real servers that this server load
+            balancing VIP will distribute traffic to. (optional)
+            http_cookie_domain_from_host: Enable/disable use of HTTP cookie
+            domain from host field in HTTP. (optional)
+            http_cookie_domain: Domain that HTTP cookie persistence should
+            apply to. (optional)
+            http_cookie_path: Limit HTTP cookie persistence to the specified
+            path. (optional)
+            http_cookie_generation: Generation of HTTP cookie to be accepted.
+            Changing invalidates all existing cookies. (optional)
+            http_cookie_age: Time in minutes that client web browsers should
+            keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            http_cookie_share: Control sharing of cookies across virtual
+            servers. Use of same-ip means a cookie from one virtual server can
+            be used by another. Disable stops cookie sharing. (optional)
+            https_cookie_secure: Enable/disable verification that inserted
+            HTTPS cookies are secure. (optional)
             http_multiplex: Enable/disable HTTP multiplexing. (optional)
-            http_ip_header: For HTTP multiplexing, enable to add the original client IP address in the X-Forwarded-For HTTP header. (optional)
-            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used. (optional)
-            outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. (optional)
-            weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. (optional)
-            websphere_server: Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. (optional)
-            ssl_mode: Apply SSL offloading between the client and the FortiGate (half) or from the client to the FortiGate and from the FortiGate to the server (full). (optional)
-            ssl_certificate: Name of the certificate to use for SSL handshake. (optional)
-            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. (optional)
-            ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. (optional)
-            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. (optional)
-            ssl_server_renegotiation: Enable/disable secure renegotiation to comply with RFC 5746. (optional)
-            ssl_server_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. (optional)
-            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. (optional)
-            ssl_pfs: Select the cipher suites that can be used for SSL perfect forward secrecy (PFS). Applies to both client and server sessions. (optional)
-            ssl_min_version: Lowest SSL/TLS version acceptable from a client. (optional)
-            ssl_max_version: Highest SSL/TLS version acceptable from a client. (optional)
-            ssl_server_min_version: Lowest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
-            ssl_server_max_version: Highest SSL/TLS version acceptable from a server. Use the client setting by default. (optional)
-            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. (optional)
-            ssl_send_empty_frags: Enable/disable sending empty fragments to avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be disabled for compatibility with older systems. (optional)
-            ssl_client_fallback: Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). (optional)
-            ssl_client_renegotiation: Allow, deny, or require secure renegotiation of client sessions to comply with RFC 5746. (optional)
-            ssl_client_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the client and the FortiGate. (optional)
-            ssl_client_session_state_timeout: Number of minutes to keep client to FortiGate SSL session state. (optional)
-            ssl_client_session_state_max: Maximum number of client to FortiGate SSL session states to keep. (optional)
-            ssl_client_rekey_count: Maximum length of data in MB before triggering a client rekey (0 = disable). (optional)
-            ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. (optional)
-            ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state. (optional)
-            ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep. (optional)
-            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in the reply's Location HTTP header field. (optional)
-            ssl_http_match_host: Enable/disable HTTP host matching for location conversion. (optional)
-            ssl_hpkp: Enable/disable including HPKP header in response. (optional)
-            ssl_hpkp_primary: Certificate to generate primary HPKP pin from. (optional)
-            ssl_hpkp_backup: Certificate to generate backup HPKP pin from. (optional)
-            ssl_hpkp_age: Number of minutes the web browser should keep HPKP. (optional)
+            http_ip_header: For HTTP multiplexing, enable to add the original
+            client IP address in the X-Forwarded-For HTTP header. (optional)
+            http_ip_header_name: For HTTP multiplexing, enter a custom HTTPS
+            header name. The original client IP address is added to this
+            header. If empty, X-Forwarded-For is used. (optional)
+            outlook_web_access: Enable to add the Front-End-Https header for
+            Microsoft Outlook Web Access. (optional)
+            weblogic_server: Enable to add an HTTP header to indicate SSL
+            offloading for a WebLogic server. (optional)
+            websphere_server: Enable to add an HTTP header to indicate SSL
+            offloading for a WebSphere server. (optional)
+            ssl_mode: Apply SSL offloading between the client and the FortiGate
+            (half) or from the client to the FortiGate and from the FortiGate
+            to the server (full). (optional)
+            ssl_certificate: Name of the certificate to use for SSL handshake.
+            (optional)
+            ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange
+            for RSA encryption of SSL sessions. (optional)
+            ssl_algorithm: Permitted encryption algorithms for SSL sessions
+            according to encryption strength. (optional)
+            ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client,
+            ordered by priority. (optional)
+            ssl_server_renegotiation: Enable/disable secure renegotiation to
+            comply with RFC 5746. (optional)
+            ssl_server_algorithm: Permitted encryption algorithms for the
+            server side of SSL full mode sessions according to encryption
+            strength. (optional)
+            ssl_server_cipher_suites: SSL/TLS cipher suites to offer to a
+            server, ordered by priority. (optional)
+            ssl_pfs: Select the cipher suites that can be used for SSL perfect
+            forward secrecy (PFS). Applies to both client and server sessions.
+            (optional)
+            ssl_min_version: Lowest SSL/TLS version acceptable from a client.
+            (optional)
+            ssl_max_version: Highest SSL/TLS version acceptable from a client.
+            (optional)
+            ssl_server_min_version: Lowest SSL/TLS version acceptable from a
+            server. Use the client setting by default. (optional)
+            ssl_server_max_version: Highest SSL/TLS version acceptable from a
+            server. Use the client setting by default. (optional)
+            ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL
+            key exchange. (optional)
+            ssl_send_empty_frags: Enable/disable sending empty fragments to
+            avoid CBC IV attacks (SSL 3.0 & TLS 1.0 only). May need to be
+            disabled for compatibility with older systems. (optional)
+            ssl_client_fallback: Enable/disable support for preventing
+            Downgrade Attacks on client connections (RFC 7507). (optional)
+            ssl_client_renegotiation: Allow, deny, or require secure
+            renegotiation of client sessions to comply with RFC 5746.
+            (optional)
+            ssl_client_session_state_type: How to expire SSL sessions for the
+            segment of the SSL connection between the client and the FortiGate.
+            (optional)
+            ssl_client_session_state_timeout: Number of minutes to keep client
+            to FortiGate SSL session state. (optional)
+            ssl_client_session_state_max: Maximum number of client to FortiGate
+            SSL session states to keep. (optional)
+            ssl_client_rekey_count: Maximum length of data in MB before
+            triggering a client rekey (0 = disable). (optional)
+            ssl_server_session_state_type: How to expire SSL sessions for the
+            segment of the SSL connection between the server and the FortiGate.
+            (optional)
+            ssl_server_session_state_timeout: Number of minutes to keep
+            FortiGate to Server SSL session state. (optional)
+            ssl_server_session_state_max: Maximum number of FortiGate to Server
+            SSL session states to keep. (optional)
+            ssl_http_location_conversion: Enable to replace HTTP with HTTPS in
+            the reply's Location HTTP header field. (optional)
+            ssl_http_match_host: Enable/disable HTTP host matching for location
+            conversion. (optional)
+            ssl_hpkp: Enable/disable including HPKP header in response.
+            (optional)
+            ssl_hpkp_primary: Certificate to generate primary HPKP pin from.
+            (optional)
+            ssl_hpkp_backup: Certificate to generate backup HPKP pin from.
+            (optional)
+            ssl_hpkp_age: Number of minutes the web browser should keep HPKP.
+            (optional)
             ssl_hpkp_report_uri: URL to report HPKP violations to. (optional)
-            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to all subdomains. (optional)
-            ssl_hsts: Enable/disable including HSTS header in response. (optional)
-            ssl_hsts_age: Number of seconds the client should honor the HSTS setting. (optional)
-            ssl_hsts_include_subdomains: Indicate that HSTS header applies to all subdomains. (optional)
-            monitor: Name of the health check monitor to use when polling to determine a virtual server's connectivity status. (optional)
-            max_embryonic_connections: Maximum number of incomplete connections. (optional)
-            embedded_ipv4_address: Enable/disable use of the lower 32 bits of the external IPv6 address as mapped IPv4 address. (optional)
-            ipv4_mappedip: Range of mapped IP addresses. Specify the start IP address followed by a space and the end IP address. (optional)
-            ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped. (optional)
+            ssl_hpkp_include_subdomains: Indicate that HPKP header applies to
+            all subdomains. (optional)
+            ssl_hsts: Enable/disable including HSTS header in response.
+            (optional)
+            ssl_hsts_age: Number of seconds the client should honor the HSTS
+            setting. (optional)
+            ssl_hsts_include_subdomains: Indicate that HSTS header applies to
+            all subdomains. (optional)
+            monitor: Name of the health check monitor to use when polling to
+            determine a virtual server's connectivity status. (optional)
+            max_embryonic_connections: Maximum number of incomplete
+            connections. (optional)
+            embedded_ipv4_address: Enable/disable use of the lower 32 bits of
+            the external IPv6 address as mapped IPv4 address. (optional)
+            ipv4_mappedip: Range of mapped IP addresses. Specify the start IP
+            address followed by a space and the end IP address. (optional)
+            ipv4_mappedport: IPv4 port number range on the destination network
+            to which the external port number range is mapped. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -809,7 +994,8 @@ class Vip6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

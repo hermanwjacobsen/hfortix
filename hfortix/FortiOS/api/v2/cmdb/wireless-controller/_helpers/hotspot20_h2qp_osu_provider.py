@@ -1,5 +1,6 @@
 """
-Validation helpers for wireless-controller hotspot20_h2qp_osu_provider endpoint.
+Validation helpers for wireless-controller hotspot20_h2qp_osu_provider
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -72,13 +73,13 @@ def validate_hotspot20_h2qp_osu_provider_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server-uri if present
     if "server-uri" in payload:
         value = payload.get("server-uri")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"server-uri cannot exceed 255 characters")
+            return (False, "server-uri cannot exceed 255 characters")
 
     # Validate osu-method if present
     if "osu-method" in payload:
@@ -93,13 +94,13 @@ def validate_hotspot20_h2qp_osu_provider_post(
     if "osu-nai" in payload:
         value = payload.get("osu-nai")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"osu-nai cannot exceed 255 characters")
+            return (False, "osu-nai cannot exceed 255 characters")
 
     # Validate icon if present
     if "icon" in payload:
         value = payload.get("icon")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"icon cannot exceed 35 characters")
+            return (False, "icon cannot exceed 35 characters")
 
     return (True, None)
 
@@ -134,13 +135,13 @@ def validate_hotspot20_h2qp_osu_provider_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server-uri if present
     if "server-uri" in payload:
         value = payload.get("server-uri")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"server-uri cannot exceed 255 characters")
+            return (False, "server-uri cannot exceed 255 characters")
 
     # Validate osu-method if present
     if "osu-method" in payload:
@@ -155,13 +156,13 @@ def validate_hotspot20_h2qp_osu_provider_put(
     if "osu-nai" in payload:
         value = payload.get("osu-nai")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"osu-nai cannot exceed 255 characters")
+            return (False, "osu-nai cannot exceed 255 characters")
 
     # Validate icon if present
     if "icon" in payload:
         value = payload.get("icon")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"icon cannot exceed 35 characters")
+            return (False, "icon cannot exceed 35 characters")
 
     return (True, None)
 

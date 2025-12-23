@@ -73,7 +73,7 @@ def validate_url_match_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -88,19 +88,19 @@ def validate_url_match_post(
     if "url-pattern" in payload:
         value = payload.get("url-pattern")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"url-pattern cannot exceed 511 characters")
+            return (False, "url-pattern cannot exceed 511 characters")
 
     # Validate forward-server if present
     if "forward-server" in payload:
         value = payload.get("forward-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"forward-server cannot exceed 63 characters")
+            return (False, "forward-server cannot exceed 63 characters")
 
     # Validate fast-fallback if present
     if "fast-fallback" in payload:
         value = payload.get("fast-fallback")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"fast-fallback cannot exceed 63 characters")
+            return (False, "fast-fallback cannot exceed 63 characters")
 
     # Validate cache-exemption if present
     if "cache-exemption" in payload:
@@ -115,7 +115,7 @@ def validate_url_match_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 
@@ -150,7 +150,7 @@ def validate_url_match_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -165,19 +165,19 @@ def validate_url_match_put(
     if "url-pattern" in payload:
         value = payload.get("url-pattern")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"url-pattern cannot exceed 511 characters")
+            return (False, "url-pattern cannot exceed 511 characters")
 
     # Validate forward-server if present
     if "forward-server" in payload:
         value = payload.get("forward-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"forward-server cannot exceed 63 characters")
+            return (False, "forward-server cannot exceed 63 characters")
 
     # Validate fast-fallback if present
     if "fast-fallback" in payload:
         value = payload.get("fast-fallback")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"fast-fallback cannot exceed 63 characters")
+            return (False, "fast-fallback cannot exceed 63 characters")
 
     # Validate cache-exemption if present
     if "cache-exemption" in payload:
@@ -192,7 +192,7 @@ def validate_url_match_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 

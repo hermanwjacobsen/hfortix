@@ -88,11 +88,15 @@ class Ntp:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Ntp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -140,23 +145,40 @@ class Ntp:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            ntpsync: Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. (optional)
-            type: Use the FortiGuard NTP server or any other available NTP Server. (optional)
-            syncinterval: NTP synchronization interval (1 - 1440 min). (optional)
-            ntpserver: Configure the FortiGate to connect to any available third-party NTP server. (optional)
-            source_ip: Source IP address for communication to the NTP server. (optional)
-            source_ip6: Source IPv6 address for communication to the NTP server. (optional)
-            server_mode: Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            ntpsync: Enable/disable setting the FortiGate system time by
+            synchronizing with an NTP Server. (optional)
+            type: Use the FortiGuard NTP server or any other available NTP
+            Server. (optional)
+            syncinterval: NTP synchronization interval (1 - 1440 min).
+            (optional)
+            ntpserver: Configure the FortiGate to connect to any available
+            third-party NTP server. (optional)
+            source_ip: Source IP address for communication to the NTP server.
+            (optional)
+            source_ip6: Source IPv6 address for communication to the NTP
+            server. (optional)
+            server_mode: Enable/disable FortiGate NTP Server Mode. Your
+            FortiGate becomes an NTP server for other devices on your network.
+            The FortiGate relays NTP requests to its configured NTP server.
+            (optional)
             authentication: Enable/disable authentication. (optional)
-            key_type: Key type for authentication (MD5, SHA1, SHA256). (optional)
+            key_type: Key type for authentication (MD5, SHA1, SHA256).
+            (optional)
             key_id: Key ID for authentication. (optional)
-            interface: FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services. (optional)
+            interface: FortiGate interface(s) with NTP server mode enabled.
+            Devices on your network can contact these interfaces for NTP
+            services. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -164,7 +186,8 @@ class Ntp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

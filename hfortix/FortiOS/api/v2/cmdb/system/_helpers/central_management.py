@@ -108,7 +108,7 @@ def validate_central_management_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"fortigate-cloud-sso-default-profile cannot exceed 35 characters",
+                "fortigate-cloud-sso-default-profile cannot exceed 35 characters",
             )
 
     # Validate schedule-config-restore if present
@@ -169,13 +169,13 @@ def validate_central_management_put(
     if "local-cert" in payload:
         value = payload.get("local-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"local-cert cannot exceed 35 characters")
+            return (False, "local-cert cannot exceed 35 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate fmg-update-port if present
     if "fmg-update-port" in payload:
@@ -226,7 +226,7 @@ def validate_central_management_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -235,7 +235,7 @@ def validate_central_management_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

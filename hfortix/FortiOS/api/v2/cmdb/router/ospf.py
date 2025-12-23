@@ -88,11 +88,15 @@ class Ospf:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,13 +104,14 @@ class Ospf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        endpoint = "/router/ospf"
+        endpoint = "/router/osp"
         if exclude_default_values is not None:
             params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
@@ -162,45 +167,61 @@ class Ospf:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             abr_type: Area border router type. (optional)
-            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits per second. (optional)
+            auto_cost_ref_bandwidth: Reference bandwidth in terms of megabits
+            per second. (optional)
             distance_external: Administrative external distance. (optional)
             distance_inter_area: Administrative inter-area distance. (optional)
             distance_intra_area: Administrative intra-area distance. (optional)
             database_overflow: Enable/disable database overflow. (optional)
-            database_overflow_max_lsas: Database overflow maximum LSAs. (optional)
-            database_overflow_time_to_recover: Database overflow time to recover (sec). (optional)
-            default_information_originate: Enable/disable generation of default route. (optional)
+            database_overflow_max_lsas: Database overflow maximum LSAs.
+            (optional)
+            database_overflow_time_to_recover: Database overflow time to
+            recover (sec). (optional)
+            default_information_originate: Enable/disable generation of default
+            route. (optional)
             default_information_metric: Default information metric. (optional)
-            default_information_metric_type: Default information metric type. (optional)
-            default_information_route_map: Default information route map. (optional)
+            default_information_metric_type: Default information metric type.
+            (optional)
+            default_information_route_map: Default information route map.
+            (optional)
             default_metric: Default metric of redistribute routes. (optional)
             distance: Distance of the route. (optional)
-            lsa_refresh_interval: The minimal OSPF LSA update time interval (optional)
-            rfc1583_compatible: Enable/disable RFC1583 compatibility. (optional)
+            lsa_refresh_interval: The minimal OSPF LSA update time interval
+            (optional)
+            rfc1583_compatible: Enable/disable RFC1583 compatibility.
+            (optional)
             router_id: Router ID. (optional)
             spf_timers: SPF calculation frequency. (optional)
             bfd: Bidirectional Forwarding Detection (BFD). (optional)
             log_neighbour_changes: Log of OSPF neighbor changes. (optional)
             distribute_list_in: Filter incoming routes. (optional)
-            distribute_route_map_in: Filter incoming external routes by route-map. (optional)
+            distribute_route_map_in: Filter incoming external routes by
+            route-map. (optional)
             restart_mode: OSPF restart mode (graceful or LLS). (optional)
             restart_period: Graceful restart period. (optional)
-            restart_on_topology_change: Enable/disable continuing graceful restart upon topology change. (optional)
+            restart_on_topology_change: Enable/disable continuing graceful
+            restart upon topology change. (optional)
             area: OSPF area configuration. (optional)
             ospf_interface: OSPF interface configuration. (optional)
             network: OSPF network configuration. (optional)
-            neighbor: OSPF neighbor configuration are used when OSPF runs on non-broadcast media. (optional)
+            neighbor: OSPF neighbor configuration are used when OSPF runs on
+            non-broadcast media. (optional)
             passive_interface: Passive interface configuration. (optional)
             summary_address: IP address summary configuration. (optional)
             distribute_list: Distribute list configuration. (optional)
             redistribute: Redistribute configuration. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -208,13 +229,14 @@ class Ospf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        endpoint = "/router/ospf"
+        endpoint = "/router/osp"
         if before is not None:
             data_payload["before"] = before
         if after is not None:

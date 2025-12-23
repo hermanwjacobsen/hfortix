@@ -67,7 +67,8 @@ class DeviceStatus:
         Fetch device registration status from FortiCloud.
 
         Args:
-            serials: Serials of FortiSwitch and FortiAP to fetch registration status. (required)
+            serials: Serials of FortiSwitch and FortiAP to fetch registration
+            status. (required)
             update_cache: Clear cache and retrieve updated data. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
@@ -344,8 +345,10 @@ class RegisterDevice:
             reseller: Reseller. (optional)
             reseller_id: Reseller ID. (optional)
             country: Country. (optional)
-            is_government: Set to true if the end-user is affiliated with a government. (optional)
-            agreement_accepted: Set to true if the end-user accepted the agreement. (optional)
+            is_government: Set to true if the end-user is affiliated with a
+            government. (optional)
+            agreement_accepted: Set to true if the end-user accepted the
+            agreement. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

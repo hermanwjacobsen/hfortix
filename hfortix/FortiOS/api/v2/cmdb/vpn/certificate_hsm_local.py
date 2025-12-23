@@ -33,7 +33,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.vpn.certificate_hsm_local.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.vpn.certificate_hsm_local.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +45,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +99,17 @@ class CertificateHsmLocal:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class CertificateHsmLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -165,29 +172,39 @@ class CertificateHsmLocal:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Name. (optional)
             comments: Comment. (optional)
             vendor: HSM vendor. (optional)
             api_version: API version for communicating with HSM. (optional)
             certificate: PEM format certificate. (optional)
-            range: Either a global or VDOM IP address range for the certificate. (optional)
+            range: Either a global or VDOM IP address range for the
+            certificate. (optional)
             source: Certificate source type. (optional)
             gch_url: Google Cloud HSM key URL (e.g. "https://cloudkms.googleapis.com/v1/projects/sampleproject/locations/samplelocation/keyRings/samplekeyring/cryptoKeys/sampleKeyName/cryptoKeyVersions/1"). (optional)
             gch_project: Google Cloud HSM project ID. (optional)
             gch_location: Google Cloud HSM location. (optional)
             gch_keyring: Google Cloud HSM keyring. (optional)
             gch_cryptokey: Google Cloud HSM cryptokey. (optional)
-            gch_cryptokey_version: Google Cloud HSM cryptokey version. (optional)
-            gch_cloud_service_name: Cloud service config name to generate access token. (optional)
-            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm. (optional)
-            details: Print hsm-local certificate detailed information. (optional)
+            gch_cryptokey_version: Google Cloud HSM cryptokey version.
+            (optional)
+            gch_cloud_service_name: Cloud service config name to generate
+            access token. (optional)
+            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm.
+            (optional)
+            details: Print hsm-local certificate detailed information.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -195,7 +212,8 @@ class CertificateHsmLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -261,8 +279,10 @@ class CertificateHsmLocal:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -270,7 +290,8 @@ class CertificateHsmLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -357,27 +378,36 @@ class CertificateHsmLocal:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name. (optional)
             comments: Comment. (optional)
             vendor: HSM vendor. (optional)
             api_version: API version for communicating with HSM. (optional)
             certificate: PEM format certificate. (optional)
-            range: Either a global or VDOM IP address range for the certificate. (optional)
+            range: Either a global or VDOM IP address range for the
+            certificate. (optional)
             source: Certificate source type. (optional)
             gch_url: Google Cloud HSM key URL (e.g. "https://cloudkms.googleapis.com/v1/projects/sampleproject/locations/samplelocation/keyRings/samplekeyring/cryptoKeys/sampleKeyName/cryptoKeyVersions/1"). (optional)
             gch_project: Google Cloud HSM project ID. (optional)
             gch_location: Google Cloud HSM location. (optional)
             gch_keyring: Google Cloud HSM keyring. (optional)
             gch_cryptokey: Google Cloud HSM cryptokey. (optional)
-            gch_cryptokey_version: Google Cloud HSM cryptokey version. (optional)
-            gch_cloud_service_name: Cloud service config name to generate access token. (optional)
-            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm. (optional)
-            details: Print hsm-local certificate detailed information. (optional)
+            gch_cryptokey_version: Google Cloud HSM cryptokey version.
+            (optional)
+            gch_cloud_service_name: Cloud service config name to generate
+            access token. (optional)
+            gch_cryptokey_algorithm: Google Cloud HSM cryptokey algorithm.
+            (optional)
+            details: Print hsm-local certificate detailed information.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -385,7 +415,8 @@ class CertificateHsmLocal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

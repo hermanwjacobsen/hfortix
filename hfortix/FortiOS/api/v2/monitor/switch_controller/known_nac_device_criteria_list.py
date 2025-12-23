@@ -1,7 +1,8 @@
 """
 FortiOS MONITOR - Monitor Switch Controller Known Nac Device Criteria List
 
-Monitoring endpoint for monitor switch controller known nac device criteria list data.
+Monitoring endpoint for monitor switch controller known nac device criteria
+list data.
 
 API Endpoints:
     GET    /monitor/switch_controller/known_nac_device_criteria_list
@@ -11,10 +12,12 @@ Example Usage:
     >>> fgt = FortiOS(host="192.168.1.99", token="your-api-token")
     >>>
     >>> # Get monitoring/log data (read-only)
-    >>> data = fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get()
+    >>> data =
+    fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get()
     >>>
     >>> # With filters and parameters
-    >>> data = fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get(
+    >>> data =
+    fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get(
     ...     count=100,
     ...     start=0
     ... )
@@ -73,7 +76,8 @@ class KnownNacDeviceCriteriaList:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get()
+            >>>
+            fgt.api.monitor.switch_controller.known_nac_device_criteria_list.get()
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)

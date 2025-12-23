@@ -80,7 +80,7 @@ def validate_snmp_trap_threshold_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"trap-high-cpu-threshold must be between 0 and 4294967295",
+                        "trap-high-cpu-threshold must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -97,7 +97,7 @@ def validate_snmp_trap_threshold_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"trap-low-memory-threshold must be between 0 and 4294967295",
+                        "trap-low-memory-threshold must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -114,7 +114,7 @@ def validate_snmp_trap_threshold_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"trap-log-full-threshold must be between 0 and 4294967295",
+                        "trap-log-full-threshold must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

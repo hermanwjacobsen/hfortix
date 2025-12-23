@@ -109,7 +109,7 @@ def validate_ptp_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 6:
-                    return (False, f"request-interval must be between 1 and 6")
+                    return (False, "request-interval must be between 1 and 6")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -120,7 +120,7 @@ def validate_ptp_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate server-mode if present
     if "server-mode" in payload:

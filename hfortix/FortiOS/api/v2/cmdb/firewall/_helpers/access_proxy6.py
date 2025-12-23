@@ -75,13 +75,13 @@ def validate_access_proxy6_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate auth-portal if present
     if "auth-portal" in payload:
@@ -96,7 +96,7 @@ def validate_access_proxy6_post(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate log-blocked-traffic if present
     if "log-blocked-traffic" in payload:
@@ -134,7 +134,7 @@ def validate_access_proxy6_post(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-ttl must be between 0 and 2147483647",
+                        "svr-pool-ttl must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"svr-pool-ttl must be numeric, got: {value}")
@@ -148,7 +148,7 @@ def validate_access_proxy6_post(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-server-max-request must be between 0 and 2147483647",
+                        "svr-pool-server-max-request must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -165,7 +165,7 @@ def validate_access_proxy6_post(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
+                        "svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -179,7 +179,7 @@ def validate_access_proxy6_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     return (True, None)
@@ -215,13 +215,13 @@ def validate_access_proxy6_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate auth-portal if present
     if "auth-portal" in payload:
@@ -236,7 +236,7 @@ def validate_access_proxy6_put(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate log-blocked-traffic if present
     if "log-blocked-traffic" in payload:
@@ -274,7 +274,7 @@ def validate_access_proxy6_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-ttl must be between 0 and 2147483647",
+                        "svr-pool-ttl must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"svr-pool-ttl must be numeric, got: {value}")
@@ -288,7 +288,7 @@ def validate_access_proxy6_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-server-max-request must be between 0 and 2147483647",
+                        "svr-pool-server-max-request must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -305,7 +305,7 @@ def validate_access_proxy6_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
+                        "svr-pool-server-max-concurrent-request must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -319,7 +319,7 @@ def validate_access_proxy6_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     return (True, None)

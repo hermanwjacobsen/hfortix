@@ -88,11 +88,15 @@ class Ptp:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Ptp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -136,19 +141,32 @@ class Ptp:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            status: Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            status: Enable/disable setting the FortiGate system time by
+            synchronizing with an PTP Server. (optional)
             mode: Multicast transmission or hybrid transmission. (optional)
-            delay_mechanism: End to end delay detection or peer to peer delay detection. (optional)
-            request_interval: The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master. (optional)
+            delay_mechanism: End to end delay detection or peer to peer delay
+            detection. (optional)
+            request_interval: The delay request value is the logarithmic mean
+            interval in seconds between the delay request messages sent by the
+            slave to the master. (optional)
             interface: PTP client will reply through this interface. (optional)
-            server_mode: Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. (optional)
-            server_interface: FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. (optional)
+            server_mode: Enable/disable FortiGate PTP server mode. Your
+            FortiGate becomes an PTP server for other devices on your network.
+            (optional)
+            server_interface: FortiGate interface(s) with PTP server mode
+            enabled. Devices on your network can contact these interfaces for
+            PTP services. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -156,7 +174,8 @@ class Ptp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

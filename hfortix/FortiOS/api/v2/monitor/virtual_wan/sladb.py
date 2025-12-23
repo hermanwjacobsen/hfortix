@@ -62,7 +62,8 @@ class Sladb:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve the Service Level Agreement Database downloaded from FortiGuard.
+        Retrieve the Service Level Agreement Database downloaded from
+        FortiGuard.
 
         Args:
             payload_dict: Optional dictionary of parameters

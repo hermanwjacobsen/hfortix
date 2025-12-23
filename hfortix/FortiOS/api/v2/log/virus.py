@@ -71,7 +71,8 @@ class Virus:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='virus=="Trojan"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'virus=="Trojan"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'virus=="Trojan"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -80,7 +81,8 @@ class Virus:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -173,7 +175,8 @@ class VirusArchive:
             result = fgt.api.log.disk.virus_archive.get(mkey=12345678)
 
             # Using payload_dict
-            result = fgt.api.log.disk.virus_archive.get(payload_dict={'mkey': 12345678})
+            result = fgt.api.log.disk.virus_archive.get(payload_dict={'mkey':
+            12345678})
         """
         endpoint = f"{self._storage}/virus/archive"
 

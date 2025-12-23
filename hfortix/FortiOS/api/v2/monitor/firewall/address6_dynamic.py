@@ -63,10 +63,12 @@ class Address6Dynamic:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        List of IPv6 Fabric Connector address objects and the IPs they resolve to.
+        List of IPv6 Fabric Connector address objects and the IPs they resolve
+        to.
 
         Args:
-            mkey: Name of the dynamic address to retrieve. If this is not provided, all dynamic addresses will be retrieved. (optional)
+            mkey: Name of the dynamic address to retrieve. If this is not
+            provided, all dynamic addresses will be retrieved. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

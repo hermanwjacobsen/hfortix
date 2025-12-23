@@ -98,12 +98,17 @@ class Address:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Address:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -193,57 +199,75 @@ class Address:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Address name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             subnet: IP address and subnet mask of address. (optional)
             type: Type of address. (optional)
             route_tag: route-tag address. (optional)
             sub_type: Sub-type of address. (optional)
             clearpass_spt: SPT (System Posture Token) value. (optional)
             macaddr: Multiple MAC address ranges. (optional)
-            start_ip: First IP address (inclusive) in the range for the address. (optional)
-            end_ip: Final IP address (inclusive) in the range for the address. (optional)
+            start_ip: First IP address (inclusive) in the range for the
+            address. (optional)
+            end_ip: Final IP address (inclusive) in the range for the address.
+            (optional)
             fqdn: Fully Qualified Domain Name address. (optional)
             country: IP addresses associated to a specific country. (optional)
-            wildcard_fqdn: Fully Qualified Domain Name with wildcard characters. (optional)
-            cache_ttl: Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds. (optional)
+            wildcard_fqdn: Fully Qualified Domain Name with wildcard
+            characters. (optional)
+            cache_ttl: Defines the minimal TTL of individual IP addresses in
+            FQDN cache measured in seconds. (optional)
             wildcard: IP address and wildcard netmask. (optional)
             sdn: SDN. (optional)
             fsso_group: FSSO group(s). (optional)
             sso_attribute_value: RADIUS attributes value. (optional)
-            interface: Name of interface whose IP address is to be used. (optional)
+            interface: Name of interface whose IP address is to be used.
+            (optional)
             tenant: Tenant. (optional)
-            organization: Organization domain name (Syntax: organization/domain). (optional)
+            organization: Organization domain name (Syntax:
+            organization/domain). (optional)
             epg_name: Endpoint group name. (optional)
             subnet_name: Subnet name. (optional)
             sdn_tag: SDN Tag. (optional)
             policy_group: Policy group name. (optional)
             obj_tag: Tag of dynamic address object. (optional)
             obj_type: Object type. (optional)
-            tag_detection_level: Tag detection level of dynamic address object. (optional)
+            tag_detection_level: Tag detection level of dynamic address object.
+            (optional)
             tag_type: Tag type of dynamic address object. (optional)
             hw_vendor: Dynamic address matching hardware vendor. (optional)
             hw_model: Dynamic address matching hardware model. (optional)
             os: Dynamic address matching operating system. (optional)
             sw_version: Dynamic address matching software version. (optional)
             comment: Comment. (optional)
-            associated_interface: Network interface associated with address. (optional)
+            associated_interface: Network interface associated with address.
+            (optional)
             color: Color of icon on the GUI. (optional)
             sdn_addr_type: Type of addresses to collect. (optional)
-            node_ip_only: Enable/disable collection of node addresses only in Kubernetes. (optional)
+            node_ip_only: Enable/disable collection of node addresses only in
+            Kubernetes. (optional)
             obj_id: Object ID for NSX. (optional)
             list: IP address list. (optional)
             tagging: Config object tagging. (optional)
-            allow_routing: Enable/disable use of this address in routing configurations. (optional)
-            passive_fqdn_learning: Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). (optional)
+            allow_routing: Enable/disable use of this address in routing
+            configurations. (optional)
+            passive_fqdn_learning: Enable/disable passive learning of FQDNs.
+            When enabled, the FortiGate learns, trusts, and saves FQDNs from
+            endpoint DNS queries (default = enable). (optional)
             fabric_object: Security Fabric global object setting. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -251,7 +275,8 @@ class Address:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -373,8 +398,10 @@ class Address:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -382,7 +409,8 @@ class Address:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -424,7 +452,7 @@ class Address:
             ...     print("Address exists")
         """
         import inspect
-        from typing import Any, Coroutine, cast
+        from typing import Any, cast
 
         from hfortix.FortiOS.exceptions_forti import ResourceNotFoundError
 
@@ -504,55 +532,72 @@ class Address:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Address name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             subnet: IP address and subnet mask of address. (optional)
             type: Type of address. (optional)
             route_tag: route-tag address. (optional)
             sub_type: Sub-type of address. (optional)
             clearpass_spt: SPT (System Posture Token) value. (optional)
             macaddr: Multiple MAC address ranges. (optional)
-            start_ip: First IP address (inclusive) in the range for the address. (optional)
-            end_ip: Final IP address (inclusive) in the range for the address. (optional)
+            start_ip: First IP address (inclusive) in the range for the
+            address. (optional)
+            end_ip: Final IP address (inclusive) in the range for the address.
+            (optional)
             fqdn: Fully Qualified Domain Name address. (optional)
             country: IP addresses associated to a specific country. (optional)
-            wildcard_fqdn: Fully Qualified Domain Name with wildcard characters. (optional)
-            cache_ttl: Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds. (optional)
+            wildcard_fqdn: Fully Qualified Domain Name with wildcard
+            characters. (optional)
+            cache_ttl: Defines the minimal TTL of individual IP addresses in
+            FQDN cache measured in seconds. (optional)
             wildcard: IP address and wildcard netmask. (optional)
             sdn: SDN. (optional)
             fsso_group: FSSO group(s). (optional)
             sso_attribute_value: RADIUS attributes value. (optional)
-            interface: Name of interface whose IP address is to be used. (optional)
+            interface: Name of interface whose IP address is to be used.
+            (optional)
             tenant: Tenant. (optional)
-            organization: Organization domain name (Syntax: organization/domain). (optional)
+            organization: Organization domain name (Syntax:
+            organization/domain). (optional)
             epg_name: Endpoint group name. (optional)
             subnet_name: Subnet name. (optional)
             sdn_tag: SDN Tag. (optional)
             policy_group: Policy group name. (optional)
             obj_tag: Tag of dynamic address object. (optional)
             obj_type: Object type. (optional)
-            tag_detection_level: Tag detection level of dynamic address object. (optional)
+            tag_detection_level: Tag detection level of dynamic address object.
+            (optional)
             tag_type: Tag type of dynamic address object. (optional)
             hw_vendor: Dynamic address matching hardware vendor. (optional)
             hw_model: Dynamic address matching hardware model. (optional)
             os: Dynamic address matching operating system. (optional)
             sw_version: Dynamic address matching software version. (optional)
             comment: Comment. (optional)
-            associated_interface: Network interface associated with address. (optional)
+            associated_interface: Network interface associated with address.
+            (optional)
             color: Color of icon on the GUI. (optional)
             sdn_addr_type: Type of addresses to collect. (optional)
-            node_ip_only: Enable/disable collection of node addresses only in Kubernetes. (optional)
+            node_ip_only: Enable/disable collection of node addresses only in
+            Kubernetes. (optional)
             obj_id: Object ID for NSX. (optional)
             list: IP address list. (optional)
             tagging: Config object tagging. (optional)
-            allow_routing: Enable/disable use of this address in routing configurations. (optional)
-            passive_fqdn_learning: Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). (optional)
+            allow_routing: Enable/disable use of this address in routing
+            configurations. (optional)
+            passive_fqdn_learning: Enable/disable passive learning of FQDNs.
+            When enabled, the FortiGate learns, trusts, and saves FQDNs from
+            endpoint DNS queries (default = enable). (optional)
             fabric_object: Security Fabric global object setting. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -560,7 +605,8 @@ class Address:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

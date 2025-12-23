@@ -89,7 +89,7 @@ def validate_extender_vap_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -104,7 +104,7 @@ def validate_extender_vap_post(
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate max-clients if present
     if "max-clients" in payload:
@@ -113,7 +113,7 @@ def validate_extender_vap_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 512:
-                    return (False, f"max-clients must be between 0 and 512")
+                    return (False, "max-clients must be between 0 and 512")
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
 
@@ -142,7 +142,7 @@ def validate_extender_vap_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"dtim must be between 1 and 255")
+                    return (False, "dtim must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"dtim must be numeric, got: {value}")
 
@@ -155,14 +155,14 @@ def validate_extender_vap_post(
                 if int_val < 256 or int_val > 2347:
                     return (
                         False,
-                        f"rts-threshold must be between 256 and 2347",
+                        "rts-threshold must be between 256 and 2347",
                     )
             except (ValueError, TypeError):
                 return (False, f"rts-threshold must be numeric, got: {value}")
 
     # Validate pmf if present
-    if "pmf" in payload:
-        value = payload.get("pmf")
+    if "pm" in payload:
+        value = payload.get("pm")
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
@@ -200,7 +200,7 @@ def validate_extender_vap_post(
     if "auth-server-address" in payload:
         value = payload.get("auth-server-address")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-server-address cannot exceed 63 characters")
+            return (False, "auth-server-address cannot exceed 63 characters")
 
     # Validate auth-server-port if present
     if "auth-server-port" in payload:
@@ -211,7 +211,7 @@ def validate_extender_vap_post(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"auth-server-port must be between 1 and 65535",
+                        "auth-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -223,7 +223,7 @@ def validate_extender_vap_post(
     if "auth-server-secret" in payload:
         value = payload.get("auth-server-secret")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-server-secret cannot exceed 63 characters")
+            return (False, "auth-server-secret cannot exceed 63 characters")
 
     # Validate allowaccess if present
     if "allowaccess" in payload:
@@ -267,7 +267,7 @@ def validate_extender_vap_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -282,7 +282,7 @@ def validate_extender_vap_put(
     if "ssid" in payload:
         value = payload.get("ssid")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"ssid cannot exceed 32 characters")
+            return (False, "ssid cannot exceed 32 characters")
 
     # Validate max-clients if present
     if "max-clients" in payload:
@@ -291,7 +291,7 @@ def validate_extender_vap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 512:
-                    return (False, f"max-clients must be between 0 and 512")
+                    return (False, "max-clients must be between 0 and 512")
             except (ValueError, TypeError):
                 return (False, f"max-clients must be numeric, got: {value}")
 
@@ -320,7 +320,7 @@ def validate_extender_vap_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"dtim must be between 1 and 255")
+                    return (False, "dtim must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"dtim must be numeric, got: {value}")
 
@@ -333,14 +333,14 @@ def validate_extender_vap_put(
                 if int_val < 256 or int_val > 2347:
                     return (
                         False,
-                        f"rts-threshold must be between 256 and 2347",
+                        "rts-threshold must be between 256 and 2347",
                     )
             except (ValueError, TypeError):
                 return (False, f"rts-threshold must be numeric, got: {value}")
 
     # Validate pmf if present
-    if "pmf" in payload:
-        value = payload.get("pmf")
+    if "pm" in payload:
+        value = payload.get("pm")
         if value and value not in VALID_BODY_PMF:
             return (
                 False,
@@ -378,7 +378,7 @@ def validate_extender_vap_put(
     if "auth-server-address" in payload:
         value = payload.get("auth-server-address")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-server-address cannot exceed 63 characters")
+            return (False, "auth-server-address cannot exceed 63 characters")
 
     # Validate auth-server-port if present
     if "auth-server-port" in payload:
@@ -389,7 +389,7 @@ def validate_extender_vap_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"auth-server-port must be between 1 and 65535",
+                        "auth-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -401,7 +401,7 @@ def validate_extender_vap_put(
     if "auth-server-secret" in payload:
         value = payload.get("auth-server-secret")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-server-secret cannot exceed 63 characters")
+            return (False, "auth-server-secret cannot exceed 63 characters")
 
     # Validate allowaccess if present
     if "allowaccess" in payload:

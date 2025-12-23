@@ -88,11 +88,15 @@ class CertificateSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class CertificateSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -162,45 +167,86 @@ class CertificateSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            ocsp_status: Enable/disable receiving certificates using the OCSP. (optional)
-            ocsp_option: Specify whether the OCSP URL is from certificate or configured OCSP server. (optional)
-            proxy: Proxy server FQDN or IP for OCSP/CA queries during certificate verification. (optional)
-            proxy_port: Proxy server port (1 - 65535, default = 8080). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            ocsp_status: Enable/disable receiving certificates using the OCSP.
+            (optional)
+            ocsp_option: Specify whether the OCSP URL is from certificate or
+            configured OCSP server. (optional)
+            proxy: Proxy server FQDN or IP for OCSP/CA queries during
+            certificate verification. (optional)
+            proxy_port: Proxy server port (1 - 65535, default = 8080).
+            (optional)
             proxy_username: Proxy server user name. (optional)
             proxy_password: Proxy server password. (optional)
-            source_ip: Source IP address for dynamic AIA and OCSP queries. (optional)
+            source_ip: Source IP address for dynamic AIA and OCSP queries.
+            (optional)
             ocsp_default_server: Default OCSP server. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
-            check_ca_cert: Enable/disable verification of the user certificate and pass authentication if any CA in the chain is trusted (default = enable). (optional)
-            check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). (optional)
-            subject_match: When searching for a matching certificate, control how to do RDN value matching with certificate subject name (default = substring). (optional)
-            subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). (optional)
-            cn_match: When searching for a matching certificate, control how to do CN value matching with certificate subject name (default = substring). (optional)
-            cn_allow_multi: When searching for a matching certificate, allow multiple CN fields in certificate subject name (default = enable). (optional)
+            check_ca_cert: Enable/disable verification of the user certificate
+            and pass authentication if any CA in the chain is trusted (default
+            = enable). (optional)
+            check_ca_chain: Enable/disable verification of the entire
+            certificate chain and pass authentication only if the chain is
+            complete and all of the CAs in the chain are trusted (default =
+            disable). (optional)
+            subject_match: When searching for a matching certificate, control
+            how to do RDN value matching with certificate subject name (default
+            = substring). (optional)
+            subject_set: When searching for a matching certificate, control how
+            to do RDN set matching with certificate subject name (default =
+            subset). (optional)
+            cn_match: When searching for a matching certificate, control how to
+            do CN value matching with certificate subject name (default =
+            substring). (optional)
+            cn_allow_multi: When searching for a matching certificate, allow
+            multiple CN fields in certificate subject name (default = enable).
+            (optional)
             crl_verification: CRL verification options. (optional)
-            strict_ocsp_check: Enable/disable strict mode OCSP checking. (optional)
-            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
-            cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode (default = disable). (optional)
-            cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). (optional)
-            cert_expire_warning: Number of days before a certificate expires to send a warning. Set to 0 to disable sending of the warning (0 - 100, default = 14). (optional)
-            certname_rsa1024: 1024 bit RSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_rsa2048: 2048 bit RSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_rsa4096: 4096 bit RSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_dsa1024: 1024 bit DSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_dsa2048: 2048 bit DSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_ecdsa256: 256 bit ECDSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_ecdsa384: 384 bit ECDSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_ecdsa521: 521 bit ECDSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_ed25519: 253 bit EdDSA key certificate for re-signing server certificates for SSL inspection. (optional)
-            certname_ed448: 456 bit EdDSA key certificate for re-signing server certificates for SSL inspection. (optional)
+            strict_ocsp_check: Enable/disable strict mode OCSP checking.
+            (optional)
+            ssl_min_proto_version: Minimum supported protocol version for
+            SSL/TLS connections (default is to follow system global setting).
+            (optional)
+            cmp_save_extra_certs: Enable/disable saving extra certificates in
+            CMP mode (default = disable). (optional)
+            cmp_key_usage_checking: Enable/disable server certificate key usage
+            checking in CMP mode (default = enable). (optional)
+            cert_expire_warning: Number of days before a certificate expires to
+            send a warning. Set to 0 to disable sending of the warning (0 -
+            100, default = 14). (optional)
+            certname_rsa1024: 1024 bit RSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_rsa2048: 2048 bit RSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_rsa4096: 4096 bit RSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_dsa1024: 1024 bit DSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_dsa2048: 2048 bit DSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_ecdsa256: 256 bit ECDSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_ecdsa384: 384 bit ECDSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_ecdsa521: 521 bit ECDSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_ed25519: 253 bit EdDSA key certificate for re-signing
+            server certificates for SSL inspection. (optional)
+            certname_ed448: 456 bit EdDSA key certificate for re-signing server
+            certificates for SSL inspection. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -208,7 +254,8 @@ class CertificateSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

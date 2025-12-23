@@ -75,7 +75,7 @@ def validate_affinity_packet_redistribution_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -83,7 +83,7 @@ def validate_affinity_packet_redistribution_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate rxqid if present
     if "rxqid" in payload:
@@ -92,7 +92,7 @@ def validate_affinity_packet_redistribution_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"rxqid must be between 0 and 255")
+                    return (False, "rxqid must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"rxqid must be numeric, got: {value}")
 
@@ -109,7 +109,7 @@ def validate_affinity_packet_redistribution_post(
     if "affinity-cpumask" in payload:
         value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"affinity-cpumask cannot exceed 127 characters")
+            return (False, "affinity-cpumask cannot exceed 127 characters")
 
     return (True, None)
 
@@ -147,7 +147,7 @@ def validate_affinity_packet_redistribution_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -155,7 +155,7 @@ def validate_affinity_packet_redistribution_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate rxqid if present
     if "rxqid" in payload:
@@ -164,7 +164,7 @@ def validate_affinity_packet_redistribution_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"rxqid must be between 0 and 255")
+                    return (False, "rxqid must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"rxqid must be numeric, got: {value}")
 
@@ -181,7 +181,7 @@ def validate_affinity_packet_redistribution_put(
     if "affinity-cpumask" in payload:
         value = payload.get("affinity-cpumask")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"affinity-cpumask cannot exceed 127 characters")
+            return (False, "affinity-cpumask cannot exceed 127 characters")
 
     return (True, None)
 

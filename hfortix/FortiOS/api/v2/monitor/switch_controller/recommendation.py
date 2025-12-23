@@ -63,7 +63,8 @@ class PseConfig:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Execute switch recommendation for pse-config to prevent PSE-PSE scenarios.
+        Execute switch recommendation for pse-config to prevent PSE-PSE
+        scenarios.
 
         Args:
             fortilink: FortiLink interface name. (optional)
@@ -75,7 +76,8 @@ class PseConfig:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.recommendation.pse_config.post()
+            >>>
+            fgt.api.monitor.switch_controller.recommendation.pse_config.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if fortilink is not None:

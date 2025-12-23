@@ -71,7 +71,7 @@ def validate_qos_qos_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate default-cos if present
     if "default-cos" in payload:
@@ -80,7 +80,7 @@ def validate_qos_qos_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"default-cos must be between 0 and 7")
+                    return (False, "default-cos must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"default-cos must be numeric, got: {value}")
 
@@ -88,19 +88,19 @@ def validate_qos_qos_policy_post(
     if "trust-dot1p-map" in payload:
         value = payload.get("trust-dot1p-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"trust-dot1p-map cannot exceed 63 characters")
+            return (False, "trust-dot1p-map cannot exceed 63 characters")
 
     # Validate trust-ip-dscp-map if present
     if "trust-ip-dscp-map" in payload:
         value = payload.get("trust-ip-dscp-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"trust-ip-dscp-map cannot exceed 63 characters")
+            return (False, "trust-ip-dscp-map cannot exceed 63 characters")
 
     # Validate queue-policy if present
     if "queue-policy" in payload:
         value = payload.get("queue-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"queue-policy cannot exceed 63 characters")
+            return (False, "queue-policy cannot exceed 63 characters")
 
     return (True, None)
 
@@ -135,7 +135,7 @@ def validate_qos_qos_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate default-cos if present
     if "default-cos" in payload:
@@ -144,7 +144,7 @@ def validate_qos_qos_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"default-cos must be between 0 and 7")
+                    return (False, "default-cos must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"default-cos must be numeric, got: {value}")
 
@@ -152,19 +152,19 @@ def validate_qos_qos_policy_put(
     if "trust-dot1p-map" in payload:
         value = payload.get("trust-dot1p-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"trust-dot1p-map cannot exceed 63 characters")
+            return (False, "trust-dot1p-map cannot exceed 63 characters")
 
     # Validate trust-ip-dscp-map if present
     if "trust-ip-dscp-map" in payload:
         value = payload.get("trust-ip-dscp-map")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"trust-ip-dscp-map cannot exceed 63 characters")
+            return (False, "trust-ip-dscp-map cannot exceed 63 characters")
 
     # Validate queue-policy if present
     if "queue-policy" in payload:
         value = payload.get("queue-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"queue-policy cannot exceed 63 characters")
+            return (False, "queue-policy cannot exceed 63 characters")
 
     return (True, None)
 

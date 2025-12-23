@@ -85,6 +85,6 @@ def validate_webtrends_setting_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     return (True, None)

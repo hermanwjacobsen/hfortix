@@ -80,7 +80,7 @@ def validate_multicast_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967294:
-                    return (False, f"id must be between 0 and 4294967294")
+                    return (False, "id must be between 0 and 4294967294")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -88,13 +88,13 @@ def validate_multicast_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -106,14 +106,14 @@ def validate_multicast_policy_post(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"srcintf cannot exceed 35 characters")
 
     # Validate dstintf if present
-    if "dstintf" in payload:
-        value = payload.get("dstintf")
+    if "dstint" in payload:
+        value = payload.get("dstint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"dstintf cannot exceed 35 characters")
 
@@ -142,7 +142,7 @@ def validate_multicast_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -153,7 +153,7 @@ def validate_multicast_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"start-port must be between 0 and 65535")
+                    return (False, "start-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"start-port must be numeric, got: {value}")
 
@@ -164,7 +164,7 @@ def validate_multicast_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"end-port must be between 0 and 65535")
+                    return (False, "end-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"end-port must be numeric, got: {value}")
 
@@ -181,7 +181,7 @@ def validate_multicast_policy_post(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -205,7 +205,7 @@ def validate_multicast_policy_post(
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     return (True, None)
 
@@ -243,7 +243,7 @@ def validate_multicast_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967294:
-                    return (False, f"id must be between 0 and 4294967294")
+                    return (False, "id must be between 0 and 4294967294")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -251,13 +251,13 @@ def validate_multicast_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comments cannot exceed 1023 characters")
+            return (False, "comments cannot exceed 1023 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -269,14 +269,14 @@ def validate_multicast_policy_put(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"srcintf cannot exceed 35 characters")
 
     # Validate dstintf if present
-    if "dstintf" in payload:
-        value = payload.get("dstintf")
+    if "dstint" in payload:
+        value = payload.get("dstint")
         if value and isinstance(value, str) and len(value) > 35:
             return (False, f"dstintf cannot exceed 35 characters")
 
@@ -305,7 +305,7 @@ def validate_multicast_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -316,7 +316,7 @@ def validate_multicast_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"start-port must be between 0 and 65535")
+                    return (False, "start-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"start-port must be numeric, got: {value}")
 
@@ -327,7 +327,7 @@ def validate_multicast_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"end-port must be between 0 and 65535")
+                    return (False, "end-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"end-port must be numeric, got: {value}")
 
@@ -344,7 +344,7 @@ def validate_multicast_policy_put(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate logtraffic if present
     if "logtraffic" in payload:
@@ -368,7 +368,7 @@ def validate_multicast_policy_put(
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     return (True, None)
 

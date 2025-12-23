@@ -88,11 +88,15 @@ class ResourceLimits:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class ResourceLimits:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -145,28 +150,44 @@ class ResourceLimits:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             session: Maximum number of sessions. (optional)
-            ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels. (optional)
-            ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels. (optional)
-            ipsec_phase1_interface: Maximum number of VPN IPsec phase1 interface tunnels. (optional)
-            ipsec_phase2_interface: Maximum number of VPN IPsec phase2 interface tunnels. (optional)
+            ipsec_phase1: Maximum number of VPN IPsec phase1 tunnels.
+            (optional)
+            ipsec_phase2: Maximum number of VPN IPsec phase2 tunnels.
+            (optional)
+            ipsec_phase1_interface: Maximum number of VPN IPsec phase1
+            interface tunnels. (optional)
+            ipsec_phase2_interface: Maximum number of VPN IPsec phase2
+            interface tunnels. (optional)
             dialup_tunnel: Maximum number of dial-up tunnels. (optional)
-            firewall_policy: Maximum number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast). (optional)
-            firewall_address: Maximum number of firewall addresses (IPv4, IPv6, multicast). (optional)
-            firewall_addrgrp: Maximum number of firewall address groups (IPv4, IPv6). (optional)
-            custom_service: Maximum number of firewall custom services. (optional)
-            service_group: Maximum number of firewall service groups. (optional)
-            onetime_schedule: Maximum number of firewall one-time schedules. (optional)
-            recurring_schedule: Maximum number of firewall recurring schedules. (optional)
+            firewall_policy: Maximum number of firewall policies (policy,
+            DoS-policy4, DoS-policy6, multicast). (optional)
+            firewall_address: Maximum number of firewall addresses (IPv4, IPv6,
+            multicast). (optional)
+            firewall_addrgrp: Maximum number of firewall address groups (IPv4,
+            IPv6). (optional)
+            custom_service: Maximum number of firewall custom services.
+            (optional)
+            service_group: Maximum number of firewall service groups.
+            (optional)
+            onetime_schedule: Maximum number of firewall one-time schedules.
+            (optional)
+            recurring_schedule: Maximum number of firewall recurring schedules.
+            (optional)
             user: Maximum number of local users. (optional)
             user_group: Maximum number of user groups. (optional)
             log_disk_quota: Log disk quota in megabytes (MB). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -174,7 +195,8 @@ class ResourceLimits:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -11,7 +11,7 @@ Customize as needed for endpoint-specific business logic.
 from typing import Any
 
 # Valid enum values from API documentation
-VALID_BODY_IMAGE_TYPE = ["gif", "jpg", "tiff", "png"]
+VALID_BODY_IMAGE_TYPE = ["gi", "jpg", "tif", "png"]
 VALID_QUERY_ACTION = ["default", "schema"]
 
 # ============================================================================
@@ -72,7 +72,7 @@ def validate_replacemsg_image_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 23:
-            return (False, f"name cannot exceed 23 characters")
+            return (False, "name cannot exceed 23 characters")
 
     # Validate image-type if present
     if "image-type" in payload:
@@ -87,7 +87,7 @@ def validate_replacemsg_image_post(
     if "image-base64" in payload:
         value = payload.get("image-base64")
         if value and isinstance(value, str) and len(value) > 32768:
-            return (False, f"image-base64 cannot exceed 32768 characters")
+            return (False, "image-base64 cannot exceed 32768 characters")
 
     return (True, None)
 
@@ -122,7 +122,7 @@ def validate_replacemsg_image_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 23:
-            return (False, f"name cannot exceed 23 characters")
+            return (False, "name cannot exceed 23 characters")
 
     # Validate image-type if present
     if "image-type" in payload:
@@ -137,7 +137,7 @@ def validate_replacemsg_image_put(
     if "image-base64" in payload:
         value = payload.get("image-base64")
         if value and isinstance(value, str) and len(value) > 32768:
-            return (False, f"image-base64 cannot exceed 32768 characters")
+            return (False, "image-base64 cannot exceed 32768 characters")
 
     return (True, None)
 

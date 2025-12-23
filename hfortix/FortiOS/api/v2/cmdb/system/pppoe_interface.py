@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class PppoeInterface:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class PppoeInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -168,32 +174,46 @@ class PppoeInterface:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Name of the PPPoE interface. (optional)
-            dial_on_demand: Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. (optional)
+            dial_on_demand: Enable/disable dial on demand to dial the PPPoE
+            interface when packets are routed to the PPPoE interface.
+            (optional)
             ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). (optional)
             device: Name for the physical interface. (optional)
             username: User name. (optional)
             password: Enter the password. (optional)
-            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets.
+            (optional)
             auth_type: PPP authentication type to use. (optional)
             ipunnumbered: PPPoE unnumbered IP. (optional)
-            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
-            idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec). (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered
+            negotiation. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout
+            (0-4294967295 sec). (optional)
             multilink: Enable/disable PPP multilink support. (optional)
             mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
-            disc_retry_timeout: PPPoE discovery init timeout value in (0-4294967295 sec). (optional)
-            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec). (optional)
+            disc_retry_timeout: PPPoE discovery init timeout value in
+            (0-4294967295 sec). (optional)
+            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295
+            sec). (optional)
             service_name: PPPoE service name. (optional)
             ac_name: PPPoE AC name. (optional)
-            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
-            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control
+            Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before
+            disconnect. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -201,7 +221,8 @@ class PppoeInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -275,8 +296,10 @@ class PppoeInterface:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -284,7 +307,8 @@ class PppoeInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -374,30 +398,43 @@ class PppoeInterface:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Name of the PPPoE interface. (optional)
-            dial_on_demand: Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface. (optional)
+            dial_on_demand: Enable/disable dial on demand to dial the PPPoE
+            interface when packets are routed to the PPPoE interface.
+            (optional)
             ipv6: Enable/disable IPv6 Control Protocol (IPv6CP). (optional)
             device: Name for the physical interface. (optional)
             username: User name. (optional)
             password: Enter the password. (optional)
-            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets. (optional)
+            pppoe_egress_cos: CoS in VLAN tag for outgoing PPPoE/PPP packets.
+            (optional)
             auth_type: PPP authentication type to use. (optional)
             ipunnumbered: PPPoE unnumbered IP. (optional)
-            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered negotiation. (optional)
-            idle_timeout: PPPoE auto disconnect after idle timeout (0-4294967295 sec). (optional)
+            pppoe_unnumbered_negotiate: Enable/disable PPPoE unnumbered
+            negotiation. (optional)
+            idle_timeout: PPPoE auto disconnect after idle timeout
+            (0-4294967295 sec). (optional)
             multilink: Enable/disable PPP multilink support. (optional)
             mrru: PPP MRRU (296 - 65535, default = 1500). (optional)
-            disc_retry_timeout: PPPoE discovery init timeout value in (0-4294967295 sec). (optional)
-            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295 sec). (optional)
+            disc_retry_timeout: PPPoE discovery init timeout value in
+            (0-4294967295 sec). (optional)
+            padt_retry_timeout: PPPoE terminate timeout value in (0-4294967295
+            sec). (optional)
             service_name: PPPoE service name. (optional)
             ac_name: PPPoE AC name. (optional)
-            lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests. (optional)
-            lcp_max_echo_fails: Maximum missed LCP echo messages before disconnect. (optional)
+            lcp_echo_interval: Time in seconds between PPPoE Link Control
+            Protocol (LCP) echo requests. (optional)
+            lcp_max_echo_fails: Maximum missed LCP echo messages before
+            disconnect. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -405,7 +442,8 @@ class PppoeInterface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

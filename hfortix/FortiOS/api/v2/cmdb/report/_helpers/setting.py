@@ -114,7 +114,7 @@ def validate_setting_put(
                 if int_val < 3 or int_val > 15:
                     return (
                         False,
-                        f"web-browsing-threshold must be between 3 and 15",
+                        "web-browsing-threshold must be between 3 and 15",
                     )
             except (ValueError, TypeError):
                 return (
@@ -129,7 +129,7 @@ def validate_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 1000 or int_val > 20000:
-                    return (False, f"top-n must be between 1000 and 20000")
+                    return (False, "top-n must be between 1000 and 20000")
             except (ValueError, TypeError):
                 return (False, f"top-n must be numeric, got: {value}")
 

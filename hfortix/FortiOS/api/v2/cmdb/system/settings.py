@@ -88,11 +88,15 @@ class Settings:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Settings:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -266,149 +271,269 @@ class Settings:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             comments: VDOM comments. (optional)
             vdom_type: Vdom type (traffic, lan-extension or admin). (optional)
-            lan_extension_controller_addr: Controller IP address or FQDN to connect. (optional)
-            lan_extension_controller_port: Controller port to connect. (optional)
+            lan_extension_controller_addr: Controller IP address or FQDN to
+            connect. (optional)
+            lan_extension_controller_port: Controller port to connect.
+            (optional)
             opmode: Firewall operation mode (NAT or Transparent). (optional)
             ngfw_mode: Next Generation Firewall (NGFW) mode. (optional)
-            http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache. (optional)
-            firewall_session_dirty: Select how to manage sessions affected by firewall policy configuration changes. (optional)
-            manageip: Transparent mode IPv4 management IP address and netmask. (optional)
-            gateway: Transparent mode IPv4 default gateway IP address. (optional)
+            http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache.
+            (optional)
+            firewall_session_dirty: Select how to manage sessions affected by
+            firewall policy configuration changes. (optional)
+            manageip: Transparent mode IPv4 management IP address and netmask.
+            (optional)
+            gateway: Transparent mode IPv4 default gateway IP address.
+            (optional)
             ip: IP address and netmask. (optional)
-            manageip6: Transparent mode IPv6 management IP address and netmask. (optional)
-            gateway6: Transparent mode IPv6 default gateway IP address. (optional)
+            manageip6: Transparent mode IPv6 management IP address and netmask.
+            (optional)
+            gateway6: Transparent mode IPv6 default gateway IP address.
+            (optional)
             ip6: IPv6 address prefix for NAT mode. (optional)
-            device: Interface to use for management access for NAT mode. (optional)
-            bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on all interfaces. (optional)
-            bfd_desired_min_tx: BFD desired minimal transmit interval (1 - 100000 ms, default = 250). (optional)
-            bfd_required_min_rx: BFD required minimal receive interval (1 - 100000 ms, default = 250). (optional)
-            bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3). (optional)
-            bfd_dont_enforce_src_port: Enable to not enforce verifying the source port of BFD Packets. (optional)
-            utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8 for better non-ASCII character support. (optional)
+            device: Interface to use for management access for NAT mode.
+            (optional)
+            bfd: Enable/disable Bi-directional Forwarding Detection (BFD) on
+            all interfaces. (optional)
+            bfd_desired_min_tx: BFD desired minimal transmit interval (1 -
+            100000 ms, default = 250). (optional)
+            bfd_required_min_rx: BFD required minimal receive interval (1 -
+            100000 ms, default = 250). (optional)
+            bfd_detect_mult: BFD detection multiplier (1 - 50, default = 3).
+            (optional)
+            bfd_dont_enforce_src_port: Enable to not enforce verifying the
+            source port of BFD Packets. (optional)
+            utf8_spam_tagging: Enable/disable converting antispam tags to UTF-8
+            for better non-ASCII character support. (optional)
             wccp_cache_engine: Enable/disable WCCP cache engine. (optional)
-            vpn_stats_log: Enable/disable periodic VPN log statistics for one or more types of VPN. Separate names with a space. (optional)
-            vpn_stats_period: Period to send VPN log statistics (0 or 60 - 86400 sec). (optional)
-            v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load balancing mode. (optional)
-            mac_ttl: Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300). (optional)
-            fw_session_hairpin: Enable/disable checking for a matching policy each time hairpin traffic goes through the FortiGate. (optional)
-            prp_trailer_action: Enable/disable action to take on PRP trailer. (optional)
-            snat_hairpin_traffic: Enable/disable source NAT (SNAT) for VIP hairpin traffic. (optional)
+            vpn_stats_log: Enable/disable periodic VPN log statistics for one
+            or more types of VPN. Separate names with a space. (optional)
+            vpn_stats_period: Period to send VPN log statistics (0 or 60 -
+            86400 sec). (optional)
+            v4_ecmp_mode: IPv4 Equal-cost multi-path (ECMP) routing and load
+            balancing mode. (optional)
+            mac_ttl: Duration of MAC addresses in Transparent mode (300 -
+            8640000 sec, default = 300). (optional)
+            fw_session_hairpin: Enable/disable checking for a matching policy
+            each time hairpin traffic goes through the FortiGate. (optional)
+            prp_trailer_action: Enable/disable action to take on PRP trailer.
+            (optional)
+            snat_hairpin_traffic: Enable/disable source NAT (SNAT) for VIP
+            hairpin traffic. (optional)
             dhcp_proxy: Enable/disable the DHCP Proxy. (optional)
-            dhcp_proxy_interface_select_method: Specify how to select outgoing interface to reach server. (optional)
-            dhcp_proxy_interface: Specify outgoing interface to reach server. (optional)
-            dhcp_proxy_vrf_select: VRF ID used for connection to server. (optional)
+            dhcp_proxy_interface_select_method: Specify how to select outgoing
+            interface to reach server. (optional)
+            dhcp_proxy_interface: Specify outgoing interface to reach server.
+            (optional)
+            dhcp_proxy_vrf_select: VRF ID used for connection to server.
+            (optional)
             dhcp_server_ip: DHCP Server IPv4 address. (optional)
             dhcp6_server_ip: DHCPv6 server IPv6 address. (optional)
             central_nat: Enable/disable central NAT. (optional)
-            gui_default_policy_columns: Default columns to display for policy lists on GUI. (optional)
-            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. (optional)
-            lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. (optional)
-            link_down_access: Enable/disable link down access traffic. (optional)
-            nat46_generate_ipv6_fragment_header: Enable/disable NAT46 IPv6 fragment header generation. (optional)
-            nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4 packet forwarding in NAT46. (optional)
-            nat64_force_ipv6_packet_forwarding: Enable/disable mandatory IPv6 packet forwarding in NAT64. (optional)
-            detect_unknown_esp: Enable/disable detection of unknown ESP packets (default = enable). (optional)
-            intree_ses_best_route: Force the intree session to always use the best route. (optional)
+            gui_default_policy_columns: Default columns to display for policy
+            lists on GUI. (optional)
+            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP)
+            reception for this VDOM or apply global settings to this VDOM.
+            (optional)
+            lldp_transmission: Enable/disable Link Layer Discovery Protocol
+            (LLDP) transmission for this VDOM or apply global settings to this
+            VDOM. (optional)
+            link_down_access: Enable/disable link down access traffic.
+            (optional)
+            nat46_generate_ipv6_fragment_header: Enable/disable NAT46 IPv6
+            fragment header generation. (optional)
+            nat46_force_ipv4_packet_forwarding: Enable/disable mandatory IPv4
+            packet forwarding in NAT46. (optional)
+            nat64_force_ipv6_packet_forwarding: Enable/disable mandatory IPv6
+            packet forwarding in NAT64. (optional)
+            detect_unknown_esp: Enable/disable detection of unknown ESP packets
+            (default = enable). (optional)
+            intree_ses_best_route: Force the intree session to always use the
+            best route. (optional)
             auxiliary_session: Enable/disable auxiliary session. (optional)
             asymroute: Enable/disable IPv4 asymmetric routing. (optional)
             asymroute_icmp: Enable/disable ICMP asymmetric routing. (optional)
-            tcp_session_without_syn: Enable/disable allowing TCP session without SYN flags. (optional)
-            ses_denied_traffic: Enable/disable including denied session in the session table. (optional)
-            ses_denied_multicast_traffic: Enable/disable including denied multicast session in the session table. (optional)
-            strict_src_check: Enable/disable strict source verification. (optional)
+            tcp_session_without_syn: Enable/disable allowing TCP session
+            without SYN flags. (optional)
+            ses_denied_traffic: Enable/disable including denied session in the
+            session table. (optional)
+            ses_denied_multicast_traffic: Enable/disable including denied
+            multicast session in the session table. (optional)
+            strict_src_check: Enable/disable strict source verification.
+            (optional)
             allow_linkdown_path: Enable/disable link down path. (optional)
             asymroute6: Enable/disable asymmetric IPv6 routing. (optional)
-            asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing. (optional)
-            sctp_session_without_init: Enable/disable SCTP session creation without SCTP INIT. (optional)
-            sip_expectation: Enable/disable the SIP kernel session helper to create an expectation for port 5060. (optional)
-            sip_nat_trace: Enable/disable recording the original SIP source IP address when NAT is used. (optional)
+            asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing.
+            (optional)
+            sctp_session_without_init: Enable/disable SCTP session creation
+            without SCTP INIT. (optional)
+            sip_expectation: Enable/disable the SIP kernel session helper to
+            create an expectation for port 5060. (optional)
+            sip_nat_trace: Enable/disable recording the original SIP source IP
+            address when NAT is used. (optional)
             h323_direct_model: Enable/disable H323 direct model. (optional)
             status: Enable/disable this VDOM. (optional)
-            sip_tcp_port: TCP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060). (optional)
-            sip_udp_port: UDP port the SIP proxy monitors for SIP traffic (0 - 65535, default = 5060). (optional)
-            sip_ssl_port: TCP port the SIP proxy monitors for SIP SSL/TLS traffic (0 - 65535, default = 5061). (optional)
-            sccp_port: TCP port the SCCP proxy monitors for SCCP traffic (0 - 65535, default = 2000). (optional)
+            sip_tcp_port: TCP port the SIP proxy monitors for SIP traffic (0 -
+            65535, default = 5060). (optional)
+            sip_udp_port: UDP port the SIP proxy monitors for SIP traffic (0 -
+            65535, default = 5060). (optional)
+            sip_ssl_port: TCP port the SIP proxy monitors for SIP SSL/TLS
+            traffic (0 - 65535, default = 5061). (optional)
+            sccp_port: TCP port the SCCP proxy monitors for SCCP traffic (0 -
+            65535, default = 2000). (optional)
             multicast_forward: Enable/disable multicast forwarding. (optional)
-            multicast_ttl_notchange: Enable/disable preventing the FortiGate from changing the TTL for forwarded multicast packets. (optional)
-            multicast_skip_policy: Enable/disable allowing multicast traffic through the FortiGate without a policy check. (optional)
-            allow_subnet_overlap: Enable/disable allowing interface subnets to use overlapping IP addresses. (optional)
-            deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP communication prohibited packet. (optional)
-            ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP) next-hops. Set to 1 to disable ECMP routing (1 - 255, default = 255). (optional)
-            discovered_device_timeout: Timeout for discovered devices (1 - 365 days, default = 28). (optional)
-            email_portal_check_dns: Enable/disable using DNS to validate email addresses collected by a captive portal. (optional)
-            default_voip_alg_mode: Configure how the FortiGate handles VoIP traffic when a policy that accepts the traffic doesn't include a VoIP profile. (optional)
+            multicast_ttl_notchange: Enable/disable preventing the FortiGate
+            from changing the TTL for forwarded multicast packets. (optional)
+            multicast_skip_policy: Enable/disable allowing multicast traffic
+            through the FortiGate without a policy check. (optional)
+            allow_subnet_overlap: Enable/disable allowing interface subnets to
+            use overlapping IP addresses. (optional)
+            deny_tcp_with_icmp: Enable/disable denying TCP by sending an ICMP
+            communication prohibited packet. (optional)
+            ecmp_max_paths: Maximum number of Equal Cost Multi-Path (ECMP)
+            next-hops. Set to 1 to disable ECMP routing (1 - 255, default =
+            255). (optional)
+            discovered_device_timeout: Timeout for discovered devices (1 - 365
+            days, default = 28). (optional)
+            email_portal_check_dns: Enable/disable using DNS to validate email
+            addresses collected by a captive portal. (optional)
+            default_voip_alg_mode: Configure how the FortiGate handles VoIP
+            traffic when a policy that accepts the traffic doesn't include a
+            VoIP profile. (optional)
             gui_icap: Enable/disable ICAP on the GUI. (optional)
-            gui_implicit_policy: Enable/disable implicit firewall policies on the GUI. (optional)
-            gui_dns_database: Enable/disable DNS database settings on the GUI. (optional)
-            gui_load_balance: Enable/disable server load balancing on the GUI. (optional)
-            gui_multicast_policy: Enable/disable multicast firewall policies on the GUI. (optional)
+            gui_implicit_policy: Enable/disable implicit firewall policies on
+            the GUI. (optional)
+            gui_dns_database: Enable/disable DNS database settings on the GUI.
+            (optional)
+            gui_load_balance: Enable/disable server load balancing on the GUI.
+            (optional)
+            gui_multicast_policy: Enable/disable multicast firewall policies on
+            the GUI. (optional)
             gui_dos_policy: Enable/disable DoS policies on the GUI. (optional)
-            gui_object_colors: Enable/disable object colors on the GUI. (optional)
-            gui_route_tag_address_creation: Enable/disable route-tag addresses on the GUI. (optional)
-            gui_voip_profile: Enable/disable VoIP profiles on the GUI. (optional)
-            gui_ap_profile: Enable/disable FortiAP profiles on the GUI. (optional)
-            gui_security_profile_group: Enable/disable Security Profile Groups on the GUI. (optional)
-            gui_local_in_policy: Enable/disable Local-In policies on the GUI. (optional)
-            gui_explicit_proxy: Enable/disable the explicit proxy on the GUI. (optional)
-            gui_dynamic_routing: Enable/disable dynamic routing on the GUI. (optional)
-            gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on the GUI. (optional)
-            gui_threat_weight: Enable/disable threat weight on the GUI. (optional)
+            gui_object_colors: Enable/disable object colors on the GUI.
+            (optional)
+            gui_route_tag_address_creation: Enable/disable route-tag addresses
+            on the GUI. (optional)
+            gui_voip_profile: Enable/disable VoIP profiles on the GUI.
+            (optional)
+            gui_ap_profile: Enable/disable FortiAP profiles on the GUI.
+            (optional)
+            gui_security_profile_group: Enable/disable Security Profile Groups
+            on the GUI. (optional)
+            gui_local_in_policy: Enable/disable Local-In policies on the GUI.
+            (optional)
+            gui_explicit_proxy: Enable/disable the explicit proxy on the GUI.
+            (optional)
+            gui_dynamic_routing: Enable/disable dynamic routing on the GUI.
+            (optional)
+            gui_policy_based_ipsec: Enable/disable policy-based IPsec VPN on
+            the GUI. (optional)
+            gui_threat_weight: Enable/disable threat weight on the GUI.
+            (optional)
             gui_spamfilter: Enable/disable Antispam on the GUI. (optional)
             gui_file_filter: Enable/disable File-filter on the GUI. (optional)
-            gui_application_control: Enable/disable application control on the GUI. (optional)
+            gui_application_control: Enable/disable application control on the
+            GUI. (optional)
             gui_ips: Enable/disable IPS on the GUI. (optional)
-            gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI. (optional)
-            gui_vpn: Enable/disable IPsec VPN settings pages on the GUI. (optional)
-            gui_wireless_controller: Enable/disable the wireless controller on the GUI. (optional)
-            gui_advanced_wireless_features: Enable/disable advanced wireless features in GUI. (optional)
-            gui_switch_controller: Enable/disable the switch controller on the GUI. (optional)
-            gui_fortiap_split_tunneling: Enable/disable FortiAP split tunneling on the GUI. (optional)
-            gui_webfilter_advanced: Enable/disable advanced web filtering on the GUI. (optional)
-            gui_traffic_shaping: Enable/disable traffic shaping on the GUI. (optional)
-            gui_wan_load_balancing: Enable/disable SD-WAN on the GUI. (optional)
+            gui_dhcp_advanced: Enable/disable advanced DHCP options on the GUI.
+            (optional)
+            gui_vpn: Enable/disable IPsec VPN settings pages on the GUI.
+            (optional)
+            gui_wireless_controller: Enable/disable the wireless controller on
+            the GUI. (optional)
+            gui_advanced_wireless_features: Enable/disable advanced wireless
+            features in GUI. (optional)
+            gui_switch_controller: Enable/disable the switch controller on the
+            GUI. (optional)
+            gui_fortiap_split_tunneling: Enable/disable FortiAP split tunneling
+            on the GUI. (optional)
+            gui_webfilter_advanced: Enable/disable advanced web filtering on
+            the GUI. (optional)
+            gui_traffic_shaping: Enable/disable traffic shaping on the GUI.
+            (optional)
+            gui_wan_load_balancing: Enable/disable SD-WAN on the GUI.
+            (optional)
             gui_antivirus: Enable/disable AntiVirus on the GUI. (optional)
             gui_webfilter: Enable/disable Web filtering on the GUI. (optional)
-            gui_videofilter: Enable/disable Video filtering on the GUI. (optional)
+            gui_videofilter: Enable/disable Video filtering on the GUI.
+            (optional)
             gui_dnsfilter: Enable/disable DNS Filtering on the GUI. (optional)
-            gui_waf_profile: Enable/disable Web Application Firewall on the GUI. (optional)
-            gui_dlp_profile: Enable/disable Data Loss Prevention on the GUI. (optional)
-            gui_dlp_advanced: Enable/disable Show advanced DLP expressions on the GUI. (optional)
-            gui_virtual_patch_profile: Enable/disable Virtual Patching on the GUI. (optional)
+            gui_waf_profile: Enable/disable Web Application Firewall on the
+            GUI. (optional)
+            gui_dlp_profile: Enable/disable Data Loss Prevention on the GUI.
+            (optional)
+            gui_dlp_advanced: Enable/disable Show advanced DLP expressions on
+            the GUI. (optional)
+            gui_virtual_patch_profile: Enable/disable Virtual Patching on the
+            GUI. (optional)
             gui_casb: Enable/disable Inline-CASB on the GUI. (optional)
-            gui_fortiextender_controller: Enable/disable FortiExtender on the GUI. (optional)
-            gui_advanced_policy: Enable/disable advanced policy configuration on the GUI. (optional)
-            gui_allow_unnamed_policy: Enable/disable the requirement for policy naming on the GUI. (optional)
-            gui_email_collection: Enable/disable email collection on the GUI. (optional)
-            gui_multiple_interface_policy: Enable/disable adding multiple interfaces to a policy on the GUI. (optional)
-            gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI. (optional)
-            gui_ztna: Enable/disable Zero Trust Network Access features on the GUI. (optional)
-            gui_ot: Enable/disable Operational technology features on the GUI. (optional)
-            gui_dynamic_device_os_id: Enable/disable Create dynamic addresses to manage known devices. (optional)
-            location_id: Local location ID in the form of an IPv4 address. (optional)
-            ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). (optional)
-            ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). (optional)
-            ike_dn_format: Configure IKE ASN.1 Distinguished Name format conventions. (optional)
+            gui_fortiextender_controller: Enable/disable FortiExtender on the
+            GUI. (optional)
+            gui_advanced_policy: Enable/disable advanced policy configuration
+            on the GUI. (optional)
+            gui_allow_unnamed_policy: Enable/disable the requirement for policy
+            naming on the GUI. (optional)
+            gui_email_collection: Enable/disable email collection on the GUI.
+            (optional)
+            gui_multiple_interface_policy: Enable/disable adding multiple
+            interfaces to a policy on the GUI. (optional)
+            gui_policy_disclaimer: Enable/disable policy disclaimer on the GUI.
+            (optional)
+            gui_ztna: Enable/disable Zero Trust Network Access features on the
+            GUI. (optional)
+            gui_ot: Enable/disable Operational technology features on the GUI.
+            (optional)
+            gui_dynamic_device_os_id: Enable/disable Create dynamic addresses
+            to manage known devices. (optional)
+            location_id: Local location ID in the form of an IPv4 address.
+            (optional)
+            ike_session_resume: Enable/disable IKEv2 session resumption (RFC
+            5723). (optional)
+            ike_quick_crash_detect: Enable/disable IKE quick crash detection
+            (RFC 6290). (optional)
+            ike_dn_format: Configure IKE ASN.1 Distinguished Name format
+            conventions. (optional)
             ike_port: UDP port for IKE/IPsec traffic (default 500). (optional)
-            ike_tcp_port: TCP port for IKE/IPsec traffic (default 443). (optional)
-            ike_policy_route: Enable/disable IKE Policy Based Routing (PBR). (optional)
-            ike_detailed_event_logs: Enable/disable detail log for IKE events. (optional)
-            block_land_attack: Enable/disable blocking of land attacks. (optional)
-            default_app_port_as_service: Enable/disable policy service enforcement based on application default ports. (optional)
-            fqdn_session_check: Enable/disable dirty session check caused by FQDN updates. (optional)
-            ext_resource_session_check: Enable/disable dirty session check caused by external resource updates. (optional)
-            dyn_addr_session_check: Enable/disable dirty session check caused by dynamic address updates. (optional)
-            default_policy_expiry_days: Default policy expiry in days (0 - 365 days, default = 30). (optional)
-            gui_enforce_change_summary: Enforce change summaries for select tables in the GUI. (optional)
-            internet_service_database_cache: Enable/disable Internet Service database caching. (optional)
-            internet_service_app_ctrl_size: Maximum number of tuple entries (protocol, port, IP address, application ID) stored by the FortiGate unit (0 - 4294967295, default = 32768). A smaller value limits the FortiGate unit from learning about internet applications. (optional)
+            ike_tcp_port: TCP port for IKE/IPsec traffic (default 443).
+            (optional)
+            ike_policy_route: Enable/disable IKE Policy Based Routing (PBR).
+            (optional)
+            ike_detailed_event_logs: Enable/disable detail log for IKE events.
+            (optional)
+            block_land_attack: Enable/disable blocking of land attacks.
+            (optional)
+            default_app_port_as_service: Enable/disable policy service
+            enforcement based on application default ports. (optional)
+            fqdn_session_check: Enable/disable dirty session check caused by
+            FQDN updates. (optional)
+            ext_resource_session_check: Enable/disable dirty session check
+            caused by external resource updates. (optional)
+            dyn_addr_session_check: Enable/disable dirty session check caused
+            by dynamic address updates. (optional)
+            default_policy_expiry_days: Default policy expiry in days (0 - 365
+            days, default = 30). (optional)
+            gui_enforce_change_summary: Enforce change summaries for select
+            tables in the GUI. (optional)
+            internet_service_database_cache: Enable/disable Internet Service
+            database caching. (optional)
+            internet_service_app_ctrl_size: Maximum number of tuple entries
+            (protocol, port, IP address, application ID) stored by the
+            FortiGate unit (0 - 4294967295, default = 32768). A smaller value
+            limits the FortiGate unit from learning about internet
+            applications. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -416,7 +541,8 @@ class Settings:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

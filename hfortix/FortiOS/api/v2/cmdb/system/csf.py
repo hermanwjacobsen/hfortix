@@ -88,11 +88,15 @@ class Csf:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,13 +104,14 @@ class Csf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
         """
         params = payload_dict.copy() if payload_dict else {}
-        endpoint = "/system/csf"
+        endpoint = "/system/cs"
         if exclude_default_values is not None:
             params["exclude-default-values"] = exclude_default_values
         if stat_items is not None:
@@ -155,38 +160,65 @@ class Csf:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable Security Fabric. (optional)
             uid: Unique ID of the current CSF node (optional)
-            upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric. (optional)
-            source_ip: Source IP address for communication with the upstream FortiGate. (optional)
-            upstream_interface_select_method: Specify how to select outgoing interface to reach server. (optional)
-            upstream_interface: Specify outgoing interface to reach server. (optional)
-            upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013). (optional)
-            group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name. (optional)
-            group_password: Security Fabric group password. For legacy authentication, fabric members must have the same group password. (optional)
-            accept_auth_by_cert: Accept connections with unknown certificates and ask admin for approval. (optional)
-            log_unification: Enable/disable broadcast of discovery messages for log unification. (optional)
+            upstream: IP/FQDN of the FortiGate upstream from this FortiGate in
+            the Security Fabric. (optional)
+            source_ip: Source IP address for communication with the upstream
+            FortiGate. (optional)
+            upstream_interface_select_method: Specify how to select outgoing
+            interface to reach server. (optional)
+            upstream_interface: Specify outgoing interface to reach server.
+            (optional)
+            upstream_port: The port number to use to communicate with the
+            FortiGate upstream from this FortiGate in the Security Fabric
+            (default = 8013). (optional)
+            group_name: Security Fabric group name. All FortiGates in a
+            Security Fabric must have the same group name. (optional)
+            group_password: Security Fabric group password. For legacy
+            authentication, fabric members must have the same group password.
+            (optional)
+            accept_auth_by_cert: Accept connections with unknown certificates
+            and ask admin for approval. (optional)
+            log_unification: Enable/disable broadcast of discovery messages for
+            log unification. (optional)
             authorization_request_type: Authorization request type. (optional)
             certificate: Certificate. (optional)
-            fabric_workers: Number of worker processes for Security Fabric daemon. (optional)
-            downstream_access: Enable/disable downstream device access to this device's configuration and data. (optional)
-            legacy_authentication: Enable/disable legacy authentication. (optional)
-            downstream_accprofile: Default access profile for requests from downstream devices. (optional)
+            fabric_workers: Number of worker processes for Security Fabric
+            daemon. (optional)
+            downstream_access: Enable/disable downstream device access to this
+            device's configuration and data. (optional)
+            legacy_authentication: Enable/disable legacy authentication.
+            (optional)
+            downstream_accprofile: Default access profile for requests from
+            downstream devices. (optional)
             configuration_sync: Configuration sync mode. (optional)
-            fabric_object_unification: Fabric CMDB Object Unification. (optional)
-            saml_configuration_sync: SAML setting configuration synchronization. (optional)
-            trusted_list: Pre-authorized and blocked security fabric nodes. (optional)
+            fabric_object_unification: Fabric CMDB Object Unification.
+            (optional)
+            saml_configuration_sync: SAML setting configuration
+            synchronization. (optional)
+            trusted_list: Pre-authorized and blocked security fabric nodes.
+            (optional)
             fabric_connector: Fabric connector configuration. (optional)
-            forticloud_account_enforcement: Fabric FortiCloud account unification. (optional)
-            file_mgmt: Enable/disable Security Fabric daemon file management. (optional)
-            file_quota: Maximum amount of memory that can be used by the daemon files (in bytes). (optional)
-            file_quota_warning: Warn when the set percentage of quota has been used. (optional)
+            forticloud_account_enforcement: Fabric FortiCloud account
+            unification. (optional)
+            file_mgmt: Enable/disable Security Fabric daemon file management.
+            (optional)
+            file_quota: Maximum amount of memory that can be used by the daemon
+            files (in bytes). (optional)
+            file_quota_warning: Warn when the set percentage of quota has been
+            used. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -194,13 +226,14 @@ class Csf:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
         """
         data_payload = payload_dict.copy() if payload_dict else {}
-        endpoint = "/system/csf"
+        endpoint = "/system/cs"
         if before is not None:
             data_payload["before"] = before
         if after is not None:

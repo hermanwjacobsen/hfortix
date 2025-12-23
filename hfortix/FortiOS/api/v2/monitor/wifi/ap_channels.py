@@ -65,12 +65,16 @@ class ApChannels:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve the set of channel lists for all possible band/configurations for the given FortiAP platform.
+        Retrieve the set of channel lists for all possible band/configurations
+        for the given FortiAP platform.
 
         Args:
-            platform_type: Short name for platform type (e.g. '220A') (required)
-            country: Two-letter code for the country the AP is operating in. (optional)
-            indoor_outdoor: FortiAP indoor/outdoor configuration value (0 for indoor, 1 for outdoor, 2 for default). (optional)
+            platform_type: Short name for platform type (e.g. '220A')
+            (required)
+            country: Two-letter code for the country the AP is operating in.
+            (optional)
+            indoor_outdoor: FortiAP indoor/outdoor configuration value (0 for
+            indoor, 1 for outdoor, 2 for default). (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

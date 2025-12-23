@@ -88,11 +88,15 @@ class Global:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -148,31 +153,59 @@ class Global:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            fail_open: Enable to allow traffic if the IPS buffer is full. Default is disable and IPS traffic is blocked when the IPS buffer is full. (optional)
-            database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. (optional)
-            traffic_submit: Enable/disable submitting attack data found by this FortiGate to FortiGuard. (optional)
-            anomaly_mode: Global blocking mode for rate-based anomalies. (optional)
-            session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). (optional)
-            socket_size: IPS socket buffer size. Max and default value depend on available memory. Can be changed to tune performance. (optional)
-            engine_count: Number of IPS engines running. If set to the default value of 0, FortiOS sets the number to optimize performance depending on the number of CPU cores. (optional)
-            sync_session_ttl: Enable/disable use of kernel session TTL for IPS sessions. (optional)
-            np_accel_mode: Acceleration mode for IPS processing by NPx processors. (optional)
-            ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0. (optional)
-            cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. (optional)
-            deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting). (optional)
-            deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, use recommended setting = 0). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            fail_open: Enable to allow traffic if the IPS buffer is full.
+            Default is disable and IPS traffic is blocked when the IPS buffer
+            is full. (optional)
+            database: Regular or extended IPS database. Regular protects
+            against the latest common and in-the-wild attacks. Extended
+            includes protection from legacy attacks. (optional)
+            traffic_submit: Enable/disable submitting attack data found by this
+            FortiGate to FortiGuard. (optional)
+            anomaly_mode: Global blocking mode for rate-based anomalies.
+            (optional)
+            session_limit_mode: Method of counting concurrent sessions used by
+            session limit anomalies. Choose between greater accuracy (accurate)
+            or improved performance (heuristics). (optional)
+            socket_size: IPS socket buffer size. Max and default value depend
+            on available memory. Can be changed to tune performance. (optional)
+            engine_count: Number of IPS engines running. If set to the default
+            value of 0, FortiOS sets the number to optimize performance
+            depending on the number of CPU cores. (optional)
+            sync_session_ttl: Enable/disable use of kernel session TTL for IPS
+            sessions. (optional)
+            np_accel_mode: Acceleration mode for IPS processing by NPx
+            processors. (optional)
+            ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than
+            CPU 0. (optional)
+            cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx
+            processors. (optional)
+            deep_app_insp_timeout: Timeout for Deep application inspection (1 -
+            2147483647 sec., 0 = use recommended setting). (optional)
+            deep_app_insp_db_limit: Limit on number of entries in deep
+            application inspection database (1 - 2147483647, use recommended
+            setting = 0). (optional)
             exclude_signatures: Excluded signatures. (optional)
-            packet_log_queue_depth: Packet/pcap log queue depth per IPS engine. (optional)
-            ngfw_max_scan_range: NGFW policy-mode app detection threshold. (optional)
-            av_mem_limit: Maximum percentage of system memory allowed for use on AV scanning (10 - 50, default = zero). To disable set to zero. When disabled, there is no limit on the AV memory usage. (optional)
-            machine_learning_detection: Enable/disable machine learning detection. (optional)
+            packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
+            (optional)
+            ngfw_max_scan_range: NGFW policy-mode app detection threshold.
+            (optional)
+            av_mem_limit: Maximum percentage of system memory allowed for use
+            on AV scanning (10 - 50, default = zero). To disable set to zero.
+            When disabled, there is no limit on the AV memory usage. (optional)
+            machine_learning_detection: Enable/disable machine learning
+            detection. (optional)
             tls_active_probe: TLS active probe configuration. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -180,7 +213,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

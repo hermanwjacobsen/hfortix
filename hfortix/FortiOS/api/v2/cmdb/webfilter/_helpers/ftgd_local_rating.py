@@ -72,7 +72,7 @@ def validate_ftgd_local_rating_post(
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"url cannot exceed 511 characters")
+            return (False, "url cannot exceed 511 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -87,6 +87,6 @@ def validate_ftgd_local_rating_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)

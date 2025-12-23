@@ -71,13 +71,13 @@ def validate_auth_path_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate device if present
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     return (True, None)
 
@@ -112,13 +112,13 @@ def validate_auth_path_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate device if present
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     return (True, None)
 

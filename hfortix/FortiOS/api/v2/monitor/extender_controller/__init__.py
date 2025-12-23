@@ -18,7 +18,8 @@ class ExtenderController:
         Initialize ExtenderController monitor.
 
         Args:
-            client: HTTP client implementing IHTTPClient protocol for API communication
+            client: HTTP client implementing IHTTPClient protocol for API
+            communication
         """
         self._client = client
         self._extender: Extender | None = None

@@ -75,7 +75,8 @@ class InterfaceConnectedAdminsInfo:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.interface_connected_admins_info.get(interface='value')
+            >>>
+            fgt.api.monitor.system.interface_connected_admins_info.get(interface='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["interface"] = interface

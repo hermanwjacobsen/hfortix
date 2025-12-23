@@ -107,7 +107,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -127,7 +127,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 4294967295:
                     return (
                         False,
-                        f"route-tag must be between 1 and 4294967295",
+                        "route-tag must be between 1 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"route-tag must be numeric, got: {value}")
@@ -154,19 +154,19 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "fqdn" in payload:
         value = payload.get("fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fqdn cannot exceed 255 characters")
+            return (False, "fqdn cannot exceed 255 characters")
 
     # Validate country if present
     if "country" in payload:
         value = payload.get("country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"country cannot exceed 2 characters")
+            return (False, "country cannot exceed 2 characters")
 
     # Validate wildcard-fqdn if present
     if "wildcard-fqdn" in payload:
         value = payload.get("wildcard-fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"wildcard-fqdn cannot exceed 255 characters")
+            return (False, "wildcard-fqdn cannot exceed 255 characters")
 
     # Validate cache-ttl if present
     if "cache-ttl" in payload:
@@ -175,7 +175,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 86400:
-                    return (False, f"cache-ttl must be between 0 and 86400")
+                    return (False, "cache-ttl must be between 0 and 86400")
             except (ValueError, TypeError):
                 return (False, f"cache-ttl must be numeric, got: {value}")
 
@@ -183,55 +183,55 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate tenant if present
     if "tenant" in payload:
         value = payload.get("tenant")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tenant cannot exceed 35 characters")
+            return (False, "tenant cannot exceed 35 characters")
 
     # Validate organization if present
     if "organization" in payload:
         value = payload.get("organization")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"organization cannot exceed 35 characters")
+            return (False, "organization cannot exceed 35 characters")
 
     # Validate epg-name if present
     if "epg-name" in payload:
         value = payload.get("epg-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"epg-name cannot exceed 255 characters")
+            return (False, "epg-name cannot exceed 255 characters")
 
     # Validate subnet-name if present
     if "subnet-name" in payload:
         value = payload.get("subnet-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"subnet-name cannot exceed 255 characters")
+            return (False, "subnet-name cannot exceed 255 characters")
 
     # Validate sdn-tag if present
     if "sdn-tag" in payload:
         value = payload.get("sdn-tag")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sdn-tag cannot exceed 15 characters")
+            return (False, "sdn-tag cannot exceed 15 characters")
 
     # Validate policy-group if present
     if "policy-group" in payload:
         value = payload.get("policy-group")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"policy-group cannot exceed 15 characters")
+            return (False, "policy-group cannot exceed 15 characters")
 
     # Validate obj-tag if present
     if "obj-tag" in payload:
         value = payload.get("obj-tag")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"obj-tag cannot exceed 255 characters")
+            return (False, "obj-tag cannot exceed 255 characters")
 
     # Validate obj-type if present
     if "obj-type" in payload:
@@ -246,49 +246,49 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "tag-detection-level" in payload:
         value = payload.get("tag-detection-level")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"tag-detection-level cannot exceed 15 characters")
+            return (False, "tag-detection-level cannot exceed 15 characters")
 
     # Validate tag-type if present
     if "tag-type" in payload:
         value = payload.get("tag-type")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tag-type cannot exceed 63 characters")
+            return (False, "tag-type cannot exceed 63 characters")
 
     # Validate hw-vendor if present
     if "hw-vendor" in payload:
         value = payload.get("hw-vendor")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hw-vendor cannot exceed 35 characters")
+            return (False, "hw-vendor cannot exceed 35 characters")
 
     # Validate hw-model if present
     if "hw-model" in payload:
         value = payload.get("hw-model")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hw-model cannot exceed 35 characters")
+            return (False, "hw-model cannot exceed 35 characters")
 
     # Validate os if present
     if "os" in payload:
         value = payload.get("os")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"os cannot exceed 35 characters")
+            return (False, "os cannot exceed 35 characters")
 
     # Validate sw-version if present
     if "sw-version" in payload:
         value = payload.get("sw-version")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sw-version cannot exceed 35 characters")
+            return (False, "sw-version cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate associated-interface if present
     if "associated-interface" in payload:
         value = payload.get("associated-interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"associated-interface cannot exceed 35 characters")
+            return (False, "associated-interface cannot exceed 35 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -297,7 +297,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -305,7 +305,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "filter" in payload:
         value = payload.get("filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"filter cannot exceed 2047 characters")
+            return (False, "filter cannot exceed 2047 characters")
 
     # Validate sdn-addr-type if present
     if "sdn-addr-type" in payload:
@@ -329,7 +329,7 @@ def validate_address_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "obj-id" in payload:
         value = payload.get("obj-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"obj-id cannot exceed 255 characters")
+            return (False, "obj-id cannot exceed 255 characters")
 
     # Validate allow-routing if present
     if "allow-routing" in payload:
@@ -391,7 +391,7 @@ def validate_address_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -411,7 +411,7 @@ def validate_address_put(
                 if int_val < 1 or int_val > 4294967295:
                     return (
                         False,
-                        f"route-tag must be between 1 and 4294967295",
+                        "route-tag must be between 1 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"route-tag must be numeric, got: {value}")
@@ -438,19 +438,19 @@ def validate_address_put(
     if "fqdn" in payload:
         value = payload.get("fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fqdn cannot exceed 255 characters")
+            return (False, "fqdn cannot exceed 255 characters")
 
     # Validate country if present
     if "country" in payload:
         value = payload.get("country")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"country cannot exceed 2 characters")
+            return (False, "country cannot exceed 2 characters")
 
     # Validate wildcard-fqdn if present
     if "wildcard-fqdn" in payload:
         value = payload.get("wildcard-fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"wildcard-fqdn cannot exceed 255 characters")
+            return (False, "wildcard-fqdn cannot exceed 255 characters")
 
     # Validate cache-ttl if present
     if "cache-ttl" in payload:
@@ -459,7 +459,7 @@ def validate_address_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 86400:
-                    return (False, f"cache-ttl must be between 0 and 86400")
+                    return (False, "cache-ttl must be between 0 and 86400")
             except (ValueError, TypeError):
                 return (False, f"cache-ttl must be numeric, got: {value}")
 
@@ -467,55 +467,55 @@ def validate_address_put(
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate tenant if present
     if "tenant" in payload:
         value = payload.get("tenant")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tenant cannot exceed 35 characters")
+            return (False, "tenant cannot exceed 35 characters")
 
     # Validate organization if present
     if "organization" in payload:
         value = payload.get("organization")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"organization cannot exceed 35 characters")
+            return (False, "organization cannot exceed 35 characters")
 
     # Validate epg-name if present
     if "epg-name" in payload:
         value = payload.get("epg-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"epg-name cannot exceed 255 characters")
+            return (False, "epg-name cannot exceed 255 characters")
 
     # Validate subnet-name if present
     if "subnet-name" in payload:
         value = payload.get("subnet-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"subnet-name cannot exceed 255 characters")
+            return (False, "subnet-name cannot exceed 255 characters")
 
     # Validate sdn-tag if present
     if "sdn-tag" in payload:
         value = payload.get("sdn-tag")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sdn-tag cannot exceed 15 characters")
+            return (False, "sdn-tag cannot exceed 15 characters")
 
     # Validate policy-group if present
     if "policy-group" in payload:
         value = payload.get("policy-group")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"policy-group cannot exceed 15 characters")
+            return (False, "policy-group cannot exceed 15 characters")
 
     # Validate obj-tag if present
     if "obj-tag" in payload:
         value = payload.get("obj-tag")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"obj-tag cannot exceed 255 characters")
+            return (False, "obj-tag cannot exceed 255 characters")
 
     # Validate obj-type if present
     if "obj-type" in payload:
@@ -530,49 +530,49 @@ def validate_address_put(
     if "tag-detection-level" in payload:
         value = payload.get("tag-detection-level")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"tag-detection-level cannot exceed 15 characters")
+            return (False, "tag-detection-level cannot exceed 15 characters")
 
     # Validate tag-type if present
     if "tag-type" in payload:
         value = payload.get("tag-type")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tag-type cannot exceed 63 characters")
+            return (False, "tag-type cannot exceed 63 characters")
 
     # Validate hw-vendor if present
     if "hw-vendor" in payload:
         value = payload.get("hw-vendor")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hw-vendor cannot exceed 35 characters")
+            return (False, "hw-vendor cannot exceed 35 characters")
 
     # Validate hw-model if present
     if "hw-model" in payload:
         value = payload.get("hw-model")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hw-model cannot exceed 35 characters")
+            return (False, "hw-model cannot exceed 35 characters")
 
     # Validate os if present
     if "os" in payload:
         value = payload.get("os")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"os cannot exceed 35 characters")
+            return (False, "os cannot exceed 35 characters")
 
     # Validate sw-version if present
     if "sw-version" in payload:
         value = payload.get("sw-version")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sw-version cannot exceed 35 characters")
+            return (False, "sw-version cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate associated-interface if present
     if "associated-interface" in payload:
         value = payload.get("associated-interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"associated-interface cannot exceed 35 characters")
+            return (False, "associated-interface cannot exceed 35 characters")
 
     # Validate color if present
     if "color" in payload:
@@ -581,7 +581,7 @@ def validate_address_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -589,7 +589,7 @@ def validate_address_put(
     if "filter" in payload:
         value = payload.get("filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"filter cannot exceed 2047 characters")
+            return (False, "filter cannot exceed 2047 characters")
 
     # Validate sdn-addr-type if present
     if "sdn-addr-type" in payload:
@@ -613,7 +613,7 @@ def validate_address_put(
     if "obj-id" in payload:
         value = payload.get("obj-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"obj-id cannot exceed 255 characters")
+            return (False, "obj-id cannot exceed 255 characters")
 
     # Validate allow-routing if present
     if "allow-routing" in payload:

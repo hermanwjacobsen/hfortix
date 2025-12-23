@@ -70,31 +70,31 @@ def validate_api_user_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate accprofile if present
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate schedule if present
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate cors-allow-origin if present
     if "cors-allow-origin" in payload:
         value = payload.get("cors-allow-origin")
         if value and isinstance(value, str) and len(value) > 269:
-            return (False, f"cors-allow-origin cannot exceed 269 characters")
+            return (False, "cors-allow-origin cannot exceed 269 characters")
 
     # Validate peer-auth if present
     if "peer-auth" in payload:
@@ -109,7 +109,7 @@ def validate_api_user_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "peer-group" in payload:
         value = payload.get("peer-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer-group cannot exceed 35 characters")
+            return (False, "peer-group cannot exceed 35 characters")
 
     return (True, None)
 
@@ -144,31 +144,31 @@ def validate_api_user_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate accprofile if present
     if "accprofile" in payload:
         value = payload.get("accprofile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"accprofile cannot exceed 35 characters")
+            return (False, "accprofile cannot exceed 35 characters")
 
     # Validate schedule if present
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate cors-allow-origin if present
     if "cors-allow-origin" in payload:
         value = payload.get("cors-allow-origin")
         if value and isinstance(value, str) and len(value) > 269:
-            return (False, f"cors-allow-origin cannot exceed 269 characters")
+            return (False, "cors-allow-origin cannot exceed 269 characters")
 
     # Validate peer-auth if present
     if "peer-auth" in payload:
@@ -183,7 +183,7 @@ def validate_api_user_put(
     if "peer-group" in payload:
         value = payload.get("peer-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"peer-group cannot exceed 35 characters")
+            return (False, "peer-group cannot exceed 35 characters")
 
     return (True, None)
 

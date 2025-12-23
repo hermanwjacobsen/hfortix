@@ -72,9 +72,14 @@ class GlobalSearch:
         Args:
             search: Phrase used for searching. (required)
             scope: Search scope [vdom|global]. (optional)
-            search_tables: Array of CMDB tables to search on. If not defined, global search function will do a search on all tables that the current user has read permission on. E.g ['firewall.address', 'firewall.address6']. (optional)
-            skip_tables: Array of CMDB tables to be skipped when doing global search. E.g. ['firewall.address', 'firewall.address6']. (optional)
-            exact: If true, only entries with exact match will be returned. (optional)
+            search_tables: Array of CMDB tables to search on. If not defined,
+            global search function will do a search on all tables that the
+            current user has read permission on. E.g ['firewall.address',
+            'firewall.address6']. (optional)
+            skip_tables: Array of CMDB tables to be skipped when doing global
+            search. E.g. ['firewall.address', 'firewall.address6']. (optional)
+            exact: If true, only entries with exact match will be returned.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

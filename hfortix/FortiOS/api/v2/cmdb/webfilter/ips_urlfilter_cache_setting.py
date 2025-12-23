@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Webfilter Ips Urlfilter Cache Setting
 
-Configuration endpoint for managing cmdb webfilter ips urlfilter cache setting objects.
+Configuration endpoint for managing cmdb webfilter ips urlfilter cache setting
+objects.
 
 API Endpoints:
     GET    /cmdb/webfilter/ips_urlfilter_cache_setting
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.webfilter.ips_urlfilter_cache_setting.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -53,7 +56,8 @@ class IpsUrlfilterCacheSetting:
     """
     Ipsurlfiltercachesetting Operations.
 
-    Provides CRUD operations for FortiOS ipsurlfiltercachesetting configuration.
+    Provides CRUD operations for FortiOS ipsurlfiltercachesetting
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -88,11 +92,15 @@ class IpsUrlfilterCacheSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +108,8 @@ class IpsUrlfilterCacheSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -131,14 +140,22 @@ class IpsUrlfilterCacheSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            dns_retry_interval: Retry interval. Refresh DNS faster than TTL to capture multiple IPs for hosts. 0 means use DNS server's TTL only. (optional)
-            extended_ttl: Extend time to live beyond reported by DNS. Use of 0 means use DNS server's TTL. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            dns_retry_interval: Retry interval. Refresh DNS faster than TTL to
+            capture multiple IPs for hosts. 0 means use DNS server's TTL only.
+            (optional)
+            extended_ttl: Extend time to live beyond reported by DNS. Use of 0
+            means use DNS server's TTL. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -146,7 +163,8 @@ class IpsUrlfilterCacheSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

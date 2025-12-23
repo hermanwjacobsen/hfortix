@@ -287,7 +287,7 @@ def test_endpoint_performance(
             "cmdb/system/interface",
         ]
 
-    results = {}
+    results: dict[str, Any] = {}
 
     try:
         # Initialize client

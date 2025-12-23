@@ -75,13 +75,13 @@ def validate_snmp_put(
     if "engine-id" in payload:
         value = payload.get("engine-id")
         if value and isinstance(value, str) and len(value) > 23:
-            return (False, f"engine-id cannot exceed 23 characters")
+            return (False, "engine-id cannot exceed 23 characters")
 
     # Validate contact-info if present
     if "contact-info" in payload:
         value = payload.get("contact-info")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"contact-info cannot exceed 31 characters")
+            return (False, "contact-info cannot exceed 31 characters")
 
     # Validate trap-high-cpu-threshold if present
     if "trap-high-cpu-threshold" in payload:
@@ -92,7 +92,7 @@ def validate_snmp_put(
                 if int_val < 10 or int_val > 100:
                     return (
                         False,
-                        f"trap-high-cpu-threshold must be between 10 and 100",
+                        "trap-high-cpu-threshold must be between 10 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -109,7 +109,7 @@ def validate_snmp_put(
                 if int_val < 10 or int_val > 100:
                     return (
                         False,
-                        f"trap-high-mem-threshold must be between 10 and 100",
+                        "trap-high-mem-threshold must be between 10 and 100",
                     )
             except (ValueError, TypeError):
                 return (

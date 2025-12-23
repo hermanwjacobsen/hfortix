@@ -97,13 +97,13 @@ def validate_vdom_dns_put(
     if "ssl-certificate" in payload:
         value = payload.get("ssl-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-certificate cannot exceed 35 characters")
+            return (False, "ssl-certificate cannot exceed 35 characters")
 
     # Validate source-ip-interface if present
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -118,7 +118,7 @@ def validate_vdom_dns_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -127,7 +127,7 @@ def validate_vdom_dns_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

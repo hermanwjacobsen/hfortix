@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class ProxyAddress:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class ProxyAddress:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,34 +176,49 @@ class ProxyAddress:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Address name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             type: Proxy address type. (optional)
             host: Address object for the host. (optional)
             host_regex: Host name as a regular expression. (optional)
             path: URL path as a regular expression. (optional)
-            query: Match the query part of the URL as a regular expression. (optional)
-            referrer: Enable/disable use of referrer field in the HTTP header to match the address. (optional)
+            query: Match the query part of the URL as a regular expression.
+            (optional)
+            referrer: Enable/disable use of referrer field in the HTTP header
+            to match the address. (optional)
             category: FortiGuard category ID. (optional)
             method: HTTP request methods to be used. (optional)
             ua: Names of browsers to be used as user agent. (optional)
-            ua_min_ver: Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1. (optional)
-            ua_max_ver: Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120. (optional)
+            ua_min_ver: Minimum version of the user agent specified in dotted
+            notation. For example, use 90.0.1 with the ua field set to "chrome"
+            to require Google Chrome's minimum version must be 90.0.1.
+            (optional)
+            ua_max_ver: Maximum version of the user agent specified in dotted
+            notation. For example, use 120 with the ua field set to "chrome" to
+            require Google Chrome's maximum version must be 120. (optional)
             header_name: Name of HTTP header. (optional)
             header: HTTP header name as a regular expression. (optional)
-            case_sensitivity: Enable to make the pattern case sensitive. (optional)
+            case_sensitivity: Enable to make the pattern case sensitive.
+            (optional)
             header_group: HTTP header group. (optional)
-            color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1). (optional)
+            color: Integer value to determine the color of the icon in the GUI
+            (1 - 32, default = 0, which sets value to 1). (optional)
             tagging: Config object tagging. (optional)
             comment: Optional comments. (optional)
             application: SaaS application. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -205,7 +226,8 @@ class ProxyAddress:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -281,8 +303,10 @@ class ProxyAddress:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -290,7 +314,8 @@ class ProxyAddress:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -382,32 +407,46 @@ class ProxyAddress:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Address name. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             type: Proxy address type. (optional)
             host: Address object for the host. (optional)
             host_regex: Host name as a regular expression. (optional)
             path: URL path as a regular expression. (optional)
-            query: Match the query part of the URL as a regular expression. (optional)
-            referrer: Enable/disable use of referrer field in the HTTP header to match the address. (optional)
+            query: Match the query part of the URL as a regular expression.
+            (optional)
+            referrer: Enable/disable use of referrer field in the HTTP header
+            to match the address. (optional)
             category: FortiGuard category ID. (optional)
             method: HTTP request methods to be used. (optional)
             ua: Names of browsers to be used as user agent. (optional)
-            ua_min_ver: Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1. (optional)
-            ua_max_ver: Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120. (optional)
+            ua_min_ver: Minimum version of the user agent specified in dotted
+            notation. For example, use 90.0.1 with the ua field set to "chrome"
+            to require Google Chrome's minimum version must be 90.0.1.
+            (optional)
+            ua_max_ver: Maximum version of the user agent specified in dotted
+            notation. For example, use 120 with the ua field set to "chrome" to
+            require Google Chrome's maximum version must be 120. (optional)
             header_name: Name of HTTP header. (optional)
             header: HTTP header name as a regular expression. (optional)
-            case_sensitivity: Enable to make the pattern case sensitive. (optional)
+            case_sensitivity: Enable to make the pattern case sensitive.
+            (optional)
             header_group: HTTP header group. (optional)
-            color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1). (optional)
+            color: Integer value to determine the color of the icon in the GUI
+            (1 - 32, default = 0, which sets value to 1). (optional)
             tagging: Config object tagging. (optional)
             comment: Optional comments. (optional)
             application: SaaS application. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -415,7 +454,8 @@ class ProxyAddress:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

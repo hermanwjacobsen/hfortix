@@ -88,11 +88,15 @@ class Explicit:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Explicit:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -167,50 +172,95 @@ class Explicit:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            status: Enable/disable the explicit Web proxy for HTTP and HTTPS session. (optional)
-            secure_web_proxy: Enable/disable/require the secure web proxy for HTTP and HTTPS session. (optional)
-            ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a web browser. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            status: Enable/disable the explicit Web proxy for HTTP and HTTPS
+            session. (optional)
+            secure_web_proxy: Enable/disable/require the secure web proxy for
+            HTTP and HTTPS session. (optional)
+            ftp_over_http: Enable to proxy FTP-over-HTTP sessions sent from a
+            web browser. (optional)
             socks: Enable/disable the SOCKS proxy. (optional)
-            http_incoming_port: Accept incoming HTTP requests on one or more ports (0 - 65535, default = 8080). (optional)
-            http_connection_mode: HTTP connection mode (default = static). (optional)
-            https_incoming_port: Accept incoming HTTPS requests on one or more ports (0 - 65535, default = 0, use the same as HTTP). (optional)
-            secure_web_proxy_cert: Name of certificates for secure web proxy. (optional)
-            client_cert: Enable/disable to request client certificate. (optional)
-            user_agent_detect: Enable/disable to detect device type by HTTP user-agent if no client certificate provided. (optional)
-            empty_cert_action: Action of an empty client certificate. (optional)
-            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
-            ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or more ports (0 - 65535, default = 0; use the same as HTTP). (optional)
-            socks_incoming_port: Accept incoming SOCKS proxy requests on one or more ports (0 - 65535, default = 0; use the same as HTTP). (optional)
-            incoming_ip: Restrict the explicit HTTP proxy to only accept sessions from this IP address. An interface must have this IP address. (optional)
-            outgoing_ip: Outgoing HTTP requests will have this IP address as their source address. An interface must have this IP address. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            http_incoming_port: Accept incoming HTTP requests on one or more
+            ports (0 - 65535, default = 8080). (optional)
+            http_connection_mode: HTTP connection mode (default = static).
+            (optional)
+            https_incoming_port: Accept incoming HTTPS requests on one or more
+            ports (0 - 65535, default = 0, use the same as HTTP). (optional)
+            secure_web_proxy_cert: Name of certificates for secure web proxy.
+            (optional)
+            client_cert: Enable/disable to request client certificate.
+            (optional)
+            user_agent_detect: Enable/disable to detect device type by HTTP
+            user-agent if no client certificate provided. (optional)
+            empty_cert_action: Action of an empty client certificate.
+            (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA
+            negotiation (default = 2048). (optional)
+            ftp_incoming_port: Accept incoming FTP-over-HTTP requests on one or
+            more ports (0 - 65535, default = 0; use the same as HTTP).
+            (optional)
+            socks_incoming_port: Accept incoming SOCKS proxy requests on one or
+            more ports (0 - 65535, default = 0; use the same as HTTP).
+            (optional)
+            incoming_ip: Restrict the explicit HTTP proxy to only accept
+            sessions from this IP address. An interface must have this IP
+            address. (optional)
+            outgoing_ip: Outgoing HTTP requests will have this IP address as
+            their source address. An interface must have this IP address.
+            (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
-            ipv6_status: Enable/disable allowing an IPv6 web proxy destination in policies and all IPv6 related entries in this command. (optional)
-            incoming_ip6: Restrict the explicit web proxy to only accept sessions from this IPv6 address. An interface must have this IPv6 address. (optional)
-            outgoing_ip6: Outgoing HTTP requests will leave this IPv6. Multiple interfaces can be specified. Interfaces must have these IPv6 addresses. (optional)
-            strict_guest: Enable/disable strict guest user checking by the explicit web proxy. (optional)
-            pref_dns_result: Prefer resolving addresses using the configured IPv4 or IPv6 DNS server (default = ipv4). (optional)
-            unknown_http_version: How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. (optional)
-            realm: Authentication realm used to identify the explicit web proxy (maximum of 63 characters). (optional)
-            sec_default_action: Accept or deny explicit web proxy sessions when no web proxy firewall policy exists. (optional)
-            https_replacement_message: Enable/disable sending the client a replacement message for HTTPS requests. (optional)
-            message_upon_server_error: Enable/disable displaying a replacement message when a server error is detected. (optional)
-            pac_file_server_status: Enable/disable Proxy Auto-Configuration (PAC) for users of this explicit proxy profile. (optional)
+            ipv6_status: Enable/disable allowing an IPv6 web proxy destination
+            in policies and all IPv6 related entries in this command.
+            (optional)
+            incoming_ip6: Restrict the explicit web proxy to only accept
+            sessions from this IPv6 address. An interface must have this IPv6
+            address. (optional)
+            outgoing_ip6: Outgoing HTTP requests will leave this IPv6. Multiple
+            interfaces can be specified. Interfaces must have these IPv6
+            addresses. (optional)
+            strict_guest: Enable/disable strict guest user checking by the
+            explicit web proxy. (optional)
+            pref_dns_result: Prefer resolving addresses using the configured
+            IPv4 or IPv6 DNS server (default = ipv4). (optional)
+            unknown_http_version: How to handle HTTP sessions that do not
+            comply with HTTP 0.9, 1.0, or 1.1. (optional)
+            realm: Authentication realm used to identify the explicit web proxy
+            (maximum of 63 characters). (optional)
+            sec_default_action: Accept or deny explicit web proxy sessions when
+            no web proxy firewall policy exists. (optional)
+            https_replacement_message: Enable/disable sending the client a
+            replacement message for HTTPS requests. (optional)
+            message_upon_server_error: Enable/disable displaying a replacement
+            message when a server error is detected. (optional)
+            pac_file_server_status: Enable/disable Proxy Auto-Configuration
+            (PAC) for users of this explicit proxy profile. (optional)
             pac_file_url: PAC file access URL. (optional)
-            pac_file_server_port: Port number that PAC traffic from client web browsers uses to connect to the explicit web proxy (0 - 65535, default = 0; use the same as HTTP). (optional)
-            pac_file_through_https: Enable/disable to get Proxy Auto-Configuration (PAC) through HTTPS. (optional)
+            pac_file_server_port: Port number that PAC traffic from client web
+            browsers uses to connect to the explicit web proxy (0 - 65535,
+            default = 0; use the same as HTTP). (optional)
+            pac_file_through_https: Enable/disable to get Proxy
+            Auto-Configuration (PAC) through HTTPS. (optional)
             pac_file_name: Pac file name. (optional)
-            pac_file_data: PAC file contents enclosed in quotes (maximum of 256K bytes). (optional)
+            pac_file_data: PAC file contents enclosed in quotes (maximum of
+            256K bytes). (optional)
             pac_policy: PAC policies. (optional)
-            ssl_algorithm: Relative strength of encryption algorithms accepted in HTTPS deep scan: high, medium, or low. (optional)
-            trace_auth_no_rsp: Enable/disable logging timed-out authentication requests. (optional)
+            ssl_algorithm: Relative strength of encryption algorithms accepted
+            in HTTPS deep scan: high, medium, or low. (optional)
+            trace_auth_no_rsp: Enable/disable logging timed-out authentication
+            requests. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -218,7 +268,8 @@ class Explicit:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -74,7 +74,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -89,7 +89,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -98,7 +98,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -106,7 +106,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server2" in payload:
         value = payload.get("server2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server2 cannot exceed 63 characters")
+            return (False, "server2 cannot exceed 63 characters")
 
     # Validate port2 if present
     if "port2" in payload:
@@ -115,7 +115,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port2 must be between 1 and 65535")
+                    return (False, "port2 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port2 must be numeric, got: {value}")
 
@@ -123,7 +123,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server3" in payload:
         value = payload.get("server3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server3 cannot exceed 63 characters")
+            return (False, "server3 cannot exceed 63 characters")
 
     # Validate port3 if present
     if "port3" in payload:
@@ -132,7 +132,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port3 must be between 1 and 65535")
+                    return (False, "port3 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port3 must be numeric, got: {value}")
 
@@ -140,7 +140,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server4" in payload:
         value = payload.get("server4")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server4 cannot exceed 63 characters")
+            return (False, "server4 cannot exceed 63 characters")
 
     # Validate port4 if present
     if "port4" in payload:
@@ -149,7 +149,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port4 must be between 1 and 65535")
+                    return (False, "port4 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port4 must be numeric, got: {value}")
 
@@ -157,7 +157,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server5" in payload:
         value = payload.get("server5")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server5 cannot exceed 63 characters")
+            return (False, "server5 cannot exceed 63 characters")
 
     # Validate port5 if present
     if "port5" in payload:
@@ -166,7 +166,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port5 must be between 1 and 65535")
+                    return (False, "port5 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port5 must be numeric, got: {value}")
 
@@ -177,7 +177,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 2880:
-                    return (False, f"logon-timeout must be between 1 and 2880")
+                    return (False, "logon-timeout must be between 1 and 2880")
             except (ValueError, TypeError):
                 return (False, f"logon-timeout must be numeric, got: {value}")
 
@@ -185,7 +185,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate group-poll-interval if present
     if "group-poll-interval" in payload:
@@ -196,7 +196,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 2880:
                     return (
                         False,
-                        f"group-poll-interval must be between 1 and 2880",
+                        "group-poll-interval must be between 1 and 2880",
                     )
             except (ValueError, TypeError):
                 return (
@@ -222,7 +222,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 1 or int_val > 2880:
                     return (
                         False,
-                        f"ldap-poll-interval must be between 1 and 2880",
+                        "ldap-poll-interval must be between 1 and 2880",
                     )
             except (ValueError, TypeError):
                 return (
@@ -234,13 +234,13 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ldap-poll-filter" in payload:
         value = payload.get("ldap-poll-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"ldap-poll-filter cannot exceed 2047 characters")
+            return (False, "ldap-poll-filter cannot exceed 2047 characters")
 
     # Validate user-info-server if present
     if "user-info-server" in payload:
         value = payload.get("user-info-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user-info-server cannot exceed 35 characters")
+            return (False, "user-info-server cannot exceed 35 characters")
 
     # Validate ssl if present
     if "ssl" in payload:
@@ -255,7 +255,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sni" in payload:
         value = payload.get("sni")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"sni cannot exceed 255 characters")
+            return (False, "sni cannot exceed 255 characters")
 
     # Validate ssl-server-host-ip-check if present
     if "ssl-server-host-ip-check" in payload:
@@ -270,7 +270,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssl-trusted-cert" in payload:
         value = payload.get("ssl-trusted-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-trusted-cert cannot exceed 79 characters")
+            return (False, "ssl-trusted-cert cannot exceed 79 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -285,7 +285,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -294,7 +294,7 @@ def validate_fsso_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -331,7 +331,7 @@ def validate_fsso_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -346,7 +346,7 @@ def validate_fsso_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -355,7 +355,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -363,7 +363,7 @@ def validate_fsso_put(
     if "server2" in payload:
         value = payload.get("server2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server2 cannot exceed 63 characters")
+            return (False, "server2 cannot exceed 63 characters")
 
     # Validate port2 if present
     if "port2" in payload:
@@ -372,7 +372,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port2 must be between 1 and 65535")
+                    return (False, "port2 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port2 must be numeric, got: {value}")
 
@@ -380,7 +380,7 @@ def validate_fsso_put(
     if "server3" in payload:
         value = payload.get("server3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server3 cannot exceed 63 characters")
+            return (False, "server3 cannot exceed 63 characters")
 
     # Validate port3 if present
     if "port3" in payload:
@@ -389,7 +389,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port3 must be between 1 and 65535")
+                    return (False, "port3 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port3 must be numeric, got: {value}")
 
@@ -397,7 +397,7 @@ def validate_fsso_put(
     if "server4" in payload:
         value = payload.get("server4")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server4 cannot exceed 63 characters")
+            return (False, "server4 cannot exceed 63 characters")
 
     # Validate port4 if present
     if "port4" in payload:
@@ -406,7 +406,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port4 must be between 1 and 65535")
+                    return (False, "port4 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port4 must be numeric, got: {value}")
 
@@ -414,7 +414,7 @@ def validate_fsso_put(
     if "server5" in payload:
         value = payload.get("server5")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server5 cannot exceed 63 characters")
+            return (False, "server5 cannot exceed 63 characters")
 
     # Validate port5 if present
     if "port5" in payload:
@@ -423,7 +423,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port5 must be between 1 and 65535")
+                    return (False, "port5 must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port5 must be numeric, got: {value}")
 
@@ -434,7 +434,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 2880:
-                    return (False, f"logon-timeout must be between 1 and 2880")
+                    return (False, "logon-timeout must be between 1 and 2880")
             except (ValueError, TypeError):
                 return (False, f"logon-timeout must be numeric, got: {value}")
 
@@ -442,7 +442,7 @@ def validate_fsso_put(
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate group-poll-interval if present
     if "group-poll-interval" in payload:
@@ -453,7 +453,7 @@ def validate_fsso_put(
                 if int_val < 1 or int_val > 2880:
                     return (
                         False,
-                        f"group-poll-interval must be between 1 and 2880",
+                        "group-poll-interval must be between 1 and 2880",
                     )
             except (ValueError, TypeError):
                 return (
@@ -479,7 +479,7 @@ def validate_fsso_put(
                 if int_val < 1 or int_val > 2880:
                     return (
                         False,
-                        f"ldap-poll-interval must be between 1 and 2880",
+                        "ldap-poll-interval must be between 1 and 2880",
                     )
             except (ValueError, TypeError):
                 return (
@@ -491,13 +491,13 @@ def validate_fsso_put(
     if "ldap-poll-filter" in payload:
         value = payload.get("ldap-poll-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"ldap-poll-filter cannot exceed 2047 characters")
+            return (False, "ldap-poll-filter cannot exceed 2047 characters")
 
     # Validate user-info-server if present
     if "user-info-server" in payload:
         value = payload.get("user-info-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user-info-server cannot exceed 35 characters")
+            return (False, "user-info-server cannot exceed 35 characters")
 
     # Validate ssl if present
     if "ssl" in payload:
@@ -512,7 +512,7 @@ def validate_fsso_put(
     if "sni" in payload:
         value = payload.get("sni")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"sni cannot exceed 255 characters")
+            return (False, "sni cannot exceed 255 characters")
 
     # Validate ssl-server-host-ip-check if present
     if "ssl-server-host-ip-check" in payload:
@@ -527,7 +527,7 @@ def validate_fsso_put(
     if "ssl-trusted-cert" in payload:
         value = payload.get("ssl-trusted-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ssl-trusted-cert cannot exceed 79 characters")
+            return (False, "ssl-trusted-cert cannot exceed 79 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -542,7 +542,7 @@ def validate_fsso_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -551,7 +551,7 @@ def validate_fsso_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

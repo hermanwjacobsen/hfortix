@@ -71,18 +71,22 @@ class Report:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Report the application-level performance metrics collected by other fabric devices.
+        Report the application-level performance metrics collected by other
+        fabric devices.
 
         Args:
             agent_ip: IPv4 or IPv6 address. (optional)
-            application_name: Destination application that the FMR agent is monitoring. (optional)
-            application_id: Destination application ID based on the FortiGuard Application Control DB. (optional)
+            application_name: Destination application that the FMR agent is
+            monitoring. (optional)
+            application_id: Destination application ID based on the FortiGuard
+            Application Control DB. (optional)
             latency: Latency to report (ms). (optional)
             jitter: Jitter to report (ms). (optional)
             packet_loss: Packet loss to report [0, 100]. (optional)
             ntt: Network transmit time (ms). (optional)
             srt: Server response time (ms). (optional)
-            application_error: Application errors in the current session. (optional)
+            application_error: Application errors in the current session.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

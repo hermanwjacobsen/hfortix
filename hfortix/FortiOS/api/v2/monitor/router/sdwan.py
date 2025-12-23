@@ -102,7 +102,8 @@ class RoutesStatistics:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve SD-WAN routes statistics, including number of IPv4 or IPv6 SD-WAN routes.
+        Retrieve SD-WAN routes statistics, including number of IPv4 or IPv6
+        SD-WAN routes.
 
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)

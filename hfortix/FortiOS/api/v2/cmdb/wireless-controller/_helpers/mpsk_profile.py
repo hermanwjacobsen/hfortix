@@ -73,7 +73,7 @@ def validate_mpsk_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate mpsk-concurrent-clients if present
     if "mpsk-concurrent-clients" in payload:
@@ -84,7 +84,7 @@ def validate_mpsk_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"mpsk-concurrent-clients must be between 0 and 65535",
+                        "mpsk-concurrent-clients must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -105,7 +105,7 @@ def validate_mpsk_profile_post(
     if "mpsk-external-server" in payload:
         value = payload.get("mpsk-external-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mpsk-external-server cannot exceed 35 characters")
+            return (False, "mpsk-external-server cannot exceed 35 characters")
 
     # Validate mpsk-type if present
     if "mpsk-type" in payload:
@@ -149,7 +149,7 @@ def validate_mpsk_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate mpsk-concurrent-clients if present
     if "mpsk-concurrent-clients" in payload:
@@ -160,7 +160,7 @@ def validate_mpsk_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"mpsk-concurrent-clients must be between 0 and 65535",
+                        "mpsk-concurrent-clients must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -181,7 +181,7 @@ def validate_mpsk_profile_put(
     if "mpsk-external-server" in payload:
         value = payload.get("mpsk-external-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mpsk-external-server cannot exceed 35 characters")
+            return (False, "mpsk-external-server cannot exceed 35 characters")
 
     # Validate mpsk-type if present
     if "mpsk-type" in payload:

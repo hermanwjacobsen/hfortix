@@ -64,11 +64,15 @@ class ServiceCommunicationStats:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve historical statistics for communication with FortiGuard services.
+        Retrieve historical statistics for communication with FortiGuard
+        services.
 
         Args:
-            service_type: To get stats for [forticare|fortiguard_download|fortiguard_query|forticloud_log|fortisandbox_cloud|fortiguard.com|sdns|fortitoken_registration|sms_service]. Defaults to all stats if not provided. (optional)
-            timeslot: History timeslot of stats [1_hour|24_hour|1_week]. Defaults to all timeslots if not provided. (optional)
+            service_type: To get stats for
+            [forticare|fortiguard_download|fortiguard_query|forticloud_log|fortisandbox_cloud|fortiguard.com|sdns|fortitoken_registration|sms_service].
+            Defaults to all stats if not provided. (optional)
+            timeslot: History timeslot of stats [1_hour|24_hour|1_week].
+            Defaults to all timeslots if not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

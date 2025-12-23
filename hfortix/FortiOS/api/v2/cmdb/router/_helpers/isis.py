@@ -154,13 +154,13 @@ def validate_isis_put(
     if "auth-keychain-l1" in payload:
         value = payload.get("auth-keychain-l1")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-keychain-l1 cannot exceed 35 characters")
+            return (False, "auth-keychain-l1 cannot exceed 35 characters")
 
     # Validate auth-keychain-l2 if present
     if "auth-keychain-l2" in payload:
         value = payload.get("auth-keychain-l2")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-keychain-l2 cannot exceed 35 characters")
+            return (False, "auth-keychain-l2 cannot exceed 35 characters")
 
     # Validate auth-sendonly-l1 if present
     if "auth-sendonly-l1" in payload:
@@ -198,7 +198,7 @@ def validate_isis_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"lsp-gen-interval-l1 must be between 1 and 120",
+                        "lsp-gen-interval-l1 must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -215,7 +215,7 @@ def validate_isis_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"lsp-gen-interval-l2 must be between 1 and 120",
+                        "lsp-gen-interval-l2 must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -232,7 +232,7 @@ def validate_isis_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"lsp-refresh-interval must be between 1 and 65535",
+                        "lsp-refresh-interval must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -249,7 +249,7 @@ def validate_isis_put(
                 if int_val < 350 or int_val > 65535:
                     return (
                         False,
-                        f"max-lsp-lifetime must be between 350 and 65535",
+                        "max-lsp-lifetime must be between 350 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -311,7 +311,7 @@ def validate_isis_put(
                 if int_val < 5 or int_val > 86400:
                     return (
                         False,
-                        f"overload-bit-on-startup must be between 5 and 86400",
+                        "overload-bit-on-startup must be between 5 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -359,7 +359,7 @@ def validate_isis_put(
     if "redistribute-l1-list" in payload:
         value = payload.get("redistribute-l1-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"redistribute-l1-list cannot exceed 35 characters")
+            return (False, "redistribute-l1-list cannot exceed 35 characters")
 
     # Validate redistribute-l2 if present
     if "redistribute-l2" in payload:
@@ -374,7 +374,7 @@ def validate_isis_put(
     if "redistribute-l2-list" in payload:
         value = payload.get("redistribute-l2-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"redistribute-l2-list cannot exceed 35 characters")
+            return (False, "redistribute-l2-list cannot exceed 35 characters")
 
     # Validate redistribute6-l1 if present
     if "redistribute6-l1" in payload:
@@ -391,7 +391,7 @@ def validate_isis_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"redistribute6-l1-list cannot exceed 35 characters",
+                "redistribute6-l1-list cannot exceed 35 characters",
             )
 
     # Validate redistribute6-l2 if present
@@ -409,7 +409,7 @@ def validate_isis_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"redistribute6-l2-list cannot exceed 35 characters",
+                "redistribute6-l2-list cannot exceed 35 characters",
             )
 
     return (True, None)

@@ -75,7 +75,7 @@ def validate_ip_translation_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"transid must be between 0 and 4294967295")
+                    return (False, "transid must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"transid must be numeric, got: {value}")
 

@@ -88,11 +88,15 @@ class Fortiguard:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Fortiguard:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -188,71 +193,145 @@ class Fortiguard:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            fortiguard_anycast: Enable/disable use of FortiGuard's Anycast network. (optional)
-            fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. (optional)
-            protocol: Protocol used to communicate with the FortiGuard servers. (optional)
-            port: Port used to communicate with the FortiGuard servers. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            fortiguard_anycast: Enable/disable use of FortiGuard's Anycast
+            network. (optional)
+            fortiguard_anycast_source: Configure which of Fortinet's servers to
+            provide FortiGuard services in FortiGuard's anycast network.
+            Default is Fortinet. (optional)
+            protocol: Protocol used to communicate with the FortiGuard servers.
+            (optional)
+            port: Port used to communicate with the FortiGuard servers.
+            (optional)
             service_account_id: Service account ID. (optional)
-            load_balance_servers: Number of servers to alternate between as first FortiGuard option. (optional)
-            auto_join_forticloud: Automatically connect to and login to FortiCloud. (optional)
-            update_server_location: Location from which to receive FortiGuard updates. (optional)
+            load_balance_servers: Number of servers to alternate between as
+            first FortiGuard option. (optional)
+            auto_join_forticloud: Automatically connect to and login to
+            FortiCloud. (optional)
+            update_server_location: Location from which to receive FortiGuard
+            updates. (optional)
             sandbox_region: FortiCloud Sandbox region. (optional)
-            update_ffdb: Enable/disable Internet Service Database update. (optional)
+            update_ffdb: Enable/disable Internet Service Database update.
+            (optional)
             update_uwdb: Enable/disable allowlist update. (optional)
             update_dldb: Enable/disable DLP signature update. (optional)
             update_extdb: Enable/disable external resource update. (optional)
-            update_build_proxy: Enable/disable proxy dictionary rebuild. (optional)
-            persistent_connection: Enable/disable use of persistent connection to receive update notification from FortiGuard. (optional)
-            auto_firmware_upgrade: Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. (optional)
-            auto_firmware_upgrade_day: Allowed day(s) of the week to install an automatic patch-level firmware upgrade from FortiGuard (default is none). Disallow any day of the week to use auto-firmware-upgrade-delay instead, which waits for designated days before installing an automatic patch-level firmware upgrade. (optional)
-            auto_firmware_upgrade_delay: Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade. (optional)
-            auto_firmware_upgrade_start_hour: Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window. (optional)
-            auto_firmware_upgrade_end_hour: End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window. (optional)
-            FDS_license_expiring_days: Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15). (optional)
-            subscribe_update_notification: Enable/disable subscription to receive update notification from FortiGuard. (optional)
-            antispam_force_off: Enable/disable turning off the FortiGuard antispam service. (optional)
-            antispam_cache: Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. (optional)
-            antispam_cache_ttl: Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries. (optional)
-            antispam_cache_mpermille: Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150). (optional)
-            antispam_license: Interval of time between license checks for the FortiGuard antispam contract. (optional)
-            antispam_expiration: Expiration date of the FortiGuard antispam contract. (optional)
-            antispam_timeout: Antispam query time out (1 - 30 sec, default = 7). (optional)
-            outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. (optional)
-            outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak Prevention cache. (optional)
-            outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300). (optional)
-            outbreak_prevention_cache_mpermille: Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1). (optional)
-            outbreak_prevention_license: Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract. (optional)
-            outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract. (optional)
-            outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7). (optional)
-            webfilter_force_off: Enable/disable turning off the FortiGuard web filtering service. (optional)
-            webfilter_cache: Enable/disable FortiGuard web filter caching. (optional)
-            webfilter_cache_ttl: Time-to-live for web filter cache entries in seconds (300 - 86400). (optional)
-            webfilter_license: Interval of time between license checks for the FortiGuard web filter contract. (optional)
-            webfilter_expiration: Expiration date of the FortiGuard web filter contract. (optional)
-            webfilter_timeout: Web filter query time out (1 - 30 sec, default = 15). (optional)
-            sdns_server_ip: IP address of the FortiGuard DNS rating server. (optional)
-            sdns_server_port: Port to connect to on the FortiGuard DNS rating server. (optional)
-            anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS rating server. (optional)
-            anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server. (optional)
-            sdns_options: Customization options for the FortiGuard DNS service. (optional)
-            source_ip: Source IPv4 address used to communicate with FortiGuard. (optional)
-            source_ip6: Source IPv6 address used to communicate with FortiGuard. (optional)
-            proxy_server_ip: Hostname or IPv4 address of the proxy server. (optional)
-            proxy_server_port: Port used to communicate with the proxy server. (optional)
+            update_build_proxy: Enable/disable proxy dictionary rebuild.
+            (optional)
+            persistent_connection: Enable/disable use of persistent connection
+            to receive update notification from FortiGuard. (optional)
+            auto_firmware_upgrade: Enable/disable automatic patch-level
+            firmware upgrade from FortiGuard. The FortiGate unit searches for
+            new patches only in the same major and minor version. (optional)
+            auto_firmware_upgrade_day: Allowed day(s) of the week to install an
+            automatic patch-level firmware upgrade from FortiGuard (default is
+            none). Disallow any day of the week to use
+            auto-firmware-upgrade-delay instead, which waits for designated
+            days before installing an automatic patch-level firmware upgrade.
+            (optional)
+            auto_firmware_upgrade_delay: Delay of day(s) before installing an
+            automatic patch-level firmware upgrade from FortiGuard (default =
+            3). Set it 0 to use auto-firmware-upgrade-day instead, which
+            selects allowed day(s) of the week for installing an automatic
+            patch-level firmware upgrade. (optional)
+            auto_firmware_upgrade_start_hour: Start time in the designated time
+            window for automatic patch-level firmware upgrade from FortiGuard
+            in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is
+            selected randomly within the time window. (optional)
+            auto_firmware_upgrade_end_hour: End time in the designated time
+            window for automatic patch-level firmware upgrade from FortiGuard
+            in 24 hour time (0 ~ 23, default = 4). When the end time is smaller
+            than the start time, the end time is interpreted as the next day.
+            The actual upgrade time is selected randomly within the time
+            window. (optional)
+            FDS_license_expiring_days: Threshold for number of days before
+            FortiGuard license expiration to generate license expiring event
+            log (1 - 100 days, default = 15). (optional)
+            subscribe_update_notification: Enable/disable subscription to
+            receive update notification from FortiGuard. (optional)
+            antispam_force_off: Enable/disable turning off the FortiGuard
+            antispam service. (optional)
+            antispam_cache: Enable/disable FortiGuard antispam request caching.
+            Uses a small amount of memory but improves performance. (optional)
+            antispam_cache_ttl: Time-to-live for antispam cache entries in
+            seconds (300 - 86400). Lower times reduce the cache size. Higher
+            times may improve performance since the cache will have more
+            entries. (optional)
+            antispam_cache_mpermille: Maximum permille of FortiGate memory the
+            antispam cache is allowed to use (1 - 150). (optional)
+            antispam_license: Interval of time between license checks for the
+            FortiGuard antispam contract. (optional)
+            antispam_expiration: Expiration date of the FortiGuard antispam
+            contract. (optional)
+            antispam_timeout: Antispam query time out (1 - 30 sec, default =
+            7). (optional)
+            outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak
+            Prevention service. (optional)
+            outbreak_prevention_cache: Enable/disable FortiGuard Virus Outbreak
+            Prevention cache. (optional)
+            outbreak_prevention_cache_ttl: Time-to-live for FortiGuard Virus
+            Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
+            (optional)
+            outbreak_prevention_cache_mpermille: Maximum permille of memory
+            FortiGuard Virus Outbreak Prevention cache can use (1 - 150
+            permille, default = 1). (optional)
+            outbreak_prevention_license: Interval of time between license
+            checks for FortiGuard Virus Outbreak Prevention contract.
+            (optional)
+            outbreak_prevention_expiration: Expiration date of FortiGuard Virus
+            Outbreak Prevention contract. (optional)
+            outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention
+            time out (1 - 30 sec, default = 7). (optional)
+            webfilter_force_off: Enable/disable turning off the FortiGuard web
+            filtering service. (optional)
+            webfilter_cache: Enable/disable FortiGuard web filter caching.
+            (optional)
+            webfilter_cache_ttl: Time-to-live for web filter cache entries in
+            seconds (300 - 86400). (optional)
+            webfilter_license: Interval of time between license checks for the
+            FortiGuard web filter contract. (optional)
+            webfilter_expiration: Expiration date of the FortiGuard web filter
+            contract. (optional)
+            webfilter_timeout: Web filter query time out (1 - 30 sec, default =
+            15). (optional)
+            sdns_server_ip: IP address of the FortiGuard DNS rating server.
+            (optional)
+            sdns_server_port: Port to connect to on the FortiGuard DNS rating
+            server. (optional)
+            anycast_sdns_server_ip: IP address of the FortiGuard anycast DNS
+            rating server. (optional)
+            anycast_sdns_server_port: Port to connect to on the FortiGuard
+            anycast DNS rating server. (optional)
+            sdns_options: Customization options for the FortiGuard DNS service.
+            (optional)
+            source_ip: Source IPv4 address used to communicate with FortiGuard.
+            (optional)
+            source_ip6: Source IPv6 address used to communicate with
+            FortiGuard. (optional)
+            proxy_server_ip: Hostname or IPv4 address of the proxy server.
+            (optional)
+            proxy_server_port: Port used to communicate with the proxy server.
+            (optional)
             proxy_username: Proxy user name. (optional)
             proxy_password: Proxy user password. (optional)
             ddns_server_ip: IP address of the FortiDDNS server. (optional)
             ddns_server_ip6: IPv6 address of the FortiDDNS server. (optional)
-            ddns_server_port: Port used to communicate with FortiDDNS servers. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            ddns_server_port: Port used to communicate with FortiDDNS servers.
+            (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -260,7 +339,8 @@ class Fortiguard:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -330,7 +410,7 @@ class Fortiguard:
                 subscribe_update_notification
             )
         if antispam_force_off is not None:
-            data_payload["antispam-force-off"] = antispam_force_off
+            data_payload["antispam-force-of"] = antispam_force_off
         if antispam_cache is not None:
             data_payload["antispam-cache"] = antispam_cache
         if antispam_cache_ttl is not None:
@@ -344,7 +424,7 @@ class Fortiguard:
         if antispam_timeout is not None:
             data_payload["antispam-timeout"] = antispam_timeout
         if outbreak_prevention_force_off is not None:
-            data_payload["outbreak-prevention-force-off"] = (
+            data_payload["outbreak-prevention-force-of"] = (
                 outbreak_prevention_force_off
             )
         if outbreak_prevention_cache is not None:
@@ -372,7 +452,7 @@ class Fortiguard:
                 outbreak_prevention_timeout
             )
         if webfilter_force_off is not None:
-            data_payload["webfilter-force-off"] = webfilter_force_off
+            data_payload["webfilter-force-of"] = webfilter_force_off
         if webfilter_cache is not None:
             data_payload["webfilter-cache"] = webfilter_cache
         if webfilter_cache_ttl is not None:

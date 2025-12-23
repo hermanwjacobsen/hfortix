@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Log Fortianalyzer2 Override Setting
 
-Configuration endpoint for managing cmdb log fortianalyzer2 override setting objects.
+Configuration endpoint for managing cmdb log fortianalyzer2 override setting
+objects.
 
 API Endpoints:
     GET    /cmdb/log/fortianalyzer2_override_setting
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.log.fortianalyzer2_override_setting.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.log.fortianalyzer2_override_setting.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.log.fortianalyzer2_override_setting.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.fortianalyzer2_override_setting.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.log.fortianalyzer2_override_setting.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.log.fortianalyzer2_override_setting.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -53,7 +56,8 @@ class Fortianalyzer2OverrideSetting:
     """
     Fortianalyzer2Overridesetting Operations.
 
-    Provides CRUD operations for FortiOS fortianalyzer2overridesetting configuration.
+    Provides CRUD operations for FortiOS fortianalyzer2overridesetting
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -88,11 +92,15 @@ class Fortianalyzer2OverrideSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +108,8 @@ class Fortianalyzer2OverrideSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -158,41 +167,65 @@ class Fortianalyzer2OverrideSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            use_management_vdom: Enable/disable use of management VDOM IP address as source IP for logs sent to FortiAnalyzer. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            use_management_vdom: Enable/disable use of management VDOM IP
+            address as source IP for logs sent to FortiAnalyzer. (optional)
             status: Enable/disable logging to FortiAnalyzer. (optional)
             ips_archive: Enable/disable IPS packet archive logging. (optional)
             server: The remote FortiAnalyzer. (optional)
             alt_server: Alternate FortiAnalyzer. (optional)
-            fallback_to_primary: Enable/disable this FortiGate unit to fallback to the primary FortiAnalyzer when it is available. (optional)
-            certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. (optional)
+            fallback_to_primary: Enable/disable this FortiGate unit to fallback
+            to the primary FortiAnalyzer when it is available. (optional)
+            certificate_verification: Enable/disable identity verification of
+            FortiAnalyzer by use of certificate. (optional)
             serial: Serial numbers of the FortiAnalyzer. (optional)
-            server_cert_ca: Mandatory CA on FortiGate in certificate chain of server. (optional)
-            preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer. (optional)
-            access_config: Enable/disable FortiAnalyzer access to configuration and data. (optional)
+            server_cert_ca: Mandatory CA on FortiGate in certificate chain of
+            server. (optional)
+            preshared_key: Preshared-key used for auto-authorization on
+            FortiAnalyzer. (optional)
+            access_config: Enable/disable FortiAnalyzer access to configuration
+            and data. (optional)
             hmac_algorithm: OFTP login hash algorithm. (optional)
-            enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. (optional)
-            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
-            conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer). (optional)
-            monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer). (optional)
-            monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer). (optional)
-            certificate: Certificate used to communicate with FortiAnalyzer. (optional)
-            source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer. (optional)
-            upload_option: Enable/disable logging to hard disk and then uploading to FortiAnalyzer. (optional)
-            upload_interval: Frequency to upload log files to FortiAnalyzer. (optional)
+            enc_algorithm: Configure the level of SSL protection for secure
+            communication with FortiAnalyzer. (optional)
+            ssl_min_proto_version: Minimum supported protocol version for
+            SSL/TLS connections (default is to follow system global setting).
+            (optional)
+            conn_timeout: FortiAnalyzer connection time-out in seconds (for
+            status and log buffer). (optional)
+            monitor_keepalive_period: Time between OFTP keepalives in seconds
+            (for status and log buffer). (optional)
+            monitor_failure_retry_period: Time between FortiAnalyzer connection
+            retries in seconds (for status and log buffer). (optional)
+            certificate: Certificate used to communicate with FortiAnalyzer.
+            (optional)
+            source_ip: Source IPv4 or IPv6 address used to communicate with
+            FortiAnalyzer. (optional)
+            upload_option: Enable/disable logging to hard disk and then
+            uploading to FortiAnalyzer. (optional)
+            upload_interval: Frequency to upload log files to FortiAnalyzer.
+            (optional)
             upload_day: Day of week (month) to upload logs. (optional)
             upload_time: Time to upload logs (hh:mm). (optional)
-            reliable: Enable/disable reliable logging to FortiAnalyzer. (optional)
+            reliable: Enable/disable reliable logging to FortiAnalyzer.
+            (optional)
             priority: Set log transmission priority. (optional)
-            max_log_rate: FortiAnalyzer maximum log rate in MBps (0 = unlimited). (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            max_log_rate: FortiAnalyzer maximum log rate in MBps (0 =
+            unlimited). (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -200,7 +233,8 @@ class Fortianalyzer2OverrideSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

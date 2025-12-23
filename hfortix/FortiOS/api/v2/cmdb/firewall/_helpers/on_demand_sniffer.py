@@ -72,13 +72,13 @@ def validate_on_demand_sniffer_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate max-packet-count if present
     if "max-packet-count" in payload:
@@ -89,7 +89,7 @@ def validate_on_demand_sniffer_post(
                 if int_val < 1 or int_val > 4000:
                     return (
                         False,
-                        f"max-packet-count must be between 1 and 4000",
+                        "max-packet-count must be between 1 and 4000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -110,7 +110,7 @@ def validate_on_demand_sniffer_post(
     if "advanced-filter" in payload:
         value = payload.get("advanced-filter")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"advanced-filter cannot exceed 255 characters")
+            return (False, "advanced-filter cannot exceed 255 characters")
 
     return (True, None)
 
@@ -145,13 +145,13 @@ def validate_on_demand_sniffer_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate max-packet-count if present
     if "max-packet-count" in payload:
@@ -162,7 +162,7 @@ def validate_on_demand_sniffer_put(
                 if int_val < 1 or int_val > 4000:
                     return (
                         False,
-                        f"max-packet-count must be between 1 and 4000",
+                        "max-packet-count must be between 1 and 4000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -183,7 +183,7 @@ def validate_on_demand_sniffer_put(
     if "advanced-filter" in payload:
         value = payload.get("advanced-filter")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"advanced-filter cannot exceed 255 characters")
+            return (False, "advanced-filter cannot exceed 255 characters")
 
     return (True, None)
 

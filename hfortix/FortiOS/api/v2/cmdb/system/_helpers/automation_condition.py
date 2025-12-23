@@ -73,13 +73,13 @@ def validate_automation_condition_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate condition-type if present
     if "condition-type" in payload:
@@ -99,7 +99,7 @@ def validate_automation_condition_post(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"cpu-usage-percent must be between 0 and 100",
+                        "cpu-usage-percent must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -116,7 +116,7 @@ def validate_automation_condition_post(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"mem-usage-percent must be between 0 and 100",
+                        "mem-usage-percent must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -128,13 +128,13 @@ def validate_automation_condition_post(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate vpn-tunnel-name if present
     if "vpn-tunnel-name" in payload:
         value = payload.get("vpn-tunnel-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vpn-tunnel-name cannot exceed 79 characters")
+            return (False, "vpn-tunnel-name cannot exceed 79 characters")
 
     # Validate vpn-tunnel-state if present
     if "vpn-tunnel-state" in payload:
@@ -178,13 +178,13 @@ def validate_automation_condition_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate condition-type if present
     if "condition-type" in payload:
@@ -204,7 +204,7 @@ def validate_automation_condition_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"cpu-usage-percent must be between 0 and 100",
+                        "cpu-usage-percent must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -221,7 +221,7 @@ def validate_automation_condition_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"mem-usage-percent must be between 0 and 100",
+                        "mem-usage-percent must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -233,13 +233,13 @@ def validate_automation_condition_put(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate vpn-tunnel-name if present
     if "vpn-tunnel-name" in payload:
         value = payload.get("vpn-tunnel-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vpn-tunnel-name cannot exceed 79 characters")
+            return (False, "vpn-tunnel-name cannot exceed 79 characters")
 
     # Validate vpn-tunnel-state if present
     if "vpn-tunnel-state" in payload:

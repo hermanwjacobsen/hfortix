@@ -180,7 +180,8 @@ class NeighborsStatistics:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve BGP neighbors statistics, including number of IPv4 or IPv6 BGP neighbors.
+        Retrieve BGP neighbors statistics, including number of IPv4 or IPv6 BGP
+        neighbors.
 
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
@@ -299,7 +300,8 @@ class PathsStatistics:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve BGP paths statistics, including number of IPv4 or IPv6 BGP paths.
+        Retrieve BGP paths statistics, including number of IPv4 or IPv6 BGP
+        paths.
 
         Args:
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
@@ -382,7 +384,8 @@ class SoftResetNeighbor:
         BGP Neighbor soft reset.
 
         Args:
-            ip: IPv4 or IPv6 address of neighbor to perform soft reset on. (optional)
+            ip: IPv4 or IPv6 address of neighbor to perform soft reset on.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

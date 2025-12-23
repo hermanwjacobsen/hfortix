@@ -88,7 +88,7 @@ def validate_lte_modem_put(
     if "extra-init" in payload:
         value = payload.get("extra-init")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"extra-init cannot exceed 127 characters")
+            return (False, "extra-init cannot exceed 127 characters")
 
     # Validate pdptype if present
     if "pdptype" in payload:
@@ -112,13 +112,13 @@ def validate_lte_modem_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"username cannot exceed 63 characters")
+            return (False, "username cannot exceed 63 characters")
 
     # Validate apn if present
     if "apn" in payload:
         value = payload.get("apn")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"apn cannot exceed 127 characters")
+            return (False, "apn cannot exceed 127 characters")
 
     # Validate modem-port if present
     if "modem-port" in payload:
@@ -127,7 +127,7 @@ def validate_lte_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 20:
-                    return (False, f"modem-port must be between 0 and 20")
+                    return (False, "modem-port must be between 0 and 20")
             except (ValueError, TypeError):
                 return (False, f"modem-port must be numeric, got: {value}")
 
@@ -147,7 +147,7 @@ def validate_lte_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 60:
-                    return (False, f"holddown-timer must be between 10 and 60")
+                    return (False, "holddown-timer must be between 10 and 60")
             except (ValueError, TypeError):
                 return (False, f"holddown-timer must be numeric, got: {value}")
 
@@ -155,6 +155,6 @@ def validate_lte_modem_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"interface cannot exceed 63 characters")
+            return (False, "interface cannot exceed 63 characters")
 
     return (True, None)

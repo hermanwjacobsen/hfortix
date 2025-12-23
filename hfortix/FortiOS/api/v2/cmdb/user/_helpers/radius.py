@@ -215,25 +215,25 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate secondary-server if present
     if "secondary-server" in payload:
         value = payload.get("secondary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"secondary-server cannot exceed 63 characters")
+            return (False, "secondary-server cannot exceed 63 characters")
 
     # Validate tertiary-server if present
     if "tertiary-server" in payload:
         value = payload.get("tertiary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tertiary-server cannot exceed 63 characters")
+            return (False, "tertiary-server cannot exceed 63 characters")
 
     # Validate timeout if present
     if "timeout" in payload:
@@ -242,7 +242,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 300:
-                    return (False, f"timeout must be between 1 and 300")
+                    return (False, "timeout must be between 1 and 300")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -253,7 +253,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 600:
-                    return (False, f"status-ttl must be between 0 and 600")
+                    return (False, "status-ttl must be between 0 and 600")
             except (ValueError, TypeError):
                 return (False, f"status-ttl must be numeric, got: {value}")
 
@@ -306,7 +306,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "nas-id" in payload:
         value = payload.get("nas-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"nas-id cannot exceed 255 characters")
+            return (False, "nas-id cannot exceed 255 characters")
 
     # Validate acct-interim-interval if present
     if "acct-interim-interval" in payload:
@@ -317,7 +317,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 60 or int_val > 86400:
                     return (
                         False,
-                        f"acct-interim-interval must be between 60 and 86400",
+                        "acct-interim-interval must be between 60 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -341,7 +341,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"radius-port must be between 0 and 65535")
+                    return (False, "radius-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"radius-port must be numeric, got: {value}")
 
@@ -367,13 +367,13 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate source-ip-interface if present
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate username-case-sensitive if present
     if "username-case-sensitive" in payload:
@@ -465,7 +465,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 2 or int_val > 600:
                     return (
                         False,
-                        f"switch-controller-acct-fast-framedip-detect must be between 2 and 600",
+                        "switch-controller-acct-fast-framedip-detect must be between 2 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -486,7 +486,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -495,7 +495,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -530,13 +530,13 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ca-cert" in payload:
         value = payload.get("ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ca-cert cannot exceed 79 characters")
+            return (False, "ca-cert cannot exceed 79 characters")
 
     # Validate client-cert if present
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"client-cert cannot exceed 35 characters")
+            return (False, "client-cert cannot exceed 35 characters")
 
     # Validate server-identity-check if present
     if "server-identity-check" in payload:
@@ -583,7 +583,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"rsso-radius-server-port must be between 0 and 65535",
+                        "rsso-radius-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -640,7 +640,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sso-attribute-key" in payload:
         value = payload.get("sso-attribute-key")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sso-attribute-key cannot exceed 35 characters")
+            return (False, "sso-attribute-key cannot exceed 35 characters")
 
     # Validate sso-attribute-value-override if present
     if "sso-attribute-value-override" in payload:
@@ -660,7 +660,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rsso-context-timeout must be between 0 and 4294967295",
+                        "rsso-context-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -677,7 +677,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rsso-log-period must be between 0 and 4294967295",
+                        "rsso-log-period must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -754,25 +754,25 @@ def validate_radius_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate secondary-server if present
     if "secondary-server" in payload:
         value = payload.get("secondary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"secondary-server cannot exceed 63 characters")
+            return (False, "secondary-server cannot exceed 63 characters")
 
     # Validate tertiary-server if present
     if "tertiary-server" in payload:
         value = payload.get("tertiary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tertiary-server cannot exceed 63 characters")
+            return (False, "tertiary-server cannot exceed 63 characters")
 
     # Validate timeout if present
     if "timeout" in payload:
@@ -781,7 +781,7 @@ def validate_radius_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 300:
-                    return (False, f"timeout must be between 1 and 300")
+                    return (False, "timeout must be between 1 and 300")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -792,7 +792,7 @@ def validate_radius_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 600:
-                    return (False, f"status-ttl must be between 0 and 600")
+                    return (False, "status-ttl must be between 0 and 600")
             except (ValueError, TypeError):
                 return (False, f"status-ttl must be numeric, got: {value}")
 
@@ -845,7 +845,7 @@ def validate_radius_put(
     if "nas-id" in payload:
         value = payload.get("nas-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"nas-id cannot exceed 255 characters")
+            return (False, "nas-id cannot exceed 255 characters")
 
     # Validate acct-interim-interval if present
     if "acct-interim-interval" in payload:
@@ -856,7 +856,7 @@ def validate_radius_put(
                 if int_val < 60 or int_val > 86400:
                     return (
                         False,
-                        f"acct-interim-interval must be between 60 and 86400",
+                        "acct-interim-interval must be between 60 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -880,7 +880,7 @@ def validate_radius_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"radius-port must be between 0 and 65535")
+                    return (False, "radius-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"radius-port must be numeric, got: {value}")
 
@@ -906,13 +906,13 @@ def validate_radius_put(
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate source-ip-interface if present
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate username-case-sensitive if present
     if "username-case-sensitive" in payload:
@@ -1004,7 +1004,7 @@ def validate_radius_put(
                 if int_val < 2 or int_val > 600:
                     return (
                         False,
-                        f"switch-controller-acct-fast-framedip-detect must be between 2 and 600",
+                        "switch-controller-acct-fast-framedip-detect must be between 2 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1025,7 +1025,7 @@ def validate_radius_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -1034,7 +1034,7 @@ def validate_radius_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -1069,13 +1069,13 @@ def validate_radius_put(
     if "ca-cert" in payload:
         value = payload.get("ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ca-cert cannot exceed 79 characters")
+            return (False, "ca-cert cannot exceed 79 characters")
 
     # Validate client-cert if present
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"client-cert cannot exceed 35 characters")
+            return (False, "client-cert cannot exceed 35 characters")
 
     # Validate server-identity-check if present
     if "server-identity-check" in payload:
@@ -1122,7 +1122,7 @@ def validate_radius_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"rsso-radius-server-port must be between 0 and 65535",
+                        "rsso-radius-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1179,7 +1179,7 @@ def validate_radius_put(
     if "sso-attribute-key" in payload:
         value = payload.get("sso-attribute-key")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sso-attribute-key cannot exceed 35 characters")
+            return (False, "sso-attribute-key cannot exceed 35 characters")
 
     # Validate sso-attribute-value-override if present
     if "sso-attribute-value-override" in payload:
@@ -1199,7 +1199,7 @@ def validate_radius_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rsso-context-timeout must be between 0 and 4294967295",
+                        "rsso-context-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1216,7 +1216,7 @@ def validate_radius_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"rsso-log-period must be between 0 and 4294967295",
+                        "rsso-log-period must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

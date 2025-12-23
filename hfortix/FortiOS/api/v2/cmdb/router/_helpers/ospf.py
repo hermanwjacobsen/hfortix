@@ -98,7 +98,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 1000000:
                     return (
                         False,
-                        f"auto-cost-ref-bandwidth must be between 1 and 1000000",
+                        "auto-cost-ref-bandwidth must be between 1 and 1000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -115,7 +115,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"distance-external must be between 1 and 255",
+                        "distance-external must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -132,7 +132,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"distance-inter-area must be between 1 and 255",
+                        "distance-inter-area must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -149,7 +149,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"distance-intra-area must be between 1 and 255",
+                        "distance-intra-area must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -175,7 +175,7 @@ def validate_ospf_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"database-overflow-max-lsas must be between 0 and 4294967295",
+                        "database-overflow-max-lsas must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -192,7 +192,7 @@ def validate_ospf_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"database-overflow-time-to-recover must be between 0 and 65535",
+                        "database-overflow-time-to-recover must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -218,7 +218,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 16777214:
                     return (
                         False,
-                        f"default-information-metric must be between 1 and 16777214",
+                        "default-information-metric must be between 1 and 16777214",
                     )
             except (ValueError, TypeError):
                 return (
@@ -241,7 +241,7 @@ def validate_ospf_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"default-information-route-map cannot exceed 35 characters",
+                "default-information-route-map cannot exceed 35 characters",
             )
 
     # Validate default-metric if present
@@ -253,7 +253,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 16777214:
                     return (
                         False,
-                        f"default-metric must be between 1 and 16777214",
+                        "default-metric must be between 1 and 16777214",
                     )
             except (ValueError, TypeError):
                 return (False, f"default-metric must be numeric, got: {value}")
@@ -265,7 +265,7 @@ def validate_ospf_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -278,7 +278,7 @@ def validate_ospf_put(
                 if int_val < 0 or int_val > 5:
                     return (
                         False,
-                        f"lsa-refresh-interval must be between 0 and 5",
+                        "lsa-refresh-interval must be between 0 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -317,7 +317,7 @@ def validate_ospf_put(
     if "distribute-list-in" in payload:
         value = payload.get("distribute-list-in")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"distribute-list-in cannot exceed 35 characters")
+            return (False, "distribute-list-in cannot exceed 35 characters")
 
     # Validate distribute-route-map-in if present
     if "distribute-route-map-in" in payload:
@@ -325,7 +325,7 @@ def validate_ospf_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"distribute-route-map-in cannot exceed 35 characters",
+                "distribute-route-map-in cannot exceed 35 characters",
             )
 
     # Validate restart-mode if present
@@ -346,7 +346,7 @@ def validate_ospf_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"restart-period must be between 1 and 3600",
+                        "restart-period must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (False, f"restart-period must be numeric, got: {value}")

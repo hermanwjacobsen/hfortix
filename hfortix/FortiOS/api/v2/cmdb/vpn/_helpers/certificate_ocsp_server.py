@@ -72,31 +72,31 @@ def validate_certificate_ocsp_server_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate url if present
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"url cannot exceed 127 characters")
+            return (False, "url cannot exceed 127 characters")
 
     # Validate cert if present
     if "cert" in payload:
         value = payload.get("cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"cert cannot exceed 127 characters")
+            return (False, "cert cannot exceed 127 characters")
 
     # Validate secondary-url if present
     if "secondary-url" in payload:
         value = payload.get("secondary-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"secondary-url cannot exceed 127 characters")
+            return (False, "secondary-url cannot exceed 127 characters")
 
     # Validate secondary-cert if present
     if "secondary-cert" in payload:
         value = payload.get("secondary-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"secondary-cert cannot exceed 127 characters")
+            return (False, "secondary-cert cannot exceed 127 characters")
 
     # Validate unavail-action if present
     if "unavail-action" in payload:
@@ -111,7 +111,7 @@ def validate_certificate_ocsp_server_post(
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     return (True, None)
 
@@ -146,31 +146,31 @@ def validate_certificate_ocsp_server_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate url if present
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"url cannot exceed 127 characters")
+            return (False, "url cannot exceed 127 characters")
 
     # Validate cert if present
     if "cert" in payload:
         value = payload.get("cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"cert cannot exceed 127 characters")
+            return (False, "cert cannot exceed 127 characters")
 
     # Validate secondary-url if present
     if "secondary-url" in payload:
         value = payload.get("secondary-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"secondary-url cannot exceed 127 characters")
+            return (False, "secondary-url cannot exceed 127 characters")
 
     # Validate secondary-cert if present
     if "secondary-cert" in payload:
         value = payload.get("secondary-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"secondary-cert cannot exceed 127 characters")
+            return (False, "secondary-cert cannot exceed 127 characters")
 
     # Validate unavail-action if present
     if "unavail-action" in payload:
@@ -185,7 +185,7 @@ def validate_certificate_ocsp_server_put(
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     return (True, None)
 

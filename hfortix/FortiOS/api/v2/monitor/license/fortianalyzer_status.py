@@ -62,7 +62,8 @@ class FortianalyzerStatus:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Get current license & registration status for the connected FortiAnalyzer.
+        Get current license & registration status for the connected
+        FortiAnalyzer.
 
         Args:
             payload_dict: Optional dictionary of parameters

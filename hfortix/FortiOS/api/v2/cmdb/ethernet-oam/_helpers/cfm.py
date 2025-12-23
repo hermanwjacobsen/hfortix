@@ -74,7 +74,7 @@ def validate_cfm_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"domain-id must be between 0 and 4294967295",
+                        "domain-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"domain-id must be numeric, got: {value}")
@@ -86,7 +86,7 @@ def validate_cfm_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"domain-level must be between 0 and 7")
+                    return (False, "domain-level must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"domain-level must be numeric, got: {value}")
 

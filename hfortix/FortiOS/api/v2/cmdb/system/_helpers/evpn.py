@@ -74,7 +74,7 @@ def validate_evpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"id must be between 1 and 65535")
+                    return (False, "id must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -82,7 +82,7 @@ def validate_evpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "rd" in payload:
         value = payload.get("rd")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"rd cannot exceed 79 characters")
+            return (False, "rd cannot exceed 79 characters")
 
     # Validate ip-local-learning if present
     if "ip-local-learning" in payload:
@@ -138,7 +138,7 @@ def validate_evpn_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"id must be between 1 and 65535")
+                    return (False, "id must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -146,7 +146,7 @@ def validate_evpn_put(
     if "rd" in payload:
         value = payload.get("rd")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"rd cannot exceed 79 characters")
+            return (False, "rd cannot exceed 79 characters")
 
     # Validate ip-local-learning if present
     if "ip-local-learning" in payload:

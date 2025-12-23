@@ -111,7 +111,13 @@ class Test:
 
         Args:
             mkey: ID of automation stitch to trigger. (optional)
-            log: Message to store in the log buffer when triggering an event. For example, "logid=\"32102\" eventtime=1528840790000000000 logdesc=\"Sample description\" msg=\"Sample message\"". This parameter is required for the 'event-log' event type. For the test to run, the 'logid' argument value must match the trigger-defined value. If 'logid' is not provided, the test will use the trigger-defined value. (optional)
+            log: Message to store in the log buffer when triggering an event.
+            For example, "logid=\"32102\" eventtime=1528840790000000000
+            logdesc=\"Sample description\" msg=\"Sample message\"". This
+            parameter is required for the 'event-log' event type. For the test
+            to run, the 'logid' argument value must match the trigger-defined
+            value. If 'logid' is not provided, the test will use the
+            trigger-defined value. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

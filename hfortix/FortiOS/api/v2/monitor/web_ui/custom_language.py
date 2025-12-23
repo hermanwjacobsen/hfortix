@@ -70,7 +70,9 @@ class Create:
         Args:
             lang_name: Name of custom language entry. (optional)
             lang_comments: Comments of custom language entry. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -126,7 +128,8 @@ class Download:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.web_ui.custom_language.download.get(lang_name='value')
+            >>>
+            fgt.api.monitor.web_ui.custom_language.download.get(lang_name='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["lang_name"] = lang_name
@@ -165,7 +168,9 @@ class Update:
             mkey: Name of custom language entry. (optional)
             lang_name: New name of custom language entry. (optional)
             lang_comments: Comments of custom language entry. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

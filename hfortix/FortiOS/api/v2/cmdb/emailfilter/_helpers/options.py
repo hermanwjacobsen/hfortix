@@ -78,7 +78,7 @@ def validate_options_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 30:
-                    return (False, f"dns-timeout must be between 1 and 30")
+                    return (False, "dns-timeout must be between 1 and 30")
             except (ValueError, TypeError):
                 return (False, f"dns-timeout must be numeric, got: {value}")
 

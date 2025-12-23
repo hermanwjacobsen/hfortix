@@ -80,7 +80,7 @@ def validate_speed_test_setting_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"latency-threshold must be between 0 and 2000",
+                        "latency-threshold must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -97,7 +97,7 @@ def validate_speed_test_setting_put(
                 if int_val < 1 or int_val > 64:
                     return (
                         False,
-                        f"multiple-tcp-stream must be between 1 and 64",
+                        "multiple-tcp-stream must be between 1 and 64",
                     )
             except (ValueError, TypeError):
                 return (

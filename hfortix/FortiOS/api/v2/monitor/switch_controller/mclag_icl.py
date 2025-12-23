@@ -75,7 +75,8 @@ class EligiblePeer:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.mclag_icl.eligible_peer.get(fortilink='value')
+            >>>
+            fgt.api.monitor.switch_controller.mclag_icl.eligible_peer.get(fortilink='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["fortilink"] = fortilink
@@ -129,7 +130,8 @@ class SetTierPlus:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.mclag_icl.set_tier_plus.post()
+            >>>
+            fgt.api.monitor.switch_controller.mclag_icl.set_tier_plus.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if fortilink is not None:
@@ -224,7 +226,8 @@ class TierPlusCandidates:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Find a pair of FortiSwitches that are eligible to form a tier 2/3 MC-LAG.
+        Find a pair of FortiSwitches that are eligible to form a tier 2/3
+        MC-LAG.
 
         Args:
             fortilink: FortiLink interface name. (required)
@@ -239,7 +242,9 @@ class TierPlusCandidates:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.switch_controller.mclag_icl.tier_plus_candidates.get(fortilink='value', parent_peer1='value', parent_peer2='value', is_tier2=True)
+            >>>
+            fgt.api.monitor.switch_controller.mclag_icl.tier_plus_candidates.get(fortilink='value',
+            parent_peer1='value', parent_peer2='value', is_tier2=True)
         """
         params = payload_dict.copy() if payload_dict else {}
         params["fortilink"] = fortilink

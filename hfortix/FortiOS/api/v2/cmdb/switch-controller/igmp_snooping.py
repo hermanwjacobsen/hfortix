@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Igmp Snooping
 
-Configuration endpoint for managing cmdb switch controller igmp snooping objects.
+Configuration endpoint for managing cmdb switch controller igmp snooping
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/igmp_snooping
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.igmp_snooping.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.igmp_snooping.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.igmp_snooping.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.igmp_snooping.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.igmp_snooping.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.igmp_snooping.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +91,15 @@ class IgmpSnooping:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +107,8 @@ class IgmpSnooping:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -132,15 +140,24 @@ class IgmpSnooping:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            aging_time: Maximum number of seconds to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300). (optional)
-            flood_unknown_multicast: Enable/disable unknown multicast flooding. (optional)
-            query_interval: Maximum time after which IGMP query will be sent (10 - 1200 sec, default = 125). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            aging_time: Maximum number of seconds to retain a multicast
+            snooping entry for which no packets have been seen (15 - 3600 sec,
+            default = 300). (optional)
+            flood_unknown_multicast: Enable/disable unknown multicast flooding.
+            (optional)
+            query_interval: Maximum time after which IGMP query will be sent
+            (10 - 1200 sec, default = 125). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -148,7 +165,8 @@ class IgmpSnooping:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

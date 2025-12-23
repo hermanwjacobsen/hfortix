@@ -125,37 +125,37 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate cert if present
     if "cert" in payload:
         value = payload.get("cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"cert cannot exceed 35 characters")
+            return (False, "cert cannot exceed 35 characters")
 
     # Validate entity-id if present
     if "entity-id" in payload:
         value = payload.get("entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"entity-id cannot exceed 255 characters")
+            return (False, "entity-id cannot exceed 255 characters")
 
     # Validate single-sign-on-url if present
     if "single-sign-on-url" in payload:
         value = payload.get("single-sign-on-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-sign-on-url cannot exceed 255 characters")
+            return (False, "single-sign-on-url cannot exceed 255 characters")
 
     # Validate single-logout-url if present
     if "single-logout-url" in payload:
         value = payload.get("single-logout-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-logout-url cannot exceed 255 characters")
+            return (False, "single-logout-url cannot exceed 255 characters")
 
     # Validate idp-entity-id if present
     if "idp-entity-id" in payload:
         value = payload.get("idp-entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"idp-entity-id cannot exceed 255 characters")
+            return (False, "idp-entity-id cannot exceed 255 characters")
 
     # Validate idp-single-sign-on-url if present
     if "idp-single-sign-on-url" in payload:
@@ -163,7 +163,7 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-sign-on-url cannot exceed 255 characters",
+                "idp-single-sign-on-url cannot exceed 255 characters",
             )
 
     # Validate idp-single-logout-url if present
@@ -172,20 +172,20 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-logout-url cannot exceed 255 characters",
+                "idp-single-logout-url cannot exceed 255 characters",
             )
 
     # Validate idp-cert if present
     if "idp-cert" in payload:
         value = payload.get("idp-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"idp-cert cannot exceed 35 characters")
+            return (False, "idp-cert cannot exceed 35 characters")
 
     # Validate scim-client if present
     if "scim-client" in payload:
         value = payload.get("scim-client")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"scim-client cannot exceed 35 characters")
+            return (False, "scim-client cannot exceed 35 characters")
 
     # Validate scim-user-attr-type if present
     if "scim-user-attr-type" in payload:
@@ -209,13 +209,13 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "user-name" in payload:
         value = payload.get("user-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"user-name cannot exceed 255 characters")
+            return (False, "user-name cannot exceed 255 characters")
 
     # Validate group-name if present
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"group-name cannot exceed 255 characters")
+            return (False, "group-name cannot exceed 255 characters")
 
     # Validate digest-method if present
     if "digest-method" in payload:
@@ -253,7 +253,7 @@ def validate_saml_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"clock-tolerance must be between 0 and 300",
+                        "clock-tolerance must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -330,37 +330,37 @@ def validate_saml_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate cert if present
     if "cert" in payload:
         value = payload.get("cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"cert cannot exceed 35 characters")
+            return (False, "cert cannot exceed 35 characters")
 
     # Validate entity-id if present
     if "entity-id" in payload:
         value = payload.get("entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"entity-id cannot exceed 255 characters")
+            return (False, "entity-id cannot exceed 255 characters")
 
     # Validate single-sign-on-url if present
     if "single-sign-on-url" in payload:
         value = payload.get("single-sign-on-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-sign-on-url cannot exceed 255 characters")
+            return (False, "single-sign-on-url cannot exceed 255 characters")
 
     # Validate single-logout-url if present
     if "single-logout-url" in payload:
         value = payload.get("single-logout-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"single-logout-url cannot exceed 255 characters")
+            return (False, "single-logout-url cannot exceed 255 characters")
 
     # Validate idp-entity-id if present
     if "idp-entity-id" in payload:
         value = payload.get("idp-entity-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"idp-entity-id cannot exceed 255 characters")
+            return (False, "idp-entity-id cannot exceed 255 characters")
 
     # Validate idp-single-sign-on-url if present
     if "idp-single-sign-on-url" in payload:
@@ -368,7 +368,7 @@ def validate_saml_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-sign-on-url cannot exceed 255 characters",
+                "idp-single-sign-on-url cannot exceed 255 characters",
             )
 
     # Validate idp-single-logout-url if present
@@ -377,20 +377,20 @@ def validate_saml_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"idp-single-logout-url cannot exceed 255 characters",
+                "idp-single-logout-url cannot exceed 255 characters",
             )
 
     # Validate idp-cert if present
     if "idp-cert" in payload:
         value = payload.get("idp-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"idp-cert cannot exceed 35 characters")
+            return (False, "idp-cert cannot exceed 35 characters")
 
     # Validate scim-client if present
     if "scim-client" in payload:
         value = payload.get("scim-client")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"scim-client cannot exceed 35 characters")
+            return (False, "scim-client cannot exceed 35 characters")
 
     # Validate scim-user-attr-type if present
     if "scim-user-attr-type" in payload:
@@ -414,13 +414,13 @@ def validate_saml_put(
     if "user-name" in payload:
         value = payload.get("user-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"user-name cannot exceed 255 characters")
+            return (False, "user-name cannot exceed 255 characters")
 
     # Validate group-name if present
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"group-name cannot exceed 255 characters")
+            return (False, "group-name cannot exceed 255 characters")
 
     # Validate digest-method if present
     if "digest-method" in payload:
@@ -458,7 +458,7 @@ def validate_saml_put(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"clock-tolerance must be between 0 and 300",
+                        "clock-tolerance must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (

@@ -65,12 +65,15 @@ class StationCapability:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of stations and their capability to connect to detected access points.
+        Retrieve a list of stations and their capability to connect to detected
+        access points.
 
         Args:
             mac_address: Station MAC address. (optional)
-            min_age: Minimum value for RSSI 2G age and 5G RSSI age, in seconds. (optional)
-            max_age: Maximum value for RSSI 2G age and 5G RSSI age, in seconds. (optional)
+            min_age: Minimum value for RSSI 2G age and 5G RSSI age, in seconds.
+            (optional)
+            max_age: Maximum value for RSSI 2G age and 5G RSSI age, in seconds.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

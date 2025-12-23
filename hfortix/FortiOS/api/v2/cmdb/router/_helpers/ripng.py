@@ -88,7 +88,7 @@ def validate_ripng_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 16:
-                    return (False, f"default-metric must be between 1 and 16")
+                    return (False, "default-metric must be between 1 and 16")
             except (ValueError, TypeError):
                 return (False, f"default-metric must be numeric, got: {value}")
 
@@ -99,7 +99,7 @@ def validate_ripng_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 15:
-                    return (False, f"max-out-metric must be between 0 and 15")
+                    return (False, "max-out-metric must be between 0 and 15")
             except (ValueError, TypeError):
                 return (False, f"max-out-metric must be numeric, got: {value}")
 
@@ -112,7 +112,7 @@ def validate_ripng_put(
                 if int_val < 5 or int_val > 2147483647:
                     return (
                         False,
-                        f"update-timer must be between 5 and 2147483647",
+                        "update-timer must be between 5 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"update-timer must be numeric, got: {value}")
@@ -126,7 +126,7 @@ def validate_ripng_put(
                 if int_val < 5 or int_val > 2147483647:
                     return (
                         False,
-                        f"timeout-timer must be between 5 and 2147483647",
+                        "timeout-timer must be between 5 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"timeout-timer must be numeric, got: {value}")
@@ -140,7 +140,7 @@ def validate_ripng_put(
                 if int_val < 5 or int_val > 2147483647:
                     return (
                         False,
-                        f"garbage-timer must be between 5 and 2147483647",
+                        "garbage-timer must be between 5 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"garbage-timer must be numeric, got: {value}")

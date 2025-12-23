@@ -104,25 +104,25 @@ def validate_setting_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"username cannot exceed 63 characters")
+            return (False, "username cannot exceed 63 characters")
 
     # Validate mailto1 if present
     if "mailto1" in payload:
         value = payload.get("mailto1")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"mailto1 cannot exceed 63 characters")
+            return (False, "mailto1 cannot exceed 63 characters")
 
     # Validate mailto2 if present
     if "mailto2" in payload:
         value = payload.get("mailto2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"mailto2 cannot exceed 63 characters")
+            return (False, "mailto2 cannot exceed 63 characters")
 
     # Validate mailto3 if present
     if "mailto3" in payload:
         value = payload.get("mailto3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"mailto3 cannot exceed 63 characters")
+            return (False, "mailto3 cannot exceed 63 characters")
 
     # Validate filter-mode if present
     if "filter-mode" in payload:
@@ -142,7 +142,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"email-interval must be between 1 and 99999",
+                        "email-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (False, f"email-interval must be numeric, got: {value}")
@@ -321,7 +321,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99:
                     return (
                         False,
-                        f"local-disk-usage must be between 1 and 99",
+                        "local-disk-usage must be between 1 and 99",
                     )
             except (ValueError, TypeError):
                 return (
@@ -338,7 +338,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"emergency-interval must be between 1 and 99999",
+                        "emergency-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (
@@ -355,7 +355,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"alert-interval must be between 1 and 99999",
+                        "alert-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (False, f"alert-interval must be numeric, got: {value}")
@@ -369,7 +369,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"critical-interval must be between 1 and 99999",
+                        "critical-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (
@@ -386,7 +386,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"error-interval must be between 1 and 99999",
+                        "error-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (False, f"error-interval must be numeric, got: {value}")
@@ -400,7 +400,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"warning-interval must be between 1 and 99999",
+                        "warning-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (
@@ -417,7 +417,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"notification-interval must be between 1 and 99999",
+                        "notification-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (
@@ -434,7 +434,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"information-interval must be between 1 and 99999",
+                        "information-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (
@@ -451,7 +451,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 99999:
                     return (
                         False,
-                        f"debug-interval must be between 1 and 99999",
+                        "debug-interval must be between 1 and 99999",
                     )
             except (ValueError, TypeError):
                 return (False, f"debug-interval must be numeric, got: {value}")

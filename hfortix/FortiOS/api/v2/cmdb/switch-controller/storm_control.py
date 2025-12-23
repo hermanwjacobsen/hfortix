@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Storm Control
 
-Configuration endpoint for managing cmdb switch controller storm control objects.
+Configuration endpoint for managing cmdb switch controller storm control
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/storm_control
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.storm_control.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.storm_control.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.storm_control.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.storm_control.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.storm_control.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.storm_control.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +91,15 @@ class StormControl:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +107,8 @@ class StormControl:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -134,17 +142,27 @@ class StormControl:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            rate: Rate in packets per second at which storm control drops excess traffic(0-10000000, default=500, drop-all=0). (optional)
-            burst_size_level: Increase level to handle bursty traffic (0 - 4, default = 0). (optional)
-            unknown_unicast: Enable/disable storm control to drop unknown unicast traffic. (optional)
-            unknown_multicast: Enable/disable storm control to drop unknown multicast traffic. (optional)
-            broadcast: Enable/disable storm control to drop broadcast traffic. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            rate: Rate in packets per second at which storm control drops
+            excess traffic(0-10000000, default=500, drop-all=0). (optional)
+            burst_size_level: Increase level to handle bursty traffic (0 - 4,
+            default = 0). (optional)
+            unknown_unicast: Enable/disable storm control to drop unknown
+            unicast traffic. (optional)
+            unknown_multicast: Enable/disable storm control to drop unknown
+            multicast traffic. (optional)
+            broadcast: Enable/disable storm control to drop broadcast traffic.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -152,7 +170,8 @@ class StormControl:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

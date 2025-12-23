@@ -88,11 +88,15 @@ class Sdwan:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Sdwan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -146,29 +151,52 @@ class Sdwan:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable SD-WAN. (optional)
-            load_balance_mode: Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. (optional)
-            speedtest_bypass_routing: Enable/disable bypass routing when speedtest on a SD-WAN member. (optional)
-            duplication_max_num: Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created). (optional)
-            duplication_max_discrepancy: Maximum discrepancy between two packets for deduplication in milliseconds (250 - 1000, default = 250). (optional)
-            neighbor_hold_down: Enable/disable hold switching from the secondary neighbor to the primary neighbor. (optional)
-            neighbor_hold_down_time: Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0). (optional)
-            app_perf_log_period: Time interval in seconds that application performance logs are generated (0 - 3600, default = 0). (optional)
-            neighbor_hold_boot_time: Waiting period in seconds when switching from the primary neighbor to the secondary neighbor from the neighbor start. (0 - 10000000, default = 0). (optional)
-            fail_detect: Enable/disable SD-WAN Internet connection status checking (failure detection). (optional)
-            fail_alert_interfaces: Physical interfaces that will be alerted. (optional)
+            load_balance_mode: Algorithm or mode to use for load balancing
+            Internet traffic to SD-WAN members. (optional)
+            speedtest_bypass_routing: Enable/disable bypass routing when
+            speedtest on a SD-WAN member. (optional)
+            duplication_max_num: Maximum number of interface members a packet
+            is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3,
+            the original packet plus 2 more copies are created). (optional)
+            duplication_max_discrepancy: Maximum discrepancy between two
+            packets for deduplication in milliseconds (250 - 1000, default =
+            250). (optional)
+            neighbor_hold_down: Enable/disable hold switching from the
+            secondary neighbor to the primary neighbor. (optional)
+            neighbor_hold_down_time: Waiting period in seconds when switching
+            from the secondary neighbor to the primary neighbor when hold-down
+            is disabled. (0 - 10000000, default = 0). (optional)
+            app_perf_log_period: Time interval in seconds that application
+            performance logs are generated (0 - 3600, default = 0). (optional)
+            neighbor_hold_boot_time: Waiting period in seconds when switching
+            from the primary neighbor to the secondary neighbor from the
+            neighbor start. (0 - 10000000, default = 0). (optional)
+            fail_detect: Enable/disable SD-WAN Internet connection status
+            checking (failure detection). (optional)
+            fail_alert_interfaces: Physical interfaces that will be alerted.
+            (optional)
             zone: Configure SD-WAN zones. (optional)
             members: FortiGate interfaces added to the SD-WAN. (optional)
-            health_check: SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it. (optional)
-            service: Create SD-WAN rules (also called services) to control how sessions are distributed to interfaces in the SD-WAN. (optional)
-            neighbor: Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. (optional)
+            health_check: SD-WAN status checking or health checking. Identify a
+            server on the Internet and determine how SD-WAN verifies that the
+            FortiGate can communicate with it. (optional)
+            service: Create SD-WAN rules (also called services) to control how
+            sessions are distributed to interfaces in the SD-WAN. (optional)
+            neighbor: Create SD-WAN neighbor from BGP neighbor table to control
+            route advertisements according to SLA status. (optional)
             duplication: Create SD-WAN duplication rule. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -176,7 +204,8 @@ class Sdwan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

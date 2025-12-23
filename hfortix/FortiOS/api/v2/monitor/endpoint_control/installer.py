@@ -75,7 +75,8 @@ class Download:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.endpoint_control.installer.download.get(mkey='value')
+            >>>
+            fgt.api.monitor.endpoint_control.installer.download.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
@@ -111,7 +112,8 @@ class Installer:
         List available FortiClient installers.
 
         Args:
-            min_version: Filter: Minimum installer version. (String of the format n[.n[.n]]). (optional)
+            min_version: Filter: Minimum installer version. (String of the
+            format n[.n[.n]]). (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -531,7 +531,7 @@ class BaseHTTPClient:
         Returns:
             Dictionary with health score, response times, circuit state, etc.
         """
-        metrics = {
+        metrics: dict[str, Any] = {
             "circuit_breaker": {
                 "state": self._circuit_breaker["state"],
                 "consecutive_failures": self._circuit_breaker[

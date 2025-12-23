@@ -73,7 +73,7 @@ def validate_ldb_monitor_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -91,7 +91,7 @@ def validate_ldb_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 65535:
-                    return (False, f"interval must be between 5 and 65535")
+                    return (False, "interval must be between 5 and 65535")
             except (ValueError, TypeError):
                 return (False, f"interval must be numeric, got: {value}")
 
@@ -102,7 +102,7 @@ def validate_ldb_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"timeout must be between 1 and 255")
+                    return (False, "timeout must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -113,7 +113,7 @@ def validate_ldb_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"retry must be between 1 and 255")
+                    return (False, "retry must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"retry must be numeric, got: {value}")
 
@@ -124,7 +124,7 @@ def validate_ldb_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -132,13 +132,13 @@ def validate_ldb_monitor_post(
     if "http-get" in payload:
         value = payload.get("http-get")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"http-get cannot exceed 255 characters")
+            return (False, "http-get cannot exceed 255 characters")
 
     # Validate http-match if present
     if "http-match" in payload:
         value = payload.get("http-match")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"http-match cannot exceed 255 characters")
+            return (False, "http-match cannot exceed 255 characters")
 
     # Validate http-max-redirects if present
     if "http-max-redirects" in payload:
@@ -149,7 +149,7 @@ def validate_ldb_monitor_post(
                 if int_val < 0 or int_val > 5:
                     return (
                         False,
-                        f"http-max-redirects must be between 0 and 5",
+                        "http-max-redirects must be between 0 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -170,7 +170,7 @@ def validate_ldb_monitor_post(
     if "dns-request-domain" in payload:
         value = payload.get("dns-request-domain")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"dns-request-domain cannot exceed 255 characters")
+            return (False, "dns-request-domain cannot exceed 255 characters")
 
     return (True, None)
 
@@ -205,7 +205,7 @@ def validate_ldb_monitor_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -223,7 +223,7 @@ def validate_ldb_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 65535:
-                    return (False, f"interval must be between 5 and 65535")
+                    return (False, "interval must be between 5 and 65535")
             except (ValueError, TypeError):
                 return (False, f"interval must be numeric, got: {value}")
 
@@ -234,7 +234,7 @@ def validate_ldb_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"timeout must be between 1 and 255")
+                    return (False, "timeout must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -245,7 +245,7 @@ def validate_ldb_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"retry must be between 1 and 255")
+                    return (False, "retry must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"retry must be numeric, got: {value}")
 
@@ -256,7 +256,7 @@ def validate_ldb_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -264,13 +264,13 @@ def validate_ldb_monitor_put(
     if "http-get" in payload:
         value = payload.get("http-get")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"http-get cannot exceed 255 characters")
+            return (False, "http-get cannot exceed 255 characters")
 
     # Validate http-match if present
     if "http-match" in payload:
         value = payload.get("http-match")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"http-match cannot exceed 255 characters")
+            return (False, "http-match cannot exceed 255 characters")
 
     # Validate http-max-redirects if present
     if "http-max-redirects" in payload:
@@ -281,7 +281,7 @@ def validate_ldb_monitor_put(
                 if int_val < 0 or int_val > 5:
                     return (
                         False,
-                        f"http-max-redirects must be between 0 and 5",
+                        "http-max-redirects must be between 0 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -302,7 +302,7 @@ def validate_ldb_monitor_put(
     if "dns-request-domain" in payload:
         value = payload.get("dns-request-domain")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"dns-request-domain cannot exceed 255 characters")
+            return (False, "dns-request-domain cannot exceed 255 characters")
 
     return (True, None)
 

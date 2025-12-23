@@ -85,24 +85,24 @@ def validate_snmp_sysinfo_put(
     if "engine-id" in payload:
         value = payload.get("engine-id")
         if value and isinstance(value, str) and len(value) > 24:
-            return (False, f"engine-id cannot exceed 24 characters")
+            return (False, "engine-id cannot exceed 24 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"description cannot exceed 35 characters")
+            return (False, "description cannot exceed 35 characters")
 
     # Validate contact-info if present
     if "contact-info" in payload:
         value = payload.get("contact-info")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"contact-info cannot exceed 35 characters")
+            return (False, "contact-info cannot exceed 35 characters")
 
     # Validate location if present
     if "location" in payload:
         value = payload.get("location")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"location cannot exceed 35 characters")
+            return (False, "location cannot exceed 35 characters")
 
     return (True, None)

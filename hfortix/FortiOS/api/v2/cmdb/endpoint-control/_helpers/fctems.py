@@ -97,7 +97,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 7:
-                    return (False, f"ems-id must be between 1 and 7")
+                    return (False, "ems-id must be between 1 and 7")
             except (ValueError, TypeError):
                 return (False, f"ems-id must be numeric, got: {value}")
 
@@ -114,7 +114,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate dirty-reason if present
     if "dirty-reason" in payload:
@@ -138,7 +138,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"server cannot exceed 255 characters")
+            return (False, "server cannot exceed 255 characters")
 
     # Validate https-port if present
     if "https-port" in payload:
@@ -147,7 +147,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"https-port must be between 1 and 65535")
+                    return (False, "https-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"https-port must be numeric, got: {value}")
 
@@ -155,13 +155,13 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "serial-number" in payload:
         value = payload.get("serial-number")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"serial-number cannot exceed 16 characters")
+            return (False, "serial-number cannot exceed 16 characters")
 
     # Validate tenant-id if present
     if "tenant-id" in payload:
         value = payload.get("tenant-id")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"tenant-id cannot exceed 32 characters")
+            return (False, "tenant-id cannot exceed 32 characters")
 
     # Validate pull-sysinfo if present
     if "pull-sysinfo" in payload:
@@ -215,7 +215,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 180:
-                    return (False, f"call-timeout must be between 1 and 180")
+                    return (False, "call-timeout must be between 1 and 180")
             except (ValueError, TypeError):
                 return (False, f"call-timeout must be numeric, got: {value}")
 
@@ -228,7 +228,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"out-of-sync-threshold must be between 10 and 3600",
+                        "out-of-sync-threshold must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -267,7 +267,7 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate trust-ca-cn if present
     if "trust-ca-cn" in payload:
@@ -282,6 +282,6 @@ def validate_fctems_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "verifying-ca" in payload:
         value = payload.get("verifying-ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"verifying-ca cannot exceed 79 characters")
+            return (False, "verifying-ca cannot exceed 79 characters")
 
     return (True, None)

@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more firewall policies by policy ID.
+        Reset traffic statistics for one or more firewall policies by policy
+        ID.
 
         Args:
             policy: Single policy ID to reset. (optional)
@@ -147,12 +148,16 @@ class UpdateGlobalLabel:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Update the global-label of group starting with the provided leading policy ID.
+        Update the global-label of group starting with the provided leading
+        policy ID.
 
         Args:
             policyid: Leading policy ID of the group to update. (optional)
-            current_label: The current global-label of the group. If not provided, will assume the current group's label is empty string. (optional)
-            new_label: The new global-label of the group. If not provided, the current group's label will be deleted (optional)
+            current_label: The current global-label of the group. If not
+            provided, will assume the current group's label is empty string.
+            (optional)
+            new_label: The new global-label of the group. If not provided, the
+            current group's label will be deleted (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -206,7 +211,8 @@ class Policy:
 
         Args:
             policyid: Filter: Policy ID. (optional)
-            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left empty, will retrieve data for both ipv4 and ipv6. (optional)
+            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left
+            empty, will retrieve data for both ipv4 and ipv6. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

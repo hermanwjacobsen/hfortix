@@ -79,19 +79,19 @@ def validate_certificate_local_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"comments cannot exceed 511 characters")
+            return (False, "comments cannot exceed 511 characters")
 
     # Validate scep-url if present
     if "scep-url" in payload:
         value = payload.get("scep-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"scep-url cannot exceed 255 characters")
+            return (False, "scep-url cannot exceed 255 characters")
 
     # Validate range if present
     if "range" in payload:
@@ -120,7 +120,7 @@ def validate_certificate_local_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"auto-regenerate-days must be between 0 and 4294967295",
+                        "auto-regenerate-days must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -137,7 +137,7 @@ def validate_certificate_local_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"auto-regenerate-days-warning must be between 0 and 4294967295",
+                        "auto-regenerate-days-warning must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -149,7 +149,7 @@ def validate_certificate_local_post(
     if "ca-identifier" in payload:
         value = payload.get("ca-identifier")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"ca-identifier cannot exceed 255 characters")
+            return (False, "ca-identifier cannot exceed 255 characters")
 
     # Validate name-encoding if present
     if "name-encoding" in payload:
@@ -164,7 +164,7 @@ def validate_certificate_local_post(
     if "ike-localid" in payload:
         value = payload.get("ike-localid")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ike-localid cannot exceed 63 characters")
+            return (False, "ike-localid cannot exceed 63 characters")
 
     # Validate ike-localid-type if present
     if "ike-localid-type" in payload:
@@ -197,19 +197,19 @@ def validate_certificate_local_post(
     if "cmp-server" in payload:
         value = payload.get("cmp-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"cmp-server cannot exceed 63 characters")
+            return (False, "cmp-server cannot exceed 63 characters")
 
     # Validate cmp-path if present
     if "cmp-path" in payload:
         value = payload.get("cmp-path")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cmp-path cannot exceed 255 characters")
+            return (False, "cmp-path cannot exceed 255 characters")
 
     # Validate cmp-server-cert if present
     if "cmp-server-cert" in payload:
         value = payload.get("cmp-server-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"cmp-server-cert cannot exceed 79 characters")
+            return (False, "cmp-server-cert cannot exceed 79 characters")
 
     # Validate cmp-regeneration-method if present
     if "cmp-regeneration-method" in payload:
@@ -224,25 +224,25 @@ def validate_certificate_local_post(
     if "acme-ca-url" in payload:
         value = payload.get("acme-ca-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"acme-ca-url cannot exceed 255 characters")
+            return (False, "acme-ca-url cannot exceed 255 characters")
 
     # Validate acme-domain if present
     if "acme-domain" in payload:
         value = payload.get("acme-domain")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"acme-domain cannot exceed 255 characters")
+            return (False, "acme-domain cannot exceed 255 characters")
 
     # Validate acme-email if present
     if "acme-email" in payload:
         value = payload.get("acme-email")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"acme-email cannot exceed 255 characters")
+            return (False, "acme-email cannot exceed 255 characters")
 
     # Validate acme-eab-key-id if present
     if "acme-eab-key-id" in payload:
         value = payload.get("acme-eab-key-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"acme-eab-key-id cannot exceed 255 characters")
+            return (False, "acme-eab-key-id cannot exceed 255 characters")
 
     # Validate acme-rsa-key-size if present
     if "acme-rsa-key-size" in payload:
@@ -253,7 +253,7 @@ def validate_certificate_local_post(
                 if int_val < 2048 or int_val > 4096:
                     return (
                         False,
-                        f"acme-rsa-key-size must be between 2048 and 4096",
+                        "acme-rsa-key-size must be between 2048 and 4096",
                     )
             except (ValueError, TypeError):
                 return (
@@ -270,7 +270,7 @@ def validate_certificate_local_post(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"acme-renew-window must be between 1 and 100",
+                        "acme-renew-window must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -282,37 +282,37 @@ def validate_certificate_local_post(
     if "est-server" in payload:
         value = payload.get("est-server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"est-server cannot exceed 255 characters")
+            return (False, "est-server cannot exceed 255 characters")
 
     # Validate est-ca-id if present
     if "est-ca-id" in payload:
         value = payload.get("est-ca-id")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"est-ca-id cannot exceed 255 characters")
+            return (False, "est-ca-id cannot exceed 255 characters")
 
     # Validate est-http-username if present
     if "est-http-username" in payload:
         value = payload.get("est-http-username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"est-http-username cannot exceed 63 characters")
+            return (False, "est-http-username cannot exceed 63 characters")
 
     # Validate est-client-cert if present
     if "est-client-cert" in payload:
         value = payload.get("est-client-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"est-client-cert cannot exceed 79 characters")
+            return (False, "est-client-cert cannot exceed 79 characters")
 
     # Validate est-server-cert if present
     if "est-server-cert" in payload:
         value = payload.get("est-server-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"est-server-cert cannot exceed 79 characters")
+            return (False, "est-server-cert cannot exceed 79 characters")
 
     # Validate est-srp-username if present
     if "est-srp-username" in payload:
         value = payload.get("est-srp-username")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"est-srp-username cannot exceed 63 characters")
+            return (False, "est-srp-username cannot exceed 63 characters")
 
     # Validate est-regeneration-method if present
     if "est-regeneration-method" in payload:

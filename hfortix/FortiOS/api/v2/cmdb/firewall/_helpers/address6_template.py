@@ -72,7 +72,7 @@ def validate_address6_template_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate subnet-segment-count if present
     if "subnet-segment-count" in payload:
@@ -83,7 +83,7 @@ def validate_address6_template_post(
                 if int_val < 1 or int_val > 6:
                     return (
                         False,
-                        f"subnet-segment-count must be between 1 and 6",
+                        "subnet-segment-count must be between 1 and 6",
                     )
             except (ValueError, TypeError):
                 return (
@@ -133,7 +133,7 @@ def validate_address6_template_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate subnet-segment-count if present
     if "subnet-segment-count" in payload:
@@ -144,7 +144,7 @@ def validate_address6_template_put(
                 if int_val < 1 or int_val > 6:
                     return (
                         False,
-                        f"subnet-segment-count must be between 1 and 6",
+                        "subnet-segment-count must be between 1 and 6",
                     )
             except (ValueError, TypeError):
                 return (

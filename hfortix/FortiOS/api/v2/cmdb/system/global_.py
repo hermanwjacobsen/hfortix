@@ -88,11 +88,15 @@ class Global:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -379,262 +384,582 @@ class Global:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             language: GUI display language. (optional)
-            gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with incompatible firmware to be treated as compatible in security fabric on the GUI. May cause unexpected error. (optional)
+            gui_allow_incompatible_fabric_fgt: Enable/disable Allow FGT with
+            incompatible firmware to be treated as compatible in security
+            fabric on the GUI. May cause unexpected error. (optional)
             gui_ipv6: Enable/disable IPv6 settings on the GUI. (optional)
-            gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. (optional)
-            gui_local_out: Enable/disable Local-out traffic on the GUI. (optional)
-            gui_certificates: Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. (optional)
-            gui_custom_language: Enable/disable custom languages in GUI. (optional)
-            gui_wireless_opensecurity: Enable/disable wireless open security option on the GUI. (optional)
-            gui_app_detection_sdwan: Enable/disable Allow app-detection based SD-WAN. (optional)
-            gui_display_hostname: Enable/disable displaying the FortiGate's hostname on the GUI login page. (optional)
-            gui_fortigate_cloud_sandbox: Enable/disable displaying FortiGate Cloud Sandbox on the GUI. (optional)
-            gui_firmware_upgrade_warning: Enable/disable the firmware upgrade warning on the GUI. (optional)
-            gui_forticare_registration_setup_warning: Enable/disable the FortiCare registration setup warning on the GUI. (optional)
-            gui_auto_upgrade_setup_warning: Enable/disable the automatic patch upgrade setup prompt on the GUI. (optional)
-            gui_workflow_management: Enable/disable Workflow management features on the GUI. (optional)
-            gui_cdn_usage: Enable/disable Load GUI static files from a CDN. (optional)
-            admin_https_ssl_versions: Allowed TLS versions for web administration. (optional)
-            admin_https_ssl_ciphersuites: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. (optional)
-            admin_https_ssl_banned_ciphers: Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. (optional)
-            admintimeout: Number of minutes before an idle administrator session times out (1 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure. (optional)
-            admin_console_timeout: Console login timeout that overrides the admin timeout value (15 - 300 seconds, default = 0, which disables the timeout). (optional)
-            ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. (optional)
-            ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23, default = 1). (optional)
-            ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59, 60 for random). (optional)
+            gui_replacement_message_groups: Enable/disable replacement message
+            groups on the GUI. (optional)
+            gui_local_out: Enable/disable Local-out traffic on the GUI.
+            (optional)
+            gui_certificates: Enable/disable the System > Certificate GUI page,
+            allowing you to add and configure certificates from the GUI.
+            (optional)
+            gui_custom_language: Enable/disable custom languages in GUI.
+            (optional)
+            gui_wireless_opensecurity: Enable/disable wireless open security
+            option on the GUI. (optional)
+            gui_app_detection_sdwan: Enable/disable Allow app-detection based
+            SD-WAN. (optional)
+            gui_display_hostname: Enable/disable displaying the FortiGate's
+            hostname on the GUI login page. (optional)
+            gui_fortigate_cloud_sandbox: Enable/disable displaying FortiGate
+            Cloud Sandbox on the GUI. (optional)
+            gui_firmware_upgrade_warning: Enable/disable the firmware upgrade
+            warning on the GUI. (optional)
+            gui_forticare_registration_setup_warning: Enable/disable the
+            FortiCare registration setup warning on the GUI. (optional)
+            gui_auto_upgrade_setup_warning: Enable/disable the automatic patch
+            upgrade setup prompt on the GUI. (optional)
+            gui_workflow_management: Enable/disable Workflow management
+            features on the GUI. (optional)
+            gui_cdn_usage: Enable/disable Load GUI static files from a CDN.
+            (optional)
+            admin_https_ssl_versions: Allowed TLS versions for web
+            administration. (optional)
+            admin_https_ssl_ciphersuites: Select one or more TLS 1.3
+            ciphersuites to enable. Does not affect ciphers in TLS 1.2 and
+            below. At least one must be enabled. To disable all, remove TLS1.3
+            from admin-https-ssl-versions. (optional)
+            admin_https_ssl_banned_ciphers: Select one or more cipher
+            technologies that cannot be used in GUI HTTPS negotiations. Only
+            applies to TLS 1.2 and below. (optional)
+            admintimeout: Number of minutes before an idle administrator
+            session times out (1 - 480 minutes (8 hours), default = 5). A
+            shorter idle timeout is more secure. (optional)
+            admin_console_timeout: Console login timeout that overrides the
+            admin timeout value (15 - 300 seconds, default = 0, which disables
+            the timeout). (optional)
+            ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD
+            Trim prevents SSD drive data loss by finding and isolating errors.
+            (optional)
+            ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23,
+            default = 1). (optional)
+            ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59,
+            60 for random). (optional)
             ssd_trim_weekday: Day of week to run SSD Trim. (optional)
             ssd_trim_date: Date within a month to run ssd trim. (optional)
-            admin_concurrent: Enable/disable concurrent administrator logins. Use policy-auth-concurrent for firewall authenticated users. (optional)
-            admin_lockout_threshold: Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration. (optional)
-            admin_lockout_duration: Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts. (optional)
+            admin_concurrent: Enable/disable concurrent administrator logins.
+            Use policy-auth-concurrent for firewall authenticated users.
+            (optional)
+            admin_lockout_threshold: Number of failed login attempts before an
+            administrator account is locked out for the admin-lockout-duration.
+            (optional)
+            admin_lockout_duration: Amount of time in seconds that an
+            administrator account is locked out after reaching the
+            admin-lockout-threshold for repeated failed login attempts.
+            (optional)
             refresh: Statistics refresh interval second(s) in GUI. (optional)
             interval: Dead gateway detection interval. (optional)
             failtime: Fail-time for server lost. (optional)
             purdue_level: Purdue Level of this FortiGate. (optional)
-            daily_restart: Enable/disable daily restart of FortiGate unit. Use the restart-time option to set the time of day for the restart. (optional)
+            daily_restart: Enable/disable daily restart of FortiGate unit. Use
+            the restart-time option to set the time of day for the restart.
+            (optional)
             restart_time: Daily restart time (hh:mm). (optional)
-            wad_restart_mode: WAD worker restart mode (default = none). (optional)
-            wad_restart_start_time: WAD workers daily restart time (hh:mm). (optional)
-            wad_restart_end_time: WAD workers daily restart end time (hh:mm). (optional)
-            wad_p2s_max_body_size: Maximum size of the body of the local out HTTP request (1 - 32 Mbytes, default = 4). (optional)
+            wad_restart_mode: WAD worker restart mode (default = none).
+            (optional)
+            wad_restart_start_time: WAD workers daily restart time (hh:mm).
+            (optional)
+            wad_restart_end_time: WAD workers daily restart end time (hh:mm).
+            (optional)
+            wad_p2s_max_body_size: Maximum size of the body of the local out
+            HTTP request (1 - 32 Mbytes, default = 4). (optional)
             radius_port: RADIUS service port number. (optional)
             speedtestd_server_port: Speedtest server port number. (optional)
-            speedtestd_ctrl_port: Speedtest server controller port number. (optional)
-            admin_login_max: Maximum number of administrators who can be logged in at the same time (1 - 100, default = 100). (optional)
-            remoteauthtimeout: Number of seconds that the FortiGate waits for responses from remote RADIUS, LDAP, or TACACS+ authentication servers. (1-300 sec, default = 5). (optional)
-            ldapconntimeout: Global timeout for connections with remote LDAP servers in milliseconds (1 - 300000, default 500). (optional)
-            batch_cmdb: Enable/disable batch mode, allowing you to enter a series of CLI commands that will execute as a group once they are loaded. (optional)
-            multi_factor_authentication: Enforce all login methods to require an additional authentication factor (default = optional). (optional)
-            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2). (optional)
-            autorun_log_fsck: Enable/disable automatic log partition check after ungraceful shutdown. (optional)
-            timezone: Timezone database name. Enter ? to view the list of timezone. (optional)
-            traffic_priority: Choose Type of Service (ToS) or Differentiated Services Code Point (DSCP) for traffic prioritization in traffic shaping. (optional)
-            traffic_priority_level: Default system-wide level of priority for traffic prioritization. (optional)
-            quic_congestion_control_algo: QUIC congestion control algorithm (default = cubic). (optional)
-            quic_max_datagram_size: Maximum transmit datagram size (1200 - 1500, default = 1500). (optional)
-            quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload size shaping per connection ID (default = enable). (optional)
-            quic_ack_thresold: Maximum number of unacknowledged packets before sending ACK (2 - 5, default = 3). (optional)
-            quic_pmtud: Enable/disable path MTU discovery (default = enable). (optional)
-            quic_tls_handshake_timeout: Time-to-live (TTL) for TLS handshake in seconds (1 - 60, default = 5). (optional)
-            anti_replay: Level of checking for packet replay and TCP sequence checking. (optional)
-            send_pmtu_icmp: Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. (optional)
-            honor_df: Enable/disable honoring of Don't-Fragment (DF) flag. (optional)
+            speedtestd_ctrl_port: Speedtest server controller port number.
+            (optional)
+            admin_login_max: Maximum number of administrators who can be logged
+            in at the same time (1 - 100, default = 100). (optional)
+            remoteauthtimeout: Number of seconds that the FortiGate waits for
+            responses from remote RADIUS, LDAP, or TACACS+ authentication
+            servers. (1-300 sec, default = 5). (optional)
+            ldapconntimeout: Global timeout for connections with remote LDAP
+            servers in milliseconds (1 - 300000, default 500). (optional)
+            batch_cmdb: Enable/disable batch mode, allowing you to enter a
+            series of CLI commands that will execute as a group once they are
+            loaded. (optional)
+            multi_factor_authentication: Enforce all login methods to require
+            an additional authentication factor (default = optional).
+            (optional)
+            ssl_min_proto_version: Minimum supported protocol version for
+            SSL/TLS connections (default = TLSv1.2). (optional)
+            autorun_log_fsck: Enable/disable automatic log partition check
+            after ungraceful shutdown. (optional)
+            timezone: Timezone database name. Enter ? to view the list of
+            timezone. (optional)
+            traffic_priority: Choose Type of Service (ToS) or Differentiated
+            Services Code Point (DSCP) for traffic prioritization in traffic
+            shaping. (optional)
+            traffic_priority_level: Default system-wide level of priority for
+            traffic prioritization. (optional)
+            quic_congestion_control_algo: QUIC congestion control algorithm
+            (default = cubic). (optional)
+            quic_max_datagram_size: Maximum transmit datagram size (1200 -
+            1500, default = 1500). (optional)
+            quic_udp_payload_size_shaping_per_cid: Enable/disable UDP payload
+            size shaping per connection ID (default = enable). (optional)
+            quic_ack_thresold: Maximum number of unacknowledged packets before
+            sending ACK (2 - 5, default = 3). (optional)
+            quic_pmtud: Enable/disable path MTU discovery (default = enable).
+            (optional)
+            quic_tls_handshake_timeout: Time-to-live (TTL) for TLS handshake in
+            seconds (1 - 60, default = 5). (optional)
+            anti_replay: Level of checking for packet replay and TCP sequence
+            checking. (optional)
+            send_pmtu_icmp: Enable/disable sending of path maximum transmission
+            unit (PMTU) - ICMP destination unreachable packet and to support
+            PMTUD protocol on your network to reduce fragmentation of packets.
+            (optional)
+            honor_df: Enable/disable honoring of Don't-Fragment (DF) flag.
+            (optional)
             pmtu_discovery: Enable/disable path MTU discovery. (optional)
             virtual_switch_vlan: Enable/disable virtual switch VLAN. (optional)
-            revision_image_auto_backup: Enable/disable back-up of the latest image revision after the firmware is upgraded. (optional)
-            revision_backup_on_logout: Enable/disable back-up of the latest configuration revision when an administrator logs out of the CLI or GUI. (optional)
+            revision_image_auto_backup: Enable/disable back-up of the latest
+            image revision after the firmware is upgraded. (optional)
+            revision_backup_on_logout: Enable/disable back-up of the latest
+            configuration revision when an administrator logs out of the CLI or
+            GUI. (optional)
             management_vdom: Management virtual domain name. (optional)
-            hostname: FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters. (optional)
+            hostname: FortiGate unit's hostname. Most models will truncate
+            names longer than 24 characters. Some models support hostnames up
+            to 35 characters. (optional)
             alias: Alias for your FortiGate unit. (optional)
-            strong_crypto: Enable to use strong encryption and only allow strong ciphers and digest for HTTPS/SSH/TLS/SSL functions. (optional)
-            ssl_static_key_ciphers: Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). (optional)
-            snat_route_change: Enable/disable the ability to change the source NAT route. (optional)
-            ipv6_snat_route_change: Enable/disable the ability to change the IPv6 source NAT route. (optional)
+            strong_crypto: Enable to use strong encryption and only allow
+            strong ciphers and digest for HTTPS/SSH/TLS/SSL functions.
+            (optional)
+            ssl_static_key_ciphers: Enable/disable static key ciphers in
+            SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256,
+            AES256-SHA256). (optional)
+            snat_route_change: Enable/disable the ability to change the source
+            NAT route. (optional)
+            ipv6_snat_route_change: Enable/disable the ability to change the
+            IPv6 source NAT route. (optional)
             speedtest_server: Enable/disable speed test server. (optional)
             cli_audit_log: Enable/disable CLI audit log. (optional)
-            dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. (optional)
-            fds_statistics: Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. (optional)
-            fds_statistics_period: FortiGuard statistics collection period in minutes. (1 - 1440 min (1 min to 24 hours), default = 60). (optional)
+            dh_params: Number of bits to use in the Diffie-Hellman exchange for
+            HTTPS/SSH protocols. (optional)
+            fds_statistics: Enable/disable sending IPS, Application Control,
+            and AntiVirus data to FortiGuard. This data is used to improve
+            FortiGuard services and is not shared with external parties and is
+            protected by Fortinet's privacy policy. (optional)
+            fds_statistics_period: FortiGuard statistics collection period in
+            minutes. (1 - 1440 min (1 min to 24 hours), default = 60).
+            (optional)
             tcp_option: Enable SACK, timestamp and MSS TCP options. (optional)
-            lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission. (optional)
-            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception. (optional)
-            proxy_auth_timeout: Authentication timeout in minutes for authenticated users (1 - 10000 min, default = 10). (optional)
-            proxy_keep_alive_mode: Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was authenticated. (optional)
-            proxy_re_authentication_time: The time limit that users must re-authenticate if proxy-keep-alive-mode is set to re-authenticate (1  - 86400 sec, default=30s. (optional)
-            proxy_auth_lifetime: Enable/disable authenticated users lifetime control. This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. (optional)
-            proxy_auth_lifetime_timeout: Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)). (optional)
-            proxy_resource_mode: Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. (optional)
-            proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to send requests. (optional)
-            sys_perf_log_interval: Time in minutes between updates of performance statistics logging. (1 - 15 min, default = 5, 0 = disabled). (optional)
-            check_protocol_header: Level of checking performed on protocol headers. Strict checking is more thorough but may affect performance. Loose checking is OK in most cases. (optional)
-            vip_arp_range: Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. (optional)
-            reset_sessionless_tcp: Action to perform if the FortiGate receives a TCP packet but cannot find a corresponding session in its session table. NAT/Route mode only. (optional)
-            allow_traffic_redirect: Disable to prevent traffic with same local ingress and egress interface from being forwarded without policy check. (optional)
-            ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with same local ingress and egress interface from being forwarded without policy check. (optional)
-            strict_dirty_session_check: Enable to check the session against the original policy when revalidating. This can prevent dropping of redirected sessions when web-filtering and authentication are enabled together. If this option is enabled, the FortiGate unit deletes a session if a routing or policy change causes the session to no longer match the policy that originally allowed the session. (optional)
-            tcp_halfclose_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120). (optional)
-            tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10). (optional)
-            tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1 - 300 sec, default = 1). (optional)
-            tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5). (optional)
-            udp_idle_timer: UDP connection session timeout. This command can be useful in managing CPU and memory resources (1 - 86400 seconds (1 day), default = 60). (optional)
-            block_session_timer: Duration in seconds for blocked sessions (1 - 300 sec  (5 minutes), default = 30). (optional)
-            ip_src_port_range: IP source port range used for traffic originating from the FortiGate unit. (optional)
-            pre_login_banner: Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. (optional)
-            post_login_banner: Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. (optional)
+            lldp_transmission: Enable/disable Link Layer Discovery Protocol
+            (LLDP) transmission. (optional)
+            lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP)
+            reception. (optional)
+            proxy_auth_timeout: Authentication timeout in minutes for
+            authenticated users (1 - 10000 min, default = 10). (optional)
+            proxy_keep_alive_mode: Control if users must re-authenticate after
+            a session is closed, traffic has been idle, or from the point at
+            which the user was authenticated. (optional)
+            proxy_re_authentication_time: The time limit that users must
+            re-authenticate if proxy-keep-alive-mode is set to re-authenticate
+            (1 - 86400 sec, default=30s. (optional)
+            proxy_auth_lifetime: Enable/disable authenticated users lifetime
+            control. This is a cap on the total time a proxy user can be
+            authenticated for after which re-authentication will take place.
+            (optional)
+            proxy_auth_lifetime_timeout: Lifetime timeout in minutes for
+            authenticated users (5 - 65535 min, default=480 (8 hours)).
+            (optional)
+            proxy_resource_mode: Enable/disable use of the maximum memory usage
+            on the FortiGate unit's proxy processing of resources, such as
+            block lists, allow lists, and external resources. (optional)
+            proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to
+            send requests. (optional)
+            sys_perf_log_interval: Time in minutes between updates of
+            performance statistics logging. (1 - 15 min, default = 5, 0 =
+            disabled). (optional)
+            check_protocol_header: Level of checking performed on protocol
+            headers. Strict checking is more thorough but may affect
+            performance. Loose checking is OK in most cases. (optional)
+            vip_arp_range: Controls the number of ARPs that the FortiGate sends
+            for a Virtual IP (VIP) address range. (optional)
+            reset_sessionless_tcp: Action to perform if the FortiGate receives
+            a TCP packet but cannot find a corresponding session in its session
+            table. NAT/Route mode only. (optional)
+            allow_traffic_redirect: Disable to prevent traffic with same local
+            ingress and egress interface from being forwarded without policy
+            check. (optional)
+            ipv6_allow_traffic_redirect: Disable to prevent IPv6 traffic with
+            same local ingress and egress interface from being forwarded
+            without policy check. (optional)
+            strict_dirty_session_check: Enable to check the session against the
+            original policy when revalidating. This can prevent dropping of
+            redirected sessions when web-filtering and authentication are
+            enabled together. If this option is enabled, the FortiGate unit
+            deletes a session if a routing or policy change causes the session
+            to no longer match the policy that originally allowed the session.
+            (optional)
+            tcp_halfclose_timer: Number of seconds the FortiGate unit should
+            wait to close a session after one peer has sent a FIN packet but
+            the other has not responded (1 - 86400 sec (1 day), default = 120).
+            (optional)
+            tcp_halfopen_timer: Number of seconds the FortiGate unit should
+            wait to close a session after one peer has sent an open session
+            packet but the other has not responded (1 - 86400 sec (1 day),
+            default = 10). (optional)
+            tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds (1
+            - 300 sec, default = 1). (optional)
+            tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300
+            sec, default = 5). (optional)
+            udp_idle_timer: UDP connection session timeout. This command can be
+            useful in managing CPU and memory resources (1 - 86400 seconds (1
+            day), default = 60). (optional)
+            block_session_timer: Duration in seconds for blocked sessions (1 -
+            300 sec (5 minutes), default = 30). (optional)
+            ip_src_port_range: IP source port range used for traffic
+            originating from the FortiGate unit. (optional)
+            pre_login_banner: Enable/disable displaying the administrator
+            access disclaimer message on the login page before an administrator
+            logs in. (optional)
+            post_login_banner: Enable/disable displaying the administrator
+            access disclaimer message after an administrator successfully logs
+            in. (optional)
             tftp: Enable/disable TFTP. (optional)
-            av_failopen: Set the action to take if the FortiGate is running low on memory or the proxy connection limit has been reached. (optional)
-            av_failopen_session: When enabled and a proxy for a protocol runs out of room in its session table, that protocol goes into failopen mode and enacts the action specified by av-failopen. (optional)
-            memory_use_threshold_extreme: Threshold at which memory usage is considered extreme (new sessions are dropped) (% of total RAM, default = 95). (optional)
-            memory_use_threshold_red: Threshold at which memory usage forces the FortiGate to enter conserve mode (% of total RAM, default = 88). (optional)
-            memory_use_threshold_green: Threshold at which memory usage forces the FortiGate to exit conserve mode (% of total RAM, default = 82). (optional)
-            ip_fragment_mem_thresholds: Maximum memory (MB) used to reassemble IPv4/IPv6 fragments. (optional)
-            ip_fragment_timeout: Timeout value in seconds for any fragment not being reassembled (optional)
-            ipv6_fragment_timeout: Timeout value in seconds for any IPv6 fragment not being reassembled (optional)
-            cpu_use_threshold: Threshold at which CPU usage is reported (% of total CPU, default = 90). (optional)
-            log_single_cpu_high: Enable/disable logging the event of a single CPU core reaching CPU usage threshold. (optional)
-            check_reset_range: Configure ICMP error message verification. You can either apply strict RST range checking or disable it. (optional)
-            single_vdom_npuvlink: Enable/disable NPU VDOMs links for single VDOM. (optional)
-            vdom_mode: Enable/disable support for multiple virtual domains (VDOMs). (optional)
+            av_failopen: Set the action to take if the FortiGate is running low
+            on memory or the proxy connection limit has been reached.
+            (optional)
+            av_failopen_session: When enabled and a proxy for a protocol runs
+            out of room in its session table, that protocol goes into failopen
+            mode and enacts the action specified by av-failopen. (optional)
+            memory_use_threshold_extreme: Threshold at which memory usage is
+            considered extreme (new sessions are dropped) (% of total RAM,
+            default = 95). (optional)
+            memory_use_threshold_red: Threshold at which memory usage forces
+            the FortiGate to enter conserve mode (% of total RAM, default =
+            88). (optional)
+            memory_use_threshold_green: Threshold at which memory usage forces
+            the FortiGate to exit conserve mode (% of total RAM, default = 82).
+            (optional)
+            ip_fragment_mem_thresholds: Maximum memory (MB) used to reassemble
+            IPv4/IPv6 fragments. (optional)
+            ip_fragment_timeout: Timeout value in seconds for any fragment not
+            being reassembled (optional)
+            ipv6_fragment_timeout: Timeout value in seconds for any IPv6
+            fragment not being reassembled (optional)
+            cpu_use_threshold: Threshold at which CPU usage is reported (% of
+            total CPU, default = 90). (optional)
+            log_single_cpu_high: Enable/disable logging the event of a single
+            CPU core reaching CPU usage threshold. (optional)
+            check_reset_range: Configure ICMP error message verification. You
+            can either apply strict RST range checking or disable it.
+            (optional)
+            single_vdom_npuvlink: Enable/disable NPU VDOMs links for single
+            VDOM. (optional)
+            vdom_mode: Enable/disable support for multiple virtual domains
+            (VDOMs). (optional)
             long_vdom_name: Enable/disable long VDOM name support. (optional)
-            upgrade_report: Enable/disable the generation of an upgrade report when upgrading the firmware. (optional)
+            upgrade_report: Enable/disable the generation of an upgrade report
+            when upgrading the firmware. (optional)
             edit_vdom_prompt: Enable/disable edit new VDOM prompt. (optional)
-            admin_port: Administrative access port for HTTP. (1 - 65535, default = 80). (optional)
-            admin_sport: Administrative access port for HTTPS. (1 - 65535, default = 443). (optional)
-            admin_host: Administrative host for HTTP and HTTPS. When set, will be used in lieu of the client's Host header for any redirection. (optional)
-            admin_https_redirect: Enable/disable redirection of HTTP administration access to HTTPS. (optional)
-            admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0. (optional)
-            admin_ssh_password: Enable/disable password authentication for SSH admin access. (optional)
-            admin_restrict_local: Enable/disable local admin authentication restriction when remote authenticator is up and running (default = disable). (optional)
-            admin_ssh_port: Administrative access port for SSH. (1 - 65535, default = 22). (optional)
-            admin_ssh_grace_time: Maximum time in seconds permitted between making an SSH connection to the FortiGate unit and authenticating (10 - 3600 sec (1 hour), default 120). (optional)
+            admin_port: Administrative access port for HTTP. (1 - 65535,
+            default = 80). (optional)
+            admin_sport: Administrative access port for HTTPS. (1 - 65535,
+            default = 443). (optional)
+            admin_host: Administrative host for HTTP and HTTPS. When set, will
+            be used in lieu of the client's Host header for any redirection.
+            (optional)
+            admin_https_redirect: Enable/disable redirection of HTTP
+            administration access to HTTPS. (optional)
+            admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age
+            in seconds. A value of 0 will reset any HSTS records in the
+            browser.When admin-https-redirect is disabled the header max-age
+            will be 0. (optional)
+            admin_ssh_password: Enable/disable password authentication for SSH
+            admin access. (optional)
+            admin_restrict_local: Enable/disable local admin authentication
+            restriction when remote authenticator is up and running (default =
+            disable). (optional)
+            admin_ssh_port: Administrative access port for SSH. (1 - 65535,
+            default = 22). (optional)
+            admin_ssh_grace_time: Maximum time in seconds permitted between
+            making an SSH connection to the FortiGate unit and authenticating
+            (10 - 3600 sec (1 hour), default 120). (optional)
             admin_ssh_v1: Enable/disable SSH v1 compatibility. (optional)
             admin_telnet: Enable/disable TELNET service. (optional)
-            admin_telnet_port: Administrative access port for TELNET. (1 - 65535, default = 23). (optional)
-            admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. (optional)
-            admin_forticloud_sso_default_profile: Override access profile. (optional)
-            default_service_source_port: Default service source port range (default = 1 - 65535). (optional)
-            admin_reset_button: Press the reset button can reset to factory default. (optional)
-            admin_server_cert: Server certificate that the FortiGate uses for HTTPS administrative connections. (optional)
-            admin_https_pki_required: Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. (optional)
-            wifi_certificate: Certificate to use for WiFi authentication. (optional)
-            dhcp_lease_backup_interval: DHCP leases backup interval in seconds (10 - 3600, default = 60). (optional)
-            wifi_ca_certificate: CA certificate that verifies the WiFi certificate. (optional)
-            auth_http_port: User authentication HTTP port. (1 - 65535, default = 1000). (optional)
-            auth_https_port: User authentication HTTPS port. (1 - 65535, default = 1003). (optional)
-            auth_ike_saml_port: User IKE SAML authentication port (0 - 65535, default = 1001). (optional)
-            auth_keepalive: Enable to prevent user authentication sessions from timing out when idle. (optional)
-            policy_auth_concurrent: Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit). (optional)
-            auth_session_limit: Action to take when the number of allowed user authenticated sessions is reached. (optional)
-            auth_cert: Server certificate that the FortiGate uses for HTTPS firewall authentication connections. (optional)
-            clt_cert_req: Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. (optional)
-            fortiservice_port: FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port. (optional)
+            admin_telnet_port: Administrative access port for TELNET. (1 -
+            65535, default = 23). (optional)
+            admin_forticloud_sso_login: Enable/disable FortiCloud admin login
+            via SSO. (optional)
+            admin_forticloud_sso_default_profile: Override access profile.
+            (optional)
+            default_service_source_port: Default service source port range
+            (default = 1 - 65535). (optional)
+            admin_reset_button: Press the reset button can reset to factory
+            default. (optional)
+            admin_server_cert: Server certificate that the FortiGate uses for
+            HTTPS administrative connections. (optional)
+            admin_https_pki_required: Enable/disable admin login method. Enable
+            to force administrators to provide a valid certificate to log in if
+            PKI is enabled. Disable to allow administrators to log in with a
+            certificate or password. (optional)
+            wifi_certificate: Certificate to use for WiFi authentication.
+            (optional)
+            dhcp_lease_backup_interval: DHCP leases backup interval in seconds
+            (10 - 3600, default = 60). (optional)
+            wifi_ca_certificate: CA certificate that verifies the WiFi
+            certificate. (optional)
+            auth_http_port: User authentication HTTP port. (1 - 65535, default
+            = 1000). (optional)
+            auth_https_port: User authentication HTTPS port. (1 - 65535,
+            default = 1003). (optional)
+            auth_ike_saml_port: User IKE SAML authentication port (0 - 65535,
+            default = 1001). (optional)
+            auth_keepalive: Enable to prevent user authentication sessions from
+            timing out when idle. (optional)
+            policy_auth_concurrent: Number of concurrent firewall use logins
+            from the same user (1 - 100, default = 0 means no limit).
+            (optional)
+            auth_session_limit: Action to take when the number of allowed user
+            authenticated sessions is reached. (optional)
+            auth_cert: Server certificate that the FortiGate uses for HTTPS
+            firewall authentication connections. (optional)
+            clt_cert_req: Enable/disable requiring administrators to have a
+            client certificate to log into the GUI using HTTPS. (optional)
+            fortiservice_port: FortiService port (1 - 65535, default = 8013).
+            Used by FortiClient endpoint compliance. Older versions of
+            FortiClient used a different port. (optional)
             cfg_save: Configuration file save mode for CLI changes. (optional)
-            cfg_revert_timeout: Time-out for reverting to the last saved configuration. (10 - 4294967295 seconds, default = 600). (optional)
-            reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. (optional)
-            admin_scp: Enable/disable SCP support for system configuration backup, restore, and firmware file upload. (optional)
-            wireless_controller: Enable/disable the wireless controller feature to use the FortiGate unit to manage FortiAPs. (optional)
-            wireless_controller_port: Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246). (optional)
-            fortiextender_data_port: FortiExtender data port (1024 - 49150, default = 25246). (optional)
+            cfg_revert_timeout: Time-out for reverting to the last saved
+            configuration. (10 - 4294967295 seconds, default = 600). (optional)
+            reboot_upon_config_restore: Enable/disable reboot of system upon
+            restoring configuration. (optional)
+            admin_scp: Enable/disable SCP support for system configuration
+            backup, restore, and firmware file upload. (optional)
+            wireless_controller: Enable/disable the wireless controller feature
+            to use the FortiGate unit to manage FortiAPs. (optional)
+            wireless_controller_port: Port used for the control channel in
+            wireless controller mode (wireless-mode is ac). The data channel
+            port is the control channel port number plus one (1024 - 49150,
+            default = 5246). (optional)
+            fortiextender_data_port: FortiExtender data port (1024 - 49150,
+            default = 25246). (optional)
             fortiextender: Enable/disable FortiExtender. (optional)
-            extender_controller_reserved_network: Configure reserved network subnet for managed LAN extension FortiExtender units. This is available when the FortiExtender daemon is running. (optional)
-            fortiextender_discovery_lockdown: Enable/disable FortiExtender CAPWAP lockdown. (optional)
-            fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode. (optional)
-            fortiextender_provision_on_authorization: Enable/disable automatic provisioning of latest FortiExtender firmware on authorization. (optional)
-            switch_controller: Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. (optional)
-            switch_controller_reserved_network: Configure reserved network subnet for managed switches. This is available when the switch controller is enabled. (optional)
-            dnsproxy_worker_count: DNS proxy worker count. For a FortiGate with multiple logical CPUs, you can set the DNS process number from 1 to the number of logical CPUs. (optional)
+            extender_controller_reserved_network: Configure reserved network
+            subnet for managed LAN extension FortiExtender units. This is
+            available when the FortiExtender daemon is running. (optional)
+            fortiextender_discovery_lockdown: Enable/disable FortiExtender
+            CAPWAP lockdown. (optional)
+            fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode.
+            (optional)
+            fortiextender_provision_on_authorization: Enable/disable automatic
+            provisioning of latest FortiExtender firmware on authorization.
+            (optional)
+            switch_controller: Enable/disable switch controller feature. Switch
+            controller allows you to manage FortiSwitch from the FortiGate
+            itself. (optional)
+            switch_controller_reserved_network: Configure reserved network
+            subnet for managed switches. This is available when the switch
+            controller is enabled. (optional)
+            dnsproxy_worker_count: DNS proxy worker count. For a FortiGate with
+            multiple logical CPUs, you can set the DNS process number from 1 to
+            the number of logical CPUs. (optional)
             url_filter_count: URL filter daemon count. (optional)
-            httpd_max_worker_count: Maximum number of simultaneous HTTP requests that will be served. This number may affect GUI and REST API performance (0 - 128, default = 0 means let system decide). (optional)
+            httpd_max_worker_count: Maximum number of simultaneous HTTP
+            requests that will be served. This number may affect GUI and REST
+            API performance (0 - 128, default = 0 means let system decide).
+            (optional)
             proxy_worker_count: Proxy worker count. (optional)
-            scanunit_count: Number of scanunits. The range and the default depend on the number of CPUs. Only available on FortiGate units with multiple CPUs. (optional)
-            proxy_hardware_acceleration: Enable/disable email proxy hardware acceleration. (optional)
-            fgd_alert_subscription: Type of alert to retrieve from FortiGuard. (optional)
-            ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. (optional)
-            ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD). (optional)
-            ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through Anycast. (optional)
-            ipv6_allow_multicast_probe: Enable/disable IPv6 address probe through Multicast. (optional)
-            ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6 local-in traffic. (optional)
-            csr_ca_attribute: Enable/disable the CA attribute in certificates. Some CA servers reject CSRs that have the CA attribute. (optional)
-            wimax_4g_usb: Enable/disable comparability with WiMAX 4G USB devices. (optional)
-            cert_chain_max: Maximum number of certificates that can be traversed in a certificate chain. (optional)
-            two_factor_ftk_expiry: FortiToken authentication session timeout (60 - 600 sec (10 minutes), default = 60). (optional)
-            two_factor_email_expiry: Email-based two-factor authentication session timeout (30 - 300 seconds (5 minutes), default = 60). (optional)
-            two_factor_sms_expiry: SMS-based two-factor authentication session timeout (30 - 300 sec, default = 60). (optional)
-            two_factor_fac_expiry: FortiAuthenticator token authentication session timeout (10 - 3600 seconds (1 hour), default = 60). (optional)
-            two_factor_ftm_expiry: FortiToken Mobile session timeout (1 - 168 hours (7 days), default = 72). (optional)
-            wad_worker_count: Number of explicit proxy WAN optimization daemon (WAD) processes. By default WAN optimization, explicit proxy, and web caching is handled by all of the CPU cores in a FortiGate unit. (optional)
-            wad_worker_dev_cache: Number of cached devices for each ZTNA proxy worker. The default value is tuned by memory consumption. Set the option to 0 to disable the cache. (optional)
-            wad_csvc_cs_count: Number of concurrent WAD-cache-service object-cache processes. (optional)
-            wad_csvc_db_count: Number of concurrent WAD-cache-service byte-cache processes. (optional)
-            wad_source_affinity: Enable/disable dispatching traffic to WAD workers based on source affinity. (optional)
-            wad_memory_change_granularity: Minimum percentage change in system memory usage detected by the wad daemon prior to adjusting TCP window size for any active connection. (optional)
+            scanunit_count: Number of scanunits. The range and the default
+            depend on the number of CPUs. Only available on FortiGate units
+            with multiple CPUs. (optional)
+            proxy_hardware_acceleration: Enable/disable email proxy hardware
+            acceleration. (optional)
+            fgd_alert_subscription: Type of alert to retrieve from FortiGuard.
+            (optional)
+            ipsec_hmac_offload: Enable/disable offloading (hardware
+            acceleration) of HMAC processing for IPsec VPN. (optional)
+            ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate
+            Address Detection (DAD). (optional)
+            ipv6_allow_anycast_probe: Enable/disable IPv6 address probe through
+            Anycast. (optional)
+            ipv6_allow_multicast_probe: Enable/disable IPv6 address probe
+            through Multicast. (optional)
+            ipv6_allow_local_in_silent_drop: Enable/disable silent drop of IPv6
+            local-in traffic. (optional)
+            csr_ca_attribute: Enable/disable the CA attribute in certificates.
+            Some CA servers reject CSRs that have the CA attribute. (optional)
+            wimax_4g_usb: Enable/disable comparability with WiMAX 4G USB
+            devices. (optional)
+            cert_chain_max: Maximum number of certificates that can be
+            traversed in a certificate chain. (optional)
+            two_factor_ftk_expiry: FortiToken authentication session timeout
+            (60 - 600 sec (10 minutes), default = 60). (optional)
+            two_factor_email_expiry: Email-based two-factor authentication
+            session timeout (30 - 300 seconds (5 minutes), default = 60).
+            (optional)
+            two_factor_sms_expiry: SMS-based two-factor authentication session
+            timeout (30 - 300 sec, default = 60). (optional)
+            two_factor_fac_expiry: FortiAuthenticator token authentication
+            session timeout (10 - 3600 seconds (1 hour), default = 60).
+            (optional)
+            two_factor_ftm_expiry: FortiToken Mobile session timeout (1 - 168
+            hours (7 days), default = 72). (optional)
+            wad_worker_count: Number of explicit proxy WAN optimization daemon
+            (WAD) processes. By default WAN optimization, explicit proxy, and
+            web caching is handled by all of the CPU cores in a FortiGate unit.
+            (optional)
+            wad_worker_dev_cache: Number of cached devices for each ZTNA proxy
+            worker. The default value is tuned by memory consumption. Set the
+            option to 0 to disable the cache. (optional)
+            wad_csvc_cs_count: Number of concurrent WAD-cache-service
+            object-cache processes. (optional)
+            wad_csvc_db_count: Number of concurrent WAD-cache-service
+            byte-cache processes. (optional)
+            wad_source_affinity: Enable/disable dispatching traffic to WAD
+            workers based on source affinity. (optional)
+            wad_memory_change_granularity: Minimum percentage change in system
+            memory usage detected by the wad daemon prior to adjusting TCP
+            window size for any active connection. (optional)
             login_timestamp: Enable/disable login time recording. (optional)
-            ip_conflict_detection: Enable/disable logging of IPv4 address conflict detection. (optional)
-            miglogd_children: Number of logging (miglogd) processes to be allowed to run. Higher number can reduce performance; lower number can slow log processing time. (optional)
-            log_daemon_cpu_threshold: Configure syslog daemon process spawning threshold. Use a percentage threshold of syslogd CPU usage (1 - 99) or set to zero to use dynamic scheduling based on the number of packets in the syslogd queue (default = 0). (optional)
-            special_file_23_support: Enable/disable detection of those special format files when using Data Loss Prevention. (optional)
-            log_uuid_address: Enable/disable insertion of address UUIDs to traffic logs. (optional)
-            log_ssl_connection: Enable/disable logging of SSL connection events. (optional)
-            rest_api_key_url_query: Enable/disable support for passing REST API keys through URL query parameters. (optional)
+            ip_conflict_detection: Enable/disable logging of IPv4 address
+            conflict detection. (optional)
+            miglogd_children: Number of logging (miglogd) processes to be
+            allowed to run. Higher number can reduce performance; lower number
+            can slow log processing time. (optional)
+            log_daemon_cpu_threshold: Configure syslog daemon process spawning
+            threshold. Use a percentage threshold of syslogd CPU usage (1 - 99)
+            or set to zero to use dynamic scheduling based on the number of
+            packets in the syslogd queue (default = 0). (optional)
+            special_file_23_support: Enable/disable detection of those special
+            format files when using Data Loss Prevention. (optional)
+            log_uuid_address: Enable/disable insertion of address UUIDs to
+            traffic logs. (optional)
+            log_ssl_connection: Enable/disable logging of SSL connection
+            events. (optional)
+            rest_api_key_url_query: Enable/disable support for passing REST API
+            keys through URL query parameters. (optional)
             gui_cdn_domain_override: Domain of CDN server. (optional)
-            arp_max_entry: Maximum number of dynamically learned MAC addresses that can be added to the ARP table (131072 - 2147483647, default = 131072). (optional)
-            ha_affinity: Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
-            bfd_affinity: Affinity setting for BFD daemon (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
-            cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
-            ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries). (optional)
-            br_fdb_max_entry: Maximum number of bridge forwarding database (FDB) entries. (optional)
-            max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647). (optional)
-            ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. (optional)
-            device_idle_timeout: Time in seconds that a device must be idle to automatically log the device user out. (30 - 31536000 sec (30 sec to 1 year), default = 300). (optional)
-            user_device_store_max_devices: Maximum number of devices allowed in user device store. (optional)
-            user_device_store_max_device_mem: Maximum percentage of total system memory allowed to be used for devices in the user device store. (optional)
-            user_device_store_max_users: Maximum number of users allowed in user device store. (optional)
-            user_device_store_max_unified_mem: Maximum unified memory allowed in user device store. (optional)
-            gui_device_latitude: Add the latitude of the location of this FortiGate to position it on the Threat Map. (optional)
-            gui_device_longitude: Add the longitude of the location of this FortiGate to position it on the Threat Map. (optional)
-            private_data_encryption: Enable/disable private data encryption using an AES 128-bit key or passpharse. (optional)
-            auto_auth_extension_device: Enable/disable automatic authorization of dedicated Fortinet extension devices. (optional)
+            arp_max_entry: Maximum number of dynamically learned MAC addresses
+            that can be added to the ARP table (131072 - 2147483647, default =
+            131072). (optional)
+            ha_affinity: Affinity setting for HA daemons (hexadecimal value up
+            to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
+            bfd_affinity: Affinity setting for BFD daemon (hexadecimal value up
+            to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
+            cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value
+            up to 256 bits in the format of xxxxxxxxxxxxxxxx). (optional)
+            ndp_max_entry: Maximum number of NDP table entries (set to 65,536
+            or higher; if set to 0, kernel holds 65,536 entries). (optional)
+            br_fdb_max_entry: Maximum number of bridge forwarding database
+            (FDB) entries. (optional)
+            max_route_cache_size: Maximum number of IP route cache entries (0 -
+            2147483647). (optional)
+            ipsec_asic_offload: Enable/disable ASIC offloading (hardware
+            acceleration) for IPsec VPN traffic. Hardware acceleration can
+            offload IPsec VPN sessions and accelerate encryption and
+            decryption. (optional)
+            device_idle_timeout: Time in seconds that a device must be idle to
+            automatically log the device user out. (30 - 31536000 sec (30 sec
+            to 1 year), default = 300). (optional)
+            user_device_store_max_devices: Maximum number of devices allowed in
+            user device store. (optional)
+            user_device_store_max_device_mem: Maximum percentage of total
+            system memory allowed to be used for devices in the user device
+            store. (optional)
+            user_device_store_max_users: Maximum number of users allowed in
+            user device store. (optional)
+            user_device_store_max_unified_mem: Maximum unified memory allowed
+            in user device store. (optional)
+            gui_device_latitude: Add the latitude of the location of this
+            FortiGate to position it on the Threat Map. (optional)
+            gui_device_longitude: Add the longitude of the location of this
+            FortiGate to position it on the Threat Map. (optional)
+            private_data_encryption: Enable/disable private data encryption
+            using an AES 128-bit key or passpharse. (optional)
+            auto_auth_extension_device: Enable/disable automatic authorization
+            of dedicated Fortinet extension devices. (optional)
             gui_theme: Color scheme for the administration GUI. (optional)
-            gui_date_format: Default date format used throughout GUI. (optional)
-            gui_date_time_source: Source from which the FortiGate GUI uses to display date and time entries. (optional)
-            igmp_state_limit: Maximum number of IGMP memberships (96 - 64000, default = 3200). (optional)
-            cloud_communication: Enable/disable all cloud communication. (optional)
-            ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent). (optional)
-            fortitoken_cloud: Enable/disable FortiToken Cloud service. (optional)
-            fortitoken_cloud_push_status: Enable/disable FTM push service of FortiToken Cloud. (optional)
-            fortitoken_cloud_region: Region domain of FortiToken Cloud(unset to non-region). (optional)
-            fortitoken_cloud_sync_interval: Interval in which to clean up remote users in FortiToken Cloud (0 - 336 hours (14 days), default = 24, disable = 0). (optional)
-            faz_disk_buffer_size: Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailable. (optional)
-            irq_time_accounting: Configure CPU IRQ time accounting mode. (optional)
-            management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric. (optional)
-            management_port: Overriding port for management connection (Overrides admin port). (optional)
-            management_port_use_admin_sport: Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. (optional)
-            forticonverter_integration: Enable/disable FortiConverter integration service. (optional)
-            forticonverter_config_upload: Enable/disable config upload to FortiConverter. (optional)
-            internet_service_database: Configure which Internet Service database size to download from FortiGuard and use. (optional)
-            internet_service_download_list: Configure which on-demand Internet Service IDs are to be downloaded. (optional)
-            geoip_full_db: When enabled, the full geographic database will be loaded into the kernel which enables geographic information in traffic logs - required for FortiView countries. Disabling this option will conserve memory. (optional)
-            early_tcp_npu_session: Enable/disable early TCP NPU session. (optional)
-            npu_neighbor_update: Enable/disable sending of ARP/ICMP6 probing packets to update neighbors for offloaded sessions. (optional)
-            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee packet order of 3-way handshake. (optional)
-            interface_subnet_usage: Enable/disable allowing use of interface-subnet setting in firewall addresses (default = enable). (optional)
-            sflowd_max_children_num: Maximum number of sflowd child processes allowed to run. (optional)
-            fortigslb_integration: Enable/disable integration with the FortiGSLB cloud service. (optional)
-            user_history_password_threshold: Maximum number of previous passwords saved per admin/user (3 - 15, default = 3). (optional)
-            auth_session_auto_backup: Enable/disable automatic and periodic backup of authentication sessions (default = disable). Sessions are restored upon bootup. (optional)
-            auth_session_auto_backup_interval: Configure automatic authentication session backup interval (default = 15min). (optional)
+            gui_date_format: Default date format used throughout GUI.
+            (optional)
+            gui_date_time_source: Source from which the FortiGate GUI uses to
+            display date and time entries. (optional)
+            igmp_state_limit: Maximum number of IGMP memberships (96 - 64000,
+            default = 3200). (optional)
+            cloud_communication: Enable/disable all cloud communication.
+            (optional)
+            ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps
+            equivalent). (optional)
+            fortitoken_cloud: Enable/disable FortiToken Cloud service.
+            (optional)
+            fortitoken_cloud_push_status: Enable/disable FTM push service of
+            FortiToken Cloud. (optional)
+            fortitoken_cloud_region: Region domain of FortiToken Cloud(unset to
+            non-region). (optional)
+            fortitoken_cloud_sync_interval: Interval in which to clean up
+            remote users in FortiToken Cloud (0 - 336 hours (14 days), default
+            = 24, disable = 0). (optional)
+            faz_disk_buffer_size: Maximum disk buffer size to temporarily store
+            logs destined for FortiAnalyzer. To be used in the event that
+            FortiAnalyzer is unavailable. (optional)
+            irq_time_accounting: Configure CPU IRQ time accounting mode.
+            (optional)
+            management_ip: Management IP address of this FortiGate. Used to log
+            into this FortiGate from another FortiGate in the Security Fabric.
+            (optional)
+            management_port: Overriding port for management connection
+            (Overrides admin port). (optional)
+            management_port_use_admin_sport: Enable/disable use of the
+            admin-sport setting for the management port. If disabled, FortiGate
+            will allow user to specify management-port. (optional)
+            forticonverter_integration: Enable/disable FortiConverter
+            integration service. (optional)
+            forticonverter_config_upload: Enable/disable config upload to
+            FortiConverter. (optional)
+            internet_service_database: Configure which Internet Service
+            database size to download from FortiGuard and use. (optional)
+            internet_service_download_list: Configure which on-demand Internet
+            Service IDs are to be downloaded. (optional)
+            geoip_full_db: When enabled, the full geographic database will be
+            loaded into the kernel which enables geographic information in
+            traffic logs - required for FortiView countries. Disabling this
+            option will conserve memory. (optional)
+            early_tcp_npu_session: Enable/disable early TCP NPU session.
+            (optional)
+            npu_neighbor_update: Enable/disable sending of ARP/ICMP6 probing
+            packets to update neighbors for offloaded sessions. (optional)
+            delay_tcp_npu_session: Enable TCP NPU session delay to guarantee
+            packet order of 3-way handshake. (optional)
+            interface_subnet_usage: Enable/disable allowing use of
+            interface-subnet setting in firewall addresses (default = enable).
+            (optional)
+            sflowd_max_children_num: Maximum number of sflowd child processes
+            allowed to run. (optional)
+            fortigslb_integration: Enable/disable integration with the
+            FortiGSLB cloud service. (optional)
+            user_history_password_threshold: Maximum number of previous
+            passwords saved per admin/user (3 - 15, default = 3). (optional)
+            auth_session_auto_backup: Enable/disable automatic and periodic
+            backup of authentication sessions (default = disable). Sessions are
+            restored upon bootup. (optional)
+            auth_session_auto_backup_interval: Configure automatic
+            authentication session backup interval (default = 15min).
+            (optional)
             scim_https_port: SCIM port (0 - 65535, default = 44559). (optional)
-            scim_http_port: SCIM http port (0 - 65535, default = 44558). (optional)
-            scim_server_cert: Server certificate that the FortiGate uses for SCIM connections. (optional)
-            application_bandwidth_tracking: Enable/disable application bandwidth tracking. (optional)
+            scim_http_port: SCIM http port (0 - 65535, default = 44558).
+            (optional)
+            scim_server_cert: Server certificate that the FortiGate uses for
+            SCIM connections. (optional)
+            application_bandwidth_tracking: Enable/disable application
+            bandwidth tracking. (optional)
             tls_session_cache: Enable/disable TLS session cache. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -642,7 +967,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -800,7 +1126,7 @@ class Global:
         if send_pmtu_icmp is not None:
             data_payload["send-pmtu-icmp"] = send_pmtu_icmp
         if honor_df is not None:
-            data_payload["honor-df"] = honor_df
+            data_payload["honor-d"] = honor_df
         if pmtu_discovery is not None:
             data_payload["pmtu-discovery"] = pmtu_discovery
         if virtual_switch_vlan is not None:

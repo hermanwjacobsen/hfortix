@@ -75,13 +75,13 @@ def validate_access_proxy_virtual_host_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate host-type if present
     if "host-type" in payload:
@@ -96,7 +96,7 @@ def validate_access_proxy_virtual_host_post(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate empty-cert-action if present
     if "empty-cert-action" in payload:
@@ -158,13 +158,13 @@ def validate_access_proxy_virtual_host_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate host-type if present
     if "host-type" in payload:
@@ -179,7 +179,7 @@ def validate_access_proxy_virtual_host_put(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate empty-cert-action if present
     if "empty-cert-action" in payload:

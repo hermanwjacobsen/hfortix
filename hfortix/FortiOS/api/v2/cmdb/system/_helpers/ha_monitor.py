@@ -90,7 +90,7 @@ def validate_ha_monitor_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"vlan-hb-interval must be between 1 and 30",
+                        "vlan-hb-interval must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -107,7 +107,7 @@ def validate_ha_monitor_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"vlan-hb-lost-threshold must be between 1 and 60",
+                        "vlan-hb-lost-threshold must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (

@@ -79,7 +79,8 @@ class HaPeer:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.router.lookup.ha_peer.get(serial='value', destination='value')
+            >>> fgt.api.monitor.router.lookup.ha_peer.get(serial='value',
+            destination='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["serial"] = serial

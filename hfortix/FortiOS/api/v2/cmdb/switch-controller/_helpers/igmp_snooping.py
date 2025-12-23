@@ -79,7 +79,7 @@ def validate_igmp_snooping_put(
             try:
                 int_val = int(value)
                 if int_val < 15 or int_val > 3600:
-                    return (False, f"aging-time must be between 15 and 3600")
+                    return (False, "aging-time must be between 15 and 3600")
             except (ValueError, TypeError):
                 return (False, f"aging-time must be numeric, got: {value}")
 
@@ -101,7 +101,7 @@ def validate_igmp_snooping_put(
                 if int_val < 10 or int_val > 1200:
                     return (
                         False,
-                        f"query-interval must be between 10 and 1200",
+                        "query-interval must be between 10 and 1200",
                     )
             except (ValueError, TypeError):
                 return (False, f"query-interval must be numeric, got: {value}")

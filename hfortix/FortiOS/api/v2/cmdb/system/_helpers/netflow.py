@@ -81,7 +81,7 @@ def validate_netflow_put(
                 if int_val < 60 or int_val > 3600:
                     return (
                         False,
-                        f"active-flow-timeout must be between 60 and 3600",
+                        "active-flow-timeout must be between 60 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -98,7 +98,7 @@ def validate_netflow_put(
                 if int_val < 10 or int_val > 600:
                     return (
                         False,
-                        f"inactive-flow-timeout must be between 10 and 600",
+                        "inactive-flow-timeout must be between 10 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -115,7 +115,7 @@ def validate_netflow_put(
                 if int_val < 60 or int_val > 86400:
                     return (
                         False,
-                        f"template-tx-timeout must be between 60 and 86400",
+                        "template-tx-timeout must be between 60 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -132,7 +132,7 @@ def validate_netflow_put(
                 if int_val < 10 or int_val > 6000:
                     return (
                         False,
-                        f"template-tx-counter must be between 10 and 6000",
+                        "template-tx-counter must be between 10 and 6000",
                     )
             except (ValueError, TypeError):
                 return (

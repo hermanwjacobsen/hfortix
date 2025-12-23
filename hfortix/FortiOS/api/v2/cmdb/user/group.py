@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Group:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Group:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -173,37 +179,58 @@ class Group:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Group name. (optional)
             id: Group ID. (optional)
-            group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. (optional)
-            authtimeout: Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout. (optional)
-            auth_concurrent_override: Enable/disable overriding the global number of concurrent authentication sessions for this user group. (optional)
-            auth_concurrent_value: Maximum number of concurrent authenticated connections per user (0 - 100). (optional)
-            http_digest_realm: Realm attribute for MD5-digest authentication. (optional)
+            group_type: Set the group to be for firewall authentication, FSSO,
+            RSSO, or guest users. (optional)
+            authtimeout: Authentication timeout in minutes for this user group.
+            0 to use the global user setting auth-timeout. (optional)
+            auth_concurrent_override: Enable/disable overriding the global
+            number of concurrent authentication sessions for this user group.
+            (optional)
+            auth_concurrent_value: Maximum number of concurrent authenticated
+            connections per user (0 - 100). (optional)
+            http_digest_realm: Realm attribute for MD5-digest authentication.
+            (optional)
             sso_attribute_value: RADIUS attribute value. (optional)
-            member: Names of users, peers, LDAP severs, RADIUS servers or external idp servers to add to the user group. (optional)
+            member: Names of users, peers, LDAP severs, RADIUS servers or
+            external idp servers to add to the user group. (optional)
             match: Group matches. (optional)
             user_id: Guest user ID type. (optional)
             password: Guest user password type. (optional)
             user_name: Enable/disable the guest user name entry. (optional)
-            sponsor: Set the action for the sponsor guest user field. (optional)
-            company: Set the action for the company guest user field. (optional)
-            email: Enable/disable the guest user email address field. (optional)
-            mobile_phone: Enable/disable the guest user mobile phone number field. (optional)
-            sms_server: Send SMS through FortiGuard or other external server. (optional)
+            sponsor: Set the action for the sponsor guest user field.
+            (optional)
+            company: Set the action for the company guest user field.
+            (optional)
+            email: Enable/disable the guest user email address field.
+            (optional)
+            mobile_phone: Enable/disable the guest user mobile phone number
+            field. (optional)
+            sms_server: Send SMS through FortiGuard or other external server.
+            (optional)
             sms_custom_server: SMS server. (optional)
-            expire_type: Determine when the expiration countdown begins. (optional)
-            expire: Time in seconds before guest user accounts expire (1 - 31536000). (optional)
-            max_accounts: Maximum number of guest accounts that can be created for this group (0 means unlimited). (optional)
-            multiple_guest_add: Enable/disable addition of multiple guests. (optional)
+            expire_type: Determine when the expiration countdown begins.
+            (optional)
+            expire: Time in seconds before guest user accounts expire (1 -
+            31536000). (optional)
+            max_accounts: Maximum number of guest accounts that can be created
+            for this group (0 means unlimited). (optional)
+            multiple_guest_add: Enable/disable addition of multiple guests.
+            (optional)
             guest: Guest User. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -211,7 +238,8 @@ class Group:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -293,8 +321,10 @@ class Group:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -302,7 +332,8 @@ class Group:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -397,35 +428,55 @@ class Group:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Group name. (optional)
             id: Group ID. (optional)
-            group_type: Set the group to be for firewall authentication, FSSO, RSSO, or guest users. (optional)
-            authtimeout: Authentication timeout in minutes for this user group. 0 to use the global user setting auth-timeout. (optional)
-            auth_concurrent_override: Enable/disable overriding the global number of concurrent authentication sessions for this user group. (optional)
-            auth_concurrent_value: Maximum number of concurrent authenticated connections per user (0 - 100). (optional)
-            http_digest_realm: Realm attribute for MD5-digest authentication. (optional)
+            group_type: Set the group to be for firewall authentication, FSSO,
+            RSSO, or guest users. (optional)
+            authtimeout: Authentication timeout in minutes for this user group.
+            0 to use the global user setting auth-timeout. (optional)
+            auth_concurrent_override: Enable/disable overriding the global
+            number of concurrent authentication sessions for this user group.
+            (optional)
+            auth_concurrent_value: Maximum number of concurrent authenticated
+            connections per user (0 - 100). (optional)
+            http_digest_realm: Realm attribute for MD5-digest authentication.
+            (optional)
             sso_attribute_value: RADIUS attribute value. (optional)
-            member: Names of users, peers, LDAP severs, RADIUS servers or external idp servers to add to the user group. (optional)
+            member: Names of users, peers, LDAP severs, RADIUS servers or
+            external idp servers to add to the user group. (optional)
             match: Group matches. (optional)
             user_id: Guest user ID type. (optional)
             password: Guest user password type. (optional)
             user_name: Enable/disable the guest user name entry. (optional)
-            sponsor: Set the action for the sponsor guest user field. (optional)
-            company: Set the action for the company guest user field. (optional)
-            email: Enable/disable the guest user email address field. (optional)
-            mobile_phone: Enable/disable the guest user mobile phone number field. (optional)
-            sms_server: Send SMS through FortiGuard or other external server. (optional)
+            sponsor: Set the action for the sponsor guest user field.
+            (optional)
+            company: Set the action for the company guest user field.
+            (optional)
+            email: Enable/disable the guest user email address field.
+            (optional)
+            mobile_phone: Enable/disable the guest user mobile phone number
+            field. (optional)
+            sms_server: Send SMS through FortiGuard or other external server.
+            (optional)
             sms_custom_server: SMS server. (optional)
-            expire_type: Determine when the expiration countdown begins. (optional)
-            expire: Time in seconds before guest user accounts expire (1 - 31536000). (optional)
-            max_accounts: Maximum number of guest accounts that can be created for this group (0 means unlimited). (optional)
-            multiple_guest_add: Enable/disable addition of multiple guests. (optional)
+            expire_type: Determine when the expiration countdown begins.
+            (optional)
+            expire: Time in seconds before guest user accounts expire (1 -
+            31536000). (optional)
+            max_accounts: Maximum number of guest accounts that can be created
+            for this group (0 means unlimited). (optional)
+            multiple_guest_add: Enable/disable addition of multiple guests.
+            (optional)
             guest: Guest User. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -433,7 +484,8 @@ class Group:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

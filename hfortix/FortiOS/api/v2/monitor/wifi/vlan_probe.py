@@ -75,8 +75,10 @@ class Start:
             wtp: FortiAP ID. (optional)
             start_vlan_id: The starting VLAN ID for the probe. (optional)
             end_vlan_id: The ending VLAN ID for the probe. (optional)
-            retries: Number of times to retry a probe for a particular VLAN. (optional)
-            timeout: Timeout duration (in seconds) to wait for a VLAN probe response. (optional)
+            retries: Number of times to retry a probe for a particular VLAN.
+            (optional)
+            timeout: Timeout duration (in seconds) to wait for a VLAN probe
+            response. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -189,7 +191,8 @@ class VlanProbe:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.wifi.vlan_probe.get(ap_interface=1, wtp='value')
+            >>> fgt.api.monitor.wifi.vlan_probe.get(ap_interface=1,
+            wtp='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["ap_interface"] = ap_interface

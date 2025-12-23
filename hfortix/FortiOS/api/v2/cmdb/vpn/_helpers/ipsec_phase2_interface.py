@@ -316,13 +316,13 @@ def validate_ipsec_phase2_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate phase1name if present
     if "phase1name" in payload:
         value = payload.get("phase1name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"phase1name cannot exceed 15 characters")
+            return (False, "phase1name cannot exceed 15 characters")
 
     # Validate dhcp-ipsec if present
     if "dhcp-ipsec" in payload:
@@ -495,7 +495,7 @@ def validate_ipsec_phase2_interface_post(
                 if int_val < 120 or int_val > 172800:
                     return (
                         False,
-                        f"keylifeseconds must be between 120 and 172800",
+                        "keylifeseconds must be between 120 and 172800",
                     )
             except (ValueError, TypeError):
                 return (False, f"keylifeseconds must be numeric, got: {value}")
@@ -509,7 +509,7 @@ def validate_ipsec_phase2_interface_post(
                 if int_val < 5120 or int_val > 4294967295:
                     return (
                         False,
-                        f"keylifekbs must be between 5120 and 4294967295",
+                        "keylifekbs must be between 5120 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"keylifekbs must be numeric, got: {value}")
@@ -563,7 +563,7 @@ def validate_ipsec_phase2_interface_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate initiator-ts-narrow if present
     if "initiator-ts-narrow" in payload:
@@ -590,7 +590,7 @@ def validate_ipsec_phase2_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -598,13 +598,13 @@ def validate_ipsec_phase2_interface_post(
     if "src-name" in payload:
         value = payload.get("src-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"src-name cannot exceed 79 characters")
+            return (False, "src-name cannot exceed 79 characters")
 
     # Validate src-name6 if present
     if "src-name6" in payload:
         value = payload.get("src-name6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"src-name6 cannot exceed 79 characters")
+            return (False, "src-name6 cannot exceed 79 characters")
 
     # Validate src-addr-type if present
     if "src-addr-type" in payload:
@@ -622,7 +622,7 @@ def validate_ipsec_phase2_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"src-port must be between 0 and 65535")
+                    return (False, "src-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"src-port must be numeric, got: {value}")
 
@@ -630,13 +630,13 @@ def validate_ipsec_phase2_interface_post(
     if "dst-name" in payload:
         value = payload.get("dst-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dst-name cannot exceed 79 characters")
+            return (False, "dst-name cannot exceed 79 characters")
 
     # Validate dst-name6 if present
     if "dst-name6" in payload:
         value = payload.get("dst-name6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dst-name6 cannot exceed 79 characters")
+            return (False, "dst-name6 cannot exceed 79 characters")
 
     # Validate dst-addr-type if present
     if "dst-addr-type" in payload:
@@ -654,7 +654,7 @@ def validate_ipsec_phase2_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"dst-port must be between 0 and 65535")
+                    return (False, "dst-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"dst-port must be numeric, got: {value}")
 
@@ -691,13 +691,13 @@ def validate_ipsec_phase2_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate phase1name if present
     if "phase1name" in payload:
         value = payload.get("phase1name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"phase1name cannot exceed 15 characters")
+            return (False, "phase1name cannot exceed 15 characters")
 
     # Validate dhcp-ipsec if present
     if "dhcp-ipsec" in payload:
@@ -870,7 +870,7 @@ def validate_ipsec_phase2_interface_put(
                 if int_val < 120 or int_val > 172800:
                     return (
                         False,
-                        f"keylifeseconds must be between 120 and 172800",
+                        "keylifeseconds must be between 120 and 172800",
                     )
             except (ValueError, TypeError):
                 return (False, f"keylifeseconds must be numeric, got: {value}")
@@ -884,7 +884,7 @@ def validate_ipsec_phase2_interface_put(
                 if int_val < 5120 or int_val > 4294967295:
                     return (
                         False,
-                        f"keylifekbs must be between 5120 and 4294967295",
+                        "keylifekbs must be between 5120 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"keylifekbs must be numeric, got: {value}")
@@ -938,7 +938,7 @@ def validate_ipsec_phase2_interface_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate initiator-ts-narrow if present
     if "initiator-ts-narrow" in payload:
@@ -965,7 +965,7 @@ def validate_ipsec_phase2_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"protocol must be between 0 and 255")
+                    return (False, "protocol must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"protocol must be numeric, got: {value}")
 
@@ -973,13 +973,13 @@ def validate_ipsec_phase2_interface_put(
     if "src-name" in payload:
         value = payload.get("src-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"src-name cannot exceed 79 characters")
+            return (False, "src-name cannot exceed 79 characters")
 
     # Validate src-name6 if present
     if "src-name6" in payload:
         value = payload.get("src-name6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"src-name6 cannot exceed 79 characters")
+            return (False, "src-name6 cannot exceed 79 characters")
 
     # Validate src-addr-type if present
     if "src-addr-type" in payload:
@@ -997,7 +997,7 @@ def validate_ipsec_phase2_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"src-port must be between 0 and 65535")
+                    return (False, "src-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"src-port must be numeric, got: {value}")
 
@@ -1005,13 +1005,13 @@ def validate_ipsec_phase2_interface_put(
     if "dst-name" in payload:
         value = payload.get("dst-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dst-name cannot exceed 79 characters")
+            return (False, "dst-name cannot exceed 79 characters")
 
     # Validate dst-name6 if present
     if "dst-name6" in payload:
         value = payload.get("dst-name6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dst-name6 cannot exceed 79 characters")
+            return (False, "dst-name6 cannot exceed 79 characters")
 
     # Validate dst-addr-type if present
     if "dst-addr-type" in payload:
@@ -1029,7 +1029,7 @@ def validate_ipsec_phase2_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"dst-port must be between 0 and 65535")
+                    return (False, "dst-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"dst-port must be numeric, got: {value}")
 

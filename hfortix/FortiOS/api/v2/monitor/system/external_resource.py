@@ -66,7 +66,8 @@ class Dynamic:
         Push updates to the specified external resource.
 
         Args:
-            commands: The commands to execute to update dynamic external resources. (optional)
+            commands: The commands to execute to update dynamic external
+            resources. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -110,13 +111,17 @@ class EntryList:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve resource file status with a list of valid/invalid entries for the specific external resource.
+        Retrieve resource file status with a list of valid/invalid entries for
+        the specific external resource.
 
         Args:
             mkey: The external resource name to query. (required)
-            status_only: Set to true to retrieve resource file status only. (Skip valid/invalid entries.) (optional)
-            include_notes: Set to true to retrieve notes on the resource file. (optional)
-            counts_only: Set to true to retrive valid/invalid counts only. (Skip entries.) (optional)
+            status_only: Set to true to retrieve resource file status only.
+            (Skip valid/invalid entries.) (optional)
+            include_notes: Set to true to retrieve notes on the resource file.
+            (optional)
+            counts_only: Set to true to retrive valid/invalid counts only.
+            (Skip entries.) (optional)
             entry: Entry of external resource. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
@@ -126,7 +131,8 @@ class EntryList:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.external_resource.entry_list.get(mkey='value')
+            >>>
+            fgt.api.monitor.system.external_resource.entry_list.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey
@@ -213,12 +219,15 @@ class Refresh:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Fetch the external resource file and refresh status for the specified external resource.
+        Fetch the external resource file and refresh status for the specified
+        external resource.
 
         Args:
             mkey: The name of the external resource to query. (optional)
-            check_status_only: Set to true to return only the refresh status. (optional)
-            last_connection_time: The timestamp of last connection to the resource; used for checking refresh status. (optional)
+            check_status_only: Set to true to return only the refresh status.
+            (optional)
+            last_connection_time: The timestamp of last connection to the
+            resource; used for checking refresh status. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -274,7 +283,8 @@ class ValidateJsonpath:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.external_resource.validate_jsonpath.get(path_name='value')
+            >>>
+            fgt.api.monitor.system.external_resource.validate_jsonpath.get(path_name='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["path_name"] = path_name

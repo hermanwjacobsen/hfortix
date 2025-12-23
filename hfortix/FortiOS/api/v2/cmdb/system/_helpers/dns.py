@@ -89,7 +89,7 @@ def validate_dns_put(
     if "ssl-certificate" in payload:
         value = payload.get("ssl-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-certificate cannot exceed 35 characters")
+            return (False, "ssl-certificate cannot exceed 35 characters")
 
     # Validate timeout if present
     if "timeout" in payload:
@@ -98,7 +98,7 @@ def validate_dns_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"timeout must be between 1 and 10")
+                    return (False, "timeout must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 
@@ -109,7 +109,7 @@ def validate_dns_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 5:
-                    return (False, f"retry must be between 0 and 5")
+                    return (False, "retry must be between 0 and 5")
             except (ValueError, TypeError):
                 return (False, f"retry must be numeric, got: {value}")
 
@@ -122,7 +122,7 @@ def validate_dns_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"dns-cache-limit must be between 0 and 4294967295",
+                        "dns-cache-limit must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -139,7 +139,7 @@ def validate_dns_put(
                 if int_val < 60 or int_val > 86400:
                     return (
                         False,
-                        f"dns-cache-ttl must be between 60 and 86400",
+                        "dns-cache-ttl must be between 60 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"dns-cache-ttl must be numeric, got: {value}")
@@ -157,7 +157,7 @@ def validate_dns_put(
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -172,7 +172,7 @@ def validate_dns_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -181,7 +181,7 @@ def validate_dns_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -212,7 +212,7 @@ def validate_dns_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"fqdn-cache-ttl must be between 0 and 86400",
+                        "fqdn-cache-ttl must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"fqdn-cache-ttl must be numeric, got: {value}")
@@ -226,7 +226,7 @@ def validate_dns_put(
                 if int_val < 3600 or int_val > 86400:
                     return (
                         False,
-                        f"fqdn-max-refresh must be between 3600 and 86400",
+                        "fqdn-max-refresh must be between 3600 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -243,7 +243,7 @@ def validate_dns_put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"fqdn-min-refresh must be between 10 and 3600",
+                        "fqdn-min-refresh must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -260,7 +260,7 @@ def validate_dns_put(
                 if int_val < 60 or int_val > 86400:
                     return (
                         False,
-                        f"hostname-ttl must be between 60 and 86400",
+                        "hostname-ttl must be between 60 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"hostname-ttl must be numeric, got: {value}")
@@ -274,7 +274,7 @@ def validate_dns_put(
                 if int_val < 0 or int_val > 50000:
                     return (
                         False,
-                        f"hostname-limit must be between 0 and 50000",
+                        "hostname-limit must be between 0 and 50000",
                     )
             except (ValueError, TypeError):
                 return (False, f"hostname-limit must be numeric, got: {value}")

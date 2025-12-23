@@ -88,11 +88,15 @@ class Ha:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Ha:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -204,87 +209,171 @@ class Ha:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            group_id: HA group ID  (0 - 1023;  or 0 - 7 when there are more than 2 vclusters). Must be the same for all members. (optional)
-            group_name: Cluster group name. Must be the same for all members. (optional)
-            mode: HA mode. Must be the same for all members. FGSP requires standalone. (optional)
-            sync_packet_balance: Enable/disable HA packet distribution to multiple CPUs. (optional)
-            password: Cluster password. Must be the same for all members. (optional)
-            hbdev: Heartbeat interfaces. Must be the same for all members. (optional)
-            auto_virtual_mac_interface: The physical interface that will be assigned an auto-generated virtual MAC address. (optional)
-            backup_hbdev: Backup heartbeat interfaces. Must be the same for all members. (optional)
-            session_sync_dev: Offload session-sync process to kernel and sync sessions using connected interface(s) directly. (optional)
-            route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to maintain active routes during failover. (optional)
-            route_wait: Time to wait before sending new routes to the cluster (0 - 3600 sec). (optional)
-            route_hold: Time to wait between routing table updates to the cluster (0 - 3600 sec). (optional)
-            multicast_ttl: HA multicast TTL on primary (5 - 3600 sec). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            group_id: HA group ID (0 - 1023; or 0 - 7 when there are more than
+            2 vclusters). Must be the same for all members. (optional)
+            group_name: Cluster group name. Must be the same for all members.
+            (optional)
+            mode: HA mode. Must be the same for all members. FGSP requires
+            standalone. (optional)
+            sync_packet_balance: Enable/disable HA packet distribution to
+            multiple CPUs. (optional)
+            password: Cluster password. Must be the same for all members.
+            (optional)
+            hbdev: Heartbeat interfaces. Must be the same for all members.
+            (optional)
+            auto_virtual_mac_interface: The physical interface that will be
+            assigned an auto-generated virtual MAC address. (optional)
+            backup_hbdev: Backup heartbeat interfaces. Must be the same for all
+            members. (optional)
+            session_sync_dev: Offload session-sync process to kernel and sync
+            sessions using connected interface(s) directly. (optional)
+            route_ttl: TTL for primary unit routes (5 - 3600 sec). Increase to
+            maintain active routes during failover. (optional)
+            route_wait: Time to wait before sending new routes to the cluster
+            (0 - 3600 sec). (optional)
+            route_hold: Time to wait between routing table updates to the
+            cluster (0 - 3600 sec). (optional)
+            multicast_ttl: HA multicast TTL on primary (5 - 3600 sec).
+            (optional)
             evpn_ttl: HA EVPN FDB TTL on primary box (5 - 3600 sec). (optional)
-            load_balance_all: Enable to load balance TCP sessions. Disable to load balance proxy sessions only. (optional)
-            sync_config: Enable/disable configuration synchronization. (optional)
+            load_balance_all: Enable to load balance TCP sessions. Disable to
+            load balance proxy sessions only. (optional)
+            sync_config: Enable/disable configuration synchronization.
+            (optional)
             encryption: Enable/disable heartbeat message encryption. (optional)
-            authentication: Enable/disable heartbeat message authentication. (optional)
-            hb_interval: Time between sending heartbeat packets (1 - 20). Increase to reduce false positives. (optional)
-            hb_interval_in_milliseconds: Units of heartbeat interval time between sending heartbeat packets. Default is 100ms. (optional)
-            hb_lost_threshold: Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives. (optional)
-            hello_holddown: Time to wait before changing from hello to work state (5 - 300 sec). (optional)
-            gratuitous_arps: Enable/disable gratuitous ARPs. Disable if link-failed-signal enabled. (optional)
-            arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic. Higher to reduce failover time. (optional)
-            arps_interval: Time between gratuitous ARPs  (1 - 20 sec). Lower to reduce failover time. Higher to reduce traffic. (optional)
-            session_pickup: Enable/disable session pickup. Enabling it can reduce session down time when fail over happens. (optional)
-            session_pickup_connectionless: Enable/disable UDP and ICMP session sync. (optional)
-            session_pickup_expectation: Enable/disable session helper expectation session sync for FGSP. (optional)
-            session_pickup_nat: Enable/disable NAT session sync for FGSP. (optional)
-            session_pickup_delay: Enable to sync sessions longer than 30 sec. Only longer lived sessions need to be synced. (optional)
-            link_failed_signal: Enable to shut down all interfaces for 1 sec after a failover. Use if gratuitous ARPs do not update network. (optional)
+            authentication: Enable/disable heartbeat message authentication.
+            (optional)
+            hb_interval: Time between sending heartbeat packets (1 - 20).
+            Increase to reduce false positives. (optional)
+            hb_interval_in_milliseconds: Units of heartbeat interval time
+            between sending heartbeat packets. Default is 100ms. (optional)
+            hb_lost_threshold: Number of lost heartbeats to signal a failure (1
+            - 60). Increase to reduce false positives. (optional)
+            hello_holddown: Time to wait before changing from hello to work
+            state (5 - 300 sec). (optional)
+            gratuitous_arps: Enable/disable gratuitous ARPs. Disable if
+            link-failed-signal enabled. (optional)
+            arps: Number of gratuitous ARPs (1 - 60). Lower to reduce traffic.
+            Higher to reduce failover time. (optional)
+            arps_interval: Time between gratuitous ARPs (1 - 20 sec). Lower to
+            reduce failover time. Higher to reduce traffic. (optional)
+            session_pickup: Enable/disable session pickup. Enabling it can
+            reduce session down time when fail over happens. (optional)
+            session_pickup_connectionless: Enable/disable UDP and ICMP session
+            sync. (optional)
+            session_pickup_expectation: Enable/disable session helper
+            expectation session sync for FGSP. (optional)
+            session_pickup_nat: Enable/disable NAT session sync for FGSP.
+            (optional)
+            session_pickup_delay: Enable to sync sessions longer than 30 sec.
+            Only longer lived sessions need to be synced. (optional)
+            link_failed_signal: Enable to shut down all interfaces for 1 sec
+            after a failover. Use if gratuitous ARPs do not update network.
+            (optional)
             upgrade_mode: The mode to upgrade a cluster. (optional)
-            uninterruptible_primary_wait: Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (15 - 300, default = 30). (optional)
-            standalone_mgmt_vdom: Enable/disable standalone management VDOM. (optional)
-            ha_mgmt_status: Enable to reserve interfaces to manage individual cluster units. (optional)
-            ha_mgmt_interfaces: Reserve interfaces to manage individual cluster units. (optional)
-            ha_eth_type: HA heartbeat packet Ethertype (4-digit hex). (optional)
-            hc_eth_type: Transparent mode HA heartbeat packet Ethertype (4-digit hex). (optional)
-            l2ep_eth_type: Telnet session HA heartbeat packet Ethertype (4-digit hex). (optional)
-            ha_uptime_diff_margin: Normally you would only reduce this value for failover testing. (optional)
-            standalone_config_sync: Enable/disable FGSP configuration synchronization. (optional)
-            logical_sn: Enable/disable usage of the logical serial number. (optional)
-            schedule: Type of A-A load balancing. Use none if you have external load balancers. (optional)
-            weight: Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>. (optional)
-            cpu_threshold: Dynamic weighted load balancing CPU usage weight and high and low thresholds. (optional)
-            memory_threshold: Dynamic weighted load balancing memory usage weight and high and low thresholds. (optional)
-            http_proxy_threshold: Dynamic weighted load balancing weight and high and low number of HTTP proxy sessions. (optional)
-            ftp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of FTP proxy sessions. (optional)
-            imap_proxy_threshold: Dynamic weighted load balancing weight and high and low number of IMAP proxy sessions. (optional)
-            nntp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of NNTP proxy sessions. (optional)
-            pop3_proxy_threshold: Dynamic weighted load balancing weight and high and low number of POP3 proxy sessions. (optional)
-            smtp_proxy_threshold: Dynamic weighted load balancing weight and high and low number of SMTP proxy sessions. (optional)
-            override: Enable and increase the priority of the unit that should always be primary (master). (optional)
-            priority: Increase the priority to select the primary unit (0 - 255). (optional)
-            override_wait_time: Delay negotiating if override is enabled (0 - 3600 sec). Reduces how often the cluster negotiates. (optional)
-            monitor: Interfaces to check for port monitoring (or link failure). (optional)
-            pingserver_monitor_interface: Interfaces to check for remote IP monitoring. (optional)
-            pingserver_failover_threshold: Remote IP monitoring failover threshold (0 - 50). (optional)
-            pingserver_secondary_force_reset: Enable to force the cluster to negotiate after a remote IP monitoring failover. (optional)
-            pingserver_flip_timeout: Time to wait in minutes before renegotiating after a remote IP monitoring failover. (optional)
-            vcluster_status: Enable/disable virtual cluster for virtual clustering. (optional)
+            uninterruptible_primary_wait: Number of minutes the primary HA unit
+            waits before the secondary HA unit is considered upgraded and the
+            system is started before starting its own upgrade (15 - 300,
+            default = 30). (optional)
+            standalone_mgmt_vdom: Enable/disable standalone management VDOM.
+            (optional)
+            ha_mgmt_status: Enable to reserve interfaces to manage individual
+            cluster units. (optional)
+            ha_mgmt_interfaces: Reserve interfaces to manage individual cluster
+            units. (optional)
+            ha_eth_type: HA heartbeat packet Ethertype (4-digit hex).
+            (optional)
+            hc_eth_type: Transparent mode HA heartbeat packet Ethertype
+            (4-digit hex). (optional)
+            l2ep_eth_type: Telnet session HA heartbeat packet Ethertype
+            (4-digit hex). (optional)
+            ha_uptime_diff_margin: Normally you would only reduce this value
+            for failover testing. (optional)
+            standalone_config_sync: Enable/disable FGSP configuration
+            synchronization. (optional)
+            logical_sn: Enable/disable usage of the logical serial number.
+            (optional)
+            schedule: Type of A-A load balancing. Use none if you have external
+            load balancers. (optional)
+            weight: Weight-round-robin weight for each cluster unit. Syntax
+            <priority> <weight>. (optional)
+            cpu_threshold: Dynamic weighted load balancing CPU usage weight and
+            high and low thresholds. (optional)
+            memory_threshold: Dynamic weighted load balancing memory usage
+            weight and high and low thresholds. (optional)
+            http_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of HTTP proxy sessions. (optional)
+            ftp_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of FTP proxy sessions. (optional)
+            imap_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of IMAP proxy sessions. (optional)
+            nntp_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of NNTP proxy sessions. (optional)
+            pop3_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of POP3 proxy sessions. (optional)
+            smtp_proxy_threshold: Dynamic weighted load balancing weight and
+            high and low number of SMTP proxy sessions. (optional)
+            override: Enable and increase the priority of the unit that should
+            always be primary (master). (optional)
+            priority: Increase the priority to select the primary unit (0 -
+            255). (optional)
+            override_wait_time: Delay negotiating if override is enabled (0 -
+            3600 sec). Reduces how often the cluster negotiates. (optional)
+            monitor: Interfaces to check for port monitoring (or link failure).
+            (optional)
+            pingserver_monitor_interface: Interfaces to check for remote IP
+            monitoring. (optional)
+            pingserver_failover_threshold: Remote IP monitoring failover
+            threshold (0 - 50). (optional)
+            pingserver_secondary_force_reset: Enable to force the cluster to
+            negotiate after a remote IP monitoring failover. (optional)
+            pingserver_flip_timeout: Time to wait in minutes before
+            renegotiating after a remote IP monitoring failover. (optional)
+            vcluster_status: Enable/disable virtual cluster for virtual
+            clustering. (optional)
             vcluster: Virtual cluster table. (optional)
-            ha_direct: Enable/disable using ha-mgmt interface for syslog, remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow, and Netflow. (optional)
-            ssd_failover: Enable/disable automatic HA failover on SSD disk failure. (optional)
-            memory_compatible_mode: Enable/disable memory compatible mode. (optional)
-            memory_based_failover: Enable/disable memory based failover. (optional)
-            memory_failover_threshold: Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global). (optional)
-            memory_failover_monitor_period: Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60). (optional)
-            memory_failover_sample_rate: Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1). (optional)
-            memory_failover_flip_timeout: Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6). (optional)
-            failover_hold_time: Time to wait before failover (0 - 300 sec, default = 0), to avoid flip. (optional)
-            check_secondary_dev_health: Enable/disable secondary dev health check for session load-balance in HA A-A mode. (optional)
+            ha_direct: Enable/disable using ha-mgmt interface for syslog,
+            remote authentication (RADIUS), FortiAnalyzer, FortiSandbox, sFlow,
+            and Netflow. (optional)
+            ssd_failover: Enable/disable automatic HA failover on SSD disk
+            failure. (optional)
+            memory_compatible_mode: Enable/disable memory compatible mode.
+            (optional)
+            memory_based_failover: Enable/disable memory based failover.
+            (optional)
+            memory_failover_threshold: Memory usage threshold to trigger memory
+            based failover (0 means using conserve mode threshold in
+            system.global). (optional)
+            memory_failover_monitor_period: Duration of high memory usage
+            before memory based failover is triggered in seconds (1 - 300,
+            default = 60). (optional)
+            memory_failover_sample_rate: Rate at which memory usage is sampled
+            in order to measure memory usage in seconds (1 - 60, default = 1).
+            (optional)
+            memory_failover_flip_timeout: Time to wait between subsequent
+            memory based failovers in minutes (6 - 2147483647, default = 6).
+            (optional)
+            failover_hold_time: Time to wait before failover (0 - 300 sec,
+            default = 0), to avoid flip. (optional)
+            check_secondary_dev_health: Enable/disable secondary dev health
+            check for session load-balance in HA A-A mode. (optional)
             ipsec_phase2_proposal: IPsec phase2 proposal. (optional)
-            bounce_intf_upon_failover: Enable/disable notification of kernel to bring down and up all monitored interfaces. The setting is used during failovers if gratuitous ARPs do not update the network. (optional)
+            bounce_intf_upon_failover: Enable/disable notification of kernel to
+            bring down and up all monitored interfaces. The setting is used
+            during failovers if gratuitous ARPs do not update the network.
+            (optional)
             status: list ha status information (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -292,7 +381,8 @@ class Ha:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

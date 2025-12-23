@@ -115,7 +115,7 @@ def validate_device_upgrade_post(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -130,7 +130,7 @@ def validate_device_upgrade_post(
     if "ha-reboot-controller" in payload:
         value = payload.get("ha-reboot-controller")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ha-reboot-controller cannot exceed 79 characters")
+            return (False, "ha-reboot-controller cannot exceed 79 characters")
 
     # Validate next-path-index if present
     if "next-path-index" in payload:
@@ -139,7 +139,7 @@ def validate_device_upgrade_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 10:
-                    return (False, f"next-path-index must be between 0 and 10")
+                    return (False, "next-path-index must be between 0 and 10")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -150,13 +150,13 @@ def validate_device_upgrade_post(
     if "starter-admin" in payload:
         value = payload.get("starter-admin")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"starter-admin cannot exceed 64 characters")
+            return (False, "starter-admin cannot exceed 64 characters")
 
     # Validate serial if present
     if "serial" in payload:
         value = payload.get("serial")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"serial cannot exceed 79 characters")
+            return (False, "serial cannot exceed 79 characters")
 
     # Validate timing if present
     if "timing" in payload:
@@ -176,7 +176,7 @@ def validate_device_upgrade_post(
                 if int_val < 5 or int_val > 10080:
                     return (
                         False,
-                        f"maximum-minutes must be between 5 and 10080",
+                        "maximum-minutes must be between 5 and 10080",
                     )
             except (ValueError, TypeError):
                 return (

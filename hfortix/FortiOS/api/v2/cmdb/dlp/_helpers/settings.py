@@ -80,7 +80,7 @@ def validate_settings_put(
                 if int_val < 10 or int_val > 100000:
                     return (
                         False,
-                        f"config-builder-timeout must be between 10 and 100000",
+                        "config-builder-timeout must be between 10 and 100000",
                     )
             except (ValueError, TypeError):
                 return (

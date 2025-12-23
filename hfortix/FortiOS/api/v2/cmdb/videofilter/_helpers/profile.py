@@ -72,13 +72,13 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate youtube if present
     if "youtube" in payload:
@@ -111,7 +111,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     return (True, None)
 
@@ -146,13 +146,13 @@ def validate_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate youtube if present
     if "youtube" in payload:
@@ -185,7 +185,7 @@ def validate_profile_put(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     return (True, None)
 

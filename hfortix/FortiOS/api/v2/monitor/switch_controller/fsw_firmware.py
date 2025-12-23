@@ -63,7 +63,8 @@ class Download:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Download FortiSwitch firmware from FortiGuard to the FortiGate according to FortiSwitch image ID.
+        Download FortiSwitch firmware from FortiGuard to the FortiGate
+        according to FortiSwitch image ID.
 
         Args:
             image_id: FortiSwitch image ID. (optional)
@@ -154,11 +155,14 @@ class Upload:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Upload FortiSwitch firmware to the management FortiGate and then push to target FortiSwitches.
+        Upload FortiSwitch firmware to the management FortiGate and then push
+        to target FortiSwitches.
 
         Args:
             switch_ids: The target device's switch ID. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -211,8 +215,10 @@ class FswFirmware:
 
         Args:
             mkey: Filter: FortiSwitch ID. (optional)
-            timeout: FortiGuard connection timeout (defaults to 3 seconds). (optional)
-            version: Target firmware version of the parent FortiGate. (optional)
+            timeout: FortiGuard connection timeout (defaults to 3 seconds).
+            (optional)
+            version: Target firmware version of the parent FortiGate.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

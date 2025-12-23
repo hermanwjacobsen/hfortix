@@ -30,7 +30,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.timers.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.timers.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +89,15 @@ class Timers:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +105,8 @@ class Timers:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -155,38 +161,81 @@ class Timers:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            echo_interval: Time between echo requests sent by the managed WTP, AP, or FortiAP (1 - 255 sec, default = 30). (optional)
-            nat_session_keep_alive: Maximal time in seconds between control requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec, default = 0). (optional)
-            discovery_interval: Time between discovery requests (2 - 180 sec, default = 5). (optional)
-            client_idle_timeout: Time after which a client is considered idle and times out (20 - 3600 sec, default = 300, 0 for no timeout). (optional)
-            client_idle_rehome_timeout: Time after which a client is considered idle and disconnected from the home controller (2 - 3600 sec, default = 20, 0 for no timeout). (optional)
-            auth_timeout: Time after which a client is considered failed in RADIUS authentication and times out (5 - 30 sec, default = 5). (optional)
-            rogue_ap_log: Time between logging rogue AP messages if periodic rogue AP logging is configured (0 - 1440 min, default = 0). (optional)
-            fake_ap_log: Time between recording logs about fake APs if periodic fake AP logging is configured (1 - 1440 min, default = 1). (optional)
-            sta_offline_cleanup: Time period in seconds to keep station offline data after it is gone (default = 300). (optional)
-            sta_offline_ip2mac_cleanup: Time period in seconds to keep station offline Ip2mac data after it is gone (default = 300). (optional)
-            sta_cap_cleanup: Time period in minutes to keep station capability data after it is gone (default = 0). (optional)
-            rogue_ap_cleanup: Time period in minutes to keep rogue AP after it is gone (default = 0). (optional)
-            rogue_sta_cleanup: Time period in minutes to keep rogue station after it is gone (default = 0). (optional)
-            wids_entry_cleanup: Time period in minutes to keep wids entry after it is gone (default = 0). (optional)
-            ble_device_cleanup: Time period in minutes to keep BLE device after it is gone (default = 60). (optional)
-            sta_stats_interval: Time between running client (station) reports (1 - 255 sec, default = 10). (optional)
-            vap_stats_interval: Time between running Virtual Access Point (VAP) reports (1 - 255 sec, default = 15). (optional)
-            radio_stats_interval: Time between running radio reports (1 - 255 sec, default = 15). (optional)
-            sta_capability_interval: Time between running station capability reports (1 - 255 sec, default = 30). (optional)
-            sta_locate_timer: Time between running client presence flushes to remove clients that are listed but no longer present (0 - 86400 sec, default = 1800). (optional)
-            ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up after WTP sessions are disconnected (30 - 3600 sec, default = 120). (optional)
-            ble_scan_report_intv: Time between running Bluetooth Low Energy (BLE) reports (10 - 3600 sec, default = 30). (optional)
-            drma_interval: Dynamic radio mode assignment (DRMA) schedule interval in minutes (1 - 1440, default = 60). (optional)
-            ap_reboot_wait_interval1: Time in minutes to wait before AP reboots when there is no controller detected (5 - 65535, default = 0, 0 for no reboot). (optional)
-            ap_reboot_wait_time: Time to reboot the AP when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session, format hh:mm. (optional)
-            ap_reboot_wait_interval2: Time in minutes to wait before AP reboots when there is no controller detected and standalone SSIDs are pushed to the AP in the previous session (5 - 65535, default = 0, 0 for no reboot). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            echo_interval: Time between echo requests sent by the managed WTP,
+            AP, or FortiAP (1 - 255 sec, default = 30). (optional)
+            nat_session_keep_alive: Maximal time in seconds between control
+            requests sent by the managed WTP, AP, or FortiAP (0 - 255 sec,
+            default = 0). (optional)
+            discovery_interval: Time between discovery requests (2 - 180 sec,
+            default = 5). (optional)
+            client_idle_timeout: Time after which a client is considered idle
+            and times out (20 - 3600 sec, default = 300, 0 for no timeout).
+            (optional)
+            client_idle_rehome_timeout: Time after which a client is considered
+            idle and disconnected from the home controller (2 - 3600 sec,
+            default = 20, 0 for no timeout). (optional)
+            auth_timeout: Time after which a client is considered failed in
+            RADIUS authentication and times out (5 - 30 sec, default = 5).
+            (optional)
+            rogue_ap_log: Time between logging rogue AP messages if periodic
+            rogue AP logging is configured (0 - 1440 min, default = 0).
+            (optional)
+            fake_ap_log: Time between recording logs about fake APs if periodic
+            fake AP logging is configured (1 - 1440 min, default = 1).
+            (optional)
+            sta_offline_cleanup: Time period in seconds to keep station offline
+            data after it is gone (default = 300). (optional)
+            sta_offline_ip2mac_cleanup: Time period in seconds to keep station
+            offline Ip2mac data after it is gone (default = 300). (optional)
+            sta_cap_cleanup: Time period in minutes to keep station capability
+            data after it is gone (default = 0). (optional)
+            rogue_ap_cleanup: Time period in minutes to keep rogue AP after it
+            is gone (default = 0). (optional)
+            rogue_sta_cleanup: Time period in minutes to keep rogue station
+            after it is gone (default = 0). (optional)
+            wids_entry_cleanup: Time period in minutes to keep wids entry after
+            it is gone (default = 0). (optional)
+            ble_device_cleanup: Time period in minutes to keep BLE device after
+            it is gone (default = 60). (optional)
+            sta_stats_interval: Time between running client (station) reports
+            (1 - 255 sec, default = 10). (optional)
+            vap_stats_interval: Time between running Virtual Access Point (VAP)
+            reports (1 - 255 sec, default = 15). (optional)
+            radio_stats_interval: Time between running radio reports (1 - 255
+            sec, default = 15). (optional)
+            sta_capability_interval: Time between running station capability
+            reports (1 - 255 sec, default = 30). (optional)
+            sta_locate_timer: Time between running client presence flushes to
+            remove clients that are listed but no longer present (0 - 86400
+            sec, default = 1800). (optional)
+            ipsec_intf_cleanup: Time period to keep IPsec VPN interfaces up
+            after WTP sessions are disconnected (30 - 3600 sec, default = 120).
+            (optional)
+            ble_scan_report_intv: Time between running Bluetooth Low Energy
+            (BLE) reports (10 - 3600 sec, default = 30). (optional)
+            drma_interval: Dynamic radio mode assignment (DRMA) schedule
+            interval in minutes (1 - 1440, default = 60). (optional)
+            ap_reboot_wait_interval1: Time in minutes to wait before AP reboots
+            when there is no controller detected (5 - 65535, default = 0, 0 for
+            no reboot). (optional)
+            ap_reboot_wait_time: Time to reboot the AP when there is no
+            controller detected and standalone SSIDs are pushed to the AP in
+            the previous session, format hh:mm. (optional)
+            ap_reboot_wait_interval2: Time in minutes to wait before AP reboots
+            when there is no controller detected and standalone SSIDs are
+            pushed to the AP in the previous session (5 - 65535, default = 0, 0
+            for no reboot). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -194,7 +243,8 @@ class Timers:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

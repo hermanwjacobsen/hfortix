@@ -73,13 +73,20 @@ class Backup:
         Access Group: sysgrp.
 
                 Args:
-                    destination: Configuration file destination [file* | usb]. (optional)
-                    usb_filename: When using 'usb' destination: the filename to save to on the connected USB device. (optional)
-                    password: Password to encrypt configuration data. (optional)
-                    scope: Specify global or VDOM only backup [global | vdom]. (optional)
-                    vdom: If 'vdom' scope specified, the name of the VDOM to backup configuration. (optional)
-                    password_mask: True to replace all the secrects and passwords with a mask. (optional)
-                    file_format: Configuration file format [fos* | yaml]. (optional)
+                    destination: Configuration file destination [file* | usb].
+                    (optional)
+                    usb_filename: When using 'usb' destination: the filename to
+                    save to on the connected USB device. (optional)
+                    password: Password to encrypt configuration data.
+                    (optional)
+                    scope: Specify global or VDOM only backup [global | vdom].
+                    (optional)
+                    vdom: If 'vdom' scope specified, the name of the VDOM to
+                    backup configuration. (optional)
+                    password_mask: True to replace all the secrects and
+                    passwords with a mask. (optional)
+                    file_format: Configuration file format [fos* | yaml].
+                    (optional)
                     payload_dict: Optional dictionary of parameters
                     raw_json: Return raw JSON response if True
                     **kwargs: Additional parameters as keyword arguments
@@ -139,14 +146,22 @@ class Restore:
         Restore system configuration from uploaded file or from USB.
 
         Args:
-            source: Configuration file data source [upload | usb | revision]. (optional)
-            usb_filename: When using 'usb' source: the filename to restore from the connected USB device. (optional)
-            config_id: When using 'revision' source: valid ID of configuration stored on disk to revert to.  (optional)
+            source: Configuration file data source [upload | usb | revision].
+            (optional)
+            usb_filename: When using 'usb' source: the filename to restore from
+            the connected USB device. (optional)
+            config_id: When using 'revision' source: valid ID of configuration
+            stored on disk to revert to. (optional)
             password: Password to decrypt configuration data. (optional)
-            scope: Specify global or VDOM only restore [global | vdom]. (optional)
-            vdom: If 'vdom' scope specified, the name of the VDOM to restore configuration. (optional)
-            confirm_password_mask: True to upload password mask config file. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            scope: Specify global or VDOM only restore [global | vdom].
+            (optional)
+            vdom: If 'vdom' scope specified, the name of the VDOM to restore
+            configuration. (optional)
+            confirm_password_mask: True to upload password mask config file.
+            (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -212,7 +227,8 @@ class RestoreStatus:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.config.restore_status.get(session_id='value')
+            >>>
+            fgt.api.monitor.system.config.restore_status.get(session_id='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["session_id"] = session_id

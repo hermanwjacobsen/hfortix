@@ -88,11 +88,15 @@ class FortiguardSetting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class FortiguardSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -144,27 +149,41 @@ class FortiguardSetting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable logging to FortiCloud. (optional)
-            upload_option: Configure how log messages are sent to FortiCloud. (optional)
-            upload_interval: Frequency of uploading log files to FortiCloud. (optional)
+            upload_option: Configure how log messages are sent to FortiCloud.
+            (optional)
+            upload_interval: Frequency of uploading log files to FortiCloud.
+            (optional)
             upload_day: Day of week to roll logs. (optional)
             upload_time: Time of day to roll logs (hh:mm). (optional)
             priority: Set log transmission priority. (optional)
-            max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited). (optional)
-            access_config: Enable/disable FortiCloud access to configuration and data. (optional)
-            enc_algorithm: Configure the level of SSL protection for secure communication with FortiCloud. (optional)
-            ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). (optional)
-            conn_timeout: FortiGate Cloud connection timeout in seconds. (optional)
+            max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
+            (optional)
+            access_config: Enable/disable FortiCloud access to configuration
+            and data. (optional)
+            enc_algorithm: Configure the level of SSL protection for secure
+            communication with FortiCloud. (optional)
+            ssl_min_proto_version: Minimum supported protocol version for
+            SSL/TLS connections (default is to follow system global setting).
+            (optional)
+            conn_timeout: FortiGate Cloud connection timeout in seconds.
+            (optional)
             source_ip: Source IP address used to connect FortiCloud. (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -172,7 +191,8 @@ class FortiguardSetting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

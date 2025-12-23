@@ -71,7 +71,8 @@ class Delete:
                Args:
                    mkey: Packet capture name.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -130,7 +131,8 @@ class Download:
                Args:
                    mkey: Packet Capture name.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -179,7 +181,8 @@ class List:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-               Returns list of all packet captures and their status information.
+               Returns list of all packet captures and their status
+               information.
         Access Group: netgrp.packet-capture
 
                Supports dual approach:
@@ -189,7 +192,8 @@ class List:
                Args:
                    mkey: Filters by packet capture name.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -237,7 +241,8 @@ class Meta:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-               Returns system limitations & meta information of packet capture feature.
+               Returns system limitations & meta information of packet capture
+               feature.
         Access Group: netgrp.packet-capture
 
                Supports dual approach:
@@ -247,7 +252,8 @@ class Meta:
                Args:
                    No parameters
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -304,7 +310,8 @@ class Start:
                Args:
                    mkey: Packet capture name
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 
@@ -363,7 +370,8 @@ class Stop:
                Args:
                    mkey: Packet capture name.
                    vdom: Virtual Domain name
-                   payload_dict: Alternative to individual parameters - pass all params as dict
+                   payload_dict: Alternative to individual parameters - pass
+                   all params as dict
                    raw_json: Return raw JSON response without parsing
                    **kwargs: Additional parameters to pass to the API
 

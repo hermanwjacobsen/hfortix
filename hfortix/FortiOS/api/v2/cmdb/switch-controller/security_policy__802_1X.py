@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Security Policy 802 1x
 
-Configuration endpoint for managing cmdb switch controller security policy 802 1x objects.
+Configuration endpoint for managing cmdb switch controller security policy 802
+1x objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/security_policy__802_1X
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.security_policy__802_1X.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.security_policy__802_1X.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.security_policy__802_1X.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.security_policy__802_1X.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.security_policy__802_1X.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.security_policy__802_1X.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -56,7 +59,8 @@ class SecurityPolicyEight02OneX:
     """
     Securitypolicyeight02Onex Operations.
 
-    Provides CRUD operations for FortiOS securitypolicyeight02onex configuration.
+    Provides CRUD operations for FortiOS securitypolicyeight02onex
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -98,12 +102,17 @@ class SecurityPolicyEight02OneX:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +120,8 @@ class SecurityPolicyEight02OneX:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -172,36 +182,60 @@ class SecurityPolicyEight02OneX:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Policy name. (optional)
             security_mode: Port or MAC based 802.1X security mode. (optional)
-            user_group: Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. (optional)
+            user_group: Name of user-group to assign to this MAC Authentication
+            Bypass (MAB) policy. (optional)
             mac_auth_bypass: Enable/disable MAB for this policy. (optional)
             auth_order: Configure authentication order. (optional)
             auth_priority: Configure authentication priority. (optional)
-            open_auth: Enable/disable open authentication for this policy. (optional)
-            eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. (optional)
-            eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. (optional)
-            guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. (optional)
+            open_auth: Enable/disable open authentication for this policy.
+            (optional)
+            eap_passthru: Enable/disable EAP pass-through mode, allowing
+            protocols (such as LLDP) to pass through ports for more flexible
+            authentication. (optional)
+            eap_auto_untagged_vlans: Enable/disable automatic inclusion of
+            untagged VLANs. (optional)
+            guest_vlan: Enable the guest VLAN feature to allow limited access
+            to non-802.1X-compliant clients. (optional)
             guest_vlan_id: Guest VLAN name. (optional)
-            guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30). (optional)
-            auth_fail_vlan: Enable to allow limited access to clients that cannot authenticate. (optional)
-            auth_fail_vlan_id: VLAN ID on which authentication failed. (optional)
-            framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. (optional)
-            radius_timeout_overwrite: Enable to override the global RADIUS session timeout. (optional)
+            guest_auth_delay: Guest authentication delay (1 - 900 sec, default
+            = 30). (optional)
+            auth_fail_vlan: Enable to allow limited access to clients that
+            cannot authenticate. (optional)
+            auth_fail_vlan_id: VLAN ID on which authentication failed.
+            (optional)
+            framevid_apply: Enable/disable the capability to apply the EAP/MAB
+            frame VLAN to the port native VLAN. (optional)
+            radius_timeout_overwrite: Enable to override the global RADIUS
+            session timeout. (optional)
             policy_type: Policy type. (optional)
-            authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3). (optional)
-            authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable. (optional)
-            authserver_timeout_vlanid: Authentication server timeout VLAN name. (optional)
-            authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. (optional)
-            authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID). (optional)
-            dacl: Enable/disable dynamic access control list on this interface. (optional)
+            authserver_timeout_period: Authentication server timeout period (3
+            - 15 sec, default = 3). (optional)
+            authserver_timeout_vlan: Enable/disable the authentication server
+            timeout VLAN to allow limited access when RADIUS is unavailable.
+            (optional)
+            authserver_timeout_vlanid: Authentication server timeout VLAN name.
+            (optional)
+            authserver_timeout_tagged: Configure timeout option for the tagged
+            VLAN which allows limited access when the authentication server is
+            unavailable. (optional)
+            authserver_timeout_tagged_vlanid: Tagged VLAN name for which the
+            timeout option is applied to (only one VLAN ID). (optional)
+            dacl: Enable/disable dynamic access control list on this interface.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -209,7 +243,8 @@ class SecurityPolicyEight02OneX:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -297,8 +332,10 @@ class SecurityPolicyEight02OneX:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -306,7 +343,8 @@ class SecurityPolicyEight02OneX:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -357,34 +395,57 @@ class SecurityPolicyEight02OneX:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Policy name. (optional)
             security_mode: Port or MAC based 802.1X security mode. (optional)
-            user_group: Name of user-group to assign to this MAC Authentication Bypass (MAB) policy. (optional)
+            user_group: Name of user-group to assign to this MAC Authentication
+            Bypass (MAB) policy. (optional)
             mac_auth_bypass: Enable/disable MAB for this policy. (optional)
             auth_order: Configure authentication order. (optional)
             auth_priority: Configure authentication priority. (optional)
-            open_auth: Enable/disable open authentication for this policy. (optional)
-            eap_passthru: Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. (optional)
-            eap_auto_untagged_vlans: Enable/disable automatic inclusion of untagged VLANs. (optional)
-            guest_vlan: Enable the guest VLAN feature to allow limited access to non-802.1X-compliant clients. (optional)
+            open_auth: Enable/disable open authentication for this policy.
+            (optional)
+            eap_passthru: Enable/disable EAP pass-through mode, allowing
+            protocols (such as LLDP) to pass through ports for more flexible
+            authentication. (optional)
+            eap_auto_untagged_vlans: Enable/disable automatic inclusion of
+            untagged VLANs. (optional)
+            guest_vlan: Enable the guest VLAN feature to allow limited access
+            to non-802.1X-compliant clients. (optional)
             guest_vlan_id: Guest VLAN name. (optional)
-            guest_auth_delay: Guest authentication delay (1 - 900  sec, default = 30). (optional)
-            auth_fail_vlan: Enable to allow limited access to clients that cannot authenticate. (optional)
-            auth_fail_vlan_id: VLAN ID on which authentication failed. (optional)
-            framevid_apply: Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. (optional)
-            radius_timeout_overwrite: Enable to override the global RADIUS session timeout. (optional)
+            guest_auth_delay: Guest authentication delay (1 - 900 sec, default
+            = 30). (optional)
+            auth_fail_vlan: Enable to allow limited access to clients that
+            cannot authenticate. (optional)
+            auth_fail_vlan_id: VLAN ID on which authentication failed.
+            (optional)
+            framevid_apply: Enable/disable the capability to apply the EAP/MAB
+            frame VLAN to the port native VLAN. (optional)
+            radius_timeout_overwrite: Enable to override the global RADIUS
+            session timeout. (optional)
             policy_type: Policy type. (optional)
-            authserver_timeout_period: Authentication server timeout period (3 - 15 sec, default = 3). (optional)
-            authserver_timeout_vlan: Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable. (optional)
-            authserver_timeout_vlanid: Authentication server timeout VLAN name. (optional)
-            authserver_timeout_tagged: Configure timeout option for the tagged VLAN which allows limited access when the authentication server is unavailable. (optional)
-            authserver_timeout_tagged_vlanid: Tagged VLAN name for which the timeout option is applied to (only one VLAN ID). (optional)
-            dacl: Enable/disable dynamic access control list on this interface. (optional)
+            authserver_timeout_period: Authentication server timeout period (3
+            - 15 sec, default = 3). (optional)
+            authserver_timeout_vlan: Enable/disable the authentication server
+            timeout VLAN to allow limited access when RADIUS is unavailable.
+            (optional)
+            authserver_timeout_vlanid: Authentication server timeout VLAN name.
+            (optional)
+            authserver_timeout_tagged: Configure timeout option for the tagged
+            VLAN which allows limited access when the authentication server is
+            unavailable. (optional)
+            authserver_timeout_tagged_vlanid: Tagged VLAN name for which the
+            timeout option is applied to (only one VLAN ID). (optional)
+            dacl: Enable/disable dynamic access control list on this interface.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -392,7 +453,8 @@ class SecurityPolicyEight02OneX:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

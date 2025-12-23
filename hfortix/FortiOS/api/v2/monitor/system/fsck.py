@@ -62,7 +62,8 @@ class Start:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Set file system check flag so that it will be executed on next device reboot.
+        Set file system check flag so that it will be executed on next device
+        reboot.
 
         Args:
             payload_dict: Optional dictionary of parameters

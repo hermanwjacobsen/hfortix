@@ -74,15 +74,27 @@ class Query:
         Query user info.
 
         Args:
-            timestamp_from: To get entries since the timestamp for unified historical query. (optional)
-            timestamp_to: To get entries before the timestamp for unified historical query. (optional)
-            filters: A list of filters. Type:{"type": string, "value": string, "op": string}. Op: filter operator [exact|contains|greaterThanEqualTo|lessThanEqualTo]. Default is exact. (optional)
-            query_type: Query type [latest|unified_latest|unified_history]. Default is latest. (optional)
-            query_id: Provide a query ID to continue getting data for that unified request. Only available for unified query types. (optional)
-            cache_query: Cache query result for 5 mins and return query ID. Only available for unified query types. Default is false. (optional)
-            key_only: Return primary key fields only. Default is false. (optional)
-            filter_logic: The logic between filters [and|or]). Default is and. (optional)
-            total_only: Whether the query should return just the total number of identities present. (optional)
+            timestamp_from: To get entries since the timestamp for unified
+            historical query. (optional)
+            timestamp_to: To get entries before the timestamp for unified
+            historical query. (optional)
+            filters: A list of filters. Type:{"type": string, "value": string,
+            "op": string}. Op: filter operator
+            [exact|contains|greaterThanEqualTo|lessThanEqualTo]. Default is
+            exact. (optional)
+            query_type: Query type [latest|unified_latest|unified_history].
+            Default is latest. (optional)
+            query_id: Provide a query ID to continue getting data for that
+            unified request. Only available for unified query types. (optional)
+            cache_query: Cache query result for 5 mins and return query ID.
+            Only available for unified query types. Default is false.
+            (optional)
+            key_only: Return primary key fields only. Default is false.
+            (optional)
+            filter_logic: The logic between filters [and|or]). Default is and.
+            (optional)
+            total_only: Whether the query should return just the total number
+            of identities present. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -139,7 +151,8 @@ class Thumbnail:
         Get user info thumbnail.
 
         Args:
-            filters: A list of filters. Type:{"type": string, "value": string} (required)
+            filters: A list of filters. Type:{"type": string, "value": string}
+            (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -181,7 +194,8 @@ class ThumbnailFile:
         Get user info thumbnail by given file name.
 
         Args:
-            filename: Thumbnail file name. The file name is from thumbnailPhoto field of user info query. (required)
+            filename: Thumbnail file name. The file name is from thumbnailPhoto
+            field of user info query. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

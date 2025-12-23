@@ -82,7 +82,7 @@ def validate_shaping_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -90,13 +90,13 @@ def validate_shaping_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -147,7 +147,7 @@ def validate_shaping_policy_post(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate tos-negate if present
     if "tos-negate" in payload:
@@ -162,7 +162,7 @@ def validate_shaping_policy_post(
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     # Validate traffic-shaper-reverse if present
     if "traffic-shaper-reverse" in payload:
@@ -170,14 +170,14 @@ def validate_shaping_policy_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"traffic-shaper-reverse cannot exceed 35 characters",
+                "traffic-shaper-reverse cannot exceed 35 characters",
             )
 
     # Validate per-ip-shaper if present
     if "per-ip-shaper" in payload:
         value = payload.get("per-ip-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"per-ip-shaper cannot exceed 35 characters")
+            return (False, "per-ip-shaper cannot exceed 35 characters")
 
     # Validate class-id if present
     if "class-id" in payload:
@@ -188,7 +188,7 @@ def validate_shaping_policy_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"class-id must be between 0 and 4294967295",
+                        "class-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")
@@ -247,7 +247,7 @@ def validate_shaping_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -255,13 +255,13 @@ def validate_shaping_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -312,7 +312,7 @@ def validate_shaping_policy_put(
     if "schedule" in payload:
         value = payload.get("schedule")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"schedule cannot exceed 35 characters")
+            return (False, "schedule cannot exceed 35 characters")
 
     # Validate tos-negate if present
     if "tos-negate" in payload:
@@ -327,7 +327,7 @@ def validate_shaping_policy_put(
     if "traffic-shaper" in payload:
         value = payload.get("traffic-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"traffic-shaper cannot exceed 35 characters")
+            return (False, "traffic-shaper cannot exceed 35 characters")
 
     # Validate traffic-shaper-reverse if present
     if "traffic-shaper-reverse" in payload:
@@ -335,14 +335,14 @@ def validate_shaping_policy_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"traffic-shaper-reverse cannot exceed 35 characters",
+                "traffic-shaper-reverse cannot exceed 35 characters",
             )
 
     # Validate per-ip-shaper if present
     if "per-ip-shaper" in payload:
         value = payload.get("per-ip-shaper")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"per-ip-shaper cannot exceed 35 characters")
+            return (False, "per-ip-shaper cannot exceed 35 characters")
 
     # Validate class-id if present
     if "class-id" in payload:
@@ -353,7 +353,7 @@ def validate_shaping_policy_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"class-id must be between 0 and 4294967295",
+                        "class-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")

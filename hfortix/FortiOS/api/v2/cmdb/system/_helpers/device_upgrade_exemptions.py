@@ -74,7 +74,7 @@ def validate_device_upgrade_exemptions_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"id must be between 0 and 65535")
+                    return (False, "id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -82,7 +82,7 @@ def validate_device_upgrade_exemptions_post(
     if "fortinet-device" in payload:
         value = payload.get("fortinet-device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fortinet-device cannot exceed 35 characters")
+            return (False, "fortinet-device cannot exceed 35 characters")
 
     return (True, None)
 
@@ -120,7 +120,7 @@ def validate_device_upgrade_exemptions_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"id must be between 0 and 65535")
+                    return (False, "id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -128,7 +128,7 @@ def validate_device_upgrade_exemptions_put(
     if "fortinet-device" in payload:
         value = payload.get("fortinet-device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"fortinet-device cannot exceed 35 characters")
+            return (False, "fortinet-device cannot exceed 35 characters")
 
     return (True, None)
 

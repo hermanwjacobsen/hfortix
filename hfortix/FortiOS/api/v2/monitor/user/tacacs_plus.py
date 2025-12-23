@@ -71,12 +71,21 @@ class Test:
         Test the connectivity of the given TACACS+ server.
 
         Args:
-            mkey: Name of FortiGate's TACACS+ object whose settings to test. (optional)
-            ordinal: If 'mkey' is provided, the server-key pair to use from the object: 'primary', 'secondary' or 'tertiary'. Defaults to 'primary'. (optional)
-            server: Host name of IP of a TACACS+ server. If 'mkey' is provided, this overrides the 'server' value in the object. (optional)
-            secret: Secret key for the TACACS+ server. If 'mkey' is provided, this overrides the 'key' value in the object. (optional)
-            port: Port number of the TACACS+ server. If 'mkey' is provided, this overrides the 'port' value in the object. Defaults to 49. (optional)
-            source_ip: Source IP for communications to TACACS+ server. If 'mkey' is provided, this overrides the 'source-ip' value in the object. (optional)
+            mkey: Name of FortiGate's TACACS+ object whose settings to test.
+            (optional)
+            ordinal: If 'mkey' is provided, the server-key pair to use from the
+            object: 'primary', 'secondary' or 'tertiary'. Defaults to
+            'primary'. (optional)
+            server: Host name of IP of a TACACS+ server. If 'mkey' is provided,
+            this overrides the 'server' value in the object. (optional)
+            secret: Secret key for the TACACS+ server. If 'mkey' is provided,
+            this overrides the 'key' value in the object. (optional)
+            port: Port number of the TACACS+ server. If 'mkey' is provided,
+            this overrides the 'port' value in the object. Defaults to 49.
+            (optional)
+            source_ip: Source IP for communications to TACACS+ server. If
+            'mkey' is provided, this overrides the 'source-ip' value in the
+            object. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -72,7 +72,7 @@ def validate_cloud_service_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate vendor if present
     if "vendor" in payload:
@@ -87,25 +87,25 @@ def validate_cloud_service_post(
     if "traffic-vdom" in payload:
         value = payload.get("traffic-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"traffic-vdom cannot exceed 31 characters")
+            return (False, "traffic-vdom cannot exceed 31 characters")
 
     # Validate gck-service-account if present
     if "gck-service-account" in payload:
         value = payload.get("gck-service-account")
         if value and isinstance(value, str) and len(value) > 285:
-            return (False, f"gck-service-account cannot exceed 285 characters")
+            return (False, "gck-service-account cannot exceed 285 characters")
 
     # Validate gck-private-key if present
     if "gck-private-key" in payload:
         value = payload.get("gck-private-key")
         if value and isinstance(value, str) and len(value) > 8191:
-            return (False, f"gck-private-key cannot exceed 8191 characters")
+            return (False, "gck-private-key cannot exceed 8191 characters")
 
     # Validate gck-keyid if present
     if "gck-keyid" in payload:
         value = payload.get("gck-keyid")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"gck-keyid cannot exceed 127 characters")
+            return (False, "gck-keyid cannot exceed 127 characters")
 
     # Validate gck-access-token-lifetime if present
     if "gck-access-token-lifetime" in payload:
@@ -116,7 +116,7 @@ def validate_cloud_service_post(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"gck-access-token-lifetime must be between 1 and 3600",
+                        "gck-access-token-lifetime must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -157,7 +157,7 @@ def validate_cloud_service_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate vendor if present
     if "vendor" in payload:
@@ -172,25 +172,25 @@ def validate_cloud_service_put(
     if "traffic-vdom" in payload:
         value = payload.get("traffic-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"traffic-vdom cannot exceed 31 characters")
+            return (False, "traffic-vdom cannot exceed 31 characters")
 
     # Validate gck-service-account if present
     if "gck-service-account" in payload:
         value = payload.get("gck-service-account")
         if value and isinstance(value, str) and len(value) > 285:
-            return (False, f"gck-service-account cannot exceed 285 characters")
+            return (False, "gck-service-account cannot exceed 285 characters")
 
     # Validate gck-private-key if present
     if "gck-private-key" in payload:
         value = payload.get("gck-private-key")
         if value and isinstance(value, str) and len(value) > 8191:
-            return (False, f"gck-private-key cannot exceed 8191 characters")
+            return (False, "gck-private-key cannot exceed 8191 characters")
 
     # Validate gck-keyid if present
     if "gck-keyid" in payload:
         value = payload.get("gck-keyid")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"gck-keyid cannot exceed 127 characters")
+            return (False, "gck-keyid cannot exceed 127 characters")
 
     # Validate gck-access-token-lifetime if present
     if "gck-access-token-lifetime" in payload:
@@ -201,7 +201,7 @@ def validate_cloud_service_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"gck-access-token-lifetime must be between 1 and 3600",
+                        "gck-access-token-lifetime must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (

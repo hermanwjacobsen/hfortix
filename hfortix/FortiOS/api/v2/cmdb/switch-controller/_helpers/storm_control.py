@@ -81,7 +81,7 @@ def validate_storm_control_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 10000000:
-                    return (False, f"rate must be between 0 and 10000000")
+                    return (False, "rate must be between 0 and 10000000")
             except (ValueError, TypeError):
                 return (False, f"rate must be numeric, got: {value}")
 
@@ -92,7 +92,7 @@ def validate_storm_control_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4:
-                    return (False, f"burst-size-level must be between 0 and 4")
+                    return (False, "burst-size-level must be between 0 and 4")
             except (ValueError, TypeError):
                 return (
                     False,

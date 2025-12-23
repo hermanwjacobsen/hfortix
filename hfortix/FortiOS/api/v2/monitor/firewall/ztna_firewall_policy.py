@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more ZTNA firewall policies by policy ID.
+        Reset traffic statistics for one or more ZTNA firewall policies by
+        policy ID.
 
         Args:
             policy: Single ZTNA firewall policy ID to reset. (optional)
@@ -75,7 +76,8 @@ class ClearCounters:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.ztna_firewall_policy.clear_counters.post()
+            >>>
+            fgt.api.monitor.firewall.ztna_firewall_policy.clear_counters.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if policy is not None:

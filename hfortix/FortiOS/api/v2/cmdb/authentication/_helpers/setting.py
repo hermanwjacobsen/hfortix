@@ -80,13 +80,13 @@ def validate_setting_put(
     if "active-auth-scheme" in payload:
         value = payload.get("active-auth-scheme")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"active-auth-scheme cannot exceed 35 characters")
+            return (False, "active-auth-scheme cannot exceed 35 characters")
 
     # Validate sso-auth-scheme if present
     if "sso-auth-scheme" in payload:
         value = payload.get("sso-auth-scheme")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sso-auth-scheme cannot exceed 35 characters")
+            return (False, "sso-auth-scheme cannot exceed 35 characters")
 
     # Validate persistent-cookie if present
     if "persistent-cookie" in payload:
@@ -115,7 +115,7 @@ def validate_setting_put(
                 if int_val < 30 or int_val > 10080:
                     return (
                         False,
-                        f"cookie-max-age must be between 30 and 10080",
+                        "cookie-max-age must be between 30 and 10080",
                     )
             except (ValueError, TypeError):
                 return (False, f"cookie-max-age must be numeric, got: {value}")
@@ -129,7 +129,7 @@ def validate_setting_put(
                 if int_val < 2 or int_val > 4:
                     return (
                         False,
-                        f"cookie-refresh-div must be between 2 and 4",
+                        "cookie-refresh-div must be between 2 and 4",
                     )
             except (ValueError, TypeError):
                 return (
@@ -150,13 +150,13 @@ def validate_setting_put(
     if "captive-portal" in payload:
         value = payload.get("captive-portal")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"captive-portal cannot exceed 255 characters")
+            return (False, "captive-portal cannot exceed 255 characters")
 
     # Validate captive-portal6 if present
     if "captive-portal6" in payload:
         value = payload.get("captive-portal6")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"captive-portal6 cannot exceed 255 characters")
+            return (False, "captive-portal6 cannot exceed 255 characters")
 
     # Validate cert-auth if present
     if "cert-auth" in payload:
@@ -171,7 +171,7 @@ def validate_setting_put(
     if "cert-captive-portal" in payload:
         value = payload.get("cert-captive-portal")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cert-captive-portal cannot exceed 255 characters")
+            return (False, "cert-captive-portal cannot exceed 255 characters")
 
     # Validate cert-captive-portal-port if present
     if "cert-captive-portal-port" in payload:
@@ -182,7 +182,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"cert-captive-portal-port must be between 1 and 65535",
+                        "cert-captive-portal-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -199,7 +199,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"captive-portal-port must be between 1 and 65535",
+                        "captive-portal-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -225,7 +225,7 @@ def validate_setting_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"captive-portal-ssl-port must be between 1 and 65535",
+                        "captive-portal-ssl-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (

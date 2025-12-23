@@ -30,7 +30,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.setting.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.setting.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -88,11 +89,15 @@ class Setting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +105,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -144,27 +150,47 @@ class Setting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             account_id: FortiCloud customer account ID. (optional)
-            country: Country or region in which the FortiGate is located. The country determines the 802.11 bands and channels that are available. (optional)
-            duplicate_ssid: Enable/disable allowing Virtual Access Points (VAPs) to use the same SSID name in the same VDOM. (optional)
-            fapc_compatibility: Enable/disable FAP-C series compatibility. (optional)
+            country: Country or region in which the FortiGate is located. The
+            country determines the 802.11 bands and channels that are
+            available. (optional)
+            duplicate_ssid: Enable/disable allowing Virtual Access Points
+            (VAPs) to use the same SSID name in the same VDOM. (optional)
+            fapc_compatibility: Enable/disable FAP-C series compatibility.
+            (optional)
             wfa_compatibility: Enable/disable WFA compatibility. (optional)
-            phishing_ssid_detect: Enable/disable phishing SSID detection. (optional)
+            phishing_ssid_detect: Enable/disable phishing SSID detection.
+            (optional)
             fake_ssid_action: Actions taken for detected fake SSID. (optional)
             offending_ssid: Configure offending SSID. (optional)
-            device_weight: Upper limit of confidence of device for identification (0 - 255, default = 1, 0 = disable). (optional)
-            device_holdoff: Lower limit of creation time of device for identification in minutes (0 - 60, default = 5). (optional)
-            device_idle: Upper limit of idle time of device for identification in minutes (0 - 14400, default = 1440). (optional)
-            firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. (optional)
-            rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default = disable). (optional)
-            darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable). (optional)
-            darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. (optional)
+            device_weight: Upper limit of confidence of device for
+            identification (0 - 255, default = 1, 0 = disable). (optional)
+            device_holdoff: Lower limit of creation time of device for
+            identification in minutes (0 - 60, default = 5). (optional)
+            device_idle: Upper limit of idle time of device for identification
+            in minutes (0 - 14400, default = 1440). (optional)
+            firmware_provision_on_authorization: Enable/disable automatic
+            provisioning of latest firmware on authorization. (optional)
+            rolling_wtp_upgrade: Enable/disable rolling WTP upgrade (default =
+            disable). (optional)
+            darrp_optimize: Time for running Distributed Automatic Radio
+            Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default
+            = 86400, 0 = disable). (optional)
+            darrp_optimize_schedules: Firewall schedules for DARRP running
+            time. DARRP will run periodically based on darrp-optimize within
+            the schedules. Separate multiple schedule names with a space.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -172,7 +198,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -202,7 +229,7 @@ class Setting:
         if device_weight is not None:
             data_payload["device-weight"] = device_weight
         if device_holdoff is not None:
-            data_payload["device-holdoff"] = device_holdoff
+            data_payload["device-holdof"] = device_holdoff
         if device_idle is not None:
             data_payload["device-idle"] = device_idle
         if firmware_provision_on_authorization is not None:

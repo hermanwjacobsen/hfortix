@@ -70,13 +70,13 @@ def validate_zone_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate intrazone if present
     if "intrazone" in payload:
@@ -120,13 +120,13 @@ def validate_zone_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate intrazone if present
     if "intrazone" in payload:

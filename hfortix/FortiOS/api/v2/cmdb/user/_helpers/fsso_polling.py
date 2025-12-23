@@ -77,7 +77,7 @@ def validate_fsso_polling_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -94,13 +94,13 @@ def validate_fsso_polling_post(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate default-domain if present
     if "default-domain" in payload:
         value = payload.get("default-domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"default-domain cannot exceed 35 characters")
+            return (False, "default-domain cannot exceed 35 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -109,7 +109,7 @@ def validate_fsso_polling_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -117,13 +117,13 @@ def validate_fsso_polling_post(
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user cannot exceed 35 characters")
+            return (False, "user cannot exceed 35 characters")
 
     # Validate ldap-server if present
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate logon-history if present
     if "logon-history" in payload:
@@ -132,7 +132,7 @@ def validate_fsso_polling_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 48:
-                    return (False, f"logon-history must be between 0 and 48")
+                    return (False, "logon-history must be between 0 and 48")
             except (ValueError, TypeError):
                 return (False, f"logon-history must be numeric, got: {value}")
 
@@ -145,7 +145,7 @@ def validate_fsso_polling_post(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"polling-frequency must be between 1 and 30",
+                        "polling-frequency must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -207,7 +207,7 @@ def validate_fsso_polling_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -224,13 +224,13 @@ def validate_fsso_polling_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate default-domain if present
     if "default-domain" in payload:
         value = payload.get("default-domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"default-domain cannot exceed 35 characters")
+            return (False, "default-domain cannot exceed 35 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -239,7 +239,7 @@ def validate_fsso_polling_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"port must be between 0 and 65535")
+                    return (False, "port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -247,13 +247,13 @@ def validate_fsso_polling_put(
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"user cannot exceed 35 characters")
+            return (False, "user cannot exceed 35 characters")
 
     # Validate ldap-server if present
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate logon-history if present
     if "logon-history" in payload:
@@ -262,7 +262,7 @@ def validate_fsso_polling_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 48:
-                    return (False, f"logon-history must be between 0 and 48")
+                    return (False, "logon-history must be between 0 and 48")
             except (ValueError, TypeError):
                 return (False, f"logon-history must be numeric, got: {value}")
 
@@ -275,7 +275,7 @@ def validate_fsso_polling_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"polling-frequency must be between 1 and 30",
+                        "polling-frequency must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (

@@ -104,7 +104,7 @@ def validate_stp_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 10:
-                    return (False, f"hello-time must be between 1 and 10")
+                    return (False, "hello-time must be between 1 and 10")
             except (ValueError, TypeError):
                 return (False, f"hello-time must be numeric, got: {value}")
 
@@ -115,7 +115,7 @@ def validate_stp_put(
             try:
                 int_val = int(value)
                 if int_val < 4 or int_val > 30:
-                    return (False, f"forward-delay must be between 4 and 30")
+                    return (False, "forward-delay must be between 4 and 30")
             except (ValueError, TypeError):
                 return (False, f"forward-delay must be numeric, got: {value}")
 
@@ -126,7 +126,7 @@ def validate_stp_put(
             try:
                 int_val = int(value)
                 if int_val < 6 or int_val > 40:
-                    return (False, f"max-age must be between 6 and 40")
+                    return (False, "max-age must be between 6 and 40")
             except (ValueError, TypeError):
                 return (False, f"max-age must be numeric, got: {value}")
 
@@ -137,7 +137,7 @@ def validate_stp_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 40:
-                    return (False, f"max-hops must be between 1 and 40")
+                    return (False, "max-hops must be between 1 and 40")
             except (ValueError, TypeError):
                 return (False, f"max-hops must be numeric, got: {value}")
 

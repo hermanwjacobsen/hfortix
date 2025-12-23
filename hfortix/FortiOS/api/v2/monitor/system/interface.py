@@ -199,8 +199,10 @@ class Poe:
         Retrieve PoE statistics for system interfaces.
 
         Args:
-            mkey: Filter: Name of the interface to fetch PoE statistics for. (optional)
-            scope: Scope from which to retrieve the interface stats from [vdom|global] (default=vdom). (optional)
+            mkey: Filter: Name of the interface to fetch PoE statistics for.
+            (optional)
+            scope: Scope from which to retrieve the interface stats from
+            [vdom|global] (default=vdom). (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -281,7 +283,8 @@ class SpeedTestStatus:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve the current status of a speed-test with the results if finished.
+        Retrieve the current status of a speed-test with the results if
+        finished.
 
         Args:
             id: ID of the speed test. (required)
@@ -369,7 +372,8 @@ class Transceivers:
         Get a list of transceivers being used by the FortiGate.
 
         Args:
-            scope: Scope from which to retrieve the transceiver information from [vdom|global]. (optional)
+            scope: Scope from which to retrieve the transceiver information
+            from [vdom|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -417,12 +421,15 @@ class WakeOnLan:
         Send wake on lan packet to device.
 
         Args:
-            mkey: Name of the interface that will send out the packet. (optional)
+            mkey: Name of the interface that will send out the packet.
+            (optional)
             mac: MAC of device to wake up. (optional)
             protocol_option: protocol [wol | udp]. Default is udp (optional)
-            port: Port used by UDP WoL packets (0, 7, or 9). Port 9 will be used by default. (optional)
+            port: Port used by UDP WoL packets (0, 7, or 9). Port 9 will be
+            used by default. (optional)
             address: Broadcast IP address used by UDP WoL packets. (optional)
-            secureon_password: Password of the destination host if SecureOn is enabled. (optional)
+            secureon_password: Password of the destination host if SecureOn is
+            enabled. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -491,8 +498,10 @@ class Interface:
         Args:
             interface_name: Filter: interface name. (optional)
             include_vlan: Enable to include VLANs in result list. (optional)
-            include_aggregate: Enable to include Aggregate interfaces in result list. (optional)
-            scope: Scope from which to retrieve the interface stats from [vdom|global]. (optional)
+            include_aggregate: Enable to include Aggregate interfaces in result
+            list. (optional)
+            scope: Scope from which to retrieve the interface stats from
+            [vdom|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

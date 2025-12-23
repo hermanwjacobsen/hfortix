@@ -127,7 +127,7 @@ def validate_snmp_user_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"name cannot exceed 32 characters")
+            return (False, "name cannot exceed 32 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -154,7 +154,7 @@ def validate_snmp_user_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"trap-lport must be between 1 and 65535")
+                    return (False, "trap-lport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"trap-lport must be numeric, got: {value}")
 
@@ -165,7 +165,7 @@ def validate_snmp_user_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"trap-rport must be between 1 and 65535")
+                    return (False, "trap-rport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"trap-rport must be numeric, got: {value}")
 
@@ -185,7 +185,7 @@ def validate_snmp_user_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"query-port must be between 1 and 65535")
+                    return (False, "query-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"query-port must be numeric, got: {value}")
 
@@ -211,7 +211,7 @@ def validate_snmp_user_post(
     if "mib-view" in payload:
         value = payload.get("mib-view")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"mib-view cannot exceed 32 characters")
+            return (False, "mib-view cannot exceed 32 characters")
 
     # Validate security-level if present
     if "security-level" in payload:
@@ -253,7 +253,7 @@ def validate_snmp_user_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -262,7 +262,7 @@ def validate_snmp_user_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -299,7 +299,7 @@ def validate_snmp_user_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"name cannot exceed 32 characters")
+            return (False, "name cannot exceed 32 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -326,7 +326,7 @@ def validate_snmp_user_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"trap-lport must be between 1 and 65535")
+                    return (False, "trap-lport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"trap-lport must be numeric, got: {value}")
 
@@ -337,7 +337,7 @@ def validate_snmp_user_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"trap-rport must be between 1 and 65535")
+                    return (False, "trap-rport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"trap-rport must be numeric, got: {value}")
 
@@ -357,7 +357,7 @@ def validate_snmp_user_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"query-port must be between 1 and 65535")
+                    return (False, "query-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"query-port must be numeric, got: {value}")
 
@@ -383,7 +383,7 @@ def validate_snmp_user_put(
     if "mib-view" in payload:
         value = payload.get("mib-view")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"mib-view cannot exceed 32 characters")
+            return (False, "mib-view cannot exceed 32 characters")
 
     # Validate security-level if present
     if "security-level" in payload:
@@ -425,7 +425,7 @@ def validate_snmp_user_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -434,7 +434,7 @@ def validate_snmp_user_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

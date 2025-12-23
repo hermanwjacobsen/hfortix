@@ -66,7 +66,8 @@ class FortianalyzerQueue:
         Retrieve information on FortiAnalyzer's queue state.
 
         Args:
-            scope: Scope from which to retrieve FortiAnalyzer's queue state [vdom*|global]. (optional)
+            scope: Scope from which to retrieve FortiAnalyzer's queue state
+            [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

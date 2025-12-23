@@ -47,7 +47,7 @@ def validate_central_snat_map_get(
     # Validate format only if provided and not empty
     if policyid is not None and str(policyid).strip():
         if not isinstance(policyid, (str, int)):
-            return (False, f"policyid must be a string or integer")
+            return (False, "policyid must be a string or integer")
 
     return (True, None)
 

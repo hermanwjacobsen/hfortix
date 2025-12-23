@@ -75,7 +75,7 @@ def validate_ipmacbinding_table_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"seq-num must be between 0 and 4294967295")
+                    return (False, "seq-num must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -83,7 +83,7 @@ def validate_ipmacbinding_table_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -130,7 +130,7 @@ def validate_ipmacbinding_table_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"seq-num must be between 0 and 4294967295")
+                    return (False, "seq-num must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -138,7 +138,7 @@ def validate_ipmacbinding_table_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:

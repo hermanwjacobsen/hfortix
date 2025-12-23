@@ -78,7 +78,7 @@ def validate_ngfw_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1800:
-                    return (False, f"match-timeout must be between 0 and 1800")
+                    return (False, "match-timeout must be between 0 and 1800")
             except (ValueError, TypeError):
                 return (False, f"match-timeout must be numeric, got: {value}")
 
@@ -91,7 +91,7 @@ def validate_ngfw_settings_put(
                 if int_val < 0 or int_val > 1800:
                     return (
                         False,
-                        f"tcp-match-timeout must be between 0 and 1800",
+                        "tcp-match-timeout must be between 0 and 1800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -108,7 +108,7 @@ def validate_ngfw_settings_put(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"tcp-halfopen-match-timeout must be between 0 and 300",
+                        "tcp-halfopen-match-timeout must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (

@@ -57,7 +57,7 @@ class Router:
             "ipv6",
             "lookup",
             "lookup_policy",
-            "ospf",
+            "osp",
             "policy",
             "policy6",
             "sdwan",

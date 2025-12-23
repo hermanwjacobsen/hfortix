@@ -87,9 +87,12 @@ class Sessions:
         List all active proxy sessions (optionally filtered).
 
         Args:
-            count: Maximum number of entries to return. Valid range is [20, 1000]; if a value is specified out of that range, it will be rounded up or down. (required)
+            count: Maximum number of entries to return. Valid range is [20,
+            1000]; if a value is specified out of that range, it will be
+            rounded up or down. (required)
             ip_version: IP version [*ipv4 | ipv6 | ipboth]. (optional)
-            summary: Enable/disable inclusion of session summary (setup rate, total sessions, etc). (optional)
+            summary: Enable/disable inclusion of session summary (setup rate,
+            total sessions, etc). (optional)
             srcaddr: Source IPv4 address. (optional)
             dstaddr: Destination IPv4 address. (optional)
             srcaddr6: Source IPv6 address. (optional)
@@ -103,7 +106,8 @@ class Sessions:
             protocol: Protocol type. (optional)
             application: Web application type. (optional)
             country: Geographic location. (optional)
-            seconds: Time in seconds, since the session is established. (optional)
+            seconds: Time in seconds, since the session is established.
+            (optional)
             since: Time when the session is established. (optional)
             owner: Owner. (optional)
             username: Session login user name. (optional)
@@ -138,9 +142,9 @@ class Sessions:
         if dstport is not None:
             params["dstport"] = dstport
         if srcintf is not None:
-            params["srcintf"] = srcintf
+            params["srcint"] = srcintf
         if dstintf is not None:
-            params["dstintf"] = dstintf
+            params["dstint"] = dstintf
         if policyid is not None:
             params["policyid"] = policyid
         if proxy_policyid is not None:

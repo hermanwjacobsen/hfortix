@@ -68,7 +68,9 @@ class Add:
 
         Args:
             endpoint_ip: Endpoint IPv4 address. (optional)
-            spt: SPT value [healthy|checkup|transient|quarantine|infected|unknown*]. (optional)
+            spt: SPT value
+            [healthy|checkup|transient|quarantine|infected|unknown*].
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -115,7 +117,9 @@ class Delete:
 
         Args:
             endpoint_ip: Endpoint IPv4 address. (optional)
-            spt: SPT value [healthy|checkup|transient|quarantine|infected|unknown*]. (optional)
+            spt: SPT value
+            [healthy|checkup|transient|quarantine|infected|unknown*].
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

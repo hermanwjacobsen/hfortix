@@ -102,25 +102,25 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate secondary-server if present
     if "secondary-server" in payload:
         value = payload.get("secondary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"secondary-server cannot exceed 63 characters")
+            return (False, "secondary-server cannot exceed 63 characters")
 
     # Validate tertiary-server if present
     if "tertiary-server" in payload:
         value = payload.get("tertiary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tertiary-server cannot exceed 63 characters")
+            return (False, "tertiary-server cannot exceed 63 characters")
 
     # Validate status-ttl if present
     if "status-ttl" in payload:
@@ -129,7 +129,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 600:
-                    return (False, f"status-ttl must be between 0 and 600")
+                    return (False, "status-ttl must be between 0 and 600")
             except (ValueError, TypeError):
                 return (False, f"status-ttl must be numeric, got: {value}")
 
@@ -146,13 +146,13 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate source-ip-interface if present
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate source-port if present
     if "source-port" in payload:
@@ -161,7 +161,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"source-port must be between 0 and 65535")
+                    return (False, "source-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"source-port must be numeric, got: {value}")
 
@@ -169,13 +169,13 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "cnid" in payload:
         value = payload.get("cnid")
         if value and isinstance(value, str) and len(value) > 20:
-            return (False, f"cnid cannot exceed 20 characters")
+            return (False, "cnid cannot exceed 20 characters")
 
     # Validate dn if present
     if "dn" in payload:
         value = payload.get("dn")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"dn cannot exceed 511 characters")
+            return (False, "dn cannot exceed 511 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -217,13 +217,13 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "two-factor-filter" in payload:
         value = payload.get("two-factor-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"two-factor-filter cannot exceed 2047 characters")
+            return (False, "two-factor-filter cannot exceed 2047 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"username cannot exceed 511 characters")
+            return (False, "username cannot exceed 511 characters")
 
     # Validate group-member-check if present
     if "group-member-check" in payload:
@@ -238,7 +238,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "group-search-base" in payload:
         value = payload.get("group-search-base")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"group-search-base cannot exceed 511 characters")
+            return (False, "group-search-base cannot exceed 511 characters")
 
     # Validate group-object-filter if present
     if "group-object-filter" in payload:
@@ -246,14 +246,14 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 2047:
             return (
                 False,
-                f"group-object-filter cannot exceed 2047 characters",
+                "group-object-filter cannot exceed 2047 characters",
             )
 
     # Validate group-filter if present
     if "group-filter" in payload:
         value = payload.get("group-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"group-filter cannot exceed 2047 characters")
+            return (False, "group-filter cannot exceed 2047 characters")
 
     # Validate secure if present
     if "secure" in payload:
@@ -277,7 +277,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ca-cert" in payload:
         value = payload.get("ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ca-cert cannot exceed 79 characters")
+            return (False, "ca-cert cannot exceed 79 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -286,7 +286,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -312,7 +312,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "member-attr" in payload:
         value = payload.get("member-attr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"member-attr cannot exceed 63 characters")
+            return (False, "member-attr cannot exceed 63 characters")
 
     # Validate account-key-processing if present
     if "account-key-processing" in payload:
@@ -336,7 +336,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "account-key-filter" in payload:
         value = payload.get("account-key-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"account-key-filter cannot exceed 2047 characters")
+            return (False, "account-key-filter cannot exceed 2047 characters")
 
     # Validate search-type if present
     if "search-type" in payload:
@@ -360,7 +360,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"client-cert cannot exceed 79 characters")
+            return (False, "client-cert cannot exceed 79 characters")
 
     # Validate obtain-user-info if present
     if "obtain-user-info" in payload:
@@ -377,7 +377,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"user-info-exchange-server cannot exceed 35 characters",
+                "user-info-exchange-server cannot exceed 35 characters",
             )
 
     # Validate interface-select-method if present
@@ -393,7 +393,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -402,7 +402,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -419,7 +419,7 @@ def validate_ldap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "password-attr" in payload:
         value = payload.get("password-attr")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"password-attr cannot exceed 35 characters")
+            return (False, "password-attr cannot exceed 35 characters")
 
     return (True, None)
 
@@ -454,25 +454,25 @@ def validate_ldap_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate secondary-server if present
     if "secondary-server" in payload:
         value = payload.get("secondary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"secondary-server cannot exceed 63 characters")
+            return (False, "secondary-server cannot exceed 63 characters")
 
     # Validate tertiary-server if present
     if "tertiary-server" in payload:
         value = payload.get("tertiary-server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tertiary-server cannot exceed 63 characters")
+            return (False, "tertiary-server cannot exceed 63 characters")
 
     # Validate status-ttl if present
     if "status-ttl" in payload:
@@ -481,7 +481,7 @@ def validate_ldap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 600:
-                    return (False, f"status-ttl must be between 0 and 600")
+                    return (False, "status-ttl must be between 0 and 600")
             except (ValueError, TypeError):
                 return (False, f"status-ttl must be numeric, got: {value}")
 
@@ -498,13 +498,13 @@ def validate_ldap_put(
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate source-ip-interface if present
     if "source-ip-interface" in payload:
         value = payload.get("source-ip-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"source-ip-interface cannot exceed 15 characters")
+            return (False, "source-ip-interface cannot exceed 15 characters")
 
     # Validate source-port if present
     if "source-port" in payload:
@@ -513,7 +513,7 @@ def validate_ldap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"source-port must be between 0 and 65535")
+                    return (False, "source-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"source-port must be numeric, got: {value}")
 
@@ -521,13 +521,13 @@ def validate_ldap_put(
     if "cnid" in payload:
         value = payload.get("cnid")
         if value and isinstance(value, str) and len(value) > 20:
-            return (False, f"cnid cannot exceed 20 characters")
+            return (False, "cnid cannot exceed 20 characters")
 
     # Validate dn if present
     if "dn" in payload:
         value = payload.get("dn")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"dn cannot exceed 511 characters")
+            return (False, "dn cannot exceed 511 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -569,13 +569,13 @@ def validate_ldap_put(
     if "two-factor-filter" in payload:
         value = payload.get("two-factor-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"two-factor-filter cannot exceed 2047 characters")
+            return (False, "two-factor-filter cannot exceed 2047 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"username cannot exceed 511 characters")
+            return (False, "username cannot exceed 511 characters")
 
     # Validate group-member-check if present
     if "group-member-check" in payload:
@@ -590,7 +590,7 @@ def validate_ldap_put(
     if "group-search-base" in payload:
         value = payload.get("group-search-base")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"group-search-base cannot exceed 511 characters")
+            return (False, "group-search-base cannot exceed 511 characters")
 
     # Validate group-object-filter if present
     if "group-object-filter" in payload:
@@ -598,14 +598,14 @@ def validate_ldap_put(
         if value and isinstance(value, str) and len(value) > 2047:
             return (
                 False,
-                f"group-object-filter cannot exceed 2047 characters",
+                "group-object-filter cannot exceed 2047 characters",
             )
 
     # Validate group-filter if present
     if "group-filter" in payload:
         value = payload.get("group-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"group-filter cannot exceed 2047 characters")
+            return (False, "group-filter cannot exceed 2047 characters")
 
     # Validate secure if present
     if "secure" in payload:
@@ -629,7 +629,7 @@ def validate_ldap_put(
     if "ca-cert" in payload:
         value = payload.get("ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ca-cert cannot exceed 79 characters")
+            return (False, "ca-cert cannot exceed 79 characters")
 
     # Validate port if present
     if "port" in payload:
@@ -638,7 +638,7 @@ def validate_ldap_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -664,7 +664,7 @@ def validate_ldap_put(
     if "member-attr" in payload:
         value = payload.get("member-attr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"member-attr cannot exceed 63 characters")
+            return (False, "member-attr cannot exceed 63 characters")
 
     # Validate account-key-processing if present
     if "account-key-processing" in payload:
@@ -688,7 +688,7 @@ def validate_ldap_put(
     if "account-key-filter" in payload:
         value = payload.get("account-key-filter")
         if value and isinstance(value, str) and len(value) > 2047:
-            return (False, f"account-key-filter cannot exceed 2047 characters")
+            return (False, "account-key-filter cannot exceed 2047 characters")
 
     # Validate search-type if present
     if "search-type" in payload:
@@ -712,7 +712,7 @@ def validate_ldap_put(
     if "client-cert" in payload:
         value = payload.get("client-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"client-cert cannot exceed 79 characters")
+            return (False, "client-cert cannot exceed 79 characters")
 
     # Validate obtain-user-info if present
     if "obtain-user-info" in payload:
@@ -729,7 +729,7 @@ def validate_ldap_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"user-info-exchange-server cannot exceed 35 characters",
+                "user-info-exchange-server cannot exceed 35 characters",
             )
 
     # Validate interface-select-method if present
@@ -745,7 +745,7 @@ def validate_ldap_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -754,7 +754,7 @@ def validate_ldap_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -771,7 +771,7 @@ def validate_ldap_put(
     if "password-attr" in payload:
         value = payload.get("password-attr")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"password-attr cannot exceed 35 characters")
+            return (False, "password-attr cannot exceed 35 characters")
 
     return (True, None)
 

@@ -72,13 +72,13 @@ def validate_bonjour_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate micro-location if present
     if "micro-location" in payload:
@@ -122,13 +122,13 @@ def validate_bonjour_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate micro-location if present
     if "micro-location" in payload:

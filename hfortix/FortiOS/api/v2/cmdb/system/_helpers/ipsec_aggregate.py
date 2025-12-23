@@ -78,7 +78,7 @@ def validate_ipsec_aggregate_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate algorithm if present
     if "algorithm" in payload:
@@ -122,7 +122,7 @@ def validate_ipsec_aggregate_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate algorithm if present
     if "algorithm" in payload:

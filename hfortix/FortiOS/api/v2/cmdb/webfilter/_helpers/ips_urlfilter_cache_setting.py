@@ -80,7 +80,7 @@ def validate_ips_urlfilter_cache_setting_put(
                 if int_val < 0 or int_val > 2147483:
                     return (
                         False,
-                        f"dns-retry-interval must be between 0 and 2147483",
+                        "dns-retry-interval must be between 0 and 2147483",
                     )
             except (ValueError, TypeError):
                 return (
@@ -97,7 +97,7 @@ def validate_ips_urlfilter_cache_setting_put(
                 if int_val < 0 or int_val > 2147483:
                     return (
                         False,
-                        f"extended-ttl must be between 0 and 2147483",
+                        "extended-ttl must be between 0 and 2147483",
                     )
             except (ValueError, TypeError):
                 return (False, f"extended-ttl must be numeric, got: {value}")

@@ -87,7 +87,7 @@ def validate_snmp_community_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -95,7 +95,7 @@ def validate_snmp_community_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -124,7 +124,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"query-v1-port must be between 0 and 65535",
+                        "query-v1-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"query-v1-port must be numeric, got: {value}")
@@ -147,7 +147,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"query-v2c-port must be between 0 and 65535",
+                        "query-v2c-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"query-v2c-port must be numeric, got: {value}")
@@ -170,7 +170,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v1-lport must be between 0 and 65535",
+                        "trap-v1-lport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v1-lport must be numeric, got: {value}")
@@ -184,7 +184,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v1-rport must be between 0 and 65535",
+                        "trap-v1-rport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v1-rport must be numeric, got: {value}")
@@ -207,7 +207,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v2c-lport must be between 0 and 65535",
+                        "trap-v2c-lport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v2c-lport must be numeric, got: {value}")
@@ -221,7 +221,7 @@ def validate_snmp_community_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v2c-rport must be between 0 and 65535",
+                        "trap-v2c-rport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v2c-rport must be numeric, got: {value}")
@@ -271,7 +271,7 @@ def validate_snmp_community_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -279,7 +279,7 @@ def validate_snmp_community_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -308,7 +308,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"query-v1-port must be between 0 and 65535",
+                        "query-v1-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"query-v1-port must be numeric, got: {value}")
@@ -331,7 +331,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"query-v2c-port must be between 0 and 65535",
+                        "query-v2c-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"query-v2c-port must be numeric, got: {value}")
@@ -354,7 +354,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v1-lport must be between 0 and 65535",
+                        "trap-v1-lport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v1-lport must be numeric, got: {value}")
@@ -368,7 +368,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v1-rport must be between 0 and 65535",
+                        "trap-v1-rport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v1-rport must be numeric, got: {value}")
@@ -391,7 +391,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v2c-lport must be between 0 and 65535",
+                        "trap-v2c-lport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v2c-lport must be numeric, got: {value}")
@@ -405,7 +405,7 @@ def validate_snmp_community_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"trap-v2c-rport must be between 0 and 65535",
+                        "trap-v2c-rport must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"trap-v2c-rport must be numeric, got: {value}")

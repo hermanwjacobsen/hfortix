@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Saml:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Saml:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -171,10 +177,13 @@ class Saml:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: SAML server entry name. (optional)
             cert: Certificate to sign SAML messages. (optional)
             entity_id: SP entity ID. (optional)
@@ -185,21 +194,32 @@ class Saml:
             idp_single_logout_url: IDP single logout url. (optional)
             idp_cert: IDP Certificate name. (optional)
             scim_client: SCIM client name. (optional)
-            scim_user_attr_type: User attribute type used to match SCIM users (default = user-name). (optional)
-            scim_group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            scim_user_attr_type: User attribute type used to match SCIM users
+            (default = user-name). (optional)
+            scim_group_attr_type: Group attribute type used to match SCIM
+            groups (default = display-name). (optional)
             user_name: User name in assertion statement. (optional)
             group_name: Group name in assertion statement. (optional)
             digest_method: Digest method algorithm. (optional)
-            require_signed_resp_and_asrt: Require both response and assertion from IDP to be signed when FGT acts as SP (default = disable). (optional)
-            limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). (optional)
-            clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance). (optional)
-            adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). (optional)
+            require_signed_resp_and_asrt: Require both response and assertion
+            from IDP to be signed when FGT acts as SP (default = disable).
+            (optional)
+            limit_relaystate: Enable/disable limiting of relay-state parameter
+            when it exceeds SAML 2.0 specification limits (80 bytes).
+            (optional)
+            clock_tolerance: Clock skew tolerance in seconds (0 - 300, default
+            = 15, 0 = no tolerance). (optional)
+            adfs_claim: Enable/disable ADFS Claim for user/group attribute in
+            assertion statement (default = disable). (optional)
             user_claim_type: User name claim in assertion statement. (optional)
             group_claim_type: Group claim in assertion statement. (optional)
-            reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). (optional)
+            reauth: Enable/disable signalling of IDP to force user
+            re-authentication (default = disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -207,7 +227,8 @@ class Saml:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -287,8 +308,10 @@ class Saml:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -296,7 +319,8 @@ class Saml:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -389,8 +413,10 @@ class Saml:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: SAML server entry name. (optional)
             cert: Certificate to sign SAML messages. (optional)
             entity_id: SP entity ID. (optional)
@@ -401,21 +427,32 @@ class Saml:
             idp_single_logout_url: IDP single logout url. (optional)
             idp_cert: IDP Certificate name. (optional)
             scim_client: SCIM client name. (optional)
-            scim_user_attr_type: User attribute type used to match SCIM users (default = user-name). (optional)
-            scim_group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            scim_user_attr_type: User attribute type used to match SCIM users
+            (default = user-name). (optional)
+            scim_group_attr_type: Group attribute type used to match SCIM
+            groups (default = display-name). (optional)
             user_name: User name in assertion statement. (optional)
             group_name: Group name in assertion statement. (optional)
             digest_method: Digest method algorithm. (optional)
-            require_signed_resp_and_asrt: Require both response and assertion from IDP to be signed when FGT acts as SP (default = disable). (optional)
-            limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). (optional)
-            clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance). (optional)
-            adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). (optional)
+            require_signed_resp_and_asrt: Require both response and assertion
+            from IDP to be signed when FGT acts as SP (default = disable).
+            (optional)
+            limit_relaystate: Enable/disable limiting of relay-state parameter
+            when it exceeds SAML 2.0 specification limits (80 bytes).
+            (optional)
+            clock_tolerance: Clock skew tolerance in seconds (0 - 300, default
+            = 15, 0 = no tolerance). (optional)
+            adfs_claim: Enable/disable ADFS Claim for user/group attribute in
+            assertion statement (default = disable). (optional)
             user_claim_type: User name claim in assertion statement. (optional)
             group_claim_type: Group claim in assertion statement. (optional)
-            reauth: Enable/disable signalling of IDP to force user re-authentication (default = disable). (optional)
+            reauth: Enable/disable signalling of IDP to force user
+            re-authentication (default = disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -423,7 +460,8 @@ class Saml:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

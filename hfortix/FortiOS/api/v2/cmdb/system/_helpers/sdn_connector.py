@@ -109,7 +109,7 @@ def validate_sdn_connector_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -133,7 +133,7 @@ def validate_sdn_connector_post(
     if "proxy" in payload:
         value = payload.get("proxy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"proxy cannot exceed 35 characters")
+            return (False, "proxy cannot exceed 35 characters")
 
     # Validate use-metadata-iam if present
     if "use-metadata-iam" in payload:
@@ -175,13 +175,13 @@ def validate_sdn_connector_post(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate server-port if present
     if "server-port" in payload:
@@ -190,7 +190,7 @@ def validate_sdn_connector_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"server-port must be between 0 and 65535")
+                    return (False, "server-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"server-port must be numeric, got: {value}")
 
@@ -203,7 +203,7 @@ def validate_sdn_connector_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"message-server-port must be between 0 and 65535",
+                        "message-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -215,37 +215,37 @@ def validate_sdn_connector_post(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate vcenter-server if present
     if "vcenter-server" in payload:
         value = payload.get("vcenter-server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"vcenter-server cannot exceed 127 characters")
+            return (False, "vcenter-server cannot exceed 127 characters")
 
     # Validate vcenter-username if present
     if "vcenter-username" in payload:
         value = payload.get("vcenter-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"vcenter-username cannot exceed 64 characters")
+            return (False, "vcenter-username cannot exceed 64 characters")
 
     # Validate access-key if present
     if "access-key" in payload:
         value = payload.get("access-key")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"access-key cannot exceed 31 characters")
+            return (False, "access-key cannot exceed 31 characters")
 
     # Validate region if present
     if "region" in payload:
         value = payload.get("region")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"region cannot exceed 31 characters")
+            return (False, "region cannot exceed 31 characters")
 
     # Validate vpc-id if present
     if "vpc-id" in payload:
         value = payload.get("vpc-id")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vpc-id cannot exceed 31 characters")
+            return (False, "vpc-id cannot exceed 31 characters")
 
     # Validate alt-resource-ip if present
     if "alt-resource-ip" in payload:
@@ -260,37 +260,37 @@ def validate_sdn_connector_post(
     if "tenant-id" in payload:
         value = payload.get("tenant-id")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"tenant-id cannot exceed 127 characters")
+            return (False, "tenant-id cannot exceed 127 characters")
 
     # Validate client-id if present
     if "client-id" in payload:
         value = payload.get("client-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"client-id cannot exceed 63 characters")
+            return (False, "client-id cannot exceed 63 characters")
 
     # Validate subscription-id if present
     if "subscription-id" in payload:
         value = payload.get("subscription-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"subscription-id cannot exceed 63 characters")
+            return (False, "subscription-id cannot exceed 63 characters")
 
     # Validate resource-group if present
     if "resource-group" in payload:
         value = payload.get("resource-group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"resource-group cannot exceed 63 characters")
+            return (False, "resource-group cannot exceed 63 characters")
 
     # Validate login-endpoint if present
     if "login-endpoint" in payload:
         value = payload.get("login-endpoint")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"login-endpoint cannot exceed 127 characters")
+            return (False, "login-endpoint cannot exceed 127 characters")
 
     # Validate resource-url if present
     if "resource-url" in payload:
         value = payload.get("resource-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"resource-url cannot exceed 127 characters")
+            return (False, "resource-url cannot exceed 127 characters")
 
     # Validate azure-region if present
     if "azure-region" in payload:
@@ -305,7 +305,7 @@ def validate_sdn_connector_post(
     if "user-id" in payload:
         value = payload.get("user-id")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"user-id cannot exceed 127 characters")
+            return (False, "user-id cannot exceed 127 characters")
 
     # Validate oci-region-type if present
     if "oci-region-type" in payload:
@@ -320,43 +320,43 @@ def validate_sdn_connector_post(
     if "oci-cert" in payload:
         value = payload.get("oci-cert")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"oci-cert cannot exceed 63 characters")
+            return (False, "oci-cert cannot exceed 63 characters")
 
     # Validate oci-fingerprint if present
     if "oci-fingerprint" in payload:
         value = payload.get("oci-fingerprint")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"oci-fingerprint cannot exceed 63 characters")
+            return (False, "oci-fingerprint cannot exceed 63 characters")
 
     # Validate service-account if present
     if "service-account" in payload:
         value = payload.get("service-account")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"service-account cannot exceed 127 characters")
+            return (False, "service-account cannot exceed 127 characters")
 
     # Validate domain if present
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"domain cannot exceed 127 characters")
+            return (False, "domain cannot exceed 127 characters")
 
     # Validate group-name if present
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"group-name cannot exceed 127 characters")
+            return (False, "group-name cannot exceed 127 characters")
 
     # Validate server-cert if present
     if "server-cert" in payload:
         value = payload.get("server-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server-cert cannot exceed 127 characters")
+            return (False, "server-cert cannot exceed 127 characters")
 
     # Validate server-ca-cert if present
     if "server-ca-cert" in payload:
         value = payload.get("server-ca-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server-ca-cert cannot exceed 127 characters")
+            return (False, "server-ca-cert cannot exceed 127 characters")
 
     # Validate ibm-region if present
     if "ibm-region" in payload:
@@ -371,7 +371,7 @@ def validate_sdn_connector_post(
     if "par-id" in payload:
         value = payload.get("par-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"par-id cannot exceed 63 characters")
+            return (False, "par-id cannot exceed 63 characters")
 
     # Validate update-interval if present
     if "update-interval" in payload:
@@ -382,7 +382,7 @@ def validate_sdn_connector_post(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"update-interval must be between 0 and 3600",
+                        "update-interval must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -423,7 +423,7 @@ def validate_sdn_connector_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -447,7 +447,7 @@ def validate_sdn_connector_put(
     if "proxy" in payload:
         value = payload.get("proxy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"proxy cannot exceed 35 characters")
+            return (False, "proxy cannot exceed 35 characters")
 
     # Validate use-metadata-iam if present
     if "use-metadata-iam" in payload:
@@ -489,13 +489,13 @@ def validate_sdn_connector_put(
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate server if present
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server cannot exceed 127 characters")
+            return (False, "server cannot exceed 127 characters")
 
     # Validate server-port if present
     if "server-port" in payload:
@@ -504,7 +504,7 @@ def validate_sdn_connector_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"server-port must be between 0 and 65535")
+                    return (False, "server-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"server-port must be numeric, got: {value}")
 
@@ -517,7 +517,7 @@ def validate_sdn_connector_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"message-server-port must be between 0 and 65535",
+                        "message-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -529,37 +529,37 @@ def validate_sdn_connector_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate vcenter-server if present
     if "vcenter-server" in payload:
         value = payload.get("vcenter-server")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"vcenter-server cannot exceed 127 characters")
+            return (False, "vcenter-server cannot exceed 127 characters")
 
     # Validate vcenter-username if present
     if "vcenter-username" in payload:
         value = payload.get("vcenter-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"vcenter-username cannot exceed 64 characters")
+            return (False, "vcenter-username cannot exceed 64 characters")
 
     # Validate access-key if present
     if "access-key" in payload:
         value = payload.get("access-key")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"access-key cannot exceed 31 characters")
+            return (False, "access-key cannot exceed 31 characters")
 
     # Validate region if present
     if "region" in payload:
         value = payload.get("region")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"region cannot exceed 31 characters")
+            return (False, "region cannot exceed 31 characters")
 
     # Validate vpc-id if present
     if "vpc-id" in payload:
         value = payload.get("vpc-id")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vpc-id cannot exceed 31 characters")
+            return (False, "vpc-id cannot exceed 31 characters")
 
     # Validate alt-resource-ip if present
     if "alt-resource-ip" in payload:
@@ -574,37 +574,37 @@ def validate_sdn_connector_put(
     if "tenant-id" in payload:
         value = payload.get("tenant-id")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"tenant-id cannot exceed 127 characters")
+            return (False, "tenant-id cannot exceed 127 characters")
 
     # Validate client-id if present
     if "client-id" in payload:
         value = payload.get("client-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"client-id cannot exceed 63 characters")
+            return (False, "client-id cannot exceed 63 characters")
 
     # Validate subscription-id if present
     if "subscription-id" in payload:
         value = payload.get("subscription-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"subscription-id cannot exceed 63 characters")
+            return (False, "subscription-id cannot exceed 63 characters")
 
     # Validate resource-group if present
     if "resource-group" in payload:
         value = payload.get("resource-group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"resource-group cannot exceed 63 characters")
+            return (False, "resource-group cannot exceed 63 characters")
 
     # Validate login-endpoint if present
     if "login-endpoint" in payload:
         value = payload.get("login-endpoint")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"login-endpoint cannot exceed 127 characters")
+            return (False, "login-endpoint cannot exceed 127 characters")
 
     # Validate resource-url if present
     if "resource-url" in payload:
         value = payload.get("resource-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"resource-url cannot exceed 127 characters")
+            return (False, "resource-url cannot exceed 127 characters")
 
     # Validate azure-region if present
     if "azure-region" in payload:
@@ -619,7 +619,7 @@ def validate_sdn_connector_put(
     if "user-id" in payload:
         value = payload.get("user-id")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"user-id cannot exceed 127 characters")
+            return (False, "user-id cannot exceed 127 characters")
 
     # Validate oci-region-type if present
     if "oci-region-type" in payload:
@@ -634,43 +634,43 @@ def validate_sdn_connector_put(
     if "oci-cert" in payload:
         value = payload.get("oci-cert")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"oci-cert cannot exceed 63 characters")
+            return (False, "oci-cert cannot exceed 63 characters")
 
     # Validate oci-fingerprint if present
     if "oci-fingerprint" in payload:
         value = payload.get("oci-fingerprint")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"oci-fingerprint cannot exceed 63 characters")
+            return (False, "oci-fingerprint cannot exceed 63 characters")
 
     # Validate service-account if present
     if "service-account" in payload:
         value = payload.get("service-account")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"service-account cannot exceed 127 characters")
+            return (False, "service-account cannot exceed 127 characters")
 
     # Validate domain if present
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"domain cannot exceed 127 characters")
+            return (False, "domain cannot exceed 127 characters")
 
     # Validate group-name if present
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"group-name cannot exceed 127 characters")
+            return (False, "group-name cannot exceed 127 characters")
 
     # Validate server-cert if present
     if "server-cert" in payload:
         value = payload.get("server-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server-cert cannot exceed 127 characters")
+            return (False, "server-cert cannot exceed 127 characters")
 
     # Validate server-ca-cert if present
     if "server-ca-cert" in payload:
         value = payload.get("server-ca-cert")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"server-ca-cert cannot exceed 127 characters")
+            return (False, "server-ca-cert cannot exceed 127 characters")
 
     # Validate ibm-region if present
     if "ibm-region" in payload:
@@ -685,7 +685,7 @@ def validate_sdn_connector_put(
     if "par-id" in payload:
         value = payload.get("par-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"par-id cannot exceed 63 characters")
+            return (False, "par-id cannot exceed 63 characters")
 
     # Validate update-interval if present
     if "update-interval" in payload:
@@ -696,7 +696,7 @@ def validate_sdn_connector_put(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"update-interval must be between 0 and 3600",
+                        "update-interval must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (

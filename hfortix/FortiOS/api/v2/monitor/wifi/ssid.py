@@ -70,9 +70,11 @@ class GenerateKeys:
         Generate pre-shared keys for specific multi pre-shared key profile.
 
         Args:
-            mpsk_profile: Multi pre-shared key profile to add keys to. (optional)
+            mpsk_profile: Multi pre-shared key profile to add keys to.
+            (optional)
             group: Multi pre-shared key group to add keys to. (optional)
-            prefix: Prefix to be added at the start of the generated key's name. (optional)
+            prefix: Prefix to be added at the start of the generated key's
+            name. (optional)
             count: Number of keys to be generated [1-512]. (optional)
             key_length: Length of the keys to be generated [8-63]. (optional)
             payload_dict: Optional dictionary of parameters

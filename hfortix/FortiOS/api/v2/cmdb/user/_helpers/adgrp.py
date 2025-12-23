@@ -69,19 +69,19 @@ def validate_adgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"name cannot exceed 511 characters")
+            return (False, "name cannot exceed 511 characters")
 
     # Validate server-name if present
     if "server-name" in payload:
         value = payload.get("server-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"server-name cannot exceed 35 characters")
+            return (False, "server-name cannot exceed 35 characters")
 
     # Validate connector-source if present
     if "connector-source" in payload:
         value = payload.get("connector-source")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"connector-source cannot exceed 35 characters")
+            return (False, "connector-source cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -90,7 +90,7 @@ def validate_adgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -127,19 +127,19 @@ def validate_adgrp_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"name cannot exceed 511 characters")
+            return (False, "name cannot exceed 511 characters")
 
     # Validate server-name if present
     if "server-name" in payload:
         value = payload.get("server-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"server-name cannot exceed 35 characters")
+            return (False, "server-name cannot exceed 35 characters")
 
     # Validate connector-source if present
     if "connector-source" in payload:
         value = payload.get("connector-source")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"connector-source cannot exceed 35 characters")
+            return (False, "connector-source cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -148,7 +148,7 @@ def validate_adgrp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 

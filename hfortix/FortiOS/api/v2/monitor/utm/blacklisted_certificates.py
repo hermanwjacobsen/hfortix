@@ -112,7 +112,8 @@ class BlacklistedCertificates:
 
         Args:
             start: Starting entry index. (required)
-            count: Maximum number of entries to return. Limit is set to 2000. (required)
+            count: Maximum number of entries to return. Limit is set to 2000.
+            (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -121,7 +122,8 @@ class BlacklistedCertificates:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.utm.blacklisted_certificates.get(start=1, count=1)
+            >>> fgt.api.monitor.utm.blacklisted_certificates.get(start=1,
+            count=1)
         """
         params = payload_dict.copy() if payload_dict else {}
         params["start"] = start

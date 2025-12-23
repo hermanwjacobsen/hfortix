@@ -136,7 +136,7 @@ def validate_fortiguard_override_setting_put(
                 if int_val < 0 or int_val > 100000:
                     return (
                         False,
-                        f"max-log-rate must be between 0 and 100000",
+                        "max-log-rate must be between 0 and 100000",
                     )
             except (ValueError, TypeError):
                 return (False, f"max-log-rate must be numeric, got: {value}")

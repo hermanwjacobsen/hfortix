@@ -62,7 +62,8 @@ class Stats:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Return the current FortiSwitch matched NAC device counts and limits for the FortiGate.
+        Return the current FortiSwitch matched NAC device counts and limits for
+        the FortiGate.
 
         Args:
             payload_dict: Optional dictionary of parameters

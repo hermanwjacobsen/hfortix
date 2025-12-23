@@ -71,13 +71,13 @@ def validate_geneve_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vni if present
     if "vni" in payload:
@@ -86,7 +86,7 @@ def validate_geneve_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 16777215:
-                    return (False, f"vni must be between 0 and 16777215")
+                    return (False, "vni must be between 0 and 16777215")
             except (ValueError, TypeError):
                 return (False, f"vni must be numeric, got: {value}")
 
@@ -115,7 +115,7 @@ def validate_geneve_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"dstport must be between 1 and 65535")
+                    return (False, "dstport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"dstport must be numeric, got: {value}")
 
@@ -152,13 +152,13 @@ def validate_geneve_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vni if present
     if "vni" in payload:
@@ -167,7 +167,7 @@ def validate_geneve_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 16777215:
-                    return (False, f"vni must be between 0 and 16777215")
+                    return (False, "vni must be between 0 and 16777215")
             except (ValueError, TypeError):
                 return (False, f"vni must be numeric, got: {value}")
 
@@ -196,7 +196,7 @@ def validate_geneve_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"dstport must be between 1 and 65535")
+                    return (False, "dstport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"dstport must be numeric, got: {value}")
 

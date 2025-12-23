@@ -73,7 +73,7 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate mandatory-ca-verify if present
     if "mandatory-ca-verify" in payload:
@@ -88,19 +88,19 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ca" in payload:
         value = payload.get("ca")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"ca cannot exceed 127 characters")
+            return (False, "ca cannot exceed 127 characters")
 
     # Validate subject if present
     if "subject" in payload:
         value = payload.get("subject")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"subject cannot exceed 255 characters")
+            return (False, "subject cannot exceed 255 characters")
 
     # Validate cn if present
     if "cn" in payload:
         value = payload.get("cn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cn cannot exceed 255 characters")
+            return (False, "cn cannot exceed 255 characters")
 
     # Validate cn-type if present
     if "cn-type" in payload:
@@ -124,19 +124,19 @@ def validate_peer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "mfa-server" in payload:
         value = payload.get("mfa-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mfa-server cannot exceed 35 characters")
+            return (False, "mfa-server cannot exceed 35 characters")
 
     # Validate mfa-username if present
     if "mfa-username" in payload:
         value = payload.get("mfa-username")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mfa-username cannot exceed 35 characters")
+            return (False, "mfa-username cannot exceed 35 characters")
 
     # Validate ocsp-override-server if present
     if "ocsp-override-server" in payload:
         value = payload.get("ocsp-override-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ocsp-override-server cannot exceed 35 characters")
+            return (False, "ocsp-override-server cannot exceed 35 characters")
 
     # Validate two-factor if present
     if "two-factor" in payload:
@@ -180,7 +180,7 @@ def validate_peer_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate mandatory-ca-verify if present
     if "mandatory-ca-verify" in payload:
@@ -195,19 +195,19 @@ def validate_peer_put(
     if "ca" in payload:
         value = payload.get("ca")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"ca cannot exceed 127 characters")
+            return (False, "ca cannot exceed 127 characters")
 
     # Validate subject if present
     if "subject" in payload:
         value = payload.get("subject")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"subject cannot exceed 255 characters")
+            return (False, "subject cannot exceed 255 characters")
 
     # Validate cn if present
     if "cn" in payload:
         value = payload.get("cn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cn cannot exceed 255 characters")
+            return (False, "cn cannot exceed 255 characters")
 
     # Validate cn-type if present
     if "cn-type" in payload:
@@ -231,19 +231,19 @@ def validate_peer_put(
     if "mfa-server" in payload:
         value = payload.get("mfa-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mfa-server cannot exceed 35 characters")
+            return (False, "mfa-server cannot exceed 35 characters")
 
     # Validate mfa-username if present
     if "mfa-username" in payload:
         value = payload.get("mfa-username")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"mfa-username cannot exceed 35 characters")
+            return (False, "mfa-username cannot exceed 35 characters")
 
     # Validate ocsp-override-server if present
     if "ocsp-override-server" in payload:
         value = payload.get("ocsp-override-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ocsp-override-server cannot exceed 35 characters")
+            return (False, "ocsp-override-server cannot exceed 35 characters")
 
     # Validate two-factor if present
     if "two-factor" in payload:

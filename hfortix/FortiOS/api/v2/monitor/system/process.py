@@ -68,7 +68,8 @@ class Kill:
 
         Args:
             pid: The process ID. (optional)
-            signal: Signal to use when killing the process [9 (SIGKILL) | 11 (SIGSEGV) | 15 (SIGTERM)]. Defaults to 15. (optional)
+            signal: Signal to use when killing the process [9 (SIGKILL) | 11
+            (SIGSEGV) | 15 (SIGTERM)]. Defaults to 15. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

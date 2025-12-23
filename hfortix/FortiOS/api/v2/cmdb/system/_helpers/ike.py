@@ -84,7 +84,7 @@ def validate_ike_put(
                 if int_val < 50 or int_val > 20000:
                     return (
                         False,
-                        f"embryonic-limit must be between 50 and 20000",
+                        "embryonic-limit must be between 50 and 20000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -108,7 +108,7 @@ def validate_ike_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 8:
-                    return (False, f"dh-worker-count must be between 1 and 8")
+                    return (False, "dh-worker-count must be between 1 and 8")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -142,7 +142,7 @@ def validate_ike_put(
                 if int_val < 0 or int_val > 50000:
                     return (
                         False,
-                        f"dh-keypair-count must be between 0 and 50000",
+                        "dh-keypair-count must be between 0 and 50000",
                     )
             except (ValueError, TypeError):
                 return (

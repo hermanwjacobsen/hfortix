@@ -92,13 +92,13 @@ def validate_global__put(
     if "ssl-cert" in payload:
         value = payload.get("ssl-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-cert cannot exceed 35 characters")
+            return (False, "ssl-cert cannot exceed 35 characters")
 
     # Validate ssl-ca-cert if present
     if "ssl-ca-cert" in payload:
         value = payload.get("ssl-ca-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-ca-cert cannot exceed 35 characters")
+            return (False, "ssl-ca-cert cannot exceed 35 characters")
 
     # Validate fast-policy-match if present
     if "fast-policy-match" in payload:
@@ -122,7 +122,7 @@ def validate_global__put(
     if "proxy-fqdn" in payload:
         value = payload.get("proxy-fqdn")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"proxy-fqdn cannot exceed 255 characters")
+            return (False, "proxy-fqdn cannot exceed 255 characters")
 
     # Validate max-request-length if present
     if "max-request-length" in payload:
@@ -133,7 +133,7 @@ def validate_global__put(
                 if int_val < 2 or int_val > 64:
                     return (
                         False,
-                        f"max-request-length must be between 2 and 64",
+                        "max-request-length must be between 2 and 64",
                     )
             except (ValueError, TypeError):
                 return (
@@ -150,7 +150,7 @@ def validate_global__put(
                 if int_val < 16 or int_val > 256:
                     return (
                         False,
-                        f"max-message-length must be between 16 and 256",
+                        "max-message-length must be between 16 and 256",
                     )
             except (ValueError, TypeError):
                 return (
@@ -167,7 +167,7 @@ def validate_global__put(
                 if int_val < 65535 or int_val > 2147483647:
                     return (
                         False,
-                        f"http2-client-window-size must be between 65535 and 2147483647",
+                        "http2-client-window-size must be between 65535 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -184,7 +184,7 @@ def validate_global__put(
                 if int_val < 65535 or int_val > 2147483647:
                     return (
                         False,
-                        f"http2-server-window-size must be between 65535 and 2147483647",
+                        "http2-server-window-size must be between 65535 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -201,7 +201,7 @@ def validate_global__put(
                 if int_val < 30 or int_val > 3600:
                     return (
                         False,
-                        f"auth-sign-timeout must be between 30 and 3600",
+                        "auth-sign-timeout must be between 30 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -236,7 +236,7 @@ def validate_global__put(
                 if int_val < 6 or int_val > 60:
                     return (
                         False,
-                        f"forward-server-affinity-timeout must be between 6 and 60",
+                        "forward-server-affinity-timeout must be between 6 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -253,7 +253,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 1024:
                     return (
                         False,
-                        f"max-waf-body-cache-length must be between 1 and 1024",
+                        "max-waf-body-cache-length must be between 1 and 1024",
                     )
             except (ValueError, TypeError):
                 return (
@@ -265,7 +265,7 @@ def validate_global__put(
     if "webproxy-profile" in payload:
         value = payload.get("webproxy-profile")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"webproxy-profile cannot exceed 63 characters")
+            return (False, "webproxy-profile cannot exceed 63 characters")
 
     # Validate learn-client-ip if present
     if "learn-client-ip" in payload:

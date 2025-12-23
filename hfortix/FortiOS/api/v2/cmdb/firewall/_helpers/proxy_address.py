@@ -98,7 +98,7 @@ def validate_proxy_address_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -113,25 +113,25 @@ def validate_proxy_address_post(
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate host-regex if present
     if "host-regex" in payload:
         value = payload.get("host-regex")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"host-regex cannot exceed 255 characters")
+            return (False, "host-regex cannot exceed 255 characters")
 
     # Validate path if present
     if "path" in payload:
         value = payload.get("path")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"path cannot exceed 255 characters")
+            return (False, "path cannot exceed 255 characters")
 
     # Validate query if present
     if "query" in payload:
         value = payload.get("query")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"query cannot exceed 255 characters")
+            return (False, "query cannot exceed 255 characters")
 
     # Validate referrer if present
     if "referrer" in payload:
@@ -164,25 +164,25 @@ def validate_proxy_address_post(
     if "ua-min-ver" in payload:
         value = payload.get("ua-min-ver")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ua-min-ver cannot exceed 63 characters")
+            return (False, "ua-min-ver cannot exceed 63 characters")
 
     # Validate ua-max-ver if present
     if "ua-max-ver" in payload:
         value = payload.get("ua-max-ver")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ua-max-ver cannot exceed 63 characters")
+            return (False, "ua-max-ver cannot exceed 63 characters")
 
     # Validate header-name if present
     if "header-name" in payload:
         value = payload.get("header-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"header-name cannot exceed 79 characters")
+            return (False, "header-name cannot exceed 79 characters")
 
     # Validate header if present
     if "header" in payload:
         value = payload.get("header")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"header cannot exceed 255 characters")
+            return (False, "header cannot exceed 255 characters")
 
     # Validate case-sensitivity if present
     if "case-sensitivity" in payload:
@@ -200,7 +200,7 @@ def validate_proxy_address_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -208,7 +208,7 @@ def validate_proxy_address_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 
@@ -243,7 +243,7 @@ def validate_proxy_address_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -258,25 +258,25 @@ def validate_proxy_address_put(
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate host-regex if present
     if "host-regex" in payload:
         value = payload.get("host-regex")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"host-regex cannot exceed 255 characters")
+            return (False, "host-regex cannot exceed 255 characters")
 
     # Validate path if present
     if "path" in payload:
         value = payload.get("path")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"path cannot exceed 255 characters")
+            return (False, "path cannot exceed 255 characters")
 
     # Validate query if present
     if "query" in payload:
         value = payload.get("query")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"query cannot exceed 255 characters")
+            return (False, "query cannot exceed 255 characters")
 
     # Validate referrer if present
     if "referrer" in payload:
@@ -309,25 +309,25 @@ def validate_proxy_address_put(
     if "ua-min-ver" in payload:
         value = payload.get("ua-min-ver")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ua-min-ver cannot exceed 63 characters")
+            return (False, "ua-min-ver cannot exceed 63 characters")
 
     # Validate ua-max-ver if present
     if "ua-max-ver" in payload:
         value = payload.get("ua-max-ver")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ua-max-ver cannot exceed 63 characters")
+            return (False, "ua-max-ver cannot exceed 63 characters")
 
     # Validate header-name if present
     if "header-name" in payload:
         value = payload.get("header-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"header-name cannot exceed 79 characters")
+            return (False, "header-name cannot exceed 79 characters")
 
     # Validate header if present
     if "header" in payload:
         value = payload.get("header")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"header cannot exceed 255 characters")
+            return (False, "header cannot exceed 255 characters")
 
     # Validate case-sensitivity if present
     if "case-sensitivity" in payload:
@@ -345,7 +345,7 @@ def validate_proxy_address_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -353,7 +353,7 @@ def validate_proxy_address_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 

@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class ProxyPolicy:
         Select a specific entry from a CLI table.
 
         Args:
-            policyid: Object identifier (optional for list, required for specific)
+            policyid: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class ProxyPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -229,11 +236,15 @@ class ProxyPolicy:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             policyid: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             policyid: Policy ID. (optional)
             name: Policy name. (optional)
             proxy: Type of explicit proxy. (optional)
@@ -248,74 +259,118 @@ class ProxyPolicy:
             dstaddr: Destination address objects. (optional)
             ztna_ems_tag: ZTNA EMS Tag names. (optional)
             ztna_tags_match_logic: ZTNA tag matching logic. (optional)
-            device_ownership: When enabled, the ownership enforcement will be done at policy level. (optional)
+            device_ownership: When enabled, the ownership enforcement will be
+            done at policy level. (optional)
             url_risk: URL risk level name. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
-            internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address and service are not used.
+            (optional)
+            internet_service_negate: When enabled, Internet Services match
+            against any internet service EXCEPT the selected Internet Service.
+            (optional)
             internet_service_name: Internet Service name. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. (optional)
-            internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service6: Enable/disable use of Internet Services IPv6 for
+            this policy. If enabled, destination IPv6 address and service are
+            not used. (optional)
+            internet_service6_negate: When enabled, Internet Services match
+            against any internet service IPv6 EXCEPT the selected Internet
+            Service IPv6. (optional)
             internet_service6_name: Internet Service IPv6 name. (optional)
-            internet_service6_group: Internet Service IPv6 group name. (optional)
-            internet_service6_custom: Custom Internet Service IPv6 name. (optional)
-            internet_service6_custom_group: Custom Internet Service IPv6 group name. (optional)
-            internet_service6_fortiguard: FortiGuard Internet Service IPv6 name. (optional)
+            internet_service6_group: Internet Service IPv6 group name.
+            (optional)
+            internet_service6_custom: Custom Internet Service IPv6 name.
+            (optional)
+            internet_service6_custom_group: Custom Internet Service IPv6 group
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard Internet Service IPv6
+            name. (optional)
             service: Name of service objects. (optional)
-            srcaddr_negate: When enabled, source addresses match against any address EXCEPT the specified source addresses. (optional)
-            dstaddr_negate: When enabled, destination addresses match against any address EXCEPT the specified destination addresses. (optional)
-            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. (optional)
-            service_negate: When enabled, services match against any service EXCEPT the specified destination services. (optional)
+            srcaddr_negate: When enabled, source addresses match against any
+            address EXCEPT the specified source addresses. (optional)
+            dstaddr_negate: When enabled, destination addresses match against
+            any address EXCEPT the specified destination addresses. (optional)
+            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any
+            tag EXCEPT the specified ZTNA EMS tags. (optional)
+            service_negate: When enabled, services match against any service
+            EXCEPT the specified destination services. (optional)
             status: Enable/disable the active status of the policy. (optional)
             schedule: Name of schedule object. (optional)
-            logtraffic: Enable/disable logging traffic through the policy. (optional)
-            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
+            logtraffic: Enable/disable logging traffic through the policy.
+            (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0
+            means use the system default session TTL). (optional)
             srcaddr6: IPv6 source address objects. (optional)
             dstaddr6: IPv6 destination address objects. (optional)
             groups: Names of group objects. (optional)
             users: Names of user objects. (optional)
-            http_tunnel_auth: Enable/disable HTTP tunnel authentication. (optional)
-            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
+            http_tunnel_auth: Enable/disable HTTP tunnel authentication.
+            (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent
+            proxy policy. (optional)
             webproxy_forward_server: Web proxy forward server name. (optional)
             isolator_server: Isolator server name. (optional)
             webproxy_profile: Name of web proxy profile. (optional)
-            transparent: Enable to use the IP address of the client to connect to the server. (optional)
-            disclaimer: Web proxy disclaimer setting: by domain, policy, or user. (optional)
-            utm_status: Enable the use of UTM profiles/sensors/lists. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            transparent: Enable to use the IP address of the client to connect
+            to the server. (optional)
+            disclaimer: Web proxy disclaimer setting: by domain, policy, or
+            user. (optional)
+            utm_status: Enable the use of UTM profiles/sensors/lists.
+            (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
-            replacemsg_override_group: Authentication replacement message override group. (optional)
-            logtraffic_start: Enable/disable policy log traffic start. (optional)
-            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            replacemsg_override_group: Authentication replacement message
+            override group. (optional)
+            logtraffic_start: Enable/disable policy log traffic start.
+            (optional)
+            log_http_transaction: Enable/disable HTTP transaction log.
+            (optional)
             comments: Optional comments. (optional)
             block_notification: Enable/disable block notification. (optional)
-            redirect_url: Redirect URL for further explicit web proxy processing. (optional)
-            https_sub_category: Enable/disable HTTPS sub-category policy matching. (optional)
+            redirect_url: Redirect URL for further explicit web proxy
+            processing. (optional)
+            https_sub_category: Enable/disable HTTPS sub-category policy
+            matching. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
-            detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. (optional)
+            detect_https_in_http_request: Enable/disable detection of HTTPS in
+            HTTP request. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -323,7 +378,8 @@ class ProxyPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -353,9 +409,9 @@ class ProxyPolicy:
         if ztna_proxy is not None:
             data_payload["ztna-proxy"] = ztna_proxy
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if poolname is not None:
@@ -529,8 +585,10 @@ class ProxyPolicy:
         Args:
             policyid: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -538,7 +596,8 @@ class ProxyPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -689,9 +748,12 @@ class ProxyPolicy:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             policyid: Policy ID. (optional)
             name: Policy name. (optional)
             proxy: Type of explicit proxy. (optional)
@@ -706,74 +768,118 @@ class ProxyPolicy:
             dstaddr: Destination address objects. (optional)
             ztna_ems_tag: ZTNA EMS Tag names. (optional)
             ztna_tags_match_logic: ZTNA tag matching logic. (optional)
-            device_ownership: When enabled, the ownership enforcement will be done at policy level. (optional)
+            device_ownership: When enabled, the ownership enforcement will be
+            done at policy level. (optional)
             url_risk: URL risk level name. (optional)
-            internet_service: Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used. (optional)
-            internet_service_negate: When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. (optional)
+            internet_service: Enable/disable use of Internet Services for this
+            policy. If enabled, destination address and service are not used.
+            (optional)
+            internet_service_negate: When enabled, Internet Services match
+            against any internet service EXCEPT the selected Internet Service.
+            (optional)
             internet_service_name: Internet Service name. (optional)
             internet_service_group: Internet Service group name. (optional)
             internet_service_custom: Custom Internet Service name. (optional)
-            internet_service_custom_group: Custom Internet Service group name. (optional)
-            internet_service_fortiguard: FortiGuard Internet Service name. (optional)
-            internet_service6: Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. (optional)
-            internet_service6_negate: When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. (optional)
+            internet_service_custom_group: Custom Internet Service group name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Internet Service name.
+            (optional)
+            internet_service6: Enable/disable use of Internet Services IPv6 for
+            this policy. If enabled, destination IPv6 address and service are
+            not used. (optional)
+            internet_service6_negate: When enabled, Internet Services match
+            against any internet service IPv6 EXCEPT the selected Internet
+            Service IPv6. (optional)
             internet_service6_name: Internet Service IPv6 name. (optional)
-            internet_service6_group: Internet Service IPv6 group name. (optional)
-            internet_service6_custom: Custom Internet Service IPv6 name. (optional)
-            internet_service6_custom_group: Custom Internet Service IPv6 group name. (optional)
-            internet_service6_fortiguard: FortiGuard Internet Service IPv6 name. (optional)
+            internet_service6_group: Internet Service IPv6 group name.
+            (optional)
+            internet_service6_custom: Custom Internet Service IPv6 name.
+            (optional)
+            internet_service6_custom_group: Custom Internet Service IPv6 group
+            name. (optional)
+            internet_service6_fortiguard: FortiGuard Internet Service IPv6
+            name. (optional)
             service: Name of service objects. (optional)
-            srcaddr_negate: When enabled, source addresses match against any address EXCEPT the specified source addresses. (optional)
-            dstaddr_negate: When enabled, destination addresses match against any address EXCEPT the specified destination addresses. (optional)
-            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. (optional)
-            service_negate: When enabled, services match against any service EXCEPT the specified destination services. (optional)
+            srcaddr_negate: When enabled, source addresses match against any
+            address EXCEPT the specified source addresses. (optional)
+            dstaddr_negate: When enabled, destination addresses match against
+            any address EXCEPT the specified destination addresses. (optional)
+            ztna_ems_tag_negate: When enabled, ZTNA EMS tags match against any
+            tag EXCEPT the specified ZTNA EMS tags. (optional)
+            service_negate: When enabled, services match against any service
+            EXCEPT the specified destination services. (optional)
             status: Enable/disable the active status of the policy. (optional)
             schedule: Name of schedule object. (optional)
-            logtraffic: Enable/disable logging traffic through the policy. (optional)
-            session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL). (optional)
+            logtraffic: Enable/disable logging traffic through the policy.
+            (optional)
+            session_ttl: TTL in seconds for sessions accepted by this policy (0
+            means use the system default session TTL). (optional)
             srcaddr6: IPv6 source address objects. (optional)
             dstaddr6: IPv6 destination address objects. (optional)
             groups: Names of group objects. (optional)
             users: Names of user objects. (optional)
-            http_tunnel_auth: Enable/disable HTTP tunnel authentication. (optional)
-            ssh_policy_redirect: Redirect SSH traffic to matching transparent proxy policy. (optional)
+            http_tunnel_auth: Enable/disable HTTP tunnel authentication.
+            (optional)
+            ssh_policy_redirect: Redirect SSH traffic to matching transparent
+            proxy policy. (optional)
             webproxy_forward_server: Web proxy forward server name. (optional)
             isolator_server: Isolator server name. (optional)
             webproxy_profile: Name of web proxy profile. (optional)
-            transparent: Enable to use the IP address of the client to connect to the server. (optional)
-            disclaimer: Web proxy disclaimer setting: by domain, policy, or user. (optional)
-            utm_status: Enable the use of UTM profiles/sensors/lists. (optional)
-            profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. (optional)
+            transparent: Enable to use the IP address of the client to connect
+            to the server. (optional)
+            disclaimer: Web proxy disclaimer setting: by domain, policy, or
+            user. (optional)
+            utm_status: Enable the use of UTM profiles/sensors/lists.
+            (optional)
+            profile_type: Determine whether the firewall policy allows security
+            profile groups or single profiles only. (optional)
             profile_group: Name of profile group. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
-            replacemsg_override_group: Authentication replacement message override group. (optional)
-            logtraffic_start: Enable/disable policy log traffic start. (optional)
-            log_http_transaction: Enable/disable HTTP transaction log. (optional)
+            replacemsg_override_group: Authentication replacement message
+            override group. (optional)
+            logtraffic_start: Enable/disable policy log traffic start.
+            (optional)
+            log_http_transaction: Enable/disable HTTP transaction log.
+            (optional)
             comments: Optional comments. (optional)
             block_notification: Enable/disable block notification. (optional)
-            redirect_url: Redirect URL for further explicit web proxy processing. (optional)
-            https_sub_category: Enable/disable HTTPS sub-category policy matching. (optional)
+            redirect_url: Redirect URL for further explicit web proxy
+            processing. (optional)
+            https_sub_category: Enable/disable HTTPS sub-category policy
+            matching. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
-            detect_https_in_http_request: Enable/disable detection of HTTPS in HTTP request. (optional)
+            detect_https_in_http_request: Enable/disable detection of HTTPS in
+            HTTP request. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -781,7 +887,8 @@ class ProxyPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -805,9 +912,9 @@ class ProxyPolicy:
         if ztna_proxy is not None:
             data_payload["ztna-proxy"] = ztna_proxy
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if poolname is not None:

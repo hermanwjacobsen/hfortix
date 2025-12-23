@@ -66,7 +66,8 @@ class HealthCheck:
         Retrieve health-check statistics for each SD-WAN link.
 
         Args:
-            health_check_name: Health check name. If not provided, will return results of all health checks. (optional)
+            health_check_name: Health check name. If not provided, will return
+            results of all health checks. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

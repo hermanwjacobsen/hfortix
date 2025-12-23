@@ -91,7 +91,7 @@ def validate_fsso_polling_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"listening-port must be between 1 and 65535",
+                        "listening-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"listening-port must be numeric, got: {value}")

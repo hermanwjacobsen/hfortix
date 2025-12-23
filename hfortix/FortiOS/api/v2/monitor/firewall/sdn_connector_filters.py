@@ -66,7 +66,8 @@ class SdnConnectorFilters:
         List all available filters for a specified SDN Fabric Connector.
 
         Args:
-            connector: Name of the SDN Fabric Connector to get the filters from. (required)
+            connector: Name of the SDN Fabric Connector to get the filters
+            from. (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -75,7 +76,8 @@ class SdnConnectorFilters:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.sdn_connector_filters.get(connector='value')
+            >>>
+            fgt.api.monitor.firewall.sdn_connector_filters.get(connector='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["connector"] = connector

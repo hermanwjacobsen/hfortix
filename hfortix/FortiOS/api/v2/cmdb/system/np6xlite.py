@@ -98,12 +98,17 @@ class Np6xlite:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Np6xlite:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -158,22 +164,34 @@ class Np6xlite:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Device Name. (optional)
-            fastpath: Enable/disable NP6XLITE offloading (also called fast path). (optional)
-            per_session_accounting: Enable/disable per-session accounting. (optional)
-            session_timeout_interval: Set session timeout interval (0 - 1000 sec, default 40 sec). (optional)
-            ipsec_inner_fragment: Enable/disable NP6XLite IPsec fragmentation type: inner. (optional)
-            ipsec_throughput_msg_frequency: Set NP6XLite IPsec throughput message frequency (0 = disable). (optional)
-            ipsec_sts_timeout: Set NP6XLite IPsec STS message timeout. (optional)
+            fastpath: Enable/disable NP6XLITE offloading (also called fast
+            path). (optional)
+            per_session_accounting: Enable/disable per-session accounting.
+            (optional)
+            session_timeout_interval: Set session timeout interval (0 - 1000
+            sec, default 40 sec). (optional)
+            ipsec_inner_fragment: Enable/disable NP6XLite IPsec fragmentation
+            type: inner. (optional)
+            ipsec_throughput_msg_frequency: Set NP6XLite IPsec throughput
+            message frequency (0 = disable). (optional)
+            ipsec_sts_timeout: Set NP6XLite IPsec STS message timeout.
+            (optional)
             hpe: HPE configuration. (optional)
-            fp_anomaly: NP6XLITE IPv4 anomaly protection. The trap-to-host forwards anomaly sessions to the CPU. (optional)
+            fp_anomaly: NP6XLITE IPv4 anomaly protection. The trap-to-host
+            forwards anomaly sessions to the CPU. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -181,7 +199,8 @@ class Np6xlite:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -235,8 +254,10 @@ class Np6xlite:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -244,7 +265,8 @@ class Np6xlite:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -281,20 +303,31 @@ class Np6xlite:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Device Name. (optional)
-            fastpath: Enable/disable NP6XLITE offloading (also called fast path). (optional)
-            per_session_accounting: Enable/disable per-session accounting. (optional)
-            session_timeout_interval: Set session timeout interval (0 - 1000 sec, default 40 sec). (optional)
-            ipsec_inner_fragment: Enable/disable NP6XLite IPsec fragmentation type: inner. (optional)
-            ipsec_throughput_msg_frequency: Set NP6XLite IPsec throughput message frequency (0 = disable). (optional)
-            ipsec_sts_timeout: Set NP6XLite IPsec STS message timeout. (optional)
+            fastpath: Enable/disable NP6XLITE offloading (also called fast
+            path). (optional)
+            per_session_accounting: Enable/disable per-session accounting.
+            (optional)
+            session_timeout_interval: Set session timeout interval (0 - 1000
+            sec, default 40 sec). (optional)
+            ipsec_inner_fragment: Enable/disable NP6XLite IPsec fragmentation
+            type: inner. (optional)
+            ipsec_throughput_msg_frequency: Set NP6XLite IPsec throughput
+            message frequency (0 = disable). (optional)
+            ipsec_sts_timeout: Set NP6XLite IPsec STS message timeout.
+            (optional)
             hpe: HPE configuration. (optional)
-            fp_anomaly: NP6XLITE IPv4 anomaly protection. The trap-to-host forwards anomaly sessions to the CPU. (optional)
+            fp_anomaly: NP6XLITE IPv4 anomaly protection. The trap-to-host
+            forwards anomaly sessions to the CPU. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -302,7 +335,8 @@ class Np6xlite:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

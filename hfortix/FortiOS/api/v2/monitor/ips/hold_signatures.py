@@ -63,10 +63,13 @@ class HoldSignatures:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Return a list of IPS signatures that are on hold due to active hold time.
+        Return a list of IPS signatures that are on hold due to active hold
+        time.
 
         Args:
-            ips_sensor: Optional filter: Provide the name of the IPS sensor to retrieve only the hold signatures being used by that sensor. (optional)
+            ips_sensor: Optional filter: Provide the name of the IPS sensor to
+            retrieve only the hold signatures being used by that sensor.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

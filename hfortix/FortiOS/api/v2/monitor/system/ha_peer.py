@@ -70,9 +70,11 @@ class Disconnect:
 
         Args:
             serial_no: Serial number of the HA member. (optional)
-            interface: Name of the interface which should be assigned for management. (optional)
+            interface: Name of the interface which should be assigned for
+            management. (optional)
             ip: IP to assign to the selected interface. (optional)
-            mask: Full network mask to assign to the selected interface. (optional)
+            mask: Full network mask to assign to the selected interface.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -181,8 +183,10 @@ class HaPeer:
         Get configuration of peer(s) in HA cluster.
 
         Args:
-            serial_no: Serial number of the HA member. If not specified, fetch information for all HA members (optional)
-            vcluster_id: Virtual cluster number. If not specified, fetch information for all active vclusters (optional)
+            serial_no: Serial number of the HA member. If not specified, fetch
+            information for all HA members (optional)
+            vcluster_id: Virtual cluster number. If not specified, fetch
+            information for all active vclusters (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

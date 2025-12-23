@@ -82,13 +82,13 @@ def validate_user_activity_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate uuid if present
     if "uuid" in payload:
         value = payload.get("uuid")
         if value and isinstance(value, str) and len(value) > 36:
-            return (False, f"uuid cannot exceed 36 characters")
+            return (False, "uuid cannot exceed 36 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -103,7 +103,7 @@ def validate_user_activity_post(
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -118,13 +118,13 @@ def validate_user_activity_post(
     if "casb-name" in payload:
         value = payload.get("casb-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"casb-name cannot exceed 79 characters")
+            return (False, "casb-name cannot exceed 79 characters")
 
     # Validate application if present
     if "application" in payload:
         value = payload.get("application")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"application cannot exceed 79 characters")
+            return (False, "application cannot exceed 79 characters")
 
     # Validate category if present
     if "category" in payload:
@@ -177,13 +177,13 @@ def validate_user_activity_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate uuid if present
     if "uuid" in payload:
         value = payload.get("uuid")
         if value and isinstance(value, str) and len(value) > 36:
-            return (False, f"uuid cannot exceed 36 characters")
+            return (False, "uuid cannot exceed 36 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -198,7 +198,7 @@ def validate_user_activity_put(
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -213,13 +213,13 @@ def validate_user_activity_put(
     if "casb-name" in payload:
         value = payload.get("casb-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"casb-name cannot exceed 79 characters")
+            return (False, "casb-name cannot exceed 79 characters")
 
     # Validate application if present
     if "application" in payload:
         value = payload.get("application")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"application cannot exceed 79 characters")
+            return (False, "application cannot exceed 79 characters")
 
     # Validate category if present
     if "category" in payload:

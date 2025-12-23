@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Radius:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Radius:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -211,75 +217,137 @@ class Radius:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: RADIUS server entry name. (optional)
-            server: Primary RADIUS server CN domain name or IP address. (optional)
-            secret: Pre-shared secret key used to access the primary RADIUS server. (optional)
-            secondary_server: Secondary RADIUS CN domain name or IP address. (optional)
-            secondary_secret: Secret key to access the secondary server. (optional)
-            tertiary_server: Tertiary RADIUS CN domain name or IP address. (optional)
-            tertiary_secret: Secret key to access the tertiary server. (optional)
+            server: Primary RADIUS server CN domain name or IP address.
+            (optional)
+            secret: Pre-shared secret key used to access the primary RADIUS
+            server. (optional)
+            secondary_server: Secondary RADIUS CN domain name or IP address.
+            (optional)
+            secondary_secret: Secret key to access the secondary server.
+            (optional)
+            tertiary_server: Tertiary RADIUS CN domain name or IP address.
+            (optional)
+            tertiary_secret: Secret key to access the tertiary server.
+            (optional)
             timeout: Time in seconds to retry connecting server. (optional)
-            status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300). (optional)
-            all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. (optional)
-            use_management_vdom: Enable/disable using management VDOM to send requests. (optional)
-            switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. (optional)
-            nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes. (optional)
-            nas_id_type: NAS identifier type configuration (default = legacy). (optional)
-            call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication. (optional)
+            status_ttl: Time for which server reachability is cached so that
+            when a server is unreachable, it will not be retried for at least
+            this period of time (0 = cache disabled, default = 300). (optional)
+            all_usergroup: Enable/disable automatically including this RADIUS
+            server in all user groups. (optional)
+            use_management_vdom: Enable/disable using management VDOM to send
+            requests. (optional)
+            switch_controller_nas_ip_dynamic: Enable/Disable switch-controller
+            nas-ip dynamic to dynamically set nas-ip. (optional)
+            nas_ip: IP address used to communicate with the RADIUS server and
+            used as NAS-IP-Address and Called-Station-ID attributes. (optional)
+            nas_id_type: NAS identifier type configuration (default = legacy).
+            (optional)
+            call_station_id_type: Calling & Called station identifier type
+            configuration (default = legacy), this option is not available for
+            802.1x authentication. (optional)
             nas_id: Custom NAS identifier. (optional)
-            acct_interim_interval: Time in seconds between each accounting interim update message. (optional)
-            radius_coa: Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. (optional)
+            acct_interim_interval: Time in seconds between each accounting
+            interim update message. (optional)
+            radius_coa: Enable to allow a mechanism to change the attributes of
+            an authentication, authorization, and accounting session after it
+            is authenticated. (optional)
             radius_port: RADIUS service port number. (optional)
-            h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. (optional)
-            auth_type: Authentication methods/protocols permitted for this RADIUS server. (optional)
-            source_ip: Source IP address for communications to the RADIUS server. (optional)
-            source_ip_interface: Source interface for communication with the RADIUS server. (optional)
-            username_case_sensitive: Enable/disable case sensitive user names. (optional)
-            group_override_attr_type: RADIUS attribute type to override user group information. (optional)
+            h3c_compatibility: Enable/disable compatibility with the H3C, a
+            mechanism that performs security checking for authentication.
+            (optional)
+            auth_type: Authentication methods/protocols permitted for this
+            RADIUS server. (optional)
+            source_ip: Source IP address for communications to the RADIUS
+            server. (optional)
+            source_ip_interface: Source interface for communication with the
+            RADIUS server. (optional)
+            username_case_sensitive: Enable/disable case sensitive user names.
+            (optional)
+            group_override_attr_type: RADIUS attribute type to override user
+            group information. (optional)
             class_: Class attribute name(s). (optional)
             password_renewal: Enable/disable password renewal. (optional)
-            require_message_authenticator: Require message authenticator in authentication response. (optional)
+            require_message_authenticator: Require message authenticator in
+            authentication response. (optional)
             password_encoding: Password encoding. (optional)
-            mac_username_delimiter: MAC authentication username delimiter (default = hyphen). (optional)
-            mac_password_delimiter: MAC authentication password delimiter (default = hyphen). (optional)
+            mac_username_delimiter: MAC authentication username delimiter
+            (default = hyphen). (optional)
+            mac_password_delimiter: MAC authentication password delimiter
+            (default = hyphen). (optional)
             mac_case: MAC authentication case (default = lowercase). (optional)
-            acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). (optional)
-            switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2). (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            acct_all_servers: Enable/disable sending of accounting messages to
+            all configured servers (default = disable). (optional)
+            switch_controller_acct_fast_framedip_detect: Switch controller
+            accounting message Framed-IP detection from DHCP snooping (seconds,
+            default=2). (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             switch_controller_service_type: RADIUS service type. (optional)
-            transport_protocol: Transport protocol to be used (default = udp). (optional)
-            tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting). (optional)
+            transport_protocol: Transport protocol to be used (default = udp).
+            (optional)
+            tls_min_proto_version: Minimum supported protocol version for TLS
+            connections (default is to follow system global setting).
+            (optional)
             ca_cert: CA of server to trust under TLS. (optional)
             client_cert: Client certificate to use under TLS. (optional)
-            server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). (optional)
-            account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. (optional)
-            account_key_cert_field: Define subject identity field in certificate for user access right checking. (optional)
-            rsso: Enable/disable RADIUS based single sign on feature. (optional)
-            rsso_radius_server_port: UDP port to listen on for RADIUS Start and Stop records. (optional)
-            rsso_radius_response: Enable/disable sending RADIUS response packets after receiving Start and Stop records. (optional)
-            rsso_validate_request_secret: Enable/disable validating the RADIUS request shared secret in the Start or End record. (optional)
-            rsso_secret: RADIUS secret used by the RADIUS accounting server. (optional)
-            rsso_endpoint_attribute: RADIUS attributes used to extract the user end point identifier from the RADIUS Start record. (optional)
-            rsso_endpoint_block_attribute: RADIUS attributes used to block a user. (optional)
-            sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. (optional)
-            sso_attribute_key: Key prefix for SSO group value in the SSO attribute. (optional)
-            sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. (optional)
-            rsso_context_timeout: Time in seconds before the logged out user is removed from the "user context list" of logged on users. (optional)
-            rsso_log_period: Time interval in seconds that group event log messages will be generated for dynamic profile events. (optional)
+            server_identity_check: Enable/disable RADIUS server identity check
+            (verify server domain name/IP address against the server
+            certificate). (optional)
+            account_key_processing: Account key processing operation. The
+            FortiGate will keep either the whole domain or strip the domain
+            from the subject identity. (optional)
+            account_key_cert_field: Define subject identity field in
+            certificate for user access right checking. (optional)
+            rsso: Enable/disable RADIUS based single sign on feature.
+            (optional)
+            rsso_radius_server_port: UDP port to listen on for RADIUS Start and
+            Stop records. (optional)
+            rsso_radius_response: Enable/disable sending RADIUS response
+            packets after receiving Start and Stop records. (optional)
+            rsso_validate_request_secret: Enable/disable validating the RADIUS
+            request shared secret in the Start or End record. (optional)
+            rsso_secret: RADIUS secret used by the RADIUS accounting server.
+            (optional)
+            rsso_endpoint_attribute: RADIUS attributes used to extract the user
+            end point identifier from the RADIUS Start record. (optional)
+            rsso_endpoint_block_attribute: RADIUS attributes used to block a
+            user. (optional)
+            sso_attribute: RADIUS attribute that contains the profile group
+            name to be extracted from the RADIUS Start record. (optional)
+            sso_attribute_key: Key prefix for SSO group value in the SSO
+            attribute. (optional)
+            sso_attribute_value_override: Enable/disable override old attribute
+            value with new value for the same endpoint. (optional)
+            rsso_context_timeout: Time in seconds before the logged out user is
+            removed from the "user context list" of logged on users. (optional)
+            rsso_log_period: Time interval in seconds that group event log
+            messages will be generated for dynamic profile events. (optional)
             rsso_log_flags: Events to log. (optional)
-            rsso_flush_ip_session: Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. (optional)
-            rsso_ep_one_ip_only: Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. (optional)
-            delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). (optional)
+            rsso_flush_ip_session: Enable/disable flushing user IP sessions on
+            RADIUS accounting Stop messages. (optional)
+            rsso_ep_one_ip_only: Enable/disable the replacement of old IP
+            addresses with new ones for the same endpoint on RADIUS accounting
+            Start messages. (optional)
+            delimiter: Configure delimiter to be used for separating profile
+            group names in the SSO attribute (default = plus character "+").
+            (optional)
             accounting_server: Additional accounting servers. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -287,7 +355,8 @@ class Radius:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -459,8 +528,10 @@ class Radius:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -468,7 +539,8 @@ class Radius:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -601,73 +673,134 @@ class Radius:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: RADIUS server entry name. (optional)
-            server: Primary RADIUS server CN domain name or IP address. (optional)
-            secret: Pre-shared secret key used to access the primary RADIUS server. (optional)
-            secondary_server: Secondary RADIUS CN domain name or IP address. (optional)
-            secondary_secret: Secret key to access the secondary server. (optional)
-            tertiary_server: Tertiary RADIUS CN domain name or IP address. (optional)
-            tertiary_secret: Secret key to access the tertiary server. (optional)
+            server: Primary RADIUS server CN domain name or IP address.
+            (optional)
+            secret: Pre-shared secret key used to access the primary RADIUS
+            server. (optional)
+            secondary_server: Secondary RADIUS CN domain name or IP address.
+            (optional)
+            secondary_secret: Secret key to access the secondary server.
+            (optional)
+            tertiary_server: Tertiary RADIUS CN domain name or IP address.
+            (optional)
+            tertiary_secret: Secret key to access the tertiary server.
+            (optional)
             timeout: Time in seconds to retry connecting server. (optional)
-            status_ttl: Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300). (optional)
-            all_usergroup: Enable/disable automatically including this RADIUS server in all user groups. (optional)
-            use_management_vdom: Enable/disable using management VDOM to send requests. (optional)
-            switch_controller_nas_ip_dynamic: Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. (optional)
-            nas_ip: IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes. (optional)
-            nas_id_type: NAS identifier type configuration (default = legacy). (optional)
-            call_station_id_type: Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication. (optional)
+            status_ttl: Time for which server reachability is cached so that
+            when a server is unreachable, it will not be retried for at least
+            this period of time (0 = cache disabled, default = 300). (optional)
+            all_usergroup: Enable/disable automatically including this RADIUS
+            server in all user groups. (optional)
+            use_management_vdom: Enable/disable using management VDOM to send
+            requests. (optional)
+            switch_controller_nas_ip_dynamic: Enable/Disable switch-controller
+            nas-ip dynamic to dynamically set nas-ip. (optional)
+            nas_ip: IP address used to communicate with the RADIUS server and
+            used as NAS-IP-Address and Called-Station-ID attributes. (optional)
+            nas_id_type: NAS identifier type configuration (default = legacy).
+            (optional)
+            call_station_id_type: Calling & Called station identifier type
+            configuration (default = legacy), this option is not available for
+            802.1x authentication. (optional)
             nas_id: Custom NAS identifier. (optional)
-            acct_interim_interval: Time in seconds between each accounting interim update message. (optional)
-            radius_coa: Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. (optional)
+            acct_interim_interval: Time in seconds between each accounting
+            interim update message. (optional)
+            radius_coa: Enable to allow a mechanism to change the attributes of
+            an authentication, authorization, and accounting session after it
+            is authenticated. (optional)
             radius_port: RADIUS service port number. (optional)
-            h3c_compatibility: Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. (optional)
-            auth_type: Authentication methods/protocols permitted for this RADIUS server. (optional)
-            source_ip: Source IP address for communications to the RADIUS server. (optional)
-            source_ip_interface: Source interface for communication with the RADIUS server. (optional)
-            username_case_sensitive: Enable/disable case sensitive user names. (optional)
-            group_override_attr_type: RADIUS attribute type to override user group information. (optional)
+            h3c_compatibility: Enable/disable compatibility with the H3C, a
+            mechanism that performs security checking for authentication.
+            (optional)
+            auth_type: Authentication methods/protocols permitted for this
+            RADIUS server. (optional)
+            source_ip: Source IP address for communications to the RADIUS
+            server. (optional)
+            source_ip_interface: Source interface for communication with the
+            RADIUS server. (optional)
+            username_case_sensitive: Enable/disable case sensitive user names.
+            (optional)
+            group_override_attr_type: RADIUS attribute type to override user
+            group information. (optional)
             class_: Class attribute name(s). (optional)
             password_renewal: Enable/disable password renewal. (optional)
-            require_message_authenticator: Require message authenticator in authentication response. (optional)
+            require_message_authenticator: Require message authenticator in
+            authentication response. (optional)
             password_encoding: Password encoding. (optional)
-            mac_username_delimiter: MAC authentication username delimiter (default = hyphen). (optional)
-            mac_password_delimiter: MAC authentication password delimiter (default = hyphen). (optional)
+            mac_username_delimiter: MAC authentication username delimiter
+            (default = hyphen). (optional)
+            mac_password_delimiter: MAC authentication password delimiter
+            (default = hyphen). (optional)
             mac_case: MAC authentication case (default = lowercase). (optional)
-            acct_all_servers: Enable/disable sending of accounting messages to all configured servers (default = disable). (optional)
-            switch_controller_acct_fast_framedip_detect: Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2). (optional)
-            interface_select_method: Specify how to select outgoing interface to reach server. (optional)
+            acct_all_servers: Enable/disable sending of accounting messages to
+            all configured servers (default = disable). (optional)
+            switch_controller_acct_fast_framedip_detect: Switch controller
+            accounting message Framed-IP detection from DHCP snooping (seconds,
+            default=2). (optional)
+            interface_select_method: Specify how to select outgoing interface
+            to reach server. (optional)
             interface: Specify outgoing interface to reach server. (optional)
             vrf_select: VRF ID used for connection to server. (optional)
             switch_controller_service_type: RADIUS service type. (optional)
-            transport_protocol: Transport protocol to be used (default = udp). (optional)
-            tls_min_proto_version: Minimum supported protocol version for TLS connections (default is to follow system global setting). (optional)
+            transport_protocol: Transport protocol to be used (default = udp).
+            (optional)
+            tls_min_proto_version: Minimum supported protocol version for TLS
+            connections (default is to follow system global setting).
+            (optional)
             ca_cert: CA of server to trust under TLS. (optional)
             client_cert: Client certificate to use under TLS. (optional)
-            server_identity_check: Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). (optional)
-            account_key_processing: Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. (optional)
-            account_key_cert_field: Define subject identity field in certificate for user access right checking. (optional)
-            rsso: Enable/disable RADIUS based single sign on feature. (optional)
-            rsso_radius_server_port: UDP port to listen on for RADIUS Start and Stop records. (optional)
-            rsso_radius_response: Enable/disable sending RADIUS response packets after receiving Start and Stop records. (optional)
-            rsso_validate_request_secret: Enable/disable validating the RADIUS request shared secret in the Start or End record. (optional)
-            rsso_secret: RADIUS secret used by the RADIUS accounting server. (optional)
-            rsso_endpoint_attribute: RADIUS attributes used to extract the user end point identifier from the RADIUS Start record. (optional)
-            rsso_endpoint_block_attribute: RADIUS attributes used to block a user. (optional)
-            sso_attribute: RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. (optional)
-            sso_attribute_key: Key prefix for SSO group value in the SSO attribute. (optional)
-            sso_attribute_value_override: Enable/disable override old attribute value with new value for the same endpoint. (optional)
-            rsso_context_timeout: Time in seconds before the logged out user is removed from the "user context list" of logged on users. (optional)
-            rsso_log_period: Time interval in seconds that group event log messages will be generated for dynamic profile events. (optional)
+            server_identity_check: Enable/disable RADIUS server identity check
+            (verify server domain name/IP address against the server
+            certificate). (optional)
+            account_key_processing: Account key processing operation. The
+            FortiGate will keep either the whole domain or strip the domain
+            from the subject identity. (optional)
+            account_key_cert_field: Define subject identity field in
+            certificate for user access right checking. (optional)
+            rsso: Enable/disable RADIUS based single sign on feature.
+            (optional)
+            rsso_radius_server_port: UDP port to listen on for RADIUS Start and
+            Stop records. (optional)
+            rsso_radius_response: Enable/disable sending RADIUS response
+            packets after receiving Start and Stop records. (optional)
+            rsso_validate_request_secret: Enable/disable validating the RADIUS
+            request shared secret in the Start or End record. (optional)
+            rsso_secret: RADIUS secret used by the RADIUS accounting server.
+            (optional)
+            rsso_endpoint_attribute: RADIUS attributes used to extract the user
+            end point identifier from the RADIUS Start record. (optional)
+            rsso_endpoint_block_attribute: RADIUS attributes used to block a
+            user. (optional)
+            sso_attribute: RADIUS attribute that contains the profile group
+            name to be extracted from the RADIUS Start record. (optional)
+            sso_attribute_key: Key prefix for SSO group value in the SSO
+            attribute. (optional)
+            sso_attribute_value_override: Enable/disable override old attribute
+            value with new value for the same endpoint. (optional)
+            rsso_context_timeout: Time in seconds before the logged out user is
+            removed from the "user context list" of logged on users. (optional)
+            rsso_log_period: Time interval in seconds that group event log
+            messages will be generated for dynamic profile events. (optional)
             rsso_log_flags: Events to log. (optional)
-            rsso_flush_ip_session: Enable/disable flushing user IP sessions on RADIUS accounting Stop messages. (optional)
-            rsso_ep_one_ip_only: Enable/disable the replacement of old IP addresses with new ones for the same endpoint on RADIUS accounting Start messages. (optional)
-            delimiter: Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). (optional)
+            rsso_flush_ip_session: Enable/disable flushing user IP sessions on
+            RADIUS accounting Stop messages. (optional)
+            rsso_ep_one_ip_only: Enable/disable the replacement of old IP
+            addresses with new ones for the same endpoint on RADIUS accounting
+            Start messages. (optional)
+            delimiter: Configure delimiter to be used for separating profile
+            group names in the SSO attribute (default = plus character "+").
+            (optional)
             accounting_server: Additional accounting servers. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -675,7 +808,8 @@ class Radius:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

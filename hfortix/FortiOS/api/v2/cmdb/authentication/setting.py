@@ -88,11 +88,15 @@ class Setting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -150,33 +155,53 @@ class Setting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            active_auth_scheme: Active authentication method (scheme name). (optional)
-            sso_auth_scheme: Single-Sign-On authentication method (scheme name). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            active_auth_scheme: Active authentication method (scheme name).
+            (optional)
+            sso_auth_scheme: Single-Sign-On authentication method (scheme
+            name). (optional)
             update_time: Time of the last update. (optional)
-            persistent_cookie: Enable/disable persistent cookie on web portal authentication (default = enable). (optional)
-            ip_auth_cookie: Enable/disable persistent cookie on IP based web portal authentication (default = disable). (optional)
-            cookie_max_age: Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), default = 480 (8 hours)). (optional)
-            cookie_refresh_div: Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div. (optional)
+            persistent_cookie: Enable/disable persistent cookie on web portal
+            authentication (default = enable). (optional)
+            ip_auth_cookie: Enable/disable persistent cookie on IP based web
+            portal authentication (default = disable). (optional)
+            cookie_max_age: Persistent web portal cookie maximum age in minutes
+            (30 - 10080 (1 week), default = 480 (8 hours)). (optional)
+            cookie_refresh_div: Refresh rate divider of persistent web portal
+            cookie (default = 2). Refresh value =
+            cookie-max-age/cookie-refresh-div. (optional)
             captive_portal_type: Captive portal type. (optional)
             captive_portal_ip: Captive portal IP address. (optional)
             captive_portal_ip6: Captive portal IPv6 address. (optional)
             captive_portal: Captive portal host name. (optional)
             captive_portal6: IPv6 captive portal host name. (optional)
-            cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. (optional)
-            cert_captive_portal: Certificate captive portal host name. (optional)
-            cert_captive_portal_ip: Certificate captive portal IP address. (optional)
-            cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832). (optional)
-            captive_portal_port: Captive portal port number (1 - 65535, default = 7830). (optional)
-            auth_https: Enable/disable redirecting HTTP user authentication to HTTPS. (optional)
-            captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831). (optional)
-            user_cert_ca: CA certificate used for client certificate verification. (optional)
+            cert_auth: Enable/disable redirecting certificate authentication to
+            HTTPS portal. (optional)
+            cert_captive_portal: Certificate captive portal host name.
+            (optional)
+            cert_captive_portal_ip: Certificate captive portal IP address.
+            (optional)
+            cert_captive_portal_port: Certificate captive portal port number (1
+            - 65535, default = 7832). (optional)
+            captive_portal_port: Captive portal port number (1 - 65535, default
+            = 7830). (optional)
+            auth_https: Enable/disable redirecting HTTP user authentication to
+            HTTPS. (optional)
+            captive_portal_ssl_port: Captive portal SSL port number (1 - 65535,
+            default = 7831). (optional)
+            user_cert_ca: CA certificate used for client certificate
+            verification. (optional)
             dev_range: Address range for the IP based device query. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -184,7 +209,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

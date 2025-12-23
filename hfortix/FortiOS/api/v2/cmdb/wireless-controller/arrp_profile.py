@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Wireless Controller Arrp Profile
 
-Configuration endpoint for managing cmdb wireless controller arrp profile objects.
+Configuration endpoint for managing cmdb wireless controller arrp profile
+objects.
 
 API Endpoints:
     GET    /cmdb/wireless-controller/arrp_profile
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.wireless_controller.arrp_profile.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.wireless_controller.arrp_profile.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.wireless_controller.arrp_profile.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.arrp_profile.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.arrp_profile.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.arrp_profile.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class ArrpProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class ArrpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -171,35 +180,69 @@ class ArrpProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: WiFi ARRP profile name. (optional)
             comment: Comment. (optional)
-            selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600). (optional)
-            monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300). (optional)
-            weight_managed_ap: Weight in DARRP channel score calculation for managed APs (0 - 2000, default = 50). (optional)
-            weight_rogue_ap: Weight in DARRP channel score calculation for rogue APs (0 - 2000, default = 10). (optional)
-            weight_noise_floor: Weight in DARRP channel score calculation for noise floor (0 - 2000, default = 40). (optional)
-            weight_channel_load: Weight in DARRP channel score calculation for channel load (0 - 2000, default = 20). (optional)
-            weight_spectral_rssi: Weight in DARRP channel score calculation for spectral RSSI (0 - 2000, default = 40). (optional)
-            weight_weather_channel: Weight in DARRP channel score calculation for weather channel (0 - 2000, default = 0). (optional)
-            weight_dfs_channel: Weight in DARRP channel score calculation for DFS channel (0 - 2000, default = 0). (optional)
-            threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250). (optional)
-            threshold_noise_floor: Threshold in dBm to reject channel in DARRP channel selection phase 1 due to noise floor (-95 to -20, default = -85). (optional)
-            threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60). (optional)
-            threshold_spectral_rssi: Threshold in dBm to reject channel in DARRP channel selection phase 1 due to spectral RSSI (-95 to -20, default = -65). (optional)
-            threshold_tx_retries: Threshold in percentage for transmit retries to trigger channel reselection in DARRP monitor stage (0 - 1000, default = 300). (optional)
-            threshold_rx_errors: Threshold in percentage for receive errors to trigger channel reselection in DARRP monitor stage (0 - 100, default = 50). (optional)
-            include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = enable). (optional)
-            include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = enable). (optional)
-            override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). (optional)
-            darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable). (optional)
-            darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. (optional)
+            selection_period: Period in seconds to measure average channel
+            load, noise floor, spectral RSSI (default = 3600). (optional)
+            monitor_period: Period in seconds to measure average transmit
+            retries and receive errors (default = 300). (optional)
+            weight_managed_ap: Weight in DARRP channel score calculation for
+            managed APs (0 - 2000, default = 50). (optional)
+            weight_rogue_ap: Weight in DARRP channel score calculation for
+            rogue APs (0 - 2000, default = 10). (optional)
+            weight_noise_floor: Weight in DARRP channel score calculation for
+            noise floor (0 - 2000, default = 40). (optional)
+            weight_channel_load: Weight in DARRP channel score calculation for
+            channel load (0 - 2000, default = 20). (optional)
+            weight_spectral_rssi: Weight in DARRP channel score calculation for
+            spectral RSSI (0 - 2000, default = 40). (optional)
+            weight_weather_channel: Weight in DARRP channel score calculation
+            for weather channel (0 - 2000, default = 0). (optional)
+            weight_dfs_channel: Weight in DARRP channel score calculation for
+            DFS channel (0 - 2000, default = 0). (optional)
+            threshold_ap: Threshold to reject channel in DARRP channel
+            selection phase 1 due to surrounding APs (0 - 500, default = 250).
+            (optional)
+            threshold_noise_floor: Threshold in dBm to reject channel in DARRP
+            channel selection phase 1 due to noise floor (-95 to -20, default =
+            -85). (optional)
+            threshold_channel_load: Threshold in percentage to reject channel
+            in DARRP channel selection phase 1 due to channel load (0 - 100,
+            default = 60). (optional)
+            threshold_spectral_rssi: Threshold in dBm to reject channel in
+            DARRP channel selection phase 1 due to spectral RSSI (-95 to -20,
+            default = -65). (optional)
+            threshold_tx_retries: Threshold in percentage for transmit retries
+            to trigger channel reselection in DARRP monitor stage (0 - 1000,
+            default = 300). (optional)
+            threshold_rx_errors: Threshold in percentage for receive errors to
+            trigger channel reselection in DARRP monitor stage (0 - 100,
+            default = 50). (optional)
+            include_weather_channel: Enable/disable use of weather channel in
+            DARRP channel selection phase 1 (default = enable). (optional)
+            include_dfs_channel: Enable/disable use of DFS channel in DARRP
+            channel selection phase 1 (default = enable). (optional)
+            override_darrp_optimize: Enable to override setting darrp-optimize
+            and darrp-optimize-schedules (default = disable). (optional)
+            darrp_optimize: Time for running Distributed Automatic Radio
+            Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default
+            = 86400, 0 = disable). (optional)
+            darrp_optimize_schedules: Firewall schedules for DARRP running
+            time. DARRP will run periodically based on darrp-optimize within
+            the schedules. Separate multiple schedule names with a space.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -207,7 +250,8 @@ class ArrpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -285,8 +329,10 @@ class ArrpProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -294,7 +340,8 @@ class ArrpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -387,33 +434,66 @@ class ArrpProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: WiFi ARRP profile name. (optional)
             comment: Comment. (optional)
-            selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600). (optional)
-            monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300). (optional)
-            weight_managed_ap: Weight in DARRP channel score calculation for managed APs (0 - 2000, default = 50). (optional)
-            weight_rogue_ap: Weight in DARRP channel score calculation for rogue APs (0 - 2000, default = 10). (optional)
-            weight_noise_floor: Weight in DARRP channel score calculation for noise floor (0 - 2000, default = 40). (optional)
-            weight_channel_load: Weight in DARRP channel score calculation for channel load (0 - 2000, default = 20). (optional)
-            weight_spectral_rssi: Weight in DARRP channel score calculation for spectral RSSI (0 - 2000, default = 40). (optional)
-            weight_weather_channel: Weight in DARRP channel score calculation for weather channel (0 - 2000, default = 0). (optional)
-            weight_dfs_channel: Weight in DARRP channel score calculation for DFS channel (0 - 2000, default = 0). (optional)
-            threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250). (optional)
-            threshold_noise_floor: Threshold in dBm to reject channel in DARRP channel selection phase 1 due to noise floor (-95 to -20, default = -85). (optional)
-            threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60). (optional)
-            threshold_spectral_rssi: Threshold in dBm to reject channel in DARRP channel selection phase 1 due to spectral RSSI (-95 to -20, default = -65). (optional)
-            threshold_tx_retries: Threshold in percentage for transmit retries to trigger channel reselection in DARRP monitor stage (0 - 1000, default = 300). (optional)
-            threshold_rx_errors: Threshold in percentage for receive errors to trigger channel reselection in DARRP monitor stage (0 - 100, default = 50). (optional)
-            include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = enable). (optional)
-            include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = enable). (optional)
-            override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). (optional)
-            darrp_optimize: Time for running Distributed Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable). (optional)
-            darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. (optional)
+            selection_period: Period in seconds to measure average channel
+            load, noise floor, spectral RSSI (default = 3600). (optional)
+            monitor_period: Period in seconds to measure average transmit
+            retries and receive errors (default = 300). (optional)
+            weight_managed_ap: Weight in DARRP channel score calculation for
+            managed APs (0 - 2000, default = 50). (optional)
+            weight_rogue_ap: Weight in DARRP channel score calculation for
+            rogue APs (0 - 2000, default = 10). (optional)
+            weight_noise_floor: Weight in DARRP channel score calculation for
+            noise floor (0 - 2000, default = 40). (optional)
+            weight_channel_load: Weight in DARRP channel score calculation for
+            channel load (0 - 2000, default = 20). (optional)
+            weight_spectral_rssi: Weight in DARRP channel score calculation for
+            spectral RSSI (0 - 2000, default = 40). (optional)
+            weight_weather_channel: Weight in DARRP channel score calculation
+            for weather channel (0 - 2000, default = 0). (optional)
+            weight_dfs_channel: Weight in DARRP channel score calculation for
+            DFS channel (0 - 2000, default = 0). (optional)
+            threshold_ap: Threshold to reject channel in DARRP channel
+            selection phase 1 due to surrounding APs (0 - 500, default = 250).
+            (optional)
+            threshold_noise_floor: Threshold in dBm to reject channel in DARRP
+            channel selection phase 1 due to noise floor (-95 to -20, default =
+            -85). (optional)
+            threshold_channel_load: Threshold in percentage to reject channel
+            in DARRP channel selection phase 1 due to channel load (0 - 100,
+            default = 60). (optional)
+            threshold_spectral_rssi: Threshold in dBm to reject channel in
+            DARRP channel selection phase 1 due to spectral RSSI (-95 to -20,
+            default = -65). (optional)
+            threshold_tx_retries: Threshold in percentage for transmit retries
+            to trigger channel reselection in DARRP monitor stage (0 - 1000,
+            default = 300). (optional)
+            threshold_rx_errors: Threshold in percentage for receive errors to
+            trigger channel reselection in DARRP monitor stage (0 - 100,
+            default = 50). (optional)
+            include_weather_channel: Enable/disable use of weather channel in
+            DARRP channel selection phase 1 (default = enable). (optional)
+            include_dfs_channel: Enable/disable use of DFS channel in DARRP
+            channel selection phase 1 (default = enable). (optional)
+            override_darrp_optimize: Enable to override setting darrp-optimize
+            and darrp-optimize-schedules (default = disable). (optional)
+            darrp_optimize: Time for running Distributed Automatic Radio
+            Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default
+            = 86400, 0 = disable). (optional)
+            darrp_optimize_schedules: Firewall schedules for DARRP running
+            time. DARRP will run periodically based on darrp-optimize within
+            the schedules. Separate multiple schedule names with a space.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -421,7 +501,8 @@ class ArrpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

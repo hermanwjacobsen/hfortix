@@ -1,5 +1,6 @@
 """
-Validation helpers for switch_controller known_nac_device_criteria_list endpoint.
+Validation helpers for switch_controller known_nac_device_criteria_list
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.

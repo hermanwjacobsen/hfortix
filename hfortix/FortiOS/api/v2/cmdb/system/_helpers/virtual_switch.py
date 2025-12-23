@@ -73,13 +73,13 @@ def validate_virtual_switch_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate physical-switch if present
     if "physical-switch" in payload:
         value = payload.get("physical-switch")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"physical-switch cannot exceed 15 characters")
+            return (False, "physical-switch cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
@@ -88,7 +88,7 @@ def validate_virtual_switch_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"vlan must be between 0 and 4294967295")
+                    return (False, "vlan must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"vlan must be numeric, got: {value}")
 
@@ -105,13 +105,13 @@ def validate_virtual_switch_post(
     if "span-source-port" in payload:
         value = payload.get("span-source-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-source-port cannot exceed 15 characters")
+            return (False, "span-source-port cannot exceed 15 characters")
 
     # Validate span-dest-port if present
     if "span-dest-port" in payload:
         value = payload.get("span-dest-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-dest-port cannot exceed 15 characters")
+            return (False, "span-dest-port cannot exceed 15 characters")
 
     # Validate span-direction if present
     if "span-direction" in payload:
@@ -155,13 +155,13 @@ def validate_virtual_switch_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate physical-switch if present
     if "physical-switch" in payload:
         value = payload.get("physical-switch")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"physical-switch cannot exceed 15 characters")
+            return (False, "physical-switch cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
@@ -170,7 +170,7 @@ def validate_virtual_switch_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"vlan must be between 0 and 4294967295")
+                    return (False, "vlan must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"vlan must be numeric, got: {value}")
 
@@ -187,13 +187,13 @@ def validate_virtual_switch_put(
     if "span-source-port" in payload:
         value = payload.get("span-source-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-source-port cannot exceed 15 characters")
+            return (False, "span-source-port cannot exceed 15 characters")
 
     # Validate span-dest-port if present
     if "span-dest-port" in payload:
         value = payload.get("span-dest-port")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"span-dest-port cannot exceed 15 characters")
+            return (False, "span-dest-port cannot exceed 15 characters")
 
     # Validate span-direction if present
     if "span-direction" in payload:

@@ -86,7 +86,7 @@ def validate_pppoe_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate dial-on-demand if present
     if "dial-on-demand" in payload:
@@ -110,13 +110,13 @@ def validate_pppoe_interface_post(
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"device cannot exceed 15 characters")
+            return (False, "device cannot exceed 15 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate pppoe-egress-cos if present
     if "pppoe-egress-cos" in payload:
@@ -154,7 +154,7 @@ def validate_pppoe_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"idle-timeout must be between 0 and 4294967295",
+                        "idle-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"idle-timeout must be numeric, got: {value}")
@@ -175,7 +175,7 @@ def validate_pppoe_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 296 or int_val > 65535:
-                    return (False, f"mrru must be between 296 and 65535")
+                    return (False, "mrru must be between 296 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mrru must be numeric, got: {value}")
 
@@ -188,7 +188,7 @@ def validate_pppoe_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"disc-retry-timeout must be between 0 and 4294967295",
+                        "disc-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -205,7 +205,7 @@ def validate_pppoe_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"padt-retry-timeout must be between 0 and 4294967295",
+                        "padt-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -217,13 +217,13 @@ def validate_pppoe_interface_post(
     if "service-name" in payload:
         value = payload.get("service-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"service-name cannot exceed 63 characters")
+            return (False, "service-name cannot exceed 63 characters")
 
     # Validate ac-name if present
     if "ac-name" in payload:
         value = payload.get("ac-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ac-name cannot exceed 63 characters")
+            return (False, "ac-name cannot exceed 63 characters")
 
     # Validate lcp-echo-interval if present
     if "lcp-echo-interval" in payload:
@@ -234,7 +234,7 @@ def validate_pppoe_interface_post(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-echo-interval must be between 0 and 32767",
+                        "lcp-echo-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -251,7 +251,7 @@ def validate_pppoe_interface_post(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-max-echo-fails must be between 0 and 32767",
+                        "lcp-max-echo-fails must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -292,7 +292,7 @@ def validate_pppoe_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate dial-on-demand if present
     if "dial-on-demand" in payload:
@@ -316,13 +316,13 @@ def validate_pppoe_interface_put(
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"device cannot exceed 15 characters")
+            return (False, "device cannot exceed 15 characters")
 
     # Validate username if present
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate pppoe-egress-cos if present
     if "pppoe-egress-cos" in payload:
@@ -360,7 +360,7 @@ def validate_pppoe_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"idle-timeout must be between 0 and 4294967295",
+                        "idle-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"idle-timeout must be numeric, got: {value}")
@@ -381,7 +381,7 @@ def validate_pppoe_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 296 or int_val > 65535:
-                    return (False, f"mrru must be between 296 and 65535")
+                    return (False, "mrru must be between 296 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mrru must be numeric, got: {value}")
 
@@ -394,7 +394,7 @@ def validate_pppoe_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"disc-retry-timeout must be between 0 and 4294967295",
+                        "disc-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -411,7 +411,7 @@ def validate_pppoe_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"padt-retry-timeout must be between 0 and 4294967295",
+                        "padt-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -423,13 +423,13 @@ def validate_pppoe_interface_put(
     if "service-name" in payload:
         value = payload.get("service-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"service-name cannot exceed 63 characters")
+            return (False, "service-name cannot exceed 63 characters")
 
     # Validate ac-name if present
     if "ac-name" in payload:
         value = payload.get("ac-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ac-name cannot exceed 63 characters")
+            return (False, "ac-name cannot exceed 63 characters")
 
     # Validate lcp-echo-interval if present
     if "lcp-echo-interval" in payload:
@@ -440,7 +440,7 @@ def validate_pppoe_interface_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-echo-interval must be between 0 and 32767",
+                        "lcp-echo-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -457,7 +457,7 @@ def validate_pppoe_interface_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-max-echo-fails must be between 0 and 32767",
+                        "lcp-max-echo-fails must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (

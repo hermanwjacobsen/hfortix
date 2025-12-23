@@ -66,7 +66,8 @@ class Revoke:
         Revoke IPv4 DHCP leases.
 
         Args:
-            ip: Optional list of addresses to revoke. Defaults to all addresses if not provided. (optional)
+            ip: Optional list of addresses to revoke. Defaults to all addresses
+            if not provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -112,9 +113,12 @@ class Dhcp:
         List all DHCP and DHCPv6 leases.
 
         Args:
-            scope: Scope from which to retrieve DHCP leases [vdom*|global]. Global scope is only accessible for global administrators. (optional)
+            scope: Scope from which to retrieve DHCP leases [vdom*|global].
+            Global scope is only accessible for global administrators.
+            (optional)
             ipv6: Include IPv6 addresses in the response. (optional)
-            interface: Filter: Retrieve DHCP leases for this interface only. (optional)
+            interface: Filter: Retrieve DHCP leases for this interface only.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -94,13 +94,13 @@ def validate_ble_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate advertising if present
     if "advertising" in payload:
@@ -115,7 +115,7 @@ def validate_ble_profile_post(
     if "ibeacon-uuid" in payload:
         value = payload.get("ibeacon-uuid")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ibeacon-uuid cannot exceed 63 characters")
+            return (False, "ibeacon-uuid cannot exceed 63 characters")
 
     # Validate major-id if present
     if "major-id" in payload:
@@ -124,7 +124,7 @@ def validate_ble_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"major-id must be between 0 and 65535")
+                    return (False, "major-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"major-id must be numeric, got: {value}")
 
@@ -135,7 +135,7 @@ def validate_ble_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"minor-id must be between 0 and 65535")
+                    return (False, "minor-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"minor-id must be numeric, got: {value}")
 
@@ -143,19 +143,19 @@ def validate_ble_profile_post(
     if "eddystone-namespace" in payload:
         value = payload.get("eddystone-namespace")
         if value and isinstance(value, str) and len(value) > 20:
-            return (False, f"eddystone-namespace cannot exceed 20 characters")
+            return (False, "eddystone-namespace cannot exceed 20 characters")
 
     # Validate eddystone-instance if present
     if "eddystone-instance" in payload:
         value = payload.get("eddystone-instance")
         if value and isinstance(value, str) and len(value) > 12:
-            return (False, f"eddystone-instance cannot exceed 12 characters")
+            return (False, "eddystone-instance cannot exceed 12 characters")
 
     # Validate eddystone-url if present
     if "eddystone-url" in payload:
         value = payload.get("eddystone-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"eddystone-url cannot exceed 127 characters")
+            return (False, "eddystone-url cannot exceed 127 characters")
 
     # Validate txpower if present
     if "txpower" in payload:
@@ -175,7 +175,7 @@ def validate_ble_profile_post(
                 if int_val < 40 or int_val > 3500:
                     return (
                         False,
-                        f"beacon-interval must be between 40 and 3500",
+                        "beacon-interval must be between 40 and 3500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -205,7 +205,7 @@ def validate_ble_profile_post(
     if "scan-threshold" in payload:
         value = payload.get("scan-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"scan-threshold cannot exceed 7 characters")
+            return (False, "scan-threshold cannot exceed 7 characters")
 
     # Validate scan-period if present
     if "scan-period" in payload:
@@ -216,7 +216,7 @@ def validate_ble_profile_post(
                 if int_val < 1000 or int_val > 10000:
                     return (
                         False,
-                        f"scan-period must be between 1000 and 10000",
+                        "scan-period must be between 1000 and 10000",
                     )
             except (ValueError, TypeError):
                 return (False, f"scan-period must be numeric, got: {value}")
@@ -228,7 +228,7 @@ def validate_ble_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1000 or int_val > 10000:
-                    return (False, f"scan-time must be between 1000 and 10000")
+                    return (False, "scan-time must be between 1000 and 10000")
             except (ValueError, TypeError):
                 return (False, f"scan-time must be numeric, got: {value}")
 
@@ -241,7 +241,7 @@ def validate_ble_profile_post(
                 if int_val < 10 or int_val > 1000:
                     return (
                         False,
-                        f"scan-interval must be between 10 and 1000",
+                        "scan-interval must be between 10 and 1000",
                     )
             except (ValueError, TypeError):
                 return (False, f"scan-interval must be numeric, got: {value}")
@@ -253,7 +253,7 @@ def validate_ble_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 1000:
-                    return (False, f"scan-window must be between 10 and 1000")
+                    return (False, "scan-window must be between 10 and 1000")
             except (ValueError, TypeError):
                 return (False, f"scan-window must be numeric, got: {value}")
 
@@ -290,13 +290,13 @@ def validate_ble_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate advertising if present
     if "advertising" in payload:
@@ -311,7 +311,7 @@ def validate_ble_profile_put(
     if "ibeacon-uuid" in payload:
         value = payload.get("ibeacon-uuid")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ibeacon-uuid cannot exceed 63 characters")
+            return (False, "ibeacon-uuid cannot exceed 63 characters")
 
     # Validate major-id if present
     if "major-id" in payload:
@@ -320,7 +320,7 @@ def validate_ble_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"major-id must be between 0 and 65535")
+                    return (False, "major-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"major-id must be numeric, got: {value}")
 
@@ -331,7 +331,7 @@ def validate_ble_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"minor-id must be between 0 and 65535")
+                    return (False, "minor-id must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"minor-id must be numeric, got: {value}")
 
@@ -339,19 +339,19 @@ def validate_ble_profile_put(
     if "eddystone-namespace" in payload:
         value = payload.get("eddystone-namespace")
         if value and isinstance(value, str) and len(value) > 20:
-            return (False, f"eddystone-namespace cannot exceed 20 characters")
+            return (False, "eddystone-namespace cannot exceed 20 characters")
 
     # Validate eddystone-instance if present
     if "eddystone-instance" in payload:
         value = payload.get("eddystone-instance")
         if value and isinstance(value, str) and len(value) > 12:
-            return (False, f"eddystone-instance cannot exceed 12 characters")
+            return (False, "eddystone-instance cannot exceed 12 characters")
 
     # Validate eddystone-url if present
     if "eddystone-url" in payload:
         value = payload.get("eddystone-url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"eddystone-url cannot exceed 127 characters")
+            return (False, "eddystone-url cannot exceed 127 characters")
 
     # Validate txpower if present
     if "txpower" in payload:
@@ -371,7 +371,7 @@ def validate_ble_profile_put(
                 if int_val < 40 or int_val > 3500:
                     return (
                         False,
-                        f"beacon-interval must be between 40 and 3500",
+                        "beacon-interval must be between 40 and 3500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -401,7 +401,7 @@ def validate_ble_profile_put(
     if "scan-threshold" in payload:
         value = payload.get("scan-threshold")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"scan-threshold cannot exceed 7 characters")
+            return (False, "scan-threshold cannot exceed 7 characters")
 
     # Validate scan-period if present
     if "scan-period" in payload:
@@ -412,7 +412,7 @@ def validate_ble_profile_put(
                 if int_val < 1000 or int_val > 10000:
                     return (
                         False,
-                        f"scan-period must be between 1000 and 10000",
+                        "scan-period must be between 1000 and 10000",
                     )
             except (ValueError, TypeError):
                 return (False, f"scan-period must be numeric, got: {value}")
@@ -424,7 +424,7 @@ def validate_ble_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1000 or int_val > 10000:
-                    return (False, f"scan-time must be between 1000 and 10000")
+                    return (False, "scan-time must be between 1000 and 10000")
             except (ValueError, TypeError):
                 return (False, f"scan-time must be numeric, got: {value}")
 
@@ -437,7 +437,7 @@ def validate_ble_profile_put(
                 if int_val < 10 or int_val > 1000:
                     return (
                         False,
-                        f"scan-interval must be between 10 and 1000",
+                        "scan-interval must be between 10 and 1000",
                     )
             except (ValueError, TypeError):
                 return (False, f"scan-interval must be numeric, got: {value}")
@@ -449,7 +449,7 @@ def validate_ble_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 1000:
-                    return (False, f"scan-window must be between 10 and 1000")
+                    return (False, "scan-window must be between 10 and 1000")
             except (ValueError, TypeError):
                 return (False, f"scan-window must be numeric, got: {value}")
 

@@ -19,14 +19,16 @@ class ExtensionController:
     """
     FortiGate LAN Extension Controller monitoring.
 
-    Provides methods to monitor FortiGate LAN Extension Connectors and VDOM status.
+    Provides methods to monitor FortiGate LAN Extension Connectors and VDOM
+    status.
 
     Example usage:
         # Get FortiGate connector statistics
         stats = fgt.api.monitor.extension_controller.fortigate.stats()
 
         # Get LAN Extension VDOM status
-        status = fgt.api.monitor.extension_controller.lan_extension_vdom.status()
+        status =
+        fgt.api.monitor.extension_controller.lan_extension_vdom.status()
     """
 
     def __init__(self, client: "IHTTPClient") -> None:
@@ -34,7 +36,8 @@ class ExtensionController:
         Initialize ExtensionController monitor.
 
         Args:
-            client: HTTP client implementing IHTTPClient protocol for API communication
+            client: HTTP client implementing IHTTPClient protocol for API
+            communication
         """
         self._client = client
         self._fortigate: Fortigate | None = None
@@ -49,7 +52,6 @@ class ExtensionController:
             Fortigate instance
         """
         if self._fortigate is None:
-            from .fortigate import Fortigate
 
             self._fortigate = Fortigate(self._client)
         return self._fortigate

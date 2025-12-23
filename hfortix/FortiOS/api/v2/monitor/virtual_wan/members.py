@@ -69,10 +69,15 @@ class Members:
         Retrieve interface statistics for each SD-WAN link.
 
         Args:
-            interface: Interface name. "interface" param take precedence over "zone" or "sla". If set, will return only return the member that matches the interface. (optional)
-            zone: SD-WAN zone name. "zone" param take precedence over "sla". If set, will only return members of the zone. (optional)
-            sla: SLA name. If set, will only return members that are participants of the SLA. (optional)
-            skip_vpn_child: If set, will skip all VPN child interfaces. (optional)
+            interface: Interface name. "interface" param take precedence over
+            "zone" or "sla". If set, will return only return the member that
+            matches the interface. (optional)
+            zone: SD-WAN zone name. "zone" param take precedence over "sla". If
+            set, will only return members of the zone. (optional)
+            sla: SLA name. If set, will only return members that are
+            participants of the SLA. (optional)
+            skip_vpn_child: If set, will skip all VPN child interfaces.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

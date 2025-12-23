@@ -14,6 +14,7 @@ from typing import (  # noqa: F401
     List,
     Optional,
     Union,
+    cast,
 )
 
 # Import shared helpers from the API layer
@@ -777,7 +778,7 @@ class FirewallPolicy:
             policy_data.update(data)
 
         # Build API parameters
-        api_params = {}
+        api_params: dict[str, Any] = {}
         if vdom:
             api_params["vdom"] = vdom
         if datasource is not None:
@@ -787,9 +788,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.post(  # type: ignore[call-arg]
-            payload_dict=policy_data, **api_params
-        )
+        return self._api.post(payload_dict=policy_data, **api_params)
 
     def get(
         self,
@@ -821,7 +820,7 @@ class FirewallPolicy:
             >>> # Get policies with filter
             >>> policies = fgt.firewall.policy.get(filter='name==Allow-HTTP')
         """
-        api_params = {}
+        api_params: dict[str, Any] = {}
         if policy_id is not None:
             api_params["policyid"] = str(policy_id)
         if vdom:
@@ -833,8 +832,9 @@ class FirewallPolicy:
         # Merge any additional kwargs
         api_params.update(kwargs)
 
-        return self._api.get(  # type: ignore[call-arg,return-value]
-            **api_params
+        return cast(
+            Union[Dict[str, Any], List[Dict[str, Any]]],
+            self._api.get(**api_params),
         )
 
     def update(
@@ -1280,7 +1280,7 @@ class FirewallPolicy:
             policy_data.update(data)
 
         # Build API parameters
-        api_params = {}
+        api_params: dict[str, Any] = {}
         if vdom:
             api_params["vdom"] = vdom
         if datasource is not None:
@@ -1290,7 +1290,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.put(  # type: ignore[call-arg]
+        return self._api.put(
             policyid=str(policy_id),
             payload_dict=policy_data,
             **api_params,
@@ -1315,15 +1315,13 @@ class FirewallPolicy:
         Example:
             >>> result = fgt.firewall.policy.delete(policy_id=1)
         """
-        api_params = {}
+        api_params: dict[str, Any] = {}
         if vdom:
             api_params["vdom"] = vdom
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.delete(  # type: ignore[call-arg]
-            policyid=str(policy_id), **api_params
-        )
+        return self._api.delete(policyid=str(policy_id), **api_params)
 
     def exists(
         self,
@@ -1457,7 +1455,7 @@ class FirewallPolicy:
         endpoint = f"firewall/policy/{policy_id}"
 
         # Build the call parameters
-        call_params = {
+        call_params: dict[str, Any] = {
             "data": {},
             "params": move_kwargs,
         }
@@ -1468,7 +1466,7 @@ class FirewallPolicy:
 
         # Type ignore: client can be sync or async, runtime returns
         # Dict[str, Any]
-        return self._fgt._client.put(  # type: ignore[call-arg,return-value]
+        return self._fgt._client.put(  # type: ignore[return-value]
             "cmdb", endpoint, **call_params
         )
 
@@ -1555,13 +1553,11 @@ class FirewallPolicy:
             clone_data.update(additional_changes)
 
         # Use the underlying API post method directly with the cloned data
-        api_params = {}
+        api_params: dict[str, Any] = {}
         if vdom:
             api_params["vdom"] = vdom
 
-        return self._api.post(  # type: ignore[call-arg]
-            data=clone_data, **api_params
-        )
+        return self._api.post(data=clone_data, **api_params)
 
     def rename(
         self,

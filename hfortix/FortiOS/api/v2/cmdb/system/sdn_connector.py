@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class SdnConnector:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class SdnConnector:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -203,33 +209,48 @@ class SdnConnector:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: SDN connector name. (optional)
-            status: Enable/disable connection to the remote SDN connector. (optional)
+            status: Enable/disable connection to the remote SDN connector.
+            (optional)
             type: Type of SDN connector. (optional)
             proxy: SDN proxy. (optional)
-            use_metadata_iam: Enable/disable use of IAM role from metadata to call API. (optional)
+            use_metadata_iam: Enable/disable use of IAM role from metadata to
+            call API. (optional)
             microsoft_365: Enable to use as Microsoft 365 connector. (optional)
             ha_status: Enable/disable use for FortiGate HA service. (optional)
-            verify_certificate: Enable/disable server certificate verification. (optional)
+            verify_certificate: Enable/disable server certificate verification.
+            (optional)
             server: Server address of the remote SDN connector. (optional)
-            server_list: Server address list of the remote SDN connector. (optional)
+            server_list: Server address list of the remote SDN connector.
+            (optional)
             server_port: Port number of the remote SDN connector. (optional)
-            message_server_port: HTTP port number of the SAP message server. (optional)
-            username: Username of the remote SDN connector as login credentials. (optional)
-            password: Password of the remote SDN connector as login credentials. (optional)
-            vcenter_server: vCenter server address for NSX quarantine. (optional)
-            vcenter_username: vCenter server username for NSX quarantine. (optional)
-            vcenter_password: vCenter server password for NSX quarantine. (optional)
+            message_server_port: HTTP port number of the SAP message server.
+            (optional)
+            username: Username of the remote SDN connector as login
+            credentials. (optional)
+            password: Password of the remote SDN connector as login
+            credentials. (optional)
+            vcenter_server: vCenter server address for NSX quarantine.
+            (optional)
+            vcenter_username: vCenter server username for NSX quarantine.
+            (optional)
+            vcenter_password: vCenter server password for NSX quarantine.
+            (optional)
             access_key: AWS / ACS access key ID. (optional)
             secret_key: AWS / ACS secret access key. (optional)
             region: AWS / ACS region name. (optional)
             vpc_id: AWS VPC ID. (optional)
-            alt_resource_ip: Enable/disable AWS alternative resource IP. (optional)
-            external_account_list: Configure AWS external account list. (optional)
+            alt_resource_ip: Enable/disable AWS alternative resource IP.
+            (optional)
+            external_account_list: Configure AWS external account list.
+            (optional)
             tenant_id: Tenant ID (directory ID). (optional)
             client_id: Azure client ID (application ID). (optional)
             client_secret: Azure client secret (application key). (optional)
@@ -252,18 +273,24 @@ class SdnConnector:
             forwarding_rule: Configure GCP forwarding rule. (optional)
             service_account: GCP service account email. (optional)
             private_key: Private key of GCP service account. (optional)
-            secret_token: Secret token of Kubernetes service account. (optional)
+            secret_token: Secret token of Kubernetes service account.
+            (optional)
             domain: Domain name. (optional)
             group_name: Full path group name of computers. (optional)
-            server_cert: Trust servers that contain this certificate only. (optional)
-            server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate. (optional)
+            server_cert: Trust servers that contain this certificate only.
+            (optional)
+            server_ca_cert: Trust only those servers whose certificate is
+            directly/indirectly signed by this certificate. (optional)
             api_key: IBM cloud API key or service ID API key. (optional)
             ibm_region: IBM cloud region name. (optional)
             par_id: Public address range ID. (optional)
-            update_interval: Dynamic object update interval (30 - 3600 sec, default = 60, 0 = disabled). (optional)
+            update_interval: Dynamic object update interval (30 - 3600 sec,
+            default = 60, 0 = disabled). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -271,7 +298,8 @@ class SdnConnector:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -413,8 +441,10 @@ class SdnConnector:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -422,7 +452,8 @@ class SdnConnector:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -547,31 +578,45 @@ class SdnConnector:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: SDN connector name. (optional)
-            status: Enable/disable connection to the remote SDN connector. (optional)
+            status: Enable/disable connection to the remote SDN connector.
+            (optional)
             type: Type of SDN connector. (optional)
             proxy: SDN proxy. (optional)
-            use_metadata_iam: Enable/disable use of IAM role from metadata to call API. (optional)
+            use_metadata_iam: Enable/disable use of IAM role from metadata to
+            call API. (optional)
             microsoft_365: Enable to use as Microsoft 365 connector. (optional)
             ha_status: Enable/disable use for FortiGate HA service. (optional)
-            verify_certificate: Enable/disable server certificate verification. (optional)
+            verify_certificate: Enable/disable server certificate verification.
+            (optional)
             server: Server address of the remote SDN connector. (optional)
-            server_list: Server address list of the remote SDN connector. (optional)
+            server_list: Server address list of the remote SDN connector.
+            (optional)
             server_port: Port number of the remote SDN connector. (optional)
-            message_server_port: HTTP port number of the SAP message server. (optional)
-            username: Username of the remote SDN connector as login credentials. (optional)
-            password: Password of the remote SDN connector as login credentials. (optional)
-            vcenter_server: vCenter server address for NSX quarantine. (optional)
-            vcenter_username: vCenter server username for NSX quarantine. (optional)
-            vcenter_password: vCenter server password for NSX quarantine. (optional)
+            message_server_port: HTTP port number of the SAP message server.
+            (optional)
+            username: Username of the remote SDN connector as login
+            credentials. (optional)
+            password: Password of the remote SDN connector as login
+            credentials. (optional)
+            vcenter_server: vCenter server address for NSX quarantine.
+            (optional)
+            vcenter_username: vCenter server username for NSX quarantine.
+            (optional)
+            vcenter_password: vCenter server password for NSX quarantine.
+            (optional)
             access_key: AWS / ACS access key ID. (optional)
             secret_key: AWS / ACS secret access key. (optional)
             region: AWS / ACS region name. (optional)
             vpc_id: AWS VPC ID. (optional)
-            alt_resource_ip: Enable/disable AWS alternative resource IP. (optional)
-            external_account_list: Configure AWS external account list. (optional)
+            alt_resource_ip: Enable/disable AWS alternative resource IP.
+            (optional)
+            external_account_list: Configure AWS external account list.
+            (optional)
             tenant_id: Tenant ID (directory ID). (optional)
             client_id: Azure client ID (application ID). (optional)
             client_secret: Azure client secret (application key). (optional)
@@ -594,18 +639,24 @@ class SdnConnector:
             forwarding_rule: Configure GCP forwarding rule. (optional)
             service_account: GCP service account email. (optional)
             private_key: Private key of GCP service account. (optional)
-            secret_token: Secret token of Kubernetes service account. (optional)
+            secret_token: Secret token of Kubernetes service account.
+            (optional)
             domain: Domain name. (optional)
             group_name: Full path group name of computers. (optional)
-            server_cert: Trust servers that contain this certificate only. (optional)
-            server_ca_cert: Trust only those servers whose certificate is directly/indirectly signed by this certificate. (optional)
+            server_cert: Trust servers that contain this certificate only.
+            (optional)
+            server_ca_cert: Trust only those servers whose certificate is
+            directly/indirectly signed by this certificate. (optional)
             api_key: IBM cloud API key or service ID API key. (optional)
             ibm_region: IBM cloud region name. (optional)
             par_id: Public address range ID. (optional)
-            update_interval: Dynamic object update interval (30 - 3600 sec, default = 60, 0 = disabled). (optional)
+            update_interval: Dynamic object update interval (30 - 3600 sec,
+            default = 60, 0 = disabled). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -613,7 +664,8 @@ class SdnConnector:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

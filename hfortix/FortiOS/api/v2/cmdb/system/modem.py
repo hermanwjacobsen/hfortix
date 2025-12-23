@@ -88,11 +88,15 @@ class Modem:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Modem:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -174,57 +179,94 @@ class Modem:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            status: Enable/disable Modem support (equivalent to bringing an interface up or down). (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            status: Enable/disable Modem support (equivalent to bringing an
+            interface up or down). (optional)
             pin_init: AT command to set the PIN (AT+PIN=<pin>). (optional)
-            network_init: AT command to set the Network name/type (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]). (optional)
-            lockdown_lac: Allow connection only to the specified Location Area Code (LAC). (optional)
-            mode: Set MODEM operation mode to redundant or standalone. (optional)
-            auto_dial: Enable/disable auto-dial after a reboot or disconnection. (optional)
-            dial_on_demand: Enable/disable to dial the modem when packets are routed to the modem interface. (optional)
-            idle_timer: MODEM connection idle time (1 - 9999 min, default = 5). (optional)
-            redial: Redial limit (1 - 10 attempts, none = redial forever). (optional)
-            reset: Number of dial attempts before resetting modem (0 = never reset). (optional)
+            network_init: AT command to set the Network name/type
+            (AT+COPS=<mode>,[<format>,<oper>[,<AcT>]]). (optional)
+            lockdown_lac: Allow connection only to the specified Location Area
+            Code (LAC). (optional)
+            mode: Set MODEM operation mode to redundant or standalone.
+            (optional)
+            auto_dial: Enable/disable auto-dial after a reboot or
+            disconnection. (optional)
+            dial_on_demand: Enable/disable to dial the modem when packets are
+            routed to the modem interface. (optional)
+            idle_timer: MODEM connection idle time (1 - 9999 min, default = 5).
+            (optional)
+            redial: Redial limit (1 - 10 attempts, none = redial forever).
+            (optional)
+            reset: Number of dial attempts before resetting modem (0 = never
+            reset). (optional)
             holddown_timer: Hold down timer in seconds (1 - 60 sec). (optional)
-            connect_timeout: Connection completion timeout (30 - 255 sec, default = 90). (optional)
+            connect_timeout: Connection completion timeout (30 - 255 sec,
+            default = 90). (optional)
             interface: Name of redundant interface. (optional)
-            wireless_port: Enter wireless port number: 0 for default, 1 for first port, and so on (0 - 4294967295). (optional)
+            wireless_port: Enter wireless port number: 0 for default, 1 for
+            first port, and so on (0 - 4294967295). (optional)
             dont_send_CR1: Do not send CR when connected (ISP1). (optional)
-            phone1: Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters). (optional)
-            dial_cmd1: Dial command (this is often an ATD or ATDT command). (optional)
-            username1: User name to access the specified dialup account. (optional)
-            passwd1: Password to access the specified dialup account. (optional)
+            phone1: Phone number to connect to the dialup account (must not
+            contain spaces, and should include standard special characters).
+            (optional)
+            dial_cmd1: Dial command (this is often an ATD or ATDT command).
+            (optional)
+            username1: User name to access the specified dialup account.
+            (optional)
+            passwd1: Password to access the specified dialup account.
+            (optional)
             extra_init1: Extra initialization string to ISP 1. (optional)
             peer_modem1: Specify peer MODEM type for phone1. (optional)
-            ppp_echo_request1: Enable/disable PPP echo-request to ISP 1. (optional)
+            ppp_echo_request1: Enable/disable PPP echo-request to ISP 1.
+            (optional)
             authtype1: Allowed authentication types for ISP 1. (optional)
             dont_send_CR2: Do not send CR when connected (ISP2). (optional)
-            phone2: Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters). (optional)
-            dial_cmd2: Dial command (this is often an ATD or ATDT command). (optional)
-            username2: User name to access the specified dialup account. (optional)
-            passwd2: Password to access the specified dialup account. (optional)
+            phone2: Phone number to connect to the dialup account (must not
+            contain spaces, and should include standard special characters).
+            (optional)
+            dial_cmd2: Dial command (this is often an ATD or ATDT command).
+            (optional)
+            username2: User name to access the specified dialup account.
+            (optional)
+            passwd2: Password to access the specified dialup account.
+            (optional)
             extra_init2: Extra initialization string to ISP 2. (optional)
             peer_modem2: Specify peer MODEM type for phone2. (optional)
-            ppp_echo_request2: Enable/disable PPP echo-request to ISP 2. (optional)
+            ppp_echo_request2: Enable/disable PPP echo-request to ISP 2.
+            (optional)
             authtype2: Allowed authentication types for ISP 2. (optional)
             dont_send_CR3: Do not send CR when connected (ISP3). (optional)
-            phone3: Phone number to connect to the dialup account (must not contain spaces, and should include standard special characters). (optional)
-            dial_cmd3: Dial command (this is often an ATD or ATDT command). (optional)
-            username3: User name to access the specified dialup account. (optional)
-            passwd3: Password to access the specified dialup account. (optional)
+            phone3: Phone number to connect to the dialup account (must not
+            contain spaces, and should include standard special characters).
+            (optional)
+            dial_cmd3: Dial command (this is often an ATD or ATDT command).
+            (optional)
+            username3: User name to access the specified dialup account.
+            (optional)
+            passwd3: Password to access the specified dialup account.
+            (optional)
             extra_init3: Extra initialization string to ISP 3. (optional)
             peer_modem3: Specify peer MODEM type for phone3. (optional)
-            ppp_echo_request3: Enable/disable PPP echo-request to ISP 3. (optional)
-            altmode: Enable/disable altmode for installations using PPP in China. (optional)
+            ppp_echo_request3: Enable/disable PPP echo-request to ISP 3.
+            (optional)
+            altmode: Enable/disable altmode for installations using PPP in
+            China. (optional)
             authtype3: Allowed authentication types for ISP 3. (optional)
             traffic_check: Enable/disable traffic-check. (optional)
-            distance: Distance of learned routes (1 - 255, default = 1). (optional)
-            priority: Priority of learned routes (1 - 65535, default = 1). (optional)
+            distance: Distance of learned routes (1 - 255, default = 1).
+            (optional)
+            priority: Priority of learned routes (1 - 65535, default = 1).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -232,7 +274,8 @@ class Modem:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

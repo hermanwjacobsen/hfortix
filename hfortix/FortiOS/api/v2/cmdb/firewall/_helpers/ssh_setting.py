@@ -76,49 +76,49 @@ def validate_ssh_setting_put(
     if "caname" in payload:
         value = payload.get("caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"caname cannot exceed 35 characters")
+            return (False, "caname cannot exceed 35 characters")
 
     # Validate untrusted-caname if present
     if "untrusted-caname" in payload:
         value = payload.get("untrusted-caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"untrusted-caname cannot exceed 35 characters")
+            return (False, "untrusted-caname cannot exceed 35 characters")
 
     # Validate hostkey-rsa2048 if present
     if "hostkey-rsa2048" in payload:
         value = payload.get("hostkey-rsa2048")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-rsa2048 cannot exceed 35 characters")
+            return (False, "hostkey-rsa2048 cannot exceed 35 characters")
 
     # Validate hostkey-dsa1024 if present
     if "hostkey-dsa1024" in payload:
         value = payload.get("hostkey-dsa1024")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-dsa1024 cannot exceed 35 characters")
+            return (False, "hostkey-dsa1024 cannot exceed 35 characters")
 
     # Validate hostkey-ecdsa256 if present
     if "hostkey-ecdsa256" in payload:
         value = payload.get("hostkey-ecdsa256")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-ecdsa256 cannot exceed 35 characters")
+            return (False, "hostkey-ecdsa256 cannot exceed 35 characters")
 
     # Validate hostkey-ecdsa384 if present
     if "hostkey-ecdsa384" in payload:
         value = payload.get("hostkey-ecdsa384")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-ecdsa384 cannot exceed 35 characters")
+            return (False, "hostkey-ecdsa384 cannot exceed 35 characters")
 
     # Validate hostkey-ecdsa521 if present
     if "hostkey-ecdsa521" in payload:
         value = payload.get("hostkey-ecdsa521")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-ecdsa521 cannot exceed 35 characters")
+            return (False, "hostkey-ecdsa521 cannot exceed 35 characters")
 
     # Validate hostkey-ed25519 if present
     if "hostkey-ed25519" in payload:
         value = payload.get("hostkey-ed25519")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostkey-ed25519 cannot exceed 35 characters")
+            return (False, "hostkey-ed25519 cannot exceed 35 characters")
 
     # Validate host-trusted-checking if present
     if "host-trusted-checking" in payload:

@@ -140,7 +140,7 @@ def validate_federated_upgrade_put(
     if "failure-device" in payload:
         value = payload.get("failure-device")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"failure-device cannot exceed 79 characters")
+            return (False, "failure-device cannot exceed 79 characters")
 
     # Validate upgrade-id if present
     if "upgrade-id" in payload:
@@ -151,7 +151,7 @@ def validate_federated_upgrade_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"upgrade-id must be between 0 and 4294967295",
+                        "upgrade-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"upgrade-id must be numeric, got: {value}")
@@ -163,7 +163,7 @@ def validate_federated_upgrade_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 10:
-                    return (False, f"next-path-index must be between 0 and 10")
+                    return (False, "next-path-index must be between 0 and 10")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -183,12 +183,12 @@ def validate_federated_upgrade_put(
     if "ha-reboot-controller" in payload:
         value = payload.get("ha-reboot-controller")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ha-reboot-controller cannot exceed 79 characters")
+            return (False, "ha-reboot-controller cannot exceed 79 characters")
 
     # Validate starter-admin if present
     if "starter-admin" in payload:
         value = payload.get("starter-admin")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"starter-admin cannot exceed 64 characters")
+            return (False, "starter-admin cannot exceed 64 characters")
 
     return (True, None)

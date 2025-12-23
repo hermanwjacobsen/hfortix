@@ -39,7 +39,8 @@ def validate_realtime_proxy_statistics_get(
         >>> is_valid, error = {func_name}()
         >>>
         >>> # Get specific object
-        >>> is_valid, error = validate_realtime_proxy_statistics_get(policyid="value")
+        >>> is_valid, error =
+        validate_realtime_proxy_statistics_get(policyid="value")
         >>> if not is_valid:
         ...     raise ValueError(error)
     """
@@ -47,7 +48,7 @@ def validate_realtime_proxy_statistics_get(
     # Validate format only if provided and not empty
     if policyid is not None and str(policyid).strip():
         if not isinstance(policyid, (str, int)):
-            return (False, f"policyid must be a string or integer")
+            return (False, "policyid must be a string or integer")
 
     return (True, None)
 

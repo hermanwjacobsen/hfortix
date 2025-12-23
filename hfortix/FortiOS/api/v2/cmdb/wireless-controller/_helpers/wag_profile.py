@@ -72,13 +72,13 @@ def validate_wag_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate tunnel-type if present
     if "tunnel-type" in payload:
@@ -96,7 +96,7 @@ def validate_wag_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"wag-port must be between 0 and 65535")
+                    return (False, "wag-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"wag-port must be numeric, got: {value}")
 
@@ -109,7 +109,7 @@ def validate_wag_profile_post(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ping-interval must be between 1 and 65535",
+                        "ping-interval must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"ping-interval must be numeric, got: {value}")
@@ -121,7 +121,7 @@ def validate_wag_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"ping-number must be between 1 and 65535")
+                    return (False, "ping-number must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ping-number must be numeric, got: {value}")
 
@@ -134,7 +134,7 @@ def validate_wag_profile_post(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"return-packet-timeout must be between 1 and 65535",
+                        "return-packet-timeout must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -175,13 +175,13 @@ def validate_wag_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate tunnel-type if present
     if "tunnel-type" in payload:
@@ -199,7 +199,7 @@ def validate_wag_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"wag-port must be between 0 and 65535")
+                    return (False, "wag-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"wag-port must be numeric, got: {value}")
 
@@ -212,7 +212,7 @@ def validate_wag_profile_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"ping-interval must be between 1 and 65535",
+                        "ping-interval must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"ping-interval must be numeric, got: {value}")
@@ -224,7 +224,7 @@ def validate_wag_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"ping-number must be between 1 and 65535")
+                    return (False, "ping-number must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ping-number must be numeric, got: {value}")
 
@@ -237,7 +237,7 @@ def validate_wag_profile_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"return-packet-timeout must be between 1 and 65535",
+                        "return-packet-timeout must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (

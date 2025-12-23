@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class WebPortal:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class WebPortal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -173,37 +179,57 @@ class WebPortal:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: ZTNA proxy name. (optional)
             vip: Virtual IP name. (optional)
             host: Virtual or real host name. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
-            log_blocked_traffic: Enable/disable logging of blocked traffic. (optional)
+            log_blocked_traffic: Enable/disable logging of blocked traffic.
+            (optional)
             auth_portal: Enable/disable authentication portal. (optional)
-            auth_virtual_host: Virtual host for authentication portal. (optional)
+            auth_virtual_host: Virtual host for authentication portal.
+            (optional)
             vip6: Virtual IPv6 name. (optional)
             auth_rule: Authentication Rule. (optional)
-            display_bookmark: Enable to display the web portal bookmark widget. (optional)
-            focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the ztna web-portal. (optional)
-            display_status: Enable to display the web portal status widget. (optional)
-            display_history: Enable to display the web portal user login history widget. (optional)
+            display_bookmark: Enable to display the web portal bookmark widget.
+            (optional)
+            focus_bookmark: Enable to prioritize the placement of the bookmark
+            section over the quick-connection section in the ztna web-portal.
+            (optional)
+            display_status: Enable to display the web portal status widget.
+            (optional)
+            display_history: Enable to display the web portal user login
+            history widget. (optional)
             policy_auth_sso: Enable policy sso authentication. (optional)
             heading: Web portal heading message. (optional)
             theme: Web portal color scheme. (optional)
-            clipboard: Enable to support RDP/VPC clipboard functionality. (optional)
-            default_window_width: Screen width (range from 0 - 65535, default = 1024). (optional)
-            default_window_height: Screen height (range from 0 - 65535, default = 768). (optional)
-            cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
-            forticlient_download: Enable/disable download option for FortiClient. (optional)
-            customize_forticlient_download_url: Enable support of customized download URL for FortiClient. (optional)
-            windows_forticlient_download_url: Download URL for Windows FortiClient. (optional)
-            macos_forticlient_download_url: Download URL for Mac FortiClient. (optional)
+            clipboard: Enable to support RDP/VPC clipboard functionality.
+            (optional)
+            default_window_width: Screen width (range from 0 - 65535, default =
+            1024). (optional)
+            default_window_height: Screen height (range from 0 - 65535, default
+            = 768). (optional)
+            cookie_age: Time in minutes that client web browsers should keep a
+            cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            forticlient_download: Enable/disable download option for
+            FortiClient. (optional)
+            customize_forticlient_download_url: Enable support of customized
+            download URL for FortiClient. (optional)
+            windows_forticlient_download_url: Download URL for Windows
+            FortiClient. (optional)
+            macos_forticlient_download_url: Download URL for Mac FortiClient.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -211,7 +237,8 @@ class WebPortal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -299,8 +326,10 @@ class WebPortal:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -308,7 +337,8 @@ class WebPortal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -403,35 +433,54 @@ class WebPortal:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: ZTNA proxy name. (optional)
             vip: Virtual IP name. (optional)
             host: Virtual or real host name. (optional)
             decrypted_traffic_mirror: Decrypted traffic mirror. (optional)
-            log_blocked_traffic: Enable/disable logging of blocked traffic. (optional)
+            log_blocked_traffic: Enable/disable logging of blocked traffic.
+            (optional)
             auth_portal: Enable/disable authentication portal. (optional)
-            auth_virtual_host: Virtual host for authentication portal. (optional)
+            auth_virtual_host: Virtual host for authentication portal.
+            (optional)
             vip6: Virtual IPv6 name. (optional)
             auth_rule: Authentication Rule. (optional)
-            display_bookmark: Enable to display the web portal bookmark widget. (optional)
-            focus_bookmark: Enable to prioritize the placement of the bookmark section over the quick-connection section in the ztna web-portal. (optional)
-            display_status: Enable to display the web portal status widget. (optional)
-            display_history: Enable to display the web portal user login history widget. (optional)
+            display_bookmark: Enable to display the web portal bookmark widget.
+            (optional)
+            focus_bookmark: Enable to prioritize the placement of the bookmark
+            section over the quick-connection section in the ztna web-portal.
+            (optional)
+            display_status: Enable to display the web portal status widget.
+            (optional)
+            display_history: Enable to display the web portal user login
+            history widget. (optional)
             policy_auth_sso: Enable policy sso authentication. (optional)
             heading: Web portal heading message. (optional)
             theme: Web portal color scheme. (optional)
-            clipboard: Enable to support RDP/VPC clipboard functionality. (optional)
-            default_window_width: Screen width (range from 0 - 65535, default = 1024). (optional)
-            default_window_height: Screen height (range from 0 - 65535, default = 768). (optional)
-            cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit. (optional)
-            forticlient_download: Enable/disable download option for FortiClient. (optional)
-            customize_forticlient_download_url: Enable support of customized download URL for FortiClient. (optional)
-            windows_forticlient_download_url: Download URL for Windows FortiClient. (optional)
-            macos_forticlient_download_url: Download URL for Mac FortiClient. (optional)
+            clipboard: Enable to support RDP/VPC clipboard functionality.
+            (optional)
+            default_window_width: Screen width (range from 0 - 65535, default =
+            1024). (optional)
+            default_window_height: Screen height (range from 0 - 65535, default
+            = 768). (optional)
+            cookie_age: Time in minutes that client web browsers should keep a
+            cookie. Default is 60 minutes. 0 = no time limit. (optional)
+            forticlient_download: Enable/disable download option for
+            FortiClient. (optional)
+            customize_forticlient_download_url: Enable support of customized
+            download URL for FortiClient. (optional)
+            windows_forticlient_download_url: Download URL for Windows
+            FortiClient. (optional)
+            macos_forticlient_download_url: Download URL for Mac FortiClient.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -439,7 +488,8 @@ class WebPortal:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

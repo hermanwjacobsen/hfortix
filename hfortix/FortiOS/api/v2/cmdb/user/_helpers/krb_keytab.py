@@ -72,7 +72,7 @@ def validate_krb_keytab_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate pac-data if present
     if "pac-data" in payload:
@@ -87,13 +87,13 @@ def validate_krb_keytab_post(
     if "principal" in payload:
         value = payload.get("principal")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"principal cannot exceed 511 characters")
+            return (False, "principal cannot exceed 511 characters")
 
     # Validate keytab if present
     if "keytab" in payload:
         value = payload.get("keytab")
         if value and isinstance(value, str) and len(value) > 8191:
-            return (False, f"keytab cannot exceed 8191 characters")
+            return (False, "keytab cannot exceed 8191 characters")
 
     return (True, None)
 
@@ -128,7 +128,7 @@ def validate_krb_keytab_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate pac-data if present
     if "pac-data" in payload:
@@ -143,13 +143,13 @@ def validate_krb_keytab_put(
     if "principal" in payload:
         value = payload.get("principal")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"principal cannot exceed 511 characters")
+            return (False, "principal cannot exceed 511 characters")
 
     # Validate keytab if present
     if "keytab" in payload:
         value = payload.get("keytab")
         if value and isinstance(value, str) and len(value) > 8191:
-            return (False, f"keytab cannot exceed 8191 characters")
+            return (False, "keytab cannot exceed 8191 characters")
 
     return (True, None)
 

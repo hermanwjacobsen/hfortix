@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Profile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Profile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -184,10 +190,13 @@ class Profile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Profile name. (optional)
             comment: Optional comments. (optional)
             feature_set: Flow/proxy feature set. (optional)
@@ -205,27 +214,41 @@ class Profile:
             wisp_servers: WISP servers. (optional)
             wisp_algorithm: WISP server selection algorithm. (optional)
             log_all_url: Enable/disable logging all URLs visited. (optional)
-            web_content_log: Enable/disable logging logging blocked web content. (optional)
+            web_content_log: Enable/disable logging logging blocked web
+            content. (optional)
             web_filter_activex_log: Enable/disable logging ActiveX. (optional)
-            web_filter_command_block_log: Enable/disable logging blocked commands. (optional)
-            web_filter_cookie_log: Enable/disable logging cookie filtering. (optional)
-            web_filter_applet_log: Enable/disable logging Java applets. (optional)
+            web_filter_command_block_log: Enable/disable logging blocked
+            commands. (optional)
+            web_filter_cookie_log: Enable/disable logging cookie filtering.
+            (optional)
+            web_filter_applet_log: Enable/disable logging Java applets.
+            (optional)
             web_filter_jscript_log: Enable/disable logging JScripts. (optional)
             web_filter_js_log: Enable/disable logging Java scripts. (optional)
             web_filter_vbs_log: Enable/disable logging VBS scripts. (optional)
-            web_filter_unknown_log: Enable/disable logging unknown scripts. (optional)
-            web_filter_referer_log: Enable/disable logging referrers. (optional)
-            web_filter_cookie_removal_log: Enable/disable logging blocked cookies. (optional)
+            web_filter_unknown_log: Enable/disable logging unknown scripts.
+            (optional)
+            web_filter_referer_log: Enable/disable logging referrers.
+            (optional)
+            web_filter_cookie_removal_log: Enable/disable logging blocked
+            cookies. (optional)
             web_url_log: Enable/disable logging URL filtering. (optional)
-            web_invalid_domain_log: Enable/disable logging invalid domain names. (optional)
+            web_invalid_domain_log: Enable/disable logging invalid domain
+            names. (optional)
             web_ftgd_err_log: Enable/disable logging rating errors. (optional)
-            web_ftgd_quota_usage: Enable/disable logging daily quota usage. (optional)
-            extended_log: Enable/disable extended logging for web filtering. (optional)
-            web_extended_all_action_log: Enable/disable extended any filter action logging for web filtering. (optional)
-            web_antiphishing_log: Enable/disable logging of AntiPhishing checks. (optional)
+            web_ftgd_quota_usage: Enable/disable logging daily quota usage.
+            (optional)
+            extended_log: Enable/disable extended logging for web filtering.
+            (optional)
+            web_extended_all_action_log: Enable/disable extended any filter
+            action logging for web filtering. (optional)
+            web_antiphishing_log: Enable/disable logging of AntiPhishing
+            checks. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -233,7 +256,8 @@ class Profile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -271,7 +295,7 @@ class Profile:
         if web is not None:
             data_payload["web"] = web
         if ftgd_wf is not None:
-            data_payload["ftgd-wf"] = ftgd_wf
+            data_payload["ftgd-w"] = ftgd_wf
         if antiphish is not None:
             data_payload["antiphish"] = antiphish
         if wisp is not None:
@@ -343,8 +367,10 @@ class Profile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -352,7 +378,8 @@ class Profile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -458,8 +485,10 @@ class Profile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Profile name. (optional)
             comment: Optional comments. (optional)
             feature_set: Flow/proxy feature set. (optional)
@@ -477,27 +506,41 @@ class Profile:
             wisp_servers: WISP servers. (optional)
             wisp_algorithm: WISP server selection algorithm. (optional)
             log_all_url: Enable/disable logging all URLs visited. (optional)
-            web_content_log: Enable/disable logging logging blocked web content. (optional)
+            web_content_log: Enable/disable logging logging blocked web
+            content. (optional)
             web_filter_activex_log: Enable/disable logging ActiveX. (optional)
-            web_filter_command_block_log: Enable/disable logging blocked commands. (optional)
-            web_filter_cookie_log: Enable/disable logging cookie filtering. (optional)
-            web_filter_applet_log: Enable/disable logging Java applets. (optional)
+            web_filter_command_block_log: Enable/disable logging blocked
+            commands. (optional)
+            web_filter_cookie_log: Enable/disable logging cookie filtering.
+            (optional)
+            web_filter_applet_log: Enable/disable logging Java applets.
+            (optional)
             web_filter_jscript_log: Enable/disable logging JScripts. (optional)
             web_filter_js_log: Enable/disable logging Java scripts. (optional)
             web_filter_vbs_log: Enable/disable logging VBS scripts. (optional)
-            web_filter_unknown_log: Enable/disable logging unknown scripts. (optional)
-            web_filter_referer_log: Enable/disable logging referrers. (optional)
-            web_filter_cookie_removal_log: Enable/disable logging blocked cookies. (optional)
+            web_filter_unknown_log: Enable/disable logging unknown scripts.
+            (optional)
+            web_filter_referer_log: Enable/disable logging referrers.
+            (optional)
+            web_filter_cookie_removal_log: Enable/disable logging blocked
+            cookies. (optional)
             web_url_log: Enable/disable logging URL filtering. (optional)
-            web_invalid_domain_log: Enable/disable logging invalid domain names. (optional)
+            web_invalid_domain_log: Enable/disable logging invalid domain
+            names. (optional)
             web_ftgd_err_log: Enable/disable logging rating errors. (optional)
-            web_ftgd_quota_usage: Enable/disable logging daily quota usage. (optional)
-            extended_log: Enable/disable extended logging for web filtering. (optional)
-            web_extended_all_action_log: Enable/disable extended any filter action logging for web filtering. (optional)
-            web_antiphishing_log: Enable/disable logging of AntiPhishing checks. (optional)
+            web_ftgd_quota_usage: Enable/disable logging daily quota usage.
+            (optional)
+            extended_log: Enable/disable extended logging for web filtering.
+            (optional)
+            web_extended_all_action_log: Enable/disable extended any filter
+            action logging for web filtering. (optional)
+            web_antiphishing_log: Enable/disable logging of AntiPhishing
+            checks. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -505,7 +548,8 @@ class Profile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -537,7 +581,7 @@ class Profile:
         if web is not None:
             data_payload["web"] = web
         if ftgd_wf is not None:
-            data_payload["ftgd-wf"] = ftgd_wf
+            data_payload["ftgd-w"] = ftgd_wf
         if antiphish is not None:
             data_payload["antiphish"] = antiphish
         if wisp is not None:

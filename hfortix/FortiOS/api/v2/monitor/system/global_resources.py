@@ -62,7 +62,8 @@ class GlobalResources:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve current usage of global resources as well as both the default and user configured maximum values.
+        Retrieve current usage of global resources as well as both the default
+        and user configured maximum values.
 
         Args:
             payload_dict: Optional dictionary of parameters

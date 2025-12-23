@@ -76,7 +76,8 @@ class AvailableCertificates:
             with_ca: Include certificate authorities. (optional)
             with_crl: Include certificate revocation lists. (optional)
             mkey: Check if specific certificate is available. (optional)
-            find_all_references: Include reference counts across all VDOMs when scope is global. (optional)
+            find_all_references: Include reference counts across all VDOMs when
+            scope is global. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

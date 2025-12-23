@@ -73,7 +73,7 @@ def validate_decrypted_traffic_mirror_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate traffic-type if present
     if "traffic-type" in payload:
@@ -126,7 +126,7 @@ def validate_decrypted_traffic_mirror_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate traffic-type if present
     if "traffic-type" in payload:

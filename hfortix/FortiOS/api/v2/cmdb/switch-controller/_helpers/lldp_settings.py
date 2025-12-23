@@ -80,7 +80,7 @@ def validate_lldp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 16:
-                    return (False, f"tx-hold must be between 1 and 16")
+                    return (False, "tx-hold must be between 1 and 16")
             except (ValueError, TypeError):
                 return (False, f"tx-hold must be numeric, got: {value}")
 
@@ -91,7 +91,7 @@ def validate_lldp_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 4095:
-                    return (False, f"tx-interval must be between 5 and 4095")
+                    return (False, "tx-interval must be between 5 and 4095")
             except (ValueError, TypeError):
                 return (False, f"tx-interval must be numeric, got: {value}")
 
@@ -104,7 +104,7 @@ def validate_lldp_settings_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"fast-start-interval must be between 0 and 255",
+                        "fast-start-interval must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (

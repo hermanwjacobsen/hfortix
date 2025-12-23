@@ -78,7 +78,7 @@ def validate_resource_limits_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"session must be between 0 and 4294967295")
+                    return (False, "session must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"session must be numeric, got: {value}")
 
@@ -91,7 +91,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ipsec-phase1 must be between 0 and 4294967295",
+                        "ipsec-phase1 must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"ipsec-phase1 must be numeric, got: {value}")
@@ -105,7 +105,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ipsec-phase2 must be between 0 and 4294967295",
+                        "ipsec-phase2 must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"ipsec-phase2 must be numeric, got: {value}")
@@ -119,7 +119,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ipsec-phase1-interface must be between 0 and 4294967295",
+                        "ipsec-phase1-interface must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -136,7 +136,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ipsec-phase2-interface must be between 0 and 4294967295",
+                        "ipsec-phase2-interface must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -153,7 +153,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"dialup-tunnel must be between 0 and 4294967295",
+                        "dialup-tunnel must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"dialup-tunnel must be numeric, got: {value}")
@@ -167,7 +167,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"firewall-policy must be between 0 and 4294967295",
+                        "firewall-policy must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -184,7 +184,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"firewall-address must be between 0 and 4294967295",
+                        "firewall-address must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -201,7 +201,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"firewall-addrgrp must be between 0 and 4294967295",
+                        "firewall-addrgrp must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -218,7 +218,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"custom-service must be between 0 and 4294967295",
+                        "custom-service must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"custom-service must be numeric, got: {value}")
@@ -232,7 +232,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"service-group must be between 0 and 4294967295",
+                        "service-group must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"service-group must be numeric, got: {value}")
@@ -246,7 +246,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"onetime-schedule must be between 0 and 4294967295",
+                        "onetime-schedule must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -263,7 +263,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"recurring-schedule must be between 0 and 4294967295",
+                        "recurring-schedule must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -278,7 +278,7 @@ def validate_resource_limits_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"user must be between 0 and 4294967295")
+                    return (False, "user must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"user must be numeric, got: {value}")
 
@@ -291,7 +291,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"user-group must be between 0 and 4294967295",
+                        "user-group must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"user-group must be numeric, got: {value}")
@@ -305,7 +305,7 @@ def validate_resource_limits_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"log-disk-quota must be between 0 and 4294967295",
+                        "log-disk-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"log-disk-quota must be numeric, got: {value}")

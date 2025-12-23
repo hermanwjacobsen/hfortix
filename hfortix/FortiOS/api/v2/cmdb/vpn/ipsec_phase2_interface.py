@@ -33,7 +33,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.vpn.ipsec_phase2_interface.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.vpn.ipsec_phase2_interface.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +45,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +99,17 @@ class IpsecPhase2Interface:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class IpsecPhase2Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -201,12 +208,16 @@ class IpsecPhase2Interface:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: IPsec tunnel name. (optional)
-            phase1name: Phase 1 determines the options required for phase 2. (optional)
+            phase1name: Phase 1 determines the options required for phase 2.
+            (optional)
             dhcp_ipsec: Enable/disable DHCP-IPsec. (optional)
             proposal: Phase2 proposal. (optional)
             pfs: Enable/disable PFS feature. (optional)
@@ -220,23 +231,34 @@ class IpsecPhase2Interface:
             addke7: phase2 ADDKE7 group. (optional)
             replay: Enable/disable replay detection. (optional)
             keepalive: Enable/disable keep alive. (optional)
-            auto_negotiate: Enable/disable IPsec SA auto-negotiation. (optional)
+            auto_negotiate: Enable/disable IPsec SA auto-negotiation.
+            (optional)
             add_route: Enable/disable automatic route addition. (optional)
-            inbound_dscp_copy: Enable/disable copying of the DSCP in the ESP header to the inner IP header. (optional)
-            auto_discovery_sender: Enable/disable sending short-cut messages. (optional)
-            auto_discovery_forwarder: Enable/disable forwarding short-cut messages. (optional)
-            keylifeseconds: Phase2 key life in time in seconds (120 - 172800). (optional)
-            keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295). (optional)
+            inbound_dscp_copy: Enable/disable copying of the DSCP in the ESP
+            header to the inner IP header. (optional)
+            auto_discovery_sender: Enable/disable sending short-cut messages.
+            (optional)
+            auto_discovery_forwarder: Enable/disable forwarding short-cut
+            messages. (optional)
+            keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
+            (optional)
+            keylifekbs: Phase2 key life in number of kilobytes of traffic (5120
+            - 4294967295). (optional)
             keylife_type: Keylife type. (optional)
-            single_source: Enable/disable single source IP restriction. (optional)
+            single_source: Enable/disable single source IP restriction.
+            (optional)
             route_overlap: Action for overlapping routes. (optional)
             encapsulation: ESP encapsulation mode. (optional)
             l2tp: Enable/disable L2TP over IPsec. (optional)
             comments: Comment. (optional)
-            initiator_ts_narrow: Enable/disable traffic selector narrowing for IKEv2 initiator. (optional)
-            diffserv: Enable/disable applying DSCP value to the IPsec tunnel outer IP header. (optional)
-            diffservcode: DSCP value to be applied to the IPsec tunnel outer IP header. (optional)
-            protocol: Quick mode protocol selector (1 - 255 or 0 for all). (optional)
+            initiator_ts_narrow: Enable/disable traffic selector narrowing for
+            IKEv2 initiator. (optional)
+            diffserv: Enable/disable applying DSCP value to the IPsec tunnel
+            outer IP header. (optional)
+            diffservcode: DSCP value to be applied to the IPsec tunnel outer IP
+            header. (optional)
+            protocol: Quick mode protocol selector (1 - 255 or 0 for all).
+            (optional)
             src_name: Local proxy ID name. (optional)
             src_name6: Local proxy ID name. (optional)
             src_addr_type: Local proxy ID type. (optional)
@@ -246,7 +268,8 @@ class IpsecPhase2Interface:
             src_end_ip6: Local proxy ID IPv6 end. (optional)
             src_subnet: Local proxy ID subnet. (optional)
             src_subnet6: Local proxy ID IPv6 subnet. (optional)
-            src_port: Quick mode source port (1 - 65535 or 0 for all). (optional)
+            src_port: Quick mode source port (1 - 65535 or 0 for all).
+            (optional)
             dst_name: Remote proxy ID name. (optional)
             dst_name6: Remote proxy ID name. (optional)
             dst_addr_type: Remote proxy ID type. (optional)
@@ -256,10 +279,13 @@ class IpsecPhase2Interface:
             dst_end_ip6: Remote proxy ID IPv6 end. (optional)
             dst_subnet: Remote proxy ID IPv4 subnet. (optional)
             dst_subnet6: Remote proxy ID IPv6 subnet. (optional)
-            dst_port: Quick mode destination port (1 - 65535 or 0 for all). (optional)
+            dst_port: Quick mode destination port (1 - 65535 or 0 for all).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -267,7 +293,8 @@ class IpsecPhase2Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -405,8 +432,10 @@ class IpsecPhase2Interface:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -414,7 +443,8 @@ class IpsecPhase2Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -537,10 +567,13 @@ class IpsecPhase2Interface:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: IPsec tunnel name. (optional)
-            phase1name: Phase 1 determines the options required for phase 2. (optional)
+            phase1name: Phase 1 determines the options required for phase 2.
+            (optional)
             dhcp_ipsec: Enable/disable DHCP-IPsec. (optional)
             proposal: Phase2 proposal. (optional)
             pfs: Enable/disable PFS feature. (optional)
@@ -554,23 +587,34 @@ class IpsecPhase2Interface:
             addke7: phase2 ADDKE7 group. (optional)
             replay: Enable/disable replay detection. (optional)
             keepalive: Enable/disable keep alive. (optional)
-            auto_negotiate: Enable/disable IPsec SA auto-negotiation. (optional)
+            auto_negotiate: Enable/disable IPsec SA auto-negotiation.
+            (optional)
             add_route: Enable/disable automatic route addition. (optional)
-            inbound_dscp_copy: Enable/disable copying of the DSCP in the ESP header to the inner IP header. (optional)
-            auto_discovery_sender: Enable/disable sending short-cut messages. (optional)
-            auto_discovery_forwarder: Enable/disable forwarding short-cut messages. (optional)
-            keylifeseconds: Phase2 key life in time in seconds (120 - 172800). (optional)
-            keylifekbs: Phase2 key life in number of kilobytes of traffic (5120 - 4294967295). (optional)
+            inbound_dscp_copy: Enable/disable copying of the DSCP in the ESP
+            header to the inner IP header. (optional)
+            auto_discovery_sender: Enable/disable sending short-cut messages.
+            (optional)
+            auto_discovery_forwarder: Enable/disable forwarding short-cut
+            messages. (optional)
+            keylifeseconds: Phase2 key life in time in seconds (120 - 172800).
+            (optional)
+            keylifekbs: Phase2 key life in number of kilobytes of traffic (5120
+            - 4294967295). (optional)
             keylife_type: Keylife type. (optional)
-            single_source: Enable/disable single source IP restriction. (optional)
+            single_source: Enable/disable single source IP restriction.
+            (optional)
             route_overlap: Action for overlapping routes. (optional)
             encapsulation: ESP encapsulation mode. (optional)
             l2tp: Enable/disable L2TP over IPsec. (optional)
             comments: Comment. (optional)
-            initiator_ts_narrow: Enable/disable traffic selector narrowing for IKEv2 initiator. (optional)
-            diffserv: Enable/disable applying DSCP value to the IPsec tunnel outer IP header. (optional)
-            diffservcode: DSCP value to be applied to the IPsec tunnel outer IP header. (optional)
-            protocol: Quick mode protocol selector (1 - 255 or 0 for all). (optional)
+            initiator_ts_narrow: Enable/disable traffic selector narrowing for
+            IKEv2 initiator. (optional)
+            diffserv: Enable/disable applying DSCP value to the IPsec tunnel
+            outer IP header. (optional)
+            diffservcode: DSCP value to be applied to the IPsec tunnel outer IP
+            header. (optional)
+            protocol: Quick mode protocol selector (1 - 255 or 0 for all).
+            (optional)
             src_name: Local proxy ID name. (optional)
             src_name6: Local proxy ID name. (optional)
             src_addr_type: Local proxy ID type. (optional)
@@ -580,7 +624,8 @@ class IpsecPhase2Interface:
             src_end_ip6: Local proxy ID IPv6 end. (optional)
             src_subnet: Local proxy ID subnet. (optional)
             src_subnet6: Local proxy ID IPv6 subnet. (optional)
-            src_port: Quick mode source port (1 - 65535 or 0 for all). (optional)
+            src_port: Quick mode source port (1 - 65535 or 0 for all).
+            (optional)
             dst_name: Remote proxy ID name. (optional)
             dst_name6: Remote proxy ID name. (optional)
             dst_addr_type: Remote proxy ID type. (optional)
@@ -590,10 +635,13 @@ class IpsecPhase2Interface:
             dst_end_ip6: Remote proxy ID IPv6 end. (optional)
             dst_subnet: Remote proxy ID IPv4 subnet. (optional)
             dst_subnet6: Remote proxy ID IPv6 subnet. (optional)
-            dst_port: Quick mode destination port (1 - 65535 or 0 for all). (optional)
+            dst_port: Quick mode destination port (1 - 65535 or 0 for all).
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -601,7 +649,8 @@ class IpsecPhase2Interface:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

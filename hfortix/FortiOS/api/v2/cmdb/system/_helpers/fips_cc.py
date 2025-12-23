@@ -91,7 +91,7 @@ def validate_fips_cc_put(
                 if int_val < 5 or int_val > 1440:
                     return (
                         False,
-                        f"self-test-period must be between 5 and 1440",
+                        "self-test-period must be between 5 and 1440",
                     )
             except (ValueError, TypeError):
                 return (

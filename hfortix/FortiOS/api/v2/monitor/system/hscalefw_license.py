@@ -63,10 +63,12 @@ class Upload:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Update Hyperscale firewall license for hardware acceleration using license key.
+        Update Hyperscale firewall license for hardware acceleration using
+        license key.
 
         Args:
-            license_key: License key. Format:0000-0000-0000-0000-0000-0000-00. (optional)
+            license_key: License key. Format:0000-0000-0000-0000-0000-0000-00.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

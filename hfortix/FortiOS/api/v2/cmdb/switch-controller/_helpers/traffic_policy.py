@@ -73,13 +73,13 @@ def validate_traffic_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate policer-status if present
     if "policer-status" in payload:
@@ -99,7 +99,7 @@ def validate_traffic_policy_post(
                 if int_val < 0 or int_val > 524287000:
                     return (
                         False,
-                        f"guaranteed-bandwidth must be between 0 and 524287000",
+                        "guaranteed-bandwidth must be between 0 and 524287000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -116,7 +116,7 @@ def validate_traffic_policy_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"guaranteed-burst must be between 0 and 4294967295",
+                        "guaranteed-burst must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -133,7 +133,7 @@ def validate_traffic_policy_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"maximum-burst must be between 0 and 4294967295",
+                        "maximum-burst must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"maximum-burst must be numeric, got: {value}")
@@ -154,7 +154,7 @@ def validate_traffic_policy_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"cos-queue must be between 0 and 7")
+                    return (False, "cos-queue must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"cos-queue must be numeric, got: {value}")
 
@@ -191,13 +191,13 @@ def validate_traffic_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate policer-status if present
     if "policer-status" in payload:
@@ -217,7 +217,7 @@ def validate_traffic_policy_put(
                 if int_val < 0 or int_val > 524287000:
                     return (
                         False,
-                        f"guaranteed-bandwidth must be between 0 and 524287000",
+                        "guaranteed-bandwidth must be between 0 and 524287000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -234,7 +234,7 @@ def validate_traffic_policy_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"guaranteed-burst must be between 0 and 4294967295",
+                        "guaranteed-burst must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -251,7 +251,7 @@ def validate_traffic_policy_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"maximum-burst must be between 0 and 4294967295",
+                        "maximum-burst must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"maximum-burst must be numeric, got: {value}")
@@ -272,7 +272,7 @@ def validate_traffic_policy_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 7:
-                    return (False, f"cos-queue must be between 0 and 7")
+                    return (False, "cos-queue must be between 0 and 7")
             except (ValueError, TypeError):
                 return (False, f"cos-queue must be numeric, got: {value}")
 

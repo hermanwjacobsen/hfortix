@@ -106,7 +106,8 @@ class History:
         Retrieve WAN opt.
 
         Args:
-            period: Statistics period [10-min*|hour|day|week|30-day]. (optional)
+            period: Statistics period [10-min*|hour|day|week|30-day].
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

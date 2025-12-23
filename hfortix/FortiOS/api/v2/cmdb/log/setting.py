@@ -88,11 +88,15 @@ class Setting:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -158,41 +163,67 @@ class Setting:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. (optional)
-            resolve_port: Enable/disable adding resolved service names to traffic logs. (optional)
-            log_user_in_upper: Enable/disable logs with user-in-upper. (optional)
-            fwpolicy_implicit_log: Enable/disable implicit firewall policy logging. (optional)
-            fwpolicy6_implicit_log: Enable/disable implicit firewall policy6 logging. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            resolve_ip: Enable/disable adding resolved domain names to traffic
+            logs if possible. (optional)
+            resolve_port: Enable/disable adding resolved service names to
+            traffic logs. (optional)
+            log_user_in_upper: Enable/disable logs with user-in-upper.
+            (optional)
+            fwpolicy_implicit_log: Enable/disable implicit firewall policy
+            logging. (optional)
+            fwpolicy6_implicit_log: Enable/disable implicit firewall policy6
+            logging. (optional)
             extended_log: Enable/disable extended traffic logging. (optional)
             local_in_allow: Enable/disable local-in-allow logging. (optional)
-            local_in_deny_unicast: Enable/disable local-in-deny-unicast logging. (optional)
-            local_in_deny_broadcast: Enable/disable local-in-deny-broadcast logging. (optional)
-            local_in_policy_log: Enable/disable local-in-policy logging. (optional)
+            local_in_deny_unicast: Enable/disable local-in-deny-unicast
+            logging. (optional)
+            local_in_deny_broadcast: Enable/disable local-in-deny-broadcast
+            logging. (optional)
+            local_in_policy_log: Enable/disable local-in-policy logging.
+            (optional)
             local_out: Enable/disable local-out logging. (optional)
-            local_out_ioc_detection: Enable/disable local-out traffic IoC detection. Requires local-out to be enabled. (optional)
+            local_out_ioc_detection: Enable/disable local-out traffic IoC
+            detection. Requires local-out to be enabled. (optional)
             daemon_log: Enable/disable daemon logging. (optional)
             neighbor_event: Enable/disable neighbor event logging. (optional)
-            brief_traffic_format: Enable/disable brief format traffic logging. (optional)
-            user_anonymize: Enable/disable anonymizing user names in log messages. (optional)
-            expolicy_implicit_log: Enable/disable proxy firewall implicit policy logging. (optional)
-            log_policy_comment: Enable/disable inserting policy comments into traffic logs. (optional)
-            faz_override: Enable/disable override FortiAnalyzer settings. (optional)
-            syslog_override: Enable/disable override Syslog settings. (optional)
-            rest_api_set: Enable/disable REST API POST/PUT/DELETE request logging. (optional)
-            rest_api_get: Enable/disable REST API GET request logging. (optional)
-            rest_api_performance: Enable/disable REST API memory and performance stats in rest-api-get/set logs. (optional)
-            long_live_session_stat: Enable/disable long-live-session statistics logging. (optional)
+            brief_traffic_format: Enable/disable brief format traffic logging.
+            (optional)
+            user_anonymize: Enable/disable anonymizing user names in log
+            messages. (optional)
+            expolicy_implicit_log: Enable/disable proxy firewall implicit
+            policy logging. (optional)
+            log_policy_comment: Enable/disable inserting policy comments into
+            traffic logs. (optional)
+            faz_override: Enable/disable override FortiAnalyzer settings.
+            (optional)
+            syslog_override: Enable/disable override Syslog settings.
+            (optional)
+            rest_api_set: Enable/disable REST API POST/PUT/DELETE request
+            logging. (optional)
+            rest_api_get: Enable/disable REST API GET request logging.
+            (optional)
+            rest_api_performance: Enable/disable REST API memory and
+            performance stats in rest-api-get/set logs. (optional)
+            long_live_session_stat: Enable/disable long-live-session statistics
+            logging. (optional)
             extended_utm_log: Enable/disable extended UTM logging. (optional)
             zone_name: Enable/disable zone name logging. (optional)
-            web_svc_perf: Enable/disable web-svc performance logging. (optional)
-            custom_log_fields: Custom fields to append to all log messages. (optional)
+            web_svc_perf: Enable/disable web-svc performance logging.
+            (optional)
+            custom_log_fields: Custom fields to append to all log messages.
+            (optional)
             anonymization_hash: User name anonymization hash salt. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -200,7 +231,8 @@ class Setting:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -264,7 +296,7 @@ class Setting:
         if zone_name is not None:
             data_payload["zone-name"] = zone_name
         if web_svc_perf is not None:
-            data_payload["web-svc-perf"] = web_svc_perf
+            data_payload["web-svc-per"] = web_svc_perf
         if custom_log_fields is not None:
             data_payload["custom-log-fields"] = custom_log_fields
         if anonymization_hash is not None:

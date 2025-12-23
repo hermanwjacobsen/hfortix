@@ -81,7 +81,7 @@ def validate_probe_response_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -89,7 +89,7 @@ def validate_probe_response_put(
     if "http-probe-value" in payload:
         value = payload.get("http-probe-value")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-probe-value cannot exceed 1024 characters")
+            return (False, "http-probe-value cannot exceed 1024 characters")
 
     # Validate ttl-mode if present
     if "ttl-mode" in payload:
@@ -125,7 +125,7 @@ def validate_probe_response_put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 3600:
-                    return (False, f"timeout must be between 10 and 3600")
+                    return (False, "timeout must be between 10 and 3600")
             except (ValueError, TypeError):
                 return (False, f"timeout must be numeric, got: {value}")
 

@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class IpsecPhase1:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class IpsecPhase1:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -310,45 +316,61 @@ class IpsecPhase1:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: IPsec remote gateway name. (optional)
             type: Remote gateway type. (optional)
-            interface: Local physical, aggregate, or VLAN outgoing interface. (optional)
+            interface: Local physical, aggregate, or VLAN outgoing interface.
+            (optional)
             ike_version: IKE protocol version. (optional)
             remote_gw: Remote VPN gateway. (optional)
             local_gw: Local VPN gateway. (optional)
-            remotegw_ddns: Domain name of remote gateway. For example, name.ddns.com. (optional)
-            keylife: Time to wait in seconds before phase 1 encryption key expires. (optional)
-            certificate: Names of up to 4 signed personal certificates. (optional)
+            remotegw_ddns: Domain name of remote gateway. For example,
+            name.ddns.com. (optional)
+            keylife: Time to wait in seconds before phase 1 encryption key
+            expires. (optional)
+            certificate: Names of up to 4 signed personal certificates.
+            (optional)
             authmethod: Authentication method. (optional)
             authmethod_remote: Authentication method (remote side). (optional)
-            mode: ID protection mode used to establish a secure channel. (optional)
+            mode: ID protection mode used to establish a secure channel.
+            (optional)
             peertype: Accept this peer type. (optional)
             peerid: Accept this peer identity. (optional)
             usrgrp: User group name for dialup peers. (optional)
             peer: Accept this peer certificate. (optional)
             peergrp: Accept this peer certificate group. (optional)
             mode_cfg: Enable/disable configuration method. (optional)
-            mode_cfg_allow_client_selector: Enable/disable mode-cfg client to use custom phase2 selectors. (optional)
-            assign_ip: Enable/disable assignment of IP to IPsec interface via configuration method. (optional)
-            assign_ip_from: Method by which the IP address will be assigned. (optional)
+            mode_cfg_allow_client_selector: Enable/disable mode-cfg client to
+            use custom phase2 selectors. (optional)
+            assign_ip: Enable/disable assignment of IP to IPsec interface via
+            configuration method. (optional)
+            assign_ip_from: Method by which the IP address will be assigned.
+            (optional)
             ipv4_start_ip: Start of IPv4 range. (optional)
             ipv4_end_ip: End of IPv4 range. (optional)
             ipv4_netmask: IPv4 Netmask. (optional)
-            dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests. (optional)
-            dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests. (optional)
+            dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr
+            field of DHCP requests. (optional)
+            dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6
+            requests. (optional)
             dns_mode: DNS server mode. (optional)
             ipv4_dns_server1: IPv4 DNS server 1. (optional)
             ipv4_dns_server2: IPv4 DNS server 2. (optional)
             ipv4_dns_server3: IPv4 DNS server 3. (optional)
-            internal_domain_list: One or more internal domain names in quotes separated by spaces. (optional)
-            dns_suffix_search: One or more DNS domain name suffixes in quotes separated by spaces. (optional)
+            internal_domain_list: One or more internal domain names in quotes
+            separated by spaces. (optional)
+            dns_suffix_search: One or more DNS domain name suffixes in quotes
+            separated by spaces. (optional)
             ipv4_wins_server1: WINS server 1. (optional)
             ipv4_wins_server2: WINS server 2. (optional)
-            ipv4_exclude_range: Configuration Method IPv4 exclude ranges. (optional)
+            ipv4_exclude_range: Configuration Method IPv4 exclude ranges.
+            (optional)
             ipv4_split_include: IPv4 split-include subnets. (optional)
             split_include_service: Split-include services. (optional)
             ipv4_name: IPv4 address name. (optional)
@@ -358,39 +380,60 @@ class IpsecPhase1:
             ipv6_dns_server1: IPv6 DNS server 1. (optional)
             ipv6_dns_server2: IPv6 DNS server 2. (optional)
             ipv6_dns_server3: IPv6 DNS server 3. (optional)
-            ipv6_exclude_range: Configuration method IPv6 exclude ranges. (optional)
+            ipv6_exclude_range: Configuration method IPv6 exclude ranges.
+            (optional)
             ipv6_split_include: IPv6 split-include subnets. (optional)
             ipv6_name: IPv6 address name. (optional)
-            ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800). (optional)
-            unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. (optional)
-            domain: Instruct unity clients about the single default DNS domain. (optional)
-            banner: Message that unity client should display after connecting. (optional)
-            include_local_lan: Enable/disable allow local LAN access on unity clients. (optional)
-            ipv4_split_exclude: IPv4 subnets that should not be sent over the IPsec tunnel. (optional)
-            ipv6_split_exclude: IPv6 subnets that should not be sent over the IPsec tunnel. (optional)
-            save_password: Enable/disable saving XAuth username and password on VPN clients. (optional)
-            client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. (optional)
-            client_keep_alive: Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. (optional)
-            backup_gateway: Instruct unity clients about the backup gateway address(es). (optional)
+            ip_delay_interval: IP address reuse delay interval in seconds (0 -
+            28800). (optional)
+            unity_support: Enable/disable support for Cisco UNITY Configuration
+            Method extensions. (optional)
+            domain: Instruct unity clients about the single default DNS domain.
+            (optional)
+            banner: Message that unity client should display after connecting.
+            (optional)
+            include_local_lan: Enable/disable allow local LAN access on unity
+            clients. (optional)
+            ipv4_split_exclude: IPv4 subnets that should not be sent over the
+            IPsec tunnel. (optional)
+            ipv6_split_exclude: IPv6 subnets that should not be sent over the
+            IPsec tunnel. (optional)
+            save_password: Enable/disable saving XAuth username and password on
+            VPN clients. (optional)
+            client_auto_negotiate: Enable/disable allowing the VPN client to
+            bring up the tunnel when there is no traffic. (optional)
+            client_keep_alive: Enable/disable allowing the VPN client to keep
+            the tunnel up when there is no traffic. (optional)
+            backup_gateway: Instruct unity clients about the backup gateway
+            address(es). (optional)
             proposal: Phase1 proposal. (optional)
-            add_route: Enable/disable control addition of a route to peer destination selector. (optional)
-            add_gw_route: Enable/disable automatically add a route to the remote gateway. (optional)
-            psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x). (optional)
-            psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            add_route: Enable/disable control addition of a route to peer
+            destination selector. (optional)
+            add_gw_route: Enable/disable automatically add a route to the
+            remote gateway. (optional)
+            psksecret: Pre-shared secret for PSK authentication (ASCII string
+            or hexadecimal encoded with a leading 0x). (optional)
+            psksecret_remote: Pre-shared secret for remote side PSK
+            authentication (ASCII string or hexadecimal encoded with a leading
+            0x). (optional)
             keepalive: NAT-T keep alive interval. (optional)
             distance: Distance for routes added by IKE (1 - 255). (optional)
             priority: Priority for routes added by IKE (1 - 65535). (optional)
             localid: Local ID. (optional)
             localid_type: Local ID type. (optional)
-            auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. (optional)
-            negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300). (optional)
-            fragmentation: Enable/disable fragment IKE message on re-transmission. (optional)
+            auto_negotiate: Enable/disable automatic initiation of IKE SA
+            negotiation. (optional)
+            negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
+            (optional)
+            fragmentation: Enable/disable fragment IKE message on
+            re-transmission. (optional)
             dpd: Dead Peer Detection mode. (optional)
             dpd_retrycount: Number of DPD retry attempts. (optional)
             dpd_retryinterval: DPD retry interval. (optional)
             comments: Comment. (optional)
             npu_offload: Enable/disable offloading NPU. (optional)
-            send_cert_chain: Enable/disable sending certificate chain. (optional)
+            send_cert_chain: Enable/disable sending certificate chain.
+            (optional)
             dhgrp: DH group. (optional)
             addke1: ADDKE1 group. (optional)
             addke2: ADDKE2 group. (optional)
@@ -402,82 +445,141 @@ class IpsecPhase1:
             suite_b: Use Suite-B. (optional)
             eap: Enable/disable IKEv2 EAP authentication. (optional)
             eap_identity: IKEv2 EAP peer identity type. (optional)
-            eap_exclude_peergrp: Peer group excluded from EAP authentication. (optional)
-            eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. (optional)
-            acct_verify: Enable/disable verification of RADIUS accounting record. (optional)
-            ppk: Enable/disable IKEv2 Postquantum Preshared Key (PPK). (optional)
-            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            eap_exclude_peergrp: Peer group excluded from EAP authentication.
+            (optional)
+            eap_cert_auth: Enable/disable peer certificate authentication in
+            addition to EAP if peer is a FortiClient endpoint. (optional)
+            acct_verify: Enable/disable verification of RADIUS accounting
+            record. (optional)
+            ppk: Enable/disable IKEv2 Postquantum Preshared Key (PPK).
+            (optional)
+            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or
+            hexadecimal encoded with a leading 0x). (optional)
             ppk_identity: IKEv2 Postquantum Preshared Key Identity. (optional)
             wizard_type: GUI VPN Wizard Type. (optional)
             xauthtype: XAuth type. (optional)
-            reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. (optional)
+            reauth: Enable/disable re-authentication upon IKE SA lifetime
+            expiration. (optional)
             authusr: XAuth user name. (optional)
             authpasswd: XAuth password (max 35 characters). (optional)
-            group_authentication: Enable/disable IKEv2 IDi group authentication. (optional)
-            group_authentication_secret: Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x. (optional)
+            group_authentication: Enable/disable IKEv2 IDi group
+            authentication. (optional)
+            group_authentication_secret: Password for IKEv2 ID group
+            authentication. ASCII string or hexadecimal indicated by a leading
+            0x. (optional)
             authusrgrp: Authentication user group. (optional)
-            mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. (optional)
+            mesh_selector_type: Add selectors containing subsets of the
+            configuration depending on traffic. (optional)
             idle_timeout: Enable/disable IPsec tunnel idle timeout. (optional)
-            shared_idle_timeout: Enable/disable IPsec tunnel shared idle timeout. (optional)
-            idle_timeoutinterval: IPsec tunnel idle timeout in minutes (5 - 43200). (optional)
-            ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. (optional)
-            fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. (optional)
-            inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. (optional)
+            shared_idle_timeout: Enable/disable IPsec tunnel shared idle
+            timeout. (optional)
+            idle_timeoutinterval: IPsec tunnel idle timeout in minutes (5 -
+            43200). (optional)
+            ha_sync_esp_seqno: Enable/disable sequence number jump ahead for
+            IPsec HA. (optional)
+            fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec.
+            (optional)
+            inbound_dscp_copy: Enable/disable copy the dscp in the ESP header
+            to the inner IP Header. (optional)
             nattraversal: Enable/disable NAT traversal. (optional)
             fragmentation_mtu: IKE fragmentation MTU (500 - 16000). (optional)
-            childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). (optional)
-            azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. (optional)
-            client_resume: Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. (optional)
-            client_resume_interval: Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 7200). (optional)
+            childless_ike: Enable/disable childless IKEv2 initiation (RFC
+            6023). (optional)
+            azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for
+            FortiClient. (optional)
+            client_resume: Enable/disable resumption of offline FortiClient
+            sessions. When a FortiClient enabled laptop is closed or enters
+            sleep/hibernate mode, enabling this feature allows FortiClient to
+            keep the tunnel during this period, and allows users to immediately
+            resume using the IPsec tunnel when the device wakes up. (optional)
+            client_resume_interval: Maximum time in seconds during which a VPN
+            client may resume using a tunnel after a client PC has entered
+            sleep mode or temporarily lost its network connection (120 -
+            172800, default = 7200). (optional)
             rekey: Enable/disable phase1 rekey. (optional)
-            digital_signature_auth: Enable/disable IKEv2 Digital Signature Authentication (RFC 7427). (optional)
-            signature_hash_alg: Digital Signature Authentication hash algorithms. (optional)
-            rsa_signature_format: Digital Signature Authentication RSA signature format. (optional)
-            rsa_signature_hash_override: Enable/disable IKEv2 RSA signature hash algorithm override. (optional)
-            enforce_unique_id: Enable/disable peer ID uniqueness check. (optional)
-            cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. (optional)
-            fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. (optional)
-            fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000). (optional)
-            fec_base: Number of base Forward Error Correction packets (1 - 20). (optional)
-            fec_codec: Forward Error Correction encoding/decoding algorithm. (optional)
-            fec_redundant: Number of redundant Forward Error Correction packets (1 - 5 for reed-solomon, 1 for xor). (optional)
-            fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. (optional)
-            fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 1000). (optional)
+            digital_signature_auth: Enable/disable IKEv2 Digital Signature
+            Authentication (RFC 7427). (optional)
+            signature_hash_alg: Digital Signature Authentication hash
+            algorithms. (optional)
+            rsa_signature_format: Digital Signature Authentication RSA
+            signature format. (optional)
+            rsa_signature_hash_override: Enable/disable IKEv2 RSA signature
+            hash algorithm override. (optional)
+            enforce_unique_id: Enable/disable peer ID uniqueness check.
+            (optional)
+            cert_id_validation: Enable/disable cross validation of peer ID and
+            the identity in the peer's certificate as specified in RFC 4945.
+            (optional)
+            fec_egress: Enable/disable Forward Error Correction for egress
+            IPsec traffic. (optional)
+            fec_send_timeout: Timeout in milliseconds before sending Forward
+            Error Correction packets (1 - 1000). (optional)
+            fec_base: Number of base Forward Error Correction packets (1 - 20).
+            (optional)
+            fec_codec: Forward Error Correction encoding/decoding algorithm.
+            (optional)
+            fec_redundant: Number of redundant Forward Error Correction packets
+            (1 - 5 for reed-solomon, 1 for xor). (optional)
+            fec_ingress: Enable/disable Forward Error Correction for ingress
+            IPsec traffic. (optional)
+            fec_receive_timeout: Timeout in milliseconds before dropping
+            Forward Error Correction packets (1 - 1000). (optional)
             fec_health_check: SD-WAN health check. (optional)
-            fec_mapping_profile: Forward Error Correction (FEC) mapping profile. (optional)
+            fec_mapping_profile: Forward Error Correction (FEC) mapping
+            profile. (optional)
             network_overlay: Enable/disable network overlays. (optional)
             network_id: VPN gateway network ID. (optional)
-            dev_id_notification: Enable/disable device ID notification. (optional)
+            dev_id_notification: Enable/disable device ID notification.
+            (optional)
             dev_id: Device ID carried by the device ID notification. (optional)
-            loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. (optional)
+            loopback_asymroute: Enable/disable asymmetric routing for IKE
+            traffic on loopback interface. (optional)
             link_cost: VPN tunnel underlay link cost. (optional)
             kms: Key Management Services server. (optional)
-            exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. (optional)
-            ipv6_auto_linklocal: Enable/disable auto generation of IPv6 link-local address using last 8 bytes of mode-cfg assigned IPv6 address. (optional)
-            ems_sn_check: Enable/disable verification of EMS serial number. (optional)
+            exchange_fgt_device_id: Enable/disable device identifier exchange
+            with peer FortiGate units for use of VPN monitor data by
+            FortiManager. (optional)
+            ipv6_auto_linklocal: Enable/disable auto generation of IPv6
+            link-local address using last 8 bytes of mode-cfg assigned IPv6
+            address. (optional)
+            ems_sn_check: Enable/disable verification of EMS serial number.
+            (optional)
             cert_trust_store: CA certificate trust store. (optional)
-            qkd: Enable/disable use of Quantum Key Distribution (QKD) server. (optional)
-            qkd_hybrid: Enable/disable use of Quantum Key Distribution (QKD) hybrid keys. (optional)
-            qkd_profile: Quantum Key Distribution (QKD) server profile. (optional)
+            qkd: Enable/disable use of Quantum Key Distribution (QKD) server.
+            (optional)
+            qkd_hybrid: Enable/disable use of Quantum Key Distribution (QKD)
+            hybrid keys. (optional)
+            qkd_profile: Quantum Key Distribution (QKD) server profile.
+            (optional)
             transport: Set IKE transport protocol. (optional)
             fortinet_esp: Enable/disable Fortinet ESP encapsulation. (optional)
-            auto_transport_threshold: Timeout in seconds before falling back to next transport protocol. (optional)
-            remote_gw_match: Set type of IPv4 remote gateway address matching. (optional)
+            auto_transport_threshold: Timeout in seconds before falling back to
+            next transport protocol. (optional)
+            remote_gw_match: Set type of IPv4 remote gateway address matching.
+            (optional)
             remote_gw_subnet: IPv4 address and subnet mask. (optional)
             remote_gw_start_ip: First IPv4 address in the range. (optional)
             remote_gw_end_ip: Last IPv4 address in the range. (optional)
-            remote_gw_country: IPv4 addresses associated to a specific country. (optional)
+            remote_gw_country: IPv4 addresses associated to a specific country.
+            (optional)
             remote_gw_ztna_tags: IPv4 ZTNA posture tags. (optional)
-            remote_gw6_match: Set type of IPv6 remote gateway address matching. (optional)
+            remote_gw6_match: Set type of IPv6 remote gateway address matching.
+            (optional)
             remote_gw6_subnet: IPv6 address and prefix. (optional)
             remote_gw6_start_ip: First IPv6 address in the range. (optional)
             remote_gw6_end_ip: Last IPv6 address in the range. (optional)
-            remote_gw6_country: IPv6 addresses associated to a specific country. (optional)
-            cert_peer_username_validation: Enable/disable cross validation of peer username and the identity in the peer's certificate. (optional)
-            cert_peer_username_strip: Enable/disable domain stripping on certificate identity. (optional)
+            remote_gw6_country: IPv6 addresses associated to a specific
+            country. (optional)
+            cert_peer_username_validation: Enable/disable cross validation of
+            peer username and the identity in the peer's certificate.
+            (optional)
+            cert_peer_username_strip: Enable/disable domain stripping on
+            certificate identity. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -485,7 +587,8 @@ class IpsecPhase1:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -849,8 +952,10 @@ class IpsecPhase1:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -858,7 +963,8 @@ class IpsecPhase1:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -1090,43 +1196,58 @@ class IpsecPhase1:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: IPsec remote gateway name. (optional)
             type: Remote gateway type. (optional)
-            interface: Local physical, aggregate, or VLAN outgoing interface. (optional)
+            interface: Local physical, aggregate, or VLAN outgoing interface.
+            (optional)
             ike_version: IKE protocol version. (optional)
             remote_gw: Remote VPN gateway. (optional)
             local_gw: Local VPN gateway. (optional)
-            remotegw_ddns: Domain name of remote gateway. For example, name.ddns.com. (optional)
-            keylife: Time to wait in seconds before phase 1 encryption key expires. (optional)
-            certificate: Names of up to 4 signed personal certificates. (optional)
+            remotegw_ddns: Domain name of remote gateway. For example,
+            name.ddns.com. (optional)
+            keylife: Time to wait in seconds before phase 1 encryption key
+            expires. (optional)
+            certificate: Names of up to 4 signed personal certificates.
+            (optional)
             authmethod: Authentication method. (optional)
             authmethod_remote: Authentication method (remote side). (optional)
-            mode: ID protection mode used to establish a secure channel. (optional)
+            mode: ID protection mode used to establish a secure channel.
+            (optional)
             peertype: Accept this peer type. (optional)
             peerid: Accept this peer identity. (optional)
             usrgrp: User group name for dialup peers. (optional)
             peer: Accept this peer certificate. (optional)
             peergrp: Accept this peer certificate group. (optional)
             mode_cfg: Enable/disable configuration method. (optional)
-            mode_cfg_allow_client_selector: Enable/disable mode-cfg client to use custom phase2 selectors. (optional)
-            assign_ip: Enable/disable assignment of IP to IPsec interface via configuration method. (optional)
-            assign_ip_from: Method by which the IP address will be assigned. (optional)
+            mode_cfg_allow_client_selector: Enable/disable mode-cfg client to
+            use custom phase2 selectors. (optional)
+            assign_ip: Enable/disable assignment of IP to IPsec interface via
+            configuration method. (optional)
+            assign_ip_from: Method by which the IP address will be assigned.
+            (optional)
             ipv4_start_ip: Start of IPv4 range. (optional)
             ipv4_end_ip: End of IPv4 range. (optional)
             ipv4_netmask: IPv4 Netmask. (optional)
-            dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr field of DHCP requests. (optional)
-            dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6 requests. (optional)
+            dhcp_ra_giaddr: Relay agent gateway IP address to use in the giaddr
+            field of DHCP requests. (optional)
+            dhcp6_ra_linkaddr: Relay agent IPv6 link address to use in DHCP6
+            requests. (optional)
             dns_mode: DNS server mode. (optional)
             ipv4_dns_server1: IPv4 DNS server 1. (optional)
             ipv4_dns_server2: IPv4 DNS server 2. (optional)
             ipv4_dns_server3: IPv4 DNS server 3. (optional)
-            internal_domain_list: One or more internal domain names in quotes separated by spaces. (optional)
-            dns_suffix_search: One or more DNS domain name suffixes in quotes separated by spaces. (optional)
+            internal_domain_list: One or more internal domain names in quotes
+            separated by spaces. (optional)
+            dns_suffix_search: One or more DNS domain name suffixes in quotes
+            separated by spaces. (optional)
             ipv4_wins_server1: WINS server 1. (optional)
             ipv4_wins_server2: WINS server 2. (optional)
-            ipv4_exclude_range: Configuration Method IPv4 exclude ranges. (optional)
+            ipv4_exclude_range: Configuration Method IPv4 exclude ranges.
+            (optional)
             ipv4_split_include: IPv4 split-include subnets. (optional)
             split_include_service: Split-include services. (optional)
             ipv4_name: IPv4 address name. (optional)
@@ -1136,39 +1257,60 @@ class IpsecPhase1:
             ipv6_dns_server1: IPv6 DNS server 1. (optional)
             ipv6_dns_server2: IPv6 DNS server 2. (optional)
             ipv6_dns_server3: IPv6 DNS server 3. (optional)
-            ipv6_exclude_range: Configuration method IPv6 exclude ranges. (optional)
+            ipv6_exclude_range: Configuration method IPv6 exclude ranges.
+            (optional)
             ipv6_split_include: IPv6 split-include subnets. (optional)
             ipv6_name: IPv6 address name. (optional)
-            ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800). (optional)
-            unity_support: Enable/disable support for Cisco UNITY Configuration Method extensions. (optional)
-            domain: Instruct unity clients about the single default DNS domain. (optional)
-            banner: Message that unity client should display after connecting. (optional)
-            include_local_lan: Enable/disable allow local LAN access on unity clients. (optional)
-            ipv4_split_exclude: IPv4 subnets that should not be sent over the IPsec tunnel. (optional)
-            ipv6_split_exclude: IPv6 subnets that should not be sent over the IPsec tunnel. (optional)
-            save_password: Enable/disable saving XAuth username and password on VPN clients. (optional)
-            client_auto_negotiate: Enable/disable allowing the VPN client to bring up the tunnel when there is no traffic. (optional)
-            client_keep_alive: Enable/disable allowing the VPN client to keep the tunnel up when there is no traffic. (optional)
-            backup_gateway: Instruct unity clients about the backup gateway address(es). (optional)
+            ip_delay_interval: IP address reuse delay interval in seconds (0 -
+            28800). (optional)
+            unity_support: Enable/disable support for Cisco UNITY Configuration
+            Method extensions. (optional)
+            domain: Instruct unity clients about the single default DNS domain.
+            (optional)
+            banner: Message that unity client should display after connecting.
+            (optional)
+            include_local_lan: Enable/disable allow local LAN access on unity
+            clients. (optional)
+            ipv4_split_exclude: IPv4 subnets that should not be sent over the
+            IPsec tunnel. (optional)
+            ipv6_split_exclude: IPv6 subnets that should not be sent over the
+            IPsec tunnel. (optional)
+            save_password: Enable/disable saving XAuth username and password on
+            VPN clients. (optional)
+            client_auto_negotiate: Enable/disable allowing the VPN client to
+            bring up the tunnel when there is no traffic. (optional)
+            client_keep_alive: Enable/disable allowing the VPN client to keep
+            the tunnel up when there is no traffic. (optional)
+            backup_gateway: Instruct unity clients about the backup gateway
+            address(es). (optional)
             proposal: Phase1 proposal. (optional)
-            add_route: Enable/disable control addition of a route to peer destination selector. (optional)
-            add_gw_route: Enable/disable automatically add a route to the remote gateway. (optional)
-            psksecret: Pre-shared secret for PSK authentication (ASCII string or hexadecimal encoded with a leading 0x). (optional)
-            psksecret_remote: Pre-shared secret for remote side PSK authentication (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            add_route: Enable/disable control addition of a route to peer
+            destination selector. (optional)
+            add_gw_route: Enable/disable automatically add a route to the
+            remote gateway. (optional)
+            psksecret: Pre-shared secret for PSK authentication (ASCII string
+            or hexadecimal encoded with a leading 0x). (optional)
+            psksecret_remote: Pre-shared secret for remote side PSK
+            authentication (ASCII string or hexadecimal encoded with a leading
+            0x). (optional)
             keepalive: NAT-T keep alive interval. (optional)
             distance: Distance for routes added by IKE (1 - 255). (optional)
             priority: Priority for routes added by IKE (1 - 65535). (optional)
             localid: Local ID. (optional)
             localid_type: Local ID type. (optional)
-            auto_negotiate: Enable/disable automatic initiation of IKE SA negotiation. (optional)
-            negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300). (optional)
-            fragmentation: Enable/disable fragment IKE message on re-transmission. (optional)
+            auto_negotiate: Enable/disable automatic initiation of IKE SA
+            negotiation. (optional)
+            negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
+            (optional)
+            fragmentation: Enable/disable fragment IKE message on
+            re-transmission. (optional)
             dpd: Dead Peer Detection mode. (optional)
             dpd_retrycount: Number of DPD retry attempts. (optional)
             dpd_retryinterval: DPD retry interval. (optional)
             comments: Comment. (optional)
             npu_offload: Enable/disable offloading NPU. (optional)
-            send_cert_chain: Enable/disable sending certificate chain. (optional)
+            send_cert_chain: Enable/disable sending certificate chain.
+            (optional)
             dhgrp: DH group. (optional)
             addke1: ADDKE1 group. (optional)
             addke2: ADDKE2 group. (optional)
@@ -1180,82 +1322,141 @@ class IpsecPhase1:
             suite_b: Use Suite-B. (optional)
             eap: Enable/disable IKEv2 EAP authentication. (optional)
             eap_identity: IKEv2 EAP peer identity type. (optional)
-            eap_exclude_peergrp: Peer group excluded from EAP authentication. (optional)
-            eap_cert_auth: Enable/disable peer certificate authentication in addition to EAP if peer is a FortiClient endpoint. (optional)
-            acct_verify: Enable/disable verification of RADIUS accounting record. (optional)
-            ppk: Enable/disable IKEv2 Postquantum Preshared Key (PPK). (optional)
-            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x). (optional)
+            eap_exclude_peergrp: Peer group excluded from EAP authentication.
+            (optional)
+            eap_cert_auth: Enable/disable peer certificate authentication in
+            addition to EAP if peer is a FortiClient endpoint. (optional)
+            acct_verify: Enable/disable verification of RADIUS accounting
+            record. (optional)
+            ppk: Enable/disable IKEv2 Postquantum Preshared Key (PPK).
+            (optional)
+            ppk_secret: IKEv2 Postquantum Preshared Key (ASCII string or
+            hexadecimal encoded with a leading 0x). (optional)
             ppk_identity: IKEv2 Postquantum Preshared Key Identity. (optional)
             wizard_type: GUI VPN Wizard Type. (optional)
             xauthtype: XAuth type. (optional)
-            reauth: Enable/disable re-authentication upon IKE SA lifetime expiration. (optional)
+            reauth: Enable/disable re-authentication upon IKE SA lifetime
+            expiration. (optional)
             authusr: XAuth user name. (optional)
             authpasswd: XAuth password (max 35 characters). (optional)
-            group_authentication: Enable/disable IKEv2 IDi group authentication. (optional)
-            group_authentication_secret: Password for IKEv2 ID group authentication. ASCII string or hexadecimal indicated by a leading 0x. (optional)
+            group_authentication: Enable/disable IKEv2 IDi group
+            authentication. (optional)
+            group_authentication_secret: Password for IKEv2 ID group
+            authentication. ASCII string or hexadecimal indicated by a leading
+            0x. (optional)
             authusrgrp: Authentication user group. (optional)
-            mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. (optional)
+            mesh_selector_type: Add selectors containing subsets of the
+            configuration depending on traffic. (optional)
             idle_timeout: Enable/disable IPsec tunnel idle timeout. (optional)
-            shared_idle_timeout: Enable/disable IPsec tunnel shared idle timeout. (optional)
-            idle_timeoutinterval: IPsec tunnel idle timeout in minutes (5 - 43200). (optional)
-            ha_sync_esp_seqno: Enable/disable sequence number jump ahead for IPsec HA. (optional)
-            fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec. (optional)
-            inbound_dscp_copy: Enable/disable copy the dscp in the ESP header to the inner IP Header. (optional)
+            shared_idle_timeout: Enable/disable IPsec tunnel shared idle
+            timeout. (optional)
+            idle_timeoutinterval: IPsec tunnel idle timeout in minutes (5 -
+            43200). (optional)
+            ha_sync_esp_seqno: Enable/disable sequence number jump ahead for
+            IPsec HA. (optional)
+            fgsp_sync: Enable/disable IPsec syncing of tunnels for FGSP IPsec.
+            (optional)
+            inbound_dscp_copy: Enable/disable copy the dscp in the ESP header
+            to the inner IP Header. (optional)
             nattraversal: Enable/disable NAT traversal. (optional)
             fragmentation_mtu: IKE fragmentation MTU (500 - 16000). (optional)
-            childless_ike: Enable/disable childless IKEv2 initiation (RFC 6023). (optional)
-            azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for FortiClient. (optional)
-            client_resume: Enable/disable resumption of offline FortiClient sessions.  When a FortiClient enabled laptop is closed or enters sleep/hibernate mode, enabling this feature allows FortiClient to keep the tunnel during this period, and allows users to immediately resume using the IPsec tunnel when the device wakes up. (optional)
-            client_resume_interval: Maximum time in seconds during which a VPN client may resume using a tunnel after a client PC has entered sleep mode or temporarily lost its network connection (120 - 172800, default = 7200). (optional)
+            childless_ike: Enable/disable childless IKEv2 initiation (RFC
+            6023). (optional)
+            azure_ad_autoconnect: Enable/disable Azure AD Auto-Connect for
+            FortiClient. (optional)
+            client_resume: Enable/disable resumption of offline FortiClient
+            sessions. When a FortiClient enabled laptop is closed or enters
+            sleep/hibernate mode, enabling this feature allows FortiClient to
+            keep the tunnel during this period, and allows users to immediately
+            resume using the IPsec tunnel when the device wakes up. (optional)
+            client_resume_interval: Maximum time in seconds during which a VPN
+            client may resume using a tunnel after a client PC has entered
+            sleep mode or temporarily lost its network connection (120 -
+            172800, default = 7200). (optional)
             rekey: Enable/disable phase1 rekey. (optional)
-            digital_signature_auth: Enable/disable IKEv2 Digital Signature Authentication (RFC 7427). (optional)
-            signature_hash_alg: Digital Signature Authentication hash algorithms. (optional)
-            rsa_signature_format: Digital Signature Authentication RSA signature format. (optional)
-            rsa_signature_hash_override: Enable/disable IKEv2 RSA signature hash algorithm override. (optional)
-            enforce_unique_id: Enable/disable peer ID uniqueness check. (optional)
-            cert_id_validation: Enable/disable cross validation of peer ID and the identity in the peer's certificate as specified in RFC 4945. (optional)
-            fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. (optional)
-            fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000). (optional)
-            fec_base: Number of base Forward Error Correction packets (1 - 20). (optional)
-            fec_codec: Forward Error Correction encoding/decoding algorithm. (optional)
-            fec_redundant: Number of redundant Forward Error Correction packets (1 - 5 for reed-solomon, 1 for xor). (optional)
-            fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. (optional)
-            fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 1000). (optional)
+            digital_signature_auth: Enable/disable IKEv2 Digital Signature
+            Authentication (RFC 7427). (optional)
+            signature_hash_alg: Digital Signature Authentication hash
+            algorithms. (optional)
+            rsa_signature_format: Digital Signature Authentication RSA
+            signature format. (optional)
+            rsa_signature_hash_override: Enable/disable IKEv2 RSA signature
+            hash algorithm override. (optional)
+            enforce_unique_id: Enable/disable peer ID uniqueness check.
+            (optional)
+            cert_id_validation: Enable/disable cross validation of peer ID and
+            the identity in the peer's certificate as specified in RFC 4945.
+            (optional)
+            fec_egress: Enable/disable Forward Error Correction for egress
+            IPsec traffic. (optional)
+            fec_send_timeout: Timeout in milliseconds before sending Forward
+            Error Correction packets (1 - 1000). (optional)
+            fec_base: Number of base Forward Error Correction packets (1 - 20).
+            (optional)
+            fec_codec: Forward Error Correction encoding/decoding algorithm.
+            (optional)
+            fec_redundant: Number of redundant Forward Error Correction packets
+            (1 - 5 for reed-solomon, 1 for xor). (optional)
+            fec_ingress: Enable/disable Forward Error Correction for ingress
+            IPsec traffic. (optional)
+            fec_receive_timeout: Timeout in milliseconds before dropping
+            Forward Error Correction packets (1 - 1000). (optional)
             fec_health_check: SD-WAN health check. (optional)
-            fec_mapping_profile: Forward Error Correction (FEC) mapping profile. (optional)
+            fec_mapping_profile: Forward Error Correction (FEC) mapping
+            profile. (optional)
             network_overlay: Enable/disable network overlays. (optional)
             network_id: VPN gateway network ID. (optional)
-            dev_id_notification: Enable/disable device ID notification. (optional)
+            dev_id_notification: Enable/disable device ID notification.
+            (optional)
             dev_id: Device ID carried by the device ID notification. (optional)
-            loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. (optional)
+            loopback_asymroute: Enable/disable asymmetric routing for IKE
+            traffic on loopback interface. (optional)
             link_cost: VPN tunnel underlay link cost. (optional)
             kms: Key Management Services server. (optional)
-            exchange_fgt_device_id: Enable/disable device identifier exchange with peer FortiGate units for use of VPN monitor data by FortiManager. (optional)
-            ipv6_auto_linklocal: Enable/disable auto generation of IPv6 link-local address using last 8 bytes of mode-cfg assigned IPv6 address. (optional)
-            ems_sn_check: Enable/disable verification of EMS serial number. (optional)
+            exchange_fgt_device_id: Enable/disable device identifier exchange
+            with peer FortiGate units for use of VPN monitor data by
+            FortiManager. (optional)
+            ipv6_auto_linklocal: Enable/disable auto generation of IPv6
+            link-local address using last 8 bytes of mode-cfg assigned IPv6
+            address. (optional)
+            ems_sn_check: Enable/disable verification of EMS serial number.
+            (optional)
             cert_trust_store: CA certificate trust store. (optional)
-            qkd: Enable/disable use of Quantum Key Distribution (QKD) server. (optional)
-            qkd_hybrid: Enable/disable use of Quantum Key Distribution (QKD) hybrid keys. (optional)
-            qkd_profile: Quantum Key Distribution (QKD) server profile. (optional)
+            qkd: Enable/disable use of Quantum Key Distribution (QKD) server.
+            (optional)
+            qkd_hybrid: Enable/disable use of Quantum Key Distribution (QKD)
+            hybrid keys. (optional)
+            qkd_profile: Quantum Key Distribution (QKD) server profile.
+            (optional)
             transport: Set IKE transport protocol. (optional)
             fortinet_esp: Enable/disable Fortinet ESP encapsulation. (optional)
-            auto_transport_threshold: Timeout in seconds before falling back to next transport protocol. (optional)
-            remote_gw_match: Set type of IPv4 remote gateway address matching. (optional)
+            auto_transport_threshold: Timeout in seconds before falling back to
+            next transport protocol. (optional)
+            remote_gw_match: Set type of IPv4 remote gateway address matching.
+            (optional)
             remote_gw_subnet: IPv4 address and subnet mask. (optional)
             remote_gw_start_ip: First IPv4 address in the range. (optional)
             remote_gw_end_ip: Last IPv4 address in the range. (optional)
-            remote_gw_country: IPv4 addresses associated to a specific country. (optional)
+            remote_gw_country: IPv4 addresses associated to a specific country.
+            (optional)
             remote_gw_ztna_tags: IPv4 ZTNA posture tags. (optional)
-            remote_gw6_match: Set type of IPv6 remote gateway address matching. (optional)
+            remote_gw6_match: Set type of IPv6 remote gateway address matching.
+            (optional)
             remote_gw6_subnet: IPv6 address and prefix. (optional)
             remote_gw6_start_ip: First IPv6 address in the range. (optional)
             remote_gw6_end_ip: Last IPv6 address in the range. (optional)
-            remote_gw6_country: IPv6 addresses associated to a specific country. (optional)
-            cert_peer_username_validation: Enable/disable cross validation of peer username and the identity in the peer's certificate. (optional)
-            cert_peer_username_strip: Enable/disable domain stripping on certificate identity. (optional)
+            remote_gw6_country: IPv6 addresses associated to a specific
+            country. (optional)
+            cert_peer_username_validation: Enable/disable cross validation of
+            peer username and the identity in the peer's certificate.
+            (optional)
+            cert_peer_username_strip: Enable/disable domain stripping on
+            certificate identity. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -1263,7 +1464,8 @@ class IpsecPhase1:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -144,7 +144,7 @@ def validate_quarantine_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 479:
-                    return (False, f"agelimit must be between 0 and 479")
+                    return (False, "agelimit must be between 0 and 479")
             except (ValueError, TypeError):
                 return (False, f"agelimit must be numeric, got: {value}")
 
@@ -155,7 +155,7 @@ def validate_quarantine_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 500:
-                    return (False, f"maxfilesize must be between 0 and 500")
+                    return (False, "maxfilesize must be between 0 and 500")
             except (ValueError, TypeError):
                 return (False, f"maxfilesize must be numeric, got: {value}")
 
@@ -168,7 +168,7 @@ def validate_quarantine_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"quarantine-quota must be between 0 and 4294967295",
+                        "quarantine-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

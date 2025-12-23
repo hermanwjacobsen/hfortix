@@ -33,7 +33,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.firewall.shaper_per_ip_shaper.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.firewall.shaper_per_ip_shaper.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +45,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +99,17 @@ class ShaperPerIpShaper:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class ShaperPerIpShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -159,23 +166,42 @@ class ShaperPerIpShaper:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Traffic shaper name. (optional)
-            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
-            bandwidth_unit: Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
-            max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            diffserv_forward: Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
-            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 -
+            80000000). 0 means no limit. Units depend on the bandwidth-unit
+            setting. (optional)
+            bandwidth_unit: Unit of measurement for maximum bandwidth for this
+            shaper (Kbps, Mbps or Gbps). (optional)
+            max_concurrent_session: Maximum number of concurrent sessions
+            allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_tcp_session: Maximum number of concurrent TCP
+            sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+            (optional)
+            max_concurrent_udp_session: Maximum number of concurrent UDP
+            sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+            (optional)
+            diffserv_forward: Enable/disable changing the Forward (original)
+            DiffServ setting applied to traffic accepted by this shaper.
+            (optional)
+            diffserv_reverse: Enable/disable changing the Reverse (reply)
+            DiffServ setting applied to traffic accepted by this shaper.
+            (optional)
+            diffservcode_forward: Forward (original) DiffServ setting to be
+            applied to traffic accepted by this shaper. (optional)
+            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to
+            traffic accepted by this shaper. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -183,7 +209,8 @@ class ShaperPerIpShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -241,8 +268,10 @@ class ShaperPerIpShaper:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -250,7 +279,8 @@ class ShaperPerIpShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -331,21 +361,39 @@ class ShaperPerIpShaper:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Traffic shaper name. (optional)
-            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
-            bandwidth_unit: Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
-            max_concurrent_session: Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            max_concurrent_tcp_session: Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            max_concurrent_udp_session: Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
-            diffserv_forward: Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffserv_reverse: Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffservcode_forward: Forward (original) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
-            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            max_bandwidth: Upper bandwidth limit enforced by this shaper (0 -
+            80000000). 0 means no limit. Units depend on the bandwidth-unit
+            setting. (optional)
+            bandwidth_unit: Unit of measurement for maximum bandwidth for this
+            shaper (Kbps, Mbps or Gbps). (optional)
+            max_concurrent_session: Maximum number of concurrent sessions
+            allowed by this shaper (0 - 2097000). 0 means no limit. (optional)
+            max_concurrent_tcp_session: Maximum number of concurrent TCP
+            sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+            (optional)
+            max_concurrent_udp_session: Maximum number of concurrent UDP
+            sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+            (optional)
+            diffserv_forward: Enable/disable changing the Forward (original)
+            DiffServ setting applied to traffic accepted by this shaper.
+            (optional)
+            diffserv_reverse: Enable/disable changing the Reverse (reply)
+            DiffServ setting applied to traffic accepted by this shaper.
+            (optional)
+            diffservcode_forward: Forward (original) DiffServ setting to be
+            applied to traffic accepted by this shaper. (optional)
+            diffservcode_rev: Reverse (reply) DiffServ setting to be applied to
+            traffic accepted by this shaper. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -353,7 +401,8 @@ class ShaperPerIpShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

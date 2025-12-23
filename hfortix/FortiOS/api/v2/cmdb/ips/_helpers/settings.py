@@ -82,7 +82,7 @@ def validate_settings_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"packet-log-history must be between 1 and 255",
+                        "packet-log-history must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -99,7 +99,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"packet-log-post-attack must be between 0 and 255",
+                        "packet-log-post-attack must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -116,7 +116,7 @@ def validate_settings_put(
                 if int_val < 64 or int_val > 8192:
                     return (
                         False,
-                        f"packet-log-memory must be between 64 and 8192",
+                        "packet-log-memory must be between 64 and 8192",
                     )
             except (ValueError, TypeError):
                 return (
@@ -133,7 +133,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"ips-packet-quota must be between 0 and 4294967295",
+                        "ips-packet-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class LinkMonitor:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class LinkMonitor:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -183,47 +189,75 @@ class LinkMonitor:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Link monitor name. (optional)
             addr_mode: Address mode (IPv4 or IPv6). (optional)
-            srcintf: Interface that receives the traffic to be monitored. (optional)
+            srcintf: Interface that receives the traffic to be monitored.
+            (optional)
             server_config: Mode of server configuration. (optional)
             server_type: Server type (static or dynamic). (optional)
             server: IP address of the server(s) to be monitored. (optional)
             protocol: Protocols used to monitor the server. (optional)
-            port: Port number of the traffic to be used to monitor the server. (optional)
+            port: Port number of the traffic to be used to monitor the server.
+            (optional)
             gateway_ip: Gateway IP address used to probe the server. (optional)
-            gateway_ip6: Gateway IPv6 address used to probe the server. (optional)
+            gateway_ip6: Gateway IPv6 address used to probe the server.
+            (optional)
             route: Subnet to monitor. (optional)
-            source_ip: Source IP address used in packet to the server. (optional)
-            source_ip6: Source IPv6 address used in packet to the server. (optional)
-            http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string. (optional)
-            http_agent: String in the http-agent field in the HTTP header. (optional)
-            http_match: String that you expect to see in the HTTP-GET requests of the traffic to be monitored. (optional)
-            interval: Detection interval in milliseconds (20 - 3600 * 1000 msec, default = 500). (optional)
-            probe_timeout: Time to wait before a probe packet is considered lost (20 - 5000 msec, default = 500). (optional)
-            failtime: Number of retry attempts before the server is considered down (1 - 3600, default = 5). (optional)
-            recoverytime: Number of successful responses received before server is considered recovered (1 - 3600, default = 5). (optional)
-            probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30). (optional)
+            source_ip: Source IP address used in packet to the server.
+            (optional)
+            source_ip6: Source IPv6 address used in packet to the server.
+            (optional)
+            http_get: If you are monitoring an HTML server you can send an
+            HTTP-GET request with a custom string. Use this option to define
+            the string. (optional)
+            http_agent: String in the http-agent field in the HTTP header.
+            (optional)
+            http_match: String that you expect to see in the HTTP-GET requests
+            of the traffic to be monitored. (optional)
+            interval: Detection interval in milliseconds (20 - 3600 * 1000
+            msec, default = 500). (optional)
+            probe_timeout: Time to wait before a probe packet is considered
+            lost (20 - 5000 msec, default = 500). (optional)
+            failtime: Number of retry attempts before the server is considered
+            down (1 - 3600, default = 5). (optional)
+            recoverytime: Number of successful responses received before server
+            is considered recovered (1 - 3600, default = 5). (optional)
+            probe_count: Number of most recent probes that should be used to
+            calculate latency and jitter (5 - 30, default = 30). (optional)
             security_mode: Twamp controller security mode. (optional)
-            password: TWAMP controller password in authentication mode. (optional)
-            packet_size: Packet size of a TWAMP test session (124/158 - 1024). (optional)
+            password: TWAMP controller password in authentication mode.
+            (optional)
+            packet_size: Packet size of a TWAMP test session (124/158 - 1024).
+            (optional)
             ha_priority: HA election priority (1 - 50). (optional)
-            fail_weight: Threshold weight to trigger link failure alert. (optional)
-            update_cascade_interface: Enable/disable update cascade interface. (optional)
-            update_static_route: Enable/disable updating the static route. (optional)
-            update_policy_route: Enable/disable updating the policy route. (optional)
+            fail_weight: Threshold weight to trigger link failure alert.
+            (optional)
+            update_cascade_interface: Enable/disable update cascade interface.
+            (optional)
+            update_static_route: Enable/disable updating the static route.
+            (optional)
+            update_policy_route: Enable/disable updating the policy route.
+            (optional)
             status: Enable/disable this link monitor. (optional)
-            diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet. (optional)
+            diffservcode: Differentiated services code point (DSCP) in the IP
+            header of the probe packet. (optional)
             class_id: Traffic class ID. (optional)
-            service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. (optional)
+            service_detection: Only use monitor to read quality values. If
+            enabled, static routes and cascade interfaces will not be updated.
+            (optional)
             server_list: Servers for link-monitor to monitor. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -231,7 +265,8 @@ class LinkMonitor:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -251,7 +286,7 @@ class LinkMonitor:
         if addr_mode is not None:
             data_payload["addr-mode"] = addr_mode
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if server_config is not None:
             data_payload["server-config"] = server_config
         if server_type is not None:
@@ -333,8 +368,10 @@ class LinkMonitor:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -342,7 +379,8 @@ class LinkMonitor:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -447,45 +485,72 @@ class LinkMonitor:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Link monitor name. (optional)
             addr_mode: Address mode (IPv4 or IPv6). (optional)
-            srcintf: Interface that receives the traffic to be monitored. (optional)
+            srcintf: Interface that receives the traffic to be monitored.
+            (optional)
             server_config: Mode of server configuration. (optional)
             server_type: Server type (static or dynamic). (optional)
             server: IP address of the server(s) to be monitored. (optional)
             protocol: Protocols used to monitor the server. (optional)
-            port: Port number of the traffic to be used to monitor the server. (optional)
+            port: Port number of the traffic to be used to monitor the server.
+            (optional)
             gateway_ip: Gateway IP address used to probe the server. (optional)
-            gateway_ip6: Gateway IPv6 address used to probe the server. (optional)
+            gateway_ip6: Gateway IPv6 address used to probe the server.
+            (optional)
             route: Subnet to monitor. (optional)
-            source_ip: Source IP address used in packet to the server. (optional)
-            source_ip6: Source IPv6 address used in packet to the server. (optional)
-            http_get: If you are monitoring an HTML server you can send an HTTP-GET request with a custom string. Use this option to define the string. (optional)
-            http_agent: String in the http-agent field in the HTTP header. (optional)
-            http_match: String that you expect to see in the HTTP-GET requests of the traffic to be monitored. (optional)
-            interval: Detection interval in milliseconds (20 - 3600 * 1000 msec, default = 500). (optional)
-            probe_timeout: Time to wait before a probe packet is considered lost (20 - 5000 msec, default = 500). (optional)
-            failtime: Number of retry attempts before the server is considered down (1 - 3600, default = 5). (optional)
-            recoverytime: Number of successful responses received before server is considered recovered (1 - 3600, default = 5). (optional)
-            probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30). (optional)
+            source_ip: Source IP address used in packet to the server.
+            (optional)
+            source_ip6: Source IPv6 address used in packet to the server.
+            (optional)
+            http_get: If you are monitoring an HTML server you can send an
+            HTTP-GET request with a custom string. Use this option to define
+            the string. (optional)
+            http_agent: String in the http-agent field in the HTTP header.
+            (optional)
+            http_match: String that you expect to see in the HTTP-GET requests
+            of the traffic to be monitored. (optional)
+            interval: Detection interval in milliseconds (20 - 3600 * 1000
+            msec, default = 500). (optional)
+            probe_timeout: Time to wait before a probe packet is considered
+            lost (20 - 5000 msec, default = 500). (optional)
+            failtime: Number of retry attempts before the server is considered
+            down (1 - 3600, default = 5). (optional)
+            recoverytime: Number of successful responses received before server
+            is considered recovered (1 - 3600, default = 5). (optional)
+            probe_count: Number of most recent probes that should be used to
+            calculate latency and jitter (5 - 30, default = 30). (optional)
             security_mode: Twamp controller security mode. (optional)
-            password: TWAMP controller password in authentication mode. (optional)
-            packet_size: Packet size of a TWAMP test session (124/158 - 1024). (optional)
+            password: TWAMP controller password in authentication mode.
+            (optional)
+            packet_size: Packet size of a TWAMP test session (124/158 - 1024).
+            (optional)
             ha_priority: HA election priority (1 - 50). (optional)
-            fail_weight: Threshold weight to trigger link failure alert. (optional)
-            update_cascade_interface: Enable/disable update cascade interface. (optional)
-            update_static_route: Enable/disable updating the static route. (optional)
-            update_policy_route: Enable/disable updating the policy route. (optional)
+            fail_weight: Threshold weight to trigger link failure alert.
+            (optional)
+            update_cascade_interface: Enable/disable update cascade interface.
+            (optional)
+            update_static_route: Enable/disable updating the static route.
+            (optional)
+            update_policy_route: Enable/disable updating the policy route.
+            (optional)
             status: Enable/disable this link monitor. (optional)
-            diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet. (optional)
+            diffservcode: Differentiated services code point (DSCP) in the IP
+            header of the probe packet. (optional)
             class_id: Traffic class ID. (optional)
-            service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. (optional)
+            service_detection: Only use monitor to read quality values. If
+            enabled, static routes and cascade interfaces will not be updated.
+            (optional)
             server_list: Servers for link-monitor to monitor. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -493,7 +558,8 @@ class LinkMonitor:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -507,7 +573,7 @@ class LinkMonitor:
         if addr_mode is not None:
             data_payload["addr-mode"] = addr_mode
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if server_config is not None:
             data_payload["server-config"] = server_config
         if server_type is not None:

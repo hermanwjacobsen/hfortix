@@ -96,14 +96,20 @@ class DeviceUpgrade:
         Select a specific entry from a CLI table.
 
         Args:
-            serial: Object identifier (optional for list, required for specific)
+            serial: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class DeviceUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -164,28 +171,42 @@ class DeviceUpgrade:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             serial: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Current status of the upgrade. (optional)
-            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
-            next_path_index: The index of the next image to upgrade to. (optional)
-            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
-            initial_version: Firmware version when the upgrade was set up. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will
+            control the reboot process for the federated upgrade of the HA
+            cluster. (optional)
+            next_path_index: The index of the next image to upgrade to.
+            (optional)
+            known_ha_members: Known members of the HA cluster. If a member is
+            missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up.
+            (optional)
             starter_admin: Admin that started the upgrade. (optional)
             serial: Serial number of the node to include. (optional)
             timing: Run immediately or at a scheduled time. (optional)
-            maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation. (optional)
-            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
-            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
-            upgrade_path: Fortinet OS image versions to upgrade through in major-minor-patch format, such as 7-0-4. (optional)
+            maximum_minutes: Maximum number of minutes to allow for immediate
+            upgrade preparation. (optional)
+            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd
+            UTC). (optional)
+            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd
+            UTC). (optional)
+            upgrade_path: Fortinet OS image versions to upgrade through in
+            major-minor-patch format, such as 7-0-4. (optional)
             device_type: Fortinet device type. (optional)
             allow_download: Enable/disable download firmware images. (optional)
             failure_reason: Upgrade failure reason. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -193,7 +214,8 @@ class DeviceUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -257,8 +279,10 @@ class DeviceUpgrade:
         Args:
             serial: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -266,7 +290,8 @@ class DeviceUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -309,26 +334,39 @@ class DeviceUpgrade:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             status: Current status of the upgrade. (optional)
-            ha_reboot_controller: Serial number of the FortiGate unit that will control the reboot process for the federated upgrade of the HA cluster. (optional)
-            next_path_index: The index of the next image to upgrade to. (optional)
-            known_ha_members: Known members of the HA cluster. If a member is missing at upgrade time, the upgrade will be cancelled. (optional)
-            initial_version: Firmware version when the upgrade was set up. (optional)
+            ha_reboot_controller: Serial number of the FortiGate unit that will
+            control the reboot process for the federated upgrade of the HA
+            cluster. (optional)
+            next_path_index: The index of the next image to upgrade to.
+            (optional)
+            known_ha_members: Known members of the HA cluster. If a member is
+            missing at upgrade time, the upgrade will be cancelled. (optional)
+            initial_version: Firmware version when the upgrade was set up.
+            (optional)
             starter_admin: Admin that started the upgrade. (optional)
             serial: Serial number of the node to include. (optional)
             timing: Run immediately or at a scheduled time. (optional)
-            maximum_minutes: Maximum number of minutes to allow for immediate upgrade preparation. (optional)
-            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
-            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd UTC). (optional)
-            upgrade_path: Fortinet OS image versions to upgrade through in major-minor-patch format, such as 7-0-4. (optional)
+            maximum_minutes: Maximum number of minutes to allow for immediate
+            upgrade preparation. (optional)
+            time: Scheduled upgrade execution time in UTC (hh:mm yyyy/mm/dd
+            UTC). (optional)
+            setup_time: Upgrade preparation start time in UTC (hh:mm yyyy/mm/dd
+            UTC). (optional)
+            upgrade_path: Fortinet OS image versions to upgrade through in
+            major-minor-patch format, such as 7-0-4. (optional)
             device_type: Fortinet device type. (optional)
             allow_download: Enable/disable download firmware images. (optional)
             failure_reason: Upgrade failure reason. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -336,7 +374,8 @@ class DeviceUpgrade:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

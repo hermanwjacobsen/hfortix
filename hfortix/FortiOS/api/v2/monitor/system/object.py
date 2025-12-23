@@ -68,7 +68,8 @@ class Usage:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve all objects that are currently using as well as objects that can use the given object.
+        Retrieve all objects that are currently using as well as objects that
+        can use the given object.
 
         Args:
             q_path: The CMDB table's path (optional)

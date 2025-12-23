@@ -70,7 +70,8 @@ class LedBlink:
         Args:
             serials: FortiAP IDs to turn LED blink on/off. (optional)
             blink: True to turn on blinking, false to turn off. (optional)
-            duration: Time to blink, in seconds. 0 or omit for indefinite. (optional)
+            duration: Time to blink, in seconds. 0 or omit for indefinite.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -158,11 +159,13 @@ class SetStatus:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Update administrative state for a given FortiAP (enable or disable authorization).
+        Update administrative state for a given FortiAP (enable or disable
+        authorization).
 
         Args:
             wtpname: FortiAP name. (optional)
-            admin: New FortiAP administrative state [enable|disable|discovered]. (optional)
+            admin: New FortiAP administrative state
+            [enable|disable|discovered]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -215,7 +218,8 @@ class ManagedAp:
 
         Args:
             wtp_id: Filter: single managed FortiAP by ID. (optional)
-            incl_local: Enable to include the local FortiWiFi device in the results. (optional)
+            incl_local: Enable to include the local FortiWiFi device in the
+            results. (optional)
             skip_eos: Skip adding Fortiguard end-of-support data. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True

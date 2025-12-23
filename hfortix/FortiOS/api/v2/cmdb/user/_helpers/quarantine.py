@@ -85,12 +85,12 @@ def validate_quarantine_put(
     if "traffic-policy" in payload:
         value = payload.get("traffic-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"traffic-policy cannot exceed 63 characters")
+            return (False, "traffic-policy cannot exceed 63 characters")
 
     # Validate firewall-groups if present
     if "firewall-groups" in payload:
         value = payload.get("firewall-groups")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"firewall-groups cannot exceed 79 characters")
+            return (False, "firewall-groups cannot exceed 79 characters")
 
     return (True, None)

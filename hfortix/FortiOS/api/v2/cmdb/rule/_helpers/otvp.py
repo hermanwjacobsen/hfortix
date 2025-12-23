@@ -72,7 +72,7 @@ def validate_otvp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate log if present
     if "log" in payload:
@@ -105,7 +105,7 @@ def validate_otvp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "group" in payload:
         value = payload.get("group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"group cannot exceed 63 characters")
+            return (False, "group cannot exceed 63 characters")
 
     # Validate rule-id if present
     if "rule-id" in payload:
@@ -114,7 +114,7 @@ def validate_otvp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"rule-id must be between 0 and 4294967295")
+                    return (False, "rule-id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"rule-id must be numeric, got: {value}")
 
@@ -125,7 +125,7 @@ def validate_otvp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"rev must be between 0 and 4294967295")
+                    return (False, "rev must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"rev must be numeric, got: {value}")
 
@@ -136,7 +136,7 @@ def validate_otvp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"date must be between 0 and 4294967295")
+                    return (False, "date must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"date must be numeric, got: {value}")
 
@@ -173,7 +173,7 @@ def validate_otvp_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate log if present
     if "log" in payload:
@@ -206,7 +206,7 @@ def validate_otvp_put(
     if "group" in payload:
         value = payload.get("group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"group cannot exceed 63 characters")
+            return (False, "group cannot exceed 63 characters")
 
     # Validate rule-id if present
     if "rule-id" in payload:
@@ -215,7 +215,7 @@ def validate_otvp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"rule-id must be between 0 and 4294967295")
+                    return (False, "rule-id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"rule-id must be numeric, got: {value}")
 
@@ -226,7 +226,7 @@ def validate_otvp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"rev must be between 0 and 4294967295")
+                    return (False, "rev must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"rev must be numeric, got: {value}")
 
@@ -237,7 +237,7 @@ def validate_otvp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"date must be between 0 and 4294967295")
+                    return (False, "date must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"date must be numeric, got: {value}")
 

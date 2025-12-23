@@ -110,7 +110,7 @@ def validate_global__put(
                 if int_val < 10 or int_val > 1000000:
                     return (
                         False,
-                        f"mac-aging-interval must be between 10 and 1000000",
+                        "mac-aging-interval must be between 10 and 1000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -163,7 +163,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 168:
                     return (
                         False,
-                        f"mac-retention-period must be between 0 and 168",
+                        "mac-retention-period must be between 0 and 168",
                     )
             except (ValueError, TypeError):
                 return (
@@ -177,7 +177,7 @@ def validate_global__put(
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"default-virtual-switch-vlan cannot exceed 15 characters",
+                "default-virtual-switch-vlan cannot exceed 15 characters",
             )
 
     # Validate dhcp-server-access-list if present
@@ -234,7 +234,7 @@ def validate_global__put(
                 if int_val < 300 or int_val > 259200:
                     return (
                         False,
-                        f"dhcp-snoop-client-db-exp must be between 300 and 259200",
+                        "dhcp-snoop-client-db-exp must be between 300 and 259200",
                     )
             except (ValueError, TypeError):
                 return (
@@ -251,7 +251,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 2048:
                     return (
                         False,
-                        f"dhcp-snoop-db-per-port-learn-limit must be between 0 and 2048",
+                        "dhcp-snoop-db-per-port-learn-limit must be between 0 and 2048",
                     )
             except (ValueError, TypeError):
                 return (
@@ -277,7 +277,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"mac-violation-timer must be between 0 and 4294967295",
+                        "mac-violation-timer must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -369,7 +369,7 @@ def validate_global__put(
                 if int_val < 5 or int_val > 1440:
                     return (
                         False,
-                        f"firewall-auth-user-hold-period must be between 5 and 1440",
+                        "firewall-auth-user-hold-period must be between 5 and 1440",
                     )
             except (ValueError, TypeError):
                 return (

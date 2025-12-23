@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Firewall Shaper Traffic Shaper
 
-Configuration endpoint for managing cmdb firewall shaper traffic shaper objects.
+Configuration endpoint for managing cmdb firewall shaper traffic shaper
+objects.
 
 API Endpoints:
     GET    /cmdb/firewall/shaper_traffic_shaper
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.firewall.shaper_traffic_shaper.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.firewall.shaper_traffic_shaper.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.firewall.shaper_traffic_shaper.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.shaper_traffic_shaper.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.firewall.shaper_traffic_shaper.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.firewall.shaper_traffic_shaper.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class ShaperTrafficShaper:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class ShaperTrafficShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -168,32 +177,56 @@ class ShaperTrafficShaper:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Traffic shaper name. (optional)
-            guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 80000000). Units depend on the bandwidth-unit setting. (optional)
-            maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
-            bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
-            priority: Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. (optional)
-            per_policy: Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. (optional)
-            diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffservcode: DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            guaranteed_bandwidth: Amount of bandwidth guaranteed for this
+            shaper (0 - 80000000). Units depend on the bandwidth-unit setting.
+            (optional)
+            maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0
+            - 80000000). 0 means no limit. Units depend on the bandwidth-unit
+            setting. (optional)
+            bandwidth_unit: Unit of measurement for guaranteed and maximum
+            bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
+            priority: Higher priority traffic is more likely to be forwarded
+            without delays and without compromising the guaranteed bandwidth.
+            (optional)
+            per_policy: Enable/disable applying a separate shaper for each
+            policy. For example, if enabled the guaranteed bandwidth is applied
+            separately for each policy. (optional)
+            diffserv: Enable/disable changing the DiffServ setting applied to
+            traffic accepted by this shaper. (optional)
+            diffservcode: DiffServ setting to be applied to traffic accepted by
+            this shaper. (optional)
             dscp_marking_method: Select DSCP marking method. (optional)
-            exceed_bandwidth: Exceed bandwidth used for DSCP/VLAN CoS multi-stage marking. Units depend on the bandwidth-unit setting. (optional)
-            exceed_dscp: DSCP mark for traffic in guaranteed-bandwidth and exceed-bandwidth. (optional)
-            maximum_dscp: DSCP mark for traffic in exceed-bandwidth and maximum-bandwidth. (optional)
+            exceed_bandwidth: Exceed bandwidth used for DSCP/VLAN CoS
+            multi-stage marking. Units depend on the bandwidth-unit setting.
+            (optional)
+            exceed_dscp: DSCP mark for traffic in guaranteed-bandwidth and
+            exceed-bandwidth. (optional)
+            maximum_dscp: DSCP mark for traffic in exceed-bandwidth and
+            maximum-bandwidth. (optional)
             cos_marking: Enable/disable VLAN CoS marking. (optional)
             cos_marking_method: Select VLAN CoS marking method. (optional)
             cos: VLAN CoS mark. (optional)
-            exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth]. (optional)
-            maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth]. (optional)
-            overhead: Per-packet size overhead used in rate computations. (optional)
-            exceed_class_id: Class ID for traffic in guaranteed-bandwidth and maximum-bandwidth. (optional)
+            exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth,
+            exceed-bandwidth]. (optional)
+            maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth,
+            maximum-bandwidth]. (optional)
+            overhead: Per-packet size overhead used in rate computations.
+            (optional)
+            exceed_class_id: Class ID for traffic in guaranteed-bandwidth and
+            maximum-bandwidth. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -201,7 +234,8 @@ class ShaperTrafficShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -273,8 +307,10 @@ class ShaperTrafficShaper:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -282,7 +318,8 @@ class ShaperTrafficShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -372,30 +409,53 @@ class ShaperTrafficShaper:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Traffic shaper name. (optional)
-            guaranteed_bandwidth: Amount of bandwidth guaranteed for this shaper (0 - 80000000). Units depend on the bandwidth-unit setting. (optional)
-            maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0 - 80000000). 0 means no limit. Units depend on the bandwidth-unit setting. (optional)
-            bandwidth_unit: Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
-            priority: Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. (optional)
-            per_policy: Enable/disable applying a separate shaper for each policy. For example, if enabled the guaranteed bandwidth is applied separately for each policy. (optional)
-            diffserv: Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. (optional)
-            diffservcode: DiffServ setting to be applied to traffic accepted by this shaper. (optional)
+            guaranteed_bandwidth: Amount of bandwidth guaranteed for this
+            shaper (0 - 80000000). Units depend on the bandwidth-unit setting.
+            (optional)
+            maximum_bandwidth: Upper bandwidth limit enforced by this shaper (0
+            - 80000000). 0 means no limit. Units depend on the bandwidth-unit
+            setting. (optional)
+            bandwidth_unit: Unit of measurement for guaranteed and maximum
+            bandwidth for this shaper (Kbps, Mbps or Gbps). (optional)
+            priority: Higher priority traffic is more likely to be forwarded
+            without delays and without compromising the guaranteed bandwidth.
+            (optional)
+            per_policy: Enable/disable applying a separate shaper for each
+            policy. For example, if enabled the guaranteed bandwidth is applied
+            separately for each policy. (optional)
+            diffserv: Enable/disable changing the DiffServ setting applied to
+            traffic accepted by this shaper. (optional)
+            diffservcode: DiffServ setting to be applied to traffic accepted by
+            this shaper. (optional)
             dscp_marking_method: Select DSCP marking method. (optional)
-            exceed_bandwidth: Exceed bandwidth used for DSCP/VLAN CoS multi-stage marking. Units depend on the bandwidth-unit setting. (optional)
-            exceed_dscp: DSCP mark for traffic in guaranteed-bandwidth and exceed-bandwidth. (optional)
-            maximum_dscp: DSCP mark for traffic in exceed-bandwidth and maximum-bandwidth. (optional)
+            exceed_bandwidth: Exceed bandwidth used for DSCP/VLAN CoS
+            multi-stage marking. Units depend on the bandwidth-unit setting.
+            (optional)
+            exceed_dscp: DSCP mark for traffic in guaranteed-bandwidth and
+            exceed-bandwidth. (optional)
+            maximum_dscp: DSCP mark for traffic in exceed-bandwidth and
+            maximum-bandwidth. (optional)
             cos_marking: Enable/disable VLAN CoS marking. (optional)
             cos_marking_method: Select VLAN CoS marking method. (optional)
             cos: VLAN CoS mark. (optional)
-            exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth]. (optional)
-            maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth]. (optional)
-            overhead: Per-packet size overhead used in rate computations. (optional)
-            exceed_class_id: Class ID for traffic in guaranteed-bandwidth and maximum-bandwidth. (optional)
+            exceed_cos: VLAN CoS mark for traffic in [guaranteed-bandwidth,
+            exceed-bandwidth]. (optional)
+            maximum_cos: VLAN CoS mark for traffic in [exceed-bandwidth,
+            maximum-bandwidth]. (optional)
+            overhead: Per-packet size overhead used in rate computations.
+            (optional)
+            exceed_class_id: Class ID for traffic in guaranteed-bandwidth and
+            maximum-bandwidth. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -403,7 +463,8 @@ class ShaperTrafficShaper:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

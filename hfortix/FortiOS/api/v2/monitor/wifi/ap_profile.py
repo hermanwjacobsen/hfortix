@@ -66,7 +66,8 @@ class CreateDefault:
         Create a default FortiAP profile for the specified platform.
 
         Args:
-            platform: FortiAP platform to create a default profile for. (optional)
+            platform: FortiAP platform to create a default profile for.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

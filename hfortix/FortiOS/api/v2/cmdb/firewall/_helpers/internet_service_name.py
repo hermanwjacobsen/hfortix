@@ -72,7 +72,7 @@ def validate_internet_service_name_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -92,7 +92,7 @@ def validate_internet_service_name_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"internet-service-id must be between 0 and 4294967295",
+                        "internet-service-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -109,7 +109,7 @@ def validate_internet_service_name_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"country-id must be between 0 and 4294967295",
+                        "country-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"country-id must be numeric, got: {value}")
@@ -123,7 +123,7 @@ def validate_internet_service_name_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"region-id must be between 0 and 4294967295",
+                        "region-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"region-id must be numeric, got: {value}")
@@ -135,7 +135,7 @@ def validate_internet_service_name_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"city-id must be between 0 and 4294967295")
+                    return (False, "city-id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"city-id must be numeric, got: {value}")
 
@@ -172,7 +172,7 @@ def validate_internet_service_name_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -192,7 +192,7 @@ def validate_internet_service_name_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"internet-service-id must be between 0 and 4294967295",
+                        "internet-service-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -209,7 +209,7 @@ def validate_internet_service_name_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"country-id must be between 0 and 4294967295",
+                        "country-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"country-id must be numeric, got: {value}")
@@ -223,7 +223,7 @@ def validate_internet_service_name_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"region-id must be between 0 and 4294967295",
+                        "region-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"region-id must be numeric, got: {value}")
@@ -235,7 +235,7 @@ def validate_internet_service_name_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"city-id must be between 0 and 4294967295")
+                    return (False, "city-id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"city-id must be numeric, got: {value}")
 

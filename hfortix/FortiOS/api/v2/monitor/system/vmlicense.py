@@ -117,7 +117,8 @@ class DownloadEval:
         Args:
             account_id: FortiCare account email. (optional)
             account_password: FortiCare account password. (optional)
-            is_government: Is the account in use by a government user? (optional)
+            is_government: Is the account in use by a government user?
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -164,7 +165,9 @@ class Upload:
         Update VM license using uploaded file.
 
         Args:
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

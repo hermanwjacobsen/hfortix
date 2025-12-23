@@ -79,7 +79,8 @@ class Download:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.log.forticloud_report.download.get(mkey=1, report_name='value')
+            >>> fgt.api.monitor.log.forticloud_report.download.get(mkey=1,
+            report_name='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

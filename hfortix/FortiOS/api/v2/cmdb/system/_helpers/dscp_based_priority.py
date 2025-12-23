@@ -75,7 +75,7 @@ def validate_dscp_based_priority_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -86,7 +86,7 @@ def validate_dscp_based_priority_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"ds must be between 0 and 63")
+                    return (False, "ds must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"ds must be numeric, got: {value}")
 
@@ -135,7 +135,7 @@ def validate_dscp_based_priority_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -146,7 +146,7 @@ def validate_dscp_based_priority_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 63:
-                    return (False, f"ds must be between 0 and 63")
+                    return (False, "ds must be between 0 and 63")
             except (ValueError, TypeError):
                 return (False, f"ds must be numeric, got: {value}")
 

@@ -96,13 +96,13 @@ def validate_csf_put(
     if "uid" in payload:
         value = payload.get("uid")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"uid cannot exceed 35 characters")
+            return (False, "uid cannot exceed 35 characters")
 
     # Validate upstream if present
     if "upstream" in payload:
         value = payload.get("upstream")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"upstream cannot exceed 255 characters")
+            return (False, "upstream cannot exceed 255 characters")
 
     # Validate upstream-interface-select-method if present
     if "upstream-interface-select-method" in payload:
@@ -117,7 +117,7 @@ def validate_csf_put(
     if "upstream-interface" in payload:
         value = payload.get("upstream-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"upstream-interface cannot exceed 15 characters")
+            return (False, "upstream-interface cannot exceed 15 characters")
 
     # Validate upstream-port if present
     if "upstream-port" in payload:
@@ -128,7 +128,7 @@ def validate_csf_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"upstream-port must be between 1 and 65535",
+                        "upstream-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"upstream-port must be numeric, got: {value}")
@@ -137,7 +137,7 @@ def validate_csf_put(
     if "group-name" in payload:
         value = payload.get("group-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"group-name cannot exceed 35 characters")
+            return (False, "group-name cannot exceed 35 characters")
 
     # Validate accept-auth-by-cert if present
     if "accept-auth-by-cert" in payload:
@@ -170,7 +170,7 @@ def validate_csf_put(
     if "certificate" in payload:
         value = payload.get("certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"certificate cannot exceed 35 characters")
+            return (False, "certificate cannot exceed 35 characters")
 
     # Validate fabric-workers if present
     if "fabric-workers" in payload:
@@ -179,7 +179,7 @@ def validate_csf_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4:
-                    return (False, f"fabric-workers must be between 1 and 4")
+                    return (False, "fabric-workers must be between 1 and 4")
             except (ValueError, TypeError):
                 return (False, f"fabric-workers must be numeric, got: {value}")
 
@@ -207,7 +207,7 @@ def validate_csf_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"downstream-accprofile cannot exceed 35 characters",
+                "downstream-accprofile cannot exceed 35 characters",
             )
 
     # Validate configuration-sync if present
@@ -264,7 +264,7 @@ def validate_csf_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"file-quota must be between 0 and 4294967295",
+                        "file-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"file-quota must be numeric, got: {value}")
@@ -278,7 +278,7 @@ def validate_csf_put(
                 if int_val < 1 or int_val > 99:
                     return (
                         False,
-                        f"file-quota-warning must be between 1 and 99",
+                        "file-quota-warning must be between 1 and 99",
                     )
             except (ValueError, TypeError):
                 return (

@@ -62,7 +62,8 @@ class ApNames:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-                Retrieve list of objects, each containing the valid serial number prefix, platform short name
+                Retrieve list of objects, each containing the valid serial
+                number prefix, platform short name
         Access Group: wifi.
 
                 Args:

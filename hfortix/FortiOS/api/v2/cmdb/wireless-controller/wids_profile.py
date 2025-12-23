@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Wireless Controller Wids Profile
 
-Configuration endpoint for managing cmdb wireless controller wids profile objects.
+Configuration endpoint for managing cmdb wireless controller wids profile
+objects.
 
 API Endpoints:
     GET    /cmdb/wireless-controller/wids_profile
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.wireless_controller.wids_profile.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.wireless_controller.wids_profile.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.wireless_controller.wids_profile.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.wireless_controller.wids_profile.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.wireless_controller.wids_profile.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.wireless_controller.wids_profile.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class WidsProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class WidsProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -259,123 +268,224 @@ class WidsProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: WIDS profile name. (optional)
             comment: Comment. (optional)
-            sensor_mode: Scan nearby WiFi stations (default = disable). (optional)
+            sensor_mode: Scan nearby WiFi stations (default = disable).
+            (optional)
             ap_scan: Enable/disable rogue AP detection. (optional)
-            ap_scan_channel_list_2G_5G: Selected ap scan channel list for 2.4G and 5G bands. (optional)
-            ap_scan_channel_list_6G: Selected ap scan channel list for 6G band. (optional)
-            ap_bgscan_period: Period between background scans (10 - 3600 sec, default = 600). (optional)
-            ap_bgscan_intv: Period between successive channel scans (1 - 600 sec, default = 3). (optional)
-            ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec, default = 30). (optional)
-            ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec, default = 20). (optional)
-            ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30). (optional)
-            ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15). (optional)
-            ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). (optional)
-            ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90). (optional)
-            ap_auto_suppress: Enable/disable on-wire rogue AP auto-suppression (default = disable). (optional)
-            wireless_bridge: Enable/disable wireless bridge detection (default = disable). (optional)
-            deauth_broadcast: Enable/disable broadcasting de-authentication detection (default = disable). (optional)
-            null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). (optional)
-            long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). (optional)
-            long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200). (optional)
-            invalid_mac_oui: Enable/disable invalid MAC OUI detection. (optional)
-            weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). (optional)
-            auth_frame_flood: Enable/disable authentication frame flooding detection (default = disable). (optional)
-            auth_flood_time: Number of seconds after which a station is considered not connected. (optional)
-            auth_flood_thresh: The threshold value for authentication frame flooding. (optional)
-            assoc_frame_flood: Enable/disable association frame flooding detection (default = disable). (optional)
-            assoc_flood_time: Number of seconds after which a station is considered not connected. (optional)
-            assoc_flood_thresh: The threshold value for association frame flooding. (optional)
-            reassoc_flood: Enable/disable reassociation flood detection (default = disable). (optional)
+            ap_scan_channel_list_2G_5G: Selected ap scan channel list for 2.4G
+            and 5G bands. (optional)
+            ap_scan_channel_list_6G: Selected ap scan channel list for 6G band.
+            (optional)
+            ap_bgscan_period: Period between background scans (10 - 3600 sec,
+            default = 600). (optional)
+            ap_bgscan_intv: Period between successive channel scans (1 - 600
+            sec, default = 3). (optional)
+            ap_bgscan_duration: Listen time on scanning a channel (10 - 1000
+            msec, default = 30). (optional)
+            ap_bgscan_idle: Wait time for channel inactivity before scanning
+            this channel (0 - 1000 msec, default = 20). (optional)
+            ap_bgscan_report_intv: Period between background scan reports (15 -
+            600 sec, default = 30). (optional)
+            ap_bgscan_disable_schedules: Firewall schedules for turning off
+            FortiAP radio background scan. Background scan will be disabled
+            when at least one of the schedules is valid. Separate multiple
+            schedule names with a space. (optional)
+            ap_fgscan_report_intv: Period between foreground scan reports (15 -
+            600 sec, default = 15). (optional)
+            ap_scan_passive: Enable/disable passive scanning. Enable means do
+            not send probe request on any channels (default = disable).
+            (optional)
+            ap_scan_threshold: Minimum signal level/threshold in dBm required
+            for the AP to report detected rogue AP (-95 to -20, default = -90).
+            (optional)
+            ap_auto_suppress: Enable/disable on-wire rogue AP auto-suppression
+            (default = disable). (optional)
+            wireless_bridge: Enable/disable wireless bridge detection (default
+            = disable). (optional)
+            deauth_broadcast: Enable/disable broadcasting de-authentication
+            detection (default = disable). (optional)
+            null_ssid_probe_resp: Enable/disable null SSID probe response
+            detection (default = disable). (optional)
+            long_duration_attack: Enable/disable long duration attack detection
+            based on user configured threshold (default = disable). (optional)
+            long_duration_thresh: Threshold value for long duration attack
+            detection (1000 - 32767 usec, default = 8200). (optional)
+            invalid_mac_oui: Enable/disable invalid MAC OUI detection.
+            (optional)
+            weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector)
+            detection (default = disable). (optional)
+            auth_frame_flood: Enable/disable authentication frame flooding
+            detection (default = disable). (optional)
+            auth_flood_time: Number of seconds after which a station is
+            considered not connected. (optional)
+            auth_flood_thresh: The threshold value for authentication frame
+            flooding. (optional)
+            assoc_frame_flood: Enable/disable association frame flooding
+            detection (default = disable). (optional)
+            assoc_flood_time: Number of seconds after which a station is
+            considered not connected. (optional)
+            assoc_flood_thresh: The threshold value for association frame
+            flooding. (optional)
+            reassoc_flood: Enable/disable reassociation flood detection
+            (default = disable). (optional)
             reassoc_flood_time: Detection Window Period. (optional)
-            reassoc_flood_thresh: The threshold value for reassociation flood. (optional)
-            probe_flood: Enable/disable probe flood detection (default = disable). (optional)
+            reassoc_flood_thresh: The threshold value for reassociation flood.
+            (optional)
+            probe_flood: Enable/disable probe flood detection (default =
+            disable). (optional)
             probe_flood_time: Detection Window Period. (optional)
             probe_flood_thresh: The threshold value for probe flood. (optional)
-            bcn_flood: Enable/disable bcn flood detection (default = disable). (optional)
+            bcn_flood: Enable/disable bcn flood detection (default = disable).
+            (optional)
             bcn_flood_time: Detection Window Period. (optional)
             bcn_flood_thresh: The threshold value for bcn flood. (optional)
-            rts_flood: Enable/disable rts flood detection (default = disable). (optional)
+            rts_flood: Enable/disable rts flood detection (default = disable).
+            (optional)
             rts_flood_time: Detection Window Period. (optional)
             rts_flood_thresh: The threshold value for rts flood. (optional)
-            cts_flood: Enable/disable cts flood detection (default = disable). (optional)
+            cts_flood: Enable/disable cts flood detection (default = disable).
+            (optional)
             cts_flood_time: Detection Window Period. (optional)
             cts_flood_thresh: The threshold value for cts flood. (optional)
-            client_flood: Enable/disable client flood detection (default = disable). (optional)
+            client_flood: Enable/disable client flood detection (default =
+            disable). (optional)
             client_flood_time: Detection Window Period. (optional)
-            client_flood_thresh: The threshold value for client flood. (optional)
-            block_ack_flood: Enable/disable block_ack flood detection (default = disable). (optional)
+            client_flood_thresh: The threshold value for client flood.
+            (optional)
+            block_ack_flood: Enable/disable block_ack flood detection (default
+            = disable). (optional)
             block_ack_flood_time: Detection Window Period. (optional)
-            block_ack_flood_thresh: The threshold value for block_ack flood. (optional)
-            pspoll_flood: Enable/disable pspoll flood detection (default = disable). (optional)
+            block_ack_flood_thresh: The threshold value for block_ack flood.
+            (optional)
+            pspoll_flood: Enable/disable pspoll flood detection (default =
+            disable). (optional)
             pspoll_flood_time: Detection Window Period. (optional)
-            pspoll_flood_thresh: The threshold value for pspoll flood. (optional)
-            netstumbler: Enable/disable netstumbler detection (default = disable). (optional)
+            pspoll_flood_thresh: The threshold value for pspoll flood.
+            (optional)
+            netstumbler: Enable/disable netstumbler detection (default =
+            disable). (optional)
             netstumbler_time: Detection Window Period. (optional)
             netstumbler_thresh: The threshold value for netstumbler. (optional)
-            wellenreiter: Enable/disable wellenreiter detection (default = disable). (optional)
+            wellenreiter: Enable/disable wellenreiter detection (default =
+            disable). (optional)
             wellenreiter_time: Detection Window Period. (optional)
-            wellenreiter_thresh: The threshold value for wellenreiter. (optional)
-            spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). (optional)
-            asleap_attack: Enable/disable asleap attack detection (default = disable). (optional)
-            eapol_start_flood: Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). (optional)
-            eapol_start_thresh: The threshold value for EAPOL-Start flooding in specified interval. (optional)
-            eapol_start_intv: The detection interval for EAPOL-Start flooding (1 - 3600 sec). (optional)
-            eapol_logoff_flood: Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). (optional)
-            eapol_logoff_thresh: The threshold value for EAPOL-Logoff flooding in specified interval. (optional)
-            eapol_logoff_intv: The detection interval for EAPOL-Logoff flooding (1 - 3600 sec). (optional)
-            eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). (optional)
-            eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval. (optional)
-            eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec). (optional)
-            eapol_fail_flood: Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). (optional)
-            eapol_fail_thresh: The threshold value for EAPOL-Failure flooding in specified interval. (optional)
-            eapol_fail_intv: The detection interval for EAPOL-Failure flooding (1 - 3600 sec). (optional)
-            eapol_pre_succ_flood: Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). (optional)
-            eapol_pre_succ_thresh: The threshold value for premature EAPOL-Success flooding in specified interval. (optional)
-            eapol_pre_succ_intv: The detection interval for premature EAPOL-Success flooding (1 - 3600 sec). (optional)
-            eapol_pre_fail_flood: Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). (optional)
-            eapol_pre_fail_thresh: The threshold value for premature EAPOL-Failure flooding in specified interval. (optional)
-            eapol_pre_fail_intv: The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec). (optional)
-            deauth_unknown_src_thresh: Threshold value per second to deauth unknown src for DoS attack (0: no limit). (optional)
-            windows_bridge: Enable/disable windows bridge detection (default = disable). (optional)
-            disassoc_broadcast: Enable/disable broadcast dis-association detection (default = disable). (optional)
-            ap_spoofing: Enable/disable AP spoofing detection (default = disable). (optional)
-            chan_based_mitm: Enable/disable channel based mitm detection (default = disable). (optional)
-            adhoc_valid_ssid: Enable/disable adhoc using valid SSID detection (default = disable). (optional)
-            adhoc_network: Enable/disable adhoc network detection (default = disable). (optional)
-            eapol_key_overflow: Enable/disable overflow EAPOL key detection (default = disable). (optional)
-            ap_impersonation: Enable/disable AP impersonation detection (default = disable). (optional)
-            invalid_addr_combination: Enable/disable invalid address combination detection (default = disable). (optional)
-            beacon_wrong_channel: Enable/disable beacon wrong channel detection (default = disable). (optional)
-            ht_greenfield: Enable/disable HT greenfield detection (default = disable). (optional)
-            overflow_ie: Enable/disable overflow IE detection (default = disable). (optional)
-            malformed_ht_ie: Enable/disable malformed HT IE detection (default = disable). (optional)
-            malformed_auth: Enable/disable malformed auth frame detection (default = disable). (optional)
-            malformed_association: Enable/disable malformed association request detection (default = disable). (optional)
-            ht_40mhz_intolerance: Enable/disable HT 40 MHz intolerance detection (default = disable). (optional)
-            valid_ssid_misuse: Enable/disable valid SSID misuse detection (default = disable). (optional)
-            valid_client_misassociation: Enable/disable valid client misassociation detection (default = disable). (optional)
-            hotspotter_attack: Enable/disable hotspotter attack detection (default = disable). (optional)
-            pwsave_dos_attack: Enable/disable power save DOS attack detection (default = disable). (optional)
-            omerta_attack: Enable/disable omerta attack detection (default = disable). (optional)
-            disconnect_station: Enable/disable disconnect station detection (default = disable). (optional)
-            unencrypted_valid: Enable/disable unencrypted valid detection (default = disable). (optional)
-            fata_jack: Enable/disable FATA-Jack detection (default = disable). (optional)
-            risky_encryption: Enable/disable Risky Encryption detection (default = disable). (optional)
-            fuzzed_beacon: Enable/disable fuzzed beacon detection (default = disable). (optional)
-            fuzzed_probe_request: Enable/disable fuzzed probe request detection (default = disable). (optional)
-            fuzzed_probe_response: Enable/disable fuzzed probe response detection (default = disable). (optional)
-            air_jack: Enable/disable AirJack detection (default = disable). (optional)
-            wpa_ft_attack: Enable/disable WPA FT attack detection (default = disable). (optional)
+            wellenreiter_thresh: The threshold value for wellenreiter.
+            (optional)
+            spoofed_deauth: Enable/disable spoofed de-authentication attack
+            detection (default = disable). (optional)
+            asleap_attack: Enable/disable asleap attack detection (default =
+            disable). (optional)
+            eapol_start_flood: Enable/disable EAPOL-Start flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_start_thresh: The threshold value for EAPOL-Start flooding in
+            specified interval. (optional)
+            eapol_start_intv: The detection interval for EAPOL-Start flooding
+            (1 - 3600 sec). (optional)
+            eapol_logoff_flood: Enable/disable EAPOL-Logoff flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_logoff_thresh: The threshold value for EAPOL-Logoff flooding
+            in specified interval. (optional)
+            eapol_logoff_intv: The detection interval for EAPOL-Logoff flooding
+            (1 - 3600 sec). (optional)
+            eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_succ_thresh: The threshold value for EAPOL-Success flooding
+            in specified interval. (optional)
+            eapol_succ_intv: The detection interval for EAPOL-Success flooding
+            (1 - 3600 sec). (optional)
+            eapol_fail_flood: Enable/disable EAPOL-Failure flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_fail_thresh: The threshold value for EAPOL-Failure flooding
+            in specified interval. (optional)
+            eapol_fail_intv: The detection interval for EAPOL-Failure flooding
+            (1 - 3600 sec). (optional)
+            eapol_pre_succ_flood: Enable/disable premature EAPOL-Success
+            flooding (to STA) detection (default = disable). (optional)
+            eapol_pre_succ_thresh: The threshold value for premature
+            EAPOL-Success flooding in specified interval. (optional)
+            eapol_pre_succ_intv: The detection interval for premature
+            EAPOL-Success flooding (1 - 3600 sec). (optional)
+            eapol_pre_fail_flood: Enable/disable premature EAPOL-Failure
+            flooding (to STA) detection (default = disable). (optional)
+            eapol_pre_fail_thresh: The threshold value for premature
+            EAPOL-Failure flooding in specified interval. (optional)
+            eapol_pre_fail_intv: The detection interval for premature
+            EAPOL-Failure flooding (1 - 3600 sec). (optional)
+            deauth_unknown_src_thresh: Threshold value per second to deauth
+            unknown src for DoS attack (0: no limit). (optional)
+            windows_bridge: Enable/disable windows bridge detection (default =
+            disable). (optional)
+            disassoc_broadcast: Enable/disable broadcast dis-association
+            detection (default = disable). (optional)
+            ap_spoofing: Enable/disable AP spoofing detection (default =
+            disable). (optional)
+            chan_based_mitm: Enable/disable channel based mitm detection
+            (default = disable). (optional)
+            adhoc_valid_ssid: Enable/disable adhoc using valid SSID detection
+            (default = disable). (optional)
+            adhoc_network: Enable/disable adhoc network detection (default =
+            disable). (optional)
+            eapol_key_overflow: Enable/disable overflow EAPOL key detection
+            (default = disable). (optional)
+            ap_impersonation: Enable/disable AP impersonation detection
+            (default = disable). (optional)
+            invalid_addr_combination: Enable/disable invalid address
+            combination detection (default = disable). (optional)
+            beacon_wrong_channel: Enable/disable beacon wrong channel detection
+            (default = disable). (optional)
+            ht_greenfield: Enable/disable HT greenfield detection (default =
+            disable). (optional)
+            overflow_ie: Enable/disable overflow IE detection (default =
+            disable). (optional)
+            malformed_ht_ie: Enable/disable malformed HT IE detection (default
+            = disable). (optional)
+            malformed_auth: Enable/disable malformed auth frame detection
+            (default = disable). (optional)
+            malformed_association: Enable/disable malformed association request
+            detection (default = disable). (optional)
+            ht_40mhz_intolerance: Enable/disable HT 40 MHz intolerance
+            detection (default = disable). (optional)
+            valid_ssid_misuse: Enable/disable valid SSID misuse detection
+            (default = disable). (optional)
+            valid_client_misassociation: Enable/disable valid client
+            misassociation detection (default = disable). (optional)
+            hotspotter_attack: Enable/disable hotspotter attack detection
+            (default = disable). (optional)
+            pwsave_dos_attack: Enable/disable power save DOS attack detection
+            (default = disable). (optional)
+            omerta_attack: Enable/disable omerta attack detection (default =
+            disable). (optional)
+            disconnect_station: Enable/disable disconnect station detection
+            (default = disable). (optional)
+            unencrypted_valid: Enable/disable unencrypted valid detection
+            (default = disable). (optional)
+            fata_jack: Enable/disable FATA-Jack detection (default = disable).
+            (optional)
+            risky_encryption: Enable/disable Risky Encryption detection
+            (default = disable). (optional)
+            fuzzed_beacon: Enable/disable fuzzed beacon detection (default =
+            disable). (optional)
+            fuzzed_probe_request: Enable/disable fuzzed probe request detection
+            (default = disable). (optional)
+            fuzzed_probe_response: Enable/disable fuzzed probe response
+            detection (default = disable). (optional)
+            air_jack: Enable/disable AirJack detection (default = disable).
+            (optional)
+            wpa_ft_attack: Enable/disable WPA FT attack detection (default =
+            disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -383,7 +493,8 @@ class WidsProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -645,8 +756,10 @@ class WidsProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -654,7 +767,8 @@ class WidsProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -835,121 +949,221 @@ class WidsProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: WIDS profile name. (optional)
             comment: Comment. (optional)
-            sensor_mode: Scan nearby WiFi stations (default = disable). (optional)
+            sensor_mode: Scan nearby WiFi stations (default = disable).
+            (optional)
             ap_scan: Enable/disable rogue AP detection. (optional)
-            ap_scan_channel_list_2G_5G: Selected ap scan channel list for 2.4G and 5G bands. (optional)
-            ap_scan_channel_list_6G: Selected ap scan channel list for 6G band. (optional)
-            ap_bgscan_period: Period between background scans (10 - 3600 sec, default = 600). (optional)
-            ap_bgscan_intv: Period between successive channel scans (1 - 600 sec, default = 3). (optional)
-            ap_bgscan_duration: Listen time on scanning a channel (10 - 1000 msec, default = 30). (optional)
-            ap_bgscan_idle: Wait time for channel inactivity before scanning this channel (0 - 1000 msec, default = 20). (optional)
-            ap_bgscan_report_intv: Period between background scan reports (15 - 600 sec, default = 30). (optional)
-            ap_bgscan_disable_schedules: Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space. (optional)
-            ap_fgscan_report_intv: Period between foreground scan reports (15 - 600 sec, default = 15). (optional)
-            ap_scan_passive: Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). (optional)
-            ap_scan_threshold: Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90). (optional)
-            ap_auto_suppress: Enable/disable on-wire rogue AP auto-suppression (default = disable). (optional)
-            wireless_bridge: Enable/disable wireless bridge detection (default = disable). (optional)
-            deauth_broadcast: Enable/disable broadcasting de-authentication detection (default = disable). (optional)
-            null_ssid_probe_resp: Enable/disable null SSID probe response detection (default = disable). (optional)
-            long_duration_attack: Enable/disable long duration attack detection based on user configured threshold (default = disable). (optional)
-            long_duration_thresh: Threshold value for long duration attack detection (1000 - 32767 usec, default = 8200). (optional)
-            invalid_mac_oui: Enable/disable invalid MAC OUI detection. (optional)
-            weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector) detection (default = disable). (optional)
-            auth_frame_flood: Enable/disable authentication frame flooding detection (default = disable). (optional)
-            auth_flood_time: Number of seconds after which a station is considered not connected. (optional)
-            auth_flood_thresh: The threshold value for authentication frame flooding. (optional)
-            assoc_frame_flood: Enable/disable association frame flooding detection (default = disable). (optional)
-            assoc_flood_time: Number of seconds after which a station is considered not connected. (optional)
-            assoc_flood_thresh: The threshold value for association frame flooding. (optional)
-            reassoc_flood: Enable/disable reassociation flood detection (default = disable). (optional)
+            ap_scan_channel_list_2G_5G: Selected ap scan channel list for 2.4G
+            and 5G bands. (optional)
+            ap_scan_channel_list_6G: Selected ap scan channel list for 6G band.
+            (optional)
+            ap_bgscan_period: Period between background scans (10 - 3600 sec,
+            default = 600). (optional)
+            ap_bgscan_intv: Period between successive channel scans (1 - 600
+            sec, default = 3). (optional)
+            ap_bgscan_duration: Listen time on scanning a channel (10 - 1000
+            msec, default = 30). (optional)
+            ap_bgscan_idle: Wait time for channel inactivity before scanning
+            this channel (0 - 1000 msec, default = 20). (optional)
+            ap_bgscan_report_intv: Period between background scan reports (15 -
+            600 sec, default = 30). (optional)
+            ap_bgscan_disable_schedules: Firewall schedules for turning off
+            FortiAP radio background scan. Background scan will be disabled
+            when at least one of the schedules is valid. Separate multiple
+            schedule names with a space. (optional)
+            ap_fgscan_report_intv: Period between foreground scan reports (15 -
+            600 sec, default = 15). (optional)
+            ap_scan_passive: Enable/disable passive scanning. Enable means do
+            not send probe request on any channels (default = disable).
+            (optional)
+            ap_scan_threshold: Minimum signal level/threshold in dBm required
+            for the AP to report detected rogue AP (-95 to -20, default = -90).
+            (optional)
+            ap_auto_suppress: Enable/disable on-wire rogue AP auto-suppression
+            (default = disable). (optional)
+            wireless_bridge: Enable/disable wireless bridge detection (default
+            = disable). (optional)
+            deauth_broadcast: Enable/disable broadcasting de-authentication
+            detection (default = disable). (optional)
+            null_ssid_probe_resp: Enable/disable null SSID probe response
+            detection (default = disable). (optional)
+            long_duration_attack: Enable/disable long duration attack detection
+            based on user configured threshold (default = disable). (optional)
+            long_duration_thresh: Threshold value for long duration attack
+            detection (1000 - 32767 usec, default = 8200). (optional)
+            invalid_mac_oui: Enable/disable invalid MAC OUI detection.
+            (optional)
+            weak_wep_iv: Enable/disable weak WEP IV (Initialization Vector)
+            detection (default = disable). (optional)
+            auth_frame_flood: Enable/disable authentication frame flooding
+            detection (default = disable). (optional)
+            auth_flood_time: Number of seconds after which a station is
+            considered not connected. (optional)
+            auth_flood_thresh: The threshold value for authentication frame
+            flooding. (optional)
+            assoc_frame_flood: Enable/disable association frame flooding
+            detection (default = disable). (optional)
+            assoc_flood_time: Number of seconds after which a station is
+            considered not connected. (optional)
+            assoc_flood_thresh: The threshold value for association frame
+            flooding. (optional)
+            reassoc_flood: Enable/disable reassociation flood detection
+            (default = disable). (optional)
             reassoc_flood_time: Detection Window Period. (optional)
-            reassoc_flood_thresh: The threshold value for reassociation flood. (optional)
-            probe_flood: Enable/disable probe flood detection (default = disable). (optional)
+            reassoc_flood_thresh: The threshold value for reassociation flood.
+            (optional)
+            probe_flood: Enable/disable probe flood detection (default =
+            disable). (optional)
             probe_flood_time: Detection Window Period. (optional)
             probe_flood_thresh: The threshold value for probe flood. (optional)
-            bcn_flood: Enable/disable bcn flood detection (default = disable). (optional)
+            bcn_flood: Enable/disable bcn flood detection (default = disable).
+            (optional)
             bcn_flood_time: Detection Window Period. (optional)
             bcn_flood_thresh: The threshold value for bcn flood. (optional)
-            rts_flood: Enable/disable rts flood detection (default = disable). (optional)
+            rts_flood: Enable/disable rts flood detection (default = disable).
+            (optional)
             rts_flood_time: Detection Window Period. (optional)
             rts_flood_thresh: The threshold value for rts flood. (optional)
-            cts_flood: Enable/disable cts flood detection (default = disable). (optional)
+            cts_flood: Enable/disable cts flood detection (default = disable).
+            (optional)
             cts_flood_time: Detection Window Period. (optional)
             cts_flood_thresh: The threshold value for cts flood. (optional)
-            client_flood: Enable/disable client flood detection (default = disable). (optional)
+            client_flood: Enable/disable client flood detection (default =
+            disable). (optional)
             client_flood_time: Detection Window Period. (optional)
-            client_flood_thresh: The threshold value for client flood. (optional)
-            block_ack_flood: Enable/disable block_ack flood detection (default = disable). (optional)
+            client_flood_thresh: The threshold value for client flood.
+            (optional)
+            block_ack_flood: Enable/disable block_ack flood detection (default
+            = disable). (optional)
             block_ack_flood_time: Detection Window Period. (optional)
-            block_ack_flood_thresh: The threshold value for block_ack flood. (optional)
-            pspoll_flood: Enable/disable pspoll flood detection (default = disable). (optional)
+            block_ack_flood_thresh: The threshold value for block_ack flood.
+            (optional)
+            pspoll_flood: Enable/disable pspoll flood detection (default =
+            disable). (optional)
             pspoll_flood_time: Detection Window Period. (optional)
-            pspoll_flood_thresh: The threshold value for pspoll flood. (optional)
-            netstumbler: Enable/disable netstumbler detection (default = disable). (optional)
+            pspoll_flood_thresh: The threshold value for pspoll flood.
+            (optional)
+            netstumbler: Enable/disable netstumbler detection (default =
+            disable). (optional)
             netstumbler_time: Detection Window Period. (optional)
             netstumbler_thresh: The threshold value for netstumbler. (optional)
-            wellenreiter: Enable/disable wellenreiter detection (default = disable). (optional)
+            wellenreiter: Enable/disable wellenreiter detection (default =
+            disable). (optional)
             wellenreiter_time: Detection Window Period. (optional)
-            wellenreiter_thresh: The threshold value for wellenreiter. (optional)
-            spoofed_deauth: Enable/disable spoofed de-authentication attack detection (default = disable). (optional)
-            asleap_attack: Enable/disable asleap attack detection (default = disable). (optional)
-            eapol_start_flood: Enable/disable EAPOL-Start flooding (to AP) detection (default = disable). (optional)
-            eapol_start_thresh: The threshold value for EAPOL-Start flooding in specified interval. (optional)
-            eapol_start_intv: The detection interval for EAPOL-Start flooding (1 - 3600 sec). (optional)
-            eapol_logoff_flood: Enable/disable EAPOL-Logoff flooding (to AP) detection (default = disable). (optional)
-            eapol_logoff_thresh: The threshold value for EAPOL-Logoff flooding in specified interval. (optional)
-            eapol_logoff_intv: The detection interval for EAPOL-Logoff flooding (1 - 3600 sec). (optional)
-            eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP) detection (default = disable). (optional)
-            eapol_succ_thresh: The threshold value for EAPOL-Success flooding in specified interval. (optional)
-            eapol_succ_intv: The detection interval for EAPOL-Success flooding (1 - 3600 sec). (optional)
-            eapol_fail_flood: Enable/disable EAPOL-Failure flooding (to AP) detection (default = disable). (optional)
-            eapol_fail_thresh: The threshold value for EAPOL-Failure flooding in specified interval. (optional)
-            eapol_fail_intv: The detection interval for EAPOL-Failure flooding (1 - 3600 sec). (optional)
-            eapol_pre_succ_flood: Enable/disable premature EAPOL-Success flooding (to STA) detection (default = disable). (optional)
-            eapol_pre_succ_thresh: The threshold value for premature EAPOL-Success flooding in specified interval. (optional)
-            eapol_pre_succ_intv: The detection interval for premature EAPOL-Success flooding (1 - 3600 sec). (optional)
-            eapol_pre_fail_flood: Enable/disable premature EAPOL-Failure flooding (to STA) detection (default = disable). (optional)
-            eapol_pre_fail_thresh: The threshold value for premature EAPOL-Failure flooding in specified interval. (optional)
-            eapol_pre_fail_intv: The detection interval for premature EAPOL-Failure flooding (1 - 3600 sec). (optional)
-            deauth_unknown_src_thresh: Threshold value per second to deauth unknown src for DoS attack (0: no limit). (optional)
-            windows_bridge: Enable/disable windows bridge detection (default = disable). (optional)
-            disassoc_broadcast: Enable/disable broadcast dis-association detection (default = disable). (optional)
-            ap_spoofing: Enable/disable AP spoofing detection (default = disable). (optional)
-            chan_based_mitm: Enable/disable channel based mitm detection (default = disable). (optional)
-            adhoc_valid_ssid: Enable/disable adhoc using valid SSID detection (default = disable). (optional)
-            adhoc_network: Enable/disable adhoc network detection (default = disable). (optional)
-            eapol_key_overflow: Enable/disable overflow EAPOL key detection (default = disable). (optional)
-            ap_impersonation: Enable/disable AP impersonation detection (default = disable). (optional)
-            invalid_addr_combination: Enable/disable invalid address combination detection (default = disable). (optional)
-            beacon_wrong_channel: Enable/disable beacon wrong channel detection (default = disable). (optional)
-            ht_greenfield: Enable/disable HT greenfield detection (default = disable). (optional)
-            overflow_ie: Enable/disable overflow IE detection (default = disable). (optional)
-            malformed_ht_ie: Enable/disable malformed HT IE detection (default = disable). (optional)
-            malformed_auth: Enable/disable malformed auth frame detection (default = disable). (optional)
-            malformed_association: Enable/disable malformed association request detection (default = disable). (optional)
-            ht_40mhz_intolerance: Enable/disable HT 40 MHz intolerance detection (default = disable). (optional)
-            valid_ssid_misuse: Enable/disable valid SSID misuse detection (default = disable). (optional)
-            valid_client_misassociation: Enable/disable valid client misassociation detection (default = disable). (optional)
-            hotspotter_attack: Enable/disable hotspotter attack detection (default = disable). (optional)
-            pwsave_dos_attack: Enable/disable power save DOS attack detection (default = disable). (optional)
-            omerta_attack: Enable/disable omerta attack detection (default = disable). (optional)
-            disconnect_station: Enable/disable disconnect station detection (default = disable). (optional)
-            unencrypted_valid: Enable/disable unencrypted valid detection (default = disable). (optional)
-            fata_jack: Enable/disable FATA-Jack detection (default = disable). (optional)
-            risky_encryption: Enable/disable Risky Encryption detection (default = disable). (optional)
-            fuzzed_beacon: Enable/disable fuzzed beacon detection (default = disable). (optional)
-            fuzzed_probe_request: Enable/disable fuzzed probe request detection (default = disable). (optional)
-            fuzzed_probe_response: Enable/disable fuzzed probe response detection (default = disable). (optional)
-            air_jack: Enable/disable AirJack detection (default = disable). (optional)
-            wpa_ft_attack: Enable/disable WPA FT attack detection (default = disable). (optional)
+            wellenreiter_thresh: The threshold value for wellenreiter.
+            (optional)
+            spoofed_deauth: Enable/disable spoofed de-authentication attack
+            detection (default = disable). (optional)
+            asleap_attack: Enable/disable asleap attack detection (default =
+            disable). (optional)
+            eapol_start_flood: Enable/disable EAPOL-Start flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_start_thresh: The threshold value for EAPOL-Start flooding in
+            specified interval. (optional)
+            eapol_start_intv: The detection interval for EAPOL-Start flooding
+            (1 - 3600 sec). (optional)
+            eapol_logoff_flood: Enable/disable EAPOL-Logoff flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_logoff_thresh: The threshold value for EAPOL-Logoff flooding
+            in specified interval. (optional)
+            eapol_logoff_intv: The detection interval for EAPOL-Logoff flooding
+            (1 - 3600 sec). (optional)
+            eapol_succ_flood: Enable/disable EAPOL-Success flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_succ_thresh: The threshold value for EAPOL-Success flooding
+            in specified interval. (optional)
+            eapol_succ_intv: The detection interval for EAPOL-Success flooding
+            (1 - 3600 sec). (optional)
+            eapol_fail_flood: Enable/disable EAPOL-Failure flooding (to AP)
+            detection (default = disable). (optional)
+            eapol_fail_thresh: The threshold value for EAPOL-Failure flooding
+            in specified interval. (optional)
+            eapol_fail_intv: The detection interval for EAPOL-Failure flooding
+            (1 - 3600 sec). (optional)
+            eapol_pre_succ_flood: Enable/disable premature EAPOL-Success
+            flooding (to STA) detection (default = disable). (optional)
+            eapol_pre_succ_thresh: The threshold value for premature
+            EAPOL-Success flooding in specified interval. (optional)
+            eapol_pre_succ_intv: The detection interval for premature
+            EAPOL-Success flooding (1 - 3600 sec). (optional)
+            eapol_pre_fail_flood: Enable/disable premature EAPOL-Failure
+            flooding (to STA) detection (default = disable). (optional)
+            eapol_pre_fail_thresh: The threshold value for premature
+            EAPOL-Failure flooding in specified interval. (optional)
+            eapol_pre_fail_intv: The detection interval for premature
+            EAPOL-Failure flooding (1 - 3600 sec). (optional)
+            deauth_unknown_src_thresh: Threshold value per second to deauth
+            unknown src for DoS attack (0: no limit). (optional)
+            windows_bridge: Enable/disable windows bridge detection (default =
+            disable). (optional)
+            disassoc_broadcast: Enable/disable broadcast dis-association
+            detection (default = disable). (optional)
+            ap_spoofing: Enable/disable AP spoofing detection (default =
+            disable). (optional)
+            chan_based_mitm: Enable/disable channel based mitm detection
+            (default = disable). (optional)
+            adhoc_valid_ssid: Enable/disable adhoc using valid SSID detection
+            (default = disable). (optional)
+            adhoc_network: Enable/disable adhoc network detection (default =
+            disable). (optional)
+            eapol_key_overflow: Enable/disable overflow EAPOL key detection
+            (default = disable). (optional)
+            ap_impersonation: Enable/disable AP impersonation detection
+            (default = disable). (optional)
+            invalid_addr_combination: Enable/disable invalid address
+            combination detection (default = disable). (optional)
+            beacon_wrong_channel: Enable/disable beacon wrong channel detection
+            (default = disable). (optional)
+            ht_greenfield: Enable/disable HT greenfield detection (default =
+            disable). (optional)
+            overflow_ie: Enable/disable overflow IE detection (default =
+            disable). (optional)
+            malformed_ht_ie: Enable/disable malformed HT IE detection (default
+            = disable). (optional)
+            malformed_auth: Enable/disable malformed auth frame detection
+            (default = disable). (optional)
+            malformed_association: Enable/disable malformed association request
+            detection (default = disable). (optional)
+            ht_40mhz_intolerance: Enable/disable HT 40 MHz intolerance
+            detection (default = disable). (optional)
+            valid_ssid_misuse: Enable/disable valid SSID misuse detection
+            (default = disable). (optional)
+            valid_client_misassociation: Enable/disable valid client
+            misassociation detection (default = disable). (optional)
+            hotspotter_attack: Enable/disable hotspotter attack detection
+            (default = disable). (optional)
+            pwsave_dos_attack: Enable/disable power save DOS attack detection
+            (default = disable). (optional)
+            omerta_attack: Enable/disable omerta attack detection (default =
+            disable). (optional)
+            disconnect_station: Enable/disable disconnect station detection
+            (default = disable). (optional)
+            unencrypted_valid: Enable/disable unencrypted valid detection
+            (default = disable). (optional)
+            fata_jack: Enable/disable FATA-Jack detection (default = disable).
+            (optional)
+            risky_encryption: Enable/disable Risky Encryption detection
+            (default = disable). (optional)
+            fuzzed_beacon: Enable/disable fuzzed beacon detection (default =
+            disable). (optional)
+            fuzzed_probe_request: Enable/disable fuzzed probe request detection
+            (default = disable). (optional)
+            fuzzed_probe_response: Enable/disable fuzzed probe response
+            detection (default = disable). (optional)
+            air_jack: Enable/disable AirJack detection (default = disable).
+            (optional)
+            wpa_ft_attack: Enable/disable WPA FT attack detection (default =
+            disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -957,7 +1171,8 @@ class WidsProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

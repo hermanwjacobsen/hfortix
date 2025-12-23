@@ -106,13 +106,13 @@ def validate_fortisandbox_put(
     if "server" in payload:
         value = payload.get("server")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"server cannot exceed 63 characters")
+            return (False, "server cannot exceed 63 characters")
 
     # Validate source-ip if present
     if "source-ip" in payload:
         value = payload.get("source-ip")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"source-ip cannot exceed 63 characters")
+            return (False, "source-ip cannot exceed 63 characters")
 
     # Validate interface-select-method if present
     if "interface-select-method" in payload:
@@ -127,7 +127,7 @@ def validate_fortisandbox_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -136,7 +136,7 @@ def validate_fortisandbox_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -162,19 +162,19 @@ def validate_fortisandbox_put(
     if "email" in payload:
         value = payload.get("email")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"email cannot exceed 63 characters")
+            return (False, "email cannot exceed 63 characters")
 
     # Validate ca if present
     if "ca" in payload:
         value = payload.get("ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ca cannot exceed 79 characters")
+            return (False, "ca cannot exceed 79 characters")
 
     # Validate cn if present
     if "cn" in payload:
         value = payload.get("cn")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"cn cannot exceed 127 characters")
+            return (False, "cn cannot exceed 127 characters")
 
     # Validate certificate-verification if present
     if "certificate-verification" in payload:

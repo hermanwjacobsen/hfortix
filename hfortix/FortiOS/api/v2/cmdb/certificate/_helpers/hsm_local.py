@@ -88,13 +88,13 @@ def validate_hsm_local_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"comments cannot exceed 511 characters")
+            return (False, "comments cannot exceed 511 characters")
 
     # Validate vendor if present
     if "vendor" in payload:
@@ -136,31 +136,31 @@ def validate_hsm_local_post(
     if "gch-url" in payload:
         value = payload.get("gch-url")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"gch-url cannot exceed 1024 characters")
+            return (False, "gch-url cannot exceed 1024 characters")
 
     # Validate gch-project if present
     if "gch-project" in payload:
         value = payload.get("gch-project")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"gch-project cannot exceed 31 characters")
+            return (False, "gch-project cannot exceed 31 characters")
 
     # Validate gch-location if present
     if "gch-location" in payload:
         value = payload.get("gch-location")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-location cannot exceed 63 characters")
+            return (False, "gch-location cannot exceed 63 characters")
 
     # Validate gch-keyring if present
     if "gch-keyring" in payload:
         value = payload.get("gch-keyring")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-keyring cannot exceed 63 characters")
+            return (False, "gch-keyring cannot exceed 63 characters")
 
     # Validate gch-cryptokey if present
     if "gch-cryptokey" in payload:
         value = payload.get("gch-cryptokey")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-cryptokey cannot exceed 63 characters")
+            return (False, "gch-cryptokey cannot exceed 63 characters")
 
     # Validate gch-cryptokey-version if present
     if "gch-cryptokey-version" in payload:
@@ -168,7 +168,7 @@ def validate_hsm_local_post(
         if value and isinstance(value, str) and len(value) > 31:
             return (
                 False,
-                f"gch-cryptokey-version cannot exceed 31 characters",
+                "gch-cryptokey-version cannot exceed 31 characters",
             )
 
     # Validate gch-cloud-service-name if present
@@ -177,7 +177,7 @@ def validate_hsm_local_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"gch-cloud-service-name cannot exceed 35 characters",
+                "gch-cloud-service-name cannot exceed 35 characters",
             )
 
     # Validate gch-cryptokey-algorithm if present
@@ -222,13 +222,13 @@ def validate_hsm_local_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comments if present
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"comments cannot exceed 511 characters")
+            return (False, "comments cannot exceed 511 characters")
 
     # Validate vendor if present
     if "vendor" in payload:
@@ -270,31 +270,31 @@ def validate_hsm_local_put(
     if "gch-url" in payload:
         value = payload.get("gch-url")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"gch-url cannot exceed 1024 characters")
+            return (False, "gch-url cannot exceed 1024 characters")
 
     # Validate gch-project if present
     if "gch-project" in payload:
         value = payload.get("gch-project")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"gch-project cannot exceed 31 characters")
+            return (False, "gch-project cannot exceed 31 characters")
 
     # Validate gch-location if present
     if "gch-location" in payload:
         value = payload.get("gch-location")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-location cannot exceed 63 characters")
+            return (False, "gch-location cannot exceed 63 characters")
 
     # Validate gch-keyring if present
     if "gch-keyring" in payload:
         value = payload.get("gch-keyring")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-keyring cannot exceed 63 characters")
+            return (False, "gch-keyring cannot exceed 63 characters")
 
     # Validate gch-cryptokey if present
     if "gch-cryptokey" in payload:
         value = payload.get("gch-cryptokey")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"gch-cryptokey cannot exceed 63 characters")
+            return (False, "gch-cryptokey cannot exceed 63 characters")
 
     # Validate gch-cryptokey-version if present
     if "gch-cryptokey-version" in payload:
@@ -302,7 +302,7 @@ def validate_hsm_local_put(
         if value and isinstance(value, str) and len(value) > 31:
             return (
                 False,
-                f"gch-cryptokey-version cannot exceed 31 characters",
+                "gch-cryptokey-version cannot exceed 31 characters",
             )
 
     # Validate gch-cloud-service-name if present
@@ -311,7 +311,7 @@ def validate_hsm_local_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"gch-cloud-service-name cannot exceed 35 characters",
+                "gch-cloud-service-name cannot exceed 35 characters",
             )
 
     # Validate gch-cryptokey-algorithm if present

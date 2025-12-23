@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more explicit proxy policies by policy ID.
+        Reset traffic statistics for one or more explicit proxy policies by
+        policy ID.
 
         Args:
             policy: Single policy ID to reset. (optional)

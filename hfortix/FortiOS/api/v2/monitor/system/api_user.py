@@ -68,7 +68,9 @@ class GenerateKey:
 
         Args:
             api_user: Generate a new token for this api-user. (optional)
-            expiry: Expiry of API key in minutes from now (valid range: 1 - 10080). This can only be set for Fortinet Support Tool user. (optional)
+            expiry: Expiry of API key in minutes from now (valid range: 1 -
+            10080). This can only be set for Fortinet Support Tool user.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

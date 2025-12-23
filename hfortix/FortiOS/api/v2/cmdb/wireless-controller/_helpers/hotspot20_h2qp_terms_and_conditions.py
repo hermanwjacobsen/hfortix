@@ -1,5 +1,6 @@
 """
-Validation helpers for wireless-controller hotspot20_h2qp_terms_and_conditions endpoint.
+Validation helpers for wireless-controller hotspot20_h2qp_terms_and_conditions
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -59,7 +60,8 @@ def validate_hotspot20_h2qp_terms_and_conditions_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating hotspot20_h2qp_terms_and_conditions.
+    Validate POST request payload for creating
+    hotspot20_h2qp_terms_and_conditions.
 
     Args:
         payload: The payload to validate
@@ -71,13 +73,13 @@ def validate_hotspot20_h2qp_terms_and_conditions_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 254:
-            return (False, f"filename cannot exceed 254 characters")
+            return (False, "filename cannot exceed 254 characters")
 
     # Validate timestamp if present
     if "timestamp" in payload:
@@ -88,7 +90,7 @@ def validate_hotspot20_h2qp_terms_and_conditions_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"timestamp must be between 0 and 4294967295",
+                        "timestamp must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"timestamp must be numeric, got: {value}")
@@ -97,7 +99,7 @@ def validate_hotspot20_h2qp_terms_and_conditions_post(
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 253:
-            return (False, f"url cannot exceed 253 characters")
+            return (False, "url cannot exceed 253 characters")
 
     return (True, None)
 
@@ -132,13 +134,13 @@ def validate_hotspot20_h2qp_terms_and_conditions_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 254:
-            return (False, f"filename cannot exceed 254 characters")
+            return (False, "filename cannot exceed 254 characters")
 
     # Validate timestamp if present
     if "timestamp" in payload:
@@ -149,7 +151,7 @@ def validate_hotspot20_h2qp_terms_and_conditions_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"timestamp must be between 0 and 4294967295",
+                        "timestamp must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"timestamp must be numeric, got: {value}")
@@ -158,7 +160,7 @@ def validate_hotspot20_h2qp_terms_and_conditions_put(
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 253:
-            return (False, f"url cannot exceed 253 characters")
+            return (False, "url cannot exceed 253 characters")
 
     return (True, None)
 

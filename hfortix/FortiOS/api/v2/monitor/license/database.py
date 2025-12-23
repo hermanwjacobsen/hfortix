@@ -67,14 +67,23 @@ class Upgrade:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Upgrade or downgrade UTM engine or signature package (IPS/AntiVirus/Application Control/Industrial database/Security Rating/Internet Service Database) using uploaded file.
+        Upgrade or downgrade UTM engine or signature package
+        (IPS/AntiVirus/Application Control/Industrial database/Security
+        Rating/Internet Service Database) using uploaded file.
 
         Args:
-            db_name: Security service database name [ips|appctrl|industrial_db|antivirus|security_rating|isdb|iotddb] (optional)
-            confirm_not_signed: Confirm whether unsigned pkg files may be uploaded. (optional)
-            confirm_not_ga_certified: Confirm whether non GA-certified pkg files may be uploaded. (optional)
-            file_id: File id of existing pkg file from a previous upload. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            db_name: Security service database name
+            [ips|appctrl|industrial_db|antivirus|security_rating|isdb|iotddb]
+            (optional)
+            confirm_not_signed: Confirm whether unsigned pkg files may be
+            uploaded. (optional)
+            confirm_not_ga_certified: Confirm whether non GA-certified pkg
+            files may be uploaded. (optional)
+            file_id: File id of existing pkg file from a previous upload.
+            (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

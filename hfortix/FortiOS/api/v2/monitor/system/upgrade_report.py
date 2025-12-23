@@ -62,7 +62,8 @@ class Current:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Get current realtime device statistics that can be compared against a saved upgrade report.
+        Get current realtime device statistics that can be compared against a
+        saved upgrade report.
 
         Args:
             payload_dict: Optional dictionary of parameters

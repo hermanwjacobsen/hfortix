@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Web Proxy Forward Server Group
 
-Configuration endpoint for managing cmdb web proxy forward server group objects.
+Configuration endpoint for managing cmdb web proxy forward server group
+objects.
 
 API Endpoints:
     GET    /cmdb/web-proxy/forward_server_group
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.web_proxy.forward_server_group.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.web_proxy.forward_server_group.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.web_proxy.forward_server_group.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.web_proxy.forward_server_group.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.web_proxy.forward_server_group.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.web_proxy.forward_server_group.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class ForwardServerGroup:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class ForwardServerGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -154,18 +163,31 @@ class ForwardServerGroup:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            name: Configure a forward server group consisting one or multiple forward servers. Supports failover and load balancing. (optional)
-            affinity: Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). (optional)
-            ldb_method: Load balance method: weighted or least-session. (optional)
-            group_down_option: Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. (optional)
-            server_list: Add web forward servers to a list to form a server group. Optionally assign weights to each server. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            name: Configure a forward server group consisting one or multiple
+            forward servers. Supports failover and load balancing. (optional)
+            affinity: Enable/disable affinity, attaching a source-ip's traffic
+            to the assigned forwarding server until the
+            forward-server-affinity-timeout is reached (under web-proxy
+            global). (optional)
+            ldb_method: Load balance method: weighted or least-session.
+            (optional)
+            group_down_option: Action to take when all of the servers in the
+            forward server group are down: block sessions until at least one
+            server is back up or pass sessions to their destination. (optional)
+            server_list: Add web forward servers to a list to form a server
+            group. Optionally assign weights to each server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -173,7 +195,8 @@ class ForwardServerGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -217,8 +240,10 @@ class ForwardServerGroup:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -226,7 +251,8 @@ class ForwardServerGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -302,16 +328,28 @@ class ForwardServerGroup:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            name: Configure a forward server group consisting one or multiple forward servers. Supports failover and load balancing. (optional)
-            affinity: Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). (optional)
-            ldb_method: Load balance method: weighted or least-session. (optional)
-            group_down_option: Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. (optional)
-            server_list: Add web forward servers to a list to form a server group. Optionally assign weights to each server. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            name: Configure a forward server group consisting one or multiple
+            forward servers. Supports failover and load balancing. (optional)
+            affinity: Enable/disable affinity, attaching a source-ip's traffic
+            to the assigned forwarding server until the
+            forward-server-affinity-timeout is reached (under web-proxy
+            global). (optional)
+            ldb_method: Load balance method: weighted or least-session.
+            (optional)
+            group_down_option: Action to take when all of the servers in the
+            forward server group are down: block sessions until at least one
+            server is back up or pass sessions to their destination. (optional)
+            server_list: Add web forward servers to a list to form a server
+            group. Optionally assign weights to each server. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -319,7 +357,8 @@ class ForwardServerGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

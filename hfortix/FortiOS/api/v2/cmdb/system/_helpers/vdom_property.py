@@ -71,13 +71,13 @@ def validate_vdom_property_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate snmp-index if present
     if "snmp-index" in payload:
@@ -88,7 +88,7 @@ def validate_vdom_property_post(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"snmp-index must be between 1 and 2147483647",
+                        "snmp-index must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"snmp-index must be numeric, got: {value}")
@@ -126,13 +126,13 @@ def validate_vdom_property_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"description cannot exceed 127 characters")
+            return (False, "description cannot exceed 127 characters")
 
     # Validate snmp-index if present
     if "snmp-index" in payload:
@@ -143,7 +143,7 @@ def validate_vdom_property_put(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"snmp-index must be between 1 and 2147483647",
+                        "snmp-index must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"snmp-index must be numeric, got: {value}")

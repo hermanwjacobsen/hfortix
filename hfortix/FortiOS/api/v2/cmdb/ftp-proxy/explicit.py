@@ -88,11 +88,15 @@ class Explicit:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Explicit:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -139,22 +144,35 @@ class Explicit:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             status: Enable/disable the explicit FTP proxy. (optional)
-            incoming_port: Accept incoming FTP requests on one or more ports. (optional)
-            incoming_ip: Accept incoming FTP requests from this IP address. An interface must have this IP address. (optional)
-            outgoing_ip: Outgoing FTP requests will leave from this IP address. An interface must have this IP address. (optional)
-            sec_default_action: Accept or deny explicit FTP proxy sessions when no FTP proxy firewall policy exists. (optional)
-            server_data_mode: Determine mode of data session on FTP server side. (optional)
+            incoming_port: Accept incoming FTP requests on one or more ports.
+            (optional)
+            incoming_ip: Accept incoming FTP requests from this IP address. An
+            interface must have this IP address. (optional)
+            outgoing_ip: Outgoing FTP requests will leave from this IP address.
+            An interface must have this IP address. (optional)
+            sec_default_action: Accept or deny explicit FTP proxy sessions when
+            no FTP proxy firewall policy exists. (optional)
+            server_data_mode: Determine mode of data session on FTP server
+            side. (optional)
             ssl: Enable/disable the explicit FTPS proxy. (optional)
-            ssl_cert: List of certificate names to use for SSL connections to this server. (optional)
-            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). (optional)
-            ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. (optional)
+            ssl_cert: List of certificate names to use for SSL connections to
+            this server. (optional)
+            ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA
+            negotiation (default = 2048). (optional)
+            ssl_algorithm: Relative strength of encryption algorithms accepted
+            in negotiation. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -162,7 +180,8 @@ class Explicit:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -87,13 +87,13 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate feature-set if present
     if "feature-set" in payload:
@@ -108,7 +108,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate spam-log if present
     if "spam-log" in payload:
@@ -164,7 +164,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"spam-bword-threshold must be between 0 and 2147483647",
+                        "spam-bword-threshold must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -181,7 +181,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-bword-table must be between 0 and 4294967295",
+                        "spam-bword-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -198,7 +198,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-bal-table must be between 0 and 4294967295",
+                        "spam-bal-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"spam-bal-table must be numeric, got: {value}")
@@ -212,7 +212,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-mheader-table must be between 0 and 4294967295",
+                        "spam-mheader-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -229,7 +229,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-rbl-table must be between 0 and 4294967295",
+                        "spam-rbl-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"spam-rbl-table must be numeric, got: {value}")
@@ -243,7 +243,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-iptrust-table must be between 0 and 4294967295",
+                        "spam-iptrust-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -284,13 +284,13 @@ def validate_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate feature-set if present
     if "feature-set" in payload:
@@ -305,7 +305,7 @@ def validate_profile_put(
     if "replacemsg-group" in payload:
         value = payload.get("replacemsg-group")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"replacemsg-group cannot exceed 35 characters")
+            return (False, "replacemsg-group cannot exceed 35 characters")
 
     # Validate spam-log if present
     if "spam-log" in payload:
@@ -361,7 +361,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"spam-bword-threshold must be between 0 and 2147483647",
+                        "spam-bword-threshold must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -378,7 +378,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-bword-table must be between 0 and 4294967295",
+                        "spam-bword-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -395,7 +395,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-bal-table must be between 0 and 4294967295",
+                        "spam-bal-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"spam-bal-table must be numeric, got: {value}")
@@ -409,7 +409,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-mheader-table must be between 0 and 4294967295",
+                        "spam-mheader-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -426,7 +426,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-rbl-table must be between 0 and 4294967295",
+                        "spam-rbl-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"spam-rbl-table must be numeric, got: {value}")
@@ -440,7 +440,7 @@ def validate_profile_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"spam-iptrust-table must be between 0 and 4294967295",
+                        "spam-iptrust-table must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

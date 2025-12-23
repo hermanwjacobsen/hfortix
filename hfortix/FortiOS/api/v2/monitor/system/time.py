@@ -71,12 +71,18 @@ class Set:
         Sets current system time stamp.
 
         Args:
-            year: Specifies the year for setting/updating time manually. (optional)
-            month: Specifies the month (0 - 11) for setting/updating time manually. (optional)
-            day: Specifies the day for setting/updating time manually. (optional)
-            hour: Specifies the hour (0 - 23) for setting/updating time manually. (optional)
-            minute: Specifies the minute (0 - 59) for setting/updating time manually. (optional)
-            second: Specifies the second (0 - 59) for setting/updating time manually. (optional)
+            year: Specifies the year for setting/updating time manually.
+            (optional)
+            month: Specifies the month (0 - 11) for setting/updating time
+            manually. (optional)
+            day: Specifies the day for setting/updating time manually.
+            (optional)
+            hour: Specifies the hour (0 - 23) for setting/updating time
+            manually. (optional)
+            minute: Specifies the minute (0 - 59) for setting/updating time
+            manually. (optional)
+            second: Specifies the second (0 - 59) for setting/updating time
+            manually. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

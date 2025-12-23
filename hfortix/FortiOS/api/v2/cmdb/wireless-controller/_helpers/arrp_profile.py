@@ -74,13 +74,13 @@ def validate_arrp_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate selection-period if present
     if "selection-period" in payload:
@@ -91,7 +91,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"selection-period must be between 0 and 65535",
+                        "selection-period must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -108,7 +108,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"monitor-period must be between 0 and 65535",
+                        "monitor-period must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"monitor-period must be numeric, got: {value}")
@@ -122,7 +122,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-managed-ap must be between 0 and 2000",
+                        "weight-managed-ap must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -139,7 +139,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-rogue-ap must be between 0 and 2000",
+                        "weight-rogue-ap must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -156,7 +156,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-noise-floor must be between 0 and 2000",
+                        "weight-noise-floor must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -173,7 +173,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-channel-load must be between 0 and 2000",
+                        "weight-channel-load must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -190,7 +190,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-spectral-rssi must be between 0 and 2000",
+                        "weight-spectral-rssi must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -207,7 +207,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-weather-channel must be between 0 and 2000",
+                        "weight-weather-channel must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -224,7 +224,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-dfs-channel must be between 0 and 2000",
+                        "weight-dfs-channel must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -239,7 +239,7 @@ def validate_arrp_profile_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 500:
-                    return (False, f"threshold-ap must be between 0 and 500")
+                    return (False, "threshold-ap must be between 0 and 500")
             except (ValueError, TypeError):
                 return (False, f"threshold-ap must be numeric, got: {value}")
 
@@ -247,7 +247,7 @@ def validate_arrp_profile_post(
     if "threshold-noise-floor" in payload:
         value = payload.get("threshold-noise-floor")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"threshold-noise-floor cannot exceed 7 characters")
+            return (False, "threshold-noise-floor cannot exceed 7 characters")
 
     # Validate threshold-channel-load if present
     if "threshold-channel-load" in payload:
@@ -258,7 +258,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"threshold-channel-load must be between 0 and 100",
+                        "threshold-channel-load must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -272,7 +272,7 @@ def validate_arrp_profile_post(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"threshold-spectral-rssi cannot exceed 7 characters",
+                "threshold-spectral-rssi cannot exceed 7 characters",
             )
 
     # Validate threshold-tx-retries if present
@@ -284,7 +284,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"threshold-tx-retries must be between 0 and 1000",
+                        "threshold-tx-retries must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -301,7 +301,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"threshold-rx-errors must be between 0 and 100",
+                        "threshold-rx-errors must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -345,7 +345,7 @@ def validate_arrp_profile_post(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"darrp-optimize must be between 0 and 86400",
+                        "darrp-optimize must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"darrp-optimize must be numeric, got: {value}")
@@ -383,13 +383,13 @@ def validate_arrp_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate selection-period if present
     if "selection-period" in payload:
@@ -400,7 +400,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"selection-period must be between 0 and 65535",
+                        "selection-period must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -417,7 +417,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"monitor-period must be between 0 and 65535",
+                        "monitor-period must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"monitor-period must be numeric, got: {value}")
@@ -431,7 +431,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-managed-ap must be between 0 and 2000",
+                        "weight-managed-ap must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -448,7 +448,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-rogue-ap must be between 0 and 2000",
+                        "weight-rogue-ap must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -465,7 +465,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-noise-floor must be between 0 and 2000",
+                        "weight-noise-floor must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -482,7 +482,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-channel-load must be between 0 and 2000",
+                        "weight-channel-load must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -499,7 +499,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-spectral-rssi must be between 0 and 2000",
+                        "weight-spectral-rssi must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -516,7 +516,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-weather-channel must be between 0 and 2000",
+                        "weight-weather-channel must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -533,7 +533,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 2000:
                     return (
                         False,
-                        f"weight-dfs-channel must be between 0 and 2000",
+                        "weight-dfs-channel must be between 0 and 2000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -548,7 +548,7 @@ def validate_arrp_profile_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 500:
-                    return (False, f"threshold-ap must be between 0 and 500")
+                    return (False, "threshold-ap must be between 0 and 500")
             except (ValueError, TypeError):
                 return (False, f"threshold-ap must be numeric, got: {value}")
 
@@ -556,7 +556,7 @@ def validate_arrp_profile_put(
     if "threshold-noise-floor" in payload:
         value = payload.get("threshold-noise-floor")
         if value and isinstance(value, str) and len(value) > 7:
-            return (False, f"threshold-noise-floor cannot exceed 7 characters")
+            return (False, "threshold-noise-floor cannot exceed 7 characters")
 
     # Validate threshold-channel-load if present
     if "threshold-channel-load" in payload:
@@ -567,7 +567,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"threshold-channel-load must be between 0 and 100",
+                        "threshold-channel-load must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -581,7 +581,7 @@ def validate_arrp_profile_put(
         if value and isinstance(value, str) and len(value) > 7:
             return (
                 False,
-                f"threshold-spectral-rssi cannot exceed 7 characters",
+                "threshold-spectral-rssi cannot exceed 7 characters",
             )
 
     # Validate threshold-tx-retries if present
@@ -593,7 +593,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"threshold-tx-retries must be between 0 and 1000",
+                        "threshold-tx-retries must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -610,7 +610,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"threshold-rx-errors must be between 0 and 100",
+                        "threshold-rx-errors must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -654,7 +654,7 @@ def validate_arrp_profile_put(
                 if int_val < 0 or int_val > 86400:
                     return (
                         False,
-                        f"darrp-optimize must be between 0 and 86400",
+                        "darrp-optimize must be between 0 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"darrp-optimize must be numeric, got: {value}")

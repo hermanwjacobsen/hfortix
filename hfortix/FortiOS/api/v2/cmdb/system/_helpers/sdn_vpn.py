@@ -72,13 +72,13 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate sdn if present
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate remote-type if present
     if "remote-type" in payload:
@@ -102,19 +102,19 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "vgw-id" in payload:
         value = payload.get("vgw-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"vgw-id cannot exceed 63 characters")
+            return (False, "vgw-id cannot exceed 63 characters")
 
     # Validate tgw-id if present
     if "tgw-id" in payload:
         value = payload.get("tgw-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tgw-id cannot exceed 63 characters")
+            return (False, "tgw-id cannot exceed 63 characters")
 
     # Validate subnet-id if present
     if "subnet-id" in payload:
         value = payload.get("subnet-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"subnet-id cannot exceed 63 characters")
+            return (False, "subnet-id cannot exceed 63 characters")
 
     # Validate bgp-as if present
     if "bgp-as" in payload:
@@ -123,7 +123,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4294967295:
-                    return (False, f"bgp-as must be between 1 and 4294967295")
+                    return (False, "bgp-as must be between 1 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"bgp-as must be numeric, got: {value}")
 
@@ -140,19 +140,19 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "tunnel-interface" in payload:
         value = payload.get("tunnel-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"tunnel-interface cannot exceed 15 characters")
+            return (False, "tunnel-interface cannot exceed 15 characters")
 
     # Validate internal-interface if present
     if "internal-interface" in payload:
         value = payload.get("internal-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"internal-interface cannot exceed 15 characters")
+            return (False, "internal-interface cannot exceed 15 characters")
 
     # Validate cgw-name if present
     if "cgw-name" in payload:
         value = payload.get("cgw-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"cgw-name cannot exceed 35 characters")
+            return (False, "cgw-name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -161,7 +161,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"type must be between 0 and 65535")
+                    return (False, "type must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"type must be numeric, got: {value}")
 
@@ -172,7 +172,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"status must be between 0 and 255")
+                    return (False, "status must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"status must be numeric, got: {value}")
 
@@ -183,7 +183,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"code must be between 0 and 255")
+                    return (False, "code must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"code must be numeric, got: {value}")
 
@@ -220,13 +220,13 @@ def validate_sdn_vpn_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate sdn if present
     if "sdn" in payload:
         value = payload.get("sdn")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdn cannot exceed 35 characters")
+            return (False, "sdn cannot exceed 35 characters")
 
     # Validate remote-type if present
     if "remote-type" in payload:
@@ -250,19 +250,19 @@ def validate_sdn_vpn_put(
     if "vgw-id" in payload:
         value = payload.get("vgw-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"vgw-id cannot exceed 63 characters")
+            return (False, "vgw-id cannot exceed 63 characters")
 
     # Validate tgw-id if present
     if "tgw-id" in payload:
         value = payload.get("tgw-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"tgw-id cannot exceed 63 characters")
+            return (False, "tgw-id cannot exceed 63 characters")
 
     # Validate subnet-id if present
     if "subnet-id" in payload:
         value = payload.get("subnet-id")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"subnet-id cannot exceed 63 characters")
+            return (False, "subnet-id cannot exceed 63 characters")
 
     # Validate bgp-as if present
     if "bgp-as" in payload:
@@ -271,7 +271,7 @@ def validate_sdn_vpn_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4294967295:
-                    return (False, f"bgp-as must be between 1 and 4294967295")
+                    return (False, "bgp-as must be between 1 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"bgp-as must be numeric, got: {value}")
 
@@ -288,19 +288,19 @@ def validate_sdn_vpn_put(
     if "tunnel-interface" in payload:
         value = payload.get("tunnel-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"tunnel-interface cannot exceed 15 characters")
+            return (False, "tunnel-interface cannot exceed 15 characters")
 
     # Validate internal-interface if present
     if "internal-interface" in payload:
         value = payload.get("internal-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"internal-interface cannot exceed 15 characters")
+            return (False, "internal-interface cannot exceed 15 characters")
 
     # Validate cgw-name if present
     if "cgw-name" in payload:
         value = payload.get("cgw-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"cgw-name cannot exceed 35 characters")
+            return (False, "cgw-name cannot exceed 35 characters")
 
     # Validate type if present
     if "type" in payload:
@@ -309,7 +309,7 @@ def validate_sdn_vpn_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"type must be between 0 and 65535")
+                    return (False, "type must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"type must be numeric, got: {value}")
 
@@ -320,7 +320,7 @@ def validate_sdn_vpn_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"status must be between 0 and 255")
+                    return (False, "status must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"status must be numeric, got: {value}")
 
@@ -331,7 +331,7 @@ def validate_sdn_vpn_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"code must be between 0 and 255")
+                    return (False, "code must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"code must be numeric, got: {value}")
 

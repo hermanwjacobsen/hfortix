@@ -97,7 +97,7 @@ def validate_fabric_vpn_put(
     if "branch-name" in payload:
         value = payload.get("branch-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"branch-name cannot exceed 35 characters")
+            return (False, "branch-name cannot exceed 35 characters")
 
     # Validate policy-rule if present
     if "policy-rule" in payload:
@@ -121,7 +121,7 @@ def validate_fabric_vpn_put(
     if "loopback-interface" in payload:
         value = payload.get("loopback-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"loopback-interface cannot exceed 15 characters")
+            return (False, "loopback-interface cannot exceed 15 characters")
 
     # Validate loopback-advertised-subnet if present
     if "loopback-advertised-subnet" in payload:
@@ -132,7 +132,7 @@ def validate_fabric_vpn_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"loopback-advertised-subnet must be between 0 and 4294967295",
+                        "loopback-advertised-subnet must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -144,12 +144,12 @@ def validate_fabric_vpn_put(
     if "sdwan-zone" in payload:
         value = payload.get("sdwan-zone")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sdwan-zone cannot exceed 35 characters")
+            return (False, "sdwan-zone cannot exceed 35 characters")
 
     # Validate health-checks if present
     if "health-checks" in payload:
         value = payload.get("health-checks")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"health-checks cannot exceed 35 characters")
+            return (False, "health-checks cannot exceed 35 characters")
 
     return (True, None)

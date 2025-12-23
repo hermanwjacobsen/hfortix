@@ -104,19 +104,19 @@ def validate_modem_put(
     if "pin-init" in payload:
         value = payload.get("pin-init")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"pin-init cannot exceed 127 characters")
+            return (False, "pin-init cannot exceed 127 characters")
 
     # Validate network-init if present
     if "network-init" in payload:
         value = payload.get("network-init")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"network-init cannot exceed 127 characters")
+            return (False, "network-init cannot exceed 127 characters")
 
     # Validate lockdown-lac if present
     if "lockdown-lac" in payload:
         value = payload.get("lockdown-lac")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"lockdown-lac cannot exceed 127 characters")
+            return (False, "lockdown-lac cannot exceed 127 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -152,7 +152,7 @@ def validate_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 9999:
-                    return (False, f"idle-timer must be between 1 and 9999")
+                    return (False, "idle-timer must be between 1 and 9999")
             except (ValueError, TypeError):
                 return (False, f"idle-timer must be numeric, got: {value}")
 
@@ -172,7 +172,7 @@ def validate_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 10:
-                    return (False, f"reset must be between 0 and 10")
+                    return (False, "reset must be between 0 and 10")
             except (ValueError, TypeError):
                 return (False, f"reset must be numeric, got: {value}")
 
@@ -183,7 +183,7 @@ def validate_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 60:
-                    return (False, f"holddown-timer must be between 1 and 60")
+                    return (False, "holddown-timer must be between 1 and 60")
             except (ValueError, TypeError):
                 return (False, f"holddown-timer must be numeric, got: {value}")
 
@@ -196,7 +196,7 @@ def validate_modem_put(
                 if int_val < 30 or int_val > 255:
                     return (
                         False,
-                        f"connect-timeout must be between 30 and 255",
+                        "connect-timeout must be between 30 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -208,7 +208,7 @@ def validate_modem_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"interface cannot exceed 63 characters")
+            return (False, "interface cannot exceed 63 characters")
 
     # Validate wireless-port if present
     if "wireless-port" in payload:
@@ -219,7 +219,7 @@ def validate_modem_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"wireless-port must be between 0 and 4294967295",
+                        "wireless-port must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"wireless-port must be numeric, got: {value}")
@@ -237,25 +237,25 @@ def validate_modem_put(
     if "phone1" in payload:
         value = payload.get("phone1")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"phone1 cannot exceed 63 characters")
+            return (False, "phone1 cannot exceed 63 characters")
 
     # Validate dial-cmd1 if present
     if "dial-cmd1" in payload:
         value = payload.get("dial-cmd1")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"dial-cmd1 cannot exceed 63 characters")
+            return (False, "dial-cmd1 cannot exceed 63 characters")
 
     # Validate username1 if present
     if "username1" in payload:
         value = payload.get("username1")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"username1 cannot exceed 63 characters")
+            return (False, "username1 cannot exceed 63 characters")
 
     # Validate extra-init1 if present
     if "extra-init1" in payload:
         value = payload.get("extra-init1")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"extra-init1 cannot exceed 127 characters")
+            return (False, "extra-init1 cannot exceed 127 characters")
 
     # Validate peer-modem1 if present
     if "peer-modem1" in payload:
@@ -297,25 +297,25 @@ def validate_modem_put(
     if "phone2" in payload:
         value = payload.get("phone2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"phone2 cannot exceed 63 characters")
+            return (False, "phone2 cannot exceed 63 characters")
 
     # Validate dial-cmd2 if present
     if "dial-cmd2" in payload:
         value = payload.get("dial-cmd2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"dial-cmd2 cannot exceed 63 characters")
+            return (False, "dial-cmd2 cannot exceed 63 characters")
 
     # Validate username2 if present
     if "username2" in payload:
         value = payload.get("username2")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"username2 cannot exceed 63 characters")
+            return (False, "username2 cannot exceed 63 characters")
 
     # Validate extra-init2 if present
     if "extra-init2" in payload:
         value = payload.get("extra-init2")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"extra-init2 cannot exceed 127 characters")
+            return (False, "extra-init2 cannot exceed 127 characters")
 
     # Validate peer-modem2 if present
     if "peer-modem2" in payload:
@@ -357,25 +357,25 @@ def validate_modem_put(
     if "phone3" in payload:
         value = payload.get("phone3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"phone3 cannot exceed 63 characters")
+            return (False, "phone3 cannot exceed 63 characters")
 
     # Validate dial-cmd3 if present
     if "dial-cmd3" in payload:
         value = payload.get("dial-cmd3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"dial-cmd3 cannot exceed 63 characters")
+            return (False, "dial-cmd3 cannot exceed 63 characters")
 
     # Validate username3 if present
     if "username3" in payload:
         value = payload.get("username3")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"username3 cannot exceed 63 characters")
+            return (False, "username3 cannot exceed 63 characters")
 
     # Validate extra-init3 if present
     if "extra-init3" in payload:
         value = payload.get("extra-init3")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"extra-init3 cannot exceed 127 characters")
+            return (False, "extra-init3 cannot exceed 127 characters")
 
     # Validate peer-modem3 if present
     if "peer-modem3" in payload:
@@ -438,7 +438,7 @@ def validate_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -449,7 +449,7 @@ def validate_modem_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 

@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Vxlan:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Vxlan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -161,25 +167,40 @@ class Vxlan:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            name: VXLAN device or interface name. Must be a unique interface name. (optional)
-            interface: Outgoing interface for VXLAN encapsulated traffic. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            name: VXLAN device or interface name. Must be a unique interface
+            name. (optional)
+            interface: Outgoing interface for VXLAN encapsulated traffic.
+            (optional)
             vni: VXLAN network ID. (optional)
-            ip_version: IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. (optional)
-            remote_ip: IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. (optional)
-            local_ip: IPv4 address to use as the source address for egress VXLAN packets. (optional)
-            remote_ip6: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. (optional)
-            local_ip6: IPv6 address to use as the source address for egress VXLAN packets. (optional)
-            dstport: VXLAN destination port (1 - 65535, default = 4789). (optional)
+            ip_version: IP version to use for the VXLAN interface and so for
+            communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
+            (optional)
+            remote_ip: IPv4 address of the VXLAN interface on the device at the
+            remote end of the VXLAN. (optional)
+            local_ip: IPv4 address to use as the source address for egress
+            VXLAN packets. (optional)
+            remote_ip6: IPv6 IP address of the VXLAN interface on the device at
+            the remote end of the VXLAN. (optional)
+            local_ip6: IPv6 address to use as the source address for egress
+            VXLAN packets. (optional)
+            dstport: VXLAN destination port (1 - 65535, default = 4789).
+            (optional)
             multicast_ttl: VXLAN multicast TTL (1-255, default = 0). (optional)
             evpn_id: EVPN instance. (optional)
-            learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. (optional)
+            learn_from_traffic: Enable/disable VXLAN MAC learning from traffic.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -187,7 +208,8 @@ class Vxlan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -245,8 +267,10 @@ class Vxlan:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -254,7 +278,8 @@ class Vxlan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -337,23 +362,37 @@ class Vxlan:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            name: VXLAN device or interface name. Must be a unique interface name. (optional)
-            interface: Outgoing interface for VXLAN encapsulated traffic. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            name: VXLAN device or interface name. Must be a unique interface
+            name. (optional)
+            interface: Outgoing interface for VXLAN encapsulated traffic.
+            (optional)
             vni: VXLAN network ID. (optional)
-            ip_version: IP version to use for the VXLAN interface and so for communication over the VXLAN. IPv4 or IPv6 unicast or multicast. (optional)
-            remote_ip: IPv4 address of the VXLAN interface on the device at the remote end of the VXLAN. (optional)
-            local_ip: IPv4 address to use as the source address for egress VXLAN packets. (optional)
-            remote_ip6: IPv6 IP address of the VXLAN interface on the device at the remote end of the VXLAN. (optional)
-            local_ip6: IPv6 address to use as the source address for egress VXLAN packets. (optional)
-            dstport: VXLAN destination port (1 - 65535, default = 4789). (optional)
+            ip_version: IP version to use for the VXLAN interface and so for
+            communication over the VXLAN. IPv4 or IPv6 unicast or multicast.
+            (optional)
+            remote_ip: IPv4 address of the VXLAN interface on the device at the
+            remote end of the VXLAN. (optional)
+            local_ip: IPv4 address to use as the source address for egress
+            VXLAN packets. (optional)
+            remote_ip6: IPv6 IP address of the VXLAN interface on the device at
+            the remote end of the VXLAN. (optional)
+            local_ip6: IPv6 address to use as the source address for egress
+            VXLAN packets. (optional)
+            dstport: VXLAN destination port (1 - 65535, default = 4789).
+            (optional)
             multicast_ttl: VXLAN multicast TTL (1-255, default = 0). (optional)
             evpn_id: EVPN instance. (optional)
-            learn_from_traffic: Enable/disable VXLAN MAC learning from traffic. (optional)
+            learn_from_traffic: Enable/disable VXLAN MAC learning from traffic.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -361,7 +400,8 @@ class Vxlan:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

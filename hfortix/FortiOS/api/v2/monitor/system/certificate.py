@@ -69,7 +69,8 @@ class Download:
 
         Args:
             mkey: Name of certificate. (required)
-            type: Type of certificate [local-cer|remote-cer|local-ca|remote-ca|local-csr|crl]. (required)
+            type: Type of certificate
+            [local-cer|remote-cer|local-ca|remote-ca|local-csr|crl]. (required)
             scope: Scope of certificate [vdom*|global]. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
@@ -79,7 +80,8 @@ class Download:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.certificate.download.get(mkey='value', type='value')
+            >>> fgt.api.monitor.system.certificate.download.get(mkey='value',
+            type='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

@@ -73,7 +73,8 @@ class EnableAppBandwidthTracking:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.traffic_history.enable_app_bandwidth_tracking.post()
+            >>>
+            fgt.api.monitor.system.traffic_history.enable_app_bandwidth_tracking.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
@@ -109,7 +110,8 @@ class Interface:
 
         Args:
             interface: Interface name. (required)
-            time_period: Time period to retrieve data for [hour | day | week]. (required)
+            time_period: Time period to retrieve data for [hour | day | week].
+            (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -118,7 +120,9 @@ class Interface:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.traffic_history.interface.get(interface='value', time_period='value')
+            >>>
+            fgt.api.monitor.system.traffic_history.interface.get(interface='value',
+            time_period='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["interface"] = interface
@@ -152,7 +156,8 @@ class TopApplications:
         Retrieve top FortiView applications traffic stats by bandwidth.
 
         Args:
-            time_period: Time period to retrieve data for [hour | day | week]. (required)
+            time_period: Time period to retrieve data for [hour | day | week].
+            (required)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -161,7 +166,8 @@ class TopApplications:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.traffic_history.top_applications.get(time_period='value')
+            >>>
+            fgt.api.monitor.system.traffic_history.top_applications.get(time_period='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["time_period"] = time_period

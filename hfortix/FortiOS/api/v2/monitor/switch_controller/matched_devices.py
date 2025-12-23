@@ -68,8 +68,10 @@ class MatchedDevices:
         Return a list of devices that match NAC and/or dynamic port policies.
 
         Args:
-            mkey: FortiSwitch ID. Will return all devices if no ID is provided. (optional)
-            include_dynamic: If true, include devices that match dynamic port policies. Default value is false. (optional)
+            mkey: FortiSwitch ID. Will return all devices if no ID is provided.
+            (optional)
+            include_dynamic: If true, include devices that match dynamic port
+            policies. Default value is false. (optional)
             mac: FortiSwitch client MAC address. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True

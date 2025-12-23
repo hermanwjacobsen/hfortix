@@ -72,13 +72,13 @@ def validate_attribute_match_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate application if present
     if "application" in payload:
         value = payload.get("application")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"application cannot exceed 79 characters")
+            return (False, "application cannot exceed 79 characters")
 
     # Validate match-strategy if present
     if "match-strategy" in payload:
@@ -122,13 +122,13 @@ def validate_attribute_match_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate application if present
     if "application" in payload:
         value = payload.get("application")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"application cannot exceed 79 characters")
+            return (False, "application cannot exceed 79 characters")
 
     # Validate match-strategy if present
     if "match-strategy" in payload:

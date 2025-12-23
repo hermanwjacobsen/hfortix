@@ -270,7 +270,7 @@ class Utils:
                 "cmdb/system/interface",
             ]
 
-        results = {}
+        results: dict[str, dict[str, Any]] = {}
 
         for endpoint_path in endpoints:
             logger.info(f"Testing endpoint: {endpoint_path}")

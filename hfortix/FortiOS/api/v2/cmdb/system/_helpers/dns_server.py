@@ -75,7 +75,7 @@ def validate_dns_server_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -90,7 +90,7 @@ def validate_dns_server_post(
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate doh if present
     if "doh" in payload:
@@ -152,7 +152,7 @@ def validate_dns_server_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate mode if present
     if "mode" in payload:
@@ -167,7 +167,7 @@ def validate_dns_server_put(
     if "dnsfilter-profile" in payload:
         value = payload.get("dnsfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dnsfilter-profile cannot exceed 47 characters")
+            return (False, "dnsfilter-profile cannot exceed 47 characters")
 
     # Validate doh if present
     if "doh" in payload:

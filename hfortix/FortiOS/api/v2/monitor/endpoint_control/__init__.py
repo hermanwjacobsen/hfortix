@@ -1,7 +1,8 @@
 """
 Endpoint Control Monitor API
 
-Provides monitoring and management of FortiClient endpoints via EMS integration.
+Provides monitoring and management of FortiClient endpoints via EMS
+integration.
 """
 
 from __future__ import annotations
@@ -143,7 +144,6 @@ class EndpointControl:
     def installer(self):
         """Access installer endpoint."""
         if self._installer is None:
-            from .installer import Installer
 
             self._installer = Installer(self._client)
         return self._installer
@@ -152,7 +152,6 @@ class EndpointControl:
     def avatar(self):
         """Access avatar endpoint."""
         if self._avatar is None:
-            from .avatar import Avatar
 
             self._avatar = Avatar(self._client)
         return self._avatar
@@ -161,7 +160,6 @@ class EndpointControl:
     def ems(self):
         """Access EMS endpoint."""
         if self._ems is None:
-            from .ems import Ems
 
             self._ems = Ems(self._client)
         return self._ems

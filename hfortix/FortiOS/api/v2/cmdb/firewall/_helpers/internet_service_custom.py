@@ -71,7 +71,7 @@ def validate_internet_service_custom_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate reputation if present
     if "reputation" in payload:
@@ -82,7 +82,7 @@ def validate_internet_service_custom_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation must be between 0 and 4294967295",
+                        "reputation must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"reputation must be numeric, got: {value}")
@@ -91,7 +91,7 @@ def validate_internet_service_custom_post(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 
@@ -126,7 +126,7 @@ def validate_internet_service_custom_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate reputation if present
     if "reputation" in payload:
@@ -137,7 +137,7 @@ def validate_internet_service_custom_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"reputation must be between 0 and 4294967295",
+                        "reputation must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"reputation must be numeric, got: {value}")
@@ -146,7 +146,7 @@ def validate_internet_service_custom_put(
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     return (True, None)
 

@@ -77,7 +77,8 @@ class AcmeCertificateStatus:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.acme_certificate_status.get(mkey='value')
+            >>>
+            fgt.api.monitor.system.acme_certificate_status.get(mkey='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

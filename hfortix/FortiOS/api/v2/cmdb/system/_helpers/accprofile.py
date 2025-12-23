@@ -90,7 +90,7 @@ def validate_accprofile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate scope if present
     if "scope" in payload:
@@ -105,7 +105,7 @@ def validate_accprofile_post(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate secfabgrp if present
     if "secfabgrp" in payload:
@@ -213,7 +213,7 @@ def validate_accprofile_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 480:
-                    return (False, f"admintimeout must be between 1 and 480")
+                    return (False, "admintimeout must be between 1 and 480")
             except (ValueError, TypeError):
                 return (False, f"admintimeout must be numeric, got: {value}")
 
@@ -313,7 +313,7 @@ def validate_accprofile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate scope if present
     if "scope" in payload:
@@ -328,7 +328,7 @@ def validate_accprofile_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate secfabgrp if present
     if "secfabgrp" in payload:
@@ -436,7 +436,7 @@ def validate_accprofile_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 480:
-                    return (False, f"admintimeout must be between 1 and 480")
+                    return (False, "admintimeout must be between 1 and 480")
             except (ValueError, TypeError):
                 return (False, f"admintimeout must be numeric, got: {value}")
 

@@ -90,7 +90,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"ddnsid must be between 0 and 4294967295")
+                    return (False, "ddnsid must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"ddnsid must be numeric, got: {value}")
 
@@ -125,7 +125,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ddns-zone" in payload:
         value = payload.get("ddns-zone")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-zone cannot exceed 64 characters")
+            return (False, "ddns-zone cannot exceed 64 characters")
 
     # Validate ddns-ttl if present
     if "ddns-ttl" in payload:
@@ -134,7 +134,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 60 or int_val > 86400:
-                    return (False, f"ddns-ttl must be between 60 and 86400")
+                    return (False, "ddns-ttl must be between 60 and 86400")
             except (ValueError, TypeError):
                 return (False, f"ddns-ttl must be numeric, got: {value}")
 
@@ -151,25 +151,25 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ddns-keyname" in payload:
         value = payload.get("ddns-keyname")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-keyname cannot exceed 64 characters")
+            return (False, "ddns-keyname cannot exceed 64 characters")
 
     # Validate ddns-domain if present
     if "ddns-domain" in payload:
         value = payload.get("ddns-domain")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-domain cannot exceed 64 characters")
+            return (False, "ddns-domain cannot exceed 64 characters")
 
     # Validate ddns-username if present
     if "ddns-username" in payload:
         value = payload.get("ddns-username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-username cannot exceed 64 characters")
+            return (False, "ddns-username cannot exceed 64 characters")
 
     # Validate ddns-sn if present
     if "ddns-sn" in payload:
         value = payload.get("ddns-sn")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-sn cannot exceed 64 characters")
+            return (False, "ddns-sn cannot exceed 64 characters")
 
     # Validate use-public-ip if present
     if "use-public-ip" in payload:
@@ -189,7 +189,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 60 or int_val > 2592000:
                     return (
                         False,
-                        f"update-interval must be between 60 and 2592000",
+                        "update-interval must be between 60 and 2592000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -210,12 +210,12 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ssl-certificate" in payload:
         value = payload.get("ssl-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ssl-certificate cannot exceed 35 characters")
+            return (False, "ssl-certificate cannot exceed 35 characters")
 
     # Validate bound-ip if present
     if "bound-ip" in payload:
         value = payload.get("bound-ip")
         if value and isinstance(value, str) and len(value) > 46:
-            return (False, f"bound-ip cannot exceed 46 characters")
+            return (False, "bound-ip cannot exceed 46 characters")
 
     return (True, None)

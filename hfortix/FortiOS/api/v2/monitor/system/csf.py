@@ -62,7 +62,8 @@ class PendingAuthorizations:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve fabric devices with pending authorizations for joining the Security Fabric.
+        Retrieve fabric devices with pending authorizations for joining the
+        Security Fabric.
 
         Args:
             payload_dict: Optional dictionary of parameters
@@ -113,7 +114,9 @@ class RegisterAppliance:
             type: Appliance type (Example: 'faz'). (optional)
             mgmt_ip: Management IP or FQDN. (optional)
             mgmt_port: Management port. (optional)
-            mgmt_url_parameters: Array of URL parameters. Each item is a key/value pair. If provided, the URL parameters will be included in the management IP URL. (optional)
+            mgmt_url_parameters: Array of URL parameters. Each item is a
+            key/value pair. If provided, the URL parameters will be included in
+            the management IP URL. (optional)
             serial: Serial number. (optional)
             hostname: Host name. (optional)
             payload_dict: Optional dictionary of parameters
@@ -170,11 +173,14 @@ class Csf:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a full tree of downstream FortiGates registered to the Security Fabric.
+        Retrieve a full tree of downstream FortiGates registered to the
+        Security Fabric.
 
         Args:
-            scope: Scope from which to retrieve the Security Fabric tree [vdom*|global]. (optional)
-            all_vdoms: Include information from all VDOMs that the admin can access. Only applies for scope=vdom (optional)
+            scope: Scope from which to retrieve the Security Fabric tree
+            [vdom*|global]. (optional)
+            all_vdoms: Include information from all VDOMs that the admin can
+            access. Only applies for scope=vdom (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

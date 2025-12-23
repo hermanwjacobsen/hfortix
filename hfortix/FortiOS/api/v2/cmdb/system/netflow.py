@@ -88,11 +88,15 @@ class Netflow:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Netflow:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -136,19 +141,29 @@ class Netflow:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            active_flow_timeout: Timeout to report active flows (60 - 3600 sec, default = 1800). (optional)
-            inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15). (optional)
-            template_tx_timeout: Timeout for periodic template flowset transmission (60 - 86400 sec, default = 1800). (optional)
-            template_tx_counter: Counter of flowset records before resending a template flowset record. (optional)
-            session_cache_size: Maximum RAM usage allowed for Netflow session cache. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            active_flow_timeout: Timeout to report active flows (60 - 3600 sec,
+            default = 1800). (optional)
+            inactive_flow_timeout: Timeout for periodic report of finished
+            flows (10 - 600 sec, default = 15). (optional)
+            template_tx_timeout: Timeout for periodic template flowset
+            transmission (60 - 86400 sec, default = 1800). (optional)
+            template_tx_counter: Counter of flowset records before resending a
+            template flowset record. (optional)
+            session_cache_size: Maximum RAM usage allowed for Netflow session
+            cache. (optional)
             exclusion_filters: Exclusion filters (optional)
             collectors: Netflow collectors. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -156,7 +171,8 @@ class Netflow:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

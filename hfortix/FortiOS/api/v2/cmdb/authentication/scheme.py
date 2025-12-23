@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Scheme:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Scheme:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -167,31 +173,46 @@ class Scheme:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Authentication scheme name. (optional)
             method: Authentication methods (default = basic). (optional)
-            negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). (optional)
+            negotiate_ntlm: Enable/disable negotiate authentication for NTLM
+            (default = disable). (optional)
             kerberos_keytab: Kerberos keytab setting. (optional)
             domain_controller: Domain controller setting. (optional)
             saml_server: SAML configuration. (optional)
             saml_timeout: SAML authentication timeout in seconds. (optional)
-            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
-            require_tfa: Enable/disable two-factor authentication (default = disable). (optional)
-            fsso_guest: Enable/disable user fsso-guest authentication (default = disable). (optional)
-            user_cert: Enable/disable authentication with user certificate (default = disable). (optional)
-            cert_http_header: Enable/disable authentication with user certificate in Client-Cert HTTP header (default = disable). (optional)
-            user_database: Authentication server to contain user information; "local-user-db" (default) or "123" (for LDAP). (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
+            (optional)
+            require_tfa: Enable/disable two-factor authentication (default =
+            disable). (optional)
+            fsso_guest: Enable/disable user fsso-guest authentication (default
+            = disable). (optional)
+            user_cert: Enable/disable authentication with user certificate
+            (default = disable). (optional)
+            cert_http_header: Enable/disable authentication with user
+            certificate in Client-Cert HTTP header (default = disable).
+            (optional)
+            user_database: Authentication server to contain user information;
+            "local-user-db" (default) or "123" (for LDAP). (optional)
             ssh_ca: SSH CA name. (optional)
             external_idp: External identity provider configuration. (optional)
-            group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            group_attr_type: Group attribute type used to match SCIM groups
+            (default = display-name). (optional)
             digest_algo: Digest Authentication Algorithms. (optional)
-            digest_rfc2069: Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field, default = disable). (optional)
+            digest_rfc2069: Enable/disable support for the deprecated RFC2069
+            Digest Client (no cnonce field, default = disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -199,7 +220,8 @@ class Scheme:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -269,8 +291,10 @@ class Scheme:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -278,7 +302,8 @@ class Scheme:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -367,29 +392,43 @@ class Scheme:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Authentication scheme name. (optional)
             method: Authentication methods (default = basic). (optional)
-            negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). (optional)
+            negotiate_ntlm: Enable/disable negotiate authentication for NTLM
+            (default = disable). (optional)
             kerberos_keytab: Kerberos keytab setting. (optional)
             domain_controller: Domain controller setting. (optional)
             saml_server: SAML configuration. (optional)
             saml_timeout: SAML authentication timeout in seconds. (optional)
-            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication. (optional)
-            require_tfa: Enable/disable two-factor authentication (default = disable). (optional)
-            fsso_guest: Enable/disable user fsso-guest authentication (default = disable). (optional)
-            user_cert: Enable/disable authentication with user certificate (default = disable). (optional)
-            cert_http_header: Enable/disable authentication with user certificate in Client-Cert HTTP header (default = disable). (optional)
-            user_database: Authentication server to contain user information; "local-user-db" (default) or "123" (for LDAP). (optional)
+            fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
+            (optional)
+            require_tfa: Enable/disable two-factor authentication (default =
+            disable). (optional)
+            fsso_guest: Enable/disable user fsso-guest authentication (default
+            = disable). (optional)
+            user_cert: Enable/disable authentication with user certificate
+            (default = disable). (optional)
+            cert_http_header: Enable/disable authentication with user
+            certificate in Client-Cert HTTP header (default = disable).
+            (optional)
+            user_database: Authentication server to contain user information;
+            "local-user-db" (default) or "123" (for LDAP). (optional)
             ssh_ca: SSH CA name. (optional)
             external_idp: External identity provider configuration. (optional)
-            group_attr_type: Group attribute type used to match SCIM groups (default = display-name). (optional)
+            group_attr_type: Group attribute type used to match SCIM groups
+            (default = display-name). (optional)
             digest_algo: Digest Authentication Algorithms. (optional)
-            digest_rfc2069: Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field, default = disable). (optional)
+            digest_rfc2069: Enable/disable support for the deprecated RFC2069
+            Digest Client (no cnonce field, default = disable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -397,7 +436,8 @@ class Scheme:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -122,7 +122,7 @@ VALID_BODY_STRICT_DIRTY_SESSION_CHECK = ["enable", "disable"]
 VALID_BODY_PRE_LOGIN_BANNER = ["enable", "disable"]
 VALID_BODY_POST_LOGIN_BANNER = ["disable", "enable"]
 VALID_BODY_TFTP = ["enable", "disable"]
-VALID_BODY_AV_FAILOPEN = ["pass", "off", "one-shot"]
+VALID_BODY_AV_FAILOPEN = ["pass", "of", "one-shot"]
 VALID_BODY_AV_FAILOPEN_SESSION = ["enable", "disable"]
 VALID_BODY_LOG_SINGLE_CPU_HIGH = ["enable", "disable"]
 VALID_BODY_CHECK_RESET_RANGE = ["strict", "disable"]
@@ -469,7 +469,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 480:
-                    return (False, f"admintimeout must be between 1 and 480")
+                    return (False, "admintimeout must be between 1 and 480")
             except (ValueError, TypeError):
                 return (False, f"admintimeout must be numeric, got: {value}")
 
@@ -482,7 +482,7 @@ def validate_global__put(
                 if int_val < 15 or int_val > 300:
                     return (
                         False,
-                        f"admin-console-timeout must be between 15 and 300",
+                        "admin-console-timeout must be between 15 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -506,7 +506,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 23:
-                    return (False, f"ssd-trim-hour must be between 0 and 23")
+                    return (False, "ssd-trim-hour must be between 0 and 23")
             except (ValueError, TypeError):
                 return (False, f"ssd-trim-hour must be numeric, got: {value}")
 
@@ -517,7 +517,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 60:
-                    return (False, f"ssd-trim-min must be between 0 and 60")
+                    return (False, "ssd-trim-min must be between 0 and 60")
             except (ValueError, TypeError):
                 return (False, f"ssd-trim-min must be numeric, got: {value}")
 
@@ -537,7 +537,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31:
-                    return (False, f"ssd-trim-date must be between 1 and 31")
+                    return (False, "ssd-trim-date must be between 1 and 31")
             except (ValueError, TypeError):
                 return (False, f"ssd-trim-date must be numeric, got: {value}")
 
@@ -559,7 +559,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 10:
                     return (
                         False,
-                        f"admin-lockout-threshold must be between 1 and 10",
+                        "admin-lockout-threshold must be between 1 and 10",
                     )
             except (ValueError, TypeError):
                 return (
@@ -576,7 +576,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"admin-lockout-duration must be between 1 and 2147483647",
+                        "admin-lockout-duration must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -591,7 +591,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"refresh must be between 0 and 4294967295")
+                    return (False, "refresh must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"refresh must be numeric, got: {value}")
 
@@ -604,7 +604,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"interval must be between 0 and 4294967295",
+                        "interval must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"interval must be numeric, got: {value}")
@@ -618,7 +618,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"failtime must be between 0 and 4294967295",
+                        "failtime must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"failtime must be numeric, got: {value}")
@@ -659,7 +659,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 32:
                     return (
                         False,
-                        f"wad-p2s-max-body-size must be between 1 and 32",
+                        "wad-p2s-max-body-size must be between 1 and 32",
                     )
             except (ValueError, TypeError):
                 return (
@@ -674,7 +674,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"radius-port must be between 1 and 65535")
+                    return (False, "radius-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"radius-port must be numeric, got: {value}")
 
@@ -687,7 +687,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"speedtestd-server-port must be between 1 and 65535",
+                        "speedtestd-server-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -704,7 +704,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"speedtestd-ctrl-port must be between 1 and 65535",
+                        "speedtestd-ctrl-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -721,7 +721,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"admin-login-max must be between 1 and 100",
+                        "admin-login-max must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -738,7 +738,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"remoteauthtimeout must be between 1 and 300",
+                        "remoteauthtimeout must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -755,7 +755,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 300000:
                     return (
                         False,
-                        f"ldapconntimeout must be between 1 and 300000",
+                        "ldapconntimeout must be between 1 and 300000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -803,7 +803,7 @@ def validate_global__put(
     if "timezone" in payload:
         value = payload.get("timezone")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"timezone cannot exceed 63 characters")
+            return (False, "timezone cannot exceed 63 characters")
 
     # Validate traffic-priority if present
     if "traffic-priority" in payload:
@@ -841,7 +841,7 @@ def validate_global__put(
                 if int_val < 1200 or int_val > 1500:
                     return (
                         False,
-                        f"quic-max-datagram-size must be between 1200 and 1500",
+                        "quic-max-datagram-size must be between 1200 and 1500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -870,7 +870,7 @@ def validate_global__put(
                 if int_val < 2 or int_val > 5:
                     return (
                         False,
-                        f"quic-ack-thresold must be between 2 and 5",
+                        "quic-ack-thresold must be between 2 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -896,7 +896,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"quic-tls-handshake-timeout must be between 1 and 60",
+                        "quic-tls-handshake-timeout must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -923,8 +923,8 @@ def validate_global__put(
             )
 
     # Validate honor-df if present
-    if "honor-df" in payload:
-        value = payload.get("honor-df")
+    if "honor-d" in payload:
+        value = payload.get("honor-d")
         if value and value not in VALID_BODY_HONOR_DF:
             return (
                 False,
@@ -971,19 +971,19 @@ def validate_global__put(
     if "management-vdom" in payload:
         value = payload.get("management-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"management-vdom cannot exceed 31 characters")
+            return (False, "management-vdom cannot exceed 31 characters")
 
     # Validate hostname if present
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"hostname cannot exceed 35 characters")
+            return (False, "hostname cannot exceed 35 characters")
 
     # Validate alias if present
     if "alias" in payload:
         value = payload.get("alias")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"alias cannot exceed 35 characters")
+            return (False, "alias cannot exceed 35 characters")
 
     # Validate strong-crypto if present
     if "strong-crypto" in payload:
@@ -1066,7 +1066,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 1440:
                     return (
                         False,
-                        f"fds-statistics-period must be between 1 and 1440",
+                        "fds-statistics-period must be between 1 and 1440",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1110,7 +1110,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 10000:
                     return (
                         False,
-                        f"proxy-auth-timeout must be between 1 and 10000",
+                        "proxy-auth-timeout must be between 1 and 10000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1136,7 +1136,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 86400:
                     return (
                         False,
-                        f"proxy-re-authentication-time must be between 1 and 86400",
+                        "proxy-re-authentication-time must be between 1 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1162,7 +1162,7 @@ def validate_global__put(
                 if int_val < 5 or int_val > 65535:
                     return (
                         False,
-                        f"proxy-auth-lifetime-timeout must be between 5 and 65535",
+                        "proxy-auth-lifetime-timeout must be between 5 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1197,7 +1197,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 15:
                     return (
                         False,
-                        f"sys-perf-log-interval must be between 0 and 15",
+                        "sys-perf-log-interval must be between 0 and 15",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1268,7 +1268,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfclose-timer must be between 1 and 86400",
+                        "tcp-halfclose-timer must be between 1 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1285,7 +1285,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 86400:
                     return (
                         False,
-                        f"tcp-halfopen-timer must be between 1 and 86400",
+                        "tcp-halfopen-timer must be between 1 and 86400",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1302,7 +1302,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 300:
                     return (
                         False,
-                        f"tcp-timewait-timer must be between 0 and 300",
+                        "tcp-timewait-timer must be between 0 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1317,7 +1317,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"tcp-rst-timer must be between 5 and 300")
+                    return (False, "tcp-rst-timer must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"tcp-rst-timer must be numeric, got: {value}")
 
@@ -1330,7 +1330,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 86400:
                     return (
                         False,
-                        f"udp-idle-timer must be between 1 and 86400",
+                        "udp-idle-timer must be between 1 and 86400",
                     )
             except (ValueError, TypeError):
                 return (False, f"udp-idle-timer must be numeric, got: {value}")
@@ -1344,7 +1344,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 300:
                     return (
                         False,
-                        f"block-session-timer must be between 1 and 300",
+                        "block-session-timer must be between 1 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1406,7 +1406,7 @@ def validate_global__put(
                 if int_val < 70 or int_val > 97:
                     return (
                         False,
-                        f"memory-use-threshold-extreme must be between 70 and 97",
+                        "memory-use-threshold-extreme must be between 70 and 97",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1423,7 +1423,7 @@ def validate_global__put(
                 if int_val < 70 or int_val > 97:
                     return (
                         False,
-                        f"memory-use-threshold-red must be between 70 and 97",
+                        "memory-use-threshold-red must be between 70 and 97",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1440,7 +1440,7 @@ def validate_global__put(
                 if int_val < 70 or int_val > 97:
                     return (
                         False,
-                        f"memory-use-threshold-green must be between 70 and 97",
+                        "memory-use-threshold-green must be between 70 and 97",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1457,7 +1457,7 @@ def validate_global__put(
                 if int_val < 32 or int_val > 2047:
                     return (
                         False,
-                        f"ip-fragment-mem-thresholds must be between 32 and 2047",
+                        "ip-fragment-mem-thresholds must be between 32 and 2047",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1474,7 +1474,7 @@ def validate_global__put(
                 if int_val < 3 or int_val > 30:
                     return (
                         False,
-                        f"ip-fragment-timeout must be between 3 and 30",
+                        "ip-fragment-timeout must be between 3 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1491,7 +1491,7 @@ def validate_global__put(
                 if int_val < 5 or int_val > 60:
                     return (
                         False,
-                        f"ipv6-fragment-timeout must be between 5 and 60",
+                        "ipv6-fragment-timeout must be between 5 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1508,7 +1508,7 @@ def validate_global__put(
                 if int_val < 50 or int_val > 99:
                     return (
                         False,
-                        f"cpu-use-threshold must be between 50 and 99",
+                        "cpu-use-threshold must be between 50 and 99",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1586,7 +1586,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"admin-port must be between 1 and 65535")
+                    return (False, "admin-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"admin-port must be numeric, got: {value}")
 
@@ -1597,7 +1597,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"admin-sport must be between 1 and 65535")
+                    return (False, "admin-sport must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"admin-sport must be numeric, got: {value}")
 
@@ -1605,7 +1605,7 @@ def validate_global__put(
     if "admin-host" in payload:
         value = payload.get("admin-host")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"admin-host cannot exceed 255 characters")
+            return (False, "admin-host cannot exceed 255 characters")
 
     # Validate admin-https-redirect if present
     if "admin-https-redirect" in payload:
@@ -1625,7 +1625,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"admin-hsts-max-age must be between 0 and 2147483647",
+                        "admin-hsts-max-age must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1660,7 +1660,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"admin-ssh-port must be between 1 and 65535",
+                        "admin-ssh-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"admin-ssh-port must be numeric, got: {value}")
@@ -1674,7 +1674,7 @@ def validate_global__put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"admin-ssh-grace-time must be between 10 and 3600",
+                        "admin-ssh-grace-time must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1709,7 +1709,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"admin-telnet-port must be between 1 and 65535",
+                        "admin-telnet-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1732,7 +1732,7 @@ def validate_global__put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"admin-forticloud-sso-default-profile cannot exceed 35 characters",
+                "admin-forticloud-sso-default-profile cannot exceed 35 characters",
             )
 
     # Validate admin-reset-button if present
@@ -1748,7 +1748,7 @@ def validate_global__put(
     if "admin-server-cert" in payload:
         value = payload.get("admin-server-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"admin-server-cert cannot exceed 35 characters")
+            return (False, "admin-server-cert cannot exceed 35 characters")
 
     # Validate admin-https-pki-required if present
     if "admin-https-pki-required" in payload:
@@ -1763,7 +1763,7 @@ def validate_global__put(
     if "wifi-certificate" in payload:
         value = payload.get("wifi-certificate")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"wifi-certificate cannot exceed 35 characters")
+            return (False, "wifi-certificate cannot exceed 35 characters")
 
     # Validate dhcp-lease-backup-interval if present
     if "dhcp-lease-backup-interval" in payload:
@@ -1774,7 +1774,7 @@ def validate_global__put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"dhcp-lease-backup-interval must be between 10 and 3600",
+                        "dhcp-lease-backup-interval must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1786,7 +1786,7 @@ def validate_global__put(
     if "wifi-ca-certificate" in payload:
         value = payload.get("wifi-ca-certificate")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"wifi-ca-certificate cannot exceed 79 characters")
+            return (False, "wifi-ca-certificate cannot exceed 79 characters")
 
     # Validate auth-http-port if present
     if "auth-http-port" in payload:
@@ -1797,7 +1797,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"auth-http-port must be between 1 and 65535",
+                        "auth-http-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"auth-http-port must be numeric, got: {value}")
@@ -1811,7 +1811,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"auth-https-port must be between 1 and 65535",
+                        "auth-https-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1828,7 +1828,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"auth-ike-saml-port must be between 0 and 65535",
+                        "auth-ike-saml-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1854,7 +1854,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"policy-auth-concurrent must be between 0 and 100",
+                        "policy-auth-concurrent must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1875,7 +1875,7 @@ def validate_global__put(
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate clt-cert-req if present
     if "clt-cert-req" in payload:
@@ -1895,7 +1895,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"fortiservice-port must be between 1 and 65535",
+                        "fortiservice-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1921,7 +1921,7 @@ def validate_global__put(
                 if int_val < 10 or int_val > 4294967295:
                     return (
                         False,
-                        f"cfg-revert-timeout must be between 10 and 4294967295",
+                        "cfg-revert-timeout must be between 10 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1965,7 +1965,7 @@ def validate_global__put(
                 if int_val < 1024 or int_val > 49150:
                     return (
                         False,
-                        f"wireless-controller-port must be between 1024 and 49150",
+                        "wireless-controller-port must be between 1024 and 49150",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1982,7 +1982,7 @@ def validate_global__put(
                 if int_val < 1024 or int_val > 49150:
                     return (
                         False,
-                        f"fortiextender-data-port must be between 1024 and 49150",
+                        "fortiextender-data-port must be between 1024 and 49150",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2048,7 +2048,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 8:
                     return (
                         False,
-                        f"dnsproxy-worker-count must be between 1 and 8",
+                        "dnsproxy-worker-count must be between 1 and 8",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2063,7 +2063,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1:
-                    return (False, f"url-filter-count must be between 1 and 1")
+                    return (False, "url-filter-count must be between 1 and 1")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -2079,7 +2079,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        f"httpd-max-worker-count must be between 0 and 128",
+                        "httpd-max-worker-count must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2096,7 +2096,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 8:
                     return (
                         False,
-                        f"proxy-worker-count must be between 1 and 8",
+                        "proxy-worker-count must be between 1 and 8",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2111,7 +2111,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 8:
-                    return (False, f"scanunit-count must be between 1 and 8")
+                    return (False, "scanunit-count must be between 1 and 8")
             except (ValueError, TypeError):
                 return (False, f"scanunit-count must be numeric, got: {value}")
 
@@ -2149,7 +2149,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2:
-                    return (False, f"ipv6-accept-dad must be between 0 and 2")
+                    return (False, "ipv6-accept-dad must be between 0 and 2")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -2210,7 +2210,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"cert-chain-max must be between 1 and 2147483647",
+                        "cert-chain-max must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"cert-chain-max must be numeric, got: {value}")
@@ -2224,7 +2224,7 @@ def validate_global__put(
                 if int_val < 60 or int_val > 600:
                     return (
                         False,
-                        f"two-factor-ftk-expiry must be between 60 and 600",
+                        "two-factor-ftk-expiry must be between 60 and 600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2241,7 +2241,7 @@ def validate_global__put(
                 if int_val < 30 or int_val > 300:
                     return (
                         False,
-                        f"two-factor-email-expiry must be between 30 and 300",
+                        "two-factor-email-expiry must be between 30 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2258,7 +2258,7 @@ def validate_global__put(
                 if int_val < 30 or int_val > 300:
                     return (
                         False,
-                        f"two-factor-sms-expiry must be between 30 and 300",
+                        "two-factor-sms-expiry must be between 30 and 300",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2275,7 +2275,7 @@ def validate_global__put(
                 if int_val < 10 or int_val > 3600:
                     return (
                         False,
-                        f"two-factor-fac-expiry must be between 10 and 3600",
+                        "two-factor-fac-expiry must be between 10 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2292,7 +2292,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 168:
                     return (
                         False,
-                        f"two-factor-ftm-expiry must be between 1 and 168",
+                        "two-factor-ftm-expiry must be between 1 and 168",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2307,7 +2307,7 @@ def validate_global__put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 2:
-                    return (False, f"wad-worker-count must be between 0 and 2")
+                    return (False, "wad-worker-count must be between 0 and 2")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -2323,7 +2323,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 10240:
                     return (
                         False,
-                        f"wad-worker-dev-cache must be between 0 and 10240",
+                        "wad-worker-dev-cache must be between 0 and 10240",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2340,7 +2340,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 1:
                     return (
                         False,
-                        f"wad-csvc-cs-count must be between 1 and 1",
+                        "wad-csvc-cs-count must be between 1 and 1",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2357,7 +2357,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 8:
                     return (
                         False,
-                        f"wad-csvc-db-count must be between 0 and 8",
+                        "wad-csvc-db-count must be between 0 and 8",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2383,7 +2383,7 @@ def validate_global__put(
                 if int_val < 5 or int_val > 25:
                     return (
                         False,
-                        f"wad-memory-change-granularity must be between 5 and 25",
+                        "wad-memory-change-granularity must be between 5 and 25",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2418,7 +2418,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 15:
                     return (
                         False,
-                        f"miglogd-children must be between 0 and 15",
+                        "miglogd-children must be between 0 and 15",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2435,7 +2435,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 99:
                     return (
                         False,
-                        f"log-daemon-cpu-threshold must be between 0 and 99",
+                        "log-daemon-cpu-threshold must be between 0 and 99",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2485,7 +2485,7 @@ def validate_global__put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"gui-cdn-domain-override cannot exceed 255 characters",
+                "gui-cdn-domain-override cannot exceed 255 characters",
             )
 
     # Validate arp-max-entry if present
@@ -2497,7 +2497,7 @@ def validate_global__put(
                 if int_val < 131072 or int_val > 2147483647:
                     return (
                         False,
-                        f"arp-max-entry must be between 131072 and 2147483647",
+                        "arp-max-entry must be between 131072 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"arp-max-entry must be numeric, got: {value}")
@@ -2506,19 +2506,19 @@ def validate_global__put(
     if "ha-affinity" in payload:
         value = payload.get("ha-affinity")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"ha-affinity cannot exceed 79 characters")
+            return (False, "ha-affinity cannot exceed 79 characters")
 
     # Validate bfd-affinity if present
     if "bfd-affinity" in payload:
         value = payload.get("bfd-affinity")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"bfd-affinity cannot exceed 79 characters")
+            return (False, "bfd-affinity cannot exceed 79 characters")
 
     # Validate cmdbsvr-affinity if present
     if "cmdbsvr-affinity" in payload:
         value = payload.get("cmdbsvr-affinity")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"cmdbsvr-affinity cannot exceed 79 characters")
+            return (False, "cmdbsvr-affinity cannot exceed 79 characters")
 
     # Validate ndp-max-entry if present
     if "ndp-max-entry" in payload:
@@ -2529,7 +2529,7 @@ def validate_global__put(
                 if int_val < 65536 or int_val > 2147483647:
                     return (
                         False,
-                        f"ndp-max-entry must be between 65536 and 2147483647",
+                        "ndp-max-entry must be between 65536 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"ndp-max-entry must be numeric, got: {value}")
@@ -2543,7 +2543,7 @@ def validate_global__put(
                 if int_val < 8192 or int_val > 2147483647:
                     return (
                         False,
-                        f"br-fdb-max-entry must be between 8192 and 2147483647",
+                        "br-fdb-max-entry must be between 8192 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2560,7 +2560,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"max-route-cache-size must be between 0 and 2147483647",
+                        "max-route-cache-size must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2586,7 +2586,7 @@ def validate_global__put(
                 if int_val < 30 or int_val > 31536000:
                     return (
                         False,
-                        f"device-idle-timeout must be between 30 and 31536000",
+                        "device-idle-timeout must be between 30 and 31536000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2603,7 +2603,7 @@ def validate_global__put(
                 if int_val < 10135 or int_val > 28959:
                     return (
                         False,
-                        f"user-device-store-max-devices must be between 10135 and 28959",
+                        "user-device-store-max-devices must be between 10135 and 28959",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2620,7 +2620,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 5:
                     return (
                         False,
-                        f"user-device-store-max-device-mem must be between 1 and 5",
+                        "user-device-store-max-device-mem must be between 1 and 5",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2637,7 +2637,7 @@ def validate_global__put(
                 if int_val < 10135 or int_val > 28959:
                     return (
                         False,
-                        f"user-device-store-max-users must be between 10135 and 28959",
+                        "user-device-store-max-users must be between 10135 and 28959",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2654,7 +2654,7 @@ def validate_global__put(
                 if int_val < 20271513 or int_val > 202715136:
                     return (
                         False,
-                        f"user-device-store-max-unified-mem must be between 20271513 and 202715136",
+                        "user-device-store-max-unified-mem must be between 20271513 and 202715136",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2666,13 +2666,13 @@ def validate_global__put(
     if "gui-device-latitude" in payload:
         value = payload.get("gui-device-latitude")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"gui-device-latitude cannot exceed 19 characters")
+            return (False, "gui-device-latitude cannot exceed 19 characters")
 
     # Validate gui-device-longitude if present
     if "gui-device-longitude" in payload:
         value = payload.get("gui-device-longitude")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"gui-device-longitude cannot exceed 19 characters")
+            return (False, "gui-device-longitude cannot exceed 19 characters")
 
     # Validate private-data-encryption if present
     if "private-data-encryption" in payload:
@@ -2728,7 +2728,7 @@ def validate_global__put(
                 if int_val < 96 or int_val > 128000:
                     return (
                         False,
-                        f"igmp-state-limit must be between 96 and 128000",
+                        "igmp-state-limit must be between 96 and 128000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2754,7 +2754,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 10:
                     return (
                         False,
-                        f"ipsec-ha-seqjump-rate must be between 1 and 10",
+                        "ipsec-ha-seqjump-rate must be between 1 and 10",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2786,7 +2786,7 @@ def validate_global__put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"fortitoken-cloud-region cannot exceed 63 characters",
+                "fortitoken-cloud-region cannot exceed 63 characters",
             )
 
     # Validate fortitoken-cloud-sync-interval if present
@@ -2798,7 +2798,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 336:
                     return (
                         False,
-                        f"fortitoken-cloud-sync-interval must be between 0 and 336",
+                        "fortitoken-cloud-sync-interval must be between 0 and 336",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2819,7 +2819,7 @@ def validate_global__put(
     if "management-ip" in payload:
         value = payload.get("management-ip")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"management-ip cannot exceed 255 characters")
+            return (False, "management-ip cannot exceed 255 characters")
 
     # Validate management-port if present
     if "management-port" in payload:
@@ -2830,7 +2830,7 @@ def validate_global__put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"management-port must be between 1 and 65535",
+                        "management-port must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2928,7 +2928,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 6:
                     return (
                         False,
-                        f"sflowd-max-children-num must be between 0 and 6",
+                        "sflowd-max-children-num must be between 0 and 6",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2954,7 +2954,7 @@ def validate_global__put(
                 if int_val < 3 or int_val > 15:
                     return (
                         False,
-                        f"user-history-password-threshold must be between 3 and 15",
+                        "user-history-password-threshold must be between 3 and 15",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2989,7 +2989,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"scim-https-port must be between 0 and 65535",
+                        "scim-https-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3006,7 +3006,7 @@ def validate_global__put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"scim-http-port must be between 0 and 65535",
+                        "scim-http-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"scim-http-port must be numeric, got: {value}")
@@ -3015,7 +3015,7 @@ def validate_global__put(
     if "scim-server-cert" in payload:
         value = payload.get("scim-server-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"scim-server-cert cannot exceed 35 characters")
+            return (False, "scim-server-cert cannot exceed 35 characters")
 
     # Validate application-bandwidth-tracking if present
     if "application-bandwidth-tracking" in payload:

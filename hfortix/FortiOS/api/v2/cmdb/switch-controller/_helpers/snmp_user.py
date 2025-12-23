@@ -82,7 +82,7 @@ def validate_snmp_user_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"name cannot exceed 32 characters")
+            return (False, "name cannot exceed 32 characters")
 
     # Validate queries if present
     if "queries" in payload:
@@ -100,7 +100,7 @@ def validate_snmp_user_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"query-port must be between 0 and 65535")
+                    return (False, "query-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"query-port must be numeric, got: {value}")
 
@@ -164,7 +164,7 @@ def validate_snmp_user_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 32:
-            return (False, f"name cannot exceed 32 characters")
+            return (False, "name cannot exceed 32 characters")
 
     # Validate queries if present
     if "queries" in payload:
@@ -182,7 +182,7 @@ def validate_snmp_user_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"query-port must be between 0 and 65535")
+                    return (False, "query-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"query-port must be numeric, got: {value}")
 

@@ -81,7 +81,7 @@ def validate_multicast_put(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"route-threshold must be between 1 and 2147483647",
+                        "route-threshold must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (
@@ -98,7 +98,7 @@ def validate_multicast_put(
                 if int_val < 1 or int_val > 2147483647:
                     return (
                         False,
-                        f"route-limit must be between 1 and 2147483647",
+                        "route-limit must be between 1 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"route-limit must be numeric, got: {value}")

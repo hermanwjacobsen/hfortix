@@ -81,7 +81,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -90,7 +90,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -110,7 +110,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 43200:
-                    return (False, f"authtimeout must be between 0 and 43200")
+                    return (False, "authtimeout must be between 0 and 43200")
             except (ValueError, TypeError):
                 return (False, f"authtimeout must be numeric, got: {value}")
 
@@ -132,7 +132,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"auth-concurrent-value must be between 0 and 100",
+                        "auth-concurrent-value must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -144,13 +144,13 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "http-digest-realm" in payload:
         value = payload.get("http-digest-realm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-digest-realm cannot exceed 35 characters")
+            return (False, "http-digest-realm cannot exceed 35 characters")
 
     # Validate sso-attribute-value if present
     if "sso-attribute-value" in payload:
         value = payload.get("sso-attribute-value")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"sso-attribute-value cannot exceed 511 characters")
+            return (False, "sso-attribute-value cannot exceed 511 characters")
 
     # Validate user-id if present
     if "user-id" in payload:
@@ -228,7 +228,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate expire-type if present
     if "expire-type" in payload:
@@ -246,7 +246,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31536000:
-                    return (False, f"expire must be between 1 and 31536000")
+                    return (False, "expire must be between 1 and 31536000")
             except (ValueError, TypeError):
                 return (False, f"expire must be numeric, got: {value}")
 
@@ -257,7 +257,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 500:
-                    return (False, f"max-accounts must be between 0 and 500")
+                    return (False, "max-accounts must be between 0 and 500")
             except (ValueError, TypeError):
                 return (False, f"max-accounts must be numeric, got: {value}")
 
@@ -303,7 +303,7 @@ def validate_group_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -312,7 +312,7 @@ def validate_group_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -332,7 +332,7 @@ def validate_group_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 43200:
-                    return (False, f"authtimeout must be between 0 and 43200")
+                    return (False, "authtimeout must be between 0 and 43200")
             except (ValueError, TypeError):
                 return (False, f"authtimeout must be numeric, got: {value}")
 
@@ -354,7 +354,7 @@ def validate_group_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"auth-concurrent-value must be between 0 and 100",
+                        "auth-concurrent-value must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -366,13 +366,13 @@ def validate_group_put(
     if "http-digest-realm" in payload:
         value = payload.get("http-digest-realm")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"http-digest-realm cannot exceed 35 characters")
+            return (False, "http-digest-realm cannot exceed 35 characters")
 
     # Validate sso-attribute-value if present
     if "sso-attribute-value" in payload:
         value = payload.get("sso-attribute-value")
         if value and isinstance(value, str) and len(value) > 511:
-            return (False, f"sso-attribute-value cannot exceed 511 characters")
+            return (False, "sso-attribute-value cannot exceed 511 characters")
 
     # Validate user-id if present
     if "user-id" in payload:
@@ -450,7 +450,7 @@ def validate_group_put(
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate expire-type if present
     if "expire-type" in payload:
@@ -468,7 +468,7 @@ def validate_group_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31536000:
-                    return (False, f"expire must be between 1 and 31536000")
+                    return (False, "expire must be between 1 and 31536000")
             except (ValueError, TypeError):
                 return (False, f"expire must be numeric, got: {value}")
 
@@ -479,7 +479,7 @@ def validate_group_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 500:
-                    return (False, f"max-accounts must be between 0 and 500")
+                    return (False, "max-accounts must be between 0 and 500")
             except (ValueError, TypeError):
                 return (False, f"max-accounts must be numeric, got: {value}")
 

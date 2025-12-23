@@ -71,7 +71,8 @@ class EventVPN:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='user==admin')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'user==admin'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'user==admin'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -80,7 +81,8 @@ class EventVPN:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -154,7 +156,8 @@ class EventUser:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='user==admin')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'user==admin'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'user==admin'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -163,7 +166,8 @@ class EventUser:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -237,7 +241,8 @@ class EventRouter:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='msg=="route changed"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="route changed"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="route
+        changed"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -246,7 +251,8 @@ class EventRouter:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -320,7 +326,8 @@ class EventWireless:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='ssid=="Corporate"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'ssid=="Corporate"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'ssid=="Corporate"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -329,7 +336,8 @@ class EventWireless:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -403,7 +411,8 @@ class EventWAD:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='subtype=="auth"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'subtype=="auth"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'subtype=="auth"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -412,7 +421,8 @@ class EventWAD:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -486,7 +496,8 @@ class EventEndpoint:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='hostname=="PC01"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'hostname=="PC01"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'hostname=="PC01"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -495,7 +506,8 @@ class EventEndpoint:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -568,8 +580,10 @@ class EventHA:
         Get HA event logs.
 
         Supports dual approach:
-        1. Individual parameters: get(rows=100, filter='msg=="HA state changed"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="HA state changed"'})
+        1. Individual parameters: get(rows=100, filter='msg=="HA state
+        changed"')
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'msg=="HA
+        state changed"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -578,7 +592,8 @@ class EventHA:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -652,7 +667,8 @@ class EventComplianceCheck:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='result=="fail"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'result=="fail"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'result=="fail"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -661,7 +677,8 @@ class EventComplianceCheck:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -744,7 +761,8 @@ class EventSecurityRating:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -818,7 +836,8 @@ class EventFortiextender:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='device=="FXT-001"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'device=="FXT-001"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'device=="FXT-001"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -827,7 +846,8 @@ class EventFortiextender:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -901,7 +921,8 @@ class EventConnector:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='status=="connected"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'status=="connected"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'status=="connected"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -910,7 +931,8 @@ class EventConnector:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 
@@ -984,7 +1006,8 @@ class EventSystem:
 
         Supports dual approach:
         1. Individual parameters: get(rows=100, filter='level=="alert"')
-        2. Payload dict: get(payload_dict={'rows': 100, 'filter': 'level=="alert"'})
+        2. Payload dict: get(payload_dict={'rows': 100, 'filter':
+        'level=="alert"'})
 
         Args:
             rows: Maximum number of log entries to return
@@ -993,7 +1016,8 @@ class EventSystem:
             is_ha_member: Whether this is an HA member query
             filter: Log filter expression (string or list)
             extra: Additional options (e.g., 'reverse_lookup')
-            payload_dict: Alternative to individual parameters - pass all params as dict
+            payload_dict: Alternative to individual parameters - pass all
+            params as dict
             raw_json: Return raw JSON response without parsing
             **kwargs: Additional parameters to pass to the API
 

@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Extension Controller Extender Vap
 
-Configuration endpoint for managing cmdb extension controller extender vap objects.
+Configuration endpoint for managing cmdb extension controller extender vap
+objects.
 
 API Endpoints:
     GET    /cmdb/extension-controller/extender_vap
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.extension_controller.extender_vap.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.extension_controller.extender_vap.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.extension_controller.extender_vap.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.extension_controller.extender_vap.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.extension_controller.extender_vap.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.extension_controller.extender_vap.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class ExtenderVap:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class ExtenderVap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,34 +179,46 @@ class ExtenderVap:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Wi-Fi VAP name. (optional)
             type: Wi-Fi VAP type local-vap / lan-extension-vap. (optional)
             ssid: Wi-Fi SSID. (optional)
-            max_clients: Wi-Fi max clients (0 - 512), default = 0 (no limit) (optional)
+            max_clients: Wi-Fi max clients (0 - 512), default = 0 (no limit)
+            (optional)
             broadcast_ssid: Wi-Fi broadcast SSID enable / disable. (optional)
             security: Wi-Fi security. (optional)
             dtim: Wi-Fi DTIM (1 - 255) default = 1. (optional)
-            rts_threshold: Wi-Fi RTS Threshold (256 - 2347), default = 2347 (RTS/CTS disabled). (optional)
+            rts_threshold: Wi-Fi RTS Threshold (256 - 2347), default = 2347
+            (RTS/CTS disabled). (optional)
             pmf: Wi-Fi pmf enable/disable, default = disable. (optional)
-            target_wake_time: Wi-Fi 802.11AX target wake time enable / disable, default = enable. (optional)
-            bss_color_partial: Wi-Fi 802.11AX bss color partial enable / disable, default = enable. (optional)
-            mu_mimo: Wi-Fi multi-user MIMO enable / disable, default = enable. (optional)
+            target_wake_time: Wi-Fi 802.11AX target wake time enable / disable,
+            default = enable. (optional)
+            bss_color_partial: Wi-Fi 802.11AX bss color partial enable /
+            disable, default = enable. (optional)
+            mu_mimo: Wi-Fi multi-user MIMO enable / disable, default = enable.
+            (optional)
             passphrase: Wi-Fi passphrase. (optional)
             sae_password: Wi-Fi SAE Password. (optional)
-            auth_server_address: Wi-Fi Authentication Server Address (IPv4 format). (optional)
+            auth_server_address: Wi-Fi Authentication Server Address (IPv4
+            format). (optional)
             auth_server_port: Wi-Fi Authentication Server Port. (optional)
             auth_server_secret: Wi-Fi Authentication Server Secret. (optional)
             ip_address: Extender ip address. (optional)
             start_ip: Start ip address. (optional)
             end_ip: End ip address. (optional)
-            allowaccess: Control management access to the managed extender. Separate entries with a space. (optional)
+            allowaccess: Control management access to the managed extender.
+            Separate entries with a space. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -205,7 +226,8 @@ class ExtenderVap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -237,7 +259,7 @@ class ExtenderVap:
         if rts_threshold is not None:
             data_payload["rts-threshold"] = rts_threshold
         if pmf is not None:
-            data_payload["pmf"] = pmf
+            data_payload["pm"] = pmf
         if target_wake_time is not None:
             data_payload["target-wake-time"] = target_wake_time
         if bss_color_partial is not None:
@@ -281,8 +303,10 @@ class ExtenderVap:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -290,7 +314,8 @@ class ExtenderVap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -382,32 +407,43 @@ class ExtenderVap:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Wi-Fi VAP name. (optional)
             type: Wi-Fi VAP type local-vap / lan-extension-vap. (optional)
             ssid: Wi-Fi SSID. (optional)
-            max_clients: Wi-Fi max clients (0 - 512), default = 0 (no limit) (optional)
+            max_clients: Wi-Fi max clients (0 - 512), default = 0 (no limit)
+            (optional)
             broadcast_ssid: Wi-Fi broadcast SSID enable / disable. (optional)
             security: Wi-Fi security. (optional)
             dtim: Wi-Fi DTIM (1 - 255) default = 1. (optional)
-            rts_threshold: Wi-Fi RTS Threshold (256 - 2347), default = 2347 (RTS/CTS disabled). (optional)
+            rts_threshold: Wi-Fi RTS Threshold (256 - 2347), default = 2347
+            (RTS/CTS disabled). (optional)
             pmf: Wi-Fi pmf enable/disable, default = disable. (optional)
-            target_wake_time: Wi-Fi 802.11AX target wake time enable / disable, default = enable. (optional)
-            bss_color_partial: Wi-Fi 802.11AX bss color partial enable / disable, default = enable. (optional)
-            mu_mimo: Wi-Fi multi-user MIMO enable / disable, default = enable. (optional)
+            target_wake_time: Wi-Fi 802.11AX target wake time enable / disable,
+            default = enable. (optional)
+            bss_color_partial: Wi-Fi 802.11AX bss color partial enable /
+            disable, default = enable. (optional)
+            mu_mimo: Wi-Fi multi-user MIMO enable / disable, default = enable.
+            (optional)
             passphrase: Wi-Fi passphrase. (optional)
             sae_password: Wi-Fi SAE Password. (optional)
-            auth_server_address: Wi-Fi Authentication Server Address (IPv4 format). (optional)
+            auth_server_address: Wi-Fi Authentication Server Address (IPv4
+            format). (optional)
             auth_server_port: Wi-Fi Authentication Server Port. (optional)
             auth_server_secret: Wi-Fi Authentication Server Secret. (optional)
             ip_address: Extender ip address. (optional)
             start_ip: Start ip address. (optional)
             end_ip: End ip address. (optional)
-            allowaccess: Control management access to the managed extender. Separate entries with a space. (optional)
+            allowaccess: Control management access to the managed extender.
+            Separate entries with a space. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -415,7 +451,8 @@ class ExtenderVap:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -441,7 +478,7 @@ class ExtenderVap:
         if rts_threshold is not None:
             data_payload["rts-threshold"] = rts_threshold
         if pmf is not None:
-            data_payload["pmf"] = pmf
+            data_payload["pm"] = pmf
         if target_wake_time is not None:
             data_payload["target-wake-time"] = target_wake_time
         if bss_color_partial is not None:

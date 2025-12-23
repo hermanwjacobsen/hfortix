@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class VdomProperty:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class VdomProperty:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -168,32 +174,51 @@ class VdomProperty:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: VDOM name. (optional)
             description: Description. (optional)
-            snmp_index: Permanent SNMP Index of the virtual domain (1 - 2147483647). (optional)
+            snmp_index: Permanent SNMP Index of the virtual domain (1 -
+            2147483647). (optional)
             session: Maximum guaranteed number of sessions. (optional)
-            ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels. (optional)
-            ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels. (optional)
-            ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels. (optional)
-            ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels. (optional)
-            dialup_tunnel: Maximum guaranteed number of dial-up tunnels. (optional)
-            firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast). (optional)
-            firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast). (optional)
-            firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6). (optional)
-            custom_service: Maximum guaranteed number of firewall custom services. (optional)
-            service_group: Maximum guaranteed number of firewall service groups. (optional)
-            onetime_schedule: Maximum guaranteed number of firewall one-time schedules.. (optional)
-            recurring_schedule: Maximum guaranteed number of firewall recurring schedules. (optional)
+            ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1
+            tunnels. (optional)
+            ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2
+            tunnels. (optional)
+            ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec
+            phase1 interface tunnels. (optional)
+            ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec
+            phase2 interface tunnels. (optional)
+            dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
+            (optional)
+            firewall_policy: Maximum guaranteed number of firewall policies
+            (policy, DoS-policy4, DoS-policy6, multicast). (optional)
+            firewall_address: Maximum guaranteed number of firewall addresses
+            (IPv4, IPv6, multicast). (optional)
+            firewall_addrgrp: Maximum guaranteed number of firewall address
+            groups (IPv4, IPv6). (optional)
+            custom_service: Maximum guaranteed number of firewall custom
+            services. (optional)
+            service_group: Maximum guaranteed number of firewall service
+            groups. (optional)
+            onetime_schedule: Maximum guaranteed number of firewall one-time
+            schedules.. (optional)
+            recurring_schedule: Maximum guaranteed number of firewall recurring
+            schedules. (optional)
             user: Maximum guaranteed number of local users. (optional)
             user_group: Maximum guaranteed number of user groups. (optional)
-            log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available. (optional)
+            log_disk_quota: Log disk quota in megabytes (MB). Range depends on
+            how much disk space is available. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -201,7 +226,8 @@ class VdomProperty:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -273,8 +299,10 @@ class VdomProperty:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -282,7 +310,8 @@ class VdomProperty:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -372,30 +401,48 @@ class VdomProperty:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: VDOM name. (optional)
             description: Description. (optional)
-            snmp_index: Permanent SNMP Index of the virtual domain (1 - 2147483647). (optional)
+            snmp_index: Permanent SNMP Index of the virtual domain (1 -
+            2147483647). (optional)
             session: Maximum guaranteed number of sessions. (optional)
-            ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1 tunnels. (optional)
-            ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2 tunnels. (optional)
-            ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec phase1 interface tunnels. (optional)
-            ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec phase2 interface tunnels. (optional)
-            dialup_tunnel: Maximum guaranteed number of dial-up tunnels. (optional)
-            firewall_policy: Maximum guaranteed number of firewall policies (policy, DoS-policy4, DoS-policy6, multicast). (optional)
-            firewall_address: Maximum guaranteed number of firewall addresses (IPv4, IPv6, multicast). (optional)
-            firewall_addrgrp: Maximum guaranteed number of firewall address groups (IPv4, IPv6). (optional)
-            custom_service: Maximum guaranteed number of firewall custom services. (optional)
-            service_group: Maximum guaranteed number of firewall service groups. (optional)
-            onetime_schedule: Maximum guaranteed number of firewall one-time schedules.. (optional)
-            recurring_schedule: Maximum guaranteed number of firewall recurring schedules. (optional)
+            ipsec_phase1: Maximum guaranteed number of VPN IPsec phase 1
+            tunnels. (optional)
+            ipsec_phase2: Maximum guaranteed number of VPN IPsec phase 2
+            tunnels. (optional)
+            ipsec_phase1_interface: Maximum guaranteed number of VPN IPsec
+            phase1 interface tunnels. (optional)
+            ipsec_phase2_interface: Maximum guaranteed number of VPN IPsec
+            phase2 interface tunnels. (optional)
+            dialup_tunnel: Maximum guaranteed number of dial-up tunnels.
+            (optional)
+            firewall_policy: Maximum guaranteed number of firewall policies
+            (policy, DoS-policy4, DoS-policy6, multicast). (optional)
+            firewall_address: Maximum guaranteed number of firewall addresses
+            (IPv4, IPv6, multicast). (optional)
+            firewall_addrgrp: Maximum guaranteed number of firewall address
+            groups (IPv4, IPv6). (optional)
+            custom_service: Maximum guaranteed number of firewall custom
+            services. (optional)
+            service_group: Maximum guaranteed number of firewall service
+            groups. (optional)
+            onetime_schedule: Maximum guaranteed number of firewall one-time
+            schedules.. (optional)
+            recurring_schedule: Maximum guaranteed number of firewall recurring
+            schedules. (optional)
             user: Maximum guaranteed number of local users. (optional)
             user_group: Maximum guaranteed number of user groups. (optional)
-            log_disk_quota: Log disk quota in megabytes (MB). Range depends on how much disk space is available. (optional)
+            log_disk_quota: Log disk quota in megabytes (MB). Range depends on
+            how much disk space is available. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -403,7 +450,8 @@ class VdomProperty:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

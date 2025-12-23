@@ -91,7 +91,7 @@ def validate_dhcp_server_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -113,7 +113,7 @@ def validate_dhcp_server_post(
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"lease-time must be between 300 and 8640000",
+                        "lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (False, f"lease-time must be numeric, got: {value}")
@@ -167,13 +167,13 @@ def validate_dhcp_server_post(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain cannot exceed 35 characters")
+            return (False, "domain cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate timezone-option if present
     if "timezone-option" in payload:
@@ -188,13 +188,13 @@ def validate_dhcp_server_post(
     if "timezone" in payload:
         value = payload.get("timezone")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"timezone cannot exceed 63 characters")
+            return (False, "timezone cannot exceed 63 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"filename cannot exceed 127 characters")
+            return (False, "filename cannot exceed 127 characters")
 
     # Validate server-type if present
     if "server-type" in payload:
@@ -223,7 +223,7 @@ def validate_dhcp_server_post(
                 if int_val < 60 or int_val > 8640000:
                     return (
                         False,
-                        f"conflicted-ip-timeout must be between 60 and 8640000",
+                        "conflicted-ip-timeout must be between 60 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -240,7 +240,7 @@ def validate_dhcp_server_post(
                 if int_val < 0 or int_val > 8640000:
                     return (
                         False,
-                        f"ipsec-lease-hold must be between 0 and 8640000",
+                        "ipsec-lease-hold must be between 0 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -297,7 +297,7 @@ def validate_dhcp_server_post(
     if "ddns-zone" in payload:
         value = payload.get("ddns-zone")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-zone cannot exceed 64 characters")
+            return (False, "ddns-zone cannot exceed 64 characters")
 
     # Validate ddns-auth if present
     if "ddns-auth" in payload:
@@ -312,7 +312,7 @@ def validate_dhcp_server_post(
     if "ddns-keyname" in payload:
         value = payload.get("ddns-keyname")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-keyname cannot exceed 64 characters")
+            return (False, "ddns-keyname cannot exceed 64 characters")
 
     # Validate ddns-ttl if present
     if "ddns-ttl" in payload:
@@ -321,7 +321,7 @@ def validate_dhcp_server_post(
             try:
                 int_val = int(value)
                 if int_val < 60 or int_val > 86400:
-                    return (False, f"ddns-ttl must be between 60 and 86400")
+                    return (False, "ddns-ttl must be between 60 and 86400")
             except (ValueError, TypeError):
                 return (False, f"ddns-ttl must be numeric, got: {value}")
 
@@ -379,7 +379,7 @@ def validate_dhcp_server_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -401,7 +401,7 @@ def validate_dhcp_server_put(
                 if int_val < 300 or int_val > 8640000:
                     return (
                         False,
-                        f"lease-time must be between 300 and 8640000",
+                        "lease-time must be between 300 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (False, f"lease-time must be numeric, got: {value}")
@@ -455,13 +455,13 @@ def validate_dhcp_server_put(
     if "domain" in payload:
         value = payload.get("domain")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"domain cannot exceed 35 characters")
+            return (False, "domain cannot exceed 35 characters")
 
     # Validate interface if present
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate timezone-option if present
     if "timezone-option" in payload:
@@ -476,13 +476,13 @@ def validate_dhcp_server_put(
     if "timezone" in payload:
         value = payload.get("timezone")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"timezone cannot exceed 63 characters")
+            return (False, "timezone cannot exceed 63 characters")
 
     # Validate filename if present
     if "filename" in payload:
         value = payload.get("filename")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"filename cannot exceed 127 characters")
+            return (False, "filename cannot exceed 127 characters")
 
     # Validate server-type if present
     if "server-type" in payload:
@@ -511,7 +511,7 @@ def validate_dhcp_server_put(
                 if int_val < 60 or int_val > 8640000:
                     return (
                         False,
-                        f"conflicted-ip-timeout must be between 60 and 8640000",
+                        "conflicted-ip-timeout must be between 60 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -528,7 +528,7 @@ def validate_dhcp_server_put(
                 if int_val < 0 or int_val > 8640000:
                     return (
                         False,
-                        f"ipsec-lease-hold must be between 0 and 8640000",
+                        "ipsec-lease-hold must be between 0 and 8640000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -585,7 +585,7 @@ def validate_dhcp_server_put(
     if "ddns-zone" in payload:
         value = payload.get("ddns-zone")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-zone cannot exceed 64 characters")
+            return (False, "ddns-zone cannot exceed 64 characters")
 
     # Validate ddns-auth if present
     if "ddns-auth" in payload:
@@ -600,7 +600,7 @@ def validate_dhcp_server_put(
     if "ddns-keyname" in payload:
         value = payload.get("ddns-keyname")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"ddns-keyname cannot exceed 64 characters")
+            return (False, "ddns-keyname cannot exceed 64 characters")
 
     # Validate ddns-ttl if present
     if "ddns-ttl" in payload:
@@ -609,7 +609,7 @@ def validate_dhcp_server_put(
             try:
                 int_val = int(value)
                 if int_val < 60 or int_val > 86400:
-                    return (False, f"ddns-ttl must be between 60 and 86400")
+                    return (False, "ddns-ttl must be between 60 and 86400")
             except (ValueError, TypeError):
                 return (False, f"ddns-ttl must be numeric, got: {value}")
 

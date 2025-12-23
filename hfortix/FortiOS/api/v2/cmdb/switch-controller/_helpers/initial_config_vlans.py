@@ -85,42 +85,42 @@ def validate_initial_config_vlans_put(
     if "default-vlan" in payload:
         value = payload.get("default-vlan")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"default-vlan cannot exceed 63 characters")
+            return (False, "default-vlan cannot exceed 63 characters")
 
     # Validate quarantine if present
     if "quarantine" in payload:
         value = payload.get("quarantine")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"quarantine cannot exceed 63 characters")
+            return (False, "quarantine cannot exceed 63 characters")
 
     # Validate rspan if present
     if "rspan" in payload:
         value = payload.get("rspan")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"rspan cannot exceed 63 characters")
+            return (False, "rspan cannot exceed 63 characters")
 
     # Validate voice if present
     if "voice" in payload:
         value = payload.get("voice")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"voice cannot exceed 63 characters")
+            return (False, "voice cannot exceed 63 characters")
 
     # Validate video if present
     if "video" in payload:
         value = payload.get("video")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"video cannot exceed 63 characters")
+            return (False, "video cannot exceed 63 characters")
 
     # Validate nac if present
     if "nac" in payload:
         value = payload.get("nac")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"nac cannot exceed 63 characters")
+            return (False, "nac cannot exceed 63 characters")
 
     # Validate nac-segment if present
     if "nac-segment" in payload:
         value = payload.get("nac-segment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"nac-segment cannot exceed 63 characters")
+            return (False, "nac-segment cannot exceed 63 characters")
 
     return (True, None)

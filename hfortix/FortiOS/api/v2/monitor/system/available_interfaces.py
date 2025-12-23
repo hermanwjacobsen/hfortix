@@ -68,7 +68,8 @@ class Meta:
 
         Args:
             scope: Scope of interface list [*vdom|global]. (optional)
-            include_ha: Incude HA management interfaces. Will only show if accessing the root VDOM interfaces. (optional)
+            include_ha: Incude HA management interfaces. Will only show if
+            accessing the root VDOM interfaces. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -116,11 +117,13 @@ class AvailableInterfaces:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve a list of all interfaces along with some meta information regarding their availability.
+        Retrieve a list of all interfaces along with some meta information
+        regarding their availability.
 
         Args:
             mkey: Name of the interface. (optional)
-            include_ha: Incude HA management interfaces. Will only show if accessing the root VDOM interfaces. (optional)
+            include_ha: Incude HA management interfaces. Will only show if
+            accessing the root VDOM interfaces. (optional)
             view_type: Deprecated: Use format instead (optional)
             scope: Scope of interface list [vdom|global] (optional)
             payload_dict: Optional dictionary of parameters

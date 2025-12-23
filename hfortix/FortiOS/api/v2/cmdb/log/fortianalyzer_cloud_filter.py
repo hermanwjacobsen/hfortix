@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Log Fortianalyzer Cloud Filter
 
-Configuration endpoint for managing cmdb log fortianalyzer cloud filter objects.
+Configuration endpoint for managing cmdb log fortianalyzer cloud filter
+objects.
 
 API Endpoints:
     GET    /cmdb/log/fortianalyzer_cloud_filter
@@ -15,7 +16,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.log.fortianalyzer_cloud_filter.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.log.fortianalyzer_cloud_filter.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.log.fortianalyzer_cloud_filter.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.log.fortianalyzer_cloud_filter.post(
@@ -30,7 +32,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.log.fortianalyzer_cloud_filter.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.log.fortianalyzer_cloud_filter.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -53,7 +56,8 @@ class FortianalyzerCloudFilter:
     """
     Fortianalyzercloudfilter Operations.
 
-    Provides CRUD operations for FortiOS fortianalyzercloudfilter configuration.
+    Provides CRUD operations for FortiOS fortianalyzercloudfilter
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -88,11 +92,15 @@ class FortianalyzerCloudFilter:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +108,8 @@ class FortianalyzerCloudFilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -141,24 +150,32 @@ class FortianalyzerCloudFilter:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             severity: Lowest severity level to log. (optional)
             forward_traffic: Enable/disable forward traffic logging. (optional)
-            local_traffic: Enable/disable local in or out traffic logging. (optional)
-            multicast_traffic: Enable/disable multicast traffic logging. (optional)
+            local_traffic: Enable/disable local in or out traffic logging.
+            (optional)
+            multicast_traffic: Enable/disable multicast traffic logging.
+            (optional)
             sniffer_traffic: Enable/disable sniffer traffic logging. (optional)
             ztna_traffic: Enable/disable ztna traffic logging. (optional)
-            http_transaction: Enable/disable log HTTP transaction messages. (optional)
+            http_transaction: Enable/disable log HTTP transaction messages.
+            (optional)
             anomaly: Enable/disable anomaly logging. (optional)
             voip: Enable/disable VoIP logging. (optional)
             dlp_archive: Enable/disable DLP archive logging. (optional)
             forti_switch: Enable/disable Forti-Switch logging. (optional)
             free_style: Free style filters. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -166,7 +183,8 @@ class FortianalyzerCloudFilter:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

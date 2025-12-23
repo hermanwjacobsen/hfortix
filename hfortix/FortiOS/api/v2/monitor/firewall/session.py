@@ -121,7 +121,8 @@ class CloseAll:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Immediately close all active IPv4 and IPv6 sessions, as well as IPS sessions of the current VDOM.
+        Immediately close all active IPv4 and IPv6 sessions, as well as IPS
+        sessions of the current VDOM.
 
         Args:
             payload_dict: Optional dictionary of parameters
@@ -168,7 +169,8 @@ class CloseMultiple:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Close multiple IPv4 firewall sessions which match the provided criteria.
+        Close multiple IPv4 firewall sessions which match the provided
+        criteria.
 
         Args:
             proto: Protocol name [tcp|udp|icmp|...] or number. (optional)

@@ -103,10 +103,12 @@ class Stats:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Return number of logs sent by category per day for a specific log device.
+        Return number of logs sent by category per day for a specific log
+        device.
 
         Args:
-            dev: Log device [*memory | disk | fortianalyzer | forticloud]. (optional)
+            dev: Log device [*memory | disk | fortianalyzer | forticloud].
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

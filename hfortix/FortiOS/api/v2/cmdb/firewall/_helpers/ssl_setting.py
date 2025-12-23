@@ -85,7 +85,7 @@ def validate_ssl_setting_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"proxy-connect-timeout must be between 1 and 60",
+                        "proxy-connect-timeout must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -129,7 +129,7 @@ def validate_ssl_setting_put(
                 if int_val < 24 or int_val > 720:
                     return (
                         False,
-                        f"cert-manager-cache-timeout must be between 24 and 720",
+                        "cert-manager-cache-timeout must be between 24 and 720",
                     )
             except (ValueError, TypeError):
                 return (
@@ -155,7 +155,7 @@ def validate_ssl_setting_put(
                 if int_val < 0 or int_val > 500:
                     return (
                         False,
-                        f"cert-cache-capacity must be between 0 and 500",
+                        "cert-cache-capacity must be between 0 and 500",
                     )
             except (ValueError, TypeError):
                 return (
@@ -172,7 +172,7 @@ def validate_ssl_setting_put(
                 if int_val < 1 or int_val > 120:
                     return (
                         False,
-                        f"cert-cache-timeout must be between 1 and 120",
+                        "cert-cache-timeout must be between 1 and 120",
                     )
             except (ValueError, TypeError):
                 return (
@@ -189,7 +189,7 @@ def validate_ssl_setting_put(
                 if int_val < 0 or int_val > 1000:
                     return (
                         False,
-                        f"session-cache-capacity must be between 0 and 1000",
+                        "session-cache-capacity must be between 0 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -206,7 +206,7 @@ def validate_ssl_setting_put(
                 if int_val < 1 or int_val > 60:
                     return (
                         False,
-                        f"session-cache-timeout must be between 1 and 60",
+                        "session-cache-timeout must be between 1 and 60",
                     )
             except (ValueError, TypeError):
                 return (
@@ -223,7 +223,7 @@ def validate_ssl_setting_put(
                 if int_val < 0 or int_val > 512:
                     return (
                         False,
-                        f"kxp-queue-threshold must be between 0 and 512",
+                        "kxp-queue-threshold must be between 0 and 512",
                     )
             except (ValueError, TypeError):
                 return (
@@ -240,7 +240,7 @@ def validate_ssl_setting_put(
                 if int_val < 0 or int_val > 512:
                     return (
                         False,
-                        f"ssl-queue-threshold must be between 0 and 512",
+                        "ssl-queue-threshold must be between 0 and 512",
                     )
             except (ValueError, TypeError):
                 return (

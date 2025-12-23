@@ -84,7 +84,8 @@ class RealtimeProxyStatistics:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Retrieve realtime drill-down and summary data for proxy session FortiView statistics.
+        Retrieve realtime drill-down and summary data for proxy session
+        FortiView statistics.
 
         Args:
             report_by: Report by field. (optional)
@@ -103,7 +104,8 @@ class RealtimeProxyStatistics:
             protocol: Protocol type. (optional)
             application: Web application type. (optional)
             country: Geographic location. (optional)
-            seconds: Time in seconds, since the session is established. (optional)
+            seconds: Time in seconds, since the session is established.
+            (optional)
             since: Time when the session is established. (optional)
             owner: Owner. (optional)
             username: Session login user name. (optional)
@@ -139,9 +141,9 @@ class RealtimeProxyStatistics:
         if dstport is not None:
             params["dstport"] = dstport
         if srcintf is not None:
-            params["srcintf"] = srcintf
+            params["srcint"] = srcintf
         if dstintf is not None:
-            params["dstintf"] = dstintf
+            params["dstint"] = dstintf
         if policyid is not None:
             params["policyid"] = policyid
         if proxy_policyid is not None:

@@ -186,7 +186,7 @@ def validate_explicit_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -195,7 +195,7 @@ def validate_explicit_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 
@@ -239,7 +239,7 @@ def validate_explicit_put(
     if "realm" in payload:
         value = payload.get("realm")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"realm cannot exceed 63 characters")
+            return (False, "realm cannot exceed 63 characters")
 
     # Validate sec-default-action if present
     if "sec-default-action" in payload:
@@ -290,7 +290,7 @@ def validate_explicit_put(
     if "pac-file-name" in payload:
         value = payload.get("pac-file-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"pac-file-name cannot exceed 63 characters")
+            return (False, "pac-file-name cannot exceed 63 characters")
 
     # Validate ssl-algorithm if present
     if "ssl-algorithm" in payload:

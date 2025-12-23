@@ -79,7 +79,8 @@ class Download:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.log.policy_archive.download.get(mkey=1, srcip='value', dstip='value')
+            >>> fgt.api.monitor.log.policy_archive.download.get(mkey=1,
+            srcip='value', dstip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["mkey"] = mkey

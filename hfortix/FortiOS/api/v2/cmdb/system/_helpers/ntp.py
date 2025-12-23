@@ -101,7 +101,7 @@ def validate_ntp_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 1440:
-                    return (False, f"syncinterval must be between 1 and 1440")
+                    return (False, "syncinterval must be between 1 and 1440")
             except (ValueError, TypeError):
                 return (False, f"syncinterval must be numeric, got: {value}")
 
@@ -139,7 +139,7 @@ def validate_ntp_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"key-id must be between 0 and 4294967295")
+                    return (False, "key-id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"key-id must be numeric, got: {value}")
 

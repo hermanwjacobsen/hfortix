@@ -38,7 +38,7 @@ VALID_BODY_UPLOADTYPE = [
     "voip",
     "dlp",
     "app-ctrl",
-    "waf",
+    "wa",
     "dns",
     "ssh",
     "ssl",
@@ -138,7 +138,7 @@ def validate_disk_setting_put(
                 if int_val < 1 or int_val > 100:
                     return (
                         False,
-                        f"max-log-file-size must be between 1 and 100",
+                        "max-log-file-size must be between 1 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -155,7 +155,7 @@ def validate_disk_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"max-policy-packet-capture-size must be between 0 and 4294967295",
+                        "max-policy-packet-capture-size must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -199,7 +199,7 @@ def validate_disk_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"log-quota must be between 0 and 4294967295",
+                        "log-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"log-quota must be numeric, got: {value}")
@@ -213,7 +213,7 @@ def validate_disk_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"dlp-archive-quota must be between 0 and 4294967295",
+                        "dlp-archive-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -230,7 +230,7 @@ def validate_disk_setting_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"report-quota must be between 0 and 4294967295",
+                        "report-quota must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"report-quota must be numeric, got: {value}")
@@ -244,7 +244,7 @@ def validate_disk_setting_put(
                 if int_val < 0 or int_val > 3650:
                     return (
                         False,
-                        f"maximum-log-age must be between 0 and 3650",
+                        "maximum-log-age must be between 0 and 3650",
                     )
             except (ValueError, TypeError):
                 return (
@@ -277,7 +277,7 @@ def validate_disk_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"uploadport must be between 0 and 65535")
+                    return (False, "uploadport must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"uploadport must be numeric, got: {value}")
 
@@ -285,13 +285,13 @@ def validate_disk_setting_put(
     if "uploaduser" in payload:
         value = payload.get("uploaduser")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"uploaduser cannot exceed 35 characters")
+            return (False, "uploaduser cannot exceed 35 characters")
 
     # Validate uploaddir if present
     if "uploaddir" in payload:
         value = payload.get("uploaddir")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"uploaddir cannot exceed 63 characters")
+            return (False, "uploaddir cannot exceed 63 characters")
 
     # Validate uploadtype if present
     if "uploadtype" in payload:
@@ -338,7 +338,7 @@ def validate_disk_setting_put(
                 if int_val < 1 or int_val > 98:
                     return (
                         False,
-                        f"full-first-warning-threshold must be between 1 and 98",
+                        "full-first-warning-threshold must be between 1 and 98",
                     )
             except (ValueError, TypeError):
                 return (
@@ -355,7 +355,7 @@ def validate_disk_setting_put(
                 if int_val < 2 or int_val > 99:
                     return (
                         False,
-                        f"full-second-warning-threshold must be between 2 and 99",
+                        "full-second-warning-threshold must be between 2 and 99",
                     )
             except (ValueError, TypeError):
                 return (
@@ -372,7 +372,7 @@ def validate_disk_setting_put(
                 if int_val < 3 or int_val > 100:
                     return (
                         False,
-                        f"full-final-warning-threshold must be between 3 and 100",
+                        "full-final-warning-threshold must be between 3 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -393,7 +393,7 @@ def validate_disk_setting_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate vrf-select if present
     if "vrf-select" in payload:
@@ -402,7 +402,7 @@ def validate_disk_setting_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 511:
-                    return (False, f"vrf-select must be between 0 and 511")
+                    return (False, "vrf-select must be between 0 and 511")
             except (ValueError, TypeError):
                 return (False, f"vrf-select must be numeric, got: {value}")
 

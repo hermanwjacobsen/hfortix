@@ -77,7 +77,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"seq-num must be between 0 and 4294967295")
+                    return (False, "seq-num must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -97,7 +97,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -108,7 +108,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"weight must be between 0 and 255")
+                    return (False, "weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"weight must be numeric, got: {value}")
 
@@ -119,7 +119,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -127,13 +127,13 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate blackhole if present
     if "blackhole" in payload:
@@ -157,7 +157,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "dstaddr" in payload:
         value = payload.get("dstaddr")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dstaddr cannot exceed 79 characters")
+            return (False, "dstaddr cannot exceed 79 characters")
 
     # Validate internet-service if present
     if "internet-service" in payload:
@@ -168,7 +168,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"internet-service must be between 0 and 4294967295",
+                        "internet-service must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -182,7 +182,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"internet-service-custom cannot exceed 64 characters",
+                "internet-service-custom cannot exceed 64 characters",
             )
 
     # Validate internet-service-fortiguard if present
@@ -191,7 +191,7 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"internet-service-fortiguard cannot exceed 64 characters",
+                "internet-service-fortiguard cannot exceed 64 characters",
             )
 
     # Validate link-monitor-exempt if present
@@ -210,13 +210,13 @@ def validate_static_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"tag must be between 0 and 4294967295")
+                    return (False, "tag must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"tag must be numeric, got: {value}")
 
     # Validate vrf if present
-    if "vrf" in payload:
-        value = payload.get("vrf")
+    if "vr" in payload:
+        value = payload.get("vr")
         if value is not None:
             try:
                 int_val = int(value)
@@ -265,7 +265,7 @@ def validate_static_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"seq-num must be between 0 and 4294967295")
+                    return (False, "seq-num must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"seq-num must be numeric, got: {value}")
 
@@ -285,7 +285,7 @@ def validate_static_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -296,7 +296,7 @@ def validate_static_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"weight must be between 0 and 255")
+                    return (False, "weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"weight must be numeric, got: {value}")
 
@@ -307,7 +307,7 @@ def validate_static_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -315,13 +315,13 @@ def validate_static_put(
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate blackhole if present
     if "blackhole" in payload:
@@ -345,7 +345,7 @@ def validate_static_put(
     if "dstaddr" in payload:
         value = payload.get("dstaddr")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"dstaddr cannot exceed 79 characters")
+            return (False, "dstaddr cannot exceed 79 characters")
 
     # Validate internet-service if present
     if "internet-service" in payload:
@@ -356,7 +356,7 @@ def validate_static_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"internet-service must be between 0 and 4294967295",
+                        "internet-service must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -370,7 +370,7 @@ def validate_static_put(
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"internet-service-custom cannot exceed 64 characters",
+                "internet-service-custom cannot exceed 64 characters",
             )
 
     # Validate internet-service-fortiguard if present
@@ -379,7 +379,7 @@ def validate_static_put(
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"internet-service-fortiguard cannot exceed 64 characters",
+                "internet-service-fortiguard cannot exceed 64 characters",
             )
 
     # Validate link-monitor-exempt if present
@@ -398,13 +398,13 @@ def validate_static_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"tag must be between 0 and 4294967295")
+                    return (False, "tag must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"tag must be numeric, got: {value}")
 
     # Validate vrf if present
-    if "vrf" in payload:
-        value = payload.get("vrf")
+    if "vr" in payload:
+        value = payload.get("vr")
         if value is not None:
             try:
                 int_val = int(value)

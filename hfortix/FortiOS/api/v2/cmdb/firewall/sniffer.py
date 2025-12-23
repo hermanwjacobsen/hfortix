@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Sniffer:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Sniffer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -179,43 +185,63 @@ class Sniffer:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             id: Sniffer ID (0 - 9999). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             status: Enable/disable the active status of the sniffer. (optional)
-            logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. (optional)
+            logtraffic: Either log all sessions, only sessions that have a
+            security profile applied, or disable all logging for this policy.
+            (optional)
             ipv6: Enable/disable sniffing IPv6 packets. (optional)
             non_ip: Enable/disable sniffing non-IP packets. (optional)
-            interface: Interface name that traffic sniffing will take place on. (optional)
-            host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240). (optional)
-            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200). (optional)
-            protocol: Integer value for the protocol type as defined by IANA (0 - 255). (optional)
+            interface: Interface name that traffic sniffing will take place on.
+            (optional)
+            host: Hosts to filter for in sniffer traffic (Format examples:
+            1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
+            (optional)
+            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-,
+            100-200). (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0
+            - 255). (optional)
             vlan: List of VLANs to sniff. (optional)
-            application_list_status: Enable/disable application control profile. (optional)
+            application_list_status: Enable/disable application control
+            profile. (optional)
             application_list: Name of an existing application list. (optional)
             ips_sensor_status: Enable/disable IPS sensor. (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             dsri: Enable/disable DSRI. (optional)
             av_profile_status: Enable/disable antivirus profile. (optional)
             av_profile: Name of an existing antivirus profile. (optional)
-            webfilter_profile_status: Enable/disable web filter profile. (optional)
-            webfilter_profile: Name of an existing web filter profile. (optional)
+            webfilter_profile_status: Enable/disable web filter profile.
+            (optional)
+            webfilter_profile: Name of an existing web filter profile.
+            (optional)
             emailfilter_profile_status: Enable/disable emailfilter. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile_status: Enable/disable DLP profile. (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
             ip_threatfeed_status: Enable/disable IP threat feed. (optional)
             ip_threatfeed: Name of an existing IP threat feed. (optional)
             file_filter_profile_status: Enable/disable file filter. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
-            ips_dos_status: Enable/disable IPS DoS anomaly detection. (optional)
-            anomaly: Configuration method to edit Denial of Service (DoS) anomaly settings. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
+            ips_dos_status: Enable/disable IPS DoS anomaly detection.
+            (optional)
+            anomaly: Configuration method to edit Denial of Service (DoS)
+            anomaly settings. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -223,7 +249,8 @@ class Sniffer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -321,8 +348,10 @@ class Sniffer:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -330,7 +359,8 @@ class Sniffer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -431,41 +461,60 @@ class Sniffer:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             id: Sniffer ID (0 - 9999). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             status: Enable/disable the active status of the sniffer. (optional)
-            logtraffic: Either log all sessions, only sessions that have a security profile applied, or disable all logging for this policy. (optional)
+            logtraffic: Either log all sessions, only sessions that have a
+            security profile applied, or disable all logging for this policy.
+            (optional)
             ipv6: Enable/disable sniffing IPv6 packets. (optional)
             non_ip: Enable/disable sniffing non-IP packets. (optional)
-            interface: Interface name that traffic sniffing will take place on. (optional)
-            host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240). (optional)
-            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-, 100-200). (optional)
-            protocol: Integer value for the protocol type as defined by IANA (0 - 255). (optional)
+            interface: Interface name that traffic sniffing will take place on.
+            (optional)
+            host: Hosts to filter for in sniffer traffic (Format examples:
+            1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
+            (optional)
+            port: Ports to sniff (Format examples: 10, :20, 30:40, 50-,
+            100-200). (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0
+            - 255). (optional)
             vlan: List of VLANs to sniff. (optional)
-            application_list_status: Enable/disable application control profile. (optional)
+            application_list_status: Enable/disable application control
+            profile. (optional)
             application_list: Name of an existing application list. (optional)
             ips_sensor_status: Enable/disable IPS sensor. (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             dsri: Enable/disable DSRI. (optional)
             av_profile_status: Enable/disable antivirus profile. (optional)
             av_profile: Name of an existing antivirus profile. (optional)
-            webfilter_profile_status: Enable/disable web filter profile. (optional)
-            webfilter_profile: Name of an existing web filter profile. (optional)
+            webfilter_profile_status: Enable/disable web filter profile.
+            (optional)
+            webfilter_profile: Name of an existing web filter profile.
+            (optional)
             emailfilter_profile_status: Enable/disable emailfilter. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile_status: Enable/disable DLP profile. (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
             ip_threatfeed_status: Enable/disable IP threat feed. (optional)
             ip_threatfeed: Name of an existing IP threat feed. (optional)
             file_filter_profile_status: Enable/disable file filter. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
-            ips_dos_status: Enable/disable IPS DoS anomaly detection. (optional)
-            anomaly: Configuration method to edit Denial of Service (DoS) anomaly settings. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
+            ips_dos_status: Enable/disable IPS DoS anomaly detection.
+            (optional)
+            anomaly: Configuration method to edit Denial of Service (DoS)
+            anomaly settings. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -473,7 +522,8 @@ class Sniffer:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

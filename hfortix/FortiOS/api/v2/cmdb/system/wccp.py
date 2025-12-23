@@ -96,14 +96,20 @@ class Wccp:
         Select a specific entry from a CLI table.
 
         Args:
-            service_id: Object identifier (optional for list, required for specific)
+            service_id: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class Wccp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -172,36 +179,54 @@ class Wccp:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             service_id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             service_id: Service ID. (optional)
-            router_id: IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0. (optional)
-            cache_id: IP address known to all routers. If the addresses are the same, use the default 0.0.0.0. (optional)
-            group_address: IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0. (optional)
-            server_list: IP addresses and netmasks for up to four cache servers. (optional)
+            router_id: IP address known to all cache engines. If all cache
+            engines connect to the same FortiGate interface, use the default
+            0.0.0.0. (optional)
+            cache_id: IP address known to all routers. If the addresses are the
+            same, use the default 0.0.0.0. (optional)
+            group_address: IP multicast address used by the cache routers. For
+            the FortiGate to ignore multicast WCCP traffic, use the default
+            0.0.0.0. (optional)
+            server_list: IP addresses and netmasks for up to four cache
+            servers. (optional)
             router_list: IP addresses of one or more WCCP routers. (optional)
             ports_defined: Match method. (optional)
             server_type: Cache server type. (optional)
             ports: Service ports. (optional)
             authentication: Enable/disable MD5 authentication. (optional)
             password: Password for MD5 authentication. (optional)
-            forward_method: Method used to forward traffic to the cache servers. (optional)
-            cache_engine_method: Method used to forward traffic to the routers or to return to the cache engine. (optional)
-            service_type: WCCP service type used by the cache server for logical interception and redirection of traffic. (optional)
+            forward_method: Method used to forward traffic to the cache
+            servers. (optional)
+            cache_engine_method: Method used to forward traffic to the routers
+            or to return to the cache engine. (optional)
+            service_type: WCCP service type used by the cache server for
+            logical interception and redirection of traffic. (optional)
             primary_hash: Hash method. (optional)
             priority: Service priority. (optional)
             protocol: Service protocol. (optional)
-            assignment_weight: Assignment of hash weight/ratio for the WCCP cache engine. (optional)
-            assignment_bucket_format: Assignment bucket format for the WCCP cache engine. (optional)
-            return_method: Method used to decline a redirected packet and return it to the FortiGate unit. (optional)
+            assignment_weight: Assignment of hash weight/ratio for the WCCP
+            cache engine. (optional)
+            assignment_bucket_format: Assignment bucket format for the WCCP
+            cache engine. (optional)
+            return_method: Method used to decline a redirected packet and
+            return it to the FortiGate unit. (optional)
             assignment_method: Hash key assignment preference. (optional)
             assignment_srcaddr_mask: Assignment source address mask. (optional)
-            assignment_dstaddr_mask: Assignment destination address mask. (optional)
+            assignment_dstaddr_mask: Assignment destination address mask.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -209,7 +234,8 @@ class Wccp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -289,8 +315,10 @@ class Wccp:
         Args:
             service_id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -298,7 +326,8 @@ class Wccp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -349,34 +378,51 @@ class Wccp:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             service_id: Service ID. (optional)
-            router_id: IP address known to all cache engines. If all cache engines connect to the same FortiGate interface, use the default 0.0.0.0. (optional)
-            cache_id: IP address known to all routers. If the addresses are the same, use the default 0.0.0.0. (optional)
-            group_address: IP multicast address used by the cache routers. For the FortiGate to ignore multicast WCCP traffic, use the default 0.0.0.0. (optional)
-            server_list: IP addresses and netmasks for up to four cache servers. (optional)
+            router_id: IP address known to all cache engines. If all cache
+            engines connect to the same FortiGate interface, use the default
+            0.0.0.0. (optional)
+            cache_id: IP address known to all routers. If the addresses are the
+            same, use the default 0.0.0.0. (optional)
+            group_address: IP multicast address used by the cache routers. For
+            the FortiGate to ignore multicast WCCP traffic, use the default
+            0.0.0.0. (optional)
+            server_list: IP addresses and netmasks for up to four cache
+            servers. (optional)
             router_list: IP addresses of one or more WCCP routers. (optional)
             ports_defined: Match method. (optional)
             server_type: Cache server type. (optional)
             ports: Service ports. (optional)
             authentication: Enable/disable MD5 authentication. (optional)
             password: Password for MD5 authentication. (optional)
-            forward_method: Method used to forward traffic to the cache servers. (optional)
-            cache_engine_method: Method used to forward traffic to the routers or to return to the cache engine. (optional)
-            service_type: WCCP service type used by the cache server for logical interception and redirection of traffic. (optional)
+            forward_method: Method used to forward traffic to the cache
+            servers. (optional)
+            cache_engine_method: Method used to forward traffic to the routers
+            or to return to the cache engine. (optional)
+            service_type: WCCP service type used by the cache server for
+            logical interception and redirection of traffic. (optional)
             primary_hash: Hash method. (optional)
             priority: Service priority. (optional)
             protocol: Service protocol. (optional)
-            assignment_weight: Assignment of hash weight/ratio for the WCCP cache engine. (optional)
-            assignment_bucket_format: Assignment bucket format for the WCCP cache engine. (optional)
-            return_method: Method used to decline a redirected packet and return it to the FortiGate unit. (optional)
+            assignment_weight: Assignment of hash weight/ratio for the WCCP
+            cache engine. (optional)
+            assignment_bucket_format: Assignment bucket format for the WCCP
+            cache engine. (optional)
+            return_method: Method used to decline a redirected packet and
+            return it to the FortiGate unit. (optional)
             assignment_method: Hash key assignment preference. (optional)
             assignment_srcaddr_mask: Assignment source address mask. (optional)
-            assignment_dstaddr_mask: Assignment destination address mask. (optional)
+            assignment_dstaddr_mask: Assignment destination address mask.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -384,7 +430,8 @@ class Wccp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

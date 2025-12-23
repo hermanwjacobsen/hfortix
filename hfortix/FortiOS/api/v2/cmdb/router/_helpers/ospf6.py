@@ -96,7 +96,7 @@ def validate_ospf6_put(
                 if int_val < 1 or int_val > 1000000:
                     return (
                         False,
-                        f"auto-cost-ref-bandwidth must be between 1 and 1000000",
+                        "auto-cost-ref-bandwidth must be between 1 and 1000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -131,7 +131,7 @@ def validate_ospf6_put(
                 if int_val < 1 or int_val > 16777214:
                     return (
                         False,
-                        f"default-information-metric must be between 1 and 16777214",
+                        "default-information-metric must be between 1 and 16777214",
                     )
             except (ValueError, TypeError):
                 return (
@@ -154,7 +154,7 @@ def validate_ospf6_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"default-information-route-map cannot exceed 35 characters",
+                "default-information-route-map cannot exceed 35 characters",
             )
 
     # Validate default-metric if present
@@ -166,7 +166,7 @@ def validate_ospf6_put(
                 if int_val < 1 or int_val > 16777214:
                     return (
                         False,
-                        f"default-metric must be between 1 and 16777214",
+                        "default-metric must be between 1 and 16777214",
                     )
             except (ValueError, TypeError):
                 return (False, f"default-metric must be numeric, got: {value}")
@@ -198,7 +198,7 @@ def validate_ospf6_put(
                 if int_val < 1 or int_val > 3600:
                     return (
                         False,
-                        f"restart-period must be between 1 and 3600",
+                        "restart-period must be between 1 and 3600",
                     )
             except (ValueError, TypeError):
                 return (False, f"restart-period must be numeric, got: {value}")

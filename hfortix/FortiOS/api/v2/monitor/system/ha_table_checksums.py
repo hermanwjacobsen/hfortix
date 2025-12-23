@@ -68,7 +68,8 @@ class HaTableChecksums:
 
         Args:
             serial_no: Serial number of the HA member. (required)
-            vdom_name: VDOM name of the HA member. If not specified, fetch table checksums for global. (optional)
+            vdom_name: VDOM name of the HA member. If not specified, fetch
+            table checksums for global. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -77,7 +78,8 @@ class HaTableChecksums:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.system.ha_table_checksums.get(serial_no='value')
+            >>>
+            fgt.api.monitor.system.ha_table_checksums.get(serial_no='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["serial_no"] = serial_no

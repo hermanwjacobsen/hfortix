@@ -87,7 +87,7 @@ def validate_l2tp_put(
     if "usrgrp" in payload:
         value = payload.get("usrgrp")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"usrgrp cannot exceed 35 characters")
+            return (False, "usrgrp cannot exceed 35 characters")
 
     # Validate enforce-ipsec if present
     if "enforce-ipsec" in payload:
@@ -107,7 +107,7 @@ def validate_l2tp_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-echo-interval must be between 0 and 32767",
+                        "lcp-echo-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -124,7 +124,7 @@ def validate_l2tp_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-max-echo-fails must be between 0 and 32767",
+                        "lcp-max-echo-fails must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -141,7 +141,7 @@ def validate_l2tp_put(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"hello-interval must be between 0 and 3600",
+                        "hello-interval must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (False, f"hello-interval must be numeric, got: {value}")

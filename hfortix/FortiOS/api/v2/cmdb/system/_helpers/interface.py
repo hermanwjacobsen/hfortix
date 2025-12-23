@@ -83,9 +83,9 @@ VALID_BODY_SUBST = ["enable", "disable"]
 VALID_BODY_SPEED = [
     "auto",
     "10full",
-    "10half",
+    "10hal",
     "100full",
-    "100half",
+    "100hal",
     "100auto",
     "1000full",
     "1000auto",
@@ -283,17 +283,17 @@ def validate_interface_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate vrf if present
-    if "vrf" in payload:
-        value = payload.get("vrf")
+    if "vr" in payload:
+        value = payload.get("vr")
         if value is not None:
             try:
                 int_val = int(value)
@@ -311,7 +311,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"cli-conn-status must be between 0 and 4294967295",
+                        "cli-conn-status must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -353,7 +353,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -364,7 +364,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -384,7 +384,7 @@ def validate_interface_post(
     if "dhcp-relay-interface" in payload:
         value = payload.get("dhcp-relay-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"dhcp-relay-interface cannot exceed 15 characters")
+            return (False, "dhcp-relay-interface cannot exceed 15 characters")
 
     # Validate dhcp-relay-vrf-select if present
     if "dhcp-relay-vrf-select" in payload:
@@ -395,7 +395,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 511:
                     return (
                         False,
-                        f"dhcp-relay-vrf-select must be between 0 and 511",
+                        "dhcp-relay-vrf-select must be between 0 and 511",
                     )
             except (ValueError, TypeError):
                 return (
@@ -427,7 +427,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"dhcp-relay-circuit-id cannot exceed 64 characters",
+                "dhcp-relay-circuit-id cannot exceed 64 characters",
             )
 
     # Validate dhcp-relay-request-all-server if present
@@ -511,7 +511,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"ping-serv-status must be between 0 and 255",
+                        "ping-serv-status must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -535,7 +535,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"ha-priority must be between 1 and 50")
+                    return (False, "ha-priority must be between 1 and 50")
             except (ValueError, TypeError):
                 return (False, f"ha-priority must be numeric, got: {value}")
 
@@ -581,7 +581,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 48:
             return (
                 False,
-                f"dhcp-client-identifier cannot exceed 48 characters",
+                "dhcp-client-identifier cannot exceed 48 characters",
             )
 
     # Validate dhcp-renew-time if present
@@ -593,7 +593,7 @@ def validate_interface_post(
                 if int_val < 300 or int_val > 604800:
                     return (
                         False,
-                        f"dhcp-renew-time must be between 300 and 604800",
+                        "dhcp-renew-time must be between 300 and 604800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -605,7 +605,7 @@ def validate_interface_post(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate pppoe-egress-cos if present
     if "pppoe-egress-cos" in payload:
@@ -632,7 +632,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32767:
-                    return (False, f"idle-timeout must be between 0 and 32767")
+                    return (False, "idle-timeout must be between 0 and 32767")
             except (ValueError, TypeError):
                 return (False, f"idle-timeout must be numeric, got: {value}")
 
@@ -652,7 +652,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 296 or int_val > 65535:
-                    return (False, f"mrru must be between 296 and 65535")
+                    return (False, "mrru must be between 296 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mrru must be numeric, got: {value}")
 
@@ -665,7 +665,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"detected-peer-mtu must be between 0 and 4294967295",
+                        "detected-peer-mtu must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -682,7 +682,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"disc-retry-timeout must be between 0 and 4294967295",
+                        "disc-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -699,7 +699,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"padt-retry-timeout must be between 0 and 4294967295",
+                        "padt-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -711,13 +711,13 @@ def validate_interface_post(
     if "service-name" in payload:
         value = payload.get("service-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"service-name cannot exceed 63 characters")
+            return (False, "service-name cannot exceed 63 characters")
 
     # Validate ac-name if present
     if "ac-name" in payload:
         value = payload.get("ac-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ac-name cannot exceed 63 characters")
+            return (False, "ac-name cannot exceed 63 characters")
 
     # Validate lcp-echo-interval if present
     if "lcp-echo-interval" in payload:
@@ -728,7 +728,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-echo-interval must be between 0 and 32767",
+                        "lcp-echo-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -745,7 +745,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-max-echo-fails must be between 0 and 32767",
+                        "lcp-max-echo-fails must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -802,7 +802,7 @@ def validate_interface_post(
     if "pptp-user" in payload:
         value = payload.get("pptp-user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"pptp-user cannot exceed 64 characters")
+            return (False, "pptp-user cannot exceed 64 characters")
 
     # Validate pptp-auth-type if present
     if "pptp-auth-type" in payload:
@@ -820,7 +820,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"pptp-timeout must be between 0 and 65535")
+                    return (False, "pptp-timeout must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"pptp-timeout must be numeric, got: {value}")
 
@@ -869,7 +869,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-desired-min-tx must be between 1 and 100000",
+                        "bfd-desired-min-tx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -884,7 +884,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"bfd-detect-mult must be between 1 and 50")
+                    return (False, "bfd-detect-mult must be between 1 and 50")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -900,7 +900,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-required-min-rx must be between 1 and 100000",
+                        "bfd-required-min-rx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -944,7 +944,7 @@ def validate_interface_post(
                 if int_val < 30000 or int_val > 3600000:
                     return (
                         False,
-                        f"reachable-time must be between 30000 and 3600000",
+                        "reachable-time must be between 30000 and 3600000",
                     )
             except (ValueError, TypeError):
                 return (False, f"reachable-time must be numeric, got: {value}")
@@ -1084,7 +1084,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"netflow-sample-rate must be between 1 and 65535",
+                        "netflow-sample-rate must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1101,7 +1101,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 254:
                     return (
                         False,
-                        f"netflow-sampler-id must be between 1 and 254",
+                        "netflow-sampler-id must be between 1 and 254",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1143,7 +1143,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 99999:
-                    return (False, f"sample-rate must be between 10 and 99999")
+                    return (False, "sample-rate must be between 10 and 99999")
             except (ValueError, TypeError):
                 return (False, f"sample-rate must be numeric, got: {value}")
 
@@ -1156,7 +1156,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"polling-interval must be between 1 and 255",
+                        "polling-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1207,7 +1207,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 48 or int_val > 65535:
-                    return (False, f"tcp-mss must be between 48 and 65535")
+                    return (False, "tcp-mss must be between 48 and 65535")
             except (ValueError, TypeError):
                 return (False, f"tcp-mss must be numeric, got: {value}")
 
@@ -1220,7 +1220,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"inbandwidth must be between 0 and 80000000",
+                        "inbandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"inbandwidth must be numeric, got: {value}")
@@ -1234,7 +1234,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"outbandwidth must be between 0 and 80000000",
+                        "outbandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"outbandwidth must be numeric, got: {value}")
@@ -1245,7 +1245,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"egress-shaping-profile cannot exceed 35 characters",
+                "egress-shaping-profile cannot exceed 35 characters",
             )
 
     # Validate ingress-shaping-profile if present
@@ -1254,7 +1254,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"ingress-shaping-profile cannot exceed 35 characters",
+                "ingress-shaping-profile cannot exceed 35 characters",
             )
 
     # Validate spillover-threshold if present
@@ -1266,7 +1266,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 16776000:
                     return (
                         False,
-                        f"spillover-threshold must be between 0 and 16776000",
+                        "spillover-threshold must be between 0 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1283,7 +1283,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 16776000:
                     return (
                         False,
-                        f"ingress-spillover-threshold must be between 0 and 16776000",
+                        "ingress-spillover-threshold must be between 0 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1298,7 +1298,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"weight must be between 0 and 255")
+                    return (False, "weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"weight must be numeric, got: {value}")
 
@@ -1306,7 +1306,7 @@ def validate_interface_post(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate external if present
     if "external" in payload:
@@ -1333,7 +1333,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"mtu must be between 0 and 4294967295")
+                    return (False, "mtu must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"mtu must be numeric, got: {value}")
 
@@ -1353,7 +1353,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4094:
-                    return (False, f"vlanid must be between 1 and 4094")
+                    return (False, "vlanid must be between 1 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
 
@@ -1375,7 +1375,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"forward-domain must be between 0 and 2147483647",
+                        "forward-domain must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"forward-domain must be numeric, got: {value}")
@@ -1423,7 +1423,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 32:
-                    return (False, f"min-links must be between 1 and 32")
+                    return (False, "min-links must be between 1 and 32")
             except (ValueError, TypeError):
                 return (False, f"min-links must be numeric, got: {value}")
 
@@ -1454,7 +1454,7 @@ def validate_interface_post(
                 if int_val < 50 or int_val > 3600000:
                     return (
                         False,
-                        f"link-up-delay must be between 50 and 3600000",
+                        "link-up-delay must be between 50 and 3600000",
                     )
             except (ValueError, TypeError):
                 return (False, f"link-up-delay must be numeric, got: {value}")
@@ -1481,13 +1481,13 @@ def validate_interface_post(
     if "aggregate" in payload:
         value = payload.get("aggregate")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"aggregate cannot exceed 15 characters")
+            return (False, "aggregate cannot exceed 15 characters")
 
     # Validate redundant-interface if present
     if "redundant-interface" in payload:
         value = payload.get("redundant-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"redundant-interface cannot exceed 15 characters")
+            return (False, "redundant-interface cannot exceed 15 characters")
 
     # Validate devindex if present
     if "devindex" in payload:
@@ -1498,7 +1498,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"devindex must be between 0 and 4294967295",
+                        "devindex must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"devindex must be numeric, got: {value}")
@@ -1510,7 +1510,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"vindex must be between 0 and 65535")
+                    return (False, "vindex must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"vindex must be numeric, got: {value}")
 
@@ -1518,19 +1518,19 @@ def validate_interface_post(
     if "switch" in payload:
         value = payload.get("switch")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"switch cannot exceed 15 characters")
+            return (False, "switch cannot exceed 15 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate alias if present
     if "alias" in payload:
         value = payload.get("alias")
         if value and isinstance(value, str) and len(value) > 25:
-            return (False, f"alias cannot exceed 25 characters")
+            return (False, "alias cannot exceed 25 characters")
 
     # Validate l2tp-client if present
     if "l2tp-client" in payload:
@@ -1583,7 +1583,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"security-8021x-master cannot exceed 15 characters",
+                "security-8021x-master cannot exceed 15 characters",
             )
 
     # Validate security-8021x-dynamic-vlan-id if present
@@ -1595,7 +1595,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4094:
                     return (
                         False,
-                        f"security-8021x-dynamic-vlan-id must be between 0 and 4094",
+                        "security-8021x-dynamic-vlan-id must be between 0 and 4094",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1618,7 +1618,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-external-web cannot exceed 1023 characters",
+                "security-external-web cannot exceed 1023 characters",
             )
 
     # Validate security-external-logout if present
@@ -1627,7 +1627,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"security-external-logout cannot exceed 127 characters",
+                "security-external-logout cannot exceed 127 characters",
             )
 
     # Validate replacemsg-override-group if present
@@ -1636,7 +1636,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"replacemsg-override-group cannot exceed 35 characters",
+                "replacemsg-override-group cannot exceed 35 characters",
             )
 
     # Validate security-redirect-url if present
@@ -1645,32 +1645,32 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-redirect-url cannot exceed 1023 characters",
+                "security-redirect-url cannot exceed 1023 characters",
             )
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-portal-addr if present
     if "auth-portal-addr" in payload:
         value = payload.get("auth-portal-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-portal-addr cannot exceed 63 characters")
+            return (False, "auth-portal-addr cannot exceed 63 characters")
 
     # Validate security-exempt-list if present
     if "security-exempt-list" in payload:
         value = payload.get("security-exempt-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"security-exempt-list cannot exceed 35 characters")
+            return (False, "security-exempt-list cannot exceed 35 characters")
 
     # Validate ike-saml-server if present
     if "ike-saml-server" in payload:
         value = payload.get("ike-saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ike-saml-server cannot exceed 35 characters")
+            return (False, "ike-saml-server cannot exceed 35 characters")
 
     # Validate stp if present
     if "stp" in payload:
@@ -1748,7 +1748,7 @@ def validate_interface_post(
     if "lldp-network-policy" in payload:
         value = payload.get("lldp-network-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"lldp-network-policy cannot exceed 35 characters")
+            return (False, "lldp-network-policy cannot exceed 35 characters")
 
     # Validate estimated-upstream-bandwidth if present
     if "estimated-upstream-bandwidth" in payload:
@@ -1759,7 +1759,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"estimated-upstream-bandwidth must be between 0 and 4294967295",
+                        "estimated-upstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1776,7 +1776,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"estimated-downstream-bandwidth must be between 0 and 4294967295",
+                        "estimated-downstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1793,7 +1793,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"measured-upstream-bandwidth must be between 0 and 4294967295",
+                        "measured-upstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1810,7 +1810,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"measured-downstream-bandwidth must be between 0 and 4294967295",
+                        "measured-downstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1827,7 +1827,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"bandwidth-measure-time must be between 0 and 4294967295",
+                        "bandwidth-measure-time must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1871,7 +1871,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"snmp-index must be between 0 and 2147483647",
+                        "snmp-index must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"snmp-index must be numeric, got: {value}")
@@ -1955,7 +1955,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"internal must be between 0 and 255")
+                    return (False, "internal must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"internal must be numeric, got: {value}")
 
@@ -1968,7 +1968,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"fortilink-backup-link must be between 0 and 255",
+                        "fortilink-backup-link must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1991,7 +1991,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"switch-controller-traffic-policy cannot exceed 63 characters",
+                "switch-controller-traffic-policy cannot exceed 63 characters",
             )
 
     # Validate switch-controller-rspan-mode if present
@@ -2021,7 +2021,7 @@ def validate_interface_post(
                 if int_val < 1 or int_val > 4094:
                     return (
                         False,
-                        f"switch-controller-mgmt-vlan must be between 1 and 4094",
+                        "switch-controller-mgmt-vlan must be between 1 and 4094",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2116,7 +2116,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        f"switch-controller-learning-limit must be between 0 and 128",
+                        "switch-controller-learning-limit must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2130,7 +2130,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"switch-controller-nac cannot exceed 35 characters",
+                "switch-controller-nac cannot exceed 35 characters",
             )
 
     # Validate switch-controller-dynamic if present
@@ -2139,7 +2139,7 @@ def validate_interface_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"switch-controller-dynamic cannot exceed 35 characters",
+                "switch-controller-dynamic cannot exceed 35 characters",
             )
 
     # Validate switch-controller-feature if present
@@ -2187,7 +2187,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"swc-vlan must be between 0 and 4294967295",
+                        "swc-vlan must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"swc-vlan must be numeric, got: {value}")
@@ -2201,7 +2201,7 @@ def validate_interface_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"swc-first-create must be between 0 and 4294967295",
+                        "swc-first-create must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2216,7 +2216,7 @@ def validate_interface_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -2242,19 +2242,19 @@ def validate_interface_post(
     if "eap-identity" in payload:
         value = payload.get("eap-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-identity cannot exceed 35 characters")
+            return (False, "eap-identity cannot exceed 35 characters")
 
     # Validate eap-ca-cert if present
     if "eap-ca-cert" in payload:
         value = payload.get("eap-ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"eap-ca-cert cannot exceed 79 characters")
+            return (False, "eap-ca-cert cannot exceed 79 characters")
 
     # Validate eap-user-cert if present
     if "eap-user-cert" in payload:
         value = payload.get("eap-user-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-user-cert cannot exceed 35 characters")
+            return (False, "eap-user-cert cannot exceed 35 characters")
 
     # Validate default-purdue-level if present
     if "default-purdue-level" in payload:
@@ -2298,17 +2298,17 @@ def validate_interface_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate vdom if present
     if "vdom" in payload:
         value = payload.get("vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"vdom cannot exceed 31 characters")
+            return (False, "vdom cannot exceed 31 characters")
 
     # Validate vrf if present
-    if "vrf" in payload:
-        value = payload.get("vrf")
+    if "vr" in payload:
+        value = payload.get("vr")
         if value is not None:
             try:
                 int_val = int(value)
@@ -2326,7 +2326,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"cli-conn-status must be between 0 and 4294967295",
+                        "cli-conn-status must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2368,7 +2368,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"distance must be between 1 and 255")
+                    return (False, "distance must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"distance must be numeric, got: {value}")
 
@@ -2379,7 +2379,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"priority must be between 1 and 65535")
+                    return (False, "priority must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"priority must be numeric, got: {value}")
 
@@ -2399,7 +2399,7 @@ def validate_interface_put(
     if "dhcp-relay-interface" in payload:
         value = payload.get("dhcp-relay-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"dhcp-relay-interface cannot exceed 15 characters")
+            return (False, "dhcp-relay-interface cannot exceed 15 characters")
 
     # Validate dhcp-relay-vrf-select if present
     if "dhcp-relay-vrf-select" in payload:
@@ -2410,7 +2410,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 511:
                     return (
                         False,
-                        f"dhcp-relay-vrf-select must be between 0 and 511",
+                        "dhcp-relay-vrf-select must be between 0 and 511",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2442,7 +2442,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 64:
             return (
                 False,
-                f"dhcp-relay-circuit-id cannot exceed 64 characters",
+                "dhcp-relay-circuit-id cannot exceed 64 characters",
             )
 
     # Validate dhcp-relay-request-all-server if present
@@ -2526,7 +2526,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"ping-serv-status must be between 0 and 255",
+                        "ping-serv-status must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2550,7 +2550,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"ha-priority must be between 1 and 50")
+                    return (False, "ha-priority must be between 1 and 50")
             except (ValueError, TypeError):
                 return (False, f"ha-priority must be numeric, got: {value}")
 
@@ -2596,7 +2596,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 48:
             return (
                 False,
-                f"dhcp-client-identifier cannot exceed 48 characters",
+                "dhcp-client-identifier cannot exceed 48 characters",
             )
 
     # Validate dhcp-renew-time if present
@@ -2608,7 +2608,7 @@ def validate_interface_put(
                 if int_val < 300 or int_val > 604800:
                     return (
                         False,
-                        f"dhcp-renew-time must be between 300 and 604800",
+                        "dhcp-renew-time must be between 300 and 604800",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2620,7 +2620,7 @@ def validate_interface_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"username cannot exceed 64 characters")
+            return (False, "username cannot exceed 64 characters")
 
     # Validate pppoe-egress-cos if present
     if "pppoe-egress-cos" in payload:
@@ -2647,7 +2647,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32767:
-                    return (False, f"idle-timeout must be between 0 and 32767")
+                    return (False, "idle-timeout must be between 0 and 32767")
             except (ValueError, TypeError):
                 return (False, f"idle-timeout must be numeric, got: {value}")
 
@@ -2667,7 +2667,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 296 or int_val > 65535:
-                    return (False, f"mrru must be between 296 and 65535")
+                    return (False, "mrru must be between 296 and 65535")
             except (ValueError, TypeError):
                 return (False, f"mrru must be numeric, got: {value}")
 
@@ -2680,7 +2680,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"detected-peer-mtu must be between 0 and 4294967295",
+                        "detected-peer-mtu must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2697,7 +2697,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"disc-retry-timeout must be between 0 and 4294967295",
+                        "disc-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2714,7 +2714,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"padt-retry-timeout must be between 0 and 4294967295",
+                        "padt-retry-timeout must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2726,13 +2726,13 @@ def validate_interface_put(
     if "service-name" in payload:
         value = payload.get("service-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"service-name cannot exceed 63 characters")
+            return (False, "service-name cannot exceed 63 characters")
 
     # Validate ac-name if present
     if "ac-name" in payload:
         value = payload.get("ac-name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"ac-name cannot exceed 63 characters")
+            return (False, "ac-name cannot exceed 63 characters")
 
     # Validate lcp-echo-interval if present
     if "lcp-echo-interval" in payload:
@@ -2743,7 +2743,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-echo-interval must be between 0 and 32767",
+                        "lcp-echo-interval must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2760,7 +2760,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 32767:
                     return (
                         False,
-                        f"lcp-max-echo-fails must be between 0 and 32767",
+                        "lcp-max-echo-fails must be between 0 and 32767",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2817,7 +2817,7 @@ def validate_interface_put(
     if "pptp-user" in payload:
         value = payload.get("pptp-user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"pptp-user cannot exceed 64 characters")
+            return (False, "pptp-user cannot exceed 64 characters")
 
     # Validate pptp-auth-type if present
     if "pptp-auth-type" in payload:
@@ -2835,7 +2835,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"pptp-timeout must be between 0 and 65535")
+                    return (False, "pptp-timeout must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"pptp-timeout must be numeric, got: {value}")
 
@@ -2884,7 +2884,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-desired-min-tx must be between 1 and 100000",
+                        "bfd-desired-min-tx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2899,7 +2899,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"bfd-detect-mult must be between 1 and 50")
+                    return (False, "bfd-detect-mult must be between 1 and 50")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -2915,7 +2915,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-required-min-rx must be between 1 and 100000",
+                        "bfd-required-min-rx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -2959,7 +2959,7 @@ def validate_interface_put(
                 if int_val < 30000 or int_val > 3600000:
                     return (
                         False,
-                        f"reachable-time must be between 30000 and 3600000",
+                        "reachable-time must be between 30000 and 3600000",
                     )
             except (ValueError, TypeError):
                 return (False, f"reachable-time must be numeric, got: {value}")
@@ -3099,7 +3099,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 65535:
                     return (
                         False,
-                        f"netflow-sample-rate must be between 1 and 65535",
+                        "netflow-sample-rate must be between 1 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3116,7 +3116,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 254:
                     return (
                         False,
-                        f"netflow-sampler-id must be between 1 and 254",
+                        "netflow-sampler-id must be between 1 and 254",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3158,7 +3158,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 10 or int_val > 99999:
-                    return (False, f"sample-rate must be between 10 and 99999")
+                    return (False, "sample-rate must be between 10 and 99999")
             except (ValueError, TypeError):
                 return (False, f"sample-rate must be numeric, got: {value}")
 
@@ -3171,7 +3171,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 255:
                     return (
                         False,
-                        f"polling-interval must be between 1 and 255",
+                        "polling-interval must be between 1 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3222,7 +3222,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 48 or int_val > 65535:
-                    return (False, f"tcp-mss must be between 48 and 65535")
+                    return (False, "tcp-mss must be between 48 and 65535")
             except (ValueError, TypeError):
                 return (False, f"tcp-mss must be numeric, got: {value}")
 
@@ -3235,7 +3235,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"inbandwidth must be between 0 and 80000000",
+                        "inbandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"inbandwidth must be numeric, got: {value}")
@@ -3249,7 +3249,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 80000000:
                     return (
                         False,
-                        f"outbandwidth must be between 0 and 80000000",
+                        "outbandwidth must be between 0 and 80000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"outbandwidth must be numeric, got: {value}")
@@ -3260,7 +3260,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"egress-shaping-profile cannot exceed 35 characters",
+                "egress-shaping-profile cannot exceed 35 characters",
             )
 
     # Validate ingress-shaping-profile if present
@@ -3269,7 +3269,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"ingress-shaping-profile cannot exceed 35 characters",
+                "ingress-shaping-profile cannot exceed 35 characters",
             )
 
     # Validate spillover-threshold if present
@@ -3281,7 +3281,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 16776000:
                     return (
                         False,
-                        f"spillover-threshold must be between 0 and 16776000",
+                        "spillover-threshold must be between 0 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3298,7 +3298,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 16776000:
                     return (
                         False,
-                        f"ingress-spillover-threshold must be between 0 and 16776000",
+                        "ingress-spillover-threshold must be between 0 and 16776000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3313,7 +3313,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"weight must be between 0 and 255")
+                    return (False, "weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"weight must be numeric, got: {value}")
 
@@ -3321,7 +3321,7 @@ def validate_interface_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"interface cannot exceed 15 characters")
+            return (False, "interface cannot exceed 15 characters")
 
     # Validate external if present
     if "external" in payload:
@@ -3348,7 +3348,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"mtu must be between 0 and 4294967295")
+                    return (False, "mtu must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"mtu must be numeric, got: {value}")
 
@@ -3368,7 +3368,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4094:
-                    return (False, f"vlanid must be between 1 and 4094")
+                    return (False, "vlanid must be between 1 and 4094")
             except (ValueError, TypeError):
                 return (False, f"vlanid must be numeric, got: {value}")
 
@@ -3390,7 +3390,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"forward-domain must be between 0 and 2147483647",
+                        "forward-domain must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"forward-domain must be numeric, got: {value}")
@@ -3438,7 +3438,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 32:
-                    return (False, f"min-links must be between 1 and 32")
+                    return (False, "min-links must be between 1 and 32")
             except (ValueError, TypeError):
                 return (False, f"min-links must be numeric, got: {value}")
 
@@ -3469,7 +3469,7 @@ def validate_interface_put(
                 if int_val < 50 or int_val > 3600000:
                     return (
                         False,
-                        f"link-up-delay must be between 50 and 3600000",
+                        "link-up-delay must be between 50 and 3600000",
                     )
             except (ValueError, TypeError):
                 return (False, f"link-up-delay must be numeric, got: {value}")
@@ -3496,13 +3496,13 @@ def validate_interface_put(
     if "aggregate" in payload:
         value = payload.get("aggregate")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"aggregate cannot exceed 15 characters")
+            return (False, "aggregate cannot exceed 15 characters")
 
     # Validate redundant-interface if present
     if "redundant-interface" in payload:
         value = payload.get("redundant-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"redundant-interface cannot exceed 15 characters")
+            return (False, "redundant-interface cannot exceed 15 characters")
 
     # Validate devindex if present
     if "devindex" in payload:
@@ -3513,7 +3513,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"devindex must be between 0 and 4294967295",
+                        "devindex must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"devindex must be numeric, got: {value}")
@@ -3525,7 +3525,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"vindex must be between 0 and 65535")
+                    return (False, "vindex must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"vindex must be numeric, got: {value}")
 
@@ -3533,19 +3533,19 @@ def validate_interface_put(
     if "switch" in payload:
         value = payload.get("switch")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"switch cannot exceed 15 characters")
+            return (False, "switch cannot exceed 15 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate alias if present
     if "alias" in payload:
         value = payload.get("alias")
         if value and isinstance(value, str) and len(value) > 25:
-            return (False, f"alias cannot exceed 25 characters")
+            return (False, "alias cannot exceed 25 characters")
 
     # Validate l2tp-client if present
     if "l2tp-client" in payload:
@@ -3598,7 +3598,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 15:
             return (
                 False,
-                f"security-8021x-master cannot exceed 15 characters",
+                "security-8021x-master cannot exceed 15 characters",
             )
 
     # Validate security-8021x-dynamic-vlan-id if present
@@ -3610,7 +3610,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4094:
                     return (
                         False,
-                        f"security-8021x-dynamic-vlan-id must be between 0 and 4094",
+                        "security-8021x-dynamic-vlan-id must be between 0 and 4094",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3633,7 +3633,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-external-web cannot exceed 1023 characters",
+                "security-external-web cannot exceed 1023 characters",
             )
 
     # Validate security-external-logout if present
@@ -3642,7 +3642,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 127:
             return (
                 False,
-                f"security-external-logout cannot exceed 127 characters",
+                "security-external-logout cannot exceed 127 characters",
             )
 
     # Validate replacemsg-override-group if present
@@ -3651,7 +3651,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"replacemsg-override-group cannot exceed 35 characters",
+                "replacemsg-override-group cannot exceed 35 characters",
             )
 
     # Validate security-redirect-url if present
@@ -3660,32 +3660,32 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 1023:
             return (
                 False,
-                f"security-redirect-url cannot exceed 1023 characters",
+                "security-redirect-url cannot exceed 1023 characters",
             )
 
     # Validate auth-cert if present
     if "auth-cert" in payload:
         value = payload.get("auth-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"auth-cert cannot exceed 35 characters")
+            return (False, "auth-cert cannot exceed 35 characters")
 
     # Validate auth-portal-addr if present
     if "auth-portal-addr" in payload:
         value = payload.get("auth-portal-addr")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auth-portal-addr cannot exceed 63 characters")
+            return (False, "auth-portal-addr cannot exceed 63 characters")
 
     # Validate security-exempt-list if present
     if "security-exempt-list" in payload:
         value = payload.get("security-exempt-list")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"security-exempt-list cannot exceed 35 characters")
+            return (False, "security-exempt-list cannot exceed 35 characters")
 
     # Validate ike-saml-server if present
     if "ike-saml-server" in payload:
         value = payload.get("ike-saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ike-saml-server cannot exceed 35 characters")
+            return (False, "ike-saml-server cannot exceed 35 characters")
 
     # Validate stp if present
     if "stp" in payload:
@@ -3763,7 +3763,7 @@ def validate_interface_put(
     if "lldp-network-policy" in payload:
         value = payload.get("lldp-network-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"lldp-network-policy cannot exceed 35 characters")
+            return (False, "lldp-network-policy cannot exceed 35 characters")
 
     # Validate estimated-upstream-bandwidth if present
     if "estimated-upstream-bandwidth" in payload:
@@ -3774,7 +3774,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"estimated-upstream-bandwidth must be between 0 and 4294967295",
+                        "estimated-upstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3791,7 +3791,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"estimated-downstream-bandwidth must be between 0 and 4294967295",
+                        "estimated-downstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3808,7 +3808,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"measured-upstream-bandwidth must be between 0 and 4294967295",
+                        "measured-upstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3825,7 +3825,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"measured-downstream-bandwidth must be between 0 and 4294967295",
+                        "measured-downstream-bandwidth must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3842,7 +3842,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"bandwidth-measure-time must be between 0 and 4294967295",
+                        "bandwidth-measure-time must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -3886,7 +3886,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 2147483647:
                     return (
                         False,
-                        f"snmp-index must be between 0 and 2147483647",
+                        "snmp-index must be between 0 and 2147483647",
                     )
             except (ValueError, TypeError):
                 return (False, f"snmp-index must be numeric, got: {value}")
@@ -3970,7 +3970,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"internal must be between 0 and 255")
+                    return (False, "internal must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"internal must be numeric, got: {value}")
 
@@ -3983,7 +3983,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 255:
                     return (
                         False,
-                        f"fortilink-backup-link must be between 0 and 255",
+                        "fortilink-backup-link must be between 0 and 255",
                     )
             except (ValueError, TypeError):
                 return (
@@ -4006,7 +4006,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"switch-controller-traffic-policy cannot exceed 63 characters",
+                "switch-controller-traffic-policy cannot exceed 63 characters",
             )
 
     # Validate switch-controller-rspan-mode if present
@@ -4036,7 +4036,7 @@ def validate_interface_put(
                 if int_val < 1 or int_val > 4094:
                     return (
                         False,
-                        f"switch-controller-mgmt-vlan must be between 1 and 4094",
+                        "switch-controller-mgmt-vlan must be between 1 and 4094",
                     )
             except (ValueError, TypeError):
                 return (
@@ -4131,7 +4131,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 128:
                     return (
                         False,
-                        f"switch-controller-learning-limit must be between 0 and 128",
+                        "switch-controller-learning-limit must be between 0 and 128",
                     )
             except (ValueError, TypeError):
                 return (
@@ -4145,7 +4145,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"switch-controller-nac cannot exceed 35 characters",
+                "switch-controller-nac cannot exceed 35 characters",
             )
 
     # Validate switch-controller-dynamic if present
@@ -4154,7 +4154,7 @@ def validate_interface_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"switch-controller-dynamic cannot exceed 35 characters",
+                "switch-controller-dynamic cannot exceed 35 characters",
             )
 
     # Validate switch-controller-feature if present
@@ -4202,7 +4202,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"swc-vlan must be between 0 and 4294967295",
+                        "swc-vlan must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"swc-vlan must be numeric, got: {value}")
@@ -4216,7 +4216,7 @@ def validate_interface_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"swc-first-create must be between 0 and 4294967295",
+                        "swc-first-create must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -4231,7 +4231,7 @@ def validate_interface_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 32:
-                    return (False, f"color must be between 0 and 32")
+                    return (False, "color must be between 0 and 32")
             except (ValueError, TypeError):
                 return (False, f"color must be numeric, got: {value}")
 
@@ -4257,19 +4257,19 @@ def validate_interface_put(
     if "eap-identity" in payload:
         value = payload.get("eap-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-identity cannot exceed 35 characters")
+            return (False, "eap-identity cannot exceed 35 characters")
 
     # Validate eap-ca-cert if present
     if "eap-ca-cert" in payload:
         value = payload.get("eap-ca-cert")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"eap-ca-cert cannot exceed 79 characters")
+            return (False, "eap-ca-cert cannot exceed 79 characters")
 
     # Validate eap-user-cert if present
     if "eap-user-cert" in payload:
         value = payload.get("eap-user-cert")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"eap-user-cert cannot exceed 35 characters")
+            return (False, "eap-user-cert cannot exceed 35 characters")
 
     # Validate default-purdue-level if present
     if "default-purdue-level" in payload:

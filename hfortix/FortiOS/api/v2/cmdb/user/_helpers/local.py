@@ -83,7 +83,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -92,7 +92,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -118,25 +118,25 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate radius-server if present
     if "radius-server" in payload:
         value = payload.get("radius-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"radius-server cannot exceed 35 characters")
+            return (False, "radius-server cannot exceed 35 characters")
 
     # Validate tacacs+-server if present
     if "tacacs+-server" in payload:
         value = payload.get("tacacs+-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tacacs+-server cannot exceed 35 characters")
+            return (False, "tacacs+-server cannot exceed 35 characters")
 
     # Validate saml-server if present
     if "saml-server" in payload:
         value = payload.get("saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"saml-server cannot exceed 35 characters")
+            return (False, "saml-server cannot exceed 35 characters")
 
     # Validate two-factor if present
     if "two-factor" in payload:
@@ -169,13 +169,13 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "fortitoken" in payload:
         value = payload.get("fortitoken")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"fortitoken cannot exceed 16 characters")
+            return (False, "fortitoken cannot exceed 16 characters")
 
     # Validate email-to if present
     if "email-to" in payload:
         value = payload.get("email-to")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"email-to cannot exceed 63 characters")
+            return (False, "email-to cannot exceed 63 characters")
 
     # Validate sms-server if present
     if "sms-server" in payload:
@@ -190,19 +190,19 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate sms-phone if present
     if "sms-phone" in payload:
         value = payload.get("sms-phone")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sms-phone cannot exceed 15 characters")
+            return (False, "sms-phone cannot exceed 15 characters")
 
     # Validate passwd-policy if present
     if "passwd-policy" in payload:
         value = payload.get("passwd-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"passwd-policy cannot exceed 35 characters")
+            return (False, "passwd-policy cannot exceed 35 characters")
 
     # Validate authtimeout if present
     if "authtimeout" in payload:
@@ -211,7 +211,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1440:
-                    return (False, f"authtimeout must be between 0 and 1440")
+                    return (False, "authtimeout must be between 0 and 1440")
             except (ValueError, TypeError):
                 return (False, f"authtimeout must be numeric, got: {value}")
 
@@ -219,7 +219,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "workstation" in payload:
         value = payload.get("workstation")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"workstation cannot exceed 35 characters")
+            return (False, "workstation cannot exceed 35 characters")
 
     # Validate auth-concurrent-override if present
     if "auth-concurrent-override" in payload:
@@ -239,7 +239,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"auth-concurrent-value must be between 0 and 100",
+                        "auth-concurrent-value must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -251,13 +251,13 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ppk-identity" in payload:
         value = payload.get("ppk-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ppk-identity cannot exceed 35 characters")
+            return (False, "ppk-identity cannot exceed 35 characters")
 
     # Validate qkd-profile if present
     if "qkd-profile" in payload:
         value = payload.get("qkd-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qkd-profile cannot exceed 35 characters")
+            return (False, "qkd-profile cannot exceed 35 characters")
 
     # Validate username-sensitivity if present
     if "username-sensitivity" in payload:
@@ -301,7 +301,7 @@ def validate_local_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"name cannot exceed 64 characters")
+            return (False, "name cannot exceed 64 characters")
 
     # Validate id if present
     if "id" in payload:
@@ -310,7 +310,7 @@ def validate_local_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -336,25 +336,25 @@ def validate_local_put(
     if "ldap-server" in payload:
         value = payload.get("ldap-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ldap-server cannot exceed 35 characters")
+            return (False, "ldap-server cannot exceed 35 characters")
 
     # Validate radius-server if present
     if "radius-server" in payload:
         value = payload.get("radius-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"radius-server cannot exceed 35 characters")
+            return (False, "radius-server cannot exceed 35 characters")
 
     # Validate tacacs+-server if present
     if "tacacs+-server" in payload:
         value = payload.get("tacacs+-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"tacacs+-server cannot exceed 35 characters")
+            return (False, "tacacs+-server cannot exceed 35 characters")
 
     # Validate saml-server if present
     if "saml-server" in payload:
         value = payload.get("saml-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"saml-server cannot exceed 35 characters")
+            return (False, "saml-server cannot exceed 35 characters")
 
     # Validate two-factor if present
     if "two-factor" in payload:
@@ -387,13 +387,13 @@ def validate_local_put(
     if "fortitoken" in payload:
         value = payload.get("fortitoken")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"fortitoken cannot exceed 16 characters")
+            return (False, "fortitoken cannot exceed 16 characters")
 
     # Validate email-to if present
     if "email-to" in payload:
         value = payload.get("email-to")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"email-to cannot exceed 63 characters")
+            return (False, "email-to cannot exceed 63 characters")
 
     # Validate sms-server if present
     if "sms-server" in payload:
@@ -408,19 +408,19 @@ def validate_local_put(
     if "sms-custom-server" in payload:
         value = payload.get("sms-custom-server")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"sms-custom-server cannot exceed 35 characters")
+            return (False, "sms-custom-server cannot exceed 35 characters")
 
     # Validate sms-phone if present
     if "sms-phone" in payload:
         value = payload.get("sms-phone")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"sms-phone cannot exceed 15 characters")
+            return (False, "sms-phone cannot exceed 15 characters")
 
     # Validate passwd-policy if present
     if "passwd-policy" in payload:
         value = payload.get("passwd-policy")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"passwd-policy cannot exceed 35 characters")
+            return (False, "passwd-policy cannot exceed 35 characters")
 
     # Validate authtimeout if present
     if "authtimeout" in payload:
@@ -429,7 +429,7 @@ def validate_local_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 1440:
-                    return (False, f"authtimeout must be between 0 and 1440")
+                    return (False, "authtimeout must be between 0 and 1440")
             except (ValueError, TypeError):
                 return (False, f"authtimeout must be numeric, got: {value}")
 
@@ -437,7 +437,7 @@ def validate_local_put(
     if "workstation" in payload:
         value = payload.get("workstation")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"workstation cannot exceed 35 characters")
+            return (False, "workstation cannot exceed 35 characters")
 
     # Validate auth-concurrent-override if present
     if "auth-concurrent-override" in payload:
@@ -457,7 +457,7 @@ def validate_local_put(
                 if int_val < 0 or int_val > 100:
                     return (
                         False,
-                        f"auth-concurrent-value must be between 0 and 100",
+                        "auth-concurrent-value must be between 0 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -469,13 +469,13 @@ def validate_local_put(
     if "ppk-identity" in payload:
         value = payload.get("ppk-identity")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"ppk-identity cannot exceed 35 characters")
+            return (False, "ppk-identity cannot exceed 35 characters")
 
     # Validate qkd-profile if present
     if "qkd-profile" in payload:
         value = payload.get("qkd-profile")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"qkd-profile cannot exceed 35 characters")
+            return (False, "qkd-profile cannot exceed 35 characters")
 
     # Validate username-sensitivity if present
     if "username-sensitivity" in payload:

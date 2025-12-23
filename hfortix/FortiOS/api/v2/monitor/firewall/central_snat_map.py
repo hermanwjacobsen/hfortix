@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more firewall central SNAT policy by policy ID.
+        Reset traffic statistics for one or more firewall central SNAT policy
+        by policy ID.
 
         Args:
             policy: Single policy ID to reset. (optional)
@@ -154,7 +155,8 @@ class CentralSnatMap:
 
         Args:
             policyid: Filter: Policy ID. (optional)
-            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left empty, will retrieve data for both IPv4 and IPv6. (optional)
+            ip_version: Filter: Traffic IP Version. [ ipv4 | ipv6 ], if left
+            empty, will retrieve data for both IPv4 and IPv6. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

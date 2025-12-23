@@ -76,7 +76,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate modem-id if present
     if "modem-id" in payload:
@@ -109,19 +109,19 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "iccid" in payload:
         value = payload.get("iccid")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"iccid cannot exceed 31 characters")
+            return (False, "iccid cannot exceed 31 characters")
 
     # Validate carrier if present
     if "carrier" in payload:
         value = payload.get("carrier")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"carrier cannot exceed 31 characters")
+            return (False, "carrier cannot exceed 31 characters")
 
     # Validate apn if present
     if "apn" in payload:
         value = payload.get("apn")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"apn cannot exceed 63 characters")
+            return (False, "apn cannot exceed 63 characters")
 
     # Validate auth-type if present
     if "auth-type" in payload:
@@ -136,7 +136,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"username cannot exceed 127 characters")
+            return (False, "username cannot exceed 127 characters")
 
     # Validate pdn if present
     if "pdn" in payload:
@@ -156,7 +156,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 50 or int_val > 100:
                     return (
                         False,
-                        f"signal-threshold must be between 50 and 100",
+                        "signal-threshold must be between 50 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -173,7 +173,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 600 or int_val > 18000:
                     return (
                         False,
-                        f"signal-period must be between 600 and 18000",
+                        "signal-period must be between 600 and 18000",
                     )
             except (ValueError, TypeError):
                 return (False, f"signal-period must be numeric, got: {value}")
@@ -185,7 +185,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 102400000:
-                    return (False, f"capacity must be between 0 and 102400000")
+                    return (False, "capacity must be between 0 and 102400000")
             except (ValueError, TypeError):
                 return (False, f"capacity must be numeric, got: {value}")
 
@@ -198,7 +198,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 1000000:
                     return (
                         False,
-                        f"monthly-fee must be between 0 and 1000000",
+                        "monthly-fee must be between 0 and 1000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"monthly-fee must be numeric, got: {value}")
@@ -210,7 +210,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31:
-                    return (False, f"billing-date must be between 1 and 31")
+                    return (False, "billing-date must be between 1 and 31")
             except (ValueError, TypeError):
                 return (False, f"billing-date must be numeric, got: {value}")
 
@@ -232,7 +232,7 @@ def validate_dataplan_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
                 if int_val < 0 or int_val > 32:
                     return (
                         False,
-                        f"preferred-subnet must be between 0 and 32",
+                        "preferred-subnet must be between 0 and 32",
                     )
             except (ValueError, TypeError):
                 return (
@@ -282,7 +282,7 @@ def validate_dataplan_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate modem-id if present
     if "modem-id" in payload:
@@ -315,19 +315,19 @@ def validate_dataplan_put(
     if "iccid" in payload:
         value = payload.get("iccid")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"iccid cannot exceed 31 characters")
+            return (False, "iccid cannot exceed 31 characters")
 
     # Validate carrier if present
     if "carrier" in payload:
         value = payload.get("carrier")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"carrier cannot exceed 31 characters")
+            return (False, "carrier cannot exceed 31 characters")
 
     # Validate apn if present
     if "apn" in payload:
         value = payload.get("apn")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"apn cannot exceed 63 characters")
+            return (False, "apn cannot exceed 63 characters")
 
     # Validate auth-type if present
     if "auth-type" in payload:
@@ -342,7 +342,7 @@ def validate_dataplan_put(
     if "username" in payload:
         value = payload.get("username")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"username cannot exceed 127 characters")
+            return (False, "username cannot exceed 127 characters")
 
     # Validate pdn if present
     if "pdn" in payload:
@@ -362,7 +362,7 @@ def validate_dataplan_put(
                 if int_val < 50 or int_val > 100:
                     return (
                         False,
-                        f"signal-threshold must be between 50 and 100",
+                        "signal-threshold must be between 50 and 100",
                     )
             except (ValueError, TypeError):
                 return (
@@ -379,7 +379,7 @@ def validate_dataplan_put(
                 if int_val < 600 or int_val > 18000:
                     return (
                         False,
-                        f"signal-period must be between 600 and 18000",
+                        "signal-period must be between 600 and 18000",
                     )
             except (ValueError, TypeError):
                 return (False, f"signal-period must be numeric, got: {value}")
@@ -391,7 +391,7 @@ def validate_dataplan_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 102400000:
-                    return (False, f"capacity must be between 0 and 102400000")
+                    return (False, "capacity must be between 0 and 102400000")
             except (ValueError, TypeError):
                 return (False, f"capacity must be numeric, got: {value}")
 
@@ -404,7 +404,7 @@ def validate_dataplan_put(
                 if int_val < 0 or int_val > 1000000:
                     return (
                         False,
-                        f"monthly-fee must be between 0 and 1000000",
+                        "monthly-fee must be between 0 and 1000000",
                     )
             except (ValueError, TypeError):
                 return (False, f"monthly-fee must be numeric, got: {value}")
@@ -416,7 +416,7 @@ def validate_dataplan_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31:
-                    return (False, f"billing-date must be between 1 and 31")
+                    return (False, "billing-date must be between 1 and 31")
             except (ValueError, TypeError):
                 return (False, f"billing-date must be numeric, got: {value}")
 
@@ -438,7 +438,7 @@ def validate_dataplan_put(
                 if int_val < 0 or int_val > 32:
                     return (
                         False,
-                        f"preferred-subnet must be between 0 and 32",
+                        "preferred-subnet must be between 0 and 32",
                     )
             except (ValueError, TypeError):
                 return (

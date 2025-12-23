@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Firewall Internet Service Extension
 
-Configuration endpoint for managing cmdb firewall internet service extension objects.
+Configuration endpoint for managing cmdb firewall internet service extension
+objects.
 
 API Endpoints:
     GET    /cmdb/firewall/internet_service_extension
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.firewall.internet_service_extension.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.firewall.internet_service_extension.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.firewall.internet_service_extension.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.firewall.internet_service_extension.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.firewall.internet_service_extension.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.firewall.internet_service_extension.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -56,7 +59,8 @@ class InternetServiceExtension:
     """
     Internetserviceextension Operations.
 
-    Provides CRUD operations for FortiOS internetserviceextension configuration.
+    Provides CRUD operations for FortiOS internetserviceextension
+    configuration.
 
     Methods:
         get(): Retrieve configuration objects
@@ -98,12 +102,17 @@ class InternetServiceExtension:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +120,8 @@ class InternetServiceExtension:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -153,17 +163,25 @@ class InternetServiceExtension:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            id: Internet Service ID in the Internet Service database. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            id: Internet Service ID in the Internet Service database.
+            (optional)
             comment: Comment. (optional)
-            entry: Entries added to the Internet Service extension database. (optional)
-            disable_entry: Disable entries in the Internet Service database. (optional)
+            entry: Entries added to the Internet Service extension database.
+            (optional)
+            disable_entry: Disable entries in the Internet Service database.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -171,7 +189,8 @@ class InternetServiceExtension:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -213,8 +232,10 @@ class InternetServiceExtension:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -222,7 +243,8 @@ class InternetServiceExtension:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -297,15 +319,22 @@ class InternetServiceExtension:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
-            id: Internet Service ID in the Internet Service database. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
+            id: Internet Service ID in the Internet Service database.
+            (optional)
             comment: Comment. (optional)
-            entry: Entries added to the Internet Service extension database. (optional)
-            disable_entry: Disable entries in the Internet Service database. (optional)
+            entry: Entries added to the Internet Service extension database.
+            (optional)
+            disable_entry: Disable entries in the Internet Service database.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -313,7 +342,8 @@ class InternetServiceExtension:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

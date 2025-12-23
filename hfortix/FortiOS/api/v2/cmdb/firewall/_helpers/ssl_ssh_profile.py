@@ -84,13 +84,13 @@ def validate_ssl_ssh_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate allowlist if present
     if "allowlist" in payload:
@@ -132,13 +132,13 @@ def validate_ssl_ssh_profile_post(
     if "caname" in payload:
         value = payload.get("caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"caname cannot exceed 35 characters")
+            return (False, "caname cannot exceed 35 characters")
 
     # Validate untrusted-caname if present
     if "untrusted-caname" in payload:
         value = payload.get("untrusted-caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"untrusted-caname cannot exceed 35 characters")
+            return (False, "untrusted-caname cannot exceed 35 characters")
 
     # Validate ssl-exemption-ip-rating if present
     if "ssl-exemption-ip-rating" in payload:
@@ -254,13 +254,13 @@ def validate_ssl_ssh_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"name cannot exceed 47 characters")
+            return (False, "name cannot exceed 47 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate allowlist if present
     if "allowlist" in payload:
@@ -302,13 +302,13 @@ def validate_ssl_ssh_profile_put(
     if "caname" in payload:
         value = payload.get("caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"caname cannot exceed 35 characters")
+            return (False, "caname cannot exceed 35 characters")
 
     # Validate untrusted-caname if present
     if "untrusted-caname" in payload:
         value = payload.get("untrusted-caname")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"untrusted-caname cannot exceed 35 characters")
+            return (False, "untrusted-caname cannot exceed 35 characters")
 
     # Validate ssl-exemption-ip-rating if present
     if "ssl-exemption-ip-rating" in payload:

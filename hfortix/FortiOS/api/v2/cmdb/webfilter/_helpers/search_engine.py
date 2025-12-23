@@ -82,25 +82,25 @@ def validate_search_engine_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate hostname if present
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"hostname cannot exceed 127 characters")
+            return (False, "hostname cannot exceed 127 characters")
 
     # Validate url if present
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"url cannot exceed 127 characters")
+            return (False, "url cannot exceed 127 characters")
 
     # Validate query if present
     if "query" in payload:
         value = payload.get("query")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"query cannot exceed 15 characters")
+            return (False, "query cannot exceed 15 characters")
 
     # Validate safesearch if present
     if "safesearch" in payload:
@@ -124,7 +124,7 @@ def validate_search_engine_post(
     if "safesearch-str" in payload:
         value = payload.get("safesearch-str")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"safesearch-str cannot exceed 255 characters")
+            return (False, "safesearch-str cannot exceed 255 characters")
 
     return (True, None)
 
@@ -159,25 +159,25 @@ def validate_search_engine_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate hostname if present
     if "hostname" in payload:
         value = payload.get("hostname")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"hostname cannot exceed 127 characters")
+            return (False, "hostname cannot exceed 127 characters")
 
     # Validate url if present
     if "url" in payload:
         value = payload.get("url")
         if value and isinstance(value, str) and len(value) > 127:
-            return (False, f"url cannot exceed 127 characters")
+            return (False, "url cannot exceed 127 characters")
 
     # Validate query if present
     if "query" in payload:
         value = payload.get("query")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"query cannot exceed 15 characters")
+            return (False, "query cannot exceed 15 characters")
 
     # Validate safesearch if present
     if "safesearch" in payload:
@@ -201,7 +201,7 @@ def validate_search_engine_put(
     if "safesearch-str" in payload:
         value = payload.get("safesearch-str")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"safesearch-str cannot exceed 255 characters")
+            return (False, "safesearch-str cannot exceed 255 characters")
 
     return (True, None)
 

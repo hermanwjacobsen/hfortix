@@ -71,18 +71,18 @@ def validate_custom_command_post(
     if "command-name" in payload:
         value = payload.get("command-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"command-name cannot exceed 35 characters")
+            return (False, "command-name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"description cannot exceed 35 characters")
+            return (False, "description cannot exceed 35 characters")
 
     # Validate command if present
     if "command" in payload:
         value = payload.get("command")
         if value and isinstance(value, str) and len(value) > 4095:
-            return (False, f"command cannot exceed 4095 characters")
+            return (False, "command cannot exceed 4095 characters")
 
     return (True, None)

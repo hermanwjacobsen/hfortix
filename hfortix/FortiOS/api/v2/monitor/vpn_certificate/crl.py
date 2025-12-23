@@ -67,8 +67,11 @@ class ImportCrl:
         Import certificate revocation lists (CRL) from file content.
 
         Args:
-            scope: Scope of CRL [vdom*|global]. Global scope is only accessible for global administrators (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            scope: Scope of CRL [vdom*|global]. Global scope is only accessible
+            for global administrators (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

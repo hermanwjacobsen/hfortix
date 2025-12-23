@@ -74,7 +74,7 @@ def validate_override_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -100,31 +100,31 @@ def validate_override_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"user cannot exceed 64 characters")
+            return (False, "user cannot exceed 64 characters")
 
     # Validate user-group if present
     if "user-group" in payload:
         value = payload.get("user-group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"user-group cannot exceed 63 characters")
+            return (False, "user-group cannot exceed 63 characters")
 
     # Validate old-profile if present
     if "old-profile" in payload:
         value = payload.get("old-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"old-profile cannot exceed 47 characters")
+            return (False, "old-profile cannot exceed 47 characters")
 
     # Validate new-profile if present
     if "new-profile" in payload:
         value = payload.get("new-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"new-profile cannot exceed 47 characters")
+            return (False, "new-profile cannot exceed 47 characters")
 
     # Validate initiator if present
     if "initiator" in payload:
         value = payload.get("initiator")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"initiator cannot exceed 64 characters")
+            return (False, "initiator cannot exceed 64 characters")
 
     return (True, None)
 
@@ -162,7 +162,7 @@ def validate_override_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"id must be between 0 and 4294967295")
+                    return (False, "id must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -188,31 +188,31 @@ def validate_override_put(
     if "user" in payload:
         value = payload.get("user")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"user cannot exceed 64 characters")
+            return (False, "user cannot exceed 64 characters")
 
     # Validate user-group if present
     if "user-group" in payload:
         value = payload.get("user-group")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"user-group cannot exceed 63 characters")
+            return (False, "user-group cannot exceed 63 characters")
 
     # Validate old-profile if present
     if "old-profile" in payload:
         value = payload.get("old-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"old-profile cannot exceed 47 characters")
+            return (False, "old-profile cannot exceed 47 characters")
 
     # Validate new-profile if present
     if "new-profile" in payload:
         value = payload.get("new-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"new-profile cannot exceed 47 characters")
+            return (False, "new-profile cannot exceed 47 characters")
 
     # Validate initiator if present
     if "initiator" in payload:
         value = payload.get("initiator")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"initiator cannot exceed 64 characters")
+            return (False, "initiator cannot exceed 64 characters")
 
     return (True, None)
 

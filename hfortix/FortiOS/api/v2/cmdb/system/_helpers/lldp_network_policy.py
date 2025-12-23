@@ -71,13 +71,13 @@ def validate_lldp_network_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comment cannot exceed 1023 characters")
+            return (False, "comment cannot exceed 1023 characters")
 
     return (True, None)
 
@@ -112,13 +112,13 @@ def validate_lldp_network_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 1023:
-            return (False, f"comment cannot exceed 1023 characters")
+            return (False, "comment cannot exceed 1023 characters")
 
     return (True, None)
 

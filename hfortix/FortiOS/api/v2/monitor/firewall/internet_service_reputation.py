@@ -64,11 +64,14 @@ class InternetServiceReputation:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        List internet services with reputation information that exist at a given IP.
+        List internet services with reputation information that exist at a
+        given IP.
 
         Args:
             ip: IP (in dot-decimal notation). (required)
-            is_ipv6: Whether IP is IPv6. If not provided, will determine IP version based on given IP, but setting is_ipv6 flag is recommended. (optional)
+            is_ipv6: Whether IP is IPv6. If not provided, will determine IP
+            version based on given IP, but setting is_ipv6 flag is recommended.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -77,7 +80,8 @@ class InternetServiceReputation:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.internet_service_reputation.get(ip='value')
+            >>>
+            fgt.api.monitor.firewall.internet_service_reputation.get(ip='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["ip"] = ip

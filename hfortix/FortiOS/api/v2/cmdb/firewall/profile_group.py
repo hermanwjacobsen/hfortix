@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class ProfileGroup:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class ProfileGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -170,34 +176,50 @@ class ProfileGroup:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Profile group name. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -205,7 +227,8 @@ class ProfileGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -281,8 +304,10 @@ class ProfileGroup:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -290,7 +315,8 @@ class ProfileGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -382,32 +408,47 @@ class ProfileGroup:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Profile group name. (optional)
-            profile_protocol_options: Name of an existing Protocol options profile. (optional)
+            profile_protocol_options: Name of an existing Protocol options
+            profile. (optional)
             ssl_ssh_profile: Name of an existing SSL SSH profile. (optional)
             av_profile: Name of an existing Antivirus profile. (optional)
-            webfilter_profile: Name of an existing Web filter profile. (optional)
-            dnsfilter_profile: Name of an existing DNS filter profile. (optional)
-            emailfilter_profile: Name of an existing email filter profile. (optional)
+            webfilter_profile: Name of an existing Web filter profile.
+            (optional)
+            dnsfilter_profile: Name of an existing DNS filter profile.
+            (optional)
+            emailfilter_profile: Name of an existing email filter profile.
+            (optional)
             dlp_profile: Name of an existing DLP profile. (optional)
-            file_filter_profile: Name of an existing file-filter profile. (optional)
+            file_filter_profile: Name of an existing file-filter profile.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
             application_list: Name of an existing Application list. (optional)
             voip_profile: Name of an existing VoIP (voipd) profile. (optional)
             ips_voip_filter: Name of an existing VoIP (ips) profile. (optional)
-            sctp_filter_profile: Name of an existing SCTP filter profile. (optional)
-            diameter_filter_profile: Name of an existing Diameter filter profile. (optional)
-            virtual_patch_profile: Name of an existing virtual-patch profile. (optional)
+            sctp_filter_profile: Name of an existing SCTP filter profile.
+            (optional)
+            diameter_filter_profile: Name of an existing Diameter filter
+            profile. (optional)
+            virtual_patch_profile: Name of an existing virtual-patch profile.
+            (optional)
             icap_profile: Name of an existing ICAP profile. (optional)
-            videofilter_profile: Name of an existing VideoFilter profile. (optional)
-            waf_profile: Name of an existing Web application firewall profile. (optional)
-            ssh_filter_profile: Name of an existing SSH filter profile. (optional)
+            videofilter_profile: Name of an existing VideoFilter profile.
+            (optional)
+            waf_profile: Name of an existing Web application firewall profile.
+            (optional)
+            ssh_filter_profile: Name of an existing SSH filter profile.
+            (optional)
             casb_profile: Name of an existing CASB profile. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -415,7 +456,8 @@ class ProfileGroup:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

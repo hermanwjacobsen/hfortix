@@ -116,13 +116,13 @@ def validate_automation_trigger_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate trigger-type if present
     if "trigger-type" in payload:
@@ -164,7 +164,7 @@ def validate_automation_trigger_post(
     if "stitch-name" in payload:
         value = payload.get("stitch-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"stitch-name cannot exceed 35 characters")
+            return (False, "stitch-name cannot exceed 35 characters")
 
     # Validate trigger-frequency if present
     if "trigger-frequency" in payload:
@@ -191,7 +191,7 @@ def validate_automation_trigger_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31:
-                    return (False, f"trigger-day must be between 1 and 31")
+                    return (False, "trigger-day must be between 1 and 31")
             except (ValueError, TypeError):
                 return (False, f"trigger-day must be numeric, got: {value}")
 
@@ -202,7 +202,7 @@ def validate_automation_trigger_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 23:
-                    return (False, f"trigger-hour must be between 0 and 23")
+                    return (False, "trigger-hour must be between 0 and 23")
             except (ValueError, TypeError):
                 return (False, f"trigger-hour must be numeric, got: {value}")
 
@@ -213,7 +213,7 @@ def validate_automation_trigger_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 59:
-                    return (False, f"trigger-minute must be between 0 and 59")
+                    return (False, "trigger-minute must be between 0 and 59")
             except (ValueError, TypeError):
                 return (False, f"trigger-minute must be numeric, got: {value}")
 
@@ -221,31 +221,31 @@ def validate_automation_trigger_post(
     if "faz-event-name" in payload:
         value = payload.get("faz-event-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-name cannot exceed 255 characters")
+            return (False, "faz-event-name cannot exceed 255 characters")
 
     # Validate faz-event-severity if present
     if "faz-event-severity" in payload:
         value = payload.get("faz-event-severity")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-severity cannot exceed 255 characters")
+            return (False, "faz-event-severity cannot exceed 255 characters")
 
     # Validate faz-event-tags if present
     if "faz-event-tags" in payload:
         value = payload.get("faz-event-tags")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-tags cannot exceed 255 characters")
+            return (False, "faz-event-tags cannot exceed 255 characters")
 
     # Validate serial if present
     if "serial" in payload:
         value = payload.get("serial")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"serial cannot exceed 255 characters")
+            return (False, "serial cannot exceed 255 characters")
 
     # Validate fabric-event-name if present
     if "fabric-event-name" in payload:
         value = payload.get("fabric-event-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fabric-event-name cannot exceed 255 characters")
+            return (False, "fabric-event-name cannot exceed 255 characters")
 
     # Validate fabric-event-severity if present
     if "fabric-event-severity" in payload:
@@ -253,7 +253,7 @@ def validate_automation_trigger_post(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"fabric-event-severity cannot exceed 255 characters",
+                "fabric-event-severity cannot exceed 255 characters",
             )
 
     return (True, None)
@@ -289,13 +289,13 @@ def validate_automation_trigger_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"description cannot exceed 255 characters")
+            return (False, "description cannot exceed 255 characters")
 
     # Validate trigger-type if present
     if "trigger-type" in payload:
@@ -337,7 +337,7 @@ def validate_automation_trigger_put(
     if "stitch-name" in payload:
         value = payload.get("stitch-name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"stitch-name cannot exceed 35 characters")
+            return (False, "stitch-name cannot exceed 35 characters")
 
     # Validate trigger-frequency if present
     if "trigger-frequency" in payload:
@@ -364,7 +364,7 @@ def validate_automation_trigger_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 31:
-                    return (False, f"trigger-day must be between 1 and 31")
+                    return (False, "trigger-day must be between 1 and 31")
             except (ValueError, TypeError):
                 return (False, f"trigger-day must be numeric, got: {value}")
 
@@ -375,7 +375,7 @@ def validate_automation_trigger_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 23:
-                    return (False, f"trigger-hour must be between 0 and 23")
+                    return (False, "trigger-hour must be between 0 and 23")
             except (ValueError, TypeError):
                 return (False, f"trigger-hour must be numeric, got: {value}")
 
@@ -386,7 +386,7 @@ def validate_automation_trigger_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 59:
-                    return (False, f"trigger-minute must be between 0 and 59")
+                    return (False, "trigger-minute must be between 0 and 59")
             except (ValueError, TypeError):
                 return (False, f"trigger-minute must be numeric, got: {value}")
 
@@ -394,31 +394,31 @@ def validate_automation_trigger_put(
     if "faz-event-name" in payload:
         value = payload.get("faz-event-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-name cannot exceed 255 characters")
+            return (False, "faz-event-name cannot exceed 255 characters")
 
     # Validate faz-event-severity if present
     if "faz-event-severity" in payload:
         value = payload.get("faz-event-severity")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-severity cannot exceed 255 characters")
+            return (False, "faz-event-severity cannot exceed 255 characters")
 
     # Validate faz-event-tags if present
     if "faz-event-tags" in payload:
         value = payload.get("faz-event-tags")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"faz-event-tags cannot exceed 255 characters")
+            return (False, "faz-event-tags cannot exceed 255 characters")
 
     # Validate serial if present
     if "serial" in payload:
         value = payload.get("serial")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"serial cannot exceed 255 characters")
+            return (False, "serial cannot exceed 255 characters")
 
     # Validate fabric-event-name if present
     if "fabric-event-name" in payload:
         value = payload.get("fabric-event-name")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"fabric-event-name cannot exceed 255 characters")
+            return (False, "fabric-event-name cannot exceed 255 characters")
 
     # Validate fabric-event-severity if present
     if "fabric-event-severity" in payload:
@@ -426,7 +426,7 @@ def validate_automation_trigger_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"fabric-event-severity cannot exceed 255 characters",
+                "fabric-event-severity cannot exceed 255 characters",
             )
 
     return (True, None)

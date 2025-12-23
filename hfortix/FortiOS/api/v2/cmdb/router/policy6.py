@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -96,14 +96,20 @@ class Policy6:
         Select a specific entry from a CLI table.
 
         Args:
-            seq_num: Object identifier (optional for list, required for specific)
+            seq_num: Object identifier (optional for list, required for
+            specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class Policy6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -174,19 +181,25 @@ class Policy6:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             seq_num: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             seq_num: Sequence number(1-65535). (optional)
             input_device: Incoming interface name. (optional)
-            input_device_negate: Enable/disable negation of input device match. (optional)
+            input_device_negate: Enable/disable negation of input device match.
+            (optional)
             src: Source IPv6 prefix. (optional)
             srcaddr: Source address name. (optional)
-            src_negate: Enable/disable negating source address match. (optional)
+            src_negate: Enable/disable negating source address match.
+            (optional)
             dst: Destination IPv6 prefix. (optional)
             dstaddr: Destination address name. (optional)
-            dst_negate: Enable/disable negating destination address match. (optional)
+            dst_negate: Enable/disable negating destination address match.
+            (optional)
             protocol: Protocol number (0 - 255). (optional)
             start_port: Start destination port number (1 - 65535). (optional)
             end_port: End destination port number (1 - 65535). (optional)
@@ -199,13 +212,17 @@ class Policy6:
             status: Enable/disable this policy route. (optional)
             comments: Optional comments. (optional)
             internet_service_id: Destination Internet Service ID. (optional)
-            internet_service_custom: Custom Destination Internet Service name. (optional)
-            internet_service_fortiguard: FortiGuard Destination Internet Service name. (optional)
+            internet_service_custom: Custom Destination Internet Service name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Destination Internet
+            Service name. (optional)
             users: List of users. (optional)
             groups: List of user groups. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -213,7 +230,8 @@ class Policy6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -299,8 +317,10 @@ class Policy6:
         Args:
             seq_num: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -308,7 +328,8 @@ class Policy6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -404,17 +425,22 @@ class Policy6:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             seq_num: Sequence number(1-65535). (optional)
             input_device: Incoming interface name. (optional)
-            input_device_negate: Enable/disable negation of input device match. (optional)
+            input_device_negate: Enable/disable negation of input device match.
+            (optional)
             src: Source IPv6 prefix. (optional)
             srcaddr: Source address name. (optional)
-            src_negate: Enable/disable negating source address match. (optional)
+            src_negate: Enable/disable negating source address match.
+            (optional)
             dst: Destination IPv6 prefix. (optional)
             dstaddr: Destination address name. (optional)
-            dst_negate: Enable/disable negating destination address match. (optional)
+            dst_negate: Enable/disable negating destination address match.
+            (optional)
             protocol: Protocol number (0 - 255). (optional)
             start_port: Start destination port number (1 - 65535). (optional)
             end_port: End destination port number (1 - 65535). (optional)
@@ -427,13 +453,17 @@ class Policy6:
             status: Enable/disable this policy route. (optional)
             comments: Optional comments. (optional)
             internet_service_id: Destination Internet Service ID. (optional)
-            internet_service_custom: Custom Destination Internet Service name. (optional)
-            internet_service_fortiguard: FortiGuard Destination Internet Service name. (optional)
+            internet_service_custom: Custom Destination Internet Service name.
+            (optional)
+            internet_service_fortiguard: FortiGuard Destination Internet
+            Service name. (optional)
             users: List of users. (optional)
             groups: List of user groups. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -441,7 +471,8 @@ class Policy6:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

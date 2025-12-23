@@ -88,11 +88,15 @@ class Fortiguard:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Fortiguard:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -141,24 +146,40 @@ class Fortiguard:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             cache_mode: Cache entry expiration mode. (optional)
-            cache_prefix_match: Enable/disable prefix matching in the cache. (optional)
-            cache_mem_permille: Maximum permille of available memory allocated to caching (1 - 150). (optional)
-            ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP override authentication. (optional)
-            ovrd_auth_port_https: Port to use for FortiGuard Web Filter HTTPS override authentication in proxy mode. (optional)
-            ovrd_auth_port_https_flow: Port to use for FortiGuard Web Filter HTTPS override authentication in flow mode. (optional)
-            ovrd_auth_port_warning: Port to use for FortiGuard Web Filter Warning override authentication. (optional)
-            ovrd_auth_https: Enable/disable use of HTTPS for override authentication. (optional)
-            warn_auth_https: Enable/disable use of HTTPS for warning and authentication. (optional)
-            close_ports: Close ports used for HTTP/HTTPS override authentication and disable user overrides. (optional)
-            request_packet_size_limit: Limit size of URL request packets sent to FortiGuard server (0 for default). (optional)
-            embed_image: Enable/disable embedding images into replacement messages (default = enable). (optional)
+            cache_prefix_match: Enable/disable prefix matching in the cache.
+            (optional)
+            cache_mem_permille: Maximum permille of available memory allocated
+            to caching (1 - 150). (optional)
+            ovrd_auth_port_http: Port to use for FortiGuard Web Filter HTTP
+            override authentication. (optional)
+            ovrd_auth_port_https: Port to use for FortiGuard Web Filter HTTPS
+            override authentication in proxy mode. (optional)
+            ovrd_auth_port_https_flow: Port to use for FortiGuard Web Filter
+            HTTPS override authentication in flow mode. (optional)
+            ovrd_auth_port_warning: Port to use for FortiGuard Web Filter
+            Warning override authentication. (optional)
+            ovrd_auth_https: Enable/disable use of HTTPS for override
+            authentication. (optional)
+            warn_auth_https: Enable/disable use of HTTPS for warning and
+            authentication. (optional)
+            close_ports: Close ports used for HTTP/HTTPS override
+            authentication and disable user overrides. (optional)
+            request_packet_size_limit: Limit size of URL request packets sent
+            to FortiGuard server (0 for default). (optional)
+            embed_image: Enable/disable embedding images into replacement
+            messages (default = enable). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -166,7 +187,8 @@ class Fortiguard:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

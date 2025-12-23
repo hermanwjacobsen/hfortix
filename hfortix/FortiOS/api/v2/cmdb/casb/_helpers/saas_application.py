@@ -73,13 +73,13 @@ def validate_saas_application_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate uuid if present
     if "uuid" in payload:
         value = payload.get("uuid")
         if value and isinstance(value, str) and len(value) > 36:
-            return (False, f"uuid cannot exceed 36 characters")
+            return (False, "uuid cannot exceed 36 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -103,13 +103,13 @@ def validate_saas_application_post(
     if "casb-name" in payload:
         value = payload.get("casb-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"casb-name cannot exceed 79 characters")
+            return (False, "casb-name cannot exceed 79 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     return (True, None)
 
@@ -144,13 +144,13 @@ def validate_saas_application_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate uuid if present
     if "uuid" in payload:
         value = payload.get("uuid")
         if value and isinstance(value, str) and len(value) > 36:
-            return (False, f"uuid cannot exceed 36 characters")
+            return (False, "uuid cannot exceed 36 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -174,13 +174,13 @@ def validate_saas_application_put(
     if "casb-name" in payload:
         value = payload.get("casb-name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"casb-name cannot exceed 79 characters")
+            return (False, "casb-name cannot exceed 79 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     return (True, None)
 

@@ -71,7 +71,7 @@ def validate_stp_instance_post(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"id cannot exceed 2 characters")
+            return (False, "id cannot exceed 2 characters")
 
     return (True, None)
 
@@ -106,7 +106,7 @@ def validate_stp_instance_put(
     if "id" in payload:
         value = payload.get("id")
         if value and isinstance(value, str) and len(value) > 2:
-            return (False, f"id cannot exceed 2 characters")
+            return (False, "id cannot exceed 2 characters")
 
     return (True, None)
 

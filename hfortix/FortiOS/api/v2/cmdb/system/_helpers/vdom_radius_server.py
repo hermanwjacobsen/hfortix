@@ -72,7 +72,7 @@ def validate_vdom_radius_server_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -87,7 +87,7 @@ def validate_vdom_radius_server_post(
     if "radius-server-vdom" in payload:
         value = payload.get("radius-server-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"radius-server-vdom cannot exceed 31 characters")
+            return (False, "radius-server-vdom cannot exceed 31 characters")
 
     return (True, None)
 
@@ -122,7 +122,7 @@ def validate_vdom_radius_server_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"name cannot exceed 31 characters")
+            return (False, "name cannot exceed 31 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -137,7 +137,7 @@ def validate_vdom_radius_server_put(
     if "radius-server-vdom" in payload:
         value = payload.get("radius-server-vdom")
         if value and isinstance(value, str) and len(value) > 31:
-            return (False, f"radius-server-vdom cannot exceed 31 characters")
+            return (False, "radius-server-vdom cannot exceed 31 characters")
 
     return (True, None)
 

@@ -1,7 +1,8 @@
 """
 FortiOS CMDB - Cmdb Switch Controller Lldp Profile
 
-Configuration endpoint for managing cmdb switch controller lldp profile objects.
+Configuration endpoint for managing cmdb switch controller lldp profile
+objects.
 
 API Endpoints:
     GET    /cmdb/switch-controller/lldp_profile
@@ -18,7 +19,8 @@ Example Usage:
     >>> items = fgt.api.cmdb.switch_controller.lldp_profile.get()
     >>>
     >>> # Get specific item (if supported)
-    >>> item = fgt.api.cmdb.switch_controller.lldp_profile.get(name="item_name")
+    >>> item =
+    fgt.api.cmdb.switch_controller.lldp_profile.get(name="item_name")
     >>>
     >>> # Create new item (use POST)
     >>> result = fgt.api.cmdb.switch_controller.lldp_profile.post(
@@ -33,7 +35,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.switch_controller.lldp_profile.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.switch_controller.lldp_profile.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +47,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +101,17 @@ class LldpProfile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +119,8 @@ class LldpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -167,31 +176,51 @@ class LldpProfile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Profile name. (optional)
-            med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions). (optional)
+            med_tlvs: Transmitted LLDP-MED TLVs (type-length-value
+            descriptions). (optional)
             _802_1_tlvs: Transmitted IEEE 802.1 TLVs. (optional)
             _802_3_tlvs: Transmitted IEEE 802.3 TLVs. (optional)
             auto_isl: Enable/disable auto inter-switch LAG. (optional)
-            auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3). (optional)
-            auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9). (optional)
-            auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9). (optional)
+            auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1
+            - 30 sec, default = 3). (optional)
+            auto_isl_receive_timeout: Auto inter-switch LAG timeout if no
+            response is received (3 - 90 sec, default = 9). (optional)
+            auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
+            (optional)
             auto_mclag_icl: Enable/disable MCLAG inter chassis link. (optional)
-            auto_isl_auth: Auto inter-switch LAG authentication mode. (optional)
-            auto_isl_auth_user: Auto inter-switch LAG authentication user certificate. (optional)
-            auto_isl_auth_identity: Auto inter-switch LAG authentication identity. (optional)
-            auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600). (optional)
-            auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. (optional)
-            auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption. (optional)
-            med_network_policy: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. (optional)
-            med_location_service: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. (optional)
-            custom_tlvs: Configuration method to edit custom TLV entries. (optional)
+            auto_isl_auth: Auto inter-switch LAG authentication mode.
+            (optional)
+            auto_isl_auth_user: Auto inter-switch LAG authentication user
+            certificate. (optional)
+            auto_isl_auth_identity: Auto inter-switch LAG authentication
+            identity. (optional)
+            auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth
+            period in seconds(10 - 3600, default = 3600). (optional)
+            auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode.
+            (optional)
+            auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile
+            for encryption. (optional)
+            med_network_policy: Configuration method to edit Media Endpoint
+            Discovery (MED) network policy type-length-value (TLV) categories.
+            (optional)
+            med_location_service: Configuration method to edit Media Endpoint
+            Discovery (MED) location service type-length-value (TLV)
+            categories. (optional)
+            custom_tlvs: Configuration method to edit custom TLV entries.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -199,7 +228,8 @@ class LldpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -271,8 +301,10 @@ class LldpProfile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -280,7 +312,8 @@ class LldpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -369,29 +402,48 @@ class LldpProfile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Profile name. (optional)
-            med_tlvs: Transmitted LLDP-MED TLVs (type-length-value descriptions). (optional)
+            med_tlvs: Transmitted LLDP-MED TLVs (type-length-value
+            descriptions). (optional)
             _802_1_tlvs: Transmitted IEEE 802.1 TLVs. (optional)
             _802_3_tlvs: Transmitted IEEE 802.3 TLVs. (optional)
             auto_isl: Enable/disable auto inter-switch LAG. (optional)
-            auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1 - 30 sec, default = 3). (optional)
-            auto_isl_receive_timeout: Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9). (optional)
-            auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9). (optional)
+            auto_isl_hello_timer: Auto inter-switch LAG hello timer duration (1
+            - 30 sec, default = 3). (optional)
+            auto_isl_receive_timeout: Auto inter-switch LAG timeout if no
+            response is received (3 - 90 sec, default = 9). (optional)
+            auto_isl_port_group: Auto inter-switch LAG port group ID (0 - 9).
+            (optional)
             auto_mclag_icl: Enable/disable MCLAG inter chassis link. (optional)
-            auto_isl_auth: Auto inter-switch LAG authentication mode. (optional)
-            auto_isl_auth_user: Auto inter-switch LAG authentication user certificate. (optional)
-            auto_isl_auth_identity: Auto inter-switch LAG authentication identity. (optional)
-            auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth period in seconds(10 - 3600, default = 3600). (optional)
-            auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode. (optional)
-            auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile for encryption. (optional)
-            med_network_policy: Configuration method to edit Media Endpoint Discovery (MED) network policy type-length-value (TLV) categories. (optional)
-            med_location_service: Configuration method to edit Media Endpoint Discovery (MED) location service type-length-value (TLV) categories. (optional)
-            custom_tlvs: Configuration method to edit custom TLV entries. (optional)
+            auto_isl_auth: Auto inter-switch LAG authentication mode.
+            (optional)
+            auto_isl_auth_user: Auto inter-switch LAG authentication user
+            certificate. (optional)
+            auto_isl_auth_identity: Auto inter-switch LAG authentication
+            identity. (optional)
+            auto_isl_auth_reauth: Auto inter-switch LAG authentication reauth
+            period in seconds(10 - 3600, default = 3600). (optional)
+            auto_isl_auth_encrypt: Auto inter-switch LAG encryption mode.
+            (optional)
+            auto_isl_auth_macsec_profile: Auto inter-switch LAG macsec profile
+            for encryption. (optional)
+            med_network_policy: Configuration method to edit Media Endpoint
+            Discovery (MED) network policy type-length-value (TLV) categories.
+            (optional)
+            med_location_service: Configuration method to edit Media Endpoint
+            Discovery (MED) location service type-length-value (TLV)
+            categories. (optional)
+            custom_tlvs: Configuration method to edit custom TLV entries.
+            (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -399,7 +451,8 @@ class LldpProfile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

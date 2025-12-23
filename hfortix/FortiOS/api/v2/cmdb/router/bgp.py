@@ -88,11 +88,15 @@ class Bgp:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Bgp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -195,62 +200,101 @@ class Bgp:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            as_: Router AS number, asplain/asdot/asdot+ format, 0 to disable BGP. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            as_: Router AS number, asplain/asdot/asdot+ format, 0 to disable
+            BGP. (optional)
             router_id: Router ID. (optional)
             keepalive_timer: Frequency to send keep alive requests. (optional)
             holdtime_timer: Number of seconds to mark peer as dead. (optional)
             always_compare_med: Enable/disable always compare MED. (optional)
             bestpath_as_path_ignore: Enable/disable ignore AS path. (optional)
-            bestpath_cmp_confed_aspath: Enable/disable compare federation AS path length. (optional)
-            bestpath_cmp_routerid: Enable/disable compare router ID for identical EBGP paths. (optional)
-            bestpath_med_confed: Enable/disable compare MED among confederation paths. (optional)
-            bestpath_med_missing_as_worst: Enable/disable treat missing MED as least preferred. (optional)
-            client_to_client_reflection: Enable/disable client-to-client route reflection. (optional)
+            bestpath_cmp_confed_aspath: Enable/disable compare federation AS
+            path length. (optional)
+            bestpath_cmp_routerid: Enable/disable compare router ID for
+            identical EBGP paths. (optional)
+            bestpath_med_confed: Enable/disable compare MED among confederation
+            paths. (optional)
+            bestpath_med_missing_as_worst: Enable/disable treat missing MED as
+            least preferred. (optional)
+            client_to_client_reflection: Enable/disable client-to-client route
+            reflection. (optional)
             dampening: Enable/disable route-flap dampening. (optional)
-            deterministic_med: Enable/disable enforce deterministic comparison of MED. (optional)
+            deterministic_med: Enable/disable enforce deterministic comparison
+            of MED. (optional)
             ebgp_multipath: Enable/disable EBGP multi-path. (optional)
             ibgp_multipath: Enable/disable IBGP multi-path. (optional)
-            enforce_first_as: Enable/disable enforce first AS for EBGP routes. (optional)
-            fast_external_failover: Enable/disable reset peer BGP session if link goes down. (optional)
+            enforce_first_as: Enable/disable enforce first AS for EBGP routes.
+            (optional)
+            fast_external_failover: Enable/disable reset peer BGP session if
+            link goes down. (optional)
             log_neighbour_changes: Log BGP neighbor changes. (optional)
-            network_import_check: Enable/disable ensure BGP network route exists in IGP. (optional)
-            ignore_optional_capability: Do not send unknown optional capability notification message. (optional)
-            additional_path: Enable/disable selection of BGP IPv4 additional paths. (optional)
-            additional_path6: Enable/disable selection of BGP IPv6 additional paths. (optional)
-            additional_path_vpnv4: Enable/disable selection of BGP VPNv4 additional paths. (optional)
-            additional_path_vpnv6: Enable/disable selection of BGP VPNv6 additional paths. (optional)
-            multipath_recursive_distance: Enable/disable use of recursive distance to select multipath. (optional)
-            recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. (optional)
-            recursive_inherit_priority: Enable/disable priority inheritance for recursive resolution. (optional)
-            tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. (optional)
+            network_import_check: Enable/disable ensure BGP network route
+            exists in IGP. (optional)
+            ignore_optional_capability: Do not send unknown optional capability
+            notification message. (optional)
+            additional_path: Enable/disable selection of BGP IPv4 additional
+            paths. (optional)
+            additional_path6: Enable/disable selection of BGP IPv6 additional
+            paths. (optional)
+            additional_path_vpnv4: Enable/disable selection of BGP VPNv4
+            additional paths. (optional)
+            additional_path_vpnv6: Enable/disable selection of BGP VPNv6
+            additional paths. (optional)
+            multipath_recursive_distance: Enable/disable use of recursive
+            distance to select multipath. (optional)
+            recursive_next_hop: Enable/disable recursive resolution of next-hop
+            using BGP route. (optional)
+            recursive_inherit_priority: Enable/disable priority inheritance for
+            recursive resolution. (optional)
+            tag_resolve_mode: Configure tag-match mode. Resolves BGP routes
+            with other routes containing the same tag. (optional)
             cluster_id: Route reflector cluster ID. (optional)
             confederation_identifier: Confederation identifier. (optional)
             confederation_peers: Confederation peers. (optional)
             dampening_route_map: Criteria for dampening. (optional)
-            dampening_reachability_half_life: Reachability half-life time for penalty (min). (optional)
+            dampening_reachability_half_life: Reachability half-life time for
+            penalty (min). (optional)
             dampening_reuse: Threshold to reuse routes. (optional)
             dampening_suppress: Threshold to suppress routes. (optional)
-            dampening_max_suppress_time: Maximum minutes a route can be suppressed. (optional)
-            dampening_unreachability_half_life: Unreachability half-life time for penalty (min). (optional)
+            dampening_max_suppress_time: Maximum minutes a route can be
+            suppressed. (optional)
+            dampening_unreachability_half_life: Unreachability half-life time
+            for penalty (min). (optional)
             default_local_preference: Default local preference. (optional)
-            scan_time: Background scanner interval (sec), 0 to disable it. (optional)
-            distance_external: Distance for routes external to the AS. (optional)
-            distance_internal: Distance for routes internal to the AS. (optional)
+            scan_time: Background scanner interval (sec), 0 to disable it.
+            (optional)
+            distance_external: Distance for routes external to the AS.
+            (optional)
+            distance_internal: Distance for routes internal to the AS.
+            (optional)
             distance_local: Distance for routes local to the AS. (optional)
-            synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. (optional)
-            graceful_restart: Enable/disable BGP graceful restart capabilities. (optional)
-            graceful_restart_time: Time needed for neighbors to restart (sec). (optional)
-            graceful_stalepath_time: Time to hold stale paths of restarting neighbor (sec). (optional)
-            graceful_update_delay: Route advertisement/selection delay after restart (sec). (optional)
-            graceful_end_on_timer: Enable/disable to exit graceful restart on timer only. (optional)
-            additional_path_select: Number of additional paths to be selected for each IPv4 NLRI. (optional)
-            additional_path_select6: Number of additional paths to be selected for each IPv6 NLRI. (optional)
-            additional_path_select_vpnv4: Number of additional paths to be selected for each VPNv4 NLRI. (optional)
-            additional_path_select_vpnv6: Number of additional paths to be selected for each VPNv6 NLRI. (optional)
-            cross_family_conditional_adv: Enable/disable cross address family conditional advertisement. (optional)
+            synchronization: Enable/disable only advertise routes from iBGP if
+            routes present in an IGP. (optional)
+            graceful_restart: Enable/disable BGP graceful restart capabilities.
+            (optional)
+            graceful_restart_time: Time needed for neighbors to restart (sec).
+            (optional)
+            graceful_stalepath_time: Time to hold stale paths of restarting
+            neighbor (sec). (optional)
+            graceful_update_delay: Route advertisement/selection delay after
+            restart (sec). (optional)
+            graceful_end_on_timer: Enable/disable to exit graceful restart on
+            timer only. (optional)
+            additional_path_select: Number of additional paths to be selected
+            for each IPv4 NLRI. (optional)
+            additional_path_select6: Number of additional paths to be selected
+            for each IPv6 NLRI. (optional)
+            additional_path_select_vpnv4: Number of additional paths to be
+            selected for each VPNv4 NLRI. (optional)
+            additional_path_select_vpnv6: Number of additional paths to be
+            selected for each VPNv6 NLRI. (optional)
+            cross_family_conditional_adv: Enable/disable cross address family
+            conditional advertisement. (optional)
             aggregate_address: BGP aggregate address table. (optional)
             aggregate_address6: BGP IPv6 aggregate address table. (optional)
             neighbor: BGP neighbor table. (optional)
@@ -265,8 +309,10 @@ class Bgp:
             vrf: BGP VRF leaking table. (optional)
             vrf6: BGP IPv6 VRF leaking table. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -274,7 +320,8 @@ class Bgp:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -438,7 +485,7 @@ class Bgp:
         if admin_distance is not None:
             data_payload["admin-distance"] = admin_distance
         if vrf is not None:
-            data_payload["vrf"] = vrf
+            data_payload["vr"] = vrf
         if vrf6 is not None:
             data_payload["vrf6"] = vrf6
         data_payload.update(kwargs)

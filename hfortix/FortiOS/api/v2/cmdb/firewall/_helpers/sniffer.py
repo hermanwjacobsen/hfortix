@@ -86,7 +86,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 9999:
-                    return (False, f"id must be between 0 and 9999")
+                    return (False, "id must be between 0 and 9999")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -130,31 +130,31 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"host cannot exceed 63 characters")
+            return (False, "host cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
         value = payload.get("port")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"port cannot exceed 63 characters")
+            return (False, "port cannot exceed 63 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
         value = payload.get("protocol")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"protocol cannot exceed 63 characters")
+            return (False, "protocol cannot exceed 63 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"vlan cannot exceed 63 characters")
+            return (False, "vlan cannot exceed 63 characters")
 
     # Validate application-list-status if present
     if "application-list-status" in payload:
@@ -169,7 +169,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate ips-sensor-status if present
     if "ips-sensor-status" in payload:
@@ -184,7 +184,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate dsri if present
     if "dsri" in payload:
@@ -208,7 +208,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile-status if present
     if "webfilter-profile-status" in payload:
@@ -223,7 +223,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile-status if present
     if "emailfilter-profile-status" in payload:
@@ -238,7 +238,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile-status if present
     if "dlp-profile-status" in payload:
@@ -253,7 +253,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate ip-threatfeed-status if present
     if "ip-threatfeed-status" in payload:
@@ -277,7 +277,7 @@ def validate_sniffer_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-dos-status if present
     if "ips-dos-status" in payload:
@@ -324,7 +324,7 @@ def validate_sniffer_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 9999:
-                    return (False, f"id must be between 0 and 9999")
+                    return (False, "id must be between 0 and 9999")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -368,31 +368,31 @@ def validate_sniffer_put(
     if "interface" in payload:
         value = payload.get("interface")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"interface cannot exceed 35 characters")
+            return (False, "interface cannot exceed 35 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"host cannot exceed 63 characters")
+            return (False, "host cannot exceed 63 characters")
 
     # Validate port if present
     if "port" in payload:
         value = payload.get("port")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"port cannot exceed 63 characters")
+            return (False, "port cannot exceed 63 characters")
 
     # Validate protocol if present
     if "protocol" in payload:
         value = payload.get("protocol")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"protocol cannot exceed 63 characters")
+            return (False, "protocol cannot exceed 63 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"vlan cannot exceed 63 characters")
+            return (False, "vlan cannot exceed 63 characters")
 
     # Validate application-list-status if present
     if "application-list-status" in payload:
@@ -407,7 +407,7 @@ def validate_sniffer_put(
     if "application-list" in payload:
         value = payload.get("application-list")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"application-list cannot exceed 47 characters")
+            return (False, "application-list cannot exceed 47 characters")
 
     # Validate ips-sensor-status if present
     if "ips-sensor-status" in payload:
@@ -422,7 +422,7 @@ def validate_sniffer_put(
     if "ips-sensor" in payload:
         value = payload.get("ips-sensor")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"ips-sensor cannot exceed 47 characters")
+            return (False, "ips-sensor cannot exceed 47 characters")
 
     # Validate dsri if present
     if "dsri" in payload:
@@ -446,7 +446,7 @@ def validate_sniffer_put(
     if "av-profile" in payload:
         value = payload.get("av-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"av-profile cannot exceed 47 characters")
+            return (False, "av-profile cannot exceed 47 characters")
 
     # Validate webfilter-profile-status if present
     if "webfilter-profile-status" in payload:
@@ -461,7 +461,7 @@ def validate_sniffer_put(
     if "webfilter-profile" in payload:
         value = payload.get("webfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"webfilter-profile cannot exceed 47 characters")
+            return (False, "webfilter-profile cannot exceed 47 characters")
 
     # Validate emailfilter-profile-status if present
     if "emailfilter-profile-status" in payload:
@@ -476,7 +476,7 @@ def validate_sniffer_put(
     if "emailfilter-profile" in payload:
         value = payload.get("emailfilter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"emailfilter-profile cannot exceed 47 characters")
+            return (False, "emailfilter-profile cannot exceed 47 characters")
 
     # Validate dlp-profile-status if present
     if "dlp-profile-status" in payload:
@@ -491,7 +491,7 @@ def validate_sniffer_put(
     if "dlp-profile" in payload:
         value = payload.get("dlp-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"dlp-profile cannot exceed 47 characters")
+            return (False, "dlp-profile cannot exceed 47 characters")
 
     # Validate ip-threatfeed-status if present
     if "ip-threatfeed-status" in payload:
@@ -515,7 +515,7 @@ def validate_sniffer_put(
     if "file-filter-profile" in payload:
         value = payload.get("file-filter-profile")
         if value and isinstance(value, str) and len(value) > 47:
-            return (False, f"file-filter-profile cannot exceed 47 characters")
+            return (False, "file-filter-profile cannot exceed 47 characters")
 
     # Validate ips-dos-status if present
     if "ips-dos-status" in payload:

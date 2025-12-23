@@ -63,7 +63,8 @@ class Connect:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        When FortiWiFi is in client mode, connect to the specified network, if configured in the 'wifi' interface.
+        When FortiWiFi is in client mode, connect to the specified network, if
+        configured in the 'wifi' interface.
 
         Args:
             ssid: SSID of network to connect to. (optional)
@@ -177,7 +178,8 @@ class Status:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        When FortiWiFi is in client mode, retrieve status of currently connected WiFi network, if any.
+        When FortiWiFi is in client mode, retrieve status of currently
+        connected WiFi network, if any.
 
         Args:
             payload_dict: Optional dictionary of parameters

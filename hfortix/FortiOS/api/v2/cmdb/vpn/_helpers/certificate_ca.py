@@ -76,7 +76,7 @@ def validate_certificate_ca_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate range if present
     if "range" in payload:
@@ -109,13 +109,13 @@ def validate_certificate_ca_post(
     if "scep-url" in payload:
         value = payload.get("scep-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"scep-url cannot exceed 255 characters")
+            return (False, "scep-url cannot exceed 255 characters")
 
     # Validate est-url if present
     if "est-url" in payload:
         value = payload.get("est-url")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"est-url cannot exceed 255 characters")
+            return (False, "est-url cannot exceed 255 characters")
 
     # Validate auto-update-days if present
     if "auto-update-days" in payload:
@@ -126,7 +126,7 @@ def validate_certificate_ca_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"auto-update-days must be between 0 and 4294967295",
+                        "auto-update-days must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -143,7 +143,7 @@ def validate_certificate_ca_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"auto-update-days-warning must be between 0 and 4294967295",
+                        "auto-update-days-warning must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -155,7 +155,7 @@ def validate_certificate_ca_post(
     if "ca-identifier" in payload:
         value = payload.get("ca-identifier")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"ca-identifier cannot exceed 255 characters")
+            return (False, "ca-identifier cannot exceed 255 characters")
 
     # Validate obsolete if present
     if "obsolete" in payload:

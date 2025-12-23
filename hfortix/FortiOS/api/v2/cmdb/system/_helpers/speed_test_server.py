@@ -71,7 +71,7 @@ def validate_speed_test_server_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate timestamp if present
     if "timestamp" in payload:
@@ -82,7 +82,7 @@ def validate_speed_test_server_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"timestamp must be between 0 and 4294967295",
+                        "timestamp must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"timestamp must be numeric, got: {value}")
@@ -120,7 +120,7 @@ def validate_speed_test_server_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate timestamp if present
     if "timestamp" in payload:
@@ -131,7 +131,7 @@ def validate_speed_test_server_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"timestamp must be between 0 and 4294967295",
+                        "timestamp must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"timestamp must be numeric, got: {value}")

@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more security policies by policy ID.
+        Reset traffic statistics for one or more security policies by policy
+        ID.
 
         Args:
             policy: Single policy ID to reset. (optional)
@@ -108,12 +109,16 @@ class UpdateGlobalLabel:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Update the global-label of group starting with the provided leading policy ID.
+        Update the global-label of group starting with the provided leading
+        policy ID.
 
         Args:
             policyid: Leading policy ID of the group to update. (optional)
-            current_label: The current global-label of the group. If not provided, will assume the current group's label is empty string. (optional)
-            new_label: The new global-label of the group. If not provided, the current group's label will be deleted (optional)
+            current_label: The current global-label of the group. If not
+            provided, will assume the current group's label is empty string.
+            (optional)
+            new_label: The new global-label of the group. If not provided, the
+            current group's label will be deleted (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -122,7 +127,8 @@ class UpdateGlobalLabel:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.security_policy.update_global_label.post()
+            >>>
+            fgt.api.monitor.firewall.security_policy.update_global_label.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if policyid is not None:

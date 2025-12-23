@@ -88,11 +88,15 @@ class Quarantine:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Quarantine:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -138,21 +143,39 @@ class Quarantine:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
-            agelimit: Age limit for quarantined files (0 - 479 hours, 0 means forever). (optional)
-            maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited). (optional)
-            quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, 0 means unlimited and depends on disk space). (optional)
-            drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. (optional)
-            store_infected: Quarantine infected files found in sessions using the selected protocols. (optional)
-            drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. (optional)
-            store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. (optional)
-            lowspace: Select the method for handling additional files when running low on disk space. (optional)
-            destination: Choose whether to quarantine files to the FortiGate disk or to FortiAnalyzer or to delete them instead of quarantining them. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
+            agelimit: Age limit for quarantined files (0 - 479 hours, 0 means
+            forever). (optional)
+            maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0
+            means unlimited). (optional)
+            quarantine_quota: The amount of disk space to reserve for
+            quarantining files (0 - 4294967295 Mbytes, 0 means unlimited and
+            depends on disk space). (optional)
+            drop_infected: Do not quarantine infected files found in sessions
+            using the selected protocols. Dropped files are deleted instead of
+            being quarantined. (optional)
+            store_infected: Quarantine infected files found in sessions using
+            the selected protocols. (optional)
+            drop_machine_learning: Do not quarantine files detected by machine
+            learning found in sessions using the selected protocols. Dropped
+            files are deleted instead of being quarantined. (optional)
+            store_machine_learning: Quarantine files detected by machine
+            learning found in sessions using the selected protocols. (optional)
+            lowspace: Select the method for handling additional files when
+            running low on disk space. (optional)
+            destination: Choose whether to quarantine files to the FortiGate
+            disk or to FortiAnalyzer or to delete them instead of quarantining
+            them. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -160,7 +183,8 @@ class Quarantine:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

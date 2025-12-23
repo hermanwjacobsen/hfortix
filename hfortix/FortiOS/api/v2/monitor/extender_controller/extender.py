@@ -122,7 +122,8 @@ class ModemFirmware:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.extender_controller.extender.modem_firmware.get(serial='value')
+            >>>
+            fgt.api.monitor.extender_controller.extender.modem_firmware.get(serial='value')
         """
         params = payload_dict.copy() if payload_dict else {}
         params["serial"] = serial
@@ -202,7 +203,9 @@ class Upgrade:
 
         Args:
             id: FortiExtender ID to upgrade. (optional)
-            file_content: Provided when uploading a file: base64 encoded file data. Must not contain whitespace or other invalid base64 characters. Must be included in HTTP body. (optional)
+            file_content: Provided when uploading a file: base64 encoded file
+            data. Must not contain whitespace or other invalid base64
+            characters. Must be included in HTTP body. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments
@@ -254,8 +257,12 @@ class Extender:
         Retrieve statistics for specific configured FortiExtender units.
 
         Args:
-            fortiextender_name: Filter: single FortiExtender name. Retrieve statistics for all configured FortiExtender units unless specified. (optional)
-            type: Statistic type.'type' options are [system | modem | usage | last]. If 'type' is not specified, all types of statistics are retrieved. (optional)
+            fortiextender_name: Filter: single FortiExtender name. Retrieve
+            statistics for all configured FortiExtender units unless specified.
+            (optional)
+            type: Statistic type.'type' options are [system | modem | usage |
+            last]. If 'type' is not specified, all types of statistics are
+            retrieved. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

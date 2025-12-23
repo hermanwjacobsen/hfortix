@@ -33,7 +33,8 @@ Example Usage:
     ... )
     >>>
     >>> # Delete item
-    >>> result = fgt.api.cmdb.firewall.multicast_policy.delete(name="item_name")
+    >>> result =
+    fgt.api.cmdb.firewall.multicast_policy.delete(name="item_name")
 
 Important:
     - Use **POST** to create new objects (404 error if already exists)
@@ -44,7 +45,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +99,17 @@ class MulticastPolicy:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +117,8 @@ class MulticastPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -169,12 +176,16 @@ class MulticastPolicy:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             id: Policy ID ((0 - 4294967294). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             name: Policy name. (optional)
             comments: Comment. (optional)
             status: Enable/disable this policy. (optional)
@@ -182,20 +193,33 @@ class MulticastPolicy:
             dstintf: Destination interface name. (optional)
             srcaddr: Source address objects. (optional)
             dstaddr: Destination address objects. (optional)
-            snat: Enable/disable substitution of the outgoing interface IP address for the original source IP address (called source NAT or SNAT). (optional)
-            snat_ip: IPv4 address to be used as the source address for NATed traffic. (optional)
-            dnat: IPv4 DNAT address used for multicast destination addresses. (optional)
-            protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0). (optional)
-            start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
-            end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
-            utm_status: Enable to add an IPS security profile to the policy. (optional)
+            snat: Enable/disable substitution of the outgoing interface IP
+            address for the original source IP address (called source NAT or
+            SNAT). (optional)
+            snat_ip: IPv4 address to be used as the source address for NATed
+            traffic. (optional)
+            dnat: IPv4 DNAT address used for multicast destination addresses.
+            (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0
+            - 255, default = 0). (optional)
+            start_port: Integer value for starting TCP/UDP/SCTP destination
+            port in range (1 - 65535, default = 1). (optional)
+            end_port: Integer value for ending TCP/UDP/SCTP destination port in
+            range (1 - 65535, default = 1). (optional)
+            utm_status: Enable to add an IPS security profile to the policy.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
-            auto_asic_offload: Enable/disable offloading policy traffic for hardware acceleration. (optional)
-            traffic_shaper: Traffic shaper to apply to traffic forwarded by the multicast policy. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
+            auto_asic_offload: Enable/disable offloading policy traffic for
+            hardware acceleration. (optional)
+            traffic_shaper: Traffic shaper to apply to traffic forwarded by the
+            multicast policy. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -203,7 +227,8 @@ class MulticastPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -229,9 +254,9 @@ class MulticastPolicy:
         if status is not None:
             data_payload["status"] = status
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:
@@ -277,8 +302,10 @@ class MulticastPolicy:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -286,7 +313,8 @@ class MulticastPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -377,10 +405,13 @@ class MulticastPolicy:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             id: Policy ID ((0 - 4294967294). (optional)
-            uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (optional)
+            uuid: Universally Unique Identifier (UUID; automatically assigned
+            but can be manually reset). (optional)
             name: Policy name. (optional)
             comments: Comment. (optional)
             status: Enable/disable this policy. (optional)
@@ -388,20 +419,33 @@ class MulticastPolicy:
             dstintf: Destination interface name. (optional)
             srcaddr: Source address objects. (optional)
             dstaddr: Destination address objects. (optional)
-            snat: Enable/disable substitution of the outgoing interface IP address for the original source IP address (called source NAT or SNAT). (optional)
-            snat_ip: IPv4 address to be used as the source address for NATed traffic. (optional)
-            dnat: IPv4 DNAT address used for multicast destination addresses. (optional)
-            protocol: Integer value for the protocol type as defined by IANA (0 - 255, default = 0). (optional)
-            start_port: Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
-            end_port: Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 1). (optional)
-            utm_status: Enable to add an IPS security profile to the policy. (optional)
+            snat: Enable/disable substitution of the outgoing interface IP
+            address for the original source IP address (called source NAT or
+            SNAT). (optional)
+            snat_ip: IPv4 address to be used as the source address for NATed
+            traffic. (optional)
+            dnat: IPv4 DNAT address used for multicast destination addresses.
+            (optional)
+            protocol: Integer value for the protocol type as defined by IANA (0
+            - 255, default = 0). (optional)
+            start_port: Integer value for starting TCP/UDP/SCTP destination
+            port in range (1 - 65535, default = 1). (optional)
+            end_port: Integer value for ending TCP/UDP/SCTP destination port in
+            range (1 - 65535, default = 1). (optional)
+            utm_status: Enable to add an IPS security profile to the policy.
+            (optional)
             ips_sensor: Name of an existing IPS sensor. (optional)
-            logtraffic: Enable or disable logging. Log all sessions or security profile sessions. (optional)
-            auto_asic_offload: Enable/disable offloading policy traffic for hardware acceleration. (optional)
-            traffic_shaper: Traffic shaper to apply to traffic forwarded by the multicast policy. (optional)
+            logtraffic: Enable or disable logging. Log all sessions or security
+            profile sessions. (optional)
+            auto_asic_offload: Enable/disable offloading policy traffic for
+            hardware acceleration. (optional)
+            traffic_shaper: Traffic shaper to apply to traffic forwarded by the
+            multicast policy. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -409,7 +453,8 @@ class MulticastPolicy:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -429,9 +474,9 @@ class MulticastPolicy:
         if status is not None:
             data_payload["status"] = status
         if srcintf is not None:
-            data_payload["srcintf"] = srcintf
+            data_payload["srcint"] = srcintf
         if dstintf is not None:
-            data_payload["dstintf"] = dstintf
+            data_payload["dstint"] = dstintf
         if srcaddr is not None:
             data_payload["srcaddr"] = srcaddr
         if dstaddr is not None:

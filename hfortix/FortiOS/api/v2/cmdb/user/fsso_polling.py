@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class FssoPolling:
         Args:
             id: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class FssoPolling:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -162,26 +168,41 @@ class FssoPolling:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             id: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             id: Active Directory server ID. (optional)
-            status: Enable/disable polling for the status of this Active Directory server. (optional)
-            server: Host name or IP address of the Active Directory server. (optional)
-            default_domain: Default domain managed by this Active Directory server. (optional)
-            port: Port to communicate with this Active Directory server. (optional)
-            user: User name required to log into this Active Directory server. (optional)
-            password: Password required to log into this Active Directory server. (optional)
-            ldap_server: LDAP server name used in LDAP connection strings. (optional)
-            logon_history: Number of hours of logon history to keep, 0 means keep all history. (optional)
-            polling_frequency: Polling frequency (every 1 to 30 seconds). (optional)
+            status: Enable/disable polling for the status of this Active
+            Directory server. (optional)
+            server: Host name or IP address of the Active Directory server.
+            (optional)
+            default_domain: Default domain managed by this Active Directory
+            server. (optional)
+            port: Port to communicate with this Active Directory server.
+            (optional)
+            user: User name required to log into this Active Directory server.
+            (optional)
+            password: Password required to log into this Active Directory
+            server. (optional)
+            ldap_server: LDAP server name used in LDAP connection strings.
+            (optional)
+            logon_history: Number of hours of logon history to keep, 0 means
+            keep all history. (optional)
+            polling_frequency: Polling frequency (every 1 to 30 seconds).
+            (optional)
             adgrp: LDAP Group Info. (optional)
             smbv1: Enable/disable support of SMBv1 for Samba. (optional)
-            smb_ntlmv1_auth: Enable/disable support of NTLMv1 for Samba authentication. (optional)
+            smb_ntlmv1_auth: Enable/disable support of NTLMv1 for Samba
+            authentication. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -189,7 +210,8 @@ class FssoPolling:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -249,8 +271,10 @@ class FssoPolling:
         Args:
             id: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -258,7 +282,8 @@ class FssoPolling:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -342,24 +367,38 @@ class FssoPolling:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             id: Active Directory server ID. (optional)
-            status: Enable/disable polling for the status of this Active Directory server. (optional)
-            server: Host name or IP address of the Active Directory server. (optional)
-            default_domain: Default domain managed by this Active Directory server. (optional)
-            port: Port to communicate with this Active Directory server. (optional)
-            user: User name required to log into this Active Directory server. (optional)
-            password: Password required to log into this Active Directory server. (optional)
-            ldap_server: LDAP server name used in LDAP connection strings. (optional)
-            logon_history: Number of hours of logon history to keep, 0 means keep all history. (optional)
-            polling_frequency: Polling frequency (every 1 to 30 seconds). (optional)
+            status: Enable/disable polling for the status of this Active
+            Directory server. (optional)
+            server: Host name or IP address of the Active Directory server.
+            (optional)
+            default_domain: Default domain managed by this Active Directory
+            server. (optional)
+            port: Port to communicate with this Active Directory server.
+            (optional)
+            user: User name required to log into this Active Directory server.
+            (optional)
+            password: Password required to log into this Active Directory
+            server. (optional)
+            ldap_server: LDAP server name used in LDAP connection strings.
+            (optional)
+            logon_history: Number of hours of logon history to keep, 0 means
+            keep all history. (optional)
+            polling_frequency: Polling frequency (every 1 to 30 seconds).
+            (optional)
             adgrp: LDAP Group Info. (optional)
             smbv1: Enable/disable support of SMBv1 for Samba. (optional)
-            smb_ntlmv1_auth: Enable/disable support of NTLMv1 for Samba authentication. (optional)
+            smb_ntlmv1_auth: Enable/disable support of NTLMv1 for Samba
+            authentication. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -367,7 +406,8 @@ class FssoPolling:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

@@ -66,7 +66,8 @@ class Status:
         Get Central Management status.
 
         Args:
-            skip_detect: Skip sending a detect message to the central management device. (optional)
+            skip_detect: Skip sending a detect message to the central
+            management device. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

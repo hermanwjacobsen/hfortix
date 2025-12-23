@@ -1,5 +1,6 @@
 """
-Validation helpers for wireless-controller hotspot20_anqp_roaming_consortium endpoint.
+Validation helpers for wireless-controller hotspot20_anqp_roaming_consortium
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -59,7 +60,8 @@ def validate_hotspot20_anqp_roaming_consortium_post(
     payload: dict[str, Any],
 ) -> tuple[bool, str | None]:
     """
-    Validate POST request payload for creating hotspot20_anqp_roaming_consortium.
+    Validate POST request payload for creating
+    hotspot20_anqp_roaming_consortium.
 
     Args:
         payload: The payload to validate
@@ -71,7 +73,7 @@ def validate_hotspot20_anqp_roaming_consortium_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     return (True, None)
 
@@ -106,7 +108,7 @@ def validate_hotspot20_anqp_roaming_consortium_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     return (True, None)
 

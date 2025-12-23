@@ -73,25 +73,25 @@ def validate_vlan_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"vlan cannot exceed 15 characters")
+            return (False, "vlan cannot exceed 15 characters")
 
     # Validate allowed-vlans-all if present
     if "allowed-vlans-all" in payload:
@@ -144,25 +144,25 @@ def validate_vlan_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate description if present
     if "description" in payload:
         value = payload.get("description")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"description cannot exceed 63 characters")
+            return (False, "description cannot exceed 63 characters")
 
     # Validate fortilink if present
     if "fortilink" in payload:
         value = payload.get("fortilink")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"fortilink cannot exceed 15 characters")
+            return (False, "fortilink cannot exceed 15 characters")
 
     # Validate vlan if present
     if "vlan" in payload:
         value = payload.get("vlan")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"vlan cannot exceed 15 characters")
+            return (False, "vlan cannot exceed 15 characters")
 
     # Validate allowed-vlans-all if present
     if "allowed-vlans-all" in payload:

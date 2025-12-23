@@ -72,13 +72,13 @@ def validate_lw_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate lw-protocol if present
     if "lw-protocol" in payload:
@@ -93,7 +93,7 @@ def validate_lw_profile_post(
     if "cups-server" in payload:
         value = payload.get("cups-server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cups-server cannot exceed 255 characters")
+            return (False, "cups-server cannot exceed 255 characters")
 
     # Validate cups-server-port if present
     if "cups-server-port" in payload:
@@ -104,7 +104,7 @@ def validate_lw_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"cups-server-port must be between 0 and 65535",
+                        "cups-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -116,7 +116,7 @@ def validate_lw_profile_post(
     if "tc-server" in payload:
         value = payload.get("tc-server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"tc-server cannot exceed 255 characters")
+            return (False, "tc-server cannot exceed 255 characters")
 
     # Validate tc-server-port if present
     if "tc-server-port" in payload:
@@ -127,7 +127,7 @@ def validate_lw_profile_post(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tc-server-port must be between 0 and 65535",
+                        "tc-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"tc-server-port must be numeric, got: {value}")
@@ -165,13 +165,13 @@ def validate_lw_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"comment cannot exceed 63 characters")
+            return (False, "comment cannot exceed 63 characters")
 
     # Validate lw-protocol if present
     if "lw-protocol" in payload:
@@ -186,7 +186,7 @@ def validate_lw_profile_put(
     if "cups-server" in payload:
         value = payload.get("cups-server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"cups-server cannot exceed 255 characters")
+            return (False, "cups-server cannot exceed 255 characters")
 
     # Validate cups-server-port if present
     if "cups-server-port" in payload:
@@ -197,7 +197,7 @@ def validate_lw_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"cups-server-port must be between 0 and 65535",
+                        "cups-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -209,7 +209,7 @@ def validate_lw_profile_put(
     if "tc-server" in payload:
         value = payload.get("tc-server")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"tc-server cannot exceed 255 characters")
+            return (False, "tc-server cannot exceed 255 characters")
 
     # Validate tc-server-port if present
     if "tc-server-port" in payload:
@@ -220,7 +220,7 @@ def validate_lw_profile_put(
                 if int_val < 0 or int_val > 65535:
                     return (
                         False,
-                        f"tc-server-port must be between 0 and 65535",
+                        "tc-server-port must be between 0 and 65535",
                     )
             except (ValueError, TypeError):
                 return (False, f"tc-server-port must be numeric, got: {value}")

@@ -1,5 +1,6 @@
 """
-Validation helpers for wireless-controller hotspot20_anqp_ip_address_type endpoint.
+Validation helpers for wireless-controller hotspot20_anqp_ip_address_type
+endpoint.
 
 Each endpoint has its own validation file to keep validation logic
 separate and maintainable. Use central cmdb._helpers tools for common tasks.
@@ -82,7 +83,7 @@ def validate_hotspot20_anqp_ip_address_type_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ipv6-address-type if present
     if "ipv6-address-type" in payload:
@@ -135,7 +136,7 @@ def validate_hotspot20_anqp_ip_address_type_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate ipv6-address-type if present
     if "ipv6-address-type" in payload:

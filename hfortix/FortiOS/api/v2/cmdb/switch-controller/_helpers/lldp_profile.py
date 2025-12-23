@@ -83,7 +83,7 @@ def validate_lldp_profile_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate med-tlvs if present
     if "med-tlvs" in payload:
@@ -130,7 +130,7 @@ def validate_lldp_profile_post(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"auto-isl-hello-timer must be between 1 and 30",
+                        "auto-isl-hello-timer must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -147,7 +147,7 @@ def validate_lldp_profile_post(
                 if int_val < 0 or int_val > 90:
                     return (
                         False,
-                        f"auto-isl-receive-timeout must be between 0 and 90",
+                        "auto-isl-receive-timeout must be between 0 and 90",
                     )
             except (ValueError, TypeError):
                 return (
@@ -164,7 +164,7 @@ def validate_lldp_profile_post(
                 if int_val < 0 or int_val > 9:
                     return (
                         False,
-                        f"auto-isl-port-group must be between 0 and 9",
+                        "auto-isl-port-group must be between 0 and 9",
                     )
             except (ValueError, TypeError):
                 return (
@@ -194,7 +194,7 @@ def validate_lldp_profile_post(
     if "auto-isl-auth-user" in payload:
         value = payload.get("auto-isl-auth-user")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auto-isl-auth-user cannot exceed 63 characters")
+            return (False, "auto-isl-auth-user cannot exceed 63 characters")
 
     # Validate auto-isl-auth-identity if present
     if "auto-isl-auth-identity" in payload:
@@ -202,7 +202,7 @@ def validate_lldp_profile_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"auto-isl-auth-identity cannot exceed 63 characters",
+                "auto-isl-auth-identity cannot exceed 63 characters",
             )
 
     # Validate auto-isl-auth-reauth if present
@@ -214,7 +214,7 @@ def validate_lldp_profile_post(
                 if int_val < 180 or int_val > 3600:
                     return (
                         False,
-                        f"auto-isl-auth-reauth must be between 180 and 3600",
+                        "auto-isl-auth-reauth must be between 180 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -237,7 +237,7 @@ def validate_lldp_profile_post(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"auto-isl-auth-macsec-profile cannot exceed 63 characters",
+                "auto-isl-auth-macsec-profile cannot exceed 63 characters",
             )
 
     return (True, None)
@@ -273,7 +273,7 @@ def validate_lldp_profile_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate med-tlvs if present
     if "med-tlvs" in payload:
@@ -320,7 +320,7 @@ def validate_lldp_profile_put(
                 if int_val < 1 or int_val > 30:
                     return (
                         False,
-                        f"auto-isl-hello-timer must be between 1 and 30",
+                        "auto-isl-hello-timer must be between 1 and 30",
                     )
             except (ValueError, TypeError):
                 return (
@@ -337,7 +337,7 @@ def validate_lldp_profile_put(
                 if int_val < 0 or int_val > 90:
                     return (
                         False,
-                        f"auto-isl-receive-timeout must be between 0 and 90",
+                        "auto-isl-receive-timeout must be between 0 and 90",
                     )
             except (ValueError, TypeError):
                 return (
@@ -354,7 +354,7 @@ def validate_lldp_profile_put(
                 if int_val < 0 or int_val > 9:
                     return (
                         False,
-                        f"auto-isl-port-group must be between 0 and 9",
+                        "auto-isl-port-group must be between 0 and 9",
                     )
             except (ValueError, TypeError):
                 return (
@@ -384,7 +384,7 @@ def validate_lldp_profile_put(
     if "auto-isl-auth-user" in payload:
         value = payload.get("auto-isl-auth-user")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"auto-isl-auth-user cannot exceed 63 characters")
+            return (False, "auto-isl-auth-user cannot exceed 63 characters")
 
     # Validate auto-isl-auth-identity if present
     if "auto-isl-auth-identity" in payload:
@@ -392,7 +392,7 @@ def validate_lldp_profile_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"auto-isl-auth-identity cannot exceed 63 characters",
+                "auto-isl-auth-identity cannot exceed 63 characters",
             )
 
     # Validate auto-isl-auth-reauth if present
@@ -404,7 +404,7 @@ def validate_lldp_profile_put(
                 if int_val < 180 or int_val > 3600:
                     return (
                         False,
-                        f"auto-isl-auth-reauth must be between 180 and 3600",
+                        "auto-isl-auth-reauth must be between 180 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -427,7 +427,7 @@ def validate_lldp_profile_put(
         if value and isinstance(value, str) and len(value) > 63:
             return (
                 False,
-                f"auto-isl-auth-macsec-profile cannot exceed 63 characters",
+                "auto-isl-auth-macsec-profile cannot exceed 63 characters",
             )
 
     return (True, None)

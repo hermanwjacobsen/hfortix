@@ -118,7 +118,7 @@ def validate_sdwan_put(
                 if int_val < 2 or int_val > 4:
                     return (
                         False,
-                        f"duplication-max-num must be between 2 and 4",
+                        "duplication-max-num must be between 2 and 4",
                     )
             except (ValueError, TypeError):
                 return (
@@ -135,7 +135,7 @@ def validate_sdwan_put(
                 if int_val < 250 or int_val > 1000:
                     return (
                         False,
-                        f"duplication-max-discrepancy must be between 250 and 1000",
+                        "duplication-max-discrepancy must be between 250 and 1000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -161,7 +161,7 @@ def validate_sdwan_put(
                 if int_val < 0 or int_val > 10000000:
                     return (
                         False,
-                        f"neighbor-hold-down-time must be between 0 and 10000000",
+                        "neighbor-hold-down-time must be between 0 and 10000000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -178,7 +178,7 @@ def validate_sdwan_put(
                 if int_val < 0 or int_val > 3600:
                     return (
                         False,
-                        f"app-perf-log-period must be between 0 and 3600",
+                        "app-perf-log-period must be between 0 and 3600",
                     )
             except (ValueError, TypeError):
                 return (
@@ -195,7 +195,7 @@ def validate_sdwan_put(
                 if int_val < 0 or int_val > 10000000:
                     return (
                         False,
-                        f"neighbor-hold-boot-time must be between 0 and 10000000",
+                        "neighbor-hold-boot-time must be between 0 and 10000000",
                     )
             except (ValueError, TypeError):
                 return (

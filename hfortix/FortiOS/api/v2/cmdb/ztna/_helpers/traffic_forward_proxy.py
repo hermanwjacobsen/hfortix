@@ -73,19 +73,19 @@ def validate_traffic_forward_proxy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate decrypted-traffic-mirror if present
     if "decrypted-traffic-mirror" in payload:
@@ -93,7 +93,7 @@ def validate_traffic_forward_proxy_post(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate log-blocked-traffic if present
@@ -118,13 +118,13 @@ def validate_traffic_forward_proxy_post(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate vip6 if present
     if "vip6" in payload:
         value = payload.get("vip6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip6 cannot exceed 79 characters")
+            return (False, "vip6 cannot exceed 79 characters")
 
     return (True, None)
 
@@ -159,19 +159,19 @@ def validate_traffic_forward_proxy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate vip if present
     if "vip" in payload:
         value = payload.get("vip")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip cannot exceed 79 characters")
+            return (False, "vip cannot exceed 79 characters")
 
     # Validate host if present
     if "host" in payload:
         value = payload.get("host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"host cannot exceed 79 characters")
+            return (False, "host cannot exceed 79 characters")
 
     # Validate decrypted-traffic-mirror if present
     if "decrypted-traffic-mirror" in payload:
@@ -179,7 +179,7 @@ def validate_traffic_forward_proxy_put(
         if value and isinstance(value, str) and len(value) > 35:
             return (
                 False,
-                f"decrypted-traffic-mirror cannot exceed 35 characters",
+                "decrypted-traffic-mirror cannot exceed 35 characters",
             )
 
     # Validate log-blocked-traffic if present
@@ -204,13 +204,13 @@ def validate_traffic_forward_proxy_put(
     if "auth-virtual-host" in payload:
         value = payload.get("auth-virtual-host")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-virtual-host cannot exceed 79 characters")
+            return (False, "auth-virtual-host cannot exceed 79 characters")
 
     # Validate vip6 if present
     if "vip6" in payload:
         value = payload.get("vip6")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"vip6 cannot exceed 79 characters")
+            return (False, "vip6 cannot exceed 79 characters")
 
     return (True, None)
 

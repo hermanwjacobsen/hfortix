@@ -88,11 +88,15 @@ class Global:
         Select all entries in a CLI table.
 
         Args:
-            exclude_default_values: Exclude properties/objects with default value (optional)
-            stat_items: Items to count occurrence in entire response (multiple items should be separated by '|'). (optional)
+            exclude_default_values: Exclude properties/objects with default
+            value (optional)
+            stat_items: Items to count occurrence in entire response (multiple
+            items should be separated by '|'). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -100,7 +104,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -157,40 +162,75 @@ class Global:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             ssl_cert: SSL certificate for SSL interception. (optional)
             ssl_ca_cert: SSL CA certificate for SSL interception. (optional)
-            fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. (optional)
-            ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. (optional)
-            proxy_fqdn: Fully Qualified Domain Name of the explicit web proxy (default = default.fqdn) that clients connect to. (optional)
-            max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 8). (optional)
-            max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32). (optional)
-            http2_client_window_size: HTTP/2 client initial window size in bytes (65535 - 2147483647, default = 1048576 (1MB)). (optional)
-            http2_server_window_size: HTTP/2 server initial window size in bytes (65535 - 2147483647, default = 1048576 (1MB)). (optional)
-            auth_sign_timeout: Proxy auth query sign timeout in seconds (30 - 3600, default = 120). (optional)
-            strict_web_check: Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP. (optional)
-            forward_proxy_auth: Enable/disable forwarding proxy authentication headers. (optional)
-            forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30). (optional)
-            max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (1 - 1024 Kbytes, default = 1). (optional)
-            webproxy_profile: Name of the web proxy profile to apply when explicit proxy traffic is allowed by default and traffic is accepted that does not match an explicit proxy policy. (optional)
-            learn_client_ip: Enable/disable learning the client's IP address from headers. (optional)
-            always_learn_client_ip: Enable/disable learning the client's IP address from headers for every request. (optional)
-            learn_client_ip_from_header: Learn client IP address from the specified headers. (optional)
-            learn_client_ip_srcaddr: Source address name (srcaddr or srcaddr6 must be set). (optional)
-            learn_client_ip_srcaddr6: IPv6 Source address name (srcaddr or srcaddr6 must be set). (optional)
-            src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity. (optional)
-            src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity. (optional)
-            policy_partial_match: Enable/disable policy partial matching. (optional)
-            log_policy_pending: Enable/disable logging sessions that are pending on policy matching. (optional)
-            log_forward_server: Enable/disable forward server name logging in forward traffic log. (optional)
-            log_app_id: Enable/disable always log application type in traffic log. (optional)
-            proxy_transparent_cert_inspection: Enable/disable transparent proxy certificate inspection. (optional)
-            request_obs_fold: Action when HTTP/1.x request header contains obs-fold (default = keep). (optional)
+            fast_policy_match: Enable/disable fast matching algorithm for
+            explicit and transparent proxy policy. (optional)
+            ldap_user_cache: Enable/disable LDAP user cache for explicit and
+            transparent proxy user. (optional)
+            proxy_fqdn: Fully Qualified Domain Name of the explicit web proxy
+            (default = default.fqdn) that clients connect to. (optional)
+            max_request_length: Maximum length of HTTP request line (2 - 64
+            Kbytes, default = 8). (optional)
+            max_message_length: Maximum length of HTTP message, not including
+            body (16 - 256 Kbytes, default = 32). (optional)
+            http2_client_window_size: HTTP/2 client initial window size in
+            bytes (65535 - 2147483647, default = 1048576 (1MB)). (optional)
+            http2_server_window_size: HTTP/2 server initial window size in
+            bytes (65535 - 2147483647, default = 1048576 (1MB)). (optional)
+            auth_sign_timeout: Proxy auth query sign timeout in seconds (30 -
+            3600, default = 120). (optional)
+            strict_web_check: Enable/disable strict web checking to block web
+            sites that send incorrect headers that don't conform to HTTP.
+            (optional)
+            forward_proxy_auth: Enable/disable forwarding proxy authentication
+            headers. (optional)
+            forward_server_affinity_timeout: Period of time before the source
+            IP's traffic is no longer assigned to the forwarding server (6 - 60
+            min, default = 30). (optional)
+            max_waf_body_cache_length: Maximum length of HTTP messages
+            processed by Web Application Firewall (WAF) (1 - 1024 Kbytes,
+            default = 1). (optional)
+            webproxy_profile: Name of the web proxy profile to apply when
+            explicit proxy traffic is allowed by default and traffic is
+            accepted that does not match an explicit proxy policy. (optional)
+            learn_client_ip: Enable/disable learning the client's IP address
+            from headers. (optional)
+            always_learn_client_ip: Enable/disable learning the client's IP
+            address from headers for every request. (optional)
+            learn_client_ip_from_header: Learn client IP address from the
+            specified headers. (optional)
+            learn_client_ip_srcaddr: Source address name (srcaddr or srcaddr6
+            must be set). (optional)
+            learn_client_ip_srcaddr6: IPv6 Source address name (srcaddr or
+            srcaddr6 must be set). (optional)
+            src_affinity_exempt_addr: IPv4 source addresses to exempt proxy
+            affinity. (optional)
+            src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy
+            affinity. (optional)
+            policy_partial_match: Enable/disable policy partial matching.
+            (optional)
+            log_policy_pending: Enable/disable logging sessions that are
+            pending on policy matching. (optional)
+            log_forward_server: Enable/disable forward server name logging in
+            forward traffic log. (optional)
+            log_app_id: Enable/disable always log application type in traffic
+            log. (optional)
+            proxy_transparent_cert_inspection: Enable/disable transparent proxy
+            certificate inspection. (optional)
+            request_obs_fold: Action when HTTP/1.x request header contains
+            obs-fold (default = keep). (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -198,7 +238,8 @@ class Global:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

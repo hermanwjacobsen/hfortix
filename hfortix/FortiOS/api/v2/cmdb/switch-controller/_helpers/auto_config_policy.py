@@ -74,19 +74,19 @@ def validate_auto_config_policy_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate qos-policy if present
     if "qos-policy" in payload:
         value = payload.get("qos-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"qos-policy cannot exceed 63 characters")
+            return (False, "qos-policy cannot exceed 63 characters")
 
     # Validate storm-control-policy if present
     if "storm-control-policy" in payload:
         value = payload.get("storm-control-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"storm-control-policy cannot exceed 63 characters")
+            return (False, "storm-control-policy cannot exceed 63 characters")
 
     # Validate poe-status if present
     if "poe-status" in payload:
@@ -148,19 +148,19 @@ def validate_auto_config_policy_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate qos-policy if present
     if "qos-policy" in payload:
         value = payload.get("qos-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"qos-policy cannot exceed 63 characters")
+            return (False, "qos-policy cannot exceed 63 characters")
 
     # Validate storm-control-policy if present
     if "storm-control-policy" in payload:
         value = payload.get("storm-control-policy")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"storm-control-policy cannot exceed 63 characters")
+            return (False, "storm-control-policy cannot exceed 63 characters")
 
     # Validate poe-status if present
     if "poe-status" in payload:

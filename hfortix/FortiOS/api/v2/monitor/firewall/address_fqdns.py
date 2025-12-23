@@ -66,7 +66,9 @@ class AddressFqdns:
         List of FQDN address objects and the IPs they resolved to.
 
         Args:
-            mkey: Name of the FQDN address to retrieve. If this is not provided, the count of IPs FQDN resolves to will be returned. (optional)
+            mkey: Name of the FQDN address to retrieve. If this is not
+            provided, the count of IPs FQDN resolves to will be returned.
+            (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

@@ -71,7 +71,7 @@ def validate_storage_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -98,7 +98,7 @@ def validate_storage_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"order must be between 0 and 255")
+                    return (False, "order must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"order must be numeric, got: {value}")
 
@@ -106,13 +106,13 @@ def validate_storage_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     if "partition" in payload:
         value = payload.get("partition")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"partition cannot exceed 16 characters")
+            return (False, "partition cannot exceed 16 characters")
 
     # Validate device if present
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"device cannot exceed 19 characters")
+            return (False, "device cannot exceed 19 characters")
 
     # Validate size if present
     if "size" in payload:
@@ -121,7 +121,7 @@ def validate_storage_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"size must be between 0 and 4294967295")
+                    return (False, "size must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"size must be numeric, got: {value}")
 
@@ -158,7 +158,7 @@ def validate_storage_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -185,7 +185,7 @@ def validate_storage_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"order must be between 0 and 255")
+                    return (False, "order must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"order must be numeric, got: {value}")
 
@@ -193,13 +193,13 @@ def validate_storage_put(
     if "partition" in payload:
         value = payload.get("partition")
         if value and isinstance(value, str) and len(value) > 16:
-            return (False, f"partition cannot exceed 16 characters")
+            return (False, "partition cannot exceed 16 characters")
 
     # Validate device if present
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 19:
-            return (False, f"device cannot exceed 19 characters")
+            return (False, "device cannot exceed 19 characters")
 
     # Validate size if present
     if "size" in payload:
@@ -208,7 +208,7 @@ def validate_storage_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 4294967295:
-                    return (False, f"size must be between 0 and 4294967295")
+                    return (False, "size must be between 0 and 4294967295")
             except (ValueError, TypeError):
                 return (False, f"size must be numeric, got: {value}")
 

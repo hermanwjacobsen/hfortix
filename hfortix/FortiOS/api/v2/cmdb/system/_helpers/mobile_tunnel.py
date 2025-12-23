@@ -75,7 +75,7 @@ def validate_mobile_tunnel_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -90,7 +90,7 @@ def validate_mobile_tunnel_post(
     if "roaming-interface" in payload:
         value = payload.get("roaming-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"roaming-interface cannot exceed 15 characters")
+            return (False, "roaming-interface cannot exceed 15 characters")
 
     # Validate renew-interval if present
     if "renew-interval" in payload:
@@ -99,7 +99,7 @@ def validate_mobile_tunnel_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 60:
-                    return (False, f"renew-interval must be between 5 and 60")
+                    return (False, "renew-interval must be between 5 and 60")
             except (ValueError, TypeError):
                 return (False, f"renew-interval must be numeric, got: {value}")
 
@@ -110,7 +110,7 @@ def validate_mobile_tunnel_post(
             try:
                 int_val = int(value)
                 if int_val < 180 or int_val > 65535:
-                    return (False, f"lifetime must be between 180 and 65535")
+                    return (False, "lifetime must be between 180 and 65535")
             except (ValueError, TypeError):
                 return (False, f"lifetime must be numeric, got: {value}")
 
@@ -121,7 +121,7 @@ def validate_mobile_tunnel_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"reg-interval must be between 5 and 300")
+                    return (False, "reg-interval must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"reg-interval must be numeric, got: {value}")
 
@@ -132,7 +132,7 @@ def validate_mobile_tunnel_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 30:
-                    return (False, f"reg-retry must be between 1 and 30")
+                    return (False, "reg-retry must be between 1 and 30")
             except (ValueError, TypeError):
                 return (False, f"reg-retry must be numeric, got: {value}")
 
@@ -145,7 +145,7 @@ def validate_mobile_tunnel_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"n-mhae-spi must be between 0 and 4294967295",
+                        "n-mhae-spi must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"n-mhae-spi must be numeric, got: {value}")
@@ -210,7 +210,7 @@ def validate_mobile_tunnel_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"name cannot exceed 15 characters")
+            return (False, "name cannot exceed 15 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -225,7 +225,7 @@ def validate_mobile_tunnel_put(
     if "roaming-interface" in payload:
         value = payload.get("roaming-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"roaming-interface cannot exceed 15 characters")
+            return (False, "roaming-interface cannot exceed 15 characters")
 
     # Validate renew-interval if present
     if "renew-interval" in payload:
@@ -234,7 +234,7 @@ def validate_mobile_tunnel_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 60:
-                    return (False, f"renew-interval must be between 5 and 60")
+                    return (False, "renew-interval must be between 5 and 60")
             except (ValueError, TypeError):
                 return (False, f"renew-interval must be numeric, got: {value}")
 
@@ -245,7 +245,7 @@ def validate_mobile_tunnel_put(
             try:
                 int_val = int(value)
                 if int_val < 180 or int_val > 65535:
-                    return (False, f"lifetime must be between 180 and 65535")
+                    return (False, "lifetime must be between 180 and 65535")
             except (ValueError, TypeError):
                 return (False, f"lifetime must be numeric, got: {value}")
 
@@ -256,7 +256,7 @@ def validate_mobile_tunnel_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 300:
-                    return (False, f"reg-interval must be between 5 and 300")
+                    return (False, "reg-interval must be between 5 and 300")
             except (ValueError, TypeError):
                 return (False, f"reg-interval must be numeric, got: {value}")
 
@@ -267,7 +267,7 @@ def validate_mobile_tunnel_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 30:
-                    return (False, f"reg-retry must be between 1 and 30")
+                    return (False, "reg-retry must be between 1 and 30")
             except (ValueError, TypeError):
                 return (False, f"reg-retry must be numeric, got: {value}")
 
@@ -280,7 +280,7 @@ def validate_mobile_tunnel_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"n-mhae-spi must be between 0 and 4294967295",
+                        "n-mhae-spi must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"n-mhae-spi must be numeric, got: {value}")

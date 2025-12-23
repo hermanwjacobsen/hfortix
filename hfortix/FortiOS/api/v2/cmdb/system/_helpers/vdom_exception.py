@@ -30,7 +30,7 @@ VALID_BODY_OBJECT = [
     "log.syslogd4.override-setting",
     "system.gre-tunnel",
     "system.central-management",
-    "system.csf",
+    "system.cs",
     "user.radius",
     "system.interface",
     "log.syslogd.setting",
@@ -101,7 +101,7 @@ def validate_vdom_exception_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"id must be between 1 and 4096")
+                    return (False, "id must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 
@@ -159,7 +159,7 @@ def validate_vdom_exception_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 4096:
-                    return (False, f"id must be between 1 and 4096")
+                    return (False, "id must be between 1 and 4096")
             except (ValueError, TypeError):
                 return (False, f"id must be numeric, got: {value}")
 

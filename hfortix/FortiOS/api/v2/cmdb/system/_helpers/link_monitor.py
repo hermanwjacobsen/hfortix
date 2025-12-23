@@ -88,7 +88,7 @@ def validate_link_monitor_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate addr-mode if present
     if "addr-mode" in payload:
@@ -100,8 +100,8 @@ def validate_link_monitor_post(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"srcintf cannot exceed 15 characters")
 
@@ -139,7 +139,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -147,19 +147,19 @@ def validate_link_monitor_post(
     if "http-get" in payload:
         value = payload.get("http-get")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-get cannot exceed 1024 characters")
+            return (False, "http-get cannot exceed 1024 characters")
 
     # Validate http-agent if present
     if "http-agent" in payload:
         value = payload.get("http-agent")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-agent cannot exceed 1024 characters")
+            return (False, "http-agent cannot exceed 1024 characters")
 
     # Validate http-match if present
     if "http-match" in payload:
         value = payload.get("http-match")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-match cannot exceed 1024 characters")
+            return (False, "http-match cannot exceed 1024 characters")
 
     # Validate interval if present
     if "interval" in payload:
@@ -168,7 +168,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 20 or int_val > 3600000:
-                    return (False, f"interval must be between 20 and 3600000")
+                    return (False, "interval must be between 20 and 3600000")
             except (ValueError, TypeError):
                 return (False, f"interval must be numeric, got: {value}")
 
@@ -181,7 +181,7 @@ def validate_link_monitor_post(
                 if int_val < 20 or int_val > 5000:
                     return (
                         False,
-                        f"probe-timeout must be between 20 and 5000",
+                        "probe-timeout must be between 20 and 5000",
                     )
             except (ValueError, TypeError):
                 return (False, f"probe-timeout must be numeric, got: {value}")
@@ -193,7 +193,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"failtime must be between 1 and 3600")
+                    return (False, "failtime must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"failtime must be numeric, got: {value}")
 
@@ -204,7 +204,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"recoverytime must be between 1 and 3600")
+                    return (False, "recoverytime must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"recoverytime must be numeric, got: {value}")
 
@@ -215,7 +215,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 30:
-                    return (False, f"probe-count must be between 5 and 30")
+                    return (False, "probe-count must be between 5 and 30")
             except (ValueError, TypeError):
                 return (False, f"probe-count must be numeric, got: {value}")
 
@@ -235,7 +235,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"packet-size must be between 0 and 65535")
+                    return (False, "packet-size must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"packet-size must be numeric, got: {value}")
 
@@ -246,7 +246,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"ha-priority must be between 1 and 50")
+                    return (False, "ha-priority must be between 1 and 50")
             except (ValueError, TypeError):
                 return (False, f"ha-priority must be numeric, got: {value}")
 
@@ -257,7 +257,7 @@ def validate_link_monitor_post(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"fail-weight must be between 0 and 255")
+                    return (False, "fail-weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"fail-weight must be numeric, got: {value}")
 
@@ -306,7 +306,7 @@ def validate_link_monitor_post(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"class-id must be between 0 and 4294967295",
+                        "class-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")
@@ -353,7 +353,7 @@ def validate_link_monitor_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate addr-mode if present
     if "addr-mode" in payload:
@@ -365,8 +365,8 @@ def validate_link_monitor_put(
             )
 
     # Validate srcintf if present
-    if "srcintf" in payload:
-        value = payload.get("srcintf")
+    if "srcint" in payload:
+        value = payload.get("srcint")
         if value and isinstance(value, str) and len(value) > 15:
             return (False, f"srcintf cannot exceed 15 characters")
 
@@ -404,7 +404,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"port must be between 1 and 65535")
+                    return (False, "port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"port must be numeric, got: {value}")
 
@@ -412,19 +412,19 @@ def validate_link_monitor_put(
     if "http-get" in payload:
         value = payload.get("http-get")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-get cannot exceed 1024 characters")
+            return (False, "http-get cannot exceed 1024 characters")
 
     # Validate http-agent if present
     if "http-agent" in payload:
         value = payload.get("http-agent")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-agent cannot exceed 1024 characters")
+            return (False, "http-agent cannot exceed 1024 characters")
 
     # Validate http-match if present
     if "http-match" in payload:
         value = payload.get("http-match")
         if value and isinstance(value, str) and len(value) > 1024:
-            return (False, f"http-match cannot exceed 1024 characters")
+            return (False, "http-match cannot exceed 1024 characters")
 
     # Validate interval if present
     if "interval" in payload:
@@ -433,7 +433,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 20 or int_val > 3600000:
-                    return (False, f"interval must be between 20 and 3600000")
+                    return (False, "interval must be between 20 and 3600000")
             except (ValueError, TypeError):
                 return (False, f"interval must be numeric, got: {value}")
 
@@ -446,7 +446,7 @@ def validate_link_monitor_put(
                 if int_val < 20 or int_val > 5000:
                     return (
                         False,
-                        f"probe-timeout must be between 20 and 5000",
+                        "probe-timeout must be between 20 and 5000",
                     )
             except (ValueError, TypeError):
                 return (False, f"probe-timeout must be numeric, got: {value}")
@@ -458,7 +458,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"failtime must be between 1 and 3600")
+                    return (False, "failtime must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"failtime must be numeric, got: {value}")
 
@@ -469,7 +469,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 3600:
-                    return (False, f"recoverytime must be between 1 and 3600")
+                    return (False, "recoverytime must be between 1 and 3600")
             except (ValueError, TypeError):
                 return (False, f"recoverytime must be numeric, got: {value}")
 
@@ -480,7 +480,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 5 or int_val > 30:
-                    return (False, f"probe-count must be between 5 and 30")
+                    return (False, "probe-count must be between 5 and 30")
             except (ValueError, TypeError):
                 return (False, f"probe-count must be numeric, got: {value}")
 
@@ -500,7 +500,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"packet-size must be between 0 and 65535")
+                    return (False, "packet-size must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"packet-size must be numeric, got: {value}")
 
@@ -511,7 +511,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"ha-priority must be between 1 and 50")
+                    return (False, "ha-priority must be between 1 and 50")
             except (ValueError, TypeError):
                 return (False, f"ha-priority must be numeric, got: {value}")
 
@@ -522,7 +522,7 @@ def validate_link_monitor_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 255:
-                    return (False, f"fail-weight must be between 0 and 255")
+                    return (False, "fail-weight must be between 0 and 255")
             except (ValueError, TypeError):
                 return (False, f"fail-weight must be numeric, got: {value}")
 
@@ -571,7 +571,7 @@ def validate_link_monitor_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"class-id must be between 0 and 4294967295",
+                        "class-id must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (False, f"class-id must be numeric, got: {value}")

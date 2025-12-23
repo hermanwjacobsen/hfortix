@@ -190,7 +190,7 @@ def validate_settings_put(
     if "comments" in payload:
         value = payload.get("comments")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comments cannot exceed 255 characters")
+            return (False, "comments cannot exceed 255 characters")
 
     # Validate vdom-type if present
     if "vdom-type" in payload:
@@ -207,7 +207,7 @@ def validate_settings_put(
         if value and isinstance(value, str) and len(value) > 255:
             return (
                 False,
-                f"lan-extension-controller-addr cannot exceed 255 characters",
+                "lan-extension-controller-addr cannot exceed 255 characters",
             )
 
     # Validate lan-extension-controller-port if present
@@ -219,7 +219,7 @@ def validate_settings_put(
                 if int_val < 1024 or int_val > 65535:
                     return (
                         False,
-                        f"lan-extension-controller-port must be between 1024 and 65535",
+                        "lan-extension-controller-port must be between 1024 and 65535",
                     )
             except (ValueError, TypeError):
                 return (
@@ -267,7 +267,7 @@ def validate_settings_put(
     if "device" in payload:
         value = payload.get("device")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"device cannot exceed 35 characters")
+            return (False, "device cannot exceed 35 characters")
 
     # Validate bfd if present
     if "bfd" in payload:
@@ -287,7 +287,7 @@ def validate_settings_put(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-desired-min-tx must be between 1 and 100000",
+                        "bfd-desired-min-tx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -304,7 +304,7 @@ def validate_settings_put(
                 if int_val < 1 or int_val > 100000:
                     return (
                         False,
-                        f"bfd-required-min-rx must be between 1 and 100000",
+                        "bfd-required-min-rx must be between 1 and 100000",
                     )
             except (ValueError, TypeError):
                 return (
@@ -319,7 +319,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 50:
-                    return (False, f"bfd-detect-mult must be between 1 and 50")
+                    return (False, "bfd-detect-mult must be between 1 and 50")
             except (ValueError, TypeError):
                 return (
                     False,
@@ -371,7 +371,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"vpn-stats-period must be between 0 and 4294967295",
+                        "vpn-stats-period must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (
@@ -395,7 +395,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 300 or int_val > 8640000:
-                    return (False, f"mac-ttl must be between 300 and 8640000")
+                    return (False, "mac-ttl must be between 300 and 8640000")
             except (ValueError, TypeError):
                 return (False, f"mac-ttl must be numeric, got: {value}")
 
@@ -451,7 +451,7 @@ def validate_settings_put(
     if "dhcp-proxy-interface" in payload:
         value = payload.get("dhcp-proxy-interface")
         if value and isinstance(value, str) and len(value) > 15:
-            return (False, f"dhcp-proxy-interface cannot exceed 15 characters")
+            return (False, "dhcp-proxy-interface cannot exceed 15 characters")
 
     # Validate dhcp-proxy-vrf-select if present
     if "dhcp-proxy-vrf-select" in payload:
@@ -462,7 +462,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 511:
                     return (
                         False,
-                        f"dhcp-proxy-vrf-select must be between 0 and 511",
+                        "dhcp-proxy-vrf-select must be between 0 and 511",
                     )
             except (ValueError, TypeError):
                 return (
@@ -702,7 +702,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"sip-tcp-port must be between 1 and 65535")
+                    return (False, "sip-tcp-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"sip-tcp-port must be numeric, got: {value}")
 
@@ -713,7 +713,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"sip-udp-port must be between 1 and 65535")
+                    return (False, "sip-udp-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"sip-udp-port must be numeric, got: {value}")
 
@@ -724,7 +724,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"sip-ssl-port must be between 0 and 65535")
+                    return (False, "sip-ssl-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"sip-ssl-port must be numeric, got: {value}")
 
@@ -735,7 +735,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 0 or int_val > 65535:
-                    return (False, f"sccp-port must be between 0 and 65535")
+                    return (False, "sccp-port must be between 0 and 65535")
             except (ValueError, TypeError):
                 return (False, f"sccp-port must be numeric, got: {value}")
 
@@ -791,7 +791,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 255:
-                    return (False, f"ecmp-max-paths must be between 1 and 255")
+                    return (False, "ecmp-max-paths must be between 1 and 255")
             except (ValueError, TypeError):
                 return (False, f"ecmp-max-paths must be numeric, got: {value}")
 
@@ -804,7 +804,7 @@ def validate_settings_put(
                 if int_val < 1 or int_val > 365:
                     return (
                         False,
-                        f"discovered-device-timeout must be between 1 and 365",
+                        "discovered-device-timeout must be between 1 and 365",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1287,7 +1287,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1024 or int_val > 65535:
-                    return (False, f"ike-port must be between 1024 and 65535")
+                    return (False, "ike-port must be between 1024 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ike-port must be numeric, got: {value}")
 
@@ -1298,7 +1298,7 @@ def validate_settings_put(
             try:
                 int_val = int(value)
                 if int_val < 1 or int_val > 65535:
-                    return (False, f"ike-tcp-port must be between 1 and 65535")
+                    return (False, "ike-tcp-port must be between 1 and 65535")
             except (ValueError, TypeError):
                 return (False, f"ike-tcp-port must be numeric, got: {value}")
 
@@ -1374,7 +1374,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 365:
                     return (
                         False,
-                        f"default-policy-expiry-days must be between 0 and 365",
+                        "default-policy-expiry-days must be between 0 and 365",
                     )
             except (ValueError, TypeError):
                 return (
@@ -1409,7 +1409,7 @@ def validate_settings_put(
                 if int_val < 0 or int_val > 4294967295:
                     return (
                         False,
-                        f"internet-service-app-ctrl-size must be between 0 and 4294967295",
+                        "internet-service-app-ctrl-size must be between 0 and 4294967295",
                     )
             except (ValueError, TypeError):
                 return (

@@ -105,7 +105,8 @@ class Connection:
         Test the connection to FortiSandbox.
 
         Args:
-            server: IP/FQDN of the FortiSandbox to test. Uses the configured FortiSandbox IP/FQDN if no server is provided. (optional)
+            server: IP/FQDN of the FortiSandbox to test. Uses the configured
+            FortiSandbox IP/FQDN if no server is provided. (optional)
             payload_dict: Optional dictionary of parameters
             raw_json: Return raw JSON response if True
             **kwargs: Additional parameters as keyword arguments

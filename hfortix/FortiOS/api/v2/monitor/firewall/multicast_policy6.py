@@ -63,7 +63,8 @@ class ClearCounters:
         **kwargs: Any,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
-        Reset traffic statistics for one or more firewall IPv6 multicast policies by policy ID.
+        Reset traffic statistics for one or more firewall IPv6 multicast
+        policies by policy ID.
 
         Args:
             policy: Single policy ID to reset. (optional)
@@ -75,7 +76,8 @@ class ClearCounters:
             Dictionary containing API response
 
         Example:
-            >>> fgt.api.monitor.firewall.multicast_policy6.clear_counters.post()
+            >>>
+            fgt.api.monitor.firewall.multicast_policy6.clear_counters.post()
         """
         data = payload_dict.copy() if payload_dict else {}
         if policy is not None:

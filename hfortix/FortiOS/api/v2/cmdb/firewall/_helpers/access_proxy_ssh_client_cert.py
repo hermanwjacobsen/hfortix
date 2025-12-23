@@ -77,7 +77,7 @@ def validate_access_proxy_ssh_client_cert_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate source-address if present
     if "source-address" in payload:
@@ -137,7 +137,7 @@ def validate_access_proxy_ssh_client_cert_post(
     if "auth-ca" in payload:
         value = payload.get("auth-ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-ca cannot exceed 79 characters")
+            return (False, "auth-ca cannot exceed 79 characters")
 
     return (True, None)
 
@@ -172,7 +172,7 @@ def validate_access_proxy_ssh_client_cert_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"name cannot exceed 79 characters")
+            return (False, "name cannot exceed 79 characters")
 
     # Validate source-address if present
     if "source-address" in payload:
@@ -232,7 +232,7 @@ def validate_access_proxy_ssh_client_cert_put(
     if "auth-ca" in payload:
         value = payload.get("auth-ca")
         if value and isinstance(value, str) and len(value) > 79:
-            return (False, f"auth-ca cannot exceed 79 characters")
+            return (False, "auth-ca cannot exceed 79 characters")
 
     return (True, None)
 

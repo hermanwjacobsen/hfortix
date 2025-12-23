@@ -73,13 +73,13 @@ def validate_exempt_list_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate hash-type if present
     if "hash-type" in payload:
@@ -94,7 +94,7 @@ def validate_exempt_list_post(
     if "hash" in payload:
         value = payload.get("hash")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"hash cannot exceed 64 characters")
+            return (False, "hash cannot exceed 64 characters")
 
     # Validate status if present
     if "status" in payload:
@@ -138,13 +138,13 @@ def validate_exempt_list_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 35:
-            return (False, f"name cannot exceed 35 characters")
+            return (False, "name cannot exceed 35 characters")
 
     # Validate comment if present
     if "comment" in payload:
         value = payload.get("comment")
         if value and isinstance(value, str) and len(value) > 255:
-            return (False, f"comment cannot exceed 255 characters")
+            return (False, "comment cannot exceed 255 characters")
 
     # Validate hash-type if present
     if "hash-type" in payload:
@@ -159,7 +159,7 @@ def validate_exempt_list_put(
     if "hash" in payload:
         value = payload.get("hash")
         if value and isinstance(value, str) and len(value) > 64:
-            return (False, f"hash cannot exceed 64 characters")
+            return (False, "hash cannot exceed 64 characters")
 
     # Validate status if present
     if "status" in payload:

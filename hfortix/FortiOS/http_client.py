@@ -251,8 +251,8 @@ class HTTPClient(BaseHTTPClient):
             )
         else:
             # Disable proactive re-authentication
-            self._session_idle_timeout: float | None = None
-            self._session_proactive_refresh: float | None = None
+            self._session_idle_timeout = None
+            self._session_proactive_refresh = None
 
         # Read-only mode and operation tracking
         self._read_only = read_only

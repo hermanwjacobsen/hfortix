@@ -44,7 +44,7 @@ Important:
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
+from typing import TYPE_CHECKING, Any, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
@@ -98,12 +98,17 @@ class Accprofile:
         Args:
             name: Object identifier (optional for list, required for specific)
             attr: Attribute name that references other table (optional)
-            skip_to_datasource: Skip to provided table's Nth entry. E.g {datasource: 'firewall.address', pos: 10, global_entry: false} (optional)
+            skip_to_datasource: Skip to provided table's Nth entry. E.g
+            {datasource: 'firewall.address', pos: 10, global_entry: false}
+            (optional)
             acs: If true, returned result are in ascending order. (optional)
-            search: If present, the objects will be filtered by the search value. (optional)
+            search: If present, the objects will be filtered by the search
+            value. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -111,7 +116,8 @@ class Accprofile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -176,10 +182,13 @@ class Accprofile:
         Update this specific resource.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
             name: Object identifier (required)
-            before: If *action=move*, use *before* to specify the ID of the resource that this resource will be moved before. (optional)
-            after: If *action=move*, use *after* to specify the ID of the resource that this resource will be moved after. (optional)
+            before: If *action=move*, use *before* to specify the ID of the
+            resource that this resource will be moved before. (optional)
+            after: If *action=move*, use *after* to specify the ID of the
+            resource that this resource will be moved after. (optional)
             name: Profile name. (optional)
             comments: Comment. (optional)
             secfabgrp: Security Fabric. (optional)
@@ -187,29 +196,44 @@ class Accprofile:
             authgrp: Administrator access to Users and Devices. (optional)
             sysgrp: System Configuration. (optional)
             netgrp: Network Configuration. (optional)
-            loggrp: Administrator access to Logging and Reporting including viewing log messages. (optional)
-            fwgrp: Administrator access to the Firewall configuration. (optional)
-            vpngrp: Administrator access to IPsec, SSL, PPTP, and L2TP VPN. (optional)
+            loggrp: Administrator access to Logging and Reporting including
+            viewing log messages. (optional)
+            fwgrp: Administrator access to the Firewall configuration.
+            (optional)
+            vpngrp: Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
+            (optional)
             utmgrp: Administrator access to Security Profiles. (optional)
-            wifi: Administrator access to the WiFi controller and Switch controller. (optional)
+            wifi: Administrator access to the WiFi controller and Switch
+            controller. (optional)
             netgrp_permission: Custom network permission. (optional)
             sysgrp_permission: Custom system permission. (optional)
             fwgrp_permission: Custom firewall permission. (optional)
             loggrp_permission: Custom Log & Report permission. (optional)
             utmgrp_permission: Custom Security Profile permissions. (optional)
-            secfabgrp_permission: Custom Security Fabric permissions. (optional)
-            admintimeout_override: Enable/disable overriding the global administrator idle timeout. (optional)
-            admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout). (optional)
-            cli_diagnose: Enable/disable permission to run diagnostic commands. (optional)
+            secfabgrp_permission: Custom Security Fabric permissions.
+            (optional)
+            admintimeout_override: Enable/disable overriding the global
+            administrator idle timeout. (optional)
+            admintimeout: Administrator timeout for this access profile (0 -
+            480 min, default = 10, 0 means never timeout). (optional)
+            cli_diagnose: Enable/disable permission to run diagnostic commands.
+            (optional)
             cli_get: Enable/disable permission to run get commands. (optional)
-            cli_show: Enable/disable permission to run show commands. (optional)
-            cli_exec: Enable/disable permission to run execute commands. (optional)
-            cli_config: Enable/disable permission to run config commands. (optional)
-            system_execute_ssh: Enable/disable permission to execute SSH commands. (optional)
-            system_execute_telnet: Enable/disable permission to execute TELNET commands. (optional)
+            cli_show: Enable/disable permission to run show commands.
+            (optional)
+            cli_exec: Enable/disable permission to run execute commands.
+            (optional)
+            cli_config: Enable/disable permission to run config commands.
+            (optional)
+            system_execute_ssh: Enable/disable permission to execute SSH
+            commands. (optional)
+            system_execute_telnet: Enable/disable permission to execute TELNET
+            commands. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -217,7 +241,8 @@ class Accprofile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -305,8 +330,10 @@ class Accprofile:
         Args:
             name: Object identifier (required)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -314,7 +341,8 @@ class Accprofile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response
@@ -412,8 +440,10 @@ class Accprofile:
         Create object(s) in this table.
 
         Args:
-            payload_dict: Optional dictionary of all parameters (can be passed as first positional arg)
-            nkey: If *action=clone*, use *nkey* to specify the ID for the new resource to be created. (optional)
+            payload_dict: Optional dictionary of all parameters (can be passed
+            as first positional arg)
+            nkey: If *action=clone*, use *nkey* to specify the ID for the new
+            resource to be created. (optional)
             name: Profile name. (optional)
             comments: Comment. (optional)
             secfabgrp: Security Fabric. (optional)
@@ -421,29 +451,44 @@ class Accprofile:
             authgrp: Administrator access to Users and Devices. (optional)
             sysgrp: System Configuration. (optional)
             netgrp: Network Configuration. (optional)
-            loggrp: Administrator access to Logging and Reporting including viewing log messages. (optional)
-            fwgrp: Administrator access to the Firewall configuration. (optional)
-            vpngrp: Administrator access to IPsec, SSL, PPTP, and L2TP VPN. (optional)
+            loggrp: Administrator access to Logging and Reporting including
+            viewing log messages. (optional)
+            fwgrp: Administrator access to the Firewall configuration.
+            (optional)
+            vpngrp: Administrator access to IPsec, SSL, PPTP, and L2TP VPN.
+            (optional)
             utmgrp: Administrator access to Security Profiles. (optional)
-            wifi: Administrator access to the WiFi controller and Switch controller. (optional)
+            wifi: Administrator access to the WiFi controller and Switch
+            controller. (optional)
             netgrp_permission: Custom network permission. (optional)
             sysgrp_permission: Custom system permission. (optional)
             fwgrp_permission: Custom firewall permission. (optional)
             loggrp_permission: Custom Log & Report permission. (optional)
             utmgrp_permission: Custom Security Profile permissions. (optional)
-            secfabgrp_permission: Custom Security Fabric permissions. (optional)
-            admintimeout_override: Enable/disable overriding the global administrator idle timeout. (optional)
-            admintimeout: Administrator timeout for this access profile (0 - 480 min, default = 10, 0 means never timeout). (optional)
-            cli_diagnose: Enable/disable permission to run diagnostic commands. (optional)
+            secfabgrp_permission: Custom Security Fabric permissions.
+            (optional)
+            admintimeout_override: Enable/disable overriding the global
+            administrator idle timeout. (optional)
+            admintimeout: Administrator timeout for this access profile (0 -
+            480 min, default = 10, 0 means never timeout). (optional)
+            cli_diagnose: Enable/disable permission to run diagnostic commands.
+            (optional)
             cli_get: Enable/disable permission to run get commands. (optional)
-            cli_show: Enable/disable permission to run show commands. (optional)
-            cli_exec: Enable/disable permission to run execute commands. (optional)
-            cli_config: Enable/disable permission to run config commands. (optional)
-            system_execute_ssh: Enable/disable permission to execute SSH commands. (optional)
-            system_execute_telnet: Enable/disable permission to execute TELNET commands. (optional)
+            cli_show: Enable/disable permission to run show commands.
+            (optional)
+            cli_exec: Enable/disable permission to run execute commands.
+            (optional)
+            cli_config: Enable/disable permission to run config commands.
+            (optional)
+            system_execute_ssh: Enable/disable permission to execute SSH
+            commands. (optional)
+            system_execute_telnet: Enable/disable permission to execute TELNET
+            commands. (optional)
             vdom: Virtual domain name, or False to skip. Handled by HTTPClient.
-            raw_json: If True, return full API response with metadata. If False, return only results.
-            **kwargs: Additional query parameters (filter, sort, start, count, format, etc.)
+            raw_json: If True, return full API response with metadata. If
+            False, return only results.
+            **kwargs: Additional query parameters (filter, sort, start, count,
+            format, etc.)
 
         Common Query Parameters (via **kwargs):
             filter: Filter results (e.g., filter='name==value')
@@ -451,7 +496,8 @@ class Accprofile:
             start: Starting entry index for paging
             count: Maximum number of entries to return
             format: Fields to return (e.g., format='name|type')
-            See FortiOS REST API documentation for full list of query parameters
+            See FortiOS REST API documentation for full list of query
+            parameters
 
         Returns:
             Dictionary containing API response

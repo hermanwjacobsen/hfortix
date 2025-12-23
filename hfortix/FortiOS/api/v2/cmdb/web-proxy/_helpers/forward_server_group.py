@@ -74,7 +74,7 @@ def validate_forward_server_group_post(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate affinity if present
     if "affinity" in payload:
@@ -136,7 +136,7 @@ def validate_forward_server_group_put(
     if "name" in payload:
         value = payload.get("name")
         if value and isinstance(value, str) and len(value) > 63:
-            return (False, f"name cannot exceed 63 characters")
+            return (False, "name cannot exceed 63 characters")
 
     # Validate affinity if present
     if "affinity" in payload:
