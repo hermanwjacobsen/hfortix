@@ -66,13 +66,13 @@ class PerformanceTestResults:
         # Throughput
         if self.sequential_throughput:
             lines.append(
-                f"Sequential Throughput: {
-                    self.sequential_throughput:.2f} req/s"
+                f"Sequential Throughput: "
+                f"{self.sequential_throughput:.2f} req/s"
             )
         if self.concurrent_throughput:
             lines.append(
-                f"Concurrent Throughput: {
-                    self.concurrent_throughput:.2f} req/s"
+                f"Concurrent Throughput: "
+                f"{self.concurrent_throughput:.2f} req/s"
             )
 
         # Device profile
@@ -92,9 +92,8 @@ class PerformanceTestResults:
     def __repr__(self) -> str:
         """Return detailed representation"""
         return (
-            f"PerformanceTestResults(profile={
-                self.device_profile}, throughput={
-                self.sequential_throughput:.2f} req/s)"
+            f"PerformanceTestResults(profile={self.device_profile}, "
+            f"throughput={self.sequential_throughput:.2f} req/s)"
             if self.sequential_throughput
             else "PerformanceTestResults(no data)"
         )
@@ -151,8 +150,8 @@ class PerformanceTestResults:
                     print(f"  → Concurrency helps! (+{improvement:.0f}%)")
                 elif improvement < -10:
                     print(
-                        f"  → Concurrency hurts! ({
-                            improvement:.0f}%) - Use sequential!"
+                        f"  → Concurrency hurts! "
+                        f"({improvement:.0f}%) - Use sequential!"
                     )
                 else:
                     print(f"  → Concurrency neutral ({improvement:+.0f}%)")
@@ -554,8 +553,8 @@ def run_performance_test(
                 # Estimate throughput
                 results.sequential_throughput = 1000 / overall_avg
                 print(
-                    f"  Estimated throughput: {
-                        results.sequential_throughput:.2f} req/s"
+                    f"  Estimated throughput: "
+                    f"{results.sequential_throughput:.2f} req/s"
                 )
             else:
                 print("✗ No valid endpoint results")

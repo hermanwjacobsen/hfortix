@@ -576,9 +576,8 @@ class BaseHTTPClient:
         valid_types = {"cmdb", "monitor", "log", "service"}
         if api_type not in valid_types:
             raise ValueError(
-                f"Invalid api_type '{api_type}'. Must be one of: {
-                    ', '.join(
-                        sorted(valid_types))}"
+                f"Invalid api_type '{api_type}'. Must be one of: "
+                f"{', '.join(sorted(valid_types))}"
             )
 
     @staticmethod
@@ -608,6 +607,6 @@ class BaseHTTPClient:
         """Validate params parameter"""
         if params is not None and not isinstance(params, dict):
             raise TypeError(
-                f"params must be a dictionary or None, got {
-                    type(params).__name__}"
+                f"params must be a dictionary or None, got "
+                f"{type(params).__name__}"
             )
