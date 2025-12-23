@@ -5,6 +5,9 @@
 
 repos:
   # General pre-commit hooks
+  # NOTE: Upstream repo uses deprecated stage names - this produces warnings
+  #       but does not affect functionality. Warnings will disappear when
+  #       upstream updates their configuration.
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
     hooks:
@@ -33,6 +36,9 @@ repos:
         exclude: ^(X/|Tests/|\.venv/|venv/|build/|dist/)
 
   # Import sorting with isort (compatible with Black)
+  # NOTE: Upstream repo uses deprecated stage names - this produces warnings
+  #       but does not affect functionality. Warnings will disappear when
+  #       upstream updates their configuration.
   - repo: https://github.com/PyCQA/isort
     rev: 5.13.2
     hooks:
