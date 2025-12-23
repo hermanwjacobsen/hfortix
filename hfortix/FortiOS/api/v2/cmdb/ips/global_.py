@@ -260,9 +260,9 @@ class Global:
         if av_mem_limit is not None:
             data_payload["av-mem-limit"] = av_mem_limit
         if machine_learning_detection is not None:
-            data_payload["machine-learning-detection"] = (
-                machine_learning_detection
-            )
+            data_payload[
+                "machine-learning-detection"
+            ] = machine_learning_detection
         if tls_active_probe is not None:
             data_payload["tls-active-probe"] = tls_active_probe
         data_payload.update(kwargs)

@@ -237,21 +237,21 @@ class AccessProxy:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = (
-                add_vhost_domain_to_dnsdb
-            )
+            data_payload[
+                "add-vhost-domain-to-dnsdb"
+            ] = add_vhost_domain_to_dnsdb
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = (
-                svr_pool_server_max_request
-            )
+            data_payload[
+                "svr-pool-server-max-request"
+            ] = svr_pool_server_max_request
         if svr_pool_server_max_concurrent_request is not None:
-            data_payload["svr-pool-server-max-concurrent-request"] = (
-                svr_pool_server_max_concurrent_request
-            )
+            data_payload[
+                "svr-pool-server-max-concurrent-request"
+            ] = svr_pool_server_max_concurrent_request
         if decrypted_traffic_mirror is not None:
             data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if api_gateway is not None:
@@ -433,21 +433,21 @@ class AccessProxy:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = (
-                add_vhost_domain_to_dnsdb
-            )
+            data_payload[
+                "add-vhost-domain-to-dnsdb"
+            ] = add_vhost_domain_to_dnsdb
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = (
-                svr_pool_server_max_request
-            )
+            data_payload[
+                "svr-pool-server-max-request"
+            ] = svr_pool_server_max_request
         if svr_pool_server_max_concurrent_request is not None:
-            data_payload["svr-pool-server-max-concurrent-request"] = (
-                svr_pool_server_max_concurrent_request
-            )
+            data_payload[
+                "svr-pool-server-max-concurrent-request"
+            ] = svr_pool_server_max_concurrent_request
         if decrypted_traffic_mirror is not None:
             data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if api_gateway is not None:

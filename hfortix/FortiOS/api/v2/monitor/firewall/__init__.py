@@ -13,6 +13,17 @@ This module provides access to firewall monitoring endpoints including:
 
 from typing import TYPE_CHECKING
 
+# NOTE:
+# Mypy (and some static analyzers) don't treat dynamically imported
+# submodules inside methods as package attributes. We import any submodule
+# that we also import dynamically in `Firewall.__init__` so that
+# `hfortix.FortiOS.api.v2.monitor.firewall.<submodule>` is visible to type
+# checking.
+#
+# This is intentionally lightweight: importing these modules shouldn't have
+# side-effects beyond class definitions.
+from . import check_addrgrp_exclude_mac_member  # noqa: F401
+
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
@@ -43,7 +54,11 @@ class Firewall:
             address_fqdns,
             address_fqdns6,
             central_snat_map,
-            check_addrgrp_exclude_mac_member,
+        )
+        from . import (
+            check_addrgrp_exclude_mac_member as check_addrgrp_exclude_mac_member_module,
+        )
+        from . import (
             clearpass_address,
             dnat,
             gtp,
@@ -71,15 +86,9 @@ class Firewall:
             security_policy,
         )
         from . import sessions as sessions_module
-        from . import (
-            shaper,
-            shaper_multi_class_shaper,
-        )
+        from . import shaper, shaper_multi_class_shaper
         from . import uuid as uuid_module
-        from . import (
-            vip_overlap,
-            ztna_firewall_policy,
-        )
+        from . import vip_overlap, ztna_firewall_policy
 
         # Initialize all sub-endpoints
         self._health = health.Health(client)
@@ -89,10 +98,8 @@ class Firewall:
         self._acl6 = acl6.Acl6(client)
         self._central_snat_map = central_snat_map.CentralSnatMap(client)
         self._dnat = dnat.Dnat(client)
-        self._check_addrgrp_exclude_mac_member = (
-            check_addrgrp_exclude_mac_member.CheckAddrgrpExcludeMacMember(
-                client
-            )
+        self._check_addrgrp_exclude_mac_member = check_addrgrp_exclude_mac_member_module.CheckAddrgrpExcludeMacMember(
+            client
         )
         self._internet_service = internet_service.InternetService(client)
         self._internet_service_fqdn = (
@@ -178,9 +185,17 @@ class Firewall:
         return self._dnat
 
     @property
-    def check_addrgrp_exclude_mac_member(self):
+    def check_addrgrp_exclude_mac_member_endpoint(self):
         """Check if address group should exclude MAC address members."""
         return self._check_addrgrp_exclude_mac_member
+
+    def __getattr__(self, name: str):
+        # Backwards compatible alias: keep the public attribute name that
+        # callers expect, while avoiding a flake8 name collision with the
+        # package-level imported module.
+        if name == "check_addrgrp_exclude_mac_member":
+            return self.check_addrgrp_exclude_mac_member_endpoint
+        raise AttributeError(name)
 
     @property
     def internet_service(self):
@@ -348,6 +363,7 @@ class Firewall:
             "central_snat_map",
             "dnat",
             "check_addrgrp_exclude_mac_member",
+            "check_addrgrp_exclude_mac_member_endpoint",
             "internet_service",
             "internet_service_fqdn",
             "internet_service_fqdn_icon_ids",

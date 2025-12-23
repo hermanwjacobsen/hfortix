@@ -144,7 +144,6 @@ class EndpointControl:
     def installer(self):
         """Access installer endpoint."""
         if self._installer is None:
-
             self._installer = Installer(self._client)
         return self._installer
 
@@ -152,7 +151,6 @@ class EndpointControl:
     def avatar(self):
         """Access avatar endpoint."""
         if self._avatar is None:
-
             self._avatar = Avatar(self._client)
         return self._avatar
 
@@ -160,6 +158,5 @@ class EndpointControl:
     def ems(self):
         """Access EMS endpoint."""
         if self._ems is None:
-
             self._ems = Ems(self._client)
         return self._ems

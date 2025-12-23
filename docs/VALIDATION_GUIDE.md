@@ -244,7 +244,7 @@ constants = [attr for attr in dir(policy) if attr.startswith('VALID_')]
 print("Available validators:", constants)
 
 # Output:
-# ['VALID_BODY_ACTION', 'VALID_BODY_STATUS', 'VALID_BODY_LOGTRAFFIC', 
+# ['VALID_BODY_ACTION', 'VALID_BODY_STATUS', 'VALID_BODY_LOGTRAFFIC',
 #  'VALID_BODY_NAT', 'VALID_QUERY_ACTION', 'VALID_QUERY_FORMAT', ...]
 ```
 
@@ -260,22 +260,22 @@ from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import policy as policy_helpe
 def validate_policy_params(action, status, logtraffic):
     """Validate policy parameters before API call."""
     errors = []
-    
+
     if action not in policy_helpers.VALID_BODY_ACTION:
         errors.append(f"Invalid action '{action}'. "
                       f"Must be one of: {policy_helpers.VALID_BODY_ACTION}")
-    
+
     if status not in policy_helpers.VALID_BODY_STATUS:
         errors.append(f"Invalid status '{status}'. "
                       f"Must be one of: {policy_helpers.VALID_BODY_STATUS}")
-    
+
     if logtraffic not in policy_helpers.VALID_BODY_LOGTRAFFIC:
         errors.append(f"Invalid logtraffic '{logtraffic}'. "
                       f"Must be one of: {policy_helpers.VALID_BODY_LOGTRAFFIC}")
-    
+
     if errors:
         raise ValueError("\\n".join(errors))
-    
+
     return True
 
 # Use in your code
@@ -326,7 +326,7 @@ from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import policy as policy_helpe
 
 class PolicyValidator:
     """Validator for firewall policy parameters."""
-    
+
     def __init__(self):
         self.validators = {
             'action': policy_helpers.VALID_BODY_ACTION,
@@ -334,11 +334,11 @@ class PolicyValidator:
             'logtraffic': policy_helpers.VALID_BODY_LOGTRAFFIC,
             'nat': policy_helpers.VALID_BODY_NAT,
         }
-    
+
     def validate(self, **params):
         """Validate multiple parameters at once."""
         errors = []
-        
+
         for key, value in params.items():
             if key in self.validators:
                 if value not in self.validators[key]:
@@ -346,10 +346,10 @@ class PolicyValidator:
                         f"Invalid {key} '{value}'. "
                         f"Valid options: {self.validators[key]}"
                     )
-        
+
         if errors:
             raise ValueError("\\n".join(errors))
-        
+
         return True
 
 # Usage
@@ -378,32 +378,32 @@ from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import (
 # Create a comprehensive firewall configuration validator
 class FirewallConfigValidator:
     """Validate complete firewall configurations."""
-    
+
     @staticmethod
     def validate_policy(data):
         """Validate policy data."""
         if 'action' in data and data['action'] not in policy.VALID_BODY_ACTION:
             raise ValueError(f"Invalid policy action: {data['action']}")
-        
+
         if 'status' in data and data['status'] not in policy.VALID_BODY_STATUS:
             raise ValueError(f"Invalid policy status: {data['status']}")
-        
+
         return True
-    
+
     @staticmethod
     def validate_address(data):
         """Validate address data."""
         if 'type' in data and data['type'] not in address.VALID_BODY_TYPE:
             raise ValueError(f"Invalid address type: {data['type']}")
-        
+
         return True
-    
+
     @staticmethod
     def validate_service(data):
         """Validate service data."""
         if 'protocol' in data and data['protocol'] not in service_custom.VALID_BODY_PROTOCOL:
             raise ValueError(f"Invalid service protocol: {data['protocol']}")
-        
+
         return True
 
 # Use the validator
@@ -432,12 +432,12 @@ from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import policy as policy_helpe
 
 def create_policy_with_validation(fgt, **kwargs):
     """Create policy with comprehensive validation and helpful error messages."""
-    
+
     # Validate action
     action = kwargs.get('action')
     if not action:
         raise ValueError("'action' is required")
-    
+
     if action not in policy_helpers.VALID_BODY_ACTION:
         valid_options = ", ".join(policy_helpers.VALID_BODY_ACTION)
         raise ValueError(
@@ -445,7 +445,7 @@ def create_policy_with_validation(fgt, **kwargs):
             f"Valid options are: {valid_options}\\n"
             f"Did you mean 'accept' instead of 'allow'?"
         )
-    
+
     # Validate status
     status = kwargs.get('status', 'enable')
     if status not in policy_helpers.VALID_BODY_STATUS:
@@ -453,7 +453,7 @@ def create_policy_with_validation(fgt, **kwargs):
             f"Invalid status '{status}'. "
             f"Use 'enable' or 'disable' (not 'enabled' or 'disabled')"
         )
-    
+
     # All validations passed - create policy
     return fgt.firewall.policy.create(**kwargs)
 ```
@@ -469,7 +469,7 @@ def create_policy_with_validation(fgt, **kwargs):
 def create_address_from_user_input(name, addr_type, value):
     if addr_type not in address_helpers.VALID_BODY_TYPE:
         raise ValueError(f"Invalid type. Choose from: {address_helpers.VALID_BODY_TYPE}")
-    
+
     fgt.api.cmdb.firewall.address.create(name=name, type=addr_type, subnet=value)
 
 # Bad: No validation
@@ -501,7 +501,7 @@ class PolicyManager:
         from hfortix.FortiOS.api.v2.cmdb.firewall._helpers import policy
         self.valid_actions = policy.VALID_BODY_ACTION
         self.valid_status = policy.VALID_BODY_STATUS
-    
+
     def validate_action(self, action):
         return action in self.valid_actions
 
@@ -517,21 +517,21 @@ def validate_action(action):
 def create_policy(name: str, action: str, **kwargs):
     """
     Create firewall policy.
-    
+
     Args:
         name: Policy name
         action: Policy action. Valid values: 'accept', 'deny', 'ipsec'
         **kwargs: Additional policy parameters
-    
+
     Raises:
         ValueError: If action is not valid
-    
+
     Valid actions can be found in:
         hfortix.FortiOS.api.v2.cmdb.firewall._helpers.policy.VALID_BODY_ACTION
     """
     if action not in VALID_BODY_ACTION:
         raise ValueError(f"Invalid action. See docstring for valid values.")
-    
+
     # ... rest of implementation
 ```
 

@@ -48,13 +48,13 @@ async def main():
         verify=False,
         mode="async"  # 👈 Enable async mode
     )
-    
+
     # Use async context manager for automatic cleanup
     async with fgt:
         # Use await with all API methods
         addresses = await fgt.api.cmdb.firewall.address.list()
         print(f"Found {len(addresses)} addresses")
-        
+
         # Helper methods also work with await
         if await fgt.api.cmdb.firewall.address.exists("web-server"):
             print("Address exists!")
@@ -124,7 +124,7 @@ async def fetch_configs():
             fgt.api.cmdb.firewall.policy.list(),
             fgt.api.cmdb.firewall.service.custom.list()
         )
-        
+
         print(f"Addresses: {len(addresses)}")
         print(f"Policies: {len(policies)}")
         print(f"Services: {len(services)}")
@@ -146,10 +146,10 @@ async def create_addresses(names_and_ips):
                 subnet=f"{ip}/32"
             )
             tasks.append(task)
-        
+
         # Create all addresses concurrently
         results = await asyncio.gather(*tasks, return_exceptions=True)
-        
+
         # Check results
         for i, result in enumerate(results):
             if isinstance(result, Exception):
@@ -175,7 +175,7 @@ async def update_or_create(name, config):
     async with FortiOS(..., mode="async") as fgt:
         # Check if exists (returns coroutine in async mode)
         exists = await fgt.api.cmdb.firewall.address.exists(name)
-        
+
         if exists:
             # Update existing
             result = await fgt.api.cmdb.firewall.address.update(
@@ -190,7 +190,7 @@ async def update_or_create(name, config):
                 **config
             )
             print(f"Created {name}")
-        
+
         return result
 
 asyncio.run(update_or_create("web-server", {"subnet": "10.0.1.50/32"}))
@@ -216,7 +216,7 @@ async def safe_create(name, subnet):
             )
             print(f"✓ Created {name}")
             return result
-            
+
         except ResourceAlreadyExistsError:
             print(f"⚠ {name} already exists")
             # Update instead
@@ -224,7 +224,7 @@ async def safe_create(name, subnet):
                 name=name,
                 subnet=subnet
             )
-            
+
         except FortiOSAPIError as e:
             print(f"✗ Failed: {e}")
             return None
@@ -240,7 +240,7 @@ Track progress of bulk operations:
 async def bulk_delete_with_progress(names):
     async with FortiOS(..., mode="async") as fgt:
         total = len(names)
-        
+
         for i, name in enumerate(names, 1):
             try:
                 await fgt.api.cmdb.firewall.address.delete(name)
@@ -266,17 +266,17 @@ from hfortix import FortiOS
 
 def manage_addresses():
     fgt = FortiOS(host='...', token='...')
-    
+
     # List addresses
     addresses = fgt.api.cmdb.firewall.address.list()
-    
+
     # Create address
     if not fgt.api.cmdb.firewall.address.exists("server1"):
         fgt.api.cmdb.firewall.address.create(
             name="server1",
             subnet="10.0.1.10/32"
         )
-    
+
     return addresses
 
 result = manage_addresses()
@@ -292,14 +292,14 @@ async def manage_addresses():
     async with FortiOS(host='...', token='...', mode="async") as fgt:
         # List addresses (add await)
         addresses = await fgt.api.cmdb.firewall.address.list()
-        
+
         # Create address (add await)
         if not await fgt.api.cmdb.firewall.address.exists("server1"):
             await fgt.api.cmdb.firewall.address.create(
                 name="server1",
                 subnet="10.0.1.10/32"
             )
-        
+
         return addresses
 
 result = asyncio.run(manage_addresses())
@@ -327,11 +327,11 @@ from hfortix import FortiOS
 def sync_fetch():
     fgt = FortiOS(..., mode="sync")
     start = time.time()
-    
+
     addr = fgt.api.cmdb.firewall.address.list()
     pol = fgt.api.cmdb.firewall.policy.list()
     svc = fgt.api.cmdb.firewall.service.custom.list()
-    
+
     elapsed = time.time() - start
     print(f"Sync: {elapsed:.2f}s")
     return addr, pol, svc
@@ -340,14 +340,14 @@ def sync_fetch():
 async def async_fetch():
     async with FortiOS(..., mode="async") as fgt:
         start = time.time()
-        
+
         # All three run concurrently!
         addr, pol, svc = await asyncio.gather(
             fgt.api.cmdb.firewall.address.list(),
             fgt.api.cmdb.firewall.policy.list(),
             fgt.api.cmdb.firewall.service.custom.list()
         )
-        
+
         elapsed = time.time() - start
         print(f"Async: {elapsed:.2f}s")
         return addr, pol, svc
@@ -371,17 +371,17 @@ Control concurrency to avoid overwhelming the FortiGate:
 async def rate_limited_operations(items, max_concurrent=5):
     async with FortiOS(..., mode="async") as fgt:
         semaphore = asyncio.Semaphore(max_concurrent)
-        
+
         async def limited_create(name, subnet):
             async with semaphore:
                 return await fgt.api.cmdb.firewall.address.create(
                     name=name,
                     subnet=subnet
                 )
-        
+
         tasks = [limited_create(n, s) for n, s in items]
         results = await asyncio.gather(*tasks, return_exceptions=True)
-        
+
         return results
 ```
 
@@ -414,13 +414,13 @@ async def manage_multiple_fortigates(hosts_and_tokens):
         async with FortiOS(host=host, token=token, mode="async") as fgt:
             addresses = await fgt.api.cmdb.firewall.address.list()
             return host, addresses
-    
+
     tasks = [fetch_from_host(h, t) for h, t in hosts_and_tokens]
     results = await asyncio.gather(*tasks)
-    
+
     for host, addresses in results:
         print(f"{host}: {len(addresses)} addresses")
-    
+
     return results
 
 fortigates = [
@@ -453,25 +453,25 @@ Every API method works in async mode:
 async with FortiOS(..., mode="async") as fgt:
     # List
     items = await fgt.api.cmdb.firewall.address.list()
-    
+
     # Get
     item = await fgt.api.cmdb.firewall.address.get("web-server")
-    
+
     # Create
     result = await fgt.api.cmdb.firewall.address.create(
         name="new-server",
         subnet="10.0.1.100/32"
     )
-    
+
     # Update
     result = await fgt.api.cmdb.firewall.address.update(
         name="web-server",
         subnet="10.0.1.50/32"
     )
-    
+
     # Delete
     result = await fgt.api.cmdb.firewall.address.delete("old-server")
-    
+
     # Exists
     exists = await fgt.api.cmdb.firewall.address.exists("web-server")
 ```

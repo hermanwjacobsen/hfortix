@@ -396,16 +396,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ```python
     # Enable read-only mode for safe testing
     fgt = FortiOS("192.0.2.10", token="...", read_only=True)
-    
+
     # GET requests work normally
     addresses = fgt.api.cmdb.firewall.address.get()  # ✓ Works
-    
+
     # Write operations are blocked
     try:
         fgt.api.cmdb.firewall.address.post(data={"name": "test"})
     except ReadOnlyModeError as e:
         print(f"Blocked: {e}")  # ✗ Raises ReadOnlyModeError
-    
+
     # Combine with operation tracking for audit trail
     fgt = FortiOS("fw", token="...", read_only=True, track_operations=True)
     # ... make API calls ...
@@ -425,12 +425,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ```python
     # Enable operation tracking
     fgt = FortiOS("192.0.2.10", token="...", track_operations=True)
-    
+
     # Make various API calls
     fgt.api.monitor.system.status.get()
     fgt.api.cmdb.firewall.address.post(data={"name": "test", "subnet": "10.0.0.1/32"})
     fgt.api.cmdb.firewall.policy.put("10", data={"action": "deny"})
-    
+
     # Get all operations
     all_ops = fgt.get_operations()
     for op in all_ops:
@@ -439,7 +439,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     # 2024-12-20T10:30:15Z GET /system/status
     # 2024-12-20T10:30:16Z POST /firewall/address
     # 2024-12-20T10:30:17Z PUT /firewall/policy/10
-    
+
     # Get only write operations (POST/PUT/DELETE)
     write_ops = fgt.get_write_operations()
     for op in write_ops:
@@ -463,16 +463,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     ```python
     # Equality
     fgt.api.cmdb.firewall.address.get(filter="name==test-host")
-    
+
     # Contains (substring match)
     fgt.api.cmdb.firewall.address.get(filter="subnet=@10.0")
-    
+
     # Range query
     fgt.api.cmdb.firewall.policy.get(filter="policyid>=100&policyid<=200")
-    
+
     # Multiple conditions (AND logic)
     fgt.api.cmdb.firewall.policy.get(filter="status==enable&action==accept")
-    
+
     # Not contains (exclusion)
     fgt.api.cmdb.firewall.address.get(filter="subnet!@192.168")
     ```
@@ -495,13 +495,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
         addresses = fgt.api.cmdb.firewall.address.get()
         # Session automatically refreshed if approaching timeout
         # Auto-logout on exit
-    
+
     # Custom timeout (match your FortiGate's remoteauthtimeout setting)
-    with FortiOS(host="fw", username="admin", password="***", 
+    with FortiOS(host="fw", username="admin", password="***",
                  session_idle_timeout=120) as fgt:  # 2 minutes
         # Proactive re-auth at 96 seconds (80% of 120s)
         status = fgt.api.monitor.system.status.get()
-    
+
     # Disable proactive re-authentication
     with FortiOS(host="fw", username="admin", password="***",
                  session_idle_timeout=None) as fgt:
@@ -538,14 +538,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
         action='accept',
         nat='enable'
     )
-    
+
     # Enable/disable policies
     fgt.firewall.policy.disable(policy_id=10)
     fgt.firewall.policy.enable(policy_id=10)
-    
+
     # Move policy
     fgt.firewall.policy.move(policy_id=5, position='before', reference_id=3)
-    
+
     # Clone policy with modifications
     fgt.firewall.policy.clone(policy_id=1, new_name='Cloned-Policy')
     ```
@@ -941,7 +941,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **URL Normalization** - Base URL now has trailing slashes stripped during initialization
   - Prevents potential double-slash issues like `https://host//api/v2/...`
   - Ensures consistent URL construction across all requests
-  
+
 - **HTTP Client Path Normalization** - Fixed 404 errors when endpoint methods pass paths with leading slashes
   - HTTPClient now strips leading slashes from paths before URL construction
   - Prevents double-slash URLs (e.g., `/api/v2/monitor//firewall/acl`)
@@ -1121,7 +1121,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `DoS Policy`: Fixed interface_data variable bugs in dos_policy.py and dos_policy6.py
   - `firewall` access-proxy: Fixed raw_json parameter placement in 6 files
   - Multiple service/shaper/ssh files: Fixed data→payload_dict variable name consistency
-  
+
 - **Test Fixes** - Updated test files to use raw_json=True where needed:
   - Fixed 159 test files to properly check API responses
   - Updated payload structures in multiple test files

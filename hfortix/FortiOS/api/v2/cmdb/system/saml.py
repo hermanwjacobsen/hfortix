@@ -238,9 +238,9 @@ class Saml:
         if server_address is not None:
             data_payload["server-address"] = server_address
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = (
-                require_signed_resp_and_asrt
-            )
+            data_payload[
+                "require-signed-resp-and-asrt"
+            ] = require_signed_resp_and_asrt
         if tolerance is not None:
             data_payload["tolerance"] = tolerance
         if life is not None:

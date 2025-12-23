@@ -416,9 +416,9 @@ class Admin:
         if accprofile is not None:
             data_payload["accprofile"] = accprofile
         if allow_remove_admin_session is not None:
-            data_payload["allow-remove-admin-session"] = (
-                allow_remove_admin_session
-            )
+            data_payload[
+                "allow-remove-admin-session"
+            ] = allow_remove_admin_session
         if comments is not None:
             data_payload["comments"] = comments
         if ssh_public_key1 is not None:
@@ -442,9 +442,9 @@ class Admin:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
@@ -821,9 +821,9 @@ class Admin:
         if accprofile is not None:
             data_payload["accprofile"] = accprofile
         if allow_remove_admin_session is not None:
-            data_payload["allow-remove-admin-session"] = (
-                allow_remove_admin_session
-            )
+            data_payload[
+                "allow-remove-admin-session"
+            ] = allow_remove_admin_session
         if comments is not None:
             data_payload["comments"] = comments
         if ssh_public_key1 is not None:
@@ -847,9 +847,9 @@ class Admin:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:

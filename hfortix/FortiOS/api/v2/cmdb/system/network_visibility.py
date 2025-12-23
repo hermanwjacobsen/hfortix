@@ -182,9 +182,9 @@ class NetworkVisibility:
         if source_location is not None:
             data_payload["source-location"] = source_location
         if destination_hostname_visibility is not None:
-            data_payload["destination-hostname-visibility"] = (
-                destination_hostname_visibility
-            )
+            data_payload[
+                "destination-hostname-visibility"
+            ] = destination_hostname_visibility
         if destination_location is not None:
             data_payload["destination-location"] = destination_location
         data_payload.update(kwargs)

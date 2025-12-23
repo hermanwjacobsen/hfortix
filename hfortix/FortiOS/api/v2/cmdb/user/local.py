@@ -283,9 +283,9 @@ class Local:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:
@@ -539,9 +539,9 @@ class Local:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if fortitoken is not None:

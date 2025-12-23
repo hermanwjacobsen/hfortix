@@ -256,9 +256,9 @@ class PppoeInterface:
         if ipunnumbered is not None:
             data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = (
-                pppoe_unnumbered_negotiate
-            )
+            data_payload[
+                "pppoe-unnumbered-negotiate"
+            ] = pppoe_unnumbered_negotiate
         if idle_timeout is not None:
             data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:
@@ -471,9 +471,9 @@ class PppoeInterface:
         if ipunnumbered is not None:
             data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = (
-                pppoe_unnumbered_negotiate
-            )
+            data_payload[
+                "pppoe-unnumbered-negotiate"
+            ] = pppoe_unnumbered_negotiate
         if idle_timeout is not None:
             data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:

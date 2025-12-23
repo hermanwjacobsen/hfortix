@@ -107,26 +107,26 @@ fgt_optimized = FortiOS(
 try:
     # List
     addresses = fgt.api.cmdb.firewall.address.list()
-    
+
     # Create
     result = fgt.api.cmdb.firewall.address.create(
         name='web-server',
         subnet='10.0.1.100/32'
     )
-    
+
     # Or use dictionary pattern
     config = {'name': 'db-server', 'subnet': '10.0.1.200/32'}
     result = fgt.api.cmdb.firewall.address.create(data_dict=config)
-    
+
     # Update
     result = fgt.api.cmdb.firewall.address.update(
         name='web-server',
         comment='Updated'
     )
-    
+
     # Delete
     result = fgt.api.cmdb.firewall.address.delete(name='web-server')
-    
+
 except APIError as e:
     print(f"Error: {e.message} (Code: {e.error_code})")
 ```
@@ -437,10 +437,10 @@ print("Valid log traffic options:", policy_helpers.VALID_BODY_LOGTRAFFIC)
 def create_policy_validated(action, logtraffic, **kwargs):
     if action not in policy_helpers.VALID_BODY_ACTION:
         raise ValueError(f"Invalid action. Valid: {policy_helpers.VALID_BODY_ACTION}")
-    
+
     if logtraffic not in policy_helpers.VALID_BODY_LOGTRAFFIC:
         raise ValueError(f"Invalid logtraffic. Valid: {policy_helpers.VALID_BODY_LOGTRAFFIC}")
-    
+
     return fgt.firewall.policy.create(action=action, logtraffic=logtraffic, **kwargs)
 
 # Create with validation
@@ -516,7 +516,7 @@ async def main():
     async with FortiOS(host='...', token='...', mode="async") as fgt:
         # All methods work with await
         addresses = await fgt.api.cmdb.firewall.address.list()
-        
+
         # Run multiple operations concurrently
         addr, pol, svc = await asyncio.gather(
             fgt.api.cmdb.firewall.address.list(),
@@ -535,4 +535,3 @@ asyncio.run(main())
 - 🚀 [Async/Await Guide](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/ASYNC_GUIDE.md)
 - 🐛 [Report Issues](https://github.com/hermanwjacobsen/hfortix/issues)
 - 💬 [Discussions](https://github.com/hermanwjacobsen/hfortix/discussions)
-

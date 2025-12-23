@@ -237,9 +237,9 @@ class CentralManagement:
         if type is not None:
             data_payload["type"] = type
         if fortigate_cloud_sso_default_profile is not None:
-            data_payload["fortigate-cloud-sso-default-profile"] = (
-                fortigate_cloud_sso_default_profile
-            )
+            data_payload[
+                "fortigate-cloud-sso-default-profile"
+            ] = fortigate_cloud_sso_default_profile
         if schedule_config_restore is not None:
             data_payload["schedule-config-restore"] = schedule_config_restore
         if schedule_script_restore is not None:
@@ -249,9 +249,9 @@ class CentralManagement:
         if allow_push_firmware is not None:
             data_payload["allow-push-firmware"] = allow_push_firmware
         if allow_remote_firmware_upgrade is not None:
-            data_payload["allow-remote-firmware-upgrade"] = (
-                allow_remote_firmware_upgrade
-            )
+            data_payload[
+                "allow-remote-firmware-upgrade"
+            ] = allow_remote_firmware_upgrade
         if allow_monitor is not None:
             data_payload["allow-monitor"] = allow_monitor
         if serial_number is not None:

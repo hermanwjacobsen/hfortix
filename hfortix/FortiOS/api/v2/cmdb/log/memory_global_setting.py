@@ -180,17 +180,17 @@ class MemoryGlobalSetting:
         if max_size is not None:
             data_payload["max-size"] = max_size
         if full_first_warning_threshold is not None:
-            data_payload["full-first-warning-threshold"] = (
-                full_first_warning_threshold
-            )
+            data_payload[
+                "full-first-warning-threshold"
+            ] = full_first_warning_threshold
         if full_second_warning_threshold is not None:
-            data_payload["full-second-warning-threshold"] = (
-                full_second_warning_threshold
-            )
+            data_payload[
+                "full-second-warning-threshold"
+            ] = full_second_warning_threshold
         if full_final_warning_threshold is not None:
-            data_payload["full-final-warning-threshold"] = (
-                full_final_warning_threshold
-            )
+            data_payload[
+                "full-final-warning-threshold"
+            ] = full_final_warning_threshold
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

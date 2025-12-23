@@ -226,9 +226,9 @@ class Np6xlite:
         if ipsec_inner_fragment is not None:
             data_payload["ipsec-inner-fragment"] = ipsec_inner_fragment
         if ipsec_throughput_msg_frequency is not None:
-            data_payload["ipsec-throughput-msg-frequency"] = (
-                ipsec_throughput_msg_frequency
-            )
+            data_payload[
+                "ipsec-throughput-msg-frequency"
+            ] = ipsec_throughput_msg_frequency
         if ipsec_sts_timeout is not None:
             data_payload["ipsec-sts-timeout"] = ipsec_sts_timeout
         if hpe is not None:
@@ -356,9 +356,9 @@ class Np6xlite:
         if ipsec_inner_fragment is not None:
             data_payload["ipsec-inner-fragment"] = ipsec_inner_fragment
         if ipsec_throughput_msg_frequency is not None:
-            data_payload["ipsec-throughput-msg-frequency"] = (
-                ipsec_throughput_msg_frequency
-            )
+            data_payload[
+                "ipsec-throughput-msg-frequency"
+            ] = ipsec_throughput_msg_frequency
         if ipsec_sts_timeout is not None:
             data_payload["ipsec-sts-timeout"] = ipsec_sts_timeout
         if hpe is not None:

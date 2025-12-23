@@ -175,9 +175,9 @@ class Ips:
         if signature_hold_time is not None:
             data_payload["signature-hold-time"] = signature_hold_time
         if override_signature_hold_by_id is not None:
-            data_payload["override-signature-hold-by-id"] = (
-                override_signature_hold_by_id
-            )
+            data_payload[
+                "override-signature-hold-by-id"
+            ] = override_signature_hold_by_id
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

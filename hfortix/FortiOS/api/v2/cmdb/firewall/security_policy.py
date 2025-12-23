@@ -444,39 +444,39 @@ class SecurityPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload[
+                "internet-service-custom-group"
+            ] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload[
+                "internet-service-fortiguard"
+            ] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload[
+                "internet-service-src-name"
+            ] = internet_service_src_name
         if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
+            data_payload[
+                "internet-service-src-negate"
+            ] = internet_service_src_negate
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload[
+                "internet-service-src-group"
+            ] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload[
+                "internet-service-src-custom"
+            ] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload[
+                "internet-service-src-custom-group"
+            ] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload[
+                "internet-service-src-fortiguard"
+            ] = internet_service_src_fortiguard
         if internet_service6 is not None:
             data_payload["internet-service6"] = internet_service6
         if internet_service6_name is not None:
@@ -488,39 +488,39 @@ class SecurityPolicy:
         if internet_service6_custom is not None:
             data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = (
-                internet_service6_custom_group
-            )
+            data_payload[
+                "internet-service6-custom-group"
+            ] = internet_service6_custom_group
         if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = (
-                internet_service6_fortiguard
-            )
+            data_payload[
+                "internet-service6-fortiguard"
+            ] = internet_service6_fortiguard
         if internet_service6_src is not None:
             data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = (
-                internet_service6_src_name
-            )
+            data_payload[
+                "internet-service6-src-name"
+            ] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = (
-                internet_service6_src_negate
-            )
+            data_payload[
+                "internet-service6-src-negate"
+            ] = internet_service6_src_negate
         if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = (
-                internet_service6_src_group
-            )
+            data_payload[
+                "internet-service6-src-group"
+            ] = internet_service6_src_group
         if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = (
-                internet_service6_src_custom
-            )
+            data_payload[
+                "internet-service6-src-custom"
+            ] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = (
-                internet_service6_src_custom_group
-            )
+            data_payload[
+                "internet-service6-src-custom-group"
+            ] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = (
-                internet_service6_src_fortiguard
-            )
+            data_payload[
+                "internet-service6-src-fortiguard"
+            ] = internet_service6_src_fortiguard
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if service is not None:
@@ -978,39 +978,39 @@ class SecurityPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload[
+                "internet-service-custom-group"
+            ] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload[
+                "internet-service-fortiguard"
+            ] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload[
+                "internet-service-src-name"
+            ] = internet_service_src_name
         if internet_service_src_negate is not None:
-            data_payload["internet-service-src-negate"] = (
-                internet_service_src_negate
-            )
+            data_payload[
+                "internet-service-src-negate"
+            ] = internet_service_src_negate
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload[
+                "internet-service-src-group"
+            ] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload[
+                "internet-service-src-custom"
+            ] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload[
+                "internet-service-src-custom-group"
+            ] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload[
+                "internet-service-src-fortiguard"
+            ] = internet_service_src_fortiguard
         if internet_service6 is not None:
             data_payload["internet-service6"] = internet_service6
         if internet_service6_name is not None:
@@ -1022,39 +1022,39 @@ class SecurityPolicy:
         if internet_service6_custom is not None:
             data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = (
-                internet_service6_custom_group
-            )
+            data_payload[
+                "internet-service6-custom-group"
+            ] = internet_service6_custom_group
         if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = (
-                internet_service6_fortiguard
-            )
+            data_payload[
+                "internet-service6-fortiguard"
+            ] = internet_service6_fortiguard
         if internet_service6_src is not None:
             data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = (
-                internet_service6_src_name
-            )
+            data_payload[
+                "internet-service6-src-name"
+            ] = internet_service6_src_name
         if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = (
-                internet_service6_src_negate
-            )
+            data_payload[
+                "internet-service6-src-negate"
+            ] = internet_service6_src_negate
         if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = (
-                internet_service6_src_group
-            )
+            data_payload[
+                "internet-service6-src-group"
+            ] = internet_service6_src_group
         if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = (
-                internet_service6_src_custom
-            )
+            data_payload[
+                "internet-service6-src-custom"
+            ] = internet_service6_src_custom
         if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = (
-                internet_service6_src_custom_group
-            )
+            data_payload[
+                "internet-service6-src-custom-group"
+            ] = internet_service6_src_custom_group
         if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = (
-                internet_service6_src_fortiguard
-            )
+            data_payload[
+                "internet-service6-src-fortiguard"
+            ] = internet_service6_src_fortiguard
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if service is not None:

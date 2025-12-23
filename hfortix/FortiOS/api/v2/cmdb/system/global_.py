@@ -982,15 +982,15 @@ class Global:
         if language is not None:
             data_payload["language"] = language
         if gui_allow_incompatible_fabric_fgt is not None:
-            data_payload["gui-allow-incompatible-fabric-fgt"] = (
-                gui_allow_incompatible_fabric_fgt
-            )
+            data_payload[
+                "gui-allow-incompatible-fabric-fgt"
+            ] = gui_allow_incompatible_fabric_fgt
         if gui_ipv6 is not None:
             data_payload["gui-ipv6"] = gui_ipv6
         if gui_replacement_message_groups is not None:
-            data_payload["gui-replacement-message-groups"] = (
-                gui_replacement_message_groups
-            )
+            data_payload[
+                "gui-replacement-message-groups"
+            ] = gui_replacement_message_groups
         if gui_local_out is not None:
             data_payload["gui-local-out"] = gui_local_out
         if gui_certificates is not None:
@@ -998,29 +998,29 @@ class Global:
         if gui_custom_language is not None:
             data_payload["gui-custom-language"] = gui_custom_language
         if gui_wireless_opensecurity is not None:
-            data_payload["gui-wireless-opensecurity"] = (
-                gui_wireless_opensecurity
-            )
+            data_payload[
+                "gui-wireless-opensecurity"
+            ] = gui_wireless_opensecurity
         if gui_app_detection_sdwan is not None:
             data_payload["gui-app-detection-sdwan"] = gui_app_detection_sdwan
         if gui_display_hostname is not None:
             data_payload["gui-display-hostname"] = gui_display_hostname
         if gui_fortigate_cloud_sandbox is not None:
-            data_payload["gui-fortigate-cloud-sandbox"] = (
-                gui_fortigate_cloud_sandbox
-            )
+            data_payload[
+                "gui-fortigate-cloud-sandbox"
+            ] = gui_fortigate_cloud_sandbox
         if gui_firmware_upgrade_warning is not None:
-            data_payload["gui-firmware-upgrade-warning"] = (
-                gui_firmware_upgrade_warning
-            )
+            data_payload[
+                "gui-firmware-upgrade-warning"
+            ] = gui_firmware_upgrade_warning
         if gui_forticare_registration_setup_warning is not None:
-            data_payload["gui-forticare-registration-setup-warning"] = (
-                gui_forticare_registration_setup_warning
-            )
+            data_payload[
+                "gui-forticare-registration-setup-warning"
+            ] = gui_forticare_registration_setup_warning
         if gui_auto_upgrade_setup_warning is not None:
-            data_payload["gui-auto-upgrade-setup-warning"] = (
-                gui_auto_upgrade_setup_warning
-            )
+            data_payload[
+                "gui-auto-upgrade-setup-warning"
+            ] = gui_auto_upgrade_setup_warning
         if gui_workflow_management is not None:
             data_payload["gui-workflow-management"] = gui_workflow_management
         if gui_cdn_usage is not None:
@@ -1028,13 +1028,13 @@ class Global:
         if admin_https_ssl_versions is not None:
             data_payload["admin-https-ssl-versions"] = admin_https_ssl_versions
         if admin_https_ssl_ciphersuites is not None:
-            data_payload["admin-https-ssl-ciphersuites"] = (
-                admin_https_ssl_ciphersuites
-            )
+            data_payload[
+                "admin-https-ssl-ciphersuites"
+            ] = admin_https_ssl_ciphersuites
         if admin_https_ssl_banned_ciphers is not None:
-            data_payload["admin-https-ssl-banned-ciphers"] = (
-                admin_https_ssl_banned_ciphers
-            )
+            data_payload[
+                "admin-https-ssl-banned-ciphers"
+            ] = admin_https_ssl_banned_ciphers
         if admintimeout is not None:
             data_payload["admintimeout"] = admintimeout
         if admin_console_timeout is not None:
@@ -1090,9 +1090,9 @@ class Global:
         if batch_cmdb is not None:
             data_payload["batch-cmdb"] = batch_cmdb
         if multi_factor_authentication is not None:
-            data_payload["multi-factor-authentication"] = (
-                multi_factor_authentication
-            )
+            data_payload[
+                "multi-factor-authentication"
+            ] = multi_factor_authentication
         if ssl_min_proto_version is not None:
             data_payload["ssl-min-proto-version"] = ssl_min_proto_version
         if autorun_log_fsck is not None:
@@ -1104,23 +1104,23 @@ class Global:
         if traffic_priority_level is not None:
             data_payload["traffic-priority-level"] = traffic_priority_level
         if quic_congestion_control_algo is not None:
-            data_payload["quic-congestion-control-algo"] = (
-                quic_congestion_control_algo
-            )
+            data_payload[
+                "quic-congestion-control-algo"
+            ] = quic_congestion_control_algo
         if quic_max_datagram_size is not None:
             data_payload["quic-max-datagram-size"] = quic_max_datagram_size
         if quic_udp_payload_size_shaping_per_cid is not None:
-            data_payload["quic-udp-payload-size-shaping-per-cid"] = (
-                quic_udp_payload_size_shaping_per_cid
-            )
+            data_payload[
+                "quic-udp-payload-size-shaping-per-cid"
+            ] = quic_udp_payload_size_shaping_per_cid
         if quic_ack_thresold is not None:
             data_payload["quic-ack-thresold"] = quic_ack_thresold
         if quic_pmtud is not None:
             data_payload["quic-pmtud"] = quic_pmtud
         if quic_tls_handshake_timeout is not None:
-            data_payload["quic-tls-handshake-timeout"] = (
-                quic_tls_handshake_timeout
-            )
+            data_payload[
+                "quic-tls-handshake-timeout"
+            ] = quic_tls_handshake_timeout
         if anti_replay is not None:
             data_payload["anti-replay"] = anti_replay
         if send_pmtu_icmp is not None:
@@ -1132,13 +1132,13 @@ class Global:
         if virtual_switch_vlan is not None:
             data_payload["virtual-switch-vlan"] = virtual_switch_vlan
         if revision_image_auto_backup is not None:
-            data_payload["revision-image-auto-backup"] = (
-                revision_image_auto_backup
-            )
+            data_payload[
+                "revision-image-auto-backup"
+            ] = revision_image_auto_backup
         if revision_backup_on_logout is not None:
-            data_payload["revision-backup-on-logout"] = (
-                revision_backup_on_logout
-            )
+            data_payload[
+                "revision-backup-on-logout"
+            ] = revision_backup_on_logout
         if management_vdom is not None:
             data_payload["management-vdom"] = management_vdom
         if hostname is not None:
@@ -1174,15 +1174,15 @@ class Global:
         if proxy_keep_alive_mode is not None:
             data_payload["proxy-keep-alive-mode"] = proxy_keep_alive_mode
         if proxy_re_authentication_time is not None:
-            data_payload["proxy-re-authentication-time"] = (
-                proxy_re_authentication_time
-            )
+            data_payload[
+                "proxy-re-authentication-time"
+            ] = proxy_re_authentication_time
         if proxy_auth_lifetime is not None:
             data_payload["proxy-auth-lifetime"] = proxy_auth_lifetime
         if proxy_auth_lifetime_timeout is not None:
-            data_payload["proxy-auth-lifetime-timeout"] = (
-                proxy_auth_lifetime_timeout
-            )
+            data_payload[
+                "proxy-auth-lifetime-timeout"
+            ] = proxy_auth_lifetime_timeout
         if proxy_resource_mode is not None:
             data_payload["proxy-resource-mode"] = proxy_resource_mode
         if proxy_cert_use_mgmt_vdom is not None:
@@ -1198,13 +1198,13 @@ class Global:
         if allow_traffic_redirect is not None:
             data_payload["allow-traffic-redirect"] = allow_traffic_redirect
         if ipv6_allow_traffic_redirect is not None:
-            data_payload["ipv6-allow-traffic-redirect"] = (
-                ipv6_allow_traffic_redirect
-            )
+            data_payload[
+                "ipv6-allow-traffic-redirect"
+            ] = ipv6_allow_traffic_redirect
         if strict_dirty_session_check is not None:
-            data_payload["strict-dirty-session-check"] = (
-                strict_dirty_session_check
-            )
+            data_payload[
+                "strict-dirty-session-check"
+            ] = strict_dirty_session_check
         if tcp_halfclose_timer is not None:
             data_payload["tcp-halfclose-timer"] = tcp_halfclose_timer
         if tcp_halfopen_timer is not None:
@@ -1230,19 +1230,19 @@ class Global:
         if av_failopen_session is not None:
             data_payload["av-failopen-session"] = av_failopen_session
         if memory_use_threshold_extreme is not None:
-            data_payload["memory-use-threshold-extreme"] = (
-                memory_use_threshold_extreme
-            )
+            data_payload[
+                "memory-use-threshold-extreme"
+            ] = memory_use_threshold_extreme
         if memory_use_threshold_red is not None:
             data_payload["memory-use-threshold-red"] = memory_use_threshold_red
         if memory_use_threshold_green is not None:
-            data_payload["memory-use-threshold-green"] = (
-                memory_use_threshold_green
-            )
+            data_payload[
+                "memory-use-threshold-green"
+            ] = memory_use_threshold_green
         if ip_fragment_mem_thresholds is not None:
-            data_payload["ip-fragment-mem-thresholds"] = (
-                ip_fragment_mem_thresholds
-            )
+            data_payload[
+                "ip-fragment-mem-thresholds"
+            ] = ip_fragment_mem_thresholds
         if ip_fragment_timeout is not None:
             data_payload["ip-fragment-timeout"] = ip_fragment_timeout
         if ipv6_fragment_timeout is not None:
@@ -1288,17 +1288,17 @@ class Global:
         if admin_telnet_port is not None:
             data_payload["admin-telnet-port"] = admin_telnet_port
         if admin_forticloud_sso_login is not None:
-            data_payload["admin-forticloud-sso-login"] = (
-                admin_forticloud_sso_login
-            )
+            data_payload[
+                "admin-forticloud-sso-login"
+            ] = admin_forticloud_sso_login
         if admin_forticloud_sso_default_profile is not None:
-            data_payload["admin-forticloud-sso-default-profile"] = (
-                admin_forticloud_sso_default_profile
-            )
+            data_payload[
+                "admin-forticloud-sso-default-profile"
+            ] = admin_forticloud_sso_default_profile
         if default_service_source_port is not None:
-            data_payload["default-service-source-port"] = (
-                default_service_source_port
-            )
+            data_payload[
+                "default-service-source-port"
+            ] = default_service_source_port
         if admin_reset_button is not None:
             data_payload["admin-reset-button"] = admin_reset_button
         if admin_server_cert is not None:
@@ -1308,9 +1308,9 @@ class Global:
         if wifi_certificate is not None:
             data_payload["wifi-certificate"] = wifi_certificate
         if dhcp_lease_backup_interval is not None:
-            data_payload["dhcp-lease-backup-interval"] = (
-                dhcp_lease_backup_interval
-            )
+            data_payload[
+                "dhcp-lease-backup-interval"
+            ] = dhcp_lease_backup_interval
         if wifi_ca_certificate is not None:
             data_payload["wifi-ca-certificate"] = wifi_ca_certificate
         if auth_http_port is not None:
@@ -1336,9 +1336,9 @@ class Global:
         if cfg_revert_timeout is not None:
             data_payload["cfg-revert-timeout"] = cfg_revert_timeout
         if reboot_upon_config_restore is not None:
-            data_payload["reboot-upon-config-restore"] = (
-                reboot_upon_config_restore
-            )
+            data_payload[
+                "reboot-upon-config-restore"
+            ] = reboot_upon_config_restore
         if admin_scp is not None:
             data_payload["admin-scp"] = admin_scp
         if wireless_controller is not None:
@@ -1350,25 +1350,25 @@ class Global:
         if fortiextender is not None:
             data_payload["fortiextender"] = fortiextender
         if extender_controller_reserved_network is not None:
-            data_payload["extender-controller-reserved-network"] = (
-                extender_controller_reserved_network
-            )
+            data_payload[
+                "extender-controller-reserved-network"
+            ] = extender_controller_reserved_network
         if fortiextender_discovery_lockdown is not None:
-            data_payload["fortiextender-discovery-lockdown"] = (
-                fortiextender_discovery_lockdown
-            )
+            data_payload[
+                "fortiextender-discovery-lockdown"
+            ] = fortiextender_discovery_lockdown
         if fortiextender_vlan_mode is not None:
             data_payload["fortiextender-vlan-mode"] = fortiextender_vlan_mode
         if fortiextender_provision_on_authorization is not None:
-            data_payload["fortiextender-provision-on-authorization"] = (
-                fortiextender_provision_on_authorization
-            )
+            data_payload[
+                "fortiextender-provision-on-authorization"
+            ] = fortiextender_provision_on_authorization
         if switch_controller is not None:
             data_payload["switch-controller"] = switch_controller
         if switch_controller_reserved_network is not None:
-            data_payload["switch-controller-reserved-network"] = (
-                switch_controller_reserved_network
-            )
+            data_payload[
+                "switch-controller-reserved-network"
+            ] = switch_controller_reserved_network
         if dnsproxy_worker_count is not None:
             data_payload["dnsproxy-worker-count"] = dnsproxy_worker_count
         if url_filter_count is not None:
@@ -1380,9 +1380,9 @@ class Global:
         if scanunit_count is not None:
             data_payload["scanunit-count"] = scanunit_count
         if proxy_hardware_acceleration is not None:
-            data_payload["proxy-hardware-acceleration"] = (
-                proxy_hardware_acceleration
-            )
+            data_payload[
+                "proxy-hardware-acceleration"
+            ] = proxy_hardware_acceleration
         if fgd_alert_subscription is not None:
             data_payload["fgd-alert-subscription"] = fgd_alert_subscription
         if ipsec_hmac_offload is not None:
@@ -1392,13 +1392,13 @@ class Global:
         if ipv6_allow_anycast_probe is not None:
             data_payload["ipv6-allow-anycast-probe"] = ipv6_allow_anycast_probe
         if ipv6_allow_multicast_probe is not None:
-            data_payload["ipv6-allow-multicast-probe"] = (
-                ipv6_allow_multicast_probe
-            )
+            data_payload[
+                "ipv6-allow-multicast-probe"
+            ] = ipv6_allow_multicast_probe
         if ipv6_allow_local_in_silent_drop is not None:
-            data_payload["ipv6-allow-local-in-silent-drop"] = (
-                ipv6_allow_local_in_silent_drop
-            )
+            data_payload[
+                "ipv6-allow-local-in-silent-drop"
+            ] = ipv6_allow_local_in_silent_drop
         if csr_ca_attribute is not None:
             data_payload["csr-ca-attribute"] = csr_ca_attribute
         if wimax_4g_usb is not None:
@@ -1426,9 +1426,9 @@ class Global:
         if wad_source_affinity is not None:
             data_payload["wad-source-affinity"] = wad_source_affinity
         if wad_memory_change_granularity is not None:
-            data_payload["wad-memory-change-granularity"] = (
-                wad_memory_change_granularity
-            )
+            data_payload[
+                "wad-memory-change-granularity"
+            ] = wad_memory_change_granularity
         if login_timestamp is not None:
             data_payload["login-timestamp"] = login_timestamp
         if ip_conflict_detection is not None:
@@ -1466,21 +1466,21 @@ class Global:
         if device_idle_timeout is not None:
             data_payload["device-idle-timeout"] = device_idle_timeout
         if user_device_store_max_devices is not None:
-            data_payload["user-device-store-max-devices"] = (
-                user_device_store_max_devices
-            )
+            data_payload[
+                "user-device-store-max-devices"
+            ] = user_device_store_max_devices
         if user_device_store_max_device_mem is not None:
-            data_payload["user-device-store-max-device-mem"] = (
-                user_device_store_max_device_mem
-            )
+            data_payload[
+                "user-device-store-max-device-mem"
+            ] = user_device_store_max_device_mem
         if user_device_store_max_users is not None:
-            data_payload["user-device-store-max-users"] = (
-                user_device_store_max_users
-            )
+            data_payload[
+                "user-device-store-max-users"
+            ] = user_device_store_max_users
         if user_device_store_max_unified_mem is not None:
-            data_payload["user-device-store-max-unified-mem"] = (
-                user_device_store_max_unified_mem
-            )
+            data_payload[
+                "user-device-store-max-unified-mem"
+            ] = user_device_store_max_unified_mem
         if gui_device_latitude is not None:
             data_payload["gui-device-latitude"] = gui_device_latitude
         if gui_device_longitude is not None:
@@ -1488,9 +1488,9 @@ class Global:
         if private_data_encryption is not None:
             data_payload["private-data-encryption"] = private_data_encryption
         if auto_auth_extension_device is not None:
-            data_payload["auto-auth-extension-device"] = (
-                auto_auth_extension_device
-            )
+            data_payload[
+                "auto-auth-extension-device"
+            ] = auto_auth_extension_device
         if gui_theme is not None:
             data_payload["gui-theme"] = gui_theme
         if gui_date_format is not None:
@@ -1506,15 +1506,15 @@ class Global:
         if fortitoken_cloud is not None:
             data_payload["fortitoken-cloud"] = fortitoken_cloud
         if fortitoken_cloud_push_status is not None:
-            data_payload["fortitoken-cloud-push-status"] = (
-                fortitoken_cloud_push_status
-            )
+            data_payload[
+                "fortitoken-cloud-push-status"
+            ] = fortitoken_cloud_push_status
         if fortitoken_cloud_region is not None:
             data_payload["fortitoken-cloud-region"] = fortitoken_cloud_region
         if fortitoken_cloud_sync_interval is not None:
-            data_payload["fortitoken-cloud-sync-interval"] = (
-                fortitoken_cloud_sync_interval
-            )
+            data_payload[
+                "fortitoken-cloud-sync-interval"
+            ] = fortitoken_cloud_sync_interval
         if faz_disk_buffer_size is not None:
             data_payload["faz-disk-buffer-size"] = faz_disk_buffer_size
         if irq_time_accounting is not None:
@@ -1524,25 +1524,25 @@ class Global:
         if management_port is not None:
             data_payload["management-port"] = management_port
         if management_port_use_admin_sport is not None:
-            data_payload["management-port-use-admin-sport"] = (
-                management_port_use_admin_sport
-            )
+            data_payload[
+                "management-port-use-admin-sport"
+            ] = management_port_use_admin_sport
         if forticonverter_integration is not None:
-            data_payload["forticonverter-integration"] = (
-                forticonverter_integration
-            )
+            data_payload[
+                "forticonverter-integration"
+            ] = forticonverter_integration
         if forticonverter_config_upload is not None:
-            data_payload["forticonverter-config-upload"] = (
-                forticonverter_config_upload
-            )
+            data_payload[
+                "forticonverter-config-upload"
+            ] = forticonverter_config_upload
         if internet_service_database is not None:
-            data_payload["internet-service-database"] = (
-                internet_service_database
-            )
+            data_payload[
+                "internet-service-database"
+            ] = internet_service_database
         if internet_service_download_list is not None:
-            data_payload["internet-service-download-list"] = (
-                internet_service_download_list
-            )
+            data_payload[
+                "internet-service-download-list"
+            ] = internet_service_download_list
         if geoip_full_db is not None:
             data_payload["geoip-full-db"] = geoip_full_db
         if early_tcp_npu_session is not None:
@@ -1558,15 +1558,15 @@ class Global:
         if fortigslb_integration is not None:
             data_payload["fortigslb-integration"] = fortigslb_integration
         if user_history_password_threshold is not None:
-            data_payload["user-history-password-threshold"] = (
-                user_history_password_threshold
-            )
+            data_payload[
+                "user-history-password-threshold"
+            ] = user_history_password_threshold
         if auth_session_auto_backup is not None:
             data_payload["auth-session-auto-backup"] = auth_session_auto_backup
         if auth_session_auto_backup_interval is not None:
-            data_payload["auth-session-auto-backup-interval"] = (
-                auth_session_auto_backup_interval
-            )
+            data_payload[
+                "auth-session-auto-backup-interval"
+            ] = auth_session_auto_backup_interval
         if scim_https_port is not None:
             data_payload["scim-https-port"] = scim_https_port
         if scim_http_port is not None:
@@ -1574,9 +1574,9 @@ class Global:
         if scim_server_cert is not None:
             data_payload["scim-server-cert"] = scim_server_cert
         if application_bandwidth_tracking is not None:
-            data_payload["application-bandwidth-tracking"] = (
-                application_bandwidth_tracking
-            )
+            data_payload[
+                "application-bandwidth-tracking"
+            ] = application_bandwidth_tracking
         if tls_session_cache is not None:
             data_payload["tls-session-cache"] = tls_session_cache
         data_payload.update(kwargs)

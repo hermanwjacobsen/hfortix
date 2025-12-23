@@ -213,23 +213,23 @@ class Ospf6:
         if auto_cost_ref_bandwidth is not None:
             data_payload["auto-cost-ref-bandwidth"] = auto_cost_ref_bandwidth
         if default_information_originate is not None:
-            data_payload["default-information-originate"] = (
-                default_information_originate
-            )
+            data_payload[
+                "default-information-originate"
+            ] = default_information_originate
         if log_neighbour_changes is not None:
             data_payload["log-neighbour-changes"] = log_neighbour_changes
         if default_information_metric is not None:
-            data_payload["default-information-metric"] = (
-                default_information_metric
-            )
+            data_payload[
+                "default-information-metric"
+            ] = default_information_metric
         if default_information_metric_type is not None:
-            data_payload["default-information-metric-type"] = (
-                default_information_metric_type
-            )
+            data_payload[
+                "default-information-metric-type"
+            ] = default_information_metric_type
         if default_information_route_map is not None:
-            data_payload["default-information-route-map"] = (
-                default_information_route_map
-            )
+            data_payload[
+                "default-information-route-map"
+            ] = default_information_route_map
         if default_metric is not None:
             data_payload["default-metric"] = default_metric
         if router_id is not None:
@@ -243,9 +243,9 @@ class Ospf6:
         if restart_period is not None:
             data_payload["restart-period"] = restart_period
         if restart_on_topology_change is not None:
-            data_payload["restart-on-topology-change"] = (
-                restart_on_topology_change
-            )
+            data_payload[
+                "restart-on-topology-change"
+            ] = restart_on_topology_change
         if area is not None:
             data_payload["area"] = area
         if ospf6_interface is not None:

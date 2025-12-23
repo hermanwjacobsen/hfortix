@@ -264,9 +264,9 @@ class Timers:
         if client_idle_timeout is not None:
             data_payload["client-idle-timeout"] = client_idle_timeout
         if client_idle_rehome_timeout is not None:
-            data_payload["client-idle-rehome-timeout"] = (
-                client_idle_rehome_timeout
-            )
+            data_payload[
+                "client-idle-rehome-timeout"
+            ] = client_idle_rehome_timeout
         if auth_timeout is not None:
             data_payload["auth-timeout"] = auth_timeout
         if rogue_ap_log is not None:
@@ -276,9 +276,9 @@ class Timers:
         if sta_offline_cleanup is not None:
             data_payload["sta-offline-cleanup"] = sta_offline_cleanup
         if sta_offline_ip2mac_cleanup is not None:
-            data_payload["sta-offline-ip2mac-cleanup"] = (
-                sta_offline_ip2mac_cleanup
-            )
+            data_payload[
+                "sta-offline-ip2mac-cleanup"
+            ] = sta_offline_ip2mac_cleanup
         if sta_cap_cleanup is not None:
             data_payload["sta-cap-cleanup"] = sta_cap_cleanup
         if rogue_ap_cleanup is not None:

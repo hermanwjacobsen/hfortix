@@ -274,9 +274,9 @@ class Saml:
         if digest_method is not None:
             data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = (
-                require_signed_resp_and_asrt
-            )
+            data_payload[
+                "require-signed-resp-and-asrt"
+            ] = require_signed_resp_and_asrt
         if limit_relaystate is not None:
             data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:
@@ -501,9 +501,9 @@ class Saml:
         if digest_method is not None:
             data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = (
-                require_signed_resp_and_asrt
-            )
+            data_payload[
+                "require-signed-resp-and-asrt"
+            ] = require_signed_resp_and_asrt
         if limit_relaystate is not None:
             data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:

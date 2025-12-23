@@ -272,9 +272,9 @@ class Setting:
         if IPS_logs is not None:
             data_payload["IPS-logs"] = IPS_logs
         if firewall_authentication_failure_logs is not None:
-            data_payload["firewall-authentication-failure-logs"] = (
-                firewall_authentication_failure_logs
-            )
+            data_payload[
+                "firewall-authentication-failure-logs"
+            ] = firewall_authentication_failure_logs
         if HA_logs is not None:
             data_payload["HA-logs"] = HA_logs
         if IPsec_errors_logs is not None:
@@ -288,27 +288,27 @@ class Setting:
         if webfilter_logs is not None:
             data_payload["webfilter-logs"] = webfilter_logs
         if configuration_changes_logs is not None:
-            data_payload["configuration-changes-logs"] = (
-                configuration_changes_logs
-            )
+            data_payload[
+                "configuration-changes-logs"
+            ] = configuration_changes_logs
         if violation_traffic_logs is not None:
             data_payload["violation-traffic-logs"] = violation_traffic_logs
         if admin_login_logs is not None:
             data_payload["admin-login-logs"] = admin_login_logs
         if FDS_license_expiring_warning is not None:
-            data_payload["FDS-license-expiring-warning"] = (
-                FDS_license_expiring_warning
-            )
+            data_payload[
+                "FDS-license-expiring-warning"
+            ] = FDS_license_expiring_warning
         if log_disk_usage_warning is not None:
             data_payload["log-disk-usage-warning"] = log_disk_usage_warning
         if fortiguard_log_quota_warning is not None:
-            data_payload["fortiguard-log-quota-warning"] = (
-                fortiguard_log_quota_warning
-            )
+            data_payload[
+                "fortiguard-log-quota-warning"
+            ] = fortiguard_log_quota_warning
         if amc_interface_bypass_mode is not None:
-            data_payload["amc-interface-bypass-mode"] = (
-                amc_interface_bypass_mode
-            )
+            data_payload[
+                "amc-interface-bypass-mode"
+            ] = amc_interface_bypass_mode
         if FIPS_CC_errors is not None:
             data_payload["FIPS-CC-errors"] = FIPS_CC_errors
         if FSSO_disconnect_logs is not None:

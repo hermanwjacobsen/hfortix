@@ -235,9 +235,9 @@ class SslServer:
         if ssl_mode is not None:
             data_payload["ssl-mode"] = ssl_mode
         if add_header_x_forwarded_proto is not None:
-            data_payload["add-header-x-forwarded-proto"] = (
-                add_header_x_forwarded_proto
-            )
+            data_payload[
+                "add-header-x-forwarded-proto"
+            ] = add_header_x_forwarded_proto
         if mapped_port is not None:
             data_payload["mapped-port"] = mapped_port
         if ssl_cert is not None:
@@ -429,9 +429,9 @@ class SslServer:
         if ssl_mode is not None:
             data_payload["ssl-mode"] = ssl_mode
         if add_header_x_forwarded_proto is not None:
-            data_payload["add-header-x-forwarded-proto"] = (
-                add_header_x_forwarded_proto
-            )
+            data_payload[
+                "add-header-x-forwarded-proto"
+            ] = add_header_x_forwarded_proto
         if mapped_port is not None:
             data_payload["mapped-port"] = mapped_port
         if ssl_cert is not None:

@@ -228,12 +228,12 @@ class HTTPClient(BaseHTTPClient):
         self._username = username
         self._password = password
         self._session_token: Optional[str] = None  # For username/password auth
-        self._session_created_at: Optional[float] = (
-            None  # Track when session was created
-        )
-        self._session_last_activity: Optional[float] = (
-            None  # Track last request time
-        )
+        self._session_created_at: Optional[
+            float
+        ] = None  # Track when session was created
+        self._session_last_activity: Optional[
+            float
+        ] = None  # Track last request time
         self._using_token_auth = token is not None
 
         # Session timeout settings (in seconds) - only for username/password

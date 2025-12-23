@@ -249,19 +249,19 @@ class Profile:
         if header_x_forwarded_for is not None:
             data_payload["header-x-forwarded-for"] = header_x_forwarded_for
         if header_x_forwarded_client_cert is not None:
-            data_payload["header-x-forwarded-client-cert"] = (
-                header_x_forwarded_client_cert
-            )
+            data_payload[
+                "header-x-forwarded-client-cert"
+            ] = header_x_forwarded_client_cert
         if header_front_end_https is not None:
             data_payload["header-front-end-https"] = header_front_end_https
         if header_x_authenticated_user is not None:
-            data_payload["header-x-authenticated-user"] = (
-                header_x_authenticated_user
-            )
+            data_payload[
+                "header-x-authenticated-user"
+            ] = header_x_authenticated_user
         if header_x_authenticated_groups is not None:
-            data_payload["header-x-authenticated-groups"] = (
-                header_x_authenticated_groups
-            )
+            data_payload[
+                "header-x-authenticated-groups"
+            ] = header_x_authenticated_groups
         if strip_encoding is not None:
             data_payload["strip-encoding"] = strip_encoding
         if log_header_change is not None:
@@ -455,19 +455,19 @@ class Profile:
         if header_x_forwarded_for is not None:
             data_payload["header-x-forwarded-for"] = header_x_forwarded_for
         if header_x_forwarded_client_cert is not None:
-            data_payload["header-x-forwarded-client-cert"] = (
-                header_x_forwarded_client_cert
-            )
+            data_payload[
+                "header-x-forwarded-client-cert"
+            ] = header_x_forwarded_client_cert
         if header_front_end_https is not None:
             data_payload["header-front-end-https"] = header_front_end_https
         if header_x_authenticated_user is not None:
-            data_payload["header-x-authenticated-user"] = (
-                header_x_authenticated_user
-            )
+            data_payload[
+                "header-x-authenticated-user"
+            ] = header_x_authenticated_user
         if header_x_authenticated_groups is not None:
-            data_payload["header-x-authenticated-groups"] = (
-                header_x_authenticated_groups
-            )
+            data_payload[
+                "header-x-authenticated-groups"
+            ] = header_x_authenticated_groups
         if strip_encoding is not None:
             data_payload["strip-encoding"] = strip_encoding
         if log_header_change is not None:

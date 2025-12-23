@@ -204,7 +204,7 @@ This document tracks the implementation status of FortiOS API endpoints in the F
 **Sub-categories Implemented:** 7 (ipmacbinding, schedule, service, shaper, ssh, ssl, wildcard-fqdn)  
 **Flat Endpoints Implemented:** 6 (DoS-policy, DoS-policy6, access-proxy, access-proxy6, access-proxy-ssh-client-cert, access-proxy-virtual-host)  
 **Test Coverage:** 186 tests (100% pass rate)  
-**Pattern:** 
+**Pattern:**
 - Nested: `fgt.api.cmdb.firewall.[subcategory].[endpoint]`
 - Flat: `fgt.api.cmdb.firewall.[endpoint]`
 

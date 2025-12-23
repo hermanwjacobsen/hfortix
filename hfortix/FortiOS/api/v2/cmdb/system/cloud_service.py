@@ -221,9 +221,9 @@ class CloudService:
         if gck_keyid is not None:
             data_payload["gck-keyid"] = gck_keyid
         if gck_access_token_lifetime is not None:
-            data_payload["gck-access-token-lifetime"] = (
-                gck_access_token_lifetime
-            )
+            data_payload[
+                "gck-access-token-lifetime"
+            ] = gck_access_token_lifetime
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
@@ -340,9 +340,9 @@ class CloudService:
         if gck_keyid is not None:
             data_payload["gck-keyid"] = gck_keyid
         if gck_access_token_lifetime is not None:
-            data_payload["gck-access-token-lifetime"] = (
-                gck_access_token_lifetime
-            )
+            data_payload[
+                "gck-access-token-lifetime"
+            ] = gck_access_token_lifetime
         data_payload.update(kwargs)
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

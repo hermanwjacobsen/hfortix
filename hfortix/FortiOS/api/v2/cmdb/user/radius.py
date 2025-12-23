@@ -394,9 +394,9 @@ class Radius:
         if use_management_vdom is not None:
             data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload["switch-controller-nas-ip-dynamic"] = (
-                switch_controller_nas_ip_dynamic
-            )
+            data_payload[
+                "switch-controller-nas-ip-dynamic"
+            ] = switch_controller_nas_ip_dynamic
         if nas_ip is not None:
             data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
@@ -428,9 +428,9 @@ class Radius:
         if password_renewal is not None:
             data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload["require-message-authenticator"] = (
-                require_message_authenticator
-            )
+            data_payload[
+                "require-message-authenticator"
+            ] = require_message_authenticator
         if password_encoding is not None:
             data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
@@ -442,9 +442,9 @@ class Radius:
         if acct_all_servers is not None:
             data_payload["acct-all-servers"] = acct_all_servers
         if switch_controller_acct_fast_framedip_detect is not None:
-            data_payload["switch-controller-acct-fast-framedip-detect"] = (
-                switch_controller_acct_fast_framedip_detect
-            )
+            data_payload[
+                "switch-controller-acct-fast-framedip-detect"
+            ] = switch_controller_acct_fast_framedip_detect
         if interface_select_method is not None:
             data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
@@ -452,9 +452,9 @@ class Radius:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload["switch-controller-service-type"] = (
-                switch_controller_service_type
-            )
+            data_payload[
+                "switch-controller-service-type"
+            ] = switch_controller_service_type
         if transport_protocol is not None:
             data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
@@ -476,25 +476,25 @@ class Radius:
         if rsso_radius_response is not None:
             data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload["rsso-validate-request-secret"] = (
-                rsso_validate_request_secret
-            )
+            data_payload[
+                "rsso-validate-request-secret"
+            ] = rsso_validate_request_secret
         if rsso_secret is not None:
             data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
             data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload["rsso-endpoint-block-attribute"] = (
-                rsso_endpoint_block_attribute
-            )
+            data_payload[
+                "rsso-endpoint-block-attribute"
+            ] = rsso_endpoint_block_attribute
         if sso_attribute is not None:
             data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
             data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload["sso-attribute-value-override"] = (
-                sso_attribute_value_override
-            )
+            data_payload[
+                "sso-attribute-value-override"
+            ] = sso_attribute_value_override
         if rsso_context_timeout is not None:
             data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:
@@ -841,9 +841,9 @@ class Radius:
         if use_management_vdom is not None:
             data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload["switch-controller-nas-ip-dynamic"] = (
-                switch_controller_nas_ip_dynamic
-            )
+            data_payload[
+                "switch-controller-nas-ip-dynamic"
+            ] = switch_controller_nas_ip_dynamic
         if nas_ip is not None:
             data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
@@ -875,9 +875,9 @@ class Radius:
         if password_renewal is not None:
             data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload["require-message-authenticator"] = (
-                require_message_authenticator
-            )
+            data_payload[
+                "require-message-authenticator"
+            ] = require_message_authenticator
         if password_encoding is not None:
             data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
@@ -889,9 +889,9 @@ class Radius:
         if acct_all_servers is not None:
             data_payload["acct-all-servers"] = acct_all_servers
         if switch_controller_acct_fast_framedip_detect is not None:
-            data_payload["switch-controller-acct-fast-framedip-detect"] = (
-                switch_controller_acct_fast_framedip_detect
-            )
+            data_payload[
+                "switch-controller-acct-fast-framedip-detect"
+            ] = switch_controller_acct_fast_framedip_detect
         if interface_select_method is not None:
             data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
@@ -899,9 +899,9 @@ class Radius:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload["switch-controller-service-type"] = (
-                switch_controller_service_type
-            )
+            data_payload[
+                "switch-controller-service-type"
+            ] = switch_controller_service_type
         if transport_protocol is not None:
             data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
@@ -923,25 +923,25 @@ class Radius:
         if rsso_radius_response is not None:
             data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload["rsso-validate-request-secret"] = (
-                rsso_validate_request_secret
-            )
+            data_payload[
+                "rsso-validate-request-secret"
+            ] = rsso_validate_request_secret
         if rsso_secret is not None:
             data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
             data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload["rsso-endpoint-block-attribute"] = (
-                rsso_endpoint_block_attribute
-            )
+            data_payload[
+                "rsso-endpoint-block-attribute"
+            ] = rsso_endpoint_block_attribute
         if sso_attribute is not None:
             data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
             data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload["sso-attribute-value-override"] = (
-                sso_attribute_value_override
-            )
+            data_payload[
+                "sso-attribute-value-override"
+            ] = sso_attribute_value_override
         if rsso_context_timeout is not None:
             data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:

@@ -561,9 +561,9 @@ class Vip:
         if realservers is not None:
             data_payload["realservers"] = realservers
         if http_cookie_domain_from_host is not None:
-            data_payload["http-cookie-domain-from-host"] = (
-                http_cookie_domain_from_host
-            )
+            data_payload[
+                "http-cookie-domain-from-host"
+            ] = http_cookie_domain_from_host
         if http_cookie_domain is not None:
             data_payload["http-cookie-domain"] = http_cookie_domain
         if http_cookie_path is not None:
@@ -581,13 +581,13 @@ class Vip:
         if http_multiplex_ttl is not None:
             data_payload["http-multiplex-ttl"] = http_multiplex_ttl
         if http_multiplex_max_request is not None:
-            data_payload["http-multiplex-max-request"] = (
-                http_multiplex_max_request
-            )
+            data_payload[
+                "http-multiplex-max-request"
+            ] = http_multiplex_max_request
         if http_multiplex_max_concurrent_request is not None:
-            data_payload["http-multiplex-max-concurrent-request"] = (
-                http_multiplex_max_concurrent_request
-            )
+            data_payload[
+                "http-multiplex-max-concurrent-request"
+            ] = http_multiplex_max_concurrent_request
         if http_ip_header is not None:
             data_payload["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
@@ -631,37 +631,37 @@ class Vip:
         if ssl_client_renegotiation is not None:
             data_payload["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_type is not None:
-            data_payload["ssl-client-session-state-type"] = (
-                ssl_client_session_state_type
-            )
+            data_payload[
+                "ssl-client-session-state-type"
+            ] = ssl_client_session_state_type
         if ssl_client_session_state_timeout is not None:
-            data_payload["ssl-client-session-state-timeout"] = (
-                ssl_client_session_state_timeout
-            )
+            data_payload[
+                "ssl-client-session-state-timeout"
+            ] = ssl_client_session_state_timeout
         if ssl_client_session_state_max is not None:
-            data_payload["ssl-client-session-state-max"] = (
-                ssl_client_session_state_max
-            )
+            data_payload[
+                "ssl-client-session-state-max"
+            ] = ssl_client_session_state_max
         if ssl_client_rekey_count is not None:
             data_payload["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_server_renegotiation is not None:
             data_payload["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_session_state_type is not None:
-            data_payload["ssl-server-session-state-type"] = (
-                ssl_server_session_state_type
-            )
+            data_payload[
+                "ssl-server-session-state-type"
+            ] = ssl_server_session_state_type
         if ssl_server_session_state_timeout is not None:
-            data_payload["ssl-server-session-state-timeout"] = (
-                ssl_server_session_state_timeout
-            )
+            data_payload[
+                "ssl-server-session-state-timeout"
+            ] = ssl_server_session_state_timeout
         if ssl_server_session_state_max is not None:
-            data_payload["ssl-server-session-state-max"] = (
-                ssl_server_session_state_max
-            )
+            data_payload[
+                "ssl-server-session-state-max"
+            ] = ssl_server_session_state_max
         if ssl_http_location_conversion is not None:
-            data_payload["ssl-http-location-conversion"] = (
-                ssl_http_location_conversion
-            )
+            data_payload[
+                "ssl-http-location-conversion"
+            ] = ssl_http_location_conversion
         if ssl_http_match_host is not None:
             data_payload["ssl-http-match-host"] = ssl_http_match_host
         if ssl_hpkp is not None:
@@ -675,23 +675,23 @@ class Vip:
         if ssl_hpkp_report_uri is not None:
             data_payload["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hpkp_include_subdomains is not None:
-            data_payload["ssl-hpkp-include-subdomains"] = (
-                ssl_hpkp_include_subdomains
-            )
+            data_payload[
+                "ssl-hpkp-include-subdomains"
+            ] = ssl_hpkp_include_subdomains
         if ssl_hsts is not None:
             data_payload["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
             data_payload["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data_payload["ssl-hsts-include-subdomains"] = (
-                ssl_hsts_include_subdomains
-            )
+            data_payload[
+                "ssl-hsts-include-subdomains"
+            ] = ssl_hsts_include_subdomains
         if monitor is not None:
             data_payload["monitor"] = monitor
         if max_embryonic_connections is not None:
-            data_payload["max-embryonic-connections"] = (
-                max_embryonic_connections
-            )
+            data_payload[
+                "max-embryonic-connections"
+            ] = max_embryonic_connections
         if color is not None:
             data_payload["color"] = color
         if ipv6_mappedip is not None:
@@ -1205,9 +1205,9 @@ class Vip:
         if realservers is not None:
             data_payload["realservers"] = realservers
         if http_cookie_domain_from_host is not None:
-            data_payload["http-cookie-domain-from-host"] = (
-                http_cookie_domain_from_host
-            )
+            data_payload[
+                "http-cookie-domain-from-host"
+            ] = http_cookie_domain_from_host
         if http_cookie_domain is not None:
             data_payload["http-cookie-domain"] = http_cookie_domain
         if http_cookie_path is not None:
@@ -1225,13 +1225,13 @@ class Vip:
         if http_multiplex_ttl is not None:
             data_payload["http-multiplex-ttl"] = http_multiplex_ttl
         if http_multiplex_max_request is not None:
-            data_payload["http-multiplex-max-request"] = (
-                http_multiplex_max_request
-            )
+            data_payload[
+                "http-multiplex-max-request"
+            ] = http_multiplex_max_request
         if http_multiplex_max_concurrent_request is not None:
-            data_payload["http-multiplex-max-concurrent-request"] = (
-                http_multiplex_max_concurrent_request
-            )
+            data_payload[
+                "http-multiplex-max-concurrent-request"
+            ] = http_multiplex_max_concurrent_request
         if http_ip_header is not None:
             data_payload["http-ip-header"] = http_ip_header
         if http_ip_header_name is not None:
@@ -1275,37 +1275,37 @@ class Vip:
         if ssl_client_renegotiation is not None:
             data_payload["ssl-client-renegotiation"] = ssl_client_renegotiation
         if ssl_client_session_state_type is not None:
-            data_payload["ssl-client-session-state-type"] = (
-                ssl_client_session_state_type
-            )
+            data_payload[
+                "ssl-client-session-state-type"
+            ] = ssl_client_session_state_type
         if ssl_client_session_state_timeout is not None:
-            data_payload["ssl-client-session-state-timeout"] = (
-                ssl_client_session_state_timeout
-            )
+            data_payload[
+                "ssl-client-session-state-timeout"
+            ] = ssl_client_session_state_timeout
         if ssl_client_session_state_max is not None:
-            data_payload["ssl-client-session-state-max"] = (
-                ssl_client_session_state_max
-            )
+            data_payload[
+                "ssl-client-session-state-max"
+            ] = ssl_client_session_state_max
         if ssl_client_rekey_count is not None:
             data_payload["ssl-client-rekey-count"] = ssl_client_rekey_count
         if ssl_server_renegotiation is not None:
             data_payload["ssl-server-renegotiation"] = ssl_server_renegotiation
         if ssl_server_session_state_type is not None:
-            data_payload["ssl-server-session-state-type"] = (
-                ssl_server_session_state_type
-            )
+            data_payload[
+                "ssl-server-session-state-type"
+            ] = ssl_server_session_state_type
         if ssl_server_session_state_timeout is not None:
-            data_payload["ssl-server-session-state-timeout"] = (
-                ssl_server_session_state_timeout
-            )
+            data_payload[
+                "ssl-server-session-state-timeout"
+            ] = ssl_server_session_state_timeout
         if ssl_server_session_state_max is not None:
-            data_payload["ssl-server-session-state-max"] = (
-                ssl_server_session_state_max
-            )
+            data_payload[
+                "ssl-server-session-state-max"
+            ] = ssl_server_session_state_max
         if ssl_http_location_conversion is not None:
-            data_payload["ssl-http-location-conversion"] = (
-                ssl_http_location_conversion
-            )
+            data_payload[
+                "ssl-http-location-conversion"
+            ] = ssl_http_location_conversion
         if ssl_http_match_host is not None:
             data_payload["ssl-http-match-host"] = ssl_http_match_host
         if ssl_hpkp is not None:
@@ -1319,23 +1319,23 @@ class Vip:
         if ssl_hpkp_report_uri is not None:
             data_payload["ssl-hpkp-report-uri"] = ssl_hpkp_report_uri
         if ssl_hpkp_include_subdomains is not None:
-            data_payload["ssl-hpkp-include-subdomains"] = (
-                ssl_hpkp_include_subdomains
-            )
+            data_payload[
+                "ssl-hpkp-include-subdomains"
+            ] = ssl_hpkp_include_subdomains
         if ssl_hsts is not None:
             data_payload["ssl-hsts"] = ssl_hsts
         if ssl_hsts_age is not None:
             data_payload["ssl-hsts-age"] = ssl_hsts_age
         if ssl_hsts_include_subdomains is not None:
-            data_payload["ssl-hsts-include-subdomains"] = (
-                ssl_hsts_include_subdomains
-            )
+            data_payload[
+                "ssl-hsts-include-subdomains"
+            ] = ssl_hsts_include_subdomains
         if monitor is not None:
             data_payload["monitor"] = monitor
         if max_embryonic_connections is not None:
-            data_payload["max-embryonic-connections"] = (
-                max_embryonic_connections
-            )
+            data_payload[
+                "max-embryonic-connections"
+            ] = max_embryonic_connections
         if color is not None:
             data_payload["color"] = color
         if ipv6_mappedip is not None:

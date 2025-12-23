@@ -330,9 +330,9 @@ class Ldap:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if two_factor_filter is not None:
@@ -378,9 +378,9 @@ class Ldap:
         if obtain_user_info is not None:
             data_payload["obtain-user-info"] = obtain_user_info
         if user_info_exchange_server is not None:
-            data_payload["user-info-exchange-server"] = (
-                user_info_exchange_server
-            )
+            data_payload[
+                "user-info-exchange-server"
+            ] = user_info_exchange_server
         if interface_select_method is not None:
             data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
@@ -659,9 +659,9 @@ class Ldap:
         if two_factor is not None:
             data_payload["two-factor"] = two_factor
         if two_factor_authentication is not None:
-            data_payload["two-factor-authentication"] = (
-                two_factor_authentication
-            )
+            data_payload[
+                "two-factor-authentication"
+            ] = two_factor_authentication
         if two_factor_notification is not None:
             data_payload["two-factor-notification"] = two_factor_notification
         if two_factor_filter is not None:
@@ -707,9 +707,9 @@ class Ldap:
         if obtain_user_info is not None:
             data_payload["obtain-user-info"] = obtain_user_info
         if user_info_exchange_server is not None:
-            data_payload["user-info-exchange-server"] = (
-                user_info_exchange_server
-            )
+            data_payload[
+                "user-info-exchange-server"
+            ] = user_info_exchange_server
         if interface_select_method is not None:
             data_payload["interface-select-method"] = interface_select_method
         if interface is not None:

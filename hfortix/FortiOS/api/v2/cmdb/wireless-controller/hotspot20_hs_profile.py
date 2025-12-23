@@ -376,13 +376,13 @@ class Hotspot20HsProfile:
         if wba_open_roaming is not None:
             data_payload["wba-open-roaming"] = wba_open_roaming
         if wba_financial_clearing_provider is not None:
-            data_payload["wba-financial-clearing-provider"] = (
-                wba_financial_clearing_provider
-            )
+            data_payload[
+                "wba-financial-clearing-provider"
+            ] = wba_financial_clearing_provider
         if wba_data_clearing_provider is not None:
-            data_payload["wba-data-clearing-provider"] = (
-                wba_data_clearing_provider
-            )
+            data_payload[
+                "wba-data-clearing-provider"
+            ] = wba_data_clearing_provider
         if wba_charging_currency is not None:
             data_payload["wba-charging-currency"] = wba_charging_currency
         if wba_charging_rate is not None:
@@ -655,13 +655,13 @@ class Hotspot20HsProfile:
         if wba_open_roaming is not None:
             data_payload["wba-open-roaming"] = wba_open_roaming
         if wba_financial_clearing_provider is not None:
-            data_payload["wba-financial-clearing-provider"] = (
-                wba_financial_clearing_provider
-            )
+            data_payload[
+                "wba-financial-clearing-provider"
+            ] = wba_financial_clearing_provider
         if wba_data_clearing_provider is not None:
-            data_payload["wba-data-clearing-provider"] = (
-                wba_data_clearing_provider
-            )
+            data_payload[
+                "wba-data-clearing-provider"
+            ] = wba_data_clearing_provider
         if wba_charging_currency is not None:
             data_payload["wba-charging-currency"] = wba_charging_currency
         if wba_charging_rate is not None:

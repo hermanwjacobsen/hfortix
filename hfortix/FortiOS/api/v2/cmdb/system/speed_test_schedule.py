@@ -285,37 +285,37 @@ class SpeedTestSchedule:
         if update_interface_shaping is not None:
             data_payload["update-interface-shaping"] = update_interface_shaping
         if update_inbandwidth_maximum is not None:
-            data_payload["update-inbandwidth-maximum"] = (
-                update_inbandwidth_maximum
-            )
+            data_payload[
+                "update-inbandwidth-maximum"
+            ] = update_inbandwidth_maximum
         if update_inbandwidth_minimum is not None:
-            data_payload["update-inbandwidth-minimum"] = (
-                update_inbandwidth_minimum
-            )
+            data_payload[
+                "update-inbandwidth-minimum"
+            ] = update_inbandwidth_minimum
         if update_outbandwidth_maximum is not None:
-            data_payload["update-outbandwidth-maximum"] = (
-                update_outbandwidth_maximum
-            )
+            data_payload[
+                "update-outbandwidth-maximum"
+            ] = update_outbandwidth_maximum
         if update_outbandwidth_minimum is not None:
-            data_payload["update-outbandwidth-minimum"] = (
-                update_outbandwidth_minimum
-            )
+            data_payload[
+                "update-outbandwidth-minimum"
+            ] = update_outbandwidth_minimum
         if expected_inbandwidth_minimum is not None:
-            data_payload["expected-inbandwidth-minimum"] = (
-                expected_inbandwidth_minimum
-            )
+            data_payload[
+                "expected-inbandwidth-minimum"
+            ] = expected_inbandwidth_minimum
         if expected_inbandwidth_maximum is not None:
-            data_payload["expected-inbandwidth-maximum"] = (
-                expected_inbandwidth_maximum
-            )
+            data_payload[
+                "expected-inbandwidth-maximum"
+            ] = expected_inbandwidth_maximum
         if expected_outbandwidth_minimum is not None:
-            data_payload["expected-outbandwidth-minimum"] = (
-                expected_outbandwidth_minimum
-            )
+            data_payload[
+                "expected-outbandwidth-minimum"
+            ] = expected_outbandwidth_minimum
         if expected_outbandwidth_maximum is not None:
-            data_payload["expected-outbandwidth-maximum"] = (
-                expected_outbandwidth_maximum
-            )
+            data_payload[
+                "expected-outbandwidth-maximum"
+            ] = expected_outbandwidth_maximum
         if retries is not None:
             data_payload["retries"] = retries
         if retry_pause is not None:
@@ -543,37 +543,37 @@ class SpeedTestSchedule:
         if update_interface_shaping is not None:
             data_payload["update-interface-shaping"] = update_interface_shaping
         if update_inbandwidth_maximum is not None:
-            data_payload["update-inbandwidth-maximum"] = (
-                update_inbandwidth_maximum
-            )
+            data_payload[
+                "update-inbandwidth-maximum"
+            ] = update_inbandwidth_maximum
         if update_inbandwidth_minimum is not None:
-            data_payload["update-inbandwidth-minimum"] = (
-                update_inbandwidth_minimum
-            )
+            data_payload[
+                "update-inbandwidth-minimum"
+            ] = update_inbandwidth_minimum
         if update_outbandwidth_maximum is not None:
-            data_payload["update-outbandwidth-maximum"] = (
-                update_outbandwidth_maximum
-            )
+            data_payload[
+                "update-outbandwidth-maximum"
+            ] = update_outbandwidth_maximum
         if update_outbandwidth_minimum is not None:
-            data_payload["update-outbandwidth-minimum"] = (
-                update_outbandwidth_minimum
-            )
+            data_payload[
+                "update-outbandwidth-minimum"
+            ] = update_outbandwidth_minimum
         if expected_inbandwidth_minimum is not None:
-            data_payload["expected-inbandwidth-minimum"] = (
-                expected_inbandwidth_minimum
-            )
+            data_payload[
+                "expected-inbandwidth-minimum"
+            ] = expected_inbandwidth_minimum
         if expected_inbandwidth_maximum is not None:
-            data_payload["expected-inbandwidth-maximum"] = (
-                expected_inbandwidth_maximum
-            )
+            data_payload[
+                "expected-inbandwidth-maximum"
+            ] = expected_inbandwidth_maximum
         if expected_outbandwidth_minimum is not None:
-            data_payload["expected-outbandwidth-minimum"] = (
-                expected_outbandwidth_minimum
-            )
+            data_payload[
+                "expected-outbandwidth-minimum"
+            ] = expected_outbandwidth_minimum
         if expected_outbandwidth_maximum is not None:
-            data_payload["expected-outbandwidth-maximum"] = (
-                expected_outbandwidth_maximum
-            )
+            data_payload[
+                "expected-outbandwidth-maximum"
+            ] = expected_outbandwidth_maximum
         if retries is not None:
             data_payload["retries"] = retries
         if retry_pause is not None:

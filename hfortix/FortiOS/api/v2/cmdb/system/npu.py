@@ -190,9 +190,9 @@ class Npu:
         if dedicated_management_cpu is not None:
             data_payload["dedicated-management-cpu"] = dedicated_management_cpu
         if dedicated_management_affinity is not None:
-            data_payload["dedicated-management-affinity"] = (
-                dedicated_management_affinity
-            )
+            data_payload[
+                "dedicated-management-affinity"
+            ] = dedicated_management_affinity
         if capwap_offload is not None:
             data_payload["capwap-offload"] = capwap_offload
         if ipsec_mtu_override is not None:

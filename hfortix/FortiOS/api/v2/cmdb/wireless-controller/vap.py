@@ -721,13 +721,13 @@ class Vap:
         if pmf is not None:
             data_payload["pm"] = pmf
         if pmf_assoc_comeback_timeout is not None:
-            data_payload["pmf-assoc-comeback-timeout"] = (
-                pmf_assoc_comeback_timeout
-            )
+            data_payload[
+                "pmf-assoc-comeback-timeout"
+            ] = pmf_assoc_comeback_timeout
         if pmf_sa_query_retry_timeout is not None:
-            data_payload["pmf-sa-query-retry-timeout"] = (
-                pmf_sa_query_retry_timeout
-            )
+            data_payload[
+                "pmf-sa-query-retry-timeout"
+            ] = pmf_sa_query_retry_timeout
         if beacon_protection is not None:
             data_payload["beacon-protection"] = beacon_protection
         if okc is not None:
@@ -745,9 +745,9 @@ class Vap:
         if _80211v is not None:
             data_payload["80211v"] = _80211v
         if neighbor_report_dual_band is not None:
-            data_payload["neighbor-report-dual-band"] = (
-                neighbor_report_dual_band
-            )
+            data_payload[
+                "neighbor-report-dual-band"
+            ] = neighbor_report_dual_band
         if fast_bss_transition is not None:
             data_payload["fast-bss-transition"] = fast_bss_transition
         if ft_mobility_domain is not None:
@@ -781,13 +781,13 @@ class Vap:
         if mac_password_delimiter is not None:
             data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload["mac-calling-station-delimiter"] = (
-                mac_calling_station_delimiter
-            )
+            data_payload[
+                "mac-calling-station-delimiter"
+            ] = mac_calling_station_delimiter
         if mac_called_station_delimiter is not None:
-            data_payload["mac-called-station-delimiter"] = (
-                mac_called_station_delimiter
-            )
+            data_payload[
+                "mac-called-station-delimiter"
+            ] = mac_called_station_delimiter
         if mac_case is not None:
             data_payload["mac-case"] = mac_case
         if called_station_id_type is not None:
@@ -799,17 +799,17 @@ class Vap:
         if radius_mac_auth_server is not None:
             data_payload["radius-mac-auth-server"] = radius_mac_auth_server
         if radius_mac_auth_block_interval is not None:
-            data_payload["radius-mac-auth-block-interval"] = (
-                radius_mac_auth_block_interval
-            )
+            data_payload[
+                "radius-mac-auth-block-interval"
+            ] = radius_mac_auth_block_interval
         if radius_mac_mpsk_auth is not None:
             data_payload["radius-mac-mpsk-auth"] = radius_mac_mpsk_auth
         if radius_mac_mpsk_timeout is not None:
             data_payload["radius-mac-mpsk-timeout"] = radius_mac_mpsk_timeout
         if radius_mac_auth_usergroups is not None:
-            data_payload["radius-mac-auth-usergroups"] = (
-                radius_mac_auth_usergroups
-            )
+            data_payload[
+                "radius-mac-auth-usergroups"
+            ] = radius_mac_auth_usergroups
         if auth is not None:
             data_payload["auth"] = auth
         if encrypt is not None:
@@ -863,13 +863,13 @@ class Vap:
         if captive_portal is not None:
             data_payload["captive-portal"] = captive_portal
         if captive_network_assistant_bypass is not None:
-            data_payload["captive-network-assistant-bypass"] = (
-                captive_network_assistant_bypass
-            )
+            data_payload[
+                "captive-network-assistant-bypass"
+            ] = captive_network_assistant_bypass
         if portal_message_override_group is not None:
-            data_payload["portal-message-override-group"] = (
-                portal_message_override_group
-            )
+            data_payload[
+                "portal-message-override-group"
+            ] = portal_message_override_group
         if portal_message_overrides is not None:
             data_payload["portal-message-overrides"] = portal_message_overrides
         if portal_type is not None:
@@ -899,9 +899,9 @@ class Vap:
         if port_macauth_timeout is not None:
             data_payload["port-macauth-timeout"] = port_macauth_timeout
         if port_macauth_reauth_timeout is not None:
-            data_payload["port-macauth-reauth-timeout"] = (
-                port_macauth_reauth_timeout
-            )
+            data_payload[
+                "port-macauth-reauth-timeout"
+            ] = port_macauth_reauth_timeout
         if bss_color_partial is not None:
             data_payload["bss-color-partial"] = bss_color_partial
         if mpsk_profile is not None:
@@ -919,15 +919,15 @@ class Vap:
         if dynamic_vlan is not None:
             data_payload["dynamic-vlan"] = dynamic_vlan
         if captive_portal_fw_accounting is not None:
-            data_payload["captive-portal-fw-accounting"] = (
-                captive_portal_fw_accounting
-            )
+            data_payload[
+                "captive-portal-fw-accounting"
+            ] = captive_portal_fw_accounting
         if captive_portal_ac_name is not None:
             data_payload["captive-portal-ac-name"] = captive_portal_ac_name
         if captive_portal_auth_timeout is not None:
-            data_payload["captive-portal-auth-timeout"] = (
-                captive_portal_auth_timeout
-            )
+            data_payload[
+                "captive-portal-auth-timeout"
+            ] = captive_portal_auth_timeout
         if multicast_rate is not None:
             data_payload["multicast-rate"] = multicast_rate
         if multicast_enhance is not None:
@@ -967,13 +967,13 @@ class Vap:
         if dhcp_option82_insertion is not None:
             data_payload["dhcp-option82-insertion"] = dhcp_option82_insertion
         if dhcp_option82_circuit_id_insertion is not None:
-            data_payload["dhcp-option82-circuit-id-insertion"] = (
-                dhcp_option82_circuit_id_insertion
-            )
+            data_payload[
+                "dhcp-option82-circuit-id-insertion"
+            ] = dhcp_option82_circuit_id_insertion
         if dhcp_option82_remote_id_insertion is not None:
-            data_payload["dhcp-option82-remote-id-insertion"] = (
-                dhcp_option82_remote_id_insertion
-            )
+            data_payload[
+                "dhcp-option82-remote-id-insertion"
+            ] = dhcp_option82_remote_id_insertion
         if ptk_rekey is not None:
             data_payload["ptk-rekey"] = ptk_rekey
         if ptk_rekey_intv is not None:
@@ -987,9 +987,9 @@ class Vap:
         if eap_reauth_intv is not None:
             data_payload["eap-reauth-intv"] = eap_reauth_intv
         if roaming_acct_interim_update is not None:
-            data_payload["roaming-acct-interim-update"] = (
-                roaming_acct_interim_update
-            )
+            data_payload[
+                "roaming-acct-interim-update"
+            ] = roaming_acct_interim_update
         if qos_profile is not None:
             data_payload["qos-profile"] = qos_profile
         if hotspot20_profile is not None:
@@ -1045,35 +1045,35 @@ class Vap:
         if sticky_client_remove is not None:
             data_payload["sticky-client-remove"] = sticky_client_remove
         if sticky_client_threshold_5g is not None:
-            data_payload["sticky-client-threshold-5g"] = (
-                sticky_client_threshold_5g
-            )
+            data_payload[
+                "sticky-client-threshold-5g"
+            ] = sticky_client_threshold_5g
         if sticky_client_threshold_2g is not None:
-            data_payload["sticky-client-threshold-2g"] = (
-                sticky_client_threshold_2g
-            )
+            data_payload[
+                "sticky-client-threshold-2g"
+            ] = sticky_client_threshold_2g
         if sticky_client_threshold_6g is not None:
-            data_payload["sticky-client-threshold-6g"] = (
-                sticky_client_threshold_6g
-            )
+            data_payload[
+                "sticky-client-threshold-6g"
+            ] = sticky_client_threshold_6g
         if bstm_rssi_disassoc_timer is not None:
             data_payload["bstm-rssi-disassoc-timer"] = bstm_rssi_disassoc_timer
         if bstm_load_balancing_disassoc_timer is not None:
-            data_payload["bstm-load-balancing-disassoc-timer"] = (
-                bstm_load_balancing_disassoc_timer
-            )
+            data_payload[
+                "bstm-load-balancing-disassoc-timer"
+            ] = bstm_load_balancing_disassoc_timer
         if bstm_disassociation_imminent is not None:
-            data_payload["bstm-disassociation-imminent"] = (
-                bstm_disassociation_imminent
-            )
+            data_payload[
+                "bstm-disassociation-imminent"
+            ] = bstm_disassociation_imminent
         if beacon_advertising is not None:
             data_payload["beacon-advertising"] = beacon_advertising
         if osen is not None:
             data_payload["osen"] = osen
         if application_detection_engine is not None:
-            data_payload["application-detection-engine"] = (
-                application_detection_engine
-            )
+            data_payload[
+                "application-detection-engine"
+            ] = application_detection_engine
         if application_dscp_marking is not None:
             data_payload["application-dscp-marking"] = application_dscp_marking
         if application_report_intv is not None:
@@ -1741,13 +1741,13 @@ class Vap:
         if pmf is not None:
             data_payload["pm"] = pmf
         if pmf_assoc_comeback_timeout is not None:
-            data_payload["pmf-assoc-comeback-timeout"] = (
-                pmf_assoc_comeback_timeout
-            )
+            data_payload[
+                "pmf-assoc-comeback-timeout"
+            ] = pmf_assoc_comeback_timeout
         if pmf_sa_query_retry_timeout is not None:
-            data_payload["pmf-sa-query-retry-timeout"] = (
-                pmf_sa_query_retry_timeout
-            )
+            data_payload[
+                "pmf-sa-query-retry-timeout"
+            ] = pmf_sa_query_retry_timeout
         if beacon_protection is not None:
             data_payload["beacon-protection"] = beacon_protection
         if okc is not None:
@@ -1765,9 +1765,9 @@ class Vap:
         if _80211v is not None:
             data_payload["80211v"] = _80211v
         if neighbor_report_dual_band is not None:
-            data_payload["neighbor-report-dual-band"] = (
-                neighbor_report_dual_band
-            )
+            data_payload[
+                "neighbor-report-dual-band"
+            ] = neighbor_report_dual_band
         if fast_bss_transition is not None:
             data_payload["fast-bss-transition"] = fast_bss_transition
         if ft_mobility_domain is not None:
@@ -1801,13 +1801,13 @@ class Vap:
         if mac_password_delimiter is not None:
             data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload["mac-calling-station-delimiter"] = (
-                mac_calling_station_delimiter
-            )
+            data_payload[
+                "mac-calling-station-delimiter"
+            ] = mac_calling_station_delimiter
         if mac_called_station_delimiter is not None:
-            data_payload["mac-called-station-delimiter"] = (
-                mac_called_station_delimiter
-            )
+            data_payload[
+                "mac-called-station-delimiter"
+            ] = mac_called_station_delimiter
         if mac_case is not None:
             data_payload["mac-case"] = mac_case
         if called_station_id_type is not None:
@@ -1819,17 +1819,17 @@ class Vap:
         if radius_mac_auth_server is not None:
             data_payload["radius-mac-auth-server"] = radius_mac_auth_server
         if radius_mac_auth_block_interval is not None:
-            data_payload["radius-mac-auth-block-interval"] = (
-                radius_mac_auth_block_interval
-            )
+            data_payload[
+                "radius-mac-auth-block-interval"
+            ] = radius_mac_auth_block_interval
         if radius_mac_mpsk_auth is not None:
             data_payload["radius-mac-mpsk-auth"] = radius_mac_mpsk_auth
         if radius_mac_mpsk_timeout is not None:
             data_payload["radius-mac-mpsk-timeout"] = radius_mac_mpsk_timeout
         if radius_mac_auth_usergroups is not None:
-            data_payload["radius-mac-auth-usergroups"] = (
-                radius_mac_auth_usergroups
-            )
+            data_payload[
+                "radius-mac-auth-usergroups"
+            ] = radius_mac_auth_usergroups
         if auth is not None:
             data_payload["auth"] = auth
         if encrypt is not None:
@@ -1883,13 +1883,13 @@ class Vap:
         if captive_portal is not None:
             data_payload["captive-portal"] = captive_portal
         if captive_network_assistant_bypass is not None:
-            data_payload["captive-network-assistant-bypass"] = (
-                captive_network_assistant_bypass
-            )
+            data_payload[
+                "captive-network-assistant-bypass"
+            ] = captive_network_assistant_bypass
         if portal_message_override_group is not None:
-            data_payload["portal-message-override-group"] = (
-                portal_message_override_group
-            )
+            data_payload[
+                "portal-message-override-group"
+            ] = portal_message_override_group
         if portal_message_overrides is not None:
             data_payload["portal-message-overrides"] = portal_message_overrides
         if portal_type is not None:
@@ -1919,9 +1919,9 @@ class Vap:
         if port_macauth_timeout is not None:
             data_payload["port-macauth-timeout"] = port_macauth_timeout
         if port_macauth_reauth_timeout is not None:
-            data_payload["port-macauth-reauth-timeout"] = (
-                port_macauth_reauth_timeout
-            )
+            data_payload[
+                "port-macauth-reauth-timeout"
+            ] = port_macauth_reauth_timeout
         if bss_color_partial is not None:
             data_payload["bss-color-partial"] = bss_color_partial
         if mpsk_profile is not None:
@@ -1939,15 +1939,15 @@ class Vap:
         if dynamic_vlan is not None:
             data_payload["dynamic-vlan"] = dynamic_vlan
         if captive_portal_fw_accounting is not None:
-            data_payload["captive-portal-fw-accounting"] = (
-                captive_portal_fw_accounting
-            )
+            data_payload[
+                "captive-portal-fw-accounting"
+            ] = captive_portal_fw_accounting
         if captive_portal_ac_name is not None:
             data_payload["captive-portal-ac-name"] = captive_portal_ac_name
         if captive_portal_auth_timeout is not None:
-            data_payload["captive-portal-auth-timeout"] = (
-                captive_portal_auth_timeout
-            )
+            data_payload[
+                "captive-portal-auth-timeout"
+            ] = captive_portal_auth_timeout
         if multicast_rate is not None:
             data_payload["multicast-rate"] = multicast_rate
         if multicast_enhance is not None:
@@ -1987,13 +1987,13 @@ class Vap:
         if dhcp_option82_insertion is not None:
             data_payload["dhcp-option82-insertion"] = dhcp_option82_insertion
         if dhcp_option82_circuit_id_insertion is not None:
-            data_payload["dhcp-option82-circuit-id-insertion"] = (
-                dhcp_option82_circuit_id_insertion
-            )
+            data_payload[
+                "dhcp-option82-circuit-id-insertion"
+            ] = dhcp_option82_circuit_id_insertion
         if dhcp_option82_remote_id_insertion is not None:
-            data_payload["dhcp-option82-remote-id-insertion"] = (
-                dhcp_option82_remote_id_insertion
-            )
+            data_payload[
+                "dhcp-option82-remote-id-insertion"
+            ] = dhcp_option82_remote_id_insertion
         if ptk_rekey is not None:
             data_payload["ptk-rekey"] = ptk_rekey
         if ptk_rekey_intv is not None:
@@ -2007,9 +2007,9 @@ class Vap:
         if eap_reauth_intv is not None:
             data_payload["eap-reauth-intv"] = eap_reauth_intv
         if roaming_acct_interim_update is not None:
-            data_payload["roaming-acct-interim-update"] = (
-                roaming_acct_interim_update
-            )
+            data_payload[
+                "roaming-acct-interim-update"
+            ] = roaming_acct_interim_update
         if qos_profile is not None:
             data_payload["qos-profile"] = qos_profile
         if hotspot20_profile is not None:
@@ -2065,35 +2065,35 @@ class Vap:
         if sticky_client_remove is not None:
             data_payload["sticky-client-remove"] = sticky_client_remove
         if sticky_client_threshold_5g is not None:
-            data_payload["sticky-client-threshold-5g"] = (
-                sticky_client_threshold_5g
-            )
+            data_payload[
+                "sticky-client-threshold-5g"
+            ] = sticky_client_threshold_5g
         if sticky_client_threshold_2g is not None:
-            data_payload["sticky-client-threshold-2g"] = (
-                sticky_client_threshold_2g
-            )
+            data_payload[
+                "sticky-client-threshold-2g"
+            ] = sticky_client_threshold_2g
         if sticky_client_threshold_6g is not None:
-            data_payload["sticky-client-threshold-6g"] = (
-                sticky_client_threshold_6g
-            )
+            data_payload[
+                "sticky-client-threshold-6g"
+            ] = sticky_client_threshold_6g
         if bstm_rssi_disassoc_timer is not None:
             data_payload["bstm-rssi-disassoc-timer"] = bstm_rssi_disassoc_timer
         if bstm_load_balancing_disassoc_timer is not None:
-            data_payload["bstm-load-balancing-disassoc-timer"] = (
-                bstm_load_balancing_disassoc_timer
-            )
+            data_payload[
+                "bstm-load-balancing-disassoc-timer"
+            ] = bstm_load_balancing_disassoc_timer
         if bstm_disassociation_imminent is not None:
-            data_payload["bstm-disassociation-imminent"] = (
-                bstm_disassociation_imminent
-            )
+            data_payload[
+                "bstm-disassociation-imminent"
+            ] = bstm_disassociation_imminent
         if beacon_advertising is not None:
             data_payload["beacon-advertising"] = beacon_advertising
         if osen is not None:
             data_payload["osen"] = osen
         if application_detection_engine is not None:
-            data_payload["application-detection-engine"] = (
-                application_detection_engine
-            )
+            data_payload[
+                "application-detection-engine"
+            ] = application_detection_engine
         if application_dscp_marking is not None:
             data_payload["application-dscp-marking"] = application_dscp_marking
         if application_report_intv is not None:

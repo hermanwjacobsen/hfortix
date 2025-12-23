@@ -18,9 +18,7 @@ from typing import (  # noqa: F401
 )
 
 # Import shared helpers from the API layer
-from ..api._helpers import (
-    build_cmdb_payload_normalized,
-)
+from ..api._helpers import build_cmdb_payload_normalized
 
 if TYPE_CHECKING:
     from ..fortios import FortiOS
@@ -1389,10 +1387,12 @@ class FirewallPolicy:
             move_kwargs[position] = str(reference_id)
         elif position == "top":
             # To move to top, we need to find the first policy and use 'before'
-            policies = self.get(vdom=vdom)
-            # Ensure we have a list of policies
-            if isinstance(policies, dict):
-                policies = policies.get("results", [])
+            policies_raw = self.get(vdom=vdom)
+            # Ensure we have a list of policy dicts
+            if isinstance(policies_raw, dict):
+                policies: list[dict[str, Any]] = policies_raw.get("results", [])
+            else:
+                policies = policies_raw
             if not policies:
                 raise ValueError("Cannot move to top: no policies found")
             # Get the first policy ID (policies are returned in order)
@@ -1418,14 +1418,18 @@ class FirewallPolicy:
         elif position == "bottom":
             # To move to bottom, we need to find the last policy and use
             # 'after'
-            policies = self.get(vdom=vdom)
-            # Ensure we have a list of policies
-            if isinstance(policies, dict):
-                policies = policies.get("results", [])
-            if not policies:
+            policies_raw = self.get(vdom=vdom)
+            # Ensure we have a list of policy dicts
+            if isinstance(policies_raw, dict):
+                policies_bottom: list[dict[str, Any]] = policies_raw.get(
+                    "results", []
+                )
+            else:
+                policies_bottom = policies_raw
+            if not policies_bottom:
                 raise ValueError("Cannot move to bottom: no policies found")
             # Get the last policy ID, excluding the policy being moved
-            for policy in reversed(policies):
+            for policy in reversed(policies_bottom):
                 last_policy_id = policy["policyid"]
                 if str(last_policy_id) != str(policy_id):
                     break
@@ -1437,7 +1441,7 @@ class FirewallPolicy:
                     "message": "Policy already at bottom",
                 }
             # Don't move if already at the bottom
-            if str(policies[-1]["policyid"]) == str(policy_id):
+            if str(policies_bottom[-1]["policyid"]) == str(policy_id):
                 return {
                     "status": "success",
                     "message": "Policy already at bottom",

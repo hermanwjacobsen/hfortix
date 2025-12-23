@@ -130,7 +130,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - ✨ **Firewall Category Expansion**: 29 endpoints with nested objects
   - DoS policies, access-proxy (reverse proxy/WAF)
   - Schedule, service, shaper, SSH/SSL configurations
-  
+
 **Previous Release (v0.3.10):**
 - ✨ **Configurable Timeouts**: Customize connection and read timeouts
   - `connect_timeout`: Connection establishment timeout (default: 10.0s)
@@ -431,7 +431,7 @@ for op in write_ops:
         print(f"  Data: {op['data']}")
 
 # 3. Combine both features
-fgt = FortiOS('192.168.1.99', token='your-token', 
+fgt = FortiOS('192.168.1.99', token='your-token',
               read_only=True, track_operations=True)
 
 # Test your automation script safely while logging everything
@@ -530,7 +530,7 @@ Session-based authentication with automatic session management:
 from hfortix import FortiOS
 
 # Context manager - recommended (auto-logout)
-with FortiOS('192.168.1.99', username='admin', password='password', 
+with FortiOS('192.168.1.99', username='admin', password='password',
              verify=False) as fgt:
     # Session automatically created
     addresses = fgt.api.cmdb.firewall.address.get()
@@ -586,27 +586,27 @@ from hfortix.FortiOS.http_client import HTTPClient
 # Create a custom client wrapper
 class AuditLoggingHTTPClient:
     """Wraps real client to log all API calls to external audit system."""
-    
+
     def __init__(self, real_client, audit_logger):
         self._client = real_client
         self._logger = audit_logger
-    
+
     def get(self, api_type, path, **kwargs):
         self._logger.info(f"API Call: GET {api_type}/{path}")
         return self._client.get(api_type, path, **kwargs)
-    
+
     def post(self, api_type, path, data, **kwargs):
         self._logger.info(f"API Call: POST {api_type}/{path}", extra={'data': data})
         return self._client.post(api_type, path, data, **kwargs)
-    
+
     def put(self, api_type, path, data, **kwargs):
         self._logger.info(f"API Call: PUT {api_type}/{path}", extra={'data': data})
         return self._client.put(api_type, path, data, **kwargs)
-    
+
     def delete(self, api_type, path, **kwargs):
         self._logger.info(f"API Call: DELETE {api_type}/{path}")
         return self._client.delete(api_type, path, **kwargs)
-    
+
     def close(self):
         return self._client.close()
 
@@ -628,7 +628,7 @@ from typing import Protocol, Any, Optional, Union
 
 class IHTTPClient(Protocol):
     """Protocol defining HTTP client interface for extensibility."""
-    
+
     def get(
         self,
         api_type: str,
@@ -637,7 +637,7 @@ class IHTTPClient(Protocol):
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
     ) -> dict[str, Any]: ...
-    
+
     def post(
         self,
         api_type: str,
@@ -647,9 +647,9 @@ class IHTTPClient(Protocol):
         vdom: Optional[Union[str, bool]] = None,
         raw_json: bool = False,
     ) -> dict[str, Any]: ...
-    
+
     def put(self, api_type: str, path: str, data: dict[str, Any], ...) -> dict[str, Any]: ...
-    
+
     def delete(self, api_type: str, path: str, ...) -> dict[str, Any]: ...
 ```
 

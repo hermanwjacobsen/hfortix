@@ -306,9 +306,9 @@ class Sniffer:
         if webfilter_profile is not None:
             data_payload["webfilter-profile"] = webfilter_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload[
+                "emailfilter-profile-status"
+            ] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -320,9 +320,9 @@ class Sniffer:
         if ip_threatfeed is not None:
             data_payload["ip-threatfeed"] = ip_threatfeed
         if file_filter_profile_status is not None:
-            data_payload["file-filter-profile-status"] = (
-                file_filter_profile_status
-            )
+            data_payload[
+                "file-filter-profile-status"
+            ] = file_filter_profile_status
         if file_filter_profile is not None:
             data_payload["file-filter-profile"] = file_filter_profile
         if ips_dos_status is not None:
@@ -573,9 +573,9 @@ class Sniffer:
         if webfilter_profile is not None:
             data_payload["webfilter-profile"] = webfilter_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = (
-                emailfilter_profile_status
-            )
+            data_payload[
+                "emailfilter-profile-status"
+            ] = emailfilter_profile_status
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -587,9 +587,9 @@ class Sniffer:
         if ip_threatfeed is not None:
             data_payload["ip-threatfeed"] = ip_threatfeed
         if file_filter_profile_status is not None:
-            data_payload["file-filter-profile-status"] = (
-                file_filter_profile_status
-            )
+            data_payload[
+                "file-filter-profile-status"
+            ] = file_filter_profile_status
         if file_filter_profile is not None:
             data_payload["file-filter-profile"] = file_filter_profile
         if ips_dos_status is not None:

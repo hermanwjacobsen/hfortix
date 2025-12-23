@@ -127,9 +127,9 @@ class BaseHTTPClient:
 
         # Adaptive retry configuration
         self._adaptive_retry = adaptive_retry
-        self._response_times: dict[str, deque] = (
-            {}
-        )  # endpoint -> deque of response times
+        self._response_times: dict[
+            str, deque
+        ] = {}  # endpoint -> deque of response times
         self._baseline_response_time = 0.5  # 500ms baseline
         self._slowdown_multiplier = 3.0  # Endpoint is slow if 3x baseline
 

@@ -52,7 +52,6 @@ class ExtensionController:
             Fortigate instance
         """
         if self._fortigate is None:
-
             self._fortigate = Fortigate(self._client)
         return self._fortigate
 

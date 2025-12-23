@@ -340,35 +340,35 @@ class ShapingPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload[
+                "internet-service-custom-group"
+            ] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload[
+                "internet-service-fortiguard"
+            ] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload[
+                "internet-service-src-name"
+            ] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload[
+                "internet-service-src-group"
+            ] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload[
+                "internet-service-src-custom"
+            ] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload[
+                "internet-service-src-custom-group"
+            ] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload[
+                "internet-service-src-fortiguard"
+            ] = internet_service_src_fortiguard
         if service is not None:
             data_payload["service"] = service
         if schedule is not None:
@@ -693,35 +693,35 @@ class ShapingPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = (
-                internet_service_custom_group
-            )
+            data_payload[
+                "internet-service-custom-group"
+            ] = internet_service_custom_group
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = (
-                internet_service_fortiguard
-            )
+            data_payload[
+                "internet-service-fortiguard"
+            ] = internet_service_fortiguard
         if internet_service_src is not None:
             data_payload["internet-service-src"] = internet_service_src
         if internet_service_src_name is not None:
-            data_payload["internet-service-src-name"] = (
-                internet_service_src_name
-            )
+            data_payload[
+                "internet-service-src-name"
+            ] = internet_service_src_name
         if internet_service_src_group is not None:
-            data_payload["internet-service-src-group"] = (
-                internet_service_src_group
-            )
+            data_payload[
+                "internet-service-src-group"
+            ] = internet_service_src_group
         if internet_service_src_custom is not None:
-            data_payload["internet-service-src-custom"] = (
-                internet_service_src_custom
-            )
+            data_payload[
+                "internet-service-src-custom"
+            ] = internet_service_src_custom
         if internet_service_src_custom_group is not None:
-            data_payload["internet-service-src-custom-group"] = (
-                internet_service_src_custom_group
-            )
+            data_payload[
+                "internet-service-src-custom-group"
+            ] = internet_service_src_custom_group
         if internet_service_src_fortiguard is not None:
-            data_payload["internet-service-src-fortiguard"] = (
-                internet_service_src_fortiguard
-            )
+            data_payload[
+                "internet-service-src-fortiguard"
+            ] = internet_service_src_fortiguard
         if service is not None:
             data_payload["service"] = service
         if schedule is not None:

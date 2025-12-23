@@ -247,9 +247,9 @@ class Csf:
         if source_ip is not None:
             data_payload["source-ip"] = source_ip
         if upstream_interface_select_method is not None:
-            data_payload["upstream-interface-select-method"] = (
-                upstream_interface_select_method
-            )
+            data_payload[
+                "upstream-interface-select-method"
+            ] = upstream_interface_select_method
         if upstream_interface is not None:
             data_payload["upstream-interface"] = upstream_interface
         if upstream_port is not None:
@@ -263,9 +263,9 @@ class Csf:
         if log_unification is not None:
             data_payload["log-unification"] = log_unification
         if authorization_request_type is not None:
-            data_payload["authorization-request-type"] = (
-                authorization_request_type
-            )
+            data_payload[
+                "authorization-request-type"
+            ] = authorization_request_type
         if certificate is not None:
             data_payload["certificate"] = certificate
         if fabric_workers is not None:
@@ -279,9 +279,9 @@ class Csf:
         if configuration_sync is not None:
             data_payload["configuration-sync"] = configuration_sync
         if fabric_object_unification is not None:
-            data_payload["fabric-object-unification"] = (
-                fabric_object_unification
-            )
+            data_payload[
+                "fabric-object-unification"
+            ] = fabric_object_unification
         if saml_configuration_sync is not None:
             data_payload["saml-configuration-sync"] = saml_configuration_sync
         if trusted_list is not None:
@@ -289,9 +289,9 @@ class Csf:
         if fabric_connector is not None:
             data_payload["fabric-connector"] = fabric_connector
         if forticloud_account_enforcement is not None:
-            data_payload["forticloud-account-enforcement"] = (
-                forticloud_account_enforcement
-            )
+            data_payload[
+                "forticloud-account-enforcement"
+            ] = forticloud_account_enforcement
         if file_mgmt is not None:
             data_payload["file-mgmt"] = file_mgmt
         if file_quota is not None:

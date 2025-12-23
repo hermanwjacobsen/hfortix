@@ -794,9 +794,9 @@ class Interface:
         if fortilink is not None:
             data_payload["fortilink"] = fortilink
         if switch_controller_source_ip is not None:
-            data_payload["switch-controller-source-ip"] = (
-                switch_controller_source_ip
-            )
+            data_payload[
+                "switch-controller-source-ip"
+            ] = switch_controller_source_ip
         if mode is not None:
             data_payload["mode"] = mode
         if client_options is not None:
@@ -806,9 +806,9 @@ class Interface:
         if priority is not None:
             data_payload["priority"] = priority
         if dhcp_relay_interface_select_method is not None:
-            data_payload["dhcp-relay-interface-select-method"] = (
-                dhcp_relay_interface_select_method
-            )
+            data_payload[
+                "dhcp-relay-interface-select-method"
+            ] = dhcp_relay_interface_select_method
         if dhcp_relay_interface is not None:
             data_payload["dhcp-relay-interface"] = dhcp_relay_interface
         if dhcp_relay_vrf_select is not None:
@@ -824,17 +824,17 @@ class Interface:
         if dhcp_relay_circuit_id is not None:
             data_payload["dhcp-relay-circuit-id"] = dhcp_relay_circuit_id
         if dhcp_relay_link_selection is not None:
-            data_payload["dhcp-relay-link-selection"] = (
-                dhcp_relay_link_selection
-            )
+            data_payload[
+                "dhcp-relay-link-selection"
+            ] = dhcp_relay_link_selection
         if dhcp_relay_request_all_server is not None:
-            data_payload["dhcp-relay-request-all-server"] = (
-                dhcp_relay_request_all_server
-            )
+            data_payload[
+                "dhcp-relay-request-all-server"
+            ] = dhcp_relay_request_all_server
         if dhcp_relay_allow_no_end_option is not None:
-            data_payload["dhcp-relay-allow-no-end-option"] = (
-                dhcp_relay_allow_no_end_option
-            )
+            data_payload[
+                "dhcp-relay-allow-no-end-option"
+            ] = dhcp_relay_allow_no_end_option
         if dhcp_relay_type is not None:
             data_payload["dhcp-relay-type"] = dhcp_relay_type
         if dhcp_smart_relay is not None:
@@ -842,9 +842,9 @@ class Interface:
         if dhcp_relay_agent_option is not None:
             data_payload["dhcp-relay-agent-option"] = dhcp_relay_agent_option
         if dhcp_classless_route_addition is not None:
-            data_payload["dhcp-classless-route-addition"] = (
-                dhcp_classless_route_addition
-            )
+            data_payload[
+                "dhcp-classless-route-addition"
+            ] = dhcp_classless_route_addition
         if management_ip is not None:
             data_payload["management-ip"] = management_ip
         if ip is not None:
@@ -882,9 +882,9 @@ class Interface:
         if pppoe_egress_cos is not None:
             data_payload["pppoe-egress-cos"] = pppoe_egress_cos
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = (
-                pppoe_unnumbered_negotiate
-            )
+            data_payload[
+                "pppoe-unnumbered-negotiate"
+            ] = pppoe_unnumbered_negotiate
         if password is not None:
             data_payload["password"] = password
         if idle_timeout is not None:
@@ -1032,9 +1032,9 @@ class Interface:
         if spillover_threshold is not None:
             data_payload["spillover-threshold"] = spillover_threshold
         if ingress_spillover_threshold is not None:
-            data_payload["ingress-spillover-threshold"] = (
-                ingress_spillover_threshold
-            )
+            data_payload[
+                "ingress-spillover-threshold"
+            ] = ingress_spillover_threshold
         if weight is not None:
             data_payload["weight"] = weight
         if interface is not None:
@@ -1108,21 +1108,21 @@ class Interface:
         if security_8021x_master is not None:
             data_payload["security-8021x-master"] = security_8021x_master
         if security_8021x_dynamic_vlan_id is not None:
-            data_payload["security-8021x-dynamic-vlan-id"] = (
-                security_8021x_dynamic_vlan_id
-            )
+            data_payload[
+                "security-8021x-dynamic-vlan-id"
+            ] = security_8021x_dynamic_vlan_id
         if security_8021x_member_mode is not None:
-            data_payload["security-8021x-member-mode"] = (
-                security_8021x_member_mode
-            )
+            data_payload[
+                "security-8021x-member-mode"
+            ] = security_8021x_member_mode
         if security_external_web is not None:
             data_payload["security-external-web"] = security_external_web
         if security_external_logout is not None:
             data_payload["security-external-logout"] = security_external_logout
         if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = (
-                replacemsg_override_group
-            )
+            data_payload[
+                "replacemsg-override-group"
+            ] = replacemsg_override_group
         if security_redirect_url is not None:
             data_payload["security-redirect-url"] = security_redirect_url
         if auth_cert is not None:
@@ -1146,9 +1146,9 @@ class Interface:
         if exclude_signatures is not None:
             data_payload["exclude-signatures"] = exclude_signatures
         if device_user_identification is not None:
-            data_payload["device-user-identification"] = (
-                device_user_identification
-            )
+            data_payload[
+                "device-user-identification"
+            ] = device_user_identification
         if lldp_reception is not None:
             data_payload["lldp-reception"] = lldp_reception
         if lldp_transmission is not None:
@@ -1156,21 +1156,21 @@ class Interface:
         if lldp_network_policy is not None:
             data_payload["lldp-network-policy"] = lldp_network_policy
         if estimated_upstream_bandwidth is not None:
-            data_payload["estimated-upstream-bandwidth"] = (
-                estimated_upstream_bandwidth
-            )
+            data_payload[
+                "estimated-upstream-bandwidth"
+            ] = estimated_upstream_bandwidth
         if estimated_downstream_bandwidth is not None:
-            data_payload["estimated-downstream-bandwidth"] = (
-                estimated_downstream_bandwidth
-            )
+            data_payload[
+                "estimated-downstream-bandwidth"
+            ] = estimated_downstream_bandwidth
         if measured_upstream_bandwidth is not None:
-            data_payload["measured-upstream-bandwidth"] = (
-                measured_upstream_bandwidth
-            )
+            data_payload[
+                "measured-upstream-bandwidth"
+            ] = measured_upstream_bandwidth
         if measured_downstream_bandwidth is not None:
-            data_payload["measured-downstream-bandwidth"] = (
-                measured_downstream_bandwidth
-            )
+            data_payload[
+                "measured-downstream-bandwidth"
+            ] = measured_downstream_bandwidth
         if bandwidth_measure_time is not None:
             data_payload["bandwidth-measure-time"] = bandwidth_measure_time
         if monitor_bandwidth is not None:
@@ -1192,109 +1192,109 @@ class Interface:
         if preserve_session_route is not None:
             data_payload["preserve-session-route"] = preserve_session_route
         if auto_auth_extension_device is not None:
-            data_payload["auto-auth-extension-device"] = (
-                auto_auth_extension_device
-            )
+            data_payload[
+                "auto-auth-extension-device"
+            ] = auto_auth_extension_device
         if ap_discover is not None:
             data_payload["ap-discover"] = ap_discover
         if fortilink_neighbor_detect is not None:
-            data_payload["fortilink-neighbor-detect"] = (
-                fortilink_neighbor_detect
-            )
+            data_payload[
+                "fortilink-neighbor-detect"
+            ] = fortilink_neighbor_detect
         if ip_managed_by_fortiipam is not None:
             data_payload["ip-managed-by-fortiipam"] = ip_managed_by_fortiipam
         if managed_subnetwork_size is not None:
             data_payload["managed-subnetwork-size"] = managed_subnetwork_size
         if fortilink_split_interface is not None:
-            data_payload["fortilink-split-interface"] = (
-                fortilink_split_interface
-            )
+            data_payload[
+                "fortilink-split-interface"
+            ] = fortilink_split_interface
         if internal is not None:
             data_payload["internal"] = internal
         if fortilink_backup_link is not None:
             data_payload["fortilink-backup-link"] = fortilink_backup_link
         if switch_controller_access_vlan is not None:
-            data_payload["switch-controller-access-vlan"] = (
-                switch_controller_access_vlan
-            )
+            data_payload[
+                "switch-controller-access-vlan"
+            ] = switch_controller_access_vlan
         if switch_controller_traffic_policy is not None:
-            data_payload["switch-controller-traffic-policy"] = (
-                switch_controller_traffic_policy
-            )
+            data_payload[
+                "switch-controller-traffic-policy"
+            ] = switch_controller_traffic_policy
         if switch_controller_rspan_mode is not None:
-            data_payload["switch-controller-rspan-mode"] = (
-                switch_controller_rspan_mode
-            )
+            data_payload[
+                "switch-controller-rspan-mode"
+            ] = switch_controller_rspan_mode
         if switch_controller_netflow_collect is not None:
-            data_payload["switch-controller-netflow-collect"] = (
-                switch_controller_netflow_collect
-            )
+            data_payload[
+                "switch-controller-netflow-collect"
+            ] = switch_controller_netflow_collect
         if switch_controller_mgmt_vlan is not None:
-            data_payload["switch-controller-mgmt-vlan"] = (
-                switch_controller_mgmt_vlan
-            )
+            data_payload[
+                "switch-controller-mgmt-vlan"
+            ] = switch_controller_mgmt_vlan
         if switch_controller_igmp_snooping is not None:
-            data_payload["switch-controller-igmp-snooping"] = (
-                switch_controller_igmp_snooping
-            )
+            data_payload[
+                "switch-controller-igmp-snooping"
+            ] = switch_controller_igmp_snooping
         if switch_controller_igmp_snooping_proxy is not None:
-            data_payload["switch-controller-igmp-snooping-proxy"] = (
-                switch_controller_igmp_snooping_proxy
-            )
+            data_payload[
+                "switch-controller-igmp-snooping-proxy"
+            ] = switch_controller_igmp_snooping_proxy
         if switch_controller_igmp_snooping_fast_leave is not None:
-            data_payload["switch-controller-igmp-snooping-fast-leave"] = (
-                switch_controller_igmp_snooping_fast_leave
-            )
+            data_payload[
+                "switch-controller-igmp-snooping-fast-leave"
+            ] = switch_controller_igmp_snooping_fast_leave
         if switch_controller_dhcp_snooping is not None:
-            data_payload["switch-controller-dhcp-snooping"] = (
-                switch_controller_dhcp_snooping
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping"
+            ] = switch_controller_dhcp_snooping
         if switch_controller_dhcp_snooping_verify_mac is not None:
-            data_payload["switch-controller-dhcp-snooping-verify-mac"] = (
-                switch_controller_dhcp_snooping_verify_mac
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping-verify-mac"
+            ] = switch_controller_dhcp_snooping_verify_mac
         if switch_controller_dhcp_snooping_option82 is not None:
-            data_payload["switch-controller-dhcp-snooping-option82"] = (
-                switch_controller_dhcp_snooping_option82
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping-option82"
+            ] = switch_controller_dhcp_snooping_option82
         if dhcp_snooping_server_list is not None:
-            data_payload["dhcp-snooping-server-list"] = (
-                dhcp_snooping_server_list
-            )
+            data_payload[
+                "dhcp-snooping-server-list"
+            ] = dhcp_snooping_server_list
         if switch_controller_arp_inspection is not None:
-            data_payload["switch-controller-arp-inspection"] = (
-                switch_controller_arp_inspection
-            )
+            data_payload[
+                "switch-controller-arp-inspection"
+            ] = switch_controller_arp_inspection
         if switch_controller_learning_limit is not None:
-            data_payload["switch-controller-learning-limit"] = (
-                switch_controller_learning_limit
-            )
+            data_payload[
+                "switch-controller-learning-limit"
+            ] = switch_controller_learning_limit
         if switch_controller_nac is not None:
             data_payload["switch-controller-nac"] = switch_controller_nac
         if switch_controller_dynamic is not None:
-            data_payload["switch-controller-dynamic"] = (
-                switch_controller_dynamic
-            )
+            data_payload[
+                "switch-controller-dynamic"
+            ] = switch_controller_dynamic
         if switch_controller_feature is not None:
-            data_payload["switch-controller-feature"] = (
-                switch_controller_feature
-            )
+            data_payload[
+                "switch-controller-feature"
+            ] = switch_controller_feature
         if switch_controller_iot_scanning is not None:
-            data_payload["switch-controller-iot-scanning"] = (
-                switch_controller_iot_scanning
-            )
+            data_payload[
+                "switch-controller-iot-scanning"
+            ] = switch_controller_iot_scanning
         if switch_controller_offload is not None:
-            data_payload["switch-controller-offload"] = (
-                switch_controller_offload
-            )
+            data_payload[
+                "switch-controller-offload"
+            ] = switch_controller_offload
         if switch_controller_offload_ip is not None:
-            data_payload["switch-controller-offload-ip"] = (
-                switch_controller_offload_ip
-            )
+            data_payload[
+                "switch-controller-offload-ip"
+            ] = switch_controller_offload_ip
         if switch_controller_offload_gw is not None:
-            data_payload["switch-controller-offload-gw"] = (
-                switch_controller_offload_gw
-            )
+            data_payload[
+                "switch-controller-offload-gw"
+            ] = switch_controller_offload_gw
         if swc_vlan is not None:
             data_payload["swc-vlan"] = swc_vlan
         if swc_first_create is not None:
@@ -2053,9 +2053,9 @@ class Interface:
         if fortilink is not None:
             data_payload["fortilink"] = fortilink
         if switch_controller_source_ip is not None:
-            data_payload["switch-controller-source-ip"] = (
-                switch_controller_source_ip
-            )
+            data_payload[
+                "switch-controller-source-ip"
+            ] = switch_controller_source_ip
         if mode is not None:
             data_payload["mode"] = mode
         if client_options is not None:
@@ -2065,9 +2065,9 @@ class Interface:
         if priority is not None:
             data_payload["priority"] = priority
         if dhcp_relay_interface_select_method is not None:
-            data_payload["dhcp-relay-interface-select-method"] = (
-                dhcp_relay_interface_select_method
-            )
+            data_payload[
+                "dhcp-relay-interface-select-method"
+            ] = dhcp_relay_interface_select_method
         if dhcp_relay_interface is not None:
             data_payload["dhcp-relay-interface"] = dhcp_relay_interface
         if dhcp_relay_vrf_select is not None:
@@ -2083,17 +2083,17 @@ class Interface:
         if dhcp_relay_circuit_id is not None:
             data_payload["dhcp-relay-circuit-id"] = dhcp_relay_circuit_id
         if dhcp_relay_link_selection is not None:
-            data_payload["dhcp-relay-link-selection"] = (
-                dhcp_relay_link_selection
-            )
+            data_payload[
+                "dhcp-relay-link-selection"
+            ] = dhcp_relay_link_selection
         if dhcp_relay_request_all_server is not None:
-            data_payload["dhcp-relay-request-all-server"] = (
-                dhcp_relay_request_all_server
-            )
+            data_payload[
+                "dhcp-relay-request-all-server"
+            ] = dhcp_relay_request_all_server
         if dhcp_relay_allow_no_end_option is not None:
-            data_payload["dhcp-relay-allow-no-end-option"] = (
-                dhcp_relay_allow_no_end_option
-            )
+            data_payload[
+                "dhcp-relay-allow-no-end-option"
+            ] = dhcp_relay_allow_no_end_option
         if dhcp_relay_type is not None:
             data_payload["dhcp-relay-type"] = dhcp_relay_type
         if dhcp_smart_relay is not None:
@@ -2101,9 +2101,9 @@ class Interface:
         if dhcp_relay_agent_option is not None:
             data_payload["dhcp-relay-agent-option"] = dhcp_relay_agent_option
         if dhcp_classless_route_addition is not None:
-            data_payload["dhcp-classless-route-addition"] = (
-                dhcp_classless_route_addition
-            )
+            data_payload[
+                "dhcp-classless-route-addition"
+            ] = dhcp_classless_route_addition
         if management_ip is not None:
             data_payload["management-ip"] = management_ip
         if ip is not None:
@@ -2141,9 +2141,9 @@ class Interface:
         if pppoe_egress_cos is not None:
             data_payload["pppoe-egress-cos"] = pppoe_egress_cos
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = (
-                pppoe_unnumbered_negotiate
-            )
+            data_payload[
+                "pppoe-unnumbered-negotiate"
+            ] = pppoe_unnumbered_negotiate
         if password is not None:
             data_payload["password"] = password
         if idle_timeout is not None:
@@ -2291,9 +2291,9 @@ class Interface:
         if spillover_threshold is not None:
             data_payload["spillover-threshold"] = spillover_threshold
         if ingress_spillover_threshold is not None:
-            data_payload["ingress-spillover-threshold"] = (
-                ingress_spillover_threshold
-            )
+            data_payload[
+                "ingress-spillover-threshold"
+            ] = ingress_spillover_threshold
         if weight is not None:
             data_payload["weight"] = weight
         if interface is not None:
@@ -2367,21 +2367,21 @@ class Interface:
         if security_8021x_master is not None:
             data_payload["security-8021x-master"] = security_8021x_master
         if security_8021x_dynamic_vlan_id is not None:
-            data_payload["security-8021x-dynamic-vlan-id"] = (
-                security_8021x_dynamic_vlan_id
-            )
+            data_payload[
+                "security-8021x-dynamic-vlan-id"
+            ] = security_8021x_dynamic_vlan_id
         if security_8021x_member_mode is not None:
-            data_payload["security-8021x-member-mode"] = (
-                security_8021x_member_mode
-            )
+            data_payload[
+                "security-8021x-member-mode"
+            ] = security_8021x_member_mode
         if security_external_web is not None:
             data_payload["security-external-web"] = security_external_web
         if security_external_logout is not None:
             data_payload["security-external-logout"] = security_external_logout
         if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = (
-                replacemsg_override_group
-            )
+            data_payload[
+                "replacemsg-override-group"
+            ] = replacemsg_override_group
         if security_redirect_url is not None:
             data_payload["security-redirect-url"] = security_redirect_url
         if auth_cert is not None:
@@ -2405,9 +2405,9 @@ class Interface:
         if exclude_signatures is not None:
             data_payload["exclude-signatures"] = exclude_signatures
         if device_user_identification is not None:
-            data_payload["device-user-identification"] = (
-                device_user_identification
-            )
+            data_payload[
+                "device-user-identification"
+            ] = device_user_identification
         if lldp_reception is not None:
             data_payload["lldp-reception"] = lldp_reception
         if lldp_transmission is not None:
@@ -2415,21 +2415,21 @@ class Interface:
         if lldp_network_policy is not None:
             data_payload["lldp-network-policy"] = lldp_network_policy
         if estimated_upstream_bandwidth is not None:
-            data_payload["estimated-upstream-bandwidth"] = (
-                estimated_upstream_bandwidth
-            )
+            data_payload[
+                "estimated-upstream-bandwidth"
+            ] = estimated_upstream_bandwidth
         if estimated_downstream_bandwidth is not None:
-            data_payload["estimated-downstream-bandwidth"] = (
-                estimated_downstream_bandwidth
-            )
+            data_payload[
+                "estimated-downstream-bandwidth"
+            ] = estimated_downstream_bandwidth
         if measured_upstream_bandwidth is not None:
-            data_payload["measured-upstream-bandwidth"] = (
-                measured_upstream_bandwidth
-            )
+            data_payload[
+                "measured-upstream-bandwidth"
+            ] = measured_upstream_bandwidth
         if measured_downstream_bandwidth is not None:
-            data_payload["measured-downstream-bandwidth"] = (
-                measured_downstream_bandwidth
-            )
+            data_payload[
+                "measured-downstream-bandwidth"
+            ] = measured_downstream_bandwidth
         if bandwidth_measure_time is not None:
             data_payload["bandwidth-measure-time"] = bandwidth_measure_time
         if monitor_bandwidth is not None:
@@ -2451,109 +2451,109 @@ class Interface:
         if preserve_session_route is not None:
             data_payload["preserve-session-route"] = preserve_session_route
         if auto_auth_extension_device is not None:
-            data_payload["auto-auth-extension-device"] = (
-                auto_auth_extension_device
-            )
+            data_payload[
+                "auto-auth-extension-device"
+            ] = auto_auth_extension_device
         if ap_discover is not None:
             data_payload["ap-discover"] = ap_discover
         if fortilink_neighbor_detect is not None:
-            data_payload["fortilink-neighbor-detect"] = (
-                fortilink_neighbor_detect
-            )
+            data_payload[
+                "fortilink-neighbor-detect"
+            ] = fortilink_neighbor_detect
         if ip_managed_by_fortiipam is not None:
             data_payload["ip-managed-by-fortiipam"] = ip_managed_by_fortiipam
         if managed_subnetwork_size is not None:
             data_payload["managed-subnetwork-size"] = managed_subnetwork_size
         if fortilink_split_interface is not None:
-            data_payload["fortilink-split-interface"] = (
-                fortilink_split_interface
-            )
+            data_payload[
+                "fortilink-split-interface"
+            ] = fortilink_split_interface
         if internal is not None:
             data_payload["internal"] = internal
         if fortilink_backup_link is not None:
             data_payload["fortilink-backup-link"] = fortilink_backup_link
         if switch_controller_access_vlan is not None:
-            data_payload["switch-controller-access-vlan"] = (
-                switch_controller_access_vlan
-            )
+            data_payload[
+                "switch-controller-access-vlan"
+            ] = switch_controller_access_vlan
         if switch_controller_traffic_policy is not None:
-            data_payload["switch-controller-traffic-policy"] = (
-                switch_controller_traffic_policy
-            )
+            data_payload[
+                "switch-controller-traffic-policy"
+            ] = switch_controller_traffic_policy
         if switch_controller_rspan_mode is not None:
-            data_payload["switch-controller-rspan-mode"] = (
-                switch_controller_rspan_mode
-            )
+            data_payload[
+                "switch-controller-rspan-mode"
+            ] = switch_controller_rspan_mode
         if switch_controller_netflow_collect is not None:
-            data_payload["switch-controller-netflow-collect"] = (
-                switch_controller_netflow_collect
-            )
+            data_payload[
+                "switch-controller-netflow-collect"
+            ] = switch_controller_netflow_collect
         if switch_controller_mgmt_vlan is not None:
-            data_payload["switch-controller-mgmt-vlan"] = (
-                switch_controller_mgmt_vlan
-            )
+            data_payload[
+                "switch-controller-mgmt-vlan"
+            ] = switch_controller_mgmt_vlan
         if switch_controller_igmp_snooping is not None:
-            data_payload["switch-controller-igmp-snooping"] = (
-                switch_controller_igmp_snooping
-            )
+            data_payload[
+                "switch-controller-igmp-snooping"
+            ] = switch_controller_igmp_snooping
         if switch_controller_igmp_snooping_proxy is not None:
-            data_payload["switch-controller-igmp-snooping-proxy"] = (
-                switch_controller_igmp_snooping_proxy
-            )
+            data_payload[
+                "switch-controller-igmp-snooping-proxy"
+            ] = switch_controller_igmp_snooping_proxy
         if switch_controller_igmp_snooping_fast_leave is not None:
-            data_payload["switch-controller-igmp-snooping-fast-leave"] = (
-                switch_controller_igmp_snooping_fast_leave
-            )
+            data_payload[
+                "switch-controller-igmp-snooping-fast-leave"
+            ] = switch_controller_igmp_snooping_fast_leave
         if switch_controller_dhcp_snooping is not None:
-            data_payload["switch-controller-dhcp-snooping"] = (
-                switch_controller_dhcp_snooping
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping"
+            ] = switch_controller_dhcp_snooping
         if switch_controller_dhcp_snooping_verify_mac is not None:
-            data_payload["switch-controller-dhcp-snooping-verify-mac"] = (
-                switch_controller_dhcp_snooping_verify_mac
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping-verify-mac"
+            ] = switch_controller_dhcp_snooping_verify_mac
         if switch_controller_dhcp_snooping_option82 is not None:
-            data_payload["switch-controller-dhcp-snooping-option82"] = (
-                switch_controller_dhcp_snooping_option82
-            )
+            data_payload[
+                "switch-controller-dhcp-snooping-option82"
+            ] = switch_controller_dhcp_snooping_option82
         if dhcp_snooping_server_list is not None:
-            data_payload["dhcp-snooping-server-list"] = (
-                dhcp_snooping_server_list
-            )
+            data_payload[
+                "dhcp-snooping-server-list"
+            ] = dhcp_snooping_server_list
         if switch_controller_arp_inspection is not None:
-            data_payload["switch-controller-arp-inspection"] = (
-                switch_controller_arp_inspection
-            )
+            data_payload[
+                "switch-controller-arp-inspection"
+            ] = switch_controller_arp_inspection
         if switch_controller_learning_limit is not None:
-            data_payload["switch-controller-learning-limit"] = (
-                switch_controller_learning_limit
-            )
+            data_payload[
+                "switch-controller-learning-limit"
+            ] = switch_controller_learning_limit
         if switch_controller_nac is not None:
             data_payload["switch-controller-nac"] = switch_controller_nac
         if switch_controller_dynamic is not None:
-            data_payload["switch-controller-dynamic"] = (
-                switch_controller_dynamic
-            )
+            data_payload[
+                "switch-controller-dynamic"
+            ] = switch_controller_dynamic
         if switch_controller_feature is not None:
-            data_payload["switch-controller-feature"] = (
-                switch_controller_feature
-            )
+            data_payload[
+                "switch-controller-feature"
+            ] = switch_controller_feature
         if switch_controller_iot_scanning is not None:
-            data_payload["switch-controller-iot-scanning"] = (
-                switch_controller_iot_scanning
-            )
+            data_payload[
+                "switch-controller-iot-scanning"
+            ] = switch_controller_iot_scanning
         if switch_controller_offload is not None:
-            data_payload["switch-controller-offload"] = (
-                switch_controller_offload
-            )
+            data_payload[
+                "switch-controller-offload"
+            ] = switch_controller_offload
         if switch_controller_offload_ip is not None:
-            data_payload["switch-controller-offload-ip"] = (
-                switch_controller_offload_ip
-            )
+            data_payload[
+                "switch-controller-offload-ip"
+            ] = switch_controller_offload_ip
         if switch_controller_offload_gw is not None:
-            data_payload["switch-controller-offload-gw"] = (
-                switch_controller_offload_gw
-            )
+            data_payload[
+                "switch-controller-offload-gw"
+            ] = switch_controller_offload_gw
         if swc_vlan is not None:
             data_payload["swc-vlan"] = swc_vlan
         if swc_first_create is not None:

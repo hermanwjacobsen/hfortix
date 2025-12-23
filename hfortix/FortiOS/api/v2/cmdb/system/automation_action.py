@@ -308,21 +308,21 @@ class AutomationAction:
         if aws_api_key is not None:
             data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload["azure-function-authorization"] = (
-                azure_function_authorization
-            )
+            data_payload[
+                "azure-function-authorization"
+            ] = azure_function_authorization
         if azure_api_key is not None:
             data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload["alicloud-function-authorization"] = (
-                alicloud_function_authorization
-            )
+            data_payload[
+                "alicloud-function-authorization"
+            ] = alicloud_function_authorization
         if alicloud_access_key_id is not None:
             data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload["alicloud-access-key-secret"] = (
-                alicloud_access_key_secret
-            )
+            data_payload[
+                "alicloud-access-key-secret"
+            ] = alicloud_access_key_secret
         if message_type is not None:
             data_payload["message-type"] = message_type
         if message is not None:
@@ -617,21 +617,21 @@ class AutomationAction:
         if aws_api_key is not None:
             data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload["azure-function-authorization"] = (
-                azure_function_authorization
-            )
+            data_payload[
+                "azure-function-authorization"
+            ] = azure_function_authorization
         if azure_api_key is not None:
             data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload["alicloud-function-authorization"] = (
-                alicloud_function_authorization
-            )
+            data_payload[
+                "alicloud-function-authorization"
+            ] = alicloud_function_authorization
         if alicloud_access_key_id is not None:
             data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload["alicloud-access-key-secret"] = (
-                alicloud_access_key_secret
-            )
+            data_payload[
+                "alicloud-access-key-secret"
+            ] = alicloud_access_key_secret
         if message_type is not None:
             data_payload["message-type"] = message_type
         if message is not None:

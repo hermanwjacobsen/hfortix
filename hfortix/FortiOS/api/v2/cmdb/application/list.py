@@ -251,13 +251,13 @@ class List:
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload["force-inclusion-ssl-di-sigs"] = (
-                force_inclusion_ssl_di_sigs
-            )
+            data_payload[
+                "force-inclusion-ssl-di-sigs"
+            ] = force_inclusion_ssl_di_sigs
         if unknown_application_action is not None:
-            data_payload["unknown-application-action"] = (
-                unknown_application_action
-            )
+            data_payload[
+                "unknown-application-action"
+            ] = unknown_application_action
         if unknown_application_log is not None:
             data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
@@ -269,9 +269,9 @@ class List:
         if entries is not None:
             data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload["control-default-network-services"] = (
-                control_default_network_services
-            )
+            data_payload[
+                "control-default-network-services"
+            ] = control_default_network_services
         if default_network_services is not None:
             data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)
@@ -463,13 +463,13 @@ class List:
         if enforce_default_app_port is not None:
             data_payload["enforce-default-app-port"] = enforce_default_app_port
         if force_inclusion_ssl_di_sigs is not None:
-            data_payload["force-inclusion-ssl-di-sigs"] = (
-                force_inclusion_ssl_di_sigs
-            )
+            data_payload[
+                "force-inclusion-ssl-di-sigs"
+            ] = force_inclusion_ssl_di_sigs
         if unknown_application_action is not None:
-            data_payload["unknown-application-action"] = (
-                unknown_application_action
-            )
+            data_payload[
+                "unknown-application-action"
+            ] = unknown_application_action
         if unknown_application_log is not None:
             data_payload["unknown-application-log"] = unknown_application_log
         if p2p_block_list is not None:
@@ -481,9 +481,9 @@ class List:
         if entries is not None:
             data_payload["entries"] = entries
         if control_default_network_services is not None:
-            data_payload["control-default-network-services"] = (
-                control_default_network_services
-            )
+            data_payload[
+                "control-default-network-services"
+            ] = control_default_network_services
         if default_network_services is not None:
             data_payload["default-network-services"] = default_network_services
         data_payload.update(kwargs)

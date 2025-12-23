@@ -107,12 +107,12 @@ def build_policy_payload(
 ) -> dict[str, Any]:
     """
     Build policy payload dictionary.
-    
+
     Args:
         policyid: Policy ID (optional)
         payload_dict: Base dictionary to start with
         **kwargs: Individual policy parameters
-        
+
     Returns:
         Complete payload dictionary for API call
     """
@@ -152,18 +152,18 @@ def build_policy_payload_normalized(
 ) -> dict[str, Any]:
     """
     Build policy payload with input normalization.
-    
+
     Normalizes the following fields to lists:
     - srcintf, dstintf
     - srcaddr, dstaddr, srcaddr6, dstaddr6
     - service, internet-service-src-name, internet-service-name
     - poolname, groups, users
-    
+
     Args:
         policyid: Policy ID (optional)
         payload_dict: Base dictionary to start with
         **kwargs: Individual policy parameters (will be normalized)
-        
+
     Returns:
         Complete payload dictionary with normalized lists
     """
@@ -283,25 +283,25 @@ def build_address_payload(
 ) -> dict[str, Any]:
     """
     Build address object payload dictionary.
-    
+
     Args:
         name: Address object name
         payload_dict: Base dictionary to start with
         **kwargs: Additional address parameters
-        
+
     Returns:
         Complete payload dictionary
     """
     # Start with payload_dict or empty dict
     payload = payload_dict.copy() if payload_dict else {}
-    
+
     # Add name if provided
     if name is not None:
         payload["name"] = name
-    
+
     # Add all other kwargs
     payload.update(kwargs)
-    
+
     return payload
 ```
 
@@ -326,7 +326,7 @@ def create(
     if type is not None:
         params["type"] = type
     params.update(kwargs)
-    
+
     return self._client.post("cmdb", "/firewall/address", data=params)
 ```
 
@@ -348,7 +348,7 @@ def create(
         payload_dict=payload_dict,
         **kwargs
     )
-    
+
     return self._client.post("cmdb", "/firewall/address", data=payload)
 ```
 
@@ -359,10 +359,10 @@ def create(
 
 class FirewallAddress:
     """Convenience wrapper for firewall address operations."""
-    
+
     def __init__(self, fortios_instance):
         self._fgt = fortios_instance
-    
+
     def create(
         self,
         name: str,
@@ -372,7 +372,7 @@ class FirewallAddress:
     ):
         """
         Create address object with user-friendly interface.
-        
+
         Args:
             name: Address name
             subnet: IP subnet (e.g., '10.0.0.0/24')
@@ -408,7 +408,7 @@ def test_build_policy_payload():
         srcintf=["port1"],
         action="accept"
     )
-    
+
     assert payload["name"] == "test"
     assert payload["srcintf"] == ["port1"]
     assert payload["action"] == "accept"
@@ -420,7 +420,7 @@ def test_build_policy_payload_with_dict():
         payload_dict=base,
         name="test"
     )
-    
+
     assert payload["name"] == "test"
     assert payload["srcintf"] == ["port1"]
 
@@ -429,11 +429,11 @@ def test_normalize_to_name_list():
     # String input
     result = normalize_to_name_list("port1")
     assert result == [{"name": "port1"}]
-    
+
     # List of strings
     result = normalize_to_name_list(["port1", "port2"])
     assert result == [{"name": "port1"}, {"name": "port2"}]
-    
+
     # Already normalized
     input_data = [{"name": "port1"}]
     result = normalize_to_name_list(input_data)
@@ -446,7 +446,7 @@ def test_normalize_to_name_list():
 def test_policy_create_with_builder(fgt):
     """Test policy creation using builder pattern."""
     # Should work with both API and wrapper layers
-    
+
     # API layer (exact format)
     fgt.api.cmdb.firewall.policy.create(
         name="test-api",
@@ -454,7 +454,7 @@ def test_policy_create_with_builder(fgt):
         dstintf=[{"name": "port2"}],
         action="accept"
     )
-    
+
     # Wrapper layer (flexible format)
     fgt.firewall.policy.create(
         name="test-wrapper",
@@ -462,7 +462,7 @@ def test_policy_create_with_builder(fgt):
         dstintf=["port2"],
         action="accept"
     )
-    
+
     # Both should succeed
 ```
 

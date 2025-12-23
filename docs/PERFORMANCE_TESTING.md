@@ -756,4 +756,3 @@ with open("all_fortigates_stress_test.json", "w") as f:
 6. Large configurations (1000+ policies/objects) significantly impact performance
 7. The defaults work well for most deployments - only tune if testing shows clear benefits
 8. **RECOMMENDED values are safer than MAX** - Always use RECOMMENDED for production
-

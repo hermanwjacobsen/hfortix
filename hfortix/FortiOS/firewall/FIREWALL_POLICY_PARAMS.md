@@ -255,7 +255,7 @@ This document lists all available parameters for the FirewallPolicy wrapper base
 - All list-based parameters support both single values and lists:
   - `srcintf='port1'` OR `srcintf=['port1', 'port2']`
   - `users='admin'` OR `users=['admin', 'user1']`
-  
+
 - Internet Services are alternatives to traditional addresses
   - Use either `srcaddr` OR `internet_service_src_*`
   - Use either `dstaddr` OR `internet_service_*`

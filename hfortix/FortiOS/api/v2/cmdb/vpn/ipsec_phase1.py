@@ -640,9 +640,9 @@ class IpsecPhase1:
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload["mode-cfg-allow-client-selector"] = (
-                mode_cfg_allow_client_selector
-            )
+            data_payload[
+                "mode-cfg-allow-client-selector"
+            ] = mode_cfg_allow_client_selector
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -806,9 +806,9 @@ class IpsecPhase1:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload["group-authentication-secret"] = (
-                group_authentication_secret
-            )
+            data_payload[
+                "group-authentication-secret"
+            ] = group_authentication_secret
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -846,9 +846,9 @@ class IpsecPhase1:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload["rsa-signature-hash-override"] = (
-                rsa_signature_hash_override
-            )
+            data_payload[
+                "rsa-signature-hash-override"
+            ] = rsa_signature_hash_override
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -928,9 +928,9 @@ class IpsecPhase1:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload["cert-peer-username-validation"] = (
-                cert_peer_username_validation
-            )
+            data_payload[
+                "cert-peer-username-validation"
+            ] = cert_peer_username_validation
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
@@ -1511,9 +1511,9 @@ class IpsecPhase1:
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload["mode-cfg-allow-client-selector"] = (
-                mode_cfg_allow_client_selector
-            )
+            data_payload[
+                "mode-cfg-allow-client-selector"
+            ] = mode_cfg_allow_client_selector
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -1677,9 +1677,9 @@ class IpsecPhase1:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload["group-authentication-secret"] = (
-                group_authentication_secret
-            )
+            data_payload[
+                "group-authentication-secret"
+            ] = group_authentication_secret
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -1717,9 +1717,9 @@ class IpsecPhase1:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload["rsa-signature-hash-override"] = (
-                rsa_signature_hash_override
-            )
+            data_payload[
+                "rsa-signature-hash-override"
+            ] = rsa_signature_hash_override
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -1799,9 +1799,9 @@ class IpsecPhase1:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload["cert-peer-username-validation"] = (
-                cert_peer_username_validation
-            )
+            data_payload[
+                "cert-peer-username-validation"
+            ] = cert_peer_username_validation
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)

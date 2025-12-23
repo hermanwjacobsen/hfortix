@@ -328,9 +328,9 @@ class Ippool:
         if privileged_port_use_pba is not None:
             data_payload["privileged-port-use-pba"] = privileged_port_use_pba
         if subnet_broadcast_in_ippool is not None:
-            data_payload["subnet-broadcast-in-ippool"] = (
-                subnet_broadcast_in_ippool
-            )
+            data_payload[
+                "subnet-broadcast-in-ippool"
+            ] = subnet_broadcast_in_ippool
         data_payload.update(kwargs)
         return self._client.put(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
@@ -597,9 +597,9 @@ class Ippool:
         if privileged_port_use_pba is not None:
             data_payload["privileged-port-use-pba"] = privileged_port_use_pba
         if subnet_broadcast_in_ippool is not None:
-            data_payload["subnet-broadcast-in-ippool"] = (
-                subnet_broadcast_in_ippool
-            )
+            data_payload[
+                "subnet-broadcast-in-ippool"
+            ] = subnet_broadcast_in_ippool
         data_payload.update(kwargs)
         return self._client.post(
             "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json

@@ -266,13 +266,13 @@ class FctemsOverride:
         if dirty_reason is not None:
             data_payload["dirty-reason"] = dirty_reason
         if fortinetone_cloud_authentication is not None:
-            data_payload["fortinetone-cloud-authentication"] = (
-                fortinetone_cloud_authentication
-            )
+            data_payload[
+                "fortinetone-cloud-authentication"
+            ] = fortinetone_cloud_authentication
         if cloud_authentication_access_key is not None:
-            data_payload["cloud-authentication-access-key"] = (
-                cloud_authentication_access_key
-            )
+            data_payload[
+                "cloud-authentication-access-key"
+            ] = cloud_authentication_access_key
         if server is not None:
             data_payload["server"] = server
         if https_port is not None:
@@ -509,13 +509,13 @@ class FctemsOverride:
         if dirty_reason is not None:
             data_payload["dirty-reason"] = dirty_reason
         if fortinetone_cloud_authentication is not None:
-            data_payload["fortinetone-cloud-authentication"] = (
-                fortinetone_cloud_authentication
-            )
+            data_payload[
+                "fortinetone-cloud-authentication"
+            ] = fortinetone_cloud_authentication
         if cloud_authentication_access_key is not None:
-            data_payload["cloud-authentication-access-key"] = (
-                cloud_authentication_access_key
-            )
+            data_payload[
+                "cloud-authentication-access-key"
+            ] = cloud_authentication_access_key
         if server is not None:
             data_payload["server"] = server
         if https_port is not None:

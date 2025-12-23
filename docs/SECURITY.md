@@ -260,10 +260,10 @@ def create_address(name: str, subnet: str):
     # Basic validation
     if not name or not subnet:
         raise ValueError("Name and subnet required")
-    
+
     if '..' in name or '/' not in subnet:
         raise ValueError("Invalid input")
-    
+
     fgt.api.cmdb.firewall.address.create(
         name=name,
         subnet=subnet
