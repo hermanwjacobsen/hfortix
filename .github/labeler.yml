@@ -1,0 +1,33 @@
+# Labeler configuration for automatic PR labeling
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['docs/**', '*.md', 'README*', 'CHANGELOG*']
+
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file: ['requirements.txt', 'pyproject.toml', 'setup.py']
+
+ci/cd:
+  - changed-files:
+    - any-glob-to-any-file: ['.github/**', '.pre-commit-config.yaml', 'Makefile']
+
+tests:
+  - changed-files:
+    - any-glob-to-any-file: ['tests/**', 'X/tests/**', '**/test_*.py']
+
+api:
+  - changed-files:
+    - any-glob-to-any-file: ['hfortix/FortiOS/api/**']
+
+examples:
+  - changed-files:
+    - any-glob-to-any-file: ['examples/**']
+
+core:
+  - changed-files:
+    - any-glob-to-any-file: ['hfortix/FortiOS/fortios.py', 'hfortix/FortiOS/http_client*.py']
+
+security:
+  - changed-files:
+    - any-glob-to-any-file: ['hfortix/FortiOS/exceptions*.py', 'docs/SECURITY.md']

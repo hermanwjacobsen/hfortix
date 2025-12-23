@@ -9,6 +9,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **CI/CD Pipeline**: Complete GitHub Actions workflow automation
+  - **CI Workflow** (`ci.yml`): Automated code quality checks on every push/PR
+    - Lint & format checking (Black, isort, flake8)
+    - Type checking with mypy
+    - Security scanning with Bandit (JSON reports as artifacts)
+    - Build validation with twine
+    - Pre-commit hook enforcement
+    - Multi-Python version testing (3.10, 3.11, 3.12)
+    - All checks gate job (blocks merge if any fail)
+  - **Publish Workflow** (`publish.yml`): Automated PyPI publishing
+    - Automatic publishing on git tag push (`v*.*.*`)
+    - Manual workflow dispatch for TestPyPI testing
+    - Version consistency validation across pyproject.toml, setup.py, __init__.py
+    - Trusted publishing support (no API tokens needed)
+    - Automatic GitHub release creation with changelog extraction
+  - **CodeQL Analysis** (`codeql.yml`): Advanced security scanning
+    - Runs on push to main, PRs, and weekly schedule
+    - GitHub Advanced Security vulnerability detection
+  - **Dependency Review** (`dependency-review.yml`): PR dependency checking
+    - Detects new dependencies and vulnerabilities
+    - Blocks moderate+ severity issues and GPL licenses
+  - **Auto-label PRs** (`label-pr.yml`): Automatic PR categorization
+    - Labels based on changed files (docs, tests, api, core, etc.)
+  - **Documentation**: Complete CI/CD guide in `docs/CICD.md`
+    - Workflow explanations and usage examples
+    - Local development integration
+    - Troubleshooting guide
+
 ### Changed
 
 ### Fixed

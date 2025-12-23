@@ -1,0 +1,208 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Publish to PyPI or TestPyPI'
+        required: true
+        type: choice
+        options:
+          - pypi
+          - testpypi
+
+jobs:
+  validate-version:
+    name: Validate Version
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get-version.outputs.version }}
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Get version from tag
+      id: get-version
+      run: |
+        if [[ "${{ github.event_name }}" == "push" ]]; then
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        else
+          # For manual workflow, extract from pyproject.toml
+          VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+        fi
+        echo "📦 Version: $VERSION"
+        
+    - name: Validate version consistency
+      run: |
+        VERSION=${{ steps.get-version.outputs.version }}
+        
+        # Check pyproject.toml
+        PYPROJECT_VERSION=$(grep '^version = ' pyproject.toml | cut -d'"' -f2)
+        if [[ "$VERSION" != "$PYPROJECT_VERSION" ]]; then
+          echo "❌ Version mismatch: tag=$VERSION pyproject.toml=$PYPROJECT_VERSION"
+          exit 1
+        fi
+        
+        # Check setup.py
+        SETUP_VERSION=$(grep "version=" setup.py | cut -d'"' -f2)
+        if [[ "$VERSION" != "$SETUP_VERSION" ]]; then
+          echo "❌ Version mismatch: tag=$VERSION setup.py=$SETUP_VERSION"
+          exit 1
+        fi
+        
+        # Check __init__.py
+        INIT_VERSION=$(grep '^__version__ = ' hfortix/FortiOS/__init__.py | cut -d'"' -f2)
+        if [[ "$VERSION" != "$INIT_VERSION" ]]; then
+          echo "❌ Version mismatch: tag=$VERSION __init__.py=$INIT_VERSION"
+          exit 1
+        fi
+        
+        echo "✅ All version strings match: $VERSION"
+
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+    needs: validate-version
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        cache: 'pip'
+        
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+        
+    - name: Build distribution packages
+      run: |
+        python -m build
+        
+    - name: Check distribution packages
+      run: |
+        twine check dist/*
+        ls -lh dist/
+        
+    - name: Upload distribution artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-${{ needs.validate-version.outputs.version }}
+        path: dist/
+        retention-days: 30
+
+  publish-testpypi:
+    name: Publish to TestPyPI
+    runs-on: ubuntu-latest
+    needs: [validate-version, build]
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'testpypi'
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/hfortix/
+    
+    permissions:
+      id-token: write  # IMPORTANT: for trusted publishing
+      
+    steps:
+    - name: Download distribution artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist-${{ needs.validate-version.outputs.version }}
+        path: dist/
+        
+    - name: Publish to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        # Trusted publishing - no token needed if configured
+        # Or use: password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+  publish-pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: [validate-version, build]
+    if: |
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'pypi')
+    environment:
+      name: pypi
+      url: https://pypi.org/project/hfortix/
+    
+    permissions:
+      id-token: write  # IMPORTANT: for trusted publishing
+      
+    steps:
+    - name: Download distribution artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist-${{ needs.validate-version.outputs.version }}
+        path: dist/
+        
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      # Trusted publishing - no token needed if configured in PyPI
+      # Or use: password: ${{ secrets.PYPI_API_TOKEN }}
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [validate-version, publish-pypi]
+    if: github.event_name == 'push'
+    
+    permissions:
+      contents: write
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Extract changelog for version
+      id: changelog
+      run: |
+        VERSION=${{ needs.validate-version.outputs.version }}
+        
+        # Extract changelog section for this version
+        awk "/^## \[$VERSION\]/,/^## \[/" CHANGELOG.md | head -n -1 > release-notes.md
+        
+        # If empty, use a default message
+        if [[ ! -s release-notes.md ]]; then
+          echo "Release $VERSION" > release-notes.md
+          echo "" >> release-notes.md
+          echo "See [CHANGELOG.md](CHANGELOG.md) for details." >> release-notes.md
+        fi
+        
+        cat release-notes.md
+        
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: release-notes.md
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify-success:
+    name: Notify Success
+    runs-on: ubuntu-latest
+    needs: [validate-version, publish-pypi, create-release]
+    if: always() && needs.publish-pypi.result == 'success'
+    
+    steps:
+    - name: Success message
+      run: |
+        VERSION=${{ needs.validate-version.outputs.version }}
+        echo "🎉 Successfully published hfortix v$VERSION to PyPI!"
+        echo "📦 Package: https://pypi.org/project/hfortix/$VERSION/"
+        echo "📝 Release: https://github.com/${{ github.repository }}/releases/tag/v$VERSION"
