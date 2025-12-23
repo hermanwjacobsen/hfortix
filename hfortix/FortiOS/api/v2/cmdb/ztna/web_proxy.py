@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class WebProxy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -224,7 +227,9 @@ class WebProxy:
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -234,7 +239,9 @@ class WebProxy:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -271,7 +278,9 @@ class WebProxy:
             raise ValueError("name is required for delete()")
         endpoint = f"/ztna/web-proxy/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -355,7 +364,9 @@ class WebProxy:
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -365,4 +376,6 @@ class WebProxy:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

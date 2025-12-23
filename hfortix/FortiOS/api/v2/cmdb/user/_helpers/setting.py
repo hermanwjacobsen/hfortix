@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_AUTH_TYPE = ["http", "https", "ftp", "telnet"]
 VALID_BODY_AUTH_SECURE_HTTP = ["enable", "disable"]

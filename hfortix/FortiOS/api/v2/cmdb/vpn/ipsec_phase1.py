@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class IpsecPhase1:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -534,7 +537,9 @@ class IpsecPhase1:
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload["mode-cfg-allow-client-selector"] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -698,7 +703,9 @@ class IpsecPhase1:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload["group-authentication-secret"] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -736,7 +743,9 @@ class IpsecPhase1:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload["rsa-signature-hash-override"] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -816,11 +825,15 @@ class IpsecPhase1:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload["cert-peer-username-validation"] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -857,7 +870,9 @@ class IpsecPhase1:
             raise ValueError("name is required for delete()")
         endpoint = f"/vpn.ipsec/phase1/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -898,7 +913,7 @@ class IpsecPhase1:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -1294,7 +1309,9 @@ class IpsecPhase1:
         if mode_cfg is not None:
             data_payload["mode-cfg"] = mode_cfg
         if mode_cfg_allow_client_selector is not None:
-            data_payload["mode-cfg-allow-client-selector"] = mode_cfg_allow_client_selector
+            data_payload["mode-cfg-allow-client-selector"] = (
+                mode_cfg_allow_client_selector
+            )
         if assign_ip is not None:
             data_payload["assign-ip"] = assign_ip
         if assign_ip_from is not None:
@@ -1458,7 +1475,9 @@ class IpsecPhase1:
         if group_authentication is not None:
             data_payload["group-authentication"] = group_authentication
         if group_authentication_secret is not None:
-            data_payload["group-authentication-secret"] = group_authentication_secret
+            data_payload["group-authentication-secret"] = (
+                group_authentication_secret
+            )
         if authusrgrp is not None:
             data_payload["authusrgrp"] = authusrgrp
         if mesh_selector_type is not None:
@@ -1496,7 +1515,9 @@ class IpsecPhase1:
         if rsa_signature_format is not None:
             data_payload["rsa-signature-format"] = rsa_signature_format
         if rsa_signature_hash_override is not None:
-            data_payload["rsa-signature-hash-override"] = rsa_signature_hash_override
+            data_payload["rsa-signature-hash-override"] = (
+                rsa_signature_hash_override
+            )
         if enforce_unique_id is not None:
             data_payload["enforce-unique-id"] = enforce_unique_id
         if cert_id_validation is not None:
@@ -1576,8 +1597,12 @@ class IpsecPhase1:
         if remote_gw6_country is not None:
             data_payload["remote-gw6-country"] = remote_gw6_country
         if cert_peer_username_validation is not None:
-            data_payload["cert-peer-username-validation"] = cert_peer_username_validation
+            data_payload["cert-peer-username-validation"] = (
+                cert_peer_username_validation
+            )
         if cert_peer_username_strip is not None:
             data_payload["cert-peer-username-strip"] = cert_peer_username_strip
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

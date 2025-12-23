@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class SslServer:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -212,7 +215,9 @@ class SslServer:
         if ssl_mode is not None:
             data_payload["ssl-mode"] = ssl_mode
         if add_header_x_forwarded_proto is not None:
-            data_payload["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
+            data_payload["add-header-x-forwarded-proto"] = (
+                add_header_x_forwarded_proto
+            )
         if mapped_port is not None:
             data_payload["mapped-port"] = mapped_port
         if ssl_cert is not None:
@@ -232,7 +237,9 @@ class SslServer:
         if url_rewrite is not None:
             data_payload["url-rewrite"] = url_rewrite
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -269,7 +276,9 @@ class SslServer:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/ssl-server/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -310,7 +319,7 @@ class SslServer:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -384,7 +393,9 @@ class SslServer:
         if ssl_mode is not None:
             data_payload["ssl-mode"] = ssl_mode
         if add_header_x_forwarded_proto is not None:
-            data_payload["add-header-x-forwarded-proto"] = add_header_x_forwarded_proto
+            data_payload["add-header-x-forwarded-proto"] = (
+                add_header_x_forwarded_proto
+            )
         if mapped_port is not None:
             data_payload["mapped-port"] = mapped_port
         if ssl_cert is not None:
@@ -404,4 +415,6 @@ class SslServer:
         if url_rewrite is not None:
             data_payload["url-rewrite"] = url_rewrite
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

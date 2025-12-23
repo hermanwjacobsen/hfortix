@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Global:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -219,7 +222,9 @@ class Global:
         if mac_retention_period is not None:
             data_payload["mac-retention-period"] = mac_retention_period
         if default_virtual_switch_vlan is not None:
-            data_payload["default-virtual-switch-vlan"] = default_virtual_switch_vlan
+            data_payload["default-virtual-switch-vlan"] = (
+                default_virtual_switch_vlan
+            )
         if dhcp_server_access_list is not None:
             data_payload["dhcp-server-access-list"] = dhcp_server_access_list
         if dhcp_option82_format is not None:
@@ -233,7 +238,9 @@ class Global:
         if dhcp_snoop_client_db_exp is not None:
             data_payload["dhcp-snoop-client-db-exp"] = dhcp_snoop_client_db_exp
         if dhcp_snoop_db_per_port_learn_limit is not None:
-            data_payload["dhcp-snoop-db-per-port-learn-limit"] = dhcp_snoop_db_per_port_learn_limit
+            data_payload["dhcp-snoop-db-per-port-learn-limit"] = (
+                dhcp_snoop_db_per_port_learn_limit
+            )
         if log_mac_limit_violations is not None:
             data_payload["log-mac-limit-violations"] = log_mac_limit_violations
         if mac_violation_timer is not None:
@@ -259,6 +266,10 @@ class Global:
         if switch_on_deauth is not None:
             data_payload["switch-on-deauth"] = switch_on_deauth
         if firewall_auth_user_hold_period is not None:
-            data_payload["firewall-auth-user-hold-period"] = firewall_auth_user_hold_period
+            data_payload["firewall-auth-user-hold-period"] = (
+                firewall_auth_user_hold_period
+            )
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

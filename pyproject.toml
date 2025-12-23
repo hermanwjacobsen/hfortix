@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hfortix"
-version = "0.3.21"
+version = "0.3.22"
 description = "HFortix - Python SDK for Fortinet products (FortiOS, FortiManager, FortiAnalyzer)"
 readme = "README.md"
 authors = [
@@ -92,6 +92,10 @@ exclude = [
     "venv",
     "X",
     "Tests",
+    "hfortix/FortiOS/api/v2",  # Auto-generated API files
+]
+per-file-ignores = [
+    "hfortix/FortiOS/api/v2/*:E501,W293,W291,F541",  # Generated files can have long lines, whitespace, unused f-strings
 ]
 
 [tool.mypy]

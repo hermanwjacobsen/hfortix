@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class CloudRegions:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/sandbox/cloud-regions", params=params)
+        return self._client.get(
+            "monitor", "/system/sandbox/cloud-regions", params=params
+        )
 
 
 class Connection:
@@ -117,7 +120,9 @@ class Connection:
         if server is not None:
             params["server"] = server
         params.update(kwargs)
-        return self._client.get("monitor", "/system/sandbox/connection", params=params)
+        return self._client.get(
+            "monitor", "/system/sandbox/connection", params=params
+        )
 
 
 class Detect:
@@ -154,7 +159,9 @@ class Detect:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/sandbox/detect", params=params)
+        return self._client.get(
+            "monitor", "/system/sandbox/detect", params=params
+        )
 
 
 class Stats:
@@ -191,7 +198,9 @@ class Stats:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/sandbox/stats", params=params)
+        return self._client.get(
+            "monitor", "/system/sandbox/stats", params=params
+        )
 
 
 class Status:
@@ -228,7 +237,9 @@ class Status:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/sandbox/status", params=params)
+        return self._client.get(
+            "monitor", "/system/sandbox/status", params=params
+        )
 
 
 class Sandbox:

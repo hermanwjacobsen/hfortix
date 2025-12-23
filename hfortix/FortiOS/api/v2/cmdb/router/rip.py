@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Rip:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -181,7 +184,9 @@ class Rip:
         if after is not None:
             data_payload["after"] = after
         if default_information_originate is not None:
-            data_payload["default-information-originate"] = default_information_originate
+            data_payload["default-information-originate"] = (
+                default_information_originate
+            )
         if default_metric is not None:
             data_payload["default-metric"] = default_metric
         if max_out_metric is not None:
@@ -211,4 +216,6 @@ class Rip:
         if interface is not None:
             data_payload["interface"] = interface
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -46,6 +46,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -127,7 +128,9 @@ class CertificateLocal:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -267,7 +270,9 @@ class CertificateLocal:
         if auto_regenerate_days is not None:
             data_payload["auto-regenerate-days"] = auto_regenerate_days
         if auto_regenerate_days_warning is not None:
-            data_payload["auto-regenerate-days-warning"] = auto_regenerate_days_warning
+            data_payload["auto-regenerate-days-warning"] = (
+                auto_regenerate_days_warning
+            )
         if scep_password is not None:
             data_payload["scep-password"] = scep_password
         if ca_identifier is not None:
@@ -327,4 +332,6 @@ class CertificateLocal:
         if details is not None:
             data_payload["details"] = details
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

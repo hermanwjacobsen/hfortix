@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_BLOCK_MALICIOUS_URL = ["disable", "enable"]
 VALID_BODY_SCAN_BOTNET_CONNECTIONS = ["disable", "block", "monitor"]

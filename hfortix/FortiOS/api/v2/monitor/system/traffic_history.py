@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -123,7 +124,9 @@ class Interface:
         params["interface"] = interface
         params["time_period"] = time_period
         params.update(kwargs)
-        return self._client.get("monitor", "/system/traffic-history/interface", params=params)
+        return self._client.get(
+            "monitor", "/system/traffic-history/interface", params=params
+        )
 
 
 class TopApplications:

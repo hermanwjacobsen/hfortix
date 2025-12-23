@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Wisp:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -204,7 +207,9 @@ class Wisp:
         if timeout is not None:
             data_payload["timeout"] = timeout
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -241,7 +246,9 @@ class Wisp:
             raise ValueError("name is required for delete()")
         endpoint = f"/web-proxy/wisp/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -282,7 +289,7 @@ class Wisp:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -348,4 +355,6 @@ class Wisp:
         if timeout is not None:
             data_payload["timeout"] = timeout
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

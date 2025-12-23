@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MATCH_TYPE = ["match-all", "match-any"]
 VALID_BODY_MATCH_AROUND = ["enable", "disable"]

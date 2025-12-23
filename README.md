@@ -11,7 +11,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **⚠️ BETA STATUS**: All implementations are functional but in beta. APIs work correctly but may have incomplete parameter coverage or undiscovered edge cases.
 
-**FortiOS 7.6.5 Coverage (December 22, 2025):**
+**FortiOS 7.6.5 Coverage (December 23, 2025):**
 
 - **CMDB API**: 37 of 37 categories (100% coverage) - 500+ endpoints 🔷 Beta
 - **Monitor API**: 32 of 32 categories (100% coverage) - 200+ endpoints 🔷 Beta
@@ -19,7 +19,7 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Service API**: 3 of 3 categories (100% coverage) - 21 methods 🔷 Beta
 - **Overall**: 77 of 77 categories (100% coverage) - 750+ API methods 🎉
 
-**Validation Coverage (v0.3.21):**
+**Validation Coverage (v0.3.22):**
 - 832 validation helper modules auto-generated for all API types (CMDB, Monitor, Log, Service)
 - Enum, length, range, pattern, and type validation implemented
 - **Required field validation is NOT yet implemented**
@@ -44,9 +44,21 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 
 **📖 Documentation:**
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
+- **CI/CD Pipeline**: [docs/CICD.md](https://github.com/hermanwjacobsen/hfortix/blob/main/docs/CICD.md) - Complete GitHub Actions automation guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.19 - December 21, 2025):**
+**Latest Features (v0.3.22 - December 23, 2025):**
+- 🎯 **CI/CD Pipeline**: Complete GitHub Actions automation
+  - Automated code quality checks (lint, format, type-check, security)
+  - PyPI publishing with trusted publishing (no API tokens needed)
+  - CodeQL security scanning and dependency review
+  - Multi-Python version testing (3.10, 3.11, 3.12)
+- 🧹 **Code Quality**: Comprehensive PEP 8 compliance
+  - Reformatted 796 files with Black (79-char line limit)
+  - Fixed 1000+ flake8 lint errors
+  - Proper handling of long lines, imports, and f-strings
+
+**Features from v0.3.19:**
 - 🔧 **Type Checking Improvements**: Enhanced type safety and IDE support
   - Cleaned up mypy configuration (removed unnecessary overrides for httpx and requests)
   - Better IDE autocomplete and type checking

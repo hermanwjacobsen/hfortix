@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_PRE_AUTH = ["enable", "disable"]
 VALID_BODY_EXTERNAL_PRE_AUTH = ["enable", "disable"]
@@ -1396,7 +1395,10 @@ def validate_vap_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     # Validate dhcp-option82-circuit-id-insertion if present
     if "dhcp-option82-circuit-id-insertion" in payload:
         value = payload.get("dhcp-option82-circuit-id-insertion")
-        if value and value not in VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION:
+        if (
+            value
+            and value not in VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION
+        ):
             return (
                 False,
                 f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",
@@ -2959,7 +2961,10 @@ def validate_vap_put(
     # Validate dhcp-option82-circuit-id-insertion if present
     if "dhcp-option82-circuit-id-insertion" in payload:
         value = payload.get("dhcp-option82-circuit-id-insertion")
-        if value and value not in VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION:
+        if (
+            value
+            and value not in VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION
+        ):
             return (
                 False,
                 f"Invalid dhcp-option82-circuit-id-insertion '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_OPTION82_CIRCUIT_ID_INSERTION)}",

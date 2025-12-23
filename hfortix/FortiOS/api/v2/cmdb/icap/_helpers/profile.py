@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_REQUEST = ["disable", "enable"]
 VALID_BODY_RESPONSE = ["disable", "enable"]

@@ -65,9 +65,15 @@ class PerformanceTestResults:
 
         # Throughput
         if self.sequential_throughput:
-            lines.append(f"Sequential Throughput: {self.sequential_throughput:.2f} req/s")
+            lines.append(
+                f"Sequential Throughput: {
+                    self.sequential_throughput:.2f} req/s"
+            )
         if self.concurrent_throughput:
-            lines.append(f"Concurrent Throughput: {self.concurrent_throughput:.2f} req/s")
+            lines.append(
+                f"Concurrent Throughput: {
+                    self.concurrent_throughput:.2f} req/s"
+            )
 
         # Device profile
         if self.device_profile:
@@ -86,7 +92,9 @@ class PerformanceTestResults:
     def __repr__(self) -> str:
         """Return detailed representation"""
         return (
-            f"PerformanceTestResults(profile={self.device_profile}, throughput={self.sequential_throughput:.2f} req/s)"
+            f"PerformanceTestResults(profile={
+                self.device_profile}, throughput={
+                self.sequential_throughput:.2f} req/s)"
             if self.sequential_throughput
             else "PerformanceTestResults(no data)"
         )
@@ -117,17 +125,20 @@ class PerformanceTestResults:
                 else:
                     print(f"  Requests:     {metrics.get('count', 0)}")
                     print(f"  Avg Time:     {metrics.get('avg_ms', 0):.1f}ms")
-                    print(f"  Median Time:  {metrics.get('median_ms', 0):.1f}ms")
                     print(
-                        f"  Min/Max:      {metrics.get('min_ms', 0):.1f}ms / {metrics.get('max_ms', 0):.1f}ms"
+                        f"  Median Time:  {metrics.get('median_ms', 0):.1f}ms"
                     )
+                    min_ms = metrics.get("min_ms", 0)
+                    max_ms = metrics.get("max_ms", 0)
+                    print(f"  Min/Max:      {min_ms:.1f}ms / {max_ms:.1f}ms")
                     if "p95_ms" in metrics:
                         print(f"  P95:          {metrics['p95_ms']:.1f}ms")
-                    print(f"  Success Rate: {metrics.get('success_rate', 0):.1f}%")
+                    success_rate = metrics.get("success_rate", 0)
+                    print(f"  Success Rate: {success_rate:.1f}%")
 
         # Throughput results
         if self.sequential_throughput:
-            print(f"\n[THROUGHPUT]")
+            print("\n[THROUGHPUT]")
             print(f"Sequential:   {self.sequential_throughput:.2f} req/s")
             if self.concurrent_throughput:
                 print(f"Concurrent:   {self.concurrent_throughput:.2f} req/s")
@@ -139,13 +150,16 @@ class PerformanceTestResults:
                 if improvement > 10:
                     print(f"  → Concurrency helps! (+{improvement:.0f}%)")
                 elif improvement < -10:
-                    print(f"  → Concurrency hurts! ({improvement:.0f}%) - Use sequential!")
+                    print(
+                        f"  → Concurrency hurts! ({
+                            improvement:.0f}%) - Use sequential!"
+                    )
                 else:
                     print(f"  → Concurrency neutral ({improvement:+.0f}%)")
 
         # Device profile
         if self.device_profile:
-            print(f"\n[DEVICE PROFILE]")
+            print("\n[DEVICE PROFILE]")
             print(f"Type: {self.device_profile}")
 
             if self.device_profile == "high-performance":
@@ -160,13 +174,13 @@ class PerformanceTestResults:
 
         # Recommendations
         if self.recommended_settings:
-            print(f"\n[RECOMMENDED SETTINGS]")
+            print("\n[RECOMMENDED SETTINGS]")
             for key, value in self.recommended_settings.items():
                 print(f"  {key}: {value}")
 
         # Errors
         if self.errors:
-            print(f"\n[ERRORS]")
+            print("\n[ERRORS]")
             for error in self.errors:
                 print(f"  ✗ {error}")
 
@@ -188,11 +202,11 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
 
         # Test 1: Normal configuration (should work)
         try:
-            fgt = FortiOS(
+            _ = FortiOS(  # noqa: F841
                 "test.example.com",
                 token="test",
-                max_connections=30,
-                max_keepalive_connections=15,
+                max_connections=10,
+                max_keepalive_connections=5,
             )
             logger.info("✓ Test 1 passed: Normal configuration accepted")
         except Exception as e:
@@ -200,20 +214,22 @@ def test_connection_pool_validation() -> tuple[bool, list[str]]:
 
         # Test 2: Auto-adjustment (should warn but work)
         try:
-            fgt = FortiOS(
+            _ = FortiOS(  # noqa: F841
                 "test.example.com",
                 token="test",
                 max_connections=5,
                 max_keepalive_connections=20,
             )
-            warnings.append("Auto-adjusted max_keepalive_connections from 20 to 5")
+            warnings.append(
+                "Auto-adjusted max_keepalive_connections from 20 to 5"
+            )
             logger.info("✓ Test 2 passed: Auto-adjustment working")
         except Exception as e:
             return False, [f"Auto-adjustment failed: {e}"]
 
         # Test 3: Edge cases
         try:
-            fgt = FortiOS(
+            _ = FortiOS(  # noqa: F841
                 "test.example.com",
                 token="test",
                 max_connections=1,
@@ -276,7 +292,9 @@ def test_endpoint_performance(
     try:
         # Initialize client
         if token:
-            fgt = FortiOS(host, token=token, verify=verify, vdom=vdom, port=port)
+            fgt = FortiOS(
+                host, token=token, verify=verify, vdom=vdom, port=port
+            )
         else:
             fgt = FortiOS(
                 host,
@@ -314,19 +332,21 @@ def test_endpoint_performance(
                     if hasattr(api_obj, part):
                         api_obj = getattr(api_obj, part)
                     else:
-                        raise AttributeError(f"Path component '{part}' not found")
+                        raise AttributeError(
+                            f"Path component '{part}' not found"
+                        )
 
                 # Make test requests
                 for i in range(count):
                     start = time.time()
                     try:
-                        if hasattr(api_obj, 'get'):
+                        if hasattr(api_obj, "get"):
                             api_obj.get()  # type: ignore[attr-defined]
                         elapsed = (time.time() - start) * 1000  # ms
                         times.append(elapsed)
                         successes += 1
                     except Exception as e:
-                        logger.warning(f"Request {i+1} failed: {e}")
+                        logger.warning(f"Request {i + 1} failed: {e}")
                         times.append(0)
 
                 # Calculate metrics
@@ -345,7 +365,9 @@ def test_endpoint_performance(
                     if len(valid_times) >= 3:
                         sorted_times = sorted(valid_times)
                         p95_idx = int(len(sorted_times) * 0.95)
-                        results[endpoint_name]["p95_ms"] = sorted_times[p95_idx]
+                        results[endpoint_name]["p95_ms"] = sorted_times[
+                            p95_idx
+                        ]
                 else:
                     results[endpoint_name] = {"error": "All requests failed"}
 
@@ -357,9 +379,9 @@ def test_endpoint_performance(
         # Close client if using username/password
         if username:
             try:
-                if hasattr(fgt, 'close'):
+                if hasattr(fgt, "close"):
                     fgt.close()  # type: ignore[attr-defined]
-            except:
+            except BaseException:
                 pass
 
     except Exception as e:
@@ -441,7 +463,8 @@ def run_performance_test(
         port: Custom HTTPS port
         test_validation: Test connection pool validation (default: True)
         test_endpoints: Test various API endpoints (default: True)
-        test_concurrency: Test concurrent performance (default: False, can be slow)
+        test_concurrency: Test concurrent performance (default: False, can be
+        slow)
         sequential_count: Number of sequential requests (default: 10)
         concurrent_count: Number of concurrent requests (default: 50)
         concurrent_level: Concurrency level for async test (default: 20)
@@ -511,7 +534,9 @@ def run_performance_test(
 
             # Calculate average response time across all endpoints
             valid_avgs = [
-                metrics["avg_ms"] for metrics in endpoint_results.values() if "avg_ms" in metrics
+                metrics["avg_ms"]
+                for metrics in endpoint_results.values()
+                if "avg_ms" in metrics
             ]
 
             if valid_avgs:
@@ -526,7 +551,10 @@ def run_performance_test(
 
                 # Estimate throughput
                 results.sequential_throughput = 1000 / overall_avg
-                print(f"  Estimated throughput: {results.sequential_throughput:.2f} req/s")
+                print(
+                    f"  Estimated throughput: {
+                        results.sequential_throughput:.2f} req/s"
+                )
             else:
                 print("✗ No valid endpoint results")
                 results.errors.append("No valid endpoint results")
@@ -537,7 +565,9 @@ def run_performance_test(
 
     # Test 3: Concurrent performance (optional)
     if test_concurrency:
-        print("\n[3/3] Testing concurrent performance (this may take a while)...")
+        print(
+            "\n[3/3] Testing concurrent performance (this may take a while)..."
+        )
         try:
             # Use async mode for concurrency test
             async def concurrent_test():
@@ -569,9 +599,11 @@ def run_performance_test(
             duration = asyncio.run(concurrent_test())
             results.concurrent_throughput = concurrent_count / duration
 
-            print(f"✓ Concurrent test complete")
+            print("✓ Concurrent test complete")
             print(f"  {concurrent_count} requests in {duration:.2f}s")
-            print(f"  Throughput: {results.concurrent_throughput:.2f} req/s")
+            print(
+                f"  Throughput: " f"{results.concurrent_throughput:.2f} req/s"
+            )
 
         except Exception as e:
             print(f"✗ Concurrent testing failed: {e}")
@@ -588,7 +620,9 @@ def run_performance_test(
 
 
 # Convenience function for interactive use
-def quick_test(host: str, token: str, verify: bool = False) -> PerformanceTestResults:
+def quick_test(
+    host: str, token: str, verify: bool = False
+) -> PerformanceTestResults:
     """
     Quick performance test - validates settings and tests basic endpoints
 
@@ -622,11 +656,15 @@ if __name__ == "__main__":
 
     # Allow running from command line
     if len(sys.argv) < 3:
-        print("Usage: python performance_test.py <host> <token> [--verify] [--full]")
+        print(
+            "Usage: python performance_test.py <host> <token> [--verify] [--full]"  # noqa: E501
+        )
         print("\nExamples:")
         print("  python performance_test.py 192.168.1.99 mytoken")
         print("  python performance_test.py fw.example.com mytoken --verify")
-        print("  python performance_test.py fw.example.com mytoken --verify --full")
+        print(
+            "  python performance_test.py fw.example.com mytoken --verify --full"  # noqa: E501
+        )
         sys.exit(1)
 
     host = sys.argv[1]

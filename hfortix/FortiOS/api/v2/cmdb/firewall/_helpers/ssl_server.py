@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SSL_MODE = ["half", "full"]
 VALID_BODY_ADD_HEADER_X_FORWARDED_PROTO = ["enable", "disable"]

@@ -130,7 +130,9 @@ class SpeedTestServer:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -187,7 +189,9 @@ class SpeedTestServer:
         if host is not None:
             data_payload["host"] = host
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -224,7 +228,9 @@ class SpeedTestServer:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/speed-test-server/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -265,7 +271,7 @@ class SpeedTestServer:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -315,4 +321,6 @@ class SpeedTestServer:
         if host is not None:
             data_payload["host"] = host
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

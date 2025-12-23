@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_LINK_DOWN_FLUSH = ["disable", "enable"]
 VALID_BODY_ACCESS_VLAN_MODE = ["legacy", "fail-open", "fail-close"]

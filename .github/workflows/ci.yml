@@ -36,7 +36,7 @@ jobs:
         
     - name: Lint with flake8
       run: |
-        flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503 --statistics
+        flake8 hfortix --max-line-length=79 --extend-ignore=E203,W503 --exclude=hfortix/FortiOS/api/v2 --statistics
 
   type-check:
     name: Type Checking

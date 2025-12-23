@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ALLOWED_VLANS_ALL = ["enable", "disable"]
 VALID_BODY_DISCARD_MODE = ["none", "all-untagged", "all-tagged"]

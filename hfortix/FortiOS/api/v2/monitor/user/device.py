@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -82,7 +83,9 @@ class IotQuery:
         params["mac"] = mac
         params["ip"] = ip
         params.update(kwargs)
-        return self._client.get("monitor", "/user/device/iot-query", params=params)
+        return self._client.get(
+            "monitor", "/user/device/iot-query", params=params
+        )
 
 
 class PurdueLevel:
@@ -131,7 +134,9 @@ class PurdueLevel:
         if level is not None:
             data["level"] = level
         data.update(kwargs)
-        return self._client.post("monitor", "/user/device/purdue-level", data=data)
+        return self._client.post(
+            "monitor", "/user/device/purdue-level", data=data
+        )
 
 
 class Query:

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_IS_TYPE = ["level-1-2", "level-1", "level-2-only"]
 VALID_BODY_ADV_PASSIVE_ONLY = ["enable", "disable"]

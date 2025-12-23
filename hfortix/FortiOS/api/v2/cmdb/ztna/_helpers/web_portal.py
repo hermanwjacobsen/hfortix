@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_LOG_BLOCKED_TRAFFIC = ["disable", "enable"]
 VALID_BODY_AUTH_PORTAL = ["disable", "enable"]
@@ -279,7 +278,10 @@ def validate_web_portal_post(
     # Validate customize-forticlient-download-url if present
     if "customize-forticlient-download-url" in payload:
         value = payload.get("customize-forticlient-download-url")
-        if value and value not in VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL:
+        if (
+            value
+            and value not in VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL
+        ):
             return (
                 False,
                 f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",
@@ -521,7 +523,10 @@ def validate_web_portal_put(
     # Validate customize-forticlient-download-url if present
     if "customize-forticlient-download-url" in payload:
         value = payload.get("customize-forticlient-download-url")
-        if value and value not in VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL:
+        if (
+            value
+            and value not in VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL
+        ):
             return (
                 False,
                 f"Invalid customize-forticlient-download-url '{value}'. Must be one of: {', '.join(VALID_BODY_CUSTOMIZE_FORTICLIENT_DOWNLOAD_URL)}",

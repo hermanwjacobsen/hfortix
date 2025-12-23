@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -140,7 +141,9 @@ class Generate:
         if scope is not None:
             data["scope"] = scope
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/csr/generate", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/csr/generate", data=data
+        )
 
 
 class Csr:

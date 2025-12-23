@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_FEATURE_SET = ["flow", "proxy"]
 VALID_BODY_FORTISANDBOX_MODE = ["analytics-suspicious", "analytics-everything"]

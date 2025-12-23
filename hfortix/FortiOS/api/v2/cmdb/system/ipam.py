@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Ipam:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -173,13 +176,19 @@ class Ipam:
         if server_type is not None:
             data_payload["server-type"] = server_type
         if automatic_conflict_resolution is not None:
-            data_payload["automatic-conflict-resolution"] = automatic_conflict_resolution
+            data_payload["automatic-conflict-resolution"] = (
+                automatic_conflict_resolution
+            )
         if require_subnet_size_match is not None:
-            data_payload["require-subnet-size-match"] = require_subnet_size_match
+            data_payload["require-subnet-size-match"] = (
+                require_subnet_size_match
+            )
         if manage_lan_addresses is not None:
             data_payload["manage-lan-addresses"] = manage_lan_addresses
         if manage_lan_extension_addresses is not None:
-            data_payload["manage-lan-extension-addresses"] = manage_lan_extension_addresses
+            data_payload["manage-lan-extension-addresses"] = (
+                manage_lan_extension_addresses
+            )
         if manage_ssid_addresses is not None:
             data_payload["manage-ssid-addresses"] = manage_ssid_addresses
         if pools is not None:
@@ -187,4 +196,6 @@ class Ipam:
         if rules is not None:
             data_payload["rules"] = rules
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

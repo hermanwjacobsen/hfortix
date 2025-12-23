@@ -150,20 +150,30 @@ class CMDB:
         from .casb import Casb
         from .certificate import Certificate
 
-        diameter_filter_mod = import_module(".diameter-filter", "hfortix.FortiOS.api.v2.cmdb")
+        diameter_filter_mod = import_module(
+            ".diameter-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .dlp import Dlp
         from .dnsfilter import Dnsfilter
         from .emailfilter import Emailfilter
 
-        endpoint_control_mod = import_module(".endpoint-control", "hfortix.FortiOS.api.v2.cmdb")
-        ethernet_oam_mod = import_module(".ethernet-oam", "hfortix.FortiOS.api.v2.cmdb")
+        endpoint_control_mod = import_module(
+            ".endpoint-control", "hfortix.FortiOS.api.v2.cmdb"
+        )
+        ethernet_oam_mod = import_module(
+            ".ethernet-oam", "hfortix.FortiOS.api.v2.cmdb"
+        )
         extension_controller_mod = import_module(
             ".extension-controller", "hfortix.FortiOS.api.v2.cmdb"
         )
-        file_filter_mod = import_module(".file-filter", "hfortix.FortiOS.api.v2.cmdb")
+        file_filter_mod = import_module(
+            ".file-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .firewall import Firewall
 
-        ftp_proxy_mod = import_module(".ftp-proxy", "hfortix.FortiOS.api.v2.cmdb")
+        ftp_proxy_mod = import_module(
+            ".ftp-proxy", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .icap import Icap
         from .ips import Ips
         from .log import Log
@@ -172,7 +182,9 @@ class CMDB:
         from .router import Router
         from .rule import Rule
 
-        sctp_filter_mod = import_module(".sctp-filter", "hfortix.FortiOS.api.v2.cmdb")
+        sctp_filter_mod = import_module(
+            ".sctp-filter", "hfortix.FortiOS.api.v2.cmdb"
+        )
         from .system import System
 
         self.alertemail = Alertemail(client)
@@ -188,7 +200,9 @@ class CMDB:
         self.emailfilter = Emailfilter(client)
         self.endpoint_control = endpoint_control_mod.EndpointControl(client)
         self.ethernet_oam = ethernet_oam_mod.EthernetOam(client)
-        self.extension_controller = extension_controller_mod.ExtensionController(client)
+        self.extension_controller = (
+            extension_controller_mod.ExtensionController(client)
+        )
         self.file_filter = file_filter_mod.FileFilter(client)
         self.firewall = Firewall(client)
         self.ftp_proxy = ftp_proxy_mod.FtpProxy(client)

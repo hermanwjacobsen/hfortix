@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MODE = ["standalone", "a-a", "a-p"]
 VALID_BODY_SYNC_PACKET_BALANCE = ["enable", "disable"]

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ABR_TYPE = ["cisco", "ibm", "standard"]
 VALID_BODY_DEFAULT_INFORMATION_ORIGINATE = ["enable", "always", "disable"]

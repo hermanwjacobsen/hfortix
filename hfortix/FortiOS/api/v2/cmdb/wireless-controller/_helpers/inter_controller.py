@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_INTER_CONTROLLER_MODE = ["disable", "l2-roaming", "1+1"]
 VALID_BODY_L3_ROAMING = ["enable", "disable"]

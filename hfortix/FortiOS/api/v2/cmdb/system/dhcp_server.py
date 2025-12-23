@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class DhcpServer:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -288,7 +291,9 @@ class DhcpServer:
         if mac_acl_default_action is not None:
             data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload["forticlient-on-net-status"] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
             data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
@@ -352,7 +357,9 @@ class DhcpServer:
         if auto_configuration is not None:
             data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload["dhcp-settings-from-fortiipam"] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
             data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:
@@ -384,7 +391,9 @@ class DhcpServer:
         if reserved_address is not None:
             data_payload["reserved-address"] = reserved_address
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -421,7 +430,9 @@ class DhcpServer:
             raise ValueError("id is required for delete()")
         endpoint = f"/system.dhcp/server/{id}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -462,7 +473,7 @@ class DhcpServer:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -612,7 +623,9 @@ class DhcpServer:
         if mac_acl_default_action is not None:
             data_payload["mac-acl-default-action"] = mac_acl_default_action
         if forticlient_on_net_status is not None:
-            data_payload["forticlient-on-net-status"] = forticlient_on_net_status
+            data_payload["forticlient-on-net-status"] = (
+                forticlient_on_net_status
+            )
         if dns_service is not None:
             data_payload["dns-service"] = dns_service
         if dns_server1 is not None:
@@ -676,7 +689,9 @@ class DhcpServer:
         if auto_configuration is not None:
             data_payload["auto-configuration"] = auto_configuration
         if dhcp_settings_from_fortiipam is not None:
-            data_payload["dhcp-settings-from-fortiipam"] = dhcp_settings_from_fortiipam
+            data_payload["dhcp-settings-from-fortiipam"] = (
+                dhcp_settings_from_fortiipam
+            )
         if auto_managed_status is not None:
             data_payload["auto-managed-status"] = auto_managed_status
         if ddns_update is not None:
@@ -708,4 +723,6 @@ class DhcpServer:
         if reserved_address is not None:
             data_payload["reserved-address"] = reserved_address
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

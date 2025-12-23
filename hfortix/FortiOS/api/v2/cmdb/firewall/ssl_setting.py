@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class SslSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -183,11 +186,17 @@ class SslSetting:
         if ssl_send_empty_frags is not None:
             data_payload["ssl-send-empty-frags"] = ssl_send_empty_frags
         if no_matching_cipher_action is not None:
-            data_payload["no-matching-cipher-action"] = no_matching_cipher_action
+            data_payload["no-matching-cipher-action"] = (
+                no_matching_cipher_action
+            )
         if cert_manager_cache_timeout is not None:
-            data_payload["cert-manager-cache-timeout"] = cert_manager_cache_timeout
+            data_payload["cert-manager-cache-timeout"] = (
+                cert_manager_cache_timeout
+            )
         if resigned_short_lived_certificate is not None:
-            data_payload["resigned-short-lived-certificate"] = resigned_short_lived_certificate
+            data_payload["resigned-short-lived-certificate"] = (
+                resigned_short_lived_certificate
+            )
         if cert_cache_capacity is not None:
             data_payload["cert-cache-capacity"] = cert_cache_capacity
         if cert_cache_timeout is not None:
@@ -203,4 +212,6 @@ class SslSetting:
         if abbreviate_handshake is not None:
             data_payload["abbreviate-handshake"] = abbreviate_handshake
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

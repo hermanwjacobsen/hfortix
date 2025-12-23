@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Profile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -214,13 +217,19 @@ class Profile:
         if header_x_forwarded_for is not None:
             data_payload["header-x-forwarded-for"] = header_x_forwarded_for
         if header_x_forwarded_client_cert is not None:
-            data_payload["header-x-forwarded-client-cert"] = header_x_forwarded_client_cert
+            data_payload["header-x-forwarded-client-cert"] = (
+                header_x_forwarded_client_cert
+            )
         if header_front_end_https is not None:
             data_payload["header-front-end-https"] = header_front_end_https
         if header_x_authenticated_user is not None:
-            data_payload["header-x-authenticated-user"] = header_x_authenticated_user
+            data_payload["header-x-authenticated-user"] = (
+                header_x_authenticated_user
+            )
         if header_x_authenticated_groups is not None:
-            data_payload["header-x-authenticated-groups"] = header_x_authenticated_groups
+            data_payload["header-x-authenticated-groups"] = (
+                header_x_authenticated_groups
+            )
         if strip_encoding is not None:
             data_payload["strip-encoding"] = strip_encoding
         if log_header_change is not None:
@@ -228,7 +237,9 @@ class Profile:
         if headers is not None:
             data_payload["headers"] = headers
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -265,7 +276,9 @@ class Profile:
             raise ValueError("name is required for delete()")
         endpoint = f"/web-proxy/profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -306,7 +319,7 @@ class Profile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -382,13 +395,19 @@ class Profile:
         if header_x_forwarded_for is not None:
             data_payload["header-x-forwarded-for"] = header_x_forwarded_for
         if header_x_forwarded_client_cert is not None:
-            data_payload["header-x-forwarded-client-cert"] = header_x_forwarded_client_cert
+            data_payload["header-x-forwarded-client-cert"] = (
+                header_x_forwarded_client_cert
+            )
         if header_front_end_https is not None:
             data_payload["header-front-end-https"] = header_front_end_https
         if header_x_authenticated_user is not None:
-            data_payload["header-x-authenticated-user"] = header_x_authenticated_user
+            data_payload["header-x-authenticated-user"] = (
+                header_x_authenticated_user
+            )
         if header_x_authenticated_groups is not None:
-            data_payload["header-x-authenticated-groups"] = header_x_authenticated_groups
+            data_payload["header-x-authenticated-groups"] = (
+                header_x_authenticated_groups
+            )
         if strip_encoding is not None:
             data_payload["strip-encoding"] = strip_encoding
         if log_header_change is not None:
@@ -396,4 +415,6 @@ class Profile:
         if headers is not None:
             data_payload["headers"] = headers
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

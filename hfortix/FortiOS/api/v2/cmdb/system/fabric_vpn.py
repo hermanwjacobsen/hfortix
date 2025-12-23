@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class FabricVpn:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -197,7 +200,9 @@ class FabricVpn:
         if loopback_interface is not None:
             data_payload["loopback-interface"] = loopback_interface
         if loopback_advertised_subnet is not None:
-            data_payload["loopback-advertised-subnet"] = loopback_advertised_subnet
+            data_payload["loopback-advertised-subnet"] = (
+                loopback_advertised_subnet
+            )
         if psksecret is not None:
             data_payload["psksecret"] = psksecret
         if bgp_as is not None:
@@ -207,4 +212,6 @@ class FabricVpn:
         if health_checks is not None:
             data_payload["health-checks"] = health_checks
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

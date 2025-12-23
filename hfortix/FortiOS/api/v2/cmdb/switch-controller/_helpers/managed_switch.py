@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_PURDUE_LEVEL = ["1", "1.5", "2", "2.5", "3", "3.5", "4", "5", "5.5"]
 VALID_BODY_FSW_WAN1_ADMIN = ["discovered", "disable", "enable"]

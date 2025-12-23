@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_VDOM_TYPE = ["traffic", "lan-extension", "admin"]
 VALID_BODY_OPMODE = ["nat", "transparent"]
@@ -439,7 +438,10 @@ def validate_settings_put(
     # Validate dhcp-proxy-interface-select-method if present
     if "dhcp-proxy-interface-select-method" in payload:
         value = payload.get("dhcp-proxy-interface-select-method")
-        if value and value not in VALID_BODY_DHCP_PROXY_INTERFACE_SELECT_METHOD:
+        if (
+            value
+            and value not in VALID_BODY_DHCP_PROXY_INTERFACE_SELECT_METHOD
+        ):
             return (
                 False,
                 f"Invalid dhcp-proxy-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_PROXY_INTERFACE_SELECT_METHOD)}",
@@ -507,7 +509,10 @@ def validate_settings_put(
     # Validate nat46-generate-ipv6-fragment-header if present
     if "nat46-generate-ipv6-fragment-header" in payload:
         value = payload.get("nat46-generate-ipv6-fragment-header")
-        if value and value not in VALID_BODY_NAT46_GENERATE_IPV6_FRAGMENT_HEADER:
+        if (
+            value
+            and value not in VALID_BODY_NAT46_GENERATE_IPV6_FRAGMENT_HEADER
+        ):
             return (
                 False,
                 f"Invalid nat46-generate-ipv6-fragment-header '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46_GENERATE_IPV6_FRAGMENT_HEADER)}",
@@ -516,7 +521,10 @@ def validate_settings_put(
     # Validate nat46-force-ipv4-packet-forwarding if present
     if "nat46-force-ipv4-packet-forwarding" in payload:
         value = payload.get("nat46-force-ipv4-packet-forwarding")
-        if value and value not in VALID_BODY_NAT46_FORCE_IPV4_PACKET_FORWARDING:
+        if (
+            value
+            and value not in VALID_BODY_NAT46_FORCE_IPV4_PACKET_FORWARDING
+        ):
             return (
                 False,
                 f"Invalid nat46-force-ipv4-packet-forwarding '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46_FORCE_IPV4_PACKET_FORWARDING)}",
@@ -525,7 +533,10 @@ def validate_settings_put(
     # Validate nat64-force-ipv6-packet-forwarding if present
     if "nat64-force-ipv6-packet-forwarding" in payload:
         value = payload.get("nat64-force-ipv6-packet-forwarding")
-        if value and value not in VALID_BODY_NAT64_FORCE_IPV6_PACKET_FORWARDING:
+        if (
+            value
+            and value not in VALID_BODY_NAT64_FORCE_IPV6_PACKET_FORWARDING
+        ):
             return (
                 False,
                 f"Invalid nat64-force-ipv6-packet-forwarding '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64_FORCE_IPV6_PACKET_FORWARDING)}",

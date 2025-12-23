@@ -5,7 +5,8 @@ This module contains the HTTPClient class which handles all HTTP communication
 with FortiGate devices. It is an internal implementation detail and not part
 of the public API.
 
-Now powered by httpx for better performance, HTTP/2 support, and modern async capabilities.
+Now powered by httpx for better performance, HTTP/2 support, and modern async
+capabilities.
 """
 
 from __future__ import annotations
@@ -36,7 +37,8 @@ def encode_path_component(component: str | int) -> str:
     Encode a single path component for use in URLs.
 
     This encodes special characters including forward slashes, which are
-    commonly used in FortiOS object names (e.g., IP addresses with CIDR notation).
+    commonly used in FortiOS object names (e.g., IP addresses with CIDR
+    notation).
 
     Args:
         component: Path component to encode (e.g., object name or ID)
@@ -72,7 +74,8 @@ class HTTPClient(BaseHTTPClient):
 
     Query Parameter Encoding:
         The requests library automatically handles query parameter encoding:
-        - Lists: Encoded as repeated parameters (e.g., ['a', 'b'] → ?key=a&key=b)
+        - Lists: Encoded as repeated parameters (e.g., ['a', 'b'] →
+        ?key=a&key=b)
         - Booleans: Converted to lowercase strings ('true'/'false')
         - None values: Should be filtered out before passing to params
         - Special characters: URL-encoded automatically
@@ -83,10 +86,12 @@ class HTTPClient(BaseHTTPClient):
 
     Protocol Implementation:
         This class implements the IHTTPClient protocol, allowing it to be used
-        interchangeably with other HTTP client implementations (e.g., AsyncHTTPClient,
+        interchangeably with other HTTP client implementations (e.g.,
+        AsyncHTTPClient,
         custom user-provided clients).
 
-    This class is internal and not exposed to users directly, but users can provide
+    This class is internal and not exposed to users directly, but users can
+    provide
     their own IHTTPClient implementations to FortiOS.__init__().
     """
 
@@ -118,41 +123,68 @@ class HTTPClient(BaseHTTPClient):
             url: Base URL for API (e.g., "https://192.0.2.10")
             verify: Verify SSL certificates
             token: API authentication token (if using token auth)
-            username: Username for authentication (if using username/password auth)
-            password: Password for authentication (if using username/password auth)
+            username: Username for authentication (if using username/password
+            auth)
+            password: Password for authentication (if using username/password
+            auth)
             vdom: Default virtual domain
-            max_retries: Maximum number of retry attempts on transient failures (default: 3)
-            connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
-            read_timeout: Timeout for reading response in seconds (default: 300.0)
-            user_agent: Custom User-Agent header for identifying application in FortiGate logs.
-                       If None, defaults to 'hfortix/{version}'. Useful for multi-team environments
+            max_retries: Maximum number of retry attempts on transient failures
+            (default: 3)
+            connect_timeout: Timeout for establishing connection in seconds
+            (default: 10.0)
+            read_timeout: Timeout for reading response in seconds (default:
+            300.0)
+            user_agent: Custom User-Agent header for identifying application in
+            FortiGate logs.
+                       If None, defaults to 'hfortix/{version}'. Useful for
+                       multi-team environments
                        and troubleshooting in production.
-            circuit_breaker_threshold: Number of consecutive failures before opening circuit (default: 5)
-            circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
-            max_connections: Maximum number of connections in the pool (default: 100)
-            max_keepalive_connections: Maximum number of keepalive connections (default: 20)
-            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
-                       proactively re-authenticating (default: 300 = 5 minutes). This should match
-                       your FortiGate's 'config system global' -> 'remoteauthtimeout' setting.
+            circuit_breaker_threshold: Number of consecutive failures before
+            opening circuit (default: 5)
+            circuit_breaker_timeout: Seconds to wait before transitioning to
+            half-open (default: 60.0)
+            max_connections: Maximum number of connections in the pool
+            (default: 100)
+            max_keepalive_connections: Maximum number of keepalive connections
+            (default: 20)
+            session_idle_timeout: For username/password auth only. Idle timeout
+            in seconds before
+                       proactively re-authenticating (default: 300 = 5
+                       minutes). This should match
+                       your FortiGate's 'config system global' ->
+                       'remoteauthtimeout' setting.
                        Set to None to disable proactive re-authentication.
-                       Note: API token authentication is stateless and doesn't use sessions.
-            read_only: Enable read-only mode - simulate write operations without executing (default: False)
-            track_operations: Enable operation tracking - maintain audit log of all API calls (default: False)
-            adaptive_retry: Enable adaptive retry with backpressure detection (default: False).
-                          When enabled, monitors response times and adjusts retry delays based on
-                          FortiGate health signals (slow responses, 503 errors). Increases retry
-                          delays when FortiGate is overloaded to prevent cascading failures.
+                       Note: API token authentication is stateless and doesn't
+                       use sessions.
+            read_only: Enable read-only mode - simulate write operations
+            without executing (default: False)
+            track_operations: Enable operation tracking - maintain audit log of
+            all API calls (default: False)
+            adaptive_retry: Enable adaptive retry with backpressure detection
+            (default: False).
+                          When enabled, monitors response times and adjusts
+                          retry delays based on
+                          FortiGate health signals (slow responses, 503
+                          errors). Increases retry
+                          delays when FortiGate is overloaded to prevent
+                          cascading failures.
 
         Raises:
-            ValueError: If parameters are invalid or both token and username/password provided
+            ValueError: If parameters are invalid or both token and
+            username/password provided
         """
         # Validate authentication parameters
         if token and (username or password):
-            raise ValueError("Cannot specify both token and username/password authentication")
+            raise ValueError(
+                "Cannot specify both token and username/password authentication"  # noqa: E501
+            )
         if (username and not password) or (password and not username):
-            raise ValueError("Both username and password must be provided together")
+            raise ValueError(
+                "Both username and password must be provided together"
+            )
 
-        # Call parent class constructor (handles validation and common initialization)
+        # Call parent class constructor (handles validation and common
+        # initialization)
         super().__init__(
             url=url,
             verify=verify,
@@ -196,16 +228,27 @@ class HTTPClient(BaseHTTPClient):
         self._username = username
         self._password = password
         self._session_token: Optional[str] = None  # For username/password auth
-        self._session_created_at: Optional[float] = None  # Track when session was created
-        self._session_last_activity: Optional[float] = None  # Track last request time
+        self._session_created_at: Optional[float] = (
+            None  # Track when session was created
+        )
+        self._session_last_activity: Optional[float] = (
+            None  # Track last request time
+        )
         self._using_token_auth = token is not None
 
-        # Session timeout settings (in seconds) - only for username/password auth
-        # If session_idle_timeout is None or False, disable proactive re-authentication
+        # Session timeout settings (in seconds) - only for username/password
+        # auth
+        # If session_idle_timeout is None or False, disable proactive
+        # re-authentication
         if session_idle_timeout:
-            self._session_idle_timeout: float | None = float(session_idle_timeout)
-            # Re-authenticate at 80% of idle timeout to avoid session expiration
-            self._session_proactive_refresh: float | None = self._session_idle_timeout * 0.8
+            self._session_idle_timeout: float | None = float(
+                session_idle_timeout
+            )
+            # Re-authenticate at 80% of idle timeout to avoid session
+            # expiration
+            self._session_proactive_refresh: float | None = (
+                self._session_idle_timeout * 0.8
+            )
         else:
             # Disable proactive re-authentication
             self._session_idle_timeout: float | None = None
@@ -225,8 +268,8 @@ class HTTPClient(BaseHTTPClient):
             self.login()
 
         logger.debug(
-            "HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "
-            "http2=enabled, user_agent='%s', circuit_breaker_threshold=%d, max_connections=%d, "
+            "HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "  # noqa: E501
+            "http2=enabled, user_agent='%s', circuit_breaker_threshold=%d, max_connections=%d, "  # noqa: E501
             "read_only=%s, track_operations=%s)",
             self._url,
             max_retries,
@@ -256,11 +299,15 @@ class HTTPClient(BaseHTTPClient):
         logger.debug("Authenticating with username/password for %s", self._url)
 
         try:
-            # FortiOS login endpoint - note: parameter name is "secretkey" not "password"
+            # FortiOS login endpoint - note: parameter name is "secretkey" not
+            # "password"
             login_url = f"{self._url}/logincheck"
 
-            # URL-encode the form data (FortiOS expects application/x-www-form-urlencoded)
-            login_data = urlencode([("username", self._username), ("secretkey", self._password)])
+            # URL-encode the form data (FortiOS expects
+            # application/x-www-form-urlencoded)
+            login_data = urlencode(
+                [("username", self._username), ("secretkey", self._password)]
+            )
 
             # Make login request with proper content type
             # Note: FortiOS may redirect after login, so we follow redirects
@@ -268,7 +315,7 @@ class HTTPClient(BaseHTTPClient):
                 login_url,
                 content=login_data,
                 headers={"Content-Type": "application/x-www-form-urlencoded"},
-                follow_redirects=True,  # Changed to True to handle FortiOS redirects
+                follow_redirects=True,  # Changed to True to handle FortiOS redirects  # noqa: E501
             )
 
             # Debug: Log response details
@@ -276,17 +323,23 @@ class HTTPClient(BaseHTTPClient):
             logger.debug(f"Login response headers: {dict(response.headers)}")
             logger.debug(f"Login response cookies: {dict(response.cookies)}")
             logger.debug(f"Login response history: {response.history}")
-            logger.debug(f"Login response text (first 500 chars): {response.text[:500]}")
+            logger.debug(
+                f"Login response text (first 500 chars): {response.text[:500]}"
+            )
 
-            # Check for successful login (FortiOS returns 200 with CSRF token in cookies)
+            # Check for successful login (FortiOS returns 200 with CSRF token
+            # in cookies)
             response.raise_for_status()
 
-            # Extract CSRF token from cookies (may be in the client's cookie jar after redirects)
+            # Extract CSRF token from cookies (may be in the client's cookie
+            # jar after redirects)
             csrf_token = None
 
             # Check response cookies first
             for cookie_name, cookie_value in response.cookies.items():
-                logger.debug(f"Response cookie: {cookie_name} = {cookie_value}")
+                logger.debug(
+                    f"Response cookie: {cookie_name} = {cookie_value}"
+                )
                 if "ccsrftoken" in cookie_name.lower():
                     csrf_token = cookie_value
                     break
@@ -294,7 +347,9 @@ class HTTPClient(BaseHTTPClient):
             # If not found, check the client's cookie jar
             if not csrf_token:
                 for cookie_name, cookie_value in self._client.cookies.items():
-                    logger.debug(f"Client cookie: {cookie_name} = {cookie_value}")
+                    logger.debug(
+                        f"Client cookie: {cookie_name} = {cookie_value}"
+                    )
                     if "ccsrftoken" in cookie_name.lower():
                         csrf_token = cookie_value
                         break
@@ -308,12 +363,17 @@ class HTTPClient(BaseHTTPClient):
                 logger.info("Successfully authenticated via username/password")
             else:
                 # If still HTML in response, authentication likely failed
-                if "<!doctype html>" in response.text.lower() or "<html" in response.text.lower():
+                if (
+                    "<!doctype html>" in response.text.lower()
+                    or "<html" in response.text.lower()
+                ):
                     raise ValueError(
                         "Login failed: FortiGate returned login page. "
                         "Please verify username and password are correct."
                     )
-                raise ValueError("Login succeeded but no CSRF token found in response")
+                raise ValueError(
+                    "Login succeeded but no CSRF token found in response"
+                )
 
         except httpx.HTTPError as e:
             logger.error("Login failed: %s", str(e))
@@ -324,7 +384,8 @@ class HTTPClient(BaseHTTPClient):
         Check if the session should be proactively refreshed
 
         Returns:
-            True if session needs refresh (approaching idle timeout), False otherwise
+            True if session needs refresh (approaching idle timeout), False
+            otherwise
         """
         # Only applicable for username/password auth with idle timeout enabled
         if (
@@ -342,7 +403,8 @@ class HTTPClient(BaseHTTPClient):
         """
         Logout and invalidate session token
 
-        This method is called automatically when using context manager (with statement).
+        This method is called automatically when using context manager (with
+        statement).
         Can also be called manually to explicitly logout.
 
         Note:
@@ -350,7 +412,9 @@ class HTTPClient(BaseHTTPClient):
             Token-based authentication doesn't require logout.
         """
         if not self._session_token:
-            logger.debug("No active session to logout (using token auth or not logged in)")
+            logger.debug(
+                "No active session to logout (using token auth or not logged in)"  # noqa: E501
+            )
             return
 
         logger.debug("Logging out from %s", self._url)
@@ -362,12 +426,15 @@ class HTTPClient(BaseHTTPClient):
             if response.status_code == 200:
                 logger.info("Successfully logged out")
             else:
-                logger.warning("Logout returned status code %d", response.status_code)
+                logger.warning(
+                    "Logout returned status code %d", response.status_code
+                )
 
         except httpx.HTTPError as e:
             logger.warning("Logout failed: %s", str(e))
         finally:
-            # Clear session token, timestamps, and header regardless of logout result
+            # Clear session token, timestamps, and header regardless of logout
+            # result
             self._session_token = None
             self._session_created_at = None
             self._session_last_activity = None
@@ -395,7 +462,9 @@ class HTTPClient(BaseHTTPClient):
             "max_connections": 100,
             "max_keepalive_connections": 20,
             "circuit_breaker_state": self._circuit_breaker["state"],
-            "consecutive_failures": self._circuit_breaker["consecutive_failures"],
+            "consecutive_failures": self._circuit_breaker[
+                "consecutive_failures"
+            ],
             "last_failure_time": self._circuit_breaker["last_failure_time"],
         }
 
@@ -433,15 +502,21 @@ class HTTPClient(BaseHTTPClient):
                 # Add error description if error code present
                 error_code = json_response.get("error")
                 if error_code and "error_description" not in json_response:
-                    json_response["error_description"] = get_error_description(error_code)
+                    json_response["error_description"] = get_error_description(
+                        error_code
+                    )
 
                 # Log the error with details
                 status = json_response.get("status")
-                http_status = json_response.get("http_status", response.status_code)
-                error_desc = json_response.get("error_description", "Unknown error")
+                http_status = json_response.get(
+                    "http_status", response.status_code
+                )
+                error_desc = json_response.get(
+                    "error_description", "Unknown error"
+                )
 
                 logger.error(
-                    "Request failed: HTTP %d, status=%s, error=%s, description='%s'",
+                    "Request failed: HTTP %d, status=%s, error=%s, description='%s'",  # noqa: E501
                     http_status,
                     status,
                     error_code,
@@ -453,7 +528,8 @@ class HTTPClient(BaseHTTPClient):
 
             except ValueError:
                 # Response is not JSON (could be binary or HTML error page)
-                # This can happen with binary endpoints or proxy/firewall errors
+                # This can happen with binary endpoints or proxy/firewall
+                # errors
                 logger.error(
                     "Request failed: HTTP %d (non-JSON response, %d bytes)",
                     response.status_code,
@@ -482,27 +558,35 @@ class HTTPClient(BaseHTTPClient):
             data: Request body data (for POST/PUT)
             params: Query parameters dict
             vdom: Virtual domain (None=use default, or specify vdom name)
-            raw_json: If False (default), return only 'results' field. If True, return full response
-            request_id: Optional correlation ID for tracking requests across logs
+            raw_json: If False (default), return only 'results' field. If True,
+            return full response
+            request_id: Optional correlation ID for tracking requests across
+            logs
 
         Returns:
-            dict: If raw_json=False, returns response['results'] (or full response if no 'results' key)
-                  If raw_json=True, returns complete API response with status, http_status, etc.
+            dict: If raw_json=False, returns response['results'] (or full
+            response if no 'results' key)
+                  If raw_json=True, returns complete API response with status,
+                  http_status, etc.
         """
         # Generate request ID if not provided
         if request_id is None:
             request_id = str(uuid.uuid4())[:8]  # Short UUID for readability
 
         # Normalize path: remove any leading slash so callers may pass
-        # either 'firewall/acl' or '/firewall/acl' without causing a double-slash
+        # either 'firewall/acl' or '/firewall/acl' without causing a
+        # double-slash
         # in the constructed URL. Keep internal separators intact.
         path = self._normalize_path(path)
 
         # URL encode the path, treating / as safe (path separator)
-        # Individual path components may already be encoded by endpoint files using
+        # Individual path components may already be encoded by endpoint files
+        # using
         # encode_path_component(), so quote() with safe='/' won't double-encode
         # already-encoded %XX sequences (e.g., %2F stays as %2F)
-        encoded_path = quote(str(path), safe="/%") if isinstance(path, str) else path
+        encoded_path = (
+            quote(str(path), safe="/%") if isinstance(path, str) else path
+        )
         url = f"{self._url}/api/v2/{api_type}/{encoded_path}"
         params = params or {}
 
@@ -528,7 +612,9 @@ class HTTPClient(BaseHTTPClient):
                     "method": method,
                     "endpoint": full_path,
                     "circuit_state": self._circuit_breaker["state"],
-                    "consecutive_failures": self._circuit_breaker["consecutive_failures"],
+                    "consecutive_failures": self._circuit_breaker[
+                        "consecutive_failures"
+                    ],
                 },
             )
             raise
@@ -610,12 +696,15 @@ class HTTPClient(BaseHTTPClient):
             # Raise error - operation blocked
             from .exceptions_forti import ReadOnlyModeError
 
-            raise ReadOnlyModeError(f"{method} operation blocked by read-only mode: {full_path}")
+            raise ReadOnlyModeError(
+                f"{method} operation blocked by read-only mode: {full_path}"
+            )
 
-        # Proactively check if session needs refresh (username/password auth only)
+        # Proactively check if session needs refresh (username/password auth
+        # only)
         if self._should_refresh_session():
             logger.info(
-                "Session approaching idle timeout, proactively re-authenticating",
+                "Session approaching idle timeout, proactively re-authenticating",  # noqa: E501
                 extra={
                     "request_id": request_id,
                     "time_since_last_activity": round(
@@ -628,18 +717,23 @@ class HTTPClient(BaseHTTPClient):
                 logger.info("Proactive re-authentication successful")
             except Exception as e:
                 logger.warning(
-                    "Proactive re-authentication failed, will retry on 401: %s",
+                    "Proactive re-authentication failed, will retry on 401: %s",  # noqa: E501
                     str(e),
                 )
 
         # Retry loop with exponential backoff
         last_error = None
-        session_retry_attempted = False  # Track if we've tried re-authenticating
+        session_retry_attempted = (
+            False  # Track if we've tried re-authenticating
+        )
 
         for attempt in range(self._max_retries + 1):
             try:
                 # Update last activity time (for idle timeout tracking)
-                if not self._using_token_auth and self._session_last_activity is not None:
+                if (
+                    not self._using_token_auth
+                    and self._session_last_activity is not None
+                ):
                     self._session_last_activity = time.time()
 
                 # Make request with httpx client
@@ -671,14 +765,20 @@ class HTTPClient(BaseHTTPClient):
 
                     self._operations.append(
                         {
-                            "timestamp": datetime.now(timezone.utc).isoformat(),
+                            "timestamp": datetime.now(
+                                timezone.utc
+                            ).isoformat(),
                             "method": method.upper(),
                             "api_type": api_type,
                             "path": f"/{path}",
-                            "data": (data if method in ("POST", "PUT") else None),
+                            "data": (
+                                data if method in ("POST", "PUT") else None
+                            ),
                             "status_code": res.status_code,
                             "vdom": params.get("vdom") if params else None,
-                            "read_only": False,  # Indicates read-only mode was NOT active (operation executed)
+                            # Indicates read-only mode was NOT active
+                            # (operation executed)
+                            "read_only": False,
                         }
                     )
 
@@ -714,17 +814,20 @@ class HTTPClient(BaseHTTPClient):
                 if endpoint_timeout:
                     self._client.timeout = original_timeout
 
-                # Return full response if raw_json=True, otherwise extract results
+                # Return full response if raw_json=True, otherwise extract
+                # results
                 if raw_json:
                     return json_response
                 else:
-                    # Return 'results' field if present, otherwise full response
+                    # Return 'results' field if present, otherwise full
+                    # response
                     return json_response.get("results", json_response)
 
             except Exception as e:
                 last_error = e
 
-                # Special handling for 401 Unauthorized with username/password auth
+                # Special handling for 401 Unauthorized with username/password
+                # auth
                 # Session may have expired - try to re-authenticate once
                 is_401_error = False
                 if isinstance(e, httpx.HTTPStatusError):
@@ -749,7 +852,9 @@ class HTTPClient(BaseHTTPClient):
                     try:
                         # Try to login again
                         self.login()
-                        logger.info("Re-authentication successful, retrying request")
+                        logger.info(
+                            "Re-authentication successful, retrying request"
+                        )
                         # Continue to retry the request with new session
                         continue
                     except Exception as login_error:
@@ -771,7 +876,9 @@ class HTTPClient(BaseHTTPClient):
                         if isinstance(e, httpx.HTTPStatusError)
                         else None
                     )
-                    delay = self._get_retry_delay(attempt, response_obj, endpoint_key)
+                    delay = self._get_retry_delay(
+                        attempt, response_obj, endpoint_key
+                    )
 
                     # Structured log for retry
                     logger.info(
@@ -797,7 +904,8 @@ class HTTPClient(BaseHTTPClient):
                         self._client.timeout = original_timeout
                     raise
 
-        # If we've exhausted all retries, restore timeout and raise the last error
+        # If we've exhausted all retries, restore timeout and raise the last
+        # error
         if endpoint_timeout:
             self._client.timeout = original_timeout
 
@@ -829,7 +937,9 @@ class HTTPClient(BaseHTTPClient):
         raw_json: bool = False,
     ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """GET request"""
-        return self.request("GET", api_type, path, params=params, vdom=vdom, raw_json=raw_json)
+        return self.request(
+            "GET", api_type, path, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def get_binary(
         self,
@@ -949,7 +1059,9 @@ class HTTPClient(BaseHTTPClient):
             >>> mkey = HTTPClient.validate_mkey(user_id, 'user_id')
         """
         if mkey is None:
-            raise ValueError(f"{parameter_name} is required and cannot be None")
+            raise ValueError(
+                f"{parameter_name} is required and cannot be None"
+            )
 
         mkey_str = str(mkey).strip()
         if not mkey_str:
@@ -958,7 +1070,9 @@ class HTTPClient(BaseHTTPClient):
         return mkey_str
 
     @staticmethod
-    def validate_required_params(params: dict[str, Any], required: list[str]) -> None:
+    def validate_required_params(
+        params: dict[str, Any], required: list[str]
+    ) -> None:
         """
         Validate that required parameters are present in params dict
 
@@ -974,12 +1088,20 @@ class HTTPClient(BaseHTTPClient):
         """
         if not params:
             if required:
-                raise ValueError(f"Missing required parameters: {', '.join(required)}")
+                raise ValueError(
+                    f"Missing required parameters: {', '.join(required)}"
+                )
             return
 
-        missing = [param for param in required if param not in params or params[param] is None]
+        missing = [
+            param
+            for param in required
+            if param not in params or params[param] is None
+        ]
         if missing:
-            raise ValueError(f"Missing required parameters: {', '.join(missing)}")
+            raise ValueError(
+                f"Missing required parameters: {', '.join(missing)}"
+            )
 
     @staticmethod
     def validate_range(
@@ -1008,11 +1130,13 @@ class HTTPClient(BaseHTTPClient):
 
         if not (min_val <= value <= max_val):
             raise ValueError(
-                f"{parameter_name} must be between {min_val} and {max_val}, got {value}"
+                f"{parameter_name} must be between {min_val} and {max_val}, got {value}"  # noqa: E501
             )
 
     @staticmethod
-    def validate_choice(value: Any, choices: list[Any], parameter_name: str = "value") -> None:
+    def validate_choice(
+        value: Any, choices: list[Any], parameter_name: str = "value"
+    ) -> None:
         """
         Validate that a value is one of the allowed choices
 
@@ -1025,10 +1149,13 @@ class HTTPClient(BaseHTTPClient):
             ValueError: If value is not in the allowed choices
 
         Example:
-            >>> HTTPClient.validate_choice(protocol, ['tcp', 'udp'], 'protocol')
+            >>> HTTPClient.validate_choice(protocol, ['tcp', 'udp'],
+            'protocol')
         """
         if value not in choices:
-            raise ValueError(f"{parameter_name} must be one of {choices}, got '{value}'")
+            raise ValueError(
+                f"{parameter_name} must be one of {choices}, got '{value}'"
+            )
 
     @staticmethod
     def build_params(**kwargs: Any) -> dict[str, Any]:
@@ -1042,7 +1169,8 @@ class HTTPClient(BaseHTTPClient):
             Dictionary with None values removed
 
         Example:
-            >>> params = HTTPClient.build_params(format=['name'], datasource=True, other=None)
+            >>> params = HTTPClient.build_params(format=['name'],
+            datasource=True, other=None)
             >>> # Returns: {'format': ['name'], 'datasource': True}
         """
         return {k: v for k, v in kwargs.items() if v is not None}
@@ -1079,7 +1207,8 @@ class HTTPClient(BaseHTTPClient):
         """
         Get audit log of all tracked API operations
 
-        Returns all tracked operations (GET/POST/PUT/DELETE) in chronological order.
+        Returns all tracked operations (GET/POST/PUT/DELETE) in chronological
+        order.
         Only available when track_operations=True was passed to constructor.
 
         Returns:
@@ -1091,10 +1220,12 @@ class HTTPClient(BaseHTTPClient):
                 - data: Request payload (for POST/PUT), None otherwise
                 - status_code: HTTP response status code
                 - vdom: Virtual domain (if specified)
-                - read_only_simulated: True if operation was simulated in read-only mode
+                - read_only_simulated: True if operation was simulated in
+                read-only mode
 
         Example:
-            >>> client = HTTPClient(url="https://192.0.2.10", token="...", track_operations=True)
+            >>> client = HTTPClient(url="https://192.0.2.10", token="...",
+            track_operations=True)
             >>> client.post("cmdb", "/firewall/address", {"name": "test"})
             >>> ops = client.get_operations()
             >>> print(ops[0])
@@ -1115,21 +1246,30 @@ class HTTPClient(BaseHTTPClient):
         """
         Get audit log of write operations only (POST/PUT/DELETE)
 
-        Filters tracked operations to return only write operations, excluding GET requests.
+        Filters tracked operations to return only write operations, excluding
+        GET requests.
 
         Returns:
-            List of write operation dictionaries (same format as get_operations())
+            List of write operation dictionaries (same format as
+            get_operations())
 
         Example:
-            >>> client = HTTPClient(url="https://192.0.2.10", token="...", track_operations=True)
+            >>> client = HTTPClient(url="https://192.0.2.10", token="...",
+            track_operations=True)
             >>> client.get("cmdb", "/firewall/address/test")  # GET - excluded
-            >>> client.post("cmdb", "/firewall/address", {"name": "test2"})  # POST - included
-            >>> client.delete("cmdb", "/firewall/address/test")  # DELETE - included
+            >>> client.post("cmdb", "/firewall/address", {"name": "test2"})  #
+            POST - included
+            >>> client.delete("cmdb", "/firewall/address/test")  # DELETE -
+            included
             >>> write_ops = client.get_write_operations()
             >>> len(write_ops)  # Returns 2 (POST and DELETE only)
             2
         """
-        return [op for op in self._operations if op["method"] in ("POST", "PUT", "DELETE")]
+        return [
+            op
+            for op in self._operations
+            if op["method"] in ("POST", "PUT", "DELETE")
+        ]
 
     @staticmethod
     def make_exists_method(
@@ -1144,7 +1284,8 @@ class HTTPClient(BaseHTTPClient):
         - Works transparently with both sync and async clients
 
         Args:
-            get_method: The get() method to wrap (bound method from endpoint instance)
+            get_method: The get() method to wrap (bound method from endpoint
+            instance)
 
         Returns:
             A function that returns bool (sync) or Coroutine[bool] (async)
@@ -1155,7 +1296,8 @@ class HTTPClient(BaseHTTPClient):
                     self._client = client
 
                 def get(self, name, **kwargs):
-                    return self._client.get("cmdb", f"/firewall/address/{name}", **kwargs)
+                    return self._client.get("cmdb",
+                    f"/firewall/address/{name}", **kwargs)
 
                 # Create exists method using the helper
                 exists = HTTPClient.make_exists_method(get)
@@ -1174,9 +1316,12 @@ class HTTPClient(BaseHTTPClient):
                 # Return async version
                 async def _exists_async():
                     try:
-                        # Type ignore justified: Runtime check (inspect.iscoroutine) confirms
-                        # result is awaitable, but mypy sees Union[dict, Coroutine] from protocol
-                        # and cannot narrow the type. This is safe and necessary for dual-mode design.
+                        # Type ignore justified: Runtime check
+                        # (inspect.iscoroutine) confirms
+                        # result is awaitable, but mypy sees Union[dict,
+                        # Coroutine] from protocol
+                        # and cannot narrow the type. This is safe and
+                        # necessary for dual-mode design.
                         await result
                         return True
                     except ResourceNotFoundError:

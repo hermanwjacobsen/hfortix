@@ -17,7 +17,8 @@ def normalize_to_name_list(
     value: Union[str, List[str], Dict[str, str], List[Dict[str, str]], None],
 ) -> List[Dict[str, str]]:
     """
-    Normalize various input formats to FortiOS API format: [{'name': 'value'}, ...]
+    Normalize various input formats to FortiOS API format: [{'name': 'value'},
+    ...]
 
     This is the most common list format used in FortiOS API for fields like:
     - srcintf, dstintf (firewall policy)
@@ -28,7 +29,8 @@ def normalize_to_name_list(
     Args:
         value: Can be:
             - String: 'port1' → [{'name': 'port1'}]
-            - List of strings: ['port1', 'port2'] → [{'name': 'port1'}, {'name': 'port2'}]
+            - List of strings: ['port1', 'port2'] → [{'name': 'port1'},
+            {'name': 'port2'}]
             - Dict: {'name': 'port1'} → [{'name': 'port1'}]
             - List of dicts: [{'name': 'port1'}, {'name': 'port2'}] → unchanged
             - None: []
@@ -55,7 +57,9 @@ def normalize_to_name_list(
         if isinstance(value[0], dict):
             # Filter out empty dicts that sometimes appear in API responses
             filtered: list[dict[str, Any]] = [
-                item for item in value if isinstance(item, dict) and item and "name" in item
+                item
+                for item in value
+                if isinstance(item, dict) and item and "name" in item
             ]
             return filtered
         # List of strings
@@ -81,7 +85,8 @@ def normalize_member_list(
     Args:
         value: Can be:
             - String: 'addr1' → [{'name': 'addr1'}]
-            - List of strings: ['addr1', 'addr2'] → [{'name': 'addr1'}, {'name': 'addr2'}]
+            - List of strings: ['addr1', 'addr2'] → [{'name': 'addr1'},
+            {'name': 'addr2'}]
             - Dict: {'name': 'addr1'} → [{'name': 'addr1'}]
             - List of dicts: [{'name': 'addr1'}, {'name': 'addr2'}] → unchanged
             - None: []
@@ -108,10 +113,12 @@ def normalize_member_list(
 
 def build_cmdb_payload(**params: Any) -> dict[str, Any]:
     """
-    Build a CMDB payload dictionary from keyword arguments (API layer - no normalization).
+    Build a CMDB payload dictionary from keyword arguments (API layer - no
+    normalization).
 
     Converts Python snake_case parameter names to FortiOS kebab-case API keys
-    and filters out None values. This is the base helper used by all CMDB API endpoints.
+    and filters out None values. This is the base helper used by all CMDB API
+    endpoints.
 
     Does NOT normalize list fields - caller is responsible for providing data
     in the correct FortiOS format (unless using a wrapper with normalization).
@@ -162,17 +169,22 @@ def build_cmdb_payload_normalized(
     normalize_fields: set[str] | None = None, **params: Any
 ) -> dict[str, Any]:
     """
-    Build a CMDB payload with automatic normalization (convenience wrapper layer).
+    Build a CMDB payload with automatic normalization (convenience wrapper
+    layer).
 
     Converts Python snake_case parameter names to FortiOS kebab-case API keys,
-    filters out None values, AND normalizes specified list fields to FortiOS format.
+    filters out None values, AND normalizes specified list fields to FortiOS
+    format.
 
     This is used by convenience wrappers to accept flexible inputs like strings
-    or lists and automatically convert them to FortiOS [{'name': '...'}] format.
+    or lists and automatically convert them to FortiOS [{'name': '...'}]
+    format.
 
     Args:
-        normalize_fields: Set of field names (snake_case) that should be normalized
-                         to [{'name': '...'}] format. If None, common fields like
+        normalize_fields: Set of field names (snake_case) that should be
+        normalized
+                         to [{'name': '...'}] format. If None, common fields
+                         like
                          'member', 'interface', 'allowaccess' are normalized.
         **params: All resource parameters
 
@@ -221,7 +233,9 @@ def build_cmdb_payload_normalized(
 
     # Use provided fields or defaults
     fields_to_normalize = (
-        normalize_fields if normalize_fields is not None else DEFAULT_NORMALIZE_FIELDS
+        normalize_fields
+        if normalize_fields is not None
+        else DEFAULT_NORMALIZE_FIELDS
     )
 
     payload: dict[str, Any] = {}

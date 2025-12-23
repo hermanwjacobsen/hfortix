@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_HASH_TYPE = ["md5", "sha1", "sha256"]
 VALID_BODY_STATUS = ["disable", "enable"]

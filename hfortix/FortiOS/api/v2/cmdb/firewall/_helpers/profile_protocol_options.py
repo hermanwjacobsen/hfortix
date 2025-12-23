@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_OVERSIZE_LOG = ["disable", "enable"]
 VALID_BODY_SWITCHING_PROTOCOLS_LOG = ["disable", "enable"]

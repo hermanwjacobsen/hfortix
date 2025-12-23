@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -96,7 +97,9 @@ class GenerateKeys:
         if key_length is not None:
             data["key_length"] = key_length
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/ssid/generate-keys", data=data)
+        return self._client.post(
+            "monitor", "/wifi/ssid/generate-keys", data=data
+        )
 
 
 class Ssid:

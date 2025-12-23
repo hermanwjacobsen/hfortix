@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.22] - Unreleased
+## [0.3.22] - 2025-12-23
 
 ### Added
 
@@ -39,7 +39,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Code Quality**: Applied comprehensive PEP 8 compliance
+  - Reformatted 796 files with Black (line-length=79)
+  - Fixed 1000+ flake8 lint errors for strict PEP 8 compliance
+  - Standardized on 79-character line limit (PEP 8 standard)
+  - Only ignoring E203 (Black slice spacing) and W503 (modern line break style)
+  - All auto-generated API v2 files excluded from linting
+- **Import Cleanup**: Removed unused imports across core modules
+  - Fixed F401 (unused imports) warnings
+  - Added proper noqa comments for intentional exceptions
+
 ### Fixed
+
+- **Empty F-Strings**: Fixed F541 errors (f-strings without placeholders)
+  - Converted empty f-strings to regular strings in performance_test.py
+  - Proper string formatting in all print statements
+- **Unused Variables**: Fixed F841 warnings in test functions
+  - Added explicit ignore markers for intentionally unused variables
+- **Long Lines**: Systematic fixing of E501 errors
+  - Wrapped docstrings to 79 characters
+  - Split long log messages across lines
+  - Added strategic noqa comments for unavoidable long lines
 
 ### Removed
 

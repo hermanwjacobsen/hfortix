@@ -2,7 +2,8 @@
 FortiOS REST API v2 Interface
 
 Provides access to all FortiOS REST API endpoints organized by category:
-- CMDB (Configuration Management Database): Create/read/update/delete configuration
+- CMDB (Configuration Management Database): Create/read/update/delete
+configuration
 - Monitor: Real-time status and monitoring data
 - Log: Historical log retrieval and search
 - Service: System services and operations
@@ -52,7 +53,8 @@ class API:
     """
     FortiOS REST API v2 Interface.
 
-    Organizes all FortiOS API endpoints into logical categories for easy access.
+    Organizes all FortiOS API endpoints into logical categories for easy
+    access.
 
     Attributes:
         cmdb: Configuration Management Database (CRUD operations on config)
@@ -84,8 +86,10 @@ class API:
             - Example: fgt.api.utils.performance_test()
 
     HTTP Method Guidelines:
-        - **POST**: Create new configuration objects (returns 404 if already exists)
-        - **PUT**: Update existing configuration objects (returns 404 if not found)
+        - **POST**: Create new configuration objects (returns 404 if already
+        exists)
+        - **PUT**: Update existing configuration objects (returns 404 if not
+        found)
         - **GET**: Retrieve data (config, monitoring, logs) - read-only
         - **DELETE**: Remove configuration objects (returns 404 if not found)
 
@@ -94,7 +98,8 @@ class API:
         >>> fgt = FortiOS(host="192.168.1.99", token="your-token")
         >>>
         >>> # CMDB: Manage configuration
-        >>> fgt.api.cmdb.firewall.address.post(name="WebServer", subnet="10.0.0.5/32")
+        >>> fgt.api.cmdb.firewall.address.post(name="WebServer",
+        subnet="10.0.0.5/32")
         >>> fgt.api.cmdb.firewall.policy.get(policyid=1)
         >>>
         >>> # Monitor: Real-time data
@@ -110,14 +115,18 @@ class API:
     log: "Log"
     monitor: "Monitor"
     service: "Service"
-    utils: "Optional[Utils]"  # None when using custom IHTTPClient implementations
+    utils: (
+        "Optional[Utils]"  # None when using custom IHTTPClient implementations
+    )
 
     def __init__(self, client: "IHTTPClient") -> None:
         """
-        Initialize API namespace with HTTP client implementing IHTTPClient protocol.
+        Initialize API namespace with HTTP client implementing IHTTPClient
+        protocol.
 
         Note:
-            Utils requires concrete HTTPClient for internal access. When a protocol-only
+            Utils requires concrete HTTPClient for internal access. When a
+            protocol-only
             client is provided, Utils will be unavailable (set to None).
         """
         # Keep a reference to the internal HTTP client for advanced usage and

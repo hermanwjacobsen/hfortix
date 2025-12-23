@@ -2,7 +2,8 @@
 Base HTTP Client - Shared Logic for Sync and Async Clients
 
 This module contains BaseHTTPClient with shared validation, retry logic,
-circuit breaker, statistics, and utilities used by both HTTPClient and AsyncHTTPClient.
+circuit breaker, statistics, and utilities used by both HTTPClient and
+AsyncHTTPClient.
 """
 
 from __future__ import annotations
@@ -55,8 +56,10 @@ class BaseHTTPClient:
         """Initialize base HTTP client with shared configuration
 
         Args:
-            adaptive_retry: Enable adaptive retry with backpressure detection (default: False)
-                          When enabled, monitors response times and adjusts retry delays
+            adaptive_retry: Enable adaptive retry with backpressure detection
+            (default: False)
+                          When enabled, monitors response times and adjusts
+                          retry delays
                           based on FortiGate health signals.
         """
         # Validate parameters
@@ -80,7 +83,8 @@ class BaseHTTPClient:
             raise ValueError("max_keepalive_connections must be >= 0")
 
         # Auto-adjust keepalive connections if needed (don't error)
-        # httpx and other libraries allow these to be independent, but we'll adjust
+        # httpx and other libraries allow these to be independent, but we'll
+        # adjust
         # to be safe while not blocking legitimate configurations
         if max_keepalive_connections > max_connections:
             logger.warning(
@@ -123,7 +127,9 @@ class BaseHTTPClient:
 
         # Adaptive retry configuration
         self._adaptive_retry = adaptive_retry
-        self._response_times: dict[str, deque] = {}  # endpoint -> deque of response times
+        self._response_times: dict[str, deque] = (
+            {}
+        )  # endpoint -> deque of response times
         self._baseline_response_time = 0.5  # 500ms baseline
         self._slowdown_multiplier = 3.0  # Endpoint is slow if 3x baseline
 
@@ -247,7 +253,7 @@ class BaseHTTPClient:
         )
         self._endpoint_timeouts[endpoint_pattern] = timeout
         logger.info(
-            "Configured custom timeout for endpoint pattern '%s': connect=%.1fs, read=%.1fs",
+            "Configured custom timeout for endpoint pattern '%s': connect=%.1fs, read=%.1fs",  # noqa: E501
             endpoint_pattern,
             timeout.connect,
             timeout.read,
@@ -267,11 +273,13 @@ class BaseHTTPClient:
     def _check_circuit_breaker(self, endpoint: str) -> None:
         """Check circuit breaker state before making request"""
         if self._circuit_breaker["state"] == "open":
-            elapsed = time.time() - (self._circuit_breaker["last_failure_time"] or 0)
+            elapsed = time.time() - (
+                self._circuit_breaker["last_failure_time"] or 0
+            )
             if elapsed < self._circuit_breaker["timeout"]:
                 remaining = self._circuit_breaker["timeout"] - elapsed
                 logger.error(
-                    "Circuit breaker is OPEN - service unavailable (retry in %.1fs)",
+                    "Circuit breaker is OPEN - service unavailable (retry in %.1fs)",  # noqa: E501
                     remaining,
                 )
                 from .exceptions import CircuitBreakerOpenError
@@ -304,7 +312,10 @@ class BaseHTTPClient:
         if failures >= threshold and self._circuit_breaker["state"] != "open":
             self._circuit_breaker["state"] = "open"
             logger.error(
-                "Circuit breaker OPENED after %d consecutive failures for endpoint %s",
+                (
+                    "Circuit breaker OPENED after %d consecutive "
+                    "failures for endpoint %s"
+                ),
                 failures,
                 endpoint,
             )
@@ -320,7 +331,9 @@ class BaseHTTPClient:
     # Retry Logic
     # ========================================================================
 
-    def _should_retry(self, error: Exception, attempt: int, endpoint: str = "") -> bool:
+    def _should_retry(
+        self, error: Exception, attempt: int, endpoint: str = ""
+    ) -> bool:
         """Determine if a request should be retried"""
         if attempt >= self._max_retries:
             return False
@@ -337,7 +350,9 @@ class BaseHTTPClient:
             )
             return True
 
-        if isinstance(error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)):
+        if isinstance(
+            error, (httpx.ReadTimeout, httpx.WriteTimeout, httpx.PoolTimeout)
+        ):
             self._record_retry("timeout", endpoint)
             logger.warning(
                 "Timeout on attempt %d/%d for %s: %s",
@@ -390,7 +405,8 @@ class BaseHTTPClient:
         Returns:
             Delay in seconds before next retry
         """
-        # Check for Retry-After header (FortiGate explicitly telling us when to retry)
+        # Check for Retry-After header (FortiGate explicitly telling us when to
+        # retry)
         if response and "Retry-After" in response.headers:
             try:
                 return float(response.headers["Retry-After"])
@@ -402,7 +418,9 @@ class BaseHTTPClient:
 
         # Apply adaptive backpressure if enabled
         if self._adaptive_retry and endpoint:
-            delay = self._apply_adaptive_backpressure(delay, response, endpoint)
+            delay = self._apply_adaptive_backpressure(
+                delay, response, endpoint
+            )
 
         return delay
 
@@ -429,7 +447,10 @@ class BaseHTTPClient:
         if response and response.status_code == 503:
             multiplier = 3.0
             logger.warning(
-                "FortiGate returned 503 (overloaded), applying 3x backpressure multiplier"
+                (
+                    "FortiGate returned 503 (overloaded), applying 3x "
+                    "backpressure multiplier"
+                )
             )
 
         # Signal 2: Endpoint showing slow response times (early warning)
@@ -437,7 +458,10 @@ class BaseHTTPClient:
             multiplier = 2.0
             avg_time = self._get_avg_response_time(endpoint)
             logger.warning(
-                "Endpoint %s showing backpressure (avg response: %.2fs, baseline: %.2fs), applying 2x multiplier",
+                (
+                    "Endpoint %s showing backpressure (avg response: "
+                    "%.2fs, baseline: %.2fs), applying 2x multiplier"
+                ),
                 endpoint,
                 avg_time,
                 self._baseline_response_time,
@@ -510,7 +534,9 @@ class BaseHTTPClient:
         metrics = {
             "circuit_breaker": {
                 "state": self._circuit_breaker["state"],
-                "consecutive_failures": self._circuit_breaker["consecutive_failures"],
+                "consecutive_failures": self._circuit_breaker[
+                    "consecutive_failures"
+                ],
                 "threshold": self._circuit_breaker["failure_threshold"],
             },
             "retry_stats": self._retry_stats.copy(),
@@ -531,7 +557,9 @@ class BaseHTTPClient:
                         "max_ms": round(max(sorted_times) * 1000, 2),
                         "p50_ms": round(sorted_times[count // 2] * 1000, 2),
                         "p95_ms": (
-                            round(sorted_times[int(count * 0.95)] * 1000, 2) if count > 20 else None
+                            round(sorted_times[int(count * 0.95)] * 1000, 2)
+                            if count > 20
+                            else None
                         ),
                         "is_slow": self._is_endpoint_slow(endpoint),
                     }
@@ -548,7 +576,9 @@ class BaseHTTPClient:
         valid_types = {"cmdb", "monitor", "log", "service"}
         if api_type not in valid_types:
             raise ValueError(
-                f"Invalid api_type '{api_type}'. Must be one of: {', '.join(sorted(valid_types))}"
+                f"Invalid api_type '{api_type}'. Must be one of: {
+                    ', '.join(
+                        sorted(valid_types))}"
             )
 
     @staticmethod
@@ -561,16 +591,23 @@ class BaseHTTPClient:
     def _validate_data(data: Any) -> None:
         """Validate data parameter for POST/PUT"""
         if not isinstance(data, dict):
-            raise TypeError(f"data must be a dictionary, got {type(data).__name__}")
+            raise TypeError(
+                f"data must be a dictionary, got {type(data).__name__}"
+            )
 
     @staticmethod
     def _validate_vdom(vdom: Optional[Union[str, bool]]) -> None:
         """Validate vdom parameter"""
         if vdom is not None and not isinstance(vdom, (str, bool)):
-            raise TypeError(f"vdom must be str, bool, or None, got {type(vdom).__name__}")
+            raise TypeError(
+                f"vdom must be str, bool, or None, got {type(vdom).__name__}"
+            )
 
     @staticmethod
     def _validate_params(params: Optional[dict[str, Any]]) -> None:
         """Validate params parameter"""
         if params is not None and not isinstance(params, dict):
-            raise TypeError(f"params must be a dictionary or None, got {type(params).__name__}")
+            raise TypeError(
+                f"params must be a dictionary or None, got {
+                    type(params).__name__}"
+            )

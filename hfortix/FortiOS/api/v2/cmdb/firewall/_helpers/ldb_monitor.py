@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["ping", "tcp", "http", "https", "dns"]
 VALID_BODY_DNS_PROTOCOL = ["udp", "tcp"]

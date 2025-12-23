@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class AccessProxy6:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -212,13 +215,17 @@ class AccessProxy6:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = add_vhost_domain_to_dnsdb
+            data_payload["add-vhost-domain-to-dnsdb"] = (
+                add_vhost_domain_to_dnsdb
+            )
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -230,7 +237,9 @@ class AccessProxy6:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -267,7 +276,9 @@ class AccessProxy6:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/access-proxy6/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -308,7 +319,7 @@ class AccessProxy6:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -382,13 +393,17 @@ class AccessProxy6:
         if log_blocked_traffic is not None:
             data_payload["log-blocked-traffic"] = log_blocked_traffic
         if add_vhost_domain_to_dnsdb is not None:
-            data_payload["add-vhost-domain-to-dnsdb"] = add_vhost_domain_to_dnsdb
+            data_payload["add-vhost-domain-to-dnsdb"] = (
+                add_vhost_domain_to_dnsdb
+            )
         if svr_pool_multiplex is not None:
             data_payload["svr-pool-multiplex"] = svr_pool_multiplex
         if svr_pool_ttl is not None:
             data_payload["svr-pool-ttl"] = svr_pool_ttl
         if svr_pool_server_max_request is not None:
-            data_payload["svr-pool-server-max-request"] = svr_pool_server_max_request
+            data_payload["svr-pool-server-max-request"] = (
+                svr_pool_server_max_request
+            )
         if svr_pool_server_max_concurrent_request is not None:
             data_payload["svr-pool-server-max-concurrent-request"] = (
                 svr_pool_server_max_concurrent_request
@@ -400,4 +415,6 @@ class AccessProxy6:
         if api_gateway6 is not None:
             data_payload["api-gateway6"] = api_gateway6
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_CONTROL_MESSAGE_OFFLOAD = [
     "ebp-frame",
@@ -582,7 +581,10 @@ def validate_wtp_profile_post(
     # Validate split-tunneling-acl-local-ap-subnet if present
     if "split-tunneling-acl-local-ap-subnet" in payload:
         value = payload.get("split-tunneling-acl-local-ap-subnet")
-        if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET:
+        if (
+            value
+            and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET
+        ):
             return (
                 False,
                 f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",
@@ -1187,7 +1189,10 @@ def validate_wtp_profile_put(
     # Validate split-tunneling-acl-local-ap-subnet if present
     if "split-tunneling-acl-local-ap-subnet" in payload:
         value = payload.get("split-tunneling-acl-local-ap-subnet")
-        if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET:
+        if (
+            value
+            and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET
+        ):
             return (
                 False,
                 f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",

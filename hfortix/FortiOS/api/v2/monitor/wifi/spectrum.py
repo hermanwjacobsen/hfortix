@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -88,7 +89,9 @@ class KeepAlive:
         if duration is not None:
             data["duration"] = duration
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/spectrum/keep-alive", data=data)
+        return self._client.post(
+            "monitor", "/wifi/spectrum/keep-alive", data=data
+        )
 
 
 class Start:

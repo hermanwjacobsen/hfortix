@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -119,7 +120,9 @@ class Hotspot20H2qpOsuProvider:
 
         # Build endpoint path
         if name:
-            endpoint = f"/wireless-controller.hotspot20/h2qp-osu-provider/{name}"
+            endpoint = (
+                f"/wireless-controller.hotspot20/h2qp-osu-provider/{name}"
+            )
         else:
             endpoint = "/wireless-controller.hotspot20/h2qp-osu-provider"
         if attr is not None:
@@ -131,7 +134,9 @@ class Hotspot20H2qpOsuProvider:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -204,7 +209,9 @@ class Hotspot20H2qpOsuProvider:
         if icon is not None:
             data_payload["icon"] = icon
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -241,7 +248,9 @@ class Hotspot20H2qpOsuProvider:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller.hotspot20/h2qp-osu-provider/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -305,4 +314,6 @@ class Hotspot20H2qpOsuProvider:
         if icon is not None:
             data_payload["icon"] = icon
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

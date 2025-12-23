@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class DiskSetting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -219,7 +222,9 @@ class DiskSetting:
         if max_log_file_size is not None:
             data_payload["max-log-file-size"] = max_log_file_size
         if max_policy_packet_capture_size is not None:
-            data_payload["max-policy-packet-capture-size"] = max_policy_packet_capture_size
+            data_payload["max-policy-packet-capture-size"] = (
+                max_policy_packet_capture_size
+            )
         if roll_schedule is not None:
             data_payload["roll-schedule"] = roll_schedule
         if roll_day is not None:
@@ -263,11 +268,17 @@ class DiskSetting:
         if upload_ssl_conn is not None:
             data_payload["upload-ssl-conn"] = upload_ssl_conn
         if full_first_warning_threshold is not None:
-            data_payload["full-first-warning-threshold"] = full_first_warning_threshold
+            data_payload["full-first-warning-threshold"] = (
+                full_first_warning_threshold
+            )
         if full_second_warning_threshold is not None:
-            data_payload["full-second-warning-threshold"] = full_second_warning_threshold
+            data_payload["full-second-warning-threshold"] = (
+                full_second_warning_threshold
+            )
         if full_final_warning_threshold is not None:
-            data_payload["full-final-warning-threshold"] = full_final_warning_threshold
+            data_payload["full-final-warning-threshold"] = (
+                full_final_warning_threshold
+            )
         if interface_select_method is not None:
             data_payload["interface-select-method"] = interface_select_method
         if interface is not None:
@@ -275,4 +286,6 @@ class DiskSetting:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

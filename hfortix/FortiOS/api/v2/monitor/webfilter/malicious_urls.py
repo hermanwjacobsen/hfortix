@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class Stat:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/webfilter/malicious-urls/stat", params=params)
+        return self._client.get(
+            "monitor", "/webfilter/malicious-urls/stat", params=params
+        )
 
 
 class MaliciousUrls:
@@ -116,4 +119,6 @@ class MaliciousUrls:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/webfilter/malicious-urls", params=params)
+        return self._client.get(
+            "monitor", "/webfilter/malicious-urls", params=params
+        )

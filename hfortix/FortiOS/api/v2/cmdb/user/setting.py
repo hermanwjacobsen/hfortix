@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Setting:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -209,7 +212,9 @@ class Setting:
         if auth_http_basic is not None:
             data_payload["auth-http-basic"] = auth_http_basic
         if auth_ssl_allow_renegotiation is not None:
-            data_payload["auth-ssl-allow-renegotiation"] = auth_ssl_allow_renegotiation
+            data_payload["auth-ssl-allow-renegotiation"] = (
+                auth_ssl_allow_renegotiation
+            )
         if auth_src_mac is not None:
             data_payload["auth-src-mac"] = auth_src_mac
         if auth_on_demand is not None:
@@ -235,16 +240,24 @@ class Setting:
         if auth_ports is not None:
             data_payload["auth-ports"] = auth_ports
         if auth_ssl_min_proto_version is not None:
-            data_payload["auth-ssl-min-proto-version"] = auth_ssl_min_proto_version
+            data_payload["auth-ssl-min-proto-version"] = (
+                auth_ssl_min_proto_version
+            )
         if auth_ssl_max_proto_version is not None:
-            data_payload["auth-ssl-max-proto-version"] = auth_ssl_max_proto_version
+            data_payload["auth-ssl-max-proto-version"] = (
+                auth_ssl_max_proto_version
+            )
         if auth_ssl_sigalgs is not None:
             data_payload["auth-ssl-sigalgs"] = auth_ssl_sigalgs
         if default_user_password_policy is not None:
-            data_payload["default-user-password-policy"] = default_user_password_policy
+            data_payload["default-user-password-policy"] = (
+                default_user_password_policy
+            )
         if cors is not None:
             data_payload["cors"] = cors
         if cors_allowed_origins is not None:
             data_payload["cors-allowed-origins"] = cors_allowed_origins
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

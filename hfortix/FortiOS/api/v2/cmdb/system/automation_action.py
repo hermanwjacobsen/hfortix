@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class AutomationAction:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -278,15 +281,21 @@ class AutomationAction:
         if aws_api_key is not None:
             data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload["azure-function-authorization"] = azure_function_authorization
+            data_payload["azure-function-authorization"] = (
+                azure_function_authorization
+            )
         if azure_api_key is not None:
             data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload["alicloud-function-authorization"] = alicloud_function_authorization
+            data_payload["alicloud-function-authorization"] = (
+                alicloud_function_authorization
+            )
         if alicloud_access_key_id is not None:
             data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload["alicloud-access-key-secret"] = alicloud_access_key_secret
+            data_payload["alicloud-access-key-secret"] = (
+                alicloud_access_key_secret
+            )
         if message_type is not None:
             data_payload["message-type"] = message_type
         if message is not None:
@@ -336,7 +345,9 @@ class AutomationAction:
         if sdn_connector is not None:
             data_payload["sdn-connector"] = sdn_connector
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -373,7 +384,9 @@ class AutomationAction:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/automation-action/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -414,7 +427,7 @@ class AutomationAction:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -554,15 +567,21 @@ class AutomationAction:
         if aws_api_key is not None:
             data_payload["aws-api-key"] = aws_api_key
         if azure_function_authorization is not None:
-            data_payload["azure-function-authorization"] = azure_function_authorization
+            data_payload["azure-function-authorization"] = (
+                azure_function_authorization
+            )
         if azure_api_key is not None:
             data_payload["azure-api-key"] = azure_api_key
         if alicloud_function_authorization is not None:
-            data_payload["alicloud-function-authorization"] = alicloud_function_authorization
+            data_payload["alicloud-function-authorization"] = (
+                alicloud_function_authorization
+            )
         if alicloud_access_key_id is not None:
             data_payload["alicloud-access-key-id"] = alicloud_access_key_id
         if alicloud_access_key_secret is not None:
-            data_payload["alicloud-access-key-secret"] = alicloud_access_key_secret
+            data_payload["alicloud-access-key-secret"] = (
+                alicloud_access_key_secret
+            )
         if message_type is not None:
             data_payload["message-type"] = message_type
         if message is not None:
@@ -612,4 +631,6 @@ class AutomationAction:
         if sdn_connector is not None:
             data_payload["sdn-connector"] = sdn_connector
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MANDATORY_CA_VERIFY = ["enable", "disable"]
 VALID_BODY_CN_TYPE = ["string", "email", "FQDN", "ipv4", "ipv6"]

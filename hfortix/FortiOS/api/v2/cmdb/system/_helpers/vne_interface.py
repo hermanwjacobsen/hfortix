@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_AUTO_ASIC_OFFLOAD = ["enable", "disable"]
 VALID_BODY_MODE = ["map-e", "fixed-ip", "ds-lite"]

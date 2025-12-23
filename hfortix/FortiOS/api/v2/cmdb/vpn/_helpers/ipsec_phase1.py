@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["static", "dynamic", "ddns"]
 VALID_BODY_IKE_VERSION = ["1", "2"]

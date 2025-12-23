@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ADDR_MODE = ["ipv4", "ipv6", "both"]
 VALID_QUERY_ACTION = ["default", "schema"]

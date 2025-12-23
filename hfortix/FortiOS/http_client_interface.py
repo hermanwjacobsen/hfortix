@@ -1,12 +1,15 @@
 """
 HTTP Client Interface (Protocol)
 
-This module defines the Protocol interface for HTTP clients used by FortiOS API endpoints.
-Using a Protocol (PEP 544) allows for duck-typing and enables users to provide custom
+This module defines the Protocol interface for HTTP clients used by FortiOS API
+endpoints.
+Using a Protocol (PEP 544) allows for duck-typing and enables users to provide
+custom
 HTTP client implementations.
 
 Benefits:
-- Users can provide custom HTTP clients (with caching, custom auth, proxying, etc.)
+- Users can provide custom HTTP clients (with caching, custom auth, proxying,
+etc.)
 - Easier testing with lightweight fake/mock clients
 - Type-safe client swapping
 - Maintains backward compatibility
@@ -14,11 +17,13 @@ Benefits:
 Example:
     class CustomHTTPClient:
         '''Custom client with company-specific requirements'''
-        def get(self, api_type: str, path: str, **kwargs) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
+        def get(self, api_type: str, path: str, **kwargs) -> Union[dict[str,
+        Any], Coroutine[Any, Any, dict[str, Any]]]:
             # Custom implementation with logging, auth, etc.
             ...
 
-        def post(self, api_type: str, path: str, data: dict, **kwargs) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
+        def post(self, api_type: str, path: str, data: dict, **kwargs) ->
+        Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
             # Custom implementation
             ...
 
@@ -57,8 +62,10 @@ class IHTTPClient(Protocol):
     - Support for both sync and async clients
     - Extension by library users
 
-    Method signatures support both synchronous (returning dict) and asynchronous
-    (returning Coroutine) implementations. The return type is Union to accommodate
+    Method signatures support both synchronous (returning dict) and
+    asynchronous
+    (returning Coroutine) implementations. The return type is Union to
+    accommodate
     both modes.
 
     Implementations:
@@ -66,8 +73,10 @@ class IHTTPClient(Protocol):
     - AsyncHTTPClient: Asynchronous implementation using httpx.AsyncClient
 
     Note:
-        All methods should handle vdom=False to skip VDOM parameter in requests.
-        The raw_json parameter controls whether full API response is returned (True)
+        All methods should handle vdom=False to skip VDOM parameter in
+        requests.
+        The raw_json parameter controls whether full API response is returned
+        (True)
         or just the results section (False, default).
     """
 
@@ -84,10 +93,12 @@ class IHTTPClient(Protocol):
 
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
-            path: Endpoint path (e.g., 'firewall/address', 'firewall/address/web-server')
+            path: Endpoint path (e.g., 'firewall/address',
+            'firewall/address/web-server')
             params: Optional query parameters (filters, pagination, etc.)
             vdom: Virtual domain name, or False to skip VDOM parameter
-            raw_json: If True, return full API response with metadata; if False, return only results
+            raw_json: If True, return full API response with metadata; if
+            False, return only results
 
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
@@ -118,13 +129,15 @@ class IHTTPClient(Protocol):
             data: Resource data to create
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
-            raw_json: If True, return full API response with metadata; if False, return only results
+            raw_json: If True, return full API response with metadata; if
+            False, return only results
 
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
 
         Example (Sync):
-            result = client.post("cmdb", "firewall/address", data={"name": "test", "subnet": "10.0.0.1/32"})
+            result = client.post("cmdb", "firewall/address", data={"name":
+            "test", "subnet": "10.0.0.1/32"})
 
         Example (Async):
             result = await client.post("cmdb", "firewall/address", data={...})
@@ -145,20 +158,24 @@ class IHTTPClient(Protocol):
 
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
-            path: Endpoint path with identifier (e.g., 'firewall/address/web-server')
+            path: Endpoint path with identifier (e.g.,
+            'firewall/address/web-server')
             data: Updated resource data
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
-            raw_json: If True, return full API response with metadata; if False, return only results
+            raw_json: If True, return full API response with metadata; if
+            False, return only results
 
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)
 
         Example (Sync):
-            result = client.put("cmdb", "firewall/address/web-server", data={"subnet": "10.0.0.2/32"})
+            result = client.put("cmdb", "firewall/address/web-server",
+            data={"subnet": "10.0.0.2/32"})
 
         Example (Async):
-            result = await client.put("cmdb", "firewall/address/web-server", data={...})
+            result = await client.put("cmdb", "firewall/address/web-server",
+            data={...})
         """
         ...
 
@@ -175,10 +192,12 @@ class IHTTPClient(Protocol):
 
         Args:
             api_type: API category (e.g., 'cmdb', 'monitor', 'log', 'service')
-            path: Endpoint path with identifier (e.g., 'firewall/address/web-server')
+            path: Endpoint path with identifier (e.g.,
+            'firewall/address/web-server')
             params: Optional query parameters
             vdom: Virtual domain name, or False to skip VDOM parameter
-            raw_json: If True, return full API response with metadata; if False, return only results
+            raw_json: If True, return full API response with metadata; if
+            False, return only results
 
         Returns:
             dict: API response (sync mode) or Coroutine[dict] (async mode)

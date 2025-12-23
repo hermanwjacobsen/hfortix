@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -83,4 +84,6 @@ class CertNameAvailable:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/vpn-certificate/cert-name-available", params=params)
+        return self._client.get(
+            "monitor", "/vpn-certificate/cert-name-available", params=params
+        )

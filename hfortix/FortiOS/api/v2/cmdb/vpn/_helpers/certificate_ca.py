@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_RANGE = ["global", "vdom"]
 VALID_BODY_SOURCE = ["factory", "user", "bundle"]

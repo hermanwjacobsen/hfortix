@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_LOG_ALL_DOMAIN = ["enable", "disable"]
 VALID_BODY_SDNS_FTGD_ERR_LOG = ["enable", "disable"]

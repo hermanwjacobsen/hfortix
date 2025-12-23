@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -126,4 +127,6 @@ class BlacklistedCertificates:
         params["start"] = start
         params["count"] = count
         params.update(kwargs)
-        return self._client.get("monitor", "/utm/blacklisted-certificates", params=params)
+        return self._client.get(
+            "monitor", "/utm/blacklisted-certificates", params=params
+        )

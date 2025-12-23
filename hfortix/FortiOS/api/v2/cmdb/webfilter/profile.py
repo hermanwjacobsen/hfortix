@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Profile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -284,7 +287,9 @@ class Profile:
         if web_filter_activex_log is not None:
             data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload["web-filter-command-block-log"] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
             data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
@@ -300,7 +305,9 @@ class Profile:
         if web_filter_referer_log is not None:
             data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload["web-filter-cookie-removal-log"] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
             data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
@@ -312,11 +319,15 @@ class Profile:
         if extended_log is not None:
             data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload["web-extended-all-action-log"] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
             data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -353,7 +364,9 @@ class Profile:
             raise ValueError("name is required for delete()")
         endpoint = f"/webfilter/profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -394,7 +407,7 @@ class Profile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -540,7 +553,9 @@ class Profile:
         if web_filter_activex_log is not None:
             data_payload["web-filter-activex-log"] = web_filter_activex_log
         if web_filter_command_block_log is not None:
-            data_payload["web-filter-command-block-log"] = web_filter_command_block_log
+            data_payload["web-filter-command-block-log"] = (
+                web_filter_command_block_log
+            )
         if web_filter_cookie_log is not None:
             data_payload["web-filter-cookie-log"] = web_filter_cookie_log
         if web_filter_applet_log is not None:
@@ -556,7 +571,9 @@ class Profile:
         if web_filter_referer_log is not None:
             data_payload["web-filter-referer-log"] = web_filter_referer_log
         if web_filter_cookie_removal_log is not None:
-            data_payload["web-filter-cookie-removal-log"] = web_filter_cookie_removal_log
+            data_payload["web-filter-cookie-removal-log"] = (
+                web_filter_cookie_removal_log
+            )
         if web_url_log is not None:
             data_payload["web-url-log"] = web_url_log
         if web_invalid_domain_log is not None:
@@ -568,8 +585,12 @@ class Profile:
         if extended_log is not None:
             data_payload["extended-log"] = extended_log
         if web_extended_all_action_log is not None:
-            data_payload["web-extended-all-action-log"] = web_extended_all_action_log
+            data_payload["web-extended-all-action-log"] = (
+                web_extended_all_action_log
+            )
         if web_antiphishing_log is not None:
             data_payload["web-antiphishing-log"] = web_antiphishing_log
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

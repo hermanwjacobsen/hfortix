@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -112,7 +113,9 @@ class Report:
         if application_error is not None:
             data["application_error"] = application_error
         data.update(kwargs)
-        return self._client.post("monitor", "/sdwan/link-monitor-metrics/report", data=data)
+        return self._client.post(
+            "monitor", "/sdwan/link-monitor-metrics/report", data=data
+        )
 
 
 class LinkMonitorMetrics:

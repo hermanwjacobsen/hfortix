@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_HEADER = ["none", "http", "8bit"]
 VALID_BODY_FORMAT = ["none", "text", "html"]

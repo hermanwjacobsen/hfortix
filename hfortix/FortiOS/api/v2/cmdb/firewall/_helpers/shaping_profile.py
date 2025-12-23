@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["policing", "queuing"]
 VALID_BODY_NPU_OFFLOADING = ["disable", "enable"]

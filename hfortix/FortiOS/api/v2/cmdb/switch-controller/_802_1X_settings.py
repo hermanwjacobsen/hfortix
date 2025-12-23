@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Eight02OneXSettings:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -185,10 +188,16 @@ class Eight02OneXSettings:
         if mac_password_delimiter is not None:
             data_payload["mac-password-delimiter"] = mac_password_delimiter
         if mac_calling_station_delimiter is not None:
-            data_payload["mac-calling-station-delimiter"] = mac_calling_station_delimiter
+            data_payload["mac-calling-station-delimiter"] = (
+                mac_calling_station_delimiter
+            )
         if mac_called_station_delimiter is not None:
-            data_payload["mac-called-station-delimiter"] = mac_called_station_delimiter
+            data_payload["mac-called-station-delimiter"] = (
+                mac_called_station_delimiter
+            )
         if mac_case is not None:
             data_payload["mac-case"] = mac_case
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -8,8 +8,11 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client_interface import IHTTPClient
+
     from .fortigate import Fortigate
-    from .lan_extension_vdom_status import LanExtensionVdomStatus as LanExtensionVdom
+    from .lan_extension_vdom_status import (
+        LanExtensionVdomStatus as LanExtensionVdom,
+    )
 
 
 class ExtensionController:

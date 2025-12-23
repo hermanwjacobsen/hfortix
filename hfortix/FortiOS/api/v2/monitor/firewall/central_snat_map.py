@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class ClearCounters:
         if policy is not None:
             data["policy"] = policy
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/central-snat-map/clear-counters", data=data)
+        return self._client.post(
+            "monitor", "/firewall/central-snat-map/clear-counters", data=data
+        )
 
 
 class Reset:
@@ -117,7 +120,9 @@ class Reset:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/central-snat-map/reset", data=data)
+        return self._client.post(
+            "monitor", "/firewall/central-snat-map/reset", data=data
+        )
 
 
 class CentralSnatMap:
@@ -166,4 +171,6 @@ class CentralSnatMap:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/central-snat-map", params=params)
+        return self._client.get(
+            "monitor", "/firewall/central-snat-map", params=params
+        )

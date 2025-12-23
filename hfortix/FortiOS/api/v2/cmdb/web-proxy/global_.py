@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Global:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -231,9 +234,13 @@ class Global:
         if forward_proxy_auth is not None:
             data_payload["forward-proxy-auth"] = forward_proxy_auth
         if forward_server_affinity_timeout is not None:
-            data_payload["forward-server-affinity-timeout"] = forward_server_affinity_timeout
+            data_payload["forward-server-affinity-timeout"] = (
+                forward_server_affinity_timeout
+            )
         if max_waf_body_cache_length is not None:
-            data_payload["max-waf-body-cache-length"] = max_waf_body_cache_length
+            data_payload["max-waf-body-cache-length"] = (
+                max_waf_body_cache_length
+            )
         if webproxy_profile is not None:
             data_payload["webproxy-profile"] = webproxy_profile
         if learn_client_ip is not None:
@@ -241,7 +248,9 @@ class Global:
         if always_learn_client_ip is not None:
             data_payload["always-learn-client-ip"] = always_learn_client_ip
         if learn_client_ip_from_header is not None:
-            data_payload["learn-client-ip-from-header"] = learn_client_ip_from_header
+            data_payload["learn-client-ip-from-header"] = (
+                learn_client_ip_from_header
+            )
         if learn_client_ip_srcaddr is not None:
             data_payload["learn-client-ip-srcaddr"] = learn_client_ip_srcaddr
         if learn_client_ip_srcaddr6 is not None:
@@ -249,7 +258,9 @@ class Global:
         if src_affinity_exempt_addr is not None:
             data_payload["src-affinity-exempt-addr"] = src_affinity_exempt_addr
         if src_affinity_exempt_addr6 is not None:
-            data_payload["src-affinity-exempt-addr6"] = src_affinity_exempt_addr6
+            data_payload["src-affinity-exempt-addr6"] = (
+                src_affinity_exempt_addr6
+            )
         if policy_partial_match is not None:
             data_payload["policy-partial-match"] = policy_partial_match
         if log_policy_pending is not None:
@@ -259,8 +270,12 @@ class Global:
         if log_app_id is not None:
             data_payload["log-app-id"] = log_app_id
         if proxy_transparent_cert_inspection is not None:
-            data_payload["proxy-transparent-cert-inspection"] = proxy_transparent_cert_inspection
+            data_payload["proxy-transparent-cert-inspection"] = (
+                proxy_transparent_cert_inspection
+            )
         if request_obs_fold is not None:
             data_payload["request-obs-fold"] = request_obs_fold
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

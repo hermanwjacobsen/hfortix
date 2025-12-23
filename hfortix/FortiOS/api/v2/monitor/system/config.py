@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -174,7 +175,9 @@ class Restore:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/system/config/restore", data=data)
+        return self._client.post(
+            "monitor", "/system/config/restore", data=data
+        )
 
 
 class RestoreStatus:
@@ -214,7 +217,9 @@ class RestoreStatus:
         params = payload_dict.copy() if payload_dict else {}
         params["session_id"] = session_id
         params.update(kwargs)
-        return self._client.get("monitor", "/system/config/restore-status", params=params)
+        return self._client.get(
+            "monitor", "/system/config/restore-status", params=params
+        )
 
 
 class UsbFilelist:
@@ -251,7 +256,9 @@ class UsbFilelist:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/config/usb-filelist", params=params)
+        return self._client.get(
+            "monitor", "/system/config/usb-filelist", params=params
+        )
 
 
 class Config:

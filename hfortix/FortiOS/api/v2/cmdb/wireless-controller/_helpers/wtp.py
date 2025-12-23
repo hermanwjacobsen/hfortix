@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ADMIN = ["discovered", "disable", "enable"]
 VALID_BODY_FIRMWARE_PROVISION_LATEST = ["disable", "once"]
@@ -310,7 +309,10 @@ def validate_wtp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
     # Validate split-tunneling-acl-local-ap-subnet if present
     if "split-tunneling-acl-local-ap-subnet" in payload:
         value = payload.get("split-tunneling-acl-local-ap-subnet")
-        if value and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET:
+        if (
+            value
+            and value not in VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET
+        ):
             return (
                 False,
                 f"Invalid split-tunneling-acl-local-ap-subnet '{value}'. Must be one of: {', '.join(VALID_BODY_SPLIT_TUNNELING_ACL_LOCAL_AP_SUBNET)}",

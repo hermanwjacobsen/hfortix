@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_IP_VERSION = ["4", "6"]
 VALID_BODY_ADDR_TYPE = ["4", "6"]

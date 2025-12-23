@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class Delete:
         if mkeys is not None:
             data["mkeys"] = mkeys
         data.update(kwargs)
-        return self._client.post("monitor", "/log/local-report/delete", data=data)
+        return self._client.post(
+            "monitor", "/log/local-report/delete", data=data
+        )
 
 
 class Download:
@@ -125,7 +128,9 @@ class Download:
         if layout is not None:
             params["layout"] = layout
         params.update(kwargs)
-        return self._client.get("monitor", "/log/local-report/download", params=params)
+        return self._client.get(
+            "monitor", "/log/local-report/download", params=params
+        )
 
 
 class LocalReport:

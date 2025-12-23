@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class Delete:
         if id_list is not None:
             data["id_list"] = id_list
         data.update(kwargs)
-        return self._client.post("monitor", "/system/config-script/delete", data=data)
+        return self._client.post(
+            "monitor", "/system/config-script/delete", data=data
+        )
 
 
 class Run:
@@ -121,7 +124,9 @@ class Run:
         if remote_script is not None:
             data["remote_script"] = remote_script
         data.update(kwargs)
-        return self._client.post("monitor", "/system/config-script/run", data=data)
+        return self._client.post(
+            "monitor", "/system/config-script/run", data=data
+        )
 
 
 class Upload:
@@ -166,7 +171,9 @@ class Upload:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/system/config-script/upload", data=data)
+        return self._client.post(
+            "monitor", "/system/config-script/upload", data=data
+        )
 
 
 class ConfigScript:
@@ -208,4 +215,6 @@ class ConfigScript:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/config-script", params=params)
+        return self._client.get(
+            "monitor", "/system/config-script", params=params
+        )

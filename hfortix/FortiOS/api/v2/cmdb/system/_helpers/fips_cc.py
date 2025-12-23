@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_STATUS = ["enable", "disable"]
 VALID_BODY_KEY_GENERATION_SELF_TEST = ["enable", "disable"]

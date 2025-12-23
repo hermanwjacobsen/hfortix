@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -88,7 +89,9 @@ class Create:
         if scope is not None:
             data["scope"] = scope
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/local/create", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/local/create", data=data
+        )
 
 
 class ImportLocal:
@@ -169,7 +172,9 @@ class ImportLocal:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn-certificate/local/import", data=data)
+        return self._client.post(
+            "monitor", "/vpn-certificate/local/import", data=data
+        )
 
 
 class Local:

@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -86,7 +87,9 @@ class Download:
         if inline is not None:
             params["inline"] = inline
         params.update(kwargs)
-        return self._client.get("monitor", "/log/forticloud-report/download", params=params)
+        return self._client.get(
+            "monitor", "/log/forticloud-report/download", params=params
+        )
 
 
 class ForticloudReport:

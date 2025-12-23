@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Radius:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -322,7 +325,9 @@ class Radius:
         if use_management_vdom is not None:
             data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload["switch-controller-nas-ip-dynamic"] = switch_controller_nas_ip_dynamic
+            data_payload["switch-controller-nas-ip-dynamic"] = (
+                switch_controller_nas_ip_dynamic
+            )
         if nas_ip is not None:
             data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
@@ -354,7 +359,9 @@ class Radius:
         if password_renewal is not None:
             data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload["require-message-authenticator"] = require_message_authenticator
+            data_payload["require-message-authenticator"] = (
+                require_message_authenticator
+            )
         if password_encoding is not None:
             data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
@@ -376,7 +383,9 @@ class Radius:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload["switch-controller-service-type"] = switch_controller_service_type
+            data_payload["switch-controller-service-type"] = (
+                switch_controller_service_type
+            )
         if transport_protocol is not None:
             data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
@@ -398,19 +407,25 @@ class Radius:
         if rsso_radius_response is not None:
             data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload["rsso-validate-request-secret"] = rsso_validate_request_secret
+            data_payload["rsso-validate-request-secret"] = (
+                rsso_validate_request_secret
+            )
         if rsso_secret is not None:
             data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
             data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload["rsso-endpoint-block-attribute"] = rsso_endpoint_block_attribute
+            data_payload["rsso-endpoint-block-attribute"] = (
+                rsso_endpoint_block_attribute
+            )
         if sso_attribute is not None:
             data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
             data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload["sso-attribute-value-override"] = sso_attribute_value_override
+            data_payload["sso-attribute-value-override"] = (
+                sso_attribute_value_override
+            )
         if rsso_context_timeout is not None:
             data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:
@@ -426,7 +441,9 @@ class Radius:
         if accounting_server is not None:
             data_payload["accounting-server"] = accounting_server
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -463,7 +480,9 @@ class Radius:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/radius/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -504,7 +523,7 @@ class Radius:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -688,7 +707,9 @@ class Radius:
         if use_management_vdom is not None:
             data_payload["use-management-vdom"] = use_management_vdom
         if switch_controller_nas_ip_dynamic is not None:
-            data_payload["switch-controller-nas-ip-dynamic"] = switch_controller_nas_ip_dynamic
+            data_payload["switch-controller-nas-ip-dynamic"] = (
+                switch_controller_nas_ip_dynamic
+            )
         if nas_ip is not None:
             data_payload["nas-ip"] = nas_ip
         if nas_id_type is not None:
@@ -720,7 +741,9 @@ class Radius:
         if password_renewal is not None:
             data_payload["password-renewal"] = password_renewal
         if require_message_authenticator is not None:
-            data_payload["require-message-authenticator"] = require_message_authenticator
+            data_payload["require-message-authenticator"] = (
+                require_message_authenticator
+            )
         if password_encoding is not None:
             data_payload["password-encoding"] = password_encoding
         if mac_username_delimiter is not None:
@@ -742,7 +765,9 @@ class Radius:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         if switch_controller_service_type is not None:
-            data_payload["switch-controller-service-type"] = switch_controller_service_type
+            data_payload["switch-controller-service-type"] = (
+                switch_controller_service_type
+            )
         if transport_protocol is not None:
             data_payload["transport-protocol"] = transport_protocol
         if tls_min_proto_version is not None:
@@ -764,19 +789,25 @@ class Radius:
         if rsso_radius_response is not None:
             data_payload["rsso-radius-response"] = rsso_radius_response
         if rsso_validate_request_secret is not None:
-            data_payload["rsso-validate-request-secret"] = rsso_validate_request_secret
+            data_payload["rsso-validate-request-secret"] = (
+                rsso_validate_request_secret
+            )
         if rsso_secret is not None:
             data_payload["rsso-secret"] = rsso_secret
         if rsso_endpoint_attribute is not None:
             data_payload["rsso-endpoint-attribute"] = rsso_endpoint_attribute
         if rsso_endpoint_block_attribute is not None:
-            data_payload["rsso-endpoint-block-attribute"] = rsso_endpoint_block_attribute
+            data_payload["rsso-endpoint-block-attribute"] = (
+                rsso_endpoint_block_attribute
+            )
         if sso_attribute is not None:
             data_payload["sso-attribute"] = sso_attribute
         if sso_attribute_key is not None:
             data_payload["sso-attribute-key"] = sso_attribute_key
         if sso_attribute_value_override is not None:
-            data_payload["sso-attribute-value-override"] = sso_attribute_value_override
+            data_payload["sso-attribute-value-override"] = (
+                sso_attribute_value_override
+            )
         if rsso_context_timeout is not None:
             data_payload["rsso-context-timeout"] = rsso_context_timeout
         if rsso_log_period is not None:
@@ -792,4 +823,6 @@ class Radius:
         if accounting_server is not None:
             data_payload["accounting-server"] = accounting_server
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

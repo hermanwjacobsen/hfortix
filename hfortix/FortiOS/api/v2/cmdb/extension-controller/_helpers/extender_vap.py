@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["local-vap", "lan-ext-vap"]
 VALID_BODY_BROADCAST_SSID = ["disable", "enable"]

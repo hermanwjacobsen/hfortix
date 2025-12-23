@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class Download:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/webproxy/pacfile/download", params=params)
+        return self._client.get(
+            "monitor", "/webproxy/pacfile/download", params=params
+        )
 
 
 class Upload:
@@ -121,7 +124,9 @@ class Upload:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/webproxy/pacfile/upload", data=data)
+        return self._client.post(
+            "monitor", "/webproxy/pacfile/upload", data=data
+        )
 
 
 class Pacfile:

@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class QosProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -244,7 +247,9 @@ class QosProfile:
         if call_capacity is not None:
             data_payload["call-capacity"] = call_capacity
         if bandwidth_admission_control is not None:
-            data_payload["bandwidth-admission-control"] = bandwidth_admission_control
+            data_payload["bandwidth-admission-control"] = (
+                bandwidth_admission_control
+            )
         if bandwidth_capacity is not None:
             data_payload["bandwidth-capacity"] = bandwidth_capacity
         if dscp_wmm_mapping is not None:
@@ -268,7 +273,9 @@ class QosProfile:
         if wmm_bk_dscp is not None:
             data_payload["wmm-bk-dscp"] = wmm_bk_dscp
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -305,7 +312,9 @@ class QosProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/qos-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -346,7 +355,7 @@ class QosProfile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -452,7 +461,9 @@ class QosProfile:
         if call_capacity is not None:
             data_payload["call-capacity"] = call_capacity
         if bandwidth_admission_control is not None:
-            data_payload["bandwidth-admission-control"] = bandwidth_admission_control
+            data_payload["bandwidth-admission-control"] = (
+                bandwidth_admission_control
+            )
         if bandwidth_capacity is not None:
             data_payload["bandwidth-capacity"] = bandwidth_capacity
         if dscp_wmm_mapping is not None:
@@ -476,4 +487,6 @@ class QosProfile:
         if wmm_bk_dscp is not None:
             data_payload["wmm-bk-dscp"] = wmm_bk_dscp
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SESSION_CACHE_SIZE = ["min", "default", "max"]
 VALID_QUERY_ACTION = ["default", "schema"]

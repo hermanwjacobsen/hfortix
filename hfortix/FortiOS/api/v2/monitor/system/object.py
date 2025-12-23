@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -100,7 +101,9 @@ class Usage:
         if child_path is not None:
             params["child_path"] = child_path
         params.update(kwargs)
-        return self._client.get("monitor", "/system/object/usage", params=params)
+        return self._client.get(
+            "monitor", "/system/object/usage", params=params
+        )
 
 
 class Object:

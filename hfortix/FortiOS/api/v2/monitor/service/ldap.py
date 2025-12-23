@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -96,7 +97,9 @@ class Query:
         if ldap is not None:
             params["ldap"] = ldap
         params.update(kwargs)
-        return self._client.get("monitor", "/service/ldap/query", params=params)
+        return self._client.get(
+            "monitor", "/service/ldap/query", params=params
+        )
 
 
 class Ldap:

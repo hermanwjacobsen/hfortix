@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class LocalInPolicy6:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -232,15 +235,25 @@ class LocalInPolicy6:
         if internet_service6_src is not None:
             data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = internet_service6_src_name
+            data_payload["internet-service6-src-name"] = (
+                internet_service6_src_name
+            )
         if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = internet_service6_src_group
+            data_payload["internet-service6-src-group"] = (
+                internet_service6_src_group
+            )
         if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = internet_service6_src_custom
+            data_payload["internet-service6-src-custom"] = (
+                internet_service6_src_custom
+            )
         if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = internet_service6_src_custom_group
+            data_payload["internet-service6-src-custom-group"] = (
+                internet_service6_src_custom_group
+            )
         if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
+            data_payload["internet-service6-src-fortiguard"] = (
+                internet_service6_src_fortiguard
+            )
         if dstaddr_negate is not None:
             data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
@@ -248,7 +261,9 @@ class LocalInPolicy6:
         if service_negate is not None:
             data_payload["service-negate"] = service_negate
         if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = internet_service6_src_negate
+            data_payload["internet-service6-src-negate"] = (
+                internet_service6_src_negate
+            )
         if schedule is not None:
             data_payload["schedule"] = schedule
         if status is not None:
@@ -260,7 +275,9 @@ class LocalInPolicy6:
         if comments is not None:
             data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -297,7 +314,9 @@ class LocalInPolicy6:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/local-in-policy6/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -338,7 +357,7 @@ class LocalInPolicy6:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -432,15 +451,25 @@ class LocalInPolicy6:
         if internet_service6_src is not None:
             data_payload["internet-service6-src"] = internet_service6_src
         if internet_service6_src_name is not None:
-            data_payload["internet-service6-src-name"] = internet_service6_src_name
+            data_payload["internet-service6-src-name"] = (
+                internet_service6_src_name
+            )
         if internet_service6_src_group is not None:
-            data_payload["internet-service6-src-group"] = internet_service6_src_group
+            data_payload["internet-service6-src-group"] = (
+                internet_service6_src_group
+            )
         if internet_service6_src_custom is not None:
-            data_payload["internet-service6-src-custom"] = internet_service6_src_custom
+            data_payload["internet-service6-src-custom"] = (
+                internet_service6_src_custom
+            )
         if internet_service6_src_custom_group is not None:
-            data_payload["internet-service6-src-custom-group"] = internet_service6_src_custom_group
+            data_payload["internet-service6-src-custom-group"] = (
+                internet_service6_src_custom_group
+            )
         if internet_service6_src_fortiguard is not None:
-            data_payload["internet-service6-src-fortiguard"] = internet_service6_src_fortiguard
+            data_payload["internet-service6-src-fortiguard"] = (
+                internet_service6_src_fortiguard
+            )
         if dstaddr_negate is not None:
             data_payload["dstaddr-negate"] = dstaddr_negate
         if service is not None:
@@ -448,7 +477,9 @@ class LocalInPolicy6:
         if service_negate is not None:
             data_payload["service-negate"] = service_negate
         if internet_service6_src_negate is not None:
-            data_payload["internet-service6-src-negate"] = internet_service6_src_negate
+            data_payload["internet-service6-src-negate"] = (
+                internet_service6_src_negate
+            )
         if schedule is not None:
             data_payload["schedule"] = schedule
         if status is not None:
@@ -460,4 +491,6 @@ class LocalInPolicy6:
         if comments is not None:
             data_payload["comments"] = comments
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -92,7 +93,9 @@ class Download:
         if default is not None:
             params["default"] = default
         params.update(kwargs)
-        return self._client.get("monitor", "/endpoint-control/avatar/download", params=params)
+        return self._client.get(
+            "monitor", "/endpoint-control/avatar/download", params=params
+        )
 
 
 class Avatar:

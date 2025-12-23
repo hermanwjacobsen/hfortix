@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SSL_DH_BITS = ["768", "1024", "1536", "2048"]
 VALID_BODY_SSL_SEND_EMPTY_FRAGS = ["enable", "disable"]

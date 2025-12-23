@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MANAGEMENT_INTERFACE = ["internal", "mgmt"]
 VALID_BODY_DEVICE_DETECTION = ["disable", "enable"]

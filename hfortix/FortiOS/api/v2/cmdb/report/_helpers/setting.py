@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_PDF_REPORT = ["enable", "disable"]
 VALID_BODY_FORTIVIEW = ["enable", "disable"]

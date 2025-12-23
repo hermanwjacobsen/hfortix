@@ -153,7 +153,9 @@ class System:
         self.ha_table_checksums = HaTableChecksums(client)
         self.hscalefw_license = HscalefwLicense(client)
         self.interface = Interface(client)
-        self.interface_connected_admins_info = InterfaceConnectedAdminsInfo(client)
+        self.interface_connected_admins_info = InterfaceConnectedAdminsInfo(
+            client
+        )
         self.ipam = Ipam(client)
         self.ipconf = Ipconf(client)
         self.link_monitor = LinkMonitor(client)

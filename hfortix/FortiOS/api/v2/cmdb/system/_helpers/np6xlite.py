@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_FASTPATH = ["disable", "enable"]
 VALID_BODY_PER_SESSION_ACCOUNTING = ["disable", "traffic-log-only", "enable"]

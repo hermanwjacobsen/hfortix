@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ICMP_PORT = ["closed", "open", "unknown"]
 VALID_BODY_FTP_PORT = ["closed", "open", "unknown"]

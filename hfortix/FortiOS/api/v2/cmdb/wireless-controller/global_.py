@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Global:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -231,7 +234,9 @@ class Global:
         if rolling_wtp_upgrade is not None:
             data_payload["rolling-wtp-upgrade"] = rolling_wtp_upgrade
         if rolling_wtp_upgrade_threshold is not None:
-            data_payload["rolling-wtp-upgrade-threshold"] = rolling_wtp_upgrade_threshold
+            data_payload["rolling-wtp-upgrade-threshold"] = (
+                rolling_wtp_upgrade_threshold
+            )
         if max_retransmit is not None:
             data_payload["max-retransmit"] = max_retransmit
         if control_message_offload is not None:
@@ -287,4 +292,6 @@ class Global:
         if dfs_lab_test is not None:
             data_payload["dfs-lab-test"] = dfs_lab_test
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

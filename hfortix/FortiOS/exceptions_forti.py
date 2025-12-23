@@ -14,7 +14,6 @@ class FortinetError(Exception):
     """Base exception for all Fortinet API errors"""
 
 
-
 class APIError(FortinetError):
     """
     Generic API error with optional metadata
@@ -26,7 +25,9 @@ class APIError(FortinetError):
         response: Full API response dict
     """
 
-    def __init__(self, message, http_status=None, error_code=None, response=None):
+    def __init__(
+        self, message, http_status=None, error_code=None, response=None
+    ):
         super().__init__(message)
         self.http_status = http_status
         self.error_code = error_code
@@ -46,10 +47,8 @@ class AuthenticationError(FortinetError):
     """HTTP 401 - Authentication failed (invalid credentials)"""
 
 
-
 class AuthorizationError(FortinetError):
     """HTTP 403 - Authorization failed (insufficient permissions)"""
-
 
 
 class ReadOnlyModeError(FortinetError):
@@ -59,7 +58,6 @@ class ReadOnlyModeError(FortinetError):
     Raised when attempting POST/PUT/DELETE operations with read_only=True.
     This is a client-side block to prevent accidental writes in safe mode.
     """
-
 
 
 class ResourceNotFoundError(APIError):
@@ -135,7 +133,7 @@ HTTP_STATUS_CODES = {
     404: "Not Found - Resource does not exist",
     405: "Method Not Allowed - HTTP method not supported for this endpoint",
     409: "Conflict - Request conflicts with current state",
-    422: "Unprocessable Entity - Request syntax is correct but semantically invalid",
+    422: "Unprocessable Entity - Request syntax is correct but semantically invalid",  # noqa: E501
     429: "Too Many Requests - Rate limit exceeded",
     500: "Internal Server Error - Server encountered an error",
     502: "Bad Gateway - Invalid response from upstream server",
@@ -154,7 +152,9 @@ def get_http_status_description(status_code: int) -> str:
     Returns:
         str: Status description or "Unknown status code"
     """
-    return HTTP_STATUS_CODES.get(status_code, f"Unknown status code: {status_code}")
+    return HTTP_STATUS_CODES.get(
+        status_code, f"Unknown status code: {status_code}"
+    )
 
 
 # ============================================================================
@@ -172,9 +172,14 @@ class DuplicateEntryError(APIError):
 
 
 class EntryInUseError(APIError):
-    """Entry cannot be deleted because it's in use (error code -23, -94, -95, etc.)"""
+    """
+    Entry cannot be deleted because it's in use (error code -23, -94,
+    -95, etc.)
+    """
 
-    def __init__(self, message="Entry is in use and cannot be deleted", **kwargs):
+    def __init__(
+        self, message="Entry is in use and cannot be deleted", **kwargs
+    ):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -23
         super().__init__(message, **kwargs)
@@ -192,7 +197,9 @@ class InvalidValueError(APIError):
 class PermissionDeniedError(APIError):
     """Permission denied, insufficient privileges (error code -14, -37)"""
 
-    def __init__(self, message="Permission denied. Insufficient privileges.", **kwargs):
+    def __init__(
+        self, message="Permission denied. Insufficient privileges.", **kwargs
+    ):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -14
         super().__init__(message, **kwargs)
@@ -215,7 +222,7 @@ FORTIOS_ERROR_CODES = {
     -8: "Invalid IP Address",
     -9: "Invalid IP Netmask",
     -10: "Invalid gateway address",
-    -11: "Incorrect hexadecimal entry. Must use 2 hex digits in the range 0-9, A-F",
+    -11: "Incorrect hexadecimal entry. Must use 2 hex digits in the range 0-9, A-F",  # noqa: E501
     -12: "Invalid IPSEC auto algorithm chosen",
     -13: "Invalid Timeout value. Should be in the range 1-480",
     -14: "Permission denied. Insufficient privileges",
@@ -278,11 +285,11 @@ FORTIOS_ERROR_CODES = {
     -71: "Failed to update the smartfilter",
     -72: "Field value exceeds the maximum number of characters",
     -73: "End IP cannot be smaller than the start IP",
-    -74: "The last download operation has not ended yet, please wait until it finishes",
+    -74: "The last download operation has not ended yet, please wait until it finishes",  # noqa: E501
     -75: "DHCP range has conflict with IP/MAC binding",
-    -76: "DHCP relay cannot be created because DHCP server of same type already exists on that interface",
-    -77: "DHCP server cannot be created because DHCP relay of same type already exists on that interface",
-    -78: "DHCP over IPSEC service created conflicts with another DHCP over IPSEC service on VPN's internal interface",
+    -76: "DHCP relay cannot be created because DHCP server of same type already exists on that interface",  # noqa: E501
+    -77: "DHCP server cannot be created because DHCP relay of same type already exists on that interface",  # noqa: E501
+    -78: "DHCP over IPSEC service created conflicts with another DHCP over IPSEC service on VPN's internal interface",  # noqa: E501
     -79: "Internal error in ipsec",
     -80: "No route to the remote gateway",
     -81: "No tunnel",
@@ -298,12 +305,12 @@ FORTIOS_ERROR_CODES = {
     -91: "IP pool address should match the interface",
     -92: "Invalid external service port. It has been occupied by system",
     -93: "Connection config error",
-    -94: "The user group cannot be deleted because it is in use by one of the policies",
+    -94: "The user group cannot be deleted because it is in use by one of the policies",  # noqa: E501
     -95: "The user group cannot be deleted because it is in use by PPTP",
     -96: "The user group cannot be deleted because it is in use by L2TP",
-    -97: "The radius cannot be deleted because it is in use by one of the users",
+    -97: "The radius cannot be deleted because it is in use by one of the users",  # noqa: E501
     -98: "There is no such user group name",
-    -99: "The radius cannot be deleted because it is in use by one of the groups",
+    -99: "The radius cannot be deleted because it is in use by one of the groups",  # noqa: E501
     -100: "A duplicate user name already exists",
     # User/Group/Auth Errors (-101 to -200)
     -101: "A duplicate remote server name already exists",
@@ -341,7 +348,7 @@ FORTIOS_ERROR_CODES = {
     -135: "Invalid hour input",
     -136: "Invalid minute input",
     -137: "Invalid second input",
-    -138: "The gateway peerid cannot be same as the localid or peerid in any other gateway settings",
+    -138: "The gateway peerid cannot be same as the localid or peerid in any other gateway settings",  # noqa: E501
     -139: "The IP pool range cannot be larger than a class A subnet",
     -140: "Missing the ipsec phase1 dpd value",
     -141: "Missing the ipsec phase1 dpd idleworry value",
@@ -360,7 +367,7 @@ FORTIOS_ERROR_CODES = {
     -154: "Bridge management IP and HA port IP cannot be in the same subnet",
     -155: "Keylife KBytes value must be greater than 5120",
     -156: "The IP pool range overlapped an existing IP pool range",
-    -157: "This interface cannot be assigned to a zone because it is currently being used by a policy",
+    -157: "This interface cannot be assigned to a zone because it is currently being used by a policy",  # noqa: E501
     -158: "Invalid VLAN ID",
     -160: "CFG_ER_GENERIC",
     -161: "The primary and secondary IP cannot be the same",
@@ -371,20 +378,20 @@ FORTIOS_ERROR_CODES = {
     -166: "The name is too long",
     -167: "Failed to import pkcs12 file",
     -168: "Could not export pkcs12 file",
-    -169: "Your traffic shaping maximum bandwidth must be greater than your guaranteed bandwidth",
+    -169: "Your traffic shaping maximum bandwidth must be greater than your guaranteed bandwidth",  # noqa: E501
     -170: "Invalid SMTP mail server format",
     -171: "Invalid SMTP mail user format",
     -172: "No password for authentication",
     -173: "The string contains XSS vulnerability characters",
     -175: "Max size of log file must be in the range 1 and 1024",
     -176: "This ippool is being used by a policy",
-    -177: "Moving a policy from one interface/zone pair to a different interface/zone pair is not permitted",
-    -178: "Moving a policy from one interface/zone to a different interface/zone is not permitted",
+    -177: "Moving a policy from one interface/zone pair to a different interface/zone pair is not permitted",  # noqa: E501
+    -178: "Moving a policy from one interface/zone to a different interface/zone is not permitted",  # noqa: E501
     -180: "We are unable to send your update request",
     -181: "Upload file is too big, only part of it is saved",
     -183: "Incorrect upload file or the file is empty",
     -184: "Some duplicate entries in the upload file have been removed",
-    -185: "Too many regular expression entries were present in the upload file, only part of them were saved",
+    -185: "Too many regular expression entries were present in the upload file, only part of them were saved",  # noqa: E501
     -186: "Maximum number of regular expression entries has been reached",
     -187: "End Point pattern exceeds the maximum length",
     -188: "Cannot have both HA and session-sync turned on",
@@ -412,7 +419,7 @@ FORTIOS_ERROR_CODES = {
     -233: "Start IP and end IP conflict with excluded IP range configuration",
     -234: "Start IP and end IP conflict with reserved IP-MAC configuration",
     -235: "Scope IP pool conflicts with system IP-MAC binding configuration",
-    -236: "A regular(Ethernet) DHCP server cannot be configured on an interface without a static IP",
+    -236: "A regular(Ethernet) DHCP server cannot be configured on an interface without a static IP",  # noqa: E501
     -240: "Invalid DHCP lease time",
     -241: "Invalid default gateway IP address",
     -242: "Invalid DNS IP address",
@@ -435,7 +442,7 @@ FORTIOS_ERROR_CODES = {
     -310: "Virtual IP group names and virtual IP names cannot be the same",
     -311: "Virtual IP group names and address names cannot be the same",
     -312: "Virtual IP group names and address group names cannot be the same",
-    -313: "The bookmark group could not be deleted because it is used by one of the SSLVPN user groups",
+    -313: "The bookmark group could not be deleted because it is used by one of the SSLVPN user groups",  # noqa: E501
     -314: "At least one SSL VPN web application needs to be enabled",
     -315: "Archived file does not exist on Disk",
     -350: "Invalid ICMP type",
@@ -448,7 +455,7 @@ FORTIOS_ERROR_CODES = {
     -363: "Invalid port range",
     -375: "A radius server in this vdom is used by wireless setting",
     -376: "VDOM contains vdom-link",
-    -377: "Invalid IPsec transform. Encryption and authentication cannot both be NULL",
+    -377: "Invalid IPsec transform. Encryption and authentication cannot both be NULL",  # noqa: E501
     -390: "Invalid GTP RAI value",
     -392: "Invalid GTP IMEI value",
     -393: "Carrier feature license invalid or not present",
@@ -456,62 +463,62 @@ FORTIOS_ERROR_CODES = {
     # Interface/VDOM Errors (-506 to -565)
     -506: "Interface IP overlap",
     -508: "Please input a valid interface IP",
-    -509: "The interface is not allowed to change the zone because one of the policies depends on it",
+    -509: "The interface is not allowed to change the zone because one of the policies depends on it",  # noqa: E501
     -513: "Duplicate virtual domain name",
     -514: "Virtual domains still in use cannot be deleted",
     -515: "The name is a reserved keyword by the system",
     -516: "AV profile is empty",
     -519: "Interface name cannot be the same as VDOM",
     -520: "VLAN MTU cannot be larger than its physical interface's MTU",
-    -521: "Physical interface MTU cannot be smaller than its VLAN interface's MTU",
-    -522: "VLAN ID or physical interface cannot be changed once a VLAN has been created",
+    -521: "Physical interface MTU cannot be smaller than its VLAN interface's MTU",  # noqa: E501
+    -522: "VLAN ID or physical interface cannot be changed once a VLAN has been created",  # noqa: E501
     -523: "Virtual domain license exceeded",
     -525: "Timeout should be between 0 and 65535 seconds",
-    -526: "Another DHCP server with a lease range of the same subnet ID already exists",
-    -527: "The interface name for a DHCP server can't be more than 14 characters",
-    -528: "The client interface name for a DHCP relay can't be more than 14 characters",
-    -529: "An ActiveDirectory group on this server is being used by a user group",
+    -526: "Another DHCP server with a lease range of the same subnet ID already exists",  # noqa: E501
+    -527: "The interface name for a DHCP server can't be more than 14 characters",  # noqa: E501
+    -528: "The client interface name for a DHCP relay can't be more than 14 characters",  # noqa: E501
+    -529: "An ActiveDirectory group on this server is being used by a user group",  # noqa: E501
     -530: "Interfaces must have the same forward domain ID in TP mode",
     -531: "PPTP timeout must be between 0 and 65535 minutes",
-    -540: "Invalid IP range. The specified IPs must be contained on the same 24-bit subnet (x.x.x.1-x.x.x.254)",
-    -541: "Invalid IP range. The L2TP and PPTP address ranges must not overlap",
+    -540: "Invalid IP range. The specified IPs must be contained on the same 24-bit subnet (x.x.x.1-x.x.x.254)",  # noqa: E501
+    -541: "Invalid IP range. The L2TP and PPTP address ranges must not overlap",  # noqa: E501
     -542: "The imported CRL certificate is invalid",
-    -550: "Cannot enable HTTPS redirect because FortiClient checking is enabled in some policy",
-    -551: "Cannot enable FortiClient checking because authentication is redirected to HTTPS",
-    -552: "Cannot create interface with name that could conflict with interfaces created by changing internal-switch-mode",
-    -553: "Name conflicts with an interface, vdom, switch-interface, zone, or interface name used for hardware switch interfaces",
-    -554: "Switch-interface members cannot be changed once the switch has been created",
+    -550: "Cannot enable HTTPS redirect because FortiClient checking is enabled in some policy",  # noqa: E501
+    -551: "Cannot enable FortiClient checking because authentication is redirected to HTTPS",  # noqa: E501
+    -552: "Cannot create interface with name that could conflict with interfaces created by changing internal-switch-mode",  # noqa: E501
+    -553: "Name conflicts with an interface, vdom, switch-interface, zone, or interface name used for hardware switch interfaces",  # noqa: E501
+    -554: "Switch-interface members cannot be changed once the switch has been created",  # noqa: E501
     -555: "Software switch interfaces are not permitted in transparent mode",
     -560: "Supplied name is a reserved keyword and cannot be used",
     -561: "Registering device to FortiManager failed",
     -562: "Please select an endpoint NAC profile",
     -563: "Please select an application detection list",
     -564: "Invalid FortiClient license key",
-    -565: "A specific application must be selected for 'Not Installed' or 'Not Running' rules with a 'Deny' action",
+    -565: "A specific application must be selected for 'Not Installed' or 'Not Running' rules with a 'Deny' action",  # noqa: E501
     -580: "The vdom property limit has been reached",
-    -581: "Must delete one replacemsg group otherwise it will exceed group limit after vdom enable",
+    -581: "Must delete one replacemsg group otherwise it will exceed group limit after vdom enable",  # noqa: E501
     # Web Filtering/Content Errors (-600 to -713)
     -600: "Invalid category or group",
     -602: "Invalid reporting time range",
     -603: "Invalid number of arguments specified",
-    -604: "FortiGuard Web Filtering reports are unavailable on units without hard drives",
+    -604: "FortiGuard Web Filtering reports are unavailable on units without hard drives",  # noqa: E501
     -605: "That protection profile does not exist",
-    -606: "An unknown error occurred while processing the configuration request",
+    -606: "An unknown error occurred while processing the configuration request",  # noqa: E501
     -607: "Invalid duration",
-    -608: "Invalid date/time format. The date and time must be 'yyyy/mm/dd hh:mm:ss'",
-    -609: "The specified expiry date is invalid. It must be from 5 minutes to 365 days in the future",
+    -608: "Invalid date/time format. The date and time must be 'yyyy/mm/dd hh:mm:ss'",  # noqa: E501
+    -609: "The specified expiry date is invalid. It must be from 5 minutes to 365 days in the future",  # noqa: E501
     -610: "Invalid local category ID (must be in the range 96-127)",
-    -611: "Invalid override authentication port (must be in the range 1-65535 excluding 80 and 443)",
-    -612: "Invalid cache time-to-live (must be in the range 300-86400 seconds)",
+    -611: "Invalid override authentication port (must be in the range 1-65535 excluding 80 and 443)",  # noqa: E501
+    -612: "Invalid cache time-to-live (must be in the range 300-86400 seconds)",  # noqa: E501
     -613: "Invalid cache memory usage limit (must be in the range 2-15%)",
-    -614: "Only a domain name can be specified for this rule type. Either specify only the domain name or change the type to directory",
+    -614: "Only a domain name can be specified for this rule type. Either specify only the domain name or change the type to directory",  # noqa: E501
     -615: "The HTTP and HTTPS override authentication ports cannot overlap",
     -650: "The integer value is not within valid range",
     -651: "Input value is invalid",
     -652: "Some of the filter elements specified are mutually exclusive",
     -653: "Invalid regular expression",
     -658: "Question marks are not allowed in simple URL Filter entries",
-    -659: "Cannot change to TP mode because this vdom has at least one vdom-link or loopback interface",
+    -659: "Cannot change to TP mode because this vdom has at least one vdom-link or loopback interface",  # noqa: E501
     -690: "You must have at least one authentication method enabled",
     -701: "Wrong Group type in group definition",
     -702: "Group id out of range in group definition",
@@ -527,7 +534,7 @@ FORTIOS_ERROR_CODES = {
     -712: "The user-defined rule name is invalid",
     -713: "Input value is invalid",
     # VPN/Backup/System Errors (-800 to -1102)
-    -800: "The SSL VPN session zone cannot be deleted because it is in use by one of the policies",
+    -800: "The SSL VPN session zone cannot be deleted because it is in use by one of the policies",  # noqa: E501
     -901: "Backup failed, please try again",
     -902: "Restore failed, please try again",
     -950: "Invalid timeout",
@@ -545,13 +552,13 @@ FORTIOS_ERROR_CODES = {
     -1102: "Downloading FortiClient installer from FortiGuard timed out",
     # Password/SSL VPN Errors (-2001 to -2011)
     -2001: "Your password must be at least 1 character long",
-    -2002: "Your password cannot contain the following characters: ~ ! # % ^ & *+`':()[]{}<>|/",
+    -2002: "Your password cannot contain the following characters: ~ ! # % ^ & *+`':()[]{}<>|/",  # noqa: E501
     -2003: "The password entries do not match",
     -2004: "Your name is invalid",
     -2006: "Your password must be at least 8 characters long",
     -2007: "SSLVPN port and HTTPS admin port clash on same IP address",
     -2008: "Destination address of split tunneling policy is invalid",
-    -2009: "Please select at least one client check option when client check is enabled",
+    -2009: "Please select at least one client check option when client check is enabled",  # noqa: E501
     -2011: "At least one IP pool must be specified for SSL VPN tunnel mode",
     # File/FortiAnalyzer Errors (-3000 to -3248)
     -3000: "Internal error processing requested file",
@@ -564,7 +571,7 @@ FORTIOS_ERROR_CODES = {
     -3200: "FortiAnalyzer IP is not valid",
     -3201: "FortiAnalyzer IP is used by other settings",
     -3202: "Cannot connect to FortiAnalyzer",
-    -3203: "FortiAnalyzer version does not recognize remote log viewing request",
+    -3203: "FortiAnalyzer version does not recognize remote log viewing request",  # noqa: E501
     -3204: "FortiAnalyzer is used by other settings",
     -3205: "Error reading FortiAnalyzer report files",
     -3206: "Please configure a FortiAnalyzer device",
@@ -587,7 +594,7 @@ FORTIOS_ERROR_CODES = {
     -3233: "Archived file does not exist on FortiGuard Service device",
     -3234: "Invalid option on FortiGuard Service",
     -3235: "Communication error with FortiGuard Service device",
-    -3240: "Unable to update FortiGuard Analysis & Management Service license information",
+    -3240: "Unable to update FortiGuard Analysis & Management Service license information",  # noqa: E501
     -3241: "Error requesting image from the management station",
     -3242: "Error downloading image from the management station",
     -3243: "Error saving configuration to the management station",
@@ -597,7 +604,7 @@ FORTIOS_ERROR_CODES = {
     -3247: "Error requesting firmware image list",
     -3248: "Failed to delete script execution history record",
     # Wireless/System Errors (-4001 to -10002)
-    -4001: "Please remove virtual AP interfaces before switching out of AP mode",
+    -4001: "Please remove virtual AP interfaces before switching out of AP mode",  # noqa: E501
     -10000: "Invalid action",
     -10001: "Request missing",
     -10002: "Invalid request",
@@ -629,7 +636,9 @@ def get_error_description(error_code: int) -> str:
 
 
 def _get_suggestion_for_error(
-    error_code: Optional[int], http_status: Optional[int], endpoint: Optional[str] = None
+    error_code: Optional[int],
+    http_status: Optional[int],
+    endpoint: Optional[str] = None,
 ) -> str:
     """
     Get helpful suggestion based on error type
@@ -643,27 +652,27 @@ def _get_suggestion_for_error(
         str: Helpful suggestion for the user, or empty string
     """
     suggestions = {
-        -3: "💡 Tip: Use .exists() to check if the object exists before accessing it.",
-        -5: "💡 Tip: Use .exists() to check for duplicates before creating, or .update() to modify existing objects.",
-        -15: "💡 Tip: Use unique names for all objects. Use .exists() to verify uniqueness.",
-        -23: "💡 Tip: Remove references from firewall policies and other configs before deleting.",
-        -94: "💡 Tip: Remove user group from all firewall policies before deleting.",
-        -95: "💡 Tip: Remove user group from PPTP configuration before deleting.",
-        -14: "💡 Tip: Check VDOM access permissions and API token admin privileges.",
-        -37: "💡 Tip: Ensure your API token or user has sufficient read/write permissions.",
-        -651: "💡 Tip: Verify parameter format and allowed values in API documentation.",
+        -3: "💡 Tip: Use .exists() to check if the object exists before accessing it.",  # noqa: E501
+        -5: "💡 Tip: Use .exists() to check for duplicates before creating, or .update() to modify existing objects.",  # noqa: E501
+        -15: "💡 Tip: Use unique names for all objects. Use .exists() to verify uniqueness.",  # noqa: E501
+        -23: "💡 Tip: Remove references from firewall policies and other configs before deleting.",  # noqa: E501
+        -94: "💡 Tip: Remove user group from all firewall policies before deleting.",  # noqa: E501
+        -95: "💡 Tip: Remove user group from PPTP configuration before deleting.",  # noqa: E501
+        -14: "💡 Tip: Check VDOM access permissions and API token admin privileges.",  # noqa: E501
+        -37: "💡 Tip: Ensure your API token or user has sufficient read/write permissions.",  # noqa: E501
+        -651: "💡 Tip: Verify parameter format and allowed values in API documentation.",  # noqa: E501
         -1: "💡 Tip: Check string length limits and field format requirements.",
-        -50: "💡 Tip: Validate input format matches expected pattern (IP, MAC, etc.).",
+        -50: "💡 Tip: Validate input format matches expected pattern (IP, MAC, etc.).",  # noqa: E501
     }
 
     http_suggestions = {
-        404: "💡 Tip: Verify the object name and endpoint path. Use .exists() to check availability.",
-        400: "💡 Tip: Check required parameters and their format. Review API documentation.",
-        401: "💡 Tip: Verify API token is valid and not expired. Re-authenticate if needed.",
-        403: "💡 Tip: Check VDOM access and ensure API user has required permissions.",
-        429: "💡 Tip: Implement rate limiting in your code or increase delay between requests.",
-        500: "💡 Tip: This is a FortiGate server error. Check device logs and system status.",
-        503: "💡 Tip: FortiGate may be busy or restarting. Wait and retry with exponential backoff.",
+        404: "💡 Tip: Verify the object name and endpoint path. Use .exists() to check availability.",  # noqa: E501
+        400: "💡 Tip: Check required parameters and their format. Review API documentation.",  # noqa: E501
+        401: "💡 Tip: Verify API token is valid and not expired. Re-authenticate if needed.",  # noqa: E501
+        403: "💡 Tip: Check VDOM access and ensure API user has required permissions.",  # noqa: E501
+        429: "💡 Tip: Implement rate limiting in your code or increase delay between requests.",  # noqa: E501
+        500: "💡 Tip: This is a FortiGate server error. Check device logs and system status.",  # noqa: E501
+        503: "💡 Tip: FortiGate may be busy or restarting. Wait and retry with exponential backoff.",  # noqa: E501
     }
 
     # Check error code first (more specific)
@@ -690,7 +699,8 @@ def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
 
     Examples:
         >>> response = {'status': 'error', 'http_status': 404, 'error': -3}
-        >>> raise_for_status(response)  # Raises ResourceNotFoundError with helpful tip
+        >>> raise_for_status(response)  # Raises ResourceNotFoundError with
+        helpful tip
     """
     if not isinstance(response, dict):
         return
@@ -716,7 +726,12 @@ def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
             error_code=error_code,
             response=response,
         )
-    elif error_code == -23 or error_code == -94 or error_code == -95 or error_code == -96:
+    elif (
+        error_code == -23
+        or error_code == -94
+        or error_code == -95
+        or error_code == -96
+    ):
         raise EntryInUseError(
             message,
             http_status=http_status,
@@ -747,21 +762,29 @@ def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
 
     # Priority 2: Check HTTP status codes
     elif http_status == 404:
-        raise ResourceNotFoundError(message, error_code=error_code, response=response)
+        raise ResourceNotFoundError(
+            message, error_code=error_code, response=response
+        )
     elif http_status == 400:
-        raise BadRequestError(message, error_code=error_code, response=response)
+        raise BadRequestError(
+            message, error_code=error_code, response=response
+        )
     elif http_status == 401:
         raise AuthenticationError(message)
     elif http_status == 403:
         raise AuthorizationError(message)
     elif http_status == 405:
-        raise MethodNotAllowedError(message, error_code=error_code, response=response)
+        raise MethodNotAllowedError(
+            message, error_code=error_code, response=response
+        )
     elif http_status == 429:
         raise RateLimitError(message, error_code=error_code, response=response)
     elif http_status == 500:
         raise ServerError(message, error_code=error_code, response=response)
     elif http_status == 503:
-        raise ServiceUnavailableError(message, error_code=error_code, response=response)
+        raise ServiceUnavailableError(
+            message, error_code=error_code, response=response
+        )
 
     # Default: Generic APIError
     else:

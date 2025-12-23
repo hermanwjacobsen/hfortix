@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class Add:
         if spt is not None:
             data["spt"] = spt
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/clearpass-address/add", data=data)
+        return self._client.post(
+            "monitor", "/firewall/clearpass-address/add", data=data
+        )
 
 
 class Delete:
@@ -129,7 +132,9 @@ class Delete:
         if spt is not None:
             data["spt"] = spt
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/clearpass-address/delete", data=data)
+        return self._client.post(
+            "monitor", "/firewall/clearpass-address/delete", data=data
+        )
 
 
 class ClearpassAddress:

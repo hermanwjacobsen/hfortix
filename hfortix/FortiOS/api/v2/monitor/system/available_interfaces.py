@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class Meta:
         if include_ha is not None:
             params["include_ha"] = include_ha
         params.update(kwargs)
-        return self._client.get("monitor", "/system/available-interfaces/meta", params=params)
+        return self._client.get(
+            "monitor", "/system/available-interfaces/meta", params=params
+        )
 
 
 class AvailableInterfaces:
@@ -140,4 +143,6 @@ class AvailableInterfaces:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/system/available-interfaces", params=params)
+        return self._client.get(
+            "monitor", "/system/available-interfaces", params=params
+        )

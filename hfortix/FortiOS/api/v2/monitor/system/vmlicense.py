@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class Download:
         if proxy_url is not None:
             data["proxy_url"] = proxy_url
         data.update(kwargs)
-        return self._client.post("monitor", "/system/vmlicense/download", data=data)
+        return self._client.post(
+            "monitor", "/system/vmlicense/download", data=data
+        )
 
 
 class DownloadEval:
@@ -133,7 +136,9 @@ class DownloadEval:
         if is_government is not None:
             data["is_government"] = is_government
         data.update(kwargs)
-        return self._client.post("monitor", "/system/vmlicense/download-eval", data=data)
+        return self._client.post(
+            "monitor", "/system/vmlicense/download-eval", data=data
+        )
 
 
 class Upload:
@@ -174,7 +179,9 @@ class Upload:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/system/vmlicense/upload", data=data)
+        return self._client.post(
+            "monitor", "/system/vmlicense/upload", data=data
+        )
 
 
 class Vmlicense:

@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class Details:
         if mkey is not None:
             params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/casb/saas-application/details", params=params)
+        return self._client.get(
+            "monitor", "/casb/saas-application/details", params=params
+        )
 
 
 class SaasApplication:

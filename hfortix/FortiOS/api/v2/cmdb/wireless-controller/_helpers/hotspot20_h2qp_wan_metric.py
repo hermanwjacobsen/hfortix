@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_LINK_STATUS = ["up", "down", "in-test"]
 VALID_BODY_SYMMETRIC_WAN_LINK = ["symmetric", "asymmetric"]

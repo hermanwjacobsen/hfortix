@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class ProxyPolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -380,9 +383,13 @@ class ProxyPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service6 is not None:
             data_payload["internet-service6"] = internet_service6
         if internet_service6_negate is not None:
@@ -394,9 +401,13 @@ class ProxyPolicy:
         if internet_service6_custom is not None:
             data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = internet_service6_custom_group
+            data_payload["internet-service6-custom-group"] = (
+                internet_service6_custom_group
+            )
         if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = internet_service6_fortiguard
+            data_payload["internet-service6-fortiguard"] = (
+                internet_service6_fortiguard
+            )
         if service is not None:
             data_payload["service"] = service
         if srcaddr_negate is not None:
@@ -478,7 +489,9 @@ class ProxyPolicy:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = replacemsg_override_group
+            data_payload["replacemsg-override-group"] = (
+                replacemsg_override_group
+            )
         if logtraffic_start is not None:
             data_payload["logtraffic-start"] = logtraffic_start
         if log_http_transaction is not None:
@@ -494,9 +507,13 @@ class ProxyPolicy:
         if decrypted_traffic_mirror is not None:
             data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if detect_https_in_http_request is not None:
-            data_payload["detect-https-in-http-request"] = detect_https_in_http_request
+            data_payload["detect-https-in-http-request"] = (
+                detect_https_in_http_request
+            )
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -533,7 +550,9 @@ class ProxyPolicy:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/proxy-policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -574,7 +593,7 @@ class ProxyPolicy:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -816,9 +835,13 @@ class ProxyPolicy:
         if internet_service_custom is not None:
             data_payload["internet-service-custom"] = internet_service_custom
         if internet_service_custom_group is not None:
-            data_payload["internet-service-custom-group"] = internet_service_custom_group
+            data_payload["internet-service-custom-group"] = (
+                internet_service_custom_group
+            )
         if internet_service_fortiguard is not None:
-            data_payload["internet-service-fortiguard"] = internet_service_fortiguard
+            data_payload["internet-service-fortiguard"] = (
+                internet_service_fortiguard
+            )
         if internet_service6 is not None:
             data_payload["internet-service6"] = internet_service6
         if internet_service6_negate is not None:
@@ -830,9 +853,13 @@ class ProxyPolicy:
         if internet_service6_custom is not None:
             data_payload["internet-service6-custom"] = internet_service6_custom
         if internet_service6_custom_group is not None:
-            data_payload["internet-service6-custom-group"] = internet_service6_custom_group
+            data_payload["internet-service6-custom-group"] = (
+                internet_service6_custom_group
+            )
         if internet_service6_fortiguard is not None:
-            data_payload["internet-service6-fortiguard"] = internet_service6_fortiguard
+            data_payload["internet-service6-fortiguard"] = (
+                internet_service6_fortiguard
+            )
         if service is not None:
             data_payload["service"] = service
         if srcaddr_negate is not None:
@@ -914,7 +941,9 @@ class ProxyPolicy:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if replacemsg_override_group is not None:
-            data_payload["replacemsg-override-group"] = replacemsg_override_group
+            data_payload["replacemsg-override-group"] = (
+                replacemsg_override_group
+            )
         if logtraffic_start is not None:
             data_payload["logtraffic-start"] = logtraffic_start
         if log_http_transaction is not None:
@@ -930,6 +959,10 @@ class ProxyPolicy:
         if decrypted_traffic_mirror is not None:
             data_payload["decrypted-traffic-mirror"] = decrypted_traffic_mirror
         if detect_https_in_http_request is not None:
-            data_payload["detect-https-in-http-request"] = detect_https_in_http_request
+            data_payload["detect-https-in-http-request"] = (
+                detect_https_in_http_request
+            )
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

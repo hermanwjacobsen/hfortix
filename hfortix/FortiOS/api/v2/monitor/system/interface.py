@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class DhcpRenew:
         if ipv6 is not None:
             data["ipv6"] = ipv6
         data.update(kwargs)
-        return self._client.post("monitor", "/system/interface/dhcp-renew", data=data)
+        return self._client.post(
+            "monitor", "/system/interface/dhcp-renew", data=data
+        )
 
 
 class DhcpStatus:
@@ -128,7 +131,9 @@ class DhcpStatus:
         if ipv6 is not None:
             params["ipv6"] = ipv6
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/dhcp-status", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/dhcp-status", params=params
+        )
 
 
 class KernelInterfaces:
@@ -165,7 +170,9 @@ class KernelInterfaces:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/kernel-interfaces", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/kernel-interfaces", params=params
+        )
 
 
 class Poe:
@@ -210,7 +217,9 @@ class Poe:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/poe", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/poe", params=params
+        )
 
 
 class PoeUsage:
@@ -247,7 +256,9 @@ class PoeUsage:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/poe-usage", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/poe-usage", params=params
+        )
 
 
 class SpeedTestStatus:
@@ -287,7 +298,9 @@ class SpeedTestStatus:
         params = payload_dict.copy() if payload_dict else {}
         params["id"] = id
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/speed-test-status", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/speed-test-status", params=params
+        )
 
 
 class SpeedTestTrigger:
@@ -328,7 +341,9 @@ class SpeedTestTrigger:
         if mkey is not None:
             data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post("monitor", "/system/interface/speed-test-trigger", data=data)
+        return self._client.post(
+            "monitor", "/system/interface/speed-test-trigger", data=data
+        )
 
 
 class Transceivers:
@@ -369,7 +384,9 @@ class Transceivers:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/system/interface/transceivers", params=params)
+        return self._client.get(
+            "monitor", "/system/interface/transceivers", params=params
+        )
 
 
 class WakeOnLan:
@@ -430,7 +447,9 @@ class WakeOnLan:
         if secureon_password is not None:
             data["secureon_password"] = secureon_password
         data.update(kwargs)
-        return self._client.post("monitor", "/system/interface/wake-on-lan", data=data)
+        return self._client.post(
+            "monitor", "/system/interface/wake-on-lan", data=data
+        )
 
 
 class Interface:

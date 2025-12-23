@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SOURCE_ADDRESS = ["enable", "disable"]
 VALID_BODY_PERMIT_X11_FORWARDING = ["enable", "disable"]

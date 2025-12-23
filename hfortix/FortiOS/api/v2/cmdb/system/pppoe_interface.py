@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class PppoeInterface:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -232,7 +235,9 @@ class PppoeInterface:
         if ipunnumbered is not None:
             data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = pppoe_unnumbered_negotiate
+            data_payload["pppoe-unnumbered-negotiate"] = (
+                pppoe_unnumbered_negotiate
+            )
         if idle_timeout is not None:
             data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:
@@ -252,7 +257,9 @@ class PppoeInterface:
         if lcp_max_echo_fails is not None:
             data_payload["lcp-max-echo-fails"] = lcp_max_echo_fails
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -289,7 +296,9 @@ class PppoeInterface:
             raise ValueError("name is required for delete()")
         endpoint = f"/system/pppoe-interface/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -330,7 +339,7 @@ class PppoeInterface:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -424,7 +433,9 @@ class PppoeInterface:
         if ipunnumbered is not None:
             data_payload["ipunnumbered"] = ipunnumbered
         if pppoe_unnumbered_negotiate is not None:
-            data_payload["pppoe-unnumbered-negotiate"] = pppoe_unnumbered_negotiate
+            data_payload["pppoe-unnumbered-negotiate"] = (
+                pppoe_unnumbered_negotiate
+            )
         if idle_timeout is not None:
             data_payload["idle-timeout"] = idle_timeout
         if multilink is not None:
@@ -444,4 +455,6 @@ class PppoeInterface:
         if lcp_max_echo_fails is not None:
             data_payload["lcp-max-echo-fails"] = lcp_max_echo_fails
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

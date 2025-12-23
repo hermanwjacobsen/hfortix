@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_STATUS = ["enable", "disable"]
 VALID_BODY_SSL_MAX_VERSION = ["tls-1.1", "tls-1.2", "tls-1.3"]

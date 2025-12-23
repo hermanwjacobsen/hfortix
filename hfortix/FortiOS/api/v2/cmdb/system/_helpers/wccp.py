@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_PORTS_DEFINED = ["source", "destination"]
 VALID_BODY_SERVER_TYPE = ["forward", "proxy"]

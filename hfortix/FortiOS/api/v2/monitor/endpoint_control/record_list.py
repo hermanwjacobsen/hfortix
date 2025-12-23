@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,4 +81,6 @@ class RecordList:
         if intf_name is not None:
             params["intf_name"] = intf_name
         params.update(kwargs)
-        return self._client.get("monitor", "/endpoint-control/record-list", params=params)
+        return self._client.get(
+            "monitor", "/endpoint-control/record-list", params=params
+        )

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["application", "filter"]
 VALID_BODY_POPULARITY = ["1", "2", "3", "4", "5"]

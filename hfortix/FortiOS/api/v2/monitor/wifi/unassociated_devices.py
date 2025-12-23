@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -81,4 +82,6 @@ class UnassociatedDevices:
         if with_triangulation is not None:
             params["with_triangulation"] = with_triangulation
         params.update(kwargs)
-        return self._client.get("monitor", "/wifi/unassociated-devices", params=params)
+        return self._client.get(
+            "monitor", "/wifi/unassociated-devices", params=params
+        )

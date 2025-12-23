@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class ClearStatistics:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/system/fortiguard/clear-statistics", data=data)
+        return self._client.post(
+            "monitor", "/system/fortiguard/clear-statistics", data=data
+        )
 
 
 class ManualUpdate:
@@ -117,7 +120,9 @@ class ManualUpdate:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/system/fortiguard/manual-update", data=data)
+        return self._client.post(
+            "monitor", "/system/fortiguard/manual-update", data=data
+        )
 
 
 class ServerInfo:
@@ -154,7 +159,9 @@ class ServerInfo:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/fortiguard/server-info", params=params)
+        return self._client.get(
+            "monitor", "/system/fortiguard/server-info", params=params
+        )
 
 
 class TestAvailability:
@@ -203,7 +210,9 @@ class TestAvailability:
         if service is not None:
             data["service"] = service
         data.update(kwargs)
-        return self._client.post("monitor", "/system/fortiguard/test-availability", data=data)
+        return self._client.post(
+            "monitor", "/system/fortiguard/test-availability", data=data
+        )
 
 
 class Update:
@@ -240,7 +249,9 @@ class Update:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/system/fortiguard/update", data=data)
+        return self._client.post(
+            "monitor", "/system/fortiguard/update", data=data
+        )
 
 
 class Fortiguard:

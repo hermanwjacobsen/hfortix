@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class InterfacePolicy:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -264,7 +267,9 @@ class InterfacePolicy:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
+            data_payload["emailfilter-profile-status"] = (
+                emailfilter_profile_status
+            )
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -272,7 +277,9 @@ class InterfacePolicy:
         if dlp_profile is not None:
             data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -309,7 +316,9 @@ class InterfacePolicy:
             raise ValueError("policyid is required for delete()")
         endpoint = f"/firewall/interface-policy/{policyid}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def post(
         self,
@@ -433,7 +442,9 @@ class InterfacePolicy:
         if casb_profile is not None:
             data_payload["casb-profile"] = casb_profile
         if emailfilter_profile_status is not None:
-            data_payload["emailfilter-profile-status"] = emailfilter_profile_status
+            data_payload["emailfilter-profile-status"] = (
+                emailfilter_profile_status
+            )
         if emailfilter_profile is not None:
             data_payload["emailfilter-profile"] = emailfilter_profile
         if dlp_profile_status is not None:
@@ -441,4 +452,6 @@ class InterfacePolicy:
         if dlp_profile is not None:
             data_payload["dlp-profile"] = dlp_profile
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

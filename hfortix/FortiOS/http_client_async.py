@@ -1,8 +1,10 @@
 """
 Internal Async HTTP Client for FortiOS API
 
-This module contains the AsyncHTTPClient class which handles all async HTTP communication
-with FortiGate devices. It mirrors HTTPClient but uses async/await with httpx.AsyncClient.
+This module contains the AsyncHTTPClient class which handles all async HTTP
+communication
+with FortiGate devices. It mirrors HTTPClient but uses async/await with
+httpx.AsyncClient.
 
 This is an internal implementation detail and not part of the public API.
 """
@@ -34,7 +36,8 @@ class AsyncHTTPClient(BaseHTTPClient):
 
     Implements the IHTTPClient protocol for asynchronous HTTP operations.
 
-    Async version of HTTPClient using httpx.AsyncClient. Handles all HTTP communication
+    Async version of HTTPClient using httpx.AsyncClient. Handles all HTTP
+    communication
     with FortiGate devices including:
     - Async session management
     - Authentication headers
@@ -46,11 +49,13 @@ class AsyncHTTPClient(BaseHTTPClient):
 
     Protocol Implementation:
         This class implements the IHTTPClient protocol, allowing it to be used
-        interchangeably with other HTTP client implementations (e.g., HTTPClient,
+        interchangeably with other HTTP client implementations (e.g.,
+        HTTPClient,
         custom user-provided async clients). All methods return coroutines that
         must be awaited.
 
-    This class is internal and not exposed to users directly, but users can provide
+    This class is internal and not exposed to users directly, but users can
+    provide
     their own async IHTTPClient implementations to FortiOS.__init__().
     """
 
@@ -82,37 +87,61 @@ class AsyncHTTPClient(BaseHTTPClient):
             url: Base URL for API (e.g., "https://192.0.2.10")
             verify: Verify SSL certificates
             token: API authentication token (if using token auth)
-            username: Username for authentication (if using username/password auth)
-            password: Password for authentication (if using username/password auth)
+            username: Username for authentication (if using username/password
+            auth)
+            password: Password for authentication (if using username/password
+            auth)
             vdom: Default virtual domain
-            max_retries: Maximum number of retry attempts on transient failures (default: 3)
-            connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
-            read_timeout: Timeout for reading response in seconds (default: 300.0)
+            max_retries: Maximum number of retry attempts on transient failures
+            (default: 3)
+            connect_timeout: Timeout for establishing connection in seconds
+            (default: 10.0)
+            read_timeout: Timeout for reading response in seconds (default:
+            300.0)
             user_agent: Custom User-Agent header
-            circuit_breaker_threshold: Number of consecutive failures before opening circuit (default: 5)
-            circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
-            max_connections: Maximum number of connections in the pool (default: 100)
-            max_keepalive_connections: Maximum number of keepalive connections (default: 20)
-            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
-                       proactively re-authenticating (default: 300 = 5 minutes). Set to None or
-                       False to disable. Note: Async client does not yet implement proactive
-                       re-auth; this parameter is accepted for API compatibility.
-            read_only: Enable read-only mode - simulate write operations without executing (default: False)
-            track_operations: Enable operation tracking - maintain audit log of all API calls (default: False)
-            adaptive_retry: Enable adaptive retry with backpressure detection (default: False).
-                          When enabled, monitors response times and adjusts retry delays based on
-                          FortiGate health signals (slow responses, 503 errors).
+            circuit_breaker_threshold: Number of consecutive failures before
+            opening circuit (default: 5)
+            circuit_breaker_timeout: Seconds to wait before transitioning to
+            half-open (default: 60.0)
+            max_connections: Maximum number of connections in the pool
+            (default: 100)
+            max_keepalive_connections: Maximum number of keepalive connections
+            (default: 20)
+            session_idle_timeout: For username/password auth only. Idle timeout
+            in seconds before
+                       proactively re-authenticating (default: 300 = 5
+                       minutes). Set to None or
+                       False to disable. Note: Async client does not yet
+                       implement proactive
+                       re-auth; this parameter is accepted for API
+                       compatibility.
+            read_only: Enable read-only mode - simulate write operations
+            without executing (default: False)
+            track_operations: Enable operation tracking - maintain audit log of
+            all API calls (default: False)
+            adaptive_retry: Enable adaptive retry with backpressure detection
+            (default: False).
+                          When enabled, monitors response times and adjusts
+                          retry delays based on
+                          FortiGate health signals (slow responses, 503
+                          errors).
 
         Raises:
-            ValueError: If parameters are invalid or both token and username/password provided
+            ValueError: If parameters are invalid or both token and
+            username/password provided
         """
         # Validate authentication parameters
         if token and (username or password):
-            raise ValueError("Cannot specify both token and username/password authentication")
+            raise ValueError(
+                "Cannot specify both token and username/password authentication"  # noqa: E501
+            )
         if (username and not password) or (password and not username):
-            raise ValueError("Both username and password must be provided together")
+            raise ValueError(
+                "Both username and password must be provided together"
+            )
 
-        # Call parent class constructor (handles validation and common initialization)
+        # Call parent class constructor (handles validation and common
+        # initialization)
         super().__init__(
             url=url,
             verify=verify,
@@ -171,8 +200,8 @@ class AsyncHTTPClient(BaseHTTPClient):
         # User should call await client.login() or use async context manager
 
         logger.debug(
-            "Async HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "
-            "http2=enabled, user_agent='%s', circuit_breaker_threshold=%d, max_connections=%d)",
+            "Async HTTP client initialized for %s (max_retries=%d, connect_timeout=%.1fs, read_timeout=%.1fs, "  # noqa: E501
+            "http2=enabled, user_agent='%s', circuit_breaker_threshold=%d, max_connections=%d)",  # noqa: E501
             self._url,
             max_retries,
             connect_timeout,
@@ -186,21 +215,26 @@ class AsyncHTTPClient(BaseHTTPClient):
         """
         Authenticate using username/password and obtain session token (async)
 
-        Must be called manually for async clients (cannot be called in __init__).
-        Alternatively, use async context manager which handles login/logout automatically.
+        Must be called manually for async clients (cannot be called in
+        __init__).
+        Alternatively, use async context manager which handles login/logout
+        automatically.
 
         Raises:
             ValueError: If username/password not configured
             AuthenticationError: If login fails
 
         Example:
-            >>> client = AsyncHTTPClient(url, username="admin", password="password")
+            >>> client = AsyncHTTPClient(url, username="admin",
+            password="password")
             >>> await client.login()
         """
         if not self._username or not self._password:
             raise ValueError("Username and password required for login")
 
-        logger.debug("Authenticating with username/password for %s (async)", self._url)
+        logger.debug(
+            "Authenticating with username/password for %s (async)", self._url
+        )
 
         try:
             # FortiOS login endpoint
@@ -229,11 +263,17 @@ class AsyncHTTPClient(BaseHTTPClient):
                 if csrf_token:
                     self._session_token = csrf_token
                     self._client.headers["X-CSRFTOKEN"] = csrf_token
-                    logger.info("Successfully authenticated via username/password (async)")
+                    logger.info(
+                        "Successfully authenticated via username/password (async)"  # noqa: E501
+                    )
                 else:
-                    raise ValueError("Login succeeded but no CSRF token found in response")
+                    raise ValueError(
+                        "Login succeeded but no CSRF token found in response"
+                    )
             else:
-                raise ValueError(f"Login failed with status code {response.status_code}")
+                raise ValueError(
+                    f"Login failed with status code {response.status_code}"
+                )
 
         except httpx.HTTPError as e:
             logger.error("Login failed (async): %s", str(e))
@@ -251,7 +291,9 @@ class AsyncHTTPClient(BaseHTTPClient):
             Token-based authentication doesn't require logout.
         """
         if not self._session_token:
-            logger.debug("No active session to logout (using token auth or not logged in) (async)")
+            logger.debug(
+                "No active session to logout (using token auth or not logged in) (async)"  # noqa: E501
+            )
             return
 
         logger.debug("Logging out from %s (async)", self._url)
@@ -279,7 +321,7 @@ class AsyncHTTPClient(BaseHTTPClient):
     def get_connection_stats(self) -> dict[str, Any]:
         """Get connection statistics (placeholder for async)"""
         return {
-            "active_connections": 0,  # httpx.AsyncClient doesn't expose this easily
+            "active_connections": 0,  # httpx.AsyncClient doesn't expose this easily  # noqa: E501
             "idle_connections": 0,
         }
 
@@ -297,15 +339,21 @@ class AsyncHTTPClient(BaseHTTPClient):
                 # Add error description if error code present
                 error_code = json_response.get("error")
                 if error_code and "error_description" not in json_response:
-                    json_response["error_description"] = get_error_description(error_code)
+                    json_response["error_description"] = get_error_description(
+                        error_code
+                    )
 
                 # Log the error
                 status = json_response.get("status")
-                http_status = json_response.get("http_status", response.status_code)
-                error_desc = json_response.get("error_description", "Unknown error")
+                http_status = json_response.get(
+                    "http_status", response.status_code
+                )
+                error_desc = json_response.get(
+                    "error_description", "Unknown error"
+                )
 
                 logger.error(
-                    "Request failed: HTTP %d, status=%s, error=%s, description='%s'",
+                    "Request failed: HTTP %d, status=%s, error=%s, description='%s'",  # noqa: E501
                     http_status,
                     status,
                     error_code,
@@ -344,7 +392,8 @@ class AsyncHTTPClient(BaseHTTPClient):
             data: Request body data (for POST/PUT)
             params: Query parameters dict
             vdom: Virtual domain
-            raw_json: If False, return only 'results' field. If True, return full response
+            raw_json: If False, return only 'results' field. If True, return
+            full response
             request_id: Optional correlation ID for tracking requests
 
         Returns:
@@ -356,7 +405,9 @@ class AsyncHTTPClient(BaseHTTPClient):
 
         # Normalize and encode path
         path = self._normalize_path(path)
-        encoded_path = quote(str(path), safe="/%") if isinstance(path, str) else path
+        encoded_path = (
+            quote(str(path), safe="/%") if isinstance(path, str) else path
+        )
         url = f"{self._url}/api/v2/{api_type}/{encoded_path}"
         params = params or {}
 
@@ -467,7 +518,9 @@ class AsyncHTTPClient(BaseHTTPClient):
                         if isinstance(e, httpx.HTTPStatusError)
                         else None
                     )
-                    delay = self._get_retry_delay(attempt, response_obj, endpoint_key)
+                    delay = self._get_retry_delay(
+                        attempt, response_obj, endpoint_key
+                    )
 
                     logger.info(
                         "Retrying async request after delay",
@@ -608,22 +661,34 @@ class AsyncHTTPClient(BaseHTTPClient):
     def validate_mkey(mkey: Any, parameter_name: str = "mkey") -> str:
         """Validate and convert mkey to string"""
         if mkey is None:
-            raise ValueError(f"{parameter_name} is required and cannot be None")
+            raise ValueError(
+                f"{parameter_name} is required and cannot be None"
+            )
         mkey_str = str(mkey).strip()
         if not mkey_str:
             raise ValueError(f"{parameter_name} cannot be empty")
         return mkey_str
 
     @staticmethod
-    def validate_required_params(params: dict[str, Any], required: list[str]) -> None:
+    def validate_required_params(
+        params: dict[str, Any], required: list[str]
+    ) -> None:
         """Validate that required parameters are present"""
         if not params:
             if required:
-                raise ValueError(f"Missing required parameters: {', '.join(required)}")
+                raise ValueError(
+                    f"Missing required parameters: {', '.join(required)}"
+                )
             return
-        missing = [param for param in required if param not in params or params[param] is None]
+        missing = [
+            param
+            for param in required
+            if param not in params or params[param] is None
+        ]
         if missing:
-            raise ValueError(f"Missing required parameters: {', '.join(missing)}")
+            raise ValueError(
+                f"Missing required parameters: {', '.join(missing)}"
+            )
 
     @staticmethod
     def validate_range(
@@ -637,14 +702,18 @@ class AsyncHTTPClient(BaseHTTPClient):
             raise ValueError(f"{parameter_name} must be a number")
         if not (min_val <= value <= max_val):
             raise ValueError(
-                f"{parameter_name} must be between {min_val} and {max_val}, got {value}"
+                f"{parameter_name} must be between {min_val} and {max_val}, got {value}"  # noqa: E501
             )
 
     @staticmethod
-    def validate_choice(value: Any, choices: list[Any], parameter_name: str = "value") -> None:
+    def validate_choice(
+        value: Any, choices: list[Any], parameter_name: str = "value"
+    ) -> None:
         """Validate that a value is one of the allowed choices"""
         if value not in choices:
-            raise ValueError(f"{parameter_name} must be one of {choices}, got '{value}'")
+            raise ValueError(
+                f"{parameter_name} must be one of {choices}, got '{value}'"
+            )
 
     @staticmethod
     def build_params(**kwargs: Any) -> dict[str, Any]:
@@ -652,7 +721,9 @@ class AsyncHTTPClient(BaseHTTPClient):
         return {k: v for k, v in kwargs.items() if v is not None}
 
     async def __aenter__(self) -> "AsyncHTTPClient":
-        """Async context manager entry - auto-login if using username/password"""
+        """
+        Async context manager entry - auto-login if using username/password
+        """
         # Auto-login for username/password authentication
         if self._username and self._password and not self._session_token:
             await self.login()
@@ -668,7 +739,8 @@ class AsyncHTTPClient(BaseHTTPClient):
         Async context manager exit - ensures session is closed
 
         This method is called automatically when exiting an async with block.
-        It ensures that all network connections and sessions are properly closed.
+        It ensures that all network connections and sessions are properly
+        closed.
 
         Example:
             async with AsyncHTTPClient(...) as client:
@@ -681,12 +753,15 @@ class AsyncHTTPClient(BaseHTTPClient):
         """
         Close the async HTTP session and release resources
 
-        This method should be called to properly clean up resources when using AsyncHTTPClient.
+        This method should be called to properly clean up resources when using
+        AsyncHTTPClient.
         It ensures that all network connections and sessions are closed.
 
         Usage:
-            - Call `await client.close()` when you are done with the client in async mode.
-            - Prefer using the async context manager (`async with`) for automatic cleanup.
+            - Call `await client.close()` when you are done with the client in
+            async mode.
+            - Prefer using the async context manager (`async with`) for
+            automatic cleanup.
 
         Example:
             client = AsyncHTTPClient(...)
@@ -707,11 +782,13 @@ class AsyncHTTPClient(BaseHTTPClient):
         """
         Get audit log of all tracked API operations
 
-        Returns all tracked operations (GET/POST/PUT/DELETE) in chronological order.
+        Returns all tracked operations (GET/POST/PUT/DELETE) in chronological
+        order.
         Only available when track_operations=True was passed to constructor.
 
         Returns:
-            List of operation dictionaries (same format as HTTPClient.get_operations())
+            List of operation dictionaries (same format as
+            HTTPClient.get_operations())
         """
         return self._operations.copy()
 
@@ -719,12 +796,18 @@ class AsyncHTTPClient(BaseHTTPClient):
         """
         Get audit log of write operations only (POST/PUT/DELETE)
 
-        Filters tracked operations to return only write operations, excluding GET requests.
+        Filters tracked operations to return only write operations, excluding
+        GET requests.
 
         Returns:
-            List of write operation dictionaries (same format as HTTPClient.get_write_operations())
+            List of write operation dictionaries (same format as
+            HTTPClient.get_write_operations())
         """
-        return [op for op in self._operations if op["method"] in ("POST", "PUT", "DELETE")]
+        return [
+            op
+            for op in self._operations
+            if op["method"] in ("POST", "PUT", "DELETE")
+        ]
 
     @staticmethod
     def make_exists_method(
@@ -739,7 +822,8 @@ class AsyncHTTPClient(BaseHTTPClient):
         - Works transparently with both sync and async clients
 
         Args:
-            get_method: The get() method to wrap (bound method from endpoint instance)
+            get_method: The get() method to wrap (bound method from endpoint
+            instance)
 
         Returns:
             A function that returns bool (sync) or Coroutine[bool] (async)
@@ -750,7 +834,8 @@ class AsyncHTTPClient(BaseHTTPClient):
                     self._client = client
 
                 def get(self, name, **kwargs):
-                    return self._client.get("cmdb", f"/firewall/address/{name}", **kwargs)
+                    return self._client.get("cmdb",
+                    f"/firewall/address/{name}", **kwargs)
 
                 # Create exists method using the helper
                 exists = AsyncHTTPClient.make_exists_method(get)
@@ -769,9 +854,12 @@ class AsyncHTTPClient(BaseHTTPClient):
                 # Return async version
                 async def _exists_async():
                     try:
-                        # Type ignore justified: Runtime check (inspect.iscoroutine) confirms
-                        # result is awaitable, but mypy sees Union[dict, Coroutine] from protocol
-                        # and cannot narrow the type. This is safe and necessary for dual-mode design.
+                        # Type ignore justified: Runtime check
+                        # (inspect.iscoroutine) confirms
+                        # result is awaitable, but mypy sees Union[dict,
+                        # Coroutine] from protocol
+                        # and cannot narrow the type. This is safe and
+                        # necessary for dual-mode design.
                         await result
                         return True
                     except ResourceNotFoundError:

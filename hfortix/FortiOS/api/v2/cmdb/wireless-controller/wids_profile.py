@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class WidsProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -404,7 +407,9 @@ class WidsProfile:
         if ap_scan is not None:
             data_payload["ap-scan"] = ap_scan
         if ap_scan_channel_list_2G_5G is not None:
-            data_payload["ap-scan-channel-list-2G-5G"] = ap_scan_channel_list_2G_5G
+            data_payload["ap-scan-channel-list-2G-5G"] = (
+                ap_scan_channel_list_2G_5G
+            )
         if ap_scan_channel_list_6G is not None:
             data_payload["ap-scan-channel-list-6G"] = ap_scan_channel_list_6G
         if ap_bgscan_period is not None:
@@ -418,7 +423,9 @@ class WidsProfile:
         if ap_bgscan_report_intv is not None:
             data_payload["ap-bgscan-report-intv"] = ap_bgscan_report_intv
         if ap_bgscan_disable_schedules is not None:
-            data_payload["ap-bgscan-disable-schedules"] = ap_bgscan_disable_schedules
+            data_payload["ap-bgscan-disable-schedules"] = (
+                ap_bgscan_disable_schedules
+            )
         if ap_fgscan_report_intv is not None:
             data_payload["ap-fgscan-report-intv"] = ap_fgscan_report_intv
         if ap_scan_passive is not None:
@@ -554,7 +561,9 @@ class WidsProfile:
         if eapol_pre_fail_intv is not None:
             data_payload["eapol-pre-fail-intv"] = eapol_pre_fail_intv
         if deauth_unknown_src_thresh is not None:
-            data_payload["deauth-unknown-src-thresh"] = deauth_unknown_src_thresh
+            data_payload["deauth-unknown-src-thresh"] = (
+                deauth_unknown_src_thresh
+            )
         if windows_bridge is not None:
             data_payload["windows-bridge"] = windows_bridge
         if disassoc_broadcast is not None:
@@ -590,7 +599,9 @@ class WidsProfile:
         if valid_ssid_misuse is not None:
             data_payload["valid-ssid-misuse"] = valid_ssid_misuse
         if valid_client_misassociation is not None:
-            data_payload["valid-client-misassociation"] = valid_client_misassociation
+            data_payload["valid-client-misassociation"] = (
+                valid_client_misassociation
+            )
         if hotspotter_attack is not None:
             data_payload["hotspotter-attack"] = hotspotter_attack
         if pwsave_dos_attack is not None:
@@ -616,7 +627,9 @@ class WidsProfile:
         if wpa_ft_attack is not None:
             data_payload["wpa-ft-attack"] = wpa_ft_attack
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -653,7 +666,9 @@ class WidsProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/wids-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -694,7 +709,7 @@ class WidsProfile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -960,7 +975,9 @@ class WidsProfile:
         if ap_scan is not None:
             data_payload["ap-scan"] = ap_scan
         if ap_scan_channel_list_2G_5G is not None:
-            data_payload["ap-scan-channel-list-2G-5G"] = ap_scan_channel_list_2G_5G
+            data_payload["ap-scan-channel-list-2G-5G"] = (
+                ap_scan_channel_list_2G_5G
+            )
         if ap_scan_channel_list_6G is not None:
             data_payload["ap-scan-channel-list-6G"] = ap_scan_channel_list_6G
         if ap_bgscan_period is not None:
@@ -974,7 +991,9 @@ class WidsProfile:
         if ap_bgscan_report_intv is not None:
             data_payload["ap-bgscan-report-intv"] = ap_bgscan_report_intv
         if ap_bgscan_disable_schedules is not None:
-            data_payload["ap-bgscan-disable-schedules"] = ap_bgscan_disable_schedules
+            data_payload["ap-bgscan-disable-schedules"] = (
+                ap_bgscan_disable_schedules
+            )
         if ap_fgscan_report_intv is not None:
             data_payload["ap-fgscan-report-intv"] = ap_fgscan_report_intv
         if ap_scan_passive is not None:
@@ -1110,7 +1129,9 @@ class WidsProfile:
         if eapol_pre_fail_intv is not None:
             data_payload["eapol-pre-fail-intv"] = eapol_pre_fail_intv
         if deauth_unknown_src_thresh is not None:
-            data_payload["deauth-unknown-src-thresh"] = deauth_unknown_src_thresh
+            data_payload["deauth-unknown-src-thresh"] = (
+                deauth_unknown_src_thresh
+            )
         if windows_bridge is not None:
             data_payload["windows-bridge"] = windows_bridge
         if disassoc_broadcast is not None:
@@ -1146,7 +1167,9 @@ class WidsProfile:
         if valid_ssid_misuse is not None:
             data_payload["valid-ssid-misuse"] = valid_ssid_misuse
         if valid_client_misassociation is not None:
-            data_payload["valid-client-misassociation"] = valid_client_misassociation
+            data_payload["valid-client-misassociation"] = (
+                valid_client_misassociation
+            )
         if hotspotter_attack is not None:
             data_payload["hotspotter-attack"] = hotspotter_attack
         if pwsave_dos_attack is not None:
@@ -1172,4 +1195,6 @@ class WidsProfile:
         if wpa_ft_attack is not None:
             data_payload["wpa-ft-attack"] = wpa_ft_attack
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

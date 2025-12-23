@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_FILTER_MODE = ["category", "threshold"]
 VALID_BODY_IPS_LOGS = ["enable", "disable"]
@@ -160,7 +159,10 @@ def validate_setting_put(
     # Validate firewall-authentication-failure-logs if present
     if "firewall-authentication-failure-logs" in payload:
         value = payload.get("firewall-authentication-failure-logs")
-        if value and value not in VALID_BODY_FIREWALL_AUTHENTICATION_FAILURE_LOGS:
+        if (
+            value
+            and value not in VALID_BODY_FIREWALL_AUTHENTICATION_FAILURE_LOGS
+        ):
             return (
                 False,
                 f"Invalid firewall-authentication-failure-logs '{value}'. Must be one of: {', '.join(VALID_BODY_FIREWALL_AUTHENTICATION_FAILURE_LOGS)}",

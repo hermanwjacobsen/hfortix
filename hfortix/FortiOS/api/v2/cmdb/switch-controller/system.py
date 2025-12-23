@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class System:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -175,7 +178,9 @@ class System:
         if after is not None:
             data_payload["after"] = after
         if parallel_process_override is not None:
-            data_payload["parallel-process-override"] = parallel_process_override
+            data_payload["parallel-process-override"] = (
+                parallel_process_override
+            )
         if parallel_process is not None:
             data_payload["parallel-process"] = parallel_process
         if data_sync_interval is not None:
@@ -191,7 +196,9 @@ class System:
         if nac_periodic_interval is not None:
             data_payload["nac-periodic-interval"] = nac_periodic_interval
         if dynamic_periodic_interval is not None:
-            data_payload["dynamic-periodic-interval"] = dynamic_periodic_interval
+            data_payload["dynamic-periodic-interval"] = (
+                dynamic_periodic_interval
+            )
         if tunnel_mode is not None:
             data_payload["tunnel-mode"] = tunnel_mode
         if caputp_echo_interval is not None:
@@ -199,4 +206,6 @@ class System:
         if caputp_max_retransmit is not None:
             data_payload["caputp-max-retransmit"] = caputp_max_retransmit
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

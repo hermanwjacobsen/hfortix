@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class Set:
         if password is not None:
             data["password"] = password
         data.update(kwargs)
-        return self._client.post("monitor", "/system/private-data-encryption/set", data=data)
+        return self._client.post(
+            "monitor", "/system/private-data-encryption/set", data=data
+        )
 
 
 class PrivateDataEncryption:

@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_PROXY_INLINE_IPS = ["disable", "enable"]
 VALID_BODY_HA_SESSION_PICKUP = ["connectivity", "security"]

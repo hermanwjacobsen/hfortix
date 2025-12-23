@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_REMOTE_TYPE = ["vgw", "tgw"]
 VALID_BODY_ROUTING_TYPE = ["static", "dynamic"]

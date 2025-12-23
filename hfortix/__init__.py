@@ -6,7 +6,8 @@ This package provides Python SDKs for Fortinet products:
 - FortiManager: Centralized management (coming soon)
 - FortiAnalyzer: Log analysis and reporting (coming soon)
 
-Each product module can be used independently or as part of the complete package.
+Each product module can be used independently or as part of the complete
+package.
 
 Examples:
     # Recommended: Import from main package
@@ -23,7 +24,11 @@ from __future__ import annotations
 
 import logging
 
-from .FortiOS import FortiOS, __author__, __version__
+from .FortiOS import (  # noqa: F401
+    FortiOS,
+    __author__,
+    __version__,
+)
 from .FortiOS.exceptions import (
     FORTIOS_ERROR_CODES,
     HTTP_STATUS_CODES,
@@ -139,7 +144,8 @@ def set_log_level(level: str = "WARNING") -> None:
 
     Args:
         level: Log level as string. Options:
-            - 'DEBUG': Very verbose - all requests, parameters, responses, timing
+            - 'DEBUG': Very verbose - all requests, parameters, responses,
+            timing
             - 'INFO': Normal - request summaries and timings
             - 'WARNING': Quiet - only warnings and errors (default)
             - 'ERROR': Silent - only errors
@@ -156,7 +162,8 @@ def set_log_level(level: str = "WARNING") -> None:
 
         >>> # Normal operation logging
         >>> hfortix.set_log_level('INFO')
-        >>> fgt.api.cmdb.firewall.address.create(name='test', subnet='10.0.0.1/32')
+        >>> fgt.api.cmdb.firewall.address.create(name='test',
+        subnet='10.0.0.1/32')
         # Shows: POST firewall/address → 200 (0.23s)
 
         >>> # Completely silent

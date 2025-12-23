@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class MpskProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -192,7 +195,9 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload["mpsk-external-server-auth"] = mpsk_external_server_auth
+            data_payload["mpsk-external-server-auth"] = (
+                mpsk_external_server_auth
+            )
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:
@@ -200,7 +205,9 @@ class MpskProfile:
         if mpsk_group is not None:
             data_payload["mpsk-group"] = mpsk_group
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -237,7 +244,9 @@ class MpskProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/wireless-controller/mpsk-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -278,7 +287,7 @@ class MpskProfile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -332,7 +341,9 @@ class MpskProfile:
         if mpsk_concurrent_clients is not None:
             data_payload["mpsk-concurrent-clients"] = mpsk_concurrent_clients
         if mpsk_external_server_auth is not None:
-            data_payload["mpsk-external-server-auth"] = mpsk_external_server_auth
+            data_payload["mpsk-external-server-auth"] = (
+                mpsk_external_server_auth
+            )
         if mpsk_external_server is not None:
             data_payload["mpsk-external-server"] = mpsk_external_server
         if mpsk_type is not None:
@@ -340,4 +351,6 @@ class MpskProfile:
         if mpsk_group is not None:
             data_payload["mpsk-group"] = mpsk_group
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

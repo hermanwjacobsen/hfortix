@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_DHCP_IPSEC = ["enable", "disable"]
 VALID_BODY_USE_NATIP = ["enable", "disable"]

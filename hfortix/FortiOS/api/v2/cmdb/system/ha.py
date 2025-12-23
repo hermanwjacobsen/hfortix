@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Ha:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -313,7 +316,9 @@ class Ha:
         if hbdev is not None:
             data_payload["hbdev"] = hbdev
         if auto_virtual_mac_interface is not None:
-            data_payload["auto-virtual-mac-interface"] = auto_virtual_mac_interface
+            data_payload["auto-virtual-mac-interface"] = (
+                auto_virtual_mac_interface
+            )
         if backup_hbdev is not None:
             data_payload["backup-hbdev"] = backup_hbdev
         if session_sync_dev is not None:
@@ -339,7 +344,9 @@ class Ha:
         if hb_interval is not None:
             data_payload["hb-interval"] = hb_interval
         if hb_interval_in_milliseconds is not None:
-            data_payload["hb-interval-in-milliseconds"] = hb_interval_in_milliseconds
+            data_payload["hb-interval-in-milliseconds"] = (
+                hb_interval_in_milliseconds
+            )
         if hb_lost_threshold is not None:
             data_payload["hb-lost-threshold"] = hb_lost_threshold
         if hello_holddown is not None:
@@ -353,9 +360,13 @@ class Ha:
         if session_pickup is not None:
             data_payload["session-pickup"] = session_pickup
         if session_pickup_connectionless is not None:
-            data_payload["session-pickup-connectionless"] = session_pickup_connectionless
+            data_payload["session-pickup-connectionless"] = (
+                session_pickup_connectionless
+            )
         if session_pickup_expectation is not None:
-            data_payload["session-pickup-expectation"] = session_pickup_expectation
+            data_payload["session-pickup-expectation"] = (
+                session_pickup_expectation
+            )
         if session_pickup_nat is not None:
             data_payload["session-pickup-nat"] = session_pickup_nat
         if session_pickup_delay is not None:
@@ -365,7 +376,9 @@ class Ha:
         if upgrade_mode is not None:
             data_payload["upgrade-mode"] = upgrade_mode
         if uninterruptible_primary_wait is not None:
-            data_payload["uninterruptible-primary-wait"] = uninterruptible_primary_wait
+            data_payload["uninterruptible-primary-wait"] = (
+                uninterruptible_primary_wait
+            )
         if standalone_mgmt_vdom is not None:
             data_payload["standalone-mgmt-vdom"] = standalone_mgmt_vdom
         if ha_mgmt_status is not None:
@@ -413,11 +426,17 @@ class Ha:
         if monitor is not None:
             data_payload["monitor"] = monitor
         if pingserver_monitor_interface is not None:
-            data_payload["pingserver-monitor-interface"] = pingserver_monitor_interface
+            data_payload["pingserver-monitor-interface"] = (
+                pingserver_monitor_interface
+            )
         if pingserver_failover_threshold is not None:
-            data_payload["pingserver-failover-threshold"] = pingserver_failover_threshold
+            data_payload["pingserver-failover-threshold"] = (
+                pingserver_failover_threshold
+            )
         if pingserver_secondary_force_reset is not None:
-            data_payload["pingserver-secondary-force-reset"] = pingserver_secondary_force_reset
+            data_payload["pingserver-secondary-force-reset"] = (
+                pingserver_secondary_force_reset
+            )
         if pingserver_flip_timeout is not None:
             data_payload["pingserver-flip-timeout"] = pingserver_flip_timeout
         if vcluster_status is not None:
@@ -433,22 +452,36 @@ class Ha:
         if memory_based_failover is not None:
             data_payload["memory-based-failover"] = memory_based_failover
         if memory_failover_threshold is not None:
-            data_payload["memory-failover-threshold"] = memory_failover_threshold
+            data_payload["memory-failover-threshold"] = (
+                memory_failover_threshold
+            )
         if memory_failover_monitor_period is not None:
-            data_payload["memory-failover-monitor-period"] = memory_failover_monitor_period
+            data_payload["memory-failover-monitor-period"] = (
+                memory_failover_monitor_period
+            )
         if memory_failover_sample_rate is not None:
-            data_payload["memory-failover-sample-rate"] = memory_failover_sample_rate
+            data_payload["memory-failover-sample-rate"] = (
+                memory_failover_sample_rate
+            )
         if memory_failover_flip_timeout is not None:
-            data_payload["memory-failover-flip-timeout"] = memory_failover_flip_timeout
+            data_payload["memory-failover-flip-timeout"] = (
+                memory_failover_flip_timeout
+            )
         if failover_hold_time is not None:
             data_payload["failover-hold-time"] = failover_hold_time
         if check_secondary_dev_health is not None:
-            data_payload["check-secondary-dev-health"] = check_secondary_dev_health
+            data_payload["check-secondary-dev-health"] = (
+                check_secondary_dev_health
+            )
         if ipsec_phase2_proposal is not None:
             data_payload["ipsec-phase2-proposal"] = ipsec_phase2_proposal
         if bounce_intf_upon_failover is not None:
-            data_payload["bounce-intf-upon-failover"] = bounce_intf_upon_failover
+            data_payload["bounce-intf-upon-failover"] = (
+                bounce_intf_upon_failover
+            )
         if status is not None:
             data_payload["status"] = status
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

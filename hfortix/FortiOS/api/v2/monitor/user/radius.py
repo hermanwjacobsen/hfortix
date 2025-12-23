@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -104,7 +105,9 @@ class GetTestConnect:
         if password is not None:
             params["password"] = password
         params.update(kwargs)
-        return self._client.get("monitor", "/user/radius/get-test-connect", params=params)
+        return self._client.get(
+            "monitor", "/user/radius/get-test-connect", params=params
+        )
 
 
 class TestConnect:
@@ -169,7 +172,9 @@ class TestConnect:
         if password is not None:
             data["password"] = password
         data.update(kwargs)
-        return self._client.post("monitor", "/user/radius/test-connect", data=data)
+        return self._client.post(
+            "monitor", "/user/radius/test-connect", data=data
+        )
 
 
 class Radius:

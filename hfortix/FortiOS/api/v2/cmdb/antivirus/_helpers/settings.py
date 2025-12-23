@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MACHINE_LEARNING_DETECTION = ["enable", "monitor", "disable"]
 VALID_BODY_USE_EXTREME_DB = ["enable", "disable"]

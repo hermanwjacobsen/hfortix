@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_INCLUDE_WEATHER_CHANNEL = ["enable", "disable"]
 VALID_BODY_INCLUDE_DFS_CHANNEL = ["enable", "disable"]

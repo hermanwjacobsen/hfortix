@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Saml:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -250,7 +253,9 @@ class Saml:
         if digest_method is not None:
             data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = require_signed_resp_and_asrt
+            data_payload["require-signed-resp-and-asrt"] = (
+                require_signed_resp_and_asrt
+            )
         if limit_relaystate is not None:
             data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:
@@ -264,7 +269,9 @@ class Saml:
         if reauth is not None:
             data_payload["reauth"] = reauth
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -301,7 +308,9 @@ class Saml:
             raise ValueError("name is required for delete()")
         endpoint = f"/user/saml/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -342,7 +351,7 @@ class Saml:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -454,7 +463,9 @@ class Saml:
         if digest_method is not None:
             data_payload["digest-method"] = digest_method
         if require_signed_resp_and_asrt is not None:
-            data_payload["require-signed-resp-and-asrt"] = require_signed_resp_and_asrt
+            data_payload["require-signed-resp-and-asrt"] = (
+                require_signed_resp_and_asrt
+            )
         if limit_relaystate is not None:
             data_payload["limit-relaystate"] = limit_relaystate
         if clock_tolerance is not None:
@@ -468,4 +479,6 @@ class Saml:
         if reauth is not None:
             data_payload["reauth"] = reauth
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

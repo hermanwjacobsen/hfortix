@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class ChangePassword:
         if new_password is not None:
             data["new_password"] = new_password
         data.update(kwargs)
-        return self._client.post("monitor", "/user/local/change-password", data=data)
+        return self._client.post(
+            "monitor", "/user/local/change-password", data=data
+        )
 
 
 class Local:

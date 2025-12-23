@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,4 +77,6 @@ class HaHwInterface:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/ha-hw-interface", params=params)
+        return self._client.get(
+            "monitor", "/system/ha-hw-interface", params=params
+        )

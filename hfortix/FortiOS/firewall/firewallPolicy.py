@@ -6,7 +6,15 @@ Instead of: fgt.api.cmdb.firewall.policy.post(data)
 Use: fgt.firewall.policy.create(name='MyPolicy', srcintf=['port1'], ...)
 """
 
-from typing import TYPE_CHECKING, Any, Coroutine, Dict, List, Optional, Union
+from typing import (  # noqa: F401
+    TYPE_CHECKING,
+    Any,
+    Coroutine,
+    Dict,
+    List,
+    Optional,
+    Union,
+)
 
 # Import shared helpers from the API layer
 from ..api._helpers import (
@@ -60,9 +68,13 @@ class FirewallPolicy:
         internet_service_src_name: Optional[Union[str, List[str]]] = None,
         internet_service_src_group: Optional[Union[str, List[str]]] = None,
         internet_service_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service_src_custom_group: Optional[Union[str, List[str]]] = None,
+        internet_service_src_custom_group: Optional[
+            Union[str, List[str]]
+        ] = None,
         network_service_src_dynamic: Optional[Union[str, List[str]]] = None,
-        internet_service_src_fortiguard: Optional[Union[str, List[str]]] = None,
+        internet_service_src_fortiguard: Optional[
+            Union[str, List[str]]
+        ] = None,
         internet_service_src_negate: Optional[str] = None,
         # Internet Services (IPv6) - destination
         internet_service6: Optional[str] = None,
@@ -77,8 +89,12 @@ class FirewallPolicy:
         internet_service6_src_name: Optional[Union[str, List[str]]] = None,
         internet_service6_src_group: Optional[Union[str, List[str]]] = None,
         internet_service6_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_custom_group: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_fortiguard: Optional[Union[str, List[str]]] = None,
+        internet_service6_src_custom_group: Optional[
+            Union[str, List[str]]
+        ] = None,
+        internet_service6_src_fortiguard: Optional[
+            Union[str, List[str]]
+        ] = None,
         internet_service6_src_negate: Optional[str] = None,
         # Reputation
         reputation_minimum: Optional[int] = None,
@@ -260,7 +276,7 @@ class FirewallPolicy:
             srcaddr: Source address(es) - string or list
             dstaddr: Destination address(es) - string or list
 
-            # Core optional parameters (no defaults - FortiOS uses its own defaults)
+            # Core optional parameters (no defaults - FortiOS uses its own defaults)  # noqa: E501
             action: Policy action ('accept', 'deny', 'ipsec')
             schedule: Schedule name
             service: Service(s) - string or list
@@ -271,48 +287,78 @@ class FirewallPolicy:
             dstaddr6: Destination IPv6 address(es) - string or list
 
             # Internet Services (IPv4) - Destination
-            internet_service: Enable/disable Internet Services ('enable', 'disable')
+            internet_service: Enable/disable Internet Services ('enable',
+            'disable')
             internet_service_name: Internet Service name(s) - string or list
             internet_service_group: Internet Service group(s) - string or list
-            internet_service_custom: Custom Internet Service(s) - string or list
-            internet_service_custom_group: Custom Internet Service group(s) - string or list
-            network_service_dynamic: Dynamic network service(s) - string or list
-            internet_service_fortiguard: FortiGuard Internet Service(s) - string or list
-            internet_service_negate: Negate Internet Service match ('enable', 'disable')
+            internet_service_custom: Custom Internet Service(s) - string or
+            list
+            internet_service_custom_group: Custom Internet Service group(s) -
+            string or list
+            network_service_dynamic: Dynamic network service(s) - string or
+            list
+            internet_service_fortiguard: FortiGuard Internet Service(s) -
+            string or list
+            internet_service_negate: Negate Internet Service match ('enable',
+            'disable')
 
             # Internet Services (IPv4) - Source
-            internet_service_src: Enable/disable source Internet Services ('enable', 'disable')
-            internet_service_src_name: Source Internet Service name(s) - string or list
-            internet_service_src_group: Source Internet Service group(s) - string or list
-            internet_service_src_custom: Source Custom Internet Service(s) - string or list
-            internet_service_src_custom_group: Source Custom Internet Service group(s) - string or list
-            network_service_src_dynamic: Source dynamic network service(s) - string or list
-            internet_service_src_fortiguard: Source FortiGuard Internet Service(s) - string or list
-            internet_service_src_negate: Negate source Internet Service match ('enable', 'disable')
+            internet_service_src: Enable/disable source Internet Services
+            ('enable', 'disable')
+            internet_service_src_name: Source Internet Service name(s) - string
+            or list
+            internet_service_src_group: Source Internet Service group(s) -
+            string or list
+            internet_service_src_custom: Source Custom Internet Service(s) -
+            string or list
+            internet_service_src_custom_group: Source Custom Internet Service
+            group(s) - string or list
+            network_service_src_dynamic: Source dynamic network service(s) -
+            string or list
+            internet_service_src_fortiguard: Source FortiGuard Internet
+            Service(s) - string or list
+            internet_service_src_negate: Negate source Internet Service match
+            ('enable', 'disable')
 
             # Internet Services (IPv6) - Destination
-            internet_service6: Enable/disable IPv6 Internet Services ('enable', 'disable')
-            internet_service6_name: IPv6 Internet Service name(s) - string or list
-            internet_service6_group: IPv6 Internet Service group(s) - string or list
-            internet_service6_custom: IPv6 Custom Internet Service(s) - string or list
-            internet_service6_custom_group: IPv6 Custom Internet Service group(s) - string or list
-            internet_service6_fortiguard: IPv6 FortiGuard Internet Service(s) - string or list
-            internet_service6_negate: Negate IPv6 Internet Service match ('enable', 'disable')
+            internet_service6: Enable/disable IPv6 Internet Services ('enable',
+            'disable')
+            internet_service6_name: IPv6 Internet Service name(s) - string or
+            list
+            internet_service6_group: IPv6 Internet Service group(s) - string or
+            list
+            internet_service6_custom: IPv6 Custom Internet Service(s) - string
+            or list
+            internet_service6_custom_group: IPv6 Custom Internet Service
+            group(s) - string or list
+            internet_service6_fortiguard: IPv6 FortiGuard Internet Service(s) -
+            string or list
+            internet_service6_negate: Negate IPv6 Internet Service match
+            ('enable', 'disable')
 
             # Internet Services (IPv6) - Source
-            internet_service6_src: Enable/disable source IPv6 Internet Services ('enable', 'disable')
-            internet_service6_src_name: Source IPv6 Internet Service name(s) - string or list
-            internet_service6_src_group: Source IPv6 Internet Service group(s) - string or list
-            internet_service6_src_custom: Source IPv6 Custom Internet Service(s) - string or list
-            internet_service6_src_custom_group: Source IPv6 Custom Internet Service group(s) - string or list
-            internet_service6_src_fortiguard: Source IPv6 FortiGuard Internet Service(s) - string or list
-            internet_service6_src_negate: Negate source IPv6 Internet Service match ('enable', 'disable')
+            internet_service6_src: Enable/disable source IPv6 Internet Services
+            ('enable', 'disable')
+            internet_service6_src_name: Source IPv6 Internet Service name(s) -
+            string or list
+            internet_service6_src_group: Source IPv6 Internet Service group(s)
+            - string or list
+            internet_service6_src_custom: Source IPv6 Custom Internet
+            Service(s) - string or list
+            internet_service6_src_custom_group: Source IPv6 Custom Internet
+            Service group(s) - string or list
+            internet_service6_src_fortiguard: Source IPv6 FortiGuard Internet
+            Service(s) - string or list
+            internet_service6_src_negate: Negate source IPv6 Internet Service
+            match ('enable', 'disable')
 
             # Reputation
             reputation_minimum: Minimum reputation score (0-100)
-            reputation_direction: Reputation direction ('source', 'destination')
+            reputation_direction: Reputation direction ('source',
+            'destination')
             reputation_minimum6: Minimum IPv6 reputation score (0-100)
-            reputation_direction6: IPv6 reputation direction ('source', 'destination')
+            reputation_direction6: IPv6 reputation direction ('source',
+            'destination')
 
             # RTP
             rtp_nat: Enable RTP NAT ('enable', 'disable')
@@ -325,7 +371,8 @@ class FirewallPolicy:
             ztna_ems_tag_secondary: ZTNA EMS secondary tag(s) - string or list
             ztna_tags_match_logic: ZTNA tags match logic ('or', 'and')
             ztna_geo_tag: ZTNA geo tag(s) - string or list
-            ztna_ems_tag_negate: Negate ZTNA EMS tag match ('enable', 'disable')
+            ztna_ems_tag_negate: Negate ZTNA EMS tag match ('enable',
+            'disable')
             ztna_policy_redirect: ZTNA policy redirect ('enable', 'disable')
 
             # Vendor MAC
@@ -419,7 +466,8 @@ class FirewallPolicy:
 
             # Advanced Features
             wccp: Enable WCCP ('enable', 'disable')
-            passive_wan_health_measurement: Passive WAN health measurement ('enable', 'disable')
+            passive_wan_health_measurement: Passive WAN health measurement
+            ('enable', 'disable')
             app_monitor: Application monitor ('enable', 'disable')
             captive_portal_exempt: Captive portal exempt ('enable', 'disable')
             decrypted_traffic_mirror: Decrypted traffic mirror name
@@ -428,7 +476,8 @@ class FirewallPolicy:
 
             # Session Control
             send_deny_packet: Send deny packet ('enable', 'disable')
-            firewall_session_dirty: Firewall session dirty ('check-all', 'check-new')
+            firewall_session_dirty: Firewall session dirty ('check-all',
+            'check-new')
             schedule_timeout: Schedule timeout ('enable', 'disable')
             policy_expiry: Policy expiry ('enable', 'disable')
             policy_expiry_date: Policy expiry date
@@ -449,7 +498,8 @@ class FirewallPolicy:
             # TCP/IP
             tcp_mss_sender: TCP MSS sender (0-65535)
             tcp_mss_receiver: TCP MSS receiver (0-65535)
-            tcp_session_without_syn: TCP session without SYN ('enable', 'disable')
+            tcp_session_without_syn: TCP session without SYN ('enable',
+            'disable')
             anti_replay: Enable anti-replay ('enable', 'disable')
             tos: Type of Service (ToS) value
             tos_mask: ToS mask
@@ -457,7 +507,8 @@ class FirewallPolicy:
 
             # Geo-IP
             geoip_anycast: Geo-IP anycast ('enable', 'disable')
-            geoip_match: Geo-IP match ('physical-location', 'registered-location')
+            geoip_match: Geo-IP match ('physical-location',
+            'registered-location')
 
             # Security Groups
             sgt_check: Security Group Tag check ('enable', 'disable')
@@ -465,7 +516,8 @@ class FirewallPolicy:
 
             # Performance
             auto_asic_offload: Auto ASIC offload ('enable', 'disable')
-            np_acceleration: Network processor acceleration ('enable', 'disable')
+            np_acceleration: Network processor acceleration ('enable',
+            'disable')
             delay_tcp_npu_session: Delay TCP NPU session ('enable', 'disable')
 
             # VIP Matching
@@ -473,7 +525,8 @@ class FirewallPolicy:
             match_vip_only: Match VIP only ('enable', 'disable')
 
             # RADIUS Bypass
-            radius_mac_auth_bypass: RADIUS MAC auth bypass ('enable', 'disable')
+            radius_mac_auth_bypass: RADIUS MAC auth bypass ('enable',
+            'disable')
             radius_ip_auth_bypass: RADIUS IP auth bypass ('enable', 'disable')
             dsri: Disable Server Response Inspection ('enable', 'disable')
 
@@ -487,9 +540,12 @@ class FirewallPolicy:
 
             # Negation Options
             srcaddr_negate: Negate source address match ('enable', 'disable')
-            dstaddr_negate: Negate destination address match ('enable', 'disable')
-            srcaddr6_negate: Negate source IPv6 address match ('enable', 'disable')
-            dstaddr6_negate: Negate destination IPv6 address match ('enable', 'disable')
+            dstaddr_negate: Negate destination address match ('enable',
+            'disable')
+            srcaddr6_negate: Negate source IPv6 address match ('enable',
+            'disable')
+            dstaddr6_negate: Negate destination IPv6 address match ('enable',
+            'disable')
             service_negate: Negate service match ('enable', 'disable')
 
             # Comments
@@ -499,7 +555,8 @@ class FirewallPolicy:
             vdom: Virtual domain name
             datasource: Include datasource in response
             with_meta: Include metadata in response
-            data: Additional fields as dictionary (merged with explicit parameters)
+            data: Additional fields as dictionary (merged with explicit
+            parameters)
 
         Returns:
             API response dictionary
@@ -560,7 +617,7 @@ class FirewallPolicy:
             internet_service_src_name=internet_service_src_name,
             internet_service_src_group=internet_service_src_group,
             internet_service_src_custom=internet_service_src_custom,
-            internet_service_src_custom_group=internet_service_src_custom_group,
+            internet_service_src_custom_group=internet_service_src_custom_group,  # noqa: E501
             network_service_src_dynamic=network_service_src_dynamic,
             internet_service_src_fortiguard=internet_service_src_fortiguard,
             internet_service_src_negate=internet_service_src_negate,
@@ -575,7 +632,7 @@ class FirewallPolicy:
             internet_service6_src_name=internet_service6_src_name,
             internet_service6_src_group=internet_service6_src_group,
             internet_service6_src_custom=internet_service6_src_custom,
-            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,  # noqa: E501
             internet_service6_src_fortiguard=internet_service6_src_fortiguard,
             internet_service6_src_negate=internet_service6_src_negate,
             reputation_minimum=reputation_minimum,
@@ -730,7 +787,10 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.post(payload_dict=policy_data, **api_params)  # type: ignore[return-value]
+        # type: ignore[return-value]
+        return self._api.post(  # type: ignore[return-value]
+            payload_dict=policy_data, **api_params
+        )
 
     def get(
         self,
@@ -806,9 +866,13 @@ class FirewallPolicy:
         internet_service_src_name: Optional[Union[str, List[str]]] = None,
         internet_service_src_group: Optional[Union[str, List[str]]] = None,
         internet_service_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service_src_custom_group: Optional[Union[str, List[str]]] = None,
+        internet_service_src_custom_group: Optional[
+            Union[str, List[str]]
+        ] = None,
         network_service_src_dynamic: Optional[Union[str, List[str]]] = None,
-        internet_service_src_fortiguard: Optional[Union[str, List[str]]] = None,
+        internet_service_src_fortiguard: Optional[
+            Union[str, List[str]]
+        ] = None,
         internet_service_src_negate: Optional[str] = None,
         # Internet Services (IPv6) - destination
         internet_service6: Optional[str] = None,
@@ -823,8 +887,12 @@ class FirewallPolicy:
         internet_service6_src_name: Optional[Union[str, List[str]]] = None,
         internet_service6_src_group: Optional[Union[str, List[str]]] = None,
         internet_service6_src_custom: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_custom_group: Optional[Union[str, List[str]]] = None,
-        internet_service6_src_fortiguard: Optional[Union[str, List[str]]] = None,
+        internet_service6_src_custom_group: Optional[
+            Union[str, List[str]]
+        ] = None,
+        internet_service6_src_fortiguard: Optional[
+            Union[str, List[str]]
+        ] = None,
         internet_service6_src_negate: Optional[str] = None,
         # Reputation
         reputation_minimum: Optional[int] = None,
@@ -996,12 +1064,15 @@ class FirewallPolicy:
         data: Optional[Dict[str, Any]] = None,
     ) -> Dict[str, Any]:
         """
-        Update an existing firewall policy (partial update - only specify fields to change).
-        All parameters same as create() but optional. See create() docstring for full parameter documentation.
+        Update an existing firewall policy (partial update - only specify
+        fields to change).
+        All parameters same as create() but optional. See create() docstring
+        for full parameter documentation.
 
         Args:
             policy_id: Policy ID to update (required)
-            (All other parameters are optional - see create() method for details)
+            (All other parameters are optional - see create() method for
+            details)
 
         Returns:
             API response dictionary
@@ -1047,7 +1118,7 @@ class FirewallPolicy:
             internet_service_src_name=internet_service_src_name,
             internet_service_src_group=internet_service_src_group,
             internet_service_src_custom=internet_service_src_custom,
-            internet_service_src_custom_group=internet_service_src_custom_group,
+            internet_service_src_custom_group=internet_service_src_custom_group,  # noqa: E501
             network_service_src_dynamic=network_service_src_dynamic,
             internet_service_src_fortiguard=internet_service_src_fortiguard,
             internet_service_src_negate=internet_service_src_negate,
@@ -1062,7 +1133,7 @@ class FirewallPolicy:
             internet_service6_src_name=internet_service6_src_name,
             internet_service6_src_group=internet_service6_src_group,
             internet_service6_src_custom=internet_service6_src_custom,
-            internet_service6_src_custom_group=internet_service6_src_custom_group,
+            internet_service6_src_custom_group=internet_service6_src_custom_group,  # noqa: E501
             internet_service6_src_fortiguard=internet_service6_src_fortiguard,
             internet_service6_src_negate=internet_service6_src_negate,
             reputation_minimum=reputation_minimum,
@@ -1217,7 +1288,14 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        return self._api.put(policyid=str(policy_id), payload_dict=policy_data, **api_params)  # type: ignore[return-value]
+        return self._api.put(
+            policyid=str(
+                # type: ignore[return-value]
+                policy_id
+            ),
+            payload_dict=policy_data,
+            **api_params,
+        )
 
     def delete(
         self,
@@ -1243,7 +1321,10 @@ class FirewallPolicy:
             api_params["vdom"] = vdom
         if raw_json is not None:
             api_params["raw_json"] = raw_json
-        return self._api.delete(policyid=str(policy_id), **api_params)  # type: ignore[return-value]
+        # type: ignore[return-value]
+        return self._api.delete(  # type: ignore[return-value]
+            policyid=str(policy_id), **api_params
+        )
 
     def exists(
         self,
@@ -1280,7 +1361,8 @@ class FirewallPolicy:
         Args:
             policy_id: Policy ID to move
             position: Position ('before', 'after', 'top', or 'bottom')
-            reference_id: Reference policy ID (required for 'before'/'after', ignored for 'top'/'bottom')
+            reference_id: Reference policy ID (required for 'before'/'after',
+            ignored for 'top'/'bottom')
             vdom: Virtual domain name (optional)
 
         Returns:
@@ -1288,13 +1370,15 @@ class FirewallPolicy:
 
         Examples:
             >>> # Move policy 5 before policy 3
-            >>> result = fgt.firewall.policy.move(policy_id=5, position='before', reference_id=3)
+            >>> result = fgt.firewall.policy.move(policy_id=5,
+            position='before', reference_id=3)
 
             >>> # Move policy 10 to the top
             >>> result = fgt.firewall.policy.move(policy_id=10, position='top')
 
             >>> # Move policy 15 to the bottom
-            >>> result = fgt.firewall.policy.move(policy_id=15, position='bottom')
+            >>> result = fgt.firewall.policy.move(policy_id=15,
+            position='bottom')
         """
         # Build move-specific parameters
         move_kwargs: Dict[str, Any] = {"action": "move"}
@@ -1302,7 +1386,9 @@ class FirewallPolicy:
         # Add the position parameter
         if position in ("before", "after"):
             if reference_id is None:
-                raise ValueError(f"reference_id is required when position is '{position}'")
+                raise ValueError(
+                    f"reference_id is required when position is '{position}'"
+                )
             move_kwargs[position] = str(reference_id)
         elif position == "top":
             # To move to top, we need to find the first policy and use 'before'
@@ -1319,7 +1405,8 @@ class FirewallPolicy:
                 if str(first_policy_id) != str(policy_id):
                     break
             else:
-                # All policies are the same ID? Already at top if only one policy
+                # All policies are the same ID? Already at top if only one
+                # policy
                 return {
                     "status": "success",
                     "message": "Policy already at top",
@@ -1332,7 +1419,8 @@ class FirewallPolicy:
                 }
             move_kwargs["before"] = str(first_policy_id)
         elif position == "bottom":
-            # To move to bottom, we need to find the last policy and use 'after'
+            # To move to bottom, we need to find the last policy and use
+            # 'after'
             policies = self.get(vdom=vdom)
             # Ensure we have a list of policies
             if isinstance(policies, dict):
@@ -1345,7 +1433,8 @@ class FirewallPolicy:
                 if str(last_policy_id) != str(policy_id):
                     break
             else:
-                # All policies are the same ID? Already at bottom if only one policy
+                # All policies are the same ID? Already at bottom if only one
+                # policy
                 return {
                     "status": "success",
                     "message": "Policy already at bottom",
@@ -1359,11 +1448,12 @@ class FirewallPolicy:
             move_kwargs["after"] = str(last_policy_id)
         else:
             raise ValueError(
-                f"Invalid position: {position}. Must be 'before', 'after', 'top', or 'bottom'"
+                f"Invalid position: {position}. Must be 'before', 'after', 'top', or 'bottom'"  # noqa: E501
             )
 
         # Call the API using the HTTP client directly with params
-        # We need to use the HTTP client directly because move uses query params,
+        # We need to use the HTTP client directly because move uses query
+        # params,
         # not data payload
         endpoint = f"firewall/policy/{policy_id}"
 
@@ -1377,8 +1467,11 @@ class FirewallPolicy:
         if raw_json is not None:
             call_params["raw_json"] = raw_json
 
-        # Type ignore: client can be sync or async, runtime returns Dict[str, Any]
-        return self._fgt._client.put("cmdb", endpoint, **call_params)  # type: ignore
+        # Type ignore: client can be sync or async, runtime returns Dict[str,
+        # Any]
+        return self._fgt._client.put(
+            "cmdb", endpoint, **call_params
+        )  # type: ignore
 
     def clone(
         self,
@@ -1393,20 +1486,25 @@ class FirewallPolicy:
 
         Args:
             policy_id: Policy ID to clone
-            new_name: Name for the cloned policy (optional, will auto-generate if not provided)
-            status: Status for cloned policy - 'enable' or 'disable' (optional, defaults to original)
+            new_name: Name for the cloned policy (optional, will auto-generate
+            if not provided)
+            status: Status for cloned policy - 'enable' or 'disable' (optional,
+            defaults to original)
             vdom: Virtual domain name (optional)
-            additional_changes: Additional field changes as dictionary (optional)
+            additional_changes: Additional field changes as dictionary
+            (optional)
 
         Returns:
             API response dictionary
 
         Examples:
             >>> # Clone policy 1 with a new name
-            >>> result = fgt.firewall.policy.clone(policy_id=1, new_name='Cloned-Policy')
+            >>> result = fgt.firewall.policy.clone(policy_id=1,
+            new_name='Cloned-Policy')
 
             >>> # Clone and disable
-            >>> result = fgt.firewall.policy.clone(policy_id=1, new_name='Test-Policy', status='disable')
+            >>> result = fgt.firewall.policy.clone(policy_id=1,
+            new_name='Test-Policy', status='disable')
 
             >>> # Clone with additional changes
             >>> result = fgt.firewall.policy.clone(
@@ -1420,8 +1518,15 @@ class FirewallPolicy:
         original_response = self.get(policy_id=policy_id, vdom=vdom)
 
         # Handle response format
-        if isinstance(original_response, dict) and "results" in original_response:
-            original = original_response["results"][0] if original_response["results"] else {}
+        if (
+            isinstance(original_response, dict)
+            and "results" in original_response
+        ):
+            original = (
+                original_response["results"][0]
+                if original_response["results"]
+                else {}
+            )
         elif isinstance(original_response, list):
             original = original_response[0] if original_response else {}
         else:
@@ -1429,7 +1534,9 @@ class FirewallPolicy:
 
         # Remove fields that shouldn't be copied
         clone_data = {
-            k: v for k, v in original.items() if k not in ("policyid", "uuid", "q_origin_key")
+            k: v
+            for k, v in original.items()
+            if k not in ("policyid", "uuid", "q_origin_key")
         }
 
         # Apply name change
@@ -1452,7 +1559,10 @@ class FirewallPolicy:
         api_params = {}
         if vdom:
             api_params["vdom"] = vdom
-        return self._api.post(data=clone_data, **api_params)  # type: ignore[return-value]
+        # type: ignore[return-value]
+        return self._api.post(  # type: ignore[return-value]
+            data=clone_data, **api_params
+        )
 
     def rename(
         self,
@@ -1472,7 +1582,8 @@ class FirewallPolicy:
             API response dictionary
 
         Example:
-            >>> result = fgt.firewall.policy.rename(policy_id=1, new_name='Updated-Policy-Name')
+            >>> result = fgt.firewall.policy.rename(policy_id=1,
+            new_name='Updated-Policy-Name')
         """
         return self.update(policy_id=policy_id, name=new_name, vdom=vdom)
 

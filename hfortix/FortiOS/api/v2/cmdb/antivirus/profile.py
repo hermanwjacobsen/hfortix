@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class Profile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -244,9 +247,13 @@ class Profile:
         if fortisandbox_max_upload is not None:
             data_payload["fortisandbox-max-upload"] = fortisandbox_max_upload
         if analytics_ignore_filetype is not None:
-            data_payload["analytics-ignore-filetype"] = analytics_ignore_filetype
+            data_payload["analytics-ignore-filetype"] = (
+                analytics_ignore_filetype
+            )
         if analytics_accept_filetype is not None:
-            data_payload["analytics-accept-filetype"] = analytics_accept_filetype
+            data_payload["analytics-accept-filetype"] = (
+                analytics_accept_filetype
+            )
         if analytics_db is not None:
             data_payload["analytics-db"] = analytics_db
         if mobile_malware_db is not None:
@@ -274,9 +281,13 @@ class Profile:
         if content_disarm is not None:
             data_payload["content-disarm"] = content_disarm
         if outbreak_prevention_archive_scan is not None:
-            data_payload["outbreak-prevention-archive-scan"] = outbreak_prevention_archive_scan
+            data_payload["outbreak-prevention-archive-scan"] = (
+                outbreak_prevention_archive_scan
+            )
         if external_blocklist_enable_all is not None:
-            data_payload["external-blocklist-enable-all"] = external_blocklist_enable_all
+            data_payload["external-blocklist-enable-all"] = (
+                external_blocklist_enable_all
+            )
         if external_blocklist is not None:
             data_payload["external-blocklist"] = external_blocklist
         if ems_threat_feed is not None:
@@ -288,7 +299,9 @@ class Profile:
         if scan_mode is not None:
             data_payload["scan-mode"] = scan_mode
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -325,7 +338,9 @@ class Profile:
             raise ValueError("name is required for delete()")
         endpoint = f"/antivirus/profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -366,7 +381,7 @@ class Profile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -472,9 +487,13 @@ class Profile:
         if fortisandbox_max_upload is not None:
             data_payload["fortisandbox-max-upload"] = fortisandbox_max_upload
         if analytics_ignore_filetype is not None:
-            data_payload["analytics-ignore-filetype"] = analytics_ignore_filetype
+            data_payload["analytics-ignore-filetype"] = (
+                analytics_ignore_filetype
+            )
         if analytics_accept_filetype is not None:
-            data_payload["analytics-accept-filetype"] = analytics_accept_filetype
+            data_payload["analytics-accept-filetype"] = (
+                analytics_accept_filetype
+            )
         if analytics_db is not None:
             data_payload["analytics-db"] = analytics_db
         if mobile_malware_db is not None:
@@ -502,9 +521,13 @@ class Profile:
         if content_disarm is not None:
             data_payload["content-disarm"] = content_disarm
         if outbreak_prevention_archive_scan is not None:
-            data_payload["outbreak-prevention-archive-scan"] = outbreak_prevention_archive_scan
+            data_payload["outbreak-prevention-archive-scan"] = (
+                outbreak_prevention_archive_scan
+            )
         if external_blocklist_enable_all is not None:
-            data_payload["external-blocklist-enable-all"] = external_blocklist_enable_all
+            data_payload["external-blocklist-enable-all"] = (
+                external_blocklist_enable_all
+            )
         if external_blocklist is not None:
             data_payload["external-blocklist"] = external_blocklist
         if ems_threat_feed is not None:
@@ -516,4 +539,6 @@ class Profile:
         if scan_mode is not None:
             data_payload["scan-mode"] = scan_mode
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

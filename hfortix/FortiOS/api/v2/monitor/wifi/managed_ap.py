@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -88,7 +89,9 @@ class LedBlink:
         if duration is not None:
             data["duration"] = duration
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/led-blink", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/led-blink", data=data
+        )
 
 
 class Restart:
@@ -129,7 +132,9 @@ class Restart:
         if wtpname is not None:
             data["wtpname"] = wtpname
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/restart", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/restart", data=data
+        )
 
 
 class SetStatus:
@@ -174,7 +179,9 @@ class SetStatus:
         if admin is not None:
             data["admin"] = admin
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/managed_ap/set_status", data=data)
+        return self._client.post(
+            "monitor", "/wifi/managed_ap/set_status", data=data
+        )
 
 
 class ManagedAp:

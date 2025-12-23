@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -112,4 +113,6 @@ class SlaLog:
         if include_sla_targets_met is not None:
             params["include_sla_targets_met"] = include_sla_targets_met
         params.update(kwargs)
-        return self._client.get("monitor", "/virtual-wan/sla-log", params=params)
+        return self._client.get(
+            "monitor", "/virtual-wan/sla-log", params=params
+        )

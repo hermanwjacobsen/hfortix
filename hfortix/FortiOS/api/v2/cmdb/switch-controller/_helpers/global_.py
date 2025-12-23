@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_HTTPS_IMAGE_PUSH = ["enable", "disable"]
 VALID_BODY_VLAN_ALL_MODE = ["all", "defined"]
@@ -343,7 +342,10 @@ def validate_global__put(
     # Validate firmware-provision-on-authorization if present
     if "firmware-provision-on-authorization" in payload:
         value = payload.get("firmware-provision-on-authorization")
-        if value and value not in VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION:
+        if (
+            value
+            and value not in VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION
+        ):
             return (
                 False,
                 f"Invalid firmware-provision-on-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_ON_AUTHORIZATION)}",

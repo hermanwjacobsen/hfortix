@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_FORTILINK = ["enable", "disable"]
 VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP = ["outbound", "fixed"]
@@ -372,7 +371,10 @@ def validate_interface_post(
     # Validate dhcp-relay-interface-select-method if present
     if "dhcp-relay-interface-select-method" in payload:
         value = payload.get("dhcp-relay-interface-select-method")
-        if value and value not in VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD:
+        if (
+            value
+            and value not in VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD
+        ):
             return (
                 False,
                 f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
@@ -2039,7 +2041,10 @@ def validate_interface_post(
     # Validate switch-controller-igmp-snooping-proxy if present
     if "switch-controller-igmp-snooping-proxy" in payload:
         value = payload.get("switch-controller-igmp-snooping-proxy")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY:
+        if (
+            value
+            and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY
+        ):
             return (
                 False,
                 f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
@@ -2048,7 +2053,11 @@ def validate_interface_post(
     # Validate switch-controller-igmp-snooping-fast-leave if present
     if "switch-controller-igmp-snooping-fast-leave" in payload:
         value = payload.get("switch-controller-igmp-snooping-fast-leave")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE
+        ):
             return (
                 False,
                 f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
@@ -2066,7 +2075,11 @@ def validate_interface_post(
     # Validate switch-controller-dhcp-snooping-verify-mac if present
     if "switch-controller-dhcp-snooping-verify-mac" in payload:
         value = payload.get("switch-controller-dhcp-snooping-verify-mac")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC
+        ):
             return (
                 False,
                 f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
@@ -2075,7 +2088,11 @@ def validate_interface_post(
     # Validate switch-controller-dhcp-snooping-option82 if present
     if "switch-controller-dhcp-snooping-option82" in payload:
         value = payload.get("switch-controller-dhcp-snooping-option82")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82
+        ):
             return (
                 False,
                 f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",
@@ -2369,7 +2386,10 @@ def validate_interface_put(
     # Validate dhcp-relay-interface-select-method if present
     if "dhcp-relay-interface-select-method" in payload:
         value = payload.get("dhcp-relay-interface-select-method")
-        if value and value not in VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD:
+        if (
+            value
+            and value not in VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD
+        ):
             return (
                 False,
                 f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
@@ -4036,7 +4056,10 @@ def validate_interface_put(
     # Validate switch-controller-igmp-snooping-proxy if present
     if "switch-controller-igmp-snooping-proxy" in payload:
         value = payload.get("switch-controller-igmp-snooping-proxy")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY:
+        if (
+            value
+            and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY
+        ):
             return (
                 False,
                 f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
@@ -4045,7 +4068,11 @@ def validate_interface_put(
     # Validate switch-controller-igmp-snooping-fast-leave if present
     if "switch-controller-igmp-snooping-fast-leave" in payload:
         value = payload.get("switch-controller-igmp-snooping-fast-leave")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE
+        ):
             return (
                 False,
                 f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
@@ -4063,7 +4090,11 @@ def validate_interface_put(
     # Validate switch-controller-dhcp-snooping-verify-mac if present
     if "switch-controller-dhcp-snooping-verify-mac" in payload:
         value = payload.get("switch-controller-dhcp-snooping-verify-mac")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC
+        ):
             return (
                 False,
                 f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
@@ -4072,7 +4103,11 @@ def validate_interface_put(
     # Validate switch-controller-dhcp-snooping-option82 if present
     if "switch-controller-dhcp-snooping-option82" in payload:
         value = payload.get("switch-controller-dhcp-snooping-option82")
-        if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82:
+        if (
+            value
+            and value
+            not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82
+        ):
             return (
                 False,
                 f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",

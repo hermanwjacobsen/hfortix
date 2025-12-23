@@ -20,7 +20,7 @@ Exceptions:
 """
 
 # Version information
-__version__ = "0.3.19"
+__version__ = "0.3.22"
 __author__ = "Herman W. Jacobsen"
 __license__ = "Proprietary"
 __email__ = "herman@wjacobsen.fo"
@@ -29,11 +29,15 @@ __url__ = "https://github.com/hermanwjacobsen/hfortix"
 # Version info tuple for programmatic access
 VERSION = tuple(map(int, __version__.split(".")))
 
-from .exceptions import APIError, AuthenticationError, FortinetError
+from .exceptions import (  # noqa: E402
+    APIError,
+    AuthenticationError,
+    FortinetError,
+)
 
 # Public API
-from .fortios import FortiOS
-from .performance_test import quick_test, run_performance_test
+from .fortios import FortiOS  # noqa: E402
+from .performance_test import quick_test, run_performance_test  # noqa: E402
 
 __all__ = [
     # Main client

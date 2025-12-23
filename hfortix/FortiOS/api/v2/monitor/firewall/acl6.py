@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class ClearCounters:
         if policy is not None:
             data["policy"] = policy
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/acl6/clear_counters", data=data)
+        return self._client.post(
+            "monitor", "/firewall/acl6/clear_counters", data=data
+        )
 
 
 class Acl6:

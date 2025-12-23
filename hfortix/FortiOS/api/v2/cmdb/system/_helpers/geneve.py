@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["ethernet", "ppp"]
 VALID_BODY_IP_VERSION = ["ipv4-unicast", "ipv6-unicast"]

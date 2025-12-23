@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Global:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -223,8 +226,12 @@ class Global:
         if av_mem_limit is not None:
             data_payload["av-mem-limit"] = av_mem_limit
         if machine_learning_detection is not None:
-            data_payload["machine-learning-detection"] = machine_learning_detection
+            data_payload["machine-learning-detection"] = (
+                machine_learning_detection
+            )
         if tls_active_probe is not None:
             data_payload["tls-active-probe"] = tls_active_probe
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

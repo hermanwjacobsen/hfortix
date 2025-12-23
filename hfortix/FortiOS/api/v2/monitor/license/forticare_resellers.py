@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,4 +81,6 @@ class ForticareResellers:
         if country_code is not None:
             params["country_code"] = country_code
         params.update(kwargs)
-        return self._client.get("monitor", "/license/forticare-resellers", params=params)
+        return self._client.get(
+            "monitor", "/license/forticare-resellers", params=params
+        )

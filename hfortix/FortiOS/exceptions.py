@@ -4,7 +4,7 @@ This module exports all FortiOS exceptions and error handling utilities.
 All exception classes are defined in exceptions_forti.py.
 """
 
-from .exceptions_forti import (  # Base exceptions; HTTP status exceptions; FortiOS-specific exceptions; Helper functions; Data
+from .exceptions_forti import (  # Base exceptions; HTTP status exceptions; FortiOS-specific exceptions; Helper functions; Data  # noqa: E501
     FORTIOS_ERROR_CODES,
     HTTP_STATUS_CODES,
     APIError,

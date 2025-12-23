@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -92,4 +93,6 @@ class Members:
         if skip_vpn_child is not None:
             params["skip_vpn_child"] = skip_vpn_child
         params.update(kwargs)
-        return self._client.get("monitor", "/virtual-wan/members", params=params)
+        return self._client.get(
+            "monitor", "/virtual-wan/members", params=params
+        )

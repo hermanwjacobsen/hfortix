@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class Reset:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/per-ip-shaper/reset", data=data)
+        return self._client.post(
+            "monitor", "/firewall/per-ip-shaper/reset", data=data
+        )
 
 
 class PerIpShaper:
@@ -120,4 +123,6 @@ class PerIpShaper:
         if shaper_name is not None:
             params["shaper_name"] = shaper_name
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/per-ip-shaper", params=params)
+        return self._client.get(
+            "monitor", "/firewall/per-ip-shaper", params=params
+        )

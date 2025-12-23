@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class AddUsers:
         if expiry is not None:
             data["expiry"] = expiry
         data.update(kwargs)
-        return self._client.post("monitor", "/user/banned/add_users", data=data)
+        return self._client.post(
+            "monitor", "/user/banned/add_users", data=data
+        )
 
 
 class Check:
@@ -161,7 +164,9 @@ class ClearAll:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/user/banned/clear_all", data=data)
+        return self._client.post(
+            "monitor", "/user/banned/clear_all", data=data
+        )
 
 
 class ClearUsers:
@@ -202,7 +207,9 @@ class ClearUsers:
         if ip_addresses is not None:
             data["ip_addresses"] = ip_addresses
         data.update(kwargs)
-        return self._client.post("monitor", "/user/banned/clear_users", data=data)
+        return self._client.post(
+            "monitor", "/user/banned/clear_users", data=data
+        )
 
 
 class Banned:

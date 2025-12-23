@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Sdwan:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -193,7 +196,9 @@ class Sdwan:
         if duplication_max_num is not None:
             data_payload["duplication-max-num"] = duplication_max_num
         if duplication_max_discrepancy is not None:
-            data_payload["duplication-max-discrepancy"] = duplication_max_discrepancy
+            data_payload["duplication-max-discrepancy"] = (
+                duplication_max_discrepancy
+            )
         if neighbor_hold_down is not None:
             data_payload["neighbor-hold-down"] = neighbor_hold_down
         if neighbor_hold_down_time is not None:
@@ -219,4 +224,6 @@ class Sdwan:
         if duplication is not None:
             data_payload["duplication"] = duplication
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

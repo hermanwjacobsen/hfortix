@@ -311,7 +311,9 @@ class System:
         self.acme = Acme(client)
         self.admin = Admin(client)
         self.affinity_interrupt = AffinityInterrupt(client)
-        self.affinity_packet_redistribution = AffinityPacketRedistribution(client)
+        self.affinity_packet_redistribution = AffinityPacketRedistribution(
+            client
+        )
         self.alarm = Alarm(client)
         self.alias = Alias(client)
         self.api_user = ApiUser(client)

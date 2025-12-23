@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -86,7 +87,9 @@ class Download:
         if scope is not None:
             params["scope"] = scope
         params.update(kwargs)
-        return self._client.get("monitor", "/system/certificate/download", params=params)
+        return self._client.get(
+            "monitor", "/system/certificate/download", params=params
+        )
 
 
 class ReadInfo:
@@ -127,7 +130,9 @@ class ReadInfo:
         if value is not None:
             data["value"] = value
         data.update(kwargs)
-        return self._client.post("monitor", "/system/certificate/read-info", data=data)
+        return self._client.post(
+            "monitor", "/system/certificate/read-info", data=data
+        )
 
 
 class Certificate:

@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -188,4 +189,6 @@ class RealtimeStatistics:
         if ip_version is not None:
             params["ip_version"] = ip_version
         params.update(kwargs)
-        return self._client.get("monitor", "/fortiview/realtime-statistics", params=params)
+        return self._client.get(
+            "monitor", "/fortiview/realtime-statistics", params=params
+        )

@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class SslSshProfile:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -256,7 +259,9 @@ class SslSshProfile:
         if allowlist is not None:
             data_payload["allowlist"] = allowlist
         if block_blocklisted_certificates is not None:
-            data_payload["block-blocklisted-certificates"] = block_blocklisted_certificates
+            data_payload["block-blocklisted-certificates"] = (
+                block_blocklisted_certificates
+            )
         if ssl_exempt is not None:
             data_payload["ssl-exempt"] = ssl_exempt
         if ech_outer_sni is not None:
@@ -292,7 +297,9 @@ class SslSshProfile:
         if supported_alpn is not None:
             data_payload["supported-alpn"] = supported_alpn
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -329,7 +336,9 @@ class SslSshProfile:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall/ssl-ssh-profile/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -370,7 +379,7 @@ class SslSshProfile:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -488,7 +497,9 @@ class SslSshProfile:
         if allowlist is not None:
             data_payload["allowlist"] = allowlist
         if block_blocklisted_certificates is not None:
-            data_payload["block-blocklisted-certificates"] = block_blocklisted_certificates
+            data_payload["block-blocklisted-certificates"] = (
+                block_blocklisted_certificates
+            )
         if ssl_exempt is not None:
             data_payload["ssl-exempt"] = ssl_exempt
         if ech_outer_sni is not None:
@@ -524,4 +535,6 @@ class SslSshProfile:
         if supported_alpn is not None:
             data_payload["supported-alpn"] = supported_alpn
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

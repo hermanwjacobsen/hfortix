@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_CONDITION_TYPE = ["cpu", "memory", "vpn"]
 VALID_BODY_VPN_TUNNEL_STATE = ["tunnel-up", "tunnel-down"]

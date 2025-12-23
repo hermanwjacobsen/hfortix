@@ -28,15 +28,20 @@ class FortiOS:
     """
     FortiOS REST API Client
 
-    Python client for interacting with Fortinet FortiGate firewalls via REST API.
-    Supports configuration management (CMDB), monitoring, logging, and services.
+    Python client for interacting with Fortinet FortiGate firewalls via REST
+    API.
+    Supports configuration management (CMDB), monitoring, logging, and
+    services.
 
-    This client uses token-based authentication and provides a stateless interface
-    to FortiOS devices. No login/logout required - just initialize with your token
+    This client uses token-based authentication and provides a stateless
+    interface
+    to FortiOS devices. No login/logout required - just initialize with your
+    token
     and start making API calls.
 
     Main API categories:
-        - api.cmdb: Configuration Management Database (firewall policies, objects, etc.)
+        - api.cmdb: Configuration Management Database (firewall policies,
+        objects, etc.)
         - api.monitor: Real-time monitoring and status
         - api.log: Log queries and analysis
         - api.service: System services (sniffer, security rating, etc.)
@@ -162,98 +167,157 @@ class FortiOS:
 
         Supports two authentication methods:
         1. API Token authentication (stateless, recommended for production)
-        2. Username/Password authentication (session-based, requires login/logout)
+        2. Username/Password authentication (session-based, requires
+        login/logout)
 
         Args:
-            host: FortiGate IP/hostname (e.g., "192.0.2.10" or "fortigate.example.com")
+            host: FortiGate IP/hostname (e.g., "192.0.2.10" or
+            "fortigate.example.com")
                   Not required if providing a custom client
-            token: API token for authentication (mutually exclusive with username/password)
-                   Not required if providing a custom client or using username/password
-            username: Username for password authentication (must be used with password)
+            token: API token for authentication (mutually exclusive with
+            username/password)
+                   Not required if providing a custom client or using
+                   username/password
+            username: Username for password authentication (must be used with
+            password)
                       Mutually exclusive with token
-            password: Password for username authentication (must be used with username)
+            password: Password for username authentication (must be used with
+            username)
                       Mutually exclusive with token
-            client: Optional custom HTTP client implementing IHTTPClient protocol
-                   If provided, host/token/verify/etc. are ignored and the custom client is used
+            client: Optional custom HTTP client implementing IHTTPClient
+            protocol
+                   If provided, host/token/verify/etc. are ignored and the
+                   custom client is used
                    Allows for custom authentication, proxying, caching, etc.
             mode: Client mode - 'sync' (default) or 'async'
                  - 'sync': Traditional synchronous API calls
                  - 'async': Asynchronous API calls with async/await
                  Ignored if custom client is provided
-            verify: Verify SSL certificates (default: True, recommended for production)
+            verify: Verify SSL certificates (default: True, recommended for
+            production)
             vdom: Virtual domain (default: None = FortiGate's default VDOM)
-            port: HTTPS port (default: None = use 443, or specify custom port like 8443)
-            debug: Logging level for this instance ('debug', 'info', 'warning', 'error', 'off')
-                   If not specified, uses the global log level set via hfortix.set_log_level()
-            max_retries: Maximum number of retry attempts on transient failures (default: 3)
-            connect_timeout: Timeout for establishing connection in seconds (default: 10.0)
-            read_timeout: Timeout for reading response in seconds (default: 300.0)
+            port: HTTPS port (default: None = use 443, or specify custom port
+            like 8443)
+            debug: Logging level for this instance ('debug', 'info', 'warning',
+            'error', 'off')
+                   If not specified, uses the global log level set via
+                   hfortix.set_log_level()
+            max_retries: Maximum number of retry attempts on transient failures
+            (default: 3)
+            connect_timeout: Timeout for establishing connection in seconds
+            (default: 10.0)
+            read_timeout: Timeout for reading response in seconds (default:
+            300.0)
             user_agent: Custom User-Agent header (default: 'hfortix/{version}')
-                       Useful for identifying different applications/teams in FortiGate logs
-            circuit_breaker_threshold: Number of consecutive failures before opening circuit (default: 5)
-            circuit_breaker_timeout: Seconds to wait before transitioning to half-open (default: 60.0)
-            max_connections: Maximum number of connections in the pool (default: 10)
-                           Conservative default (50% below lowest-performing device tested).
-                           Should work for most FortiGate models and network conditions. Most devices
-                           serialize API requests internally, so high concurrency doesn't improve
-                           throughput. Increase based on performance testing: 20 for remote-wan,
-                           30 for fast-lan, 60+ for high-performance local deployments.
-            max_keepalive_connections: Maximum number of keepalive connections (default: 5)
-                           Conservative default for connection reuse. If max_keepalive_connections
-                           exceeds max_connections, it will be automatically adjusted with a warning.
-                           Increase proportionally with max_connections based on your device profile.
-            session_idle_timeout: For username/password auth only. Idle timeout in seconds before
-                       proactively re-authenticating (default: 300 = 5 minutes). This should match
-                       your FortiGate's 'config system global' -> 'remoteauthtimeout' setting.
-                       Set to None or False to disable proactive re-authentication.
-                       Note: The idle timer resets on each API request. Proactive re-auth triggers
-                       when time since *last request* exceeds threshold (not time since login).
-                       API token authentication is stateless and doesn't use sessions.
-                       **Important**: Proactive re-auth only works when using context manager (with statement).
-            read_only: Enable read-only mode - simulate all write operations without executing them
-                      (default: False). When enabled, POST/PUT/DELETE requests are logged but not
-                      sent to FortiGate. Useful for testing, dry-run, CI/CD pipelines, and training.
+                       Useful for identifying different applications/teams in
+                       FortiGate logs
+            circuit_breaker_threshold: Number of consecutive failures before
+            opening circuit (default: 5)
+            circuit_breaker_timeout: Seconds to wait before transitioning to
+            half-open (default: 60.0)
+            max_connections: Maximum number of connections in the pool
+            (default: 10)
+                           Conservative default (50% below lowest-performing
+                           device tested).
+                           Should work for most FortiGate models and network
+                           conditions. Most devices
+                           serialize API requests internally, so high
+                           concurrency doesn't improve
+                           throughput. Increase based on performance testing:
+                           20 for remote-wan,
+                           30 for fast-lan, 60+ for high-performance local
+                           deployments.
+            max_keepalive_connections: Maximum number of keepalive connections
+            (default: 5)
+                           Conservative default for connection reuse. If
+                           max_keepalive_connections
+                           exceeds max_connections, it will be automatically
+                           adjusted with a warning.
+                           Increase proportionally with max_connections based
+                           on your device profile.
+            session_idle_timeout: For username/password auth only. Idle timeout
+            in seconds before
+                       proactively re-authenticating (default: 300 = 5
+                       minutes). This should match
+                       your FortiGate's 'config system global' ->
+                       'remoteauthtimeout' setting.
+                       Set to None or False to disable proactive
+                       re-authentication.
+                       Note: The idle timer resets on each API request.
+                       Proactive re-auth triggers
+                       when time since *last request* exceeds threshold (not
+                       time since login).
+                       API token authentication is stateless and doesn't use
+                       sessions.
+                       **Important**: Proactive re-auth only works when using
+                       context manager (with statement).
+            read_only: Enable read-only mode - simulate all write operations
+            without executing them
+                      (default: False). When enabled, POST/PUT/DELETE requests
+                      are logged but not
+                      sent to FortiGate. Useful for testing, dry-run, CI/CD
+                      pipelines, and training.
                       GET requests are executed normally.
-            track_operations: Enable operation tracking - maintain audit log of all API calls
-                            (default: False). When enabled, all requests (GET/POST/PUT/DELETE) are
-                            recorded with timestamp, method, URL, and data. Access via get_operations()
-                            or get_write_operations(). Useful for debugging, auditing, and documentation.
-            adaptive_retry: Enable adaptive retry with backpressure detection (default: False).
-                          When enabled, monitors response times and adjusts retry delays based on
-                          FortiGate health signals (slow responses, 503 errors). Increases retry
-                          delays when FortiGate is overloaded to prevent cascading failures.
+            track_operations: Enable operation tracking - maintain audit log of
+            all API calls
+                            (default: False). When enabled, all requests
+                            (GET/POST/PUT/DELETE) are
+                            recorded with timestamp, method, URL, and data.
+                            Access via get_operations()
+                            or get_write_operations(). Useful for debugging,
+                            auditing, and documentation.
+            adaptive_retry: Enable adaptive retry with backpressure detection
+            (default: False).
+                          When enabled, monitors response times and adjusts
+                          retry delays based on
+                          FortiGate health signals (slow responses, 503
+                          errors). Increases retry
+                          delays when FortiGate is overloaded to prevent
+                          cascading failures.
                           Access health metrics via get_health_metrics().
 
         Important:
-            Username/password authentication still works in FortiOS 7.4.x but is removed in
-            FortiOS 7.6.x and later. Use API token authentication for production deployments.
+            Username/password authentication still works in FortiOS 7.4.x but
+            is removed in
+            FortiOS 7.6.x and later. Use API token authentication for
+            production deployments.
 
         Performance Note:
-            Most FortiGate devices serialize API requests internally, meaning concurrent requests
-            don't improve throughput and actually increase response times (10-15x slower).
-            **Sequential requests are recommended** for most deployments. Use async mode only when
-            integrating with async frameworks or managing multiple devices in parallel.
-            Performance testing shows ~5 req/s for most devices, ~30 req/s for high-performance
-            local deployments. See COMPARATIVE_ANALYSIS.md for detailed performance profiles.
+            Most FortiGate devices serialize API requests internally, meaning
+            concurrent requests
+            don't improve throughput and actually increase response times
+            (10-15x slower).
+            **Sequential requests are recommended** for most deployments. Use
+            async mode only when
+            integrating with async frameworks or managing multiple devices in
+            parallel.
+            Performance testing shows ~5 req/s for most devices, ~30 req/s for
+            high-performance
+            local deployments. See COMPARATIVE_ANALYSIS.md for detailed
+            performance profiles.
 
         Examples:
             # Token authentication (recommended)
-            fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
+            fgt = FortiOS("fortigate.example.com", token="your_token_here",
+            verify=True)
             addresses = fgt.api.cmdb.firewall.address.get("test-host")
 
             # Username/Password authentication with context manager (sync)
-            with FortiOS("192.0.2.10", username="admin", password="password", verify=False) as fgt:
+            with FortiOS("192.0.2.10", username="admin", password="password",
+            verify=False) as fgt:
                 addresses = fgt.api.cmdb.firewall.address.get("test-host")
                 # Auto-logout on exit
 
             # Username/Password authentication with context manager (async)
-            async with FortiOS("192.0.2.10", username="admin", password="password",
+            async with FortiOS("192.0.2.10", username="admin",
+            password="password",
                               mode="async", verify=False) as fgt:
                 status = await fgt.api.monitor.system.status.get()
                 # Auto-logout on exit
 
             # Asynchronous mode with token
-            fgt = FortiOS("fortigate.example.com", token="your_token_here", mode="async")
+            fgt = FortiOS("fortigate.example.com", token="your_token_here",
+            mode="async")
             addresses = await fgt.api.cmdb.firewall.address.get("test-host")
 
             # Custom HTTP client
@@ -269,9 +333,10 @@ class FortiOS:
             addresses = fgt.api.cmdb.firewall.address.get("test-host")
 
             # Production - with valid SSL certificate
-            fgt = FortiOS("fortigate.example.com", token="your_token_here", verify=True)
+            fgt = FortiOS("fortigate.example.com", token="your_token_here",
+            verify=True)
 
-            # Development/Testing - with self-signed certificate (example IP from RFC 5737)
+            # Development/Testing - with self-signed certificate (example IP from RFC 5737)  # noqa: E501
             fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False)
 
             # Environment variables (credentials from environment)
@@ -283,34 +348,45 @@ class FortiOS:
             # Set: export FORTIOS_HOST="192.0.2.10"
             #      export FORTIOS_USERNAME="admin"
             #      export FORTIOS_PASSWORD="your_password"
-            fgt = FortiOS()  # Reads from FORTIOS_HOST, FORTIOS_USERNAME, FORTIOS_PASSWORD
+            fgt = FortiOS()  # Reads from FORTIOS_HOST, FORTIOS_USERNAME,
+            FORTIOS_PASSWORD
 
             # Custom port
-            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False, port=8443)
+            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False,
+            port=8443)
 
             # Port in hostname (alternative)
-            fgt = FortiOS("192.0.2.10:8443", token="your_token_here", verify=False)
+            fgt = FortiOS("192.0.2.10:8443", token="your_token_here",
+            verify=False)
 
             # Enable debug logging for this instance only
-            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False, debug='info')
+            fgt = FortiOS("192.0.2.10", token="your_token_here", verify=False,
+            debug='info')
 
             # Custom timeouts (e.g., slower network)
-            fgt = FortiOS("192.0.2.10", token="your_token_here", connect_timeout=30.0, read_timeout=600.0)
+            fgt = FortiOS("192.0.2.10", token="your_token_here",
+            connect_timeout=30.0, read_timeout=600.0)
 
             # Custom User-Agent for multi-team environments
-            fgt = FortiOS("192.0.2.10", token="your_token_here", user_agent="BackupScript/2.1.0")
+            fgt = FortiOS("192.0.2.10", token="your_token_here",
+            user_agent="BackupScript/2.1.0")
 
             # Read-only mode for testing (simulates writes without executing)
-            fgt = FortiOS("192.0.2.10", token="your_token_here", read_only=True)
-            fgt.api.cmdb.firewall.address.create(name="test")  # Logged but not executed
+            fgt = FortiOS("192.0.2.10", token="your_token_here",
+            read_only=True)
+            fgt.api.cmdb.firewall.address.create(name="test")  # Logged but not
+            executed
 
             # Operation tracking for debugging/auditing
-            fgt = FortiOS("192.0.2.10", token="your_token_here", track_operations=True)
-            fgt.api.cmdb.firewall.address.create(name="test", subnet="10.0.0.1/32")
+            fgt = FortiOS("192.0.2.10", token="your_token_here",
+            track_operations=True)
+            fgt.api.cmdb.firewall.address.create(name="test",
+            subnet="10.0.0.1/32")
             operations = fgt.get_operations()  # Get all operations
             write_ops = fgt.get_write_operations()  # Only POST/PUT/DELETE
         """
-        # Support environment variables for credentials (convenience for end users)
+        # Support environment variables for credentials (convenience for end
+        # users)
         # Priority: explicit parameters > environment variables
         host = host or os.getenv("FORTIOS_HOST")
         token = token or os.getenv("FORTIOS_TOKEN")
@@ -349,7 +425,9 @@ class FortiOS:
                 else:
                     url = f"https://{host}"
             else:
-                raise ValueError("host parameter is required when not providing a custom client")
+                raise ValueError(
+                    "host parameter is required when not providing a custom client"  # noqa: E501
+                )
 
             # Create default client based on mode
             if mode == "async":
@@ -398,8 +476,10 @@ class FortiOS:
                 )
 
         # Initialize API namespace.
-        # Store it privately and expose a property so IDEs treat it as a concrete
-        # instance attribute (often improves autocomplete ranking vs dunder attrs).
+        # Store it privately and expose a property so IDEs treat it as a
+        # concrete
+        # instance attribute (often improves autocomplete ranking vs dunder
+        # attrs).
         self._api = API(self._client)
 
         # Log initialization
@@ -410,7 +490,9 @@ class FortiOS:
             mode,
         )
         if not verify:
-            logger.warning("SSL verification disabled - not recommended for production")
+            logger.warning(
+                "SSL verification disabled - not recommended for production"
+            )
         if vdom:
             logger.debug("Using VDOM: %s", vdom)
 
@@ -461,7 +543,7 @@ class FortiOS:
 
         if not has_token and not has_userpass:
             raise ValueError(
-                "Authentication required: provide either 'token' or both 'username' and 'password'. "
+                "Authentication required: provide either 'token' or both 'username' and 'password'. "  # noqa: E501
                 "Example: FortiOS(host='...', token='your-api-token') or "
                 "FortiOS(host='...', username='admin', password='password')"
             )
@@ -471,25 +553,38 @@ class FortiOS:
             # Token should not contain spaces (common copy-paste error)
             if " " in token:
                 raise ValueError(
-                    "Invalid token format: API tokens should not contain spaces. "
+                    "Invalid token format: API tokens should not contain spaces. "  # noqa: E501
                     "Check for copy-paste errors or extra whitespace."
                 )
 
-            # Token should meet minimum length (FortiOS tokens are typically 31+ characters)
-            # Note: Token length varies by FortiOS version (31-32 chars in older versions, 40+ in newer)
-            # We use 25 as a reasonable minimum to catch obviously invalid tokens
+            # Token should meet minimum length (FortiOS tokens are typically
+            # 31+ characters)
+            # Note: Token length varies by FortiOS version (31-32 chars in
+            # older versions, 40+ in newer)
+            # We use 25 as a reasonable minimum to catch obviously invalid
+            # tokens
             if len(token) < 25:  # type: ignore[arg-type]
                 raise ValueError(
-                    f"Invalid token format: token is too short ({len(token)} characters). "  # type: ignore[arg-type]
-                    "FortiOS API tokens are typically 31+ characters (older versions) "
+                    f"Invalid token format: token is too short ({
+                        len(token)} characters). "  # type: ignore[arg-type]
+                    "FortiOS API tokens are typically 31+ characters (older versions) "  # noqa: E501
                     "or 40+ characters (newer versions). "
-                    "Ensure you're using a valid API token, not a password or placeholder."
+                    "Ensure you're using a valid API token, not a password or placeholder."  # noqa: E501
                 )
 
-            # Token should only contain alphanumeric characters (FortiOS tokens are alphanumeric)
-            if not token.replace("-", "").replace("_", "").isalnum():  # type: ignore[union-attr]
+            # Token should only contain alphanumeric characters (FortiOS tokens
+            # are alphanumeric)
+            if (
+                not token.replace("-", "")
+                .replace(
+                    "_",
+                    # type: ignore[union-attr]
+                    "",
+                )
+                .isalnum()
+            ):
                 raise ValueError(
-                    "Invalid token format: API tokens should contain only letters, numbers, "
+                    "Invalid token format: API tokens should contain only letters, numbers, "  # noqa: E501
                     "hyphens, and underscores. Check for copy-paste errors."
                 )
 
@@ -506,20 +601,22 @@ class FortiOS:
             ]:
                 raise ValueError(
                     f"Invalid token: '{token}' appears to be a placeholder. "
-                    "Please provide a valid API token from your FortiGate device. "
-                    "Generate one via: System > Administrators > Create New > REST API Admin"
+                    "Please provide a valid API token from your FortiGate device. "  # noqa: E501
+                    "Generate one via: System > Administrators > Create New > REST API Admin"  # noqa: E501
                 )
 
         # Check for username without password or vice versa
         if (username and not password) or (password and not username):
             raise ValueError(
-                "Username/password authentication requires both 'username' AND 'password'. "
+                "Username/password authentication requires both 'username' AND 'password'. "  # noqa: E501
                 "Provide both parameters or use token authentication instead."
             )
 
     @property
     def api(self) -> API:
-        """Primary entry point to FortiOS endpoints (cmdb/monitor/log/service)."""
+        """
+        Primary entry point to FortiOS endpoints (cmdb/monitor/log/service).
+        """
         return self._api
 
     @property
@@ -547,8 +644,11 @@ class FortiOS:
         return self._firewall
 
     def __dir__(self) -> list[str]:
-        """Prefer showing `api` and `firewall` early in interactive completion."""
-        # Start with the default dir() list, then move important attrs to the front.
+        """
+        Prefer showing `api` and `firewall` early in interactive completion.
+        """
+        # Start with the default dir() list, then move important attrs to the
+        # front.
         names = sorted(set(super().__dir__()))
         priority_attrs = ["api", "firewall"]
         for attr in reversed(priority_attrs):
@@ -576,7 +676,8 @@ class FortiOS:
         """
         Get HTTP connection pool statistics and metrics
 
-        Provides insights into connection health, retry behavior, and circuit breaker state.
+        Provides insights into connection health, retry behavior, and circuit
+        breaker state.
         Useful for monitoring, debugging, and capacity planning.
 
         Returns:
@@ -588,7 +689,8 @@ class FortiOS:
                 - success_rate: Percentage of successful requests
                 - retry_by_reason: Breakdown of retries by failure reason
                 - retry_by_endpoint: Breakdown of retries by endpoint
-                - circuit_breaker_state: Current circuit breaker state (closed/open/half_open)
+                - circuit_breaker_state: Current circuit breaker state
+                (closed/open/half_open)
                 - circuit_breaker_failures: Consecutive failure count
                 - last_retry_time: Timestamp of last retry (if any)
 
@@ -604,7 +706,8 @@ class FortiOS:
             ...         print(f"  {reason}: {count}")
 
         Note:
-            Statistics are collected from the time the FortiOS instance was created.
+            Statistics are collected from the time the FortiOS instance was
+            created.
             Use this method to monitor connection health and identify issues.
         """
         return self._client.get_connection_stats()
@@ -613,8 +716,10 @@ class FortiOS:
         """
         Get audit log of all API operations (requires track_operations=True)
 
-        Returns list of all operations (GET/POST/PUT/DELETE) with details about each request.
-        Only available when track_operations=True was passed to FortiOS constructor.
+        Returns list of all operations (GET/POST/PUT/DELETE) with details about
+        each request.
+        Only available when track_operations=True was passed to FortiOS
+        constructor.
 
         Returns:
             List of operation dictionaries containing:
@@ -631,7 +736,8 @@ class FortiOS:
 
         Example:
             >>> fgt = FortiOS("192.0.2.10", token="...", track_operations=True)
-            >>> fgt.api.cmdb.firewall.address.create(name="test", subnet="10.0.0.1/32")
+            >>> fgt.api.cmdb.firewall.address.create(name="test",
+            subnet="10.0.0.1/32")
             >>> fgt.api.cmdb.firewall.policy.update("10", action="deny")
             >>>
             >>> operations = fgt.get_operations()
@@ -641,12 +747,13 @@ class FortiOS:
             2024-12-20T10:30:16Z PUT /api/v2/cmdb/firewall/policy/10
 
         Note:
-            Use get_write_operations() to filter only write operations (POST/PUT/DELETE).
+            Use get_write_operations() to filter only write operations
+            (POST/PUT/DELETE).
         """
         if not hasattr(self._client, "get_operations"):
             raise RuntimeError(
                 "Operation tracking is not enabled. "
-                "Initialize FortiOS with track_operations=True to use this feature."
+                "Initialize FortiOS with track_operations=True to use this feature."  # noqa: E501
             )
         return self._client.get_operations()
 
@@ -654,11 +761,14 @@ class FortiOS:
         """
         Get audit log of write operations only (requires track_operations=True)
 
-        Returns list of only write operations (POST/PUT/DELETE), excluding GET requests.
-        Only available when track_operations=True was passed to FortiOS constructor.
+        Returns list of only write operations (POST/PUT/DELETE), excluding GET
+        requests.
+        Only available when track_operations=True was passed to FortiOS
+        constructor.
 
         Returns:
-            List of write operation dictionaries (same format as get_operations())
+            List of write operation dictionaries (same format as
+            get_operations())
 
         Raises:
             RuntimeError: If track_operations was not enabled
@@ -666,23 +776,26 @@ class FortiOS:
         Example:
             >>> fgt = FortiOS("192.0.2.10", token="...", track_operations=True)
             >>> fgt.api.cmdb.firewall.address.get("test")  # GET - not included
-            >>> fgt.api.cmdb.firewall.address.create(name="test2", subnet="10.0.0.2/32")  # POST
+            >>> fgt.api.cmdb.firewall.address.create(name="test2",
+            subnet="10.0.0.2/32")  # POST
             >>> fgt.api.cmdb.firewall.address.delete("test")  # DELETE
             >>>
             >>> write_ops = fgt.get_write_operations()
             >>> # Only POST and DELETE are returned, GET is excluded
             >>> for op in write_ops:
             ...     print(f"{op['method']} {op['path']} - {op['data']}")
-            POST /api/v2/cmdb/firewall/address - {'name': 'test2', 'subnet': '10.0.0.2/32'}
+            POST /api/v2/cmdb/firewall/address - {'name': 'test2', 'subnet':
+            '10.0.0.2/32'}
             DELETE /api/v2/cmdb/firewall/address/test - None
 
         Note:
-            Useful for generating change logs, rollback scripts, and audit reports.
+            Useful for generating change logs, rollback scripts, and audit
+            reports.
         """
         if not hasattr(self._client, "get_write_operations"):
             raise RuntimeError(
                 "Operation tracking is not enabled. "
-                "Initialize FortiOS with track_operations=True to use this feature."
+                "Initialize FortiOS with track_operations=True to use this feature."  # noqa: E501
             )
         return self._client.get_write_operations()
 
@@ -698,10 +811,12 @@ class FortiOS:
 
         Returns:
             Dictionary containing:
-            - circuit_breaker: Circuit breaker state, consecutive failures, threshold
+            - circuit_breaker: Circuit breaker state, consecutive failures,
+            threshold
             - retry_stats: Total retries, requests, success/failure counts
             - adaptive_retry_enabled: Whether adaptive retry is active
-            - response_times: Per-endpoint metrics (avg, min, max, p50, p95) if adaptive_retry=True
+            - response_times: Per-endpoint metrics (avg, min, max, p50, p95) if
+            adaptive_retry=True
 
         Example:
             >>> fgt = FortiOS("192.0.2.10", token="...", adaptive_retry=True)
@@ -711,12 +826,14 @@ class FortiOS:
             >>> # Check health
             >>> metrics = fgt.get_health_metrics()
             >>> print(f"Circuit state: {metrics['circuit_breaker']['state']}")
-            >>> print(f"Total retries: {metrics['retry_stats']['total_retries']}")
+            >>> print(f"Total retries:
+            {metrics['retry_stats']['total_retries']}")
             >>>
             >>> # Check response times (if adaptive_retry=True)
             >>> if metrics['response_times']:
             ...     for endpoint, stats in metrics['response_times'].items():
-            ...         print(f"{endpoint}: avg={stats['avg_ms']}ms, slow={stats['is_slow']}")
+            ...         print(f"{endpoint}: avg={stats['avg_ms']}ms,
+            slow={stats['is_slow']}")
             Circuit state: closed
             Total retries: 2
             cmdb/firewall/address: avg=245.5ms, slow=False
@@ -746,7 +863,7 @@ class FortiOS:
         """
         if self._mode == "async":
             raise RuntimeError(
-                "Cannot use .close() in async mode. Use 'await fgt.aclose()' or 'async with' instead."
+                "Cannot use .close() in async mode. Use 'await fgt.aclose()' or 'async with' instead."  # noqa: E501
             )
         self._client.close()
 
@@ -754,12 +871,15 @@ class FortiOS:
         """
         Close the async HTTP session and release resources (async mode only)
 
-        This method should be called to properly clean up resources when using FortiOS in async mode.
+        This method should be called to properly clean up resources when using
+        FortiOS in async mode.
         It ensures that all network connections and sessions are closed.
 
         Usage:
-            - Call `await fgt.aclose()` when you are done with the client in async mode.
-            - Prefer using the async context manager (`async with`) for automatic cleanup.
+            - Call `await fgt.aclose()` when you are done with the client in
+            async mode.
+            - Prefer using the async context manager (`async with`) for
+            automatic cleanup.
 
         Example:
             >>> fgt = FortiOS("192.0.2.10", token="...", mode="async")
@@ -770,7 +890,8 @@ class FortiOS:
 
         Note:
             Prefer using 'async with' statement for automatic cleanup:
-            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as fgt:
+            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as
+            fgt:
             ...     addresses = await fgt.api.cmdb.firewall.address.list()
         """
         if self._mode != "async":
@@ -781,15 +902,17 @@ class FortiOS:
         """Context manager entry (sync mode only)"""
         if self._mode == "async":
             raise RuntimeError(
-                "Cannot use 'with' statement in async mode. Use 'async with' instead."
+                "Cannot use 'with' statement in async mode. Use 'async with' instead."  # noqa: E501
             )
         return self
 
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
-        """Context manager exit - automatically closes session (sync mode only)"""
+        """
+        Context manager exit - automatically closes session (sync mode only)
+        """
         if self._mode == "async":
             raise RuntimeError(
-                "Cannot use 'with' statement in async mode. Use 'async with' instead."
+                "Cannot use 'with' statement in async mode. Use 'async with' instead."  # noqa: E501
             )
         self.close()
         return False
@@ -798,33 +921,39 @@ class FortiOS:
         """
         Async context manager entry (async mode only)
 
-        Enters the async context for FortiOS. Use with `async with` to ensure proper resource management.
+        Enters the async context for FortiOS. Use with `async with` to ensure
+        proper resource management.
 
         Returns:
             FortiOS: The async client instance.
 
         Example:
-            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as fgt:
+            >>> async with FortiOS("192.0.2.10", token="...", mode="async") as
+            fgt:
             ...     addresses = await fgt.api.cmdb.firewall.address.list()
         """
         if self._mode != "async":
             raise RuntimeError(
-                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."
+                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."  # noqa: E501
             )
         return self
 
-    async def __aexit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> bool:
+    async def __aexit__(
+        self, exc_type: Any, exc_val: Any, exc_tb: Any
+    ) -> bool:
         """
-        Async context manager exit - automatically closes session (async mode only)
+        Async context manager exit - automatically closes session (async mode
+        only)
 
-        Ensures that all resources are cleaned up when exiting the async context.
+        Ensures that all resources are cleaned up when exiting the async
+        context.
 
         Returns:
             bool: False (exceptions are not suppressed)
         """
         if self._mode != "async":
             raise RuntimeError(
-                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."
+                "Cannot use 'async with' statement in sync mode. Use regular 'with' instead."  # noqa: E501
             )
         await self.aclose()
         return False

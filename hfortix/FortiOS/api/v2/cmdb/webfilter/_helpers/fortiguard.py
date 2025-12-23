@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_CACHE_MODE = ["ttl", "db-ver"]
 VALID_BODY_CACHE_PREFIX_MATCH = ["enable", "disable"]

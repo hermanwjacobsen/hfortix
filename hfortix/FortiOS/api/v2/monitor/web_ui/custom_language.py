@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -88,7 +89,9 @@ class Create:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/web-ui/custom-language/create", data=data)
+        return self._client.post(
+            "monitor", "/web-ui/custom-language/create", data=data
+        )
 
 
 class Download:
@@ -128,7 +131,9 @@ class Download:
         params = payload_dict.copy() if payload_dict else {}
         params["lang_name"] = lang_name
         params.update(kwargs)
-        return self._client.get("monitor", "/web-ui/custom-language/download", params=params)
+        return self._client.get(
+            "monitor", "/web-ui/custom-language/download", params=params
+        )
 
 
 class Update:
@@ -181,7 +186,9 @@ class Update:
         if file_content is not None:
             data["file_content"] = file_content
         data.update(kwargs)
-        return self._client.post("monitor", "/web-ui/custom-language/update", data=data)
+        return self._client.post(
+            "monitor", "/web-ui/custom-language/update", data=data
+        )
 
 
 class CustomLanguage:

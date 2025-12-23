@@ -47,7 +47,7 @@ class Utils:
         concurrent_count: int = 50,
         concurrent_level: int = 20,
         endpoints: Optional[list[str]] = None,
-    ) -> "PerformanceTestResults": # type: ignore[name-defined]
+    ) -> "PerformanceTestResults":  # type: ignore[name-defined] # noqa: F821
         """
         Run performance tests on this FortiGate device
 
@@ -57,14 +57,18 @@ class Utils:
         Args:
             test_validation: Test connection pool validation (default: True)
             test_endpoints: Test various API endpoints (default: True)
-            test_concurrency: Test concurrent performance (default: False, can be slow)
-            sequential_count: Number of sequential requests per endpoint (default: 10)
+            test_concurrency: Test concurrent performance (default: False, can
+            be slow)
+            sequential_count: Number of sequential requests per endpoint
+            (default: 10)
             concurrent_count: Number of concurrent requests (default: 50)
             concurrent_level: Concurrency level for async test (default: 20)
-            endpoints: Custom list of endpoints to test (default: common endpoints)
+            endpoints: Custom list of endpoints to test (default: common
+            endpoints)
 
         Returns:
-            PerformanceTestResults object with detailed metrics and recommendations
+            PerformanceTestResults object with detailed metrics and
+            recommendations
 
         Example:
             >>> fgt = FortiOS(host="192.168.1.99", token="token", verify=False)
@@ -136,13 +140,18 @@ class Utils:
                     print(f"  Average response time: {overall_avg:.1f}ms")
 
                     # Determine device profile
-                    profile, settings = self._determine_device_profile(overall_avg)
+                    profile, settings = self._determine_device_profile(
+                        overall_avg
+                    )
                     results.device_profile = profile
                     results.recommended_settings = settings
 
                     # Estimate throughput
                     results.sequential_throughput = 1000 / overall_avg
-                    print(f"  Estimated throughput: {results.sequential_throughput:.2f} req/s")
+                    print(
+                        f"  Estimated throughput: {
+                            results.sequential_throughput:.2f} req/s"
+                    )
                 else:
                     print("✗ No valid endpoint results")
                     results.errors.append("No valid endpoint results")
@@ -154,7 +163,11 @@ class Utils:
         # Test 3: Concurrent performance (optional)
         if test_concurrency:
             print("\n[3/3] Testing concurrent performance...")
-            print("  ⚠ Note: Most FortiGates serialize requests - concurrency may not help")
+            msg = (
+                "  ⚠ Note: Most FortiGates serialize requests - "
+                "concurrency may not help"
+            )
+            print(msg)
             try:
                 duration = self._test_concurrent_performance(
                     count=concurrent_count,
@@ -162,21 +175,28 @@ class Utils:
                 )
                 results.concurrent_throughput = concurrent_count / duration
 
-                print(f"✓ Concurrent test complete")
+                print("✓ Concurrent test complete")
                 print(f"  {concurrent_count} requests in {duration:.2f}s")
-                print(f"  Throughput: {results.concurrent_throughput:.2f} req/s")
+                throughput = results.concurrent_throughput
+                print(f"  Throughput: {throughput:.2f} req/s")
 
                 # Compare with sequential
                 if results.sequential_throughput:
                     improvement = (
-                        (results.concurrent_throughput - results.sequential_throughput)
+                        (
+                            results.concurrent_throughput
+                            - results.sequential_throughput
+                        )
                         / results.sequential_throughput
                         * 100
                     )
                     if improvement > 10:
                         print(f"  → Concurrency helps! (+{improvement:.0f}%)")
                     elif improvement < -10:
-                        print(f"  → Concurrency hurts! ({improvement:.0f}%) - Use sequential!")
+                        print(
+                            f"  → Concurrency hurts! ({
+                                improvement:.0f}%) - Use sequential!"
+                        )
                     else:
                         print(f"  → Concurrency neutral ({improvement:+.0f}%)")
 
@@ -221,7 +241,9 @@ class Utils:
                     max_connections=5,
                     max_keepalive_connections=20,
                 )
-                warnings.append("Auto-adjusted max_keepalive_connections from 20 to 5")
+                warnings.append(
+                    "Auto-adjusted max_keepalive_connections from 20 to 5"
+                )
                 logger.debug("✓ Test 2 passed: Auto-adjustment working")
             except Exception as e:
                 return False, [f"Auto-adjustment failed: {e}"]
@@ -271,7 +293,7 @@ class Utils:
                         times.append(elapsed)
                         successes += 1
                     except Exception as e:
-                        logger.warning(f"Request {i+1} failed: {e}")
+                        logger.warning(f"Request {i + 1} failed: {e}")
                         times.append(0)
 
                 # Calculate metrics
@@ -290,7 +312,9 @@ class Utils:
                     if len(valid_times) >= 3:
                         sorted_times = sorted(valid_times)
                         p95_idx = int(len(sorted_times) * 0.95)
-                        results[endpoint_name]["p95_ms"] = sorted_times[p95_idx]
+                        results[endpoint_name]["p95_ms"] = sorted_times[
+                            p95_idx
+                        ]
                 else:
                     results[endpoint_name] = {"error": "All requests failed"}
 
@@ -321,8 +345,8 @@ class Utils:
             # is more for relative performance comparison
             fgt = FortiOS(
                 host=host,
-                token="test_token",  # Placeholder - won't actually work without valid auth
-                verify=self._client._verify,
+                token="test_token",  # Placeholder
+                verify=self._client._verify,  # noqa: E501
                 vdom=self._client._vdom,
                 mode="async",
                 max_connections=concurrency,
@@ -339,7 +363,8 @@ class Utils:
             try:
                 await asyncio.gather(*tasks)
             except Exception:
-                # Expected to fail without valid auth, but we can still measure timing
+                # Expected to fail without valid auth, but we can still measure
+                # timing
                 pass
 
             duration = time.time() - start
@@ -351,13 +376,22 @@ class Utils:
         # For now, skip async test if we can't authenticate
         # Return estimated duration based on sequential performance
         print("  ⚠ Concurrent test requires valid authentication")
-        print("  ⚠ Skipping concurrent test - not yet implemented for reusing auth")
+        msg = (
+            "  ⚠ Skipping concurrent test - not yet implemented "
+            "for reusing auth"
+        )
+        print(msg)  # noqa: E501
         raise NotImplementedError(
-            "Concurrent testing not yet implemented. "
-            "Use run_performance_test() from hfortix.FortiOS.performance_test instead."
+            (
+                "Concurrent testing not yet implemented. "
+                "Use run_performance_test() from "
+                "hfortix.FortiOS.performance_test instead."
+            )
         )
 
-    def _determine_device_profile(self, avg_response_ms: float) -> tuple[str, dict[str, Any]]:
+    def _determine_device_profile(
+        self, avg_response_ms: float
+    ) -> tuple[str, dict[str, Any]]:
         """Determine device profile based on average response time"""
 
         if avg_response_ms < 50:

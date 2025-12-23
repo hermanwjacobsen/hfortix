@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class ConnectionCount:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/vpn/ipsec/connection-count", params=params)
+        return self._client.get(
+            "monitor", "/vpn/ipsec/connection-count", params=params
+        )
 
 
 class TunnelDown:
@@ -125,7 +128,9 @@ class TunnelDown:
         if p2serial is not None:
             data["p2serial"] = p2serial
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn/ipsec/tunnel_down", data=data)
+        return self._client.post(
+            "monitor", "/vpn/ipsec/tunnel_down", data=data
+        )
 
 
 class TunnelResetStats:
@@ -166,7 +171,9 @@ class TunnelResetStats:
         if p1name is not None:
             data["p1name"] = p1name
         data.update(kwargs)
-        return self._client.post("monitor", "/vpn/ipsec/tunnel_reset_stats", data=data)
+        return self._client.post(
+            "monitor", "/vpn/ipsec/tunnel_reset_stats", data=data
+        )
 
 
 class TunnelUp:

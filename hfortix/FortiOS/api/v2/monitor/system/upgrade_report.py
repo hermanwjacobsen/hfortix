@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class Current:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/current", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/current", params=params
+        )
 
 
 class Exists:
@@ -113,7 +116,9 @@ class Exists:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/exists", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/exists", params=params
+        )
 
 
 class Saved:
@@ -150,7 +155,9 @@ class Saved:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/system/upgrade-report/saved", params=params)
+        return self._client.get(
+            "monitor", "/system/upgrade-report/saved", params=params
+        )
 
 
 class UpgradeReport:

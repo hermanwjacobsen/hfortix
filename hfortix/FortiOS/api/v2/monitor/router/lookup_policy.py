@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -103,4 +104,6 @@ class LookupPolicy:
         if protocol_number is not None:
             params["protocol_number"] = protocol_number
         params.update(kwargs)
-        return self._client.get("monitor", "/router/lookup-policy", params=params)
+        return self._client.get(
+            "monitor", "/router/lookup-policy", params=params
+        )

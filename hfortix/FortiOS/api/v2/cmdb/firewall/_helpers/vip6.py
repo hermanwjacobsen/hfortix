@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TYPE = ["static-nat", "server-load-balance", "access-proxy"]
 VALID_BODY_SRC_VIP_FILTER = ["disable", "enable"]

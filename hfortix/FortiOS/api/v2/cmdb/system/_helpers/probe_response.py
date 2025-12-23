@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_TTL_MODE = ["reinit", "decrease", "retain"]
 VALID_BODY_MODE = ["none", "http-probe", "twamp"]

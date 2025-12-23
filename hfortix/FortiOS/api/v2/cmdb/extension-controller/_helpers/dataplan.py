@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MODEM_ID = ["modem1", "modem2", "all"]
 VALID_BODY_TYPE = ["carrier", "slot", "iccid", "generic"]

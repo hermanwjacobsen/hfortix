@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SCOPE = ["vdom", "global"]
 VALID_BODY_SECFABGRP = ["none", "read", "read-write", "custom"]

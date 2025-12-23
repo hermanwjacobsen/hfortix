@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class Timers:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -211,7 +214,9 @@ class Timers:
         if client_idle_timeout is not None:
             data_payload["client-idle-timeout"] = client_idle_timeout
         if client_idle_rehome_timeout is not None:
-            data_payload["client-idle-rehome-timeout"] = client_idle_rehome_timeout
+            data_payload["client-idle-rehome-timeout"] = (
+                client_idle_rehome_timeout
+            )
         if auth_timeout is not None:
             data_payload["auth-timeout"] = auth_timeout
         if rogue_ap_log is not None:
@@ -221,7 +226,9 @@ class Timers:
         if sta_offline_cleanup is not None:
             data_payload["sta-offline-cleanup"] = sta_offline_cleanup
         if sta_offline_ip2mac_cleanup is not None:
-            data_payload["sta-offline-ip2mac-cleanup"] = sta_offline_ip2mac_cleanup
+            data_payload["sta-offline-ip2mac-cleanup"] = (
+                sta_offline_ip2mac_cleanup
+            )
         if sta_cap_cleanup is not None:
             data_payload["sta-cap-cleanup"] = sta_cap_cleanup
         if rogue_ap_cleanup is not None:
@@ -255,4 +262,6 @@ class Timers:
         if ap_reboot_wait_interval2 is not None:
             data_payload["ap-reboot-wait-interval2"] = ap_reboot_wait_interval2
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

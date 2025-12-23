@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SAMPLE_MODE = ["local", "perimeter", "device-ingress"]
 VALID_BODY_FORMAT = ["netflow1", "netflow5", "netflow9", "ipfix"]

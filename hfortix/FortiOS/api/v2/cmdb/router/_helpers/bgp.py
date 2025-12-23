@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ALWAYS_COMPARE_MED = ["enable", "disable"]
 VALID_BODY_BESTPATH_AS_PATH_IGNORE = ["enable", "disable"]

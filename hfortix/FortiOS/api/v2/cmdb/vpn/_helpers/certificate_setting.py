@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_OCSP_STATUS = ["enable", "mandatory", "disable"]
 VALID_BODY_OCSP_OPTION = ["certificate", "server"]

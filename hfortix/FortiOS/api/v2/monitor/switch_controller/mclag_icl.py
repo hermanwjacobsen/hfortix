@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -144,7 +145,9 @@ class SetTierPlus:
         if isl_port_group is not None:
             data["isl_port_group"] = isl_port_group
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/mclag-icl/set-tier-plus", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/mclag-icl/set-tier-plus", data=data
+        )
 
 
 class SetTier1:
@@ -193,7 +196,9 @@ class SetTier1:
         if peer2 is not None:
             data["peer2"] = peer2
         data.update(kwargs)
-        return self._client.post("monitor", "/switch-controller/mclag-icl/set-tier1", data=data)
+        return self._client.post(
+            "monitor", "/switch-controller/mclag-icl/set-tier1", data=data
+        )
 
 
 class TierPlusCandidates:

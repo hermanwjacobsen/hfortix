@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_IMAGE_DOWNLOAD = ["enable", "disable"]
 VALID_BODY_ROLLING_WTP_UPGRADE = ["enable", "disable"]

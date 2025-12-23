@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_QUERIES = ["disable", "enable"]
 VALID_BODY_SECURITY_LEVEL = ["no-auth-no-priv", "auth-no-priv", "auth-priv"]

@@ -116,19 +116,35 @@ class WirelessController:
         self.ble_profile = BleProfile(client)
         self.bonjour_profile = BonjourProfile(client)
         self.global_ = Global(client)
-        self.hotspot20_anqp_3gpp_cellular = Hotspot20AnqpThreeGppCellular(client)
-        self.hotspot20_anqp_ip_address_type = Hotspot20AnqpIpAddressType(client)
+        self.hotspot20_anqp_3gpp_cellular = Hotspot20AnqpThreeGppCellular(
+            client
+        )
+        self.hotspot20_anqp_ip_address_type = Hotspot20AnqpIpAddressType(
+            client
+        )
         self.hotspot20_anqp_nai_realm = Hotspot20AnqpNaiRealm(client)
-        self.hotspot20_anqp_network_auth_type = Hotspot20AnqpNetworkAuthType(client)
-        self.hotspot20_anqp_roaming_consortium = Hotspot20AnqpRoamingConsortium(client)
+        self.hotspot20_anqp_network_auth_type = Hotspot20AnqpNetworkAuthType(
+            client
+        )
+        self.hotspot20_anqp_roaming_consortium = (
+            Hotspot20AnqpRoamingConsortium(client)
+        )
         self.hotspot20_anqp_venue_name = Hotspot20AnqpVenueName(client)
         self.hotspot20_anqp_venue_url = Hotspot20AnqpVenueUrl(client)
-        self.hotspot20_h2qp_advice_of_charge = Hotspot20H2qpAdviceOfCharge(client)
-        self.hotspot20_h2qp_conn_capability = Hotspot20H2qpConnCapability(client)
+        self.hotspot20_h2qp_advice_of_charge = Hotspot20H2qpAdviceOfCharge(
+            client
+        )
+        self.hotspot20_h2qp_conn_capability = Hotspot20H2qpConnCapability(
+            client
+        )
         self.hotspot20_h2qp_operator_name = Hotspot20H2qpOperatorName(client)
         self.hotspot20_h2qp_osu_provider = Hotspot20H2qpOsuProvider(client)
-        self.hotspot20_h2qp_osu_provider_nai = Hotspot20H2qpOsuProviderNai(client)
-        self.hotspot20_h2qp_terms_and_conditions = Hotspot20H2qpTermsAndConditions(client)
+        self.hotspot20_h2qp_osu_provider_nai = Hotspot20H2qpOsuProviderNai(
+            client
+        )
+        self.hotspot20_h2qp_terms_and_conditions = (
+            Hotspot20H2qpTermsAndConditions(client)
+        )
         self.hotspot20_h2qp_wan_metric = Hotspot20H2qpWanMetric(client)
         self.hotspot20_hs_profile = Hotspot20HsProfile(client)
         self.hotspot20_icon = Hotspot20Icon(client)

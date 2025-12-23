@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_ADDR_TYPE = ["ip", "ipv6", "fqdn"]
 VALID_BODY_INTERFACE_SELECT_METHOD = ["sdwan", "specify"]

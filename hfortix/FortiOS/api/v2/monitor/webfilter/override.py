@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class Delete:
         if mkey is not None:
             data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post("monitor", "/webfilter/override/delete", data=data)
+        return self._client.post(
+            "monitor", "/webfilter/override/delete", data=data
+        )
 
 
 class Override:
@@ -120,4 +123,6 @@ class Override:
         """
         params = payload_dict.copy() if payload_dict else {}
         params.update(kwargs)
-        return self._client.get("monitor", "/webfilter/override", params=params)
+        return self._client.get(
+            "monitor", "/webfilter/override", params=params
+        )

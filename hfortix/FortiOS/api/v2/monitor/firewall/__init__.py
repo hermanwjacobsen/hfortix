@@ -89,15 +89,23 @@ class Firewall:
         self._central_snat_map = central_snat_map.CentralSnatMap(client)
         self._dnat = dnat.Dnat(client)
         self._check_addrgrp_exclude_mac_member = (
-            check_addrgrp_exclude_mac_member.CheckAddrgrpExcludeMacMember(client)
+            check_addrgrp_exclude_mac_member.CheckAddrgrpExcludeMacMember(
+                client
+            )
         )
         self._internet_service = internet_service.InternetService(client)
-        self._internet_service_fqdn = internet_service_fqdn.InternetServiceFqdn(client)
+        self._internet_service_fqdn = (
+            internet_service_fqdn.InternetServiceFqdn(client)
+        )
         self._internet_service_fqdn_icon_ids = (
             internet_service_fqdn_icon_ids.InternetServiceFqdnIconIds(client)
         )
-        self._internet_service_basic = internet_service_basic.InternetServiceBasic(client)
-        self._network_service_dynamic = network_service_dynamic.NetworkServiceDynamic(client)
+        self._internet_service_basic = (
+            internet_service_basic.InternetServiceBasic(client)
+        )
+        self._network_service_dynamic = (
+            network_service_dynamic.NetworkServiceDynamic(client)
+        )
         self._proxy = proxy.Proxy(client)
         self._policy = policy.Policy(client)
         self._security_policy = security_policy.SecurityPolicy(client)
@@ -108,7 +116,9 @@ class Firewall:
         self._policy_lookup = policy_lookup.PolicyLookup(client)
         self._sessions = sessions_module.Sessions(client)
         self._shaper = shaper.Shaper(client)
-        self._shaper_multi_class_shaper = shaper_multi_class_shaper.ShaperMultiClassShaper(client)
+        self._shaper_multi_class_shaper = (
+            shaper_multi_class_shaper.ShaperMultiClassShaper(client)
+        )
         self._per_ip_shaper = per_ip_shaper.PerIpShaper(client)
         self._load_balance = load_balance.LoadBalance(client)
         self._vip_overlap = vip_overlap.VipOverlap(client)
@@ -119,11 +129,17 @@ class Firewall:
         self._uuid = uuid_module.UUID(client)
         self._gtp = gtp.Gtp(client)
         self._gtp_statistics = gtp_statistics.GtpStatistics(client)
-        self._gtp_runtime_statistics = gtp_runtime_statistics.GtpRuntimeStatistics(client)
+        self._gtp_runtime_statistics = (
+            gtp_runtime_statistics.GtpRuntimeStatistics(client)
+        )
         self._address_dynamic = address_dynamic.AddressDynamic(client)
         self._address6_dynamic = address6_dynamic.Address6Dynamic(client)
-        self._sdn_connector_filters = sdn_connector_filters.SdnConnectorFilters(client)
-        self._ztna_firewall_policy = ztna_firewall_policy.ZtnaFirewallPolicy(client)
+        self._sdn_connector_filters = (
+            sdn_connector_filters.SdnConnectorFilters(client)
+        )
+        self._ztna_firewall_policy = ztna_firewall_policy.ZtnaFirewallPolicy(
+            client
+        )
 
     @property
     def health(self):

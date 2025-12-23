@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class Stats:
         if mkey is not None:
             params["mkey"] = mkey
         params.update(kwargs)
-        return self._client.get("monitor", "/system/automation-stitch/stats", params=params)
+        return self._client.get(
+            "monitor", "/system/automation-stitch/stats", params=params
+        )
 
 
 class Test:
@@ -125,7 +128,9 @@ class Test:
         if log is not None:
             data["log"] = log
         data.update(kwargs)
-        return self._client.post("monitor", "/system/automation-stitch/test", data=data)
+        return self._client.post(
+            "monitor", "/system/automation-stitch/test", data=data
+        )
 
 
 class Webhook:
@@ -166,7 +171,9 @@ class Webhook:
         if mkey is not None:
             data["mkey"] = mkey
         data.update(kwargs)
-        return self._client.post("monitor", "/system/automation-stitch/webhook", data=data)
+        return self._client.post(
+            "monitor", "/system/automation-stitch/webhook", data=data
+        )
 
 
 class AutomationStitch:

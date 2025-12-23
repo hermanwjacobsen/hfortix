@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_HOST_TYPE = ["sub-string", "wildcard"]
 VALID_BODY_EMPTY_CERT_ACTION = ["accept", "block", "accept-unmanageable"]

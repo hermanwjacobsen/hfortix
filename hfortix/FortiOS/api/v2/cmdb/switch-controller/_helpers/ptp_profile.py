@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_MODE = ["transparent-e2e", "transparent-p2p"]
 VALID_BODY_PTP_PROFILE = ["C37.238-2017"]

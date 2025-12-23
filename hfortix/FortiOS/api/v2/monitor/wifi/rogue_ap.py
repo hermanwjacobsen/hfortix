@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -76,7 +77,9 @@ class ClearAll:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/rogue_ap/clear_all", data=data)
+        return self._client.post(
+            "monitor", "/wifi/rogue_ap/clear_all", data=data
+        )
 
 
 class SetStatus:
@@ -125,7 +128,9 @@ class SetStatus:
         if status is not None:
             data["status"] = status
         data.update(kwargs)
-        return self._client.post("monitor", "/wifi/rogue_ap/set_status", data=data)
+        return self._client.post(
+            "monitor", "/wifi/rogue_ap/set_status", data=data
+        )
 
 
 class RogueAp:

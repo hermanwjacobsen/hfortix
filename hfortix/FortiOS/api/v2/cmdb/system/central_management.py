@@ -45,6 +45,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -111,7 +112,9 @@ class CentralManagement:
         if stat_items is not None:
             params["stat-items"] = stat_items
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -213,7 +216,9 @@ class CentralManagement:
         if allow_push_firmware is not None:
             data_payload["allow-push-firmware"] = allow_push_firmware
         if allow_remote_firmware_upgrade is not None:
-            data_payload["allow-remote-firmware-upgrade"] = allow_remote_firmware_upgrade
+            data_payload["allow-remote-firmware-upgrade"] = (
+                allow_remote_firmware_upgrade
+            )
         if allow_monitor is not None:
             data_payload["allow-monitor"] = allow_monitor
         if serial_number is not None:
@@ -245,4 +250,6 @@ class CentralManagement:
         if vrf_select is not None:
             data_payload["vrf-select"] = vrf_select
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

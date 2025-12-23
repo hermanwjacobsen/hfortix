@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING, Any, Coroutine, Union, cast
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -131,7 +132,9 @@ class ShaperPerIpShaper:
         if search is not None:
             params["search"] = search
         params.update(kwargs)
-        return self._client.get("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.get(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def put(
         self,
@@ -204,9 +207,13 @@ class ShaperPerIpShaper:
         if max_concurrent_session is not None:
             data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload["max-concurrent-tcp-session"] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload["max-concurrent-udp-session"] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
             data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
@@ -216,7 +223,9 @@ class ShaperPerIpShaper:
         if diffservcode_rev is not None:
             data_payload["diffservcode-rev"] = diffservcode_rev
         data_payload.update(kwargs)
-        return self._client.put("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.put(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )
 
     def delete(
         self,
@@ -253,7 +262,9 @@ class ShaperPerIpShaper:
             raise ValueError("name is required for delete()")
         endpoint = f"/firewall.shaper/per-ip-shaper/{name}"
         params.update(kwargs)
-        return self._client.delete("cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json)
+        return self._client.delete(
+            "cmdb", endpoint, params=params, vdom=vdom, raw_json=raw_json
+        )
 
     def exists(
         self,
@@ -294,7 +305,7 @@ class ShaperPerIpShaper:
 
             # Type ignore justified: mypy can't verify Union return type narrowing
 
-            return _async()  
+            return _async()
         # Sync mode - get() already executed, no exception means it exists
         return True
 
@@ -360,9 +371,13 @@ class ShaperPerIpShaper:
         if max_concurrent_session is not None:
             data_payload["max-concurrent-session"] = max_concurrent_session
         if max_concurrent_tcp_session is not None:
-            data_payload["max-concurrent-tcp-session"] = max_concurrent_tcp_session
+            data_payload["max-concurrent-tcp-session"] = (
+                max_concurrent_tcp_session
+            )
         if max_concurrent_udp_session is not None:
-            data_payload["max-concurrent-udp-session"] = max_concurrent_udp_session
+            data_payload["max-concurrent-udp-session"] = (
+                max_concurrent_udp_session
+            )
         if diffserv_forward is not None:
             data_payload["diffserv-forward"] = diffserv_forward
         if diffserv_reverse is not None:
@@ -372,4 +387,6 @@ class ShaperPerIpShaper:
         if diffservcode_rev is not None:
             data_payload["diffservcode-rev"] = diffservcode_rev
         data_payload.update(kwargs)
-        return self._client.post("cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json)
+        return self._client.post(
+            "cmdb", endpoint, data=data_payload, vdom=vdom, raw_json=raw_json
+        )

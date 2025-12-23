@@ -48,6 +48,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from hfortix.FortiOS.http_client_interface import IHTTPClient
+
     from .azure import Azure
     from .casb import Casb
     from .endpoint_control import EndpointControl

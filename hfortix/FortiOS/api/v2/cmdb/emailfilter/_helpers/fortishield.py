@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_SPAM_SUBMIT_FORCE = ["enable", "disable"]
 VALID_BODY_SPAM_SUBMIT_TXT2HTM = ["enable", "disable"]

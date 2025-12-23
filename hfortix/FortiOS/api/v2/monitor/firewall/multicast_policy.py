@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -80,7 +81,9 @@ class ClearCounters:
         if policy is not None:
             data["policy"] = policy
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/multicast-policy/clear_counters", data=data)
+        return self._client.post(
+            "monitor", "/firewall/multicast-policy/clear_counters", data=data
+        )
 
 
 class Reset:
@@ -117,7 +120,9 @@ class Reset:
         """
         data = payload_dict.copy() if payload_dict else {}
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/multicast-policy/reset", data=data)
+        return self._client.post(
+            "monitor", "/firewall/multicast-policy/reset", data=data
+        )
 
 
 class MulticastPolicy:
@@ -162,4 +167,6 @@ class MulticastPolicy:
         if policyid is not None:
             params["policyid"] = policyid
         params.update(kwargs)
-        return self._client.get("monitor", "/firewall/multicast-policy", params=params)
+        return self._client.get(
+            "monitor", "/firewall/multicast-policy", params=params
+        )

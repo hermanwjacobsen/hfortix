@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_LANGUAGE = [
     "english",
@@ -399,7 +398,11 @@ def validate_global__put(
     # Validate gui-forticare-registration-setup-warning if present
     if "gui-forticare-registration-setup-warning" in payload:
         value = payload.get("gui-forticare-registration-setup-warning")
-        if value and value not in VALID_BODY_GUI_FORTICARE_REGISTRATION_SETUP_WARNING:
+        if (
+            value
+            and value
+            not in VALID_BODY_GUI_FORTICARE_REGISTRATION_SETUP_WARNING
+        ):
             return (
                 False,
                 f"Invalid gui-forticare-registration-setup-warning '{value}'. Must be one of: {', '.join(VALID_BODY_GUI_FORTICARE_REGISTRATION_SETUP_WARNING)}",
@@ -849,7 +852,10 @@ def validate_global__put(
     # Validate quic-udp-payload-size-shaping-per-cid if present
     if "quic-udp-payload-size-shaping-per-cid" in payload:
         value = payload.get("quic-udp-payload-size-shaping-per-cid")
-        if value and value not in VALID_BODY_QUIC_UDP_PAYLOAD_SIZE_SHAPING_PER_CID:
+        if (
+            value
+            and value not in VALID_BODY_QUIC_UDP_PAYLOAD_SIZE_SHAPING_PER_CID
+        ):
             return (
                 False,
                 f"Invalid quic-udp-payload-size-shaping-per-cid '{value}'. Must be one of: {', '.join(VALID_BODY_QUIC_UDP_PAYLOAD_SIZE_SHAPING_PER_CID)}",
@@ -2014,7 +2020,11 @@ def validate_global__put(
     # Validate fortiextender-provision-on-authorization if present
     if "fortiextender-provision-on-authorization" in payload:
         value = payload.get("fortiextender-provision-on-authorization")
-        if value and value not in VALID_BODY_FORTIEXTENDER_PROVISION_ON_AUTHORIZATION:
+        if (
+            value
+            and value
+            not in VALID_BODY_FORTIEXTENDER_PROVISION_ON_AUTHORIZATION
+        ):
             return (
                 False,
                 f"Invalid fortiextender-provision-on-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXTENDER_PROVISION_ON_AUTHORIZATION)}",

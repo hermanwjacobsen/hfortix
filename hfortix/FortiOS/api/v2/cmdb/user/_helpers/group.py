@@ -10,7 +10,6 @@ Customize as needed for endpoint-specific business logic.
 
 from typing import Any
 
-
 # Valid enum values from API documentation
 VALID_BODY_GROUP_TYPE = ["firewall", "fsso-service", "rsso", "guest"]
 VALID_BODY_AUTH_CONCURRENT_OVERRIDE = ["enable", "disable"]

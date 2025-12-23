@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -84,7 +85,9 @@ class ClearCounters:
         if is_ipv6 is not None:
             data["is_ipv6"] = is_ipv6
         data.update(kwargs)
-        return self._client.post("monitor", "/firewall/dnat/clear-counters", data=data)
+        return self._client.post(
+            "monitor", "/firewall/dnat/clear-counters", data=data
+        )
 
 
 class Reset:

@@ -10,10 +10,12 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
-    from .installer import Installer
+
     from .avatar import Avatar
     from .ems import Ems
+    from .installer import Installer
 
 __all__ = ["EndpointControl"]
 
@@ -43,7 +45,11 @@ class EndpointControl:
         data_dict: Optional[dict[str, Any]] = None,
         ems_name: Optional[str] = None,
         **kwargs: Any,
-    ) -> Union[dict[str, Any], list[dict], Coroutine[Any, Any, Union[dict[str, Any], list[dict]]]]:
+    ) -> Union[
+        dict[str, Any],
+        list[dict],
+        Coroutine[Any, Any, Union[dict[str, Any], list[dict]]],
+    ]:
         """
         List endpoint records from FortiEMS.
 
@@ -88,9 +94,13 @@ class EndpointControl:
 
         params.update(kwargs)
 
-        return self._client.get("monitor", "endpoint-control/record-list", params=params)
+        return self._client.get(
+            "monitor", "endpoint-control/record-list", params=params
+        )
 
-    def summary(self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
+    def summary(
+        self, data_dict: Optional[dict[str, Any]] = None, **kwargs: Any
+    ) -> Union[dict[str, Any], Coroutine[Any, Any, dict[str, Any]]]:
         """
         Get summary of FortiClient endpoint records.
 
@@ -125,7 +135,9 @@ class EndpointControl:
         params = data_dict.copy() if data_dict else {}
         params.update(kwargs)
 
-        return self._client.get("monitor", "endpoint-control/summary", params=params)
+        return self._client.get(
+            "monitor", "endpoint-control/summary", params=params
+        )
 
     @property
     def installer(self):

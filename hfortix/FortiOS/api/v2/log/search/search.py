@@ -29,6 +29,7 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 
 if TYPE_CHECKING:
     from collections.abc import Coroutine
+
     from hfortix.FortiOS.http_client_interface import IHTTPClient
 
 
@@ -142,7 +143,9 @@ class Status:
         params.update(kwargs)
 
         endpoint = f"search/status/{session_id}"
-        return self._client.get("log", endpoint, params=params, raw_json=raw_json)
+        return self._client.get(
+            "log", endpoint, params=params, raw_json=raw_json
+        )
 
 
 class Search:
