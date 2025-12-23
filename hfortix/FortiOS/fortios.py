@@ -565,17 +565,17 @@ class FortiOS:
             # tokens
             if len(token) < 25:
                 raise ValueError(
-                    f"Invalid token format: token is too short ({len(token)} characters). "
-                    "FortiOS API tokens are typically 31+ characters (older versions) "  # noqa: E501
-                    "or 40+ characters (newer versions). "
-                    "Ensure you're using a valid API token, not a password or placeholder."  # noqa: E501
+                    f"Invalid token format: token is too short "
+                    f"({len(token)} characters). "
+                    "FortiOS API tokens are typically 31+ characters "
+                    "(older versions) or 40+ characters (newer versions). "
+                    "Ensure you're using a valid API token, not a "
+                    "password or placeholder."
                 )
 
-            # Token should only contain alphanumeric characters (FortiOS tokens
-            # are alphanumeric)
-            if (
-                not token.replace("-", "").replace("_", "").isalnum()
-            ):
+            # Token should only contain alphanumeric characters (FortiOS
+            # tokens are alphanumeric)
+            if not token.replace("-", "").replace("_", "").isalnum():
                 raise ValueError(
                     "Invalid token format: API tokens should contain only letters, numbers, "  # noqa: E501
                     "hyphens, and underscores. Check for copy-paste errors."

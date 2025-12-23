@@ -833,7 +833,9 @@ class FirewallPolicy:
         # Merge any additional kwargs
         api_params.update(kwargs)
 
-        return self._api.get(**api_params)  # type: ignore[call-arg,return-value]
+        return self._api.get(  # type: ignore[call-arg,return-value]
+            **api_params
+        )
 
     def update(
         self,
@@ -1464,7 +1466,8 @@ class FirewallPolicy:
         if raw_json is not None:
             call_params["raw_json"] = raw_json
 
-        # Type ignore: client can be sync or async, runtime returns Dict[str, Any]
+        # Type ignore: client can be sync or async, runtime returns
+        # Dict[str, Any]
         return self._fgt._client.put(  # type: ignore[call-arg,return-value]
             "cmdb", endpoint, **call_params
         )

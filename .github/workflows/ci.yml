@@ -29,11 +29,11 @@ jobs:
 
       - name: Check formatting with Black
         run: |
-          black --check --line-length=79 hfortix examples
+          black --check --line-length=79 hfortix
 
       - name: Check import sorting with isort
         run: |
-          isort --check-only --profile=black --line-length=79 hfortix examples
+          isort --check-only --profile=black --line-length=79 hfortix
 
       - name: Lint with flake8
         run: |
@@ -61,7 +61,14 @@ jobs:
       - name: Type check with mypy
         continue-on-error: true
         run: |
-          mypy hfortix --ignore-missing-imports --no-strict-optional --no-warn-unreachable --no-warn-return-any --allow-untyped-defs --allow-incomplete-defs --exclude 'hfortix/FortiOS/api/v2/'
+          mypy hfortix \
+            --ignore-missing-imports \
+            --no-strict-optional \
+            --no-warn-unreachable \
+            --no-warn-return-any \
+            --allow-untyped-defs \
+            --allow-incomplete-defs \
+            --exclude 'hfortix/FortiOS/api/v2/'
 
   security:
     name: Security Scan
