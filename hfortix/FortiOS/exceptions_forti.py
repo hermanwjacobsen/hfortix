@@ -707,7 +707,7 @@ def raise_for_status(response: dict, endpoint: Optional[str] = None) -> None:
 
     status = response.get("status")
     if status == "success":
-        return
+        return  # Success case - no exception to raise
 
     http_status = response.get("http_status")
     error_code = response.get("error")

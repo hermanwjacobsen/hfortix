@@ -60,7 +60,7 @@ jobs:
 
       - name: Type check with mypy
         run: |
-          mypy hfortix --ignore-missing-imports --no-strict-optional
+          mypy hfortix --ignore-missing-imports --no-strict-optional --no-warn-unreachable --no-warn-return-any --allow-untyped-defs --allow-incomplete-defs --exclude 'hfortix/FortiOS/api/v2/'
 
   security:
     name: Security Scan

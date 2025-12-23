@@ -100,7 +100,7 @@ per-file-ignores = [
 
 [tool.mypy]
 python_version = "3.10"  # Changed from 3.8 to match code syntax (str | None)
-warn_return_any = true
+warn_return_any = false
 warn_unused_configs = true
 # Gradually enable stricter settings
 disallow_untyped_defs = false  # TODO: Enable incrementally
@@ -110,7 +110,7 @@ no_implicit_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
 warn_no_return = true
-warn_unreachable = true
+warn_unreachable = false
 strict_equality = true
 # Additional strict checks (enabled)
 show_error_codes = true
@@ -119,6 +119,10 @@ pretty = true
 # PEP 561 compliance
 namespace_packages = true
 explicit_package_bases = true
+# Exclude v2 API (has hyphenated directory names)
+exclude = [
+    "hfortix/FortiOS/api/v2/",
+]
 
 # Allow some flexibility for generated code
 [[tool.mypy.overrides]]

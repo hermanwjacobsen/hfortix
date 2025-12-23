@@ -279,3 +279,24 @@ class IHTTPClient(Protocol):
             Dictionary with health metrics (response times, backpressure, etc.)
         """
         ...
+
+    def get_binary(
+        self,
+        api_type: str,
+        path: str,
+        params: Optional[dict[str, Any]] = None,
+        vdom: Optional[Union[str, bool]] = None,
+    ) -> Union[bytes, Coroutine[Any, Any, bytes]]:
+        """
+        GET request returning binary data (for file downloads).
+
+        Args:
+            api_type: API category (e.g., 'cmdb', 'monitor', 'log')
+            path: Endpoint path
+            params: Optional query parameters
+            vdom: Virtual domain name, or False to skip VDOM parameter
+
+        Returns:
+            Raw binary response data (bytes)
+        """
+        ...

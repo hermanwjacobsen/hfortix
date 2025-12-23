@@ -264,7 +264,7 @@ class FirewallPolicy:
         raw_json: Optional[bool] = None,
         # Catch-all for any additional fields
         data: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Create a new firewall policy with all available FortiOS parameters.
 
@@ -787,8 +787,7 @@ class FirewallPolicy:
         if raw_json is not None:
             api_params["raw_json"] = raw_json
 
-        # type: ignore[return-value]
-        return self._api.post(  # type: ignore[return-value]
+        return self._api.post(
             payload_dict=policy_data, **api_params
         )
 
@@ -1062,8 +1061,9 @@ class FirewallPolicy:
         raw_json: Optional[bool] = None,
         # Catch-all for any additional fields
         data: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
+        Update an existing firewall policy.
         Update an existing firewall policy (partial update - only specify
         fields to change).
         All parameters same as create() but optional. See create() docstring
@@ -1302,7 +1302,7 @@ class FirewallPolicy:
         policy_id: Union[str, int],
         vdom: Optional[str] = None,
         raw_json: Optional[bool] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Delete a firewall policy.
 
@@ -1321,8 +1321,8 @@ class FirewallPolicy:
             api_params["vdom"] = vdom
         if raw_json is not None:
             api_params["raw_json"] = raw_json
-        # type: ignore[return-value]
-        return self._api.delete(  # type: ignore[return-value]
+
+        return self._api.delete(
             policyid=str(policy_id), **api_params
         )
 
@@ -1480,7 +1480,7 @@ class FirewallPolicy:
         status: Optional[str] = None,
         vdom: Optional[str] = None,
         additional_changes: Optional[Dict[str, Any]] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Clone an existing firewall policy.
 
@@ -1559,8 +1559,8 @@ class FirewallPolicy:
         api_params = {}
         if vdom:
             api_params["vdom"] = vdom
-        # type: ignore[return-value]
-        return self._api.post(  # type: ignore[return-value]
+
+        return self._api.post(
             data=clone_data, **api_params
         )
 
@@ -1569,7 +1569,7 @@ class FirewallPolicy:
         policy_id: Union[str, int],
         new_name: str,
         vdom: Optional[str] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Rename a firewall policy.
 
@@ -1591,7 +1591,7 @@ class FirewallPolicy:
         self,
         policy_id: Union[str, int],
         vdom: Optional[str] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Enable a firewall policy.
 
@@ -1611,7 +1611,7 @@ class FirewallPolicy:
         self,
         policy_id: Union[str, int],
         vdom: Optional[str] = None,
-    ) -> Dict[str, Any]:
+    ) -> Union[Dict[str, Any], "Coroutine[Any, Any, Dict[str, Any]]"]:
         """
         Disable a firewall policy.
 
