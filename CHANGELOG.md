@@ -7,34 +7,108 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.24] - 2025-12-24
+
 ### Added
 
-- **Error Handling Configuration**: Configurable error handling for convenience wrappers
-  - Three error modes: `"raise"` (default), `"return"`, `"log"`
-    - `"raise"`: Raises exceptions (stops program unless caught with try/except)
-    - `"return"`: Returns error dict (program always continues)
-    - `"log"`: Logs error and returns None (program always continues)
-  - Three error formats: `"detailed"` (default), `"simple"`, `"code_only"`
-    - `"detailed"`: Full context with endpoint, parameters, HTTP status, and helpful hints
-    - `"simple"`: Just error message, exception type, and error code
-    - `"code_only"`: Just the error code number
-  - Configure at FortiOS instance level (affects all wrapper calls)
-  - Override per method call for granular control
-  - Currently implemented for: `FirewallPolicy.create()`
-  - Direct API calls (e.g., `fgt.api.cmdb.firewall.policy.post()`) are not affected
-  - See `docs/ERROR_HANDLING_CONFIG.md` for comprehensive guide
-  - Example usage:
-    ```python
-    # Set defaults for all operations
-    fgt = FortiOS(host="...", token="...", error_mode="return", error_format="simple")
-    
-    # Override for specific call
-    result = fgt.firewall.policy.create(
-        name="MyPolicy", ..., 
-        error_mode="raise",  # Override for this call
-        error_format="detailed"
-    )
-    ```
+- **Exception Hierarchy**: Comprehensive retry logic support
+  - `RetryableError` base class for transient errors (rate limits, timeouts, service unavailable)
+  - `NonRetryableError` base class for permanent errors (bad request, duplicate entry, not found)
+  - All existing exceptions updated to inherit from appropriate base class
+  - Enables intelligent retry strategies: `if isinstance(error, RetryableError)`
+
+- **New Exception Types**: Client-side and specialized errors
+  - `ConfigurationError` - FortiOS instance misconfiguration (replaces generic ValueError)
+  - `VDOMError` - VDOM-specific errors with vdom attribute
+  - `OperationNotSupportedError` - Unsupported operations on endpoints
+  - `ReadOnlyModeError` - Already existed, now properly documented
+
+- **Enhanced Exception Metadata**: Better debugging and error tracking
+  - `request_id` - Unique UUID for each request (auto-generated)
+  - `timestamp` - ISO 8601 timestamp when error occurred
+  - Enhanced `__str__()` - Human-readable with emoji hints (💡)
+  - Added `__repr__()` - Developer-friendly representation for debugging
+  - All APIError exceptions now capture full context automatically
+
+- **Recovery Suggestions**: Built-in error recovery guidance
+  - `DuplicateEntryError.suggest_recovery()` - Suggests using PUT or checking existing
+  - `EntryInUseError.suggest_recovery()` - Suggests removing references first
+  - `ResourceNotFoundError.suggest_recovery()` - Suggests using POST or listing available
+  - Helps developers understand how to handle common error scenarios
+
+- **Helper Utility Functions**: Simplify retry logic implementation
+  - `is_retryable_error(error)` - Check if error should be retried
+  - `get_retry_delay(error, attempt, base_delay, max_delay)` - Calculate backoff delay
+    - Exponential backoff for `RateLimitError`
+    - Linear backoff for `ServiceUnavailableError`
+    - Moderate backoff for `TimeoutError`
+  - Makes implementing retry logic simple and consistent
+
+- **Comprehensive Tests**: Full test coverage for new functionality
+  - Exception hierarchy tests (RetryableError vs NonRetryableError)
+  - Metadata capture tests (request_id, timestamp)
+  - String representation tests (__str__ and __repr__)
+  - Recovery suggestion tests
+  - Helper function tests (is_retryable_error, get_retry_delay)
+  - Client-side exception tests
+  - All tests passing ✅
+
+### Changed
+
+- **Exception Inheritance**: Updated all HTTP status exceptions
+  - `BadRequestError` now inherits from `NonRetryableError` (was APIError)
+  - `ResourceNotFoundError` now inherits from `NonRetryableError` (was APIError)
+  - `RateLimitError` now inherits from `RetryableError` (was APIError)
+  - `ServerError` now inherits from `RetryableError` (was APIError)
+  - `ServiceUnavailableError` now inherits from `RetryableError` (was APIError)
+  - `TimeoutError` now inherits from `RetryableError` (was APIError)
+  - `CircuitBreakerOpenError` now inherits from `RetryableError` (was APIError)
+
+- **FortiOS-Specific Exceptions**: Updated inheritance
+  - `DuplicateEntryError` now inherits from `NonRetryableError` (was APIError)
+  - `EntryInUseError` now inherits from `NonRetryableError` (was APIError)
+  - `InvalidValueError` now inherits from `NonRetryableError` (was APIError)
+  - `PermissionDeniedError` now inherits from `NonRetryableError` (was APIError)
+
+- **Error Hints**: Enhanced with emoji for better visibility
+  - All hints now prefixed with 💡 emoji in __str__ output
+  - Makes hints stand out in error messages and logs
+
+### Documentation
+
+- Updated `docs/ERROR_HANDLING_CONFIG.md` with retry examples
+- Added exception hierarchy diagram in inline documentation
+- Enhanced docstrings for all new exception classes
+- Added comprehensive examples for helper functions
+
+### Migration Guide
+
+**No Breaking Changes**: All existing code continues to work. The changes are additive:
+
+```python
+# Old code still works
+try:
+    fgt.api.cmdb.firewall.policy.post(data=...)
+except DuplicateEntryError as e:
+    print(f"Error: {e}")
+
+# New capabilities available
+try:
+    fgt.api.cmdb.firewall.policy.post(data=...)
+except DuplicateEntryError as e:
+    print(f"Request ID: {e.request_id}")
+    print(f"Timestamp: {e.timestamp}")
+    print(e.suggest_recovery())
+
+# Intelligent retry logic
+try:
+    result = fgt.api.cmdb.firewall.policy.get()
+except Exception as e:
+    if is_retryable_error(e):
+        delay = get_retry_delay(e, attempt=1)
+        time.sleep(delay)
+        # retry...
+```
 
 ## [0.3.23] - 2025-12-23
 

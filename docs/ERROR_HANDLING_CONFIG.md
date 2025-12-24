@@ -266,3 +266,164 @@ TODO: Apply to all convenience wrapper methods:
 | -23 | Object in use | `return` (might be expected) |
 | 401 | Authentication failed | `raise` (critical) |
 | 404 | Not found | `return` (might be expected) |
+
+---
+
+## Advanced: Exception Hierarchy and Retry Logic (v0.3.24+)
+
+### Exception Hierarchy
+
+All exceptions now inherit from appropriate base classes for intelligent error handling:
+
+```
+FortinetError (base)
+├── APIError (API-related errors)
+│   ├── RetryableError (transient errors - should retry)
+│   │   ├── RateLimitError (HTTP 429)
+│   │   ├── ServiceUnavailableError (HTTP 503)
+│   │   ├── ServerError (HTTP 500)
+│   │   ├── TimeoutError
+│   │   └── CircuitBreakerOpenError
+│   └── NonRetryableError (permanent errors - don't retry)
+│       ├── BadRequestError (HTTP 400)
+│       ├── ResourceNotFoundError (HTTP 404, error -3)
+│       ├── DuplicateEntryError (error -5, -15, -100)
+│       ├── EntryInUseError (error -23, -94, -95, -96)
+│       ├── PermissionDeniedError (error -14, -37)
+│       └── InvalidValueError (error -651, -1, -50)
+├── ConfigurationError (client misconfiguration)
+├── VDOMError (VDOM issues)
+├── OperationNotSupportedError (unsupported operation)
+└── ReadOnlyModeError (write in read-only mode)
+```
+
+### Intelligent Retry Logic
+
+Use the exception hierarchy to implement smart retry logic:
+
+```python
+from hfortix import FortiOS
+from hfortix.FortiOS.exceptions import (
+    RetryableError,
+    is_retryable_error,
+    get_retry_delay
+)
+import time
+
+fgt = FortiOS(host="...", token="...")
+
+# Simple retry logic
+max_attempts = 3
+for attempt in range(1, max_attempts + 1):
+    try:
+        result = fgt.api.cmdb.firewall.policy.get()
+        break  # Success!
+    except Exception as e:
+        if is_retryable_error(e):
+            if attempt < max_attempts:
+                delay = get_retry_delay(e, attempt)
+                print(f"Attempt {attempt} failed, retrying in {delay:.1f}s...")
+                time.sleep(delay)
+            else:
+                print("Max retries reached")
+                raise
+        else:
+            # Non-retryable error - fail immediately
+            raise
+```
+
+### Enhanced Exception Metadata
+
+All exceptions now include debugging metadata:
+
+```python
+try:
+    fgt.api.cmdb.firewall.policy.post(data={"name": "test"})
+except Exception as e:
+    print(f"Request ID: {e.request_id}")      # Unique UUID
+    print(f"Timestamp: {e.timestamp}")        # ISO 8601
+    print(f"Endpoint: {e.endpoint}")          # API path
+    print(f"Method: {e.method}")              # HTTP method
+    print(f"Error Code: {e.error_code}")      # FortiOS code
+    print(f"HTTP Status: {e.http_status}")    # HTTP status
+```
+
+### Recovery Suggestions
+
+Common exceptions now provide recovery guidance:
+
+```python
+from hfortix.FortiOS.exceptions import DuplicateEntryError, EntryInUseError
+
+try:
+    fgt.api.cmdb.firewall.address.post(data={"name": "test-addr"})
+except DuplicateEntryError as e:
+    print(e.suggest_recovery())
+    # Output:
+    # Recovery options:
+    #   1. Use .put() to update the existing entry
+    #   2. Use .delete() then .post() to replace it
+    #   3. Use .get() to check if it matches your desired state
+
+try:
+    fgt.api.cmdb.firewall.address.delete(name="in-use-addr")
+except EntryInUseError as e:
+    print(e.suggest_recovery())
+    # Output:
+    # Recovery options:
+    #   1. Remove references to this entry first
+    #   2. Use .get() to find what's using this entry
+    #   3. Check policies, groups, or other objects using this
+```
+
+### Helper Functions
+
+#### is_retryable_error(error)
+
+Check if an error should trigger a retry:
+
+```python
+from hfortix.FortiOS.exceptions import is_retryable_error
+
+try:
+    result = fgt.api.cmdb.firewall.policy.get()
+except Exception as e:
+    if is_retryable_error(e):
+        # Retry logic here
+        time.sleep(5)
+    else:
+        # Don't retry - log and fail
+        logger.error(f"Non-retryable error: {e}")
+        raise
+```
+
+#### get_retry_delay(error, attempt, base_delay, max_delay)
+
+Calculate appropriate backoff delay:
+
+```python
+from hfortix.FortiOS.exceptions import get_retry_delay
+
+for attempt in range(1, 4):
+    try:
+        result = fgt.api.cmdb.firewall.policy.get()
+        break
+    except Exception as e:
+        if is_retryable_error(e):
+            # Smart backoff based on error type
+            delay = get_retry_delay(
+                error=e,
+                attempt=attempt,
+                base_delay=1.0,    # Start at 1 second
+                max_delay=60.0     # Cap at 60 seconds
+            )
+            time.sleep(delay)
+```
+
+Backoff strategies by error type:
+- **RateLimitError**: Exponential (2s → 4s → 8s → 16s...)
+- **ServiceUnavailableError**: Linear (1s → 2s → 3s → 4s...)
+- **TimeoutError**: Moderate exponential (1s → 1.5s → 2.25s...)
+- **Other retryable**: Base delay only
+
+---

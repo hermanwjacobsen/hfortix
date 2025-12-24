@@ -76,6 +76,8 @@ class APIError(FortinetError):
         method: HTTP method (GET, POST, PUT, DELETE)
         params: Request parameters (sanitized)
         hint: Helpful suggestion for resolving the error
+        request_id: Unique identifier for this request
+        timestamp: ISO 8601 timestamp when error occurred
     """
 
     def __init__(
@@ -88,7 +90,11 @@ class APIError(FortinetError):
         method=None,
         params=None,
         hint=None,
+        request_id=None,
     ):
+        import uuid
+        from datetime import datetime, timezone
+        
         super().__init__(message)
         self.http_status = http_status
         self.error_code = error_code
@@ -98,6 +104,10 @@ class APIError(FortinetError):
         self.params = params
         self.hint = hint
         self._original_message = message
+        
+        # Add metadata for debugging
+        self.request_id = request_id or str(uuid.uuid4())
+        self.timestamp = datetime.now(timezone.utc).isoformat()
 
     def __str__(self) -> str:
         """Format error with full context for better debugging"""
@@ -131,18 +141,21 @@ class APIError(FortinetError):
 
         # Add hint if available
         if self.hint:
-            parts.append(f"  {self.hint}")
+            parts.append(f"  💡 {self.hint}")
 
         return "\n".join(parts)
-
-
-class BadRequestError(APIError):
-    """HTTP 400 - Bad Request"""
-
-    def __init__(self, message="Bad request", **kwargs):
-        if "http_status" not in kwargs:
-            kwargs["http_status"] = 400
-        super().__init__(message, **kwargs)
+    
+    def __repr__(self) -> str:
+        """Developer-friendly representation for debugging"""
+        return (
+            f"{self.__class__.__name__}("
+            f"message={self._original_message!r}, "
+            f"http_status={self.http_status}, "
+            f"error_code={self.error_code}, "
+            f"endpoint={self.endpoint!r}, "
+            f"method={self.method!r}, "
+            f"request_id={self.request_id!r})"
+        )
 
 
 class AuthenticationError(FortinetError):
@@ -151,6 +164,80 @@ class AuthenticationError(FortinetError):
 
 class AuthorizationError(FortinetError):
     """HTTP 403 - Authorization failed (insufficient permissions)"""
+
+
+# ============================================================================
+# Retry Logic Exception Hierarchy
+# ============================================================================
+
+
+class RetryableError(APIError):
+    """
+    Base exception for errors that should trigger automatic retry
+    
+    These errors are typically transient and may succeed on retry:
+    - Rate limiting (429)
+    - Service unavailable (503)
+    - Timeouts
+    - Circuit breaker open
+    """
+
+
+class NonRetryableError(APIError):
+    """
+    Base exception for errors that should NOT be retried
+    
+    These errors indicate client-side mistakes or permanent failures:
+    - Bad request (400)
+    - Resource not found (404)
+    - Duplicate entry
+    - Entry in use
+    - Permission denied
+    """
+
+
+# ============================================================================
+# Client-Side Configuration Exceptions
+# ============================================================================
+
+
+class ConfigurationError(FortinetError):
+    """
+    Raised when FortiOS instance is misconfigured
+    
+    Examples:
+    - Both token and username/password provided
+    - Missing required authentication
+    - Invalid parameter combinations
+    """
+
+
+class VDOMError(FortinetError):
+    """
+    Raised when VDOM operation fails or VDOM doesn't exist
+    
+    Attributes:
+        vdom: The VDOM name that caused the error
+    """
+    
+    def __init__(self, message: str, vdom: str):
+        super().__init__(message)
+        self.vdom = vdom
+
+
+class OperationNotSupportedError(FortinetError):
+    """
+    Raised when attempting unsupported operation on endpoint
+    
+    Attributes:
+        operation: The operation that was attempted (e.g., 'DELETE')
+        endpoint: The endpoint that doesn't support it
+    """
+    
+    def __init__(self, message: str, operation: str, endpoint: str):
+        super().__init__(message)
+        self.operation = operation
+        self.endpoint = endpoint
 
 
 class ReadOnlyModeError(FortinetError):
@@ -162,16 +249,39 @@ class ReadOnlyModeError(FortinetError):
     """
 
 
-class ResourceNotFoundError(APIError):
+# ============================================================================
+# HTTP Status Code Exceptions
+# ============================================================================
+
+
+class BadRequestError(NonRetryableError):
+    """HTTP 400 - Bad Request"""
+
+    def __init__(self, message="Bad request", **kwargs):
+        if "http_status" not in kwargs:
+            kwargs["http_status"] = 400
+        super().__init__(message, **kwargs)
+
+
+class ResourceNotFoundError(NonRetryableError):
     """HTTP 404 - Resource not found"""
 
     def __init__(self, message="Resource not found", **kwargs):
         if "http_status" not in kwargs:
             kwargs["http_status"] = 404
         super().__init__(message, **kwargs)
+    
+    def suggest_recovery(self) -> str:
+        """Suggest how to recover from this error"""
+        return (
+            "Recovery options:\n"
+            "  1. Use .post() to create the resource\n"
+            "  2. Use .get() to list available resources\n"
+            "  3. Check the name/ID for typos"
+        )
 
 
-class MethodNotAllowedError(APIError):
+class MethodNotAllowedError(NonRetryableError):
     """HTTP 405 - Method not allowed"""
 
     def __init__(self, message="Method not allowed", **kwargs):
@@ -180,7 +290,7 @@ class MethodNotAllowedError(APIError):
         super().__init__(message, **kwargs)
 
 
-class RateLimitError(APIError):
+class RateLimitError(RetryableError):
     """HTTP 429 - Rate limit exceeded"""
 
     def __init__(self, message="Rate limit exceeded", **kwargs):
@@ -189,7 +299,7 @@ class RateLimitError(APIError):
         super().__init__(message, **kwargs)
 
 
-class ServerError(APIError):
+class ServerError(RetryableError):
     """HTTP 500 - Internal server error"""
 
     def __init__(self, message="Internal server error", **kwargs):
@@ -198,7 +308,7 @@ class ServerError(APIError):
         super().__init__(message, **kwargs)
 
 
-class ServiceUnavailableError(APIError):
+class ServiceUnavailableError(RetryableError):
     """HTTP 503 - Service temporarily unavailable"""
 
     def __init__(self, message="Service temporarily unavailable", **kwargs):
@@ -207,14 +317,14 @@ class ServiceUnavailableError(APIError):
         super().__init__(message, **kwargs)
 
 
-class CircuitBreakerOpenError(APIError):
+class CircuitBreakerOpenError(RetryableError):
     """Circuit breaker is open - service appears to be down"""
 
     def __init__(self, message="Circuit breaker is open", **kwargs):
         super().__init__(message, **kwargs)
 
 
-class TimeoutError(APIError):
+class TimeoutError(RetryableError):
     """Request timed out"""
 
     def __init__(self, message="Request timed out", **kwargs):
@@ -264,16 +374,25 @@ def get_http_status_description(status_code: int) -> str:
 # ============================================================================
 
 
-class DuplicateEntryError(APIError):
+class DuplicateEntryError(NonRetryableError):
     """Duplicate entry exists (error code -5, -15, -100, etc.)"""
 
     def __init__(self, message="A duplicate entry already exists", **kwargs):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -5
         super().__init__(message, **kwargs)
+    
+    def suggest_recovery(self) -> str:
+        """Suggest how to recover from this error"""
+        return (
+            "Recovery options:\n"
+            "  1. Use .put() to update the existing entry\n"
+            "  2. Use .delete() then .post() to replace it\n"
+            "  3. Use .get() to check if it matches your desired state"
+        )
 
 
-class EntryInUseError(APIError):
+class EntryInUseError(NonRetryableError):
     """
     Entry cannot be deleted because it's in use (error code -23, -94,
     -95, etc.)
@@ -285,9 +404,18 @@ class EntryInUseError(APIError):
         if "error_code" not in kwargs:
             kwargs["error_code"] = -23
         super().__init__(message, **kwargs)
+    
+    def suggest_recovery(self) -> str:
+        """Suggest how to recover from this error"""
+        return (
+            "Recovery options:\n"
+            "  1. Remove references to this entry first\n"
+            "  2. Use .get() to find what's using this entry\n"
+            "  3. Check policies, groups, or other objects using this"
+        )
 
 
-class InvalidValueError(APIError):
+class InvalidValueError(NonRetryableError):
     """Invalid value provided (error code -651, -1, -50, etc.)"""
 
     def __init__(self, message="Input value is invalid", **kwargs):
@@ -296,7 +424,7 @@ class InvalidValueError(APIError):
         super().__init__(message, **kwargs)
 
 
-class PermissionDeniedError(APIError):
+class PermissionDeniedError(NonRetryableError):
     """Permission denied, insufficient privileges (error code -14, -37)"""
 
     def __init__(
@@ -993,10 +1121,104 @@ def raise_for_status(
 
 
 # ============================================================================
+# Helper Utility Functions
+# ============================================================================
+
+
+def is_retryable_error(error: Exception) -> bool:
+    """
+    Check if error should trigger automatic retry
+    
+    Args:
+        error: Exception to check
+        
+    Returns:
+        True if error is retryable, False otherwise
+        
+    Example:
+        >>> try:
+        ...     fgt.api.cmdb.firewall.policy.get()
+        ... except Exception as e:
+        ...     if is_retryable_error(e):
+        ...         time.sleep(5)
+        ...         # retry logic here
+    """
+    return isinstance(error, RetryableError)
+
+
+def get_retry_delay(
+    error: Exception,
+    attempt: int,
+    base_delay: float = 1.0,
+    max_delay: float = 60.0
+) -> float:
+    """
+    Calculate appropriate retry delay based on error type and attempt number
+    
+    Args:
+        error: Exception that occurred
+        attempt: Retry attempt number (1, 2, 3, ...)
+        base_delay: Base delay in seconds (default: 1.0)
+        max_delay: Maximum delay in seconds (default: 60.0)
+        
+    Returns:
+        Recommended delay in seconds
+        
+    Example:
+        >>> for attempt in range(1, 4):
+        ...     try:
+        ...         result = fgt.api.cmdb.firewall.policy.get()
+        ...         break
+        ...     except Exception as e:
+        ...         if is_retryable_error(e):
+        ...             delay = get_retry_delay(e, attempt)
+        ...             time.sleep(delay)
+        ...         else:
+        ...             raise
+    """
+    if isinstance(error, RateLimitError):
+        # Exponential backoff for rate limits
+        delay = min(base_delay * (2 ** attempt), max_delay)
+    elif isinstance(error, ServiceUnavailableError):
+        # Linear backoff for service issues
+        delay = min(base_delay * attempt, max_delay)
+    elif isinstance(error, TimeoutError):
+        # Moderate exponential backoff for timeouts
+        delay = min(base_delay * (1.5 ** attempt), max_delay)
+    else:
+        # Default to base delay
+        delay = base_delay
+    
+    return delay
+
+
+# ============================================================================
 # Exports
 # ============================================================================
 
 __all__ = [
+    # Base exceptions
+    "FortinetError",
+    "APIError",
+    "AuthenticationError",
+    "AuthorizationError",
+    # Retry hierarchy
+    "RetryableError",
+    "NonRetryableError",
+    # Client-side exceptions
+    "ConfigurationError",
+    "VDOMError",
+    "OperationNotSupportedError",
+    "ReadOnlyModeError",
+    # HTTP status exceptions
+    "BadRequestError",
+    "ResourceNotFoundError",
+    "MethodNotAllowedError",
+    "RateLimitError",
+    "ServerError",
+    "ServiceUnavailableError",
+    "CircuitBreakerOpenError",
+    "TimeoutError",
     # FortiOS-specific exceptions
     "DuplicateEntryError",
     "EntryInUseError",
@@ -1004,7 +1226,11 @@ __all__ = [
     "PermissionDeniedError",
     # Helper functions
     "get_error_description",
+    "get_http_status_description",
     "raise_for_status",
+    "is_retryable_error",
+    "get_retry_delay",
     # Data
     "FORTIOS_ERROR_CODES",
+    "HTTP_STATUS_CODES",
 ]

@@ -47,14 +47,29 @@ Python client library for Fortinet products including FortiOS, FortiManager, and
 - **Quick Start Guide**: [QUICKSTART.md](https://github.com/hermanwjacobsen/hfortix/blob/main/QUICKSTART.md) - Getting started guide
 - **Full Changelog**: [CHANGELOG.md](https://github.com/hermanwjacobsen/hfortix/blob/main/CHANGELOG.md) - Complete version history
 
-**Latest Features (v0.3.24 - In Development):**
+**Latest Features (v0.3.24 - December 24, 2025):**
 
-- ⚙️ **Error Handling Configuration**: Configurable error handling for convenience wrappers
-  - Three error modes: `"raise"` (default), `"return"`, `"print"`
-  - Three error formats: `"detailed"` (default), `"simple"`, `"code_only"`
-  - Set defaults at FortiOS instance level or override per method call
-  - Currently for convenience wrappers only (e.g., `fgt.firewall.policy.create()`)
-  - See [docs/ERROR_HANDLING_CONFIG.md](docs/ERROR_HANDLING_CONFIG.md)
+- 🎯 **Exception Hierarchy & Retry Logic**: Intelligent error handling support
+  - `RetryableError` and `NonRetryableError` base classes for retry strategies
+  - Helper functions: `is_retryable_error()`, `get_retry_delay()`
+  - All exceptions updated with proper inheritance
+  
+- 🆕 **New Exception Types**: Better error classification
+  - `ConfigurationError` - FortiOS instance misconfiguration
+  - `VDOMError` - VDOM-specific errors with vdom attribute
+  - `OperationNotSupportedError` - Unsupported operations on endpoints
+  
+- 📊 **Enhanced Exception Metadata**: Better debugging
+  - `request_id` - Unique UUID for each request (auto-generated)
+  - `timestamp` - ISO 8601 timestamp when error occurred
+  - Enhanced `__str__()` with emoji hints (💡)
+  - Added `__repr__()` for developer-friendly debugging
+  
+- 💡 **Recovery Suggestions**: Built-in error recovery guidance
+  - `suggest_recovery()` method on common exceptions
+  - Helps developers understand how to handle errors
+  
+- ✅ **Comprehensive Tests**: Full test coverage (14 new tests, all passing)
 
 **Features from v0.3.23 (December 23, 2025):**
 
