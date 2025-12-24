@@ -49,8 +49,7 @@ def validate_multicast_policy6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,8 +89,7 @@ def validate_multicast_policy6_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate name if present
@@ -118,8 +116,7 @@ def validate_multicast_policy6_post(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate protocol if present
@@ -161,8 +158,7 @@ def validate_multicast_policy6_post(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate ips-sensor if present
@@ -177,8 +173,7 @@ def validate_multicast_policy6_post(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate auto-asic-offload if present
@@ -187,8 +182,7 @@ def validate_multicast_policy6_post(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate comments if present
@@ -243,8 +237,7 @@ def validate_multicast_policy6_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate name if present
@@ -271,8 +264,7 @@ def validate_multicast_policy6_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate protocol if present
@@ -314,8 +306,7 @@ def validate_multicast_policy6_put(
         if value and value not in VALID_BODY_UTM_STATUS:
             return (
                 False,
-                f"Invalid utm-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UTM_STATUS)}",
+                f"Invalid utm-status '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_STATUS)}",
             )
 
     # Validate ips-sensor if present
@@ -330,8 +321,7 @@ def validate_multicast_policy6_put(
         if value and value not in VALID_BODY_LOGTRAFFIC:
             return (
                 False,
-                f"Invalid logtraffic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOGTRAFFIC)}",
+                f"Invalid logtraffic '{value}'. Must be one of: {', '.join(VALID_BODY_LOGTRAFFIC)}",
             )
 
     # Validate auto-asic-offload if present
@@ -340,8 +330,7 @@ def validate_multicast_policy6_put(
         if value and value not in VALID_BODY_AUTO_ASIC_OFFLOAD:
             return (
                 False,
-                f"Invalid auto-asic-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
+                f"Invalid auto-asic-offload '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_ASIC_OFFLOAD)}",
             )
 
     # Validate comments if present

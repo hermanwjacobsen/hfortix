@@ -46,8 +46,7 @@ def validate_dedicated_mgmt_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,8 +79,7 @@ def validate_dedicated_mgmt_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate interface if present
@@ -96,8 +94,7 @@ def validate_dedicated_mgmt_put(
         if value and value not in VALID_BODY_DHCP_SERVER:
             return (
                 False,
-                f"Invalid dhcp-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SERVER)}",
+                f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}",
             )
 
     return (True, None)

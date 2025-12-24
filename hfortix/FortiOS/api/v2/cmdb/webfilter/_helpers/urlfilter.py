@@ -48,8 +48,7 @@ def validate_urlfilter_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,8 +100,7 @@ def validate_urlfilter_post(
         if value and value not in VALID_BODY_ONE_ARM_IPS_URLFILTER:
             return (
                 False,
-                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
+                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
             )
 
     # Validate ip-addr-block if present
@@ -111,8 +109,7 @@ def validate_urlfilter_post(
         if value and value not in VALID_BODY_IP_ADDR_BLOCK:
             return (
                 False,
-                f"Invalid ip-addr-block '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
+                f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
             )
 
     # Validate ip4-mapped-ip6 if present
@@ -121,8 +118,7 @@ def validate_urlfilter_post(
         if value and value not in VALID_BODY_IP4_MAPPED_IP6:
             return (
                 False,
-                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
+                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
             )
 
     # Validate include-subdomains if present
@@ -131,8 +127,7 @@ def validate_urlfilter_post(
         if value and value not in VALID_BODY_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
+                f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
             )
 
     return (True, None)
@@ -193,8 +188,7 @@ def validate_urlfilter_put(
         if value and value not in VALID_BODY_ONE_ARM_IPS_URLFILTER:
             return (
                 False,
-                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
+                f"Invalid one-arm-ips-urlfilter '{value}'. Must be one of: {', '.join(VALID_BODY_ONE_ARM_IPS_URLFILTER)}",
             )
 
     # Validate ip-addr-block if present
@@ -203,8 +197,7 @@ def validate_urlfilter_put(
         if value and value not in VALID_BODY_IP_ADDR_BLOCK:
             return (
                 False,
-                f"Invalid ip-addr-block '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
+                f"Invalid ip-addr-block '{value}'. Must be one of: {', '.join(VALID_BODY_IP_ADDR_BLOCK)}",
             )
 
     # Validate ip4-mapped-ip6 if present
@@ -213,8 +206,7 @@ def validate_urlfilter_put(
         if value and value not in VALID_BODY_IP4_MAPPED_IP6:
             return (
                 False,
-                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
+                f"Invalid ip4-mapped-ip6 '{value}'. Must be one of: {', '.join(VALID_BODY_IP4_MAPPED_IP6)}",
             )
 
     # Validate include-subdomains if present
@@ -223,8 +215,7 @@ def validate_urlfilter_put(
         if value and value not in VALID_BODY_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
+                f"Invalid include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_SUBDOMAINS)}",
             )
 
     return (True, None)

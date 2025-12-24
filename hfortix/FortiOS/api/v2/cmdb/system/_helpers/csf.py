@@ -56,8 +56,7 @@ def validate_csf_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,8 +89,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate uid if present
@@ -112,8 +110,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_UPSTREAM_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid upstream-interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPSTREAM_INTERFACE_SELECT_METHOD)}",
+                f"Invalid upstream-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_UPSTREAM_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate upstream-interface if present
@@ -148,8 +145,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_ACCEPT_AUTH_BY_CERT:
             return (
                 False,
-                f"Invalid accept-auth-by-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCEPT_AUTH_BY_CERT)}",
+                f"Invalid accept-auth-by-cert '{value}'. Must be one of: {', '.join(VALID_BODY_ACCEPT_AUTH_BY_CERT)}",
             )
 
     # Validate log-unification if present
@@ -158,8 +154,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_LOG_UNIFICATION:
             return (
                 False,
-                f"Invalid log-unification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_UNIFICATION)}",
+                f"Invalid log-unification '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_UNIFICATION)}",
             )
 
     # Validate authorization-request-type if present
@@ -168,8 +163,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_AUTHORIZATION_REQUEST_TYPE:
             return (
                 False,
-                f"Invalid authorization-request-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHORIZATION_REQUEST_TYPE)}",
+                f"Invalid authorization-request-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHORIZATION_REQUEST_TYPE)}",
             )
 
     # Validate certificate if present
@@ -195,8 +189,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_DOWNSTREAM_ACCESS:
             return (
                 False,
-                f"Invalid downstream-access '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOWNSTREAM_ACCESS)}",
+                f"Invalid downstream-access '{value}'. Must be one of: {', '.join(VALID_BODY_DOWNSTREAM_ACCESS)}",
             )
 
     # Validate legacy-authentication if present
@@ -205,8 +198,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_LEGACY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid legacy-authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LEGACY_AUTHENTICATION)}",
+                f"Invalid legacy-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_LEGACY_AUTHENTICATION)}",
             )
 
     # Validate downstream-accprofile if present
@@ -224,8 +216,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_CONFIGURATION_SYNC:
             return (
                 False,
-                f"Invalid configuration-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CONFIGURATION_SYNC)}",
+                f"Invalid configuration-sync '{value}'. Must be one of: {', '.join(VALID_BODY_CONFIGURATION_SYNC)}",
             )
 
     # Validate fabric-object-unification if present
@@ -234,8 +225,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT_UNIFICATION:
             return (
                 False,
-                f"Invalid fabric-object-unification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT_UNIFICATION)}",
+                f"Invalid fabric-object-unification '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT_UNIFICATION)}",
             )
 
     # Validate saml-configuration-sync if present
@@ -244,8 +234,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_SAML_CONFIGURATION_SYNC:
             return (
                 False,
-                f"Invalid saml-configuration-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAML_CONFIGURATION_SYNC)}",
+                f"Invalid saml-configuration-sync '{value}'. Must be one of: {', '.join(VALID_BODY_SAML_CONFIGURATION_SYNC)}",
             )
 
     # Validate forticloud-account-enforcement if present
@@ -254,8 +243,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_FORTICLOUD_ACCOUNT_ENFORCEMENT:
             return (
                 False,
-                f"Invalid forticloud-account-enforcement '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTICLOUD_ACCOUNT_ENFORCEMENT)}",
+                f"Invalid forticloud-account-enforcement '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICLOUD_ACCOUNT_ENFORCEMENT)}",
             )
 
     # Validate file-mgmt if present
@@ -264,8 +252,7 @@ def validate_csf_put(
         if value and value not in VALID_BODY_FILE_MGMT:
             return (
                 False,
-                f"Invalid file-mgmt '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_MGMT)}",
+                f"Invalid file-mgmt '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_MGMT)}",
             )
 
     # Validate file-quota if present

@@ -51,8 +51,7 @@ def validate_ipam_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -85,8 +84,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server-type if present
@@ -95,8 +93,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate automatic-conflict-resolution if present
@@ -105,8 +102,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_AUTOMATIC_CONFLICT_RESOLUTION:
             return (
                 False,
-                f"Invalid automatic-conflict-resolution '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTOMATIC_CONFLICT_RESOLUTION)}",
+                f"Invalid automatic-conflict-resolution '{value}'. Must be one of: {', '.join(VALID_BODY_AUTOMATIC_CONFLICT_RESOLUTION)}",
             )
 
     # Validate require-subnet-size-match if present
@@ -115,8 +111,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_REQUIRE_SUBNET_SIZE_MATCH:
             return (
                 False,
-                f"Invalid require-subnet-size-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUIRE_SUBNET_SIZE_MATCH)}",
+                f"Invalid require-subnet-size-match '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_SUBNET_SIZE_MATCH)}",
             )
 
     # Validate manage-lan-addresses if present
@@ -125,8 +120,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_MANAGE_LAN_ADDRESSES:
             return (
                 False,
-                f"Invalid manage-lan-addresses '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGE_LAN_ADDRESSES)}",
+                f"Invalid manage-lan-addresses '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGE_LAN_ADDRESSES)}",
             )
 
     # Validate manage-lan-extension-addresses if present
@@ -135,8 +129,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_MANAGE_LAN_EXTENSION_ADDRESSES:
             return (
                 False,
-                f"Invalid manage-lan-extension-addresses '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGE_LAN_EXTENSION_ADDRESSES)}",
+                f"Invalid manage-lan-extension-addresses '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGE_LAN_EXTENSION_ADDRESSES)}",
             )
 
     # Validate manage-ssid-addresses if present
@@ -145,8 +138,7 @@ def validate_ipam_put(
         if value and value not in VALID_BODY_MANAGE_SSID_ADDRESSES:
             return (
                 False,
-                f"Invalid manage-ssid-addresses '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGE_SSID_ADDRESSES)}",
+                f"Invalid manage-ssid-addresses '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGE_SSID_ADDRESSES)}",
             )
 
     return (True, None)

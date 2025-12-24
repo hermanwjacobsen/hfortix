@@ -47,8 +47,7 @@ def validate_console_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,8 +80,7 @@ def validate_console_put(
         if value and value not in VALID_BODY_OUTPUT:
             return (
                 False,
-                f"Invalid output '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTPUT)}",
+                f"Invalid output '{value}'. Must be one of: {', '.join(VALID_BODY_OUTPUT)}",
             )
 
     # Validate login if present
@@ -91,8 +89,7 @@ def validate_console_put(
         if value and value not in VALID_BODY_LOGIN:
             return (
                 False,
-                f"Invalid login '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOGIN)}",
+                f"Invalid login '{value}'. Must be one of: {', '.join(VALID_BODY_LOGIN)}",
             )
 
     # Validate fortiexplorer if present
@@ -101,8 +98,7 @@ def validate_console_put(
         if value and value not in VALID_BODY_FORTIEXPLORER:
             return (
                 False,
-                f"Invalid fortiexplorer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTIEXPLORER)}",
+                f"Invalid fortiexplorer '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIEXPLORER)}",
             )
 
     return (True, None)

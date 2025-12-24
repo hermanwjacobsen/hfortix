@@ -46,8 +46,7 @@ def validate_decrypted_traffic_mirror_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_decrypted_traffic_mirror_post(
         if value and value not in VALID_BODY_TRAFFIC_TYPE:
             return (
                 False,
-                f"Invalid traffic-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_TYPE)}",
+                f"Invalid traffic-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_TYPE)}",
             )
 
     # Validate traffic-source if present
@@ -92,8 +90,7 @@ def validate_decrypted_traffic_mirror_post(
         if value and value not in VALID_BODY_TRAFFIC_SOURCE:
             return (
                 False,
-                f"Invalid traffic-source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_SOURCE)}",
+                f"Invalid traffic-source '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_SOURCE)}",
             )
 
     return (True, None)
@@ -137,8 +134,7 @@ def validate_decrypted_traffic_mirror_put(
         if value and value not in VALID_BODY_TRAFFIC_TYPE:
             return (
                 False,
-                f"Invalid traffic-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_TYPE)}",
+                f"Invalid traffic-type '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_TYPE)}",
             )
 
     # Validate traffic-source if present
@@ -147,8 +143,7 @@ def validate_decrypted_traffic_mirror_put(
         if value and value not in VALID_BODY_TRAFFIC_SOURCE:
             return (
                 False,
-                f"Invalid traffic-source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_SOURCE)}",
+                f"Invalid traffic-source '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_SOURCE)}",
             )
 
     return (True, None)

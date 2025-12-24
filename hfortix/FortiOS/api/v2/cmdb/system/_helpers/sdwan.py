@@ -55,8 +55,7 @@ def validate_sdwan_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,8 +88,7 @@ def validate_sdwan_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate load-balance-mode if present
@@ -99,8 +97,7 @@ def validate_sdwan_put(
         if value and value not in VALID_BODY_LOAD_BALANCE_MODE:
             return (
                 False,
-                f"Invalid load-balance-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOAD_BALANCE_MODE)}",
+                f"Invalid load-balance-mode '{value}'. Must be one of: {', '.join(VALID_BODY_LOAD_BALANCE_MODE)}",
             )
 
     # Validate speedtest-bypass-routing if present
@@ -109,8 +106,7 @@ def validate_sdwan_put(
         if value and value not in VALID_BODY_SPEEDTEST_BYPASS_ROUTING:
             return (
                 False,
-                f"Invalid speedtest-bypass-routing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPEEDTEST_BYPASS_ROUTING)}",
+                f"Invalid speedtest-bypass-routing '{value}'. Must be one of: {', '.join(VALID_BODY_SPEEDTEST_BYPASS_ROUTING)}",
             )
 
     # Validate duplication-max-num if present
@@ -153,8 +149,7 @@ def validate_sdwan_put(
         if value and value not in VALID_BODY_NEIGHBOR_HOLD_DOWN:
             return (
                 False,
-                f"Invalid neighbor-hold-down '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NEIGHBOR_HOLD_DOWN)}",
+                f"Invalid neighbor-hold-down '{value}'. Must be one of: {', '.join(VALID_BODY_NEIGHBOR_HOLD_DOWN)}",
             )
 
     # Validate neighbor-hold-down-time if present
@@ -214,8 +209,7 @@ def validate_sdwan_put(
         if value and value not in VALID_BODY_FAIL_DETECT:
             return (
                 False,
-                f"Invalid fail-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_DETECT)}",
+                f"Invalid fail-detect '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_DETECT)}",
             )
 
     return (True, None)

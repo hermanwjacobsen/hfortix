@@ -82,8 +82,7 @@ def validate_federated_upgrade_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -116,8 +115,7 @@ def validate_federated_upgrade_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate source if present
@@ -126,8 +124,7 @@ def validate_federated_upgrade_put(
         if value and value not in VALID_BODY_SOURCE:
             return (
                 False,
-                f"Invalid source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SOURCE)}",
+                f"Invalid source '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE)}",
             )
 
     # Validate failure-reason if present
@@ -136,8 +133,7 @@ def validate_federated_upgrade_put(
         if value and value not in VALID_BODY_FAILURE_REASON:
             return (
                 False,
-                f"Invalid failure-reason '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAILURE_REASON)}",
+                f"Invalid failure-reason '{value}'. Must be one of: {', '.join(VALID_BODY_FAILURE_REASON)}",
             )
 
     # Validate failure-device if present
@@ -180,8 +176,7 @@ def validate_federated_upgrade_put(
         if value and value not in VALID_BODY_IGNORE_SIGNING_ERRORS:
             return (
                 False,
-                f"Invalid ignore-signing-errors '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IGNORE_SIGNING_ERRORS)}",
+                f"Invalid ignore-signing-errors '{value}'. Must be one of: {', '.join(VALID_BODY_IGNORE_SIGNING_ERRORS)}",
             )
 
     # Validate ha-reboot-controller if present

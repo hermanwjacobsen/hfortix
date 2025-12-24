@@ -127,8 +127,7 @@ def validate_vip6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -178,8 +177,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate src-vip-filter if present
@@ -188,8 +186,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SRC_VIP_FILTER:
             return (
                 False,
-                f"Invalid src-vip-filter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_VIP_FILTER)}",
+                f"Invalid src-vip-filter '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_VIP_FILTER)}",
             )
 
     # Validate nat-source-vip if present
@@ -198,8 +195,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT_SOURCE_VIP:
             return (
                 False,
-                f"Invalid nat-source-vip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT_SOURCE_VIP)}",
+                f"Invalid nat-source-vip '{value}'. Must be one of: {', '.join(VALID_BODY_NAT_SOURCE_VIP)}",
             )
 
     # Validate ndp-reply if present
@@ -208,8 +204,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NDP_REPLY:
             return (
                 False,
-                f"Invalid ndp-reply '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NDP_REPLY)}",
+                f"Invalid ndp-reply '{value}'. Must be one of: {', '.join(VALID_BODY_NDP_REPLY)}",
             )
 
     # Validate portforward if present
@@ -218,8 +213,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORTFORWARD:
             return (
                 False,
-                f"Invalid portforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORTFORWARD)}",
+                f"Invalid portforward '{value}'. Must be one of: {', '.join(VALID_BODY_PORTFORWARD)}",
             )
 
     # Validate protocol if present
@@ -228,8 +222,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate color if present
@@ -249,8 +242,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     # Validate server-type if present
@@ -259,8 +251,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate http-redirect if present
@@ -269,8 +260,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_REDIRECT:
             return (
                 False,
-                f"Invalid http-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_REDIRECT)}",
+                f"Invalid http-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_REDIRECT)}",
             )
 
     # Validate persistence if present
@@ -279,8 +269,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PERSISTENCE:
             return (
                 False,
-                f"Invalid persistence '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERSISTENCE)}",
+                f"Invalid persistence '{value}'. Must be one of: {', '.join(VALID_BODY_PERSISTENCE)}",
             )
 
     # Validate h2-support if present
@@ -289,8 +278,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_H2_SUPPORT:
             return (
                 False,
-                f"Invalid h2-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H2_SUPPORT)}",
+                f"Invalid h2-support '{value}'. Must be one of: {', '.join(VALID_BODY_H2_SUPPORT)}",
             )
 
     # Validate h3-support if present
@@ -299,8 +287,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_H3_SUPPORT:
             return (
                 False,
-                f"Invalid h3-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H3_SUPPORT)}",
+                f"Invalid h3-support '{value}'. Must be one of: {', '.join(VALID_BODY_H3_SUPPORT)}",
             )
 
     # Validate nat66 if present
@@ -309,8 +296,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT66:
             return (
                 False,
-                f"Invalid nat66 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT66)}",
+                f"Invalid nat66 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT66)}",
             )
 
     # Validate nat64 if present
@@ -319,8 +305,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate add-nat64-route if present
@@ -329,8 +314,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADD_NAT64_ROUTE:
             return (
                 False,
-                f"Invalid add-nat64-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
+                f"Invalid add-nat64-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
             )
 
     # Validate empty-cert-action if present
@@ -339,8 +323,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMPTY_CERT_ACTION:
             return (
                 False,
-                f"Invalid empty-cert-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
+                f"Invalid empty-cert-action '{value}'. Must be one of: {', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
             )
 
     # Validate user-agent-detect if present
@@ -349,8 +332,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USER_AGENT_DETECT:
             return (
                 False,
-                f"Invalid user-agent-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_AGENT_DETECT)}",
+                f"Invalid user-agent-detect '{value}'. Must be one of: {', '.join(VALID_BODY_USER_AGENT_DETECT)}",
             )
 
     # Validate client-cert if present
@@ -359,8 +341,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CLIENT_CERT:
             return (
                 False,
-                f"Invalid client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_CERT)}",
+                f"Invalid client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT)}",
             )
 
     # Validate http-cookie-domain-from-host if present
@@ -369,8 +350,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST:
             return (
                 False,
-                f"Invalid http-cookie-domain-from-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST)}",
+                f"Invalid http-cookie-domain-from-host '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST)}",
             )
 
     # Validate http-cookie-domain if present
@@ -425,8 +405,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_COOKIE_SHARE:
             return (
                 False,
-                f"Invalid http-cookie-share '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_COOKIE_SHARE)}",
+                f"Invalid http-cookie-share '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_COOKIE_SHARE)}",
             )
 
     # Validate https-cookie-secure if present
@@ -435,8 +414,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTPS_COOKIE_SECURE:
             return (
                 False,
-                f"Invalid https-cookie-secure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTPS_COOKIE_SECURE)}",
+                f"Invalid https-cookie-secure '{value}'. Must be one of: {', '.join(VALID_BODY_HTTPS_COOKIE_SECURE)}",
             )
 
     # Validate http-multiplex if present
@@ -445,8 +423,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_MULTIPLEX:
             return (
                 False,
-                f"Invalid http-multiplex '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_MULTIPLEX)}",
+                f"Invalid http-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_MULTIPLEX)}",
             )
 
     # Validate http-ip-header if present
@@ -455,8 +432,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HTTP_IP_HEADER:
             return (
                 False,
-                f"Invalid http-ip-header '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_IP_HEADER)}",
+                f"Invalid http-ip-header '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_IP_HEADER)}",
             )
 
     # Validate http-ip-header-name if present
@@ -471,8 +447,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OUTLOOK_WEB_ACCESS:
             return (
                 False,
-                f"Invalid outlook-web-access '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTLOOK_WEB_ACCESS)}",
+                f"Invalid outlook-web-access '{value}'. Must be one of: {', '.join(VALID_BODY_OUTLOOK_WEB_ACCESS)}",
             )
 
     # Validate weblogic-server if present
@@ -481,8 +456,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEBLOGIC_SERVER:
             return (
                 False,
-                f"Invalid weblogic-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBLOGIC_SERVER)}",
+                f"Invalid weblogic-server '{value}'. Must be one of: {', '.join(VALID_BODY_WEBLOGIC_SERVER)}",
             )
 
     # Validate websphere-server if present
@@ -491,8 +465,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEBSPHERE_SERVER:
             return (
                 False,
-                f"Invalid websphere-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBSPHERE_SERVER)}",
+                f"Invalid websphere-server '{value}'. Must be one of: {', '.join(VALID_BODY_WEBSPHERE_SERVER)}",
             )
 
     # Validate ssl-mode if present
@@ -501,8 +474,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MODE:
             return (
                 False,
-                f"Invalid ssl-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MODE)}",
+                f"Invalid ssl-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MODE)}",
             )
 
     # Validate ssl-dh-bits if present
@@ -511,8 +483,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-algorithm if present
@@ -521,8 +492,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ALGORITHM)}",
+                f"Invalid ssl-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ALGORITHM)}",
             )
 
     # Validate ssl-server-renegotiation if present
@@ -531,8 +501,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-server-renegotiation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_RENEGOTIATION)}",
+                f"Invalid ssl-server-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_RENEGOTIATION)}",
             )
 
     # Validate ssl-server-algorithm if present
@@ -541,8 +510,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-server-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_ALGORITHM)}",
+                f"Invalid ssl-server-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_ALGORITHM)}",
             )
 
     # Validate ssl-pfs if present
@@ -551,8 +519,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_PFS:
             return (
                 False,
-                f"Invalid ssl-pfs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_PFS)}",
+                f"Invalid ssl-pfs '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_PFS)}",
             )
 
     # Validate ssl-min-version if present
@@ -561,8 +528,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MIN_VERSION)}",
+                f"Invalid ssl-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_VERSION)}",
             )
 
     # Validate ssl-max-version if present
@@ -571,8 +537,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate ssl-server-min-version if present
@@ -581,8 +546,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-server-min-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_MIN_VERSION)}",
+                f"Invalid ssl-server-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_MIN_VERSION)}",
             )
 
     # Validate ssl-server-max-version if present
@@ -591,8 +555,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-server-max-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_MAX_VERSION)}",
+                f"Invalid ssl-server-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_MAX_VERSION)}",
             )
 
     # Validate ssl-accept-ffdhe-groups if present
@@ -601,8 +564,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS:
             return (
                 False,
-                f"Invalid ssl-accept-ffdhe-groups '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS)}",
+                f"Invalid ssl-accept-ffdhe-groups '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS)}",
             )
 
     # Validate ssl-send-empty-frags if present
@@ -611,8 +573,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SEND_EMPTY_FRAGS:
             return (
                 False,
-                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
+                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
             )
 
     # Validate ssl-client-fallback if present
@@ -621,8 +582,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_CLIENT_FALLBACK:
             return (
                 False,
-                f"Invalid ssl-client-fallback '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_FALLBACK)}",
+                f"Invalid ssl-client-fallback '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_FALLBACK)}",
             )
 
     # Validate ssl-client-renegotiation if present
@@ -631,8 +591,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_CLIENT_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
+                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
             )
 
     # Validate ssl-client-session-state-type if present
@@ -641,8 +600,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE:
             return (
                 False,
-                f"Invalid ssl-client-session-state-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE)}",
+                f"Invalid ssl-client-session-state-type '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE)}",
             )
 
     # Validate ssl-client-session-state-timeout if present
@@ -702,8 +660,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE:
             return (
                 False,
-                f"Invalid ssl-server-session-state-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE)}",
+                f"Invalid ssl-server-session-state-type '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE)}",
             )
 
     # Validate ssl-server-session-state-timeout if present
@@ -746,8 +703,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HTTP_LOCATION_CONVERSION:
             return (
                 False,
-                f"Invalid ssl-http-location-conversion '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HTTP_LOCATION_CONVERSION)}",
+                f"Invalid ssl-http-location-conversion '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HTTP_LOCATION_CONVERSION)}",
             )
 
     # Validate ssl-http-match-host if present
@@ -756,8 +712,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HTTP_MATCH_HOST:
             return (
                 False,
-                f"Invalid ssl-http-match-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HTTP_MATCH_HOST)}",
+                f"Invalid ssl-http-match-host '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HTTP_MATCH_HOST)}",
             )
 
     # Validate ssl-hpkp if present
@@ -766,8 +721,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HPKP:
             return (
                 False,
-                f"Invalid ssl-hpkp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HPKP)}",
+                f"Invalid ssl-hpkp '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HPKP)}",
             )
 
     # Validate ssl-hpkp-primary if present
@@ -808,8 +762,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid ssl-hpkp-include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS)}",
+                f"Invalid ssl-hpkp-include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS)}",
             )
 
     # Validate ssl-hsts if present
@@ -818,8 +771,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HSTS:
             return (
                 False,
-                f"Invalid ssl-hsts '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HSTS)}",
+                f"Invalid ssl-hsts '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HSTS)}",
             )
 
     # Validate ssl-hsts-age if present
@@ -842,8 +794,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid ssl-hsts-include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS)}",
+                f"Invalid ssl-hsts-include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS)}",
             )
 
     # Validate max-embryonic-connections if present
@@ -869,8 +820,7 @@ def validate_vip6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMBEDDED_IPV4_ADDRESS:
             return (
                 False,
-                f"Invalid embedded-ipv4-address '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMBEDDED_IPV4_ADDRESS)}",
+                f"Invalid embedded-ipv4-address '{value}'. Must be one of: {', '.join(VALID_BODY_EMBEDDED_IPV4_ADDRESS)}",
             )
 
     return (True, None)
@@ -931,8 +881,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate src-vip-filter if present
@@ -941,8 +890,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SRC_VIP_FILTER:
             return (
                 False,
-                f"Invalid src-vip-filter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_VIP_FILTER)}",
+                f"Invalid src-vip-filter '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_VIP_FILTER)}",
             )
 
     # Validate nat-source-vip if present
@@ -951,8 +899,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_NAT_SOURCE_VIP:
             return (
                 False,
-                f"Invalid nat-source-vip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT_SOURCE_VIP)}",
+                f"Invalid nat-source-vip '{value}'. Must be one of: {', '.join(VALID_BODY_NAT_SOURCE_VIP)}",
             )
 
     # Validate ndp-reply if present
@@ -961,8 +908,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_NDP_REPLY:
             return (
                 False,
-                f"Invalid ndp-reply '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NDP_REPLY)}",
+                f"Invalid ndp-reply '{value}'. Must be one of: {', '.join(VALID_BODY_NDP_REPLY)}",
             )
 
     # Validate portforward if present
@@ -971,8 +917,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_PORTFORWARD:
             return (
                 False,
-                f"Invalid portforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORTFORWARD)}",
+                f"Invalid portforward '{value}'. Must be one of: {', '.join(VALID_BODY_PORTFORWARD)}",
             )
 
     # Validate protocol if present
@@ -981,8 +926,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate color if present
@@ -1002,8 +946,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     # Validate server-type if present
@@ -1012,8 +955,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate http-redirect if present
@@ -1022,8 +964,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTP_REDIRECT:
             return (
                 False,
-                f"Invalid http-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_REDIRECT)}",
+                f"Invalid http-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_REDIRECT)}",
             )
 
     # Validate persistence if present
@@ -1032,8 +973,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_PERSISTENCE:
             return (
                 False,
-                f"Invalid persistence '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERSISTENCE)}",
+                f"Invalid persistence '{value}'. Must be one of: {', '.join(VALID_BODY_PERSISTENCE)}",
             )
 
     # Validate h2-support if present
@@ -1042,8 +982,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_H2_SUPPORT:
             return (
                 False,
-                f"Invalid h2-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H2_SUPPORT)}",
+                f"Invalid h2-support '{value}'. Must be one of: {', '.join(VALID_BODY_H2_SUPPORT)}",
             )
 
     # Validate h3-support if present
@@ -1052,8 +991,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_H3_SUPPORT:
             return (
                 False,
-                f"Invalid h3-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H3_SUPPORT)}",
+                f"Invalid h3-support '{value}'. Must be one of: {', '.join(VALID_BODY_H3_SUPPORT)}",
             )
 
     # Validate nat66 if present
@@ -1062,8 +1000,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_NAT66:
             return (
                 False,
-                f"Invalid nat66 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT66)}",
+                f"Invalid nat66 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT66)}",
             )
 
     # Validate nat64 if present
@@ -1072,8 +1009,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate add-nat64-route if present
@@ -1082,8 +1018,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_ADD_NAT64_ROUTE:
             return (
                 False,
-                f"Invalid add-nat64-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
+                f"Invalid add-nat64-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
             )
 
     # Validate empty-cert-action if present
@@ -1092,8 +1027,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_EMPTY_CERT_ACTION:
             return (
                 False,
-                f"Invalid empty-cert-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
+                f"Invalid empty-cert-action '{value}'. Must be one of: {', '.join(VALID_BODY_EMPTY_CERT_ACTION)}",
             )
 
     # Validate user-agent-detect if present
@@ -1102,8 +1036,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_USER_AGENT_DETECT:
             return (
                 False,
-                f"Invalid user-agent-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_AGENT_DETECT)}",
+                f"Invalid user-agent-detect '{value}'. Must be one of: {', '.join(VALID_BODY_USER_AGENT_DETECT)}",
             )
 
     # Validate client-cert if present
@@ -1112,8 +1045,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_CLIENT_CERT:
             return (
                 False,
-                f"Invalid client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_CERT)}",
+                f"Invalid client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_CERT)}",
             )
 
     # Validate http-cookie-domain-from-host if present
@@ -1122,8 +1054,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST:
             return (
                 False,
-                f"Invalid http-cookie-domain-from-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST)}",
+                f"Invalid http-cookie-domain-from-host '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_COOKIE_DOMAIN_FROM_HOST)}",
             )
 
     # Validate http-cookie-domain if present
@@ -1178,8 +1109,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTP_COOKIE_SHARE:
             return (
                 False,
-                f"Invalid http-cookie-share '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_COOKIE_SHARE)}",
+                f"Invalid http-cookie-share '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_COOKIE_SHARE)}",
             )
 
     # Validate https-cookie-secure if present
@@ -1188,8 +1118,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTPS_COOKIE_SECURE:
             return (
                 False,
-                f"Invalid https-cookie-secure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTPS_COOKIE_SECURE)}",
+                f"Invalid https-cookie-secure '{value}'. Must be one of: {', '.join(VALID_BODY_HTTPS_COOKIE_SECURE)}",
             )
 
     # Validate http-multiplex if present
@@ -1198,8 +1127,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTP_MULTIPLEX:
             return (
                 False,
-                f"Invalid http-multiplex '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_MULTIPLEX)}",
+                f"Invalid http-multiplex '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_MULTIPLEX)}",
             )
 
     # Validate http-ip-header if present
@@ -1208,8 +1136,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_HTTP_IP_HEADER:
             return (
                 False,
-                f"Invalid http-ip-header '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HTTP_IP_HEADER)}",
+                f"Invalid http-ip-header '{value}'. Must be one of: {', '.join(VALID_BODY_HTTP_IP_HEADER)}",
             )
 
     # Validate http-ip-header-name if present
@@ -1224,8 +1151,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_OUTLOOK_WEB_ACCESS:
             return (
                 False,
-                f"Invalid outlook-web-access '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTLOOK_WEB_ACCESS)}",
+                f"Invalid outlook-web-access '{value}'. Must be one of: {', '.join(VALID_BODY_OUTLOOK_WEB_ACCESS)}",
             )
 
     # Validate weblogic-server if present
@@ -1234,8 +1160,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_WEBLOGIC_SERVER:
             return (
                 False,
-                f"Invalid weblogic-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBLOGIC_SERVER)}",
+                f"Invalid weblogic-server '{value}'. Must be one of: {', '.join(VALID_BODY_WEBLOGIC_SERVER)}",
             )
 
     # Validate websphere-server if present
@@ -1244,8 +1169,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_WEBSPHERE_SERVER:
             return (
                 False,
-                f"Invalid websphere-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBSPHERE_SERVER)}",
+                f"Invalid websphere-server '{value}'. Must be one of: {', '.join(VALID_BODY_WEBSPHERE_SERVER)}",
             )
 
     # Validate ssl-mode if present
@@ -1254,8 +1178,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_MODE:
             return (
                 False,
-                f"Invalid ssl-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MODE)}",
+                f"Invalid ssl-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MODE)}",
             )
 
     # Validate ssl-dh-bits if present
@@ -1264,8 +1187,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-algorithm if present
@@ -1274,8 +1196,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ALGORITHM)}",
+                f"Invalid ssl-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ALGORITHM)}",
             )
 
     # Validate ssl-server-renegotiation if present
@@ -1284,8 +1205,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SERVER_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-server-renegotiation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_RENEGOTIATION)}",
+                f"Invalid ssl-server-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_RENEGOTIATION)}",
             )
 
     # Validate ssl-server-algorithm if present
@@ -1294,8 +1214,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SERVER_ALGORITHM:
             return (
                 False,
-                f"Invalid ssl-server-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_ALGORITHM)}",
+                f"Invalid ssl-server-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_ALGORITHM)}",
             )
 
     # Validate ssl-pfs if present
@@ -1304,8 +1223,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_PFS:
             return (
                 False,
-                f"Invalid ssl-pfs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_PFS)}",
+                f"Invalid ssl-pfs '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_PFS)}",
             )
 
     # Validate ssl-min-version if present
@@ -1314,8 +1232,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MIN_VERSION)}",
+                f"Invalid ssl-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_VERSION)}",
             )
 
     # Validate ssl-max-version if present
@@ -1324,8 +1241,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-max-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MAX_VERSION)}",
+                f"Invalid ssl-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MAX_VERSION)}",
             )
 
     # Validate ssl-server-min-version if present
@@ -1334,8 +1250,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SERVER_MIN_VERSION:
             return (
                 False,
-                f"Invalid ssl-server-min-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_MIN_VERSION)}",
+                f"Invalid ssl-server-min-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_MIN_VERSION)}",
             )
 
     # Validate ssl-server-max-version if present
@@ -1344,8 +1259,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SERVER_MAX_VERSION:
             return (
                 False,
-                f"Invalid ssl-server-max-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_MAX_VERSION)}",
+                f"Invalid ssl-server-max-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_MAX_VERSION)}",
             )
 
     # Validate ssl-accept-ffdhe-groups if present
@@ -1354,8 +1268,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS:
             return (
                 False,
-                f"Invalid ssl-accept-ffdhe-groups '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS)}",
+                f"Invalid ssl-accept-ffdhe-groups '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ACCEPT_FFDHE_GROUPS)}",
             )
 
     # Validate ssl-send-empty-frags if present
@@ -1364,8 +1277,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SEND_EMPTY_FRAGS:
             return (
                 False,
-                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
+                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
             )
 
     # Validate ssl-client-fallback if present
@@ -1374,8 +1286,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_CLIENT_FALLBACK:
             return (
                 False,
-                f"Invalid ssl-client-fallback '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_FALLBACK)}",
+                f"Invalid ssl-client-fallback '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_FALLBACK)}",
             )
 
     # Validate ssl-client-renegotiation if present
@@ -1384,8 +1295,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_CLIENT_RENEGOTIATION:
             return (
                 False,
-                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
+                f"Invalid ssl-client-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_RENEGOTIATION)}",
             )
 
     # Validate ssl-client-session-state-type if present
@@ -1394,8 +1304,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE:
             return (
                 False,
-                f"Invalid ssl-client-session-state-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE)}",
+                f"Invalid ssl-client-session-state-type '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_CLIENT_SESSION_STATE_TYPE)}",
             )
 
     # Validate ssl-client-session-state-timeout if present
@@ -1455,8 +1364,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE:
             return (
                 False,
-                f"Invalid ssl-server-session-state-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE)}",
+                f"Invalid ssl-server-session-state-type '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_SESSION_STATE_TYPE)}",
             )
 
     # Validate ssl-server-session-state-timeout if present
@@ -1499,8 +1407,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HTTP_LOCATION_CONVERSION:
             return (
                 False,
-                f"Invalid ssl-http-location-conversion '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HTTP_LOCATION_CONVERSION)}",
+                f"Invalid ssl-http-location-conversion '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HTTP_LOCATION_CONVERSION)}",
             )
 
     # Validate ssl-http-match-host if present
@@ -1509,8 +1416,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HTTP_MATCH_HOST:
             return (
                 False,
-                f"Invalid ssl-http-match-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HTTP_MATCH_HOST)}",
+                f"Invalid ssl-http-match-host '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HTTP_MATCH_HOST)}",
             )
 
     # Validate ssl-hpkp if present
@@ -1519,8 +1425,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HPKP:
             return (
                 False,
-                f"Invalid ssl-hpkp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HPKP)}",
+                f"Invalid ssl-hpkp '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HPKP)}",
             )
 
     # Validate ssl-hpkp-primary if present
@@ -1561,8 +1466,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid ssl-hpkp-include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS)}",
+                f"Invalid ssl-hpkp-include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HPKP_INCLUDE_SUBDOMAINS)}",
             )
 
     # Validate ssl-hsts if present
@@ -1571,8 +1475,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HSTS:
             return (
                 False,
-                f"Invalid ssl-hsts '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HSTS)}",
+                f"Invalid ssl-hsts '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HSTS)}",
             )
 
     # Validate ssl-hsts-age if present
@@ -1595,8 +1498,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS:
             return (
                 False,
-                f"Invalid ssl-hsts-include-subdomains '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS)}",
+                f"Invalid ssl-hsts-include-subdomains '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HSTS_INCLUDE_SUBDOMAINS)}",
             )
 
     # Validate max-embryonic-connections if present
@@ -1622,8 +1524,7 @@ def validate_vip6_put(
         if value and value not in VALID_BODY_EMBEDDED_IPV4_ADDRESS:
             return (
                 False,
-                f"Invalid embedded-ipv4-address '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMBEDDED_IPV4_ADDRESS)}",
+                f"Invalid embedded-ipv4-address '{value}'. Must be one of: {', '.join(VALID_BODY_EMBEDDED_IPV4_ADDRESS)}",
             )
 
     return (True, None)

@@ -59,8 +59,7 @@ def validate_pppoe_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,8 +94,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_DIAL_ON_DEMAND:
             return (
                 False,
-                f"Invalid dial-on-demand '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
+                f"Invalid dial-on-demand '{value}'. Must be one of: {', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
             )
 
     # Validate ipv6 if present
@@ -105,8 +103,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_IPV6:
             return (
                 False,
-                f"Invalid ipv6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPV6)}",
+                f"Invalid ipv6 '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6)}",
             )
 
     # Validate device if present
@@ -127,8 +124,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_PPPOE_EGRESS_COS:
             return (
                 False,
-                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
+                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
             )
 
     # Validate auth-type if present
@@ -137,8 +133,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate pppoe-unnumbered-negotiate if present
@@ -147,8 +142,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE:
             return (
                 False,
-                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
+                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
             )
 
     # Validate idle-timeout if present
@@ -171,8 +165,7 @@ def validate_pppoe_interface_post(
         if value and value not in VALID_BODY_MULTILINK:
             return (
                 False,
-                f"Invalid multilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTILINK)}",
+                f"Invalid multilink '{value}'. Must be one of: {', '.join(VALID_BODY_MULTILINK)}",
             )
 
     # Validate mrru if present
@@ -307,8 +300,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_DIAL_ON_DEMAND:
             return (
                 False,
-                f"Invalid dial-on-demand '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
+                f"Invalid dial-on-demand '{value}'. Must be one of: {', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
             )
 
     # Validate ipv6 if present
@@ -317,8 +309,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_IPV6:
             return (
                 False,
-                f"Invalid ipv6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPV6)}",
+                f"Invalid ipv6 '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6)}",
             )
 
     # Validate device if present
@@ -339,8 +330,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_PPPOE_EGRESS_COS:
             return (
                 False,
-                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
+                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
             )
 
     # Validate auth-type if present
@@ -349,8 +339,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate pppoe-unnumbered-negotiate if present
@@ -359,8 +348,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE:
             return (
                 False,
-                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
+                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
             )
 
     # Validate idle-timeout if present
@@ -383,8 +371,7 @@ def validate_pppoe_interface_put(
         if value and value not in VALID_BODY_MULTILINK:
             return (
                 False,
-                f"Invalid multilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTILINK)}",
+                f"Invalid multilink '{value}'. Must be one of: {', '.join(VALID_BODY_MULTILINK)}",
             )
 
     # Validate mrru if present

@@ -46,8 +46,7 @@ def validate_internet_service_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -104,8 +103,7 @@ def validate_internet_service_post(
         if value and value not in VALID_BODY_DIRECTION:
             return (
                 False,
-                f"Invalid direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIRECTION)}",
+                f"Invalid direction '{value}'. Must be one of: {', '.join(VALID_BODY_DIRECTION)}",
             )
 
     # Validate database if present
@@ -114,8 +112,7 @@ def validate_internet_service_post(
         if value and value not in VALID_BODY_DATABASE:
             return (
                 False,
-                f"Invalid database '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DATABASE)}",
+                f"Invalid database '{value}'. Must be one of: {', '.join(VALID_BODY_DATABASE)}",
             )
 
     # Validate ip-range-number if present
@@ -285,8 +282,7 @@ def validate_internet_service_put(
         if value and value not in VALID_BODY_DIRECTION:
             return (
                 False,
-                f"Invalid direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIRECTION)}",
+                f"Invalid direction '{value}'. Must be one of: {', '.join(VALID_BODY_DIRECTION)}",
             )
 
     # Validate database if present
@@ -295,8 +291,7 @@ def validate_internet_service_put(
         if value and value not in VALID_BODY_DATABASE:
             return (
                 False,
-                f"Invalid database '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DATABASE)}",
+                f"Invalid database '{value}'. Must be one of: {', '.join(VALID_BODY_DATABASE)}",
             )
 
     # Validate ip-range-number if present

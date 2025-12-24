@@ -58,8 +58,7 @@ def validate_local_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -103,8 +102,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -113,8 +111,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate ldap-server if present
@@ -147,8 +144,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -157,8 +153,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -167,8 +162,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate fortitoken if present
@@ -189,8 +183,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -234,8 +227,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_CONCURRENT_OVERRIDE:
             return (
                 False,
-                f"Invalid auth-concurrent-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
+                f"Invalid auth-concurrent-override '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
             )
 
     # Validate auth-concurrent-value if present
@@ -273,8 +265,7 @@ def validate_local_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USERNAME_SENSITIVITY:
             return (
                 False,
-                f"Invalid username-sensitivity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USERNAME_SENSITIVITY)}",
+                f"Invalid username-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_USERNAME_SENSITIVITY)}",
             )
 
     return (True, None)
@@ -329,8 +320,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -339,8 +329,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate ldap-server if present
@@ -373,8 +362,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_TWO_FACTOR:
             return (
                 False,
-                f"Invalid two-factor '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR)}",
+                f"Invalid two-factor '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR)}",
             )
 
     # Validate two-factor-authentication if present
@@ -383,8 +371,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_TWO_FACTOR_AUTHENTICATION:
             return (
                 False,
-                f"Invalid two-factor-authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
+                f"Invalid two-factor-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_AUTHENTICATION)}",
             )
 
     # Validate two-factor-notification if present
@@ -393,8 +380,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_TWO_FACTOR_NOTIFICATION:
             return (
                 False,
-                f"Invalid two-factor-notification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
+                f"Invalid two-factor-notification '{value}'. Must be one of: {', '.join(VALID_BODY_TWO_FACTOR_NOTIFICATION)}",
             )
 
     # Validate fortitoken if present
@@ -415,8 +401,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -460,8 +445,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_AUTH_CONCURRENT_OVERRIDE:
             return (
                 False,
-                f"Invalid auth-concurrent-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
+                f"Invalid auth-concurrent-override '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
             )
 
     # Validate auth-concurrent-value if present
@@ -499,8 +483,7 @@ def validate_local_put(
         if value and value not in VALID_BODY_USERNAME_SENSITIVITY:
             return (
                 False,
-                f"Invalid username-sensitivity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USERNAME_SENSITIVITY)}",
+                f"Invalid username-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_USERNAME_SENSITIVITY)}",
             )
 
     return (True, None)

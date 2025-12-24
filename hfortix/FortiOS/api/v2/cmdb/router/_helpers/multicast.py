@@ -45,8 +45,7 @@ def validate_multicast_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -110,8 +109,7 @@ def validate_multicast_put(
         if value and value not in VALID_BODY_MULTICAST_ROUTING:
             return (
                 False,
-                f"Invalid multicast-routing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTICAST_ROUTING)}",
+                f"Invalid multicast-routing '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_ROUTING)}",
             )
 
     return (True, None)

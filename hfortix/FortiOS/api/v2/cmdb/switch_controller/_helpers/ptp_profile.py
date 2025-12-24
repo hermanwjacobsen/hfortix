@@ -55,8 +55,7 @@ def validate_ptp_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,8 +96,7 @@ def validate_ptp_profile_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate ptp-profile if present
@@ -107,8 +105,7 @@ def validate_ptp_profile_post(
         if value and value not in VALID_BODY_PTP_PROFILE:
             return (
                 False,
-                f"Invalid ptp-profile '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PTP_PROFILE)}",
+                f"Invalid ptp-profile '{value}'. Must be one of: {', '.join(VALID_BODY_PTP_PROFILE)}",
             )
 
     # Validate transport if present
@@ -117,8 +114,7 @@ def validate_ptp_profile_post(
         if value and value not in VALID_BODY_TRANSPORT:
             return (
                 False,
-                f"Invalid transport '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT)}",
+                f"Invalid transport '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT)}",
             )
 
     # Validate domain if present
@@ -138,8 +134,7 @@ def validate_ptp_profile_post(
         if value and value not in VALID_BODY_PDELAY_REQ_INTERVAL:
             return (
                 False,
-                f"Invalid pdelay-req-interval '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PDELAY_REQ_INTERVAL)}",
+                f"Invalid pdelay-req-interval '{value}'. Must be one of: {', '.join(VALID_BODY_PDELAY_REQ_INTERVAL)}",
             )
 
     return (True, None)
@@ -189,8 +184,7 @@ def validate_ptp_profile_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate ptp-profile if present
@@ -199,8 +193,7 @@ def validate_ptp_profile_put(
         if value and value not in VALID_BODY_PTP_PROFILE:
             return (
                 False,
-                f"Invalid ptp-profile '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PTP_PROFILE)}",
+                f"Invalid ptp-profile '{value}'. Must be one of: {', '.join(VALID_BODY_PTP_PROFILE)}",
             )
 
     # Validate transport if present
@@ -209,8 +202,7 @@ def validate_ptp_profile_put(
         if value and value not in VALID_BODY_TRANSPORT:
             return (
                 False,
-                f"Invalid transport '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT)}",
+                f"Invalid transport '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT)}",
             )
 
     # Validate domain if present
@@ -230,8 +222,7 @@ def validate_ptp_profile_put(
         if value and value not in VALID_BODY_PDELAY_REQ_INTERVAL:
             return (
                 False,
-                f"Invalid pdelay-req-interval '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PDELAY_REQ_INTERVAL)}",
+                f"Invalid pdelay-req-interval '{value}'. Must be one of: {', '.join(VALID_BODY_PDELAY_REQ_INTERVAL)}",
             )
 
     return (True, None)

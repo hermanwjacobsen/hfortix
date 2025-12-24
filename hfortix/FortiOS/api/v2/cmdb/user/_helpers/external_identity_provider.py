@@ -48,8 +48,7 @@ def validate_external_identity_provider_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,8 +83,7 @@ def validate_external_identity_provider_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate version if present
@@ -94,8 +92,7 @@ def validate_external_identity_provider_post(
         if value and value not in VALID_BODY_VERSION:
             return (
                 False,
-                f"Invalid version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERSION)}",
+                f"Invalid version '{value}'. Must be one of: {', '.join(VALID_BODY_VERSION)}",
             )
 
     # Validate url if present
@@ -139,8 +136,7 @@ def validate_external_identity_provider_post(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -166,8 +162,7 @@ def validate_external_identity_provider_post(
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate timeout if present
@@ -222,8 +217,7 @@ def validate_external_identity_provider_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate version if present
@@ -232,8 +226,7 @@ def validate_external_identity_provider_put(
         if value and value not in VALID_BODY_VERSION:
             return (
                 False,
-                f"Invalid version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERSION)}",
+                f"Invalid version '{value}'. Must be one of: {', '.join(VALID_BODY_VERSION)}",
             )
 
     # Validate url if present
@@ -277,8 +270,7 @@ def validate_external_identity_provider_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -304,8 +296,7 @@ def validate_external_identity_provider_put(
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate timeout if present

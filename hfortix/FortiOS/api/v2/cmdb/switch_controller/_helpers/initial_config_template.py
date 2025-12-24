@@ -59,8 +59,7 @@ def validate_initial_config_template_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -106,8 +105,7 @@ def validate_initial_config_template_post(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate auto-ip if present
@@ -116,8 +114,7 @@ def validate_initial_config_template_post(
         if value and value not in VALID_BODY_AUTO_IP:
             return (
                 False,
-                f"Invalid auto-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_IP)}",
+                f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}",
             )
 
     # Validate dhcp-server if present
@@ -126,8 +123,7 @@ def validate_initial_config_template_post(
         if value and value not in VALID_BODY_DHCP_SERVER:
             return (
                 False,
-                f"Invalid dhcp-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SERVER)}",
+                f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}",
             )
 
     return (True, None)
@@ -182,8 +178,7 @@ def validate_initial_config_template_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate auto-ip if present
@@ -192,8 +187,7 @@ def validate_initial_config_template_put(
         if value and value not in VALID_BODY_AUTO_IP:
             return (
                 False,
-                f"Invalid auto-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_IP)}",
+                f"Invalid auto-ip '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_IP)}",
             )
 
     # Validate dhcp-server if present
@@ -202,8 +196,7 @@ def validate_initial_config_template_put(
         if value and value not in VALID_BODY_DHCP_SERVER:
             return (
                 False,
-                f"Invalid dhcp-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SERVER)}",
+                f"Invalid dhcp-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER)}",
             )
 
     return (True, None)

@@ -45,8 +45,7 @@ def validate_igmp_snooping_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,8 +89,7 @@ def validate_igmp_snooping_put(
         if value and value not in VALID_BODY_FLOOD_UNKNOWN_MULTICAST:
             return (
                 False,
-                f"Invalid flood-unknown-multicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FLOOD_UNKNOWN_MULTICAST)}",
+                f"Invalid flood-unknown-multicast '{value}'. Must be one of: {', '.join(VALID_BODY_FLOOD_UNKNOWN_MULTICAST)}",
             )
 
     # Validate query-interval if present

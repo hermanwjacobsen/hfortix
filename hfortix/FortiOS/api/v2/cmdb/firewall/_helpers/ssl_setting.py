@@ -49,8 +49,7 @@ def validate_ssl_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -100,8 +99,7 @@ def validate_ssl_setting_put(
         if value and value not in VALID_BODY_SSL_DH_BITS:
             return (
                 False,
-                f"Invalid ssl-dh-bits '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_DH_BITS)}",
+                f"Invalid ssl-dh-bits '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_DH_BITS)}",
             )
 
     # Validate ssl-send-empty-frags if present
@@ -110,8 +108,7 @@ def validate_ssl_setting_put(
         if value and value not in VALID_BODY_SSL_SEND_EMPTY_FRAGS:
             return (
                 False,
-                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
+                f"Invalid ssl-send-empty-frags '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SEND_EMPTY_FRAGS)}",
             )
 
     # Validate no-matching-cipher-action if present
@@ -120,8 +117,7 @@ def validate_ssl_setting_put(
         if value and value not in VALID_BODY_NO_MATCHING_CIPHER_ACTION:
             return (
                 False,
-                f"Invalid no-matching-cipher-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NO_MATCHING_CIPHER_ACTION)}",
+                f"Invalid no-matching-cipher-action '{value}'. Must be one of: {', '.join(VALID_BODY_NO_MATCHING_CIPHER_ACTION)}",
             )
 
     # Validate cert-manager-cache-timeout if present
@@ -147,8 +143,7 @@ def validate_ssl_setting_put(
         if value and value not in VALID_BODY_RESIGNED_SHORT_LIVED_CERTIFICATE:
             return (
                 False,
-                f"Invalid resigned-short-lived-certificate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESIGNED_SHORT_LIVED_CERTIFICATE)}",
+                f"Invalid resigned-short-lived-certificate '{value}'. Must be one of: {', '.join(VALID_BODY_RESIGNED_SHORT_LIVED_CERTIFICATE)}",
             )
 
     # Validate cert-cache-capacity if present
@@ -259,8 +254,7 @@ def validate_ssl_setting_put(
         if value and value not in VALID_BODY_ABBREVIATE_HANDSHAKE:
             return (
                 False,
-                f"Invalid abbreviate-handshake '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ABBREVIATE_HANDSHAKE)}",
+                f"Invalid abbreviate-handshake '{value}'. Must be one of: {', '.join(VALID_BODY_ABBREVIATE_HANDSHAKE)}",
             )
 
     return (True, None)

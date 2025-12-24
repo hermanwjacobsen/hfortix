@@ -45,8 +45,7 @@ def validate_schedule_group_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,8 +91,7 @@ def validate_schedule_group_post(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -148,8 +146,7 @@ def validate_schedule_group_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

@@ -48,8 +48,7 @@ def validate_network_visibility_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_network_visibility_put(
         if value and value not in VALID_BODY_DESTINATION_VISIBILITY:
             return (
                 False,
-                f"Invalid destination-visibility '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DESTINATION_VISIBILITY)}",
+                f"Invalid destination-visibility '{value}'. Must be one of: {', '.join(VALID_BODY_DESTINATION_VISIBILITY)}",
             )
 
     # Validate source-location if present
@@ -92,8 +90,7 @@ def validate_network_visibility_put(
         if value and value not in VALID_BODY_SOURCE_LOCATION:
             return (
                 False,
-                f"Invalid source-location '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SOURCE_LOCATION)}",
+                f"Invalid source-location '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE_LOCATION)}",
             )
 
     # Validate destination-hostname-visibility if present
@@ -102,8 +99,7 @@ def validate_network_visibility_put(
         if value and value not in VALID_BODY_DESTINATION_HOSTNAME_VISIBILITY:
             return (
                 False,
-                f"Invalid destination-hostname-visibility '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DESTINATION_HOSTNAME_VISIBILITY)}",
+                f"Invalid destination-hostname-visibility '{value}'. Must be one of: {', '.join(VALID_BODY_DESTINATION_HOSTNAME_VISIBILITY)}",
             )
 
     # Validate destination-location if present
@@ -112,8 +108,7 @@ def validate_network_visibility_put(
         if value and value not in VALID_BODY_DESTINATION_LOCATION:
             return (
                 False,
-                f"Invalid destination-location '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DESTINATION_LOCATION)}",
+                f"Invalid destination-location '{value}'. Must be one of: {', '.join(VALID_BODY_DESTINATION_LOCATION)}",
             )
 
     return (True, None)

@@ -55,8 +55,7 @@ def validate_autoupdate_schedule_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,8 +88,7 @@ def validate_autoupdate_schedule_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate frequency if present
@@ -99,8 +97,7 @@ def validate_autoupdate_schedule_put(
         if value and value not in VALID_BODY_FREQUENCY:
             return (
                 False,
-                f"Invalid frequency '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FREQUENCY)}",
+                f"Invalid frequency '{value}'. Must be one of: {', '.join(VALID_BODY_FREQUENCY)}",
             )
 
     # Validate day if present
@@ -109,8 +106,7 @@ def validate_autoupdate_schedule_put(
         if value and value not in VALID_BODY_DAY:
             return (
                 False,
-                f"Invalid day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DAY)}",
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
             )
 
     return (True, None)

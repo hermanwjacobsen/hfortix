@@ -47,8 +47,7 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
             )
 
     # Validate action if present
@@ -97,8 +95,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate log if present
@@ -107,8 +104,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG:
             return (
                 False,
-                f"Invalid log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG)}",
+                f"Invalid log '{value}'. Must be one of: {', '.join(VALID_BODY_LOG)}",
             )
 
     return (True, None)
@@ -158,8 +154,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
             )
 
     # Validate action if present
@@ -168,8 +163,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate log if present
@@ -178,8 +172,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_LOG:
             return (
                 False,
-                f"Invalid log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG)}",
+                f"Invalid log '{value}'. Must be one of: {', '.join(VALID_BODY_LOG)}",
             )
 
     return (True, None)

@@ -46,8 +46,7 @@ def validate_qos_queue_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_qos_queue_policy_post(
         if value and value not in VALID_BODY_SCHEDULE:
             return (
                 False,
-                f"Invalid schedule '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCHEDULE)}",
+                f"Invalid schedule '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE)}",
             )
 
     # Validate rate-by if present
@@ -92,8 +90,7 @@ def validate_qos_queue_policy_post(
         if value and value not in VALID_BODY_RATE_BY:
             return (
                 False,
-                f"Invalid rate-by '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RATE_BY)}",
+                f"Invalid rate-by '{value}'. Must be one of: {', '.join(VALID_BODY_RATE_BY)}",
             )
 
     return (True, None)
@@ -137,8 +134,7 @@ def validate_qos_queue_policy_put(
         if value and value not in VALID_BODY_SCHEDULE:
             return (
                 False,
-                f"Invalid schedule '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCHEDULE)}",
+                f"Invalid schedule '{value}'. Must be one of: {', '.join(VALID_BODY_SCHEDULE)}",
             )
 
     # Validate rate-by if present
@@ -147,8 +143,7 @@ def validate_qos_queue_policy_put(
         if value and value not in VALID_BODY_RATE_BY:
             return (
                 False,
-                f"Invalid rate-by '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RATE_BY)}",
+                f"Invalid rate-by '{value}'. Must be one of: {', '.join(VALID_BODY_RATE_BY)}",
             )
 
     return (True, None)

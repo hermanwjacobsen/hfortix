@@ -48,8 +48,7 @@ def validate_switch_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -96,8 +95,7 @@ def validate_switch_interface_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate intra-switch-policy if present
@@ -106,8 +104,7 @@ def validate_switch_interface_post(
         if value and value not in VALID_BODY_INTRA_SWITCH_POLICY:
             return (
                 False,
-                f"Invalid intra-switch-policy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTRA_SWITCH_POLICY)}",
+                f"Invalid intra-switch-policy '{value}'. Must be one of: {', '.join(VALID_BODY_INTRA_SWITCH_POLICY)}",
             )
 
     # Validate mac-ttl if present
@@ -127,8 +124,7 @@ def validate_switch_interface_post(
         if value and value not in VALID_BODY_SPAN:
             return (
                 False,
-                f"Invalid span '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPAN)}",
+                f"Invalid span '{value}'. Must be one of: {', '.join(VALID_BODY_SPAN)}",
             )
 
     # Validate span-direction if present
@@ -137,8 +133,7 @@ def validate_switch_interface_post(
         if value and value not in VALID_BODY_SPAN_DIRECTION:
             return (
                 False,
-                f"Invalid span-direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPAN_DIRECTION)}",
+                f"Invalid span-direction '{value}'. Must be one of: {', '.join(VALID_BODY_SPAN_DIRECTION)}",
             )
 
     return (True, None)
@@ -194,8 +189,7 @@ def validate_switch_interface_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate intra-switch-policy if present
@@ -204,8 +198,7 @@ def validate_switch_interface_put(
         if value and value not in VALID_BODY_INTRA_SWITCH_POLICY:
             return (
                 False,
-                f"Invalid intra-switch-policy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTRA_SWITCH_POLICY)}",
+                f"Invalid intra-switch-policy '{value}'. Must be one of: {', '.join(VALID_BODY_INTRA_SWITCH_POLICY)}",
             )
 
     # Validate mac-ttl if present
@@ -225,8 +218,7 @@ def validate_switch_interface_put(
         if value and value not in VALID_BODY_SPAN:
             return (
                 False,
-                f"Invalid span '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPAN)}",
+                f"Invalid span '{value}'. Must be one of: {', '.join(VALID_BODY_SPAN)}",
             )
 
     # Validate span-direction if present
@@ -235,8 +227,7 @@ def validate_switch_interface_put(
         if value and value not in VALID_BODY_SPAN_DIRECTION:
             return (
                 False,
-                f"Invalid span-direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPAN_DIRECTION)}",
+                f"Invalid span-direction '{value}'. Must be one of: {', '.join(VALID_BODY_SPAN_DIRECTION)}",
             )
 
     return (True, None)

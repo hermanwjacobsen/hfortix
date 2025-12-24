@@ -45,8 +45,7 @@ def validate_server_group_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,8 +80,7 @@ def validate_server_group_post(
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     return (True, None)
@@ -126,8 +124,7 @@ def validate_server_group_put(
         if value and value not in VALID_BODY_LDB_METHOD:
             return (
                 False,
-                f"Invalid ldb-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LDB_METHOD)}",
+                f"Invalid ldb-method '{value}'. Must be one of: {', '.join(VALID_BODY_LDB_METHOD)}",
             )
 
     return (True, None)

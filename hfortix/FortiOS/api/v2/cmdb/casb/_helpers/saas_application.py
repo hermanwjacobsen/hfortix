@@ -46,8 +46,7 @@ def validate_saas_application_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -88,8 +87,7 @@ def validate_saas_application_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -98,8 +96,7 @@ def validate_saas_application_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate casb-name if present
@@ -161,8 +158,7 @@ def validate_saas_application_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -171,8 +167,7 @@ def validate_saas_application_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate casb-name if present

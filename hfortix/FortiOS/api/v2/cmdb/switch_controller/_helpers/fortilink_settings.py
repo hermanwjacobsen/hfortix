@@ -46,8 +46,7 @@ def validate_fortilink_settings_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,8 +101,7 @@ def validate_fortilink_settings_post(
         if value and value not in VALID_BODY_LINK_DOWN_FLUSH:
             return (
                 False,
-                f"Invalid link-down-flush '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LINK_DOWN_FLUSH)}",
+                f"Invalid link-down-flush '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_DOWN_FLUSH)}",
             )
 
     # Validate access-vlan-mode if present
@@ -112,8 +110,7 @@ def validate_fortilink_settings_post(
         if value and value not in VALID_BODY_ACCESS_VLAN_MODE:
             return (
                 False,
-                f"Invalid access-vlan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCESS_VLAN_MODE)}",
+                f"Invalid access-vlan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_VLAN_MODE)}",
             )
 
     return (True, None)
@@ -177,8 +174,7 @@ def validate_fortilink_settings_put(
         if value and value not in VALID_BODY_LINK_DOWN_FLUSH:
             return (
                 False,
-                f"Invalid link-down-flush '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LINK_DOWN_FLUSH)}",
+                f"Invalid link-down-flush '{value}'. Must be one of: {', '.join(VALID_BODY_LINK_DOWN_FLUSH)}",
             )
 
     # Validate access-vlan-mode if present
@@ -187,8 +183,7 @@ def validate_fortilink_settings_put(
         if value and value not in VALID_BODY_ACCESS_VLAN_MODE:
             return (
                 False,
-                f"Invalid access-vlan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCESS_VLAN_MODE)}",
+                f"Invalid access-vlan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_VLAN_MODE)}",
             )
 
     return (True, None)

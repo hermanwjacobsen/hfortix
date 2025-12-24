@@ -54,8 +54,7 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -100,8 +99,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate fortisandbox-mode if present
@@ -110,8 +108,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORTISANDBOX_MODE:
             return (
                 False,
-                f"Invalid fortisandbox-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTISANDBOX_MODE)}",
+                f"Invalid fortisandbox-mode '{value}'. Must be one of: {', '.join(VALID_BODY_FORTISANDBOX_MODE)}",
             )
 
     # Validate fortisandbox-max-upload if present
@@ -171,8 +168,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ANALYTICS_DB:
             return (
                 False,
-                f"Invalid analytics-db '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANALYTICS_DB)}",
+                f"Invalid analytics-db '{value}'. Must be one of: {', '.join(VALID_BODY_ANALYTICS_DB)}",
             )
 
     # Validate mobile-malware-db if present
@@ -181,8 +177,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MOBILE_MALWARE_DB:
             return (
                 False,
-                f"Invalid mobile-malware-db '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MOBILE_MALWARE_DB)}",
+                f"Invalid mobile-malware-db '{value}'. Must be one of: {', '.join(VALID_BODY_MOBILE_MALWARE_DB)}",
             )
 
     # Validate outbreak-prevention-archive-scan if present
@@ -191,8 +186,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN:
             return (
                 False,
-                f"Invalid outbreak-prevention-archive-scan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN)}",
+                f"Invalid outbreak-prevention-archive-scan '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN)}",
             )
 
     # Validate external-blocklist-enable-all if present
@@ -201,8 +195,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL:
             return (
                 False,
-                f"Invalid external-blocklist-enable-all '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL)}",
+                f"Invalid external-blocklist-enable-all '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL)}",
             )
 
     # Validate ems-threat-feed if present
@@ -211,8 +204,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMS_THREAT_FEED:
             return (
                 False,
-                f"Invalid ems-threat-feed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMS_THREAT_FEED)}",
+                f"Invalid ems-threat-feed '{value}'. Must be one of: {', '.join(VALID_BODY_EMS_THREAT_FEED)}",
             )
 
     # Validate av-virus-log if present
@@ -221,8 +213,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AV_VIRUS_LOG:
             return (
                 False,
-                f"Invalid av-virus-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AV_VIRUS_LOG)}",
+                f"Invalid av-virus-log '{value}'. Must be one of: {', '.join(VALID_BODY_AV_VIRUS_LOG)}",
             )
 
     # Validate extended-log if present
@@ -231,8 +222,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate scan-mode if present
@@ -241,8 +231,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCAN_MODE:
             return (
                 False,
-                f"Invalid scan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_MODE)}",
+                f"Invalid scan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_MODE)}",
             )
 
     return (True, None)
@@ -298,8 +287,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FEATURE_SET:
             return (
                 False,
-                f"Invalid feature-set '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEATURE_SET)}",
+                f"Invalid feature-set '{value}'. Must be one of: {', '.join(VALID_BODY_FEATURE_SET)}",
             )
 
     # Validate fortisandbox-mode if present
@@ -308,8 +296,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FORTISANDBOX_MODE:
             return (
                 False,
-                f"Invalid fortisandbox-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTISANDBOX_MODE)}",
+                f"Invalid fortisandbox-mode '{value}'. Must be one of: {', '.join(VALID_BODY_FORTISANDBOX_MODE)}",
             )
 
     # Validate fortisandbox-max-upload if present
@@ -369,8 +356,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_ANALYTICS_DB:
             return (
                 False,
-                f"Invalid analytics-db '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANALYTICS_DB)}",
+                f"Invalid analytics-db '{value}'. Must be one of: {', '.join(VALID_BODY_ANALYTICS_DB)}",
             )
 
     # Validate mobile-malware-db if present
@@ -379,8 +365,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_MOBILE_MALWARE_DB:
             return (
                 False,
-                f"Invalid mobile-malware-db '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MOBILE_MALWARE_DB)}",
+                f"Invalid mobile-malware-db '{value}'. Must be one of: {', '.join(VALID_BODY_MOBILE_MALWARE_DB)}",
             )
 
     # Validate outbreak-prevention-archive-scan if present
@@ -389,8 +374,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN:
             return (
                 False,
-                f"Invalid outbreak-prevention-archive-scan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN)}",
+                f"Invalid outbreak-prevention-archive-scan '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBREAK_PREVENTION_ARCHIVE_SCAN)}",
             )
 
     # Validate external-blocklist-enable-all if present
@@ -399,8 +383,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL:
             return (
                 False,
-                f"Invalid external-blocklist-enable-all '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL)}",
+                f"Invalid external-blocklist-enable-all '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL_BLOCKLIST_ENABLE_ALL)}",
             )
 
     # Validate ems-threat-feed if present
@@ -409,8 +392,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EMS_THREAT_FEED:
             return (
                 False,
-                f"Invalid ems-threat-feed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMS_THREAT_FEED)}",
+                f"Invalid ems-threat-feed '{value}'. Must be one of: {', '.join(VALID_BODY_EMS_THREAT_FEED)}",
             )
 
     # Validate av-virus-log if present
@@ -419,8 +401,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_AV_VIRUS_LOG:
             return (
                 False,
-                f"Invalid av-virus-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AV_VIRUS_LOG)}",
+                f"Invalid av-virus-log '{value}'. Must be one of: {', '.join(VALID_BODY_AV_VIRUS_LOG)}",
             )
 
     # Validate extended-log if present
@@ -429,8 +410,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate scan-mode if present
@@ -439,8 +419,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_SCAN_MODE:
             return (
                 False,
-                f"Invalid scan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_MODE)}",
+                f"Invalid scan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_MODE)}",
             )
 
     return (True, None)

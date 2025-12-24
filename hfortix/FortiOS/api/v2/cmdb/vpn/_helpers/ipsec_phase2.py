@@ -271,8 +271,7 @@ def validate_ipsec_phase2_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -313,8 +312,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_DHCP_IPSEC:
             return (
                 False,
-                f"Invalid dhcp-ipsec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_IPSEC)}",
+                f"Invalid dhcp-ipsec '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_IPSEC)}",
             )
 
     # Validate use-natip if present
@@ -323,8 +321,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_USE_NATIP:
             return (
                 False,
-                f"Invalid use-natip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_NATIP)}",
+                f"Invalid use-natip '{value}'. Must be one of: {', '.join(VALID_BODY_USE_NATIP)}",
             )
 
     # Validate selector-match if present
@@ -333,8 +330,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_SELECTOR_MATCH:
             return (
                 False,
-                f"Invalid selector-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SELECTOR_MATCH)}",
+                f"Invalid selector-match '{value}'. Must be one of: {', '.join(VALID_BODY_SELECTOR_MATCH)}",
             )
 
     # Validate proposal if present
@@ -343,8 +339,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_PROPOSAL:
             return (
                 False,
-                f"Invalid proposal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROPOSAL)}",
+                f"Invalid proposal '{value}'. Must be one of: {', '.join(VALID_BODY_PROPOSAL)}",
             )
 
     # Validate pfs if present
@@ -353,8 +348,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_PFS:
             return (
                 False,
-                f"Invalid pfs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PFS)}",
+                f"Invalid pfs '{value}'. Must be one of: {', '.join(VALID_BODY_PFS)}",
             )
 
     # Validate dhgrp if present
@@ -363,8 +357,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_DHGRP:
             return (
                 False,
-                f"Invalid dhgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHGRP)}",
+                f"Invalid dhgrp '{value}'. Must be one of: {', '.join(VALID_BODY_DHGRP)}",
             )
 
     # Validate addke1 if present
@@ -373,8 +366,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE1:
             return (
                 False,
-                f"Invalid addke1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE1)}",
+                f"Invalid addke1 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE1)}",
             )
 
     # Validate addke2 if present
@@ -383,8 +375,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE2:
             return (
                 False,
-                f"Invalid addke2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE2)}",
+                f"Invalid addke2 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE2)}",
             )
 
     # Validate addke3 if present
@@ -393,8 +384,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE3:
             return (
                 False,
-                f"Invalid addke3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE3)}",
+                f"Invalid addke3 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE3)}",
             )
 
     # Validate addke4 if present
@@ -403,8 +393,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE4:
             return (
                 False,
-                f"Invalid addke4 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE4)}",
+                f"Invalid addke4 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE4)}",
             )
 
     # Validate addke5 if present
@@ -413,8 +402,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE5:
             return (
                 False,
-                f"Invalid addke5 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE5)}",
+                f"Invalid addke5 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE5)}",
             )
 
     # Validate addke6 if present
@@ -423,8 +411,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE6:
             return (
                 False,
-                f"Invalid addke6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE6)}",
+                f"Invalid addke6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE6)}",
             )
 
     # Validate addke7 if present
@@ -433,8 +420,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADDKE7:
             return (
                 False,
-                f"Invalid addke7 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE7)}",
+                f"Invalid addke7 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE7)}",
             )
 
     # Validate replay if present
@@ -443,8 +429,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_REPLAY:
             return (
                 False,
-                f"Invalid replay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REPLAY)}",
+                f"Invalid replay '{value}'. Must be one of: {', '.join(VALID_BODY_REPLAY)}",
             )
 
     # Validate keepalive if present
@@ -453,8 +438,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_KEEPALIVE:
             return (
                 False,
-                f"Invalid keepalive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_KEEPALIVE)}",
+                f"Invalid keepalive '{value}'. Must be one of: {', '.join(VALID_BODY_KEEPALIVE)}",
             )
 
     # Validate auto-negotiate if present
@@ -463,8 +447,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
+                f"Invalid auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
             )
 
     # Validate add-route if present
@@ -473,8 +456,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ADD_ROUTE:
             return (
                 False,
-                f"Invalid add-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_ROUTE)}",
+                f"Invalid add-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_ROUTE)}",
             )
 
     # Validate inbound-dscp-copy if present
@@ -483,8 +465,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_INBOUND_DSCP_COPY:
             return (
                 False,
-                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
+                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
             )
 
     # Validate keylifeseconds if present
@@ -521,8 +502,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_KEYLIFE_TYPE:
             return (
                 False,
-                f"Invalid keylife-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_KEYLIFE_TYPE)}",
+                f"Invalid keylife-type '{value}'. Must be one of: {', '.join(VALID_BODY_KEYLIFE_TYPE)}",
             )
 
     # Validate single-source if present
@@ -531,8 +511,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_SINGLE_SOURCE:
             return (
                 False,
-                f"Invalid single-source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SINGLE_SOURCE)}",
+                f"Invalid single-source '{value}'. Must be one of: {', '.join(VALID_BODY_SINGLE_SOURCE)}",
             )
 
     # Validate route-overlap if present
@@ -541,8 +520,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ROUTE_OVERLAP:
             return (
                 False,
-                f"Invalid route-overlap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTE_OVERLAP)}",
+                f"Invalid route-overlap '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTE_OVERLAP)}",
             )
 
     # Validate encapsulation if present
@@ -551,8 +529,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_ENCAPSULATION:
             return (
                 False,
-                f"Invalid encapsulation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION)}",
+                f"Invalid encapsulation '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION)}",
             )
 
     # Validate l2tp if present
@@ -561,8 +538,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_L2TP:
             return (
                 False,
-                f"Invalid l2tp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2TP)}",
+                f"Invalid l2tp '{value}'. Must be one of: {', '.join(VALID_BODY_L2TP)}",
             )
 
     # Validate comments if present
@@ -577,8 +553,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_INITIATOR_TS_NARROW:
             return (
                 False,
-                f"Invalid initiator-ts-narrow '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INITIATOR_TS_NARROW)}",
+                f"Invalid initiator-ts-narrow '{value}'. Must be one of: {', '.join(VALID_BODY_INITIATOR_TS_NARROW)}",
             )
 
     # Validate diffserv if present
@@ -587,8 +562,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_DIFFSERV:
             return (
                 False,
-                f"Invalid diffserv '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIFFSERV)}",
+                f"Invalid diffserv '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV)}",
             )
 
     # Validate protocol if present
@@ -620,8 +594,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_SRC_ADDR_TYPE:
             return (
                 False,
-                f"Invalid src-addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_ADDR_TYPE)}",
+                f"Invalid src-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_ADDR_TYPE)}",
             )
 
     # Validate src-port if present
@@ -653,8 +626,7 @@ def validate_ipsec_phase2_post(
         if value and value not in VALID_BODY_DST_ADDR_TYPE:
             return (
                 False,
-                f"Invalid dst-addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DST_ADDR_TYPE)}",
+                f"Invalid dst-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_DST_ADDR_TYPE)}",
             )
 
     # Validate dst-port if present
@@ -715,8 +687,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_DHCP_IPSEC:
             return (
                 False,
-                f"Invalid dhcp-ipsec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_IPSEC)}",
+                f"Invalid dhcp-ipsec '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_IPSEC)}",
             )
 
     # Validate use-natip if present
@@ -725,8 +696,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_USE_NATIP:
             return (
                 False,
-                f"Invalid use-natip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_NATIP)}",
+                f"Invalid use-natip '{value}'. Must be one of: {', '.join(VALID_BODY_USE_NATIP)}",
             )
 
     # Validate selector-match if present
@@ -735,8 +705,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_SELECTOR_MATCH:
             return (
                 False,
-                f"Invalid selector-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SELECTOR_MATCH)}",
+                f"Invalid selector-match '{value}'. Must be one of: {', '.join(VALID_BODY_SELECTOR_MATCH)}",
             )
 
     # Validate proposal if present
@@ -745,8 +714,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_PROPOSAL:
             return (
                 False,
-                f"Invalid proposal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROPOSAL)}",
+                f"Invalid proposal '{value}'. Must be one of: {', '.join(VALID_BODY_PROPOSAL)}",
             )
 
     # Validate pfs if present
@@ -755,8 +723,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_PFS:
             return (
                 False,
-                f"Invalid pfs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PFS)}",
+                f"Invalid pfs '{value}'. Must be one of: {', '.join(VALID_BODY_PFS)}",
             )
 
     # Validate dhgrp if present
@@ -765,8 +732,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_DHGRP:
             return (
                 False,
-                f"Invalid dhgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHGRP)}",
+                f"Invalid dhgrp '{value}'. Must be one of: {', '.join(VALID_BODY_DHGRP)}",
             )
 
     # Validate addke1 if present
@@ -775,8 +741,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE1:
             return (
                 False,
-                f"Invalid addke1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE1)}",
+                f"Invalid addke1 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE1)}",
             )
 
     # Validate addke2 if present
@@ -785,8 +750,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE2:
             return (
                 False,
-                f"Invalid addke2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE2)}",
+                f"Invalid addke2 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE2)}",
             )
 
     # Validate addke3 if present
@@ -795,8 +759,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE3:
             return (
                 False,
-                f"Invalid addke3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE3)}",
+                f"Invalid addke3 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE3)}",
             )
 
     # Validate addke4 if present
@@ -805,8 +768,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE4:
             return (
                 False,
-                f"Invalid addke4 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE4)}",
+                f"Invalid addke4 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE4)}",
             )
 
     # Validate addke5 if present
@@ -815,8 +777,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE5:
             return (
                 False,
-                f"Invalid addke5 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE5)}",
+                f"Invalid addke5 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE5)}",
             )
 
     # Validate addke6 if present
@@ -825,8 +786,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE6:
             return (
                 False,
-                f"Invalid addke6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE6)}",
+                f"Invalid addke6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE6)}",
             )
 
     # Validate addke7 if present
@@ -835,8 +795,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADDKE7:
             return (
                 False,
-                f"Invalid addke7 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE7)}",
+                f"Invalid addke7 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE7)}",
             )
 
     # Validate replay if present
@@ -845,8 +804,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_REPLAY:
             return (
                 False,
-                f"Invalid replay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REPLAY)}",
+                f"Invalid replay '{value}'. Must be one of: {', '.join(VALID_BODY_REPLAY)}",
             )
 
     # Validate keepalive if present
@@ -855,8 +813,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_KEEPALIVE:
             return (
                 False,
-                f"Invalid keepalive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_KEEPALIVE)}",
+                f"Invalid keepalive '{value}'. Must be one of: {', '.join(VALID_BODY_KEEPALIVE)}",
             )
 
     # Validate auto-negotiate if present
@@ -865,8 +822,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
+                f"Invalid auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
             )
 
     # Validate add-route if present
@@ -875,8 +831,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ADD_ROUTE:
             return (
                 False,
-                f"Invalid add-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_ROUTE)}",
+                f"Invalid add-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_ROUTE)}",
             )
 
     # Validate inbound-dscp-copy if present
@@ -885,8 +840,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_INBOUND_DSCP_COPY:
             return (
                 False,
-                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
+                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
             )
 
     # Validate keylifeseconds if present
@@ -923,8 +877,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_KEYLIFE_TYPE:
             return (
                 False,
-                f"Invalid keylife-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_KEYLIFE_TYPE)}",
+                f"Invalid keylife-type '{value}'. Must be one of: {', '.join(VALID_BODY_KEYLIFE_TYPE)}",
             )
 
     # Validate single-source if present
@@ -933,8 +886,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_SINGLE_SOURCE:
             return (
                 False,
-                f"Invalid single-source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SINGLE_SOURCE)}",
+                f"Invalid single-source '{value}'. Must be one of: {', '.join(VALID_BODY_SINGLE_SOURCE)}",
             )
 
     # Validate route-overlap if present
@@ -943,8 +895,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ROUTE_OVERLAP:
             return (
                 False,
-                f"Invalid route-overlap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTE_OVERLAP)}",
+                f"Invalid route-overlap '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTE_OVERLAP)}",
             )
 
     # Validate encapsulation if present
@@ -953,8 +904,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_ENCAPSULATION:
             return (
                 False,
-                f"Invalid encapsulation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION)}",
+                f"Invalid encapsulation '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION)}",
             )
 
     # Validate l2tp if present
@@ -963,8 +913,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_L2TP:
             return (
                 False,
-                f"Invalid l2tp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2TP)}",
+                f"Invalid l2tp '{value}'. Must be one of: {', '.join(VALID_BODY_L2TP)}",
             )
 
     # Validate comments if present
@@ -979,8 +928,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_INITIATOR_TS_NARROW:
             return (
                 False,
-                f"Invalid initiator-ts-narrow '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INITIATOR_TS_NARROW)}",
+                f"Invalid initiator-ts-narrow '{value}'. Must be one of: {', '.join(VALID_BODY_INITIATOR_TS_NARROW)}",
             )
 
     # Validate diffserv if present
@@ -989,8 +937,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_DIFFSERV:
             return (
                 False,
-                f"Invalid diffserv '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIFFSERV)}",
+                f"Invalid diffserv '{value}'. Must be one of: {', '.join(VALID_BODY_DIFFSERV)}",
             )
 
     # Validate protocol if present
@@ -1022,8 +969,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_SRC_ADDR_TYPE:
             return (
                 False,
-                f"Invalid src-addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_ADDR_TYPE)}",
+                f"Invalid src-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_ADDR_TYPE)}",
             )
 
     # Validate src-port if present
@@ -1055,8 +1001,7 @@ def validate_ipsec_phase2_put(
         if value and value not in VALID_BODY_DST_ADDR_TYPE:
             return (
                 False,
-                f"Invalid dst-addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DST_ADDR_TYPE)}",
+                f"Invalid dst-addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_DST_ADDR_TYPE)}",
             )
 
     # Validate dst-port if present

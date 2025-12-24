@@ -55,8 +55,7 @@ def validate_global__get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,8 +88,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_FAIL_OPEN:
             return (
                 False,
-                f"Invalid fail-open '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_OPEN)}",
+                f"Invalid fail-open '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_OPEN)}",
             )
 
     # Validate database if present
@@ -99,8 +97,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_DATABASE:
             return (
                 False,
-                f"Invalid database '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DATABASE)}",
+                f"Invalid database '{value}'. Must be one of: {', '.join(VALID_BODY_DATABASE)}",
             )
 
     # Validate traffic-submit if present
@@ -109,8 +106,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_TRAFFIC_SUBMIT:
             return (
                 False,
-                f"Invalid traffic-submit '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_SUBMIT)}",
+                f"Invalid traffic-submit '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_SUBMIT)}",
             )
 
     # Validate anomaly-mode if present
@@ -119,8 +115,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_ANOMALY_MODE:
             return (
                 False,
-                f"Invalid anomaly-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANOMALY_MODE)}",
+                f"Invalid anomaly-mode '{value}'. Must be one of: {', '.join(VALID_BODY_ANOMALY_MODE)}",
             )
 
     # Validate session-limit-mode if present
@@ -129,8 +124,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_SESSION_LIMIT_MODE:
             return (
                 False,
-                f"Invalid session-limit-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SESSION_LIMIT_MODE)}",
+                f"Invalid session-limit-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_LIMIT_MODE)}",
             )
 
     # Validate socket-size if present
@@ -161,8 +155,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_SYNC_SESSION_TTL:
             return (
                 False,
-                f"Invalid sync-session-ttl '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYNC_SESSION_TTL)}",
+                f"Invalid sync-session-ttl '{value}'. Must be one of: {', '.join(VALID_BODY_SYNC_SESSION_TTL)}",
             )
 
     # Validate np-accel-mode if present
@@ -171,8 +164,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_NP_ACCEL_MODE:
             return (
                 False,
-                f"Invalid np-accel-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NP_ACCEL_MODE)}",
+                f"Invalid np-accel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_NP_ACCEL_MODE)}",
             )
 
     # Validate ips-reserve-cpu if present
@@ -181,8 +173,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_IPS_RESERVE_CPU:
             return (
                 False,
-                f"Invalid ips-reserve-cpu '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPS_RESERVE_CPU)}",
+                f"Invalid ips-reserve-cpu '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_RESERVE_CPU)}",
             )
 
     # Validate cp-accel-mode if present
@@ -191,8 +182,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_CP_ACCEL_MODE:
             return (
                 False,
-                f"Invalid cp-accel-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CP_ACCEL_MODE)}",
+                f"Invalid cp-accel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_CP_ACCEL_MODE)}",
             )
 
     # Validate deep-app-insp-timeout if present
@@ -235,8 +225,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_EXCLUDE_SIGNATURES:
             return (
                 False,
-                f"Invalid exclude-signatures '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
+                f"Invalid exclude-signatures '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
             )
 
     # Validate packet-log-queue-depth if present
@@ -290,8 +279,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_MACHINE_LEARNING_DETECTION:
             return (
                 False,
-                f"Invalid machine-learning-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MACHINE_LEARNING_DETECTION)}",
+                f"Invalid machine-learning-detection '{value}'. Must be one of: {', '.join(VALID_BODY_MACHINE_LEARNING_DETECTION)}",
             )
 
     return (True, None)

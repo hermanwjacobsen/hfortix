@@ -64,8 +64,7 @@ def validate_modem_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,8 +97,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate pin-init if present
@@ -126,8 +124,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate auto-dial if present
@@ -136,8 +133,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_AUTO_DIAL:
             return (
                 False,
-                f"Invalid auto-dial '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DIAL)}",
+                f"Invalid auto-dial '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DIAL)}",
             )
 
     # Validate dial-on-demand if present
@@ -146,8 +142,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_DIAL_ON_DEMAND:
             return (
                 False,
-                f"Invalid dial-on-demand '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
+                f"Invalid dial-on-demand '{value}'. Must be one of: {', '.join(VALID_BODY_DIAL_ON_DEMAND)}",
             )
 
     # Validate idle-timer if present
@@ -167,8 +162,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_REDIAL:
             return (
                 False,
-                f"Invalid redial '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REDIAL)}",
+                f"Invalid redial '{value}'. Must be one of: {', '.join(VALID_BODY_REDIAL)}",
             )
 
     # Validate reset if present
@@ -236,8 +230,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_DONT_SEND_CR1:
             return (
                 False,
-                f"Invalid dont-send-CR1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DONT_SEND_CR1)}",
+                f"Invalid dont-send-CR1 '{value}'. Must be one of: {', '.join(VALID_BODY_DONT_SEND_CR1)}",
             )
 
     # Validate phone1 if present
@@ -270,8 +263,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PEER_MODEM1:
             return (
                 False,
-                f"Invalid peer-modem1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEER_MODEM1)}",
+                f"Invalid peer-modem1 '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_MODEM1)}",
             )
 
     # Validate ppp-echo-request1 if present
@@ -280,8 +272,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PPP_ECHO_REQUEST1:
             return (
                 False,
-                f"Invalid ppp-echo-request1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPP_ECHO_REQUEST1)}",
+                f"Invalid ppp-echo-request1 '{value}'. Must be one of: {', '.join(VALID_BODY_PPP_ECHO_REQUEST1)}",
             )
 
     # Validate authtype1 if present
@@ -290,8 +281,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_AUTHTYPE1:
             return (
                 False,
-                f"Invalid authtype1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHTYPE1)}",
+                f"Invalid authtype1 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHTYPE1)}",
             )
 
     # Validate dont-send-CR2 if present
@@ -300,8 +290,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_DONT_SEND_CR2:
             return (
                 False,
-                f"Invalid dont-send-CR2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DONT_SEND_CR2)}",
+                f"Invalid dont-send-CR2 '{value}'. Must be one of: {', '.join(VALID_BODY_DONT_SEND_CR2)}",
             )
 
     # Validate phone2 if present
@@ -334,8 +323,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PEER_MODEM2:
             return (
                 False,
-                f"Invalid peer-modem2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEER_MODEM2)}",
+                f"Invalid peer-modem2 '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_MODEM2)}",
             )
 
     # Validate ppp-echo-request2 if present
@@ -344,8 +332,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PPP_ECHO_REQUEST2:
             return (
                 False,
-                f"Invalid ppp-echo-request2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPP_ECHO_REQUEST2)}",
+                f"Invalid ppp-echo-request2 '{value}'. Must be one of: {', '.join(VALID_BODY_PPP_ECHO_REQUEST2)}",
             )
 
     # Validate authtype2 if present
@@ -354,8 +341,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_AUTHTYPE2:
             return (
                 False,
-                f"Invalid authtype2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHTYPE2)}",
+                f"Invalid authtype2 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHTYPE2)}",
             )
 
     # Validate dont-send-CR3 if present
@@ -364,8 +350,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_DONT_SEND_CR3:
             return (
                 False,
-                f"Invalid dont-send-CR3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DONT_SEND_CR3)}",
+                f"Invalid dont-send-CR3 '{value}'. Must be one of: {', '.join(VALID_BODY_DONT_SEND_CR3)}",
             )
 
     # Validate phone3 if present
@@ -398,8 +383,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PEER_MODEM3:
             return (
                 False,
-                f"Invalid peer-modem3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEER_MODEM3)}",
+                f"Invalid peer-modem3 '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_MODEM3)}",
             )
 
     # Validate ppp-echo-request3 if present
@@ -408,8 +392,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_PPP_ECHO_REQUEST3:
             return (
                 False,
-                f"Invalid ppp-echo-request3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPP_ECHO_REQUEST3)}",
+                f"Invalid ppp-echo-request3 '{value}'. Must be one of: {', '.join(VALID_BODY_PPP_ECHO_REQUEST3)}",
             )
 
     # Validate altmode if present
@@ -418,8 +401,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_ALTMODE:
             return (
                 False,
-                f"Invalid altmode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALTMODE)}",
+                f"Invalid altmode '{value}'. Must be one of: {', '.join(VALID_BODY_ALTMODE)}",
             )
 
     # Validate authtype3 if present
@@ -428,8 +410,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_AUTHTYPE3:
             return (
                 False,
-                f"Invalid authtype3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHTYPE3)}",
+                f"Invalid authtype3 '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHTYPE3)}",
             )
 
     # Validate traffic-check if present
@@ -438,8 +419,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_TRAFFIC_CHECK:
             return (
                 False,
-                f"Invalid traffic-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAFFIC_CHECK)}",
+                f"Invalid traffic-check '{value}'. Must be one of: {', '.join(VALID_BODY_TRAFFIC_CHECK)}",
             )
 
     # Validate action if present
@@ -448,8 +428,7 @@ def validate_modem_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate distance if present

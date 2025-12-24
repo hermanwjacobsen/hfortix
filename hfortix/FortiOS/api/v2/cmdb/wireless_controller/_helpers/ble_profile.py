@@ -67,8 +67,7 @@ def validate_ble_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -109,8 +108,7 @@ def validate_ble_profile_post(
         if value and value not in VALID_BODY_ADVERTISING:
             return (
                 False,
-                f"Invalid advertising '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADVERTISING)}",
+                f"Invalid advertising '{value}'. Must be one of: {', '.join(VALID_BODY_ADVERTISING)}",
             )
 
     # Validate ibeacon-uuid if present
@@ -165,8 +163,7 @@ def validate_ble_profile_post(
         if value and value not in VALID_BODY_TXPOWER:
             return (
                 False,
-                f"Invalid txpower '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TXPOWER)}",
+                f"Invalid txpower '{value}'. Must be one of: {', '.join(VALID_BODY_TXPOWER)}",
             )
 
     # Validate beacon-interval if present
@@ -192,8 +189,7 @@ def validate_ble_profile_post(
         if value and value not in VALID_BODY_BLE_SCANNING:
             return (
                 False,
-                f"Invalid ble-scanning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLE_SCANNING)}",
+                f"Invalid ble-scanning '{value}'. Must be one of: {', '.join(VALID_BODY_BLE_SCANNING)}",
             )
 
     # Validate scan-type if present
@@ -202,8 +198,7 @@ def validate_ble_profile_post(
         if value and value not in VALID_BODY_SCAN_TYPE:
             return (
                 False,
-                f"Invalid scan-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_TYPE)}",
+                f"Invalid scan-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_TYPE)}",
             )
 
     # Validate scan-threshold if present
@@ -309,8 +304,7 @@ def validate_ble_profile_put(
         if value and value not in VALID_BODY_ADVERTISING:
             return (
                 False,
-                f"Invalid advertising '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADVERTISING)}",
+                f"Invalid advertising '{value}'. Must be one of: {', '.join(VALID_BODY_ADVERTISING)}",
             )
 
     # Validate ibeacon-uuid if present
@@ -365,8 +359,7 @@ def validate_ble_profile_put(
         if value and value not in VALID_BODY_TXPOWER:
             return (
                 False,
-                f"Invalid txpower '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TXPOWER)}",
+                f"Invalid txpower '{value}'. Must be one of: {', '.join(VALID_BODY_TXPOWER)}",
             )
 
     # Validate beacon-interval if present
@@ -392,8 +385,7 @@ def validate_ble_profile_put(
         if value and value not in VALID_BODY_BLE_SCANNING:
             return (
                 False,
-                f"Invalid ble-scanning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLE_SCANNING)}",
+                f"Invalid ble-scanning '{value}'. Must be one of: {', '.join(VALID_BODY_BLE_SCANNING)}",
             )
 
     # Validate scan-type if present
@@ -402,8 +394,7 @@ def validate_ble_profile_put(
         if value and value not in VALID_BODY_SCAN_TYPE:
             return (
                 False,
-                f"Invalid scan-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_TYPE)}",
+                f"Invalid scan-type '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_TYPE)}",
             )
 
     # Validate scan-threshold if present

@@ -48,8 +48,7 @@ def validate_object_tagging_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,8 +83,7 @@ def validate_object_tagging_post(
         if value and value not in VALID_BODY_ADDRESS:
             return (
                 False,
-                f"Invalid address '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDRESS)}",
+                f"Invalid address '{value}'. Must be one of: {', '.join(VALID_BODY_ADDRESS)}",
             )
 
     # Validate device if present
@@ -94,8 +92,7 @@ def validate_object_tagging_post(
         if value and value not in VALID_BODY_DEVICE:
             return (
                 False,
-                f"Invalid device '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE)}",
+                f"Invalid device '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE)}",
             )
 
     # Validate interface if present
@@ -104,8 +101,7 @@ def validate_object_tagging_post(
         if value and value not in VALID_BODY_INTERFACE:
             return (
                 False,
-                f"Invalid interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE)}",
+                f"Invalid interface '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE)}",
             )
 
     # Validate multiple if present
@@ -114,8 +110,7 @@ def validate_object_tagging_post(
         if value and value not in VALID_BODY_MULTIPLE:
             return (
                 False,
-                f"Invalid multiple '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTIPLE)}",
+                f"Invalid multiple '{value}'. Must be one of: {', '.join(VALID_BODY_MULTIPLE)}",
             )
 
     # Validate color if present

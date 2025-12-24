@@ -47,8 +47,7 @@ def validate_ipmacbinding_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,8 +80,7 @@ def validate_ipmacbinding_setting_put(
         if value and value not in VALID_BODY_BINDTHROUGHFW:
             return (
                 False,
-                f"Invalid bindthroughfw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BINDTHROUGHFW)}",
+                f"Invalid bindthroughfw '{value}'. Must be one of: {', '.join(VALID_BODY_BINDTHROUGHFW)}",
             )
 
     # Validate bindtofw if present
@@ -91,8 +89,7 @@ def validate_ipmacbinding_setting_put(
         if value and value not in VALID_BODY_BINDTOFW:
             return (
                 False,
-                f"Invalid bindtofw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BINDTOFW)}",
+                f"Invalid bindtofw '{value}'. Must be one of: {', '.join(VALID_BODY_BINDTOFW)}",
             )
 
     # Validate undefinedhost if present
@@ -101,8 +98,7 @@ def validate_ipmacbinding_setting_put(
         if value and value not in VALID_BODY_UNDEFINEDHOST:
             return (
                 False,
-                f"Invalid undefinedhost '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNDEFINEDHOST)}",
+                f"Invalid undefinedhost '{value}'. Must be one of: {', '.join(VALID_BODY_UNDEFINEDHOST)}",
             )
 
     return (True, None)

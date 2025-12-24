@@ -57,8 +57,7 @@ def validate_ssh_host_key_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -93,8 +92,7 @@ def validate_ssh_host_key_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -103,8 +101,7 @@ def validate_ssh_host_key_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate nid if present
@@ -113,8 +110,7 @@ def validate_ssh_host_key_post(
         if value and value not in VALID_BODY_NID:
             return (
                 False,
-                f"Invalid nid '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NID)}",
+                f"Invalid nid '{value}'. Must be one of: {', '.join(VALID_BODY_NID)}",
             )
 
     # Validate usage if present
@@ -123,8 +119,7 @@ def validate_ssh_host_key_post(
         if value and value not in VALID_BODY_USAGE:
             return (
                 False,
-                f"Invalid usage '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USAGE)}",
+                f"Invalid usage '{value}'. Must be one of: {', '.join(VALID_BODY_USAGE)}",
             )
 
     # Validate port if present
@@ -191,8 +186,7 @@ def validate_ssh_host_key_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -201,8 +195,7 @@ def validate_ssh_host_key_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate nid if present
@@ -211,8 +204,7 @@ def validate_ssh_host_key_put(
         if value and value not in VALID_BODY_NID:
             return (
                 False,
-                f"Invalid nid '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NID)}",
+                f"Invalid nid '{value}'. Must be one of: {', '.join(VALID_BODY_NID)}",
             )
 
     # Validate usage if present
@@ -221,8 +213,7 @@ def validate_ssh_host_key_put(
         if value and value not in VALID_BODY_USAGE:
             return (
                 False,
-                f"Invalid usage '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USAGE)}",
+                f"Invalid usage '{value}'. Must be one of: {', '.join(VALID_BODY_USAGE)}",
             )
 
     # Validate port if present

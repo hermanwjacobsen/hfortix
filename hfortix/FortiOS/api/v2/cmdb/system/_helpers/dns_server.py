@@ -48,8 +48,7 @@ def validate_dns_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,8 +83,7 @@ def validate_dns_server_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate dnsfilter-profile if present
@@ -100,8 +98,7 @@ def validate_dns_server_post(
         if value and value not in VALID_BODY_DOH:
             return (
                 False,
-                f"Invalid doh '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOH)}",
+                f"Invalid doh '{value}'. Must be one of: {', '.join(VALID_BODY_DOH)}",
             )
 
     # Validate doh3 if present
@@ -110,8 +107,7 @@ def validate_dns_server_post(
         if value and value not in VALID_BODY_DOH3:
             return (
                 False,
-                f"Invalid doh3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOH3)}",
+                f"Invalid doh3 '{value}'. Must be one of: {', '.join(VALID_BODY_DOH3)}",
             )
 
     # Validate doq if present
@@ -120,8 +116,7 @@ def validate_dns_server_post(
         if value and value not in VALID_BODY_DOQ:
             return (
                 False,
-                f"Invalid doq '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOQ)}",
+                f"Invalid doq '{value}'. Must be one of: {', '.join(VALID_BODY_DOQ)}",
             )
 
     return (True, None)
@@ -165,8 +160,7 @@ def validate_dns_server_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate dnsfilter-profile if present
@@ -181,8 +175,7 @@ def validate_dns_server_put(
         if value and value not in VALID_BODY_DOH:
             return (
                 False,
-                f"Invalid doh '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOH)}",
+                f"Invalid doh '{value}'. Must be one of: {', '.join(VALID_BODY_DOH)}",
             )
 
     # Validate doh3 if present
@@ -191,8 +184,7 @@ def validate_dns_server_put(
         if value and value not in VALID_BODY_DOH3:
             return (
                 False,
-                f"Invalid doh3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOH3)}",
+                f"Invalid doh3 '{value}'. Must be one of: {', '.join(VALID_BODY_DOH3)}",
             )
 
     # Validate doq if present
@@ -201,8 +193,7 @@ def validate_dns_server_put(
         if value and value not in VALID_BODY_DOQ:
             return (
                 False,
-                f"Invalid doq '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DOQ)}",
+                f"Invalid doq '{value}'. Must be one of: {', '.join(VALID_BODY_DOQ)}",
             )
 
     return (True, None)

@@ -61,8 +61,7 @@ def validate_global__get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -107,8 +106,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_FAST_POLICY_MATCH:
             return (
                 False,
-                f"Invalid fast-policy-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAST_POLICY_MATCH)}",
+                f"Invalid fast-policy-match '{value}'. Must be one of: {', '.join(VALID_BODY_FAST_POLICY_MATCH)}",
             )
 
     # Validate ldap-user-cache if present
@@ -117,8 +115,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LDAP_USER_CACHE:
             return (
                 False,
-                f"Invalid ldap-user-cache '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LDAP_USER_CACHE)}",
+                f"Invalid ldap-user-cache '{value}'. Must be one of: {', '.join(VALID_BODY_LDAP_USER_CACHE)}",
             )
 
     # Validate proxy-fqdn if present
@@ -218,8 +215,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_STRICT_WEB_CHECK:
             return (
                 False,
-                f"Invalid strict-web-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STRICT_WEB_CHECK)}",
+                f"Invalid strict-web-check '{value}'. Must be one of: {', '.join(VALID_BODY_STRICT_WEB_CHECK)}",
             )
 
     # Validate forward-proxy-auth if present
@@ -228,8 +224,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_FORWARD_PROXY_AUTH:
             return (
                 False,
-                f"Invalid forward-proxy-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORWARD_PROXY_AUTH)}",
+                f"Invalid forward-proxy-auth '{value}'. Must be one of: {', '.join(VALID_BODY_FORWARD_PROXY_AUTH)}",
             )
 
     # Validate forward-server-affinity-timeout if present
@@ -278,8 +273,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LEARN_CLIENT_IP:
             return (
                 False,
-                f"Invalid learn-client-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LEARN_CLIENT_IP)}",
+                f"Invalid learn-client-ip '{value}'. Must be one of: {', '.join(VALID_BODY_LEARN_CLIENT_IP)}",
             )
 
     # Validate always-learn-client-ip if present
@@ -288,8 +282,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_ALWAYS_LEARN_CLIENT_IP:
             return (
                 False,
-                f"Invalid always-learn-client-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALWAYS_LEARN_CLIENT_IP)}",
+                f"Invalid always-learn-client-ip '{value}'. Must be one of: {', '.join(VALID_BODY_ALWAYS_LEARN_CLIENT_IP)}",
             )
 
     # Validate learn-client-ip-from-header if present
@@ -298,8 +291,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LEARN_CLIENT_IP_FROM_HEADER:
             return (
                 False,
-                f"Invalid learn-client-ip-from-header '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LEARN_CLIENT_IP_FROM_HEADER)}",
+                f"Invalid learn-client-ip-from-header '{value}'. Must be one of: {', '.join(VALID_BODY_LEARN_CLIENT_IP_FROM_HEADER)}",
             )
 
     # Validate policy-partial-match if present
@@ -308,8 +300,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_POLICY_PARTIAL_MATCH:
             return (
                 False,
-                f"Invalid policy-partial-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_POLICY_PARTIAL_MATCH)}",
+                f"Invalid policy-partial-match '{value}'. Must be one of: {', '.join(VALID_BODY_POLICY_PARTIAL_MATCH)}",
             )
 
     # Validate log-policy-pending if present
@@ -318,8 +309,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_POLICY_PENDING:
             return (
                 False,
-                f"Invalid log-policy-pending '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_POLICY_PENDING)}",
+                f"Invalid log-policy-pending '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_POLICY_PENDING)}",
             )
 
     # Validate log-forward-server if present
@@ -328,8 +318,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_FORWARD_SERVER:
             return (
                 False,
-                f"Invalid log-forward-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_FORWARD_SERVER)}",
+                f"Invalid log-forward-server '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_FORWARD_SERVER)}",
             )
 
     # Validate log-app-id if present
@@ -338,8 +327,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_LOG_APP_ID:
             return (
                 False,
-                f"Invalid log-app-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_APP_ID)}",
+                f"Invalid log-app-id '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_APP_ID)}",
             )
 
     # Validate proxy-transparent-cert-inspection if present
@@ -348,8 +336,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_PROXY_TRANSPARENT_CERT_INSPECTION:
             return (
                 False,
-                f"Invalid proxy-transparent-cert-inspection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROXY_TRANSPARENT_CERT_INSPECTION)}",
+                f"Invalid proxy-transparent-cert-inspection '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_TRANSPARENT_CERT_INSPECTION)}",
             )
 
     # Validate request-obs-fold if present
@@ -358,8 +345,7 @@ def validate_global__put(
         if value and value not in VALID_BODY_REQUEST_OBS_FOLD:
             return (
                 False,
-                f"Invalid request-obs-fold '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUEST_OBS_FOLD)}",
+                f"Invalid request-obs-fold '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST_OBS_FOLD)}",
             )
 
     return (True, None)

@@ -47,8 +47,7 @@ def validate_probe_response_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -98,8 +97,7 @@ def validate_probe_response_put(
         if value and value not in VALID_BODY_TTL_MODE:
             return (
                 False,
-                f"Invalid ttl-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TTL_MODE)}",
+                f"Invalid ttl-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TTL_MODE)}",
             )
 
     # Validate mode if present
@@ -108,8 +106,7 @@ def validate_probe_response_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate security-mode if present
@@ -118,8 +115,7 @@ def validate_probe_response_put(
         if value and value not in VALID_BODY_SECURITY_MODE:
             return (
                 False,
-                f"Invalid security-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MODE)}",
+                f"Invalid security-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MODE)}",
             )
 
     # Validate timeout if present

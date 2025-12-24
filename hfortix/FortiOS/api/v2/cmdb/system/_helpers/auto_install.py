@@ -46,8 +46,7 @@ def validate_auto_install_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,8 +79,7 @@ def validate_auto_install_put(
         if value and value not in VALID_BODY_AUTO_INSTALL_CONFIG:
             return (
                 False,
-                f"Invalid auto-install-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_INSTALL_CONFIG)}",
+                f"Invalid auto-install-config '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_INSTALL_CONFIG)}",
             )
 
     # Validate auto-install-image if present
@@ -90,8 +88,7 @@ def validate_auto_install_put(
         if value and value not in VALID_BODY_AUTO_INSTALL_IMAGE:
             return (
                 False,
-                f"Invalid auto-install-image '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_INSTALL_IMAGE)}",
+                f"Invalid auto-install-image '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_INSTALL_IMAGE)}",
             )
 
     # Validate default-config-file if present

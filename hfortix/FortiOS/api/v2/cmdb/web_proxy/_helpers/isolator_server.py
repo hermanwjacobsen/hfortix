@@ -47,8 +47,7 @@ def validate_isolator_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,8 +82,7 @@ def validate_isolator_server_post(
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate fqdn if present
@@ -110,8 +108,7 @@ def validate_isolator_server_post(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -143,8 +140,7 @@ def validate_isolator_server_post(
         if value and value not in VALID_BODY_MASQUERADE:
             return (
                 False,
-                f"Invalid masquerade '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MASQUERADE)}",
+                f"Invalid masquerade '{value}'. Must be one of: {', '.join(VALID_BODY_MASQUERADE)}",
             )
 
     return (True, None)
@@ -188,8 +184,7 @@ def validate_isolator_server_put(
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate fqdn if present
@@ -215,8 +210,7 @@ def validate_isolator_server_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -248,8 +242,7 @@ def validate_isolator_server_put(
         if value and value not in VALID_BODY_MASQUERADE:
             return (
                 False,
-                f"Invalid masquerade '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MASQUERADE)}",
+                f"Invalid masquerade '{value}'. Must be one of: {', '.join(VALID_BODY_MASQUERADE)}",
             )
 
     return (True, None)

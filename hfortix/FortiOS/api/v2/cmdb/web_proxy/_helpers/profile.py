@@ -55,8 +55,7 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,8 +88,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_CLIENT_IP:
             return (
                 False,
-                f"Invalid header-client-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_CLIENT_IP)}",
+                f"Invalid header-client-ip '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_CLIENT_IP)}",
             )
 
     # Validate header-via-request if present
@@ -99,8 +97,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_VIA_REQUEST:
             return (
                 False,
-                f"Invalid header-via-request '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_VIA_REQUEST)}",
+                f"Invalid header-via-request '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_VIA_REQUEST)}",
             )
 
     # Validate header-via-response if present
@@ -109,8 +106,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_VIA_RESPONSE:
             return (
                 False,
-                f"Invalid header-via-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_VIA_RESPONSE)}",
+                f"Invalid header-via-response '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_VIA_RESPONSE)}",
             )
 
     # Validate header-client-cert if present
@@ -119,8 +115,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_CLIENT_CERT:
             return (
                 False,
-                f"Invalid header-client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_CLIENT_CERT)}",
+                f"Invalid header-client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_CLIENT_CERT)}",
             )
 
     # Validate header-x-forwarded-for if present
@@ -129,8 +124,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_X_FORWARDED_FOR:
             return (
                 False,
-                f"Invalid header-x-forwarded-for '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_FORWARDED_FOR)}",
+                f"Invalid header-x-forwarded-for '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_FORWARDED_FOR)}",
             )
 
     # Validate header-x-forwarded-client-cert if present
@@ -139,8 +133,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT:
             return (
                 False,
-                f"Invalid header-x-forwarded-client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT)}",
+                f"Invalid header-x-forwarded-client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT)}",
             )
 
     # Validate header-front-end-https if present
@@ -149,8 +142,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_FRONT_END_HTTPS:
             return (
                 False,
-                f"Invalid header-front-end-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_FRONT_END_HTTPS)}",
+                f"Invalid header-front-end-https '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_FRONT_END_HTTPS)}",
             )
 
     # Validate header-x-authenticated-user if present
@@ -159,8 +151,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_X_AUTHENTICATED_USER:
             return (
                 False,
-                f"Invalid header-x-authenticated-user '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_USER)}",
+                f"Invalid header-x-authenticated-user '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_USER)}",
             )
 
     # Validate header-x-authenticated-groups if present
@@ -169,8 +160,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS:
             return (
                 False,
-                f"Invalid header-x-authenticated-groups '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS)}",
+                f"Invalid header-x-authenticated-groups '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS)}",
             )
 
     # Validate strip-encoding if present
@@ -179,8 +169,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STRIP_ENCODING:
             return (
                 False,
-                f"Invalid strip-encoding '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STRIP_ENCODING)}",
+                f"Invalid strip-encoding '{value}'. Must be one of: {', '.join(VALID_BODY_STRIP_ENCODING)}",
             )
 
     # Validate log-header-change if present
@@ -189,8 +178,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_LOG_HEADER_CHANGE:
             return (
                 False,
-                f"Invalid log-header-change '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_HEADER_CHANGE)}",
+                f"Invalid log-header-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HEADER_CHANGE)}",
             )
 
     return (True, None)
@@ -234,8 +222,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_CLIENT_IP:
             return (
                 False,
-                f"Invalid header-client-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_CLIENT_IP)}",
+                f"Invalid header-client-ip '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_CLIENT_IP)}",
             )
 
     # Validate header-via-request if present
@@ -244,8 +231,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_VIA_REQUEST:
             return (
                 False,
-                f"Invalid header-via-request '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_VIA_REQUEST)}",
+                f"Invalid header-via-request '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_VIA_REQUEST)}",
             )
 
     # Validate header-via-response if present
@@ -254,8 +240,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_VIA_RESPONSE:
             return (
                 False,
-                f"Invalid header-via-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_VIA_RESPONSE)}",
+                f"Invalid header-via-response '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_VIA_RESPONSE)}",
             )
 
     # Validate header-client-cert if present
@@ -264,8 +249,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_CLIENT_CERT:
             return (
                 False,
-                f"Invalid header-client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_CLIENT_CERT)}",
+                f"Invalid header-client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_CLIENT_CERT)}",
             )
 
     # Validate header-x-forwarded-for if present
@@ -274,8 +258,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_X_FORWARDED_FOR:
             return (
                 False,
-                f"Invalid header-x-forwarded-for '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_FORWARDED_FOR)}",
+                f"Invalid header-x-forwarded-for '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_FORWARDED_FOR)}",
             )
 
     # Validate header-x-forwarded-client-cert if present
@@ -284,8 +267,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT:
             return (
                 False,
-                f"Invalid header-x-forwarded-client-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT)}",
+                f"Invalid header-x-forwarded-client-cert '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_FORWARDED_CLIENT_CERT)}",
             )
 
     # Validate header-front-end-https if present
@@ -294,8 +276,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_FRONT_END_HTTPS:
             return (
                 False,
-                f"Invalid header-front-end-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_FRONT_END_HTTPS)}",
+                f"Invalid header-front-end-https '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_FRONT_END_HTTPS)}",
             )
 
     # Validate header-x-authenticated-user if present
@@ -304,8 +285,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_X_AUTHENTICATED_USER:
             return (
                 False,
-                f"Invalid header-x-authenticated-user '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_USER)}",
+                f"Invalid header-x-authenticated-user '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_USER)}",
             )
 
     # Validate header-x-authenticated-groups if present
@@ -314,8 +294,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS:
             return (
                 False,
-                f"Invalid header-x-authenticated-groups '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS)}",
+                f"Invalid header-x-authenticated-groups '{value}'. Must be one of: {', '.join(VALID_BODY_HEADER_X_AUTHENTICATED_GROUPS)}",
             )
 
     # Validate strip-encoding if present
@@ -324,8 +303,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_STRIP_ENCODING:
             return (
                 False,
-                f"Invalid strip-encoding '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STRIP_ENCODING)}",
+                f"Invalid strip-encoding '{value}'. Must be one of: {', '.join(VALID_BODY_STRIP_ENCODING)}",
             )
 
     # Validate log-header-change if present
@@ -334,8 +312,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_LOG_HEADER_CHANGE:
             return (
                 False,
-                f"Invalid log-header-change '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_HEADER_CHANGE)}",
+                f"Invalid log-header-change '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_HEADER_CHANGE)}",
             )
 
     return (True, None)

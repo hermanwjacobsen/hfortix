@@ -45,8 +45,7 @@ def validate_replacemsg_image_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -81,8 +80,7 @@ def validate_replacemsg_image_post(
         if value and value not in VALID_BODY_IMAGE_TYPE:
             return (
                 False,
-                f"Invalid image-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IMAGE_TYPE)}",
+                f"Invalid image-type '{value}'. Must be one of: {', '.join(VALID_BODY_IMAGE_TYPE)}",
             )
 
     # Validate image-base64 if present
@@ -132,8 +130,7 @@ def validate_replacemsg_image_put(
         if value and value not in VALID_BODY_IMAGE_TYPE:
             return (
                 False,
-                f"Invalid image-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IMAGE_TYPE)}",
+                f"Invalid image-type '{value}'. Must be one of: {', '.join(VALID_BODY_IMAGE_TYPE)}",
             )
 
     # Validate image-base64 if present

@@ -78,8 +78,7 @@ def validate_automation_action_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -120,8 +119,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_ACTION_TYPE:
             return (
                 False,
-                f"Invalid action-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION_TYPE)}",
+                f"Invalid action-type '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION_TYPE)}",
             )
 
     # Validate system-action if present
@@ -130,8 +128,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_SYSTEM_ACTION:
             return (
                 False,
-                f"Invalid system-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_ACTION)}",
+                f"Invalid system-action '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_ACTION)}",
             )
 
     # Validate tls-certificate if present
@@ -146,8 +143,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_FORTICARE_EMAIL:
             return (
                 False,
-                f"Invalid forticare-email '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTICARE_EMAIL)}",
+                f"Invalid forticare-email '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICARE_EMAIL)}",
             )
 
     # Validate email-from if present
@@ -185,8 +181,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_AZURE_FUNCTION_AUTHORIZATION:
             return (
                 False,
-                f"Invalid azure-function-authorization '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_FUNCTION_AUTHORIZATION)}",
+                f"Invalid azure-function-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_FUNCTION_AUTHORIZATION)}",
             )
 
     # Validate alicloud-function-authorization if present
@@ -195,8 +190,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION:
             return (
                 False,
-                f"Invalid alicloud-function-authorization '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION)}",
+                f"Invalid alicloud-function-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION)}",
             )
 
     # Validate alicloud-access-key-id if present
@@ -214,8 +208,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_MESSAGE_TYPE:
             return (
                 False,
-                f"Invalid message-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MESSAGE_TYPE)}",
+                f"Invalid message-type '{value}'. Must be one of: {', '.join(VALID_BODY_MESSAGE_TYPE)}",
             )
 
     # Validate message if present
@@ -230,8 +223,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_REPLACEMENT_MESSAGE:
             return (
                 False,
-                f"Invalid replacement-message '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REPLACEMENT_MESSAGE)}",
+                f"Invalid replacement-message '{value}'. Must be one of: {', '.join(VALID_BODY_REPLACEMENT_MESSAGE)}",
             )
 
     # Validate replacemsg-group if present
@@ -246,8 +238,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate method if present
@@ -256,8 +247,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate uri if present
@@ -289,8 +279,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_VERIFY_HOST_CERT:
             return (
                 False,
-                f"Invalid verify-host-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_HOST_CERT)}",
+                f"Invalid verify-host-cert '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_HOST_CERT)}",
             )
 
     # Validate script if present
@@ -355,8 +344,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_FILE_ONLY:
             return (
                 False,
-                f"Invalid file-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_ONLY)}",
+                f"Invalid file-only '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_ONLY)}",
             )
 
     # Validate execute-security-fabric if present
@@ -365,8 +353,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_EXECUTE_SECURITY_FABRIC:
             return (
                 False,
-                f"Invalid execute-security-fabric '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXECUTE_SECURITY_FABRIC)}",
+                f"Invalid execute-security-fabric '{value}'. Must be one of: {', '.join(VALID_BODY_EXECUTE_SECURITY_FABRIC)}",
             )
 
     # Validate accprofile if present
@@ -387,8 +374,7 @@ def validate_automation_action_post(
         if value and value not in VALID_BODY_LOG_DEBUG_PRINT:
             return (
                 False,
-                f"Invalid log-debug-print '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_DEBUG_PRINT)}",
+                f"Invalid log-debug-print '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_DEBUG_PRINT)}",
             )
 
     # Validate security-tag if present
@@ -444,8 +430,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_ACTION_TYPE:
             return (
                 False,
-                f"Invalid action-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION_TYPE)}",
+                f"Invalid action-type '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION_TYPE)}",
             )
 
     # Validate system-action if present
@@ -454,8 +439,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_SYSTEM_ACTION:
             return (
                 False,
-                f"Invalid system-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_ACTION)}",
+                f"Invalid system-action '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_ACTION)}",
             )
 
     # Validate tls-certificate if present
@@ -470,8 +454,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_FORTICARE_EMAIL:
             return (
                 False,
-                f"Invalid forticare-email '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTICARE_EMAIL)}",
+                f"Invalid forticare-email '{value}'. Must be one of: {', '.join(VALID_BODY_FORTICARE_EMAIL)}",
             )
 
     # Validate email-from if present
@@ -509,8 +492,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_AZURE_FUNCTION_AUTHORIZATION:
             return (
                 False,
-                f"Invalid azure-function-authorization '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_FUNCTION_AUTHORIZATION)}",
+                f"Invalid azure-function-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_FUNCTION_AUTHORIZATION)}",
             )
 
     # Validate alicloud-function-authorization if present
@@ -519,8 +501,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION:
             return (
                 False,
-                f"Invalid alicloud-function-authorization '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION)}",
+                f"Invalid alicloud-function-authorization '{value}'. Must be one of: {', '.join(VALID_BODY_ALICLOUD_FUNCTION_AUTHORIZATION)}",
             )
 
     # Validate alicloud-access-key-id if present
@@ -538,8 +519,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_MESSAGE_TYPE:
             return (
                 False,
-                f"Invalid message-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MESSAGE_TYPE)}",
+                f"Invalid message-type '{value}'. Must be one of: {', '.join(VALID_BODY_MESSAGE_TYPE)}",
             )
 
     # Validate message if present
@@ -554,8 +534,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_REPLACEMENT_MESSAGE:
             return (
                 False,
-                f"Invalid replacement-message '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REPLACEMENT_MESSAGE)}",
+                f"Invalid replacement-message '{value}'. Must be one of: {', '.join(VALID_BODY_REPLACEMENT_MESSAGE)}",
             )
 
     # Validate replacemsg-group if present
@@ -570,8 +549,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate method if present
@@ -580,8 +558,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate uri if present
@@ -613,8 +590,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_VERIFY_HOST_CERT:
             return (
                 False,
-                f"Invalid verify-host-cert '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_HOST_CERT)}",
+                f"Invalid verify-host-cert '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_HOST_CERT)}",
             )
 
     # Validate script if present
@@ -679,8 +655,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_FILE_ONLY:
             return (
                 False,
-                f"Invalid file-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_ONLY)}",
+                f"Invalid file-only '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_ONLY)}",
             )
 
     # Validate execute-security-fabric if present
@@ -689,8 +664,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_EXECUTE_SECURITY_FABRIC:
             return (
                 False,
-                f"Invalid execute-security-fabric '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXECUTE_SECURITY_FABRIC)}",
+                f"Invalid execute-security-fabric '{value}'. Must be one of: {', '.join(VALID_BODY_EXECUTE_SECURITY_FABRIC)}",
             )
 
     # Validate accprofile if present
@@ -711,8 +685,7 @@ def validate_automation_action_put(
         if value and value not in VALID_BODY_LOG_DEBUG_PRINT:
             return (
                 False,
-                f"Invalid log-debug-print '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_DEBUG_PRINT)}",
+                f"Invalid log-debug-print '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_DEBUG_PRINT)}",
             )
 
     # Validate security-tag if present

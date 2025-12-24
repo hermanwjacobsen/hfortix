@@ -46,8 +46,7 @@ def validate_lldp_settings_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -119,8 +118,7 @@ def validate_lldp_settings_put(
         if value and value not in VALID_BODY_MANAGEMENT_INTERFACE:
             return (
                 False,
-                f"Invalid management-interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGEMENT_INTERFACE)}",
+                f"Invalid management-interface '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGEMENT_INTERFACE)}",
             )
 
     # Validate device-detection if present
@@ -129,8 +127,7 @@ def validate_lldp_settings_put(
         if value and value not in VALID_BODY_DEVICE_DETECTION:
             return (
                 False,
-                f"Invalid device-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_DETECTION)}",
+                f"Invalid device-detection '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_DETECTION)}",
             )
 
     return (True, None)

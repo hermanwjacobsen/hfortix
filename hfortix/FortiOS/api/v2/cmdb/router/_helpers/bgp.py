@@ -72,8 +72,7 @@ def validate_bgp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -137,8 +136,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ALWAYS_COMPARE_MED:
             return (
                 False,
-                f"Invalid always-compare-med '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALWAYS_COMPARE_MED)}",
+                f"Invalid always-compare-med '{value}'. Must be one of: {', '.join(VALID_BODY_ALWAYS_COMPARE_MED)}",
             )
 
     # Validate bestpath-as-path-ignore if present
@@ -147,8 +145,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_BESTPATH_AS_PATH_IGNORE:
             return (
                 False,
-                f"Invalid bestpath-as-path-ignore '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BESTPATH_AS_PATH_IGNORE)}",
+                f"Invalid bestpath-as-path-ignore '{value}'. Must be one of: {', '.join(VALID_BODY_BESTPATH_AS_PATH_IGNORE)}",
             )
 
     # Validate bestpath-cmp-confed-aspath if present
@@ -157,8 +154,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_BESTPATH_CMP_CONFED_ASPATH:
             return (
                 False,
-                f"Invalid bestpath-cmp-confed-aspath '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BESTPATH_CMP_CONFED_ASPATH)}",
+                f"Invalid bestpath-cmp-confed-aspath '{value}'. Must be one of: {', '.join(VALID_BODY_BESTPATH_CMP_CONFED_ASPATH)}",
             )
 
     # Validate bestpath-cmp-routerid if present
@@ -167,8 +163,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_BESTPATH_CMP_ROUTERID:
             return (
                 False,
-                f"Invalid bestpath-cmp-routerid '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BESTPATH_CMP_ROUTERID)}",
+                f"Invalid bestpath-cmp-routerid '{value}'. Must be one of: {', '.join(VALID_BODY_BESTPATH_CMP_ROUTERID)}",
             )
 
     # Validate bestpath-med-confed if present
@@ -177,8 +172,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_BESTPATH_MED_CONFED:
             return (
                 False,
-                f"Invalid bestpath-med-confed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BESTPATH_MED_CONFED)}",
+                f"Invalid bestpath-med-confed '{value}'. Must be one of: {', '.join(VALID_BODY_BESTPATH_MED_CONFED)}",
             )
 
     # Validate bestpath-med-missing-as-worst if present
@@ -187,8 +181,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_BESTPATH_MED_MISSING_AS_WORST:
             return (
                 False,
-                f"Invalid bestpath-med-missing-as-worst '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BESTPATH_MED_MISSING_AS_WORST)}",
+                f"Invalid bestpath-med-missing-as-worst '{value}'. Must be one of: {', '.join(VALID_BODY_BESTPATH_MED_MISSING_AS_WORST)}",
             )
 
     # Validate client-to-client-reflection if present
@@ -197,8 +190,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_CLIENT_TO_CLIENT_REFLECTION:
             return (
                 False,
-                f"Invalid client-to-client-reflection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_TO_CLIENT_REFLECTION)}",
+                f"Invalid client-to-client-reflection '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_TO_CLIENT_REFLECTION)}",
             )
 
     # Validate dampening if present
@@ -207,8 +199,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_DAMPENING:
             return (
                 False,
-                f"Invalid dampening '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DAMPENING)}",
+                f"Invalid dampening '{value}'. Must be one of: {', '.join(VALID_BODY_DAMPENING)}",
             )
 
     # Validate deterministic-med if present
@@ -217,8 +208,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_DETERMINISTIC_MED:
             return (
                 False,
-                f"Invalid deterministic-med '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DETERMINISTIC_MED)}",
+                f"Invalid deterministic-med '{value}'. Must be one of: {', '.join(VALID_BODY_DETERMINISTIC_MED)}",
             )
 
     # Validate ebgp-multipath if present
@@ -227,8 +217,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_EBGP_MULTIPATH:
             return (
                 False,
-                f"Invalid ebgp-multipath '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EBGP_MULTIPATH)}",
+                f"Invalid ebgp-multipath '{value}'. Must be one of: {', '.join(VALID_BODY_EBGP_MULTIPATH)}",
             )
 
     # Validate ibgp-multipath if present
@@ -237,8 +226,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_IBGP_MULTIPATH:
             return (
                 False,
-                f"Invalid ibgp-multipath '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IBGP_MULTIPATH)}",
+                f"Invalid ibgp-multipath '{value}'. Must be one of: {', '.join(VALID_BODY_IBGP_MULTIPATH)}",
             )
 
     # Validate enforce-first-as if present
@@ -247,8 +235,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ENFORCE_FIRST_AS:
             return (
                 False,
-                f"Invalid enforce-first-as '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENFORCE_FIRST_AS)}",
+                f"Invalid enforce-first-as '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_FIRST_AS)}",
             )
 
     # Validate fast-external-failover if present
@@ -257,8 +244,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_FAST_EXTERNAL_FAILOVER:
             return (
                 False,
-                f"Invalid fast-external-failover '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAST_EXTERNAL_FAILOVER)}",
+                f"Invalid fast-external-failover '{value}'. Must be one of: {', '.join(VALID_BODY_FAST_EXTERNAL_FAILOVER)}",
             )
 
     # Validate log-neighbour-changes if present
@@ -267,8 +253,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_LOG_NEIGHBOUR_CHANGES:
             return (
                 False,
-                f"Invalid log-neighbour-changes '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_NEIGHBOUR_CHANGES)}",
+                f"Invalid log-neighbour-changes '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_NEIGHBOUR_CHANGES)}",
             )
 
     # Validate network-import-check if present
@@ -277,8 +262,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_NETWORK_IMPORT_CHECK:
             return (
                 False,
-                f"Invalid network-import-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETWORK_IMPORT_CHECK)}",
+                f"Invalid network-import-check '{value}'. Must be one of: {', '.join(VALID_BODY_NETWORK_IMPORT_CHECK)}",
             )
 
     # Validate ignore-optional-capability if present
@@ -287,8 +271,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_IGNORE_OPTIONAL_CAPABILITY:
             return (
                 False,
-                f"Invalid ignore-optional-capability '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IGNORE_OPTIONAL_CAPABILITY)}",
+                f"Invalid ignore-optional-capability '{value}'. Must be one of: {', '.join(VALID_BODY_IGNORE_OPTIONAL_CAPABILITY)}",
             )
 
     # Validate additional-path if present
@@ -297,8 +280,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ADDITIONAL_PATH:
             return (
                 False,
-                f"Invalid additional-path '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDITIONAL_PATH)}",
+                f"Invalid additional-path '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_PATH)}",
             )
 
     # Validate additional-path6 if present
@@ -307,8 +289,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ADDITIONAL_PATH6:
             return (
                 False,
-                f"Invalid additional-path6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDITIONAL_PATH6)}",
+                f"Invalid additional-path6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_PATH6)}",
             )
 
     # Validate additional-path-vpnv4 if present
@@ -317,8 +298,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ADDITIONAL_PATH_VPNV4:
             return (
                 False,
-                f"Invalid additional-path-vpnv4 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDITIONAL_PATH_VPNV4)}",
+                f"Invalid additional-path-vpnv4 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_PATH_VPNV4)}",
             )
 
     # Validate additional-path-vpnv6 if present
@@ -327,8 +307,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_ADDITIONAL_PATH_VPNV6:
             return (
                 False,
-                f"Invalid additional-path-vpnv6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDITIONAL_PATH_VPNV6)}",
+                f"Invalid additional-path-vpnv6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDITIONAL_PATH_VPNV6)}",
             )
 
     # Validate multipath-recursive-distance if present
@@ -337,8 +316,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_MULTIPATH_RECURSIVE_DISTANCE:
             return (
                 False,
-                f"Invalid multipath-recursive-distance '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTIPATH_RECURSIVE_DISTANCE)}",
+                f"Invalid multipath-recursive-distance '{value}'. Must be one of: {', '.join(VALID_BODY_MULTIPATH_RECURSIVE_DISTANCE)}",
             )
 
     # Validate recursive-next-hop if present
@@ -347,8 +325,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_RECURSIVE_NEXT_HOP:
             return (
                 False,
-                f"Invalid recursive-next-hop '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RECURSIVE_NEXT_HOP)}",
+                f"Invalid recursive-next-hop '{value}'. Must be one of: {', '.join(VALID_BODY_RECURSIVE_NEXT_HOP)}",
             )
 
     # Validate recursive-inherit-priority if present
@@ -357,8 +334,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_RECURSIVE_INHERIT_PRIORITY:
             return (
                 False,
-                f"Invalid recursive-inherit-priority '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RECURSIVE_INHERIT_PRIORITY)}",
+                f"Invalid recursive-inherit-priority '{value}'. Must be one of: {', '.join(VALID_BODY_RECURSIVE_INHERIT_PRIORITY)}",
             )
 
     # Validate tag-resolve-mode if present
@@ -367,8 +343,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_TAG_RESOLVE_MODE:
             return (
                 False,
-                f"Invalid tag-resolve-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TAG_RESOLVE_MODE)}",
+                f"Invalid tag-resolve-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TAG_RESOLVE_MODE)}",
             )
 
     # Validate confederation-identifier if present
@@ -558,8 +533,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_SYNCHRONIZATION:
             return (
                 False,
-                f"Invalid synchronization '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYNCHRONIZATION)}",
+                f"Invalid synchronization '{value}'. Must be one of: {', '.join(VALID_BODY_SYNCHRONIZATION)}",
             )
 
     # Validate graceful-restart if present
@@ -568,8 +542,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_GRACEFUL_RESTART:
             return (
                 False,
-                f"Invalid graceful-restart '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GRACEFUL_RESTART)}",
+                f"Invalid graceful-restart '{value}'. Must be one of: {', '.join(VALID_BODY_GRACEFUL_RESTART)}",
             )
 
     # Validate graceful-restart-time if present
@@ -629,8 +602,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_GRACEFUL_END_ON_TIMER:
             return (
                 False,
-                f"Invalid graceful-end-on-timer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GRACEFUL_END_ON_TIMER)}",
+                f"Invalid graceful-end-on-timer '{value}'. Must be one of: {', '.join(VALID_BODY_GRACEFUL_END_ON_TIMER)}",
             )
 
     # Validate additional-path-select if present
@@ -707,8 +679,7 @@ def validate_bgp_put(
         if value and value not in VALID_BODY_CROSS_FAMILY_CONDITIONAL_ADV:
             return (
                 False,
-                f"Invalid cross-family-conditional-adv '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CROSS_FAMILY_CONDITIONAL_ADV)}",
+                f"Invalid cross-family-conditional-adv '{value}'. Must be one of: {', '.join(VALID_BODY_CROSS_FAMILY_CONDITIONAL_ADV)}",
             )
 
     return (True, None)

@@ -88,8 +88,7 @@ def validate_device_upgrade_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -124,8 +123,7 @@ def validate_device_upgrade_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate ha-reboot-controller if present
@@ -166,8 +164,7 @@ def validate_device_upgrade_post(
         if value and value not in VALID_BODY_TIMING:
             return (
                 False,
-                f"Invalid timing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TIMING)}",
+                f"Invalid timing '{value}'. Must be one of: {', '.join(VALID_BODY_TIMING)}",
             )
 
     # Validate maximum-minutes if present
@@ -193,8 +190,7 @@ def validate_device_upgrade_post(
         if value and value not in VALID_BODY_DEVICE_TYPE:
             return (
                 False,
-                f"Invalid device-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_TYPE)}",
+                f"Invalid device-type '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_TYPE)}",
             )
 
     # Validate allow-download if present
@@ -203,8 +199,7 @@ def validate_device_upgrade_post(
         if value and value not in VALID_BODY_ALLOW_DOWNLOAD:
             return (
                 False,
-                f"Invalid allow-download '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOW_DOWNLOAD)}",
+                f"Invalid allow-download '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_DOWNLOAD)}",
             )
 
     # Validate failure-reason if present
@@ -213,8 +208,7 @@ def validate_device_upgrade_post(
         if value and value not in VALID_BODY_FAILURE_REASON:
             return (
                 False,
-                f"Invalid failure-reason '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAILURE_REASON)}",
+                f"Invalid failure-reason '{value}'. Must be one of: {', '.join(VALID_BODY_FAILURE_REASON)}",
             )
 
     return (True, None)

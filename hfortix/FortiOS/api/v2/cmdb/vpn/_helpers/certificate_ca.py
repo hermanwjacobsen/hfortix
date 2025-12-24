@@ -49,8 +49,7 @@ def validate_certificate_ca_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -85,8 +84,7 @@ def validate_certificate_ca_post(
         if value and value not in VALID_BODY_RANGE:
             return (
                 False,
-                f"Invalid range '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RANGE)}",
+                f"Invalid range '{value}'. Must be one of: {', '.join(VALID_BODY_RANGE)}",
             )
 
     # Validate source if present
@@ -95,8 +93,7 @@ def validate_certificate_ca_post(
         if value and value not in VALID_BODY_SOURCE:
             return (
                 False,
-                f"Invalid source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SOURCE)}",
+                f"Invalid source '{value}'. Must be one of: {', '.join(VALID_BODY_SOURCE)}",
             )
 
     # Validate ssl-inspection-trusted if present
@@ -105,8 +102,7 @@ def validate_certificate_ca_post(
         if value and value not in VALID_BODY_SSL_INSPECTION_TRUSTED:
             return (
                 False,
-                f"Invalid ssl-inspection-trusted '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_INSPECTION_TRUSTED)}",
+                f"Invalid ssl-inspection-trusted '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_INSPECTION_TRUSTED)}",
             )
 
     # Validate scep-url if present
@@ -167,8 +163,7 @@ def validate_certificate_ca_post(
         if value and value not in VALID_BODY_OBSOLETE:
             return (
                 False,
-                f"Invalid obsolete '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OBSOLETE)}",
+                f"Invalid obsolete '{value}'. Must be one of: {', '.join(VALID_BODY_OBSOLETE)}",
             )
 
     # Validate fabric-ca if present
@@ -177,8 +172,7 @@ def validate_certificate_ca_post(
         if value and value not in VALID_BODY_FABRIC_CA:
             return (
                 False,
-                f"Invalid fabric-ca '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_CA)}",
+                f"Invalid fabric-ca '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_CA)}",
             )
 
     return (True, None)

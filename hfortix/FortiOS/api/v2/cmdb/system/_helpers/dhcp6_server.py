@@ -51,8 +51,7 @@ def validate_dhcp6_server_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,8 +91,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate rapid-commit if present
@@ -102,8 +100,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_RAPID_COMMIT:
             return (
                 False,
-                f"Invalid rapid-commit '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RAPID_COMMIT)}",
+                f"Invalid rapid-commit '{value}'. Must be one of: {', '.join(VALID_BODY_RAPID_COMMIT)}",
             )
 
     # Validate lease-time if present
@@ -126,8 +123,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_DNS_SERVICE:
             return (
                 False,
-                f"Invalid dns-service '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVICE)}",
+                f"Invalid dns-service '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVICE)}",
             )
 
     # Validate dns-search-list if present
@@ -136,8 +132,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_DNS_SEARCH_LIST:
             return (
                 False,
-                f"Invalid dns-search-list '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SEARCH_LIST)}",
+                f"Invalid dns-search-list '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SEARCH_LIST)}",
             )
 
     # Validate domain if present
@@ -158,8 +153,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_DELEGATED_PREFIX_ROUTE:
             return (
                 False,
-                f"Invalid delegated-prefix-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DELEGATED_PREFIX_ROUTE)}",
+                f"Invalid delegated-prefix-route '{value}'. Must be one of: {', '.join(VALID_BODY_DELEGATED_PREFIX_ROUTE)}",
             )
 
     # Validate upstream-interface if present
@@ -191,8 +185,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_IP_MODE:
             return (
                 False,
-                f"Invalid ip-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_MODE)}",
+                f"Invalid ip-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MODE)}",
             )
 
     # Validate prefix-mode if present
@@ -201,8 +194,7 @@ def validate_dhcp6_server_post(
         if value and value not in VALID_BODY_PREFIX_MODE:
             return (
                 False,
-                f"Invalid prefix-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PREFIX_MODE)}",
+                f"Invalid prefix-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PREFIX_MODE)}",
             )
 
     return (True, None)
@@ -251,8 +243,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate rapid-commit if present
@@ -261,8 +252,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_RAPID_COMMIT:
             return (
                 False,
-                f"Invalid rapid-commit '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RAPID_COMMIT)}",
+                f"Invalid rapid-commit '{value}'. Must be one of: {', '.join(VALID_BODY_RAPID_COMMIT)}",
             )
 
     # Validate lease-time if present
@@ -285,8 +275,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_DNS_SERVICE:
             return (
                 False,
-                f"Invalid dns-service '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVICE)}",
+                f"Invalid dns-service '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVICE)}",
             )
 
     # Validate dns-search-list if present
@@ -295,8 +284,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_DNS_SEARCH_LIST:
             return (
                 False,
-                f"Invalid dns-search-list '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SEARCH_LIST)}",
+                f"Invalid dns-search-list '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SEARCH_LIST)}",
             )
 
     # Validate domain if present
@@ -317,8 +305,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_DELEGATED_PREFIX_ROUTE:
             return (
                 False,
-                f"Invalid delegated-prefix-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DELEGATED_PREFIX_ROUTE)}",
+                f"Invalid delegated-prefix-route '{value}'. Must be one of: {', '.join(VALID_BODY_DELEGATED_PREFIX_ROUTE)}",
             )
 
     # Validate upstream-interface if present
@@ -350,8 +337,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_IP_MODE:
             return (
                 False,
-                f"Invalid ip-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_MODE)}",
+                f"Invalid ip-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MODE)}",
             )
 
     # Validate prefix-mode if present
@@ -360,8 +346,7 @@ def validate_dhcp6_server_put(
         if value and value not in VALID_BODY_PREFIX_MODE:
             return (
                 False,
-                f"Invalid prefix-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PREFIX_MODE)}",
+                f"Invalid prefix-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PREFIX_MODE)}",
             )
 
     return (True, None)

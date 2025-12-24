@@ -47,8 +47,7 @@ def validate_profile_protocol_options_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,8 +94,7 @@ def validate_profile_protocol_options_post(
         if value and value not in VALID_BODY_OVERSIZE_LOG:
             return (
                 False,
-                f"Invalid oversize-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERSIZE_LOG)}",
+                f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}",
             )
 
     # Validate switching-protocols-log if present
@@ -105,8 +103,7 @@ def validate_profile_protocol_options_post(
         if value and value not in VALID_BODY_SWITCHING_PROTOCOLS_LOG:
             return (
                 False,
-                f"Invalid switching-protocols-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
+                f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
             )
 
     # Validate rpc-over-http if present
@@ -115,8 +112,7 @@ def validate_profile_protocol_options_post(
         if value and value not in VALID_BODY_RPC_OVER_HTTP:
             return (
                 False,
-                f"Invalid rpc-over-http '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RPC_OVER_HTTP)}",
+                f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}",
             )
 
     return (True, None)
@@ -172,8 +168,7 @@ def validate_profile_protocol_options_put(
         if value and value not in VALID_BODY_OVERSIZE_LOG:
             return (
                 False,
-                f"Invalid oversize-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERSIZE_LOG)}",
+                f"Invalid oversize-log '{value}'. Must be one of: {', '.join(VALID_BODY_OVERSIZE_LOG)}",
             )
 
     # Validate switching-protocols-log if present
@@ -182,8 +177,7 @@ def validate_profile_protocol_options_put(
         if value and value not in VALID_BODY_SWITCHING_PROTOCOLS_LOG:
             return (
                 False,
-                f"Invalid switching-protocols-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
+                f"Invalid switching-protocols-log '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCHING_PROTOCOLS_LOG)}",
             )
 
     # Validate rpc-over-http if present
@@ -192,8 +186,7 @@ def validate_profile_protocol_options_put(
         if value and value not in VALID_BODY_RPC_OVER_HTTP:
             return (
                 False,
-                f"Invalid rpc-over-http '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RPC_OVER_HTTP)}",
+                f"Invalid rpc-over-http '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTP)}",
             )
 
     return (True, None)

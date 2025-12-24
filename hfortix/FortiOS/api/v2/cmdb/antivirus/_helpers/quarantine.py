@@ -110,8 +110,7 @@ def validate_quarantine_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -183,8 +182,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_DROP_INFECTED:
             return (
                 False,
-                f"Invalid drop-infected '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DROP_INFECTED)}",
+                f"Invalid drop-infected '{value}'. Must be one of: {', '.join(VALID_BODY_DROP_INFECTED)}",
             )
 
     # Validate store-infected if present
@@ -193,8 +191,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_STORE_INFECTED:
             return (
                 False,
-                f"Invalid store-infected '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STORE_INFECTED)}",
+                f"Invalid store-infected '{value}'. Must be one of: {', '.join(VALID_BODY_STORE_INFECTED)}",
             )
 
     # Validate drop-machine-learning if present
@@ -203,8 +200,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_DROP_MACHINE_LEARNING:
             return (
                 False,
-                f"Invalid drop-machine-learning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DROP_MACHINE_LEARNING)}",
+                f"Invalid drop-machine-learning '{value}'. Must be one of: {', '.join(VALID_BODY_DROP_MACHINE_LEARNING)}",
             )
 
     # Validate store-machine-learning if present
@@ -213,8 +209,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_STORE_MACHINE_LEARNING:
             return (
                 False,
-                f"Invalid store-machine-learning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STORE_MACHINE_LEARNING)}",
+                f"Invalid store-machine-learning '{value}'. Must be one of: {', '.join(VALID_BODY_STORE_MACHINE_LEARNING)}",
             )
 
     # Validate lowspace if present
@@ -223,8 +218,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_LOWSPACE:
             return (
                 False,
-                f"Invalid lowspace '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOWSPACE)}",
+                f"Invalid lowspace '{value}'. Must be one of: {', '.join(VALID_BODY_LOWSPACE)}",
             )
 
     # Validate destination if present
@@ -233,8 +227,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_DESTINATION:
             return (
                 False,
-                f"Invalid destination '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DESTINATION)}",
+                f"Invalid destination '{value}'. Must be one of: {', '.join(VALID_BODY_DESTINATION)}",
             )
 
     return (True, None)

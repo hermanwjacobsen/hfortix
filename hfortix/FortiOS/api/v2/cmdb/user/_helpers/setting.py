@@ -70,8 +70,7 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -104,8 +103,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate auth-cert if present
@@ -126,8 +124,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SECURE_HTTP:
             return (
                 False,
-                f"Invalid auth-secure-http '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SECURE_HTTP)}",
+                f"Invalid auth-secure-http '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SECURE_HTTP)}",
             )
 
     # Validate auth-http-basic if present
@@ -136,8 +133,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_HTTP_BASIC:
             return (
                 False,
-                f"Invalid auth-http-basic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_HTTP_BASIC)}",
+                f"Invalid auth-http-basic '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_HTTP_BASIC)}",
             )
 
     # Validate auth-ssl-allow-renegotiation if present
@@ -146,8 +142,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SSL_ALLOW_RENEGOTIATION:
             return (
                 False,
-                f"Invalid auth-ssl-allow-renegotiation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SSL_ALLOW_RENEGOTIATION)}",
+                f"Invalid auth-ssl-allow-renegotiation '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SSL_ALLOW_RENEGOTIATION)}",
             )
 
     # Validate auth-src-mac if present
@@ -156,8 +151,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SRC_MAC:
             return (
                 False,
-                f"Invalid auth-src-mac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SRC_MAC)}",
+                f"Invalid auth-src-mac '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SRC_MAC)}",
             )
 
     # Validate auth-on-demand if present
@@ -166,8 +160,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_ON_DEMAND:
             return (
                 False,
-                f"Invalid auth-on-demand '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_ON_DEMAND)}",
+                f"Invalid auth-on-demand '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_ON_DEMAND)}",
             )
 
     # Validate auth-timeout if present
@@ -187,8 +180,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_TIMEOUT_TYPE:
             return (
                 False,
-                f"Invalid auth-timeout-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TIMEOUT_TYPE)}",
+                f"Invalid auth-timeout-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TIMEOUT_TYPE)}",
             )
 
     # Validate auth-portal-timeout if present
@@ -214,8 +206,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_RADIUS_SES_TIMEOUT_ACT:
             return (
                 False,
-                f"Invalid radius-ses-timeout-act '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RADIUS_SES_TIMEOUT_ACT)}",
+                f"Invalid radius-ses-timeout-act '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_SES_TIMEOUT_ACT)}",
             )
 
     # Validate auth-blackout-time if present
@@ -292,8 +283,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_PER_POLICY_DISCLAIMER:
             return (
                 False,
-                f"Invalid per-policy-disclaimer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PER_POLICY_DISCLAIMER)}",
+                f"Invalid per-policy-disclaimer '{value}'. Must be one of: {', '.join(VALID_BODY_PER_POLICY_DISCLAIMER)}",
             )
 
     # Validate auth-ssl-min-proto-version if present
@@ -302,8 +292,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid auth-ssl-min-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid auth-ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SSL_MIN_PROTO_VERSION)}",
             )
 
     # Validate auth-ssl-max-proto-version if present
@@ -312,8 +301,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SSL_MAX_PROTO_VERSION:
             return (
                 False,
-                f"Invalid auth-ssl-max-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SSL_MAX_PROTO_VERSION)}",
+                f"Invalid auth-ssl-max-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SSL_MAX_PROTO_VERSION)}",
             )
 
     # Validate auth-ssl-sigalgs if present
@@ -322,8 +310,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_SSL_SIGALGS:
             return (
                 False,
-                f"Invalid auth-ssl-sigalgs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_SSL_SIGALGS)}",
+                f"Invalid auth-ssl-sigalgs '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_SSL_SIGALGS)}",
             )
 
     # Validate default-user-password-policy if present
@@ -341,8 +328,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_CORS:
             return (
                 False,
-                f"Invalid cors '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CORS)}",
+                f"Invalid cors '{value}'. Must be one of: {', '.join(VALID_BODY_CORS)}",
             )
 
     return (True, None)

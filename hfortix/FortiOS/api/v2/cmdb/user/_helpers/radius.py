@@ -190,8 +190,7 @@ def validate_radius_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -264,8 +263,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALL_USERGROUP:
             return (
                 False,
-                f"Invalid all-usergroup '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALL_USERGROUP)}",
+                f"Invalid all-usergroup '{value}'. Must be one of: {', '.join(VALID_BODY_ALL_USERGROUP)}",
             )
 
     # Validate use-management-vdom if present
@@ -274,8 +272,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USE_MANAGEMENT_VDOM:
             return (
                 False,
-                f"Invalid use-management-vdom '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_MANAGEMENT_VDOM)}",
+                f"Invalid use-management-vdom '{value}'. Must be one of: {', '.join(VALID_BODY_USE_MANAGEMENT_VDOM)}",
             )
 
     # Validate switch-controller-nas-ip-dynamic if present
@@ -284,8 +281,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC:
             return (
                 False,
-                f"Invalid switch-controller-nas-ip-dynamic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC)}",
+                f"Invalid switch-controller-nas-ip-dynamic '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC)}",
             )
 
     # Validate nas-id-type if present
@@ -294,8 +290,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAS_ID_TYPE:
             return (
                 False,
-                f"Invalid nas-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAS_ID_TYPE)}",
+                f"Invalid nas-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_NAS_ID_TYPE)}",
             )
 
     # Validate call-station-id-type if present
@@ -304,8 +299,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CALL_STATION_ID_TYPE:
             return (
                 False,
-                f"Invalid call-station-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CALL_STATION_ID_TYPE)}",
+                f"Invalid call-station-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_CALL_STATION_ID_TYPE)}",
             )
 
     # Validate nas-id if present
@@ -337,8 +331,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RADIUS_COA:
             return (
                 False,
-                f"Invalid radius-coa '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RADIUS_COA)}",
+                f"Invalid radius-coa '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_COA)}",
             )
 
     # Validate radius-port if present
@@ -358,8 +351,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_H3C_COMPATIBILITY:
             return (
                 False,
-                f"Invalid h3c-compatibility '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H3C_COMPATIBILITY)}",
+                f"Invalid h3c-compatibility '{value}'. Must be one of: {', '.join(VALID_BODY_H3C_COMPATIBILITY)}",
             )
 
     # Validate auth-type if present
@@ -368,8 +360,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate source-ip if present
@@ -390,8 +381,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USERNAME_CASE_SENSITIVE:
             return (
                 False,
-                f"Invalid username-case-sensitive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USERNAME_CASE_SENSITIVE)}",
+                f"Invalid username-case-sensitive '{value}'. Must be one of: {', '.join(VALID_BODY_USERNAME_CASE_SENSITIVE)}",
             )
 
     # Validate group-override-attr-type if present
@@ -400,8 +390,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE:
             return (
                 False,
-                f"Invalid group-override-attr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE)}",
+                f"Invalid group-override-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE)}",
             )
 
     # Validate password-renewal if present
@@ -410,8 +399,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSWORD_RENEWAL:
             return (
                 False,
-                f"Invalid password-renewal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
+                f"Invalid password-renewal '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
             )
 
     # Validate require-message-authenticator if present
@@ -420,8 +408,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR:
             return (
                 False,
-                f"Invalid require-message-authenticator '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR)}",
+                f"Invalid require-message-authenticator '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR)}",
             )
 
     # Validate password-encoding if present
@@ -430,8 +417,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSWORD_ENCODING:
             return (
                 False,
-                f"Invalid password-encoding '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD_ENCODING)}",
+                f"Invalid password-encoding '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_ENCODING)}",
             )
 
     # Validate mac-username-delimiter if present
@@ -440,8 +426,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_USERNAME_DELIMITER:
             return (
                 False,
-                f"Invalid mac-username-delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
+                f"Invalid mac-username-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
             )
 
     # Validate mac-password-delimiter if present
@@ -450,8 +435,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_PASSWORD_DELIMITER:
             return (
                 False,
-                f"Invalid mac-password-delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
+                f"Invalid mac-password-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
             )
 
     # Validate mac-case if present
@@ -460,8 +444,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MAC_CASE:
             return (
                 False,
-                f"Invalid mac-case '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_CASE)}",
+                f"Invalid mac-case '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CASE)}",
             )
 
     # Validate acct-all-servers if present
@@ -470,8 +453,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCT_ALL_SERVERS:
             return (
                 False,
-                f"Invalid acct-all-servers '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCT_ALL_SERVERS)}",
+                f"Invalid acct-all-servers '{value}'. Must be one of: {', '.join(VALID_BODY_ACCT_ALL_SERVERS)}",
             )
 
     # Validate switch-controller-acct-fast-framedip-detect if present
@@ -497,8 +479,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -524,8 +505,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE:
             return (
                 False,
-                f"Invalid switch-controller-service-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE)}",
+                f"Invalid switch-controller-service-type '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE)}",
             )
 
     # Validate transport-protocol if present
@@ -534,8 +514,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TRANSPORT_PROTOCOL:
             return (
                 False,
-                f"Invalid transport-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT_PROTOCOL)}",
+                f"Invalid transport-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT_PROTOCOL)}",
             )
 
     # Validate tls-min-proto-version if present
@@ -544,8 +523,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TLS_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid tls-min-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TLS_MIN_PROTO_VERSION)}",
+                f"Invalid tls-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_TLS_MIN_PROTO_VERSION)}",
             )
 
     # Validate ca-cert if present
@@ -566,8 +544,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate account-key-processing if present
@@ -576,8 +553,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCOUNT_KEY_PROCESSING:
             return (
                 False,
-                f"Invalid account-key-processing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
+                f"Invalid account-key-processing '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
             )
 
     # Validate account-key-cert-field if present
@@ -586,8 +562,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ACCOUNT_KEY_CERT_FIELD:
             return (
                 False,
-                f"Invalid account-key-cert-field '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
+                f"Invalid account-key-cert-field '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
             )
 
     # Validate rsso if present
@@ -596,8 +571,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO:
             return (
                 False,
-                f"Invalid rsso '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO)}",
+                f"Invalid rsso '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO)}",
             )
 
     # Validate rsso-radius-server-port if present
@@ -623,8 +597,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_RADIUS_RESPONSE:
             return (
                 False,
-                f"Invalid rsso-radius-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_RADIUS_RESPONSE)}",
+                f"Invalid rsso-radius-response '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_RADIUS_RESPONSE)}",
             )
 
     # Validate rsso-validate-request-secret if present
@@ -633,8 +606,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET:
             return (
                 False,
-                f"Invalid rsso-validate-request-secret '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET)}",
+                f"Invalid rsso-validate-request-secret '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET)}",
             )
 
     # Validate rsso-endpoint-attribute if present
@@ -643,8 +615,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE:
             return (
                 False,
-                f"Invalid rsso-endpoint-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE)}",
+                f"Invalid rsso-endpoint-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE)}",
             )
 
     # Validate rsso-endpoint-block-attribute if present
@@ -653,8 +624,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE:
             return (
                 False,
-                f"Invalid rsso-endpoint-block-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE)}",
+                f"Invalid rsso-endpoint-block-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE)}",
             )
 
     # Validate sso-attribute if present
@@ -663,8 +633,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSO_ATTRIBUTE:
             return (
                 False,
-                f"Invalid sso-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSO_ATTRIBUTE)}",
+                f"Invalid sso-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_SSO_ATTRIBUTE)}",
             )
 
     # Validate sso-attribute-key if present
@@ -679,8 +648,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE:
             return (
                 False,
-                f"Invalid sso-attribute-value-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE)}",
+                f"Invalid sso-attribute-value-override '{value}'. Must be one of: {', '.join(VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE)}",
             )
 
     # Validate rsso-context-timeout if present
@@ -723,8 +691,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_LOG_FLAGS:
             return (
                 False,
-                f"Invalid rsso-log-flags '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_LOG_FLAGS)}",
+                f"Invalid rsso-log-flags '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_LOG_FLAGS)}",
             )
 
     # Validate rsso-flush-ip-session if present
@@ -733,8 +700,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_FLUSH_IP_SESSION:
             return (
                 False,
-                f"Invalid rsso-flush-ip-session '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_FLUSH_IP_SESSION)}",
+                f"Invalid rsso-flush-ip-session '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_FLUSH_IP_SESSION)}",
             )
 
     # Validate rsso-ep-one-ip-only if present
@@ -743,8 +709,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RSSO_EP_ONE_IP_ONLY:
             return (
                 False,
-                f"Invalid rsso-ep-one-ip-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_EP_ONE_IP_ONLY)}",
+                f"Invalid rsso-ep-one-ip-only '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_EP_ONE_IP_ONLY)}",
             )
 
     # Validate delimiter if present
@@ -753,8 +718,7 @@ def validate_radius_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DELIMITER:
             return (
                 False,
-                f"Invalid delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DELIMITER)}",
+                f"Invalid delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_DELIMITER)}",
             )
 
     return (True, None)
@@ -838,8 +802,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_ALL_USERGROUP:
             return (
                 False,
-                f"Invalid all-usergroup '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALL_USERGROUP)}",
+                f"Invalid all-usergroup '{value}'. Must be one of: {', '.join(VALID_BODY_ALL_USERGROUP)}",
             )
 
     # Validate use-management-vdom if present
@@ -848,8 +811,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_USE_MANAGEMENT_VDOM:
             return (
                 False,
-                f"Invalid use-management-vdom '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_MANAGEMENT_VDOM)}",
+                f"Invalid use-management-vdom '{value}'. Must be one of: {', '.join(VALID_BODY_USE_MANAGEMENT_VDOM)}",
             )
 
     # Validate switch-controller-nas-ip-dynamic if present
@@ -858,8 +820,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC:
             return (
                 False,
-                f"Invalid switch-controller-nas-ip-dynamic '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC)}",
+                f"Invalid switch-controller-nas-ip-dynamic '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_NAS_IP_DYNAMIC)}",
             )
 
     # Validate nas-id-type if present
@@ -868,8 +829,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_NAS_ID_TYPE:
             return (
                 False,
-                f"Invalid nas-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAS_ID_TYPE)}",
+                f"Invalid nas-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_NAS_ID_TYPE)}",
             )
 
     # Validate call-station-id-type if present
@@ -878,8 +838,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_CALL_STATION_ID_TYPE:
             return (
                 False,
-                f"Invalid call-station-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CALL_STATION_ID_TYPE)}",
+                f"Invalid call-station-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_CALL_STATION_ID_TYPE)}",
             )
 
     # Validate nas-id if present
@@ -911,8 +870,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RADIUS_COA:
             return (
                 False,
-                f"Invalid radius-coa '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RADIUS_COA)}",
+                f"Invalid radius-coa '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_COA)}",
             )
 
     # Validate radius-port if present
@@ -932,8 +890,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_H3C_COMPATIBILITY:
             return (
                 False,
-                f"Invalid h3c-compatibility '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_H3C_COMPATIBILITY)}",
+                f"Invalid h3c-compatibility '{value}'. Must be one of: {', '.join(VALID_BODY_H3C_COMPATIBILITY)}",
             )
 
     # Validate auth-type if present
@@ -942,8 +899,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate source-ip if present
@@ -964,8 +920,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_USERNAME_CASE_SENSITIVE:
             return (
                 False,
-                f"Invalid username-case-sensitive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USERNAME_CASE_SENSITIVE)}",
+                f"Invalid username-case-sensitive '{value}'. Must be one of: {', '.join(VALID_BODY_USERNAME_CASE_SENSITIVE)}",
             )
 
     # Validate group-override-attr-type if present
@@ -974,8 +929,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE:
             return (
                 False,
-                f"Invalid group-override-attr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE)}",
+                f"Invalid group-override-attr-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_OVERRIDE_ATTR_TYPE)}",
             )
 
     # Validate password-renewal if present
@@ -984,8 +938,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_PASSWORD_RENEWAL:
             return (
                 False,
-                f"Invalid password-renewal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
+                f"Invalid password-renewal '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_RENEWAL)}",
             )
 
     # Validate require-message-authenticator if present
@@ -994,8 +947,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR:
             return (
                 False,
-                f"Invalid require-message-authenticator '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR)}",
+                f"Invalid require-message-authenticator '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_MESSAGE_AUTHENTICATOR)}",
             )
 
     # Validate password-encoding if present
@@ -1004,8 +956,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_PASSWORD_ENCODING:
             return (
                 False,
-                f"Invalid password-encoding '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD_ENCODING)}",
+                f"Invalid password-encoding '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD_ENCODING)}",
             )
 
     # Validate mac-username-delimiter if present
@@ -1014,8 +965,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_MAC_USERNAME_DELIMITER:
             return (
                 False,
-                f"Invalid mac-username-delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
+                f"Invalid mac-username-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_USERNAME_DELIMITER)}",
             )
 
     # Validate mac-password-delimiter if present
@@ -1024,8 +974,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_MAC_PASSWORD_DELIMITER:
             return (
                 False,
-                f"Invalid mac-password-delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
+                f"Invalid mac-password-delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_PASSWORD_DELIMITER)}",
             )
 
     # Validate mac-case if present
@@ -1034,8 +983,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_MAC_CASE:
             return (
                 False,
-                f"Invalid mac-case '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAC_CASE)}",
+                f"Invalid mac-case '{value}'. Must be one of: {', '.join(VALID_BODY_MAC_CASE)}",
             )
 
     # Validate acct-all-servers if present
@@ -1044,8 +992,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_ACCT_ALL_SERVERS:
             return (
                 False,
-                f"Invalid acct-all-servers '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCT_ALL_SERVERS)}",
+                f"Invalid acct-all-servers '{value}'. Must be one of: {', '.join(VALID_BODY_ACCT_ALL_SERVERS)}",
             )
 
     # Validate switch-controller-acct-fast-framedip-detect if present
@@ -1071,8 +1018,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present
@@ -1098,8 +1044,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE:
             return (
                 False,
-                f"Invalid switch-controller-service-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE)}",
+                f"Invalid switch-controller-service-type '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_SERVICE_TYPE)}",
             )
 
     # Validate transport-protocol if present
@@ -1108,8 +1053,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_TRANSPORT_PROTOCOL:
             return (
                 False,
-                f"Invalid transport-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT_PROTOCOL)}",
+                f"Invalid transport-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT_PROTOCOL)}",
             )
 
     # Validate tls-min-proto-version if present
@@ -1118,8 +1062,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_TLS_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid tls-min-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TLS_MIN_PROTO_VERSION)}",
+                f"Invalid tls-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_TLS_MIN_PROTO_VERSION)}",
             )
 
     # Validate ca-cert if present
@@ -1140,8 +1083,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_SERVER_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid server-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
+                f"Invalid server-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_IDENTITY_CHECK)}",
             )
 
     # Validate account-key-processing if present
@@ -1150,8 +1092,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_ACCOUNT_KEY_PROCESSING:
             return (
                 False,
-                f"Invalid account-key-processing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
+                f"Invalid account-key-processing '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_PROCESSING)}",
             )
 
     # Validate account-key-cert-field if present
@@ -1160,8 +1101,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_ACCOUNT_KEY_CERT_FIELD:
             return (
                 False,
-                f"Invalid account-key-cert-field '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
+                f"Invalid account-key-cert-field '{value}'. Must be one of: {', '.join(VALID_BODY_ACCOUNT_KEY_CERT_FIELD)}",
             )
 
     # Validate rsso if present
@@ -1170,8 +1110,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO:
             return (
                 False,
-                f"Invalid rsso '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO)}",
+                f"Invalid rsso '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO)}",
             )
 
     # Validate rsso-radius-server-port if present
@@ -1197,8 +1136,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_RADIUS_RESPONSE:
             return (
                 False,
-                f"Invalid rsso-radius-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_RADIUS_RESPONSE)}",
+                f"Invalid rsso-radius-response '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_RADIUS_RESPONSE)}",
             )
 
     # Validate rsso-validate-request-secret if present
@@ -1207,8 +1145,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET:
             return (
                 False,
-                f"Invalid rsso-validate-request-secret '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET)}",
+                f"Invalid rsso-validate-request-secret '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_VALIDATE_REQUEST_SECRET)}",
             )
 
     # Validate rsso-endpoint-attribute if present
@@ -1217,8 +1154,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE:
             return (
                 False,
-                f"Invalid rsso-endpoint-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE)}",
+                f"Invalid rsso-endpoint-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_ENDPOINT_ATTRIBUTE)}",
             )
 
     # Validate rsso-endpoint-block-attribute if present
@@ -1227,8 +1163,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE:
             return (
                 False,
-                f"Invalid rsso-endpoint-block-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE)}",
+                f"Invalid rsso-endpoint-block-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_ENDPOINT_BLOCK_ATTRIBUTE)}",
             )
 
     # Validate sso-attribute if present
@@ -1237,8 +1172,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_SSO_ATTRIBUTE:
             return (
                 False,
-                f"Invalid sso-attribute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSO_ATTRIBUTE)}",
+                f"Invalid sso-attribute '{value}'. Must be one of: {', '.join(VALID_BODY_SSO_ATTRIBUTE)}",
             )
 
     # Validate sso-attribute-key if present
@@ -1253,8 +1187,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE:
             return (
                 False,
-                f"Invalid sso-attribute-value-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE)}",
+                f"Invalid sso-attribute-value-override '{value}'. Must be one of: {', '.join(VALID_BODY_SSO_ATTRIBUTE_VALUE_OVERRIDE)}",
             )
 
     # Validate rsso-context-timeout if present
@@ -1297,8 +1230,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_LOG_FLAGS:
             return (
                 False,
-                f"Invalid rsso-log-flags '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_LOG_FLAGS)}",
+                f"Invalid rsso-log-flags '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_LOG_FLAGS)}",
             )
 
     # Validate rsso-flush-ip-session if present
@@ -1307,8 +1239,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_FLUSH_IP_SESSION:
             return (
                 False,
-                f"Invalid rsso-flush-ip-session '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_FLUSH_IP_SESSION)}",
+                f"Invalid rsso-flush-ip-session '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_FLUSH_IP_SESSION)}",
             )
 
     # Validate rsso-ep-one-ip-only if present
@@ -1317,8 +1248,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_RSSO_EP_ONE_IP_ONLY:
             return (
                 False,
-                f"Invalid rsso-ep-one-ip-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSSO_EP_ONE_IP_ONLY)}",
+                f"Invalid rsso-ep-one-ip-only '{value}'. Must be one of: {', '.join(VALID_BODY_RSSO_EP_ONE_IP_ONLY)}",
             )
 
     # Validate delimiter if present
@@ -1327,8 +1257,7 @@ def validate_radius_put(
         if value and value not in VALID_BODY_DELIMITER:
             return (
                 False,
-                f"Invalid delimiter '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DELIMITER)}",
+                f"Invalid delimiter '{value}'. Must be one of: {', '.join(VALID_BODY_DELIMITER)}",
             )
 
     return (True, None)

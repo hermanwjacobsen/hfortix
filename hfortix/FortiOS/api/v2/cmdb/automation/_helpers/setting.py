@@ -46,8 +46,7 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,8 +96,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FABRIC_SYNC:
             return (
                 False,
-                f"Invalid fabric-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_SYNC)}",
+                f"Invalid fabric-sync '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_SYNC)}",
             )
 
     # Validate secure-mode if present
@@ -107,8 +105,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_SECURE_MODE:
             return (
                 False,
-                f"Invalid secure-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURE_MODE)}",
+                f"Invalid secure-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE_MODE)}",
             )
 
     return (True, None)

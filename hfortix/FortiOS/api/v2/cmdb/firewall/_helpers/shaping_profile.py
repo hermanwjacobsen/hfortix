@@ -46,8 +46,7 @@ def validate_shaping_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -88,8 +87,7 @@ def validate_shaping_profile_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate npu-offloading if present
@@ -98,8 +96,7 @@ def validate_shaping_profile_post(
         if value and value not in VALID_BODY_NPU_OFFLOADING:
             return (
                 False,
-                f"Invalid npu-offloading '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NPU_OFFLOADING)}",
+                f"Invalid npu-offloading '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOADING)}",
             )
 
     # Validate default-class-id if present

@@ -51,8 +51,7 @@ def validate_speed_test_schedule_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server-name if present
@@ -103,8 +101,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate dynamic-server if present
@@ -113,8 +110,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_DYNAMIC_SERVER:
             return (
                 False,
-                f"Invalid dynamic-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DYNAMIC_SERVER)}",
+                f"Invalid dynamic-server '{value}'. Must be one of: {', '.join(VALID_BODY_DYNAMIC_SERVER)}",
             )
 
     # Validate ctrl-port if present
@@ -145,8 +141,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_UPDATE_SHAPER:
             return (
                 False,
-                f"Invalid update-shaper '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_SHAPER)}",
+                f"Invalid update-shaper '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_SHAPER)}",
             )
 
     # Validate update-inbandwidth if present
@@ -155,8 +150,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_UPDATE_INBANDWIDTH:
             return (
                 False,
-                f"Invalid update-inbandwidth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_INBANDWIDTH)}",
+                f"Invalid update-inbandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_INBANDWIDTH)}",
             )
 
     # Validate update-outbandwidth if present
@@ -165,8 +159,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_UPDATE_OUTBANDWIDTH:
             return (
                 False,
-                f"Invalid update-outbandwidth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_OUTBANDWIDTH)}",
+                f"Invalid update-outbandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_OUTBANDWIDTH)}",
             )
 
     # Validate update-interface-shaping if present
@@ -175,8 +168,7 @@ def validate_speed_test_schedule_post(
         if value and value not in VALID_BODY_UPDATE_INTERFACE_SHAPING:
             return (
                 False,
-                f"Invalid update-interface-shaping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_INTERFACE_SHAPING)}",
+                f"Invalid update-interface-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_INTERFACE_SHAPING)}",
             )
 
     # Validate update-inbandwidth-maximum if present

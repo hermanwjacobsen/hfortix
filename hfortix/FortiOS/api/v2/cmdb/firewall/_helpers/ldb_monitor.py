@@ -46,8 +46,7 @@ def validate_ldb_monitor_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_ldb_monitor_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate interval if present
@@ -165,8 +163,7 @@ def validate_ldb_monitor_post(
         if value and value not in VALID_BODY_DNS_PROTOCOL:
             return (
                 False,
-                f"Invalid dns-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_PROTOCOL)}",
+                f"Invalid dns-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_PROTOCOL)}",
             )
 
     # Validate dns-request-domain if present
@@ -216,8 +213,7 @@ def validate_ldb_monitor_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate interval if present
@@ -299,8 +295,7 @@ def validate_ldb_monitor_put(
         if value and value not in VALID_BODY_DNS_PROTOCOL:
             return (
                 False,
-                f"Invalid dns-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_PROTOCOL)}",
+                f"Invalid dns-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_PROTOCOL)}",
             )
 
     # Validate dns-request-domain if present

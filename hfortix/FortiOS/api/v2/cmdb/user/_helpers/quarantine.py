@@ -45,8 +45,7 @@ def validate_quarantine_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,8 +78,7 @@ def validate_quarantine_put(
         if value and value not in VALID_BODY_QUARANTINE:
             return (
                 False,
-                f"Invalid quarantine '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QUARANTINE)}",
+                f"Invalid quarantine '{value}'. Must be one of: {', '.join(VALID_BODY_QUARANTINE)}",
             )
 
     # Validate traffic-policy if present

@@ -49,8 +49,7 @@ def validate_standalone_cluster_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -114,8 +113,7 @@ def validate_standalone_cluster_put(
         if value and value not in VALID_BODY_LAYER2_CONNECTION:
             return (
                 False,
-                f"Invalid layer2-connection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LAYER2_CONNECTION)}",
+                f"Invalid layer2-connection '{value}'. Must be one of: {', '.join(VALID_BODY_LAYER2_CONNECTION)}",
             )
 
     # Validate encryption if present
@@ -124,8 +122,7 @@ def validate_standalone_cluster_put(
         if value and value not in VALID_BODY_ENCRYPTION:
             return (
                 False,
-                f"Invalid encryption '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCRYPTION)}",
+                f"Invalid encryption '{value}'. Must be one of: {', '.join(VALID_BODY_ENCRYPTION)}",
             )
 
     # Validate asymmetric-traffic-control if present
@@ -134,8 +131,7 @@ def validate_standalone_cluster_put(
         if value and value not in VALID_BODY_ASYMMETRIC_TRAFFIC_CONTROL:
             return (
                 False,
-                f"Invalid asymmetric-traffic-control '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASYMMETRIC_TRAFFIC_CONTROL)}",
+                f"Invalid asymmetric-traffic-control '{value}'. Must be one of: {', '.join(VALID_BODY_ASYMMETRIC_TRAFFIC_CONTROL)}",
             )
 
     # Validate helper-traffic-bounce if present
@@ -144,8 +140,7 @@ def validate_standalone_cluster_put(
         if value and value not in VALID_BODY_HELPER_TRAFFIC_BOUNCE:
             return (
                 False,
-                f"Invalid helper-traffic-bounce '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HELPER_TRAFFIC_BOUNCE)}",
+                f"Invalid helper-traffic-bounce '{value}'. Must be one of: {', '.join(VALID_BODY_HELPER_TRAFFIC_BOUNCE)}",
             )
 
     # Validate utm-traffic-bounce if present
@@ -154,8 +149,7 @@ def validate_standalone_cluster_put(
         if value and value not in VALID_BODY_UTM_TRAFFIC_BOUNCE:
             return (
                 False,
-                f"Invalid utm-traffic-bounce '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UTM_TRAFFIC_BOUNCE)}",
+                f"Invalid utm-traffic-bounce '{value}'. Must be one of: {', '.join(VALID_BODY_UTM_TRAFFIC_BOUNCE)}",
             )
 
     return (True, None)

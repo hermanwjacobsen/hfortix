@@ -45,8 +45,7 @@ def validate_security_rating_settings_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,8 +78,7 @@ def validate_security_rating_settings_put(
         if value and value not in VALID_BODY_OVERRIDE_SYNC:
             return (
                 False,
-                f"Invalid override-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_SYNC)}",
+                f"Invalid override-sync '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SYNC)}",
             )
 
     return (True, None)

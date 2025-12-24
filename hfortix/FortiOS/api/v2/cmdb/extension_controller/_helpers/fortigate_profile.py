@@ -45,8 +45,7 @@ def validate_fortigate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -92,8 +91,7 @@ def validate_fortigate_profile_post(
         if value and value not in VALID_BODY_EXTENSION:
             return (
                 False,
-                f"Invalid extension '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENSION)}",
+                f"Invalid extension '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION)}",
             )
 
     return (True, None)
@@ -148,8 +146,7 @@ def validate_fortigate_profile_put(
         if value and value not in VALID_BODY_EXTENSION:
             return (
                 False,
-                f"Invalid extension '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENSION)}",
+                f"Invalid extension '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION)}",
             )
 
     return (True, None)

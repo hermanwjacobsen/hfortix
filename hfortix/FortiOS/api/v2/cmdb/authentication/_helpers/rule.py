@@ -53,8 +53,7 @@ def validate_rule_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate protocol if present
@@ -97,8 +95,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate ip-based if present
@@ -107,8 +104,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IP_BASED:
             return (
                 False,
-                f"Invalid ip-based '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_BASED)}",
+                f"Invalid ip-based '{value}'. Must be one of: {', '.join(VALID_BODY_IP_BASED)}",
             )
 
     # Validate active-auth-method if present
@@ -129,8 +125,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEB_AUTH_COOKIE:
             return (
                 False,
-                f"Invalid web-auth-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEB_AUTH_COOKIE)}",
+                f"Invalid web-auth-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_AUTH_COOKIE)}",
             )
 
     # Validate cors-stateful if present
@@ -139,8 +134,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CORS_STATEFUL:
             return (
                 False,
-                f"Invalid cors-stateful '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CORS_STATEFUL)}",
+                f"Invalid cors-stateful '{value}'. Must be one of: {', '.join(VALID_BODY_CORS_STATEFUL)}",
             )
 
     # Validate cors-depth if present
@@ -160,8 +154,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CERT_AUTH_COOKIE:
             return (
                 False,
-                f"Invalid cert-auth-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_AUTH_COOKIE)}",
+                f"Invalid cert-auth-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_AUTH_COOKIE)}",
             )
 
     # Validate transaction-based if present
@@ -170,8 +163,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TRANSACTION_BASED:
             return (
                 False,
-                f"Invalid transaction-based '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSACTION_BASED)}",
+                f"Invalid transaction-based '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSACTION_BASED)}",
             )
 
     # Validate web-portal if present
@@ -180,8 +172,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WEB_PORTAL:
             return (
                 False,
-                f"Invalid web-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEB_PORTAL)}",
+                f"Invalid web-portal '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_PORTAL)}",
             )
 
     # Validate comments if present
@@ -196,8 +187,7 @@ def validate_rule_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SESSION_LOGOUT:
             return (
                 False,
-                f"Invalid session-logout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SESSION_LOGOUT)}",
+                f"Invalid session-logout '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_LOGOUT)}",
             )
 
     return (True, None)
@@ -241,8 +231,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate protocol if present
@@ -251,8 +240,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate ip-based if present
@@ -261,8 +249,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_IP_BASED:
             return (
                 False,
-                f"Invalid ip-based '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_BASED)}",
+                f"Invalid ip-based '{value}'. Must be one of: {', '.join(VALID_BODY_IP_BASED)}",
             )
 
     # Validate active-auth-method if present
@@ -283,8 +270,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_WEB_AUTH_COOKIE:
             return (
                 False,
-                f"Invalid web-auth-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEB_AUTH_COOKIE)}",
+                f"Invalid web-auth-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_AUTH_COOKIE)}",
             )
 
     # Validate cors-stateful if present
@@ -293,8 +279,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_CORS_STATEFUL:
             return (
                 False,
-                f"Invalid cors-stateful '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CORS_STATEFUL)}",
+                f"Invalid cors-stateful '{value}'. Must be one of: {', '.join(VALID_BODY_CORS_STATEFUL)}",
             )
 
     # Validate cors-depth if present
@@ -314,8 +299,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_CERT_AUTH_COOKIE:
             return (
                 False,
-                f"Invalid cert-auth-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_AUTH_COOKIE)}",
+                f"Invalid cert-auth-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_AUTH_COOKIE)}",
             )
 
     # Validate transaction-based if present
@@ -324,8 +308,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_TRANSACTION_BASED:
             return (
                 False,
-                f"Invalid transaction-based '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSACTION_BASED)}",
+                f"Invalid transaction-based '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSACTION_BASED)}",
             )
 
     # Validate web-portal if present
@@ -334,8 +317,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_WEB_PORTAL:
             return (
                 False,
-                f"Invalid web-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEB_PORTAL)}",
+                f"Invalid web-portal '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_PORTAL)}",
             )
 
     # Validate comments if present
@@ -350,8 +332,7 @@ def validate_rule_put(
         if value and value not in VALID_BODY_SESSION_LOGOUT:
             return (
                 False,
-                f"Invalid session-logout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SESSION_LOGOUT)}",
+                f"Invalid session-logout '{value}'. Must be one of: {', '.join(VALID_BODY_SESSION_LOGOUT)}",
             )
 
     return (True, None)

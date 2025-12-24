@@ -66,8 +66,7 @@ def validate_schedule_recurring_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,8 +101,7 @@ def validate_schedule_recurring_post(
         if value and value not in VALID_BODY_DAY:
             return (
                 False,
-                f"Invalid day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DAY)}",
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
             )
 
     # Validate label-day if present
@@ -112,8 +110,7 @@ def validate_schedule_recurring_post(
         if value and value not in VALID_BODY_LABEL_DAY:
             return (
                 False,
-                f"Invalid label-day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LABEL_DAY)}",
+                f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}",
             )
 
     # Validate color if present
@@ -133,8 +130,7 @@ def validate_schedule_recurring_post(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -178,8 +174,7 @@ def validate_schedule_recurring_put(
         if value and value not in VALID_BODY_DAY:
             return (
                 False,
-                f"Invalid day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DAY)}",
+                f"Invalid day '{value}'. Must be one of: {', '.join(VALID_BODY_DAY)}",
             )
 
     # Validate label-day if present
@@ -188,8 +183,7 @@ def validate_schedule_recurring_put(
         if value and value not in VALID_BODY_LABEL_DAY:
             return (
                 False,
-                f"Invalid label-day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LABEL_DAY)}",
+                f"Invalid label-day '{value}'. Must be one of: {', '.join(VALID_BODY_LABEL_DAY)}",
             )
 
     # Validate color if present
@@ -209,8 +203,7 @@ def validate_schedule_recurring_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

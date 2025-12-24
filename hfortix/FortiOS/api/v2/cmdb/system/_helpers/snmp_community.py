@@ -97,8 +97,7 @@ def validate_snmp_community_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -144,8 +143,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate query-v1-status if present
@@ -154,8 +152,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_QUERY_V1_STATUS:
             return (
                 False,
-                f"Invalid query-v1-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QUERY_V1_STATUS)}",
+                f"Invalid query-v1-status '{value}'. Must be one of: {', '.join(VALID_BODY_QUERY_V1_STATUS)}",
             )
 
     # Validate query-v1-port if present
@@ -178,8 +175,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_QUERY_V2C_STATUS:
             return (
                 False,
-                f"Invalid query-v2c-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QUERY_V2C_STATUS)}",
+                f"Invalid query-v2c-status '{value}'. Must be one of: {', '.join(VALID_BODY_QUERY_V2C_STATUS)}",
             )
 
     # Validate query-v2c-port if present
@@ -202,8 +198,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_TRAP_V1_STATUS:
             return (
                 False,
-                f"Invalid trap-v1-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAP_V1_STATUS)}",
+                f"Invalid trap-v1-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_V1_STATUS)}",
             )
 
     # Validate trap-v1-lport if present
@@ -240,8 +235,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_TRAP_V2C_STATUS:
             return (
                 False,
-                f"Invalid trap-v2c-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAP_V2C_STATUS)}",
+                f"Invalid trap-v2c-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_V2C_STATUS)}",
             )
 
     # Validate trap-v2c-lport if present
@@ -278,8 +272,7 @@ def validate_snmp_community_post(
         if value and value not in VALID_BODY_EVENTS:
             return (
                 False,
-                f"Invalid events '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EVENTS)}",
+                f"Invalid events '{value}'. Must be one of: {', '.join(VALID_BODY_EVENTS)}",
             )
 
     # Validate mib-view if present
@@ -340,8 +333,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate query-v1-status if present
@@ -350,8 +342,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_QUERY_V1_STATUS:
             return (
                 False,
-                f"Invalid query-v1-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QUERY_V1_STATUS)}",
+                f"Invalid query-v1-status '{value}'. Must be one of: {', '.join(VALID_BODY_QUERY_V1_STATUS)}",
             )
 
     # Validate query-v1-port if present
@@ -374,8 +365,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_QUERY_V2C_STATUS:
             return (
                 False,
-                f"Invalid query-v2c-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QUERY_V2C_STATUS)}",
+                f"Invalid query-v2c-status '{value}'. Must be one of: {', '.join(VALID_BODY_QUERY_V2C_STATUS)}",
             )
 
     # Validate query-v2c-port if present
@@ -398,8 +388,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_TRAP_V1_STATUS:
             return (
                 False,
-                f"Invalid trap-v1-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAP_V1_STATUS)}",
+                f"Invalid trap-v1-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_V1_STATUS)}",
             )
 
     # Validate trap-v1-lport if present
@@ -436,8 +425,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_TRAP_V2C_STATUS:
             return (
                 False,
-                f"Invalid trap-v2c-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRAP_V2C_STATUS)}",
+                f"Invalid trap-v2c-status '{value}'. Must be one of: {', '.join(VALID_BODY_TRAP_V2C_STATUS)}",
             )
 
     # Validate trap-v2c-lport if present
@@ -474,8 +462,7 @@ def validate_snmp_community_put(
         if value and value not in VALID_BODY_EVENTS:
             return (
                 False,
-                f"Invalid events '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EVENTS)}",
+                f"Invalid events '{value}'. Must be one of: {', '.join(VALID_BODY_EVENTS)}",
             )
 
     # Validate mib-view if present

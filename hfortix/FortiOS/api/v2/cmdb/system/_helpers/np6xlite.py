@@ -78,8 +78,7 @@ def validate_np6xlite_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -112,8 +111,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FASTPATH:
             return (
                 False,
-                f"Invalid fastpath '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FASTPATH)}",
+                f"Invalid fastpath '{value}'. Must be one of: {', '.join(VALID_BODY_FASTPATH)}",
             )
 
     # Validate per-session-accounting if present
@@ -122,8 +120,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PER_SESSION_ACCOUNTING:
             return (
                 False,
-                f"Invalid per-session-accounting '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PER_SESSION_ACCOUNTING)}",
+                f"Invalid per-session-accounting '{value}'. Must be one of: {', '.join(VALID_BODY_PER_SESSION_ACCOUNTING)}",
             )
 
     # Validate session-timeout-interval if present
@@ -149,8 +146,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPSEC_INNER_FRAGMENT:
             return (
                 False,
-                f"Invalid ipsec-inner-fragment '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_INNER_FRAGMENT)}",
+                f"Invalid ipsec-inner-fragment '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_INNER_FRAGMENT)}",
             )
 
     # Validate ipsec-throughput-msg-frequency if present
@@ -159,8 +155,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY:
             return (
                 False,
-                f"Invalid ipsec-throughput-msg-frequency '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY)}",
+                f"Invalid ipsec-throughput-msg-frequency '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY)}",
             )
 
     # Validate ipsec-sts-timeout if present
@@ -169,8 +164,7 @@ def validate_np6xlite_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_IPSEC_STS_TIMEOUT:
             return (
                 False,
-                f"Invalid ipsec-sts-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_STS_TIMEOUT)}",
+                f"Invalid ipsec-sts-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_STS_TIMEOUT)}",
             )
 
     return (True, None)
@@ -214,8 +208,7 @@ def validate_np6xlite_put(
         if value and value not in VALID_BODY_FASTPATH:
             return (
                 False,
-                f"Invalid fastpath '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FASTPATH)}",
+                f"Invalid fastpath '{value}'. Must be one of: {', '.join(VALID_BODY_FASTPATH)}",
             )
 
     # Validate per-session-accounting if present
@@ -224,8 +217,7 @@ def validate_np6xlite_put(
         if value and value not in VALID_BODY_PER_SESSION_ACCOUNTING:
             return (
                 False,
-                f"Invalid per-session-accounting '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PER_SESSION_ACCOUNTING)}",
+                f"Invalid per-session-accounting '{value}'. Must be one of: {', '.join(VALID_BODY_PER_SESSION_ACCOUNTING)}",
             )
 
     # Validate session-timeout-interval if present
@@ -251,8 +243,7 @@ def validate_np6xlite_put(
         if value and value not in VALID_BODY_IPSEC_INNER_FRAGMENT:
             return (
                 False,
-                f"Invalid ipsec-inner-fragment '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_INNER_FRAGMENT)}",
+                f"Invalid ipsec-inner-fragment '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_INNER_FRAGMENT)}",
             )
 
     # Validate ipsec-throughput-msg-frequency if present
@@ -261,8 +252,7 @@ def validate_np6xlite_put(
         if value and value not in VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY:
             return (
                 False,
-                f"Invalid ipsec-throughput-msg-frequency '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY)}",
+                f"Invalid ipsec-throughput-msg-frequency '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_THROUGHPUT_MSG_FREQUENCY)}",
             )
 
     # Validate ipsec-sts-timeout if present
@@ -271,8 +261,7 @@ def validate_np6xlite_put(
         if value and value not in VALID_BODY_IPSEC_STS_TIMEOUT:
             return (
                 False,
-                f"Invalid ipsec-sts-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_STS_TIMEOUT)}",
+                f"Invalid ipsec-sts-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_STS_TIMEOUT)}",
             )
 
     return (True, None)

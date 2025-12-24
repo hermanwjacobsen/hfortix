@@ -46,8 +46,7 @@ def validate_dns64_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,8 +79,7 @@ def validate_dns64_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate always-synthesize-aaaa-record if present
@@ -90,8 +88,7 @@ def validate_dns64_put(
         if value and value not in VALID_BODY_ALWAYS_SYNTHESIZE_AAAA_RECORD:
             return (
                 False,
-                f"Invalid always-synthesize-aaaa-record '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALWAYS_SYNTHESIZE_AAAA_RECORD)}",
+                f"Invalid always-synthesize-aaaa-record '{value}'. Must be one of: {', '.join(VALID_BODY_ALWAYS_SYNTHESIZE_AAAA_RECORD)}",
             )
 
     return (True, None)

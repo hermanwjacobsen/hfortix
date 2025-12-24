@@ -71,8 +71,7 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -105,8 +104,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_RESOLVE_IP:
             return (
                 False,
-                f"Invalid resolve-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESOLVE_IP)}",
+                f"Invalid resolve-ip '{value}'. Must be one of: {', '.join(VALID_BODY_RESOLVE_IP)}",
             )
 
     # Validate resolve-port if present
@@ -115,8 +113,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_RESOLVE_PORT:
             return (
                 False,
-                f"Invalid resolve-port '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESOLVE_PORT)}",
+                f"Invalid resolve-port '{value}'. Must be one of: {', '.join(VALID_BODY_RESOLVE_PORT)}",
             )
 
     # Validate log-user-in-upper if present
@@ -125,8 +122,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOG_USER_IN_UPPER:
             return (
                 False,
-                f"Invalid log-user-in-upper '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_USER_IN_UPPER)}",
+                f"Invalid log-user-in-upper '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_USER_IN_UPPER)}",
             )
 
     # Validate fwpolicy-implicit-log if present
@@ -135,8 +131,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FWPOLICY_IMPLICIT_LOG:
             return (
                 False,
-                f"Invalid fwpolicy-implicit-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FWPOLICY_IMPLICIT_LOG)}",
+                f"Invalid fwpolicy-implicit-log '{value}'. Must be one of: {', '.join(VALID_BODY_FWPOLICY_IMPLICIT_LOG)}",
             )
 
     # Validate fwpolicy6-implicit-log if present
@@ -145,8 +140,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FWPOLICY6_IMPLICIT_LOG:
             return (
                 False,
-                f"Invalid fwpolicy6-implicit-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FWPOLICY6_IMPLICIT_LOG)}",
+                f"Invalid fwpolicy6-implicit-log '{value}'. Must be one of: {', '.join(VALID_BODY_FWPOLICY6_IMPLICIT_LOG)}",
             )
 
     # Validate extended-log if present
@@ -155,8 +149,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     # Validate local-in-allow if present
@@ -165,8 +158,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_IN_ALLOW:
             return (
                 False,
-                f"Invalid local-in-allow '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_IN_ALLOW)}",
+                f"Invalid local-in-allow '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_IN_ALLOW)}",
             )
 
     # Validate local-in-deny-unicast if present
@@ -175,8 +167,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_IN_DENY_UNICAST:
             return (
                 False,
-                f"Invalid local-in-deny-unicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_IN_DENY_UNICAST)}",
+                f"Invalid local-in-deny-unicast '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_IN_DENY_UNICAST)}",
             )
 
     # Validate local-in-deny-broadcast if present
@@ -185,8 +176,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_IN_DENY_BROADCAST:
             return (
                 False,
-                f"Invalid local-in-deny-broadcast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_IN_DENY_BROADCAST)}",
+                f"Invalid local-in-deny-broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_IN_DENY_BROADCAST)}",
             )
 
     # Validate local-in-policy-log if present
@@ -195,8 +185,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_IN_POLICY_LOG:
             return (
                 False,
-                f"Invalid local-in-policy-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_IN_POLICY_LOG)}",
+                f"Invalid local-in-policy-log '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_IN_POLICY_LOG)}",
             )
 
     # Validate local-out if present
@@ -205,8 +194,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_OUT:
             return (
                 False,
-                f"Invalid local-out '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_OUT)}",
+                f"Invalid local-out '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_OUT)}",
             )
 
     # Validate local-out-ioc-detection if present
@@ -215,8 +203,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOCAL_OUT_IOC_DETECTION:
             return (
                 False,
-                f"Invalid local-out-ioc-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCAL_OUT_IOC_DETECTION)}",
+                f"Invalid local-out-ioc-detection '{value}'. Must be one of: {', '.join(VALID_BODY_LOCAL_OUT_IOC_DETECTION)}",
             )
 
     # Validate daemon-log if present
@@ -225,8 +212,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_DAEMON_LOG:
             return (
                 False,
-                f"Invalid daemon-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DAEMON_LOG)}",
+                f"Invalid daemon-log '{value}'. Must be one of: {', '.join(VALID_BODY_DAEMON_LOG)}",
             )
 
     # Validate neighbor-event if present
@@ -235,8 +221,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_NEIGHBOR_EVENT:
             return (
                 False,
-                f"Invalid neighbor-event '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NEIGHBOR_EVENT)}",
+                f"Invalid neighbor-event '{value}'. Must be one of: {', '.join(VALID_BODY_NEIGHBOR_EVENT)}",
             )
 
     # Validate brief-traffic-format if present
@@ -245,8 +230,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_BRIEF_TRAFFIC_FORMAT:
             return (
                 False,
-                f"Invalid brief-traffic-format '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BRIEF_TRAFFIC_FORMAT)}",
+                f"Invalid brief-traffic-format '{value}'. Must be one of: {', '.join(VALID_BODY_BRIEF_TRAFFIC_FORMAT)}",
             )
 
     # Validate user-anonymize if present
@@ -255,8 +239,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_USER_ANONYMIZE:
             return (
                 False,
-                f"Invalid user-anonymize '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_ANONYMIZE)}",
+                f"Invalid user-anonymize '{value}'. Must be one of: {', '.join(VALID_BODY_USER_ANONYMIZE)}",
             )
 
     # Validate expolicy-implicit-log if present
@@ -265,8 +248,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_EXPOLICY_IMPLICIT_LOG:
             return (
                 False,
-                f"Invalid expolicy-implicit-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPOLICY_IMPLICIT_LOG)}",
+                f"Invalid expolicy-implicit-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXPOLICY_IMPLICIT_LOG)}",
             )
 
     # Validate log-policy-comment if present
@@ -275,8 +257,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOG_POLICY_COMMENT:
             return (
                 False,
-                f"Invalid log-policy-comment '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_POLICY_COMMENT)}",
+                f"Invalid log-policy-comment '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_POLICY_COMMENT)}",
             )
 
     # Validate faz-override if present
@@ -285,8 +266,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FAZ_OVERRIDE:
             return (
                 False,
-                f"Invalid faz-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAZ_OVERRIDE)}",
+                f"Invalid faz-override '{value}'. Must be one of: {', '.join(VALID_BODY_FAZ_OVERRIDE)}",
             )
 
     # Validate syslog-override if present
@@ -295,8 +275,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_SYSLOG_OVERRIDE:
             return (
                 False,
-                f"Invalid syslog-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSLOG_OVERRIDE)}",
+                f"Invalid syslog-override '{value}'. Must be one of: {', '.join(VALID_BODY_SYSLOG_OVERRIDE)}",
             )
 
     # Validate rest-api-set if present
@@ -305,8 +284,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_REST_API_SET:
             return (
                 False,
-                f"Invalid rest-api-set '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REST_API_SET)}",
+                f"Invalid rest-api-set '{value}'. Must be one of: {', '.join(VALID_BODY_REST_API_SET)}",
             )
 
     # Validate rest-api-get if present
@@ -315,8 +293,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_REST_API_GET:
             return (
                 False,
-                f"Invalid rest-api-get '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REST_API_GET)}",
+                f"Invalid rest-api-get '{value}'. Must be one of: {', '.join(VALID_BODY_REST_API_GET)}",
             )
 
     # Validate rest-api-performance if present
@@ -325,8 +302,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_REST_API_PERFORMANCE:
             return (
                 False,
-                f"Invalid rest-api-performance '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REST_API_PERFORMANCE)}",
+                f"Invalid rest-api-performance '{value}'. Must be one of: {', '.join(VALID_BODY_REST_API_PERFORMANCE)}",
             )
 
     # Validate long-live-session-stat if present
@@ -335,8 +311,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LONG_LIVE_SESSION_STAT:
             return (
                 False,
-                f"Invalid long-live-session-stat '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LONG_LIVE_SESSION_STAT)}",
+                f"Invalid long-live-session-stat '{value}'. Must be one of: {', '.join(VALID_BODY_LONG_LIVE_SESSION_STAT)}",
             )
 
     # Validate extended-utm-log if present
@@ -345,8 +320,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_EXTENDED_UTM_LOG:
             return (
                 False,
-                f"Invalid extended-utm-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_UTM_LOG)}",
+                f"Invalid extended-utm-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_UTM_LOG)}",
             )
 
     # Validate zone-name if present
@@ -355,8 +329,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_ZONE_NAME:
             return (
                 False,
-                f"Invalid zone-name '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ZONE_NAME)}",
+                f"Invalid zone-name '{value}'. Must be one of: {', '.join(VALID_BODY_ZONE_NAME)}",
             )
 
     # Validate web-svc-perf if present
@@ -365,8 +338,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_WEB_SVC_PERF:
             return (
                 False,
-                f"Invalid web-svc-perf '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEB_SVC_PERF)}",
+                f"Invalid web-svc-perf '{value}'. Must be one of: {', '.join(VALID_BODY_WEB_SVC_PERF)}",
             )
 
     # Validate anonymization-hash if present

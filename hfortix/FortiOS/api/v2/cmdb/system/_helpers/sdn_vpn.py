@@ -47,8 +47,7 @@ def validate_sdn_vpn_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REMOTE_TYPE:
             return (
                 False,
-                f"Invalid remote-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_TYPE)}",
+                f"Invalid remote-type '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_TYPE)}",
             )
 
     # Validate routing-type if present
@@ -97,8 +95,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ROUTING_TYPE:
             return (
                 False,
-                f"Invalid routing-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTING_TYPE)}",
+                f"Invalid routing-type '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTING_TYPE)}",
             )
 
     # Validate vgw-id if present
@@ -136,8 +133,7 @@ def validate_sdn_vpn_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT_TRAVERSAL:
             return (
                 False,
-                f"Invalid nat-traversal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT_TRAVERSAL)}",
+                f"Invalid nat-traversal '{value}'. Must be one of: {', '.join(VALID_BODY_NAT_TRAVERSAL)}",
             )
 
     # Validate tunnel-interface if present
@@ -238,8 +234,7 @@ def validate_sdn_vpn_put(
         if value and value not in VALID_BODY_REMOTE_TYPE:
             return (
                 False,
-                f"Invalid remote-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_TYPE)}",
+                f"Invalid remote-type '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_TYPE)}",
             )
 
     # Validate routing-type if present
@@ -248,8 +243,7 @@ def validate_sdn_vpn_put(
         if value and value not in VALID_BODY_ROUTING_TYPE:
             return (
                 False,
-                f"Invalid routing-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTING_TYPE)}",
+                f"Invalid routing-type '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTING_TYPE)}",
             )
 
     # Validate vgw-id if present
@@ -287,8 +281,7 @@ def validate_sdn_vpn_put(
         if value and value not in VALID_BODY_NAT_TRAVERSAL:
             return (
                 False,
-                f"Invalid nat-traversal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT_TRAVERSAL)}",
+                f"Invalid nat-traversal '{value}'. Must be one of: {', '.join(VALID_BODY_NAT_TRAVERSAL)}",
             )
 
     # Validate tunnel-interface if present

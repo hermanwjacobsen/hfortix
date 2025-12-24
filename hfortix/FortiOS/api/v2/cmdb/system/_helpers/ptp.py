@@ -48,8 +48,7 @@ def validate_ptp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_ptp_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate mode if present
@@ -92,8 +90,7 @@ def validate_ptp_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate delay-mechanism if present
@@ -102,8 +99,7 @@ def validate_ptp_put(
         if value and value not in VALID_BODY_DELAY_MECHANISM:
             return (
                 False,
-                f"Invalid delay-mechanism '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DELAY_MECHANISM)}",
+                f"Invalid delay-mechanism '{value}'. Must be one of: {', '.join(VALID_BODY_DELAY_MECHANISM)}",
             )
 
     # Validate request-interval if present
@@ -132,8 +128,7 @@ def validate_ptp_put(
         if value and value not in VALID_BODY_SERVER_MODE:
             return (
                 False,
-                f"Invalid server-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_MODE)}",
+                f"Invalid server-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_MODE)}",
             )
 
     return (True, None)

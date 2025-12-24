@@ -47,8 +47,7 @@ def validate_arrp_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -316,8 +315,7 @@ def validate_arrp_profile_post(
         if value and value not in VALID_BODY_INCLUDE_WEATHER_CHANNEL:
             return (
                 False,
-                f"Invalid include-weather-channel '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_WEATHER_CHANNEL)}",
+                f"Invalid include-weather-channel '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_WEATHER_CHANNEL)}",
             )
 
     # Validate include-dfs-channel if present
@@ -326,8 +324,7 @@ def validate_arrp_profile_post(
         if value and value not in VALID_BODY_INCLUDE_DFS_CHANNEL:
             return (
                 False,
-                f"Invalid include-dfs-channel '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_DFS_CHANNEL)}",
+                f"Invalid include-dfs-channel '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_DFS_CHANNEL)}",
             )
 
     # Validate override-darrp-optimize if present
@@ -336,8 +333,7 @@ def validate_arrp_profile_post(
         if value and value not in VALID_BODY_OVERRIDE_DARRP_OPTIMIZE:
             return (
                 False,
-                f"Invalid override-darrp-optimize '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_DARRP_OPTIMIZE)}",
+                f"Invalid override-darrp-optimize '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_DARRP_OPTIMIZE)}",
             )
 
     # Validate darrp-optimize if present
@@ -628,8 +624,7 @@ def validate_arrp_profile_put(
         if value and value not in VALID_BODY_INCLUDE_WEATHER_CHANNEL:
             return (
                 False,
-                f"Invalid include-weather-channel '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_WEATHER_CHANNEL)}",
+                f"Invalid include-weather-channel '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_WEATHER_CHANNEL)}",
             )
 
     # Validate include-dfs-channel if present
@@ -638,8 +633,7 @@ def validate_arrp_profile_put(
         if value and value not in VALID_BODY_INCLUDE_DFS_CHANNEL:
             return (
                 False,
-                f"Invalid include-dfs-channel '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_DFS_CHANNEL)}",
+                f"Invalid include-dfs-channel '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_DFS_CHANNEL)}",
             )
 
     # Validate override-darrp-optimize if present
@@ -648,8 +642,7 @@ def validate_arrp_profile_put(
         if value and value not in VALID_BODY_OVERRIDE_DARRP_OPTIMIZE:
             return (
                 False,
-                f"Invalid override-darrp-optimize '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_DARRP_OPTIMIZE)}",
+                f"Invalid override-darrp-optimize '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_DARRP_OPTIMIZE)}",
             )
 
     # Validate darrp-optimize if present

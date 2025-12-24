@@ -47,8 +47,7 @@ def validate_sensor_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -93,8 +92,7 @@ def validate_sensor_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_BLOCK_MALICIOUS_URL:
             return (
                 False,
-                f"Invalid block-malicious-url '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLOCK_MALICIOUS_URL)}",
+                f"Invalid block-malicious-url '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_MALICIOUS_URL)}",
             )
 
     # Validate scan-botnet-connections if present
@@ -103,8 +101,7 @@ def validate_sensor_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     # Validate extended-log if present
@@ -113,8 +110,7 @@ def validate_sensor_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     return (True, None)
@@ -170,8 +166,7 @@ def validate_sensor_put(
         if value and value not in VALID_BODY_BLOCK_MALICIOUS_URL:
             return (
                 False,
-                f"Invalid block-malicious-url '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLOCK_MALICIOUS_URL)}",
+                f"Invalid block-malicious-url '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_MALICIOUS_URL)}",
             )
 
     # Validate scan-botnet-connections if present
@@ -180,8 +175,7 @@ def validate_sensor_put(
         if value and value not in VALID_BODY_SCAN_BOTNET_CONNECTIONS:
             return (
                 False,
-                f"Invalid scan-botnet-connections '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
+                f"Invalid scan-botnet-connections '{value}'. Must be one of: {', '.join(VALID_BODY_SCAN_BOTNET_CONNECTIONS)}",
             )
 
     # Validate extended-log if present
@@ -190,8 +184,7 @@ def validate_sensor_put(
         if value and value not in VALID_BODY_EXTENDED_LOG:
             return (
                 False,
-                f"Invalid extended-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENDED_LOG)}",
+                f"Invalid extended-log '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENDED_LOG)}",
             )
 
     return (True, None)

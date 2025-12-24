@@ -56,8 +56,7 @@ def validate_group_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,8 +100,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_GROUP_TYPE:
             return (
                 False,
-                f"Invalid group-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_TYPE)}",
+                f"Invalid group-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_TYPE)}",
             )
 
     # Validate authtimeout if present
@@ -122,8 +120,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_CONCURRENT_OVERRIDE:
             return (
                 False,
-                f"Invalid auth-concurrent-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
+                f"Invalid auth-concurrent-override '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
             )
 
     # Validate auth-concurrent-value if present
@@ -161,8 +158,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USER_ID:
             return (
                 False,
-                f"Invalid user-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_ID)}",
+                f"Invalid user-id '{value}'. Must be one of: {', '.join(VALID_BODY_USER_ID)}",
             )
 
     # Validate password if present
@@ -171,8 +167,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PASSWORD:
             return (
                 False,
-                f"Invalid password '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD)}",
+                f"Invalid password '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD)}",
             )
 
     # Validate user-name if present
@@ -181,8 +176,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USER_NAME:
             return (
                 False,
-                f"Invalid user-name '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_NAME)}",
+                f"Invalid user-name '{value}'. Must be one of: {', '.join(VALID_BODY_USER_NAME)}",
             )
 
     # Validate sponsor if present
@@ -191,8 +185,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SPONSOR:
             return (
                 False,
-                f"Invalid sponsor '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPONSOR)}",
+                f"Invalid sponsor '{value}'. Must be one of: {', '.join(VALID_BODY_SPONSOR)}",
             )
 
     # Validate company if present
@@ -201,8 +194,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_COMPANY:
             return (
                 False,
-                f"Invalid company '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_COMPANY)}",
+                f"Invalid company '{value}'. Must be one of: {', '.join(VALID_BODY_COMPANY)}",
             )
 
     # Validate email if present
@@ -211,8 +203,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EMAIL:
             return (
                 False,
-                f"Invalid email '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMAIL)}",
+                f"Invalid email '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL)}",
             )
 
     # Validate mobile-phone if present
@@ -221,8 +212,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MOBILE_PHONE:
             return (
                 False,
-                f"Invalid mobile-phone '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MOBILE_PHONE)}",
+                f"Invalid mobile-phone '{value}'. Must be one of: {', '.join(VALID_BODY_MOBILE_PHONE)}",
             )
 
     # Validate sms-server if present
@@ -231,8 +221,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -247,8 +236,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXPIRE_TYPE:
             return (
                 False,
-                f"Invalid expire-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPIRE_TYPE)}",
+                f"Invalid expire-type '{value}'. Must be one of: {', '.join(VALID_BODY_EXPIRE_TYPE)}",
             )
 
     # Validate expire if present
@@ -279,8 +267,7 @@ def validate_group_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MULTIPLE_GUEST_ADD:
             return (
                 False,
-                f"Invalid multiple-guest-add '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTIPLE_GUEST_ADD)}",
+                f"Invalid multiple-guest-add '{value}'. Must be one of: {', '.join(VALID_BODY_MULTIPLE_GUEST_ADD)}",
             )
 
     return (True, None)
@@ -335,8 +322,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_GROUP_TYPE:
             return (
                 False,
-                f"Invalid group-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_TYPE)}",
+                f"Invalid group-type '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_TYPE)}",
             )
 
     # Validate authtimeout if present
@@ -356,8 +342,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_AUTH_CONCURRENT_OVERRIDE:
             return (
                 False,
-                f"Invalid auth-concurrent-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
+                f"Invalid auth-concurrent-override '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_CONCURRENT_OVERRIDE)}",
             )
 
     # Validate auth-concurrent-value if present
@@ -395,8 +380,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_USER_ID:
             return (
                 False,
-                f"Invalid user-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_ID)}",
+                f"Invalid user-id '{value}'. Must be one of: {', '.join(VALID_BODY_USER_ID)}",
             )
 
     # Validate password if present
@@ -405,8 +389,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_PASSWORD:
             return (
                 False,
-                f"Invalid password '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSWORD)}",
+                f"Invalid password '{value}'. Must be one of: {', '.join(VALID_BODY_PASSWORD)}",
             )
 
     # Validate user-name if present
@@ -415,8 +398,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_USER_NAME:
             return (
                 False,
-                f"Invalid user-name '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USER_NAME)}",
+                f"Invalid user-name '{value}'. Must be one of: {', '.join(VALID_BODY_USER_NAME)}",
             )
 
     # Validate sponsor if present
@@ -425,8 +407,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_SPONSOR:
             return (
                 False,
-                f"Invalid sponsor '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPONSOR)}",
+                f"Invalid sponsor '{value}'. Must be one of: {', '.join(VALID_BODY_SPONSOR)}",
             )
 
     # Validate company if present
@@ -435,8 +416,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_COMPANY:
             return (
                 False,
-                f"Invalid company '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_COMPANY)}",
+                f"Invalid company '{value}'. Must be one of: {', '.join(VALID_BODY_COMPANY)}",
             )
 
     # Validate email if present
@@ -445,8 +425,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_EMAIL:
             return (
                 False,
-                f"Invalid email '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMAIL)}",
+                f"Invalid email '{value}'. Must be one of: {', '.join(VALID_BODY_EMAIL)}",
             )
 
     # Validate mobile-phone if present
@@ -455,8 +434,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_MOBILE_PHONE:
             return (
                 False,
-                f"Invalid mobile-phone '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MOBILE_PHONE)}",
+                f"Invalid mobile-phone '{value}'. Must be one of: {', '.join(VALID_BODY_MOBILE_PHONE)}",
             )
 
     # Validate sms-server if present
@@ -465,8 +443,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_SMS_SERVER:
             return (
                 False,
-                f"Invalid sms-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMS_SERVER)}",
+                f"Invalid sms-server '{value}'. Must be one of: {', '.join(VALID_BODY_SMS_SERVER)}",
             )
 
     # Validate sms-custom-server if present
@@ -481,8 +458,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_EXPIRE_TYPE:
             return (
                 False,
-                f"Invalid expire-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPIRE_TYPE)}",
+                f"Invalid expire-type '{value}'. Must be one of: {', '.join(VALID_BODY_EXPIRE_TYPE)}",
             )
 
     # Validate expire if present
@@ -513,8 +489,7 @@ def validate_group_put(
         if value and value not in VALID_BODY_MULTIPLE_GUEST_ADD:
             return (
                 False,
-                f"Invalid multiple-guest-add '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTIPLE_GUEST_ADD)}",
+                f"Invalid multiple-guest-add '{value}'. Must be one of: {', '.join(VALID_BODY_MULTIPLE_GUEST_ADD)}",
             )
 
     return (True, None)

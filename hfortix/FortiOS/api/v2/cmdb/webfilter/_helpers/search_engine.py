@@ -55,8 +55,7 @@ def validate_search_engine_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -109,8 +108,7 @@ def validate_search_engine_post(
         if value and value not in VALID_BODY_SAFESEARCH:
             return (
                 False,
-                f"Invalid safesearch '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAFESEARCH)}",
+                f"Invalid safesearch '{value}'. Must be one of: {', '.join(VALID_BODY_SAFESEARCH)}",
             )
 
     # Validate charset if present
@@ -119,8 +117,7 @@ def validate_search_engine_post(
         if value and value not in VALID_BODY_CHARSET:
             return (
                 False,
-                f"Invalid charset '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHARSET)}",
+                f"Invalid charset '{value}'. Must be one of: {', '.join(VALID_BODY_CHARSET)}",
             )
 
     # Validate safesearch-str if present
@@ -188,8 +185,7 @@ def validate_search_engine_put(
         if value and value not in VALID_BODY_SAFESEARCH:
             return (
                 False,
-                f"Invalid safesearch '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAFESEARCH)}",
+                f"Invalid safesearch '{value}'. Must be one of: {', '.join(VALID_BODY_SAFESEARCH)}",
             )
 
     # Validate charset if present
@@ -198,8 +194,7 @@ def validate_search_engine_put(
         if value and value not in VALID_BODY_CHARSET:
             return (
                 False,
-                f"Invalid charset '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHARSET)}",
+                f"Invalid charset '{value}'. Must be one of: {', '.join(VALID_BODY_CHARSET)}",
             )
 
     # Validate safesearch-str if present

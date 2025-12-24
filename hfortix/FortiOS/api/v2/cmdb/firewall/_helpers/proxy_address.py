@@ -71,8 +71,7 @@ def validate_proxy_address_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -107,8 +106,7 @@ def validate_proxy_address_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate host if present
@@ -141,8 +139,7 @@ def validate_proxy_address_post(
         if value and value not in VALID_BODY_REFERRER:
             return (
                 False,
-                f"Invalid referrer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REFERRER)}",
+                f"Invalid referrer '{value}'. Must be one of: {', '.join(VALID_BODY_REFERRER)}",
             )
 
     # Validate method if present
@@ -151,8 +148,7 @@ def validate_proxy_address_post(
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate ua if present
@@ -161,8 +157,7 @@ def validate_proxy_address_post(
         if value and value not in VALID_BODY_UA:
             return (
                 False,
-                f"Invalid ua '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UA)}",
+                f"Invalid ua '{value}'. Must be one of: {', '.join(VALID_BODY_UA)}",
             )
 
     # Validate ua-min-ver if present
@@ -195,8 +190,7 @@ def validate_proxy_address_post(
         if value and value not in VALID_BODY_CASE_SENSITIVITY:
             return (
                 False,
-                f"Invalid case-sensitivity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CASE_SENSITIVITY)}",
+                f"Invalid case-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_CASE_SENSITIVITY)}",
             )
 
     # Validate color if present
@@ -257,8 +251,7 @@ def validate_proxy_address_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate host if present
@@ -291,8 +284,7 @@ def validate_proxy_address_put(
         if value and value not in VALID_BODY_REFERRER:
             return (
                 False,
-                f"Invalid referrer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REFERRER)}",
+                f"Invalid referrer '{value}'. Must be one of: {', '.join(VALID_BODY_REFERRER)}",
             )
 
     # Validate method if present
@@ -301,8 +293,7 @@ def validate_proxy_address_put(
         if value and value not in VALID_BODY_METHOD:
             return (
                 False,
-                f"Invalid method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHOD)}",
+                f"Invalid method '{value}'. Must be one of: {', '.join(VALID_BODY_METHOD)}",
             )
 
     # Validate ua if present
@@ -311,8 +302,7 @@ def validate_proxy_address_put(
         if value and value not in VALID_BODY_UA:
             return (
                 False,
-                f"Invalid ua '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UA)}",
+                f"Invalid ua '{value}'. Must be one of: {', '.join(VALID_BODY_UA)}",
             )
 
     # Validate ua-min-ver if present
@@ -345,8 +335,7 @@ def validate_proxy_address_put(
         if value and value not in VALID_BODY_CASE_SENSITIVITY:
             return (
                 False,
-                f"Invalid case-sensitivity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CASE_SENSITIVITY)}",
+                f"Invalid case-sensitivity '{value}'. Must be one of: {', '.join(VALID_BODY_CASE_SENSITIVITY)}",
             )
 
     # Validate color if present

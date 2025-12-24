@@ -47,8 +47,7 @@ def validate_fsso_polling_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -88,8 +87,7 @@ def validate_fsso_polling_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server if present
@@ -161,8 +159,7 @@ def validate_fsso_polling_post(
         if value and value not in VALID_BODY_SMBV1:
             return (
                 False,
-                f"Invalid smbv1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMBV1)}",
+                f"Invalid smbv1 '{value}'. Must be one of: {', '.join(VALID_BODY_SMBV1)}",
             )
 
     # Validate smb-ntlmv1-auth if present
@@ -171,8 +168,7 @@ def validate_fsso_polling_post(
         if value and value not in VALID_BODY_SMB_NTLMV1_AUTH:
             return (
                 False,
-                f"Invalid smb-ntlmv1-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMB_NTLMV1_AUTH)}",
+                f"Invalid smb-ntlmv1-auth '{value}'. Must be one of: {', '.join(VALID_BODY_SMB_NTLMV1_AUTH)}",
             )
 
     return (True, None)
@@ -221,8 +217,7 @@ def validate_fsso_polling_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate server if present
@@ -294,8 +289,7 @@ def validate_fsso_polling_put(
         if value and value not in VALID_BODY_SMBV1:
             return (
                 False,
-                f"Invalid smbv1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMBV1)}",
+                f"Invalid smbv1 '{value}'. Must be one of: {', '.join(VALID_BODY_SMBV1)}",
             )
 
     # Validate smb-ntlmv1-auth if present
@@ -304,8 +298,7 @@ def validate_fsso_polling_put(
         if value and value not in VALID_BODY_SMB_NTLMV1_AUTH:
             return (
                 False,
-                f"Invalid smb-ntlmv1-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SMB_NTLMV1_AUTH)}",
+                f"Invalid smb-ntlmv1-auth '{value}'. Must be one of: {', '.join(VALID_BODY_SMB_NTLMV1_AUTH)}",
             )
 
     return (True, None)

@@ -61,8 +61,7 @@ def validate_managed_switch_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -121,8 +120,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_PURDUE_LEVEL:
             return (
                 False,
-                f"Invalid purdue-level '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PURDUE_LEVEL)}",
+                f"Invalid purdue-level '{value}'. Must be one of: {', '.join(VALID_BODY_PURDUE_LEVEL)}",
             )
 
     # Validate fsw-wan1-peer if present
@@ -137,8 +135,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_FSW_WAN1_ADMIN:
             return (
                 False,
-                f"Invalid fsw-wan1-admin '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FSW_WAN1_ADMIN)}",
+                f"Invalid fsw-wan1-admin '{value}'. Must be one of: {', '.join(VALID_BODY_FSW_WAN1_ADMIN)}",
             )
 
     # Validate poe-pre-standard-detection if present
@@ -147,8 +144,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_POE_PRE_STANDARD_DETECTION:
             return (
                 False,
-                f"Invalid poe-pre-standard-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_POE_PRE_STANDARD_DETECTION)}",
+                f"Invalid poe-pre-standard-detection '{value}'. Must be one of: {', '.join(VALID_BODY_POE_PRE_STANDARD_DETECTION)}",
             )
 
     # Validate dhcp-server-access-list if present
@@ -157,8 +153,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_DHCP_SERVER_ACCESS_LIST:
             return (
                 False,
-                f"Invalid dhcp-server-access-list '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SERVER_ACCESS_LIST)}",
+                f"Invalid dhcp-server-access-list '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SERVER_ACCESS_LIST)}",
             )
 
     # Validate poe-detection-type if present
@@ -320,8 +315,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_MCLAG_IGMP_SNOOPING_AWARE:
             return (
                 False,
-                f"Invalid mclag-igmp-snooping-aware '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MCLAG_IGMP_SNOOPING_AWARE)}",
+                f"Invalid mclag-igmp-snooping-aware '{value}'. Must be one of: {', '.join(VALID_BODY_MCLAG_IGMP_SNOOPING_AWARE)}",
             )
 
     # Validate dynamically-discovered if present
@@ -347,8 +341,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_PTP_STATUS:
             return (
                 False,
-                f"Invalid ptp-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PTP_STATUS)}",
+                f"Invalid ptp-status '{value}'. Must be one of: {', '.join(VALID_BODY_PTP_STATUS)}",
             )
 
     # Validate ptp-profile if present
@@ -363,8 +356,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_RADIUS_NAS_IP_OVERRIDE:
             return (
                 False,
-                f"Invalid radius-nas-ip-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RADIUS_NAS_IP_OVERRIDE)}",
+                f"Invalid radius-nas-ip-override '{value}'. Must be one of: {', '.join(VALID_BODY_RADIUS_NAS_IP_OVERRIDE)}",
             )
 
     # Validate route-offload if present
@@ -373,8 +365,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_ROUTE_OFFLOAD:
             return (
                 False,
-                f"Invalid route-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTE_OFFLOAD)}",
+                f"Invalid route-offload '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTE_OFFLOAD)}",
             )
 
     # Validate route-offload-mclag if present
@@ -383,8 +374,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_ROUTE_OFFLOAD_MCLAG:
             return (
                 False,
-                f"Invalid route-offload-mclag '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROUTE_OFFLOAD_MCLAG)}",
+                f"Invalid route-offload-mclag '{value}'. Must be one of: {', '.join(VALID_BODY_ROUTE_OFFLOAD_MCLAG)}",
             )
 
     # Validate type if present
@@ -393,8 +383,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate owner-vdom if present
@@ -435,8 +424,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_FIRMWARE_PROVISION:
             return (
                 False,
-                f"Invalid firmware-provision '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FIRMWARE_PROVISION)}",
+                f"Invalid firmware-provision '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION)}",
             )
 
     # Validate firmware-provision-version if present
@@ -454,8 +442,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_FIRMWARE_PROVISION_LATEST:
             return (
                 False,
-                f"Invalid firmware-provision-latest '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
+                f"Invalid firmware-provision-latest '{value}'. Must be one of: {', '.join(VALID_BODY_FIRMWARE_PROVISION_LATEST)}",
             )
 
     # Validate override-snmp-sysinfo if present
@@ -464,8 +451,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_OVERRIDE_SNMP_SYSINFO:
             return (
                 False,
-                f"Invalid override-snmp-sysinfo '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_SNMP_SYSINFO)}",
+                f"Invalid override-snmp-sysinfo '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SNMP_SYSINFO)}",
             )
 
     # Validate override-snmp-trap-threshold if present
@@ -474,8 +460,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_OVERRIDE_SNMP_TRAP_THRESHOLD:
             return (
                 False,
-                f"Invalid override-snmp-trap-threshold '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_SNMP_TRAP_THRESHOLD)}",
+                f"Invalid override-snmp-trap-threshold '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SNMP_TRAP_THRESHOLD)}",
             )
 
     # Validate override-snmp-community if present
@@ -484,8 +469,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_OVERRIDE_SNMP_COMMUNITY:
             return (
                 False,
-                f"Invalid override-snmp-community '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_SNMP_COMMUNITY)}",
+                f"Invalid override-snmp-community '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SNMP_COMMUNITY)}",
             )
 
     # Validate override-snmp-user if present
@@ -494,8 +478,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_OVERRIDE_SNMP_USER:
             return (
                 False,
-                f"Invalid override-snmp-user '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE_SNMP_USER)}",
+                f"Invalid override-snmp-user '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE_SNMP_USER)}",
             )
 
     # Validate qos-drop-policy if present
@@ -504,8 +487,7 @@ def validate_managed_switch_post(
         if value and value not in VALID_BODY_QOS_DROP_POLICY:
             return (
                 False,
-                f"Invalid qos-drop-policy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QOS_DROP_POLICY)}",
+                f"Invalid qos-drop-policy '{value}'. Must be one of: {', '.join(VALID_BODY_QOS_DROP_POLICY)}",
             )
 
     # Validate qos-red-probability if present

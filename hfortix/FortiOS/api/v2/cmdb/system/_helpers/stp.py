@@ -61,8 +61,7 @@ def validate_stp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,8 +94,7 @@ def validate_stp_put(
         if value and value not in VALID_BODY_SWITCH_PRIORITY:
             return (
                 False,
-                f"Invalid switch-priority '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_PRIORITY)}",
+                f"Invalid switch-priority '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_PRIORITY)}",
             )
 
     # Validate hello-time if present

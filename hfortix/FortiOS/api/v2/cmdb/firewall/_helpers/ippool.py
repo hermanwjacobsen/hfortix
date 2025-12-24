@@ -56,8 +56,7 @@ def validate_ippool_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,8 +89,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate startport if present
@@ -192,8 +190,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PERMIT_ANY_HOST:
             return (
                 False,
-                f"Invalid permit-any-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
+                f"Invalid permit-any-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
             )
 
     # Validate arp-reply if present
@@ -202,8 +199,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ARP_REPLY:
             return (
                 False,
-                f"Invalid arp-reply '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ARP_REPLY)}",
+                f"Invalid arp-reply '{value}'. Must be one of: {', '.join(VALID_BODY_ARP_REPLY)}",
             )
 
     # Validate arp-intf if present
@@ -230,8 +226,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate add-nat64-route if present
@@ -240,8 +235,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADD_NAT64_ROUTE:
             return (
                 False,
-                f"Invalid add-nat64-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
+                f"Invalid add-nat64-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
             )
 
     # Validate client-prefix-length if present
@@ -318,8 +312,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PRIVILEGED_PORT_USE_PBA:
             return (
                 False,
-                f"Invalid privileged-port-use-pba '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIVILEGED_PORT_USE_PBA)}",
+                f"Invalid privileged-port-use-pba '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVILEGED_PORT_USE_PBA)}",
             )
 
     # Validate subnet-broadcast-in-ippool if present
@@ -328,8 +321,7 @@ def validate_ippool_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL:
             return (
                 False,
-                f"Invalid subnet-broadcast-in-ippool '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL)}",
+                f"Invalid subnet-broadcast-in-ippool '{value}'. Must be one of: {', '.join(VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL)}",
             )
 
     return (True, None)
@@ -373,8 +365,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate startport if present
@@ -475,8 +466,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_PERMIT_ANY_HOST:
             return (
                 False,
-                f"Invalid permit-any-host '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
+                f"Invalid permit-any-host '{value}'. Must be one of: {', '.join(VALID_BODY_PERMIT_ANY_HOST)}",
             )
 
     # Validate arp-reply if present
@@ -485,8 +475,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_ARP_REPLY:
             return (
                 False,
-                f"Invalid arp-reply '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ARP_REPLY)}",
+                f"Invalid arp-reply '{value}'. Must be one of: {', '.join(VALID_BODY_ARP_REPLY)}",
             )
 
     # Validate arp-intf if present
@@ -513,8 +502,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate add-nat64-route if present
@@ -523,8 +511,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_ADD_NAT64_ROUTE:
             return (
                 False,
-                f"Invalid add-nat64-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
+                f"Invalid add-nat64-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_NAT64_ROUTE)}",
             )
 
     # Validate client-prefix-length if present
@@ -601,8 +588,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_PRIVILEGED_PORT_USE_PBA:
             return (
                 False,
-                f"Invalid privileged-port-use-pba '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIVILEGED_PORT_USE_PBA)}",
+                f"Invalid privileged-port-use-pba '{value}'. Must be one of: {', '.join(VALID_BODY_PRIVILEGED_PORT_USE_PBA)}",
             )
 
     # Validate subnet-broadcast-in-ippool if present
@@ -611,8 +597,7 @@ def validate_ippool_put(
         if value and value not in VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL:
             return (
                 False,
-                f"Invalid subnet-broadcast-in-ippool '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL)}",
+                f"Invalid subnet-broadcast-in-ippool '{value}'. Must be one of: {', '.join(VALID_BODY_SUBNET_BROADCAST_IN_IPPOOL)}",
             )
 
     return (True, None)

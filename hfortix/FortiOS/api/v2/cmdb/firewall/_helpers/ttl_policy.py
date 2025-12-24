@@ -46,8 +46,7 @@ def validate_ttl_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_ttl_policy_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate action if present
@@ -97,8 +95,7 @@ def validate_ttl_policy_post(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate srcintf if present
@@ -159,8 +156,7 @@ def validate_ttl_policy_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate action if present
@@ -169,8 +165,7 @@ def validate_ttl_policy_put(
         if value and value not in VALID_BODY_ACTION:
             return (
                 False,
-                f"Invalid action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACTION)}",
+                f"Invalid action '{value}'. Must be one of: {', '.join(VALID_BODY_ACTION)}",
             )
 
     # Validate srcintf if present

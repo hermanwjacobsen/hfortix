@@ -51,8 +51,7 @@ def validate_central_snat_map_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,8 +94,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -105,8 +103,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate protocol if present
@@ -126,8 +123,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_NAT:
             return (
                 False,
-                f"Invalid nat '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT)}",
+                f"Invalid nat '{value}'. Must be one of: {', '.join(VALID_BODY_NAT)}",
             )
 
     # Validate nat46 if present
@@ -136,8 +132,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate nat64 if present
@@ -146,8 +141,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate port-preserve if present
@@ -156,8 +150,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_PORT_PRESERVE:
             return (
                 False,
-                f"Invalid port-preserve '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORT_PRESERVE)}",
+                f"Invalid port-preserve '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_PRESERVE)}",
             )
 
     # Validate port-random if present
@@ -166,8 +159,7 @@ def validate_central_snat_map_post(
         if value and value not in VALID_BODY_PORT_RANDOM:
             return (
                 False,
-                f"Invalid port-random '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORT_RANDOM)}",
+                f"Invalid port-random '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_RANDOM)}",
             )
 
     # Validate comments if present
@@ -225,8 +217,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -235,8 +226,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate protocol if present
@@ -256,8 +246,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_NAT:
             return (
                 False,
-                f"Invalid nat '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT)}",
+                f"Invalid nat '{value}'. Must be one of: {', '.join(VALID_BODY_NAT)}",
             )
 
     # Validate nat46 if present
@@ -266,8 +255,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_NAT46:
             return (
                 False,
-                f"Invalid nat46 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT46)}",
+                f"Invalid nat46 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT46)}",
             )
 
     # Validate nat64 if present
@@ -276,8 +264,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_NAT64:
             return (
                 False,
-                f"Invalid nat64 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NAT64)}",
+                f"Invalid nat64 '{value}'. Must be one of: {', '.join(VALID_BODY_NAT64)}",
             )
 
     # Validate port-preserve if present
@@ -286,8 +273,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_PORT_PRESERVE:
             return (
                 False,
-                f"Invalid port-preserve '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORT_PRESERVE)}",
+                f"Invalid port-preserve '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_PRESERVE)}",
             )
 
     # Validate port-random if present
@@ -296,8 +282,7 @@ def validate_central_snat_map_put(
         if value and value not in VALID_BODY_PORT_RANDOM:
             return (
                 False,
-                f"Invalid port-random '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORT_RANDOM)}",
+                f"Invalid port-random '{value}'. Must be one of: {', '.join(VALID_BODY_PORT_RANDOM)}",
             )
 
     # Validate comments if present

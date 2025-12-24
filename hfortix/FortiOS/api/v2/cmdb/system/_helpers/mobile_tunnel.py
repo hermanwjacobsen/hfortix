@@ -48,8 +48,7 @@ def validate_mobile_tunnel_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -84,8 +83,7 @@ def validate_mobile_tunnel_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate roaming-interface if present
@@ -158,8 +156,7 @@ def validate_mobile_tunnel_post(
         if value and value not in VALID_BODY_N_MHAE_KEY_TYPE:
             return (
                 False,
-                f"Invalid n-mhae-key-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_N_MHAE_KEY_TYPE)}",
+                f"Invalid n-mhae-key-type '{value}'. Must be one of: {', '.join(VALID_BODY_N_MHAE_KEY_TYPE)}",
             )
 
     # Validate hash-algorithm if present
@@ -168,8 +165,7 @@ def validate_mobile_tunnel_post(
         if value and value not in VALID_BODY_HASH_ALGORITHM:
             return (
                 False,
-                f"Invalid hash-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HASH_ALGORITHM)}",
+                f"Invalid hash-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_HASH_ALGORITHM)}",
             )
 
     # Validate tunnel-mode if present
@@ -178,8 +174,7 @@ def validate_mobile_tunnel_post(
         if value and value not in VALID_BODY_TUNNEL_MODE:
             return (
                 False,
-                f"Invalid tunnel-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TUNNEL_MODE)}",
+                f"Invalid tunnel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_MODE)}",
             )
 
     return (True, None)
@@ -223,8 +218,7 @@ def validate_mobile_tunnel_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate roaming-interface if present
@@ -297,8 +291,7 @@ def validate_mobile_tunnel_put(
         if value and value not in VALID_BODY_N_MHAE_KEY_TYPE:
             return (
                 False,
-                f"Invalid n-mhae-key-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_N_MHAE_KEY_TYPE)}",
+                f"Invalid n-mhae-key-type '{value}'. Must be one of: {', '.join(VALID_BODY_N_MHAE_KEY_TYPE)}",
             )
 
     # Validate hash-algorithm if present
@@ -307,8 +300,7 @@ def validate_mobile_tunnel_put(
         if value and value not in VALID_BODY_HASH_ALGORITHM:
             return (
                 False,
-                f"Invalid hash-algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HASH_ALGORITHM)}",
+                f"Invalid hash-algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_HASH_ALGORITHM)}",
             )
 
     # Validate tunnel-mode if present
@@ -317,8 +309,7 @@ def validate_mobile_tunnel_put(
         if value and value not in VALID_BODY_TUNNEL_MODE:
             return (
                 False,
-                f"Invalid tunnel-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TUNNEL_MODE)}",
+                f"Invalid tunnel-mode '{value}'. Must be one of: {', '.join(VALID_BODY_TUNNEL_MODE)}",
             )
 
     return (True, None)

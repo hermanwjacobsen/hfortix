@@ -70,8 +70,7 @@ def validate_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -116,8 +115,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUEST:
             return (
                 False,
-                f"Invalid request '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUEST)}",
+                f"Invalid request '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST)}",
             )
 
     # Validate response if present
@@ -126,8 +124,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RESPONSE:
             return (
                 False,
-                f"Invalid response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE)}",
+                f"Invalid response '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE)}",
             )
 
     # Validate file-transfer if present
@@ -136,8 +133,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FILE_TRANSFER:
             return (
                 False,
-                f"Invalid file-transfer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_TRANSFER)}",
+                f"Invalid file-transfer '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_TRANSFER)}",
             )
 
     # Validate streaming-content-bypass if present
@@ -146,8 +142,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STREAMING_CONTENT_BYPASS:
             return (
                 False,
-                f"Invalid streaming-content-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STREAMING_CONTENT_BYPASS)}",
+                f"Invalid streaming-content-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_STREAMING_CONTENT_BYPASS)}",
             )
 
     # Validate ocr-only if present
@@ -156,8 +151,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_OCR_ONLY:
             return (
                 False,
-                f"Invalid ocr-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OCR_ONLY)}",
+                f"Invalid ocr-only '{value}'. Must be one of: {', '.join(VALID_BODY_OCR_ONLY)}",
             )
 
     # Validate 204-size-limit if present
@@ -177,8 +171,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_204_RESPONSE:
             return (
                 False,
-                f"Invalid 204-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_204_RESPONSE)}",
+                f"Invalid 204-response '{value}'. Must be one of: {', '.join(VALID_BODY_204_RESPONSE)}",
             )
 
     # Validate preview if present
@@ -187,8 +180,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PREVIEW:
             return (
                 False,
-                f"Invalid preview '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PREVIEW)}",
+                f"Invalid preview '{value}'. Must be one of: {', '.join(VALID_BODY_PREVIEW)}",
             )
 
     # Validate preview-data-length if present
@@ -232,8 +224,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_REQUEST_FAILURE:
             return (
                 False,
-                f"Invalid request-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUEST_FAILURE)}",
+                f"Invalid request-failure '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST_FAILURE)}",
             )
 
     # Validate response-failure if present
@@ -242,8 +233,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RESPONSE_FAILURE:
             return (
                 False,
-                f"Invalid response-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE_FAILURE)}",
+                f"Invalid response-failure '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE_FAILURE)}",
             )
 
     # Validate file-transfer-failure if present
@@ -252,8 +242,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FILE_TRANSFER_FAILURE:
             return (
                 False,
-                f"Invalid file-transfer-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_TRANSFER_FAILURE)}",
+                f"Invalid file-transfer-failure '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_TRANSFER_FAILURE)}",
             )
 
     # Validate request-path if present
@@ -280,8 +269,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_METHODS:
             return (
                 False,
-                f"Invalid methods '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHODS)}",
+                f"Invalid methods '{value}'. Must be one of: {', '.join(VALID_BODY_METHODS)}",
             )
 
     # Validate response-req-hdr if present
@@ -290,8 +278,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RESPONSE_REQ_HDR:
             return (
                 False,
-                f"Invalid response-req-hdr '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE_REQ_HDR)}",
+                f"Invalid response-req-hdr '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE_REQ_HDR)}",
             )
 
     # Validate respmod-default-action if present
@@ -300,8 +287,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RESPMOD_DEFAULT_ACTION:
             return (
                 False,
-                f"Invalid respmod-default-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPMOD_DEFAULT_ACTION)}",
+                f"Invalid respmod-default-action '{value}'. Must be one of: {', '.join(VALID_BODY_RESPMOD_DEFAULT_ACTION)}",
             )
 
     # Validate icap-block-log if present
@@ -310,8 +296,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ICAP_BLOCK_LOG:
             return (
                 False,
-                f"Invalid icap-block-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICAP_BLOCK_LOG)}",
+                f"Invalid icap-block-log '{value}'. Must be one of: {', '.join(VALID_BODY_ICAP_BLOCK_LOG)}",
             )
 
     # Validate chunk-encap if present
@@ -320,8 +305,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CHUNK_ENCAP:
             return (
                 False,
-                f"Invalid chunk-encap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHUNK_ENCAP)}",
+                f"Invalid chunk-encap '{value}'. Must be one of: {', '.join(VALID_BODY_CHUNK_ENCAP)}",
             )
 
     # Validate extension-feature if present
@@ -330,8 +314,7 @@ def validate_profile_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXTENSION_FEATURE:
             return (
                 False,
-                f"Invalid extension-feature '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENSION_FEATURE)}",
+                f"Invalid extension-feature '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION_FEATURE)}",
             )
 
     # Validate scan-progress-interval if present
@@ -415,8 +398,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_REQUEST:
             return (
                 False,
-                f"Invalid request '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUEST)}",
+                f"Invalid request '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST)}",
             )
 
     # Validate response if present
@@ -425,8 +407,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_RESPONSE:
             return (
                 False,
-                f"Invalid response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE)}",
+                f"Invalid response '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE)}",
             )
 
     # Validate file-transfer if present
@@ -435,8 +416,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FILE_TRANSFER:
             return (
                 False,
-                f"Invalid file-transfer '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_TRANSFER)}",
+                f"Invalid file-transfer '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_TRANSFER)}",
             )
 
     # Validate streaming-content-bypass if present
@@ -445,8 +425,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_STREAMING_CONTENT_BYPASS:
             return (
                 False,
-                f"Invalid streaming-content-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STREAMING_CONTENT_BYPASS)}",
+                f"Invalid streaming-content-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_STREAMING_CONTENT_BYPASS)}",
             )
 
     # Validate ocr-only if present
@@ -455,8 +434,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_OCR_ONLY:
             return (
                 False,
-                f"Invalid ocr-only '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OCR_ONLY)}",
+                f"Invalid ocr-only '{value}'. Must be one of: {', '.join(VALID_BODY_OCR_ONLY)}",
             )
 
     # Validate 204-size-limit if present
@@ -476,8 +454,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_204_RESPONSE:
             return (
                 False,
-                f"Invalid 204-response '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_204_RESPONSE)}",
+                f"Invalid 204-response '{value}'. Must be one of: {', '.join(VALID_BODY_204_RESPONSE)}",
             )
 
     # Validate preview if present
@@ -486,8 +463,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_PREVIEW:
             return (
                 False,
-                f"Invalid preview '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PREVIEW)}",
+                f"Invalid preview '{value}'. Must be one of: {', '.join(VALID_BODY_PREVIEW)}",
             )
 
     # Validate preview-data-length if present
@@ -531,8 +507,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_REQUEST_FAILURE:
             return (
                 False,
-                f"Invalid request-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUEST_FAILURE)}",
+                f"Invalid request-failure '{value}'. Must be one of: {', '.join(VALID_BODY_REQUEST_FAILURE)}",
             )
 
     # Validate response-failure if present
@@ -541,8 +516,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_RESPONSE_FAILURE:
             return (
                 False,
-                f"Invalid response-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE_FAILURE)}",
+                f"Invalid response-failure '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE_FAILURE)}",
             )
 
     # Validate file-transfer-failure if present
@@ -551,8 +525,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_FILE_TRANSFER_FAILURE:
             return (
                 False,
-                f"Invalid file-transfer-failure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILE_TRANSFER_FAILURE)}",
+                f"Invalid file-transfer-failure '{value}'. Must be one of: {', '.join(VALID_BODY_FILE_TRANSFER_FAILURE)}",
             )
 
     # Validate request-path if present
@@ -579,8 +552,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_METHODS:
             return (
                 False,
-                f"Invalid methods '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_METHODS)}",
+                f"Invalid methods '{value}'. Must be one of: {', '.join(VALID_BODY_METHODS)}",
             )
 
     # Validate response-req-hdr if present
@@ -589,8 +561,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_RESPONSE_REQ_HDR:
             return (
                 False,
-                f"Invalid response-req-hdr '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPONSE_REQ_HDR)}",
+                f"Invalid response-req-hdr '{value}'. Must be one of: {', '.join(VALID_BODY_RESPONSE_REQ_HDR)}",
             )
 
     # Validate respmod-default-action if present
@@ -599,8 +570,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_RESPMOD_DEFAULT_ACTION:
             return (
                 False,
-                f"Invalid respmod-default-action '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESPMOD_DEFAULT_ACTION)}",
+                f"Invalid respmod-default-action '{value}'. Must be one of: {', '.join(VALID_BODY_RESPMOD_DEFAULT_ACTION)}",
             )
 
     # Validate icap-block-log if present
@@ -609,8 +579,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_ICAP_BLOCK_LOG:
             return (
                 False,
-                f"Invalid icap-block-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICAP_BLOCK_LOG)}",
+                f"Invalid icap-block-log '{value}'. Must be one of: {', '.join(VALID_BODY_ICAP_BLOCK_LOG)}",
             )
 
     # Validate chunk-encap if present
@@ -619,8 +588,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_CHUNK_ENCAP:
             return (
                 False,
-                f"Invalid chunk-encap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHUNK_ENCAP)}",
+                f"Invalid chunk-encap '{value}'. Must be one of: {', '.join(VALID_BODY_CHUNK_ENCAP)}",
             )
 
     # Validate extension-feature if present
@@ -629,8 +597,7 @@ def validate_profile_put(
         if value and value not in VALID_BODY_EXTENSION_FEATURE:
             return (
                 False,
-                f"Invalid extension-feature '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTENSION_FEATURE)}",
+                f"Invalid extension-feature '{value}'. Must be one of: {', '.join(VALID_BODY_EXTENSION_FEATURE)}",
             )
 
     # Validate scan-progress-interval if present

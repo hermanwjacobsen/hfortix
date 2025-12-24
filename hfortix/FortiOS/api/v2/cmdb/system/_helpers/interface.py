@@ -256,8 +256,7 @@ def validate_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -326,8 +325,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FORTILINK:
             return (
                 False,
-                f"Invalid fortilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK)}",
+                f"Invalid fortilink '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK)}",
             )
 
     # Validate switch-controller-source-ip if present
@@ -336,8 +334,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP:
             return (
                 False,
-                f"Invalid switch-controller-source-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP)}",
+                f"Invalid switch-controller-source-ip '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP)}",
             )
 
     # Validate mode if present
@@ -346,8 +343,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate distance if present
@@ -381,8 +377,7 @@ def validate_interface_post(
         ):
             return (
                 False,
-                f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate dhcp-relay-interface if present
@@ -414,8 +409,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_BROADCAST_FLAG:
             return (
                 False,
-                f"Invalid dhcp-broadcast-flag '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_BROADCAST_FLAG)}",
+                f"Invalid dhcp-broadcast-flag '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_BROADCAST_FLAG)}",
             )
 
     # Validate dhcp-relay-service if present
@@ -424,8 +418,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_RELAY_SERVICE:
             return (
                 False,
-                f"Invalid dhcp-relay-service '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_SERVICE)}",
+                f"Invalid dhcp-relay-service '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_SERVICE)}",
             )
 
     # Validate dhcp-relay-circuit-id if present
@@ -443,8 +436,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER:
             return (
                 False,
-                f"Invalid dhcp-relay-request-all-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER)}",
+                f"Invalid dhcp-relay-request-all-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER)}",
             )
 
     # Validate dhcp-relay-allow-no-end-option if present
@@ -453,8 +445,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION:
             return (
                 False,
-                f"Invalid dhcp-relay-allow-no-end-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION)}",
+                f"Invalid dhcp-relay-allow-no-end-option '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION)}",
             )
 
     # Validate dhcp-relay-type if present
@@ -463,8 +454,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_RELAY_TYPE:
             return (
                 False,
-                f"Invalid dhcp-relay-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_TYPE)}",
+                f"Invalid dhcp-relay-type '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_TYPE)}",
             )
 
     # Validate dhcp-smart-relay if present
@@ -473,8 +463,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_SMART_RELAY:
             return (
                 False,
-                f"Invalid dhcp-smart-relay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SMART_RELAY)}",
+                f"Invalid dhcp-smart-relay '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SMART_RELAY)}",
             )
 
     # Validate dhcp-relay-agent-option if present
@@ -483,8 +472,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_RELAY_AGENT_OPTION:
             return (
                 False,
-                f"Invalid dhcp-relay-agent-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_AGENT_OPTION)}",
+                f"Invalid dhcp-relay-agent-option '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_AGENT_OPTION)}",
             )
 
     # Validate dhcp-classless-route-addition if present
@@ -493,8 +481,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION:
             return (
                 False,
-                f"Invalid dhcp-classless-route-addition '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION)}",
+                f"Invalid dhcp-classless-route-addition '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION)}",
             )
 
     # Validate allowaccess if present
@@ -503,8 +490,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate gwdetect if present
@@ -513,8 +499,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_GWDETECT:
             return (
                 False,
-                f"Invalid gwdetect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GWDETECT)}",
+                f"Invalid gwdetect '{value}'. Must be one of: {', '.join(VALID_BODY_GWDETECT)}",
             )
 
     # Validate ping-serv-status if present
@@ -540,8 +525,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DETECTPROTOCOL:
             return (
                 False,
-                f"Invalid detectprotocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DETECTPROTOCOL)}",
+                f"Invalid detectprotocol '{value}'. Must be one of: {', '.join(VALID_BODY_DETECTPROTOCOL)}",
             )
 
     # Validate ha-priority if present
@@ -561,8 +545,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FAIL_DETECT:
             return (
                 False,
-                f"Invalid fail-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_DETECT)}",
+                f"Invalid fail-detect '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_DETECT)}",
             )
 
     # Validate fail-detect-option if present
@@ -571,8 +554,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FAIL_DETECT_OPTION:
             return (
                 False,
-                f"Invalid fail-detect-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_DETECT_OPTION)}",
+                f"Invalid fail-detect-option '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_DETECT_OPTION)}",
             )
 
     # Validate fail-alert-method if present
@@ -581,8 +563,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FAIL_ALERT_METHOD:
             return (
                 False,
-                f"Invalid fail-alert-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_ALERT_METHOD)}",
+                f"Invalid fail-alert-method '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_ALERT_METHOD)}",
             )
 
     # Validate fail-action-on-extender if present
@@ -591,8 +572,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FAIL_ACTION_ON_EXTENDER:
             return (
                 False,
-                f"Invalid fail-action-on-extender '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_ACTION_ON_EXTENDER)}",
+                f"Invalid fail-action-on-extender '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_ACTION_ON_EXTENDER)}",
             )
 
     # Validate dhcp-client-identifier if present
@@ -633,8 +613,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PPPOE_EGRESS_COS:
             return (
                 False,
-                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
+                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
             )
 
     # Validate pppoe-unnumbered-negotiate if present
@@ -643,8 +622,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE:
             return (
                 False,
-                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
+                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
             )
 
     # Validate idle-timeout if present
@@ -664,8 +642,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MULTILINK:
             return (
                 False,
-                f"Invalid multilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTILINK)}",
+                f"Invalid multilink '{value}'. Must be one of: {', '.join(VALID_BODY_MULTILINK)}",
             )
 
     # Validate mrru if present
@@ -782,8 +759,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DEFAULTGW:
             return (
                 False,
-                f"Invalid defaultgw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULTGW)}",
+                f"Invalid defaultgw '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULTGW)}",
             )
 
     # Validate dns-server-override if present
@@ -792,8 +768,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DNS_SERVER_OVERRIDE:
             return (
                 False,
-                f"Invalid dns-server-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVER_OVERRIDE)}",
+                f"Invalid dns-server-override '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVER_OVERRIDE)}",
             )
 
     # Validate dns-server-protocol if present
@@ -802,8 +777,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DNS_SERVER_PROTOCOL:
             return (
                 False,
-                f"Invalid dns-server-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVER_PROTOCOL)}",
+                f"Invalid dns-server-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVER_PROTOCOL)}",
             )
 
     # Validate auth-type if present
@@ -812,8 +786,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate pptp-client if present
@@ -822,8 +795,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PPTP_CLIENT:
             return (
                 False,
-                f"Invalid pptp-client '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPTP_CLIENT)}",
+                f"Invalid pptp-client '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_CLIENT)}",
             )
 
     # Validate pptp-user if present
@@ -838,8 +810,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PPTP_AUTH_TYPE:
             return (
                 False,
-                f"Invalid pptp-auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPTP_AUTH_TYPE)}",
+                f"Invalid pptp-auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_AUTH_TYPE)}",
             )
 
     # Validate pptp-timeout if present
@@ -859,8 +830,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ARPFORWARD:
             return (
                 False,
-                f"Invalid arpforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ARPFORWARD)}",
+                f"Invalid arpforward '{value}'. Must be one of: {', '.join(VALID_BODY_ARPFORWARD)}",
             )
 
     # Validate ndiscforward if present
@@ -869,8 +839,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_NDISCFORWARD:
             return (
                 False,
-                f"Invalid ndiscforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NDISCFORWARD)}",
+                f"Invalid ndiscforward '{value}'. Must be one of: {', '.join(VALID_BODY_NDISCFORWARD)}",
             )
 
     # Validate broadcast-forward if present
@@ -879,8 +848,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_BROADCAST_FORWARD:
             return (
                 False,
-                f"Invalid broadcast-forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BROADCAST_FORWARD)}",
+                f"Invalid broadcast-forward '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_FORWARD)}",
             )
 
     # Validate bfd if present
@@ -889,8 +857,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
             )
 
     # Validate bfd-desired-min-tx if present
@@ -947,8 +914,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_L2FORWARD:
             return (
                 False,
-                f"Invalid l2forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2FORWARD)}",
+                f"Invalid l2forward '{value}'. Must be one of: {', '.join(VALID_BODY_L2FORWARD)}",
             )
 
     # Validate icmp-send-redirect if present
@@ -957,8 +923,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ICMP_SEND_REDIRECT:
             return (
                 False,
-                f"Invalid icmp-send-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICMP_SEND_REDIRECT)}",
+                f"Invalid icmp-send-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_SEND_REDIRECT)}",
             )
 
     # Validate icmp-accept-redirect if present
@@ -967,8 +932,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ICMP_ACCEPT_REDIRECT:
             return (
                 False,
-                f"Invalid icmp-accept-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICMP_ACCEPT_REDIRECT)}",
+                f"Invalid icmp-accept-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_ACCEPT_REDIRECT)}",
             )
 
     # Validate reachable-time if present
@@ -991,8 +955,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_VLANFORWARD:
             return (
                 False,
-                f"Invalid vlanforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VLANFORWARD)}",
+                f"Invalid vlanforward '{value}'. Must be one of: {', '.join(VALID_BODY_VLANFORWARD)}",
             )
 
     # Validate stpforward if present
@@ -1001,8 +964,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STPFORWARD:
             return (
                 False,
-                f"Invalid stpforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STPFORWARD)}",
+                f"Invalid stpforward '{value}'. Must be one of: {', '.join(VALID_BODY_STPFORWARD)}",
             )
 
     # Validate stpforward-mode if present
@@ -1011,8 +973,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STPFORWARD_MODE:
             return (
                 False,
-                f"Invalid stpforward-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STPFORWARD_MODE)}",
+                f"Invalid stpforward-mode '{value}'. Must be one of: {', '.join(VALID_BODY_STPFORWARD_MODE)}",
             )
 
     # Validate ips-sniffer-mode if present
@@ -1021,8 +982,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_IPS_SNIFFER_MODE:
             return (
                 False,
-                f"Invalid ips-sniffer-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPS_SNIFFER_MODE)}",
+                f"Invalid ips-sniffer-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_SNIFFER_MODE)}",
             )
 
     # Validate ident-accept if present
@@ -1031,8 +991,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_IDENT_ACCEPT:
             return (
                 False,
-                f"Invalid ident-accept '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IDENT_ACCEPT)}",
+                f"Invalid ident-accept '{value}'. Must be one of: {', '.join(VALID_BODY_IDENT_ACCEPT)}",
             )
 
     # Validate ipmac if present
@@ -1041,8 +1000,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_IPMAC:
             return (
                 False,
-                f"Invalid ipmac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPMAC)}",
+                f"Invalid ipmac '{value}'. Must be one of: {', '.join(VALID_BODY_IPMAC)}",
             )
 
     # Validate subst if present
@@ -1051,8 +1009,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SUBST:
             return (
                 False,
-                f"Invalid subst '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUBST)}",
+                f"Invalid subst '{value}'. Must be one of: {', '.join(VALID_BODY_SUBST)}",
             )
 
     # Validate speed if present
@@ -1061,8 +1018,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SPEED:
             return (
                 False,
-                f"Invalid speed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPEED)}",
+                f"Invalid speed '{value}'. Must be one of: {', '.join(VALID_BODY_SPEED)}",
             )
 
     # Validate status if present
@@ -1071,8 +1027,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate netbios-forward if present
@@ -1081,8 +1036,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_NETBIOS_FORWARD:
             return (
                 False,
-                f"Invalid netbios-forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETBIOS_FORWARD)}",
+                f"Invalid netbios-forward '{value}'. Must be one of: {', '.join(VALID_BODY_NETBIOS_FORWARD)}",
             )
 
     # Validate type if present
@@ -1091,8 +1045,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate dedicated-to if present
@@ -1101,8 +1054,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DEDICATED_TO:
             return (
                 False,
-                f"Invalid dedicated-to '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEDICATED_TO)}",
+                f"Invalid dedicated-to '{value}'. Must be one of: {', '.join(VALID_BODY_DEDICATED_TO)}",
             )
 
     # Validate wccp if present
@@ -1111,8 +1063,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_WCCP:
             return (
                 False,
-                f"Invalid wccp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WCCP)}",
+                f"Invalid wccp '{value}'. Must be one of: {', '.join(VALID_BODY_WCCP)}",
             )
 
     # Validate netflow-sampler if present
@@ -1121,8 +1072,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_NETFLOW_SAMPLER:
             return (
                 False,
-                f"Invalid netflow-sampler '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETFLOW_SAMPLER)}",
+                f"Invalid netflow-sampler '{value}'. Must be one of: {', '.join(VALID_BODY_NETFLOW_SAMPLER)}",
             )
 
     # Validate netflow-sample-rate if present
@@ -1165,8 +1115,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SFLOW_SAMPLER:
             return (
                 False,
-                f"Invalid sflow-sampler '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SFLOW_SAMPLER)}",
+                f"Invalid sflow-sampler '{value}'. Must be one of: {', '.join(VALID_BODY_SFLOW_SAMPLER)}",
             )
 
     # Validate drop-fragment if present
@@ -1175,8 +1124,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DROP_FRAGMENT:
             return (
                 False,
-                f"Invalid drop-fragment '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DROP_FRAGMENT)}",
+                f"Invalid drop-fragment '{value}'. Must be one of: {', '.join(VALID_BODY_DROP_FRAGMENT)}",
             )
 
     # Validate src-check if present
@@ -1185,8 +1133,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SRC_CHECK:
             return (
                 False,
-                f"Invalid src-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_CHECK)}",
+                f"Invalid src-check '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_CHECK)}",
             )
 
     # Validate sample-rate if present
@@ -1223,8 +1170,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SAMPLE_DIRECTION:
             return (
                 False,
-                f"Invalid sample-direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAMPLE_DIRECTION)}",
+                f"Invalid sample-direction '{value}'. Must be one of: {', '.join(VALID_BODY_SAMPLE_DIRECTION)}",
             )
 
     # Validate explicit-web-proxy if present
@@ -1233,8 +1179,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EXPLICIT_WEB_PROXY:
             return (
                 False,
-                f"Invalid explicit-web-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPLICIT_WEB_PROXY)}",
+                f"Invalid explicit-web-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_EXPLICIT_WEB_PROXY)}",
             )
 
     # Validate explicit-ftp-proxy if present
@@ -1243,8 +1188,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EXPLICIT_FTP_PROXY:
             return (
                 False,
-                f"Invalid explicit-ftp-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPLICIT_FTP_PROXY)}",
+                f"Invalid explicit-ftp-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_EXPLICIT_FTP_PROXY)}",
             )
 
     # Validate proxy-captive-portal if present
@@ -1253,8 +1197,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PROXY_CAPTIVE_PORTAL:
             return (
                 False,
-                f"Invalid proxy-captive-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROXY_CAPTIVE_PORTAL)}",
+                f"Invalid proxy-captive-portal '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_CAPTIVE_PORTAL)}",
             )
 
     # Validate tcp-mss if present
@@ -1371,8 +1314,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate mtu-override if present
@@ -1381,8 +1323,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MTU_OVERRIDE:
             return (
                 False,
-                f"Invalid mtu-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MTU_OVERRIDE)}",
+                f"Invalid mtu-override '{value}'. Must be one of: {', '.join(VALID_BODY_MTU_OVERRIDE)}",
             )
 
     # Validate mtu if present
@@ -1402,8 +1343,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_VLAN_PROTOCOL:
             return (
                 False,
-                f"Invalid vlan-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VLAN_PROTOCOL)}",
+                f"Invalid vlan-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_PROTOCOL)}",
             )
 
     # Validate vlanid if present
@@ -1423,8 +1363,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_TRUNK:
             return (
                 False,
-                f"Invalid trunk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRUNK)}",
+                f"Invalid trunk '{value}'. Must be one of: {', '.join(VALID_BODY_TRUNK)}",
             )
 
     # Validate forward-domain if present
@@ -1447,8 +1386,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_LACP_MODE:
             return (
                 False,
-                f"Invalid lacp-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_MODE)}",
+                f"Invalid lacp-mode '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_MODE)}",
             )
 
     # Validate lacp-ha-secondary if present
@@ -1457,8 +1395,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_LACP_HA_SECONDARY:
             return (
                 False,
-                f"Invalid lacp-ha-secondary '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_HA_SECONDARY)}",
+                f"Invalid lacp-ha-secondary '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_HA_SECONDARY)}",
             )
 
     # Validate system-id-type if present
@@ -1467,8 +1404,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SYSTEM_ID_TYPE:
             return (
                 False,
-                f"Invalid system-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_ID_TYPE)}",
+                f"Invalid system-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_ID_TYPE)}",
             )
 
     # Validate lacp-speed if present
@@ -1477,8 +1413,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_LACP_SPEED:
             return (
                 False,
-                f"Invalid lacp-speed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_SPEED)}",
+                f"Invalid lacp-speed '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_SPEED)}",
             )
 
     # Validate min-links if present
@@ -1498,8 +1433,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MIN_LINKS_DOWN:
             return (
                 False,
-                f"Invalid min-links-down '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MIN_LINKS_DOWN)}",
+                f"Invalid min-links-down '{value}'. Must be one of: {', '.join(VALID_BODY_MIN_LINKS_DOWN)}",
             )
 
     # Validate algorithm if present
@@ -1508,8 +1442,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ALGORITHM:
             return (
                 False,
-                f"Invalid algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALGORITHM)}",
+                f"Invalid algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ALGORITHM)}",
             )
 
     # Validate link-up-delay if present
@@ -1532,8 +1465,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_AGGREGATE_TYPE:
             return (
                 False,
-                f"Invalid aggregate-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AGGREGATE_TYPE)}",
+                f"Invalid aggregate-type '{value}'. Must be one of: {', '.join(VALID_BODY_AGGREGATE_TYPE)}",
             )
 
     # Validate priority-override if present
@@ -1542,8 +1474,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PRIORITY_OVERRIDE:
             return (
                 False,
-                f"Invalid priority-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIORITY_OVERRIDE)}",
+                f"Invalid priority-override '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_OVERRIDE)}",
             )
 
     # Validate aggregate if present
@@ -1607,8 +1538,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_L2TP_CLIENT:
             return (
                 False,
-                f"Invalid l2tp-client '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2TP_CLIENT)}",
+                f"Invalid l2tp-client '{value}'. Must be one of: {', '.join(VALID_BODY_L2TP_CLIENT)}",
             )
 
     # Validate security-mode if present
@@ -1617,8 +1547,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECURITY_MODE:
             return (
                 False,
-                f"Invalid security-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MODE)}",
+                f"Invalid security-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MODE)}",
             )
 
     # Validate security-mac-auth-bypass if present
@@ -1627,8 +1556,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECURITY_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid security-mac-auth-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MAC_AUTH_BYPASS)}",
+                f"Invalid security-mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MAC_AUTH_BYPASS)}",
             )
 
     # Validate security-ip-auth-bypass if present
@@ -1637,8 +1565,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECURITY_IP_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid security-ip-auth-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_IP_AUTH_BYPASS)}",
+                f"Invalid security-ip-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_IP_AUTH_BYPASS)}",
             )
 
     # Validate security-8021x-mode if present
@@ -1647,8 +1574,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECURITY_8021X_MODE:
             return (
                 False,
-                f"Invalid security-8021x-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_8021X_MODE)}",
+                f"Invalid security-8021x-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_8021X_MODE)}",
             )
 
     # Validate security-8021x-master if present
@@ -1683,8 +1609,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECURITY_8021X_MEMBER_MODE:
             return (
                 False,
-                f"Invalid security-8021x-member-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_8021X_MEMBER_MODE)}",
+                f"Invalid security-8021x-member-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_8021X_MEMBER_MODE)}",
             )
 
     # Validate security-external-web if present
@@ -1753,8 +1678,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STP:
             return (
                 False,
-                f"Invalid stp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP)}",
+                f"Invalid stp '{value}'. Must be one of: {', '.join(VALID_BODY_STP)}",
             )
 
     # Validate stp-ha-secondary if present
@@ -1763,8 +1687,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STP_HA_SECONDARY:
             return (
                 False,
-                f"Invalid stp-ha-secondary '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP_HA_SECONDARY)}",
+                f"Invalid stp-ha-secondary '{value}'. Must be one of: {', '.join(VALID_BODY_STP_HA_SECONDARY)}",
             )
 
     # Validate stp-edge if present
@@ -1773,8 +1696,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_STP_EDGE:
             return (
                 False,
-                f"Invalid stp-edge '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP_EDGE)}",
+                f"Invalid stp-edge '{value}'. Must be one of: {', '.join(VALID_BODY_STP_EDGE)}",
             )
 
     # Validate device-identification if present
@@ -1783,8 +1705,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DEVICE_IDENTIFICATION:
             return (
                 False,
-                f"Invalid device-identification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_IDENTIFICATION)}",
+                f"Invalid device-identification '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_IDENTIFICATION)}",
             )
 
     # Validate exclude-signatures if present
@@ -1793,8 +1714,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EXCLUDE_SIGNATURES:
             return (
                 False,
-                f"Invalid exclude-signatures '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
+                f"Invalid exclude-signatures '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
             )
 
     # Validate device-user-identification if present
@@ -1803,8 +1723,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DEVICE_USER_IDENTIFICATION:
             return (
                 False,
-                f"Invalid device-user-identification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_USER_IDENTIFICATION)}",
+                f"Invalid device-user-identification '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_USER_IDENTIFICATION)}",
             )
 
     # Validate lldp-reception if present
@@ -1813,8 +1732,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_LLDP_RECEPTION:
             return (
                 False,
-                f"Invalid lldp-reception '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LLDP_RECEPTION)}",
+                f"Invalid lldp-reception '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_RECEPTION)}",
             )
 
     # Validate lldp-transmission if present
@@ -1823,8 +1741,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_LLDP_TRANSMISSION:
             return (
                 False,
-                f"Invalid lldp-transmission '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
+                f"Invalid lldp-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
             )
 
     # Validate lldp-network-policy if present
@@ -1924,8 +1841,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MONITOR_BANDWIDTH:
             return (
                 False,
-                f"Invalid monitor-bandwidth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_BANDWIDTH)}",
+                f"Invalid monitor-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_BANDWIDTH)}",
             )
 
     # Validate vrrp-virtual-mac if present
@@ -1934,8 +1850,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_VRRP_VIRTUAL_MAC:
             return (
                 False,
-                f"Invalid vrrp-virtual-mac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VRRP_VIRTUAL_MAC)}",
+                f"Invalid vrrp-virtual-mac '{value}'. Must be one of: {', '.join(VALID_BODY_VRRP_VIRTUAL_MAC)}",
             )
 
     # Validate role if present
@@ -1944,8 +1859,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_ROLE:
             return (
                 False,
-                f"Invalid role '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROLE)}",
+                f"Invalid role '{value}'. Must be one of: {', '.join(VALID_BODY_ROLE)}",
             )
 
     # Validate snmp-index if present
@@ -1968,8 +1882,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SECONDARY_IP:
             return (
                 False,
-                f"Invalid secondary-IP '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECONDARY_IP)}",
+                f"Invalid secondary-IP '{value}'. Must be one of: {', '.join(VALID_BODY_SECONDARY_IP)}",
             )
 
     # Validate preserve-session-route if present
@@ -1978,8 +1891,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_PRESERVE_SESSION_ROUTE:
             return (
                 False,
-                f"Invalid preserve-session-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRESERVE_SESSION_ROUTE)}",
+                f"Invalid preserve-session-route '{value}'. Must be one of: {', '.join(VALID_BODY_PRESERVE_SESSION_ROUTE)}",
             )
 
     # Validate auto-auth-extension-device if present
@@ -1988,8 +1900,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE:
             return (
                 False,
-                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
+                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
             )
 
     # Validate ap-discover if present
@@ -1998,8 +1909,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_AP_DISCOVER:
             return (
                 False,
-                f"Invalid ap-discover '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AP_DISCOVER)}",
+                f"Invalid ap-discover '{value}'. Must be one of: {', '.join(VALID_BODY_AP_DISCOVER)}",
             )
 
     # Validate fortilink-neighbor-detect if present
@@ -2008,8 +1918,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FORTILINK_NEIGHBOR_DETECT:
             return (
                 False,
-                f"Invalid fortilink-neighbor-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK_NEIGHBOR_DETECT)}",
+                f"Invalid fortilink-neighbor-detect '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK_NEIGHBOR_DETECT)}",
             )
 
     # Validate ip-managed-by-fortiipam if present
@@ -2018,8 +1927,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_IP_MANAGED_BY_FORTIIPAM:
             return (
                 False,
-                f"Invalid ip-managed-by-fortiipam '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_MANAGED_BY_FORTIIPAM)}",
+                f"Invalid ip-managed-by-fortiipam '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MANAGED_BY_FORTIIPAM)}",
             )
 
     # Validate managed-subnetwork-size if present
@@ -2028,8 +1936,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_MANAGED_SUBNETWORK_SIZE:
             return (
                 False,
-                f"Invalid managed-subnetwork-size '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGED_SUBNETWORK_SIZE)}",
+                f"Invalid managed-subnetwork-size '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGED_SUBNETWORK_SIZE)}",
             )
 
     # Validate fortilink-split-interface if present
@@ -2038,8 +1945,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_FORTILINK_SPLIT_INTERFACE:
             return (
                 False,
-                f"Invalid fortilink-split-interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK_SPLIT_INTERFACE)}",
+                f"Invalid fortilink-split-interface '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK_SPLIT_INTERFACE)}",
             )
 
     # Validate internal if present
@@ -2076,8 +1982,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN:
             return (
                 False,
-                f"Invalid switch-controller-access-vlan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN)}",
+                f"Invalid switch-controller-access-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN)}",
             )
 
     # Validate switch-controller-traffic-policy if present
@@ -2095,8 +2000,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE:
             return (
                 False,
-                f"Invalid switch-controller-rspan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE)}",
+                f"Invalid switch-controller-rspan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE)}",
             )
 
     # Validate switch-controller-netflow-collect if present
@@ -2105,8 +2009,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT:
             return (
                 False,
-                f"Invalid switch-controller-netflow-collect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT)}",
+                f"Invalid switch-controller-netflow-collect '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT)}",
             )
 
     # Validate switch-controller-mgmt-vlan if present
@@ -2132,8 +2035,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING:
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING)}",
+                f"Invalid switch-controller-igmp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING)}",
             )
 
     # Validate switch-controller-igmp-snooping-proxy if present
@@ -2145,8 +2047,7 @@ def validate_interface_post(
         ):
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
+                f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
             )
 
     # Validate switch-controller-igmp-snooping-fast-leave if present
@@ -2159,8 +2060,7 @@ def validate_interface_post(
         ):
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
+                f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
             )
 
     # Validate switch-controller-dhcp-snooping if present
@@ -2169,8 +2069,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING:
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING)}",
+                f"Invalid switch-controller-dhcp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING)}",
             )
 
     # Validate switch-controller-dhcp-snooping-verify-mac if present
@@ -2183,8 +2082,7 @@ def validate_interface_post(
         ):
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
+                f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
             )
 
     # Validate switch-controller-dhcp-snooping-option82 if present
@@ -2197,8 +2095,7 @@ def validate_interface_post(
         ):
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",
+                f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",
             )
 
     # Validate switch-controller-arp-inspection if present
@@ -2207,8 +2104,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION:
             return (
                 False,
-                f"Invalid switch-controller-arp-inspection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION)}",
+                f"Invalid switch-controller-arp-inspection '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION)}",
             )
 
     # Validate switch-controller-learning-limit if present
@@ -2252,8 +2148,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_FEATURE:
             return (
                 False,
-                f"Invalid switch-controller-feature '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_FEATURE)}",
+                f"Invalid switch-controller-feature '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_FEATURE)}",
             )
 
     # Validate switch-controller-iot-scanning if present
@@ -2262,8 +2157,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING:
             return (
                 False,
-                f"Invalid switch-controller-iot-scanning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING)}",
+                f"Invalid switch-controller-iot-scanning '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING)}",
             )
 
     # Validate switch-controller-offload if present
@@ -2272,8 +2166,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_OFFLOAD:
             return (
                 False,
-                f"Invalid switch-controller-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD)}",
+                f"Invalid switch-controller-offload '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD)}",
             )
 
     # Validate switch-controller-offload-gw if present
@@ -2282,8 +2175,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW:
             return (
                 False,
-                f"Invalid switch-controller-offload-gw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW)}",
+                f"Invalid switch-controller-offload-gw '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW)}",
             )
 
     # Validate swc-vlan if present
@@ -2334,8 +2226,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EAP_SUPPLICANT:
             return (
                 False,
-                f"Invalid eap-supplicant '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_SUPPLICANT)}",
+                f"Invalid eap-supplicant '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_SUPPLICANT)}",
             )
 
     # Validate eap-method if present
@@ -2344,8 +2235,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_EAP_METHOD:
             return (
                 False,
-                f"Invalid eap-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_METHOD)}",
+                f"Invalid eap-method '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_METHOD)}",
             )
 
     # Validate eap-identity if present
@@ -2372,8 +2262,7 @@ def validate_interface_post(
         if value and value not in VALID_BODY_DEFAULT_PURDUE_LEVEL:
             return (
                 False,
-                f"Invalid default-purdue-level '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULT_PURDUE_LEVEL)}",
+                f"Invalid default-purdue-level '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_PURDUE_LEVEL)}",
             )
 
     return (True, None)
@@ -2451,8 +2340,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FORTILINK:
             return (
                 False,
-                f"Invalid fortilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK)}",
+                f"Invalid fortilink '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK)}",
             )
 
     # Validate switch-controller-source-ip if present
@@ -2461,8 +2349,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP:
             return (
                 False,
-                f"Invalid switch-controller-source-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP)}",
+                f"Invalid switch-controller-source-ip '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_SOURCE_IP)}",
             )
 
     # Validate mode if present
@@ -2471,8 +2358,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate distance if present
@@ -2506,8 +2392,7 @@ def validate_interface_put(
         ):
             return (
                 False,
-                f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid dhcp-relay-interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate dhcp-relay-interface if present
@@ -2539,8 +2424,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_BROADCAST_FLAG:
             return (
                 False,
-                f"Invalid dhcp-broadcast-flag '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_BROADCAST_FLAG)}",
+                f"Invalid dhcp-broadcast-flag '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_BROADCAST_FLAG)}",
             )
 
     # Validate dhcp-relay-service if present
@@ -2549,8 +2433,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_RELAY_SERVICE:
             return (
                 False,
-                f"Invalid dhcp-relay-service '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_SERVICE)}",
+                f"Invalid dhcp-relay-service '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_SERVICE)}",
             )
 
     # Validate dhcp-relay-circuit-id if present
@@ -2568,8 +2451,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER:
             return (
                 False,
-                f"Invalid dhcp-relay-request-all-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER)}",
+                f"Invalid dhcp-relay-request-all-server '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_REQUEST_ALL_SERVER)}",
             )
 
     # Validate dhcp-relay-allow-no-end-option if present
@@ -2578,8 +2460,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION:
             return (
                 False,
-                f"Invalid dhcp-relay-allow-no-end-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION)}",
+                f"Invalid dhcp-relay-allow-no-end-option '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_ALLOW_NO_END_OPTION)}",
             )
 
     # Validate dhcp-relay-type if present
@@ -2588,8 +2469,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_RELAY_TYPE:
             return (
                 False,
-                f"Invalid dhcp-relay-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_TYPE)}",
+                f"Invalid dhcp-relay-type '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_TYPE)}",
             )
 
     # Validate dhcp-smart-relay if present
@@ -2598,8 +2478,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_SMART_RELAY:
             return (
                 False,
-                f"Invalid dhcp-smart-relay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_SMART_RELAY)}",
+                f"Invalid dhcp-smart-relay '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_SMART_RELAY)}",
             )
 
     # Validate dhcp-relay-agent-option if present
@@ -2608,8 +2487,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_RELAY_AGENT_OPTION:
             return (
                 False,
-                f"Invalid dhcp-relay-agent-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_RELAY_AGENT_OPTION)}",
+                f"Invalid dhcp-relay-agent-option '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_RELAY_AGENT_OPTION)}",
             )
 
     # Validate dhcp-classless-route-addition if present
@@ -2618,8 +2496,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION:
             return (
                 False,
-                f"Invalid dhcp-classless-route-addition '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION)}",
+                f"Invalid dhcp-classless-route-addition '{value}'. Must be one of: {', '.join(VALID_BODY_DHCP_CLASSLESS_ROUTE_ADDITION)}",
             )
 
     # Validate allowaccess if present
@@ -2628,8 +2505,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ALLOWACCESS:
             return (
                 False,
-                f"Invalid allowaccess '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWACCESS)}",
+                f"Invalid allowaccess '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWACCESS)}",
             )
 
     # Validate gwdetect if present
@@ -2638,8 +2514,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_GWDETECT:
             return (
                 False,
-                f"Invalid gwdetect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GWDETECT)}",
+                f"Invalid gwdetect '{value}'. Must be one of: {', '.join(VALID_BODY_GWDETECT)}",
             )
 
     # Validate ping-serv-status if present
@@ -2665,8 +2540,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DETECTPROTOCOL:
             return (
                 False,
-                f"Invalid detectprotocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DETECTPROTOCOL)}",
+                f"Invalid detectprotocol '{value}'. Must be one of: {', '.join(VALID_BODY_DETECTPROTOCOL)}",
             )
 
     # Validate ha-priority if present
@@ -2686,8 +2560,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FAIL_DETECT:
             return (
                 False,
-                f"Invalid fail-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_DETECT)}",
+                f"Invalid fail-detect '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_DETECT)}",
             )
 
     # Validate fail-detect-option if present
@@ -2696,8 +2569,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FAIL_DETECT_OPTION:
             return (
                 False,
-                f"Invalid fail-detect-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_DETECT_OPTION)}",
+                f"Invalid fail-detect-option '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_DETECT_OPTION)}",
             )
 
     # Validate fail-alert-method if present
@@ -2706,8 +2578,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FAIL_ALERT_METHOD:
             return (
                 False,
-                f"Invalid fail-alert-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_ALERT_METHOD)}",
+                f"Invalid fail-alert-method '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_ALERT_METHOD)}",
             )
 
     # Validate fail-action-on-extender if present
@@ -2716,8 +2587,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FAIL_ACTION_ON_EXTENDER:
             return (
                 False,
-                f"Invalid fail-action-on-extender '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FAIL_ACTION_ON_EXTENDER)}",
+                f"Invalid fail-action-on-extender '{value}'. Must be one of: {', '.join(VALID_BODY_FAIL_ACTION_ON_EXTENDER)}",
             )
 
     # Validate dhcp-client-identifier if present
@@ -2758,8 +2628,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PPPOE_EGRESS_COS:
             return (
                 False,
-                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
+                f"Invalid pppoe-egress-cos '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_EGRESS_COS)}",
             )
 
     # Validate pppoe-unnumbered-negotiate if present
@@ -2768,8 +2637,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE:
             return (
                 False,
-                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
+                f"Invalid pppoe-unnumbered-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_PPPOE_UNNUMBERED_NEGOTIATE)}",
             )
 
     # Validate idle-timeout if present
@@ -2789,8 +2657,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MULTILINK:
             return (
                 False,
-                f"Invalid multilink '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTILINK)}",
+                f"Invalid multilink '{value}'. Must be one of: {', '.join(VALID_BODY_MULTILINK)}",
             )
 
     # Validate mrru if present
@@ -2907,8 +2774,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DEFAULTGW:
             return (
                 False,
-                f"Invalid defaultgw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULTGW)}",
+                f"Invalid defaultgw '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULTGW)}",
             )
 
     # Validate dns-server-override if present
@@ -2917,8 +2783,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DNS_SERVER_OVERRIDE:
             return (
                 False,
-                f"Invalid dns-server-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVER_OVERRIDE)}",
+                f"Invalid dns-server-override '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVER_OVERRIDE)}",
             )
 
     # Validate dns-server-protocol if present
@@ -2927,8 +2792,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DNS_SERVER_PROTOCOL:
             return (
                 False,
-                f"Invalid dns-server-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_SERVER_PROTOCOL)}",
+                f"Invalid dns-server-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_SERVER_PROTOCOL)}",
             )
 
     # Validate auth-type if present
@@ -2937,8 +2801,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_AUTH_TYPE:
             return (
                 False,
-                f"Invalid auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_TYPE)}",
+                f"Invalid auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_TYPE)}",
             )
 
     # Validate pptp-client if present
@@ -2947,8 +2810,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PPTP_CLIENT:
             return (
                 False,
-                f"Invalid pptp-client '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPTP_CLIENT)}",
+                f"Invalid pptp-client '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_CLIENT)}",
             )
 
     # Validate pptp-user if present
@@ -2963,8 +2825,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PPTP_AUTH_TYPE:
             return (
                 False,
-                f"Invalid pptp-auth-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPTP_AUTH_TYPE)}",
+                f"Invalid pptp-auth-type '{value}'. Must be one of: {', '.join(VALID_BODY_PPTP_AUTH_TYPE)}",
             )
 
     # Validate pptp-timeout if present
@@ -2984,8 +2845,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ARPFORWARD:
             return (
                 False,
-                f"Invalid arpforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ARPFORWARD)}",
+                f"Invalid arpforward '{value}'. Must be one of: {', '.join(VALID_BODY_ARPFORWARD)}",
             )
 
     # Validate ndiscforward if present
@@ -2994,8 +2854,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_NDISCFORWARD:
             return (
                 False,
-                f"Invalid ndiscforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NDISCFORWARD)}",
+                f"Invalid ndiscforward '{value}'. Must be one of: {', '.join(VALID_BODY_NDISCFORWARD)}",
             )
 
     # Validate broadcast-forward if present
@@ -3004,8 +2863,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_BROADCAST_FORWARD:
             return (
                 False,
-                f"Invalid broadcast-forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BROADCAST_FORWARD)}",
+                f"Invalid broadcast-forward '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST_FORWARD)}",
             )
 
     # Validate bfd if present
@@ -3014,8 +2872,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
             )
 
     # Validate bfd-desired-min-tx if present
@@ -3072,8 +2929,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_L2FORWARD:
             return (
                 False,
-                f"Invalid l2forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2FORWARD)}",
+                f"Invalid l2forward '{value}'. Must be one of: {', '.join(VALID_BODY_L2FORWARD)}",
             )
 
     # Validate icmp-send-redirect if present
@@ -3082,8 +2938,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ICMP_SEND_REDIRECT:
             return (
                 False,
-                f"Invalid icmp-send-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICMP_SEND_REDIRECT)}",
+                f"Invalid icmp-send-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_SEND_REDIRECT)}",
             )
 
     # Validate icmp-accept-redirect if present
@@ -3092,8 +2947,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ICMP_ACCEPT_REDIRECT:
             return (
                 False,
-                f"Invalid icmp-accept-redirect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ICMP_ACCEPT_REDIRECT)}",
+                f"Invalid icmp-accept-redirect '{value}'. Must be one of: {', '.join(VALID_BODY_ICMP_ACCEPT_REDIRECT)}",
             )
 
     # Validate reachable-time if present
@@ -3116,8 +2970,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_VLANFORWARD:
             return (
                 False,
-                f"Invalid vlanforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VLANFORWARD)}",
+                f"Invalid vlanforward '{value}'. Must be one of: {', '.join(VALID_BODY_VLANFORWARD)}",
             )
 
     # Validate stpforward if present
@@ -3126,8 +2979,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STPFORWARD:
             return (
                 False,
-                f"Invalid stpforward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STPFORWARD)}",
+                f"Invalid stpforward '{value}'. Must be one of: {', '.join(VALID_BODY_STPFORWARD)}",
             )
 
     # Validate stpforward-mode if present
@@ -3136,8 +2988,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STPFORWARD_MODE:
             return (
                 False,
-                f"Invalid stpforward-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STPFORWARD_MODE)}",
+                f"Invalid stpforward-mode '{value}'. Must be one of: {', '.join(VALID_BODY_STPFORWARD_MODE)}",
             )
 
     # Validate ips-sniffer-mode if present
@@ -3146,8 +2997,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_IPS_SNIFFER_MODE:
             return (
                 False,
-                f"Invalid ips-sniffer-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPS_SNIFFER_MODE)}",
+                f"Invalid ips-sniffer-mode '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_SNIFFER_MODE)}",
             )
 
     # Validate ident-accept if present
@@ -3156,8 +3006,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_IDENT_ACCEPT:
             return (
                 False,
-                f"Invalid ident-accept '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IDENT_ACCEPT)}",
+                f"Invalid ident-accept '{value}'. Must be one of: {', '.join(VALID_BODY_IDENT_ACCEPT)}",
             )
 
     # Validate ipmac if present
@@ -3166,8 +3015,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_IPMAC:
             return (
                 False,
-                f"Invalid ipmac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPMAC)}",
+                f"Invalid ipmac '{value}'. Must be one of: {', '.join(VALID_BODY_IPMAC)}",
             )
 
     # Validate subst if present
@@ -3176,8 +3024,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SUBST:
             return (
                 False,
-                f"Invalid subst '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUBST)}",
+                f"Invalid subst '{value}'. Must be one of: {', '.join(VALID_BODY_SUBST)}",
             )
 
     # Validate speed if present
@@ -3186,8 +3033,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SPEED:
             return (
                 False,
-                f"Invalid speed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SPEED)}",
+                f"Invalid speed '{value}'. Must be one of: {', '.join(VALID_BODY_SPEED)}",
             )
 
     # Validate status if present
@@ -3196,8 +3042,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate netbios-forward if present
@@ -3206,8 +3051,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_NETBIOS_FORWARD:
             return (
                 False,
-                f"Invalid netbios-forward '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETBIOS_FORWARD)}",
+                f"Invalid netbios-forward '{value}'. Must be one of: {', '.join(VALID_BODY_NETBIOS_FORWARD)}",
             )
 
     # Validate type if present
@@ -3216,8 +3060,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate dedicated-to if present
@@ -3226,8 +3069,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DEDICATED_TO:
             return (
                 False,
-                f"Invalid dedicated-to '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEDICATED_TO)}",
+                f"Invalid dedicated-to '{value}'. Must be one of: {', '.join(VALID_BODY_DEDICATED_TO)}",
             )
 
     # Validate wccp if present
@@ -3236,8 +3078,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_WCCP:
             return (
                 False,
-                f"Invalid wccp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WCCP)}",
+                f"Invalid wccp '{value}'. Must be one of: {', '.join(VALID_BODY_WCCP)}",
             )
 
     # Validate netflow-sampler if present
@@ -3246,8 +3087,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_NETFLOW_SAMPLER:
             return (
                 False,
-                f"Invalid netflow-sampler '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETFLOW_SAMPLER)}",
+                f"Invalid netflow-sampler '{value}'. Must be one of: {', '.join(VALID_BODY_NETFLOW_SAMPLER)}",
             )
 
     # Validate netflow-sample-rate if present
@@ -3290,8 +3130,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SFLOW_SAMPLER:
             return (
                 False,
-                f"Invalid sflow-sampler '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SFLOW_SAMPLER)}",
+                f"Invalid sflow-sampler '{value}'. Must be one of: {', '.join(VALID_BODY_SFLOW_SAMPLER)}",
             )
 
     # Validate drop-fragment if present
@@ -3300,8 +3139,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DROP_FRAGMENT:
             return (
                 False,
-                f"Invalid drop-fragment '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DROP_FRAGMENT)}",
+                f"Invalid drop-fragment '{value}'. Must be one of: {', '.join(VALID_BODY_DROP_FRAGMENT)}",
             )
 
     # Validate src-check if present
@@ -3310,8 +3148,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SRC_CHECK:
             return (
                 False,
-                f"Invalid src-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SRC_CHECK)}",
+                f"Invalid src-check '{value}'. Must be one of: {', '.join(VALID_BODY_SRC_CHECK)}",
             )
 
     # Validate sample-rate if present
@@ -3348,8 +3185,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SAMPLE_DIRECTION:
             return (
                 False,
-                f"Invalid sample-direction '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAMPLE_DIRECTION)}",
+                f"Invalid sample-direction '{value}'. Must be one of: {', '.join(VALID_BODY_SAMPLE_DIRECTION)}",
             )
 
     # Validate explicit-web-proxy if present
@@ -3358,8 +3194,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EXPLICIT_WEB_PROXY:
             return (
                 False,
-                f"Invalid explicit-web-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPLICIT_WEB_PROXY)}",
+                f"Invalid explicit-web-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_EXPLICIT_WEB_PROXY)}",
             )
 
     # Validate explicit-ftp-proxy if present
@@ -3368,8 +3203,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EXPLICIT_FTP_PROXY:
             return (
                 False,
-                f"Invalid explicit-ftp-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXPLICIT_FTP_PROXY)}",
+                f"Invalid explicit-ftp-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_EXPLICIT_FTP_PROXY)}",
             )
 
     # Validate proxy-captive-portal if present
@@ -3378,8 +3212,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PROXY_CAPTIVE_PORTAL:
             return (
                 False,
-                f"Invalid proxy-captive-portal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROXY_CAPTIVE_PORTAL)}",
+                f"Invalid proxy-captive-portal '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY_CAPTIVE_PORTAL)}",
             )
 
     # Validate tcp-mss if present
@@ -3496,8 +3329,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EXTERNAL:
             return (
                 False,
-                f"Invalid external '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXTERNAL)}",
+                f"Invalid external '{value}'. Must be one of: {', '.join(VALID_BODY_EXTERNAL)}",
             )
 
     # Validate mtu-override if present
@@ -3506,8 +3338,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MTU_OVERRIDE:
             return (
                 False,
-                f"Invalid mtu-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MTU_OVERRIDE)}",
+                f"Invalid mtu-override '{value}'. Must be one of: {', '.join(VALID_BODY_MTU_OVERRIDE)}",
             )
 
     # Validate mtu if present
@@ -3527,8 +3358,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_VLAN_PROTOCOL:
             return (
                 False,
-                f"Invalid vlan-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VLAN_PROTOCOL)}",
+                f"Invalid vlan-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_VLAN_PROTOCOL)}",
             )
 
     # Validate vlanid if present
@@ -3548,8 +3378,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_TRUNK:
             return (
                 False,
-                f"Invalid trunk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRUNK)}",
+                f"Invalid trunk '{value}'. Must be one of: {', '.join(VALID_BODY_TRUNK)}",
             )
 
     # Validate forward-domain if present
@@ -3572,8 +3401,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_LACP_MODE:
             return (
                 False,
-                f"Invalid lacp-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_MODE)}",
+                f"Invalid lacp-mode '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_MODE)}",
             )
 
     # Validate lacp-ha-secondary if present
@@ -3582,8 +3410,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_LACP_HA_SECONDARY:
             return (
                 False,
-                f"Invalid lacp-ha-secondary '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_HA_SECONDARY)}",
+                f"Invalid lacp-ha-secondary '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_HA_SECONDARY)}",
             )
 
     # Validate system-id-type if present
@@ -3592,8 +3419,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SYSTEM_ID_TYPE:
             return (
                 False,
-                f"Invalid system-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_ID_TYPE)}",
+                f"Invalid system-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_ID_TYPE)}",
             )
 
     # Validate lacp-speed if present
@@ -3602,8 +3428,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_LACP_SPEED:
             return (
                 False,
-                f"Invalid lacp-speed '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LACP_SPEED)}",
+                f"Invalid lacp-speed '{value}'. Must be one of: {', '.join(VALID_BODY_LACP_SPEED)}",
             )
 
     # Validate min-links if present
@@ -3623,8 +3448,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MIN_LINKS_DOWN:
             return (
                 False,
-                f"Invalid min-links-down '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MIN_LINKS_DOWN)}",
+                f"Invalid min-links-down '{value}'. Must be one of: {', '.join(VALID_BODY_MIN_LINKS_DOWN)}",
             )
 
     # Validate algorithm if present
@@ -3633,8 +3457,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ALGORITHM:
             return (
                 False,
-                f"Invalid algorithm '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALGORITHM)}",
+                f"Invalid algorithm '{value}'. Must be one of: {', '.join(VALID_BODY_ALGORITHM)}",
             )
 
     # Validate link-up-delay if present
@@ -3657,8 +3480,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_AGGREGATE_TYPE:
             return (
                 False,
-                f"Invalid aggregate-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AGGREGATE_TYPE)}",
+                f"Invalid aggregate-type '{value}'. Must be one of: {', '.join(VALID_BODY_AGGREGATE_TYPE)}",
             )
 
     # Validate priority-override if present
@@ -3667,8 +3489,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PRIORITY_OVERRIDE:
             return (
                 False,
-                f"Invalid priority-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIORITY_OVERRIDE)}",
+                f"Invalid priority-override '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY_OVERRIDE)}",
             )
 
     # Validate aggregate if present
@@ -3732,8 +3553,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_L2TP_CLIENT:
             return (
                 False,
-                f"Invalid l2tp-client '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_L2TP_CLIENT)}",
+                f"Invalid l2tp-client '{value}'. Must be one of: {', '.join(VALID_BODY_L2TP_CLIENT)}",
             )
 
     # Validate security-mode if present
@@ -3742,8 +3562,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECURITY_MODE:
             return (
                 False,
-                f"Invalid security-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MODE)}",
+                f"Invalid security-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MODE)}",
             )
 
     # Validate security-mac-auth-bypass if present
@@ -3752,8 +3571,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECURITY_MAC_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid security-mac-auth-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MAC_AUTH_BYPASS)}",
+                f"Invalid security-mac-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MAC_AUTH_BYPASS)}",
             )
 
     # Validate security-ip-auth-bypass if present
@@ -3762,8 +3580,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECURITY_IP_AUTH_BYPASS:
             return (
                 False,
-                f"Invalid security-ip-auth-bypass '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_IP_AUTH_BYPASS)}",
+                f"Invalid security-ip-auth-bypass '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_IP_AUTH_BYPASS)}",
             )
 
     # Validate security-8021x-mode if present
@@ -3772,8 +3589,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECURITY_8021X_MODE:
             return (
                 False,
-                f"Invalid security-8021x-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_8021X_MODE)}",
+                f"Invalid security-8021x-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_8021X_MODE)}",
             )
 
     # Validate security-8021x-master if present
@@ -3808,8 +3624,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECURITY_8021X_MEMBER_MODE:
             return (
                 False,
-                f"Invalid security-8021x-member-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_8021X_MEMBER_MODE)}",
+                f"Invalid security-8021x-member-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_8021X_MEMBER_MODE)}",
             )
 
     # Validate security-external-web if present
@@ -3878,8 +3693,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STP:
             return (
                 False,
-                f"Invalid stp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP)}",
+                f"Invalid stp '{value}'. Must be one of: {', '.join(VALID_BODY_STP)}",
             )
 
     # Validate stp-ha-secondary if present
@@ -3888,8 +3702,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STP_HA_SECONDARY:
             return (
                 False,
-                f"Invalid stp-ha-secondary '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP_HA_SECONDARY)}",
+                f"Invalid stp-ha-secondary '{value}'. Must be one of: {', '.join(VALID_BODY_STP_HA_SECONDARY)}",
             )
 
     # Validate stp-edge if present
@@ -3898,8 +3711,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_STP_EDGE:
             return (
                 False,
-                f"Invalid stp-edge '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STP_EDGE)}",
+                f"Invalid stp-edge '{value}'. Must be one of: {', '.join(VALID_BODY_STP_EDGE)}",
             )
 
     # Validate device-identification if present
@@ -3908,8 +3720,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DEVICE_IDENTIFICATION:
             return (
                 False,
-                f"Invalid device-identification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_IDENTIFICATION)}",
+                f"Invalid device-identification '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_IDENTIFICATION)}",
             )
 
     # Validate exclude-signatures if present
@@ -3918,8 +3729,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EXCLUDE_SIGNATURES:
             return (
                 False,
-                f"Invalid exclude-signatures '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
+                f"Invalid exclude-signatures '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE_SIGNATURES)}",
             )
 
     # Validate device-user-identification if present
@@ -3928,8 +3738,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DEVICE_USER_IDENTIFICATION:
             return (
                 False,
-                f"Invalid device-user-identification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEVICE_USER_IDENTIFICATION)}",
+                f"Invalid device-user-identification '{value}'. Must be one of: {', '.join(VALID_BODY_DEVICE_USER_IDENTIFICATION)}",
             )
 
     # Validate lldp-reception if present
@@ -3938,8 +3747,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_LLDP_RECEPTION:
             return (
                 False,
-                f"Invalid lldp-reception '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LLDP_RECEPTION)}",
+                f"Invalid lldp-reception '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_RECEPTION)}",
             )
 
     # Validate lldp-transmission if present
@@ -3948,8 +3756,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_LLDP_TRANSMISSION:
             return (
                 False,
-                f"Invalid lldp-transmission '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
+                f"Invalid lldp-transmission '{value}'. Must be one of: {', '.join(VALID_BODY_LLDP_TRANSMISSION)}",
             )
 
     # Validate lldp-network-policy if present
@@ -4049,8 +3856,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MONITOR_BANDWIDTH:
             return (
                 False,
-                f"Invalid monitor-bandwidth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_BANDWIDTH)}",
+                f"Invalid monitor-bandwidth '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_BANDWIDTH)}",
             )
 
     # Validate vrrp-virtual-mac if present
@@ -4059,8 +3865,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_VRRP_VIRTUAL_MAC:
             return (
                 False,
-                f"Invalid vrrp-virtual-mac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VRRP_VIRTUAL_MAC)}",
+                f"Invalid vrrp-virtual-mac '{value}'. Must be one of: {', '.join(VALID_BODY_VRRP_VIRTUAL_MAC)}",
             )
 
     # Validate role if present
@@ -4069,8 +3874,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_ROLE:
             return (
                 False,
-                f"Invalid role '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROLE)}",
+                f"Invalid role '{value}'. Must be one of: {', '.join(VALID_BODY_ROLE)}",
             )
 
     # Validate snmp-index if present
@@ -4093,8 +3897,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SECONDARY_IP:
             return (
                 False,
-                f"Invalid secondary-IP '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECONDARY_IP)}",
+                f"Invalid secondary-IP '{value}'. Must be one of: {', '.join(VALID_BODY_SECONDARY_IP)}",
             )
 
     # Validate preserve-session-route if present
@@ -4103,8 +3906,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_PRESERVE_SESSION_ROUTE:
             return (
                 False,
-                f"Invalid preserve-session-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRESERVE_SESSION_ROUTE)}",
+                f"Invalid preserve-session-route '{value}'. Must be one of: {', '.join(VALID_BODY_PRESERVE_SESSION_ROUTE)}",
             )
 
     # Validate auto-auth-extension-device if present
@@ -4113,8 +3915,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE:
             return (
                 False,
-                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
+                f"Invalid auto-auth-extension-device '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_AUTH_EXTENSION_DEVICE)}",
             )
 
     # Validate ap-discover if present
@@ -4123,8 +3924,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_AP_DISCOVER:
             return (
                 False,
-                f"Invalid ap-discover '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AP_DISCOVER)}",
+                f"Invalid ap-discover '{value}'. Must be one of: {', '.join(VALID_BODY_AP_DISCOVER)}",
             )
 
     # Validate fortilink-neighbor-detect if present
@@ -4133,8 +3933,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FORTILINK_NEIGHBOR_DETECT:
             return (
                 False,
-                f"Invalid fortilink-neighbor-detect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK_NEIGHBOR_DETECT)}",
+                f"Invalid fortilink-neighbor-detect '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK_NEIGHBOR_DETECT)}",
             )
 
     # Validate ip-managed-by-fortiipam if present
@@ -4143,8 +3942,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_IP_MANAGED_BY_FORTIIPAM:
             return (
                 False,
-                f"Invalid ip-managed-by-fortiipam '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_MANAGED_BY_FORTIIPAM)}",
+                f"Invalid ip-managed-by-fortiipam '{value}'. Must be one of: {', '.join(VALID_BODY_IP_MANAGED_BY_FORTIIPAM)}",
             )
 
     # Validate managed-subnetwork-size if present
@@ -4153,8 +3951,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_MANAGED_SUBNETWORK_SIZE:
             return (
                 False,
-                f"Invalid managed-subnetwork-size '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MANAGED_SUBNETWORK_SIZE)}",
+                f"Invalid managed-subnetwork-size '{value}'. Must be one of: {', '.join(VALID_BODY_MANAGED_SUBNETWORK_SIZE)}",
             )
 
     # Validate fortilink-split-interface if present
@@ -4163,8 +3960,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_FORTILINK_SPLIT_INTERFACE:
             return (
                 False,
-                f"Invalid fortilink-split-interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTILINK_SPLIT_INTERFACE)}",
+                f"Invalid fortilink-split-interface '{value}'. Must be one of: {', '.join(VALID_BODY_FORTILINK_SPLIT_INTERFACE)}",
             )
 
     # Validate internal if present
@@ -4201,8 +3997,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN:
             return (
                 False,
-                f"Invalid switch-controller-access-vlan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN)}",
+                f"Invalid switch-controller-access-vlan '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_ACCESS_VLAN)}",
             )
 
     # Validate switch-controller-traffic-policy if present
@@ -4220,8 +4015,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE:
             return (
                 False,
-                f"Invalid switch-controller-rspan-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE)}",
+                f"Invalid switch-controller-rspan-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_RSPAN_MODE)}",
             )
 
     # Validate switch-controller-netflow-collect if present
@@ -4230,8 +4024,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT:
             return (
                 False,
-                f"Invalid switch-controller-netflow-collect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT)}",
+                f"Invalid switch-controller-netflow-collect '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_NETFLOW_COLLECT)}",
             )
 
     # Validate switch-controller-mgmt-vlan if present
@@ -4257,8 +4050,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING:
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING)}",
+                f"Invalid switch-controller-igmp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING)}",
             )
 
     # Validate switch-controller-igmp-snooping-proxy if present
@@ -4270,8 +4062,7 @@ def validate_interface_put(
         ):
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
+                f"Invalid switch-controller-igmp-snooping-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_PROXY)}",
             )
 
     # Validate switch-controller-igmp-snooping-fast-leave if present
@@ -4284,8 +4075,7 @@ def validate_interface_put(
         ):
             return (
                 False,
-                f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
+                f"Invalid switch-controller-igmp-snooping-fast-leave '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IGMP_SNOOPING_FAST_LEAVE)}",
             )
 
     # Validate switch-controller-dhcp-snooping if present
@@ -4294,8 +4084,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING:
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING)}",
+                f"Invalid switch-controller-dhcp-snooping '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING)}",
             )
 
     # Validate switch-controller-dhcp-snooping-verify-mac if present
@@ -4308,8 +4097,7 @@ def validate_interface_put(
         ):
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
+                f"Invalid switch-controller-dhcp-snooping-verify-mac '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_VERIFY_MAC)}",
             )
 
     # Validate switch-controller-dhcp-snooping-option82 if present
@@ -4322,8 +4110,7 @@ def validate_interface_put(
         ):
             return (
                 False,
-                f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",
+                f"Invalid switch-controller-dhcp-snooping-option82 '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_DHCP_SNOOPING_OPTION82)}",
             )
 
     # Validate switch-controller-arp-inspection if present
@@ -4332,8 +4119,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION:
             return (
                 False,
-                f"Invalid switch-controller-arp-inspection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION)}",
+                f"Invalid switch-controller-arp-inspection '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_ARP_INSPECTION)}",
             )
 
     # Validate switch-controller-learning-limit if present
@@ -4377,8 +4163,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_FEATURE:
             return (
                 False,
-                f"Invalid switch-controller-feature '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_FEATURE)}",
+                f"Invalid switch-controller-feature '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_FEATURE)}",
             )
 
     # Validate switch-controller-iot-scanning if present
@@ -4387,8 +4172,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING:
             return (
                 False,
-                f"Invalid switch-controller-iot-scanning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING)}",
+                f"Invalid switch-controller-iot-scanning '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_IOT_SCANNING)}",
             )
 
     # Validate switch-controller-offload if present
@@ -4397,8 +4181,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_OFFLOAD:
             return (
                 False,
-                f"Invalid switch-controller-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD)}",
+                f"Invalid switch-controller-offload '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD)}",
             )
 
     # Validate switch-controller-offload-gw if present
@@ -4407,8 +4190,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW:
             return (
                 False,
-                f"Invalid switch-controller-offload-gw '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW)}",
+                f"Invalid switch-controller-offload-gw '{value}'. Must be one of: {', '.join(VALID_BODY_SWITCH_CONTROLLER_OFFLOAD_GW)}",
             )
 
     # Validate swc-vlan if present
@@ -4459,8 +4241,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EAP_SUPPLICANT:
             return (
                 False,
-                f"Invalid eap-supplicant '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_SUPPLICANT)}",
+                f"Invalid eap-supplicant '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_SUPPLICANT)}",
             )
 
     # Validate eap-method if present
@@ -4469,8 +4250,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_EAP_METHOD:
             return (
                 False,
-                f"Invalid eap-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_METHOD)}",
+                f"Invalid eap-method '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_METHOD)}",
             )
 
     # Validate eap-identity if present
@@ -4497,8 +4277,7 @@ def validate_interface_put(
         if value and value not in VALID_BODY_DEFAULT_PURDUE_LEVEL:
             return (
                 False,
-                f"Invalid default-purdue-level '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULT_PURDUE_LEVEL)}",
+                f"Invalid default-purdue-level '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_PURDUE_LEVEL)}",
             )
 
     return (True, None)

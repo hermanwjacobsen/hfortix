@@ -46,8 +46,7 @@ def validate_addrgrp6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,8 +96,7 @@ def validate_addrgrp6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXCLUDE:
             return (
                 False,
-                f"Invalid exclude '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE)}",
+                f"Invalid exclude '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE)}",
             )
 
     # Validate fabric-object if present
@@ -107,8 +105,7 @@ def validate_addrgrp6_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -169,8 +166,7 @@ def validate_addrgrp6_put(
         if value and value not in VALID_BODY_EXCLUDE:
             return (
                 False,
-                f"Invalid exclude '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE)}",
+                f"Invalid exclude '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE)}",
             )
 
     # Validate fabric-object if present
@@ -179,8 +175,7 @@ def validate_addrgrp6_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

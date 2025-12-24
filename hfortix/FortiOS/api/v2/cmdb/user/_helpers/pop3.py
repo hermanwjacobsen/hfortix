@@ -53,8 +53,7 @@ def validate_pop3_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -104,8 +103,7 @@ def validate_pop3_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -114,8 +112,7 @@ def validate_pop3_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     return (True, None)
@@ -176,8 +173,7 @@ def validate_pop3_put(
         if value and value not in VALID_BODY_SECURE:
             return (
                 False,
-                f"Invalid secure '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURE)}",
+                f"Invalid secure '{value}'. Must be one of: {', '.join(VALID_BODY_SECURE)}",
             )
 
     # Validate ssl-min-proto-version if present
@@ -186,8 +182,7 @@ def validate_pop3_put(
         if value and value not in VALID_BODY_SSL_MIN_PROTO_VERSION:
             return (
                 False,
-                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
+                f"Invalid ssl-min-proto-version '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_MIN_PROTO_VERSION)}",
             )
 
     return (True, None)

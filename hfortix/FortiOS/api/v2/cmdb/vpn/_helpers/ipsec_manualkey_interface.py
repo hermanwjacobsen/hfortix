@@ -60,8 +60,7 @@ def validate_ipsec_manualkey_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -102,8 +101,7 @@ def validate_ipsec_manualkey_interface_post(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate addr-type if present
@@ -112,8 +110,7 @@ def validate_ipsec_manualkey_interface_post(
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate auth-alg if present
@@ -122,8 +119,7 @@ def validate_ipsec_manualkey_interface_post(
         if value and value not in VALID_BODY_AUTH_ALG:
             return (
                 False,
-                f"Invalid auth-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_ALG)}",
+                f"Invalid auth-alg '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_ALG)}",
             )
 
     # Validate enc-alg if present
@@ -132,8 +128,7 @@ def validate_ipsec_manualkey_interface_post(
         if value and value not in VALID_BODY_ENC_ALG:
             return (
                 False,
-                f"Invalid enc-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENC_ALG)}",
+                f"Invalid enc-alg '{value}'. Must be one of: {', '.join(VALID_BODY_ENC_ALG)}",
             )
 
     # Validate npu-offload if present
@@ -142,8 +137,7 @@ def validate_ipsec_manualkey_interface_post(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     return (True, None)
@@ -193,8 +187,7 @@ def validate_ipsec_manualkey_interface_put(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate addr-type if present
@@ -203,8 +196,7 @@ def validate_ipsec_manualkey_interface_put(
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate auth-alg if present
@@ -213,8 +205,7 @@ def validate_ipsec_manualkey_interface_put(
         if value and value not in VALID_BODY_AUTH_ALG:
             return (
                 False,
-                f"Invalid auth-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_ALG)}",
+                f"Invalid auth-alg '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_ALG)}",
             )
 
     # Validate enc-alg if present
@@ -223,8 +214,7 @@ def validate_ipsec_manualkey_interface_put(
         if value and value not in VALID_BODY_ENC_ALG:
             return (
                 False,
-                f"Invalid enc-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENC_ALG)}",
+                f"Invalid enc-alg '{value}'. Must be one of: {', '.join(VALID_BODY_ENC_ALG)}",
             )
 
     # Validate npu-offload if present
@@ -233,8 +223,7 @@ def validate_ipsec_manualkey_interface_put(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     return (True, None)

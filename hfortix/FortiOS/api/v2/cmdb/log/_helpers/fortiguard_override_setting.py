@@ -55,8 +55,7 @@ def validate_fortiguard_override_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -89,8 +88,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_OVERRIDE:
             return (
                 False,
-                f"Invalid override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OVERRIDE)}",
+                f"Invalid override '{value}'. Must be one of: {', '.join(VALID_BODY_OVERRIDE)}",
             )
 
     # Validate status if present
@@ -99,8 +97,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate upload-option if present
@@ -109,8 +106,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_UPLOAD_OPTION:
             return (
                 False,
-                f"Invalid upload-option '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPLOAD_OPTION)}",
+                f"Invalid upload-option '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD_OPTION)}",
             )
 
     # Validate upload-interval if present
@@ -119,8 +115,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_UPLOAD_INTERVAL:
             return (
                 False,
-                f"Invalid upload-interval '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPLOAD_INTERVAL)}",
+                f"Invalid upload-interval '{value}'. Must be one of: {', '.join(VALID_BODY_UPLOAD_INTERVAL)}",
             )
 
     # Validate priority if present
@@ -129,8 +124,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_PRIORITY:
             return (
                 False,
-                f"Invalid priority '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIORITY)}",
+                f"Invalid priority '{value}'. Must be one of: {', '.join(VALID_BODY_PRIORITY)}",
             )
 
     # Validate max-log-rate if present
@@ -153,8 +147,7 @@ def validate_fortiguard_override_setting_put(
         if value and value not in VALID_BODY_ACCESS_CONFIG:
             return (
                 False,
-                f"Invalid access-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCESS_CONFIG)}",
+                f"Invalid access-config '{value}'. Must be one of: {', '.join(VALID_BODY_ACCESS_CONFIG)}",
             )
 
     return (True, None)

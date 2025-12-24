@@ -75,8 +75,7 @@ def validate_fortiguard_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -109,8 +108,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_FORTIGUARD_ANYCAST:
             return (
                 False,
-                f"Invalid fortiguard-anycast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTIGUARD_ANYCAST)}",
+                f"Invalid fortiguard-anycast '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIGUARD_ANYCAST)}",
             )
 
     # Validate fortiguard-anycast-source if present
@@ -119,8 +117,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_FORTIGUARD_ANYCAST_SOURCE:
             return (
                 False,
-                f"Invalid fortiguard-anycast-source '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTIGUARD_ANYCAST_SOURCE)}",
+                f"Invalid fortiguard-anycast-source '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIGUARD_ANYCAST_SOURCE)}",
             )
 
     # Validate protocol if present
@@ -129,8 +126,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate port if present
@@ -139,8 +135,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_PORT:
             return (
                 False,
-                f"Invalid port '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORT)}",
+                f"Invalid port '{value}'. Must be one of: {', '.join(VALID_BODY_PORT)}",
             )
 
     # Validate service-account-id if present
@@ -172,8 +167,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_AUTO_JOIN_FORTICLOUD:
             return (
                 False,
-                f"Invalid auto-join-forticloud '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_JOIN_FORTICLOUD)}",
+                f"Invalid auto-join-forticloud '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_JOIN_FORTICLOUD)}",
             )
 
     # Validate update-server-location if present
@@ -182,8 +176,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_SERVER_LOCATION:
             return (
                 False,
-                f"Invalid update-server-location '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_SERVER_LOCATION)}",
+                f"Invalid update-server-location '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_SERVER_LOCATION)}",
             )
 
     # Validate sandbox-region if present
@@ -198,8 +191,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_FFDB:
             return (
                 False,
-                f"Invalid update-ffdb '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_FFDB)}",
+                f"Invalid update-ffdb '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_FFDB)}",
             )
 
     # Validate update-uwdb if present
@@ -208,8 +200,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_UWDB:
             return (
                 False,
-                f"Invalid update-uwdb '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_UWDB)}",
+                f"Invalid update-uwdb '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_UWDB)}",
             )
 
     # Validate update-dldb if present
@@ -218,8 +209,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_DLDB:
             return (
                 False,
-                f"Invalid update-dldb '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_DLDB)}",
+                f"Invalid update-dldb '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_DLDB)}",
             )
 
     # Validate update-extdb if present
@@ -228,8 +218,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_EXTDB:
             return (
                 False,
-                f"Invalid update-extdb '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_EXTDB)}",
+                f"Invalid update-extdb '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_EXTDB)}",
             )
 
     # Validate update-build-proxy if present
@@ -238,8 +227,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_UPDATE_BUILD_PROXY:
             return (
                 False,
-                f"Invalid update-build-proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_BUILD_PROXY)}",
+                f"Invalid update-build-proxy '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_BUILD_PROXY)}",
             )
 
     # Validate persistent-connection if present
@@ -248,8 +236,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_PERSISTENT_CONNECTION:
             return (
                 False,
-                f"Invalid persistent-connection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERSISTENT_CONNECTION)}",
+                f"Invalid persistent-connection '{value}'. Must be one of: {', '.join(VALID_BODY_PERSISTENT_CONNECTION)}",
             )
 
     # Validate vdom if present
@@ -264,8 +251,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_AUTO_FIRMWARE_UPGRADE:
             return (
                 False,
-                f"Invalid auto-firmware-upgrade '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_FIRMWARE_UPGRADE)}",
+                f"Invalid auto-firmware-upgrade '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_FIRMWARE_UPGRADE)}",
             )
 
     # Validate auto-firmware-upgrade-day if present
@@ -274,8 +260,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_AUTO_FIRMWARE_UPGRADE_DAY:
             return (
                 False,
-                f"Invalid auto-firmware-upgrade-day '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_FIRMWARE_UPGRADE_DAY)}",
+                f"Invalid auto-firmware-upgrade-day '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_FIRMWARE_UPGRADE_DAY)}",
             )
 
     # Validate auto-firmware-upgrade-delay if present
@@ -352,8 +337,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_SUBSCRIBE_UPDATE_NOTIFICATION:
             return (
                 False,
-                f"Invalid subscribe-update-notification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUBSCRIBE_UPDATE_NOTIFICATION)}",
+                f"Invalid subscribe-update-notification '{value}'. Must be one of: {', '.join(VALID_BODY_SUBSCRIBE_UPDATE_NOTIFICATION)}",
             )
 
     # Validate antispam-force-off if present
@@ -362,8 +346,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_ANTISPAM_FORCE_OFF:
             return (
                 False,
-                f"Invalid antispam-force-off '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANTISPAM_FORCE_OFF)}",
+                f"Invalid antispam-force-off '{value}'. Must be one of: {', '.join(VALID_BODY_ANTISPAM_FORCE_OFF)}",
             )
 
     # Validate antispam-cache if present
@@ -372,8 +355,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_ANTISPAM_CACHE:
             return (
                 False,
-                f"Invalid antispam-cache '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANTISPAM_CACHE)}",
+                f"Invalid antispam-cache '{value}'. Must be one of: {', '.join(VALID_BODY_ANTISPAM_CACHE)}",
             )
 
     # Validate antispam-cache-ttl if present
@@ -467,8 +449,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_OUTBREAK_PREVENTION_FORCE_OFF:
             return (
                 False,
-                f"Invalid outbreak-prevention-force-off '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTBREAK_PREVENTION_FORCE_OFF)}",
+                f"Invalid outbreak-prevention-force-off '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBREAK_PREVENTION_FORCE_OFF)}",
             )
 
     # Validate outbreak-prevention-cache if present
@@ -477,8 +458,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_OUTBREAK_PREVENTION_CACHE:
             return (
                 False,
-                f"Invalid outbreak-prevention-cache '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OUTBREAK_PREVENTION_CACHE)}",
+                f"Invalid outbreak-prevention-cache '{value}'. Must be one of: {', '.join(VALID_BODY_OUTBREAK_PREVENTION_CACHE)}",
             )
 
     # Validate outbreak-prevention-cache-ttl if present
@@ -572,8 +552,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_WEBFILTER_FORCE_OFF:
             return (
                 False,
-                f"Invalid webfilter-force-off '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBFILTER_FORCE_OFF)}",
+                f"Invalid webfilter-force-off '{value}'. Must be one of: {', '.join(VALID_BODY_WEBFILTER_FORCE_OFF)}",
             )
 
     # Validate webfilter-cache if present
@@ -582,8 +561,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_WEBFILTER_CACHE:
             return (
                 False,
-                f"Invalid webfilter-cache '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBFILTER_CACHE)}",
+                f"Invalid webfilter-cache '{value}'. Must be one of: {', '.join(VALID_BODY_WEBFILTER_CACHE)}",
             )
 
     # Validate webfilter-cache-ttl if present
@@ -694,8 +672,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_SDNS_OPTIONS:
             return (
                 False,
-                f"Invalid sdns-options '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SDNS_OPTIONS)}",
+                f"Invalid sdns-options '{value}'. Must be one of: {', '.join(VALID_BODY_SDNS_OPTIONS)}",
             )
 
     # Validate proxy-server-ip if present
@@ -750,8 +727,7 @@ def validate_fortiguard_put(
         if value and value not in VALID_BODY_INTERFACE_SELECT_METHOD:
             return (
                 False,
-                f"Invalid interface-select-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
+                f"Invalid interface-select-method '{value}'. Must be one of: {', '.join(VALID_BODY_INTERFACE_SELECT_METHOD)}",
             )
 
     # Validate interface if present

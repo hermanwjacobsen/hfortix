@@ -49,8 +49,7 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -95,8 +94,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_PERSISTENT_COOKIE:
             return (
                 False,
-                f"Invalid persistent-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PERSISTENT_COOKIE)}",
+                f"Invalid persistent-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_PERSISTENT_COOKIE)}",
             )
 
     # Validate ip-auth-cookie if present
@@ -105,8 +103,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_IP_AUTH_COOKIE:
             return (
                 False,
-                f"Invalid ip-auth-cookie '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_AUTH_COOKIE)}",
+                f"Invalid ip-auth-cookie '{value}'. Must be one of: {', '.join(VALID_BODY_IP_AUTH_COOKIE)}",
             )
 
     # Validate cookie-max-age if present
@@ -146,8 +143,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_CAPTIVE_PORTAL_TYPE:
             return (
                 False,
-                f"Invalid captive-portal-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CAPTIVE_PORTAL_TYPE)}",
+                f"Invalid captive-portal-type '{value}'. Must be one of: {', '.join(VALID_BODY_CAPTIVE_PORTAL_TYPE)}",
             )
 
     # Validate captive-portal if present
@@ -168,8 +164,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_CERT_AUTH:
             return (
                 False,
-                f"Invalid cert-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_AUTH)}",
+                f"Invalid cert-auth '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_AUTH)}",
             )
 
     # Validate cert-captive-portal if present
@@ -218,8 +213,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AUTH_HTTPS:
             return (
                 False,
-                f"Invalid auth-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_HTTPS)}",
+                f"Invalid auth-https '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_HTTPS)}",
             )
 
     # Validate captive-portal-ssl-port if present

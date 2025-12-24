@@ -46,8 +46,7 @@ def validate_label_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,8 +79,7 @@ def validate_label_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate mpip-type if present
@@ -90,8 +88,7 @@ def validate_label_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_MPIP_TYPE:
             return (
                 False,
-                f"Invalid mpip-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MPIP_TYPE)}",
+                f"Invalid mpip-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPIP_TYPE)}",
             )
 
     # Validate connector if present
@@ -147,8 +144,7 @@ def validate_label_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate mpip-type if present
@@ -157,8 +153,7 @@ def validate_label_put(
         if value and value not in VALID_BODY_MPIP_TYPE:
             return (
                 False,
-                f"Invalid mpip-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MPIP_TYPE)}",
+                f"Invalid mpip-type '{value}'. Must be one of: {', '.join(VALID_BODY_MPIP_TYPE)}",
             )
 
     # Validate connector if present

@@ -47,8 +47,7 @@ def validate_mac_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -107,8 +106,7 @@ def validate_mac_policy_post(
         if value and value not in VALID_BODY_COUNT:
             return (
                 False,
-                f"Invalid count '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_COUNT)}",
+                f"Invalid count '{value}'. Must be one of: {', '.join(VALID_BODY_COUNT)}",
             )
 
     # Validate bounce-port-link if present
@@ -117,8 +115,7 @@ def validate_mac_policy_post(
         if value and value not in VALID_BODY_BOUNCE_PORT_LINK:
             return (
                 False,
-                f"Invalid bounce-port-link '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BOUNCE_PORT_LINK)}",
+                f"Invalid bounce-port-link '{value}'. Must be one of: {', '.join(VALID_BODY_BOUNCE_PORT_LINK)}",
             )
 
     # Validate bounce-port-duration if present
@@ -144,8 +141,7 @@ def validate_mac_policy_post(
         if value and value not in VALID_BODY_POE_RESET:
             return (
                 False,
-                f"Invalid poe-reset '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_POE_RESET)}",
+                f"Invalid poe-reset '{value}'. Must be one of: {', '.join(VALID_BODY_POE_RESET)}",
             )
 
     return (True, None)
@@ -213,8 +209,7 @@ def validate_mac_policy_put(
         if value and value not in VALID_BODY_COUNT:
             return (
                 False,
-                f"Invalid count '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_COUNT)}",
+                f"Invalid count '{value}'. Must be one of: {', '.join(VALID_BODY_COUNT)}",
             )
 
     # Validate bounce-port-link if present
@@ -223,8 +218,7 @@ def validate_mac_policy_put(
         if value and value not in VALID_BODY_BOUNCE_PORT_LINK:
             return (
                 False,
-                f"Invalid bounce-port-link '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BOUNCE_PORT_LINK)}",
+                f"Invalid bounce-port-link '{value}'. Must be one of: {', '.join(VALID_BODY_BOUNCE_PORT_LINK)}",
             )
 
     # Validate bounce-port-duration if present
@@ -250,8 +244,7 @@ def validate_mac_policy_put(
         if value and value not in VALID_BODY_POE_RESET:
             return (
                 False,
-                f"Invalid poe-reset '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_POE_RESET)}",
+                f"Invalid poe-reset '{value}'. Must be one of: {', '.join(VALID_BODY_POE_RESET)}",
             )
 
     return (True, None)

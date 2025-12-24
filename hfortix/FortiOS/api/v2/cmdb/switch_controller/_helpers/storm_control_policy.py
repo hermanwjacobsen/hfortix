@@ -48,8 +48,7 @@ def validate_storm_control_policy_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -90,8 +89,7 @@ def validate_storm_control_policy_post(
         if value and value not in VALID_BODY_STORM_CONTROL_MODE:
             return (
                 False,
-                f"Invalid storm-control-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STORM_CONTROL_MODE)}",
+                f"Invalid storm-control-mode '{value}'. Must be one of: {', '.join(VALID_BODY_STORM_CONTROL_MODE)}",
             )
 
     # Validate rate if present
@@ -125,8 +123,7 @@ def validate_storm_control_policy_post(
         if value and value not in VALID_BODY_UNKNOWN_UNICAST:
             return (
                 False,
-                f"Invalid unknown-unicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNKNOWN_UNICAST)}",
+                f"Invalid unknown-unicast '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_UNICAST)}",
             )
 
     # Validate unknown-multicast if present
@@ -135,8 +132,7 @@ def validate_storm_control_policy_post(
         if value and value not in VALID_BODY_UNKNOWN_MULTICAST:
             return (
                 False,
-                f"Invalid unknown-multicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNKNOWN_MULTICAST)}",
+                f"Invalid unknown-multicast '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_MULTICAST)}",
             )
 
     # Validate broadcast if present
@@ -145,8 +141,7 @@ def validate_storm_control_policy_post(
         if value and value not in VALID_BODY_BROADCAST:
             return (
                 False,
-                f"Invalid broadcast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BROADCAST)}",
+                f"Invalid broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST)}",
             )
 
     return (True, None)
@@ -196,8 +191,7 @@ def validate_storm_control_policy_put(
         if value and value not in VALID_BODY_STORM_CONTROL_MODE:
             return (
                 False,
-                f"Invalid storm-control-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STORM_CONTROL_MODE)}",
+                f"Invalid storm-control-mode '{value}'. Must be one of: {', '.join(VALID_BODY_STORM_CONTROL_MODE)}",
             )
 
     # Validate rate if present
@@ -231,8 +225,7 @@ def validate_storm_control_policy_put(
         if value and value not in VALID_BODY_UNKNOWN_UNICAST:
             return (
                 False,
-                f"Invalid unknown-unicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNKNOWN_UNICAST)}",
+                f"Invalid unknown-unicast '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_UNICAST)}",
             )
 
     # Validate unknown-multicast if present
@@ -241,8 +234,7 @@ def validate_storm_control_policy_put(
         if value and value not in VALID_BODY_UNKNOWN_MULTICAST:
             return (
                 False,
-                f"Invalid unknown-multicast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNKNOWN_MULTICAST)}",
+                f"Invalid unknown-multicast '{value}'. Must be one of: {', '.join(VALID_BODY_UNKNOWN_MULTICAST)}",
             )
 
     # Validate broadcast if present
@@ -251,8 +243,7 @@ def validate_storm_control_policy_put(
         if value and value not in VALID_BODY_BROADCAST:
             return (
                 False,
-                f"Invalid broadcast '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BROADCAST)}",
+                f"Invalid broadcast '{value}'. Must be one of: {', '.join(VALID_BODY_BROADCAST)}",
             )
 
     return (True, None)

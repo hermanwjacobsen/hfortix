@@ -46,8 +46,7 @@ def validate_multicast6_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -80,8 +79,7 @@ def validate_multicast6_put(
         if value and value not in VALID_BODY_MULTICAST_ROUTING:
             return (
                 False,
-                f"Invalid multicast-routing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTICAST_ROUTING)}",
+                f"Invalid multicast-routing '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_ROUTING)}",
             )
 
     # Validate multicast-pmtu if present
@@ -90,8 +88,7 @@ def validate_multicast6_put(
         if value and value not in VALID_BODY_MULTICAST_PMTU:
             return (
                 False,
-                f"Invalid multicast-pmtu '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MULTICAST_PMTU)}",
+                f"Invalid multicast-pmtu '{value}'. Must be one of: {', '.join(VALID_BODY_MULTICAST_PMTU)}",
             )
 
     return (True, None)

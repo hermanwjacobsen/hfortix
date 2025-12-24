@@ -48,8 +48,7 @@ def validate_lte_modem_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_lte_modem_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate extra-init if present
@@ -98,8 +96,7 @@ def validate_lte_modem_put(
         if value and value not in VALID_BODY_PDPTYPE:
             return (
                 False,
-                f"Invalid pdptype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PDPTYPE)}",
+                f"Invalid pdptype '{value}'. Must be one of: {', '.join(VALID_BODY_PDPTYPE)}",
             )
 
     # Validate authtype if present
@@ -108,8 +105,7 @@ def validate_lte_modem_put(
         if value and value not in VALID_BODY_AUTHTYPE:
             return (
                 False,
-                f"Invalid authtype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHTYPE)}",
+                f"Invalid authtype '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHTYPE)}",
             )
 
     # Validate username if present
@@ -141,8 +137,7 @@ def validate_lte_modem_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate holddown-timer if present

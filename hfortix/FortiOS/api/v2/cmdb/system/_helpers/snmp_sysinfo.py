@@ -48,8 +48,7 @@ def validate_snmp_sysinfo_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_snmp_sysinfo_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate engine-id-type if present
@@ -92,8 +90,7 @@ def validate_snmp_sysinfo_put(
         if value and value not in VALID_BODY_ENGINE_ID_TYPE:
             return (
                 False,
-                f"Invalid engine-id-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENGINE_ID_TYPE)}",
+                f"Invalid engine-id-type '{value}'. Must be one of: {', '.join(VALID_BODY_ENGINE_ID_TYPE)}",
             )
 
     # Validate engine-id if present
@@ -211,8 +208,7 @@ def validate_snmp_sysinfo_put(
         if value and value not in VALID_BODY_APPEND_INDEX:
             return (
                 False,
-                f"Invalid append-index '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_APPEND_INDEX)}",
+                f"Invalid append-index '{value}'. Must be one of: {', '.join(VALID_BODY_APPEND_INDEX)}",
             )
 
     # Validate non-mgmt-vdom-query if present
@@ -221,8 +217,7 @@ def validate_snmp_sysinfo_put(
         if value and value not in VALID_BODY_NON_MGMT_VDOM_QUERY:
             return (
                 False,
-                f"Invalid non-mgmt-vdom-query '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NON_MGMT_VDOM_QUERY)}",
+                f"Invalid non-mgmt-vdom-query '{value}'. Must be one of: {', '.join(VALID_BODY_NON_MGMT_VDOM_QUERY)}",
             )
 
     return (True, None)

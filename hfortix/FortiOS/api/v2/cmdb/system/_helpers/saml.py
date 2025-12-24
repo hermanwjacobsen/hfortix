@@ -49,8 +49,7 @@ def validate_saml_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,8 +82,7 @@ def validate_saml_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate role if present
@@ -93,8 +91,7 @@ def validate_saml_put(
         if value and value not in VALID_BODY_ROLE:
             return (
                 False,
-                f"Invalid role '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ROLE)}",
+                f"Invalid role '{value}'. Must be one of: {', '.join(VALID_BODY_ROLE)}",
             )
 
     # Validate default-login-page if present
@@ -103,8 +100,7 @@ def validate_saml_put(
         if value and value not in VALID_BODY_DEFAULT_LOGIN_PAGE:
             return (
                 False,
-                f"Invalid default-login-page '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULT_LOGIN_PAGE)}",
+                f"Invalid default-login-page '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_LOGIN_PAGE)}",
             )
 
     # Validate default-profile if present
@@ -125,8 +121,7 @@ def validate_saml_put(
         if value and value not in VALID_BODY_BINDING_PROTOCOL:
             return (
                 False,
-                f"Invalid binding-protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BINDING_PROTOCOL)}",
+                f"Invalid binding-protocol '{value}'. Must be one of: {', '.join(VALID_BODY_BINDING_PROTOCOL)}",
             )
 
     # Validate portal-url if present
@@ -195,8 +190,7 @@ def validate_saml_put(
         if value and value not in VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT:
             return (
                 False,
-                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
+                f"Invalid require-signed-resp-and-asrt '{value}'. Must be one of: {', '.join(VALID_BODY_REQUIRE_SIGNED_RESP_AND_ASRT)}",
             )
 
     # Validate tolerance if present

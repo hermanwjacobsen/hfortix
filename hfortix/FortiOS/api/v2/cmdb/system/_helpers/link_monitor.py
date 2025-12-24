@@ -61,8 +61,7 @@ def validate_link_monitor_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -97,8 +96,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_ADDR_MODE:
             return (
                 False,
-                f"Invalid addr-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_MODE)}",
+                f"Invalid addr-mode '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_MODE)}",
             )
 
     # Validate srcintf if present
@@ -113,8 +111,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_SERVER_CONFIG:
             return (
                 False,
-                f"Invalid server-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_CONFIG)}",
+                f"Invalid server-config '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_CONFIG)}",
             )
 
     # Validate server-type if present
@@ -123,8 +120,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate protocol if present
@@ -133,8 +129,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate port if present
@@ -230,8 +225,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_SECURITY_MODE:
             return (
                 False,
-                f"Invalid security-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MODE)}",
+                f"Invalid security-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MODE)}",
             )
 
     # Validate packet-size if present
@@ -273,8 +267,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_UPDATE_CASCADE_INTERFACE:
             return (
                 False,
-                f"Invalid update-cascade-interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_CASCADE_INTERFACE)}",
+                f"Invalid update-cascade-interface '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_CASCADE_INTERFACE)}",
             )
 
     # Validate update-static-route if present
@@ -283,8 +276,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_UPDATE_STATIC_ROUTE:
             return (
                 False,
-                f"Invalid update-static-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_STATIC_ROUTE)}",
+                f"Invalid update-static-route '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_STATIC_ROUTE)}",
             )
 
     # Validate update-policy-route if present
@@ -293,8 +285,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_UPDATE_POLICY_ROUTE:
             return (
                 False,
-                f"Invalid update-policy-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_POLICY_ROUTE)}",
+                f"Invalid update-policy-route '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_POLICY_ROUTE)}",
             )
 
     # Validate status if present
@@ -303,8 +294,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate class-id if present
@@ -327,8 +317,7 @@ def validate_link_monitor_post(
         if value and value not in VALID_BODY_SERVICE_DETECTION:
             return (
                 False,
-                f"Invalid service-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVICE_DETECTION)}",
+                f"Invalid service-detection '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_DETECTION)}",
             )
 
     return (True, None)
@@ -372,8 +361,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_ADDR_MODE:
             return (
                 False,
-                f"Invalid addr-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_MODE)}",
+                f"Invalid addr-mode '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_MODE)}",
             )
 
     # Validate srcintf if present
@@ -388,8 +376,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_SERVER_CONFIG:
             return (
                 False,
-                f"Invalid server-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_CONFIG)}",
+                f"Invalid server-config '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_CONFIG)}",
             )
 
     # Validate server-type if present
@@ -398,8 +385,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate protocol if present
@@ -408,8 +394,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate port if present
@@ -505,8 +490,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_SECURITY_MODE:
             return (
                 False,
-                f"Invalid security-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECURITY_MODE)}",
+                f"Invalid security-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SECURITY_MODE)}",
             )
 
     # Validate packet-size if present
@@ -548,8 +532,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_UPDATE_CASCADE_INTERFACE:
             return (
                 False,
-                f"Invalid update-cascade-interface '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_CASCADE_INTERFACE)}",
+                f"Invalid update-cascade-interface '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_CASCADE_INTERFACE)}",
             )
 
     # Validate update-static-route if present
@@ -558,8 +541,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_UPDATE_STATIC_ROUTE:
             return (
                 False,
-                f"Invalid update-static-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_STATIC_ROUTE)}",
+                f"Invalid update-static-route '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_STATIC_ROUTE)}",
             )
 
     # Validate update-policy-route if present
@@ -568,8 +550,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_UPDATE_POLICY_ROUTE:
             return (
                 False,
-                f"Invalid update-policy-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UPDATE_POLICY_ROUTE)}",
+                f"Invalid update-policy-route '{value}'. Must be one of: {', '.join(VALID_BODY_UPDATE_POLICY_ROUTE)}",
             )
 
     # Validate status if present
@@ -578,8 +559,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate class-id if present
@@ -602,8 +582,7 @@ def validate_link_monitor_put(
         if value and value not in VALID_BODY_SERVICE_DETECTION:
             return (
                 False,
-                f"Invalid service-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVICE_DETECTION)}",
+                f"Invalid service-detection '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_DETECTION)}",
             )
 
     return (True, None)

@@ -46,8 +46,7 @@ def validate_automation_condition_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -88,8 +87,7 @@ def validate_automation_condition_post(
         if value and value not in VALID_BODY_CONDITION_TYPE:
             return (
                 False,
-                f"Invalid condition-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CONDITION_TYPE)}",
+                f"Invalid condition-type '{value}'. Must be one of: {', '.join(VALID_BODY_CONDITION_TYPE)}",
             )
 
     # Validate cpu-usage-percent if present
@@ -144,8 +142,7 @@ def validate_automation_condition_post(
         if value and value not in VALID_BODY_VPN_TUNNEL_STATE:
             return (
                 False,
-                f"Invalid vpn-tunnel-state '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VPN_TUNNEL_STATE)}",
+                f"Invalid vpn-tunnel-state '{value}'. Must be one of: {', '.join(VALID_BODY_VPN_TUNNEL_STATE)}",
             )
 
     return (True, None)
@@ -195,8 +192,7 @@ def validate_automation_condition_put(
         if value and value not in VALID_BODY_CONDITION_TYPE:
             return (
                 False,
-                f"Invalid condition-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CONDITION_TYPE)}",
+                f"Invalid condition-type '{value}'. Must be one of: {', '.join(VALID_BODY_CONDITION_TYPE)}",
             )
 
     # Validate cpu-usage-percent if present
@@ -251,8 +247,7 @@ def validate_automation_condition_put(
         if value and value not in VALID_BODY_VPN_TUNNEL_STATE:
             return (
                 False,
-                f"Invalid vpn-tunnel-state '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VPN_TUNNEL_STATE)}",
+                f"Invalid vpn-tunnel-state '{value}'. Must be one of: {', '.join(VALID_BODY_VPN_TUNNEL_STATE)}",
             )
 
     return (True, None)

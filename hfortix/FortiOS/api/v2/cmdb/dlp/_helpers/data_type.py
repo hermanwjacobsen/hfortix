@@ -45,8 +45,7 @@ def validate_data_type_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -155,8 +154,7 @@ def validate_data_type_post(
         if value and value not in VALID_BODY_VERIFY_TRANSFORMED_PATTERN:
             return (
                 False,
-                f"Invalid verify-transformed-pattern '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_TRANSFORMED_PATTERN)}",
+                f"Invalid verify-transformed-pattern '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_TRANSFORMED_PATTERN)}",
             )
 
     # Validate comment if present
@@ -280,8 +278,7 @@ def validate_data_type_put(
         if value and value not in VALID_BODY_VERIFY_TRANSFORMED_PATTERN:
             return (
                 False,
-                f"Invalid verify-transformed-pattern '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_TRANSFORMED_PATTERN)}",
+                f"Invalid verify-transformed-pattern '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_TRANSFORMED_PATTERN)}",
             )
 
     # Validate comment if present

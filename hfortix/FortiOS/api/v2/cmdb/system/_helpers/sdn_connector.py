@@ -82,8 +82,7 @@ def validate_sdn_connector_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -118,8 +117,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -128,8 +126,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate proxy if present
@@ -144,8 +141,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_USE_METADATA_IAM:
             return (
                 False,
-                f"Invalid use-metadata-iam '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_METADATA_IAM)}",
+                f"Invalid use-metadata-iam '{value}'. Must be one of: {', '.join(VALID_BODY_USE_METADATA_IAM)}",
             )
 
     # Validate microsoft-365 if present
@@ -154,8 +150,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_MICROSOFT_365:
             return (
                 False,
-                f"Invalid microsoft-365 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MICROSOFT_365)}",
+                f"Invalid microsoft-365 '{value}'. Must be one of: {', '.join(VALID_BODY_MICROSOFT_365)}",
             )
 
     # Validate ha-status if present
@@ -164,8 +159,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_HA_STATUS:
             return (
                 False,
-                f"Invalid ha-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HA_STATUS)}",
+                f"Invalid ha-status '{value}'. Must be one of: {', '.join(VALID_BODY_HA_STATUS)}",
             )
 
     # Validate verify-certificate if present
@@ -174,8 +168,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_VERIFY_CERTIFICATE:
             return (
                 False,
-                f"Invalid verify-certificate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_CERTIFICATE)}",
+                f"Invalid verify-certificate '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_CERTIFICATE)}",
             )
 
     # Validate vdom if present
@@ -260,8 +253,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_ALT_RESOURCE_IP:
             return (
                 False,
-                f"Invalid alt-resource-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALT_RESOURCE_IP)}",
+                f"Invalid alt-resource-ip '{value}'. Must be one of: {', '.join(VALID_BODY_ALT_RESOURCE_IP)}",
             )
 
     # Validate tenant-id if present
@@ -306,8 +298,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_AZURE_REGION:
             return (
                 False,
-                f"Invalid azure-region '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_REGION)}",
+                f"Invalid azure-region '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_REGION)}",
             )
 
     # Validate user-id if present
@@ -322,8 +313,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_OCI_REGION_TYPE:
             return (
                 False,
-                f"Invalid oci-region-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OCI_REGION_TYPE)}",
+                f"Invalid oci-region-type '{value}'. Must be one of: {', '.join(VALID_BODY_OCI_REGION_TYPE)}",
             )
 
     # Validate oci-cert if present
@@ -374,8 +364,7 @@ def validate_sdn_connector_post(
         if value and value not in VALID_BODY_IBM_REGION:
             return (
                 False,
-                f"Invalid ibm-region '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IBM_REGION)}",
+                f"Invalid ibm-region '{value}'. Must be one of: {', '.join(VALID_BODY_IBM_REGION)}",
             )
 
     # Validate par-id if present
@@ -442,8 +431,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate type if present
@@ -452,8 +440,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate proxy if present
@@ -468,8 +455,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_USE_METADATA_IAM:
             return (
                 False,
-                f"Invalid use-metadata-iam '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_METADATA_IAM)}",
+                f"Invalid use-metadata-iam '{value}'. Must be one of: {', '.join(VALID_BODY_USE_METADATA_IAM)}",
             )
 
     # Validate microsoft-365 if present
@@ -478,8 +464,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_MICROSOFT_365:
             return (
                 False,
-                f"Invalid microsoft-365 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MICROSOFT_365)}",
+                f"Invalid microsoft-365 '{value}'. Must be one of: {', '.join(VALID_BODY_MICROSOFT_365)}",
             )
 
     # Validate ha-status if present
@@ -488,8 +473,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_HA_STATUS:
             return (
                 False,
-                f"Invalid ha-status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HA_STATUS)}",
+                f"Invalid ha-status '{value}'. Must be one of: {', '.join(VALID_BODY_HA_STATUS)}",
             )
 
     # Validate verify-certificate if present
@@ -498,8 +482,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_VERIFY_CERTIFICATE:
             return (
                 False,
-                f"Invalid verify-certificate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VERIFY_CERTIFICATE)}",
+                f"Invalid verify-certificate '{value}'. Must be one of: {', '.join(VALID_BODY_VERIFY_CERTIFICATE)}",
             )
 
     # Validate vdom if present
@@ -584,8 +567,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_ALT_RESOURCE_IP:
             return (
                 False,
-                f"Invalid alt-resource-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALT_RESOURCE_IP)}",
+                f"Invalid alt-resource-ip '{value}'. Must be one of: {', '.join(VALID_BODY_ALT_RESOURCE_IP)}",
             )
 
     # Validate tenant-id if present
@@ -630,8 +612,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_AZURE_REGION:
             return (
                 False,
-                f"Invalid azure-region '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_REGION)}",
+                f"Invalid azure-region '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_REGION)}",
             )
 
     # Validate user-id if present
@@ -646,8 +627,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_OCI_REGION_TYPE:
             return (
                 False,
-                f"Invalid oci-region-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OCI_REGION_TYPE)}",
+                f"Invalid oci-region-type '{value}'. Must be one of: {', '.join(VALID_BODY_OCI_REGION_TYPE)}",
             )
 
     # Validate oci-cert if present
@@ -698,8 +678,7 @@ def validate_sdn_connector_put(
         if value and value not in VALID_BODY_IBM_REGION:
             return (
                 False,
-                f"Invalid ibm-region '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IBM_REGION)}",
+                f"Invalid ibm-region '{value}'. Must be one of: {', '.join(VALID_BODY_IBM_REGION)}",
             )
 
     # Validate par-id if present

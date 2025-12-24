@@ -54,8 +54,7 @@ def validate_wccp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -88,8 +87,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PORTS_DEFINED:
             return (
                 False,
-                f"Invalid ports-defined '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PORTS_DEFINED)}",
+                f"Invalid ports-defined '{value}'. Must be one of: {', '.join(VALID_BODY_PORTS_DEFINED)}",
             )
 
     # Validate server-type if present
@@ -98,8 +96,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate authentication if present
@@ -108,8 +105,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTHENTICATION:
             return (
                 False,
-                f"Invalid authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHENTICATION)}",
+                f"Invalid authentication '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHENTICATION)}",
             )
 
     # Validate forward-method if present
@@ -118,8 +114,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FORWARD_METHOD:
             return (
                 False,
-                f"Invalid forward-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORWARD_METHOD)}",
+                f"Invalid forward-method '{value}'. Must be one of: {', '.join(VALID_BODY_FORWARD_METHOD)}",
             )
 
     # Validate cache-engine-method if present
@@ -128,8 +123,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CACHE_ENGINE_METHOD:
             return (
                 False,
-                f"Invalid cache-engine-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CACHE_ENGINE_METHOD)}",
+                f"Invalid cache-engine-method '{value}'. Must be one of: {', '.join(VALID_BODY_CACHE_ENGINE_METHOD)}",
             )
 
     # Validate service-type if present
@@ -138,8 +132,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVICE_TYPE:
             return (
                 False,
-                f"Invalid service-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVICE_TYPE)}",
+                f"Invalid service-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVICE_TYPE)}",
             )
 
     # Validate primary-hash if present
@@ -148,8 +141,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_PRIMARY_HASH:
             return (
                 False,
-                f"Invalid primary-hash '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PRIMARY_HASH)}",
+                f"Invalid primary-hash '{value}'. Must be one of: {', '.join(VALID_BODY_PRIMARY_HASH)}",
             )
 
     # Validate priority if present
@@ -197,8 +189,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ASSIGNMENT_BUCKET_FORMAT:
             return (
                 False,
-                f"Invalid assignment-bucket-format '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGNMENT_BUCKET_FORMAT)}",
+                f"Invalid assignment-bucket-format '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGNMENT_BUCKET_FORMAT)}",
             )
 
     # Validate return-method if present
@@ -207,8 +198,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_RETURN_METHOD:
             return (
                 False,
-                f"Invalid return-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RETURN_METHOD)}",
+                f"Invalid return-method '{value}'. Must be one of: {', '.join(VALID_BODY_RETURN_METHOD)}",
             )
 
     # Validate assignment-method if present
@@ -217,8 +207,7 @@ def validate_wccp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ASSIGNMENT_METHOD:
             return (
                 False,
-                f"Invalid assignment-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGNMENT_METHOD)}",
+                f"Invalid assignment-method '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGNMENT_METHOD)}",
             )
 
     return (True, None)

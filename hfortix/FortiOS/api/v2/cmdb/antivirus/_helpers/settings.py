@@ -48,8 +48,7 @@ def validate_settings_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -82,8 +81,7 @@ def validate_settings_put(
         if value and value not in VALID_BODY_MACHINE_LEARNING_DETECTION:
             return (
                 False,
-                f"Invalid machine-learning-detection '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MACHINE_LEARNING_DETECTION)}",
+                f"Invalid machine-learning-detection '{value}'. Must be one of: {', '.join(VALID_BODY_MACHINE_LEARNING_DETECTION)}",
             )
 
     # Validate use-extreme-db if present
@@ -92,8 +90,7 @@ def validate_settings_put(
         if value and value not in VALID_BODY_USE_EXTREME_DB:
             return (
                 False,
-                f"Invalid use-extreme-db '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_EXTREME_DB)}",
+                f"Invalid use-extreme-db '{value}'. Must be one of: {', '.join(VALID_BODY_USE_EXTREME_DB)}",
             )
 
     # Validate grayware if present
@@ -102,8 +99,7 @@ def validate_settings_put(
         if value and value not in VALID_BODY_GRAYWARE:
             return (
                 False,
-                f"Invalid grayware '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GRAYWARE)}",
+                f"Invalid grayware '{value}'. Must be one of: {', '.join(VALID_BODY_GRAYWARE)}",
             )
 
     # Validate override-timeout if present
@@ -129,8 +125,7 @@ def validate_settings_put(
         if value and value not in VALID_BODY_CACHE_INFECTED_RESULT:
             return (
                 False,
-                f"Invalid cache-infected-result '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CACHE_INFECTED_RESULT)}",
+                f"Invalid cache-infected-result '{value}'. Must be one of: {', '.join(VALID_BODY_CACHE_INFECTED_RESULT)}",
             )
 
     return (True, None)

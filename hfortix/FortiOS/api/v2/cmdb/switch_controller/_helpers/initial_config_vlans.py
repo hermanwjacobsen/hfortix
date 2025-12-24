@@ -45,8 +45,7 @@ def validate_initial_config_vlans_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -79,8 +78,7 @@ def validate_initial_config_vlans_put(
         if value and value not in VALID_BODY_OPTIONAL_VLANS:
             return (
                 False,
-                f"Invalid optional-vlans '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_OPTIONAL_VLANS)}",
+                f"Invalid optional-vlans '{value}'. Must be one of: {', '.join(VALID_BODY_OPTIONAL_VLANS)}",
             )
 
     # Validate default-vlan if present

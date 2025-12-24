@@ -52,8 +52,7 @@ def validate_view_map_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -130,8 +129,7 @@ def validate_view_map_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_WHICH:
             return (
                 False,
-                f"Invalid which '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WHICH)}",
+                f"Invalid which '{value}'. Must be one of: {', '.join(VALID_BODY_WHICH)}",
             )
 
     return (True, None)
@@ -219,8 +217,7 @@ def validate_view_map_put(
         if value and value not in VALID_BODY_WHICH:
             return (
                 False,
-                f"Invalid which '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WHICH)}",
+                f"Invalid which '{value}'. Must be one of: {', '.join(VALID_BODY_WHICH)}",
             )
 
     return (True, None)

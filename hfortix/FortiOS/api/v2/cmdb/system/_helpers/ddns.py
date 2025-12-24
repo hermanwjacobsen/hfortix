@@ -62,8 +62,7 @@ def validate_ddns_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -101,8 +100,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DDNS_SERVER:
             return (
                 False,
-                f"Invalid ddns-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DDNS_SERVER)}",
+                f"Invalid ddns-server '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_SERVER)}",
             )
 
     # Validate addr-type if present
@@ -111,8 +109,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ADDR_TYPE:
             return (
                 False,
-                f"Invalid addr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDR_TYPE)}",
+                f"Invalid addr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ADDR_TYPE)}",
             )
 
     # Validate server-type if present
@@ -121,8 +118,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_SERVER_TYPE:
             return (
                 False,
-                f"Invalid server-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_TYPE)}",
+                f"Invalid server-type '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_TYPE)}",
             )
 
     # Validate ddns-zone if present
@@ -148,8 +144,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_DDNS_AUTH:
             return (
                 False,
-                f"Invalid ddns-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DDNS_AUTH)}",
+                f"Invalid ddns-auth '{value}'. Must be one of: {', '.join(VALID_BODY_DDNS_AUTH)}",
             )
 
     # Validate ddns-keyname if present
@@ -182,8 +177,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_USE_PUBLIC_IP:
             return (
                 False,
-                f"Invalid use-public-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_PUBLIC_IP)}",
+                f"Invalid use-public-ip '{value}'. Must be one of: {', '.join(VALID_BODY_USE_PUBLIC_IP)}",
             )
 
     # Validate update-interval if present
@@ -209,8 +203,7 @@ def validate_ddns_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CLEAR_TEXT:
             return (
                 False,
-                f"Invalid clear-text '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLEAR_TEXT)}",
+                f"Invalid clear-text '{value}'. Must be one of: {', '.join(VALID_BODY_CLEAR_TEXT)}",
             )
 
     # Validate ssl-certificate if present

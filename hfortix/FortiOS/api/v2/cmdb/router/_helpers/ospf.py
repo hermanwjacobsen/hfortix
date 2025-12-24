@@ -53,8 +53,7 @@ def validate_ospf_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -87,8 +86,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_ABR_TYPE:
             return (
                 False,
-                f"Invalid abr-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ABR_TYPE)}",
+                f"Invalid abr-type '{value}'. Must be one of: {', '.join(VALID_BODY_ABR_TYPE)}",
             )
 
     # Validate auto-cost-ref-bandwidth if present
@@ -165,8 +163,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_DATABASE_OVERFLOW:
             return (
                 False,
-                f"Invalid database-overflow '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DATABASE_OVERFLOW)}",
+                f"Invalid database-overflow '{value}'. Must be one of: {', '.join(VALID_BODY_DATABASE_OVERFLOW)}",
             )
 
     # Validate database-overflow-max-lsas if present
@@ -209,8 +206,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_DEFAULT_INFORMATION_ORIGINATE:
             return (
                 False,
-                f"Invalid default-information-originate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULT_INFORMATION_ORIGINATE)}",
+                f"Invalid default-information-originate '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_INFORMATION_ORIGINATE)}",
             )
 
     # Validate default-information-metric if present
@@ -236,8 +232,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_DEFAULT_INFORMATION_METRIC_TYPE:
             return (
                 False,
-                f"Invalid default-information-metric-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEFAULT_INFORMATION_METRIC_TYPE)}",
+                f"Invalid default-information-metric-type '{value}'. Must be one of: {', '.join(VALID_BODY_DEFAULT_INFORMATION_METRIC_TYPE)}",
             )
 
     # Validate default-information-route-map if present
@@ -297,8 +292,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_RFC1583_COMPATIBLE:
             return (
                 False,
-                f"Invalid rfc1583-compatible '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RFC1583_COMPATIBLE)}",
+                f"Invalid rfc1583-compatible '{value}'. Must be one of: {', '.join(VALID_BODY_RFC1583_COMPATIBLE)}",
             )
 
     # Validate bfd if present
@@ -307,8 +301,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_BFD:
             return (
                 False,
-                f"Invalid bfd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BFD)}",
+                f"Invalid bfd '{value}'. Must be one of: {', '.join(VALID_BODY_BFD)}",
             )
 
     # Validate log-neighbour-changes if present
@@ -317,8 +310,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_LOG_NEIGHBOUR_CHANGES:
             return (
                 False,
-                f"Invalid log-neighbour-changes '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_NEIGHBOUR_CHANGES)}",
+                f"Invalid log-neighbour-changes '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_NEIGHBOUR_CHANGES)}",
             )
 
     # Validate distribute-list-in if present
@@ -342,8 +334,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_RESTART_MODE:
             return (
                 False,
-                f"Invalid restart-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESTART_MODE)}",
+                f"Invalid restart-mode '{value}'. Must be one of: {', '.join(VALID_BODY_RESTART_MODE)}",
             )
 
     # Validate restart-period if present
@@ -366,8 +357,7 @@ def validate_ospf_put(
         if value and value not in VALID_BODY_RESTART_ON_TOPOLOGY_CHANGE:
             return (
                 False,
-                f"Invalid restart-on-topology-change '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RESTART_ON_TOPOLOGY_CHANGE)}",
+                f"Invalid restart-on-topology-change '{value}'. Must be one of: {', '.join(VALID_BODY_RESTART_ON_TOPOLOGY_CHANGE)}",
             )
 
     return (True, None)

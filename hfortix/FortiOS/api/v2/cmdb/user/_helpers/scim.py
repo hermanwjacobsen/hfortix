@@ -48,8 +48,7 @@ def validate_scim_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -93,8 +92,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate base-url if present
@@ -109,8 +107,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_AUTH_METHOD:
             return (
                 False,
-                f"Invalid auth-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_METHOD)}",
+                f"Invalid auth-method '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_METHOD)}",
             )
 
     # Validate token-certificate if present
@@ -131,8 +128,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CLIENT_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid client-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_IDENTITY_CHECK)}",
+                f"Invalid client-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_IDENTITY_CHECK)}",
             )
 
     # Validate cascade if present
@@ -141,8 +137,7 @@ def validate_scim_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CASCADE:
             return (
                 False,
-                f"Invalid cascade '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CASCADE)}",
+                f"Invalid cascade '{value}'. Must be one of: {', '.join(VALID_BODY_CASCADE)}",
             )
 
     return (True, None)
@@ -197,8 +192,7 @@ def validate_scim_put(
         if value and value not in VALID_BODY_STATUS:
             return (
                 False,
-                f"Invalid status '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_STATUS)}",
+                f"Invalid status '{value}'. Must be one of: {', '.join(VALID_BODY_STATUS)}",
             )
 
     # Validate base-url if present
@@ -213,8 +207,7 @@ def validate_scim_put(
         if value and value not in VALID_BODY_AUTH_METHOD:
             return (
                 False,
-                f"Invalid auth-method '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTH_METHOD)}",
+                f"Invalid auth-method '{value}'. Must be one of: {', '.join(VALID_BODY_AUTH_METHOD)}",
             )
 
     # Validate token-certificate if present
@@ -235,8 +228,7 @@ def validate_scim_put(
         if value and value not in VALID_BODY_CLIENT_IDENTITY_CHECK:
             return (
                 False,
-                f"Invalid client-identity-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_IDENTITY_CHECK)}",
+                f"Invalid client-identity-check '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_IDENTITY_CHECK)}",
             )
 
     # Validate cascade if present
@@ -245,8 +237,7 @@ def validate_scim_put(
         if value and value not in VALID_BODY_CASCADE:
             return (
                 False,
-                f"Invalid cascade '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CASCADE)}",
+                f"Invalid cascade '{value}'. Must be one of: {', '.join(VALID_BODY_CASCADE)}",
             )
 
     return (True, None)

@@ -49,8 +49,7 @@ def validate_addrgrp_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -83,8 +82,7 @@ def validate_addrgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate category if present
@@ -93,8 +91,7 @@ def validate_addrgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_CATEGORY:
             return (
                 False,
-                f"Invalid category '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CATEGORY)}",
+                f"Invalid category '{value}'. Must be one of: {', '.join(VALID_BODY_CATEGORY)}",
             )
 
     # Validate allow-routing if present
@@ -103,8 +100,7 @@ def validate_addrgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_ALLOW_ROUTING:
             return (
                 False,
-                f"Invalid allow-routing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOW_ROUTING)}",
+                f"Invalid allow-routing '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_ROUTING)}",
             )
 
     # Validate comment if present
@@ -119,8 +115,7 @@ def validate_addrgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_EXCLUDE:
             return (
                 False,
-                f"Invalid exclude '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE)}",
+                f"Invalid exclude '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE)}",
             )
 
     # Validate color if present
@@ -140,8 +135,7 @@ def validate_addrgrp_post(payload: dict[str, Any]) -> tuple[bool, str | None]:
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -185,8 +179,7 @@ def validate_addrgrp_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate category if present
@@ -195,8 +188,7 @@ def validate_addrgrp_put(
         if value and value not in VALID_BODY_CATEGORY:
             return (
                 False,
-                f"Invalid category '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CATEGORY)}",
+                f"Invalid category '{value}'. Must be one of: {', '.join(VALID_BODY_CATEGORY)}",
             )
 
     # Validate allow-routing if present
@@ -205,8 +197,7 @@ def validate_addrgrp_put(
         if value and value not in VALID_BODY_ALLOW_ROUTING:
             return (
                 False,
-                f"Invalid allow-routing '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOW_ROUTING)}",
+                f"Invalid allow-routing '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOW_ROUTING)}",
             )
 
     # Validate comment if present
@@ -221,8 +212,7 @@ def validate_addrgrp_put(
         if value and value not in VALID_BODY_EXCLUDE:
             return (
                 False,
-                f"Invalid exclude '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCLUDE)}",
+                f"Invalid exclude '{value}'. Must be one of: {', '.join(VALID_BODY_EXCLUDE)}",
             )
 
     # Validate color if present
@@ -242,8 +232,7 @@ def validate_addrgrp_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

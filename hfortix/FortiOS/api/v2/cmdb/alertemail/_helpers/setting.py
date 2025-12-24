@@ -73,8 +73,7 @@ def validate_setting_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -131,8 +130,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FILTER_MODE:
             return (
                 False,
-                f"Invalid filter-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FILTER_MODE)}",
+                f"Invalid filter-mode '{value}'. Must be one of: {', '.join(VALID_BODY_FILTER_MODE)}",
             )
 
     # Validate email-interval if present
@@ -155,8 +153,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_IPS_LOGS:
             return (
                 False,
-                f"Invalid IPS-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPS_LOGS)}",
+                f"Invalid IPS-logs '{value}'. Must be one of: {', '.join(VALID_BODY_IPS_LOGS)}",
             )
 
     # Validate firewall-authentication-failure-logs if present
@@ -168,8 +165,7 @@ def validate_setting_put(
         ):
             return (
                 False,
-                f"Invalid firewall-authentication-failure-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FIREWALL_AUTHENTICATION_FAILURE_LOGS)}",
+                f"Invalid firewall-authentication-failure-logs '{value}'. Must be one of: {', '.join(VALID_BODY_FIREWALL_AUTHENTICATION_FAILURE_LOGS)}",
             )
 
     # Validate HA-logs if present
@@ -178,8 +174,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_HA_LOGS:
             return (
                 False,
-                f"Invalid HA-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HA_LOGS)}",
+                f"Invalid HA-logs '{value}'. Must be one of: {', '.join(VALID_BODY_HA_LOGS)}",
             )
 
     # Validate IPsec-errors-logs if present
@@ -188,8 +183,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_IPSEC_ERRORS_LOGS:
             return (
                 False,
-                f"Invalid IPsec-errors-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPSEC_ERRORS_LOGS)}",
+                f"Invalid IPsec-errors-logs '{value}'. Must be one of: {', '.join(VALID_BODY_IPSEC_ERRORS_LOGS)}",
             )
 
     # Validate FDS-update-logs if present
@@ -198,8 +192,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FDS_UPDATE_LOGS:
             return (
                 False,
-                f"Invalid FDS-update-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FDS_UPDATE_LOGS)}",
+                f"Invalid FDS-update-logs '{value}'. Must be one of: {', '.join(VALID_BODY_FDS_UPDATE_LOGS)}",
             )
 
     # Validate PPP-errors-logs if present
@@ -208,8 +201,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_PPP_ERRORS_LOGS:
             return (
                 False,
-                f"Invalid PPP-errors-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPP_ERRORS_LOGS)}",
+                f"Invalid PPP-errors-logs '{value}'. Must be one of: {', '.join(VALID_BODY_PPP_ERRORS_LOGS)}",
             )
 
     # Validate antivirus-logs if present
@@ -218,8 +210,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_ANTIVIRUS_LOGS:
             return (
                 False,
-                f"Invalid antivirus-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ANTIVIRUS_LOGS)}",
+                f"Invalid antivirus-logs '{value}'. Must be one of: {', '.join(VALID_BODY_ANTIVIRUS_LOGS)}",
             )
 
     # Validate webfilter-logs if present
@@ -228,8 +219,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_WEBFILTER_LOGS:
             return (
                 False,
-                f"Invalid webfilter-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WEBFILTER_LOGS)}",
+                f"Invalid webfilter-logs '{value}'. Must be one of: {', '.join(VALID_BODY_WEBFILTER_LOGS)}",
             )
 
     # Validate configuration-changes-logs if present
@@ -238,8 +228,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_CONFIGURATION_CHANGES_LOGS:
             return (
                 False,
-                f"Invalid configuration-changes-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CONFIGURATION_CHANGES_LOGS)}",
+                f"Invalid configuration-changes-logs '{value}'. Must be one of: {', '.join(VALID_BODY_CONFIGURATION_CHANGES_LOGS)}",
             )
 
     # Validate violation-traffic-logs if present
@@ -248,8 +237,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_VIOLATION_TRAFFIC_LOGS:
             return (
                 False,
-                f"Invalid violation-traffic-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VIOLATION_TRAFFIC_LOGS)}",
+                f"Invalid violation-traffic-logs '{value}'. Must be one of: {', '.join(VALID_BODY_VIOLATION_TRAFFIC_LOGS)}",
             )
 
     # Validate admin-login-logs if present
@@ -258,8 +246,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_ADMIN_LOGIN_LOGS:
             return (
                 False,
-                f"Invalid admin-login-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADMIN_LOGIN_LOGS)}",
+                f"Invalid admin-login-logs '{value}'. Must be one of: {', '.join(VALID_BODY_ADMIN_LOGIN_LOGS)}",
             )
 
     # Validate FDS-license-expiring-warning if present
@@ -268,8 +255,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FDS_LICENSE_EXPIRING_WARNING:
             return (
                 False,
-                f"Invalid FDS-license-expiring-warning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FDS_LICENSE_EXPIRING_WARNING)}",
+                f"Invalid FDS-license-expiring-warning '{value}'. Must be one of: {', '.join(VALID_BODY_FDS_LICENSE_EXPIRING_WARNING)}",
             )
 
     # Validate log-disk-usage-warning if present
@@ -278,8 +264,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_LOG_DISK_USAGE_WARNING:
             return (
                 False,
-                f"Invalid log-disk-usage-warning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOG_DISK_USAGE_WARNING)}",
+                f"Invalid log-disk-usage-warning '{value}'. Must be one of: {', '.join(VALID_BODY_LOG_DISK_USAGE_WARNING)}",
             )
 
     # Validate fortiguard-log-quota-warning if present
@@ -288,8 +273,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FORTIGUARD_LOG_QUOTA_WARNING:
             return (
                 False,
-                f"Invalid fortiguard-log-quota-warning '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTIGUARD_LOG_QUOTA_WARNING)}",
+                f"Invalid fortiguard-log-quota-warning '{value}'. Must be one of: {', '.join(VALID_BODY_FORTIGUARD_LOG_QUOTA_WARNING)}",
             )
 
     # Validate amc-interface-bypass-mode if present
@@ -298,8 +282,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_AMC_INTERFACE_BYPASS_MODE:
             return (
                 False,
-                f"Invalid amc-interface-bypass-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AMC_INTERFACE_BYPASS_MODE)}",
+                f"Invalid amc-interface-bypass-mode '{value}'. Must be one of: {', '.join(VALID_BODY_AMC_INTERFACE_BYPASS_MODE)}",
             )
 
     # Validate FIPS-CC-errors if present
@@ -308,8 +291,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FIPS_CC_ERRORS:
             return (
                 False,
-                f"Invalid FIPS-CC-errors '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FIPS_CC_ERRORS)}",
+                f"Invalid FIPS-CC-errors '{value}'. Must be one of: {', '.join(VALID_BODY_FIPS_CC_ERRORS)}",
             )
 
     # Validate FSSO-disconnect-logs if present
@@ -318,8 +300,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_FSSO_DISCONNECT_LOGS:
             return (
                 False,
-                f"Invalid FSSO-disconnect-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FSSO_DISCONNECT_LOGS)}",
+                f"Invalid FSSO-disconnect-logs '{value}'. Must be one of: {', '.join(VALID_BODY_FSSO_DISCONNECT_LOGS)}",
             )
 
     # Validate ssh-logs if present
@@ -328,8 +309,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_SSH_LOGS:
             return (
                 False,
-                f"Invalid ssh-logs '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSH_LOGS)}",
+                f"Invalid ssh-logs '{value}'. Must be one of: {', '.join(VALID_BODY_SSH_LOGS)}",
             )
 
     # Validate local-disk-usage if present
@@ -482,8 +462,7 @@ def validate_setting_put(
         if value and value not in VALID_BODY_SEVERITY:
             return (
                 False,
-                f"Invalid severity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SEVERITY)}",
+                f"Invalid severity '{value}'. Must be one of: {', '.join(VALID_BODY_SEVERITY)}",
             )
 
     return (True, None)

@@ -79,8 +79,7 @@ def validate_service_custom_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -115,8 +114,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_PROXY:
             return (
                 False,
-                f"Invalid proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROXY)}",
+                f"Invalid proxy '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY)}",
             )
 
     # Validate category if present
@@ -131,8 +129,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate helper if present
@@ -141,8 +138,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_HELPER:
             return (
                 False,
-                f"Invalid helper '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HELPER)}",
+                f"Invalid helper '{value}'. Must be one of: {', '.join(VALID_BODY_HELPER)}",
             )
 
     # Validate fqdn if present
@@ -275,8 +271,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_CHECK_RESET_RANGE:
             return (
                 False,
-                f"Invalid check-reset-range '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
+                f"Invalid check-reset-range '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
             )
 
     # Validate comment if present
@@ -302,8 +297,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_APP_SERVICE_TYPE:
             return (
                 False,
-                f"Invalid app-service-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_APP_SERVICE_TYPE)}",
+                f"Invalid app-service-type '{value}'. Must be one of: {', '.join(VALID_BODY_APP_SERVICE_TYPE)}",
             )
 
     # Validate fabric-object if present
@@ -312,8 +306,7 @@ def validate_service_custom_post(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)
@@ -357,8 +350,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_PROXY:
             return (
                 False,
-                f"Invalid proxy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROXY)}",
+                f"Invalid proxy '{value}'. Must be one of: {', '.join(VALID_BODY_PROXY)}",
             )
 
     # Validate category if present
@@ -373,8 +365,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_PROTOCOL:
             return (
                 False,
-                f"Invalid protocol '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROTOCOL)}",
+                f"Invalid protocol '{value}'. Must be one of: {', '.join(VALID_BODY_PROTOCOL)}",
             )
 
     # Validate helper if present
@@ -383,8 +374,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_HELPER:
             return (
                 False,
-                f"Invalid helper '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HELPER)}",
+                f"Invalid helper '{value}'. Must be one of: {', '.join(VALID_BODY_HELPER)}",
             )
 
     # Validate fqdn if present
@@ -517,8 +507,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_CHECK_RESET_RANGE:
             return (
                 False,
-                f"Invalid check-reset-range '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
+                f"Invalid check-reset-range '{value}'. Must be one of: {', '.join(VALID_BODY_CHECK_RESET_RANGE)}",
             )
 
     # Validate comment if present
@@ -544,8 +533,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_APP_SERVICE_TYPE:
             return (
                 False,
-                f"Invalid app-service-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_APP_SERVICE_TYPE)}",
+                f"Invalid app-service-type '{value}'. Must be one of: {', '.join(VALID_BODY_APP_SERVICE_TYPE)}",
             )
 
     # Validate fabric-object if present
@@ -554,8 +542,7 @@ def validate_service_custom_put(
         if value and value not in VALID_BODY_FABRIC_OBJECT:
             return (
                 False,
-                f"Invalid fabric-object '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FABRIC_OBJECT)}",
+                f"Invalid fabric-object '{value}'. Must be one of: {', '.join(VALID_BODY_FABRIC_OBJECT)}",
             )
 
     return (True, None)

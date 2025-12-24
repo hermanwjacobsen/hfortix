@@ -63,8 +63,7 @@ def validate_accprofile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -99,8 +98,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
             )
 
     # Validate comments if present
@@ -115,8 +113,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_SECFABGRP:
             return (
                 False,
-                f"Invalid secfabgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECFABGRP)}",
+                f"Invalid secfabgrp '{value}'. Must be one of: {', '.join(VALID_BODY_SECFABGRP)}",
             )
 
     # Validate ftviewgrp if present
@@ -125,8 +122,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_FTVIEWGRP:
             return (
                 False,
-                f"Invalid ftviewgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FTVIEWGRP)}",
+                f"Invalid ftviewgrp '{value}'. Must be one of: {', '.join(VALID_BODY_FTVIEWGRP)}",
             )
 
     # Validate authgrp if present
@@ -135,8 +131,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_AUTHGRP:
             return (
                 False,
-                f"Invalid authgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHGRP)}",
+                f"Invalid authgrp '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHGRP)}",
             )
 
     # Validate sysgrp if present
@@ -145,8 +140,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_SYSGRP:
             return (
                 False,
-                f"Invalid sysgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSGRP)}",
+                f"Invalid sysgrp '{value}'. Must be one of: {', '.join(VALID_BODY_SYSGRP)}",
             )
 
     # Validate netgrp if present
@@ -155,8 +149,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_NETGRP:
             return (
                 False,
-                f"Invalid netgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETGRP)}",
+                f"Invalid netgrp '{value}'. Must be one of: {', '.join(VALID_BODY_NETGRP)}",
             )
 
     # Validate loggrp if present
@@ -165,8 +158,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_LOGGRP:
             return (
                 False,
-                f"Invalid loggrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOGGRP)}",
+                f"Invalid loggrp '{value}'. Must be one of: {', '.join(VALID_BODY_LOGGRP)}",
             )
 
     # Validate fwgrp if present
@@ -175,8 +167,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_FWGRP:
             return (
                 False,
-                f"Invalid fwgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FWGRP)}",
+                f"Invalid fwgrp '{value}'. Must be one of: {', '.join(VALID_BODY_FWGRP)}",
             )
 
     # Validate vpngrp if present
@@ -185,8 +176,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_VPNGRP:
             return (
                 False,
-                f"Invalid vpngrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VPNGRP)}",
+                f"Invalid vpngrp '{value}'. Must be one of: {', '.join(VALID_BODY_VPNGRP)}",
             )
 
     # Validate utmgrp if present
@@ -195,8 +185,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_UTMGRP:
             return (
                 False,
-                f"Invalid utmgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UTMGRP)}",
+                f"Invalid utmgrp '{value}'. Must be one of: {', '.join(VALID_BODY_UTMGRP)}",
             )
 
     # Validate wifi if present
@@ -205,8 +194,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_WIFI:
             return (
                 False,
-                f"Invalid wifi '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WIFI)}",
+                f"Invalid wifi '{value}'. Must be one of: {', '.join(VALID_BODY_WIFI)}",
             )
 
     # Validate admintimeout-override if present
@@ -215,8 +203,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_ADMINTIMEOUT_OVERRIDE:
             return (
                 False,
-                f"Invalid admintimeout-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADMINTIMEOUT_OVERRIDE)}",
+                f"Invalid admintimeout-override '{value}'. Must be one of: {', '.join(VALID_BODY_ADMINTIMEOUT_OVERRIDE)}",
             )
 
     # Validate admintimeout if present
@@ -236,8 +223,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_CLI_DIAGNOSE:
             return (
                 False,
-                f"Invalid cli-diagnose '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_DIAGNOSE)}",
+                f"Invalid cli-diagnose '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_DIAGNOSE)}",
             )
 
     # Validate cli-get if present
@@ -246,8 +232,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_CLI_GET:
             return (
                 False,
-                f"Invalid cli-get '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_GET)}",
+                f"Invalid cli-get '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_GET)}",
             )
 
     # Validate cli-show if present
@@ -256,8 +241,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_CLI_SHOW:
             return (
                 False,
-                f"Invalid cli-show '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_SHOW)}",
+                f"Invalid cli-show '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_SHOW)}",
             )
 
     # Validate cli-exec if present
@@ -266,8 +250,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_CLI_EXEC:
             return (
                 False,
-                f"Invalid cli-exec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_EXEC)}",
+                f"Invalid cli-exec '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_EXEC)}",
             )
 
     # Validate cli-config if present
@@ -276,8 +259,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_CLI_CONFIG:
             return (
                 False,
-                f"Invalid cli-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_CONFIG)}",
+                f"Invalid cli-config '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_CONFIG)}",
             )
 
     # Validate system-execute-ssh if present
@@ -286,8 +268,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_SYSTEM_EXECUTE_SSH:
             return (
                 False,
-                f"Invalid system-execute-ssh '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_EXECUTE_SSH)}",
+                f"Invalid system-execute-ssh '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_EXECUTE_SSH)}",
             )
 
     # Validate system-execute-telnet if present
@@ -296,8 +277,7 @@ def validate_accprofile_post(
         if value and value not in VALID_BODY_SYSTEM_EXECUTE_TELNET:
             return (
                 False,
-                f"Invalid system-execute-telnet '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_EXECUTE_TELNET)}",
+                f"Invalid system-execute-telnet '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_EXECUTE_TELNET)}",
             )
 
     return (True, None)
@@ -341,8 +321,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_SCOPE:
             return (
                 False,
-                f"Invalid scope '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SCOPE)}",
+                f"Invalid scope '{value}'. Must be one of: {', '.join(VALID_BODY_SCOPE)}",
             )
 
     # Validate comments if present
@@ -357,8 +336,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_SECFABGRP:
             return (
                 False,
-                f"Invalid secfabgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SECFABGRP)}",
+                f"Invalid secfabgrp '{value}'. Must be one of: {', '.join(VALID_BODY_SECFABGRP)}",
             )
 
     # Validate ftviewgrp if present
@@ -367,8 +345,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_FTVIEWGRP:
             return (
                 False,
-                f"Invalid ftviewgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FTVIEWGRP)}",
+                f"Invalid ftviewgrp '{value}'. Must be one of: {', '.join(VALID_BODY_FTVIEWGRP)}",
             )
 
     # Validate authgrp if present
@@ -377,8 +354,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_AUTHGRP:
             return (
                 False,
-                f"Invalid authgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHGRP)}",
+                f"Invalid authgrp '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHGRP)}",
             )
 
     # Validate sysgrp if present
@@ -387,8 +363,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_SYSGRP:
             return (
                 False,
-                f"Invalid sysgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSGRP)}",
+                f"Invalid sysgrp '{value}'. Must be one of: {', '.join(VALID_BODY_SYSGRP)}",
             )
 
     # Validate netgrp if present
@@ -397,8 +372,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_NETGRP:
             return (
                 False,
-                f"Invalid netgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETGRP)}",
+                f"Invalid netgrp '{value}'. Must be one of: {', '.join(VALID_BODY_NETGRP)}",
             )
 
     # Validate loggrp if present
@@ -407,8 +381,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_LOGGRP:
             return (
                 False,
-                f"Invalid loggrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOGGRP)}",
+                f"Invalid loggrp '{value}'. Must be one of: {', '.join(VALID_BODY_LOGGRP)}",
             )
 
     # Validate fwgrp if present
@@ -417,8 +390,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_FWGRP:
             return (
                 False,
-                f"Invalid fwgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FWGRP)}",
+                f"Invalid fwgrp '{value}'. Must be one of: {', '.join(VALID_BODY_FWGRP)}",
             )
 
     # Validate vpngrp if present
@@ -427,8 +399,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_VPNGRP:
             return (
                 False,
-                f"Invalid vpngrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_VPNGRP)}",
+                f"Invalid vpngrp '{value}'. Must be one of: {', '.join(VALID_BODY_VPNGRP)}",
             )
 
     # Validate utmgrp if present
@@ -437,8 +408,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_UTMGRP:
             return (
                 False,
-                f"Invalid utmgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UTMGRP)}",
+                f"Invalid utmgrp '{value}'. Must be one of: {', '.join(VALID_BODY_UTMGRP)}",
             )
 
     # Validate wifi if present
@@ -447,8 +417,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_WIFI:
             return (
                 False,
-                f"Invalid wifi '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WIFI)}",
+                f"Invalid wifi '{value}'. Must be one of: {', '.join(VALID_BODY_WIFI)}",
             )
 
     # Validate admintimeout-override if present
@@ -457,8 +426,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_ADMINTIMEOUT_OVERRIDE:
             return (
                 False,
-                f"Invalid admintimeout-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADMINTIMEOUT_OVERRIDE)}",
+                f"Invalid admintimeout-override '{value}'. Must be one of: {', '.join(VALID_BODY_ADMINTIMEOUT_OVERRIDE)}",
             )
 
     # Validate admintimeout if present
@@ -478,8 +446,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_CLI_DIAGNOSE:
             return (
                 False,
-                f"Invalid cli-diagnose '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_DIAGNOSE)}",
+                f"Invalid cli-diagnose '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_DIAGNOSE)}",
             )
 
     # Validate cli-get if present
@@ -488,8 +455,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_CLI_GET:
             return (
                 False,
-                f"Invalid cli-get '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_GET)}",
+                f"Invalid cli-get '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_GET)}",
             )
 
     # Validate cli-show if present
@@ -498,8 +464,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_CLI_SHOW:
             return (
                 False,
-                f"Invalid cli-show '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_SHOW)}",
+                f"Invalid cli-show '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_SHOW)}",
             )
 
     # Validate cli-exec if present
@@ -508,8 +473,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_CLI_EXEC:
             return (
                 False,
-                f"Invalid cli-exec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_EXEC)}",
+                f"Invalid cli-exec '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_EXEC)}",
             )
 
     # Validate cli-config if present
@@ -518,8 +482,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_CLI_CONFIG:
             return (
                 False,
-                f"Invalid cli-config '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLI_CONFIG)}",
+                f"Invalid cli-config '{value}'. Must be one of: {', '.join(VALID_BODY_CLI_CONFIG)}",
             )
 
     # Validate system-execute-ssh if present
@@ -528,8 +491,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_SYSTEM_EXECUTE_SSH:
             return (
                 False,
-                f"Invalid system-execute-ssh '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_EXECUTE_SSH)}",
+                f"Invalid system-execute-ssh '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_EXECUTE_SSH)}",
             )
 
     # Validate system-execute-telnet if present
@@ -538,8 +500,7 @@ def validate_accprofile_put(
         if value and value not in VALID_BODY_SYSTEM_EXECUTE_TELNET:
             return (
                 False,
-                f"Invalid system-execute-telnet '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SYSTEM_EXECUTE_TELNET)}",
+                f"Invalid system-execute-telnet '{value}'. Must be one of: {', '.join(VALID_BODY_SYSTEM_EXECUTE_TELNET)}",
             )
 
     return (True, None)

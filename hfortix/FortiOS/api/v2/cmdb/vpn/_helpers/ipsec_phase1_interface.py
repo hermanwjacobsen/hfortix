@@ -372,8 +372,7 @@ def validate_ipsec_phase1_interface_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -408,8 +407,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate interface if present
@@ -424,8 +422,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate ike-version if present
@@ -434,8 +431,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_IKE_VERSION:
             return (
                 False,
-                f"Invalid ike-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IKE_VERSION)}",
+                f"Invalid ike-version '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_VERSION)}",
             )
 
     # Validate remotegw-ddns if present
@@ -461,8 +457,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTHMETHOD:
             return (
                 False,
-                f"Invalid authmethod '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHMETHOD)}",
+                f"Invalid authmethod '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHMETHOD)}",
             )
 
     # Validate authmethod-remote if present
@@ -471,8 +466,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTHMETHOD_REMOTE:
             return (
                 False,
-                f"Invalid authmethod-remote '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHMETHOD_REMOTE)}",
+                f"Invalid authmethod-remote '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHMETHOD_REMOTE)}",
             )
 
     # Validate mode if present
@@ -481,8 +475,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate peertype if present
@@ -491,8 +484,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PEERTYPE:
             return (
                 False,
-                f"Invalid peertype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEERTYPE)}",
+                f"Invalid peertype '{value}'. Must be one of: {', '.join(VALID_BODY_PEERTYPE)}",
             )
 
     # Validate peerid if present
@@ -556,8 +548,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MONITOR_HOLD_DOWN_TYPE:
             return (
                 False,
-                f"Invalid monitor-hold-down-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_HOLD_DOWN_TYPE)}",
+                f"Invalid monitor-hold-down-type '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_HOLD_DOWN_TYPE)}",
             )
 
     # Validate monitor-hold-down-delay if present
@@ -583,8 +574,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY:
             return (
                 False,
-                f"Invalid monitor-hold-down-weekday '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY)}",
+                f"Invalid monitor-hold-down-weekday '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY)}",
             )
 
     # Validate net-device if present
@@ -593,8 +583,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_NET_DEVICE:
             return (
                 False,
-                f"Invalid net-device '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NET_DEVICE)}",
+                f"Invalid net-device '{value}'. Must be one of: {', '.join(VALID_BODY_NET_DEVICE)}",
             )
 
     # Validate passive-mode if present
@@ -603,8 +592,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PASSIVE_MODE:
             return (
                 False,
-                f"Invalid passive-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSIVE_MODE)}",
+                f"Invalid passive-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_MODE)}",
             )
 
     # Validate exchange-interface-ip if present
@@ -613,8 +601,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EXCHANGE_INTERFACE_IP:
             return (
                 False,
-                f"Invalid exchange-interface-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCHANGE_INTERFACE_IP)}",
+                f"Invalid exchange-interface-ip '{value}'. Must be one of: {', '.join(VALID_BODY_EXCHANGE_INTERFACE_IP)}",
             )
 
     # Validate aggregate-member if present
@@ -623,8 +610,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AGGREGATE_MEMBER:
             return (
                 False,
-                f"Invalid aggregate-member '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AGGREGATE_MEMBER)}",
+                f"Invalid aggregate-member '{value}'. Must be one of: {', '.join(VALID_BODY_AGGREGATE_MEMBER)}",
             )
 
     # Validate aggregate-weight if present
@@ -650,8 +636,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PACKET_REDISTRIBUTION:
             return (
                 False,
-                f"Invalid packet-redistribution '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PACKET_REDISTRIBUTION)}",
+                f"Invalid packet-redistribution '{value}'. Must be one of: {', '.join(VALID_BODY_PACKET_REDISTRIBUTION)}",
             )
 
     # Validate peer-egress-shaping if present
@@ -660,8 +645,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PEER_EGRESS_SHAPING:
             return (
                 False,
-                f"Invalid peer-egress-shaping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEER_EGRESS_SHAPING)}",
+                f"Invalid peer-egress-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_EGRESS_SHAPING)}",
             )
 
     # Validate peer-egress-shaping-value if present
@@ -687,8 +671,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MODE_CFG:
             return (
                 False,
-                f"Invalid mode-cfg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE_CFG)}",
+                f"Invalid mode-cfg '{value}'. Must be one of: {', '.join(VALID_BODY_MODE_CFG)}",
             )
 
     # Validate mode-cfg-allow-client-selector if present
@@ -697,8 +680,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR:
             return (
                 False,
-                f"Invalid mode-cfg-allow-client-selector '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR)}",
+                f"Invalid mode-cfg-allow-client-selector '{value}'. Must be one of: {', '.join(VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR)}",
             )
 
     # Validate assign-ip if present
@@ -707,8 +689,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ASSIGN_IP:
             return (
                 False,
-                f"Invalid assign-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGN_IP)}",
+                f"Invalid assign-ip '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGN_IP)}",
             )
 
     # Validate assign-ip-from if present
@@ -717,8 +698,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ASSIGN_IP_FROM:
             return (
                 False,
-                f"Invalid assign-ip-from '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGN_IP_FROM)}",
+                f"Invalid assign-ip-from '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGN_IP_FROM)}",
             )
 
     # Validate dns-mode if present
@@ -727,8 +707,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_DNS_MODE:
             return (
                 False,
-                f"Invalid dns-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_MODE)}",
+                f"Invalid dns-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_MODE)}",
             )
 
     # Validate ipv4-split-include if present
@@ -798,8 +777,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_UNITY_SUPPORT:
             return (
                 False,
-                f"Invalid unity-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNITY_SUPPORT)}",
+                f"Invalid unity-support '{value}'. Must be one of: {', '.join(VALID_BODY_UNITY_SUPPORT)}",
             )
 
     # Validate domain if present
@@ -820,8 +798,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_INCLUDE_LOCAL_LAN:
             return (
                 False,
-                f"Invalid include-local-lan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_LOCAL_LAN)}",
+                f"Invalid include-local-lan '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_LOCAL_LAN)}",
             )
 
     # Validate ipv4-split-exclude if present
@@ -842,8 +819,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_SAVE_PASSWORD:
             return (
                 False,
-                f"Invalid save-password '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAVE_PASSWORD)}",
+                f"Invalid save-password '{value}'. Must be one of: {', '.join(VALID_BODY_SAVE_PASSWORD)}",
             )
 
     # Validate client-auto-negotiate if present
@@ -852,8 +828,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CLIENT_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid client-auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_AUTO_NEGOTIATE)}",
+                f"Invalid client-auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_AUTO_NEGOTIATE)}",
             )
 
     # Validate client-keep-alive if present
@@ -862,8 +837,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CLIENT_KEEP_ALIVE:
             return (
                 False,
-                f"Invalid client-keep-alive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_KEEP_ALIVE)}",
+                f"Invalid client-keep-alive '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_KEEP_ALIVE)}",
             )
 
     # Validate proposal if present
@@ -872,8 +846,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PROPOSAL:
             return (
                 False,
-                f"Invalid proposal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROPOSAL)}",
+                f"Invalid proposal '{value}'. Must be one of: {', '.join(VALID_BODY_PROPOSAL)}",
             )
 
     # Validate add-route if present
@@ -882,8 +855,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADD_ROUTE:
             return (
                 False,
-                f"Invalid add-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_ROUTE)}",
+                f"Invalid add-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_ROUTE)}",
             )
 
     # Validate add-gw-route if present
@@ -892,8 +864,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADD_GW_ROUTE:
             return (
                 False,
-                f"Invalid add-gw-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_GW_ROUTE)}",
+                f"Invalid add-gw-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_GW_ROUTE)}",
             )
 
     # Validate keepalive if present
@@ -941,8 +912,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_LOCALID_TYPE:
             return (
                 False,
-                f"Invalid localid-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCALID_TYPE)}",
+                f"Invalid localid-type '{value}'. Must be one of: {', '.join(VALID_BODY_LOCALID_TYPE)}",
             )
 
     # Validate auto-negotiate if present
@@ -951,8 +921,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
+                f"Invalid auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
             )
 
     # Validate negotiate-timeout if present
@@ -978,8 +947,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FRAGMENTATION:
             return (
                 False,
-                f"Invalid fragmentation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FRAGMENTATION)}",
+                f"Invalid fragmentation '{value}'. Must be one of: {', '.join(VALID_BODY_FRAGMENTATION)}",
             )
 
     # Validate ip-fragmentation if present
@@ -988,8 +956,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_IP_FRAGMENTATION:
             return (
                 False,
-                f"Invalid ip-fragmentation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_FRAGMENTATION)}",
+                f"Invalid ip-fragmentation '{value}'. Must be one of: {', '.join(VALID_BODY_IP_FRAGMENTATION)}",
             )
 
     # Validate dpd if present
@@ -998,8 +965,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_DPD:
             return (
                 False,
-                f"Invalid dpd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DPD)}",
+                f"Invalid dpd '{value}'. Must be one of: {', '.join(VALID_BODY_DPD)}",
             )
 
     # Validate dpd-retrycount if present
@@ -1025,8 +991,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     # Validate send-cert-chain if present
@@ -1035,8 +1000,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_SEND_CERT_CHAIN:
             return (
                 False,
-                f"Invalid send-cert-chain '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SEND_CERT_CHAIN)}",
+                f"Invalid send-cert-chain '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_CERT_CHAIN)}",
             )
 
     # Validate dhgrp if present
@@ -1045,8 +1009,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_DHGRP:
             return (
                 False,
-                f"Invalid dhgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHGRP)}",
+                f"Invalid dhgrp '{value}'. Must be one of: {', '.join(VALID_BODY_DHGRP)}",
             )
 
     # Validate addke1 if present
@@ -1055,8 +1018,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE1:
             return (
                 False,
-                f"Invalid addke1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE1)}",
+                f"Invalid addke1 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE1)}",
             )
 
     # Validate addke2 if present
@@ -1065,8 +1027,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE2:
             return (
                 False,
-                f"Invalid addke2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE2)}",
+                f"Invalid addke2 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE2)}",
             )
 
     # Validate addke3 if present
@@ -1075,8 +1036,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE3:
             return (
                 False,
-                f"Invalid addke3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE3)}",
+                f"Invalid addke3 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE3)}",
             )
 
     # Validate addke4 if present
@@ -1085,8 +1045,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE4:
             return (
                 False,
-                f"Invalid addke4 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE4)}",
+                f"Invalid addke4 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE4)}",
             )
 
     # Validate addke5 if present
@@ -1095,8 +1054,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE5:
             return (
                 False,
-                f"Invalid addke5 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE5)}",
+                f"Invalid addke5 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE5)}",
             )
 
     # Validate addke6 if present
@@ -1105,8 +1063,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE6:
             return (
                 False,
-                f"Invalid addke6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE6)}",
+                f"Invalid addke6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE6)}",
             )
 
     # Validate addke7 if present
@@ -1115,8 +1072,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ADDKE7:
             return (
                 False,
-                f"Invalid addke7 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE7)}",
+                f"Invalid addke7 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE7)}",
             )
 
     # Validate suite-b if present
@@ -1125,8 +1081,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_SUITE_B:
             return (
                 False,
-                f"Invalid suite-b '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUITE_B)}",
+                f"Invalid suite-b '{value}'. Must be one of: {', '.join(VALID_BODY_SUITE_B)}",
             )
 
     # Validate eap if present
@@ -1135,8 +1090,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EAP:
             return (
                 False,
-                f"Invalid eap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP)}",
+                f"Invalid eap '{value}'. Must be one of: {', '.join(VALID_BODY_EAP)}",
             )
 
     # Validate eap-identity if present
@@ -1145,8 +1099,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EAP_IDENTITY:
             return (
                 False,
-                f"Invalid eap-identity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_IDENTITY)}",
+                f"Invalid eap-identity '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_IDENTITY)}",
             )
 
     # Validate eap-exclude-peergrp if present
@@ -1161,8 +1114,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EAP_CERT_AUTH:
             return (
                 False,
-                f"Invalid eap-cert-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_CERT_AUTH)}",
+                f"Invalid eap-cert-auth '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_CERT_AUTH)}",
             )
 
     # Validate acct-verify if present
@@ -1171,8 +1123,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ACCT_VERIFY:
             return (
                 False,
-                f"Invalid acct-verify '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCT_VERIFY)}",
+                f"Invalid acct-verify '{value}'. Must be one of: {', '.join(VALID_BODY_ACCT_VERIFY)}",
             )
 
     # Validate ppk if present
@@ -1181,8 +1132,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_PPK:
             return (
                 False,
-                f"Invalid ppk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPK)}",
+                f"Invalid ppk '{value}'. Must be one of: {', '.join(VALID_BODY_PPK)}",
             )
 
     # Validate ppk-identity if present
@@ -1197,8 +1147,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_WIZARD_TYPE:
             return (
                 False,
-                f"Invalid wizard-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WIZARD_TYPE)}",
+                f"Invalid wizard-type '{value}'. Must be one of: {', '.join(VALID_BODY_WIZARD_TYPE)}",
             )
 
     # Validate xauthtype if present
@@ -1207,8 +1156,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_XAUTHTYPE:
             return (
                 False,
-                f"Invalid xauthtype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_XAUTHTYPE)}",
+                f"Invalid xauthtype '{value}'. Must be one of: {', '.join(VALID_BODY_XAUTHTYPE)}",
             )
 
     # Validate reauth if present
@@ -1217,8 +1165,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_REAUTH:
             return (
                 False,
-                f"Invalid reauth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REAUTH)}",
+                f"Invalid reauth '{value}'. Must be one of: {', '.join(VALID_BODY_REAUTH)}",
             )
 
     # Validate authusr if present
@@ -1233,8 +1180,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_GROUP_AUTHENTICATION:
             return (
                 False,
-                f"Invalid group-authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_AUTHENTICATION)}",
+                f"Invalid group-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_AUTHENTICATION)}",
             )
 
     # Validate authusrgrp if present
@@ -1249,8 +1195,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_MESH_SELECTOR_TYPE:
             return (
                 False,
-                f"Invalid mesh-selector-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MESH_SELECTOR_TYPE)}",
+                f"Invalid mesh-selector-type '{value}'. Must be one of: {', '.join(VALID_BODY_MESH_SELECTOR_TYPE)}",
             )
 
     # Validate idle-timeout if present
@@ -1259,8 +1204,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_IDLE_TIMEOUT:
             return (
                 False,
-                f"Invalid idle-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IDLE_TIMEOUT)}",
+                f"Invalid idle-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_IDLE_TIMEOUT)}",
             )
 
     # Validate shared-idle-timeout if present
@@ -1269,8 +1213,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_SHARED_IDLE_TIMEOUT:
             return (
                 False,
-                f"Invalid shared-idle-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SHARED_IDLE_TIMEOUT)}",
+                f"Invalid shared-idle-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_SHARED_IDLE_TIMEOUT)}",
             )
 
     # Validate idle-timeoutinterval if present
@@ -1296,8 +1239,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_HA_SYNC_ESP_SEQNO:
             return (
                 False,
-                f"Invalid ha-sync-esp-seqno '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HA_SYNC_ESP_SEQNO)}",
+                f"Invalid ha-sync-esp-seqno '{value}'. Must be one of: {', '.join(VALID_BODY_HA_SYNC_ESP_SEQNO)}",
             )
 
     # Validate fgsp-sync if present
@@ -1306,8 +1248,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FGSP_SYNC:
             return (
                 False,
-                f"Invalid fgsp-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FGSP_SYNC)}",
+                f"Invalid fgsp-sync '{value}'. Must be one of: {', '.join(VALID_BODY_FGSP_SYNC)}",
             )
 
     # Validate inbound-dscp-copy if present
@@ -1316,8 +1257,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_INBOUND_DSCP_COPY:
             return (
                 False,
-                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
+                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
             )
 
     # Validate auto-discovery-sender if present
@@ -1326,8 +1266,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_SENDER:
             return (
                 False,
-                f"Invalid auto-discovery-sender '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_SENDER)}",
+                f"Invalid auto-discovery-sender '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_SENDER)}",
             )
 
     # Validate auto-discovery-receiver if present
@@ -1336,8 +1275,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_RECEIVER:
             return (
                 False,
-                f"Invalid auto-discovery-receiver '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_RECEIVER)}",
+                f"Invalid auto-discovery-receiver '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_RECEIVER)}",
             )
 
     # Validate auto-discovery-forwarder if present
@@ -1346,8 +1284,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_FORWARDER:
             return (
                 False,
-                f"Invalid auto-discovery-forwarder '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_FORWARDER)}",
+                f"Invalid auto-discovery-forwarder '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_FORWARDER)}",
             )
 
     # Validate auto-discovery-psk if present
@@ -1356,8 +1293,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_PSK:
             return (
                 False,
-                f"Invalid auto-discovery-psk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_PSK)}",
+                f"Invalid auto-discovery-psk '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_PSK)}",
             )
 
     # Validate auto-discovery-shortcuts if present
@@ -1366,8 +1302,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_SHORTCUTS:
             return (
                 False,
-                f"Invalid auto-discovery-shortcuts '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_SHORTCUTS)}",
+                f"Invalid auto-discovery-shortcuts '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_SHORTCUTS)}",
             )
 
     # Validate auto-discovery-crossover if present
@@ -1376,8 +1311,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_CROSSOVER:
             return (
                 False,
-                f"Invalid auto-discovery-crossover '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_CROSSOVER)}",
+                f"Invalid auto-discovery-crossover '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_CROSSOVER)}",
             )
 
     # Validate auto-discovery-offer-interval if present
@@ -1403,8 +1337,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER:
             return (
                 False,
-                f"Invalid auto-discovery-dialup-placeholder '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER)}",
+                f"Invalid auto-discovery-dialup-placeholder '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER)}",
             )
 
     # Validate encapsulation if present
@@ -1413,8 +1346,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ENCAPSULATION:
             return (
                 False,
-                f"Invalid encapsulation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION)}",
+                f"Invalid encapsulation '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION)}",
             )
 
     # Validate encapsulation-address if present
@@ -1423,8 +1355,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ENCAPSULATION_ADDRESS:
             return (
                 False,
-                f"Invalid encapsulation-address '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION_ADDRESS)}",
+                f"Invalid encapsulation-address '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION_ADDRESS)}",
             )
 
     # Validate vni if present
@@ -1444,8 +1375,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_NATTRAVERSAL:
             return (
                 False,
-                f"Invalid nattraversal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NATTRAVERSAL)}",
+                f"Invalid nattraversal '{value}'. Must be one of: {', '.join(VALID_BODY_NATTRAVERSAL)}",
             )
 
     # Validate fragmentation-mtu if present
@@ -1471,8 +1401,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CHILDLESS_IKE:
             return (
                 False,
-                f"Invalid childless-ike '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHILDLESS_IKE)}",
+                f"Invalid childless-ike '{value}'. Must be one of: {', '.join(VALID_BODY_CHILDLESS_IKE)}",
             )
 
     # Validate azure-ad-autoconnect if present
@@ -1481,8 +1410,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_AZURE_AD_AUTOCONNECT:
             return (
                 False,
-                f"Invalid azure-ad-autoconnect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_AD_AUTOCONNECT)}",
+                f"Invalid azure-ad-autoconnect '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_AD_AUTOCONNECT)}",
             )
 
     # Validate client-resume if present
@@ -1491,8 +1419,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CLIENT_RESUME:
             return (
                 False,
-                f"Invalid client-resume '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_RESUME)}",
+                f"Invalid client-resume '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_RESUME)}",
             )
 
     # Validate client-resume-interval if present
@@ -1518,8 +1445,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_REKEY:
             return (
                 False,
-                f"Invalid rekey '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REKEY)}",
+                f"Invalid rekey '{value}'. Must be one of: {', '.join(VALID_BODY_REKEY)}",
             )
 
     # Validate digital-signature-auth if present
@@ -1528,8 +1454,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_DIGITAL_SIGNATURE_AUTH:
             return (
                 False,
-                f"Invalid digital-signature-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIGITAL_SIGNATURE_AUTH)}",
+                f"Invalid digital-signature-auth '{value}'. Must be one of: {', '.join(VALID_BODY_DIGITAL_SIGNATURE_AUTH)}",
             )
 
     # Validate signature-hash-alg if present
@@ -1538,8 +1463,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_SIGNATURE_HASH_ALG:
             return (
                 False,
-                f"Invalid signature-hash-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SIGNATURE_HASH_ALG)}",
+                f"Invalid signature-hash-alg '{value}'. Must be one of: {', '.join(VALID_BODY_SIGNATURE_HASH_ALG)}",
             )
 
     # Validate rsa-signature-format if present
@@ -1548,8 +1472,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_RSA_SIGNATURE_FORMAT:
             return (
                 False,
-                f"Invalid rsa-signature-format '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSA_SIGNATURE_FORMAT)}",
+                f"Invalid rsa-signature-format '{value}'. Must be one of: {', '.join(VALID_BODY_RSA_SIGNATURE_FORMAT)}",
             )
 
     # Validate rsa-signature-hash-override if present
@@ -1558,8 +1481,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE:
             return (
                 False,
-                f"Invalid rsa-signature-hash-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE)}",
+                f"Invalid rsa-signature-hash-override '{value}'. Must be one of: {', '.join(VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE)}",
             )
 
     # Validate enforce-unique-id if present
@@ -1568,8 +1490,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_ENFORCE_UNIQUE_ID:
             return (
                 False,
-                f"Invalid enforce-unique-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENFORCE_UNIQUE_ID)}",
+                f"Invalid enforce-unique-id '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_UNIQUE_ID)}",
             )
 
     # Validate cert-id-validation if present
@@ -1578,8 +1499,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CERT_ID_VALIDATION:
             return (
                 False,
-                f"Invalid cert-id-validation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_ID_VALIDATION)}",
+                f"Invalid cert-id-validation '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_ID_VALIDATION)}",
             )
 
     # Validate fec-egress if present
@@ -1588,8 +1508,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FEC_EGRESS:
             return (
                 False,
-                f"Invalid fec-egress '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_EGRESS)}",
+                f"Invalid fec-egress '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_EGRESS)}",
             )
 
     # Validate fec-send-timeout if present
@@ -1626,8 +1545,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FEC_CODEC:
             return (
                 False,
-                f"Invalid fec-codec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_CODEC)}",
+                f"Invalid fec-codec '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_CODEC)}",
             )
 
     # Validate fec-redundant if present
@@ -1647,8 +1565,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FEC_INGRESS:
             return (
                 False,
-                f"Invalid fec-ingress '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_INGRESS)}",
+                f"Invalid fec-ingress '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_INGRESS)}",
             )
 
     # Validate fec-receive-timeout if present
@@ -1686,8 +1603,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_NETWORK_OVERLAY:
             return (
                 False,
-                f"Invalid network-overlay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETWORK_OVERLAY)}",
+                f"Invalid network-overlay '{value}'. Must be one of: {', '.join(VALID_BODY_NETWORK_OVERLAY)}",
             )
 
     # Validate network-id if present
@@ -1707,8 +1623,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_DEV_ID_NOTIFICATION:
             return (
                 False,
-                f"Invalid dev-id-notification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEV_ID_NOTIFICATION)}",
+                f"Invalid dev-id-notification '{value}'. Must be one of: {', '.join(VALID_BODY_DEV_ID_NOTIFICATION)}",
             )
 
     # Validate dev-id if present
@@ -1723,8 +1638,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_LOOPBACK_ASYMROUTE:
             return (
                 False,
-                f"Invalid loopback-asymroute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOOPBACK_ASYMROUTE)}",
+                f"Invalid loopback-asymroute '{value}'. Must be one of: {', '.join(VALID_BODY_LOOPBACK_ASYMROUTE)}",
             )
 
     # Validate link-cost if present
@@ -1750,8 +1664,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EXCHANGE_FGT_DEVICE_ID:
             return (
                 False,
-                f"Invalid exchange-fgt-device-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCHANGE_FGT_DEVICE_ID)}",
+                f"Invalid exchange-fgt-device-id '{value}'. Must be one of: {', '.join(VALID_BODY_EXCHANGE_FGT_DEVICE_ID)}",
             )
 
     # Validate ipv6-auto-linklocal if present
@@ -1760,8 +1673,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_IPV6_AUTO_LINKLOCAL:
             return (
                 False,
-                f"Invalid ipv6-auto-linklocal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPV6_AUTO_LINKLOCAL)}",
+                f"Invalid ipv6-auto-linklocal '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_AUTO_LINKLOCAL)}",
             )
 
     # Validate ems-sn-check if present
@@ -1770,8 +1682,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_EMS_SN_CHECK:
             return (
                 False,
-                f"Invalid ems-sn-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMS_SN_CHECK)}",
+                f"Invalid ems-sn-check '{value}'. Must be one of: {', '.join(VALID_BODY_EMS_SN_CHECK)}",
             )
 
     # Validate cert-trust-store if present
@@ -1780,8 +1691,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CERT_TRUST_STORE:
             return (
                 False,
-                f"Invalid cert-trust-store '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_TRUST_STORE)}",
+                f"Invalid cert-trust-store '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_TRUST_STORE)}",
             )
 
     # Validate qkd if present
@@ -1790,8 +1700,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_QKD:
             return (
                 False,
-                f"Invalid qkd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QKD)}",
+                f"Invalid qkd '{value}'. Must be one of: {', '.join(VALID_BODY_QKD)}",
             )
 
     # Validate qkd-hybrid if present
@@ -1800,8 +1709,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_QKD_HYBRID:
             return (
                 False,
-                f"Invalid qkd-hybrid '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QKD_HYBRID)}",
+                f"Invalid qkd-hybrid '{value}'. Must be one of: {', '.join(VALID_BODY_QKD_HYBRID)}",
             )
 
     # Validate qkd-profile if present
@@ -1816,8 +1724,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_TRANSPORT:
             return (
                 False,
-                f"Invalid transport '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT)}",
+                f"Invalid transport '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT)}",
             )
 
     # Validate fortinet-esp if present
@@ -1826,8 +1733,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_FORTINET_ESP:
             return (
                 False,
-                f"Invalid fortinet-esp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTINET_ESP)}",
+                f"Invalid fortinet-esp '{value}'. Must be one of: {', '.join(VALID_BODY_FORTINET_ESP)}",
             )
 
     # Validate auto-transport-threshold if present
@@ -1853,8 +1759,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_REMOTE_GW_MATCH:
             return (
                 False,
-                f"Invalid remote-gw-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_GW_MATCH)}",
+                f"Invalid remote-gw-match '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_GW_MATCH)}",
             )
 
     # Validate remote-gw-country if present
@@ -1869,8 +1774,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_REMOTE_GW6_MATCH:
             return (
                 False,
-                f"Invalid remote-gw6-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_GW6_MATCH)}",
+                f"Invalid remote-gw6-match '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_GW6_MATCH)}",
             )
 
     # Validate remote-gw6-country if present
@@ -1885,8 +1789,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CERT_PEER_USERNAME_VALIDATION:
             return (
                 False,
-                f"Invalid cert-peer-username-validation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_PEER_USERNAME_VALIDATION)}",
+                f"Invalid cert-peer-username-validation '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_PEER_USERNAME_VALIDATION)}",
             )
 
     # Validate cert-peer-username-strip if present
@@ -1895,8 +1798,7 @@ def validate_ipsec_phase1_interface_post(
         if value and value not in VALID_BODY_CERT_PEER_USERNAME_STRIP:
             return (
                 False,
-                f"Invalid cert-peer-username-strip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_PEER_USERNAME_STRIP)}",
+                f"Invalid cert-peer-username-strip '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_PEER_USERNAME_STRIP)}",
             )
 
     return (True, None)
@@ -1940,8 +1842,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_TYPE:
             return (
                 False,
-                f"Invalid type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TYPE)}",
+                f"Invalid type '{value}'. Must be one of: {', '.join(VALID_BODY_TYPE)}",
             )
 
     # Validate interface if present
@@ -1956,8 +1857,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_IP_VERSION:
             return (
                 False,
-                f"Invalid ip-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_VERSION)}",
+                f"Invalid ip-version '{value}'. Must be one of: {', '.join(VALID_BODY_IP_VERSION)}",
             )
 
     # Validate ike-version if present
@@ -1966,8 +1866,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_IKE_VERSION:
             return (
                 False,
-                f"Invalid ike-version '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IKE_VERSION)}",
+                f"Invalid ike-version '{value}'. Must be one of: {', '.join(VALID_BODY_IKE_VERSION)}",
             )
 
     # Validate remotegw-ddns if present
@@ -1993,8 +1892,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTHMETHOD:
             return (
                 False,
-                f"Invalid authmethod '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHMETHOD)}",
+                f"Invalid authmethod '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHMETHOD)}",
             )
 
     # Validate authmethod-remote if present
@@ -2003,8 +1901,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTHMETHOD_REMOTE:
             return (
                 False,
-                f"Invalid authmethod-remote '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTHMETHOD_REMOTE)}",
+                f"Invalid authmethod-remote '{value}'. Must be one of: {', '.join(VALID_BODY_AUTHMETHOD_REMOTE)}",
             )
 
     # Validate mode if present
@@ -2013,8 +1910,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MODE:
             return (
                 False,
-                f"Invalid mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE)}",
+                f"Invalid mode '{value}'. Must be one of: {', '.join(VALID_BODY_MODE)}",
             )
 
     # Validate peertype if present
@@ -2023,8 +1919,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PEERTYPE:
             return (
                 False,
-                f"Invalid peertype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEERTYPE)}",
+                f"Invalid peertype '{value}'. Must be one of: {', '.join(VALID_BODY_PEERTYPE)}",
             )
 
     # Validate peerid if present
@@ -2088,8 +1983,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MONITOR_HOLD_DOWN_TYPE:
             return (
                 False,
-                f"Invalid monitor-hold-down-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_HOLD_DOWN_TYPE)}",
+                f"Invalid monitor-hold-down-type '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_HOLD_DOWN_TYPE)}",
             )
 
     # Validate monitor-hold-down-delay if present
@@ -2115,8 +2009,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY:
             return (
                 False,
-                f"Invalid monitor-hold-down-weekday '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY)}",
+                f"Invalid monitor-hold-down-weekday '{value}'. Must be one of: {', '.join(VALID_BODY_MONITOR_HOLD_DOWN_WEEKDAY)}",
             )
 
     # Validate net-device if present
@@ -2125,8 +2018,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_NET_DEVICE:
             return (
                 False,
-                f"Invalid net-device '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NET_DEVICE)}",
+                f"Invalid net-device '{value}'. Must be one of: {', '.join(VALID_BODY_NET_DEVICE)}",
             )
 
     # Validate passive-mode if present
@@ -2135,8 +2027,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PASSIVE_MODE:
             return (
                 False,
-                f"Invalid passive-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PASSIVE_MODE)}",
+                f"Invalid passive-mode '{value}'. Must be one of: {', '.join(VALID_BODY_PASSIVE_MODE)}",
             )
 
     # Validate exchange-interface-ip if present
@@ -2145,8 +2036,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EXCHANGE_INTERFACE_IP:
             return (
                 False,
-                f"Invalid exchange-interface-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCHANGE_INTERFACE_IP)}",
+                f"Invalid exchange-interface-ip '{value}'. Must be one of: {', '.join(VALID_BODY_EXCHANGE_INTERFACE_IP)}",
             )
 
     # Validate aggregate-member if present
@@ -2155,8 +2045,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AGGREGATE_MEMBER:
             return (
                 False,
-                f"Invalid aggregate-member '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AGGREGATE_MEMBER)}",
+                f"Invalid aggregate-member '{value}'. Must be one of: {', '.join(VALID_BODY_AGGREGATE_MEMBER)}",
             )
 
     # Validate aggregate-weight if present
@@ -2182,8 +2071,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PACKET_REDISTRIBUTION:
             return (
                 False,
-                f"Invalid packet-redistribution '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PACKET_REDISTRIBUTION)}",
+                f"Invalid packet-redistribution '{value}'. Must be one of: {', '.join(VALID_BODY_PACKET_REDISTRIBUTION)}",
             )
 
     # Validate peer-egress-shaping if present
@@ -2192,8 +2080,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PEER_EGRESS_SHAPING:
             return (
                 False,
-                f"Invalid peer-egress-shaping '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PEER_EGRESS_SHAPING)}",
+                f"Invalid peer-egress-shaping '{value}'. Must be one of: {', '.join(VALID_BODY_PEER_EGRESS_SHAPING)}",
             )
 
     # Validate peer-egress-shaping-value if present
@@ -2219,8 +2106,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MODE_CFG:
             return (
                 False,
-                f"Invalid mode-cfg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE_CFG)}",
+                f"Invalid mode-cfg '{value}'. Must be one of: {', '.join(VALID_BODY_MODE_CFG)}",
             )
 
     # Validate mode-cfg-allow-client-selector if present
@@ -2229,8 +2115,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR:
             return (
                 False,
-                f"Invalid mode-cfg-allow-client-selector '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR)}",
+                f"Invalid mode-cfg-allow-client-selector '{value}'. Must be one of: {', '.join(VALID_BODY_MODE_CFG_ALLOW_CLIENT_SELECTOR)}",
             )
 
     # Validate assign-ip if present
@@ -2239,8 +2124,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ASSIGN_IP:
             return (
                 False,
-                f"Invalid assign-ip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGN_IP)}",
+                f"Invalid assign-ip '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGN_IP)}",
             )
 
     # Validate assign-ip-from if present
@@ -2249,8 +2133,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ASSIGN_IP_FROM:
             return (
                 False,
-                f"Invalid assign-ip-from '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ASSIGN_IP_FROM)}",
+                f"Invalid assign-ip-from '{value}'. Must be one of: {', '.join(VALID_BODY_ASSIGN_IP_FROM)}",
             )
 
     # Validate dns-mode if present
@@ -2259,8 +2142,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_DNS_MODE:
             return (
                 False,
-                f"Invalid dns-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DNS_MODE)}",
+                f"Invalid dns-mode '{value}'. Must be one of: {', '.join(VALID_BODY_DNS_MODE)}",
             )
 
     # Validate ipv4-split-include if present
@@ -2330,8 +2212,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_UNITY_SUPPORT:
             return (
                 False,
-                f"Invalid unity-support '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_UNITY_SUPPORT)}",
+                f"Invalid unity-support '{value}'. Must be one of: {', '.join(VALID_BODY_UNITY_SUPPORT)}",
             )
 
     # Validate domain if present
@@ -2352,8 +2233,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_INCLUDE_LOCAL_LAN:
             return (
                 False,
-                f"Invalid include-local-lan '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INCLUDE_LOCAL_LAN)}",
+                f"Invalid include-local-lan '{value}'. Must be one of: {', '.join(VALID_BODY_INCLUDE_LOCAL_LAN)}",
             )
 
     # Validate ipv4-split-exclude if present
@@ -2374,8 +2254,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_SAVE_PASSWORD:
             return (
                 False,
-                f"Invalid save-password '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SAVE_PASSWORD)}",
+                f"Invalid save-password '{value}'. Must be one of: {', '.join(VALID_BODY_SAVE_PASSWORD)}",
             )
 
     # Validate client-auto-negotiate if present
@@ -2384,8 +2263,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CLIENT_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid client-auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_AUTO_NEGOTIATE)}",
+                f"Invalid client-auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_AUTO_NEGOTIATE)}",
             )
 
     # Validate client-keep-alive if present
@@ -2394,8 +2272,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CLIENT_KEEP_ALIVE:
             return (
                 False,
-                f"Invalid client-keep-alive '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_KEEP_ALIVE)}",
+                f"Invalid client-keep-alive '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_KEEP_ALIVE)}",
             )
 
     # Validate proposal if present
@@ -2404,8 +2281,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PROPOSAL:
             return (
                 False,
-                f"Invalid proposal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PROPOSAL)}",
+                f"Invalid proposal '{value}'. Must be one of: {', '.join(VALID_BODY_PROPOSAL)}",
             )
 
     # Validate add-route if present
@@ -2414,8 +2290,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADD_ROUTE:
             return (
                 False,
-                f"Invalid add-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_ROUTE)}",
+                f"Invalid add-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_ROUTE)}",
             )
 
     # Validate add-gw-route if present
@@ -2424,8 +2299,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADD_GW_ROUTE:
             return (
                 False,
-                f"Invalid add-gw-route '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADD_GW_ROUTE)}",
+                f"Invalid add-gw-route '{value}'. Must be one of: {', '.join(VALID_BODY_ADD_GW_ROUTE)}",
             )
 
     # Validate keepalive if present
@@ -2473,8 +2347,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_LOCALID_TYPE:
             return (
                 False,
-                f"Invalid localid-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOCALID_TYPE)}",
+                f"Invalid localid-type '{value}'. Must be one of: {', '.join(VALID_BODY_LOCALID_TYPE)}",
             )
 
     # Validate auto-negotiate if present
@@ -2483,8 +2356,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_NEGOTIATE:
             return (
                 False,
-                f"Invalid auto-negotiate '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
+                f"Invalid auto-negotiate '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_NEGOTIATE)}",
             )
 
     # Validate negotiate-timeout if present
@@ -2510,8 +2382,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FRAGMENTATION:
             return (
                 False,
-                f"Invalid fragmentation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FRAGMENTATION)}",
+                f"Invalid fragmentation '{value}'. Must be one of: {', '.join(VALID_BODY_FRAGMENTATION)}",
             )
 
     # Validate ip-fragmentation if present
@@ -2520,8 +2391,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_IP_FRAGMENTATION:
             return (
                 False,
-                f"Invalid ip-fragmentation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IP_FRAGMENTATION)}",
+                f"Invalid ip-fragmentation '{value}'. Must be one of: {', '.join(VALID_BODY_IP_FRAGMENTATION)}",
             )
 
     # Validate dpd if present
@@ -2530,8 +2400,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_DPD:
             return (
                 False,
-                f"Invalid dpd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DPD)}",
+                f"Invalid dpd '{value}'. Must be one of: {', '.join(VALID_BODY_DPD)}",
             )
 
     # Validate dpd-retrycount if present
@@ -2557,8 +2426,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_NPU_OFFLOAD:
             return (
                 False,
-                f"Invalid npu-offload '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NPU_OFFLOAD)}",
+                f"Invalid npu-offload '{value}'. Must be one of: {', '.join(VALID_BODY_NPU_OFFLOAD)}",
             )
 
     # Validate send-cert-chain if present
@@ -2567,8 +2435,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_SEND_CERT_CHAIN:
             return (
                 False,
-                f"Invalid send-cert-chain '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SEND_CERT_CHAIN)}",
+                f"Invalid send-cert-chain '{value}'. Must be one of: {', '.join(VALID_BODY_SEND_CERT_CHAIN)}",
             )
 
     # Validate dhgrp if present
@@ -2577,8 +2444,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_DHGRP:
             return (
                 False,
-                f"Invalid dhgrp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DHGRP)}",
+                f"Invalid dhgrp '{value}'. Must be one of: {', '.join(VALID_BODY_DHGRP)}",
             )
 
     # Validate addke1 if present
@@ -2587,8 +2453,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE1:
             return (
                 False,
-                f"Invalid addke1 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE1)}",
+                f"Invalid addke1 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE1)}",
             )
 
     # Validate addke2 if present
@@ -2597,8 +2462,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE2:
             return (
                 False,
-                f"Invalid addke2 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE2)}",
+                f"Invalid addke2 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE2)}",
             )
 
     # Validate addke3 if present
@@ -2607,8 +2471,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE3:
             return (
                 False,
-                f"Invalid addke3 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE3)}",
+                f"Invalid addke3 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE3)}",
             )
 
     # Validate addke4 if present
@@ -2617,8 +2480,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE4:
             return (
                 False,
-                f"Invalid addke4 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE4)}",
+                f"Invalid addke4 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE4)}",
             )
 
     # Validate addke5 if present
@@ -2627,8 +2489,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE5:
             return (
                 False,
-                f"Invalid addke5 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE5)}",
+                f"Invalid addke5 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE5)}",
             )
 
     # Validate addke6 if present
@@ -2637,8 +2498,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE6:
             return (
                 False,
-                f"Invalid addke6 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE6)}",
+                f"Invalid addke6 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE6)}",
             )
 
     # Validate addke7 if present
@@ -2647,8 +2507,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ADDKE7:
             return (
                 False,
-                f"Invalid addke7 '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ADDKE7)}",
+                f"Invalid addke7 '{value}'. Must be one of: {', '.join(VALID_BODY_ADDKE7)}",
             )
 
     # Validate suite-b if present
@@ -2657,8 +2516,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_SUITE_B:
             return (
                 False,
-                f"Invalid suite-b '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUITE_B)}",
+                f"Invalid suite-b '{value}'. Must be one of: {', '.join(VALID_BODY_SUITE_B)}",
             )
 
     # Validate eap if present
@@ -2667,8 +2525,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EAP:
             return (
                 False,
-                f"Invalid eap '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP)}",
+                f"Invalid eap '{value}'. Must be one of: {', '.join(VALID_BODY_EAP)}",
             )
 
     # Validate eap-identity if present
@@ -2677,8 +2534,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EAP_IDENTITY:
             return (
                 False,
-                f"Invalid eap-identity '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_IDENTITY)}",
+                f"Invalid eap-identity '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_IDENTITY)}",
             )
 
     # Validate eap-exclude-peergrp if present
@@ -2693,8 +2549,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EAP_CERT_AUTH:
             return (
                 False,
-                f"Invalid eap-cert-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EAP_CERT_AUTH)}",
+                f"Invalid eap-cert-auth '{value}'. Must be one of: {', '.join(VALID_BODY_EAP_CERT_AUTH)}",
             )
 
     # Validate acct-verify if present
@@ -2703,8 +2558,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ACCT_VERIFY:
             return (
                 False,
-                f"Invalid acct-verify '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ACCT_VERIFY)}",
+                f"Invalid acct-verify '{value}'. Must be one of: {', '.join(VALID_BODY_ACCT_VERIFY)}",
             )
 
     # Validate ppk if present
@@ -2713,8 +2567,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_PPK:
             return (
                 False,
-                f"Invalid ppk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_PPK)}",
+                f"Invalid ppk '{value}'. Must be one of: {', '.join(VALID_BODY_PPK)}",
             )
 
     # Validate ppk-identity if present
@@ -2729,8 +2582,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_WIZARD_TYPE:
             return (
                 False,
-                f"Invalid wizard-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_WIZARD_TYPE)}",
+                f"Invalid wizard-type '{value}'. Must be one of: {', '.join(VALID_BODY_WIZARD_TYPE)}",
             )
 
     # Validate xauthtype if present
@@ -2739,8 +2591,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_XAUTHTYPE:
             return (
                 False,
-                f"Invalid xauthtype '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_XAUTHTYPE)}",
+                f"Invalid xauthtype '{value}'. Must be one of: {', '.join(VALID_BODY_XAUTHTYPE)}",
             )
 
     # Validate reauth if present
@@ -2749,8 +2600,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_REAUTH:
             return (
                 False,
-                f"Invalid reauth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REAUTH)}",
+                f"Invalid reauth '{value}'. Must be one of: {', '.join(VALID_BODY_REAUTH)}",
             )
 
     # Validate authusr if present
@@ -2765,8 +2615,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_GROUP_AUTHENTICATION:
             return (
                 False,
-                f"Invalid group-authentication '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_GROUP_AUTHENTICATION)}",
+                f"Invalid group-authentication '{value}'. Must be one of: {', '.join(VALID_BODY_GROUP_AUTHENTICATION)}",
             )
 
     # Validate authusrgrp if present
@@ -2781,8 +2630,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_MESH_SELECTOR_TYPE:
             return (
                 False,
-                f"Invalid mesh-selector-type '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MESH_SELECTOR_TYPE)}",
+                f"Invalid mesh-selector-type '{value}'. Must be one of: {', '.join(VALID_BODY_MESH_SELECTOR_TYPE)}",
             )
 
     # Validate idle-timeout if present
@@ -2791,8 +2639,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_IDLE_TIMEOUT:
             return (
                 False,
-                f"Invalid idle-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IDLE_TIMEOUT)}",
+                f"Invalid idle-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_IDLE_TIMEOUT)}",
             )
 
     # Validate shared-idle-timeout if present
@@ -2801,8 +2648,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_SHARED_IDLE_TIMEOUT:
             return (
                 False,
-                f"Invalid shared-idle-timeout '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SHARED_IDLE_TIMEOUT)}",
+                f"Invalid shared-idle-timeout '{value}'. Must be one of: {', '.join(VALID_BODY_SHARED_IDLE_TIMEOUT)}",
             )
 
     # Validate idle-timeoutinterval if present
@@ -2828,8 +2674,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_HA_SYNC_ESP_SEQNO:
             return (
                 False,
-                f"Invalid ha-sync-esp-seqno '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_HA_SYNC_ESP_SEQNO)}",
+                f"Invalid ha-sync-esp-seqno '{value}'. Must be one of: {', '.join(VALID_BODY_HA_SYNC_ESP_SEQNO)}",
             )
 
     # Validate fgsp-sync if present
@@ -2838,8 +2683,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FGSP_SYNC:
             return (
                 False,
-                f"Invalid fgsp-sync '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FGSP_SYNC)}",
+                f"Invalid fgsp-sync '{value}'. Must be one of: {', '.join(VALID_BODY_FGSP_SYNC)}",
             )
 
     # Validate inbound-dscp-copy if present
@@ -2848,8 +2692,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_INBOUND_DSCP_COPY:
             return (
                 False,
-                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
+                f"Invalid inbound-dscp-copy '{value}'. Must be one of: {', '.join(VALID_BODY_INBOUND_DSCP_COPY)}",
             )
 
     # Validate auto-discovery-sender if present
@@ -2858,8 +2701,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_SENDER:
             return (
                 False,
-                f"Invalid auto-discovery-sender '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_SENDER)}",
+                f"Invalid auto-discovery-sender '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_SENDER)}",
             )
 
     # Validate auto-discovery-receiver if present
@@ -2868,8 +2710,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_RECEIVER:
             return (
                 False,
-                f"Invalid auto-discovery-receiver '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_RECEIVER)}",
+                f"Invalid auto-discovery-receiver '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_RECEIVER)}",
             )
 
     # Validate auto-discovery-forwarder if present
@@ -2878,8 +2719,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_FORWARDER:
             return (
                 False,
-                f"Invalid auto-discovery-forwarder '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_FORWARDER)}",
+                f"Invalid auto-discovery-forwarder '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_FORWARDER)}",
             )
 
     # Validate auto-discovery-psk if present
@@ -2888,8 +2728,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_PSK:
             return (
                 False,
-                f"Invalid auto-discovery-psk '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_PSK)}",
+                f"Invalid auto-discovery-psk '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_PSK)}",
             )
 
     # Validate auto-discovery-shortcuts if present
@@ -2898,8 +2737,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_SHORTCUTS:
             return (
                 False,
-                f"Invalid auto-discovery-shortcuts '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_SHORTCUTS)}",
+                f"Invalid auto-discovery-shortcuts '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_SHORTCUTS)}",
             )
 
     # Validate auto-discovery-crossover if present
@@ -2908,8 +2746,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_CROSSOVER:
             return (
                 False,
-                f"Invalid auto-discovery-crossover '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_CROSSOVER)}",
+                f"Invalid auto-discovery-crossover '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_CROSSOVER)}",
             )
 
     # Validate auto-discovery-offer-interval if present
@@ -2935,8 +2772,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER:
             return (
                 False,
-                f"Invalid auto-discovery-dialup-placeholder '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER)}",
+                f"Invalid auto-discovery-dialup-placeholder '{value}'. Must be one of: {', '.join(VALID_BODY_AUTO_DISCOVERY_DIALUP_PLACEHOLDER)}",
             )
 
     # Validate encapsulation if present
@@ -2945,8 +2781,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ENCAPSULATION:
             return (
                 False,
-                f"Invalid encapsulation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION)}",
+                f"Invalid encapsulation '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION)}",
             )
 
     # Validate encapsulation-address if present
@@ -2955,8 +2790,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ENCAPSULATION_ADDRESS:
             return (
                 False,
-                f"Invalid encapsulation-address '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENCAPSULATION_ADDRESS)}",
+                f"Invalid encapsulation-address '{value}'. Must be one of: {', '.join(VALID_BODY_ENCAPSULATION_ADDRESS)}",
             )
 
     # Validate vni if present
@@ -2976,8 +2810,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_NATTRAVERSAL:
             return (
                 False,
-                f"Invalid nattraversal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NATTRAVERSAL)}",
+                f"Invalid nattraversal '{value}'. Must be one of: {', '.join(VALID_BODY_NATTRAVERSAL)}",
             )
 
     # Validate fragmentation-mtu if present
@@ -3003,8 +2836,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CHILDLESS_IKE:
             return (
                 False,
-                f"Invalid childless-ike '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CHILDLESS_IKE)}",
+                f"Invalid childless-ike '{value}'. Must be one of: {', '.join(VALID_BODY_CHILDLESS_IKE)}",
             )
 
     # Validate azure-ad-autoconnect if present
@@ -3013,8 +2845,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_AZURE_AD_AUTOCONNECT:
             return (
                 False,
-                f"Invalid azure-ad-autoconnect '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_AZURE_AD_AUTOCONNECT)}",
+                f"Invalid azure-ad-autoconnect '{value}'. Must be one of: {', '.join(VALID_BODY_AZURE_AD_AUTOCONNECT)}",
             )
 
     # Validate client-resume if present
@@ -3023,8 +2854,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CLIENT_RESUME:
             return (
                 False,
-                f"Invalid client-resume '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CLIENT_RESUME)}",
+                f"Invalid client-resume '{value}'. Must be one of: {', '.join(VALID_BODY_CLIENT_RESUME)}",
             )
 
     # Validate client-resume-interval if present
@@ -3050,8 +2880,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_REKEY:
             return (
                 False,
-                f"Invalid rekey '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REKEY)}",
+                f"Invalid rekey '{value}'. Must be one of: {', '.join(VALID_BODY_REKEY)}",
             )
 
     # Validate digital-signature-auth if present
@@ -3060,8 +2889,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_DIGITAL_SIGNATURE_AUTH:
             return (
                 False,
-                f"Invalid digital-signature-auth '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DIGITAL_SIGNATURE_AUTH)}",
+                f"Invalid digital-signature-auth '{value}'. Must be one of: {', '.join(VALID_BODY_DIGITAL_SIGNATURE_AUTH)}",
             )
 
     # Validate signature-hash-alg if present
@@ -3070,8 +2898,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_SIGNATURE_HASH_ALG:
             return (
                 False,
-                f"Invalid signature-hash-alg '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SIGNATURE_HASH_ALG)}",
+                f"Invalid signature-hash-alg '{value}'. Must be one of: {', '.join(VALID_BODY_SIGNATURE_HASH_ALG)}",
             )
 
     # Validate rsa-signature-format if present
@@ -3080,8 +2907,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_RSA_SIGNATURE_FORMAT:
             return (
                 False,
-                f"Invalid rsa-signature-format '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSA_SIGNATURE_FORMAT)}",
+                f"Invalid rsa-signature-format '{value}'. Must be one of: {', '.join(VALID_BODY_RSA_SIGNATURE_FORMAT)}",
             )
 
     # Validate rsa-signature-hash-override if present
@@ -3090,8 +2916,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE:
             return (
                 False,
-                f"Invalid rsa-signature-hash-override '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE)}",
+                f"Invalid rsa-signature-hash-override '{value}'. Must be one of: {', '.join(VALID_BODY_RSA_SIGNATURE_HASH_OVERRIDE)}",
             )
 
     # Validate enforce-unique-id if present
@@ -3100,8 +2925,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_ENFORCE_UNIQUE_ID:
             return (
                 False,
-                f"Invalid enforce-unique-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ENFORCE_UNIQUE_ID)}",
+                f"Invalid enforce-unique-id '{value}'. Must be one of: {', '.join(VALID_BODY_ENFORCE_UNIQUE_ID)}",
             )
 
     # Validate cert-id-validation if present
@@ -3110,8 +2934,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CERT_ID_VALIDATION:
             return (
                 False,
-                f"Invalid cert-id-validation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_ID_VALIDATION)}",
+                f"Invalid cert-id-validation '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_ID_VALIDATION)}",
             )
 
     # Validate fec-egress if present
@@ -3120,8 +2943,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FEC_EGRESS:
             return (
                 False,
-                f"Invalid fec-egress '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_EGRESS)}",
+                f"Invalid fec-egress '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_EGRESS)}",
             )
 
     # Validate fec-send-timeout if present
@@ -3158,8 +2980,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FEC_CODEC:
             return (
                 False,
-                f"Invalid fec-codec '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_CODEC)}",
+                f"Invalid fec-codec '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_CODEC)}",
             )
 
     # Validate fec-redundant if present
@@ -3179,8 +3000,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FEC_INGRESS:
             return (
                 False,
-                f"Invalid fec-ingress '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FEC_INGRESS)}",
+                f"Invalid fec-ingress '{value}'. Must be one of: {', '.join(VALID_BODY_FEC_INGRESS)}",
             )
 
     # Validate fec-receive-timeout if present
@@ -3218,8 +3038,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_NETWORK_OVERLAY:
             return (
                 False,
-                f"Invalid network-overlay '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_NETWORK_OVERLAY)}",
+                f"Invalid network-overlay '{value}'. Must be one of: {', '.join(VALID_BODY_NETWORK_OVERLAY)}",
             )
 
     # Validate network-id if present
@@ -3239,8 +3058,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_DEV_ID_NOTIFICATION:
             return (
                 False,
-                f"Invalid dev-id-notification '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_DEV_ID_NOTIFICATION)}",
+                f"Invalid dev-id-notification '{value}'. Must be one of: {', '.join(VALID_BODY_DEV_ID_NOTIFICATION)}",
             )
 
     # Validate dev-id if present
@@ -3255,8 +3073,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_LOOPBACK_ASYMROUTE:
             return (
                 False,
-                f"Invalid loopback-asymroute '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_LOOPBACK_ASYMROUTE)}",
+                f"Invalid loopback-asymroute '{value}'. Must be one of: {', '.join(VALID_BODY_LOOPBACK_ASYMROUTE)}",
             )
 
     # Validate link-cost if present
@@ -3282,8 +3099,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EXCHANGE_FGT_DEVICE_ID:
             return (
                 False,
-                f"Invalid exchange-fgt-device-id '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EXCHANGE_FGT_DEVICE_ID)}",
+                f"Invalid exchange-fgt-device-id '{value}'. Must be one of: {', '.join(VALID_BODY_EXCHANGE_FGT_DEVICE_ID)}",
             )
 
     # Validate ipv6-auto-linklocal if present
@@ -3292,8 +3108,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_IPV6_AUTO_LINKLOCAL:
             return (
                 False,
-                f"Invalid ipv6-auto-linklocal '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_IPV6_AUTO_LINKLOCAL)}",
+                f"Invalid ipv6-auto-linklocal '{value}'. Must be one of: {', '.join(VALID_BODY_IPV6_AUTO_LINKLOCAL)}",
             )
 
     # Validate ems-sn-check if present
@@ -3302,8 +3117,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_EMS_SN_CHECK:
             return (
                 False,
-                f"Invalid ems-sn-check '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_EMS_SN_CHECK)}",
+                f"Invalid ems-sn-check '{value}'. Must be one of: {', '.join(VALID_BODY_EMS_SN_CHECK)}",
             )
 
     # Validate cert-trust-store if present
@@ -3312,8 +3126,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CERT_TRUST_STORE:
             return (
                 False,
-                f"Invalid cert-trust-store '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_TRUST_STORE)}",
+                f"Invalid cert-trust-store '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_TRUST_STORE)}",
             )
 
     # Validate qkd if present
@@ -3322,8 +3135,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_QKD:
             return (
                 False,
-                f"Invalid qkd '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QKD)}",
+                f"Invalid qkd '{value}'. Must be one of: {', '.join(VALID_BODY_QKD)}",
             )
 
     # Validate qkd-hybrid if present
@@ -3332,8 +3144,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_QKD_HYBRID:
             return (
                 False,
-                f"Invalid qkd-hybrid '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_QKD_HYBRID)}",
+                f"Invalid qkd-hybrid '{value}'. Must be one of: {', '.join(VALID_BODY_QKD_HYBRID)}",
             )
 
     # Validate qkd-profile if present
@@ -3348,8 +3159,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_TRANSPORT:
             return (
                 False,
-                f"Invalid transport '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_TRANSPORT)}",
+                f"Invalid transport '{value}'. Must be one of: {', '.join(VALID_BODY_TRANSPORT)}",
             )
 
     # Validate fortinet-esp if present
@@ -3358,8 +3168,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_FORTINET_ESP:
             return (
                 False,
-                f"Invalid fortinet-esp '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_FORTINET_ESP)}",
+                f"Invalid fortinet-esp '{value}'. Must be one of: {', '.join(VALID_BODY_FORTINET_ESP)}",
             )
 
     # Validate auto-transport-threshold if present
@@ -3385,8 +3194,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_REMOTE_GW_MATCH:
             return (
                 False,
-                f"Invalid remote-gw-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_GW_MATCH)}",
+                f"Invalid remote-gw-match '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_GW_MATCH)}",
             )
 
     # Validate remote-gw-country if present
@@ -3401,8 +3209,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_REMOTE_GW6_MATCH:
             return (
                 False,
-                f"Invalid remote-gw6-match '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_REMOTE_GW6_MATCH)}",
+                f"Invalid remote-gw6-match '{value}'. Must be one of: {', '.join(VALID_BODY_REMOTE_GW6_MATCH)}",
             )
 
     # Validate remote-gw6-country if present
@@ -3417,8 +3224,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CERT_PEER_USERNAME_VALIDATION:
             return (
                 False,
-                f"Invalid cert-peer-username-validation '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_PEER_USERNAME_VALIDATION)}",
+                f"Invalid cert-peer-username-validation '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_PEER_USERNAME_VALIDATION)}",
             )
 
     # Validate cert-peer-username-strip if present
@@ -3427,8 +3233,7 @@ def validate_ipsec_phase1_interface_put(
         if value and value not in VALID_BODY_CERT_PEER_USERNAME_STRIP:
             return (
                 False,
-                f"Invalid cert-peer-username-strip '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_CERT_PEER_USERNAME_STRIP)}",
+                f"Invalid cert-peer-username-strip '{value}'. Must be one of: {', '.join(VALID_BODY_CERT_PEER_USERNAME_STRIP)}",
             )
 
     return (True, None)

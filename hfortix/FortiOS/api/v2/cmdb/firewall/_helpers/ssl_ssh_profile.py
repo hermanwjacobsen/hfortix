@@ -57,8 +57,7 @@ def validate_ssl_ssh_profile_get(
         if value and value not in VALID_QUERY_ACTION:
             return (
                 False,
-                f"Invalid query parameter 'action'='{value}'. Must be one of: {
-                    ', '.join(VALID_QUERY_ACTION)}",
+                f"Invalid query parameter 'action'='{value}'. Must be one of: {', '.join(VALID_QUERY_ACTION)}",
             )
 
     return (True, None)
@@ -99,8 +98,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_ALLOWLIST:
             return (
                 False,
-                f"Invalid allowlist '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWLIST)}",
+                f"Invalid allowlist '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWLIST)}",
             )
 
     # Validate block-blocklisted-certificates if present
@@ -109,8 +107,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES:
             return (
                 False,
-                f"Invalid block-blocklisted-certificates '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES)}",
+                f"Invalid block-blocklisted-certificates '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES)}",
             )
 
     # Validate server-cert-mode if present
@@ -119,8 +116,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SERVER_CERT_MODE:
             return (
                 False,
-                f"Invalid server-cert-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_CERT_MODE)}",
+                f"Invalid server-cert-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_CERT_MODE)}",
             )
 
     # Validate use-ssl-server if present
@@ -129,8 +125,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_USE_SSL_SERVER:
             return (
                 False,
-                f"Invalid use-ssl-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_SSL_SERVER)}",
+                f"Invalid use-ssl-server '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SSL_SERVER)}",
             )
 
     # Validate caname if present
@@ -151,8 +146,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_EXEMPTION_IP_RATING:
             return (
                 False,
-                f"Invalid ssl-exemption-ip-rating '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_EXEMPTION_IP_RATING)}",
+                f"Invalid ssl-exemption-ip-rating '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_EXEMPTION_IP_RATING)}",
             )
 
     # Validate ssl-exemption-log if present
@@ -161,8 +155,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_EXEMPTION_LOG:
             return (
                 False,
-                f"Invalid ssl-exemption-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_EXEMPTION_LOG)}",
+                f"Invalid ssl-exemption-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_EXEMPTION_LOG)}",
             )
 
     # Validate ssl-anomaly-log if present
@@ -171,8 +164,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_ANOMALY_LOG:
             return (
                 False,
-                f"Invalid ssl-anomaly-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ANOMALY_LOG)}",
+                f"Invalid ssl-anomaly-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ANOMALY_LOG)}",
             )
 
     # Validate ssl-negotiation-log if present
@@ -181,8 +173,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_NEGOTIATION_LOG:
             return (
                 False,
-                f"Invalid ssl-negotiation-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_NEGOTIATION_LOG)}",
+                f"Invalid ssl-negotiation-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_NEGOTIATION_LOG)}",
             )
 
     # Validate ssl-server-cert-log if present
@@ -191,8 +182,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_SERVER_CERT_LOG:
             return (
                 False,
-                f"Invalid ssl-server-cert-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_CERT_LOG)}",
+                f"Invalid ssl-server-cert-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_CERT_LOG)}",
             )
 
     # Validate ssl-handshake-log if present
@@ -201,8 +191,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SSL_HANDSHAKE_LOG:
             return (
                 False,
-                f"Invalid ssl-handshake-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HANDSHAKE_LOG)}",
+                f"Invalid ssl-handshake-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HANDSHAKE_LOG)}",
             )
 
     # Validate rpc-over-https if present
@@ -211,8 +200,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_RPC_OVER_HTTPS:
             return (
                 False,
-                f"Invalid rpc-over-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RPC_OVER_HTTPS)}",
+                f"Invalid rpc-over-https '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTPS)}",
             )
 
     # Validate mapi-over-https if present
@@ -221,8 +209,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_MAPI_OVER_HTTPS:
             return (
                 False,
-                f"Invalid mapi-over-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAPI_OVER_HTTPS)}",
+                f"Invalid mapi-over-https '{value}'. Must be one of: {', '.join(VALID_BODY_MAPI_OVER_HTTPS)}",
             )
 
     # Validate supported-alpn if present
@@ -231,8 +218,7 @@ def validate_ssl_ssh_profile_post(
         if value and value not in VALID_BODY_SUPPORTED_ALPN:
             return (
                 False,
-                f"Invalid supported-alpn '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUPPORTED_ALPN)}",
+                f"Invalid supported-alpn '{value}'. Must be one of: {', '.join(VALID_BODY_SUPPORTED_ALPN)}",
             )
 
     return (True, None)
@@ -282,8 +268,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_ALLOWLIST:
             return (
                 False,
-                f"Invalid allowlist '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_ALLOWLIST)}",
+                f"Invalid allowlist '{value}'. Must be one of: {', '.join(VALID_BODY_ALLOWLIST)}",
             )
 
     # Validate block-blocklisted-certificates if present
@@ -292,8 +277,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES:
             return (
                 False,
-                f"Invalid block-blocklisted-certificates '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES)}",
+                f"Invalid block-blocklisted-certificates '{value}'. Must be one of: {', '.join(VALID_BODY_BLOCK_BLOCKLISTED_CERTIFICATES)}",
             )
 
     # Validate server-cert-mode if present
@@ -302,8 +286,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SERVER_CERT_MODE:
             return (
                 False,
-                f"Invalid server-cert-mode '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SERVER_CERT_MODE)}",
+                f"Invalid server-cert-mode '{value}'. Must be one of: {', '.join(VALID_BODY_SERVER_CERT_MODE)}",
             )
 
     # Validate use-ssl-server if present
@@ -312,8 +295,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_USE_SSL_SERVER:
             return (
                 False,
-                f"Invalid use-ssl-server '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_USE_SSL_SERVER)}",
+                f"Invalid use-ssl-server '{value}'. Must be one of: {', '.join(VALID_BODY_USE_SSL_SERVER)}",
             )
 
     # Validate caname if present
@@ -334,8 +316,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_EXEMPTION_IP_RATING:
             return (
                 False,
-                f"Invalid ssl-exemption-ip-rating '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_EXEMPTION_IP_RATING)}",
+                f"Invalid ssl-exemption-ip-rating '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_EXEMPTION_IP_RATING)}",
             )
 
     # Validate ssl-exemption-log if present
@@ -344,8 +325,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_EXEMPTION_LOG:
             return (
                 False,
-                f"Invalid ssl-exemption-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_EXEMPTION_LOG)}",
+                f"Invalid ssl-exemption-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_EXEMPTION_LOG)}",
             )
 
     # Validate ssl-anomaly-log if present
@@ -354,8 +334,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_ANOMALY_LOG:
             return (
                 False,
-                f"Invalid ssl-anomaly-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_ANOMALY_LOG)}",
+                f"Invalid ssl-anomaly-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_ANOMALY_LOG)}",
             )
 
     # Validate ssl-negotiation-log if present
@@ -364,8 +343,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_NEGOTIATION_LOG:
             return (
                 False,
-                f"Invalid ssl-negotiation-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_NEGOTIATION_LOG)}",
+                f"Invalid ssl-negotiation-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_NEGOTIATION_LOG)}",
             )
 
     # Validate ssl-server-cert-log if present
@@ -374,8 +352,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_SERVER_CERT_LOG:
             return (
                 False,
-                f"Invalid ssl-server-cert-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_SERVER_CERT_LOG)}",
+                f"Invalid ssl-server-cert-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_SERVER_CERT_LOG)}",
             )
 
     # Validate ssl-handshake-log if present
@@ -384,8 +361,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SSL_HANDSHAKE_LOG:
             return (
                 False,
-                f"Invalid ssl-handshake-log '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SSL_HANDSHAKE_LOG)}",
+                f"Invalid ssl-handshake-log '{value}'. Must be one of: {', '.join(VALID_BODY_SSL_HANDSHAKE_LOG)}",
             )
 
     # Validate rpc-over-https if present
@@ -394,8 +370,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_RPC_OVER_HTTPS:
             return (
                 False,
-                f"Invalid rpc-over-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_RPC_OVER_HTTPS)}",
+                f"Invalid rpc-over-https '{value}'. Must be one of: {', '.join(VALID_BODY_RPC_OVER_HTTPS)}",
             )
 
     # Validate mapi-over-https if present
@@ -404,8 +379,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_MAPI_OVER_HTTPS:
             return (
                 False,
-                f"Invalid mapi-over-https '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_MAPI_OVER_HTTPS)}",
+                f"Invalid mapi-over-https '{value}'. Must be one of: {', '.join(VALID_BODY_MAPI_OVER_HTTPS)}",
             )
 
     # Validate supported-alpn if present
@@ -414,8 +388,7 @@ def validate_ssl_ssh_profile_put(
         if value and value not in VALID_BODY_SUPPORTED_ALPN:
             return (
                 False,
-                f"Invalid supported-alpn '{value}'. Must be one of: {
-                    ', '.join(VALID_BODY_SUPPORTED_ALPN)}",
+                f"Invalid supported-alpn '{value}'. Must be one of: {', '.join(VALID_BODY_SUPPORTED_ALPN)}",
             )
 
     return (True, None)
